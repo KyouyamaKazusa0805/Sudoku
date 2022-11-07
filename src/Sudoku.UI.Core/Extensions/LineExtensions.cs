@@ -4,7 +4,7 @@
 /// Provides with extension methods on <see cref="Line"/>.
 /// </summary>
 /// <seealso cref="Line"/>
-public static class LineExtensions
+public static partial class LineExtensions
 {
 	/// <summary>
 	/// Sets properties <see cref="Line.X1"/> and <see cref="Line.Y1"/> with the specified values.
@@ -49,4 +49,7 @@ public static class LineExtensions
 		((@this.X1, @this.Y1), (@this.X2, @this.Y2)) = (point1, point2);
 		return @this;
 	}
+
+	[GeneratedDeconstruction]
+	public static partial void Deconstruct(this Line @this, out double x1, out double x2, out double y1, out double y2);
 }

@@ -2959,6 +2959,47 @@
             with the specified values.
             </summary>
         </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.LineGeometryExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Media.LineGeometry"/>.
@@ -3109,52 +3150,6 @@
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeEndLineCap"/> with the specified value.
             </summary>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DE3B63B71A">
-            <summary>
-            Provides with extension deconstruction methods on this type.
-            </summary>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DE3B63B71A.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
-						</code>
-						The following code will be legal.
-						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
-
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
-
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
-						</code>
-					</para>
-				</remarks>
-			</target>
         </member>
         <member name="T:Microsoft.UI.Xaml.Data.BindingExtensions">
             <summary>
@@ -3770,19 +3765,52 @@
             <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
             <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
-        <member name="T:System.Windows.Input.CommandExtensions">
+        <member name="T:Windows.UI.ColorExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:System.Windows.Input.ICommand"/>.
+            Provides with extension methods on <see cref="T:Windows.UI.Color"/>.
             </summary>
-            <seealso cref="T:System.Windows.Input.ICommand"/>
+            <seealso cref="T:Windows.UI.Color"/>
         </member>
-        <member name="M:System.Windows.Input.CommandExtensions.ExecuteIfCan(System.Windows.Input.ICommand,System.Object)">
-            <summary>
-            Execute the specified command if it can be executed.
-            </summary>
-            <param name="this">The command.</param>
-            <param name="commandParameter">The command parameter.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        <member name="M:Windows.UI.ColorExtensions.Deconstruct(Windows.UI.Color,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
             <summary>
@@ -3857,12 +3885,7 @@
             <param name="other">The other point.</param>
             <returns>The distance of the two points.</returns>
         </member>
-        <member name="T:Windows.Foundation.Point_DE90A9E19A">
-            <summary>
-            Provides with extension deconstruction methods on this type.
-            </summary>
-        </member>
-        <member name="M:Windows.Foundation.Point_DE90A9E19A.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.PointExtensions.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3916,51 +3939,19 @@
             <param name="this">The modifier key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Windows.UI.Color_DE908EC1AA">
+        <member name="T:System.Windows.Input.CommandExtensions">
             <summary>
-            Provides with extension deconstruction methods on this type.
+            Provides with extension methods on <see cref="T:System.Windows.Input.ICommand"/>.
             </summary>
+            <seealso cref="T:System.Windows.Input.ICommand"/>
         </member>
-        <member name="M:Windows.UI.Color_DE908EC1AA.Deconstruct(Windows.UI.Color,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
-						</code>
-						The following code will be legal.
-						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
-
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
-
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
-						</code>
-					</para>
-				</remarks>
-			</target>
+        <member name="M:System.Windows.Input.CommandExtensions.ExecuteIfCan(System.Windows.Input.ICommand,System.Object)">
+            <summary>
+            Execute the specified command if it can be executed.
+            </summary>
+            <param name="this">The command.</param>
+            <param name="commandParameter">The command parameter.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
     </members>
 </doc>

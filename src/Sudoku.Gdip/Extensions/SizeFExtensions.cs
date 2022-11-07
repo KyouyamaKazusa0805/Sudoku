@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="SizeF"/>.
 /// </summary>
 /// <seealso cref="SizeF"/>
-internal static class SizeFExtensions
+internal static partial class SizeFExtensions
 {
 	/// <summary>
 	/// To truncate the size.
@@ -13,4 +13,7 @@ internal static class SizeFExtensions
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Size Truncate(this scoped in SizeF @this) => new((int)@this.Width, (int)@this.Height);
+
+	[GeneratedDeconstruction]
+	public static partial void Deconstruct(this scoped in SizeF @this, out float width, out float height);
 }

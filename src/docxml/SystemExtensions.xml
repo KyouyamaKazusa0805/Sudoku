@@ -1492,42 +1492,6 @@
             Indicates the generic argument is a self type.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute">
-            <summary>
-            Telling the source generators to generate extension deconstruction methods for a specified type.
-            </summary>
-        </member>
-        <member name="M:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.#ctor(System.Type,System.String[])">
-            <summary>
-            Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute"/> instance.
-            </summary>
-            <param name="type">The type of the extension method to be generated.</param>
-            <param name="memberExpressions">The member expressions to be generated.</param>
-            <exception cref="T:System.ArgumentException"></exception>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.EmitsInKeyword">
-            <summary>
-            Indicates whether the source generators also emit for <see langword="in"/>
-            and <see langword="scoped"/> keywords if available on <see langword="struct"/> types.
-            </summary>
-            <remarks>The default value is <see langword="false"/>.</remarks>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.Namespace">
-            <summary>
-            The namespace that the containing type of extension methods exists.
-            </summary>
-            <remarks>The default value is <see langword="null"/>.</remarks>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.MemberExpressions">
-            <summary>
-            The member expressions to be converted.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.Type">
-            <summary>
-            The type to be generated.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute">
             <summary>
             Defines an <see langword="enum"/> field as an arm in <see langword="switch"/> expressions.

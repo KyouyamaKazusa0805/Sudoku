@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="PointF"/>.
 /// </summary>
 /// <seealso cref="PointF"/>
-internal static class PointFExtensions
+internal static partial class PointFExtensions
 {
 	/// <summary>
 	/// To truncate the point.
@@ -13,4 +13,7 @@ internal static class PointFExtensions
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Point Truncate(this scoped in PointF @this) => new((int)@this.X, (int)@this.Y);
+
+	[GeneratedDeconstruction]
+	public static partial void Deconstruct(this scoped in PointF @this, out float x, out float y);
 }

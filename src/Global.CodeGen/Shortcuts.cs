@@ -20,4 +20,5 @@ internal static class Shortcuts
 	public const string CodeAnalyzer = "ca";
 	public const string DiagnosticDescriptorList = "ddl";
 	public const string GeneratedDeconstruction = "gd";
+	public const string GeneratedExtensionDeconstruction = "ged";
 }

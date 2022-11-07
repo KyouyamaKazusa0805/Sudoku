@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="RectangleF"/>.
 /// </summary>
 /// <seealso cref="RectangleF"/>
-internal static class RectangleFExtensions
+internal static partial class RectangleFExtensions
 {
 	/// <summary>
 	/// Zoom in or out the rectangle by the specified offset.
@@ -38,4 +38,7 @@ internal static class RectangleFExtensions
 		point = new(@this.X, @this.Y);
 		size = @this.Size;
 	}
+
+	[GeneratedDeconstruction]
+	public static partial void Deconstruct(this scoped in RectangleF @this, out float x, out float y, out float width, out float height);
 }

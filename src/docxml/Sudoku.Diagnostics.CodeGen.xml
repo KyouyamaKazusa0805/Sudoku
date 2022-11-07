@@ -4,40 +4,6 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator">
-            <summary>
-            Defines a source generator that generates deconstruction methods of a type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.ExpressionPattern">
-            <summary>
-            Defines the pattern that matches for an expression.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GatherAssemblyAttributes(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IAssemblySymbol,System.Collections.Generic.ICollection{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.AttributeData}})">
-            <summary>
-            Get for assembly-targeted attributes on generation.
-            </summary>
-            <param name="attributeTypeSymbol">The attribute type symbol.</param>
-            <param name="assembly">The assembly symbol.</param>
-            <param name="collection">The target collection to store the results.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForExtension(Microsoft.CodeAnalysis.AttributeData[],System.String,System.String,Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            Gets the raw code parts for extension deconstruction methods via the specified list of attributes data.
-            </summary>
-            <param name="attributesData">The attributes data, with the corresponding location.</param>
-            <param name="genericParameterListWithoutConstraint">The generic parameter list.</param>
-            <param name="fullTypeNameWithoutConstraint">The full type name, without the generic constraint.</param>
-            <param name="type">The current emit type.</param>
-            <returns>The collection of raw code parts for extension deconstruction methods.</returns>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator">
             <summary>
             Defines a source generator that generates the method and the corresponding values, forming a <see langword="switch"/> expression.
@@ -101,6 +67,24 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.AttributeType">
             <summary>The attribute type used for fetching the arguments' extra data.</summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GeneratedExtensionDeconstructionGenerator">
+            <summary>
+            Defines a source generator that generates the source code for extension deconstruction methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedExtensionDeconstructionGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
+            <summary>
+            The internal output data.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,Microsoft.CodeAnalysis.SyntaxTokenList,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.ITypeParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            The internal output data.
+            </summary>
         </member>
         <member name="F:CodeGen.Constants.VersionValue">
             <summary>

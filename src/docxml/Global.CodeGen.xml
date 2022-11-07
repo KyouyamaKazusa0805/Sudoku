@@ -137,6 +137,10 @@
             <param name="this">The string.</param>
             <returns>The converted string value.</returns>
         </member>
+        <member name="M:Microsoft.CodeAnalysis.StringExtensions.IsKeyword(System.String)">
+            <inheritdoc cref="M:Microsoft.CodeAnalysis.CSharp.SyntaxFacts.IsKeywordKind(Microsoft.CodeAnalysis.CSharp.SyntaxKind)"/>
+            <param name="this">The string.</param>
+        </member>
         <member name="T:Microsoft.CodeAnalysis.SymbolOutputInfo">
             <summary>
             Provides the basic information used for output a source code via an <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.

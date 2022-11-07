@@ -20,4 +20,19 @@ internal static class StringExtensions
 			[>= 'a' and <= 'z', ..] => @this,
 			[var c, .. var otherChars] => $"{c}{otherChars.ToCamelCase()}"
 		};
+
+	/// <inheritdoc cref="SyntaxFacts.IsKeywordKind(SyntaxKind)"/>
+	/// <param name="this">The string.</param>
+	public static bool IsKeyword(this string @this)
+	{
+		try
+		{
+			return SyntaxFacts.IsKeywordKind((SyntaxKind)Enum.Parse(typeof(SyntaxKind), $"{@this}Keyword", true)!);
+		}
+		catch (ArgumentException)
+		{
+			// Parsing failed.
+			return false;
+		}
+	}
 }

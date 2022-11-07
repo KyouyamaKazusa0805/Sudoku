@@ -11,14 +11,16 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 	{
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute", nodePredicate, transform)
+				.ForAttributeWithMetadataName(
+					"System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute",
+					static (node, _) => node is MethodDeclarationSyntax,
+					transform
+				)
 				.Where(static d => d is not null)
 				.Collect(),
 			action
 		);
 
-
-		static bool nodePredicate(SyntaxNode node, CancellationToken _) => node is MethodDeclarationSyntax;
 
 		static Data? transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 		{
@@ -37,7 +39,7 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 						ReturnsVoid: true,
 						ContainingType: { ContainingType: null, IsFileLocal: false } type
 					} symbol,
-					SemanticModel: { Compilation: var compilation } semanticModel
+					SemanticModel.Compilation: var compilation
 				}
 				when parameters.All(static p => p.RefKind == RefKind.Out):
 				{
@@ -64,7 +66,7 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 			{
 #pragma warning disable format
 				if (tuple is not (
-					{ ContainingNamespace: var @namespace, Name: var typeName } containingType,
+					{ ContainingNamespace: var @namespace, Name: var typeName, TypeParameters: var typeParameters } containingType,
 					{ DeclaredAccessibility: var methodAccessibility } method,
 					{ Length: var parameterLength } parameters,
 					var modifiers,
@@ -122,6 +124,12 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 					_ => string.Empty
 				};
 
+				var typeParametersStr = typeParameters switch
+				{
+					[] => string.Empty,
+					_ => $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>"
+				};
+
 				spc.AddSource(
 					$"{containingType.ToFileName()}_p{parameters.Length}.g.{Shortcuts.GeneratedDeconstruction}.cs",
 					$$"""
@@ -129,7 +137,7 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 
 					#nullable enable
 
-					{{namespaceStr}}partial {{containingType.GetTypeKindModifier()}} {{typeName}}
+					{{namespaceStr}}partial {{containingType.GetTypeKindModifier()}} {{typeName}}{{typeParametersStr}}
 					{
 						/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 						[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
