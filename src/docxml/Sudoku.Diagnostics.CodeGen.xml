@@ -67,10 +67,40 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.OutputAction(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol}}})">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
             <summary>
-            Output action.
+            The internal output data.
             </summary>
+            <param name="ContainingType">The containing type.</param>
+            <param name="Method">The deconstruction method.</param>
+            <param name="Parameters">The parameters.</param>
+            <param name="Modifiers">The modifiers of the deconstruction method.</param>
+            <param name="AttributeType">The attribute type used for fetching the arguments' extra data.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            The internal output data.
+            </summary>
+            <param name="ContainingType">The containing type.</param>
+            <param name="Method">The deconstruction method.</param>
+            <param name="Parameters">The parameters.</param>
+            <param name="Modifiers">The modifiers of the deconstruction method.</param>
+            <param name="AttributeType">The attribute type used for fetching the arguments' extra data.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.ContainingType">
+            <summary>The containing type.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Method">
+            <summary>The deconstruction method.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Parameters">
+            <summary>The parameters.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Modifiers">
+            <summary>The modifiers of the deconstruction method.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.AttributeType">
+            <summary>The attribute type used for fetching the arguments' extra data.</summary>
         </member>
         <member name="F:CodeGen.Constants.VersionValue">
             <summary>
