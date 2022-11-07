@@ -167,36 +167,18 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 				_ => name
 			};
 
-		static bool memberDataSelector(
-			(bool, ISymbol, string) memberData,
-			IParameterSymbol parameter,
-			INamedTypeSymbol attributeType)
+		static bool memberDataSelector((bool, ISymbol, string) memberData, IParameterSymbol parameter, INamedTypeSymbol attributeType)
 		{
-			if (memberData is not (_, { Name: var rawName }, var name))
-			{
-				return false;
-			}
+			return (memberData, parameter) is ((_, { Name: var rawName }, var name), { Name: var paramName })
+				&& (
+					name == standardizeIdentifierName(paramName)
+						|| parameter.GetAttributes() is var attributes and not []
+						&& attributes.FirstOrDefault(a) is { ConstructorArguments: [{ Value: string targetPropertyExpression }] }
+						&& targetPropertyExpression == rawName
+				);
 
-			if (name == standardizeIdentifierName(parameter.Name))
-			{
-				return true;
-			}
 
-			// If cannot corresponds to the target, route to indirect member using attributes.
-			if (parameter.GetAttributes() is not (var attributes and not []))
-			{
-				return false;
-			}
-
-			if (attributes.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType)) is not
-				{
-					ConstructorArguments: [{ Value: string targetPropertyExpression }]
-				})
-			{
-				return false;
-			}
-
-			return targetPropertyExpression == rawName;
+			bool a(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType);
 		}
 
 		static string getAssignmentStatementCode((bool IsDirect, ISymbol Member, string Name, string ParameterName) t, CancellationToken ct)
