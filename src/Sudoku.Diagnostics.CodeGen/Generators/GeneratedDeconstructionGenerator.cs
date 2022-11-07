@@ -183,12 +183,17 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 					// Field reference.
 					(_, IFieldSymbol, var name, var parameterName) => $"{parameterName} = {name};",
 
-					// Property reference. The property is indirectly referenced by attributes.
+					// Property reference. The property is directly referenced.
 					(true, IPropertySymbol, var name, var paramName) => $"{paramName} = {name};",
 
-					// Property reference. The property is directly referenced.
-					(false, IPropertySymbol { DeclaringSyntaxReferences: [var r] }, var name, var paramName)
-						=> (PropertyDeclarationSyntax)r.GetSyntax(ct)! switch
+					// Property reference. The property is indirectly referenced by attributes.
+					(false, IPropertySymbol { DeclaringSyntaxReferences: var syntaxRefs }, var name, var paramName) => syntaxRefs switch
+					{
+						// Declared in metadata.
+						{ IsDefaultOrEmpty: true } => $"{paramName} = {name};",
+
+						// Declared in source files.
+						[var r] => (PropertyDeclarationSyntax)r.GetSyntax(ct)! switch
 						{
 							// public int Property { get => 42; }
 							{ AccessorList.Accessors: [{ Keyword.RawKind: (int)SyntaxKind.GetKeyword, ExpressionBody.Expression: var expr }] }
@@ -210,18 +215,25 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 
 							// public int Property { get { <block> } }
 							_ => $"{paramName} = {name};"
-						},
-
-					// Parameterless method reference. The method is indirectly referenced by attributes.
-					(true, IMethodSymbol, var name, var paramName) => $"{paramName} = {name}();",
+						}
+					},
 
 					// Parameterless method reference. The method is directly referenced.
-					(false, IMethodSymbol { DeclaringSyntaxReferences: [var r] }, var name, var paramName)
-						=> (MethodDeclarationSyntax)r.GetSyntax(ct)! switch
+					(true, IMethodSymbol, var name, var paramName) => $"{paramName} = {name}();",
+
+					// Parameterless method reference. The method is indirectly referenced by attributes.
+					(false, IMethodSymbol { DeclaringSyntaxReferences: var syntaxRefs }, var name, var paramName) => syntaxRefs switch
+					{
+						// Declared in metadata.
+						{ IsDefaultOrEmpty: true } => $"{paramName} = {name}();",
+
+						// Declared in source files.
+						[var r] => (MethodDeclarationSyntax)r.GetSyntax(ct)! switch
 						{
 							{ ExpressionBody.Expression: var expr } => $"{paramName} = {expr};",
 							_ => $"{paramName} = {name}();"
 						}
+					}
 				};
 		}
 	}

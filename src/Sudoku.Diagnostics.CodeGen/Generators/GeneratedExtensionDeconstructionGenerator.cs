@@ -202,44 +202,58 @@ public sealed class GeneratedExtensionDeconstructionGenerator : IIncrementalGene
 				// Field reference.
 				(_, var thisParameterName, IFieldSymbol, var name, var parameterName) => $"{parameterName} = {thisParameterName}.{name};",
 
-				// Property reference. The property is indirectly referenced by attributes.
+				// Property reference. The property is directly referenced.
 				(true, var thisParameterName, IPropertySymbol, var name, var paramName) => $"{paramName} = {thisParameterName}.{name};",
 
-				// Property reference. The property is directly referenced.
-				(false, var thisParameterName, IPropertySymbol { DeclaringSyntaxReferences: [var r] }, var name, var paramName)
-					=> (PropertyDeclarationSyntax)r.GetSyntax(ct)! switch
+				// Property reference. The property is indirectly referenced by attributes.
+				(false, var thisParameterName, IPropertySymbol { DeclaringSyntaxReferences: var syntaxRefs }, var name, var paramName)
+					=> syntaxRefs switch
 					{
-						// public int Property { get => 42; }
-						{ AccessorList.Accessors: [{ Keyword.RawKind: (int)SyntaxKind.GetKeyword, ExpressionBody.Expression: var expr }] }
-							=> $"{paramName} = {expr};",
+						// Declared in metadata.
+						{ IsDefaultOrEmpty: true } => $"{paramName} = {thisParameterName}.{name};",
 
-						// public int Property => 42;
-						{ ExpressionBody.Expression: var expr } => $"{paramName} = {expr};",
-
-						// public int Property { get { return 42; } }
+						// Declared in source files.
+						[var r] => (PropertyDeclarationSyntax)r.GetSyntax(ct)! switch
 						{
-							AccessorList.Accessors:
-							[
-								{
-									Keyword.RawKind: (int)SyntaxKind.GetKeyword,
-									Body.Statements: [ReturnStatementSyntax { Expression: var expr }]
-								}
-							]
-						} => $"{paramName} = {expr};",
+							// public int Property { get => 42; }
+							{ AccessorList.Accessors: [{ Keyword.RawKind: (int)SyntaxKind.GetKeyword, ExpressionBody.Expression: var expr }] }
+								=> $"{paramName} = {expr};",
 
-						// public int Property { get { <block> } }
-						_ => $"{paramName} = {thisParameterName}.{name};"
+							// public int Property => 42;
+							{ ExpressionBody.Expression: var expr } => $"{paramName} = {expr};",
+
+							// public int Property { get { return 42; } }
+							{
+								AccessorList.Accessors:
+								[
+									{
+										Keyword.RawKind: (int)SyntaxKind.GetKeyword,
+										Body.Statements: [ReturnStatementSyntax { Expression: var expr }]
+									}
+								]
+							} => $"{paramName} = {expr};",
+
+							// public int Property { get { <block> } }
+							_ => $"{paramName} = {thisParameterName}.{name};"
+						}
 					},
 
 				// Parameterless method reference. The method is indirectly referenced by attributes.
 				(true, var thisParameterName, IMethodSymbol, var name, var paramName) => $"{paramName} = {thisParameterName}.{name}();",
 
 				// Parameterless method reference. The method is directly referenced.
-				(false, var thisParameterName, IMethodSymbol { DeclaringSyntaxReferences: [var r] }, var name, var paramName)
-					=> (MethodDeclarationSyntax)r.GetSyntax(ct)! switch
+				(false, var thisParameterName, IMethodSymbol { DeclaringSyntaxReferences: var syntaxRefs }, var name, var paramName)
+					=> syntaxRefs switch
 					{
-						{ ExpressionBody.Expression: var expr } => $"{paramName} = {thisParameterName}.{expr};",
-						_ => $"{paramName} = {thisParameterName}.{name}();"
+						// Declared in metadata.
+						{ IsDefaultOrEmpty: true } => $"{paramName} = {thisParameterName}.{name}();",
+
+						// Declared in source files.
+						[var r] => (MethodDeclarationSyntax)r.GetSyntax(ct)! switch
+						{
+							{ ExpressionBody.Expression: var expr } => $"{paramName} = {expr};",
+							_ => $"{paramName} = {thisParameterName}.{name}();"
+						}
 					}
 			};
 	}

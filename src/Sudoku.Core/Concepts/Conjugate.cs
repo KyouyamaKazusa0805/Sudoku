@@ -97,9 +97,7 @@ public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOpera
 
 
 	[GeneratedDeconstruction]
-	public partial void Deconstruct(
-		[GeneratedDeconstructionArgument(nameof(FromCandidate))] out int fromCand,
-		[GeneratedDeconstructionArgument(nameof(ToCandidate))] out int toCand);
+	public partial void Deconstruct([GeneratedDeconstructionArgument(nameof(FromCandidate))] out int fromCand, [GeneratedDeconstructionArgument(nameof(ToCandidate))] out int toCand);
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
