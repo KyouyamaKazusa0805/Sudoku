@@ -6,4 +6,10 @@
 		<DocumentationFile>..\docxml\Sudoku.Solving.Logical.CodeGen.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.4.0-4.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0-4.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.4.0-4.final" />
+	</ItemGroup>
+
 </Project>

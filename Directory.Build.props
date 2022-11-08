@@ -7,7 +7,7 @@
 		<!--Project configuration-->
 		<Authors>Sunnie</Authors>
 		<Copyright>Copyright (c) Sunnie 2019-2022</Copyright>
-		<Version>2.3</Version>
+		<Version>3.0</Version>
 
 		<!--Syntax configuration-->
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -53,13 +53,6 @@
 	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
 		<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
 	</PropertyGroup>
-
-	<!--Import 'Microsoft.CodeAnalysis.*' packages if the project is a source generator project.-->
-	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
-		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.4.0-2.final" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0-2.final" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.4.0-2.final" />
-	</ItemGroup>
 
 	<!--Import 'Global.CodeGen' project into the source generator projects.-->
 	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' And '$(MSBuildProjectFile)'!='Global.CodeGen.csproj'">
