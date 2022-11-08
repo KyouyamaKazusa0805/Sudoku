@@ -1,9 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
-namespace Sudoku.UI.Maui.WinUI;
+﻿namespace Sudoku.UI.Maui.WinUI;
 
 /// <summary>
 /// Provides application-specific behavior to supplement the default Application class.
@@ -11,14 +6,12 @@ namespace Sudoku.UI.Maui.WinUI;
 public partial class App : MauiWinUIApplication
 {
 	/// <summary>
-	/// Initializes the singleton application object.  This is the first line of authored code
-	/// executed, and as such is the logical equivalent of main() or WinMain().
+	/// Initializes the singleton application object.
+	/// This is the first line of authored code executed, and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
 	/// </summary>
-	public App()
-	{
-		this.InitializeComponent();
-	}
+	public App() => InitializeComponent();
 
+
+	/// <inheritdoc/>
 	protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 }
-

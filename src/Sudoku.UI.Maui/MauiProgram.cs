@@ -1,19 +1,26 @@
-﻿using Microsoft.Extensions.Logging;
+﻿namespace Sudoku.UI.Maui;
 
-namespace Sudoku.UI.Maui;
-
+/// <summary>
+/// The application creator type.
+/// </summary>
 public static class MauiProgram
 {
+	/// <summary>
+	/// Creates a MAUI application.
+	/// </summary>
+	/// <returns>The created application.</returns>
 	public static MauiApp CreateMauiApp()
 	{
-		var builder = MauiApp.CreateBuilder();
-		builder
+		var builder = MauiApp.CreateBuilder()
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+			.ConfigureFonts(
+				static fonts =>
+				{
+					fonts
+						.AddFont("OpenSans-Regular.ttf", "OpenSansRegular")
+						.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+				}
+			);
 
 #if DEBUG
 		builder.Logging.AddDebug();
