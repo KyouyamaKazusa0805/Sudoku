@@ -1,1 +1,0 @@
-﻿[assembly: InternalsVisibleTo("Sudoku.UI")]
