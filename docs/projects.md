@@ -16,7 +16,6 @@
 * [`Sudoku.Recognition`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Recognition)：提供识别一个图片里的数独题目的基本 API（实现得非常简单）；
 * [`Sudoku.Solving.Algorithms`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Algorithms)：提供对于暴力破解的数独解题算法的 API，比如位运算、回溯递归算法等；
 * [`Sudoku.Solving.Logical`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Logical)：提供对于逻辑解题过程处理的 API；
-* [`Sudoku.UI.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI.Core)：用于为 `Sudoku.UI` 项目提供固定 API；
 * [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System)：为整个解决方案的别的项目提供关于 .NET 基本库 API 拓展 API 或功能代码。
 
 ## 代码分析器项目
@@ -58,6 +57,5 @@
 属于该类型的项目有：
 
 * [`Sudoku.CommandLine`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine)（控制台）：提供一个关于数独基本运算和操作的控制台实现，偶尔也被用来调试代码；
-* [`Sudoku.Communication.Qicq`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Communication.Qicq)：使用 Mirai 搭建的、机器人平台实现；
-* [`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI)（Windows UI）：用于呈现和使用 API 提供一个具体的 UI 级别实现。
+* [`Sudoku.Communication.Qicq`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Communication.Qicq)：使用 Mirai 搭建的、机器人平台实现。
 
