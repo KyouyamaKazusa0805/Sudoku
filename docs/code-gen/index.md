@@ -17,7 +17,8 @@
 
 下面列举所有的源代码生成器。
 
-* [解构函数生成器](auto-decon)：生成解构函数的代码。
+* `GeneratedDeconstructionGenerator`：生成解构函数的代码。
+* `GeneratedExtensionDeconstructionGenerator`：生成扩展解构函数的代码。
 * [自动生成枚举类型相关的执行和路由操作](enum-switch-expr)：生成为枚举类型的所有字段进行路由和处理，构造操作的代码。
 * **`VersionValueGenerator`**：只给源代码生成器提供服务。用于给源代码生成器的项目提供版本号。
 * **`StepSearcherOptionsGenerator`**：对实现了 `IStepSearcher` 接口的类型生成默认的 `Options` 属性信息的相关代码。
