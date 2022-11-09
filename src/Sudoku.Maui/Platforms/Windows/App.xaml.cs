@@ -1,8 +1,9 @@
 ﻿namespace Sudoku.Maui.WinUI;
 
 /// <summary>
-/// Provides application-specific behavior to supplement the default Application class.
+/// Provides application-specific behavior to supplement the default <see cref="Application"/> class.
 /// </summary>
+/// <seealso cref="Application"/>
 public sealed partial class App : MauiWinUIApplication
 {
 	/// <summary>
