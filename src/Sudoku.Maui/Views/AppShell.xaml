@@ -4,10 +4,11 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:v="clr-namespace:Sudoku.Maui.Views"
 	xmlns:vm="clr-namespace:Sudoku.Maui.ViewModels"
+	xmlns:z="clr-namespace:Sudoku.Maui.Markup"
 	Shell.FlyoutBehavior="Disabled">
 	<Shell.BindingContext>
 		<vm:AppShellViewModel />
 	</Shell.BindingContext>
 
-	<ShellContent Title="Home" ContentTemplate="{DataTemplate v:MainPage}" Route="MainPage" />
+	<ShellContent Title="{z:Text Home}" ContentTemplate="{DataTemplate v:MainPage}" Route="MainPage" />
 </Shell>

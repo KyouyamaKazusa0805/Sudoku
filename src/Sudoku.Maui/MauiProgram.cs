@@ -34,6 +34,7 @@ public static class MauiProgram
 		{
 			f.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 			f.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+			f.AddFont("MiSans-Normal.ttf", "MiSans");
 		}
 	}
 }

@@ -8,5 +8,7 @@ global using Microsoft.Extensions.Logging;
 global using Microsoft.Maui;
 global using Microsoft.Maui.Controls;
 global using Microsoft.Maui.Controls.Hosting;
+global using Microsoft.Maui.Controls.Xaml;
 global using Microsoft.Maui.Hosting;
 global using Sudoku.Maui.Views;
+global using static Sudoku.Resources.MergedResources;

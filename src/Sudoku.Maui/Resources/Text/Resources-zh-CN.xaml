@@ -1,0 +1,11 @@
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+	<x:String x:Key="Home">主页面</x:String>
+	<x:String x:Key="HelloWorld">你好，世界~</x:String>
+	<x:String x:Key="WelcomeMaui">欢迎使用 .NET 多平台应用程序 UI 框架</x:String>
+
+	<x:String x:Key="ClickMe">点我试试看~</x:String>
+	<x:String x:Key="Time">次</x:String>
+	<x:String x:Key="Times">次</x:String>
+</ResourceDictionary>
