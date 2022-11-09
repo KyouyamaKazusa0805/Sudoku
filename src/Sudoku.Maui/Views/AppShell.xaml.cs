@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Maui;
+﻿namespace Sudoku.Maui.Views;
 
 /// <summary>
 /// Defines an application shell. This is the main page of the program.
