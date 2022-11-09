@@ -7,11 +7,11 @@
 [![license](https://img.shields.io/github/license/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)
 
 ![](https://img.shields.io/badge/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-C%23%2012%20%E9%A2%84%E8%A7%88%E7%89%88-%23178600)
-![](https://img.shields.io/badge/%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-.NET%207%20RC2-blueviolet)
+![](https://img.shields.io/badge/%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-.NET%207-blueviolet)
 ![](https://img.shields.io/badge/%E7%BC%A9%E8%BF%9B-Tab-lightgrey)
-![](https://img.shields.io/badge/IDE-Visual%20Studio%202022%20v17.4%20%E9%A2%84%E8%A7%88%E7%89%88%206-%23cf98fb)
+![](https://img.shields.io/badge/IDE-Visual%20Studio%202022%20v17.5%20%E9%A2%84%E8%A7%88%E7%89%88%201-%23cf98fb)
 ![](https://img.shields.io/badge/%E8%AF%AD%E8%A8%80-%E8%8B%B1%E8%AF%AD%E3%80%81%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-success)
-[![](https://img.shields.io/badge/UI%20%E9%A1%B9%E7%9B%AE-Sudoku.UI-%230d1117)](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI)
+<!--[![](https://img.shields.io/badge/UI%20%E9%A1%B9%E7%9B%AE-Sudoku.UI-%230d1117)](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI)-->
 
 [![](https://img.shields.io/badge/GitHub-%E7%82%B9%E6%88%91%EF%BC%81-%230d1117?logo=github)](https://github.com/SunnieShine/Sudoku)
 [![](https://img.shields.io/badge/Gitee-%E7%82%B9%E6%88%91%EF%BC%81-%230d1117?logo=gitee)](https://gitee.com/SunnieShine/Sudoku)
