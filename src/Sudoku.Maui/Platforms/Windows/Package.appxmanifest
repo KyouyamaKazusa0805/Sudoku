@@ -12,7 +12,7 @@
 	<mp:PhoneIdentity PhoneProductId="6569220D-B2EB-439E-8AC3-6565C2761D1E" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
 	<Properties>
-		<DisplayName>$placeholder$</DisplayName>
+		<DisplayName>Sunnie&apos;s Sudoku Solution</DisplayName>
 		<PublisherDisplayName>Sunnie</PublisherDisplayName>
 		<Logo>$placeholder$.png</Logo>
 	</Properties>
@@ -29,8 +29,8 @@
 	<Applications>
 		<Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
 			<uap:VisualElements
-			  DisplayName="$placeholder$"
-			  Description="$placeholder$"
+			  DisplayName="Sunnie&apos;s Sudoku Solution"
+			  Description="A sudoku program based on MAUI."
 			  Square150x150Logo="$placeholder$.png"
 			  Square44x44Logo="$placeholder$.png"
 			  BackgroundColor="transparent">
