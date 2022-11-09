@@ -1,0 +1,11 @@
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+	<x:String x:Key="Home">ホーム</x:String>
+	<x:String x:Key="HelloWorld">ハロー・ワルド！</x:String>
+	<x:String x:Key="WelcomeMaui">ようこそ、クロスプラットフォーム・フレームワークへ～</x:String>
+
+	<x:String x:Key="ClickMe">クリックミー~</x:String>
+	<x:String x:Key="Time">次</x:String>
+	<x:String x:Key="Times">次</x:String>
+</ResourceDictionary>
