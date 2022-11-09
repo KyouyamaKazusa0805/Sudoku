@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines an application.
 /// </summary>
-public partial class App : Application
+public sealed partial class App : Application
 {
 	/// <summary>
 	/// Initializes an <see cref="App"/> instance.

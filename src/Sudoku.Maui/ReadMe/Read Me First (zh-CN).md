@@ -15,7 +15,7 @@ MAUI 是一个比较新的 UI 框架，一次编译就可以在多个不同的平台上运行同一个程序：
 如果你要运行该项目的话，你需要先去还原一下该项目的 NuGet 包，用下面的命令来还原：
 
 ```bash
-cd src\Sudoku.Maui
+cd .\src\Sudoku.Maui
 dotnet restore .\Sudoku.Maui.csproj
 ```
 

@@ -53,10 +53,12 @@ file static class Extensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static MauiAppBuilder ConfigureDebugLogging(this MauiAppBuilder @this)
 	{
-#if DEBUG
-		@this.Logging.AddDebug();
-#endif
-
+		internalAdding(@this);
 		return @this;
+
+
+		[Conditional("DEBUG")]
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		static void internalAdding(MauiAppBuilder @this) => @this.Logging.AddDebug();
 	}
 }

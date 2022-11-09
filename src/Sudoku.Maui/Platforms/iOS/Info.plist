@@ -28,5 +28,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>CFBundleShortVersionString</key>
+	<string>3.0.0.0</string>
 </dict>
 </plist>

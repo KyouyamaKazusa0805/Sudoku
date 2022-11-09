@@ -15,7 +15,7 @@ MAUI is a newer .NET framework that can create an application used by multiple p
 If you want to build this project, you should firstly restore the packages in this project using the following commands:
 
 ```bash
-cd src\Sudoku.Maui
+cd .\src\Sudoku.Maui
 dotnet restore .\Sudoku.Maui.csproj
 ```
 

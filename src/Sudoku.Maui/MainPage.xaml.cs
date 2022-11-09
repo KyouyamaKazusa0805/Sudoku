@@ -3,7 +3,7 @@
 /// <summary>
 /// The main page.
 /// </summary>
-public partial class MainPage : ContentPage
+public sealed partial class MainPage : ContentPage
 {
 	/// <summary>
 	/// The counter.
