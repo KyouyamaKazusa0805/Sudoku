@@ -57,5 +57,6 @@
 属于该类型的项目有：
 
 * [`Sudoku.CommandLine`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine)（控制台）：提供一个关于数独基本运算和操作的控制台实现，偶尔也被用来调试代码；
-* [`Sudoku.Communication.Qicq`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Communication.Qicq)：使用 Mirai 搭建的、机器人平台实现。
+* [`Sudoku.Communication.Qicq`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Communication.Qicq)：使用 Mirai 搭建的、机器人平台实现；
+* [`Sudoku.Maui`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Maui)：使用 MAUI 框架创建的跨平台 UI 应用程序实现。**正在更新中~**
 
