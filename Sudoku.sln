@@ -81,7 +81,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Communication.Qicq",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Compatibility", "src\Sudoku.Compatibility\Sudoku.Compatibility.csproj", "{520EE357-6036-4A9D-8150-22599D824B43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Maui", "src\Sudoku.Maui\Sudoku.Maui.csproj", "{6F1D648E-EA0E-4B6D-B197-B884FB8D90DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Maui", "src\Sudoku.Maui\Sudoku.Maui.csproj", "{6F1D648E-EA0E-4B6D-B197-B884FB8D90DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -848,8 +848,8 @@ Global
 		{18A31D32-6FC6-4380-891E-F783C04BF2CD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal
