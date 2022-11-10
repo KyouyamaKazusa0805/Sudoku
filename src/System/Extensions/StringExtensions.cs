@@ -290,7 +290,7 @@ public static unsafe partial class StringExtensions
 			Regex.Match(string.Empty, @this, RegexOptions.ExplicitCapture, MatchingTimeSpan);
 			return true;
 		}
-		catch (ArgumentException)
+		catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
 		{
 			return false;
 		}

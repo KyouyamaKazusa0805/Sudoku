@@ -378,20 +378,6 @@
             Indicates the last time checked in of the current user.
             </summary>
         </member>
-        <member name="T:Sudoku.Communication.Qicq.Permission.InternalExtensions">
-            <summary>
-            Provides with internal extension methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Communication.Qicq.Permission.InternalExtensions.CanHandleInvitationOrJoinRequestAsync(Mirai.Net.Sessions.MiraiBot,System.String)">
-            <summary>
-            Determines whether the specified <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance supports permission on handling requests
-            of adding or inviting message about the specified group.
-            </summary>
-            <param name="this">The <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.</param>
-            <param name="groupId">The group ID.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Communication.Qicq.Strings.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -651,6 +637,68 @@
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="T:Program">
+            <summary>
+            The program type.
+            </summary>
+        </member>
+        <member name="M:Program.BilibiliPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ 2nd capture group.<br/>
+                            ○ Match the string "哔哩".<br/>
+                        ○ Match the same text as matched by the 2nd capture group.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [Bb].<br/>
+                        ○ Match with 2 alternative expressions, atomically.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match a whitespace character atomically at most 3 times.<br/>
+                                ○ Match '站'.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match 'i'.<br/>
+                                ○ 3rd capture group.<br/>
+                                    ○ Match the string "li".<br/>
+                                ○ Match the string "bi".<br/>
+                                ○ Match the same text as matched by the 3rd capture group.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the BilibiliPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.BilibiliPattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BilibiliPattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
     </members>
 </doc>

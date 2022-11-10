@@ -57,21 +57,32 @@ static async void onMemberJoined(MemberJoinedEvent e)
 
 async void onNewMemberRequested(NewMemberRequestedEvent e)
 {
-	if (e is { GroupId: var groupId, Message: var message } && groupId == R["SudokuGroupQQ"]
-		&& await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
+	const string answerLocatorStr = "\u7b54\u6848\uff1a";
+
+	if (e is { GroupId: var groupId, Message: var message }
+		&& message.IndexOf(answerLocatorStr) is var answerLocatorStrIndex and not -1
+		&& answerLocatorStrIndex + answerLocatorStr.Length is var finalIndex && finalIndex < message.Length
+		&& message[finalIndex..] is var finalMessage
+		&& groupId == R["SudokuGroupQQ"])
 	{
-		await (
-			message.Trim().IsMatch("""((\u54d4\u54e9)\2|[Bb]\s{0,3}\u7ad9|[Bb]i(li)bi\3)""")
-				? e.ApproveAsync()
-				: e.RejectAsync(R["_MessageFormat_RejectJoiningGroup"]!)
-		);
+		await (BilibiliPattern().IsMatch(finalMessage.Trim()) ? e.ApproveAsync() : e.RejectAsync(R["_MessageFormat_RejectJoiningGroup"]!));
 	}
 }
 
 async void onNewInvitationRequested(NewInvitationRequestedEvent e)
 {
-	if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"] && await bot.CanHandleInvitationOrJoinRequestAsync(groupId))
+	if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"])
 	{
 		await e.ApproveAsync();
 	}
+}
+
+
+/// <summary>
+/// The program type.
+/// </summary>
+internal static partial class Program
+{
+	[GeneratedRegex("""((\u54d4\u54e9)\2|[Bb]\s{0,3}\u7ad9|[Bb]i(li)bi\3)""", RegexOptions.Compiled, 5000, "zh-CN")]
+	private static partial Regex BilibiliPattern();
 }
