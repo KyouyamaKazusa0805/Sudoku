@@ -37,14 +37,12 @@ You can also use JetBrains Rider as your IDE. Use whatever you want to use, even
 
 In addition, the framework and IDE version may update in the future; in other words, they aren't changeless. The information is **for reference only**.
 
-I don't use MVVM to design my UI project because I'm not familiar with it. If using as learning it, the development speed will be extremely slow.
-
 ### Repository Positioning
 
 This repositoty is created for the following kinds of users:
 
 * **who likes sudoku algorithms**: If you like to study for sudoku techniques and its backing implementation and running mechanism, you can find answer in this repository.
-* **who wants to learn about C#-related features**: This repository uses some C# newer features and .NET-related features such as WinUI, which can help you learn more about it as practicing.
+* **who wants to learn about C#-related features**: This repository uses some C# newer features and .NET-related features such as WinUI (Please visit branch [winui-reserved](https://github.com/SunnieShine/Sudoku/tree/winui-reserved)) and MAUI, which can help you learn more about it as practicing.
 * **myself**: The codes are very important for me to learn sudoku and algorithms.
 
 ## Prefaces
