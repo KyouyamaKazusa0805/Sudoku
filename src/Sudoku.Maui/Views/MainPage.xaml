@@ -13,7 +13,7 @@
 			<Image Source="dotnet_bot.png" HeightRequest="200" HorizontalOptions="Center" />
 			<Label Text="{z:Text HelloWorld}" FontSize="32" HorizontalOptions="Center" />
 			<Label Text="{z:Text WelcomeMaui}" FontSize="18" HorizontalOptions="Center" />
-			<Button Text="{x:Binding ButtonText,Mode=TwoWay}" Command="{x:Binding ButtonCommand}" IsEnabled="True" HorizontalOptions="Center" />
+			<Button Text="{x:Binding ButtonText,Mode=OneWay}" Command="{x:Binding ButtonCommand}" IsEnabled="True" HorizontalOptions="Center" />
 		</VerticalStackLayout>
 	</ScrollView>
 </ContentPage>
