@@ -640,7 +640,9 @@
         </member>
         <member name="T:Program">
             <summary>
-            The program type.
+            The program type. The type provides entry point - <c>Main</c> of the current program.
+            The main method is implicitly declared in another file: <c>MainMethod.cs</c>.
+            <b>Please don't add any namespaces of this type.</b>
             </summary>
         </member>
         <member name="M:Program.BilibiliPattern">
