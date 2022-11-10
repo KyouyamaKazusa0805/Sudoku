@@ -2,6 +2,7 @@
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
+global using System.Dynamic;
 global using System.Runtime.CompilerServices;
 global using System.Windows.Input;
 global using Microsoft.Extensions.Logging;
@@ -11,4 +12,4 @@ global using Microsoft.Maui.Controls.Hosting;
 global using Microsoft.Maui.Controls.Xaml;
 global using Microsoft.Maui.Hosting;
 global using Sudoku.Maui.Views;
-global using static Sudoku.Resources.MergedResources;
+global using static Sudoku.Maui.TextResourceFetcher;

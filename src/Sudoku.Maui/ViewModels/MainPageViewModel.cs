@@ -60,7 +60,7 @@ internal sealed class MainPageViewModel : ViewModelBase
 			}
 
 			_clickedCount = value;
-			ButtonText = (value switch { 0 => R["ClickMe"], 1 => $"{value} {R["Time"]}", _ => $"{value} {R["Times"]}" })!;
+			ButtonText = (value switch { 0 => A.ClickMe, 1 => $"{value} {A.Time}", _ => $"{value} {A.Times}" })!;
 
 			OnPropertyChanged();
 		}
