@@ -55,9 +55,6 @@
 		<MauiXaml Update="Resources\Text\Resources.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Resources\Text\Resources-ja-JP.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>

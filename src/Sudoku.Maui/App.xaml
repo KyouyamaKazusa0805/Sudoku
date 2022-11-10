@@ -9,7 +9,6 @@
 				<ResourceDictionary Source="Resources/Styles/Styles.xaml" />
 				<ResourceDictionary Source="Resources/Text/Resources.xaml" />
 				<ResourceDictionary Source="Resources/Text/Resources-zh-CN.xaml" />
-				<ResourceDictionary Source="Resources/Text/Resources-ja-JP.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>
