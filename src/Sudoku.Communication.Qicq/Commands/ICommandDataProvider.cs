@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Communication.Qicq.Commands;
+﻿#define NORMAL_DISTRIBUTION
+
+namespace Sudoku.Communication.Qicq.Commands;
 
 /// <summary>
 /// Extracts a type that creates data used by commands.
@@ -164,14 +166,20 @@ internal interface ICommandDataProvider
 	/// <returns>The value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static sealed int GenerateOriginalValueEarned()
-		=> Rng.Next(0, 10000) switch
-		{
-			< 5000 => 2,
-			>= 5000 and < 7500 => 3,
-			>= 7500 and < 8750 => 4,
-			>= 8750 and < 9375 => 6,
-			_ => 12
-		};
+	{
+#if NORMAL_DISTRIBUTION
+		var u1 = 1.0 - Rng.NextDouble();
+		var u2 = 1.0 - Rng.NextDouble();
+		var randStdNormal = Sqrt(-2.0 * Log(u1)) * Sin(2.0 * PI * u2);
+		var randNormal = (int)((5 + 1 * randStdNormal) * 10000);
+		return new[] { -1, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16 }[randNormal / 10000];
+#elif EXPONENT_DISTRIBUTION
+		var a = new[] { 2, 3, 4, 6, 12 };
+		return a[Rng.Next(0, 10000) switch { < 5000 => 0, >= 5000 and < 7500 => 1, >= 7500 and < 8750 => 2, >= 8750 and < 9375 => 3, _ => 4 }];
+#else
+		return 4;
+#endif
+	}
 
 	/// <summary>
 	/// Generates a value that describes the experience point that the current user can be earned.
