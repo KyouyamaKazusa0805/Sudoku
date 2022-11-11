@@ -55,7 +55,7 @@ static async void onMemberJoined(MemberJoinedEvent e)
 	}
 }
 
-async void onNewMemberRequested(NewMemberRequestedEvent e)
+static async void onNewMemberRequested(NewMemberRequestedEvent e)
 {
 	const string answerLocatorStr = "\u7b54\u6848\uff1a";
 
@@ -69,7 +69,7 @@ async void onNewMemberRequested(NewMemberRequestedEvent e)
 	}
 }
 
-async void onNewInvitationRequested(NewInvitationRequestedEvent e)
+static async void onNewInvitationRequested(NewInvitationRequestedEvent e)
 {
 	if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"])
 	{
