@@ -851,6 +851,206 @@
             </summary>
             <param name="baseView">The base view instance.</param>
         </member>
+        <member name="T:Sudoku.Presentation.ValueView">
+            <summary>
+            Represents with a value-typed <see cref="T:Sudoku.Presentation.View"/> equivalent implementation that displays for a sudoku drawing elements.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.View"/>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.Empty">
+            <summary>
+            Indicates the default instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView._viewNodeSegements">
+            <summary>
+            Defines a view node segments.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.ValueView"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ValueView.Count">
+            <summary>
+            Indicates the number of elements stored in the current collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ValueView.CellNodes">
+            <summary>
+            Indicates the cell nodes that the current data type stored.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ValueView.CandidateNodes">
+            <summary>
+            Indicates the candidate nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ValueView.HouseNodes">
+            <summary>
+            Indicates the house nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ValueView.LinkNodes">
+            <summary>
+            Indicates the link nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ValueView.UnknownNodes">
+            <summary>
+            Indicates the unknown nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.Add(Sudoku.Presentation.ViewNodeSegment)">
+            <summary>
+            Adds the specified segment into the collection.
+            </summary>
+            <param name="segment">The segment.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.Remove(Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Removes the specified view node instance from the current collection.
+            </summary>
+            <param name="node">The node to be removed.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.EnumerateNodes">
+            <summary>
+            Enumerates all <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s stored in this collection.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Presentation.ValueView.Enumerator"/> instance of element type <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.EnumerateNodes``1">
+            <summary>
+            Enumerates all <typeparamref name="TViewNode"/> nodes stored in this collection.
+            </summary>
+            <typeparam name="TViewNode">The type of the view node to be fetched and iterated.</typeparam>
+            <returns>An <see cref="T:Sudoku.Presentation.ValueView.OfTypeEnumerator`1"/> instance of element type <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.EnumerateSegments">
+            <summary>
+            Creates an <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance of element type <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance of element type <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.ValueView.Enumerator">
+            <summary>
+            Defines a basic enumerator that iterates on each <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s.
+            </summary>
+            <remarks>
+            This type is decompiled by <see langword="yield"/> statements. For more information please learn C# 2 syntax feature "Yield Statements".
+            </remarks>
+            <seealso cref="T:Sudoku.Presentation.Nodes.ViewNode"/>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.Enumerator._instance">
+            <summary>
+            The <see cref="T:Sudoku.Presentation.ValueView"/> instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.Enumerator._state">
+            <summary>
+            The state of the iteration. The value can be both negative and positive.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.Enumerator._arrayIteratedIndex">
+            <summary>
+            Records the index having been iterated. <b>This field is only used for the case that the current segment is an array.</b>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.Enumerator._array">
+            <summary>
+            Indicates the array to be iterated. <b>This field is only used for the case that the current segment is an array.</b>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.Enumerator._nestedEnumerator">
+            <summary>
+            Indicates the target enumerator used for the whole iteration.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.Enumerator._listEnumerator">
+            <summary>
+            Indicates the enumerator of <see cref="T:System.Collections.Generic.List`1"/>. <b>This field is only used for the case that the current segment is a list.</b>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.Enumerator.#ctor(Sudoku.Presentation.ValueView)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.ValueView.Enumerator"/> instance via the specified view.
+            </summary>
+            <param name="view">View.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.ValueView.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.Enumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:Sudoku.Presentation.ValueView.SegmentEnumerator">
+            <summary>
+            Defines an enumeratot that iterates on each <see cref="T:Sudoku.Presentation.ViewNodeSegment"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.ViewNodeSegment"/>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.SegmentEnumerator._enumerator">
+            <summary>
+            The inner enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.SegmentEnumerator.#ctor(System.Collections.Generic.LinkedList{Sudoku.Presentation.ViewNodeSegment})">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.ValueView.SegmentEnumerator"/> instance via the specified segments.
+            </summary>
+            <param name="segments">Segments.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.ValueView.SegmentEnumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.SegmentEnumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.SegmentEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:Sudoku.Presentation.ValueView.OfTypeEnumerator`1">
+            <summary>
+            Defines an enumerator that only iterates for a fixed type of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s,
+            specified as type argument <typeparamref name="TViewNode"/>.
+            </summary>
+            <typeparam name="TViewNode">The type of the node to be iterated.</typeparam>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.OfTypeEnumerator`1._enumerator">
+            <summary>
+            The inner enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.#ctor(Sudoku.Presentation.ValueView.Enumerator)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.ValueView.OfTypeEnumerator`1"/> instance via the specified segments.
+            </summary>
+            <param name="enumerator">Enumerator.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.Current">
+            <summary>
+            Indicates the current node to be iterated.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
         <member name="T:Sudoku.Presentation.View">
             <summary>
             Provides with a data structure that displays a view for basic information.
@@ -1007,6 +1207,54 @@
             <param name="this">The view instance.</param>
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
+        </member>
+        <member name="T:Sudoku.Presentation.ViewNodeSegment">
+            <summary>
+            Defines a view node segment.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNodeSegment.#ctor(System.Object,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.ViewNodeSegment"/> instance via view nodes.
+            </summary>
+            <param name="viewNodes">View nodes.</param>
+            <param name="count">The number of elements.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.ViewNodeSegment.ActualValue">
+            <summary>
+            The actual value. The compatible types of this property can be <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>, <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>[]
+            and <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ViewNodeSegment.CollectionValuesCount">
+            <summary>
+            Indicates the number of elements stored in property <see cref="P:Sudoku.Presentation.ViewNodeSegment.ActualValue"/> of this instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNodeSegment.ToArray">
+            <summary>
+            Convert the current instance into an array, no matter what the inner type is. This method will not throw any exceptions;
+            it will always create an array and copy values into it if the inner field is not an array.
+            </summary>
+            <returns>An array of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNodeSegment.op_Implicit(Sudoku.Presentation.Nodes.ViewNode)~Sudoku.Presentation.ViewNodeSegment">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> to <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.
+            </summary>
+            <param name="viewNode">View node.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNodeSegment.op_Implicit(Sudoku.Presentation.Nodes.ViewNode[])~Sudoku.Presentation.ViewNodeSegment">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>[] to <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.
+            </summary>
+            <param name="viewNodes">View nodes.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNodeSegment.op_Implicit(System.Collections.Generic.List{Sudoku.Presentation.Nodes.ViewNode})~Sudoku.Presentation.ViewNodeSegment">
+            <summary>
+            Implicit cast from <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> to <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.
+            </summary>
+            <param name="viewNodes">View nodes.</param>
         </member>
         <member name="T:Sudoku.Text.Serialization.ColorInternal">
             <summary>
