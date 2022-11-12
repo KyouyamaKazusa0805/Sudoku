@@ -815,6 +815,15 @@
             <param name="count">The desired number of elements.</param>
             <returns>The sliced list.</returns>
         </member>
+        <member name="M:System.Collections.Generic.ListExtensions.CopyExcept``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            Creates a new <see cref="T:System.Collections.Generic.List`1"/> instance, with all elements in the current instance, except the element at the specified index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="index">The desired index.</param>
+            <returns>The target list.</returns>
+        </member>
         <member name="T:System.Collections.BitArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
@@ -1592,6 +1601,22 @@
             <summary>
             Defines an attribute that is used as a mark that tells source generators to generate deconstruction methods of this type.
             </summary>
+        </member>
+        <member name="T:System.ArrayExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Array"/>.
+            </summary>
+            <seealso cref="T:System.Array"/>
+        </member>
+        <member name="M:System.ArrayExtensions.CopyExcept``1(``0[],System.Int32)">
+            <summary>
+            Creates a new <see cref="T:System.Array"/> instance of type <typeparamref name="T"/>,
+            with all elements in the current instance, except the element at the specified index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="index">The desired index.</param>
+            <returns>The target list.</returns>
         </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>

@@ -37,4 +37,26 @@ public static class ListExtensions
 
 		return result;
 	}
+
+	/// <summary>
+	/// Creates a new <see cref="List{T}"/> instance, with all elements in the current instance, except the element at the specified index.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The list.</param>
+	/// <param name="index">The desired index.</param>
+	/// <returns>The target list.</returns>
+	public static List<T> CopyExcept<T>(this List<T> @this, int index)
+	{
+		var result = new List<T>(@this.Count - 1);
+		for (var i = 0; i < index; i++)
+		{
+			result.Add(@this[i]);
+		}
+		for (var i = index + 1; i < @this.Count; i++)
+		{
+			result.Add(@this[i]);
+		}
+
+		return result;
+	}
 }

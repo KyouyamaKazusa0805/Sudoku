@@ -69,7 +69,67 @@ public readonly struct ValueView : IEnumerable<ViewNode>
 	/// Removes the specified view node instance from the current collection.
 	/// </summary>
 	/// <param name="node">The node to be removed.</param>
-	public void Remove(ViewNode node) => throw new NotImplementedException("This method will be implemented later.");
+	public void Remove(ViewNode node)
+	{
+		var (first, last) = (_viewNodeSegements.First, _viewNodeSegements.Last);
+
+		var foundNode = (ViewNode?)null;
+		var otherValues = (List<ViewNode>?)null;
+		var foundLinkedNode = (LinkedListNode<ViewNodeSegment>?)null;
+
+		for (var tempNode = first; tempNode is not null && !ReferenceEquals(tempNode, last); tempNode = tempNode.Next)
+		{
+			foundLinkedNode = tempNode;
+
+			switch (tempNode.Value.ActualValue)
+			{
+				case ViewNode n when node == n:
+				{
+					foundNode = n;
+					goto CheckFoundNode;
+				}
+				case ViewNode[] array:
+				{
+					for (var i = 0; i < array.Length; i++)
+					{
+						var n = array[i];
+						if (node == n)
+						{
+							foundNode = n;
+							otherValues = new(array.CopyExcept(i));
+
+							goto CheckFoundNode;
+						}
+					}
+					break;
+				}
+				case List<ViewNode> list:
+				{
+					for (var i = 0; i < list.Count; i++)
+					{
+						var n = list[i];
+						if (node == n)
+						{
+							foundNode = n;
+							otherValues = list.CopyExcept(i);
+
+							goto CheckFoundNode;
+						}
+					}
+					break;
+				}
+			}
+		}
+	CheckFoundNode:
+		if (foundNode is null)
+		{
+			return;
+		}
+
+		var prevLinkedNode = foundLinkedNode!.Previous!;
+		_viewNodeSegements.Remove(foundLinkedNode);
+		_viewNodeSegements.AddAfter(prevLinkedNode, otherValues!);
+	}
 
 	/// <summary>
 	/// Enumerates all <see cref="ViewNode"/>s stored in this collection.
