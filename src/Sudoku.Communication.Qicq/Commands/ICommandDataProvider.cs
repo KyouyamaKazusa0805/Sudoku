@@ -168,16 +168,26 @@ internal interface ICommandDataProvider
 	internal static sealed int GenerateOriginalValueEarned()
 	{
 #if NORMAL_DISTRIBUTION
-		var u1 = 1.0 - Rng.NextDouble();
-		var u2 = 1.0 - Rng.NextDouble();
-		var randStdNormal = Sqrt(-2.0 * Log(u1)) * Sin(2.0 * PI * u2);
-		var randNormal = (int)((5 + 1 * randStdNormal) * 10000);
-		return new[] { -1, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16 }[randNormal / 10000];
+		const double sigma = 2.5, mu = 0;
+		var table = new[] { -1, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16 };
+		return getNextRandomGaussian(sigma, mu, table);
 #elif EXPONENT_DISTRIBUTION
 		var a = new[] { 2, 3, 4, 6, 12 };
 		return a[Rng.Next(0, 10000) switch { < 5000 => 0, >= 5000 and < 7500 => 1, >= 7500 and < 8750 => 2, >= 8750 and < 9375 => 3, _ => 4 }];
 #else
 		return 4;
+#endif
+
+
+#if NORMAL_DISTRIBUTION
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static int getNextRandomGaussian(double sigma, double mu, int[] table)
+		{
+			var u1 = 1.0 - Rng.NextDouble();
+			var u2 = 1.0 - Rng.NextDouble();
+			var target = (int)(sigma * Sqrt(-2.0 * Log(u1)) * Sin(2.0 * PI * u2) + mu + (table.Length - 1) / 2.0);
+			return table[Clamp(target, 0, table.Length - 1)];
+		}
 #endif
 	}
 
