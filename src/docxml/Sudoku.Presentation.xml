@@ -934,7 +934,7 @@
             <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance of element type <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.</returns>
         </member>
         <member name="M:Sudoku.Presentation.ValueView.GetEnumerator">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Presentation.ValueView.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -950,6 +950,12 @@
             This type is decompiled by <see langword="yield"/> statements. For more information please learn C# 2 syntax feature "Yield Statements".
             </remarks>
             <seealso cref="T:Sudoku.Presentation.Nodes.ViewNode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ValueView.Enumerator.#ctor(Sudoku.Presentation.ValueView)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.ValueView.Enumerator"/> instance via the specified view.
+            </summary>
+            <param name="view">View.</param>
         </member>
         <member name="F:Sudoku.Presentation.ValueView.Enumerator._instance">
             <summary>
@@ -981,12 +987,6 @@
             Indicates the enumerator of <see cref="T:System.Collections.Generic.List`1"/>. <b>This field is only used for the case that the current segment is a list.</b>
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.ValueView.Enumerator.#ctor(Sudoku.Presentation.ValueView)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.ValueView.Enumerator"/> instance via the specified view.
-            </summary>
-            <param name="view">View.</param>
-        </member>
         <member name="P:Sudoku.Presentation.ValueView.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
@@ -1002,16 +1002,16 @@
             </summary>
             <seealso cref="T:Sudoku.Presentation.ViewNodeSegment"/>
         </member>
-        <member name="F:Sudoku.Presentation.ValueView.SegmentEnumerator._enumerator">
-            <summary>
-            The inner enumerator.
-            </summary>
-        </member>
         <member name="M:Sudoku.Presentation.ValueView.SegmentEnumerator.#ctor(System.Collections.Generic.LinkedList{Sudoku.Presentation.ViewNodeSegment})">
             <summary>
             Initializes an <see cref="T:Sudoku.Presentation.ValueView.SegmentEnumerator"/> instance via the specified segments.
             </summary>
             <param name="segments">Segments.</param>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.SegmentEnumerator._enumerator">
+            <summary>
+            The inner enumerator.
+            </summary>
         </member>
         <member name="P:Sudoku.Presentation.ValueView.SegmentEnumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
@@ -1029,16 +1029,16 @@
             </summary>
             <typeparam name="TViewNode">The type of the node to be iterated.</typeparam>
         </member>
-        <member name="F:Sudoku.Presentation.ValueView.OfTypeEnumerator`1._enumerator">
-            <summary>
-            The inner enumerator.
-            </summary>
-        </member>
         <member name="M:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.#ctor(Sudoku.Presentation.ValueView.Enumerator)">
             <summary>
             Initializes an <see cref="T:Sudoku.Presentation.ValueView.OfTypeEnumerator`1"/> instance via the specified segments.
             </summary>
             <param name="enumerator">Enumerator.</param>
+        </member>
+        <member name="F:Sudoku.Presentation.ValueView.OfTypeEnumerator`1._enumerator">
+            <summary>
+            The inner enumerator.
+            </summary>
         </member>
         <member name="P:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.Current">
             <summary>

@@ -39,7 +39,7 @@ namespace System.Text;
 /// <seealso cref="DefaultInterpolatedStringHandler"/>
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
-public unsafe ref struct StringHandler
+public unsafe ref partial struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
 	/// <summary>
@@ -1514,24 +1514,8 @@ public unsafe ref struct StringHandler
 	/// <summary>
 	/// Encapsulates the enumerator of this collection.
 	/// </summary>
-	public ref struct Enumerator
+	public ref partial struct Enumerator
 	{
-		/// <summary>
-		/// Indicates the length.
-		/// </summary>
-		private readonly int _length;
-
-		/// <summary>
-		/// Indicates whether 
-		/// </summary>
-		private int _index;
-
-		/// <summary>
-		/// Indicates the pointer that points to the current character.
-		/// </summary>
-		private ref char _ptr;
-
-
 		/// <summary>
 		/// Initializes an instance with the specified character list specified as a <see cref="Span{T}"/>.
 		/// </summary>
@@ -1556,23 +1540,6 @@ public unsafe ref struct StringHandler
 			}
 
 			_ptr = ref SubtractByteOffset(ref z, 1);
-		}
-
-
-		/// <inheritdoc cref="IEnumerator.Current"/>
-		public char Current { get; private set; }
-
-
-		/// <inheritdoc cref="IEnumerator.MoveNext"/>
-		public bool MoveNext()
-		{
-			if (++_index >= _length)
-			{
-				return false;
-			}
-
-			RefMoveNext(ref _ptr);
-			return true;
 		}
 	}
 }

@@ -4,7 +4,7 @@
 /// Represents with a value-typed <see cref="View"/> equivalent implementation that displays for a sudoku drawing elements.
 /// </summary>
 /// <seealso cref="View"/>
-public readonly struct ValueView : IEnumerable<ViewNode>
+public readonly partial struct ValueView : IEnumerable<ViewNode>
 {
 	/// <summary>
 	/// Indicates the default instance.
@@ -153,9 +153,11 @@ public readonly struct ValueView : IEnumerable<ViewNode>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SegmentEnumerator EnumerateSegments() => new(_viewNodeSegements);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if false
 	[IteratorStateMachine(typeof(ValueView))]
+#endif
 	public Enumerator GetEnumerator() => new(this);
 
 	/// <inheritdoc/>
@@ -203,39 +205,8 @@ public readonly struct ValueView : IEnumerable<ViewNode>
 	/// This type is decompiled by <see langword="yield"/> statements. For more information please learn C# 2 syntax feature "Yield Statements".
 	/// </remarks>
 	/// <seealso cref="ViewNode"/>
-	public ref struct Enumerator
+	public ref partial struct Enumerator
 	{
-		/// <summary>
-		/// The <see cref="ValueView"/> instance.
-		/// </summary>
-		private readonly ValueView _instance;
-
-		/// <summary>
-		/// The state of the iteration. The value can be both negative and positive.
-		/// </summary>
-		private int _state;
-
-		/// <summary>
-		/// Records the index having been iterated. <b>This field is only used for the case that the current segment is an array.</b>
-		/// </summary>
-		private int _arrayIteratedIndex;
-
-		/// <summary>
-		/// Indicates the array to be iterated. <b>This field is only used for the case that the current segment is an array.</b>
-		/// </summary>
-		private ViewNode[]? _array;
-
-		/// <summary>
-		/// Indicates the target enumerator used for the whole iteration.
-		/// </summary>
-		private LinkedList<ViewNodeSegment>.Enumerator _nestedEnumerator;
-
-		/// <summary>
-		/// Indicates the enumerator of <see cref="List{T}"/>. <b>This field is only used for the case that the current segment is a list.</b>
-		/// </summary>
-		private List<ViewNode>.Enumerator _listEnumerator;
-
-
 		/// <summary>
 		/// Initializes an <see cref="Enumerator"/> instance via the specified view.
 		/// </summary>
@@ -243,143 +214,14 @@ public readonly struct ValueView : IEnumerable<ViewNode>
 		[FileAccessOnly]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal Enumerator(ValueView view) => _instance = view;
-
-
-		/// <inheritdoc cref="IEnumerator.Current"/>
-		public ViewNode Current { get; private set; } = null!;
-
-		/// <inheritdoc cref="IEnumerator.MoveNext"/>
-		public bool MoveNext()
-		{
-			ViewNode[]? array;
-			List<ViewNode>? list;
-
-#pragma warning disable format
-			switch (_state)
-			{
-				default:
-				{
-					return false;
-				}
-				case 0:
-				{
-					_state = -1;
-					_nestedEnumerator = _instance._viewNodeSegements.GetEnumerator();
-					_state = -3;
-
-					goto ValueCheckCore;
-				}
-				case 1:
-				{
-					_state = -3;
-
-					goto ValueCheckCore;
-				}
-				case 2:
-				{
-					_state = -3;
-					_arrayIteratedIndex++;
-
-					goto ArrayCheck;
-				}
-				case 3:
-				{
-					_state = -4;
-
-					goto ListEnumeratorMoveNext;
-				}
-				ValueCheckCore:
-				{
-					while (true)
-					{
-						if (_nestedEnumerator.MoveNext())
-						{
-							var a = _nestedEnumerator.Current.ActualValue;
-							if (a is ViewNode node)
-							{
-								Current = node;
-								_state = 1;
-
-								return true;
-							}
-
-							array = a as ViewNode[];
-							if (array is not null)
-							{
-								break;
-							}
-
-							list = a as List<ViewNode>;
-							if (list is null)
-							{
-								continue;
-							}
-
-							goto CreateListEnumerator;
-						}
-						_state = -1;
-						_nestedEnumerator = default;
-						return false;
-					}
-
-					_array = array;
-					_arrayIteratedIndex = 0;
-					goto ArrayCheck;
-				}
-				CreateListEnumerator:
-				{
-					_listEnumerator = list.GetEnumerator();
-					_state = -4;
-
-					goto ListEnumeratorMoveNext;
-				}
-				ListEnumeratorMoveNext:
-				{
-					if (_listEnumerator.MoveNext())
-					{
-						Current = _listEnumerator.Current;
-						_state = 3;
-						return true;
-					}
-
-					_state = -3;
-					_listEnumerator = default;
-
-					goto ValueCheckCore;
-				}
-				ArrayCheck:
-				{
-					if (_arrayIteratedIndex < _array!.Length)
-					{
-						Current = _array[_arrayIteratedIndex];
-						_state = 2;
-						return true;
-					}
-					_array = null;
-
-					goto ValueCheckCore;
-				}
-			}
-#pragma warning restore format
-		}
-
-		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly Enumerator GetEnumerator() => this;
 	}
 
 	/// <summary>
 	/// Defines an enumeratot that iterates on each <see cref="ViewNodeSegment"/> instance.
 	/// </summary>
 	/// <seealso cref="ViewNodeSegment"/>
-	public ref struct SegmentEnumerator
+	public ref partial struct SegmentEnumerator
 	{
-		/// <summary>
-		/// The inner enumerator.
-		/// </summary>
-		private LinkedList<ViewNodeSegment>.Enumerator _enumerator;
-
-
 		/// <summary>
 		/// Initializes an <see cref="SegmentEnumerator"/> instance via the specified segments.
 		/// </summary>
@@ -387,20 +229,6 @@ public readonly struct ValueView : IEnumerable<ViewNode>
 		[FileAccessOnly]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal SegmentEnumerator(LinkedList<ViewNodeSegment> segments) => _enumerator = segments.GetEnumerator();
-
-
-		/// <inheritdoc cref="IEnumerator.Current"/>
-		public ViewNodeSegment Current => _enumerator.Current;
-
-
-		/// <inheritdoc cref="IEnumerator.MoveNext"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool MoveNext() => _enumerator.MoveNext();
-
-
-		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly SegmentEnumerator GetEnumerator() => this;
 	}
 
 	/// <summary>
@@ -408,14 +236,8 @@ public readonly struct ValueView : IEnumerable<ViewNode>
 	/// specified as type argument <typeparamref name="TViewNode"/>.
 	/// </summary>
 	/// <typeparam name="TViewNode">The type of the node to be iterated.</typeparam>
-	public ref struct OfTypeEnumerator<TViewNode> where TViewNode : ViewNode
+	public ref partial struct OfTypeEnumerator<TViewNode> where TViewNode : ViewNode
 	{
-		/// <summary>
-		/// The inner enumerator.
-		/// </summary>
-		private Enumerator _enumerator;
-
-
 		/// <summary>
 		/// Initializes an <see cref="OfTypeEnumerator{TViewNode}"/> instance via the specified segments.
 		/// </summary>
@@ -423,34 +245,5 @@ public readonly struct ValueView : IEnumerable<ViewNode>
 		[FileAccessOnly]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal OfTypeEnumerator(Enumerator enumerator) => _enumerator = enumerator;
-
-
-		/// <summary>
-		/// Indicates the current node to be iterated.
-		/// </summary>
-		public TViewNode Current { get; private set; } = null!;
-
-
-		/// <inheritdoc cref="IEnumerator.MoveNext"/>
-		public bool MoveNext()
-		{
-			while (_enumerator.MoveNext())
-			{
-				if (_enumerator.Current is not TViewNode targetNode)
-				{
-					continue;
-				}
-
-				Current = targetNode;
-				return true;
-			}
-
-			return false;
-		}
-
-
-		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly OfTypeEnumerator<TViewNode> GetEnumerator() => this;
 	}
 }

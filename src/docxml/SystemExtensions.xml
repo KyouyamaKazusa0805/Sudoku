@@ -3061,6 +3061,21 @@
             <summary>
             Encapsulates the enumerator of this collection.
             </summary>
+            <summary>
+            Encapsulates the enumerator of this collection.
+            </summary>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.#ctor(System.Text.StringHandler)">
+            <summary>
+            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
+            </summary>
+            <param name="chars">The characters.</param>
+            <exception cref="T:System.NullReferenceException">
+            Throws when the field <see cref="F:System.Text.StringHandler._chars"/> in argument <paramref name="chars"/>
+            is a <see langword="null"/> reference after having been invoked <see cref="M:System.Span`1.GetPinnableReference"/>.
+            </exception>
+            <seealso cref="T:System.Span`1"/>
+            <seealso cref="M:System.Span`1.GetPinnableReference"/>
         </member>
         <member name="F:System.Text.StringHandler.Enumerator._length">
             <summary>
@@ -3076,18 +3091,6 @@
             <summary>
             Indicates the pointer that points to the current character.
             </summary>
-        </member>
-        <member name="M:System.Text.StringHandler.Enumerator.#ctor(System.Text.StringHandler)">
-            <summary>
-            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
-            </summary>
-            <param name="chars">The characters.</param>
-            <exception cref="T:System.NullReferenceException">
-            Throws when the field <see cref="F:System.Text.StringHandler._chars"/> in argument <paramref name="chars"/>
-            is a <see langword="null"/> reference after having been invoked <see cref="M:System.Span`1.GetPinnableReference"/>.
-            </exception>
-            <seealso cref="T:System.Span`1"/>
-            <seealso cref="M:System.Span`1.GetPinnableReference"/>
         </member>
         <member name="P:System.Text.StringHandler.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>

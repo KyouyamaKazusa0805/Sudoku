@@ -2734,12 +2734,6 @@
             Defines a type that is triggered when the candidates are refreshed.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.GridRefreshingCandidatesEventArgs._gridRef">
-            <summary>
-            The backing field of property <see cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>
-        </member>
         <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs"/> instance.
@@ -2750,6 +2744,12 @@
             Initializes a <see cref="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs"/> instance via the specified grid to be updated.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.GridRefreshingCandidatesEventArgs._gridRef">
+            <summary>
+            The backing field of property <see cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>
+        </member>
         <member name="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef">
             <summary>
             Indicates the reference to the grid whose candidates are refreshed.
@@ -2759,12 +2759,6 @@
             <summary>
             Defines a type that is triggered when the specified value in a grid has been changed.
             </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridValueChangedEventArgs._gridRef">
-            <summary>
-            The backing field of property <see cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>
         </member>
         <member name="M:Sudoku.Concepts.GridValueChangedEventArgs.#ctor">
             <summary>
@@ -2781,6 +2775,12 @@
             <param name="cell">The cell used.</param>
             <param name="oldMaskValue">The old and original mask value in the grid.</param>
             <param name="newMaskValue">The new value to be replaced with.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.GridValueChangedEventArgs._gridRef">
+            <summary>
+            The backing field of property <see cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>
         </member>
         <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.Cell">
             <summary>
@@ -2810,10 +2810,19 @@
         </member>
         <member name="T:Sudoku.Concepts.GridCandidateEnumerator">
             <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
-            through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
             <see cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCandidateEnumerator.#ctor(System.Int16@)">
+            <summary>
+            Initializes an instance with the specified reference to an array to iterate.
+            </summary>
+            <param name="arr">The reference to an array.</param>
+            <remarks>
+            Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
+            even though C# allows we passing a constant as an <see langword="in"/> argument.
+            </remarks>
         </member>
         <member name="F:Sudoku.Concepts.GridCandidateEnumerator._start">
             <summary>
@@ -2834,16 +2843,6 @@
             <summary>
             The current index.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridCandidateEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Initializes an instance with the specified reference to an array to iterate.
-            </summary>
-            <param name="arr">The reference to an array.</param>
-            <remarks>
-            Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
-            even though C# allows we passing a constant as an <see langword="in"/> argument.
-            </remarks>
         </member>
         <member name="P:Sudoku.Concepts.GridCandidateEnumerator.Current">
             <summary>
@@ -2881,10 +2880,18 @@
         </member>
         <member name="T:Sudoku.Concepts.GridMaskEnumerator">
             <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/>
-            through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridMaskEnumerator.#ctor(System.Int16@)">
+            <summary>
+            Initializes an instance with the specified pointer to an array to iterate.
+            </summary>
+            <param name="arr">The pointer to an array.</param>
+            <remarks>
+            Note here we should point at the one-unit-length memory before the array start.
+            </remarks>
         </member>
         <member name="F:Sudoku.Concepts.GridMaskEnumerator._start">
             <summary>
@@ -2900,15 +2907,6 @@
             <summary>
             The current index.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridMaskEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Initializes an instance with the specified pointer to an array to iterate.
-            </summary>
-            <param name="arr">The pointer to an array.</param>
-            <remarks>
-            Note here we should point at the one-unit-length memory before the array start.
-            </remarks>
         </member>
         <member name="P:Sudoku.Concepts.GridMaskEnumerator.Current">
             <summary>
