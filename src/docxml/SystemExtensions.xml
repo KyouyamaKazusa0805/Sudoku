@@ -1343,10 +1343,12 @@
             Represents an executable command.
             </summary>
         </member>
-        <member name="M:System.CommandLine.IExecutable.Execute">
+        <member name="M:System.CommandLine.IExecutable.ExecuteAsync(System.Threading.CancellationToken)">
             <summary>
             Try to execute the command, and returns the result reflected the execution.
             </summary>
+            <param name="cancellationToken">The cancellation token that has ability to cancel the operation via itself.</param>
+            <returns>A task that handles the operation.</returns>
             <exception cref="T:System.CommandLine.CommandLineRuntimeException">Throws when an error has been encountered.</exception>
         </member>
         <member name="T:System.CommandLine.IValueConverter">
@@ -1418,13 +1420,14 @@
         </member>
         <member name="M:System.CommandLine.Terminal.Write``1(``0)">
             <inheritdoc cref="M:System.Console.Write(System.Object)"/>
+            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
         </member>
         <member name="M:System.CommandLine.Terminal.Write``1(``0,System.ConsoleColor)">
             <summary>
             Writes the text representation of the specified object to the standard output stream,
             with the specified foreground.
             </summary>
-            <typeparam name="T">The type of the object to be displayed.</typeparam>
+            <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
             <param name="value"><inheritdoc cref="M:System.Console.Write(System.Object)"/></param>
             <param name="foreground">The foreground color.</param>
         </member>
@@ -1433,7 +1436,7 @@
             Writes the text representation of the specified object to the standard output stream,
             with the specified foreground.
             </summary>
-            <typeparam name="T">The type of the object to be displayed.</typeparam>
+            <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
             <param name="value"><inheritdoc cref="M:System.Console.Write(System.Object)"/></param>
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
@@ -1443,14 +1446,17 @@
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLine``1(``0)">
             <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
+            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLine``1(``0,System.ConsoleColor)">
             <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
+            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
             <param name="value"><inheritdoc/></param>
             <param name="foreground">The foreground color.</param>
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLine``1(``0,System.ConsoleColor,System.ConsoleColor)">
             <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
+            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
             <param name="value"><inheritdoc/></param>
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
@@ -1469,6 +1475,91 @@
             <param name="foreground">The foreground color.</param>
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Writes the string value, followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="s">The string.</param>
+            <param name="foreground">The foreground color.</param>
+            <param name="background">The background color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteAsync(System.String)">
+            <summary>
+            Writes the string value, followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="s">The string.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteAsync(System.String,System.ConsoleColor)">
+            <summary>
+            Writes the string value, followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="s">The string.</param>
+            <param name="foreground">The foreground color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteAsync(System.String,System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Writes the string value, followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="s">The string.</param>
+            <param name="foreground">The foreground color.</param>
+            <param name="background">The background color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteAsync``1(``0)">
+            <inheritdoc cref="M:System.Console.Write(System.Object)"/>
+            <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteAsync``1(``0,System.ConsoleColor)">
+            <summary>
+            Writes the text representation of the specified object to the standard output stream,
+            with the specified foreground.
+            </summary>
+            <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+            <param name="value"><inheritdoc cref="M:System.Console.Write(System.Object)"/></param>
+            <param name="foreground">The foreground color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteAsync``1(``0,System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Writes the text representation of the specified object to the standard output stream,
+            with the specified foreground.
+            </summary>
+            <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+            <param name="value"><inheritdoc cref="M:System.Console.Write(System.Object)"/></param>
+            <param name="foreground">The foreground color.</param>
+            <param name="background">The background color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLineAsync">
+            <inheritdoc cref="M:System.Console.WriteLine"/>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLineAsync``1(``0)">
+            <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
+            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLineAsync``1(``0,System.ConsoleColor)">
+            <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
+            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+            <param name="value"><inheritdoc/></param>
+            <param name="foreground">The foreground color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLineAsync``1(``0,System.ConsoleColor,System.ConsoleColor)">
+            <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
+            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+            <param name="value"><inheritdoc/></param>
+            <param name="foreground">The foreground color.</param>
+            <param name="background">The background color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLineAsync(System.String)">
+            <summary>
+            Writes the string value, followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="s">The string.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLineAsync(System.String,System.ConsoleColor)">
+            <summary>
+            Writes the string value, followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="s">The string.</param>
+            <param name="foreground">The foreground color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLineAsync(System.String,System.ConsoleColor,System.ConsoleColor)">
             <summary>
             Writes the string value, followed by the current line terminator to the standard output stream.
             </summary>

@@ -1,6 +1,4 @@
-﻿#undef IMPLEMENTED
-
-namespace Sudoku.CommandLine.RootCommands;
+﻿namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Represents a bot command.
@@ -30,12 +28,7 @@ public sealed class Bot : IExecutable
 
 
 	/// <inheritdoc/>
-	public
-#if IMPLEMENTED
-	async
-#endif
-	void Execute()
-#if IMPLEMENTED
+	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
 		// Creates and initializes a bot.
 		using var bot = new MiraiBot { Address = R["HostPort"], QQ = R["BotQQ"]!, VerifyKey = R["VerifyKey"] };
@@ -51,15 +44,15 @@ public sealed class Bot : IExecutable
 			bot.SubscribeNewInvitationRequested(onNewInvitationRequested);
 
 			// Blocks the main thread, in order to prevent the main thread exits too fast.
-			Terminal.WriteLine(R["BootingSuccessMessage"]!, ConsoleColor.DarkGreen);
+			await Terminal.WriteLineAsync(R["BootingSuccessMessage"]!, ConsoleColor.DarkGreen);
 		}
 		catch (FlurlHttpException)
 		{
-			Terminal.WriteLine(R["BootingFailedDueToMirai"]!, ConsoleColor.DarkRed);
+			await Terminal.WriteLineAsync(R["BootingFailedDueToMirai"]!, ConsoleColor.DarkRed);
 		}
 		catch (InvalidResponseException)
 		{
-			Terminal.WriteLine(R["BootingFailedDueToHttp"]!, ConsoleColor.DarkRed);
+			await Terminal.WriteLineAsync(R["BootingFailedDueToHttp"]!, ConsoleColor.DarkRed);
 		}
 
 		Terminal.Pause();
@@ -112,7 +105,4 @@ public sealed class Bot : IExecutable
 			}
 		}
 	}
-#else
-		=> throw new NotImplementedException("This method will be implemented later.");
-#endif
 }

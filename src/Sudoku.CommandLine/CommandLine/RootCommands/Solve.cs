@@ -25,7 +25,7 @@ public sealed class Solve : IExecutable
 
 
 	/// <inheritdoc/>
-	public void Execute()
+	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
 		if (Grid.GetSolution() is not { IsUndefined: false } solution)
 		{
@@ -65,7 +65,7 @@ public sealed class Solve : IExecutable
 					// as expected will be replaced with 'grid.ToString()'.
 					// Same reason for the below output case.
 					var uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))?.GetValue(null);
-					Terminal.WriteLine(
+					await Terminal.WriteLineAsync(
 						$"""
 						Puzzle: {Grid:#}
 						Method name used: '{name}'{(uriLink is null ? string.Empty : $"\r\nURI link: '{uriLink}'")}
@@ -78,12 +78,12 @@ public sealed class Solve : IExecutable
 				}
 				case IComplexSolver<LogicalSolver, LogicalSolverResult> puzzleSolver:
 				{
-					if (puzzleSolver.Solve(Grid) is not { IsSolved: true } solverResult)
+					if (puzzleSolver.Solve(Grid, cancellationToken: cancellationToken) is not { IsSolved: true } solverResult)
 					{
 						throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
 					}
 
-					Terminal.WriteLine(
+					await Terminal.WriteLineAsync(
 						$"""
 						Puzzle: {Grid:#}
 						Method name used: '{name}'

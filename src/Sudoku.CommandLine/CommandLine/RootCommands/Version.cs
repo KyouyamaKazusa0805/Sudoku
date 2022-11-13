@@ -9,7 +9,7 @@
 public sealed class Version : IExecutable
 {
 	/// <inheritdoc/>
-	public void Execute()
+	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
 		if (typeof(Version).Assembly.GetName() is not { Name: { } realName, Version: var version })
 		{
@@ -17,11 +17,6 @@ public sealed class Version : IExecutable
 			throw new CommandLineRuntimeException((int)ErrorCode.AssemblyNameIsNull);
 		}
 
-		Terminal.WriteLine(
-			$"""
-			Project {realName}
-			Version {version}
-			"""
-		);
+		await Terminal.WriteLineAsync($"Project {realName}\r\nVersion {version}");
 	}
 }

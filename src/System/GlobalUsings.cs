@@ -16,6 +16,8 @@ global using System.Text;
 global using System.Text.Encodings.Web;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
+global using System.Threading;
+global using System.Threading.Tasks;
 global using static System.Math;
 global using static System.MathF;
 global using static System.Numerics.BitOperations;

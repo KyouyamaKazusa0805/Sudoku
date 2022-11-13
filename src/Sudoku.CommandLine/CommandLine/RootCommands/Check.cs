@@ -25,13 +25,13 @@ public sealed class Check : IExecutable
 
 
 	/// <inheritdoc/>
-	public void Execute()
+	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
 		switch (CheckType)
 		{
 			case CheckType.Validity:
 			{
-				Terminal.WriteLine(
+				await Terminal.WriteLineAsync(
 					$"""
 					Puzzle: '{Grid:#}'
 					The puzzle {(Grid.IsValid() ? "has" : "doesn't have")} a unique solution.

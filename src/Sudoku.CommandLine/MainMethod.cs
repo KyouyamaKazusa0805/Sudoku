@@ -1,9 +1,7 @@
-﻿const int statusSuccess = 0;
-
-try
+﻿try
 {
-	RootCommand.Route(args);
-	return statusSuccess;
+	await RootCommand.RouteAsync(args);
+	return 0;
 }
 catch (CommandLineException ex)
 {

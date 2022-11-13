@@ -44,7 +44,7 @@ public sealed class Draw : IExecutable
 
 
 	/// <inheritdoc/>
-	public void Execute()
+	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
 		if (OutsideOffset < 0)
 		{
@@ -64,7 +64,7 @@ public sealed class Draw : IExecutable
 		{
 			sudokuPainter.SaveTo(OutputPath!);
 
-			Terminal.WriteLine($"Success. Please visit the path '{OutputPath}' to view the file.");
+			await Terminal.WriteLineAsync($"Success. Please visit the path '{OutputPath}' to view the file.");
 		}
 		catch (Exception ex)
 		{

@@ -20,7 +20,7 @@ public sealed class Visit : IExecutable
 
 
 	/// <inheritdoc/>
-	public void Execute()
+	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
 		var attribute = typeof(Visit).GetProperty(nameof(VisitLink))!.GetCustomAttribute<WebsiteAttribute>()!;
 		var link = attribute.Site;
@@ -43,12 +43,7 @@ public sealed class Visit : IExecutable
 		}
 #else
 		// Output the site link.
-		Terminal.WriteLine(
-			$"""
-			Please visit the following site to learn more information.
-			{link.AbsoluteUri}
-			"""
-		);
+		await Terminal.WriteLineAsync($"Please visit the following site to learn more information.\r\n{link.AbsoluteUri}");
 #endif
 	}
 }

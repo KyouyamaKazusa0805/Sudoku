@@ -24,12 +24,12 @@ public sealed class Format : IExecutable
 
 
 	/// <inheritdoc/>
-	public void Execute()
+	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
 		var format = FormatString;
 		try
 		{
-			Terminal.WriteLine(
+			await Terminal.WriteLineAsync(
 				$"""
 				Grid: '{Grid:0}'
 				Format: '{c(format)}'

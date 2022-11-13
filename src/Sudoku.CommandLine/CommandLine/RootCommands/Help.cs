@@ -16,7 +16,7 @@ public sealed class Help : IExecutable
 
 
 	/// <inheritdoc/>
-	public void Execute()
+	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
 		if (typeof(Version).Assembly.GetName() is not { Name: { } realName, Version: var version })
 		{
@@ -28,10 +28,7 @@ public sealed class Help : IExecutable
 		var thisAssembly = thisType.Assembly;
 
 		// Defines a builder that stores the content in order to output.
-		var helpTextContentBuilder = new StringBuilder($"Project {realName}\r\nVersion {version}")
-			.AppendLine()
-			.AppendLine();
-
+		var helpTextContentBuilder = new StringBuilder($"Project {realName}\r\nVersion {version}\r\n\r\n");
 		if (HelpCommandName is null)
 		{
 			// Iterates on each command type, to get the maximum length of the command,
@@ -73,9 +70,7 @@ public sealed class Help : IExecutable
 			{
 				var propertyInfo = thisType.GetProperty(nameof(HelpCommandName))!;
 				var attribute = propertyInfo.GetCustomAttribute<SingleArgumentCommandAttribute>()!;
-				var comparisonOption = attribute.IgnoreCase
-					? StringComparison.OrdinalIgnoreCase
-					: StringComparison.Ordinal;
+				var comparisonOption = attribute.IgnoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 				if (type.Name.Equals(HelpCommandName, comparisonOption))
 				{
 					instance = !type.Name.Equals(nameof(Help), comparisonOption)
@@ -139,9 +134,8 @@ public sealed class Help : IExecutable
 				helpTextContentBuilder.AppendLine();
 			}
 
-			List<(string CommandName, IEnumerable<string> DescriptionRawParts)>
-				singleArguments = new(),
-				doubleArguments = new();
+			var singleArguments = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();
+			var doubleArguments = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();
 
 			// Gets and iterates on all possible commands of the instance type.
 			foreach (var (type, l1, l2) in
@@ -159,12 +153,7 @@ public sealed class Help : IExecutable
 					case ({ Notation: var notation, Description: var description, IsRequired: var isRequired }, null):
 					{
 						// l1 is not null
-						singleArguments.Add(
-							(
-								$"<{notation}>",
-								description.SplitByLength(Console.LargestWindowWidth - 4)
-							)
-						);
+						singleArguments.Add(($"<{notation}>", description.SplitByLength(Console.LargestWindowWidth - 4)));
 
 						break;
 					}
@@ -221,7 +210,7 @@ public sealed class Help : IExecutable
 			}
 
 			// Output the value.
-			Terminal.Write(helpTextContentBuilder.ToString());
+			await Terminal.WriteAsync(helpTextContentBuilder.ToString());
 		}
 	}
 }

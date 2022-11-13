@@ -25,7 +25,7 @@ public sealed class Generate : IExecutable
 
 
 	/// <inheritdoc/>
-	public void Execute()
+	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
 		switch (GenerateType)
 		{
@@ -41,7 +41,7 @@ public sealed class Generate : IExecutable
 						continue;
 					}
 
-					Terminal.WriteLine($"""The puzzle generated: '{targetPuzzle:0}'""");
+					await Terminal.WriteLineAsync($"The puzzle generated: '{targetPuzzle:0}'");
 
 					return;
 				}
@@ -58,7 +58,7 @@ public sealed class Generate : IExecutable
 						continue;
 					}
 
-					Terminal.WriteLine($"""The puzzle generated: '{targetPuzzle:0}'""");
+					await Terminal.WriteLineAsync($"The puzzle generated: '{targetPuzzle:0}'");
 
 					return;
 				}
