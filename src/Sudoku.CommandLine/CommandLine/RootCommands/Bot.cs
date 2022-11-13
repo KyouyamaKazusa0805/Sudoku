@@ -7,6 +7,7 @@ namespace Sudoku.CommandLine.RootCommands;
 /// </summary>
 [RootCommand("bot", "To launch bot procedure.")]
 [SupportedArguments("bot")]
+[SupportedOSPlatform("windows")]
 public sealed class Bot : IExecutable
 {
 	/// <summary>
