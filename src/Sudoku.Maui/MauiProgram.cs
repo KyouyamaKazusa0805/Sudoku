@@ -22,28 +22,18 @@ public static class MauiProgram
 	/// </summary>
 	/// <returns>The application instance.</returns>
 	public static MauiApp CreateMauiApp()
-	{
-		return MauiApp.CreateBuilder()
+		=> MauiApp.CreateBuilder()
 			.UseMauiApp<App>()
-			.ConfigureFonts(fontConfiguring)
+			.ConfigureFonts(
+				static fontCollection
+					=> fontCollection
+						.AddFont("OpenSans-Regular.ttf", "OpenSansRegular")
+						.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold")
+						.AddFont("MiSans-Normal.ttf", "MiSans")
+			)
 			.ConfigureDebugLogging()
 			.Build();
 
-
-		static void fontConfiguring(IFontCollection f)
-		{
-			f.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-			f.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			f.AddFont("MiSans-Normal.ttf", "MiSans");
-		}
-	}
-}
-
-/// <summary>
-/// The local extensions.
-/// </summary>
-file static class Extensions
-{
 	/// <summary>
 	/// Configures debugging on logging.
 	/// </summary>
@@ -52,7 +42,7 @@ file static class Extensions
 	/// without any operations.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static MauiAppBuilder ConfigureDebugLogging(this MauiAppBuilder @this)
+	private static MauiAppBuilder ConfigureDebugLogging(this MauiAppBuilder @this)
 	{
 		internalAdding(@this);
 		return @this;
