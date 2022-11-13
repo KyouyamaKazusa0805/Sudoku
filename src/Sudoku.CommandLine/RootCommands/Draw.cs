@@ -5,7 +5,7 @@
 /// </summary>
 [SupportedOSPlatform("windows")]
 [RootCommand("draw", "Draw a sudoku grid onto a picture.")]
-[SupportedArguments(new[] { "draw" })]
+[SupportedArguments("draw")]
 [Usage("draw -s <size> -o <offset> -g <grid> -p <path>", "Draw a grid onto a picture, with specified size and outside blank (pixels), then output the picture to the local path.")]
 public sealed class Draw : IExecutable
 {

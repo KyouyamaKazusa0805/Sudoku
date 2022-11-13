@@ -4,7 +4,7 @@
 /// Defines the type that stores the help options.
 /// </summary>
 [RootCommand("help", "Displays all possible root commands provided.", IsSpecial = true)]
-[SupportedArguments(new[] { "help", "?" })]
+[SupportedArguments("help", "?")]
 [Usage("help", IsPattern = true)]
 public sealed class Help : IExecutable
 {

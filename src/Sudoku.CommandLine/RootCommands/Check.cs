@@ -4,7 +4,7 @@
 /// Represents a check command.
 /// </summary>
 [RootCommand("check", "To check the attributes for a sudoku grid.")]
-[SupportedArguments(new[] { "check" })]
+[SupportedArguments("check")]
 [Usage("check --grid <grid> --type <type>", IsPattern = true)]
 [Usage($"""check -g "{SampleGrid}" -t validity""", "To check the validity of the specified sudoku grid.")]
 public sealed class Check : IExecutable

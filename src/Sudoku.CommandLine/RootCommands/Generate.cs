@@ -4,7 +4,7 @@
 /// Represents a generate command.
 /// </summary>
 [RootCommand("generate", "To generate a sudoku puzzle.")]
-[SupportedArguments(new[] { "generate", "gen" })]
+[SupportedArguments("generate", "gen")]
 [Usage("generate -m <method> -c <range>", IsPattern = true)]
 [Usage("""generate -m hard -c 24..30""", "Generates a sudoku puzzle, which contains givens of number between 24 and 30, and using the hard-pattern algorithm to generate puzzle.")]
 public sealed class Generate : IExecutable

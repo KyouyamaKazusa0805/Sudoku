@@ -4,7 +4,7 @@
 /// Represents a solve command.
 /// </summary>
 [RootCommand("solve", "To solve a sudoku grid using the specified algorithm.")]
-[SupportedArguments(new[] { "solve" })]
+[SupportedArguments("solve")]
 [Usage("solve -g <grid> -m <method>", IsPattern = true)]
 [Usage($"""solve -g "{SampleGrid}" -m bitwise""", "Solves a sudoku puzzle, using the bitwise algorithm.")]
 public sealed class Solve : IExecutable
