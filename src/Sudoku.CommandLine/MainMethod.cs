@@ -1,34 +1,17 @@
-﻿try
-{
-	// Routes the command line arguments to the target root command to be executed.
-	RootCommand.Route(args);
+﻿const int statusSuccess = 0;
 
-	// If succeed, return 0.
-	return 0;
+try
+{
+	RootCommand.Route(args);
+	return statusSuccess;
 }
 catch (CommandLineException ex)
 {
-	Terminal.WriteLine(
-		$"""
-		The parsing or runtime operation is unexpected.
-		
-		{ex}
-		""",
-		ConsoleColor.Red
-	);
-
+	Terminal.WriteLine($"The parsing or runtime operation is unexpected.\r\n\r\n{ex}", ConsoleColor.Red);
 	return -ex.ErrorCode;
 }
 catch (Exception ex)
 {
-	Terminal.WriteLine(
-		$"""
-		An unexpected error has been encountered.
-		
-		{ex}
-		""",
-		ConsoleColor.Red
-	);
-
+	Terminal.WriteLine($"An unexpected error has been encountered.\r\n\r\n{ex}", ConsoleColor.Red);
 	return -(int)ErrorCode.OtherRuntimeError;
 }
