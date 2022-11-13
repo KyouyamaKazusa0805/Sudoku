@@ -44,16 +44,14 @@ public interface IOrderByClauseProvider<T> : ILinqProvider<T>
 	public abstract IOrderedEnumerable<TKey> ThenByDescending<TKey>(Func<T, TKey> keySelector);
 
 	/// <inheritdoc cref="OrderBy{TKey}(Func{T, TKey})"/>
-	public sealed unsafe IOrderedEnumerable<TKey> OrderByUnsafe<TKey>(delegate*<T, TKey> keySelector)
-		=> OrderBy(e => keySelector(e));
+	public sealed unsafe IOrderedEnumerable<TKey> OrderByUnsafe<TKey>(delegate*<T, TKey> keySelector) => OrderBy(e => keySelector(e));
 
 	/// <inheritdoc cref="OrderByDescending{TKey}(Func{T, TKey})"/>
 	public sealed unsafe IOrderedEnumerable<TKey> OrderByDescendingUnsafe<TKey>(delegate*<T, TKey> keySelector)
 		=> OrderByDescending(e => keySelector(e));
 
 	/// <inheritdoc cref="ThenBy{TKey}(Func{T, TKey})"/>
-	public sealed unsafe IOrderedEnumerable<TKey> ThenByUnsafe<TKey>(delegate*<T, TKey> keySelector)
-		=> ThenBy(e => keySelector(e));
+	public sealed unsafe IOrderedEnumerable<TKey> ThenByUnsafe<TKey>(delegate*<T, TKey> keySelector) => ThenBy(e => keySelector(e));
 
 	/// <inheritdoc cref="ThenByDescending{TKey}(Func{T, TKey})"/>
 	public sealed unsafe IOrderedEnumerable<TKey> ThenByDescendingUnsafe<TKey>(delegate*<T, TKey> keySelector)
