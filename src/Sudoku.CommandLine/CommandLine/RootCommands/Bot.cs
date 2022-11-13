@@ -1,0 +1,117 @@
+﻿#undef IMPLEMENTED
+
+namespace Sudoku.CommandLine.RootCommands;
+
+/// <summary>
+/// Represents a bot command.
+/// </summary>
+[RootCommand("bot", "To launch bot procedure.")]
+[SupportedArguments("bot")]
+public sealed class Bot : IExecutable
+{
+	/// <summary>
+	/// The address.
+	/// </summary>
+	[DoubleArgumentsCommand('a', "address", "Indicates the address of the bot to be connected to. Generally the value is 'localhost:8080'.")]
+	public string Address { get; set; } = "localhost:8080";
+
+	/// <summary>
+	/// The number of the bot.
+	/// </summary>
+	[DoubleArgumentsCommand('q', "qq", "Indicates the real number of the bot.", IsRequired = true)]
+	public string BotNumber { get; set; } = string.Empty;
+
+	/// <summary>
+	/// The verify key.
+	/// </summary>
+	[DoubleArgumentsCommand('k', "key", "Indicates the verify key used for making communication of web socket.", IsRequired = true)]
+	public string VerifyKey { get; set; } = string.Empty;
+
+
+	/// <inheritdoc/>
+	public
+#if IMPLEMENTED
+	async
+#endif
+	void Execute()
+#if IMPLEMENTED
+	{
+		// Creates and initializes a bot.
+		using var bot = new MiraiBot { Address = R["HostPort"], QQ = R["BotQQ"]!, VerifyKey = R["VerifyKey"] };
+
+		try
+		{
+			await bot.LaunchAsync();
+
+			// Registers some necessary events.
+			bot.SubscribeGroupMessageReceived(onGroupMessageReceived);
+			bot.SubscribeMemberJoined(onMemberJoined);
+			bot.SubscribeNewMemberRequested(onNewMemberRequested);
+			bot.SubscribeNewInvitationRequested(onNewInvitationRequested);
+
+			// Blocks the main thread, in order to prevent the main thread exits too fast.
+			Terminal.WriteLine(R["BootingSuccessMessage"]!, ConsoleColor.DarkGreen);
+		}
+		catch (FlurlHttpException)
+		{
+			Terminal.WriteLine(R["BootingFailedDueToMirai"]!, ConsoleColor.DarkRed);
+		}
+		catch (InvalidResponseException)
+		{
+			Terminal.WriteLine(R["BootingFailedDueToHttp"]!, ConsoleColor.DarkRed);
+		}
+
+		Terminal.Pause();
+
+
+		async void onGroupMessageReceived(GroupMessageReceiver e)
+		{
+			if (e is { Sender.Permission: var permission, MessageChain: (_, { } messageTrimmed, _) })
+			{
+				foreach (var type in GetType().Assembly.GetDerivedTypes<Command>())
+				{
+					if (type.GetConstructor(Array.Empty<Type>()) is not null
+						&& type.GetCustomAttribute<CommandAttribute>() is { AllowedPermissions: var allowPermissions }
+						&& Array.IndexOf(allowPermissions, permission) != -1
+						&& await ((Command)Activator.CreateInstance(type)!).ExecuteAsync(messageTrimmed, e))
+					{
+						return;
+					}
+				}
+			}
+		}
+
+		static async void onMemberJoined(MemberJoinedEvent e)
+		{
+			if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
+			{
+				await group.SendGroupMessageAsync(R["SampleMemberJoinedMessage"]);
+			}
+		}
+
+		static async void onNewMemberRequested(NewMemberRequestedEvent e)
+		{
+			const string answerLocatorStr = "\u7b54\u6848\uff1a";
+
+			if (e is { GroupId: var groupId, Message: var message }
+				&& message.IndexOf(answerLocatorStr) is var answerLocatorStrIndex and not -1
+				&& answerLocatorStrIndex + answerLocatorStr.Length is var finalIndex && finalIndex < message.Length
+				&& message[finalIndex..] is var finalMessage
+				&& groupId == R["SudokuGroupQQ"])
+			{
+				await (BilibiliPattern().IsMatch(finalMessage.Trim()) ? e.ApproveAsync() : e.RejectAsync(R["_MessageFormat_RejectJoiningGroup"]!));
+			}
+		}
+
+		static async void onNewInvitationRequested(NewInvitationRequestedEvent e)
+		{
+			if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"])
+			{
+				await e.ApproveAsync();
+			}
+		}
+	}
+#else
+		=> throw new NotImplementedException("This method will be implemented later.");
+#endif
+}

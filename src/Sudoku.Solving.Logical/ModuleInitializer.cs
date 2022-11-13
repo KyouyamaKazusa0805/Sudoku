@@ -2,16 +2,12 @@
 namespace Sudoku.Solving.Logical;
 #pragma warning restore IDE0130
 
-/// <include
-///     file='../../global-doc-comments.xml'
-///     path='g/csharp9/feature[@name="module-initializer"]/target[@name="type"]' />
+/// <include file='../../global-doc-comments.xml' path='g/csharp9/feature[@name="module-initializer"]/target[@name="type"]' />
 internal static class ModuleInitializer
 {
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp9/feature[@name="module-initializer"]/target[@name="method"]' />
+	/// <include file='../../global-doc-comments.xml' path='g/csharp9/feature[@name="module-initializer"]/target[@name="method"]' />
 	[ModuleInitializer]
-	[RequiresUnreferencedCode("This is a method called 'Module Initializer'. The method is reserved for compiler usage and you cannot call this method explicitly.")]
+	[RequiresUnreferencedCode(ModuleInitializerMessage.ModuleInitializerCannotBeCalledManually)]
 	public static void Initialize()
 	{
 		// Registers the assembly.

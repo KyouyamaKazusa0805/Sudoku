@@ -3907,6 +3907,16 @@
             Indicates the message that reports a warning that user cannot invoke this constructor because of meaninglessness.
             </summary>
         </member>
+        <member name="T:System.Runtime.Messages.ModuleInitializerMessage">
+            <summary>
+            Provides with a message that is represented as warning message used by module initializers.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Messages.ModuleInitializerMessage.ModuleInitializerCannotBeCalledManually">
+            <summary>
+            Indicates the message is telling user that module initializers cannot be used manually.
+            </summary>
+        </member>
         <member name="T:System.Runtime.Messages.RefStructDefaultImplementationMessage">
             <summary>
             Provides with a message that is represented as deprecated message in default-overridden methods
