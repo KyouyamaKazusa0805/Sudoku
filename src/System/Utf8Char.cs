@@ -107,16 +107,14 @@ public readonly struct Utf8Char :
 	/// </summary>
 	/// <returns>The result character.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Utf8Char ToUpper()
-		=> _char - 32 is var resultChar and >= 'A' and <= 'Z' ? (Utf8Char)(char)resultChar : _char;
+	public Utf8Char ToUpper() => _char - 32 is var resultChar and >= 'A' and <= 'Z' ? (Utf8Char)(char)resultChar : _char;
 
 	/// <summary>
 	/// Converts the current character to the lower-casing letter.
 	/// </summary>
 	/// <returns>The result character.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Utf8Char ToLower()
-		=> _char + 32 is var resultChar and >= 'a' and <= 'z' ? (Utf8Char)(char)resultChar : _char;
+	public Utf8Char ToLower() => _char + 32 is var resultChar and >= 'a' and <= 'z' ? (Utf8Char)(char)resultChar : _char;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -166,8 +164,7 @@ public readonly struct Utf8Char :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Utf8Char operator checked +(Utf8Char @char, byte offset)
-		=> (Utf8Char)checked((byte)(@char._char + offset));
+	public static Utf8Char operator checked +(Utf8Char @char, byte offset) => (Utf8Char)checked((byte)(@char._char + offset));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -175,8 +172,7 @@ public readonly struct Utf8Char :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Utf8Char operator checked -(Utf8Char @char, byte offset)
-		=> (Utf8Char)checked((byte)(@char._char - offset));
+	public static Utf8Char operator checked -(Utf8Char @char, byte offset) => (Utf8Char)checked((byte)(@char._char - offset));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
