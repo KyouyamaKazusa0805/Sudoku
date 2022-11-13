@@ -79,8 +79,7 @@ public sealed class BacktrackingSolver : ISimpleSolver
 		}
 
 
-		static void solve(
-			scoped ref int solutionsCount, scoped ref int[]? result, int[] gridValues, int finishedCellsCount)
+		static void solve(scoped ref int solutionsCount, scoped ref int[]? result, int[] gridValues, int finishedCellsCount)
 		{
 			if (finishedCellsCount == 81)
 			{
