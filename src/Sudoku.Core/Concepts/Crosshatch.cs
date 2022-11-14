@@ -195,11 +195,7 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 		Argument.ThrowIfFalse(to is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
 		Argument.ThrowIfFalse(digit is >= 0 and < 9);
 
-		return new(
-			f2(from[0]) | f1(from[1], 7) | f1(from[2], 14)
-				| f1(to[0], 21) | f1(to[1], 28) | f1(to[2], 35)
-				| (ulong)digit << 42
-		);
+		return new(f2(from[0]) | f1(from[1], 7) | f1(from[2], 14) | f1(to[0], 21) | f1(to[1], 28) | f1(to[2], 35) | (ulong)digit << 42);
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
