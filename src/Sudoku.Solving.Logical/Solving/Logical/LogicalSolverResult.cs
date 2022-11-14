@@ -261,18 +261,14 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// </summary>
 	/// <param name="index">The index.</param>
 	/// <returns>The step information.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the <see cref="Steps"/> is <see langword="null"/> or empty.
-	/// </exception>
+	/// <exception cref="InvalidOperationException">Throws when the <see cref="Steps"/> is <see langword="null"/> or empty.</exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	/// <seealso cref="Steps"/>
 	public IStep this[int index]
 		=> Steps switch
 		{
-			{ IsDefaultOrEmpty: true }
-				=> throw new InvalidOperationException("You can't extract any elements because of being null or empty."),
-			{ Length: var length } when index < 0 || index >= length
-				=> throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range."),
+			{ IsDefaultOrEmpty: true } => throw new InvalidOperationException("You can't extract any elements because of being null or empty."),
+			{ Length: var length } when index < 0 || index >= length => throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range."),
 			_ => Steps[index]
 		};
 

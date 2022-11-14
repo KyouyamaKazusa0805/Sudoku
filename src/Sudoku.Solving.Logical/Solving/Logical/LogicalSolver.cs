@@ -38,10 +38,7 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 
 
 	/// <inheritdoc/>
-	public LogicalSolverResult Solve(
-		scoped in Grid puzzle,
-		IProgress<double>? progress = null,
-		CancellationToken cancellationToken = default)
+	public LogicalSolverResult Solve(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
 	{
 		var result = new LogicalSolverResult(puzzle);
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } s)
@@ -59,14 +56,10 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 				result = result with { IsSolved = false };
 				return ex switch
 				{
-					NotImplementedException or NotSupportedException
-						=> result with { FailedReason = NotImplemented },
-					WrongStepException { WrongStep: var ws }
-						=> result with { FailedReason = WrongStep, WrongStep = ws, UnhandledException = ex },
-					OperationCanceledException
-						=> result with { FailedReason = UserCancelled },
-					_
-						=> result with { FailedReason = ExceptionThrown, UnhandledException = ex }
+					NotImplementedException or NotSupportedException => result with { FailedReason = NotImplemented },
+					WrongStepException { WrongStep: var ws } => result with { FailedReason = WrongStep, WrongStep = ws, UnhandledException = ex },
+					OperationCanceledException => result with { FailedReason = UserCancelled },
+					_ => result with { FailedReason = ExceptionThrown, UnhandledException = ex }
 				};
 			}
 		}
@@ -80,22 +73,16 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 	/// The inner solving operation method.
 	/// </summary>
 	/// <param name="puzzle">
-	/// <inheritdoc
-	///     cref="Solve(in Grid, IProgress{double}?, CancellationToken)"
-	///     path="/param[@name='puzzle']"/>
+	/// <inheritdoc cref="Solve(in Grid, IProgress{double}?, CancellationToken)" path="/param[@name='puzzle']"/>
 	/// </param>
 	/// <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
 	/// <param name="isSukaku">A <see cref="bool"/> value indicating whether the puzzle is a sukaku.</param>
 	/// <param name="resultBase">The base solver result already included the base information.</param>
 	/// <param name="progress">
-	/// <inheritdoc
-	///     cref="Solve(in Grid, IProgress{double}?, CancellationToken)"
-	///     path="/param[@name='progress']"/>
+	/// <inheritdoc cref="Solve(in Grid, IProgress{double}?, CancellationToken)" path="/param[@name='progress']"/>
 	/// </param>
 	/// <param name="cancellationToken">
-	/// <inheritdoc
-	///     cref="Solve(in Grid, IProgress{double}?, CancellationToken)"
-	///     path="/param[@name='cancellationToken']"/>
+	/// <inheritdoc cref="Solve(in Grid, IProgress{double}?, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
 	/// <returns>The solver result.</returns>
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>

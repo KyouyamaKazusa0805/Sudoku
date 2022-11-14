@@ -24,8 +24,7 @@ public interface IStep : IVisual
 		get => GetType().GetCustomAttribute<StepDisplayingFeatureAttribute>() switch
 		{
 			{ Features: var f } => !f.Flags(StepDisplayingFeature.HideDifficultyRating),
-			null => true,
-			//_ => false
+			null => true
 		};
 	}
 
