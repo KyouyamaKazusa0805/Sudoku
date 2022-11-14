@@ -5,7 +5,7 @@ namespace System.Collections.Generic;
 /// <summary>
 /// Defines a value-type sequence list.
 /// </summary>
-/// <typeparam name="TNotNull">The element type.</typeparam>
+/// <typeparam name="T">The element type.</typeparam>
 /// <remarks>
 /// We recommend you use this type like:
 /// <code><![CDATA[
@@ -18,7 +18,7 @@ namespace System.Collections.Generic;
 /// }
 /// ]]></code>
 /// </remarks>
-public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
+public unsafe ref partial struct ValueList<T> where T : notnull
 {
 	/// <summary>
 	/// Indicates the length of the list.
@@ -33,7 +33,7 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 	/// <summary>
 	/// Indicates the pointer that points to the first element.
 	/// </summary>
-	private TNotNull* _startPtr;
+	private T* _startPtr;
 
 
 	/// <summary>
@@ -47,7 +47,7 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueList(byte capacity)
 	{
-		_startPtr = (TNotNull*)NativeMemory.Alloc((nuint)sizeof(TNotNull) * capacity);
+		_startPtr = (T*)NativeMemory.Alloc((nuint)sizeof(T) * capacity);
 		_capacity = capacity;
 	}
 
@@ -79,14 +79,14 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 	/// </summary>
 	/// <param name="index">The index.</param>
 	/// <returns>The reference to the element at the specified index.</returns>
-	public readonly ref TNotNull this[byte index]
+	public readonly ref T this[byte index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ref _startPtr[index];
 	}
 
 	/// <inheritdoc cref="this[byte]"/>
-	public readonly ref TNotNull this[Index index]
+	public readonly ref T this[Index index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ref _startPtr[index.GetOffset(_length)];
@@ -99,7 +99,7 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 	/// <param name="element">The element.</param>
 	/// <param name="predicate">The predicate checking whether two elements are same.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddIfNotContain(TNotNull element, delegate*<TNotNull, TNotNull, bool> predicate)
+	public void AddIfNotContain(T element, delegate*<T, T, bool> predicate)
 	{
 		if (!Contains(element, predicate))
 		{
@@ -112,7 +112,7 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 	/// </summary>
 	/// <param name="element">The element.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Add(TNotNull element)
+	public void Add(T element)
 	{
 		Argument.ThrowIfInvalid(_length < _capacity, "Cannot add because the collection is full.");
 
@@ -123,7 +123,7 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 	/// Adds a list of elements into the collection.
 	/// </summary>
 	/// <param name="elements">A list of elements.</param>
-	public void AddRange(scoped in ValueList<TNotNull> elements)
+	public void AddRange(scoped in ValueList<T> elements)
 	{
 		foreach (var element in elements)
 		{
@@ -147,9 +147,9 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 	/// To dispose the current list.
 	/// </summary>
 	/// <remarks><i>
-	/// This method should be called when the constructor <see cref="ValueList{TUnmanaged}(byte)"/> is called.
+	/// This method should be called when the constructor <see cref="ValueList{T}(byte)"/> is called.
 	/// </i></remarks>
-	/// <seealso cref="ValueList{TUnmanaged}(byte)"/>
+	/// <seealso cref="ValueList{T}(byte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Dispose()
 	{
@@ -164,7 +164,7 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 	/// <param name="instance">The instance to be determined.</param>
 	/// <param name="predicate">A method that defines whether two instances are considered equal.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public bool Contains(TNotNull instance, delegate*<TNotNull, TNotNull, bool> predicate)
+	public bool Contains(T instance, delegate*<T, T, bool> predicate)
 	{
 		foreach (var element in this)
 		{
@@ -192,14 +192,14 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 	{
 		return format switch
 		{
-			null or "L" or "l" => $"ValueList<{typeof(TNotNull).Name}> {{ Count = {_length}, Capacity = {_capacity} }}",
+			null or "L" or "l" => $"ValueList<{typeof(T).Name}> {{ Count = {_length}, Capacity = {_capacity} }}",
 			"C" or "c" => toContentString(this),
-			"S" or "s" => $"ValueList<{typeof(TNotNull).Name}> {{ Size = {sizeof(TNotNull) * _length} }}",
+			"S" or "s" => $"ValueList<{typeof(T).Name}> {{ Size = {sizeof(T) * _length} }}",
 			_ => throw new FormatException("The specified format doesn't support.")
 		};
 
 
-		static string toContentString(scoped in ValueList<TNotNull> @this)
+		static string toContentString(scoped in ValueList<T> @this)
 		{
 			const string separator = ", ";
 			scoped var sb = new StringHandler();
@@ -219,27 +219,27 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 	public readonly Enumerator GetEnumerator() => new(this);
 
 	/// <summary>
-	/// Converts the current instance into an array of type <typeparamref name="TNotNull"/>.
+	/// Converts the current instance into an array of type <typeparamref name="T"/>.
 	/// </summary>
-	/// <returns>The array of elements of type <typeparamref name="TNotNull"/>.</returns>
+	/// <returns>The array of elements of type <typeparamref name="T"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly TNotNull[] ToArray()
+	public readonly T[] ToArray()
 	{
-		var result = new TNotNull[_length];
-		fixed (TNotNull* pResult = result)
+		var result = new T[_length];
+		fixed (T* pResult = result)
 		{
-			CopyBlock(pResult, _startPtr, (uint)(sizeof(TNotNull) * _length));
+			CopyBlock(pResult, _startPtr, (uint)(sizeof(T) * _length));
 		}
 
 		return result;
 	}
 
 	/// <summary>
-	/// Converts the current instance into an immutable array of type <typeparamref name="TNotNull"/>.
+	/// Converts the current instance into an immutable array of type <typeparamref name="T"/>.
 	/// </summary>
-	/// <returns>The array of elements of type <typeparamref name="TNotNull"/>.</returns>
+	/// <returns>The array of elements of type <typeparamref name="T"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ImmutableArray<TNotNull> ToImmutableArray() => ImmutableArray.Create(ToArray());
+	public readonly ImmutableArray<T> ToImmutableArray() => ImmutableArray.Create(ToArray());
 
 
 	/// <summary>
@@ -253,9 +253,9 @@ public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 		/// <param name="ptr">The pointer that points to the list.</param>
 		[FileAccessOnly]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Enumerator(in ValueList<TNotNull> ptr)
+		internal Enumerator(in ValueList<T> ptr)
 		{
-			fixed (ValueList<TNotNull>* p = &ptr)
+			fixed (ValueList<T>* p = &ptr)
 			{
 				_ptr = p;
 			}

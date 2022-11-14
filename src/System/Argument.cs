@@ -9,7 +9,7 @@ public static class Argument
 	/// Checks whether the specified value is equivalent to the specified value. Otherwise,
 	/// an <see cref="ArgumentException"/> will be thrown.
 	/// </summary>
-	/// <typeparam name="TEquatable">The type of the instance.</typeparam>
+	/// <typeparam name="T">The type of the instance.</typeparam>
 	/// <param name="instance">The instance.</param>
 	/// <param name="value">The value that the argument <paramref name="argName"/> must be.</param>
 	/// <param name="argName">The argument name.</param>
@@ -17,11 +17,8 @@ public static class Argument
 	/// Throws when the argument <paramref name="argName"/> is not equal to <paramref name="value"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNotEqual<TEquatable>(
-		TEquatable instance,
-		TEquatable value,
-		[CallerArgumentExpression(nameof(instance))] string? argName = null)
-		where TEquatable : notnull, IEquatable<TEquatable>
+	public static void ThrowIfNotEqual<T>(T instance, T value, [CallerArgumentExpression(nameof(instance))] string? argName = null)
+		where T : notnull, IEquatable<T>
 	{
 		if (!instance.Equals(value))
 		{

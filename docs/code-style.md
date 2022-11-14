@@ -77,29 +77,8 @@
 4. 参数：`camelCase`；
 5. 泛型参数：
     1. 如果泛型参数没有泛型约束，则一般就叫 `T` 即可；
-    2. 如果泛型参数是奇异递归模板模式，则命名为 `T`；
-    3. 如果泛型参数有泛型约束，则一般要用 `TPascalCase` 的方式带处约束规则，比如 `TStruct` 表示的是带有 `where TStruct : struct` 约束的泛型参数，接口的 `I` 要省略掉；
-    4. 如果泛型参数带有多个不同的泛型约束规则，则一般按主要的泛型约束作为名称带出，比如 `TStep` 可以表示带 `where TStep : class, IStep` 约束的泛型参数，因为 `IStep` 接口是主要继承内容，所以它需要在命名规则里体现；
-    5. 详细命名规范：
-        1. 没有泛型约束：`T` 或 `T名字`，具体情况看需不需要给其命名；
-        2. 奇异递归模板模式：`T`；
-        3. `where T : struct`：`TStruct`；
-        4. `where T : class`：`TClass`；
-        5. `where T : unmanaged`：`TUnmanaged`；
-        6. `where T : notnull`：`TNotNull`；
-        7. `where T : Delegate`：`TDelegate`；
-        8. `where T : Enum`：`TEnum`；
-        9. `where T : 类`：`T类`；
-        10. `where T : 类?`：`TNullable类`；
-        11. `where T : I接口`：`T接口`；
-        12. `where T : I接口?`：`TNullable接口`；
-        13. `where T : 类, I接口1, I接口2, ...`：找出主要接口名为命名对象；
-        14. `where T : I接口1, I接口2, ...`：找出主要接口名为命名对象；
-        15. `where T : unmanaged, Enum`：`TEnum`；
-        16. `where T : struct, I接口, ...`：找出主要接口名为命名对象；
-        17. `where T : class, I接口, ...`：找出主要接口名为命名对象；
-        18. `where T : notnull, 类, I接口, ...`：`T类`；
-        19. 其它情况具体情况具体分析。
+    2. 如果泛型参数是奇异递归模板模式，则命名为 `TSelf`；
+    3. 其他的一般都按 `T` 取名，除非有多个泛型参数需要区分使用的时候，或者是需要故意取别的名字的时候。
 6. 临时变量和临时常量：`camelCase`；
 7. 本地函数：`camelCase`；
 8. 值元组元素：`PascalCase`；

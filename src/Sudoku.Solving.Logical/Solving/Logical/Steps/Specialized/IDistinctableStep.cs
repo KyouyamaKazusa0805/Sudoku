@@ -3,16 +3,16 @@
 /// <summary>
 /// Defines a step that can be distinctable.
 /// </summary>
-/// <typeparam name="TStep">The type of the element to compare.</typeparam>
+/// <typeparam name="T">The type of the element to compare.</typeparam>
 /// <remarks>
 /// A <b>distinctable step</b> is a step that is with the unique information,
 /// in order that multiple steps of the same type can be recognized by the relative methods,
 /// to filter and remove same-value instances.
 /// </remarks>
-internal interface IDistinctableStep<in TStep> : IStep where TStep : Step
+internal interface IDistinctableStep<in T> : IStep where T : Step
 {
 	/// <summary>
-	/// To compare 2 instances of type <typeparamref name="TStep"/>,
+	/// To compare 2 instances of type <typeparamref name="T"/>,
 	/// to determine whether 2 instances holds the same value.
 	/// </summary>
 	/// <param name="left">Indicates the first instance to compare.</param>
@@ -35,46 +35,45 @@ internal interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	/// but <see langword="record"/>s are automatically implemented the method, which is useless
 	/// and unmeaningful.
 	/// </remarks>
-	static abstract bool Equals(TStep left, TStep right);
+	static abstract bool Equals(T left, T right);
 
 
 	/// <summary>
 	/// Distinct the list, that is, remove all duplicate elements in this list, that uses the method
-	/// <see cref="Equals(TStep, TStep)"/> defined in this interface.
+	/// <see cref="Equals(T, T)"/> defined in this interface.
 	/// </summary>
-	/// <typeparam name="TDistinctableStep">The type of the steps.</typeparam>
+	/// <typeparam name="T">The type of the steps.</typeparam>
 	/// <param name="list">The list of steps to be processed.</param>
 	/// <returns>The list of steps.</returns>
 	/// <remarks>
 	/// This method does not change the ordering of the original list. In other words, if the original list
 	/// is in order, the final list after invoking this method will be also in order.
 	/// </remarks>
-	/// <seealso cref="Equals(TStep, TStep)"/>
-	static IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
-		where TDistinctableStep : Step, IDistinctableStep<TDistinctableStep>
+	/// <seealso cref="Equals(T, T)"/>
+	static IEnumerable<T> Distinct<T>(IList<T> list) where T : Step, IDistinctableStep<T>
 		=> list switch
 		{
-			[] => Array.Empty<TDistinctableStep>(),
+			[] => Array.Empty<T>(),
 			[var firstElement] => new[] { firstElement },
-			[var a, var b] => TDistinctableStep.Equals(a, b) ? new[] { a } : new[] { a, b },
-			_ => new HashSet<TDistinctableStep>(list, DefaultComparer<TDistinctableStep>.Instance)
+			[var a, var b] => T.Equals(a, b) ? new[] { a } : new[] { a, b },
+			_ => new HashSet<T>(list, DefaultComparer<T>.Instance)
 		};
 }
 
 /// <summary>
 /// The internal comparer instance.
 /// </summary>
-/// <typeparam name="TStep">The type of the step.</typeparam>
-file sealed class DefaultComparer<TStep> : IEqualityComparer<TStep> where TStep : Step, IDistinctableStep<TStep>
+/// <typeparam name="T">The type of the step.</typeparam>
+file sealed class DefaultComparer<T> : IEqualityComparer<T> where T : Step, IDistinctableStep<T>
 {
 	/// <summary>
 	/// Indicates the singleton instance.
 	/// </summary>
-	public static DefaultComparer<TStep> Instance = new();
+	public static DefaultComparer<T> Instance = new();
 
 
 	/// <summary>
-	/// Initializes a <see cref="DefaultComparer{TStep}"/> instance.
+	/// Initializes a <see cref="DefaultComparer{T}"/> instance.
 	/// </summary>
 	private DefaultComparer()
 	{
@@ -82,8 +81,8 @@ file sealed class DefaultComparer<TStep> : IEqualityComparer<TStep> where TStep 
 
 
 	/// <inheritdoc/>
-	public bool Equals(TStep? x, TStep? y) => TStep.Equals(x!, y!);
+	public bool Equals(T? x, T? y) => T.Equals(x!, y!);
 
 	/// <inheritdoc/>
-	public int GetHashCode(TStep obj) => 0;
+	public int GetHashCode(T obj) => 0;
 }

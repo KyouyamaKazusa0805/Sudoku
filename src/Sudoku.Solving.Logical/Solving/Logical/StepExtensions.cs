@@ -10,10 +10,10 @@ public static class StepExtensions
 	/// Indicates whether the corresponding technique of the current step is an Almost Locked Sets
 	/// (ALS in abbreviation).
 	/// </summary>
-	/// <typeparam name="TStep">The type of the step.</typeparam>
+	/// <typeparam name="T">The type of the step.</typeparam>
 	/// <param name="this">The <see cref="IStep"/> instance.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public static bool IsAlmostLockedSets<TStep>(this TStep @this) where TStep : class, IStep => @this.HasTag(TechniqueTags.Als);
+	public static bool IsAlmostLockedSets<T>(this T @this) where T : class, IStep => @this.HasTag(TechniqueTags.Als);
 
 	/// <summary>
 	/// Indicates whether the corresponding technique of the current step is a chain. The chain techniques are:
@@ -57,10 +57,10 @@ public static class StepExtensions
 	/// -->
 	/// </list>
 	/// </summary>
-	/// <typeparam name="TStep">The type of the step.</typeparam>
+	/// <typeparam name="T">The type of the step.</typeparam>
 	/// <param name="this">The <see cref="IStep"/> instance.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public static bool IsChaining<TStep>(this TStep @this) where TStep : class, IStep
+	public static bool IsChaining<T>(this T @this) where T : class, IStep
 		=> @this.HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
 
 	/// <summary>
@@ -94,8 +94,8 @@ public static class StepExtensions
 	/// -->
 	/// </list>
 	/// </summary>
-	/// <typeparam name="TStep">The type of the step.</typeparam>
+	/// <typeparam name="T">The type of the step.</typeparam>
 	/// <param name="this">The <see cref="IStep"/> instance.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public static bool IsDeadlyPattern<TStep>(this TStep @this) where TStep : class, IStep => @this.HasTag(TechniqueTags.DeadlyPattern);
+	public static bool IsDeadlyPattern<T>(this T @this) where T : class, IStep => @this.HasTag(TechniqueTags.DeadlyPattern);
 }

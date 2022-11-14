@@ -7,9 +7,9 @@
 public static class StepSearcherPoolingExtensions
 {
 	/// <summary>
-	/// Try to fetch a valid <typeparamref name="TStepSearcher"/> instance via the specified pool.
+	/// Try to fetch a valid <typeparamref name="T"/> instance via the specified pool.
 	/// </summary>
-	/// <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
+	/// <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
 	/// <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
 	/// <returns>
 	/// The found step searcher instance. If the type is marked <see cref="SeparatedStepSearcherAttribute"/>,
@@ -17,14 +17,13 @@ public static class StepSearcherPoolingExtensions
 	/// </returns>
 	/// <seealso cref="SeparatedStepSearcherAttribute"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TStepSearcher? GetOfType<TStepSearcher>(this IStepSearcher[] stepSearchersPool)
-		where TStepSearcher : class, IStepSearcher
-		=> stepSearchersPool.OfType<TStepSearcher>().FirstOrDefault();
+	public static T? GetOfType<T>(this IStepSearcher[] stepSearchersPool) where T : class, IStepSearcher
+		=> stepSearchersPool.OfType<T>().FirstOrDefault();
 
 	/// <summary>
-	/// Try to fetch a valid <typeparamref name="TStepSearcher"/> instances via the specified pool.
+	/// Try to fetch a valid <typeparamref name="T"/> instances via the specified pool.
 	/// </summary>
-	/// <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
+	/// <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
 	/// <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
 	/// <param name="getAll">
 	/// Indicates whether you want to fetch all possible instances at the same time.
@@ -32,15 +31,13 @@ public static class StepSearcherPoolingExtensions
 	/// <returns>
 	/// The found step searcher instances. If the type is marked <see cref="SeparatedStepSearcherAttribute"/>,
 	/// the method will return all possible instances, whose behavior is different with the other method
-	/// <see cref="GetOfType{TStepSearcher}(IStepSearcher[])"/>.
+	/// <see cref="GetOfType{T}(IStepSearcher[])"/>.
 	/// </returns>
 	/// <seealso cref="SeparatedStepSearcherAttribute"/>
-	/// <seealso cref="GetOfType{TStepSearcher}(IStepSearcher[])"/>
+	/// <seealso cref="GetOfType{T}(IStepSearcher[])"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TStepSearcher[] GetOfType<TStepSearcher>(this IStepSearcher[] stepSearchersPool, bool getAll)
+	public static T[] GetOfType<T>(this IStepSearcher[] stepSearchersPool, bool getAll)
 		=> getAll
-			? stepSearchersPool.OfType<TStepSearcher>().ToArray()
-			: stepSearchersPool.OfType<TStepSearcher>().FirstOrDefault() is { } r
-				? new[] { r }
-				: Array.Empty<TStepSearcher>();
+			? stepSearchersPool.OfType<T>().ToArray()
+			: stepSearchersPool.OfType<T>().FirstOrDefault() is { } r ? new[] { r } : Array.Empty<T>();
 }

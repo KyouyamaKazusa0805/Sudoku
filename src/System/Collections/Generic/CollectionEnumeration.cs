@@ -8,13 +8,13 @@ public static class CollectionEnumeration
 	/// <summary>
 	/// Creates a <see cref="OneDimensionalArrayEnumerator{T}"/> instance that iterates on each element.
 	/// </summary>
-	/// <typeparam name="TStruct">The type of the array elements.</typeparam>
+	/// <typeparam name="T">The type of the array elements.</typeparam>
 	/// <param name="this">The array.</param>
 	/// <returns>
 	/// The enumerable collection that allows the iteration on an one-dimensional array.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static OneDimensionalArrayEnumerator<TStruct> EnumerateImmutable<TStruct>(this TStruct[] @this) where TStruct : struct => new(@this);
+	public static OneDimensionalArrayEnumerator<T> EnumerateImmutable<T>(this T[] @this) where T : struct => new(@this);
 
 	/// <summary>
 	/// Creates a <see cref="OneDimensionalArrayRefEnumerator{T}"/> instance that iterates on each element.
@@ -38,12 +38,12 @@ public static class CollectionEnumeration
 	/// <summary>
 	/// Get all possible flags that the current enumeration field set.
 	/// </summary>
-	/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
+	/// <typeparam name="T">The type of the enumeration.</typeparam>
 	/// <param name="this">The current enumeration type instance.</param>
 	/// <returns>All flags.</returns>
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the type isn't applied the attribute <see cref="FlagsAttribute"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FlagsEnumTypeFieldEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum => new(@this);
+	public static FlagsEnumTypeFieldEnumerator<T> GetEnumerator<T>(this T @this) where T : unmanaged, Enum => new(@this);
 }

@@ -4,17 +4,16 @@
 /// Defines an attribute that can be applied to the solving assembly,
 /// to tell the source generator that the searcher option instance will be generated in the specified type.
 /// </summary>
-/// <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
+/// <typeparam name="T">The type of the step searcher.</typeparam>
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
-public sealed class SearcherConfigurationAttribute<TStepSearcher> : Attribute where TStepSearcher : class, IStepSearcher
+public sealed class SearcherConfigurationAttribute<T> : Attribute where T : class, IStepSearcher
 {
 	/// <summary>
-	/// Initializes a <see cref="SearcherConfigurationAttribute{TStepSearcher}"/> instance
+	/// Initializes a <see cref="SearcherConfigurationAttribute{T}"/> instance
 	/// via the specified displaying level.
 	/// </summary>
 	/// <param name="displayingLevel">The displaying level.</param>
-	public SearcherConfigurationAttribute(SearcherDisplayingLevel displayingLevel)
-		=> DisplayingLevel = displayingLevel;
+	public SearcherConfigurationAttribute(SearcherDisplayingLevel displayingLevel) => DisplayingLevel = displayingLevel;
 
 
 	/// <summary>

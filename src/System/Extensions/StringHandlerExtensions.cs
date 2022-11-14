@@ -24,7 +24,7 @@ public static class StringHandlerExtensions
 	/// <summary>
 	/// Append a serial of strings converted from a serial of elements.
 	/// </summary>
-	/// <typeparam name="TEnum">The type of each element.</typeparam>
+	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The handler.</param>
 	/// <param name="enumFlags">The list of enumeration flags.</param>
 	/// <param name="converter">
@@ -33,10 +33,9 @@ public static class StringHandlerExtensions
 	/// </param>
 	/// <param name="separator">The separator.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void AppendRangeWithSeparatorUnsafe<TEnum>(
-		this scoped ref StringHandler @this, TEnum enumFlags,
-		delegate*<TEnum, string> converter, string separator)
-		where TEnum : unmanaged, Enum
+	public static unsafe void AppendRangeWithSeparatorUnsafe<T>(
+		this scoped ref StringHandler @this, T enumFlags, delegate*<T, string> converter, string separator)
+		where T : unmanaged, Enum
 	{
 		foreach (var enumFlag in enumFlags)
 		{

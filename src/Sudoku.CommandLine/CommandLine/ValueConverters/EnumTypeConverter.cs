@@ -1,10 +1,10 @@
 ﻿namespace Sudoku.CommandLine.ValueConverters;
 
 /// <summary>
-/// Represents a converter that can convert the <see cref="string"/> value to the <typeparamref name="TEnum"/>.
+/// Represents a converter that can convert the <see cref="string"/> value to the <typeparamref name="T"/>.
 /// </summary>
-/// <typeparam name="TEnum">The type of the target enumeration.</typeparam>
-public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unmanaged, Enum
+/// <typeparam name="T">The type of the target enumeration.</typeparam>
+public sealed class EnumTypeConverter<T> : IValueConverter where T : unmanaged, Enum
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -17,7 +17,7 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 				: throw new CommandConverterException("The text cannot be parsed as the enumeration field.");
 
 
-		static bool viaName(string value, out TEnum result)
+		static bool viaName(string value, out T result)
 		{
 			SkipInit(out result);
 			if (!int.TryParse(value, out var targetValue))
@@ -25,7 +25,7 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 				return false;
 			}
 
-			var checkType = As<int, TEnum>(ref targetValue);
+			var checkType = As<int, T>(ref targetValue);
 			if (Enum.IsDefined(checkType))
 			{
 				result = checkType;
@@ -35,10 +35,10 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 			return false;
 		}
 
-		static bool viaAttribute(string value, out TEnum result)
+		static bool viaAttribute(string value, out T result)
 		{
 			SkipInit(out result);
-			foreach (var fieldInfo in typeof(TEnum).GetFields())
+			foreach (var fieldInfo in typeof(T).GetFields())
 			{
 				var attr = fieldInfo.GetCustomAttribute<SupportedArgumentsAttribute>();
 				if (attr is not { SupportedArguments: var supportedNames, IgnoreCase: var ignoreCase })
@@ -52,7 +52,7 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 					continue;
 				}
 
-				result = Enum.Parse<TEnum>(fieldInfo.Name);
+				result = Enum.Parse<T>(fieldInfo.Name);
 				return true;
 			}
 

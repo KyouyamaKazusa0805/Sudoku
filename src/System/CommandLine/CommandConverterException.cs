@@ -6,7 +6,7 @@
 public sealed class CommandConverterException : CommandLineException
 {
 	/// <summary>
-	/// Initializes a <see cref="CommandConverterAttribute{TConverter}"/> instance.
+	/// Initializes a <see cref="CommandConverterAttribute{T}"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public CommandConverterException() : base((int)CommandLineInternalError.ConverterError)
@@ -14,7 +14,7 @@ public sealed class CommandConverterException : CommandLineException
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="CommandConverterAttribute{TConverter}"/> instance via the specified error message.
+	/// Initializes a <see cref="CommandConverterAttribute{T}"/> instance via the specified error message.
 	/// </summary>
 	/// <param name="message">The error message.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

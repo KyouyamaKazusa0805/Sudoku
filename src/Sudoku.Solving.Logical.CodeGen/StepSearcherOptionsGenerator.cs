@@ -176,17 +176,17 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				);
 
 
-				static unsafe string createExpression<TUnmanaged>(
-					TUnmanaged field,
+				static unsafe string createExpression<T>(
+					T field,
 					string typeName,
 					IDictionary<byte, string> enabledAreasFields,
 					IDictionary<short, string> disabledReasonFields)
-					where TUnmanaged : unmanaged
+					where T : unmanaged
 				{
-					var l = sizeof(TUnmanaged) switch
+					var l = sizeof(T) switch
 					{
-						1 or 2 or 4 => As<TUnmanaged, int>(ref field),
-						8 => As<TUnmanaged, long>(ref field)
+						1 or 2 or 4 => As<T, int>(ref field),
+						8 => As<T, long>(ref field)
 					};
 
 					// Special case: If the value is zero, just get the default field in the enumeration field

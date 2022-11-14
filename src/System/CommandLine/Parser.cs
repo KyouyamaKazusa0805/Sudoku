@@ -196,7 +196,7 @@ public static class Parser
 		bool rootCommandMatcher(string c, string e) => e.Equals(c, comparisonOption);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static TAttribute? c<TAttribute>(MemberInfo member) where TAttribute : Attribute => member.GetCustomAttribute<TAttribute>();
+		static T? c<T>(MemberInfo member) where T : Attribute => member.GetCustomAttribute<T>();
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static string[] getArgs(Type typeOfRootCommand, out StringComparison comparisonOption)

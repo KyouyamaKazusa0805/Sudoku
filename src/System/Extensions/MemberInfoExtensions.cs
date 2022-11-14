@@ -9,12 +9,11 @@ public static class MemberInfoExtensions
 	/// <summary>
 	/// Gets the type arguments of the specified attribute type applied to the specified property.
 	/// </summary>
-	/// <typeparam name="TMemberInfo">The type of the member information.</typeparam>
+	/// <typeparam name="T">The type of the member information.</typeparam>
 	/// <param name="this">The <see cref="MemberInfo"/> instance.</param>
 	/// <param name="genericAttributeType">The generic attribute type.</param>
 	/// <returns>The types of the generic type arguments.</returns>
-	public static Type[] GetGenericAttributeTypeArguments<TMemberInfo>(this TMemberInfo @this, Type genericAttributeType)
-		where TMemberInfo : MemberInfo
+	public static Type[] GetGenericAttributeTypeArguments<T>(this T @this, Type genericAttributeType) where T : MemberInfo
 	{
 		if (genericAttributeType is not { IsGenericType: true, FullName: { } genericTypeName })
 		{

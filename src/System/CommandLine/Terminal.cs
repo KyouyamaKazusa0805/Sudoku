@@ -45,19 +45,19 @@ public static class Terminal
 	}
 
 	/// <inheritdoc cref="Console.Write(object?)"/>
-	/// <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+	/// <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Write<TNotNull>(TNotNull value) where TNotNull : notnull => Console.Write(value.ToString());
+	public static void Write<T>(T value) where T : notnull => Console.Write(value.ToString());
 
 	/// <summary>
 	/// Writes the text representation of the specified object to the standard output stream,
 	/// with the specified foreground.
 	/// </summary>
-	/// <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+	/// <typeparam name="T">The type of the object to be displayed.</typeparam>
 	/// <param name="value"><inheritdoc cref="Console.Write(object?)"/></param>
 	/// <param name="foreground">The foreground color.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Write<TNotNull>(TNotNull value, ConsoleColor foreground) where TNotNull : notnull
+	public static void Write<T>(T value, ConsoleColor foreground) where T : notnull
 	{
 		Console.ForegroundColor = foreground;
 		Console.Write(value.ToString());
@@ -68,12 +68,12 @@ public static class Terminal
 	/// Writes the text representation of the specified object to the standard output stream,
 	/// with the specified foreground.
 	/// </summary>
-	/// <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+	/// <typeparam name="T">The type of the object to be displayed.</typeparam>
 	/// <param name="value"><inheritdoc cref="Console.Write(object?)"/></param>
 	/// <param name="foreground">The foreground color.</param>
 	/// <param name="background">The background color.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Write<TNotNull>(TNotNull value, ConsoleColor foreground, ConsoleColor background) where TNotNull : notnull
+	public static void Write<T>(T value, ConsoleColor foreground, ConsoleColor background) where T : notnull
 	{
 		Console.ForegroundColor = foreground;
 		Console.BackgroundColor = background;
@@ -86,16 +86,16 @@ public static class Terminal
 	public static void WriteLine() => Console.WriteLine();
 
 	/// <inheritdoc cref="Console.WriteLine(object?)"/>
-	/// <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+	/// <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine<TNotNull>(TNotNull value) where TNotNull : notnull => Console.WriteLine(value.ToString());
+	public static void WriteLine<T>(T value) where T : notnull => Console.WriteLine(value.ToString());
 
 	/// <inheritdoc cref="Console.WriteLine(object?)"/>
-	/// <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+	/// <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
 	/// <param name="value"><inheritdoc/></param>
 	/// <param name="foreground">The foreground color.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine<TNotNull>(TNotNull value, ConsoleColor foreground) where TNotNull : notnull
+	public static void WriteLine<T>(T value, ConsoleColor foreground) where T : notnull
 	{
 		Console.ForegroundColor = foreground;
 		Console.WriteLine(value.ToString());
@@ -103,12 +103,12 @@ public static class Terminal
 	}
 
 	/// <inheritdoc cref="Console.WriteLine(object?)"/>
-	/// <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+	/// <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
 	/// <param name="value"><inheritdoc/></param>
 	/// <param name="foreground">The foreground color.</param>
 	/// <param name="background">The background color.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine<TNotNull>(TNotNull value, ConsoleColor foreground, ConsoleColor background) where TNotNull : notnull
+	public static void WriteLine<T>(T value, ConsoleColor foreground, ConsoleColor background) where T : notnull
 	{
 		Console.ForegroundColor = foreground;
 		Console.BackgroundColor = background;
@@ -184,17 +184,17 @@ public static class Terminal
 	}
 
 	/// <inheritdoc cref="Console.Write(object?)"/>
-	/// <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
-	public static async Task WriteAsync<TNotNull>(TNotNull value) where TNotNull : notnull => await Console.Out.WriteAsync(value.ToString());
+	/// <typeparam name="T">The type of the object to be displayed.</typeparam>
+	public static async Task WriteAsync<T>(T value) where T : notnull => await Console.Out.WriteAsync(value.ToString());
 
 	/// <summary>
 	/// Writes the text representation of the specified object to the standard output stream,
 	/// with the specified foreground.
 	/// </summary>
-	/// <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+	/// <typeparam name="T">The type of the object to be displayed.</typeparam>
 	/// <param name="value"><inheritdoc cref="Console.Write(object?)"/></param>
 	/// <param name="foreground">The foreground color.</param>
-	public static async Task WriteAsync<TNotNull>(TNotNull value, ConsoleColor foreground) where TNotNull : notnull
+	public static async Task WriteAsync<T>(T value, ConsoleColor foreground) where T : notnull
 	{
 		Console.ForegroundColor = foreground;
 		await Console.Out.WriteAsync(value.ToString());
@@ -205,11 +205,11 @@ public static class Terminal
 	/// Writes the text representation of the specified object to the standard output stream,
 	/// with the specified foreground.
 	/// </summary>
-	/// <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+	/// <typeparam name="T">The type of the object to be displayed.</typeparam>
 	/// <param name="value"><inheritdoc cref="Console.Write(object?)"/></param>
 	/// <param name="foreground">The foreground color.</param>
 	/// <param name="background">The background color.</param>
-	public static async Task WriteAsync<TNotNull>(TNotNull value, ConsoleColor foreground, ConsoleColor background) where TNotNull : notnull
+	public static async Task WriteAsync<T>(T value, ConsoleColor foreground, ConsoleColor background) where T : notnull
 	{
 		Console.ForegroundColor = foreground;
 		Console.BackgroundColor = background;
@@ -221,15 +221,15 @@ public static class Terminal
 	public static async Task WriteLineAsync() => await Console.Out.WriteLineAsync();
 
 	/// <inheritdoc cref="Console.WriteLine(object?)"/>
-	/// <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
-	public static async Task WriteLineAsync<TNotNull>(TNotNull value) where TNotNull : notnull
+	/// <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+	public static async Task WriteLineAsync<T>(T value) where T : notnull
 		=> await Console.Out.WriteLineAsync(value.ToString());
 
 	/// <inheritdoc cref="Console.WriteLine(object?)"/>
-	/// <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+	/// <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
 	/// <param name="value"><inheritdoc/></param>
 	/// <param name="foreground">The foreground color.</param>
-	public static async Task WriteLineAsync<TNotNull>(TNotNull value, ConsoleColor foreground) where TNotNull : notnull
+	public static async Task WriteLineAsync<T>(T value, ConsoleColor foreground) where T : notnull
 	{
 		Console.ForegroundColor = foreground;
 		await Console.Out.WriteLineAsync(value.ToString());
@@ -237,11 +237,11 @@ public static class Terminal
 	}
 
 	/// <inheritdoc cref="Console.WriteLine(object?)"/>
-	/// <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+	/// <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
 	/// <param name="value"><inheritdoc/></param>
 	/// <param name="foreground">The foreground color.</param>
 	/// <param name="background">The background color.</param>
-	public static async Task WriteLineAsync<TNotNull>(TNotNull value, ConsoleColor foreground, ConsoleColor background) where TNotNull : notnull
+	public static async Task WriteLineAsync<T>(T value, ConsoleColor foreground, ConsoleColor background) where T : notnull
 	{
 		Console.ForegroundColor = foreground;
 		Console.BackgroundColor = background;

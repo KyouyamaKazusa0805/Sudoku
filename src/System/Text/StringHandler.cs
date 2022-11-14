@@ -1450,7 +1450,7 @@ public unsafe ref partial struct StringHandler
 	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
 	/// into a <see cref="string"/> value.
 	/// </summary>
-	/// <typeparam name="TNotNull">The type of the argument.</typeparam>
+	/// <typeparam name="T">The type of the argument.</typeparam>
 	/// <param name="this">The instance.</param>
 	/// <returns>The <see cref="string"/> value.</returns>
 	/// <exception cref="InvalidOperationException">
@@ -1466,7 +1466,7 @@ public unsafe ref partial struct StringHandler
 	/// <seealso cref="AppendRangeWithSeparatorRef{T}(T*, int, Func{T, string?}, string)"/>
 #pragma warning restore CS1584, CS1658
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ElementToStringConverter<TNotNull>(TNotNull @this) where TNotNull : notnull
+	public static string ElementToStringConverter<T>(T @this) where T : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
 
 #pragma warning disable CS1584, CS1658
@@ -1474,7 +1474,7 @@ public unsafe ref partial struct StringHandler
 	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
 	/// into a <see cref="string"/> value.
 	/// </summary>
-	/// <typeparam name="TNotNull">The type of the argument.</typeparam>
+	/// <typeparam name="T">The type of the argument.</typeparam>
 	/// <param name="this">The instance.</param>
 	/// <returns>The <see cref="string"/> value.</returns>
 	/// <exception cref="InvalidOperationException">
@@ -1490,7 +1490,7 @@ public unsafe ref partial struct StringHandler
 	/// <seealso cref="AppendRangeWithSeparatorRef{T}(in T, int, StringHandlerRefAppender{T}, string)"/>
 #pragma warning restore CS1584, CS1658
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ElementToStringConverter<TNotNull>(scoped in TNotNull @this) where TNotNull : notnull
+	public static string ElementToStringConverter<T>(scoped in T @this) where T : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
 
 

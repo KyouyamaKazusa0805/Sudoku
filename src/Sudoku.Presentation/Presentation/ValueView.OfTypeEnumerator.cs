@@ -2,7 +2,7 @@
 
 partial struct ValueView
 {
-	partial struct OfTypeEnumerator<TViewNode>
+	partial struct OfTypeEnumerator<T> where T : ViewNode
 	{
 		/// <summary>
 		/// The inner enumerator.
@@ -13,7 +13,7 @@ partial struct ValueView
 		/// <summary>
 		/// Indicates the current node to be iterated.
 		/// </summary>
-		public TViewNode Current { get; private set; } = null!;
+		public T Current { get; private set; } = null!;
 
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
@@ -21,7 +21,7 @@ partial struct ValueView
 		{
 			while (_enumerator.MoveNext())
 			{
-				if (_enumerator.Current is not TViewNode targetNode)
+				if (_enumerator.Current is not T targetNode)
 				{
 					continue;
 				}
@@ -36,6 +36,6 @@ partial struct ValueView
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly OfTypeEnumerator<TViewNode> GetEnumerator() => this;
+		public readonly OfTypeEnumerator<T> GetEnumerator() => this;
 	}
 }

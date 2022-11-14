@@ -3,12 +3,12 @@
 /// <summary>
 /// Defines a converter that can convert a <see cref="string"/> value into the target result.
 /// </summary>
-public sealed class NumericConverter<TNumber> : IValueConverter where TNumber : unmanaged, INumber<TNumber>
+public sealed class NumericConverter<T> : IValueConverter where T : unmanaged, INumber<T>
 {
 	/// <inheritdoc/>
 	public object Convert(string value)
 	{
-		var type = typeof(TNumber);
+		var type = typeof(T);
 		try
 		{
 			if (type == typeof(sbyte)) { return sbyte.Parse(value); }

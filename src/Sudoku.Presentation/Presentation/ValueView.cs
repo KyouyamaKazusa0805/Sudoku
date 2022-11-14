@@ -139,12 +139,12 @@ public readonly partial struct ValueView : IEnumerable<ViewNode>
 	public Enumerator EnumerateNodes() => new(this);
 
 	/// <summary>
-	/// Enumerates all <typeparamref name="TViewNode"/> nodes stored in this collection.
+	/// Enumerates all <typeparamref name="T"/> nodes stored in this collection.
 	/// </summary>
-	/// <typeparam name="TViewNode">The type of the view node to be fetched and iterated.</typeparam>
-	/// <returns>An <see cref="OfTypeEnumerator{TViewNode}"/> instance of element type <see cref="ViewNode"/>.</returns>
+	/// <typeparam name="T">The type of the view node to be fetched and iterated.</typeparam>
+	/// <returns>An <see cref="OfTypeEnumerator{T}"/> instance of element type <see cref="ViewNode"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OfTypeEnumerator<TViewNode> EnumerateNodes<TViewNode>() where TViewNode : ViewNode => new(GetEnumerator());
+	public OfTypeEnumerator<T> EnumerateNodes<T>() where T : ViewNode => new(GetEnumerator());
 
 	/// <summary>
 	/// Creates an <see cref="IEnumerable{T}"/> instance of element type <see cref="ViewNodeSegment"/>.
@@ -233,13 +233,13 @@ public readonly partial struct ValueView : IEnumerable<ViewNode>
 
 	/// <summary>
 	/// Defines an enumerator that only iterates for a fixed type of <see cref="ViewNode"/>s,
-	/// specified as type argument <typeparamref name="TViewNode"/>.
+	/// specified as type argument <typeparamref name="T"/>.
 	/// </summary>
-	/// <typeparam name="TViewNode">The type of the node to be iterated.</typeparam>
-	public ref partial struct OfTypeEnumerator<TViewNode> where TViewNode : ViewNode
+	/// <typeparam name="T">The type of the node to be iterated.</typeparam>
+	public ref partial struct OfTypeEnumerator<T> where T : ViewNode
 	{
 		/// <summary>
-		/// Initializes an <see cref="OfTypeEnumerator{TViewNode}"/> instance via the specified segments.
+		/// Initializes an <see cref="OfTypeEnumerator{T}"/> instance via the specified segments.
 		/// </summary>
 		/// <param name="enumerator">Enumerator.</param>
 		[FileAccessOnly]

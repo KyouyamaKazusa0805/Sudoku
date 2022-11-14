@@ -75,20 +75,20 @@ public static class ImmutableArrayExtensions
 	/// <summary>
 	/// Casts the current array elements into target typed values.
 	/// </summary>
-	/// <typeparam name="TStruct">The type of each element.</typeparam>
+	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The array to be casted.</param>
 	/// <returns>The casted array.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ImmutableArray<TStruct> CastToNotNull<TStruct>(this ImmutableArray<TStruct?> @this) where TStruct : struct
+	public static ImmutableArray<T> CastToNotNull<T>(this ImmutableArray<T?> @this) where T : struct
 		=> ImmutableArray.CreateRange(from element in @this select element!.Value);
 
 	/// <summary>
 	/// Casts the current array elements into target typed values.
 	/// </summary>
-	/// <typeparam name="TClass">The type of each element.</typeparam>
+	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The array to be casted.</param>
 	/// <returns>The casted array.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ImmutableArray<TClass> CastToNotNull<TClass>(this ImmutableArray<TClass?> @this) where TClass : class
+	public static ImmutableArray<T> CastToNotNull<T>(this ImmutableArray<T?> @this) where T : class
 		=> ImmutableArray.CreateRange(from element in @this select element!);
 }
