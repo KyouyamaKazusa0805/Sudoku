@@ -8,5 +8,5 @@ public interface IStepWithSize : IStep
 	/// <summary>
 	/// Indicates the size of the current step instance related to the specified technique.
 	/// </summary>
-	public abstract int Size { get; }
+	int Size { get; }
 }

@@ -10,11 +10,11 @@ public interface ISlicable<[Self] TSelf, TElement> where TSelf : ISlicable<TSelf
 	/// <summary>
 	/// Indicates the cardinality of the collection.
 	/// </summary>
-	public int Length { get; }
+	int Length { get; }
 
 
 	/// <inheritdoc cref="IReadOnlyList{T}.this[int]"/>
-	public TElement this[int index] { get; }
+	TElement this[int index] { get; }
 
 
 	/// <summary>
@@ -23,5 +23,5 @@ public interface ISlicable<[Self] TSelf, TElement> where TSelf : ISlicable<TSelf
 	/// <param name="start">The start index.</param>
 	/// <param name="count">The desired number of offsets.</param>
 	/// <returns>The <typeparamref name="TSelf"/> result.</returns>
-	public abstract TSelf Slice(int start, int count);
+	TSelf Slice(int start, int count);
 }

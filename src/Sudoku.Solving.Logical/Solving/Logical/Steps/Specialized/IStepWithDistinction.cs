@@ -8,5 +8,5 @@ public interface IStepWithDistinctionDegree : IStep
 	/// <summary>
 	/// Indicates the distinction degree of the step.
 	/// </summary>
-	public abstract int DistinctionDegree { get; }
+	int DistinctionDegree { get; }
 }

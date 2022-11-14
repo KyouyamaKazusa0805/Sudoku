@@ -28,50 +28,50 @@ public interface IGridImageGenerator
 	/// <summary>
 	/// Indicates the drawing width.
 	/// </summary>
-	public abstract float Width { get; }
+	float Width { get; }
 
 	/// <summary>
 	/// Indicates the drawing height.
 	/// </summary>
-	public abstract float Height { get; }
+	float Height { get; }
 
 	/// <summary>
 	/// Indicate the footer text. This property is optional, and you can keep this with <see langword="null"/> value
 	/// if you don't want to make any footers on a picture.
 	/// </summary>
-	public abstract string? FooterText { get; set; }
+	string? FooterText { get; set; }
 
 	/// <summary>
 	/// Indicates the view.
 	/// </summary>
-	public abstract View? View { get; set; }
+	View? View { get; set; }
 
 	/// <summary>
 	/// Indicates the footer text alignment.
 	/// </summary>
-	public abstract StringAlignment FooterTextAlignment { get; set; }
+	StringAlignment FooterTextAlignment { get; set; }
 
 	/// <summary>
 	/// Indicates the puzzle.
 	/// </summary>
-	public abstract Grid Puzzle { get; set; }
+	Grid Puzzle { get; set; }
 
 	/// <summary>
 	/// Indicates all conclusions.
 	/// </summary>
-	public abstract IEnumerable<Conclusion>? Conclusions { get; set; }
+	IEnumerable<Conclusion>? Conclusions { get; set; }
 
 	/// <summary>
 	/// Indicates the <see cref="IPointCalculator"/> instance that calculates the pixels to help the inner
 	/// methods to handle and draw the picture used for displaying onto the UI projects.
 	/// </summary>
-	public abstract IPointCalculator Calculator { get; set; }
+	IPointCalculator Calculator { get; set; }
 
 	/// <summary>
 	/// Indicates the <see cref="IPreference"/> instance that stores the default preferences
 	/// that decides the drawing behavior.
 	/// </summary>
-	public abstract IPreference Preferences { get; set; }
+	IPreference Preferences { get; set; }
 
 
 	/// <summary>
@@ -79,13 +79,13 @@ public interface IGridImageGenerator
 	/// </summary>
 	/// <param name="bitmap">The bitmap result.</param>
 	/// <param name="g">The graphics instance.</param>
-	public abstract void Render(Image bitmap, Graphics g);
+	void Render(Image bitmap, Graphics g);
 
 	/// <summary>
 	/// Render the image, with automatically calculation to get the target <see cref="Image"/> instance, and then return it.
 	/// </summary>
 	/// <returns>The default-generated <see cref="Image"/> instance.</returns>
-	public sealed Image Render()
+	sealed Image Render()
 	{
 		using var data = GetFooterTextRenderingData();
 		var (font, extraHeight, alignment) = data;
@@ -137,7 +137,7 @@ public interface IGridImageGenerator
 	/// <param name="canvasOffset">The canvas offset.</param>
 	/// <returns>The target result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IGridImageGenerator Create(int canvasSize, int canvasOffset)
+	static sealed IGridImageGenerator Create(int canvasSize, int canvasOffset)
 		=> Create(IPointCalculator.Create(canvasSize, canvasOffset), IPreference.Default, Grid.Empty);
 
 	/// <summary>
@@ -146,7 +146,7 @@ public interface IGridImageGenerator
 	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
 	/// <returns>The target result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IGridImageGenerator Create(IPointCalculator calculator) => Create(calculator, IPreference.Default, Grid.Empty);
+	static sealed IGridImageGenerator Create(IPointCalculator calculator) => Create(calculator, IPreference.Default, Grid.Empty);
 
 	/// <summary>
 	/// Creates an <see cref="IGridImageGenerator"/> instance via the specified values.
@@ -155,7 +155,7 @@ public interface IGridImageGenerator
 	/// <param name="preferences">The user-defined preferences.</param>
 	/// <returns>The target result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IGridImageGenerator Create(IPointCalculator calculator, IPreference preferences) => Create(calculator, preferences, Grid.Empty);
+	static sealed IGridImageGenerator Create(IPointCalculator calculator, IPreference preferences) => Create(calculator, preferences, Grid.Empty);
 
 	/// <summary>
 	/// Creates an <see cref="IGridImageGenerator"/> instance via the specified values.
@@ -165,7 +165,7 @@ public interface IGridImageGenerator
 	/// <param name="puzzle">The puzzle.</param>
 	/// <returns>The target result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IGridImageGenerator Create(IPointCalculator calculator, IPreference preferences, scoped in Grid puzzle)
+	static sealed IGridImageGenerator Create(IPointCalculator calculator, IPreference preferences, scoped in Grid puzzle)
 		=> new GridImageGenerator { Calculator = calculator, Preferences = preferences, Puzzle = puzzle };
 
 	/// <summary>

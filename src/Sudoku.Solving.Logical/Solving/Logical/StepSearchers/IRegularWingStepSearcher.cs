@@ -20,5 +20,5 @@ public interface IRegularWingStepSearcher : IWingStepSearcher
 	/// Indicates the maximum size the searcher will search for. The maximum possible value is 9.
 	/// </summary>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when <c>value</c> is greater than 9.</exception>
-	public abstract int MaxSize { get; set; }
+	int MaxSize { get; set; }
 }

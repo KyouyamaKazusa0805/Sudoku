@@ -39,9 +39,9 @@ public interface IFixable<[Self] TSelf, TFixedVariable> : IEnumerable<TFixedVari
 	/// </summary>
 	/// <seealso cref="IsNullRef{T}(ref T)"/>
 	/// <seealso cref="AsRef{T}(in T)"/>
-	public abstract ref readonly TFixedVariable BlockReference { get; }
+	ref readonly TFixedVariable BlockReference { get; }
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
-	public abstract ref TFixedVariable GetPinnableReference();
+	ref TFixedVariable GetPinnableReference();
 }

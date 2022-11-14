@@ -49,5 +49,5 @@ public interface IStepWithRank : IStep
 	/// You can visit <see href="http://sudoku.allanbarker.com/sweb/old/wL03.htm">this link</see>
 	/// for more details about the mixed-rank structures.
 	/// </remarks>
-	public abstract int Rank { get; }
+	int Rank { get; }
 }

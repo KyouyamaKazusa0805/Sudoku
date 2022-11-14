@@ -138,7 +138,7 @@ public interface IGridFormatter : IFormatProvider, ICustomFormatter
 	/// users calling parameterless constructors. Although C# does not restrict with it, you should disallow it,
 	/// in order to provide users with better utility experience.
 	/// </remarks>
-	public static abstract IGridFormatter Instance { get; }
+	static abstract IGridFormatter Instance { get; }
 
 
 	/// <summary>
@@ -146,7 +146,7 @@ public interface IGridFormatter : IFormatProvider, ICustomFormatter
 	/// </summary>
 	/// <param name="grid">A <see cref="Grid"/> instance to be formatted.</param>
 	/// <returns>A <see cref="string"/> representation as result.</returns>
-	public abstract string ToString(scoped in Grid grid);
+	string ToString(scoped in Grid grid);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

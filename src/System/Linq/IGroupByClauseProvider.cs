@@ -12,9 +12,8 @@ public interface IGroupByClauseProvider<T> : ILinqProvider<T>
 	/// <typeparam name="TKey">The type of key as the grouping rule.</typeparam>
 	/// <param name="keySelector">The function that projects the key from elements.</param>
 	/// <returns>The grouped result.</returns>
-	public abstract IEnumerable<IGrouping<TKey, T>> GroupBy<TKey>(Func<T, TKey> keySelector);
+	IEnumerable<IGrouping<TKey, T>> GroupBy<TKey>(Func<T, TKey> keySelector);
 
 	/// <inheritdoc cref="GroupBy{TKey}(Func{T, TKey})"/>
-	public sealed unsafe IEnumerable<IGrouping<TKey, T>> GroupByUnsafe<TKey>(delegate*<T, TKey> keySelector)
-		=> GroupBy(e => keySelector(e));
+	sealed unsafe IEnumerable<IGrouping<TKey, T>> GroupByUnsafe<TKey>(delegate*<T, TKey> keySelector) => GroupBy(e => keySelector(e));
 }

@@ -30,14 +30,14 @@ public interface IGroupJoinClauseProvider<T> : ILinqProvider<T>
 	/// An <see cref="IEnumerable{T}"/> that has elements of type TResult that are obtained
 	/// by performing an inner join on two sequences.
 	/// </returns>
-	public abstract IEnumerable<TResult> GroupJoin<TInner, TKey, TResult>(
+	IEnumerable<TResult> GroupJoin<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		Func<T, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
 		Func<T, IEnumerable<TInner>, TResult> resultSelector);
 
 	/// <inheritdoc cref="GroupJoin{TInner, TKey, TResult}(IEnumerable{TInner}, Func{T, TKey}, Func{TInner, TKey}, Func{T, IEnumerable{TInner}, TResult})"/>
-	public sealed unsafe IEnumerable<TResult> GroupJoinUnsafe<TInner, TKey, TResult>(
+	sealed unsafe IEnumerable<TResult> GroupJoinUnsafe<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		delegate*<T, TKey> outerKeySelector,
 		delegate*<TInner, TKey> innerKeySelector,

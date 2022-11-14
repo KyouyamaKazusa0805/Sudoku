@@ -29,7 +29,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 	/// Indicates whether the searcher should call the extended BUG checker
 	/// to search for all true candidates no matter how difficult searching.
 	/// </summary>
-	public abstract bool SearchExtendedTypes { get; set; }
+	bool SearchExtendedTypes { get; set; }
 
 
 	/// <summary>
@@ -51,8 +51,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 	/// Throws when the puzzle contains multiple solutions or even no solution.
 	/// </exception>
 	protected internal static sealed unsafe bool FindTrueCandidates(
-		scoped in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
-		int maximumCellsToCheck = 20)
+		scoped in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates, int maximumCellsToCheck = 20)
 	{
 		Argument.ThrowIfInvalid(grid.IsValid(), "The puzzle must be valid (containing a unique solution).");
 
@@ -232,7 +231,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				housesCount.Fill(0);
+				housesCount.Clear();
 
 				for (var i = 0; i < 3; i++)
 				{

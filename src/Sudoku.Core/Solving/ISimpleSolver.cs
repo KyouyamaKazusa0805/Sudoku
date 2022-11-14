@@ -11,7 +11,7 @@ public interface ISimpleSolver
 	/// <remarks>
 	/// This property is reserved as information that is offered to the algorithm learners.
 	/// </remarks>
-	public static abstract string? UriLink { get; }
+	static abstract string? UriLink { get; }
 
 
 	/// <summary>
@@ -44,5 +44,5 @@ public interface ISimpleSolver
 	/// </item>
 	/// </list>
 	/// </returns>
-	public abstract bool? Solve(scoped in Grid grid, out Grid result);
+	bool? Solve(scoped in Grid grid, out Grid result);
 }

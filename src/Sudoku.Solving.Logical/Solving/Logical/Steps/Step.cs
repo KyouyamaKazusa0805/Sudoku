@@ -47,8 +47,7 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool HasTag(TechniqueTags flags)
-		=> flags.IsFlag() ? TechniqueTags.Flags(flags) : TechniqueTags.MultiFlags(flags);
+	public bool HasTag(TechniqueTags flags) => flags.IsFlag() ? TechniqueTags.Flags(flags) : TechniqueTags.MultiFlags(flags);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic information.
@@ -77,7 +76,6 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 	public string Formatize(bool handleEscaping = false)
 	{
 		// Check whether the format property is not null.
-
 		if (Format is not { } format)
 		{
 			throw new InvalidOperationException("The format can't be null.");

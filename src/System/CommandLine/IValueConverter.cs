@@ -13,5 +13,5 @@ public interface IValueConverter
 	/// <exception cref="CommandConverterException">
 	/// Throws when the current method has encountered an unexpected error.
 	/// </exception>
-	public abstract object Convert(string value);
+	object Convert(string value);
 }

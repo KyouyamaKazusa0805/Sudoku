@@ -12,5 +12,5 @@ public interface ISimpleFormattable
 	/// <param name="format">The format to use, or <see langword="null"/> to use the default format.</param>
 	/// <returns>The value of the current instance in the specified format.</returns>
 	/// <exception cref="FormatException">Throws when the format is invalid.</exception>
-	public abstract string ToString(string? format);
+	string ToString(string? format);
 }

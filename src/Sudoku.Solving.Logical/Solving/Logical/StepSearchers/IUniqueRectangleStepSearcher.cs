@@ -59,7 +59,7 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	/// This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
 	/// The incomplete pattern may not contain all four <c>ab</c>s in the structure.
 	/// </remarks>
-	public abstract bool AllowIncompleteUniqueRectangles { get; set; }
+	bool AllowIncompleteUniqueRectangles { get; set; }
 
 	/// <summary>
 	/// Indicates whether the searcher can search for extended URs.
@@ -67,7 +67,7 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	/// <remarks>
 	/// The basic types are type 1 to type 6, all other types are extended ones.
 	/// </remarks>
-	public abstract bool SearchForExtendedUniqueRectangles { get; set; }
+	bool SearchForExtendedUniqueRectangles { get; set; }
 
 
 	/// <summary>
@@ -165,13 +165,7 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	protected internal static sealed int GetDiagonalCell(int[] urCells, int cell)
-		=> cell == urCells[0]
-			? urCells[3]
-			: cell == urCells[1]
-				? urCells[2]
-				: cell == urCells[2]
-					? urCells[1]
-					: urCells[0];
+		=> cell == urCells[0] ? urCells[3] : cell == urCells[1] ? urCells[2] : cell == urCells[2] ? urCells[1] : urCells[0];
 
 	/// <summary>
 	/// Get whether two cells are in a same house.

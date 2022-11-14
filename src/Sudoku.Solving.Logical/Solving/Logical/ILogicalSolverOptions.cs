@@ -14,13 +14,13 @@ public interface ILogicalSolverOptions
 	/// and all steps will be applied at the same time.
 	/// </summary>
 	/// <seealso cref="IStepSearcher.GetAll(in LogicalAnalysisContext)"/>
-	public abstract bool IsFullApplying { get; set; }
+	bool IsFullApplying { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver will ignore slow step searchers being marked <see cref="AlgorithmTooSlowAttribute"/>.
 	/// </summary>
 	/// <seealso cref="AlgorithmTooSlowAttribute"/>
-	public abstract bool IgnoreSlowAlgorithms { get; set; }
+	bool IgnoreSlowAlgorithms { get; set; }
 
 	/// <summary>
 	/// <para>
@@ -38,5 +38,5 @@ public interface ILogicalSolverOptions
 	/// </summary>
 	/// <seealso cref="StepSearcherPool.Collection"/>
 	[DisallowNull]
-	public abstract IStepSearcher[]? CustomSearcherCollection { get; set; }
+	IStepSearcher[]? CustomSearcherCollection { get; set; }
 }

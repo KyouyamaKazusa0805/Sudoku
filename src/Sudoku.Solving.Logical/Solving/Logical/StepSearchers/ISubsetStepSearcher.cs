@@ -41,5 +41,5 @@ public interface ISubsetStepSearcher : IStepSearcher
 	/// <summary>
 	/// Indicates the maximum size of the searcher can search for.
 	/// </summary>
-	public abstract int MaxSize { get; set; }
+	int MaxSize { get; set; }
 }

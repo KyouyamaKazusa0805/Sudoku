@@ -7,7 +7,7 @@
 public interface ICellMapFormatter : IFormatProvider, ICustomFormatter
 {
 	/// <inheritdoc cref="IGridFormatter.Instance"/>
-	public static abstract ICellMapFormatter Instance { get; }
+	static abstract ICellMapFormatter Instance { get; }
 
 
 	/// <summary>
@@ -15,7 +15,7 @@ public interface ICellMapFormatter : IFormatProvider, ICustomFormatter
 	/// </summary>
 	/// <param name="cellMap">A <see cref="CellMap"/> instance to be formatted.</param>
 	/// <returns>A <see cref="string"/> representation as result.</returns>
-	public abstract string ToString(scoped in CellMap cellMap);
+	string ToString(scoped in CellMap cellMap);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

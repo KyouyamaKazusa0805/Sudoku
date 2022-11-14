@@ -8,12 +8,12 @@ public interface IStepWithPhasedDifficulty
 	/// <summary>
 	/// Indicates the base difficulty of the step.
 	/// </summary>
-	public abstract decimal BaseDifficulty { get; }
+	decimal BaseDifficulty { get; }
 
 	/// <summary>
 	/// Indicates the extra difficulty values of the step, and its corresponding description.
 	/// </summary>
-	public abstract (string Name, decimal Value)[] ExtraDifficultyValues { get; }
+	(string Name, decimal Value)[] ExtraDifficultyValues { get; }
 
 	/// <summary>
 	/// Indicates the total difficulty value of the step.

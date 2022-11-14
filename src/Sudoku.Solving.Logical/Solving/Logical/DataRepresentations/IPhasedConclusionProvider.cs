@@ -22,6 +22,26 @@ public interface IPhasedConclusionProvider<[Self] TSelf, TReasonEnum> : IEquatab
 	public TReasonEnum Reason { get; }
 
 
+	/// <inheritdoc cref="object.GetHashCode"/>
+	sealed int GetHashCode()
+	{
+		var hashCode = new HashCode();
+		foreach (var conclusion in Conclusions)
+		{
+			hashCode.Add(conclusion);
+		}
+
+		hashCode.Add(Reason);
+		return hashCode.ToHashCode();
+	}
+
+	/// <summary>
+	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	sealed OneDimensionalArrayEnumerator<Conclusion> GetEnumerator() => Conclusions.EnumerateImmutable();
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	unsafe bool IEquatable<TSelf>.Equals([NotNullWhen(true)] TSelf? other)
@@ -44,24 +64,4 @@ public interface IPhasedConclusionProvider<[Self] TSelf, TReasonEnum> : IEquatab
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static long asLong(TReasonEnum e) => As<TReasonEnum, long>(ref e);
 	}
-
-	/// <inheritdoc cref="object.GetHashCode"/>
-	public sealed int GetHashCode()
-	{
-		var hashCode = new HashCode();
-		foreach (var conclusion in Conclusions)
-		{
-			hashCode.Add(conclusion);
-		}
-
-		hashCode.Add(Reason);
-		return hashCode.ToHashCode();
-	}
-
-	/// <summary>
-	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-	/// </summary>
-	/// <returns>The enumerator instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed OneDimensionalArrayEnumerator<Conclusion> GetEnumerator() => Conclusions.EnumerateImmutable();
 }

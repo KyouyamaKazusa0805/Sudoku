@@ -8,250 +8,250 @@ public interface IPreference : ICloneable<IPreference>
 	/// <summary>
 	/// Indicates whether the form shows candidates.
 	/// </summary>
-	public abstract bool ShowCandidates { get; set; }
+	bool ShowCandidates { get; set; }
 
 	/// <summary>
 	/// Indicates whether the grid painter will use new algorithm to render a house (lighter).
 	/// </summary>
-	public abstract bool ShowLightHouse { get; set; }
+	bool ShowLightHouse { get; set; }
 
 	/// <summary>
 	/// Indicates the scale of values.
 	/// </summary>
-	public abstract decimal ValueScale { get; set; }
+	decimal ValueScale { get; set; }
 
 	/// <summary>
 	/// Indicates the scale of candidates.
 	/// </summary>
-	public abstract decimal CandidateScale { get; set; }
+	decimal CandidateScale { get; set; }
 
 	/// <summary>
 	/// Indicates the grid line width of the sudoku grid to render.
 	/// </summary>
-	public abstract float GridLineWidth { get; set; }
+	float GridLineWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the block line width of the sudoku grid to render.
 	/// </summary>
-	public abstract float BlockLineWidth { get; set; }
+	float BlockLineWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the footer text font size.
 	/// </summary>
-	public abstract float FooterTextFontSize { get; set; }
+	float FooterTextFontSize { get; set; }
 
 	/// <summary>
 	/// Indicates the font of given digits to render.
 	/// </summary>
-	public abstract string? GivenFontName { get; set; }
+	string? GivenFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font of modifiable digits to render.
 	/// </summary>
-	public abstract string? ModifiableFontName { get; set; }
+	string? ModifiableFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font of candidate digits to render.
 	/// </summary>
-	public abstract string? CandidateFontName { get; set; }
+	string? CandidateFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font of unknown values to render.
 	/// </summary>
-	public abstract string? UnknownFontName { get; set; }
+	string? UnknownFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font of footer text.
 	/// </summary>
-	public abstract string FooterTextFontName { get; set; }
+	string FooterTextFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of the givens.
 	/// </summary>
-	public abstract FontStyle GivenFontStyle { get; set; }
+	FontStyle GivenFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of the modifiables.
 	/// </summary>
-	public abstract FontStyle ModifiableFontStyle { get; set; }
+	FontStyle ModifiableFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of the candidates.
 	/// </summary>
-	public abstract FontStyle CandidateFontStyle { get; set; }
+	FontStyle CandidateFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of an unknown.
 	/// </summary>
-	public abstract FontStyle UnknownFontStyle { get; set; }
+	FontStyle UnknownFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of footer text.
 	/// </summary>
-	public abstract FontStyle FooterTextFontStyle { get; set; }
+	FontStyle FooterTextFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the given digits to render.
 	/// </summary>
-	public abstract Color GivenColor { get; set; }
+	Color GivenColor { get; set; }
 
 	/// <summary>
 	/// Indicates the modifiable digits to render.
 	/// </summary>
-	public abstract Color ModifiableColor { get; set; }
+	Color ModifiableColor { get; set; }
 
 	/// <summary>
 	/// Indicates the candidate digits to render.
 	/// </summary>
-	public abstract Color CandidateColor { get; set; }
+	Color CandidateColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color used for painting for focused cells.
 	/// </summary>
-	public abstract Color FocusedCellColor { get; set; }
+	Color FocusedCellColor { get; set; }
 
 	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
-	public abstract Color EliminationColor { get; set; }
+	Color EliminationColor { get; set; }
 
 	/// <summary>
 	/// Indicates the cannibalism color.
 	/// </summary>
-	public abstract Color CannibalismColor { get; set; }
+	Color CannibalismColor { get; set; }
 
 	/// <summary>
 	/// Indicates the chain color.
 	/// </summary>
-	public abstract Color ChainColor { get; set; }
+	Color ChainColor { get; set; }
 
 	/// <summary>
 	/// Indicates the background color of the sudoku grid to render.
 	/// </summary>
-	public abstract Color BackgroundColor { get; set; }
+	Color BackgroundColor { get; set; }
 
 	/// <summary>
 	/// Indicates the grid line color of the sudoku grid to render.
 	/// </summary>
-	public abstract Color GridLineColor { get; set; }
+	Color GridLineColor { get; set; }
 
 	/// <summary>
 	/// Indicates the block line color of the sudoku grid to render.
 	/// </summary>
-	public abstract Color BlockLineColor { get; set; }
+	Color BlockLineColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the crosshatching outline.
 	/// </summary>
-	public abstract Color CrosshatchingOutlineColor { get; set; }
+	Color CrosshatchingOutlineColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the crosshatching inner.
 	/// </summary>
-	public abstract Color CrosshatchingInnerColor { get; set; }
+	Color CrosshatchingInnerColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the unknown identifier color.
 	/// </summary>
-	public abstract Color UnknownIdentifierColor { get; set; }
+	Color UnknownIdentifierColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the cross sign.
 	/// </summary>
-	public abstract Color CrossSignColor { get; set; }
+	Color CrossSignColor { get; set; }
 
 	/// <summary>
 	/// Indicates footer text color.
 	/// </summary>
-	public abstract Color FooterTextColor { get; set; }
+	Color FooterTextColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color 1.
 	/// </summary>
-	public abstract Color Color1 { get; set; }
+	Color Color1 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 2.
 	/// </summary>
-	public abstract Color Color2 { get; set; }
+	Color Color2 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 3.
 	/// </summary>
-	public abstract Color Color3 { get; set; }
+	Color Color3 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 4.
 	/// </summary>
-	public abstract Color Color4 { get; set; }
+	Color Color4 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 5.
 	/// </summary>
-	public abstract Color Color5 { get; set; }
+	Color Color5 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 6.
 	/// </summary>
-	public abstract Color Color6 { get; set; }
+	Color Color6 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 7.
 	/// </summary>
-	public abstract Color Color7 { get; set; }
+	Color Color7 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 8.
 	/// </summary>
-	public abstract Color Color8 { get; set; }
+	Color Color8 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 9.
 	/// </summary>
-	public abstract Color Color9 { get; set; }
+	Color Color9 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 10.
 	/// </summary>
-	public abstract Color Color10 { get; set; }
+	Color Color10 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 11.
 	/// </summary>
-	public abstract Color Color11 { get; set; }
+	Color Color11 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 12.
 	/// </summary>
-	public abstract Color Color12 { get; set; }
+	Color Color12 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 13.
 	/// </summary>
-	public abstract Color Color13 { get; set; }
+	Color Color13 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 14.
 	/// </summary>
-	public abstract Color Color14 { get; set; }
+	Color Color14 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 15.
 	/// </summary>
-	public abstract Color Color15 { get; set; }
+	Color Color15 { get; set; }
 
 
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static IPreference Default => new Preference();
+	static sealed IPreference Default => new Preference();
 
 
 	/// <summary>
 	/// Copies and covers the current instance via the newer instance.
 	/// </summary>
 	/// <param name="newPreferences">The newer instance to copy.</param>
-	public abstract void CoverBy(IPreference newPreferences);
+	void CoverBy(IPreference newPreferences);
 
 	/// <summary>
 	/// Try to get the result color value.

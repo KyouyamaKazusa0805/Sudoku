@@ -8,7 +8,7 @@ public interface IChainStep : IStep
 	/// <summary>
 	/// Indicates the flat complexity.
 	/// </summary>
-	public abstract int FlatComplexity { get; }
+	int FlatComplexity { get; }
 
 	/// <summary>
 	/// Indicates the sort key. The result will be a <see cref="ChainTypeCode"/> instance to describe
@@ -16,7 +16,7 @@ public interface IChainStep : IStep
 	/// to learn about more details for a chain.
 	/// </summary>
 	/// <seealso cref="ChainTypeCode"/>
-	public abstract ChainTypeCode SortKey { get; }
+	ChainTypeCode SortKey { get; }
 
 
 	/// <summary>
@@ -26,8 +26,7 @@ public interface IChainStep : IStep
 	/// <param name="rConclusions">The second conclusion list to compare.</param>
 	/// <param name="shouldSort">Indicates whether the method will sort the lists firstly.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	protected static sealed bool ConclusionsEquals(
-		ConclusionList lConclusions, ConclusionList rConclusions, bool shouldSort)
+	protected static sealed bool ConclusionsEquals(ConclusionList lConclusions, ConclusionList rConclusions, bool shouldSort)
 	{
 		if (lConclusions.Length != rConclusions.Length)
 		{

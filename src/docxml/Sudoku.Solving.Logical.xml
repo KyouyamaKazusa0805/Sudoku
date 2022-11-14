@@ -1362,9 +1362,6 @@
             Indicates the reason why the conclusions can be available.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.DataRepresentations.IPhasedConclusionProvider`2.System#IEquatable{TSelf}#Equals(`0)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Logical.DataRepresentations.IPhasedConclusionProvider`2.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -1373,6 +1370,9 @@
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
             </summary>
             <returns>The enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.DataRepresentations.IPhasedConclusionProvider`2.System#IEquatable{TSelf}#Equals(`0)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.DataRepresentations.PhasedDifficultyRatingKinds">
             <summary>
@@ -1572,22 +1572,16 @@
             The inner solving operation method.
             </summary>
             <param name="puzzle">
-            <inheritdoc
-                cref="M:Sudoku.Solving.Logical.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"
-                path="/param[@name='puzzle']"/>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='puzzle']"/>
             </param>
             <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
             <param name="isSukaku">A <see cref="T:System.Boolean"/> value indicating whether the puzzle is a sukaku.</param>
             <param name="resultBase">The base solver result already included the base information.</param>
             <param name="progress">
-            <inheritdoc
-                cref="M:Sudoku.Solving.Logical.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"
-                path="/param[@name='progress']"/>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='progress']"/>
             </param>
             <param name="cancellationToken">
-            <inheritdoc
-                cref="M:Sudoku.Solving.Logical.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"
-                path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.LogicalSolver.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
             <returns>The solver result.</returns>
             <exception cref="T:Sudoku.Runtime.AnalysisServices.WrongStepException">Throws when found wrong steps to apply.</exception>
@@ -1827,9 +1821,7 @@
             </summary>
             <param name="index">The index.</param>
             <returns>The step information.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the <see cref="P:Sudoku.Solving.Logical.LogicalSolverResult.Steps"/> is <see langword="null"/> or empty.
-            </exception>
+            <exception cref="T:System.InvalidOperationException">Throws when the <see cref="P:Sudoku.Solving.Logical.LogicalSolverResult.Steps"/> is <see langword="null"/> or empty.</exception>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
             <seealso cref="P:Sudoku.Solving.Logical.LogicalSolverResult.Steps"/>
         </member>

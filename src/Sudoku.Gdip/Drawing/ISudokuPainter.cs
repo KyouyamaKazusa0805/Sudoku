@@ -8,17 +8,17 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// <summary>
 	/// The width.
 	/// </summary>
-	public abstract float Width { get; }
+	float Width { get; }
 
 	/// <summary>
 	/// The height.
 	/// </summary>
-	public abstract float Height { get; }
+	float Height { get; }
 
 	/// <summary>
 	/// The grid image generator.
 	/// </summary>
-	protected internal abstract IGridImageGenerator GridImageGenerator { get; }
+	protected internal IGridImageGenerator GridImageGenerator { get; }
 
 
 	/// <summary>
@@ -32,7 +32,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// <exception cref="NotSupportedException">
 	/// Throws when the specified file format specified in the argument <paramref name="path"/> is not supported.
 	/// </exception>
-	public sealed void SaveTo(string path)
+	sealed void SaveTo(string path)
 	{
 		switch (Path.GetExtension(path)?.ToLower())
 		{
@@ -92,7 +92,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// </list>
 	/// Other formats are not supported. This method will return <see langword="false"/> for not being supported.
 	/// </returns>
-	public sealed bool TrySaveTo(string path)
+	sealed bool TrySaveTo(string path)
 	{
 		try
 		{
@@ -128,7 +128,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// </returns>
 	/// <seealso cref="Image"/>
 	/// <seealso cref="IDisposable"/>
-	public abstract Image Render();
+	Image Render();
 
 	/// <summary>
 	/// Sets the footer text that can be rendered below the picture.
@@ -136,15 +136,14 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// <param name="footerText">The footer text.</param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed ISudokuPainter WithFooterTextIfNotNull(string? footerText) => footerText is not null ? WithFooterText(footerText) : this;
+	sealed ISudokuPainter WithFooterTextIfNotNull(string? footerText) => footerText is not null ? WithFooterText(footerText) : this;
 
 
 	/// <summary>
 	/// The default singleton instance that you can get.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static sealed ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10)
-		=> new SudokuPainter(canvasDefaultSize, canvasOffset);
+	static sealed ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10) => new SudokuPainter(canvasDefaultSize, canvasOffset);
 }
 
 /// <summary>

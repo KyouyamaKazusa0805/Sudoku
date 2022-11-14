@@ -15,9 +15,8 @@ public interface ISelectClauseProvider<T> : ILinqProvider<T>
 	/// into type <typeparamref name="TResult"/>.
 	/// </param>
 	/// <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
-	public abstract IEnumerable<TResult> Select<TResult>(Func<T, TResult> selector);
+	IEnumerable<TResult> Select<TResult>(Func<T, TResult> selector);
 
 	/// <inheritdoc cref="Select{TResult}(Func{T, TResult})"/>
-	public sealed unsafe IEnumerable<TResult> SelectUnsafe<TResult>(delegate*<T, TResult> selector)
-		=> Select(e => selector(e));
+	sealed unsafe IEnumerable<TResult> SelectUnsafe<TResult>(delegate*<T, TResult> selector) => Select(e => selector(e));
 }

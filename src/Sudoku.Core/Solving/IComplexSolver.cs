@@ -18,5 +18,5 @@ public interface IComplexSolver<in TSolver, out TSolverResult>
 	/// <param name="progress">The progress instance that is used for reporting the status.</param>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>The solver result that provides the information after solving.</returns>
-	public abstract TSolverResult Solve(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default);
+	TSolverResult Solve(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default);
 }

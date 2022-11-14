@@ -9,7 +9,7 @@ public interface IStepSearcher
 	/// Determines whether the current step searcher is separated one, which mean it can be created
 	/// as many possible instances in a same step searchers pool.
 	/// </summary>
-	public sealed bool IsSeparated
+	sealed bool IsSeparated
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GetType().GetCustomAttribute<SeparatedStepSearcherAttribute>() is not null;
@@ -23,7 +23,7 @@ public interface IStepSearcher
 	/// <see cref="StepSearcherOptionsAttribute.IsDirect"/> to learn more information.
 	/// </remarks>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
-	public sealed bool IsDirect
+	sealed bool IsDirect
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GetType().GetCustomAttribute<StepSearcherOptionsAttribute>()?.IsDirect ?? false;
@@ -38,7 +38,7 @@ public interface IStepSearcher
 	/// <see cref="StepSearcherOptionsAttribute.IsOptionsFixed"/> to learn more information.
 	/// </remarks>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsOptionsFixed"/>
-	public sealed bool IsOptionsFixed
+	sealed bool IsOptionsFixed
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GetType().GetCustomAttribute<StepSearcherOptionsAttribute>()?.IsOptionsFixed ?? false;
@@ -52,7 +52,7 @@ public interface IStepSearcher
 	/// <see cref="StepSearcherOptionsAttribute.IsDeprecated"/> to learn more information.
 	/// </remarks>
 	/// <seealso cref="StepSearcherOptionsAttribute.IsDeprecated"/>
-	public sealed bool IsDeprecated
+	sealed bool IsDeprecated
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GetType().GetCustomAttribute<StepSearcherOptionsAttribute>()?.IsDeprecated ?? false;
@@ -61,7 +61,7 @@ public interface IStepSearcher
 	/// <summary>
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
-	public sealed bool IsNotSupportedForSukaku
+	sealed bool IsNotSupportedForSukaku
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GetType().IsDefined(typeof(SukakuNotSupportedAttribute));
@@ -72,7 +72,7 @@ public interface IStepSearcher
 	/// with being applied <see cref="AlgorithmTooSlowAttribute"/>.
 	/// </summary>
 	/// <seealso cref="AlgorithmTooSlowAttribute"/>
-	public sealed bool IsConfiguredSlow
+	sealed bool IsConfiguredSlow
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GetType().IsDefined(typeof(AlgorithmTooSlowAttribute));
@@ -81,7 +81,7 @@ public interface IStepSearcher
 	/// <summary>
 	/// Indicates the step searching options.
 	/// </summary>
-	public abstract SearcherInitializationOptions Options { get; set; }
+	SearcherInitializationOptions Options { get; set; }
 
 
 	/// <summary>
@@ -115,5 +115,5 @@ public interface IStepSearcher
 	/// </list>
 	/// </returns>
 	/// <seealso cref="LogicalAnalysisContext"/>
-	public abstract IStep? GetAll(scoped in LogicalAnalysisContext context);
+	IStep? GetAll(scoped in LogicalAnalysisContext context);
 }

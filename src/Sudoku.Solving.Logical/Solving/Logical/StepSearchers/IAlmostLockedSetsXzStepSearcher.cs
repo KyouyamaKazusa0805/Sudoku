@@ -14,11 +14,11 @@ public interface IAlmostLockedSetsXzStepSearcher : IAlmostLockedSetsStepSearcher
 	/// <summary>
 	/// Indicates whether two ALSes make an collision, which means they share the some same cells. 
 	/// </summary>
-	public abstract bool AllowCollision { get; set; }
+	bool AllowCollision { get; set; }
 
 	/// <summary>
 	/// Indicates whether the searcher will enhance the searching to find all possible eliminations
 	/// for looped-ALS eliminations.
 	/// </summary>
-	public abstract bool AllowLoopedPatterns { get; set; }
+	bool AllowLoopedPatterns { get; set; }
 }

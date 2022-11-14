@@ -12,5 +12,5 @@ public interface IPuzzler
 	/// <returns>
 	/// The result puzzle generated. If canceled, the return value will be <see cref="Grid.Undefined"/>.
 	/// </returns>
-	public abstract Grid Generate(CancellationToken cancellationToken = default);
+	Grid Generate(CancellationToken cancellationToken = default);
 }

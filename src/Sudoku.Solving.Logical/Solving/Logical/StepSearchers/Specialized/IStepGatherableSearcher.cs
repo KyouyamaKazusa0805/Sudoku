@@ -8,7 +8,7 @@ public interface IStepGatherableSearcher
 	/// <summary>
 	/// Indicates the maximum steps can be gathered.
 	/// </summary>
-	public abstract int MaxStepsGathered { get; set; }
+	int MaxStepsGathered { get; set; }
 
 
 	/// <summary>
@@ -19,5 +19,5 @@ public interface IStepGatherableSearcher
 	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
-	public abstract IEnumerable<IStep> Search(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default);
+	IEnumerable<IStep> Search(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default);
 }

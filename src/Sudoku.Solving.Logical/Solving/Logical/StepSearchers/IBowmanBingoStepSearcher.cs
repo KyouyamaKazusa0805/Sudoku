@@ -12,5 +12,5 @@ public interface IBowmanBingoStepSearcher : ILastResortStepSearcher
 	/// <summary>
 	/// Indicates the maximum length of the bowman bingo you want to search for.
 	/// </summary>
-	public abstract int MaxLength { get; set; }
+	int MaxLength { get; set; }
 }

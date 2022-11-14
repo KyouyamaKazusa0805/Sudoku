@@ -9,5 +9,5 @@ public interface IStepGatherableSearcherOptions
 	/// <summary>
 	/// Indicates whether the solver only displays the techniques with the same displaying level.
 	/// </summary>
-	public abstract bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; }
+	bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; }
 }

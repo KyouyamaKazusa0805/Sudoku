@@ -39,7 +39,7 @@ public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 	/// <summary>
 	/// Indicates the maximum capacity used for the allocation on shared memory.
 	/// </summary>
-	public abstract int MaxCapacity { get; set; }
+	int MaxCapacity { get; set; }
 
 	/// <summary>
 	/// <para>
@@ -111,7 +111,7 @@ public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 	/// Other typed inferences are being considered, such as an XYZ-Wing node, etc.
 	/// </para>
 	/// </summary>
-	public abstract SearcherNodeTypes NodeTypes { get; init; }
+	SearcherNodeTypes NodeTypes { get; init; }
 
 
 	/// <summary>

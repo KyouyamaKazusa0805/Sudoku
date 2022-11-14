@@ -18,7 +18,7 @@ public interface IStep : IVisual
 	/// </para>
 	/// <para>The default value is <see langword="true"/>.</para>
 	/// </summary>
-	public sealed bool ShowDifficulty
+	sealed bool ShowDifficulty
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GetType().GetCustomAttribute<StepDisplayingFeatureAttribute>() switch
@@ -32,7 +32,7 @@ public interface IStep : IVisual
 	/// Indicates the technique name. The technique name are all stored in the resource dictionary,
 	/// you can find them in the <c>Resources</c> folder (Type <see cref="MergedResources"/>).
 	/// </summary>
-	public abstract string Name { get; }
+	string Name { get; }
 
 	/// <summary>
 	/// Gets the format of the current instance.
@@ -85,28 +85,28 @@ public interface IStep : IVisual
 	/// <seealso cref="ToFullString"/>
 	/// <seealso cref="ResourceTextFormatterAttribute"/>
 	/// <seealso cref="R"/>
-	public abstract string? Format { get; }
+	string? Format { get; }
 
 	/// <summary>
 	/// The difficulty or this step.
 	/// </summary>
-	public abstract decimal Difficulty { get; }
+	decimal Difficulty { get; }
 
 	/// <summary>
 	/// The technique code of this instance used for comparison
 	/// (e.g. search for specified puzzle that contains this technique).
 	/// </summary>
-	public abstract Technique TechniqueCode { get; }
+	Technique TechniqueCode { get; }
 
 	/// <summary>
 	/// The technique tags of this instance.
 	/// </summary>
-	public abstract TechniqueTags TechniqueTags { get; }
+	TechniqueTags TechniqueTags { get; }
 
 	/// <summary>
 	/// The technique group that this technique instance belongs to.
 	/// </summary>
-	public abstract TechniqueGroup TechniqueGroup { get; }
+	TechniqueGroup TechniqueGroup { get; }
 
 	/// <summary>
 	/// The difficulty level of this step.
@@ -117,7 +117,7 @@ public interface IStep : IVisual
 	/// during generating puzzles.
 	/// </remarks>
 	/// <seealso cref="FlagsAttribute"/>
-	public abstract DifficultyLevel DifficultyLevel { get; }
+	DifficultyLevel DifficultyLevel { get; }
 
 	/// <summary>
 	/// Indicates the stableness of this technique. The default value is <see cref="Stableness.Stable"/>.
@@ -129,7 +129,7 @@ public interface IStep : IVisual
 	/// </remarks>
 	/// <seealso cref="Stableness.Stable"/>
 	/// <seealso cref="FlagsAttribute"/>
-	public abstract Stableness Stableness { get; }
+	Stableness Stableness { get; }
 
 	/// <summary>
 	/// Indicates the rarity of this technique appears.
@@ -140,14 +140,14 @@ public interface IStep : IVisual
 	/// during generating puzzles.
 	/// </remarks>
 	/// <seealso cref="FlagsAttribute"/>
-	public abstract Rarity Rarity { get; }
+	Rarity Rarity { get; }
 
 
 	/// <summary>
 	/// Put this instance into the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	public abstract void ApplyTo(scoped ref Grid grid);
+	void ApplyTo(scoped ref Grid grid);
 
 	/// <summary>
 	/// Determine whether the current step information instance with the specified flags.
@@ -156,20 +156,20 @@ public interface IStep : IVisual
 	/// The flags. If the argument contains more than one set bit, all flags will be checked one by one.
 	/// </param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public abstract bool HasTag(TechniqueTags flags);
+	bool HasTag(TechniqueTags flags);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the conclusions.
 	/// </summary>
 	/// <returns>The string instance.</returns>
-	public abstract string ToSimpleString();
+	string ToSimpleString();
 
 	/// <summary>
 	/// Returns a string that contains the name, the conclusions and its all details.
 	/// This method is used for displaying details in text box control.
 	/// </summary>
 	/// <returns>The string instance.</returns>
-	public abstract string ToFullString();
+	string ToFullString();
 
 	/// <summary>
 	/// Formatizes the <see cref="Format"/> property string and output the result.
@@ -186,7 +186,7 @@ public interface IStep : IVisual
 	/// </list>
 	/// </exception>
 	/// <seealso cref="Format"/>
-	public abstract string Formatize(bool handleEscaping = false);
+	string Formatize(bool handleEscaping = false);
 
 	/// <summary>
 	/// Indicates the string representation of the conclusions.
@@ -196,5 +196,5 @@ public interface IStep : IVisual
 	/// so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
 	/// the property will still use this name rather than <c>AssignmentStr</c>.
 	/// </remarks>
-	protected abstract string ElimStr();
+	protected string ElimStr();
 }

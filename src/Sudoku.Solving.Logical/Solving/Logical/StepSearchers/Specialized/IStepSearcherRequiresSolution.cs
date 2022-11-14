@@ -8,5 +8,5 @@ public interface IStepSearcherRequiresSolution : IStepSearcher
 	/// <summary>
 	/// Indicates the reference of the solution sudoku grid.
 	/// </summary>
-	public abstract Grid Solution { get; set; }
+	Grid Solution { get; set; }
 }
