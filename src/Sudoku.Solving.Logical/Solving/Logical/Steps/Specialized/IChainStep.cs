@@ -26,7 +26,7 @@ public interface IChainStep : IStep
 	/// <param name="rConclusions">The second conclusion list to compare.</param>
 	/// <param name="shouldSort">Indicates whether the method will sort the lists firstly.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	protected static sealed bool ConclusionsEquals(ConclusionList lConclusions, ConclusionList rConclusions, bool shouldSort)
+	protected static bool ConclusionsEquals(ConclusionList lConclusions, ConclusionList rConclusions, bool shouldSort)
 	{
 		if (lConclusions.Length != rConclusions.Length)
 		{

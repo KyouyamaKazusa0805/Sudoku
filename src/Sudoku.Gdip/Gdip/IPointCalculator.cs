@@ -154,7 +154,7 @@ public interface IPointCalculator
 	/// <param name="offset">The offset. The default value is <c>10</c>.</param>
 	/// <returns>An <see cref="IPointCalculator"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static sealed IPointCalculator Create(float size, float offset = 10) => new PointCalculator(new(size, size), offset);
+	static IPointCalculator Create(float size, float offset = 10) => new PointCalculator(new(size, size), offset);
 }
 
 /// <summary>

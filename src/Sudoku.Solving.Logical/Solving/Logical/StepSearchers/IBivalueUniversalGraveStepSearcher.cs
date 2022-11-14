@@ -50,7 +50,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the puzzle contains multiple solutions or even no solution.
 	/// </exception>
-	protected internal static sealed unsafe bool FindTrueCandidates(
+	protected internal static unsafe bool FindTrueCandidates(
 		scoped in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates, int maximumCellsToCheck = 20)
 	{
 		Argument.ThrowIfInvalid(grid.IsValid(), "The puzzle must be valid (containing a unique solution).");
@@ -218,7 +218,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	/// <seealso cref="FastProperties"/>
-	protected internal static sealed bool FormsPattern(scoped in Grid grid)
+	protected internal static bool FormsPattern(scoped in Grid grid)
 	{
 		_ = grid is { BivalueCells: var bivalueCells, EmptyCells: var emptyCells, CandidatesMap: var candidatesMap };
 		if (bivalueCells != emptyCells)

@@ -110,7 +110,7 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 	/// The excluded cells that is out of the firework structure in the <paramref name="c2"/>'s house.
 	/// </param>
 	/// <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
-	protected static sealed short GetFireworkDigits(
+	protected static short GetFireworkDigits(
 		int c1, int c2, int pivot, scoped in Grid grid,
 		scoped out CellMap house1CellsExcluded, scoped out CellMap house2CellsExcluded)
 	{

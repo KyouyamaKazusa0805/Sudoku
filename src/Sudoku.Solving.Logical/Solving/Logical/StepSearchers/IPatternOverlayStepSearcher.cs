@@ -14,7 +14,7 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The 9 maps for invalid positions of each digit.</returns>
-	protected static sealed CellMap[] GetInvalidPos(scoped in Grid grid)
+	protected static CellMap[] GetInvalidPos(scoped in Grid grid)
 	{
 		var result = new CellMap[9];
 		var invalidPos = new CellMap[9];
@@ -56,7 +56,7 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 	/// Get all possible templates. The total number of all possible pattern overlay templates is 46656.
 	/// </summary>
 	/// <returns>The templates.</returns>
-	protected static sealed IEnumerable<CellMap> GetTemplates()
+	protected static IEnumerable<CellMap> GetTemplates()
 	{
 		for (var i1 = 0; i1 < 9; i1++)
 		{

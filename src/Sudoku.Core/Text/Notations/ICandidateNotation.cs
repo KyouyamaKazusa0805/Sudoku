@@ -13,7 +13,7 @@ public interface ICandidateNotation<[Self] TSelf, TOptions>
 	/// <summary>
 	/// Indicates the candidate notation kind that the current type supports.
 	/// </summary>
-	public static abstract CandidateNotation CandidateNotation { get; }
+	static abstract CandidateNotation CandidateNotation { get; }
 
 
 	/// <summary>
@@ -34,14 +34,14 @@ public interface ICandidateNotation<[Self] TSelf, TOptions>
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating whether the parsing operation is successful.</returns>
 	/// <seealso cref="ParseCandidates(string)"/>
-	public static abstract bool TryParseCandidates(string str, out Candidates result);
+	static abstract bool TryParseCandidates(string str, out Candidates result);
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of a list of candidates.
 	/// </summary>
 	/// <param name="candidates">The candidate list.</param>
 	/// <returns>The <see cref="string"/> representation describe the candidate list.</returns>
-	public static abstract string ToCandidatesString(scoped in Candidates candidates);
+	static abstract string ToCandidatesString(scoped in Candidates candidates);
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of a list of candidates.
@@ -49,7 +49,7 @@ public interface ICandidateNotation<[Self] TSelf, TOptions>
 	/// <param name="candidates">The candidates list.</param>
 	/// <param name="options">The extra options to control the output style.</param>
 	/// <returns>The <see cref="string"/> representation describe the candidate list.</returns>
-	public static abstract string ToCandidatesString(scoped in Candidates candidates, scoped in TOptions options);
+	static abstract string ToCandidatesString(scoped in Candidates candidates, scoped in TOptions options);
 
 	/// <summary>
 	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="Candidates"/>
@@ -60,5 +60,5 @@ public interface ICandidateNotation<[Self] TSelf, TOptions>
 	/// <exception cref="FormatException">
 	/// Throws when the parsing operation is failed due to invalid characters or invalid operation.
 	/// </exception>
-	public static abstract Candidates ParseCandidates(string str);
+	static abstract Candidates ParseCandidates(string str);
 }

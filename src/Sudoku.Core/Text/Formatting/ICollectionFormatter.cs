@@ -16,7 +16,7 @@ public interface ICollectionFormatter<in TElement>
 	/// The separator that will be inserted into each two adjacent elements in this collection.
 	/// </param>
 	/// <returns>A <see cref="string"/> result.</returns>
-	public static abstract string Format(IEnumerable<TElement> elements, string separator);
+	static abstract string Format(IEnumerable<TElement> elements, string separator);
 
 	/// <summary>
 	/// Try to format a list of <typeparamref name="TElement"/> instances using the specified formatting mode.
@@ -26,5 +26,5 @@ public interface ICollectionFormatter<in TElement>
 	/// The formatting mode. The default value is <see cref="FormattingMode.Simple"/>.
 	/// </param>
 	/// <returns>A <see cref="string"/> result.</returns>
-	public static abstract string Format(IEnumerable<TElement> elements, FormattingMode formattingMode = FormattingMode.Simple);
+	static abstract string Format(IEnumerable<TElement> elements, FormattingMode formattingMode = FormattingMode.Simple);
 }

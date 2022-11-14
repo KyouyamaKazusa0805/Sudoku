@@ -23,7 +23,7 @@ public interface ISimpleParsable<[Self] TSelf> where TSelf : ISimpleParsable<TSe
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="str"/> is <see langword="null"/>.
 	/// </exception>
-	public static abstract TSelf Parse(string str);
+	static abstract TSelf Parse(string str);
 
 	/// <summary>
 	/// Try to parse the specified string text, and get the same-meaning instance
@@ -37,5 +37,5 @@ public interface ISimpleParsable<[Self] TSelf> where TSelf : ISimpleParsable<TSe
 	/// <returns>
 	/// A <see cref="bool"/> result indicating whether the operation is successful to execute.
 	/// </returns>
-	public static abstract bool TryParse(string str, [NotNullWhen(true)] out TSelf? result);
+	static abstract bool TryParse(string str, [NotNullWhen(true)] out TSelf? result);
 }

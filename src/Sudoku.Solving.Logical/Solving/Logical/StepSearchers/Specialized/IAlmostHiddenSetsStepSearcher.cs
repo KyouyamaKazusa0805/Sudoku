@@ -15,7 +15,7 @@ public interface IAlmostHiddenSetsStepSearcher : IStepSearcher
 	/// <seealso cref="AlmostHiddenSet"/>
 	/// <seealso cref="AlmostHiddenSet.Gather(in Grid)"/>
 	/// <seealso cref="FastProperties"/>
-	protected internal static sealed AlmostHiddenSet[] Gather(scoped in Grid grid)
+	protected internal static AlmostHiddenSet[] Gather(scoped in Grid grid)
 	{
 		var result = new List<AlmostHiddenSet>();
 

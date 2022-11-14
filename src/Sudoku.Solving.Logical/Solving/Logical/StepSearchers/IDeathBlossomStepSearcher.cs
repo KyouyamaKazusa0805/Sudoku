@@ -23,7 +23,7 @@ public interface IDeathBlossomStepSearcher : IAlmostLockedSetsStepSearcher
 	/// </summary>
 	/// <param name="grid">The grid used.</param>
 	/// <returns>The dictionary of grouped result.</returns>
-	protected internal static sealed GatheredData GatherGroupedByCell(scoped in Grid grid)
+	protected internal static GatheredData GatherGroupedByCell(scoped in Grid grid)
 	{
 		// Get all bi-value-cell ALSes.
 		var result = new GatheredData();

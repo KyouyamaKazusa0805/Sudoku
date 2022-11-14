@@ -15,7 +15,7 @@ public interface IAlmostLockedSetsStepSearcher : IStepSearcher
 	/// <seealso cref="AlmostLockedSet"/>
 	/// <seealso cref="AlmostLockedSet.Gather(in Grid)"/>
 	/// <seealso cref="FastProperties"/>
-	protected internal static sealed AlmostLockedSet[] Gather(scoped in Grid grid)
+	protected internal static AlmostLockedSet[] Gather(scoped in Grid grid)
 	{
 		// Get all bi-value-cell ALSes.
 		var result = new List<AlmostLockedSet>();

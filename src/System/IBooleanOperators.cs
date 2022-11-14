@@ -11,12 +11,12 @@ public interface IBooleanOperators<[Self] in TSelf> where TSelf : IBooleanOperat
 	/// </summary>
 	/// <param name="value">The value of type <typeparamref name="TSelf"/>.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static abstract bool operator true(TSelf value);
+	static abstract bool operator true(TSelf value);
 
 	/// <summary>
 	/// Indicates whether the specified value of type <typeparamref name="TSelf"/> doesn't satisfy a fixed condition.
 	/// </summary>
 	/// <param name="value">The value of type <typeparamref name="TSelf"/>.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static virtual bool operator false(TSelf value) => value ? false : true;
+	static virtual bool operator false(TSelf value) => value ? false : true;
 }

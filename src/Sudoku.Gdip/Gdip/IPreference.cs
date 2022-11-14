@@ -244,7 +244,7 @@ public interface IPreference : ICloneable<IPreference>
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	static sealed IPreference Default => new Preference();
+	static IPreference Default => new Preference();
 
 
 	/// <summary>

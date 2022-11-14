@@ -35,7 +35,7 @@ internal interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	/// but <see langword="record"/>s are automatically implemented the method, which is useless
 	/// and unmeaningful.
 	/// </remarks>
-	public static abstract bool Equals(TStep left, TStep right);
+	static abstract bool Equals(TStep left, TStep right);
 
 
 	/// <summary>
@@ -50,7 +50,7 @@ internal interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	/// is in order, the final list after invoking this method will be also in order.
 	/// </remarks>
 	/// <seealso cref="Equals(TStep, TStep)"/>
-	public static sealed IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
+	static IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
 		where TDistinctableStep : Step, IDistinctableStep<TDistinctableStep>
 		=> list switch
 		{

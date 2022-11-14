@@ -34,7 +34,7 @@ public interface IFishStepSearcher : IStepSearcher
 	/// </item>
 	/// </list>
 	/// </returns>
-	protected static sealed bool? IsSashimi(int[] baseSets, scoped in CellMap fins, int digit)
+	protected static bool? IsSashimi(int[] baseSets, scoped in CellMap fins, int digit)
 	{
 		if (!fins)
 		{

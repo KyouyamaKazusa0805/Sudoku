@@ -14,7 +14,7 @@ internal interface IConjugatesGatherable : IConceptGatherable<Conjugate>
 	/// by calling the method <see cref="InitializeMaps(in Grid)"/>.
 	/// </i></remarks>
 	/// <seealso cref="InitializeMaps(in Grid)"/>
-	protected internal static sealed IEnumerable<Conjugate> Gather(int digit)
+	protected internal static IEnumerable<Conjugate> Gather(int digit)
 	{
 		var result = new List<Conjugate>();
 		for (var houseIndex = 0; houseIndex < 27; houseIndex++)
@@ -37,7 +37,7 @@ internal interface IConjugatesGatherable : IConceptGatherable<Conjugate>
 	/// by calling the method <see cref="InitializeMaps(in Grid)"/>.
 	/// </i></remarks>
 	/// <seealso cref="InitializeMaps(in Grid)"/>
-	protected internal static sealed ICollection<Conjugate>?[] Gather()
+	protected internal static ICollection<Conjugate>?[] Gather()
 	{
 		var conjugatePairs = new ICollection<Conjugate>?[9];
 		for (var digit = 0; digit < 9; digit++)

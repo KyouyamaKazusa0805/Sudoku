@@ -13,7 +13,7 @@ public interface ICellNotation<[Self] TSelf, TOptions>
 	/// <summary>
 	/// Indicates the cell notation kind that the current type supports.
 	/// </summary>
-	public static abstract CellNotation CellNotation { get; }
+	static abstract CellNotation CellNotation { get; }
 
 
 	/// <summary>
@@ -34,14 +34,14 @@ public interface ICellNotation<[Self] TSelf, TOptions>
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating whether the parsing operation is successful.</returns>
 	/// <seealso cref="ParseCells(string)"/>
-	public static abstract bool TryParseCells(string str, out CellMap result);
+	static abstract bool TryParseCells(string str, out CellMap result);
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of a list of cells.
 	/// </summary>
 	/// <param name="cells">The cell list.</param>
 	/// <returns>The <see cref="string"/> representation describe the cell list.</returns>
-	public static abstract string ToCellsString(scoped in CellMap cells);
+	static abstract string ToCellsString(scoped in CellMap cells);
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of a list of cells.
@@ -49,7 +49,7 @@ public interface ICellNotation<[Self] TSelf, TOptions>
 	/// <param name="cells">The cell list.</param>
 	/// <param name="options">The extra options to control the output style.</param>
 	/// <returns>The <see cref="string"/> representation describe the cell list.</returns>
-	public static abstract string ToCellsString(scoped in CellMap cells, scoped in TOptions options);
+	static abstract string ToCellsString(scoped in CellMap cells, scoped in TOptions options);
 
 	/// <summary>
 	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="CellMap"/>
@@ -60,5 +60,5 @@ public interface ICellNotation<[Self] TSelf, TOptions>
 	/// <exception cref="FormatException">
 	/// Throws when the parsing operation is failed due to invalid characters or invalid operation.
 	/// </exception>
-	public static abstract CellMap ParseCells(string str);
+	static abstract CellMap ParseCells(string str);
 }

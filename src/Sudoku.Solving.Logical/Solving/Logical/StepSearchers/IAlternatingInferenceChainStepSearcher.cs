@@ -121,5 +121,5 @@ public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 	/// <param name="ids">The list of node IDs.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected static sealed bool IsNodesRedundant(int[] ids) => ids[0] == ids[^1] && ids[1] == ids[^2];
+	protected static bool IsNodesRedundant(int[] ids) => ids[0] == ids[^1] && ids[1] == ids[^2];
 }

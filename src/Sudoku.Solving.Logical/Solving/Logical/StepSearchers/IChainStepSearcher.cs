@@ -13,7 +13,7 @@ public interface IChainStepSearcher : IStepSearcher
 	/// <param name="chain">The chain.</param>
 	/// <param name="grid">The grid used.</param>
 	/// <returns>An array of presentation data of candidates.</returns>
-	protected static sealed CandidateViewNode[] GetViewOnCandidates(AlternatingInferenceChain chain, scoped in Grid grid)
+	protected static CandidateViewNode[] GetViewOnCandidates(AlternatingInferenceChain chain, scoped in Grid grid)
 	{
 		var realChainNodes = chain.RealChainNodes;
 		var result = new List<CandidateViewNode>(realChainNodes.Length);
@@ -95,7 +95,7 @@ public interface IChainStepSearcher : IStepSearcher
 	/// </summary>
 	/// <param name="chain">The chain.</param>
 	/// <returns>An array of presentation data of links.</returns>
-	protected static sealed LinkViewNode[] GetViewOnLinks(AlternatingInferenceChain chain)
+	protected static LinkViewNode[] GetViewOnLinks(AlternatingInferenceChain chain)
 	{
 #pragma warning disable format
 		if (chain is not
@@ -151,7 +151,7 @@ public interface IChainStepSearcher : IStepSearcher
 	/// PrintInferences(_strongInferences, _nodeLookup, Console.WriteLine);
 	/// ]]></code>
 	/// </remarks>
-	protected static sealed void PrintInferences(
+	protected static void PrintInferences(
 		Dictionary<int, HashSet<int>?> inferences, Node?[] nodeLookup, Action<string> outputHandler)
 	{
 		const string separator = ", ";
@@ -195,6 +195,6 @@ public interface IChainStepSearcher : IStepSearcher
 	/// <param name="chainIds">The IDs.</param>
 	/// <param name="nodeLookup">The node lookup table.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected static sealed string GetRawChainData(int[] chainIds, Node?[] nodeLookup)
+	protected static string GetRawChainData(int[] chainIds, Node?[] nodeLookup)
 		=> string.Join(" -> ", from id in chainIds select nodeLookup[id]!.ToString());
 }

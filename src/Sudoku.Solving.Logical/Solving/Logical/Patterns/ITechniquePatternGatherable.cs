@@ -12,5 +12,5 @@ public interface ITechniquePatternGatherable<TTechniquePattern>
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All possible found <typeparamref name="TTechniquePattern"/>.</returns>
-	public static abstract TTechniquePattern[] Gather(scoped in Grid grid);
+	static abstract TTechniquePattern[] Gather(scoped in Grid grid);
 }

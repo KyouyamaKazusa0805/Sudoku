@@ -9,5 +9,5 @@ internal interface IExerciseGenerator
 	/// Try to generate a puzzle.
 	/// </summary>
 	/// <returns>The result grid.</returns>
-	public static abstract HouseCellChunk Generate();
+	static abstract HouseCellChunk Generate();
 }

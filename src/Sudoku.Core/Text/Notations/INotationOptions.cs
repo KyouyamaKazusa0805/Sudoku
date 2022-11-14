@@ -12,5 +12,5 @@ public interface INotationOptions<[Self] TSelf> where TSelf : struct, INotationO
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static abstract TSelf Default { get; }
+	static abstract TSelf Default { get; }
 }

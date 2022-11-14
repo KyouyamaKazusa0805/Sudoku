@@ -13,5 +13,5 @@ public interface ILogicalNotOperators<[Self] in TSelf, out TResult> where TSelf 
 	/// </summary>
 	/// <param name="value">The value of type <typeparamref name="TSelf"/>.</param>
 	/// <returns>The result after negation, of type <typeparamref name="TResult"/>.</returns>
-	public static abstract TResult operator !(TSelf value);
+	static abstract TResult operator !(TSelf value);
 }

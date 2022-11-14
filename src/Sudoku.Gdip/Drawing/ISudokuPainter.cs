@@ -143,7 +143,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// The default singleton instance that you can get.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static sealed ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10) => new SudokuPainter(canvasDefaultSize, canvasOffset);
+	static ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10) => new SudokuPainter(canvasDefaultSize, canvasOffset);
 }
 
 /// <summary>

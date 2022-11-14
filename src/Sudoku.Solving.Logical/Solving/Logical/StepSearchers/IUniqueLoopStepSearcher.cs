@@ -18,7 +18,7 @@ public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher
 	/// <param name="loopCells">The loop cells.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[Obsolete("Due to having re-impl'ed the logic, this method becomes useless because the argument type is not compatible with the newer one.", false)]
-	protected internal static sealed bool IsValidLoop(IList<int> loopCells)
+	protected internal static bool IsValidLoop(IList<int> loopCells)
 	{
 		int visitedOddHouses = 0, visitedEvenHouses = 0;
 

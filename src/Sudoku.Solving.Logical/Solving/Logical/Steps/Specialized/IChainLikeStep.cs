@@ -10,7 +10,7 @@ public interface IChainLikeStep : IStep
 	/// </summary>
 	/// <param name="length">The length.</param>
 	/// <returns>The difficulty.</returns>
-	protected static sealed decimal GetExtraDifficultyByLength(int length)
+	protected static decimal GetExtraDifficultyByLength(int length)
 	{
 		decimal added = 0;
 		var ceil = 4;

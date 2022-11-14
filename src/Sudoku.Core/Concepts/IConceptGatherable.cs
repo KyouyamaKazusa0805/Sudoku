@@ -14,5 +14,5 @@ public interface IConceptGatherable<TResult>
 	/// </summary>
 	/// <param name="grid">The grid used.</param>
 	/// <returns>The results found.</returns>
-	public static abstract ICollection<TResult>?[] Gather(scoped in Grid grid);
+	static abstract ICollection<TResult>?[] Gather(scoped in Grid grid);
 }

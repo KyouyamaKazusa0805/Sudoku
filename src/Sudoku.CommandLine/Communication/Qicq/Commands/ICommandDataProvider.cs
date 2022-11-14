@@ -55,7 +55,7 @@ internal interface ICommandDataProvider
 	/// <param name="name">The name of the color.</param>
 	/// <returns>The identifier instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static sealed Identifier? GetIdentifier(string name)
+	internal static Identifier? GetIdentifier(string name)
 	{
 		if (Enum.TryParse<KnownColor>(name, out var knownColor))
 		{
@@ -111,7 +111,7 @@ internal interface ICommandDataProvider
 	/// </list>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static sealed OneOf<CellMap, Candidates, int> GetCoordinate(string rawCoordinate)
+	internal static OneOf<CellMap, Candidates, int> GetCoordinate(string rawCoordinate)
 	{
 		if (RxCyNotation.TryParseCandidates(rawCoordinate, out var candidates1))
 		{
@@ -145,7 +145,7 @@ internal interface ICommandDataProvider
 	/// <param name="rawCoordinate">The coordinate string value.</param>
 	/// <returns>The cell index parsed. If failed to be parsed, <see langword="null"/> will be returned.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static sealed int? GetCell(string rawCoordinate)
+	internal static int? GetCell(string rawCoordinate)
 	{
 		if (RxCyNotation.TryParseCell(rawCoordinate, out var cell2))
 		{
@@ -165,7 +165,7 @@ internal interface ICommandDataProvider
 	/// </summary>
 	/// <returns>The value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static sealed int GenerateOriginalValueEarned()
+	internal static int GenerateOriginalValueEarned()
 	{
 #if NORMAL_DISTRIBUTION
 		const double sigma = 2.5, mu = 0;
@@ -197,7 +197,7 @@ internal interface ICommandDataProvider
 	/// <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
 	/// <returns>The value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static sealed int GenerateValueEarned(int continuousDaysCount)
+	internal static int GenerateValueEarned(int continuousDaysCount)
 	{
 		var earned = GenerateOriginalValueEarned();
 		var level = continuousDaysCount / 7;
