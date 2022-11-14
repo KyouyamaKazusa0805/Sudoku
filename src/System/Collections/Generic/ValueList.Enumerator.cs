@@ -1,6 +1,6 @@
 ﻿namespace System.Collections.Generic;
 
-partial struct ValueList<TUnmanaged>
+partial struct ValueList<TNotNull>
 {
 	/// <summary>
 	/// Defines the enumerator of this type.
@@ -10,7 +10,7 @@ partial struct ValueList<TUnmanaged>
 		/// <summary>
 		/// Indicates the inner pointer.
 		/// </summary>
-		private readonly ValueList<TUnmanaged>* _ptr;
+		private readonly ValueList<TNotNull>* _ptr;
 
 		/// <summary>
 		/// Indicates the current position.
@@ -23,9 +23,9 @@ partial struct ValueList<TUnmanaged>
 		/// </summary>
 		/// <param name="ptr">The pointer that points to the list.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Enumerator(in ValueList<TUnmanaged> ptr)
+		internal Enumerator(in ValueList<TNotNull> ptr)
 		{
-			fixed (ValueList<TUnmanaged>* p = &ptr)
+			fixed (ValueList<TNotNull>* p = &ptr)
 			{
 				_ptr = p;
 			}
@@ -33,7 +33,7 @@ partial struct ValueList<TUnmanaged>
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>
-		public readonly TUnmanaged Current
+		public readonly TNotNull Current
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => _ptr->_startPtr[_current];

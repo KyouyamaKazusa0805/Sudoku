@@ -5,7 +5,7 @@ namespace System.Collections.Generic;
 /// <summary>
 /// Defines a value-type sequence list.
 /// </summary>
-/// <typeparam name="TUnmanaged">The element type.</typeparam>
+/// <typeparam name="TNotNull">The element type.</typeparam>
 /// <remarks>
 /// We recommend you use this type like:
 /// <code><![CDATA[
@@ -18,7 +18,7 @@ namespace System.Collections.Generic;
 /// }
 /// ]]></code>
 /// </remarks>
-public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmanaged
+public unsafe ref partial struct ValueList<TNotNull> where TNotNull : notnull
 {
 	/// <summary>
 	/// Indicates the length of the list.
@@ -33,7 +33,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// <summary>
 	/// Indicates the pointer that points to the first element.
 	/// </summary>
-	private TUnmanaged* _startPtr;
+	private TNotNull* _startPtr;
 
 
 	/// <summary>
@@ -47,7 +47,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueList(byte capacity)
 	{
-		_startPtr = (TUnmanaged*)NativeMemory.Alloc((nuint)sizeof(TUnmanaged) * capacity);
+		_startPtr = (TNotNull*)NativeMemory.Alloc((nuint)sizeof(TNotNull) * capacity);
 		_capacity = capacity;
 	}
 
@@ -79,14 +79,14 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// </summary>
 	/// <param name="index">The index.</param>
 	/// <returns>The reference to the element at the specified index.</returns>
-	public readonly ref TUnmanaged this[byte index]
+	public readonly ref TNotNull this[byte index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ref _startPtr[index];
 	}
 
 	/// <inheritdoc cref="this[byte]"/>
-	public readonly ref TUnmanaged this[Index index]
+	public readonly ref TNotNull this[Index index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ref _startPtr[index.GetOffset(_length)];
@@ -99,7 +99,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// <param name="element">The element.</param>
 	/// <param name="predicate">The predicate checking whether two elements are same.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddIfNotContain(TUnmanaged element, delegate*<TUnmanaged, TUnmanaged, bool> predicate)
+	public void AddIfNotContain(TNotNull element, delegate*<TNotNull, TNotNull, bool> predicate)
 	{
 		if (!Contains(element, predicate))
 		{
@@ -112,7 +112,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// </summary>
 	/// <param name="element">The element.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Add(TUnmanaged element)
+	public void Add(TNotNull element)
 	{
 		Argument.ThrowIfInvalid(_length < _capacity, "Cannot add because the collection is full.");
 
@@ -123,7 +123,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// Adds a list of elements into the collection.
 	/// </summary>
 	/// <param name="elements">A list of elements.</param>
-	public void AddRange(scoped in ValueList<TUnmanaged> elements)
+	public void AddRange(scoped in ValueList<TNotNull> elements)
 	{
 		foreach (var element in elements)
 		{
@@ -164,7 +164,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	/// <param name="instance">The instance to be determined.</param>
 	/// <param name="predicate">A method that defines whether two instances are considered equal.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public bool Contains(TUnmanaged instance, delegate*<TUnmanaged, TUnmanaged, bool> predicate)
+	public bool Contains(TNotNull instance, delegate*<TNotNull, TNotNull, bool> predicate)
 	{
 		foreach (var element in this)
 		{
@@ -192,14 +192,14 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	{
 		return format switch
 		{
-			null or "L" or "l" => $"ValueList<{typeof(TUnmanaged).Name}> {{ Count = {_length}, Capacity = {_capacity} }}",
+			null or "L" or "l" => $"ValueList<{typeof(TNotNull).Name}> {{ Count = {_length}, Capacity = {_capacity} }}",
 			"C" or "c" => toContentString(this),
-			"S" or "s" => $"ValueList<{typeof(TUnmanaged).Name}> {{ Size = {sizeof(TUnmanaged) * _length} }}",
+			"S" or "s" => $"ValueList<{typeof(TNotNull).Name}> {{ Size = {sizeof(TNotNull) * _length} }}",
 			_ => throw new FormatException("The specified format doesn't support.")
 		};
 
 
-		static string toContentString(scoped in ValueList<TUnmanaged> @this)
+		static string toContentString(scoped in ValueList<TNotNull> @this)
 		{
 			const string separator = ", ";
 			scoped var sb = new StringHandler();
@@ -219,25 +219,25 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	public readonly Enumerator GetEnumerator() => new(this);
 
 	/// <summary>
-	/// Converts the current instance into an array of type <typeparamref name="TUnmanaged"/>.
+	/// Converts the current instance into an array of type <typeparamref name="TNotNull"/>.
 	/// </summary>
-	/// <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
+	/// <returns>The array of elements of type <typeparamref name="TNotNull"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly TUnmanaged[] ToArray()
+	public readonly TNotNull[] ToArray()
 	{
-		var result = new TUnmanaged[_length];
-		fixed (TUnmanaged* pResult = result)
+		var result = new TNotNull[_length];
+		fixed (TNotNull* pResult = result)
 		{
-			CopyBlock(pResult, _startPtr, (uint)(sizeof(TUnmanaged) * _length));
+			CopyBlock(pResult, _startPtr, (uint)(sizeof(TNotNull) * _length));
 		}
 
 		return result;
 	}
 
 	/// <summary>
-	/// Converts the current instance into an immutable array of type <typeparamref name="TUnmanaged"/>.
+	/// Converts the current instance into an immutable array of type <typeparamref name="TNotNull"/>.
 	/// </summary>
-	/// <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
+	/// <returns>The array of elements of type <typeparamref name="TNotNull"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ImmutableArray<TUnmanaged> ToImmutableArray() => ImmutableArray.Create(ToArray());
+	public readonly ImmutableArray<TNotNull> ToImmutableArray() => ImmutableArray.Create(ToArray());
 }

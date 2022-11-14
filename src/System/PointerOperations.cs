@@ -6,16 +6,16 @@
 public static unsafe class PointerOperations
 {
 	/// <summary>
-	/// To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
+	/// To swap the two variables using pointers.
 	/// </summary>
-	/// <typeparam name="TUnmanaged">The type of the variable.</typeparam>
+	/// <typeparam name="T">The type of the variable.</typeparam>
 	/// <param name="left">The left variable.</param>
 	/// <param name="right">The right variable.</param>
 	/// <exception cref="ArgumentNullException">
 	/// Throws when <paramref name="left"/> or <paramref name="right"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Swap<TUnmanaged>(TUnmanaged* left, TUnmanaged* right) where TUnmanaged : unmanaged
+	public static void Swap<T>(T* left, T* right)
 	{
 		ArgumentNullException.ThrowIfNull(left);
 		ArgumentNullException.ThrowIfNull(right);
@@ -84,10 +84,7 @@ public static unsafe class PointerOperations
 	/// <summary>
 	/// Get the new array from the pointer, with the specified start index.
 	/// </summary>
-	/// <typeparam name="TUnmanaged">
-	/// The type of the pointer element. Note that the type should be <see langword="unmanaged"/>
-	/// in order to use pointer handling. Therefore, <see langword="managed"/> types shouldn't be allowed.
-	/// </typeparam>
+	/// <typeparam name="T">The type of the pointer element.</typeparam>
 	/// <param name="ptr">The pointer.</param>
 	/// <param name="length">The length of the array that pointer points to.</param>
 	/// <param name="index">The start index that you want to pick from.</param>
@@ -101,11 +98,11 @@ public static unsafe class PointerOperations
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(TUnmanaged* ptr, int length, int index) where TUnmanaged : unmanaged
+	public static T[] GetArrayFromStart<T>(T* ptr, int length, int index)
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
-		var result = new TUnmanaged[length - index];
+		var result = new T[length - index];
 		for (var i = index; i < length; i++)
 		{
 			result[i - index] = ptr[i];
@@ -122,7 +119,7 @@ public static unsafe class PointerOperations
 	/// <param name="index">The start index that you want to pick from.</param>
 	/// <param name="removeTrailingZeros">
 	/// Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
-	/// the method will be same as <see cref="GetArrayFromStart{TUnmanaged}(TUnmanaged*, int, int)"/>.
+	/// the method will be same as <see cref="GetArrayFromStart{T}(T*, int, int)"/>.
 	/// </param>
 	/// <returns>The array of elements.</returns>
 	/// <exception cref="ArgumentNullException">
@@ -134,7 +131,7 @@ public static unsafe class PointerOperations
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	/// <seealso cref="GetArrayFromStart{TUnmanaged}(TUnmanaged*, int, int)"/>
+	/// <seealso cref="GetArrayFromStart{T}(T*, int, int)"/>
 	public static int[] GetArrayFromStart(int* ptr, int length, int index, bool removeTrailingZeros)
 	{
 		ArgumentNullException.ThrowIfNull(ptr);

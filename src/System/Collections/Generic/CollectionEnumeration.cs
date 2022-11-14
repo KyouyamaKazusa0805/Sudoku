@@ -14,8 +14,7 @@ public static class CollectionEnumeration
 	/// The enumerable collection that allows the iteration on an one-dimensional array.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static OneDimensionalArrayEnumerator<TStruct> EnumerateImmutable<TStruct>(this TStruct[] @this)
-		where TStruct : struct => new(@this);
+	public static OneDimensionalArrayEnumerator<TStruct> EnumerateImmutable<TStruct>(this TStruct[] @this) where TStruct : struct => new(@this);
 
 	/// <summary>
 	/// Creates a <see cref="OneDimensionalArrayRefEnumerator{T}"/> instance that iterates on each element.
@@ -46,6 +45,5 @@ public static class CollectionEnumeration
 	/// Throws when the type isn't applied the attribute <see cref="FlagsAttribute"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FlagsEnumTypeFieldEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this)
-		where TEnum : unmanaged, Enum => new(@this);
+	public static FlagsEnumTypeFieldEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum => new(@this);
 }

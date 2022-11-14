@@ -15,9 +15,7 @@
 /// }
 /// ]]></code>
 /// </remarks>
-public interface IFixable<[Self] TSelf, TFixedVariable> : IEnumerable<TFixedVariable>
-	where TSelf : notnull, IFixable<TSelf, TFixedVariable>
-	where TFixedVariable : unmanaged
+public interface IFixable<[Self] TSelf, TFixedVariable> : IEnumerable<TFixedVariable> where TSelf : notnull, IFixable<TSelf, TFixedVariable>
 {
 	/// <summary>
 	/// <para>Indicates the reference to the block that references to the inner fixed buffer or the block used.</para>
