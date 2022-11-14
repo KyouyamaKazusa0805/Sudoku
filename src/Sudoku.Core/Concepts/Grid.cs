@@ -1271,8 +1271,7 @@ public unsafe struct Grid :
 	/// </remarks>
 	/// <seealso cref="op_Explicit(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str)
-		=> str switch { $"<{nameof(Empty)}>" => Empty, $"<{nameof(Undefined)}>" => Undefined, _ => new GridParser(str).Parse() };
+	public static Grid Parse(string str) => new GridParser(str).Parse();
 
 	/// <summary>
 	/// <para>
@@ -1363,8 +1362,7 @@ public unsafe struct Grid :
 	/// <param name="str">The string.</param>
 	/// <param name="option">The grid parsing type.</param>
 	/// <param name="result">
-	/// The result parsed. If the conversion is failed,
-	/// this argument will be <see cref="Undefined"/>.
+	/// The result parsed. If the conversion is failed, this argument will be <see cref="Undefined"/>.
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
