@@ -158,7 +158,7 @@
             Checks whether the specified value is equivalent to the specified value. Otherwise,
             an <see cref="T:System.ArgumentException"/> will be thrown.
             </summary>
-            <typeparam name="TEquatable">The type of the instance.</typeparam>
+            <typeparam name="T">The type of the instance.</typeparam>
             <param name="instance">The instance.</param>
             <param name="value">The value that the argument <paramref name="argName"/> must be.</param>
             <param name="argName">The argument name.</param>
@@ -420,7 +420,7 @@
             <summary>
             Creates a <see cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/> instance that iterates on each element.
             </summary>
-            <typeparam name="TStruct">The type of the array elements.</typeparam>
+            <typeparam name="T">The type of the array elements.</typeparam>
             <param name="this">The array.</param>
             <returns>
             The enumerable collection that allows the iteration on an one-dimensional array.
@@ -448,7 +448,7 @@
             <summary>
             Get all possible flags that the current enumeration field set.
             </summary>
-            <typeparam name="TEnum">The type of the enumeration.</typeparam>
+            <typeparam name="T">The type of the enumeration.</typeparam>
             <param name="this">The current enumeration type instance.</param>
             <returns>All flags.</returns>
             <exception cref="T:System.InvalidOperationException">
@@ -459,9 +459,7 @@
             <summary>
             Defines an enumerator that iterates the possible fields of an enumeration type.
             </summary>
-            <typeparam name="TEnum">
-            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
-            </typeparam>
+            <typeparam name="T">The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.</typeparam>
         </member>
         <member name="F:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1._fields">
             <summary>
@@ -485,7 +483,7 @@
             </summary>
             <param name="base">The base field to iterate.</param>
             <exception cref="T:System.InvalidOperationException">
-            Throws when the type <typeparamref name="TEnum"/> is not marked <see cref="T:System.FlagsAttribute"/>.
+            Throws when the type <typeparamref name="T"/> is not marked <see cref="T:System.FlagsAttribute"/>.
             </exception>
         </member>
         <member name="P:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Current">
@@ -601,7 +599,7 @@
             <summary>
             Defines a value-type sequence list.
             </summary>
-            <typeparam name="TNotNull">The element type.</typeparam>
+            <typeparam name="T">The element type.</typeparam>
             <remarks>
             We recommend you use this type like:
             <code><![CDATA[
@@ -726,15 +724,15 @@
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.ToArray">
             <summary>
-            Converts the current instance into an array of type <typeparamref name="TNotNull"/>.
+            Converts the current instance into an array of type <typeparamref name="T"/>.
             </summary>
-            <returns>The array of elements of type <typeparamref name="TNotNull"/>.</returns>
+            <returns>The array of elements of type <typeparamref name="T"/>.</returns>
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.ToImmutableArray">
             <summary>
-            Converts the current instance into an immutable array of type <typeparamref name="TNotNull"/>.
+            Converts the current instance into an immutable array of type <typeparamref name="T"/>.
             </summary>
-            <returns>The array of elements of type <typeparamref name="TNotNull"/>.</returns>
+            <returns>The array of elements of type <typeparamref name="T"/>.</returns>
         </member>
         <member name="T:System.Collections.Generic.ValueList`1.Enumerator">
             <summary>
@@ -869,7 +867,7 @@
             <summary>
             Casts the current array elements into target typed values.
             </summary>
-            <typeparam name="TStruct">The type of each element.</typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The array to be casted.</param>
             <returns>The casted array.</returns>
         </member>
@@ -877,7 +875,7 @@
             <summary>
             Casts the current array elements into target typed values.
             </summary>
-            <typeparam name="TClass">The type of each element.</typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The array to be casted.</param>
             <returns>The casted array.</returns>
         </member>
@@ -903,7 +901,7 @@
             Represents an attribute that is applied to a property, indicating the property value should be converted
             through a <see cref="T:System.CommandLine.IValueConverter"/>.
             </summary>
-            <typeparam name="TConverter">
+            <typeparam name="T">
             The type of the converter. The type must implement interface type <see cref="T:System.CommandLine.IValueConverter"/>,
             and contains a parameterless constructor.
             </typeparam>
@@ -1420,14 +1418,14 @@
         </member>
         <member name="M:System.CommandLine.Terminal.Write``1(``0)">
             <inheritdoc cref="M:System.Console.Write(System.Object)"/>
-            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+            <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
         </member>
         <member name="M:System.CommandLine.Terminal.Write``1(``0,System.ConsoleColor)">
             <summary>
             Writes the text representation of the specified object to the standard output stream,
             with the specified foreground.
             </summary>
-            <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+            <typeparam name="T">The type of the object to be displayed.</typeparam>
             <param name="value"><inheritdoc cref="M:System.Console.Write(System.Object)"/></param>
             <param name="foreground">The foreground color.</param>
         </member>
@@ -1436,7 +1434,7 @@
             Writes the text representation of the specified object to the standard output stream,
             with the specified foreground.
             </summary>
-            <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+            <typeparam name="T">The type of the object to be displayed.</typeparam>
             <param name="value"><inheritdoc cref="M:System.Console.Write(System.Object)"/></param>
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
@@ -1446,17 +1444,17 @@
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLine``1(``0)">
             <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
-            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+            <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLine``1(``0,System.ConsoleColor)">
             <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
-            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+            <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
             <param name="value"><inheritdoc/></param>
             <param name="foreground">The foreground color.</param>
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLine``1(``0,System.ConsoleColor,System.ConsoleColor)">
             <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
-            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+            <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
             <param name="value"><inheritdoc/></param>
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
@@ -1505,14 +1503,14 @@
         </member>
         <member name="M:System.CommandLine.Terminal.WriteAsync``1(``0)">
             <inheritdoc cref="M:System.Console.Write(System.Object)"/>
-            <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+            <typeparam name="T">The type of the object to be displayed.</typeparam>
         </member>
         <member name="M:System.CommandLine.Terminal.WriteAsync``1(``0,System.ConsoleColor)">
             <summary>
             Writes the text representation of the specified object to the standard output stream,
             with the specified foreground.
             </summary>
-            <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+            <typeparam name="T">The type of the object to be displayed.</typeparam>
             <param name="value"><inheritdoc cref="M:System.Console.Write(System.Object)"/></param>
             <param name="foreground">The foreground color.</param>
         </member>
@@ -1521,7 +1519,7 @@
             Writes the text representation of the specified object to the standard output stream,
             with the specified foreground.
             </summary>
-            <typeparam name="TNotNull">The type of the object to be displayed.</typeparam>
+            <typeparam name="T">The type of the object to be displayed.</typeparam>
             <param name="value"><inheritdoc cref="M:System.Console.Write(System.Object)"/></param>
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
@@ -1531,17 +1529,17 @@
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLineAsync``1(``0)">
             <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
-            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+            <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLineAsync``1(``0,System.ConsoleColor)">
             <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
-            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+            <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
             <param name="value"><inheritdoc/></param>
             <param name="foreground">The foreground color.</param>
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLineAsync``1(``0,System.ConsoleColor,System.ConsoleColor)">
             <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
-            <typeparam name="TNotNull">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
+            <typeparam name="T">The type argument that corresponds to the type of the argument <paramref name="value"/>.</typeparam>
             <param name="value"><inheritdoc/></param>
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
@@ -1740,7 +1738,7 @@
             <summary>
             Gets the type arguments of the specified attribute type applied to the specified property.
             </summary>
-            <typeparam name="TMemberInfo">The type of the member information.</typeparam>
+            <typeparam name="T">The type of the member information.</typeparam>
             <param name="this">The <see cref="T:System.Reflection.MemberInfo"/> instance.</param>
             <param name="genericAttributeType">The generic attribute type.</param>
             <returns>The types of the generic type arguments.</returns>
@@ -1755,7 +1753,7 @@
             <summary>
             Returns the invocation list of the delegate.
             </summary>
-            <typeparam name="TDelegate">The type of the delegate.</typeparam>
+            <typeparam name="T">The type of the delegate.</typeparam>
             <param name="this">The instance.</param>
             <returns>An array of delegates representing the invocation list of the current delegate.</returns>
         </member>
@@ -2072,7 +2070,7 @@
             <summary>
             Checks whether the current enumeration field is a flag.
             </summary>
-            <typeparam name="TEnum">The type of the current field.</typeparam>
+            <typeparam name="T">The type of the current field.</typeparam>
             <param name="this">The current field to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
@@ -2080,18 +2078,17 @@
             <summary>
             To get all possible flags from a specified enumeration instance.
             </summary>
-            <typeparam name="TEnum">The type of that enumeration.</typeparam>
+            <typeparam name="T">The type of that enumeration.</typeparam>
             <param name="this">The field.</param>
             <returns>
-            All flags. If the enumeration field doesn't contain any flags,
-            the return value will be <see langword="null"/>.
+            All flags. If the enumeration field doesn't contain any flags, the return value will be <see langword="null"/>.
             </returns>
         </member>
         <member name="M:System.EnumExtensions.Flags``1(``0,``0)">
             <summary>
             Determines whether one or more bit fields are set in the current instance.
             </summary>
-            <typeparam name="TEnum">The type of the enumeration.</typeparam>
+            <typeparam name="T">The type of the enumeration.</typeparam>
             <param name="this">The current enumeration type instance.</param>
             <param name="other">The other instance to check.</param>
             <returns>
@@ -2104,7 +2101,7 @@
             <summary>
             Determines whether the instance has the flags specified as <paramref name="flags"/>.
             </summary>
-            <typeparam name="TEnum">The type of the enumeration field.</typeparam>
+            <typeparam name="T">The type of the enumeration field.</typeparam>
             <param name="this">The instance.</param>
             <param name="flags">All flags used.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
@@ -2118,7 +2115,7 @@
             <summary>
             Covers the string value with the current <see cref="T:System.Span`1"/> instance, at the specified index as start.
             </summary>
-            <typeparam name="TStruct">
+            <typeparam name="T">
             The type of the element. Due to the limit of C# language, the type must be a <see langword="struct"/>.
             </typeparam>
             <param name="start">The reference to the space that the string <paramref name="s"/> will be covered.</param>
@@ -2276,7 +2273,7 @@
             <summary>
             Append a serial of strings converted from a serial of elements.
             </summary>
-            <typeparam name="TEnum">The type of each element.</typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The handler.</param>
             <param name="enumFlags">The list of enumeration flags.</param>
             <param name="converter">
@@ -3107,7 +3104,7 @@
             Provides with the default way to convert the specified instance of type <see cref="T:System.Int16"/>
             into a <see cref="T:System.String"/> value.
             </summary>
-            <typeparam name="TNotNull">The type of the argument.</typeparam>
+            <typeparam name="T">The type of the argument.</typeparam>
             <param name="this">The instance.</param>
             <returns>The <see cref="T:System.String"/> value.</returns>
             <exception cref="T:System.InvalidOperationException">
@@ -3127,7 +3124,7 @@
             Provides with the default way to convert the specified instance of type <see cref="T:System.Int16"/>
             into a <see cref="T:System.String"/> value.
             </summary>
-            <typeparam name="TNotNull">The type of the argument.</typeparam>
+            <typeparam name="T">The type of the argument.</typeparam>
             <param name="this">The instance.</param>
             <returns>The <see cref="T:System.String"/> value.</returns>
             <exception cref="T:System.InvalidOperationException">

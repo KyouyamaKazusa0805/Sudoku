@@ -587,12 +587,10 @@ public unsafe struct Grid :
 
 					RefreshingCandidates(ref this);
 
-#pragma warning disable IDE1005
 					if (UserRefreshingCandidates != null)
 					{
 						UserRefreshingCandidates(new(in this));
 					}
-#pragma warning restore IDE1005
 
 					break;
 				}
@@ -607,12 +605,10 @@ public unsafe struct Grid :
 					// To trigger the event, which is used for eliminate all same candidates in peer cells.
 					ValueChanged(ref this, cell, copied, result, value);
 
-#pragma warning disable IDE1005
 					if (UserValueChanged != null)
 					{
 						UserValueChanged(new(in this, cell, value, copied, result));
 					}
-#pragma warning restore IDE1005
 
 					break;
 				}
@@ -653,12 +649,10 @@ public unsafe struct Grid :
 				// To trigger the event.
 				ValueChanged(ref this, cell, copied, _values[cell], -1);
 
-#pragma warning disable IDE1005
 				if (UserValueChanged != null)
 				{
 					UserValueChanged(new(in this, cell, -1, copied, _values[cell]));
 				}
-#pragma warning restore IDE1005
 			}
 		}
 	}
@@ -1055,12 +1049,10 @@ public unsafe struct Grid :
 
 		ValueChanged(ref this, cell, copied, mask, -1);
 
-#pragma warning disable IDE1005
 		if (UserValueChanged != null)
 		{
 			UserValueChanged(new(in this, cell, -1, copied, mask));
 		}
-#pragma warning restore IDE1005
 	}
 
 	/// <summary>
@@ -1077,12 +1069,10 @@ public unsafe struct Grid :
 
 		ValueChanged(ref this, cell, copied, m, -1);
 
-#pragma warning disable IDE1005
 		if (UserValueChanged != null)
 		{
 			UserValueChanged(new(in this, cell, -1, copied, m));
 		}
-#pragma warning restore IDE1005
 	}
 
 	/// <summary>
