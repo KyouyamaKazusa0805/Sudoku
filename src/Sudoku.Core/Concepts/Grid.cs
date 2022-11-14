@@ -535,10 +535,7 @@ public unsafe struct Grid :
 	/// </summary>
 	/// <param name="cell">The cell you want to get or set a value.</param>
 	/// <value>
-	/// <para>
-	/// The value you want to set. The value should be between 0 and 8. If assigning -1,
-	/// that means to re-compute all candidates.
-	/// </para>
+	/// <para>The value you want to set. The value should be between 0 and 8. If assigning -1, that means to re-compute all candidates.</para>
 	/// <para>
 	/// The values set into the grid will be regarded as the modifiable values.
 	/// If the cell contains a digit, it will be covered when it is a modifiable value.
@@ -554,15 +551,12 @@ public unsafe struct Grid :
 	/// </item>
 	/// <item>
 	/// <term><![CDATA[>= 0 and < 9]]></term>
-	/// <description>
-	/// The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..
-	/// </description>
+	/// <description>The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..</description>
 	/// </item>
 	/// </list>
 	/// </returns>
 	/// <exception cref="InvalidOperationException">
-	/// Throws when the specified cell keeps a wrong cell status value.
-	/// For example, <see cref="CellStatus.Undefined"/>.
+	/// Throws when the specified cell keeps a wrong cell status value. For example, <see cref="CellStatus.Undefined"/>.
 	/// </exception>
 	public int this[int cell]
 	{
@@ -802,7 +796,7 @@ public unsafe struct Grid :
 	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
 	public readonly short GetDigitsUnion(scoped in CellMap cells)
 	{
-		short result = 0;
+		var result = (short)0;
 		foreach (var cell in cells)
 		{
 			result |= _values[cell];
@@ -822,7 +816,7 @@ public unsafe struct Grid :
 	/// <returns><inheritdoc cref="GetDigitsUnion(in CellMap)" path="/returns"/></returns>
 	public readonly short GetDigitsUnion(scoped in CellMap cells, bool withValueCells)
 	{
-		short result = 0;
+		var result = (short)0;
 		foreach (var cell in cells)
 		{
 			if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
@@ -1148,8 +1142,7 @@ public unsafe struct Grid :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerable<TResult> ISelectClauseProvider<int>.Select<TResult>(Func<int, TResult> selector)
-		=> GridEnumerable.Select(this, selector);
+	readonly IEnumerable<TResult> ISelectClauseProvider<int>.Select<TResult>(Func<int, TResult> selector) => GridEnumerable.Select(this, selector);
 
 	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectClauseProvider<short>.Select<TResult>(Func<short, TResult> selector)
@@ -1238,8 +1231,7 @@ public unsafe struct Grid :
 	/// <param name="gridValues">The array of grid values.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
-		=> new(gridValues[0], creatingOption);
+	public static Grid Create(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None) => new(gridValues[0], creatingOption);
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance with the specified mask array.
@@ -1663,16 +1655,17 @@ file static unsafe class EventHandlers
 	}
 }
 
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-// https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
-
 /// <summary>
 /// Represents a helper method used by <see cref="Grid"/> instances, especially for equality checking method <see cref="Grid.Equals(in Grid)"/>.
 /// </summary>
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.Equals(in Grid)"/>
-file static class Helper
+/// <!--
+/// Licensed to the .NET Foundation under one or more agreements.
+/// The .NET Foundation licenses this file to you under the MIT license.
+/// https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
+/// -->
+file static unsafe class Helper
 {
 	/// <summary>
 	/// Determines whether two sequences are considered equal on respective bits.
@@ -1689,7 +1682,7 @@ file static class Helper
 	/// The <paramref name="length"/> parameter for this one is declared a <see langword="nuint"/> rather than <see cref="int"/>
 	/// as we also use it for types other than <see cref="byte"/> where the length can exceed 2Gb once scaled by <see langword="sizeof"/>(T).
 	/// </remarks>
-	public static unsafe bool SequenceEqual(ref byte first, ref byte second, nuint length)
+	public static bool SequenceEqual(ref byte first, ref byte second, nuint length)
 	{
 		bool result;
 
