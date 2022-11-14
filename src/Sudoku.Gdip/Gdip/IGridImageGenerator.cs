@@ -155,8 +155,7 @@ public interface IGridImageGenerator
 	/// <param name="preferences">The user-defined preferences.</param>
 	/// <returns>The target result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IGridImageGenerator Create(IPointCalculator calculator, IPreference preferences)
-		=> Create(calculator, preferences, Grid.Empty);
+	public static IGridImageGenerator Create(IPointCalculator calculator, IPreference preferences) => Create(calculator, preferences, Grid.Empty);
 
 	/// <summary>
 	/// Creates an <see cref="IGridImageGenerator"/> instance via the specified values.
@@ -470,7 +469,8 @@ file sealed class GridImageGenerator : IGridImageGenerator
 					(false, true) => elimBrushLighter,
 					_ => elimBrush
 				},
-				Calculator.GetMouseRectangle(c, d));
+				Calculator.GetMouseRectangle(c, d)
+			);
 		}
 	}
 
