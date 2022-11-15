@@ -42,7 +42,7 @@ internal interface IDistinctableStep<in T> : IStep where T : Step
 	/// Distinct the list, that is, remove all duplicate elements in this list, that uses the method
 	/// <see cref="Equals(T, T)"/> defined in this interface.
 	/// </summary>
-	/// <typeparam name="T">The type of the steps.</typeparam>
+	/// <typeparam name="TDistinctable">The type of the steps.</typeparam>
 	/// <param name="list">The list of steps to be processed.</param>
 	/// <returns>The list of steps.</returns>
 	/// <remarks>
@@ -50,13 +50,13 @@ internal interface IDistinctableStep<in T> : IStep where T : Step
 	/// is in order, the final list after invoking this method will be also in order.
 	/// </remarks>
 	/// <seealso cref="Equals(T, T)"/>
-	static IEnumerable<T> Distinct<T>(IList<T> list) where T : Step, IDistinctableStep<T>
+	static IEnumerable<TDistinctable> Distinct<TDistinctable>(IList<TDistinctable> list) where TDistinctable : Step, IDistinctableStep<TDistinctable>
 		=> list switch
 		{
-			[] => Array.Empty<T>(),
+			[] => Array.Empty<TDistinctable>(),
 			[var firstElement] => new[] { firstElement },
-			[var a, var b] => T.Equals(a, b) ? new[] { a } : new[] { a, b },
-			_ => new HashSet<T>(list, DefaultComparer<T>.Instance)
+			[var a, var b] => TDistinctable.Equals(a, b) ? new[] { a } : new[] { a, b },
+			_ => new HashSet<TDistinctable>(list, DefaultComparer<TDistinctable>.Instance)
 		};
 }
 

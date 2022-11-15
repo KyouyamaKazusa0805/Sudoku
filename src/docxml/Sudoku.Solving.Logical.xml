@@ -129,9 +129,9 @@
         </member>
         <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.IStepSearcher[])">
             <summary>
-            Try to fetch a valid <typeparamref name="TStepSearcher"/> instance via the specified pool.
+            Try to fetch a valid <typeparamref name="T"/> instance via the specified pool.
             </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
+            <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
             <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
             <returns>
             The found step searcher instance. If the type is marked <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>,
@@ -141,9 +141,9 @@
         </member>
         <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.IStepSearcher[],System.Boolean)">
             <summary>
-            Try to fetch a valid <typeparamref name="TStepSearcher"/> instances via the specified pool.
+            Try to fetch a valid <typeparamref name="T"/> instances via the specified pool.
             </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher you want to fetch.</typeparam>
+            <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
             <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
             <param name="getAll">
             Indicates whether you want to fetch all possible instances at the same time.
@@ -1171,7 +1171,7 @@
             Defines an attribute that can be applied to the solving assembly,
             to tell the source generator that the searcher option instance will be generated in the specified type.
             </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
+            <typeparam name="T">The type of the step searcher.</typeparam>
         </member>
         <member name="M:Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute`1.#ctor(Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel)">
             <summary>
@@ -2158,7 +2158,7 @@
             <summary>
             Represents for a data structure that describes for a technique structure.
             </summary>
-            <typeparam name="TTechniqueDataInfo">The type of the implemented data structure.</typeparam>
+            <typeparam name="T">The type of the implemented data structure.</typeparam>
         </member>
         <member name="P:Sudoku.Solving.Logical.PatternData.ITechniqueDataInfo`1.Map">
             <summary>
@@ -2919,7 +2919,7 @@
             <summary>
             Defines a pattern that is a technique.
             </summary>
-            <typeparam name="TTechniquePattern">The type of the technique pattern.</typeparam>
+            <typeparam name="T">The type of the technique pattern.</typeparam>
         </member>
         <member name="P:Sudoku.Solving.Logical.Patterns.ITechniquePattern`1.Map">
             <summary>
@@ -2930,14 +2930,14 @@
             <summary>
             Describes a technique pattern that can be gather-able.
             </summary>
-            <typeparam name="TTechniquePattern">The type of the technique pattern.</typeparam>
+            <typeparam name="T">The type of the technique pattern.</typeparam>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.ITechniquePatternGatherable`1.Gather(Sudoku.Concepts.Grid@)">
             <summary>
-            Gathers all possible <typeparamref name="TTechniquePattern"/>s in the specified grid.
+            Gathers all possible <typeparamref name="T"/>s in the specified grid.
             </summary>
             <param name="grid">The grid.</param>
-            <returns>All possible found <typeparamref name="TTechniquePattern"/>.</returns>
+            <returns>All possible found <typeparamref name="T"/>.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.Patterns.Node">
             <summary>
@@ -3369,7 +3369,7 @@
             Indicates whether the corresponding technique of the current step is an Almost Locked Sets
             (ALS in abbreviation).
             </summary>
-            <typeparam name="TStep">The type of the step.</typeparam>
+            <typeparam name="T">The type of the step.</typeparam>
             <param name="this">The <see cref="T:Sudoku.Solving.Logical.IStep"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -3416,7 +3416,7 @@
             -->
             </list>
             </summary>
-            <typeparam name="TStep">The type of the step.</typeparam>
+            <typeparam name="T">The type of the step.</typeparam>
             <param name="this">The <see cref="T:Sudoku.Solving.Logical.IStep"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -3452,7 +3452,7 @@
             -->
             </list>
             </summary>
-            <typeparam name="TStep">The type of the step.</typeparam>
+            <typeparam name="T">The type of the step.</typeparam>
             <param name="this">The <see cref="T:Sudoku.Solving.Logical.IStep"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -10298,7 +10298,7 @@
             <summary>
             Defines a step that can be distinctable.
             </summary>
-            <typeparam name="TStep">The type of the element to compare.</typeparam>
+            <typeparam name="T">The type of the element to compare.</typeparam>
             <remarks>
             A <b>distinctable step</b> is a step that is with the unique information,
             in order that multiple steps of the same type can be recognized by the relative methods,
@@ -10307,7 +10307,7 @@
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)">
             <summary>
-            To compare 2 instances of type <typeparamref name="TStep"/>,
+            To compare 2 instances of type <typeparamref name="T"/>,
             to determine whether 2 instances holds the same value.
             </summary>
             <param name="left">Indicates the first instance to compare.</param>
@@ -10336,7 +10336,7 @@
             Distinct the list, that is, remove all duplicate elements in this list, that uses the method
             <see cref="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/> defined in this interface.
             </summary>
-            <typeparam name="TDistinctableStep">The type of the steps.</typeparam>
+            <typeparam name="TDistinctable">The type of the steps.</typeparam>
             <param name="list">The list of steps to be processed.</param>
             <returns>The list of steps.</returns>
             <remarks>
@@ -10349,7 +10349,7 @@
             <summary>
             The internal comparer instance.
             </summary>
-            <typeparam name="TStep">The type of the step.</typeparam>
+            <typeparam name="T">The type of the step.</typeparam>
         </member>
         <member name="F:Sudoku.Solving.Logical.Steps.Specialized.DefaultComparer`1.Instance">
             <summary>
