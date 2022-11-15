@@ -14,24 +14,24 @@ public static unsafe class SimdOperations
 	/// </summary>
 	/// <param name="array">The array specified as a pointer that points to an array or other collection, of <see cref="long"/> integers.</param>
 	/// <param name="length">The length of the argument <paramref name="array"/>.</param>
-	/// <param name="out">The set bit indices specified as a buffer.</param>
-	/// <returns>Returns the number of set bit indices. This return value is used with argument <paramref name="out"/>.</returns>
+	/// <param name="outBuffer">The set bit indices specified as a buffer.</param>
+	/// <returns>Returns the number of set bit indices. This return value is used with argument <paramref name="outBuffer"/>.</returns>
 	/// <seealso href="https://lemire.me/blog/2018/03/08/iterating-over-set-bits-quickly-simd-edition/">
 	/// Iterating over set bits quickly (SIMD edition)
 	/// </seealso>
-	public static long IterateBits(long* array, int length, int* @out)
+	public static int IterateBits(long* array, int length, int* outBuffer)
 	{
-		var baseVec = Vector256.Create(-1); // _mm256_set1_epi32
-		var incVec = Vector256.Create(64); // _mm256_set1_epi32
+		var baseVector = Vector256.Create(-1); // _mm256_set1_epi32
+		var steppingVector = Vector256.Create(64); // _mm256_set1_epi32
 		var add8 = Vector256.Create(8); // _mm256_set1_epi32
-		var initOut = @out;
+		var initOut = outBuffer;
 
 		for (var i = 0; i < length; i++)
 		{
 			var w = array[i];
 			if (w == 0)
 			{
-				baseVec += incVec; // _mm256_add_epi32
+				baseVector += steppingVector; // _mm256_add_epi32
 			}
 			else
 			{
@@ -41,27 +41,38 @@ public static unsafe class SimdOperations
 					var byteB = (byte)(w >> 8);
 					w >>= 16;
 
+					if (byteA == 0 && byteB == 0)
+					{
+						continue;
+					}
+
 					fixed (int* pByteA = BitPosTable[byteA], pByteB = BitPosTable[byteB])
 					{
-						var vecA = Vector256.Load(pByteA); // _mm256_load_si256
-						var vecB = Vector256.Load(pByteB); // _mm256_load_si256
+						var vectorA = Vector256.Load(pByteA); // _mm256_load_si256
+						var vectorB = Vector256.Load(pByteB); // _mm256_load_si256
+						vectorA = baseVector + vectorA; // _mm256_add_epi32
+						baseVector += add8; // _mm256_add_epi32
+						vectorB = baseVector + vectorB; // _mm256_add_epi32
+						baseVector += add8; // _mm256_add_epi32
+
 						var advanceA = LengthTable[byteA];
 						var advanceB = LengthTable[byteB];
-						vecA = baseVec + vecA; // _mm256_add_epi32
-						baseVec += add8; // _mm256_add_epi32
-						vecB = baseVec + vecB; // _mm256_add_epi32
-						baseVec += add8; // _mm256_add_epi32
+						vectorA.Store(outBuffer); // _mm256_storeu_si256
+						outBuffer += advanceA; // _mm256_add_epi32
 
-						Vector256.Store(vecA, @out); // _mm256_storeu_si256
-						@out += advanceA; // _mm256_add_epi32
-						Vector256.Store(vecB, @out); // _mm256_storeu_si256
-						@out += advanceB; // _mm256_add_epi32
+						if (byteB == 0)
+						{
+							continue;
+						}
+
+						vectorB.Store(outBuffer); // _mm256_storeu_si256
+						outBuffer += advanceB; // _mm256_add_epi32
 					}
 				}
 			}
 		}
 
-		return @out - initOut;
+		return (int)(outBuffer - initOut);
 	}
 }
 

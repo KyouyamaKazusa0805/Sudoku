@@ -133,8 +133,8 @@
             </summary>
             <param name="array">The array specified as a pointer that points to an array or other collection, of <see cref="T:System.Int64"/> integers.</param>
             <param name="length">The length of the argument <paramref name="array"/>.</param>
-            <param name="out">The set bit indices specified as a buffer.</param>
-            <returns>Returns the number of set bit indices. This return value is used with argument <paramref name="out"/>.</returns>
+            <param name="outBuffer">The set bit indices specified as a buffer.</param>
+            <returns>Returns the number of set bit indices. This return value is used with argument <paramref name="outBuffer"/>.</returns>
             <seealso href="https://lemire.me/blog/2018/03/08/iterating-over-set-bits-quickly-simd-edition/">
             Iterating over set bits quickly (SIMD edition)
             </seealso>

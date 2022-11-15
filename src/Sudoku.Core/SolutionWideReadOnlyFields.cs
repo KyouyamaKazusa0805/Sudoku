@@ -21,6 +21,21 @@ public static class SolutionWideReadOnlyFields
 	public const int InvalidValidOfTrailingZeroCountMethodFallback = 32;
 
 	/// <summary>
+	/// Indicates the invalid fallback value
+	/// of methods <see cref="TrailingZeroCount(long)"/> and <see cref="TrailingZeroCount(ulong)"/>,
+	/// which means that if the method returns an invalid value, that value must be equal to this.
+	/// In other words, you can use this field to check whether the method invocation executes correctly.
+	/// </summary>
+	/// <remarks>
+	/// For more details you want to learn about, please visit
+	/// <see href="https://github.com/dotnet/runtime/blob/fb5f07f9c580bdcd5d0726d1391c2a52a01030f8/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L610">this link</see>
+	/// to get the inner code.
+	/// </remarks>
+	/// <seealso cref="TrailingZeroCount(long)"/>
+	/// <seealso cref="TrailingZeroCount(ulong)"/>
+	public const int InvalidValidOfTrailingZeroCountMethodFallbackLong = 64;
+
+	/// <summary>
 	/// Indicates the mask that means all rows.
 	/// </summary>
 	public const int AllRowsMask = 0b000_000_000__111_111_111__000_000_000;

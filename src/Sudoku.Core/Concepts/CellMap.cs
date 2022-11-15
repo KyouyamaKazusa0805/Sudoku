@@ -22,7 +22,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [IsLargeStruct(SuggestedMemberName = nameof(Empty))]
-public partial struct CellMap :
+public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
 	IAdditiveIdentity<CellMap, CellMap>,
@@ -208,8 +208,7 @@ public partial struct CellMap :
 	/// Indicates the mask of row that all cells in this collection spanned.
 	/// </summary>
 	/// <remarks>
-	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned rows are 0 and 3, so the return
-	/// mask is <c>0b000001001</c> (i.e. 9).
+	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned rows are 0 and 3, so the return mask is <c>0b000001001</c> (i.e. 9).
 	/// </remarks>
 	public readonly short RowMask
 	{
@@ -235,8 +234,7 @@ public partial struct CellMap :
 	/// Indicates the mask of column that all cells in this collection spanned.
 	/// </summary>
 	/// <remarks>
-	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned columns are 0 and 1, so the return
-	/// mask is <c>0b000000011</c> (i.e. 3).
+	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned columns are 0 and 1, so the return mask is <c>0b000000011</c> (i.e. 3).
 	/// </remarks>
 	public readonly short ColumnMask
 	{
@@ -493,7 +491,7 @@ public partial struct CellMap :
 	{
 		get
 		{
-			if (!this)
+			if (!this || index >= _count)
 			{
 				return -1;
 			}
@@ -537,7 +535,7 @@ public partial struct CellMap :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	public readonly unsafe void CopyTo(int* arr, int length)
+	public readonly void CopyTo(int* arr, int length)
 	{
 		ArgumentNullException.ThrowIfNull(arr);
 
@@ -579,7 +577,7 @@ public partial struct CellMap :
 	/// The target <see cref="Span{T}"/> instance.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe void CopyTo(scoped Span<int> span)
+	public readonly void CopyTo(scoped Span<int> span)
 	{
 		fixed (int* arr = span)
 		{
@@ -909,7 +907,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly unsafe void ICollection<int>.CopyTo(int[] array, int arrayIndex)
+	readonly void ICollection<int>.CopyTo(int[] array, int arrayIndex)
 	{
 		fixed (int* pArray = array)
 		{
@@ -1350,7 +1348,7 @@ public partial struct CellMap :
 	/// will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe CellMap[] operator &(scoped in CellMap cells, int subsetSize)
+	public static CellMap[] operator &(scoped in CellMap cells, int subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > cells._count)
 		{

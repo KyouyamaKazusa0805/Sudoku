@@ -922,9 +922,9 @@
         </member>
         <member name="M:Sudoku.Presentation.ValueView.EnumerateNodes``1">
             <summary>
-            Enumerates all <typeparamref name="TViewNode"/> nodes stored in this collection.
+            Enumerates all <typeparamref name="T"/> nodes stored in this collection.
             </summary>
-            <typeparam name="TViewNode">The type of the view node to be fetched and iterated.</typeparam>
+            <typeparam name="T">The type of the view node to be fetched and iterated.</typeparam>
             <returns>An <see cref="T:Sudoku.Presentation.ValueView.OfTypeEnumerator`1"/> instance of element type <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>.</returns>
         </member>
         <member name="M:Sudoku.Presentation.ValueView.EnumerateSegments">
@@ -1025,9 +1025,9 @@
         <member name="T:Sudoku.Presentation.ValueView.OfTypeEnumerator`1">
             <summary>
             Defines an enumerator that only iterates for a fixed type of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s,
-            specified as type argument <typeparamref name="TViewNode"/>.
+            specified as type argument <typeparamref name="T"/>.
             </summary>
-            <typeparam name="TViewNode">The type of the node to be iterated.</typeparam>
+            <typeparam name="T">The type of the node to be iterated.</typeparam>
         </member>
         <member name="M:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.#ctor(Sudoku.Presentation.ValueView.Enumerator)">
             <summary>
