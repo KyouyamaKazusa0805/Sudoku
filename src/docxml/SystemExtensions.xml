@@ -120,6 +120,41 @@
             <param name="index">The index of the sequence. The index is 0-based.</param>
             <returns>The result value at the specified index.</returns>
         </member>
+        <member name="T:System.Algorithm.SimdOperations">
+            <summary>
+            Encapsulates a list of methods to handle with bits, using SIMD.
+            </summary>
+            <seealso href="https://learn.microsoft.com/en-us/dotnet/standard/simd">Microsoft Learn - SIMD</seealso>
+            <seealso href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data">Wikipedia - SIMD</seealso>
+        </member>
+        <member name="M:System.Algorithm.SimdOperations.IterateBits(System.Int64*,System.Int32,System.Int32*)">
+            <summary>
+            Iterates all possible set bits in the target array.
+            </summary>
+            <param name="array">The array specified as a pointer that points to an array or other collection, of <see cref="T:System.Int64"/> integers.</param>
+            <param name="length">The length of the argument <paramref name="array"/>.</param>
+            <param name="out">The set bit indices specified as a buffer.</param>
+            <returns>Returns the number of set bit indices. This return value is used with argument <paramref name="out"/>.</returns>
+            <seealso href="https://lemire.me/blog/2018/03/08/iterating-over-set-bits-quickly-simd-edition/">
+            Iterating over set bits quickly (SIMD edition)
+            </seealso>
+        </member>
+        <member name="T:System.Algorithm.Table">
+            <summary>
+            Encapsulates a table.
+            </summary>
+        </member>
+        <member name="F:System.Algorithm.Table.LengthTable">
+            <summary>
+            The length table. Indicates how many bits are set in the specified integer.
+            </summary>
+        </member>
+        <member name="F:System.Algorithm.Table.BitPosTable">
+            <summary>
+            The bit position table. In other words, <c>BitPosTable[n]</c> means the n-th integer's (i.e. <c>n</c>'s) set bit positions
+            represented as indices.
+            </summary>
+        </member>
         <member name="T:System.Algorithm.Sorting">
             <summary>
             Provides all algorithm processing methods.
