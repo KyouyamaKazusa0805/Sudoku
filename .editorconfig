@@ -241,9 +241,9 @@ dotnet_naming_rule.async_methods_should_be_end_with__async_.severity = warning
 dotnet_naming_rule.async_methods_should_be_end_with__async_.symbols = async_methods
 dotnet_naming_rule.async_methods_should_be_end_with__async_.style = end_with__async_
 
-dotnet_naming_rule.delegates_should_be_end_with__eventhandler_.severity = suggestion
+dotnet_naming_rule.delegates_should_be_end_with__eventhandler_.severity = warning
 dotnet_naming_rule.delegates_should_be_end_with__eventhandler_.symbols = delegates
-dotnet_naming_rule.delegates_should_be_end_with__eventhandler_.style = end_with__eventhandler_
+dotnet_naming_rule.delegates_should_be_end_with__eventhandler_.style = pascalcase
 
 # Symbol specifications
 

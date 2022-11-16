@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE1006
-
-namespace System.Text;
+﻿namespace System.Text;
 
 /// <summary>
 /// Defines an appender method that converts a <typeparamref name="T"/> instance into a <see cref="string"/> result.
