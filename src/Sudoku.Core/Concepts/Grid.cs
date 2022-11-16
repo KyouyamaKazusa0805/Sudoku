@@ -11,7 +11,7 @@ using static Helper;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [JsonConverter(typeof(Converter))]
 [IsLargeStruct(SuggestedMemberName = nameof(Empty))]
-public unsafe struct Grid :
+public unsafe partial struct Grid :
 	IEnumerable<int>,
 	IEqualityOperators<Grid, Grid, bool>,
 	IFixable<Grid, short>,
@@ -652,9 +652,8 @@ public unsafe struct Grid :
 	}
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Grid comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override readonly partial bool Equals(object? obj);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance.

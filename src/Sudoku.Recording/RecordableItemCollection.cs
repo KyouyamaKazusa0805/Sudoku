@@ -5,7 +5,7 @@
 /// </summary>
 /// <seealso cref="RecordableItem"/>
 [IsLargeStruct]
-public readonly struct RecordableItemCollection :
+public readonly partial struct RecordableItemCollection :
 	IReadOnlyCollection<RecordableItem>,
 	IReadOnlyList<RecordableItem>,
 	IEquatable<RecordableItemCollection>,
@@ -84,14 +84,13 @@ public readonly struct RecordableItemCollection :
 	}
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is RecordableItemCollection comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(scoped in RecordableItemCollection other) =>
-		_recordables == other._recordables && Grid == other.Grid && StartTimestamp == other.StartTimestamp;
+	public bool Equals(scoped in RecordableItemCollection other)
+		=> _recordables == other._recordables && Grid == other.Grid && StartTimestamp == other.StartTimestamp;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -111,19 +110,16 @@ public readonly struct RecordableItemCollection :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<RecordableItem> IEnumerable<RecordableItem>.GetEnumerator()
-		=> ((IEnumerable<RecordableItem>)_recordables).GetEnumerator();
+	IEnumerator<RecordableItem> IEnumerable<RecordableItem>.GetEnumerator() => ((IEnumerable<RecordableItem>)_recordables).GetEnumerator();
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(scoped in RecordableItemCollection left, scoped in RecordableItemCollection right)
-		=> left.Equals(right);
+	public static bool operator ==(scoped in RecordableItemCollection left, scoped in RecordableItemCollection right) => left.Equals(right);
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(scoped in RecordableItemCollection left, scoped in RecordableItemCollection right)
-		=> !(left == right);
+	public static bool operator !=(scoped in RecordableItemCollection left, scoped in RecordableItemCollection right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -109,9 +109,8 @@ public readonly partial struct HouseCellChunk :
 	[GeneratedDeconstruction]
 	public partial void Deconstruct(out CellMap cells, out int[] digits);
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is HouseCellChunk comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

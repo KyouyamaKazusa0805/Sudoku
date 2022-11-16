@@ -60,9 +60,8 @@ public readonly partial struct CellRange :
 	[GeneratedDeconstruction]
 	public partial void Deconstruct(out int minValue, out int maxValue);
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is CellRange comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

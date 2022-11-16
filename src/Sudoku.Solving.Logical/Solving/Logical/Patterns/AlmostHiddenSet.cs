@@ -7,7 +7,7 @@
 /// An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
 /// only <c>n</c> digits can be filled into <c>n + 1</c> cells in a house.
 /// </remarks>
-public sealed class AlmostHiddenSet :
+public sealed partial class AlmostHiddenSet :
 	IEquatable<AlmostHiddenSet>,
 	IEqualityOperators<AlmostHiddenSet, AlmostHiddenSet, bool>,
 	ITechniquePattern<AlmostHiddenSet>,
@@ -106,9 +106,8 @@ public sealed class AlmostHiddenSet :
 	public IReadOnlyDictionary<int, CellMap> DigitsMap { get; }
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals(object? obj) => Equals(obj as AlmostHiddenSet);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

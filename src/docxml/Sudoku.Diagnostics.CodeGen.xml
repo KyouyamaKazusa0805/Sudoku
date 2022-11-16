@@ -4,6 +4,17 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DefaultOverriddenMembersGenerator">
+            <summary>
+            Defines a source generator that generates the source code for default-overridden members
+            from type <see cref="T:System.Object"/> or <see cref="T:System.ValueType"/>.
+            </summary>
+            <seealso cref="T:System.Object"/>
+            <seealso cref="T:System.ValueType"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DefaultOverriddenMembersGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator">
             <summary>
             Defines a source generator that generates the method and the corresponding values, forming a <see langword="switch"/> expression.

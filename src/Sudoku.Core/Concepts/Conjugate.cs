@@ -99,9 +99,8 @@ public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOpera
 	[GeneratedDeconstruction]
 	public partial void Deconstruct([GeneratedDeconstructionArgument(nameof(FromCandidate))] out int fromCand, [GeneratedDeconstructionArgument(nameof(ToCandidate))] out int toCand);
 
-	/// <inheritdoc cref="object.Equals(object?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Conjugate comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

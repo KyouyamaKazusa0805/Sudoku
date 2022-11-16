@@ -4,7 +4,7 @@
 /// Defines an identifier that can differ colors.
 /// </summary>
 [JsonConverter(typeof(IdentifierJsonConverter))]
-public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier, bool>
+public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier, bool>
 {
 #pragma warning disable CS0618
 	/// <summary>
@@ -99,9 +99,8 @@ public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<I
 		};
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Identifier comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	/// <exception cref="NotSupportedException">Throws when the specified mode is not supported.</exception>

@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a character as a UTF-8 code unit.
 /// </summary>
-public readonly struct Utf8Char :
+public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
 	IComparisonOperators<Utf8Char, Utf8Char, bool>,
@@ -82,9 +82,8 @@ public readonly struct Utf8Char :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool IsLetterOrDigit() => IsLetter() || IsDigit();
 
-	/// <inheritdoc cref="object.Equals(object?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Utf8Char comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -4,7 +4,7 @@
 /// Defines a recordable item. This type is used for recording a user's behavior on finishing a sudoku puzzle.
 /// </summary>
 [IsLargeStruct]
-public readonly struct RecordableItem :
+public readonly partial struct RecordableItem :
 	IEquatable<RecordableItem>,
 	IEqualityOperators<RecordableItem, RecordableItem, bool>
 {
@@ -103,9 +103,8 @@ public readonly struct RecordableItem :
 	public long Timestamp { get; }
 
 
-	/// <inheritdoc cref="object.Equals(object?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is RecordableItem comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

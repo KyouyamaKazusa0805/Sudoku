@@ -234,9 +234,8 @@ public unsafe ref partial struct StringHandler
 	public readonly void CopyTo(scoped ref StringHandler handler)
 		=> CopyBlock(ref AsByteRef(ref handler._chars[0]), ref AsByteRef(ref _chars[0]), (uint)(sizeof(char) * Length));
 
-	/// <inheritdoc cref="object.Equals(object?)"/>
-	[Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false, DiagnosticId = "SCA0104", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0104")]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) => false;
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
+	public override readonly partial bool Equals(object? obj);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="StringHandler"/> instance hold a same character set
@@ -656,7 +655,7 @@ public unsafe ref partial struct StringHandler
 
 		Length -= separator.Length;
 	}
-	
+
 	/// <summary>
 	/// Append a serial of strings converted from a serial of elements.
 	/// </summary>

@@ -4,7 +4,7 @@
 /// Defines a chain node.
 /// </summary>
 [IsLargeStruct]
-public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node, bool>, ITechniquePattern<Node>
+public readonly partial struct Node : IEquatable<Node>, IEqualityOperators<Node, Node, bool>, ITechniquePattern<Node>
 {
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the basic data.
@@ -31,8 +31,7 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node, b
 	/// <param name="cells">The cells used.</param>
 	/// <param name="extraCells">The extra cells.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(byte digit, scoped in CellMap cells, scoped in CellMap extraCells) : this(digit, cells)
-		=> FullCells = cells | extraCells;
+	public Node(byte digit, scoped in CellMap cells, scoped in CellMap extraCells) : this(digit, cells) => FullCells = cells | extraCells;
 
 
 	/// <summary>
@@ -72,9 +71,8 @@ public readonly struct Node : IEquatable<Node>, IEqualityOperators<Node, Node, b
 	CellMap ITechniquePattern<Node>.Map => FullCells;
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Node comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

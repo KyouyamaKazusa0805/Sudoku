@@ -159,7 +159,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Recording.RecordableItemCollection.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Recording.RecordableItemCollection.Equals(Sudoku.Recording.RecordableItemCollection@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>

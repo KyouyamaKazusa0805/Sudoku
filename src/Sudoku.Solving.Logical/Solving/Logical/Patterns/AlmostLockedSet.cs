@@ -121,9 +121,8 @@ public sealed partial class AlmostLockedSet :
 		return result is not [];
 	}
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as AlmostLockedSet);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="AlmostLockedSet"/> instance holds the same

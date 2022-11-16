@@ -220,7 +220,7 @@
             <param name="action">The visitor that handles for each element in this collection.</param>
         </member>
         <member name="M:Sudoku.Concepts.Candidates.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Concepts.Candidates.Equals(Sudoku.Concepts.Candidates@)">
             <inheritdoc/>
@@ -859,7 +859,7 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Equals(Sudoku.Concepts.CellMap@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
@@ -1773,7 +1773,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.Equals(Sudoku.Concepts.Crosshatch)">
             <inheritdoc/>
@@ -2195,7 +2195,7 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)">
             <summary>
@@ -8172,7 +8172,7 @@
 			</target>
         </member>
         <member name="M:Sudoku.Text.Parsing.CellRange.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Text.Parsing.CellRange.Equals(Sudoku.Text.Parsing.CellRange)">
             <inheritdoc/>

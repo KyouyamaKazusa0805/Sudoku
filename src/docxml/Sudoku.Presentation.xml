@@ -162,7 +162,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.Equals(Sudoku.Presentation.Identifier)">
             <inheritdoc/>
@@ -343,7 +343,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.Equals(Sudoku.Presentation.LockedTarget@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>

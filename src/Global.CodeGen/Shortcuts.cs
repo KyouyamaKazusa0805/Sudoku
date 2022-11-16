@@ -21,4 +21,7 @@ internal static class Shortcuts
 	public const string DiagnosticDescriptorList = "ddl";
 	public const string GeneratedDeconstruction = "gd";
 	public const string GeneratedExtensionDeconstruction = "ged";
+	public const string GeneratedOverriddenMemberEquals = "gom.e";
+	public const string GeneratedOverriddenMemberGetHashCode = "gom.ghc";
+	public const string GeneratedOverriddenMemberToString = "gom.ts";
 }

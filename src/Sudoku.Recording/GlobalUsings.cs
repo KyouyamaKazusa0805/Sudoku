@@ -4,6 +4,7 @@ global using System.Collections.Generic;
 global using System.Collections.Immutable;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
+global using System.Diagnostics.CodeGen;
 global using System.Numerics;
 global using System.Runtime.CompilerServices;
 global using Sudoku.Concepts;

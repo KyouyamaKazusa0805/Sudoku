@@ -2249,7 +2249,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.AlmostHiddenSet.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.AlmostHiddenSet.Equals(Sudoku.Solving.Logical.Patterns.AlmostHiddenSet)">
             <inheritdoc/>
@@ -2418,7 +2418,7 @@
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.AlmostLockedSet.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.AlmostLockedSet.Equals(Sudoku.Solving.Logical.Patterns.AlmostLockedSet)">
             <summary>
@@ -2995,7 +2995,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.Node.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.Node.Equals(Sudoku.Solving.Logical.Patterns.Node@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>

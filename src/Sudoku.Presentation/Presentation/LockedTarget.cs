@@ -5,7 +5,7 @@
 /// about the locked candidate node.
 /// </summary>
 [IsLargeStruct]
-public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
+public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
 	/// <summary>
 	/// Initializes a <see cref="LockedTarget"/> instance via the specified cell and the specified digit used.
@@ -43,9 +43,8 @@ public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperato
 	public CellMap Cells { get; init; }
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is LockedTarget comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

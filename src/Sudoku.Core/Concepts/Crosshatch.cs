@@ -5,7 +5,7 @@
 /// (or some cells), and eliminates candidates in some cells. The concept is commonly used
 /// by logical technique "Hidden Single".
 /// </summary>
-public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<Crosshatch, Crosshatch, bool>
+public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<Crosshatch, Crosshatch, bool>
 {
 	/// <summary>
 	/// Indicates the mask that is used for getting and checking the cells in the mask <see cref="_value"/>.
@@ -138,9 +138,8 @@ public readonly struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<C
 	}
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Crosshatch comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

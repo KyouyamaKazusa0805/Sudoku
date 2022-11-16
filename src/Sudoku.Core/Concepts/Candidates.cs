@@ -8,7 +8,7 @@
 /// In the future, I'll re-consider about the design of this type.
 /// </i></remarks>
 [IsLargeStruct(SuggestedMemberName = nameof(Empty))]
-public unsafe struct Candidates :
+public unsafe partial struct Candidates :
 	IEnumerable<int>,
 	IEquatable<Candidates>,
 	ISimpleFormattable,
@@ -358,9 +358,8 @@ public unsafe struct Candidates :
 		}
 	}
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Candidates comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override readonly partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

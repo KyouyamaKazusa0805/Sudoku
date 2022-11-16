@@ -263,7 +263,7 @@
 			</target>
         </member>
         <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Equals(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
             <inheritdoc/>

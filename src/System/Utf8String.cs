@@ -7,7 +7,7 @@ namespace System;
 /// <summary>
 /// Represents text as a sequence of UTF-8 code units.
 /// </summary>
-public readonly unsafe struct Utf8String :
+public readonly unsafe partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
 	IComparisonOperators<Utf8String, Utf8String, bool>,
@@ -118,9 +118,8 @@ public readonly unsafe struct Utf8String :
 	Utf8Char IReadOnlyList<Utf8Char>.this[int index] => _value[index];
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Utf8String comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	public bool Equals(Utf8String other)
