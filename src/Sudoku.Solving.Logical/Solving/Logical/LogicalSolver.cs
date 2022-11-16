@@ -1,7 +1,5 @@
 ﻿namespace Sudoku.Solving.Logical;
 
-using static SearcherFailedReason;
-
 /// <summary>
 /// Provides a solver that solves a sudoku puzzle using the human-friendly logics.
 /// </summary>
@@ -56,16 +54,20 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 				result = result with { IsSolved = false };
 				return ex switch
 				{
-					NotImplementedException or NotSupportedException => result with { FailedReason = NotImplemented },
-					WrongStepException { WrongStep: var ws } => result with { FailedReason = WrongStep, WrongStep = ws, UnhandledException = ex },
-					OperationCanceledException => result with { FailedReason = UserCancelled },
-					_ => result with { FailedReason = ExceptionThrown, UnhandledException = ex }
+					NotImplementedException or NotSupportedException
+						=> result with { FailedReason = SearcherFailedReason.NotImplemented },
+					WrongStepException { WrongStep: var ws }
+						=> result with { FailedReason = SearcherFailedReason.WrongStep, WrongStep = ws, UnhandledException = ex },
+					OperationCanceledException
+						=> result with { FailedReason = SearcherFailedReason.UserCancelled },
+					_
+						=> result with { FailedReason = SearcherFailedReason.ExceptionThrown, UnhandledException = ex }
 				};
 			}
 		}
 		else
 		{
-			return result with { IsSolved = false, FailedReason = PuzzleIsInvalid };
+			return result with { IsSolved = false, FailedReason = SearcherFailedReason.PuzzleIsInvalid };
 		}
 	}
 
@@ -87,7 +89,7 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 	/// <returns>The solver result.</returns>
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
 	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
-	private LogicalSolverResult InternalSolve(
+	private unsafe LogicalSolverResult InternalSolve(
 		scoped in Grid puzzle,
 		scoped in Grid solution,
 		bool isSukaku,
@@ -204,7 +206,7 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 		return resultBase with
 		{
 			IsSolved = false,
-			FailedReason = PuzzleIsTooHard,
+			FailedReason = SearcherFailedReason.PuzzleIsTooHard,
 			ElapsedTime = stopwatch.GetElapsedTime(),
 			Steps = ImmutableArray.CreateRange(recordedSteps),
 			StepGrids = ImmutableArray.CreateRange(stepGrids)
