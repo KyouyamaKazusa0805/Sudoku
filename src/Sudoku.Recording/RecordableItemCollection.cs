@@ -86,8 +86,7 @@ public readonly struct RecordableItemCollection :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj)
-		=> obj is RecordableItemCollection comparer && Equals(comparer);
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is RecordableItemCollection comparer && Equals(comparer);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
