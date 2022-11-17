@@ -51,8 +51,8 @@ public sealed partial class LinkViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() =>
-		$$"""{{nameof(LinkViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(Start)}} = {{Start}}, {{nameof(End)}} = {{End}}, {{nameof(Inference)}} = {{Inference}} }""";
+	public override string ToString()
+		=> $$"""{{nameof(LinkViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(Start)}} = {{Start}}, {{nameof(End)}} = {{End}}, {{nameof(Inference)}} = {{Inference}} }""";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
