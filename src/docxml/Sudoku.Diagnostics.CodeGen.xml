@@ -15,6 +15,26 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DefaultOverriddenMembersGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DefaultOverriddenMembersGenerator.TransformGetHashCodeData(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <summary>
+            Transforms the data from current context into a tuple of values as generated data.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DefaultOverriddenMembersGenerator.TransformEqualsData(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <summary>
+            Transforms the data from current context into a tuple of values as generated data.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DefaultOverriddenMembersGenerator.OutputEquals(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{System.ValueTuple{System.Int32,Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol,System.String}}},System.Type)">
+            <summary>
+            Generates the source code.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DefaultOverriddenMembersGenerator.OutputGetHashCode(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{System.ValueTuple{System.Int32,Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.IEnumerable{System.String}}}},System.Type)">
+            <summary>
+            Generates the source code.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator">
             <summary>
             Defines a source generator that generates the method and the corresponding values, forming a <see langword="switch"/> expression.
