@@ -58,9 +58,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 			// Check whether the method is overridden from object.Equals(object?).
 			var rootMethod = overridenMethod;
 			var currentMethod = method;
-			for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod)
-			{
-			}
+			for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod) ;
 			if (currentMethod!.ContainingType.SpecialType is not (SpecialType.System_Object or SpecialType.System_ValueType))
 			{
 				return null;

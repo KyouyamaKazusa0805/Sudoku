@@ -1,4 +1,4 @@
-﻿#pragma warning disable IDE0011, IDE0032
+﻿#pragma warning disable IDE0032
 
 namespace Sudoku.Solving.Algorithms.Bitwise;
 
