@@ -117,7 +117,7 @@ public sealed partial class AlmostHiddenSet :
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
-		short mask = 0;
+		var mask = (short)0;
 		var i = 0;
 		foreach (var cell in HouseCells[House])
 		{
@@ -171,7 +171,7 @@ public sealed partial class AlmostHiddenSet :
 						continue;
 					}
 
-					short finalDigitsMask = 0;
+					var finalDigitsMask = (short)0;
 					foreach (var digit in digitCombination)
 					{
 						finalDigitsMask |= (short)(1 << digit);
