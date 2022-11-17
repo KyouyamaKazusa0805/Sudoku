@@ -35,7 +35,7 @@ public sealed class SCA0102UnitTest
 				}
 			}
 
-			[IsLargeStruct(SuggestedMemberName = nameof(Empty))]
+			[IsLargeStruct]
 			file struct Grid
 			{
 				public static readonly Grid Empty = default;
@@ -45,7 +45,6 @@ public sealed class SCA0102UnitTest
 			{
 				file sealed class IsLargeStructAttribute : Attribute
 				{
-					public string? SuggestedMemberName { get; set; }
 				}
 			}
 			""",
@@ -79,7 +78,6 @@ public sealed class SCA0102UnitTest
 			{
 				file sealed class IsLargeStructAttribute : Attribute
 				{
-					public string? SuggestedMemberName { get; set; }
 				}
 			}
 			"""

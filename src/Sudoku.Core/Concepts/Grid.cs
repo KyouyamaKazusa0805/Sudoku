@@ -8,9 +8,9 @@ using static Helper;
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
-[DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
+[IsLargeStruct]
 [JsonConverter(typeof(Converter))]
-[IsLargeStruct(SuggestedMemberName = nameof(Empty))]
+[DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 public unsafe partial struct Grid :
 	IEnumerable<int>,
 	IEqualityOperators<Grid, Grid, bool>,

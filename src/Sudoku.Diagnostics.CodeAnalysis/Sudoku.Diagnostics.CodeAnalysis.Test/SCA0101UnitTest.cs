@@ -1,6 +1,5 @@
-﻿using VerifyCS = Sudoku.Diagnostics.CodeAnalysis.Test.CSharpCodeFixVerifier<
-	Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer,
-	Sudoku.Diagnostics.CodeAnalysis.CodeFixProviders.SCA0101CodeFixer
+﻿using VerifyCS = Sudoku.Diagnostics.CodeAnalysis.Test.CSharpAnalyzerVerifier<
+	Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer
 >;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Test;
@@ -12,7 +11,7 @@ public sealed class SCA0101UnitTest
 	public async Task TestCase_EmptyCode() => await VerifyCS.VerifyAnalyzerAsync(@"");
 
 	[TestMethod]
-	public async Task TestCase_WithoutArgument()
+	public async Task TestCase_Normal()
 		=> await VerifyCS.VerifyAnalyzerAsync(
 			"""
 			#nullable enable
@@ -37,70 +36,9 @@ public sealed class SCA0101UnitTest
 			{
 				file sealed class IsLargeStructAttribute : Attribute
 				{
-					public string? SuggestedMemberName { get; set; }
 				}
 			}
 			""",
 			VerifyCS.Diagnostic(nameof(SCA0101)).WithLocation(0)
-		);
-
-	[TestMethod]
-	public async Task TestCase_Normal()
-		=> await VerifyCS.VerifyCodeFixAsync(
-			"""
-			#nullable enable
-
-			using System.Diagnostics.CodeAnalysis;
-
-			file sealed class Program
-			{
-				private static void Main()
-				{
-					var field = {|#0:new Grid()|};
-				}
-			}
-
-			[IsLargeStruct(SuggestedMemberName = nameof(Empty))]
-			file struct Grid
-			{
-				public static readonly Grid Empty = default;
-			}
-
-			namespace System.Diagnostics.CodeAnalysis
-			{
-				file sealed class IsLargeStructAttribute : Attribute
-				{
-					public string? SuggestedMemberName { get; set; }
-				}
-			}
-			""",
-			VerifyCS.Diagnostic(nameof(SCA0101)).WithLocation(0),
-			"""
-			#nullable enable
-
-			using System.Diagnostics.CodeAnalysis;
-
-			file sealed class Program
-			{
-				private static void Main()
-				{
-					var field = Grid.Empty;
-				}
-			}
-			
-			[IsLargeStruct(SuggestedMemberName = nameof(Empty))]
-			file struct Grid
-			{
-				public static readonly Grid Empty = default;
-			}
-			
-			namespace System.Diagnostics.CodeAnalysis
-			{
-				file sealed class IsLargeStructAttribute : Attribute
-				{
-					public string? SuggestedMemberName { get; set; }
-				}
-			}
-			"""
 		);
 }

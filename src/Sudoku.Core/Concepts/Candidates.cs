@@ -7,7 +7,7 @@
 /// This type is being deprecated. You can also use this type but we don't recommend you use it.
 /// In the future, I'll re-consider about the design of this type.
 /// </i></remarks>
-[IsLargeStruct(SuggestedMemberName = nameof(Empty))]
+[IsLargeStruct]
 public unsafe partial struct Candidates :
 	IEnumerable<int>,
 	IEquatable<Candidates>,

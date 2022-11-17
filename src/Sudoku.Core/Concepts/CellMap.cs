@@ -20,8 +20,8 @@ namespace Sudoku.Concepts;
 /// If you want to learn more information about this type, please visit
 /// <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
 /// </remarks>
+[IsLargeStruct]
 [JsonConverter(typeof(Converter))]
-[IsLargeStruct(SuggestedMemberName = nameof(Empty))]
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,

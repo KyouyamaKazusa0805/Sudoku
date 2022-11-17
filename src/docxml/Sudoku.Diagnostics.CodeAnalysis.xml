@@ -12,16 +12,6 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer.PropertyName_SuggestedMemberName">
-            <summary>
-            The extra property fields. Such fields will be used while reporting diagnostics.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer.PropertyName_TypeName">
-            <summary>
-            The extra property fields. Such fields will be used while reporting diagnostics.
-            </summary>
-        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
@@ -629,17 +619,6 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors">
             <summary>
             Represents with the well-known diagnostic descriptors.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0001">
-            <summary>
-            Indicates the diagnostic result <see href="https://sunnieshine.github.io/Sudoku/code-analysis/sca0001">SCA0001</see>:
-            <list type="bullet">
-            <item><b>Title</b>: Special type missing</item>
-            <item><b>Description</b>: Special type is missing; please check the code analysis project and change the namespace.</item>
-            <item><b>Category</b>: CodeAnalysis</item>
-            <item><b>Severity</b>: <see cref="F:Microsoft.CodeAnalysis.DiagnosticSeverity.Error"/></item>
-            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.WellKnownDiagnosticDescriptors.SCA0101">

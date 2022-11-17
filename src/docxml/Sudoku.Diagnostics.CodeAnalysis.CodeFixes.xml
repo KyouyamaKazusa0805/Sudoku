@@ -4,20 +4,5 @@
         <name>Sudoku.Diagnostics.CodeAnalysis.CodeFixes</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixProviders.SCA0101CodeFixer">
-            <summary>
-            Indicates the code fixer that fixes for <see cref="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer">SCA0101</see> diagnostic result.
-            </summary>
-            <seealso cref="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SCA0101_LargeStructTypeAnalyzer"/>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixProviders.SCA0101CodeFixer.FixableDiagnosticIds">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixProviders.SCA0101CodeFixer.GetFixAllProvider">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixProviders.SCA0101CodeFixer.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
-            <inheritdoc/>
-        </member>
     </members>
 </doc>
