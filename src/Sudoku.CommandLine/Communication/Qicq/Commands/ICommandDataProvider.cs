@@ -128,10 +128,12 @@ internal interface ICommandDataProvider
 			return cells1;
 		}
 
-#pragma warning disable format
 		if (rawCoordinate.Match("""[\u884c\u5217\u5bab]\s*[1-9]""") is { } parts
-			&& parts.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) is [[var houseNotation], [var label]])
-#pragma warning restore format
+			&& parts.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) is
+			[
+				[var houseNotation],
+				[var label]
+			])
 		{
 			return houseNotation switch { '\u884c' => 9, '\u5217' => 18, _ => 0 } + (label - '1');
 		}

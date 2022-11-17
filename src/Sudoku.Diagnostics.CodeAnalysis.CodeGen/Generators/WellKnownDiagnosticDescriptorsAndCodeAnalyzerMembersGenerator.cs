@@ -218,21 +218,16 @@ public sealed class WellKnownDiagnosticDescriptorsAndCodeAnalyzerMembersGenerato
 					ConstructorArguments:
 					[
 						{ Value: string operationName },
-						{
-							Value: INamedTypeSymbol
-							{
-								Name: var operationKindTypeName,
-								ContainingNamespace: var operationKindTypeNamespace
-							}
-						},
+						{ Value: INamedTypeSymbol { Name: var operationKindTypeName, ContainingNamespace: var operationKindTypeNamespace } },
 						{ Values: var kindsStr }
 					]
 				})
+#pragma warning restore format
 			{
 				r(spc, identifier, "RegisterOperationActionAttribute");
 				return;
 			}
-#pragma warning restore format
+
 			if (registeredPropertyNamesData is { ConstructorArguments: [{ Values: [] }] })
 			{
 				rr(SCA0003, spc, identifier);

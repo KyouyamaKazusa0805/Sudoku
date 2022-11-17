@@ -157,17 +157,7 @@ public sealed class Help : IExecutable
 
 						break;
 					}
-#pragma warning disable format
-					case (
-						null,
-						{
-							FullName: var fullName,
-							ShortName: var shortName,
-							Description: var description,
-							IsRequired: var isRequired
-						}
-					):
-#pragma warning restore format
+					case (null, { FullName: var fullName, ShortName: var shortName, Description: var description, IsRequired: var isRequired }):
 					{
 						// l2 is not null
 						var config = thisAssembly.GetCustomAttribute<GlobalConfigurationAttribute>() ?? new();

@@ -27,6 +27,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 
 		static EqualsData? transformEqualsData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
 		{
+#pragma warning disable format
 			if (gasc is not
 				{
 					Attributes: [{ ConstructorArguments: [{ Value: int rawMode }] }],
@@ -49,6 +50,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 						]
 					} method
 				})
+#pragma warning restore format
 			{
 				return null;
 			}
