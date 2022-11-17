@@ -31,7 +31,7 @@ public sealed class Bot : IExecutable
 	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
 		// Creates and initializes a bot.
-		using var bot = new MiraiBot { Address = R["HostPort"], QQ = R["BotQQ"]!, VerifyKey = R["VerifyKey"] };
+		using var bot = new MiraiBot { Address = Address, QQ = BotNumber, VerifyKey = VerifyKey };
 
 		try
 		{
