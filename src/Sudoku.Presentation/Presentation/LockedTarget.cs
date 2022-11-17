@@ -50,9 +50,8 @@ public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualit
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(scoped in LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Cells, Digit);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Cells), nameof(Digit))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

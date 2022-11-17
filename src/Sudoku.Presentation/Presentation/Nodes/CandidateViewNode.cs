@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a candidate.
 /// </summary>
-public sealed class CandidateViewNode : ViewNode
+public sealed partial class CandidateViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="CandidateViewNode"/> instance via the identifier and the highlight candidate.
@@ -29,9 +29,8 @@ public sealed class CandidateViewNode : ViewNode
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is CandidateViewNode comparer && Identifier == comparer.Identifier && Candidate == comparer.Candidate;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, Identifier, Candidate);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Candidate))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

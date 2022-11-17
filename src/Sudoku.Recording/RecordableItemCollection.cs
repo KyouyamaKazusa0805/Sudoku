@@ -92,9 +92,8 @@ public readonly partial struct RecordableItemCollection :
 	public bool Equals(scoped in RecordableItemCollection other)
 		=> _recordables == other._recordables && Grid == other.Grid && StartTimestamp == other.StartTimestamp;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(_recordables, Grid, StartTimestamp);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(_recordables), nameof(Grid), nameof(StartTimestamp))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

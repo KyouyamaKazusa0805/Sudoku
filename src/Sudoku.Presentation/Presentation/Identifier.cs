@@ -98,6 +98,15 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 			_ => "<Unknown mode>"
 		};
 
+	private int TemporaryHashCodeBase
+		=> Mode switch
+		{
+			IdentifierColorMode.Id => Id,
+			IdentifierColorMode.Raw => ColorRawValue,
+			IdentifierColorMode.Named => NamedKind.GetHashCode(),
+			_ => 0xDEAD
+		};
+
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
@@ -115,19 +124,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 			_ => throw new NotSupportedException("The specified mode is not supported.")
 		};
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode()
-		=> HashCode.Combine(
-			Mode,
-			Mode switch
-			{
-				IdentifierColorMode.Id => Id,
-				IdentifierColorMode.Raw => ColorRawValue,
-				IdentifierColorMode.Named => NamedKind.GetHashCode(),
-				_ => 0xDEAD
-			}
-		);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Mode), nameof(TemporaryHashCodeBase))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

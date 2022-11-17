@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a unknown.
 /// </summary>
-public sealed class UnknownViewNode : ViewNode
+public sealed partial class UnknownViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes an <see cref="UnknownViewNode"/> instance via the specified identifier,
@@ -45,10 +45,8 @@ public sealed class UnknownViewNode : ViewNode
 		&& Cell == comparer.Cell && DigitsMask == comparer.DigitsMask
 		&& UnknownValueChar == comparer.UnknownValueChar;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode()
-		=> HashCode.Combine(TypeIdentifier, Identifier, Cell, DigitsMask, UnknownValueChar);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Cell), nameof(DigitsMask), nameof(UnknownValueChar))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -865,7 +865,7 @@
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.CompareTo(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -1779,7 +1779,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -8178,7 +8178,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Parsing.CellRange.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Text.Parsing.CellRange.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

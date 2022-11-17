@@ -67,9 +67,8 @@ public readonly partial struct CellRange :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(CellRange other) => _mask == other._mask;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => _mask;
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -132,9 +132,8 @@ public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniq
 	[GeneratedDeconstruction]
 	public partial void Deconstruct(out (int A, int B) pair1, out (int A, int B) pair2, out (int A, int B, int C, int D) centerCells);
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => (int)Mask;
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(Mask))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

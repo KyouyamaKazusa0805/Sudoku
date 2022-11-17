@@ -2841,6 +2841,11 @@
         <member name="P:Sudoku.Solving.Logical.Patterns.ExocetPattern.Map">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Patterns.ExocetPattern.MirrorCellsMap">
+            <summary>
+            Indicates the mirror cells.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Patterns.ExocetPattern.MapWithMirrors">
             <summary>
             Indicates the full map, with mirror cells.
@@ -3001,7 +3006,7 @@
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.Node.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.Node.ToSimpleString">
             <summary>
@@ -3109,7 +3114,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern.ToString">
             <inheritdoc/>
@@ -3302,7 +3307,7 @@
 			</target>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.UniquePolygonPattern.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.UniquePolygonPattern.ToString">
             <inheritdoc/>

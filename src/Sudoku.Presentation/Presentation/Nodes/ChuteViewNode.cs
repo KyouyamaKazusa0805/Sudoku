@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
 /// </summary>
-public sealed class ChuteViewNode : ViewNode
+public sealed partial class ChuteViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="ChuteViewNode"/> instance via the identifier and the highlight chute.
@@ -46,9 +46,8 @@ public sealed class ChuteViewNode : ViewNode
 		=> other is ChuteViewNode comparer
 		&& Identifier == comparer.Identifier && ChuteIndex == comparer.ChuteIndex;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, Identifier, ChuteIndex);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(ChuteIndex))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

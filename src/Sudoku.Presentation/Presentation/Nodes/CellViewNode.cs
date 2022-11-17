@@ -32,9 +32,8 @@ public sealed partial class CellViewNode : ViewNode
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is CellViewNode comparer && Identifier == comparer.Identifier && Cell == comparer.Cell;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(TypeIdentifier, Identifier, Cell);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Cell))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

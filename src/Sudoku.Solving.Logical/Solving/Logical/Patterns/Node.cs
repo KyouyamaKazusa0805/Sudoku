@@ -78,9 +78,8 @@ public readonly partial struct Node : IEquatable<Node>, IEqualityOperators<Node,
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(scoped in Node other) => Cells == other.Cells && Digit == other.Digit;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Cells, Digit);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Cells), nameof(Digit))]
+	public override partial int GetHashCode();
 
 	/// <summary>
 	/// Gets the simplified string value that only displays the important information.

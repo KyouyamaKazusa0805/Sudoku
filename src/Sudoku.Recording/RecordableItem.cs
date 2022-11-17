@@ -110,9 +110,8 @@ public readonly partial struct RecordableItem :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(scoped in RecordableItem other) => _mask == other._mask && Timestamp == other.Timestamp;
 
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(_mask, Timestamp);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(_mask), nameof(Timestamp))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

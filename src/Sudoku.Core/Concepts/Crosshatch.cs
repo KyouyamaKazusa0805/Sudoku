@@ -145,9 +145,8 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Crosshatch other) => _value == other._value;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Digit, From, To);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Digit), nameof(From), nameof(To))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

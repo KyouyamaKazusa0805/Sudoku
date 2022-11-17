@@ -269,7 +269,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.CompareTo(System.Object)">
             <inheritdoc/>

@@ -106,9 +106,8 @@ public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOpera
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Conjugate other) => Map == other.Map && Digit == other.Digit;
 
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Map, Digit);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Map), nameof(Digit))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

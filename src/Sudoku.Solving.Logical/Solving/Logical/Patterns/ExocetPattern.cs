@@ -44,7 +44,7 @@
 /// <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
 /// <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
 /// <param name="CrossLine">Indicates the cross-line cells.</param>
-public readonly record struct ExocetPattern(
+public readonly partial record struct ExocetPattern(
 	int Base1,
 	int Base2,
 	int TargetQ1,
@@ -66,12 +66,21 @@ public readonly record struct ExocetPattern(
 	}
 
 	/// <summary>
+	/// Indicates the mirror cells.
+	/// </summary>
+	public CellMap MirrorCellsMap
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => MirrorQ1 | MirrorQ2 | MirrorR1 | MirrorR2;
+	}
+
+	/// <summary>
 	/// Indicates the full map, with mirror cells.
 	/// </summary>
 	public CellMap MapWithMirrors
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Map | MirrorQ1 | MirrorQ2 | MirrorR1 | MirrorR2;
+		get => Map | MirrorCellsMap;
 	}
 
 	/// <summary>
@@ -102,15 +111,8 @@ public readonly record struct ExocetPattern(
 		&& BaseCellsMap == other.BaseCellsMap && TargetCellsMap == other.TargetCellsMap
 		&& CrossLine == other.CrossLine;
 
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode()
-		=> HashCode.Combine(
-			CellsMap[Base1] + Base2,
-			CellsMap[TargetQ1] + TargetQ2 + TargetR1 + TargetR2,
-			MirrorQ1 | MirrorQ2 | MirrorR1 | MirrorR2,
-			BaseCellsMap | TargetCellsMap
-		);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(MirrorCellsMap))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -270,11 +270,8 @@ public unsafe ref partial struct StringHandler
 		return ref MemoryMarshal.GetReference(_chars);
 	}
 
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[DoesNotReturn]
-	[Obsolete(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod, false, DiagnosticId = "SCA0105", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0105")]
-	public override readonly int GetHashCode()
-		=> throw new NotSupportedException(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]	
+	public override readonly partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

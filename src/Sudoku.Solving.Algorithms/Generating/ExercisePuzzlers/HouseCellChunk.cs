@@ -116,9 +116,8 @@ public readonly partial struct HouseCellChunk :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(HouseCellChunk other) => _mask == other._mask;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => (int)_mask;
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
+	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

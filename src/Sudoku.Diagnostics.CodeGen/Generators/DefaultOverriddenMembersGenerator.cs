@@ -12,17 +12,9 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute",
-					static (node, _) => node is MethodDeclarationSyntax { Modifiers: var modifiers } && modifiers.Any(SyntaxKind.PartialKeyword),
-					transformEqualsData
-				)
-				.Where(static data => data is not null)
-				.Collect(),
-			outputEquals
-		);
+		context
+			.WithRegisteredSourceOutput(transformEqualsData, outputEquals)
+			.WithRegisteredSourceOutput(transformGetHashCodeData, outputGetHashCode);
 
 
 		static EqualsData? transformEqualsData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
@@ -36,7 +28,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 					{
 						OverriddenMethod: var overridenMethod,
 						ContainingType: { } type,
-						Name: "Equals",
+						Name: nameof(object.Equals),
 						IsOverride: true,
 						IsStatic: false,
 						ReturnType.SpecialType: SpecialType.System_Boolean,
@@ -78,6 +70,47 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 			}
 
 			return new(rawMode, modifiers, type, parameterName);
+		}
+
+		static GetHashCodeData? transformGetHashCodeData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
+		{
+#pragma warning disable format
+			if (gasc is not
+				{
+					Attributes: [{ ConstructorArguments: [{ Value: int rawMode }, { Values: var extraArguments }] }],
+					TargetNode: MethodDeclarationSyntax { Modifiers: var modifiers },
+					TargetSymbol: IMethodSymbol
+					{
+						OverriddenMethod: var overridenMethod,
+						ContainingType: { } type,
+						Name: nameof(object.GetHashCode),
+						IsOverride: true,
+						IsStatic: false,
+						ReturnType.SpecialType: SpecialType.System_Int32,
+						IsGenericMethod: false,
+						Parameters: []
+					} method
+				})
+#pragma warning restore format
+			{
+				return null;
+			}
+
+			// Check whether the method is overridden from object.Equals(object?).
+			var rootMethod = overridenMethod;
+			var currentMethod = method;
+			for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod) ;
+			if (currentMethod!.ContainingType.SpecialType is not (SpecialType.System_Object or SpecialType.System_ValueType))
+			{
+				return null;
+			}
+
+			if ((rawMode, type) switch { (0, { TypeKind: TypeKind.Struct, IsRefLikeType: true }) => false, (1 or 2, _) => false, _ => true })
+			{
+				return null;
+			}
+
+			return new(rawMode, modifiers, type, from extraArgument in extraArguments select (string)extraArgument.Value!);
 		}
 
 		void outputEquals(SourceProductionContext spc, ImmutableArray<EqualsData?> data)
@@ -132,7 +165,121 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				);
 			}
 		}
+
+		void outputGetHashCode(SourceProductionContext spc, ImmutableArray<GetHashCodeData?> data)
+		{
+			foreach (var tuple in data.CastToNotNull())
+			{
+				if (tuple is not (var mode, var modifiers, { Name: var typeName, ContainingNamespace: var @namespace } type, var rawMemberNames))
+				{
+					continue;
+				}
+
+				var needCast = mode switch
+				{
+					1 when rawMemberNames.First() is var name => (from m in type.GetMembers() where m.Name == name select m).FirstOrDefault() switch
+					{
+						IFieldSymbol field => field switch
+						{
+							{ Type.SpecialType: SpecialType.System_Int32, RefKind: RefKind.None } => false,
+							_ => true
+						},
+						IPropertySymbol property => property switch
+						{
+							{ Type.SpecialType: SpecialType.System_Int32, RefKind: RefKind.None } => false,
+							_ => true
+						},
+						IMethodSymbol { Parameters: [] } method => method switch
+						{
+							{ ReturnType.SpecialType: SpecialType.System_Int32, RefKind: RefKind.None } => false,
+							_ => true
+						},
+						_ => null
+					},
+					_ => (bool?)null
+				};
+
+				var extraAttributeStr = mode switch
+				{
+					0 => """
+					[global::System.Obsolete(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod, false, DiagnosticId = "SCA0105", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0105")]
+						
+					""",
+					_ => string.Empty
+				};
+				var targetExpression = (mode, rawMemberNames.ToArray()) switch
+				{
+					(0, [])
+						=> "throw new global::System.NotSupportedException(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod)",
+					(1, [var memberName])
+						=> needCast switch { true or null => $"(int){memberName}", _ => memberName },
+					(2, var memberNames and not [])
+						=> $"global::System.HashCode.Combine({string.Join(", ", from element in memberNames select element)})"
+				};
+
+				var namespaceStr = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
+				spc.AddSource(
+					$"{type.ToFileName()}.g.{Shortcuts.GeneratedOverriddenMemberGetHashCode}.cs",
+					$$"""
+					// <auto-generated/>
+
+					#nullable enable
+
+					namespace {{namespaceStr}};
+
+					partial {{type.GetTypeKindModifier()}} {{typeName}}
+					{
+						/// <inheritdoc cref="object.GetHashCode"/>
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						{{extraAttributeStr}}{{modifiers}} int GetHashCode()
+							=> {{targetExpression}};
+					}
+					"""
+				);
+			}
+		}
 	}
 }
 
-file readonly record struct EqualsData(int GeneratedMode, SyntaxTokenList MethodModifiers, INamedTypeSymbol Type, string ParameterName);
+file readonly record struct EqualsData(
+	int GeneratedMode,
+	SyntaxTokenList MethodModifiers,
+	INamedTypeSymbol Type,
+	string ParameterName
+);
+
+file readonly record struct GetHashCodeData(
+	int GeneratedMode,
+	SyntaxTokenList MethodModifiers,
+	INamedTypeSymbol Type,
+	IEnumerable<string> ExpressionValueNames
+);
+
+file static class Extensions
+{
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref readonly IncrementalGeneratorInitializationContext WithRegisteredSourceOutput<T>(
+		this in IncrementalGeneratorInitializationContext @this,
+		Func<GeneratorAttributeSyntaxContext, CancellationToken, T?> transformAction,
+		Action<SourceProductionContext, ImmutableArray<T?>> outputAction)
+		where T : struct
+	{
+		const string attributeFullName = "System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute";
+
+		@this.RegisterSourceOutput(
+			@this.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					attributeFullName,
+					static (n, _) => n is MethodDeclarationSyntax { Modifiers: var m } && m.Any(SyntaxKind.PartialKeyword),
+					transformAction
+				)
+				.Where(static d => d is not null)
+				.Collect(),
+			outputAction
+		);
+
+		return ref @this;
+	}
+}

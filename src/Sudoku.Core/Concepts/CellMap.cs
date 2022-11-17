@@ -664,9 +664,8 @@ public unsafe partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped in CellMap other) => _low == other._low && _high == other._high;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly int GetHashCode() => HashCode.Combine(_low, _high);
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(_low), nameof(_high))]
+	public override readonly partial int GetHashCode();
 
 	/// <summary>
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)" path="/summary"/>

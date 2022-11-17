@@ -169,7 +169,7 @@
             <exception cref="T:System.NotSupportedException">Throws when the specified mode is not supported.</exception>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.ToString">
             <inheritdoc/>
@@ -349,7 +349,7 @@
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.ToString">
             <inheritdoc/>
@@ -412,7 +412,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.ToString">
             <inheritdoc/>
@@ -485,7 +485,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.ToString">
             <inheritdoc/>
@@ -534,7 +534,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.ToString">
             <inheritdoc/>
@@ -566,7 +566,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.ToString">
             <inheritdoc/>
@@ -652,7 +652,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.ToString">
             <inheritdoc/>
@@ -697,7 +697,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.ToString">
             <inheritdoc/>
