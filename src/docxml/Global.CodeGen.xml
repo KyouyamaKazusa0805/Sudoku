@@ -492,6 +492,21 @@
         <member name="M:Global.CodeGen.VersionValueGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Global.CodeGen.VersionValueGenerator.Action(Microsoft.CodeAnalysis.SourceProductionContext,System.String)">
+            <summary>
+            The output action.
+            </summary>
+        </member>
+        <member name="M:Global.CodeGen.VersionValueGenerator.FilePredicate(Microsoft.CodeAnalysis.AdditionalText)">
+            <summary>
+            The file predicate.
+            </summary>
+        </member>
+        <member name="M:Global.CodeGen.VersionValueGenerator.Selector(Microsoft.CodeAnalysis.AdditionalText,System.Threading.CancellationToken)">
+            <summary>
+            The file transform.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Shortcuts">
             <summary>
             Defines the shortcuts of the source generators.
