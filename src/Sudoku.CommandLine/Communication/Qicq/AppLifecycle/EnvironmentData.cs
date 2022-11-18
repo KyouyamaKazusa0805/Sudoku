@@ -22,6 +22,11 @@ internal static class EnvironmentData
 
 
 	/// <summary>
+	/// The gaming cancellation token.
+	/// </summary>
+	public static bool? GamingCancellationToken = null;
+
+	/// <summary>
 	/// The current executing command.
 	/// </summary>
 	public static string? EnvironmentCommandExecuting = null;

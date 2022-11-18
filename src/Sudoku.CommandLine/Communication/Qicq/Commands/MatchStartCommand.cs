@@ -18,6 +18,7 @@ internal sealed class MatchStartCommand : Command
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
 		EnvironmentCommandExecuting = CommandName;
+		GamingCancellationToken = false;
 
 		await e.SendMessageAsync(R["_MessageFormat_MatchReady"]!);
 		await Task.Delay(10 * 1000);
@@ -35,6 +36,14 @@ internal sealed class MatchStartCommand : Command
 		{
 			for (var internalTimes = 0; internalTimes < 4; internalTimes++)
 			{
+				if (GamingCancellationToken is true)
+				{
+					// User has already cancelled the operation.
+					await e.SendMessageAsync(R["_MessageFormat_EndGamingEmitted"]!);
+
+					goto DefaultReturning;
+				}
+
 				await Task.Delay(245); // Reserve 5 milliseconds for executing the following slow steps.
 
 				foreach (var data in AnswerData)
@@ -114,6 +123,7 @@ internal sealed class MatchStartCommand : Command
 		AnsweredUsers.Clear();
 		AnswerData.Clear();
 		EnvironmentCommandExecuting = null;
+		GamingCancellationToken = null;
 		return true;
 	}
 
