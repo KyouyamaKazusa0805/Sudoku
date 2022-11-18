@@ -230,14 +230,24 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				""",
 				_ => string.Empty
 			};
-			var targetExpression = (mode, rawMemberNames.ToArray()) switch
+			var targetExpression = (mode, rawMemberNames.ToArray(), needCast) switch
 			{
-				(0, [])
-					=> "throw new global::System.NotSupportedException(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod)",
-				(1, [var memberName])
-					=> needCast switch { true or null => $"(int){memberName}", _ => memberName },
-				(2, var memberNames and not [])
-					=> $"global::System.HashCode.Combine({string.Join(", ", from element in memberNames select element)})"
+				(0, [], _)
+					=> $"\t=> throw new global::System.NotSupportedException(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod);",
+				(1, [var memberName], true or null)
+					=> $"\t=> (int){memberName};",
+				(1, [var memberName], _)
+					=> $"\t=> {memberName};",
+				(2, { Length: <= 8 } memberNames, _) when string.Join(", ", from e in memberNames select e) is var a
+					=> $"\t=> global::System.HashCode.Combine({a});",
+				(2, { Length: > 8 } memberNames, _) when string.Join("\r\n\t\t\t", from e in memberNames select $"result.Add({e});") is var a
+					=> $$"""
+					{
+								var result = new global::System.HashCode();
+								{{a}}
+								return result.ToHashCode();
+							}
+					""",
 			};
 
 			var namespaceStr = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
@@ -252,7 +262,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{sourceGeneratorType.FullName}}", "{{VersionValue}}")]
 						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						{{extraAttributeStr}}{{modifiers}} int GetHashCode()
-							=> {{targetExpression}};
+						{{targetExpression}}
 					}
 				}
 				"""

@@ -236,7 +236,7 @@
             </exception>
         </member>
         <member name="M:Sudoku.Concepts.Candidates.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.Candidates.ToArray">
             <summary>

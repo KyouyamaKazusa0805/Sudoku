@@ -397,25 +397,8 @@ public unsafe partial struct Candidates :
 			} >> offset % Shifting & 1
 		) != 0;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly int GetHashCode()
-	{
-		var result = new HashCode();
-		result.Add(_0);
-		result.Add(_1);
-		result.Add(_2);
-		result.Add(_3);
-		result.Add(_4);
-		result.Add(_5);
-		result.Add(_6);
-		result.Add(_7);
-		result.Add(_8);
-		result.Add(_9);
-		result.Add(_10);
-		result.Add(_11);
-		return result.ToHashCode();
-	}
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
+	public override readonly partial int GetHashCode();
 
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
