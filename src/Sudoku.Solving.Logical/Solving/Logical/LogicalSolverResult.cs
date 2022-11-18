@@ -52,10 +52,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="LogicalSolver"/>
-	public decimal PearlDifficulty
-		=> Steps.IsDefaultOrEmpty
-			? 0
-			: Steps.FirstOrDefault(static info => info.ShowDifficulty)?.Difficulty ?? 0;
+	public decimal PearlDifficulty => Steps.IsDefaultOrEmpty ? 0 : Steps.FirstOrDefault(static info => info.ShowDifficulty)?.Difficulty ?? 0;
 
 	/// <summary>
 	/// <para>
@@ -172,8 +169,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// of types <see cref="Grid"/> and <see cref="IStep"/>.
 	/// </para>
 	/// </summary>
-	public ImmutableArray<(Grid SteppingGrid, IStep Step)> SolvingPath
-		=> IsSolved ? StepGrids.Zip(Steps) : default(ImmutableArray<(Grid, IStep)>);
+	public ImmutableArray<(Grid SteppingGrid, IStep Step)> SolvingPath => IsSolved ? StepGrids.Zip(Steps) : default(ImmutableArray<(Grid, IStep)>);
 
 	/// <summary>
 	/// <para>

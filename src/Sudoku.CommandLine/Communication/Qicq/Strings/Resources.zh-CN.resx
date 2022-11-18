@@ -222,9 +222,6 @@
   <data name="_Command_CheckIn" xml:space="preserve">
     <value>签到</value>
   </data>
-  <data name="_Command_CheckInIntro" xml:space="preserve">
-    <value>签到说明</value>
-  </data>
   <data name="_Command_Clear" xml:space="preserve">
     <value>清</value>
   </data>
@@ -249,6 +246,9 @@
   <data name="_Command_LookupScore" xml:space="preserve">
     <value>查询</value>
   </data>
+  <data name="_Command_MatchStart" xml:space="preserve">
+    <value>开始游戏</value>
+  </data>
   <data name="_Command_Ranking" xml:space="preserve">
     <value>排名</value>
   </data>
@@ -265,12 +265,13 @@
 ・签到说明：查看“签到”指令的详细说明；
 ・查询：查询当前用户的积分数据；
 ・帮助：查看帮助文字；
+・开始游戏：开始数独填空游戏；
 ・绘图：启动绘图功能。
 【管理员限定】
 ・详细查询 &lt;用户&gt;：查询指定用户的积分；
 ・排名：查询所有记录了的该群成员的积分，并排名。
 【群主限定】
-・加分 &lt;用户&gt;，&lt;分数&gt;：这是什么呢？
+・你猜~
 ---
 所有指令请都带上感叹号，例如“！查询”。</value>
   </data>
@@ -282,6 +283,9 @@
   </data>
   <data name="_MessageFormat_CheckInSuccessfulAndContinuous" xml:space="preserve">
     <value>签到成功！已连续签到 {0} 天~ 恭喜你获得 {1} 积分。一天只能签到一次哦~</value>
+  </data>
+  <data name="_MessageFormat_CorrectAnswer" xml:space="preserve">
+    <value>回答正确~ 恭喜玩家 {0} 获得 {1} 积分！游戏结束！</value>
   </data>
   <data name="_MessageFormat_DrawStartMessage" xml:space="preserve">
     <value>绘图说明📖
@@ -304,11 +308,21 @@
   <data name="_MessageFormat_EndOkay" xml:space="preserve">
     <value>退出成功。现可继续使用其他功能~</value>
   </data>
+  <data name="_MessageFormat_GameTimeUp" xml:space="preserve">
+    <value>游戏时间到~ 游戏结束~</value>
+  </data>
   <data name="_MessageFormat_LookupNameOrIdAmbiguous" xml:space="preserve">
     <value>待搜索用户名称或 QQ 号码匹配到多个用户。请修改搜索条件或提醒用户更换名称并重试。</value>
   </data>
   <data name="_MessageFormat_LookupNameOrIdInvalid" xml:space="preserve">
     <value>待搜索用户名称或 QQ 号码错误，请检查。</value>
+  </data>
+  <data name="_MessageFormat_MatchReady" xml:space="preserve">
+    <value>游戏即将开始！
+游戏规则：游戏预留 5 分钟时间，并给出一道数独题。玩家需要根据数独基本规则获得该题目指定位置的填数结果，并通过回答结果来完成题目。回答请艾特机器人，格式为“@机器人 数字”，其中的“数字”为你填入的结果。回答正确将自动结束游戏并获得相应积分；若无人作答完成题目，将自动作废，游戏自动结束。</value>
+  </data>
+  <data name="_MessageFormat_NoChanceToAnswer" xml:space="preserve">
+    <value>抱歉，由于你之前回答错误，已经丧失本轮答题资格~</value>
   </data>
   <data name="_MessageFormat_PermissionRequired" xml:space="preserve">
     <value>该功能需要更高权限者使用~</value>
@@ -330,6 +344,9 @@
   </data>
   <data name="_MessageFormat_UserScoreNotFound" xml:space="preserve">
     <value>用户 {0}（{1}）尚未使用过机器人，本地没有数据。</value>
+  </data>
+  <data name="_MessageFormat_WrongAnswer" xml:space="preserve">
+    <value>回答错误~</value>
   </data>
   <data name="_Token_ClosedBrace" xml:space="preserve">
     <value>）</value>

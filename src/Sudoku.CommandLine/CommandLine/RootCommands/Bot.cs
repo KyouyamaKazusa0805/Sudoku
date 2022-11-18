@@ -60,17 +60,41 @@ public sealed class Bot : IExecutable
 
 		async void onGroupMessageReceived(GroupMessageReceiver e)
 		{
-			if (e is { Sender.Permission: var permission, MessageChain: (_, { } messageTrimmed, _) })
+			switch (e)
 			{
-				foreach (var type in GetType().Assembly.GetDerivedTypes<Command>())
+				// At message: special use. Gaming will rely on this case.
+				case
 				{
-					if (type.GetConstructor(Array.Empty<Type>()) is not null
-						&& type.GetCustomAttribute<CommandAttribute>() is { AllowedPermissions: var allowPermissions }
-						&& Array.IndexOf(allowPermissions, permission) != -1
-						&& await ((Command)Activator.CreateInstance(type)!).ExecuteAsync(messageTrimmed, e))
+					Sender.Id: var sender,
+					MessageChain: [SourceMessage, AtMessage { Target: var possibleBotId }, PlainMessage { Text: var plainMessage }]
+				}
+				when possibleBotId == BotNumber:
+				{
+					AnswerData.Add(
+						new(
+							sender,
+							int.TryParse(plainMessage.Trim(), out var resultDigit) && resultDigit is >= 1 and <= 9 ? resultDigit - 1 : -1
+						)
+					);
+
+					break;
+				}
+
+				// Normal command message.
+				case { Sender.Permission: var permission, MessageChain: (_, { } messageTrimmed, _) }:
+				{
+					foreach (var type in GetType().Assembly.GetDerivedTypes<Command>())
 					{
-						return;
+						if (type.GetConstructor(Array.Empty<Type>()) is not null
+							&& type.GetCustomAttribute<CommandAttribute>() is { AllowedPermissions: var allowPermissions }
+							&& Array.IndexOf(allowPermissions, permission) != -1
+							&& await ((Command)Activator.CreateInstance(type)!).ExecuteAsync(messageTrimmed, e))
+						{
+							return;
+						}
 					}
+
+					break;
 				}
 			}
 		}

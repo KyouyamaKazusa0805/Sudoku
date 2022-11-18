@@ -10,6 +10,16 @@ internal static class EnvironmentData
 	/// </summary>
 	public static readonly Random Rng = new();
 
+	/// <summary>
+	/// The generator.
+	/// </summary>
+	public static readonly PatternBasedPuzzleGenerator Generator = new();
+
+	/// <summary>
+	/// The solver.
+	/// </summary>
+	public static readonly LogicalSolver Solver = new();
+
 
 	/// <summary>
 	/// The current executing command.
@@ -20,6 +30,16 @@ internal static class EnvironmentData
 	/// The puzzle.
 	/// </summary>
 	public static Grid Puzzle = Grid.Empty;
+
+	/// <summary>
+	/// The answer data.
+	/// </summary>
+	public static ConcurrentBag<UserPuzzleAnswerData> AnswerData = new();
+
+	/// <summary>
+	/// Users has already answered the puzzle. This field is used for checking whether the user has already been replied.
+	/// </summary>
+	public static ConcurrentBag<string> AnsweredUsers = new();
 
 	/// <summary>
 	/// The painter.

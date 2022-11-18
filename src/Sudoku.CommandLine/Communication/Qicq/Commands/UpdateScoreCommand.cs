@@ -32,15 +32,13 @@ internal sealed class UpdateScoreCommand : Command
 		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
 		if (!Directory.Exists(botDataFolder))
 		{
-			await e.SendMessageAsync(R["_MessageFormat_RankingListIsEmpty"]!);
-			return true;
+			Directory.CreateDirectory(botDataFolder);
 		}
 
 		var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
 		if (!Directory.Exists(botUsersDataFolder))
 		{
-			await e.SendMessageAsync(R["_MessageFormat_RankingListIsEmpty"]!);
-			return true;
+			Directory.CreateDirectory(botUsersDataFolder);
 		}
 
 		var split = args.Split(new[] { ',', '\uff0c' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
