@@ -56,33 +56,24 @@ internal sealed class RankingCommand : Command
 			select (Name: nickname, Data: ud)
 		).Take(10);
 
-		var rankingStr = string.Join(
-			"\r\n",
-			usersData.Select(
-				static (pair, i) =>
-				{
-					if (pair is not (var name, { QQ: var qq, Score: var score }))
-					{
-						throw new();
-					}
-
-					var openBrace = R["_Token_OpenBrace"]!;
-					var closedBrace = R["_Token_ClosedBrace"]!;
-					var colon = R["_Token_Colon"]!;
-					var comma = R["_Token_Comma"]!;
-					var scoreSuffix = R["ExpString"]!;
-					return $"#{i + 1}{colon}{name}{openBrace}{qq}{closedBrace}{comma}{score} {scoreSuffix}";
-				}
-			)
-		);
-
-		await e.SendMessageAsync(
-			$"""
-			{R["_MessageFormat_RankingResult"]}
-			---
-			{rankingStr}
-			"""
-		);
+		var rankingStr = string.Join("\r\n", usersData.Select(selector));
+		await e.SendMessageAsync($"{R["_MessageFormat_RankingResult"]}\r\n---\r\n{rankingStr}");
 		return true;
+
+
+		static string selector((string Name, UserData Data) pair, int i)
+		{
+			if (pair is not (var name, { QQ: var qq, Score: var score }))
+			{
+				throw new();
+			}
+
+			var openBrace = R["_Token_OpenBrace"]!;
+			var closedBrace = R["_Token_ClosedBrace"]!;
+			var colon = R["_Token_Colon"]!;
+			var comma = R["_Token_Comma"]!;
+			var scoreSuffix = R["ExpString"]!;
+			return $"#{i + 1}{colon}{name}{openBrace}{qq}{closedBrace}{comma}{score} {scoreSuffix}";
+		}
 	}
 }
