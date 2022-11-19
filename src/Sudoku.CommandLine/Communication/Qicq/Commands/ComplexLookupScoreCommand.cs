@@ -26,11 +26,7 @@ internal sealed class ComplexLookupScoreCommand : Command
 			return false;
 		}
 
-		var satisfiedMembers = (
-			from member in await @group.GetGroupMembersAsync()
-			where member.Id == args || member.Name == args
-			select member
-		).ToArray();
+		var satisfiedMembers = (from member in await @group.GetGroupMembersAsync() where member.Id == args || member.Name == args select member).ToArray();
 		switch (satisfiedMembers)
 		{
 			case []:
@@ -45,41 +41,13 @@ internal sealed class ComplexLookupScoreCommand : Command
 			}
 			case [{ Id: var foundMemberId }]:
 			{
-				var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
-				if (!Directory.Exists(folder))
+				if (InternalReadWrite.Read(foundMemberId) is not { } userData)
 				{
-					// Error. The computer does not contain "My Documents" folder.
-					// This folder is special; if the computer does not contain the folder, we should return directly.
-					goto DirectlyReturn;
+					await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreNotFound"]!, senderName, senderOriginalName));
+					return true;
 				}
 
-				var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
-				if (!Directory.Exists(botDataFolder))
-				{
-					goto SpecialCase_UserDataFileNotFound;
-				}
-
-				var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
-				if (!Directory.Exists(botUsersDataFolder))
-				{
-					goto SpecialCase_UserDataFileNotFound;
-				}
-
-				var userDataPath = $"""{botUsersDataFolder}\{foundMemberId}.json""";
-				if (!File.Exists(userDataPath))
-				{
-					goto SpecialCase_UserDataFileNotFound;
-				}
-
-				var userData = Deserialize<UserData>(await File.ReadAllTextAsync(userDataPath))!;
 				await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, userData.Score, senderOriginalName));
-
-				goto DirectlyReturn;
-
-			SpecialCase_UserDataFileNotFound:
-				await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreNotFound"]!, senderName, senderOriginalName));
-
-			DirectlyReturn:
 				return true;
 			}
 		}

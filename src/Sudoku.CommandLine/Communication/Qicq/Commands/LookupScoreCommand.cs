@@ -21,38 +21,13 @@ internal sealed class LookupScoreCommand : Command
 			return false;
 		}
 
-		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
-		if (!Directory.Exists(folder))
+		if (InternalReadWrite.Read(senderId) is not { } userData)
 		{
-			// Error. The computer does not contain "My Documents" folder.
-			// This folder is special; if the computer does not contain the folder, we should return directly.
+			await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreNotFound"]!, senderName, senderOriginalName));
 			return true;
 		}
 
-		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
-		if (!Directory.Exists(botDataFolder))
-		{
-			goto UserDataFileNotFound;
-		}
-
-		var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
-		if (!Directory.Exists(botUsersDataFolder))
-		{
-			goto UserDataFileNotFound;
-		}
-
-		var userDataPath = $"""{botUsersDataFolder}\{senderId}.json""";
-		if (!File.Exists(userDataPath))
-		{
-			goto UserDataFileNotFound;
-		}
-
-		var userData = Deserialize<UserData>(await File.ReadAllTextAsync(userDataPath))!;
 		await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, userData.Score, senderOriginalName));
-		return true;
-
-	UserDataFileNotFound:
-		await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreNotFound"]!, senderName, senderOriginalName));
 		return true;
 	}
 }

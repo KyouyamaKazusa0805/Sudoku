@@ -240,9 +240,6 @@
   <data name="_Command_End" xml:space="preserve">
     <value>退出</value>
   </data>
-  <data name="_Command_EndGaming" xml:space="preserve">
-    <value>结束游戏</value>
-  </data>
   <data name="_Command_Help" xml:space="preserve">
     <value>帮助</value>
   </data>
@@ -307,9 +304,6 @@
 ・%*1-5：使用 Hodoku 对 ALS 的 5 种配色；
 ・%#RRGGBB：RGB 配色代码；
 ・%#AARRGGBB：ARGB 配色代码。</value>
-  </data>
-  <data name="_MessageFormat_EndGamingEmitted" xml:space="preserve">
-    <value>用户已取消进行游戏游玩~ 该指令不要在 PK 期间随意使用哦~</value>
   </data>
   <data name="_MessageFormat_EndOkay" xml:space="preserve">
     <value>退出成功。现可继续使用其他功能~</value>

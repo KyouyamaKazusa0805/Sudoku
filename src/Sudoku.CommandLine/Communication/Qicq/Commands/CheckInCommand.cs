@@ -21,29 +21,7 @@ internal sealed class CheckInCommand : Command
 			return false;
 		}
 
-		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
-		if (!Directory.Exists(folder))
-		{
-			// Error. The computer does not contain "My Documents" folder.
-			// This folder is special; if the computer does not contain the folder, we should return directly.
-			return true;
-		}
-
-		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
-		if (!Directory.Exists(botDataFolder))
-		{
-			Directory.CreateDirectory(botDataFolder);
-		}
-
-		var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
-		if (!Directory.Exists(botUsersDataFolder))
-		{
-			Directory.CreateDirectory(botUsersDataFolder);
-		}
-
-		var userDataPath = $"""{botUsersDataFolder}\{senderId}.json""";
-		var userData = File.Exists(userDataPath) ? Deserialize<UserData>(await File.ReadAllTextAsync(userDataPath))! : new() { QQ = senderId };
-
+		var userData = InternalReadWrite.Read(senderId, new() { QQ = senderId });
 		if (userData.LastCheckIn == DateTime.Today)
 		{
 			// Disallow user checking in multiple times in a same day.
@@ -74,8 +52,7 @@ internal sealed class CheckInCommand : Command
 			await e.SendMessageAsync(string.Format(R["_MessageFormat_CheckInSuccessful"]!, expEarned));
 		}
 
-		var json = Serialize(userData);
-		await File.WriteAllTextAsync(userDataPath, json);
+		InternalReadWrite.Write(userData);
 
 		return true;
 	}

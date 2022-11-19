@@ -20,31 +20,27 @@ internal static class EnvironmentData
 	/// </summary>
 	public static readonly LogicalSolver Solver = new();
 
-
 	/// <summary>
-	/// The gaming cancellation token.
+	/// The internal answering context. The field is only used for command <see cref="StartGamingCommand"/>.
 	/// </summary>
-	public static bool? GamingCancellationToken = null;
+	/// <remarks>
+	/// This field uses a concurrent dictionary, grouping all answering contexts by group QQ number.
+	/// No matter what thread the current program use, this field can always provide the available,
+	/// although the target result may not be created.
+	/// </remarks>
+	internal static readonly ConcurrentDictionary<string, AnsweringContext> AnsweringContexts = new();
+
 
 	/// <summary>
 	/// The current executing command.
 	/// </summary>
+	/// <remarks><b><i>This field will be re-considered.</i></b></remarks>
 	public static string? EnvironmentCommandExecuting = null;
 
 	/// <summary>
 	/// The puzzle.
 	/// </summary>
 	public static Grid Puzzle = Grid.Empty;
-
-	/// <summary>
-	/// The answer data.
-	/// </summary>
-	public static ConcurrentBag<UserPuzzleAnswerData> AnswerData = new();
-
-	/// <summary>
-	/// Users has already answered the puzzle. This field is used for checking whether the user has already been replied.
-	/// </summary>
-	public static ConcurrentBag<string> AnsweredUsers = new();
 
 	/// <summary>
 	/// The painter.

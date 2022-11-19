@@ -63,19 +63,14 @@ public sealed class Bot : IExecutable
 			switch (e)
 			{
 				// At message: special use. Gaming will rely on this case.
-				case
+				// I think this way to handle messages is too complex and ugly. I may change the design on commands later.
+				case { Sender: var sender, MessageChain: [SourceMessage, AtMessage { Target: var qq }, PlainMessage { Text: var message }] }
+				when qq == BotNumber && AnsweringContexts.TryGetValue(e.GroupId, out var context):
 				{
-					Sender.Id: var sender,
-					MessageChain: [SourceMessage, AtMessage { Target: var possibleBotId }, PlainMessage { Text: var plainMessage }]
-				}
-				when possibleBotId == BotNumber:
-				{
-					AnswerData.Add(
-						new(
-							sender,
-							int.TryParse(plainMessage.Trim(), out var resultDigit) && resultDigit is >= 1 and <= 9 ? resultDigit - 1 : -1
-						)
-					);
+					var answeredDigit = int.TryParse(message.Trim(), out var resultDigit) && resultDigit is >= 1 and <= 9
+						? resultDigit - 1
+						: -1;
+					context.CurrentRoundAnsweredValues.Add(new(sender, answeredDigit));
 
 					break;
 				}

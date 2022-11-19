@@ -37,6 +37,7 @@ global using Sudoku.CommandLine;
 global using Sudoku.CommandLine.RootCommands;
 global using Sudoku.CommandLine.ValueConverters;
 global using Sudoku.Communication.Qicq.Commands;
+global using Sudoku.Communication.Qicq.IO;
 global using Sudoku.Communication.Qicq.Models;
 global using Sudoku.Concepts;
 global using Sudoku.Drawing;

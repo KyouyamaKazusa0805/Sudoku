@@ -5,4 +5,4 @@
 /// </summary>
 /// <param name="User">The user who gives the conclusion.</param>
 /// <param name="Conclusion">The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</param>
-internal sealed record UserPuzzleAnswerData(string User, int Conclusion);
+internal sealed record UserPuzzleAnswerData(Member User, int Conclusion);
