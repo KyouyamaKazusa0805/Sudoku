@@ -17,6 +17,7 @@ internal sealed class StartGamingCommand : Command
 	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
+#if false
 		EnvironmentCommandExecuting = CommandName;
 		AnsweringContexts.TryAdd(e.GroupId, new(new(), new()));
 
@@ -95,6 +96,14 @@ internal sealed class StartGamingCommand : Command
 		EnvironmentCommandExecuting = null;
 		AnsweringContexts.TryRemove(e.GroupId, out _);
 		return true;
+#else
+#if true
+		await e.SendMessageAsync(R["_MessageFormat_CurrentCommandIsUnderConstruction"]!);
+		return true;
+#else
+		return false;
+#endif
+#endif
 	}
 
 	/// <summary>
@@ -106,39 +115,17 @@ internal sealed class StartGamingCommand : Command
 		while (true)
 		{
 			var grid = Generator.Generate();
-			switch (Solver.Solve(grid))
+			if (Solver.Solve(grid) is
+				{
+					DifficultyLevel: var diffLevel and (DifficultyLevel.Easy or DifficultyLevel.Moderate),
+					Steps: [.., { Conclusions: [{ Cell: var targetCell, Digit: var targetDigit }] }] steps
+				})
 			{
-				// If the puzzle is easy, we will get the 20th step, treating it as the real game puzzle.
-				case { DifficultyLevel: DifficultyLevel.Easy, Steps: { Length: > 20 } steps }
-				when steps[20] is { Conclusions: [{ Cell: var targetCell, Digit: var targetDigit }] }:
-				{
-					return (grid, (targetCell, targetDigit), 12);
-				}
-
-				// If the puzzle is moderate, we will get the first single step whose previous step is moderate.
-				case { DifficultyLevel: DifficultyLevel.Moderate, Steps: var steps }:
-				{
-					for (var index = 1; index <= steps.Length; index++)
-					{
-#pragma warning disable format
-						if ((steps[index], steps[index - 1]) is (
-							{ TechniqueGroup: TechniqueGroup.Single, Conclusions: [{ Cell: var targetCell, Digit: var targetDigit }] },
-							{ DifficultyLevel: DifficultyLevel.Moderate }
-						))
-#pragma warning restore format
-						{
-							return (grid, (targetCell, targetDigit), 18);
-						}
-					}
-
-					break;
-				}
-
-				// Otherwise, the puzzle is too hard to be solved as a game puzzle.
-				default:
-				{
-					continue;
-				}
+				return (
+					grid,
+					(targetCell, targetDigit),
+					diffLevel switch { DifficultyLevel.Easy => 12, DifficultyLevel.Moderate => 18 }
+				);
 			}
 		}
 	}

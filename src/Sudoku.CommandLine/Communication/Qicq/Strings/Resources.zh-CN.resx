@@ -287,6 +287,9 @@
   <data name="_MessageFormat_CorrectAnswer" xml:space="preserve">
     <value>回答正确~ 恭喜玩家 {0} 获得 {1} 积分！游戏结束！</value>
   </data>
+  <data name="_MessageFormat_CurrentCommandIsUnderConstruction" xml:space="preserve">
+    <value>当前命令暂时不支持使用~</value>
+  </data>
   <data name="_MessageFormat_DrawStartMessage" xml:space="preserve">
     <value>绘图说明📖
 绘图支持如下指令：
