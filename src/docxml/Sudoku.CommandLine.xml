@@ -1,0 +1,1365 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CommandLine</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CommandLine.CommonConstants">
+            <summary>
+            Provides with the commonly-used constants.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.CommonConstants.SampleGrid">
+            <summary>
+            Indicates the grid string value to be used as a sample.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.ErrorCode">
+            <summary>
+            Provides with an error case that introduces why the runtime has been crashed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.None">
+            <summary>
+            Indicates that everything looks good.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.ArgFormatIsInvalid">
+            <summary>
+            Indicates the error case that the format string is invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.ArgGridValueIsNull">
+            <summary>
+            Indicates the error case that the argument is currently <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.ArgGridValueIsInvalidWhileParsing">
+            <summary>
+            Indicates the error case that the argument is invalid to be parsed into type <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.ArgGridValueIsNotUnique">
+            <summary>
+            Indicates the error case that the argument parsed into type <see cref="T:Sudoku.Concepts.Grid"/> is not unique.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.ArgGridIsUndefined">
+            <summary>
+            Indicates the error case that the argument parsed into type <see cref="T:Sudoku.Concepts.Grid"/> is undefined <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.ArgMethodIsInvalid">
+            <summary>
+            Indicates the error case that the solving method is invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.ArgAttributeNameIsInvalid">
+            <summary>
+            Indicates the error case that the attribute name is invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.ArgNumericValueBelowZero">
+            <summary>
+            Indicates the error case that the numeric argument is below 0.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.ArgOutputPathIsInvalid">
+            <summary>
+            Indicates the error case that the output path is invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.ArgOutputPathExtensionNotSupported">
+            <summary>
+            Indicates the error case that the extension of output path is not supported.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.RangePatternIsInvalid">
+            <summary>
+            Indicates the error case that the range pattern is invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.MethodIsInvalid">
+            <summary>
+            Indicates the error case that the method is invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.SiteIsFailedToVisit">
+            <summary>
+            Indicates the error case that the website link is failed to be used to visit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.AssemblyNameIsNull">
+            <summary>
+            Indicates the error case that the command line cannot correctly fetch the assembly name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.TypeCannotBeHelp">
+            <summary>
+            Indicates the error case that the type cannot be <see cref="T:Sudoku.CommandLine.RootCommands.Help"/>.
+            </summary>
+            <seealso cref="T:Sudoku.CommandLine.RootCommands.Help"/>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.TypeCannotBeFound">
+            <summary>
+            Indicates the error case that the type name cannot be found.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.CommandArgumentCannotBeMultipleKind">
+            <summary>
+            Indicates the error case that the command argument cannot be multiple kinds.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.MultipleSyntaxPatternUsagesFound">
+            <summary>
+            Indicates the error case that the multiple usage instances set the property
+            <see cref="P:System.CommandLine.Annotations.UsageAttribute.IsPattern"/> with <see langword="true"/> value.
+            </summary>
+            <seealso cref="P:System.CommandLine.Annotations.UsageAttribute.IsPattern"/>
+        </member>
+        <member name="F:Sudoku.CommandLine.ErrorCode.OtherRuntimeError">
+            <summary>
+            Indicates the error case that the command line has encountered an error that isn't recorded
+            in the current enumeration type.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.Bot">
+            <summary>
+            Represents a bot command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Bot.Address">
+            <summary>
+            The address.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Bot.BotNumber">
+            <summary>
+            The number of the bot.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Bot.VerifyKey">
+            <summary>
+            The verify key.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Bot.ExecuteAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.Check">
+            <summary>
+            Represents a check command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Check.CheckType">
+            <summary>
+            Indicates the check type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Check.Grid">
+            <summary>
+            Indicates the grid used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Check.ExecuteAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.CheckType">
+            <summary>
+            Defines a check type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.CheckType.Validity">
+            <summary>
+            Indicates the validity.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.Draw">
+            <summary>
+            Represents a draw command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Draw.Size">
+            <summary>
+            The size of the picture.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Draw.OutsideOffset">
+            <summary>
+            The outside offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Draw.ExtraFooter">
+            <summary>
+            The extra footer.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Draw.OutputPath">
+            <summary>
+            The output path.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Draw.Grid">
+            <summary>
+            Indicates the grid used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Draw.ExecuteAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.Format">
+            <summary>
+            Represents a format command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Format.FormatString">
+            <summary>
+            Indicates the format string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Format.Grid">
+            <summary>
+            Indicates the grid used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Format.ExecuteAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.Generate">
+            <summary>
+            Represents a generate command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Generate.Range">
+            <summary>
+            Indicates the range of givens that generated puzzle should be.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Generate.GenerateType">
+            <summary>
+            Indicates the algorithm to generate the puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Generate.ExecuteAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.GenerateType">
+            <summary>
+            Defines a generate type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.GenerateType.HardPatternLike">
+            <summary>
+            Indicates the generate type is to generate a puzzle with hard-pattern algorithm.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.GenerateType.PatternBased">
+            <summary>
+            Indicates the generate type is to generate a puzzle with pattern-based algorithm.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.Help">
+            <summary>
+            Defines the type that stores the help options.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Help.HelpCommandName">
+            <summary>
+            Indicates the name of the help command. If <see langword="null"/>, all commands will be displayed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Help.ExecuteAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.Solve">
+            <summary>
+            Represents a solve command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Solve.SolveMethod">
+            <summary>
+            Indicates the method to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Solve.Grid">
+            <summary>
+            Indicates the grid used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Solve.ExecuteAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.SolveAlgorithm">
+            <summary>
+            Defines an algorithm that is used for solving a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.SolveAlgorithm.Logical">
+            <summary>
+            Indicates the solver is manually solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.SolveAlgorithm.Bitwise">
+            <summary>
+            Indicates the solver is bitwise solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.SolveAlgorithm.Backtracking">
+            <summary>
+            Indicates the solver is backtracking solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.SolveAlgorithm.DancingLinks">
+            <summary>
+            Indicates the solver is dancing links solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.SolveAlgorithm.LinqBasedOnQuery">
+            <summary>
+            Indicates the solver is the LINQ solver based on query.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.SolveAlgorithm.LinqBasedOnDictionary">
+            <summary>
+            Indicates the solver is the LINQ solver based on type <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.Version">
+            <summary>
+            Defines the type that stores the version options.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Version.ExecuteAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.Visit">
+            <summary>
+            Represents a visit command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.RootCommands.Visit.VisitLink">
+            <summary>
+            Indicates the link to visit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Visit.ExecuteAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.VisitLink">
+            <summary>
+            Indicates the visit link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.VisitLink.AuthorGitHub">
+            <summary>
+            Indicates the author GitHub site.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.VisitLink.AuthorGitee">
+            <summary>
+            Indicates the author Gitee site.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.VisitLink.Bilibili">
+            <summary>
+            Indicates the author Bilibili site.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.VisitLink.RepoWiki">
+            <summary>
+            Indicates the repository wiki page.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.VisitLink.RepoGitHub">
+            <summary>
+            Indicates the repository GitHub site.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.VisitLink.RepoGitee">
+            <summary>
+            Indicates the repository Gitee site.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.ValueConverters.CellCountRangeConverter">
+            <summary>
+            Defines a value converter that converts a <see cref="T:System.String"/> into a range value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.ValueConverters.CellCountRangeConverter.Convert(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.ValueConverters.EnumTypeConverter`1">
+            <summary>
+            Represents a converter that can convert the <see cref="T:System.String"/> value to the <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the target enumeration.</typeparam>
+        </member>
+        <member name="M:Sudoku.CommandLine.ValueConverters.EnumTypeConverter`1.Convert(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.ValueConverters.GridConverter">
+            <summary>
+            Defines a converter that can convert a <see cref="T:System.String"/> value into the target result.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.ValueConverters.GridConverter.Convert(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.ValueConverters.NumericConverter`1">
+            <summary>
+            Defines a converter that can convert a <see cref="T:System.String"/> value into the target result.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CommandLine.ValueConverters.NumericConverter`1.Convert(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CommandLine.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.CommandLine.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.AppLifecycle.AnsweringContext">
+            <summary>
+            The answering context.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.AppLifecycle.AnsweringContext.AnsweredUsers">
+            <summary>
+            The answered users.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.AppLifecycle.AnsweringContext.CurrentRoundAnsweredValues">
+            <summary>
+            The answered raw values in a loop-scoped round.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.AppLifecycle.BotRunningContext">
+            <summary>
+            Defines a context that represents a detail data in a group used by a bot running.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.AppLifecycle.BotRunningContext.ExecutingCommand">
+            <summary>
+            The command currently executing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.AppLifecycle.BotRunningContext.AnsweringContext">
+            <inheritdoc cref="T:Sudoku.Communication.Qicq.AppLifecycle.AnsweringContext"/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.AppLifecycle.BotRunningContext.DrawingContext">
+            <inheritdoc cref="T:Sudoku.Communication.Qicq.AppLifecycle.DrawingContext"/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.AppLifecycle.DrawingContext">
+            <summary>
+            The drawing context.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.AppLifecycle.DrawingContext.Puzzle">
+            <summary>
+            The grid to be operated with.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.AppLifecycle.DrawingContext.Painter">
+            <summary>
+            The painter.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData">
+            <summary>
+            Provides with environment data.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.Rng">
+            <summary>
+            The random number generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.Generator">
+            <summary>
+            The generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.Solver">
+            <summary>
+            The solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.AppLifecycle.EnvironmentData.RunningContexts">
+            <summary>
+            The internal running context.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.CommandComparison">
+            <summary>
+            Represents a comparison type that compares for two commands, using key value (<see cref="T:System.String"/> values).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.CommandComparison.Strict">
+            <summary>
+            Indicates the comparison type is struct. Two commands should compare their <see cref="T:System.String"/> value.
+            They are same if and only if they holds a same <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.CommandComparison.Prefix">
+            <summary>
+            Indicates the comparison type is comparing as prefixes. If the target <see cref="T:System.String"/> starts with the specified value,
+            the comparison will be determined as <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.CheckInCommand">
+            <summary>
+            Indicates the check-in command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.CheckInCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.CheckInCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.CheckInCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.ClearCommand">
+            <summary>
+            Indicates the clear command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.ClearCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.ClearCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.ClearCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ClearCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.Command">
+            <summary>
+            Defines a command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.Command.CommandName">
+            <summary>
+            Indicates the command name that will be used as comparison.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.Command.EnvironmentCommand">
+            <summary>
+            Indicates the environment command that the current command relies on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.Command.Prefixes">
+            <summary>
+            Indicates the prefix.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.Command.ComparisonMode">
+            <summary>
+            Indicates the comparison mode that will be used as check commands.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.Command.ExecuteAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="args">The arguments.</param>
+            <param name="e">The event arguments.</param>
+            <returns>
+            Returns a task instance that returns a <see cref="T:System.Boolean"/> value indicating whether the operation executed successfully.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.Command.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc cref="M:Sudoku.Communication.Qicq.Commands.Command.ExecuteAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)"/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.CommandAttribute">
+            <summary>
+            Declares the command and its permission.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.CommandAttribute.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Communication.Qicq.Commands.CommandAttribute"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.CommandAttribute.#ctor(Mirai.Net.Data.Shared.Permissions[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Communication.Qicq.Commands.CommandAttribute"/> instance.
+            </summary>
+            <param name="permission">The permission.</param>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.CommandAttribute.AllowedPermissions">
+            <summary>
+            Indicates the permission.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.ComplexLookupScoreCommand">
+            <summary>
+            Indicates the complex lookup score command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.ComplexLookupScoreCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.ComplexLookupScoreCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ComplexLookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.DeleteDigitCommand">
+            <summary>
+            Indicates the delete command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DeleteDigitCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DeleteDigitCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DeleteDigitCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.DeleteDigitCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.DrawCommand">
+            <summary>
+            Indicates draw command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DrawCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DrawCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DrawCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.DrawCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.DrawEndCommand">
+            <summary>
+            Indicates the draw end command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DrawEndCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DrawEndCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DrawEndCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.DrawEndCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.DrawStartCommand">
+            <summary>
+            Indicates the draw start command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DrawStartCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.DrawStartCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.DrawStartCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.HelpCommand">
+            <summary>
+            Indicates the help command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.HelpCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.HelpCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.HelpCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.ICommandDataProvider">
+            <summary>
+            Extracts a type that creates data used by commands.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.KnownColors">
+            <summary>
+            The table of known colors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.KnownKinds">
+            <summary>
+            The table of known kinds.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GetIdentifier(System.String)">
+            <summary>
+            Try to fetch the identifier name via the color name.
+            </summary>
+            <param name="name">The name of the color.</param>
+            <returns>The identifier instance.</returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GetCoordinate(System.String)">
+            <summary>
+            Try to fetch the coordinate value.
+            </summary>
+            <param name="rawCoordinate">The coordinate string value.</param>
+            <returns>
+            Returns a value that can be <see cref="T:Sudoku.Concepts.CellMap"/>, <see cref="T:Sudoku.Concepts.Candidates"/> and <see cref="T:System.Int32"/> value, where:
+            <list type="table">
+            <item>
+            <term><see cref="T:Sudoku.Concepts.CellMap"/></term>
+            <description>The cells parsed if the string value can be parsed as <see cref="T:Sudoku.Concepts.CellMap"/>.</description>
+            </item>
+            <item>
+            <term><see cref="T:Sudoku.Concepts.Candidates"/></term>
+            <description>The candidates parsed if the string value can be parsed as <see cref="T:Sudoku.Concepts.Candidates"/>.</description>
+            </item>
+            <item>
+            <term><see cref="T:System.Int32"/></term>
+            <description>The house parsed if the string value can be parsed as house index.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GetCell(System.String)">
+            <summary>
+            Try to fetch the coordinate value.
+            </summary>
+            <param name="rawCoordinate">The coordinate string value.</param>
+            <returns>The cell index parsed. If failed to be parsed, <see langword="null"/> will be returned.</returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GenerateOriginalValueEarned">
+            <summary>
+            Generates a value that describes the experience point that the current user can be earned.
+            </summary>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GenerateValueEarned(System.Int32)">
+            <summary>
+            Generates a value that describes the experience point that the current user can be earned.
+            </summary>
+            <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.LookupScoreCommand">
+            <summary>
+            The lookup score command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.LookupScoreCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.LookupScoreCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.LookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.RankingCommand">
+            <summary>
+            Indicates the ranking command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.RankingCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.RankingCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.RankingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.SetDigitCommand">
+            <summary>
+            Indicates the set digit command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.SetDigitCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.SetDigitCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.SetDigitCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.SetDigitCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.StartGamingCommand">
+            <summary>
+            Define a start gaming command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.StartGamingCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.StartGamingCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.StartGamingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.GeneratedGridData">
+            <summary>
+            The generated grid data.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            The generated grid data.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.UpdateScoreCommand">
+            <summary>
+            Indicates the update score command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.UpdateScoreCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.UpdateScoreCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.UpdateScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.IO.InternalReadWrite">
+            <summary>
+            Represents a type that interacts with local files. All methods in this type are synchronized methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.IO.InternalReadWrite.Read(System.String,Sudoku.Communication.Qicq.Models.UserData)">
+            <summary>
+            Reads the specified user's local file, and returns <see cref="T:Sudoku.Communication.Qicq.Models.UserData"/> instance.
+            </summary>
+            <param name="userId">The user QQ number.</param>
+            <param name="default">The default value returned.</param>
+            <returns>
+            The converted data. The result value of <see langword="await"/> expression has a same nullability
+            with argument <paramref name="default"/>, which means if <paramref name="default"/> is <see langword="null"/>,
+            the expression <c>await PlayerReadWrite.ReadValueAsync(...)</c> will also be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.IO.InternalReadWrite.Write(Sudoku.Communication.Qicq.Models.UserData)">
+            <summary>
+            Writes the specified user's data to the local file.
+            </summary>
+            <param name="userData">The user data.</param>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.IO.InternalReadWrite.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})">
+            <summary>
+            Generate a picture using the specified sudoku painter creator, storing it to the cached folder and return its file path.
+            This method also saves the picture into the local path.
+            </summary>
+            <param name="painterCreator">The painter creator method.</param>
+            <returns>The target path of the picture.</returns>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Models.UserData">
+            <summary>
+            Defines a user data.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Models.UserData.QQ">
+            <summary>
+            The user's QQ number.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Models.UserData.Score">
+            <summary>
+            Indicates the user's score.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Models.UserData.ComboCheckedIn">
+            <summary>
+            Indicates the number of continuous days that the user has checked in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Models.UserData.LastCheckIn">
+            <summary>
+            Indicates the last time checked in of the current user.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Models.UserPuzzleAnswerData">
+            <summary>
+            Defines a user answer data.
+            </summary>
+            <param name="User">The user who gives the conclusion.</param>
+            <param name="Conclusion">The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</param>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Models.UserPuzzleAnswerData.#ctor(Mirai.Net.Data.Shared.Member,System.Int32)">
+            <summary>
+            Defines a user answer data.
+            </summary>
+            <param name="User">The user who gives the conclusion.</param>
+            <param name="Conclusion">The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</param>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Models.UserPuzzleAnswerData.User">
+            <summary>The user who gives the conclusion.</summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Models.UserPuzzleAnswerData.Conclusion">
+            <summary>The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Patterns">
+            <summary>
+            Extracts a type that stores regular expression patterns.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Patterns.BilibiliPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ 2nd capture group.<br/>
+                            ○ Match the string "哔哩".<br/>
+                        ○ Match the same text as matched by the 2nd capture group.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [Bb].<br/>
+                        ○ Match with 2 alternative expressions, atomically.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match a whitespace character atomically at most 3 times.<br/>
+                                ○ Match '站'.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match 'i'.<br/>
+                                ○ 3rd capture group.<br/>
+                                    ○ Match the string "li".<br/>
+                                ○ Match the string "bi".<br/>
+                                ○ Match the same text as matched by the 3rd capture group.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Strings.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.AdminQQ">
+            <summary>
+              Looks up a localized string similar to 747507738.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.BotSettingsFolderName">
+            <summary>
+              Looks up a localized string similar to BotData.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.CachedPictureFolderName">
+            <summary>
+              Looks up a localized string similar to TempPictures.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.SudokuGroupQQ">
+            <summary>
+              Looks up a localized string similar to 924849321.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Strings.Resources.UserSettingsFolderName">
+            <summary>
+              Looks up a localized string similar to Users.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Text.GroupMessageReceiverExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>.
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Text.GroupMessageReceiverExtensions.SendMessageAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Communication.Qicq.Text.MessageConcatenator)">
+            <summary>
+            Sends a message using <see cref="T:Sudoku.Communication.Qicq.Text.MessageConcatenator"/> type to concatenate multiple <see cref="T:Mirai.Net.Data.Messages.MessageBase"/> instances into one.
+            </summary>
+            <param name="this">The <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/> instance.</param>
+            <param name="messageCantenator">
+            <para>The message cantenator instance.</para>
+            <para>
+            Although this argument is of type <see cref="T:Sudoku.Communication.Qicq.Text.MessageConcatenator"/> instance,
+            you can also pass an interpolated string into here - it will be automatically converted into the target value.
+            </para>
+            </param>
+            <returns>The task that handles the operation.</returns>
+            <remarks>
+            For example, using raw string literal to combine multiple <see cref="T:Mirai.Net.Data.Messages.MessageBase"/> instances; all characters as literal ones
+            will be ignored:
+            <code><![CDATA[
+            await e.SendMessageAsync(
+                $"""
+                {new AtMessage(id)}
+                {" "}
+                {"You won!"}
+                """
+            );
+            ]]></code>
+            This is equivalent to
+            <code><![CDATA[
+            await e.SendMessageAsync(new AtMessage(id) + new PlainMessage(" ") + new PlainMessage("You won!"));
+            ]]></code>
+            You can also use plain cantenation:
+            <code><![CDATA[
+            await e.SendMessageAsync($"{new AtMessage(id)}{" "}{"You won!"}");
+            ]]></code>
+            Using this method can emit some calculation to optimize the performance.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Text.MessageConcatenator">
+            <summary>
+            Defines a message concatenator instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Text.MessageConcatenator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Communication.Qicq.Text.MessageConcatenator"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Text.MessageConcatenator.MessageBlocks">
+            <summary>
+            The message blocks.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Text.MessageConcatenator.AppendLiteral(System.String)">
+            <summary><b><i>
+            Unused method. Keep this method empty.
+            </i></b></summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Text.MessageConcatenator.AppendFormatted(System.String)">
+            <summary>
+            Appends a new text.
+            </summary>
+            <param name="textMessage">The plain text message.</param>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Text.MessageConcatenator.AppendFormatted``1(``0)">
+            <summary>
+            Appends a new formatted message.
+            </summary>
+            <typeparam name="T">The type of the message.</typeparam>
+            <param name="message">The message instance.</param>
+        </member>
+        <member name="T:System.CommandLine.RootCommand">
+            <summary>
+            Provides with the entry for the parsing.
+            </summary>
+        </member>
+        <member name="E:System.CommandLine.RootCommand.OperationCancelled">
+            <summary>
+            Defines an event that is triggered when an operation is cancelled.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.RootCommand.RouteAsync(System.String[])">
+            <summary>
+            Routes the command line arguments to the specified <see cref="T:System.CommandLine.IExecutable"/> instances.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>A task that handles the operation asynchronously.</returns>
+            <exception cref="T:System.CommandLine.CommandLineParserException">
+            Throws when the command line arguments is <see langword="null"/> or empty currently,
+            or the command name is invalid, or the command line arguments is empty.
+            </exception>
+            <exception cref="T:System.CommandLine.CommandLineRuntimeException">Throws when an error has been encountered.</exception>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the BilibiliPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.BilibiliPattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BilibiliPattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BilibiliPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:Mirai.Net.Data.Shared.GroupExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Mirai.Net.Data.Shared.Group"/>.
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Shared.Group"/>
+        </member>
+        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMemberAsync(Mirai.Net.Data.Shared.Group,System.String)">
+            <summary>
+            Gets the member whose QQ or name is specified one.
+            </summary>
+            <param name="this">The group.</param>
+            <param name="nameOrId">The QQ number or target member's name.</param>
+            <returns>The target member returned. If none found, <see langword="null"/>.</returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMemberFromQQAsync(Mirai.Net.Data.Shared.Group,System.String)">
+            <summary>
+            Gets the member whose QQ number is the specified one.
+            </summary>
+            <param name="this">The group.</param>
+            <param name="qq">The QQ number.</param>
+            <returns>The target member returned. If none found, <see langword="null"/>.</returns>
+        </member>
+        <member name="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>.
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>
+        </member>
+        <member name="M:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions.SendPictureThenDeleteAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,System.Func{Sudoku.Drawing.ISudokuPainter})">
+            <summary>
+            Sends the picture message, and then delete the local file.
+            </summary>
+            <param name="this">The group message receiver.</param>
+            <param name="painterCreator">
+            <inheritdoc cref="M:Sudoku.Communication.Qicq.IO.InternalReadWrite.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})" path="/param[@name='painterCreator']"/>
+            </param>
+            <returns>A task that handles the operation.</returns>
+        </member>
+        <member name="T:Mirai.Net.Data.Messages.MessageChainExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Mirai.Net.Data.Messages.MessageChain"/>.
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Messages.MessageChain"/>
+        </member>
+        <member name="M:Mirai.Net.Data.Messages.MessageChainExtensions.Deconstruct(Mirai.Net.Data.Messages.MessageChain,System.String@,System.String@,System.String[]@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Mirai.Net.Sessions.MiraiBotSubscribingExtensions">
+            <summary>
+            Provides with extenions methods on subscribing events for a <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.
+            </summary>
+        </member>
+        <member name="T:OneOf.OneOfExtensions">
+            <summary>
+            Provides extension methods on <see cref="N:OneOf"/> types.
+            </summary>
+            <seealso cref="N:OneOf"/>
+        </member>
+        <member name="M:OneOf.OneOfExtensions.Deconstruct``2(OneOf.OneOf{``0,``1},System.Boolean@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:OneOf.OneOfExtensions.Deconstruct``3(OneOf.OneOf{``0,``1,``2},System.Boolean@,System.Boolean@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:OneOf.OneOfExtensions.Deconstruct``4(OneOf.OneOf{``0,``1,``2,``3},System.Boolean@,System.Boolean@,System.Boolean@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+    </members>
+</doc>

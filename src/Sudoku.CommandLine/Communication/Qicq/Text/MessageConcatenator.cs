@@ -19,8 +19,7 @@ public sealed class MessageConcatenator
 	/// <summary>
 	/// The message blocks.
 	/// </summary>
-	[DisallowNull]
-	public MessageChain? MessageBlocks { get; private set; }
+	public MessageChain MessageBlocks { get; private set; } = new();
 
 
 	/// <summary><b><i>
