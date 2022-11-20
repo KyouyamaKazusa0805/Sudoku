@@ -34,6 +34,11 @@ public static class GroupMessageReceiverExtensions
 	/// <code><![CDATA[
 	/// await e.SendMessageAsync(new AtMessage(id) + new PlainMessage(" ") + new PlainMessage("You won!"));
 	/// ]]></code>
+	/// You can also use plain cantenation:
+	/// <code><![CDATA[
+	/// await e.SendMessageAsync($"{new AtMessage(id)}{" "}{"You won!"}");
+	/// ]]></code>
+	/// Using this method can emit some calculation to optimize the performance.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static async Task<string> SendMessageAsync(

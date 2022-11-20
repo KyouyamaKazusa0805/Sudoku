@@ -68,13 +68,7 @@ internal sealed class StartGamingCommand : Command
 						case (_, true):
 						{
 							// The user has already answered the result.
-							await e.SendMessageAsync(
-								$"""
-								{new AtMessage(userId)}
-								{" "}
-								{R["_MessageFormat_NoChanceToAnswer"]!}
-								"""
-							);
+							await e.SendMessageAsync($"{new AtMessage(userId)}{" "}{R["_MessageFormat_NoChanceToAnswer"]!}");
 
 							break;
 						}

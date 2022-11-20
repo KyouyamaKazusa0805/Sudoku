@@ -57,13 +57,7 @@ internal sealed class RankingCommand : Command
 		).Take(10);
 
 		var rankingStr = string.Join("\r\n", usersData.Select(selector));
-		await e.SendMessageAsync(
-			$"""
-			{R["_MessageFormat_RankingResult"]!}
-			{"\r\n---\r\n"}
-			{rankingStr}
-			"""
-		);
+		await e.SendMessageAsync($"{R["_MessageFormat_RankingResult"]!}{"\r\n---\r\n"}{rankingStr}");
 		return true;
 
 
