@@ -29,7 +29,7 @@ internal sealed class StartGamingCommand : Command
 		await Task.Delay(15000);
 #endif
 
-		var (puzzle, (resultCell, resultDigit), baseExp) = GeneratePuzzle();
+		var (puzzle, resultCell, resultDigit, baseExp) = GeneratePuzzle();
 
 		// Create picture and send message.
 		await e.SendPictureThenDeleteAsync(
@@ -96,29 +96,27 @@ internal sealed class StartGamingCommand : Command
 	ReturnTrueAndInitializeContext:
 		context.ExecutingCommand = null;
 		return true;
-	}
 
-	/// <summary>
-	/// Generates a random puzzle.
-	/// </summary>
-	/// <returns>The random puzzle.</returns>
-	private (Grid Puzzle, (int Cell, int Digit) Solution, int BaseExperiencePointCanBeEarned) GeneratePuzzle()
-	{
-		while (true)
+
+		static GeneratedGridData GeneratePuzzle()
 		{
-			var grid = Generator.Generate();
-			if (Solver.Solve(grid) is
-				{
-					DifficultyLevel: var diffLevel and (DifficultyLevel.Easy or DifficultyLevel.Moderate),
-					Steps: [.., { Conclusions: [{ Cell: var targetCell, Digit: var targetDigit }] }] steps
-				})
+			while (true)
 			{
-				return (
-					grid,
-					(targetCell, targetDigit),
-					diffLevel switch { DifficultyLevel.Easy => 12, DifficultyLevel.Moderate => 18 }
-				);
+				var grid = Generator.Generate();
+				if (Solver.Solve(grid) is
+					{
+						DifficultyLevel: var diffLevel and (DifficultyLevel.Easy or DifficultyLevel.Moderate),
+						Steps: [.., { Conclusions: [{ Cell: var targetCell, Digit: var targetDigit }] }] steps
+					})
+				{
+					return new(grid, targetCell, targetDigit, diffLevel switch { DifficultyLevel.Easy => 12, DifficultyLevel.Moderate => 18 });
+				}
 			}
 		}
 	}
 }
+
+/// <summary>
+/// The generated grid data.
+/// </summary>
+file readonly record struct GeneratedGridData(Grid Puzzle, int SolutionCell, int SolutionDigit, int BaseExperiencePointCanBeEarned);
