@@ -26,12 +26,12 @@ internal sealed class ClearCommand : Command
 			return false;
 		}
 
-		Debug.Assert(Painter is not null);
+		var painter = RunningContexts[e.GroupId].DrawingContext!.Painter!;
 
 		triplet.Switch(
-			cells => cells.ForEach(cell => Painter.RemoveNodesWhen(r => r is CellViewNode { Cell: var c } && c == cell)),
-			candidates => candidates.ForEach(candidate => Painter.RemoveNodesWhen(r => r is CandidateViewNode { Candidate: var c } && c == candidate)),
-			house => Painter.RemoveNodesWhen(r => r is HouseViewNode { House: var h } && h == house)
+			cells => cells.ForEach(cell => painter.RemoveNodesWhen(r => r is CellViewNode { Cell: var c } && c == cell)),
+			candidates => candidates.ForEach(candidate => painter.RemoveNodesWhen(r => r is CandidateViewNode { Candidate: var c } && c == candidate)),
+			house => painter.RemoveNodesWhen(r => r is HouseViewNode { House: var h } && h == house)
 		);
 
 		await e.SendPictureThenDeleteAsync();

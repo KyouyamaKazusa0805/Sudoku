@@ -17,15 +17,16 @@ internal sealed class StartGamingCommand : Command
 	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
-#if false
-		EnvironmentCommandExecuting = CommandName;
-		AnsweringContexts.TryAdd(e.GroupId, new(new(), new()));
+		var context = RunningContexts[e.GroupId];
+		context.ExecutingCommand = CommandName;
+		context.AnsweringContext = new();
 
-#if DEBUG
-		await Task.Delay(5000);
-#else
+#if !DEBUG
 		await e.SendMessageAsync(R["_MessageFormat_MatchReady"]!);
-		await Task.Delay(10 * 1000);
+#endif
+		await e.SendMessageAsync(R["_MessageFormat_PuzzleIsGenerating"]!);
+#if !DEBUG
+		await Task.Delay(15000);
 #endif
 
 		var (puzzle, (resultCell, resultDigit), baseExp) = GeneratePuzzle();
@@ -38,7 +39,7 @@ internal sealed class StartGamingCommand : Command
 				.WithNodes(new[] { new CellViewNode(DisplayColorKind.Normal, resultCell) })
 		);
 
-		var context = AnsweringContexts[e.GroupId];
+		var answeringContext = context.AnsweringContext;
 
 		// Start gaming.
 		for (var timeLastSeconds = 300; timeLastSeconds > 0; timeLastSeconds--)
@@ -47,20 +48,20 @@ internal sealed class StartGamingCommand : Command
 			{
 				await Task.Delay(245); // Reserve 5 milliseconds for executing the following slow steps.
 
-				foreach (var data in context.CurrentRoundAnsweredValues)
+				foreach (var data in answeringContext.CurrentRoundAnsweredValues)
 				{
 					if (data is not { Conclusion: var answeredDigit and not -1, User: { Id: var userId, Name: var userName } })
 					{
 						continue;
 					}
 
-					switch (answeredDigit == resultDigit, context.AnsweredUsers.Contains(userId))
+					switch (answeredDigit == resultDigit, answeringContext.AnsweredUsers.Contains(userId))
 					{
 						case (false, false):
 						{
 							// Wrong answer and no records.
 							await e.SendMessageAsync(R["_MessageFormat_WrongAnswer"]!);
-							context.AnsweredUsers.Add(userId);
+							answeringContext.AnsweredUsers.Add(userId);
 
 							break;
 						}
@@ -86,24 +87,15 @@ internal sealed class StartGamingCommand : Command
 					}
 				}
 
-				context.CurrentRoundAnsweredValues.Clear();
+				answeringContext.CurrentRoundAnsweredValues.Clear();
 			}
 		}
 
 		await e.SendMessageAsync(R["_MessageFormat_GameTimeUp"]!);
 
 	DefaultReturning:
-		EnvironmentCommandExecuting = null;
-		AnsweringContexts.TryRemove(e.GroupId, out _);
+		RunningContexts[e.GroupId].AnsweringContext = new();
 		return true;
-#else
-#if true
-		await e.SendMessageAsync(R["_MessageFormat_CurrentCommandIsUnderConstruction"]!);
-		return true;
-#else
-		return false;
-#endif
-#endif
 	}
 
 	/// <summary>

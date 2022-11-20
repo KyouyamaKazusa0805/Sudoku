@@ -76,17 +76,12 @@ internal static class InternalReadWrite
 	/// Generate a picture using the specified sudoku painter creator, storing it to the cached folder and return its file path.
 	/// This method also saves the picture into the local path.
 	/// </summary>
-	/// <param name="painterCreator">
-	/// The painter creator method. If <see langword="null"/>,
-	/// the method will automatically get <see cref="ISudokuPainter"/> instance <see cref="Painter"/>.
-	/// </param>
+	/// <param name="painterCreator">The painter creator method.</param>
 	/// <returns>The target path of the picture.</returns>
 	[SupportedOSPlatform("windows")]
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public static string? GenerateCachedPicturePath(Func<ISudokuPainter>? painterCreator = null)
+	public static string? GenerateCachedPicturePath(Func<ISudokuPainter> painterCreator)
 	{
-		painterCreator ??= static () => Painter!;
-
 		var painter = painterCreator();
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))

@@ -20,9 +20,9 @@ internal sealed class DrawEndCommand : Command
 	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
-		EnvironmentCommandExecuting = null;
-		Painter = null;
-		Puzzle = Grid.Empty;
+		var context = RunningContexts[e.GroupId];
+		context.ExecutingCommand = null;
+		context.DrawingContext = new();
 
 		await e.SendMessageAsync(R["_MessageFormat_EndOkay"]!);
 		return true;

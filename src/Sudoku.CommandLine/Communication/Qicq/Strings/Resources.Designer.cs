@@ -70,15 +70,6 @@ namespace Sudoku.Communication.Qicq.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 979329690.
-        /// </summary>
-        internal static string BotQQ {
-            get {
-                return ResourceManager.GetString("BotQQ", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to BotData.
         /// </summary>
         internal static string BotSettingsFolderName {
@@ -97,15 +88,6 @@ namespace Sudoku.Communication.Qicq.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to localhost:8080.
-        /// </summary>
-        internal static string HostPort {
-            get {
-                return ResourceManager.GetString("HostPort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 924849321.
         /// </summary>
         internal static string SudokuGroupQQ {
@@ -120,15 +102,6 @@ namespace Sudoku.Communication.Qicq.Strings {
         internal static string UserSettingsFolderName {
             get {
                 return ResourceManager.GetString("UserSettingsFolderName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to helloworld.
-        /// </summary>
-        internal static string VerifyKey {
-            get {
-                return ResourceManager.GetString("VerifyKey", resourceCulture);
             }
         }
     }

@@ -2061,6 +2061,14 @@
             <returns>The final array converted.</returns>
             <seealso cref="M:System.Linq.Enumerable.ToArray``1(System.Collections.Generic.IEnumerable{``0})"/>
         </member>
+        <member name="M:System.Linq.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Iterates all elements in this enumerable collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="visitor">The visitor method to handle and operate with each element.</param>
+        </member>
         <member name="T:System.Linq.ArrayEnumerable">
             <summary>
             Provides with the LINQ-related methods on type <see cref="T:System.Array"/>, especially for the one-dimensional array.
@@ -3437,6 +3445,20 @@
             <typeparam name="T">The type of each element in a collection, specified as a read-only reference.</typeparam>
             <param name="refFirstElement">A reference that reference to the collection.</param>
             <returns>The converted string result.</returns>
+        </member>
+        <member name="T:System.LazyExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Lazy`1"/>.
+            </summary>
+            <seealso cref="T:System.Lazy`1"/>
+        </member>
+        <member name="M:System.LazyExtensions.DoIfValueCreated``1(System.Lazy{``0},System.Action{``0})">
+            <summary>
+            Operate with inner value if <see cref="T:System.Lazy`1"/> value is created.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="this">The lazy data structure.</param>
+            <param name="action">The action to handle the value.</param>
         </member>
         <member name="T:System.MathExtensions">
             <summary>

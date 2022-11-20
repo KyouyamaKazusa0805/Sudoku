@@ -17,6 +17,7 @@ public static class GroupMessageReceiverExtensions
 	[SupportedOSPlatform("windows")]
 	public static async Task SendPictureThenDeleteAsync(this GroupMessageReceiver @this, Func<ISudokuPainter>? painterCreator = null)
 	{
+		painterCreator ??= () => RunningContexts[@this.GroupId].DrawingContext.Painter!;
 		var picturePath = InternalReadWrite.GenerateCachedPicturePath(painterCreator)!;
 
 		await @this.SendMessageAsync(new ImageMessage { Path = picturePath });

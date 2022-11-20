@@ -21,29 +21,7 @@ internal static class EnvironmentData
 	public static readonly LogicalSolver Solver = new();
 
 	/// <summary>
-	/// The internal answering context. The field is only used for command <see cref="StartGamingCommand"/>.
+	/// The internal running context.
 	/// </summary>
-	/// <remarks>
-	/// This field uses a concurrent dictionary, grouping all answering contexts by group QQ number.
-	/// No matter what thread the current program use, this field can always provide the available,
-	/// although the target result may not be created.
-	/// </remarks>
-	internal static readonly ConcurrentDictionary<string, AnsweringContext> AnsweringContexts = new();
-
-
-	/// <summary>
-	/// The current executing command.
-	/// </summary>
-	/// <remarks><b><i>This field will be re-considered.</i></b></remarks>
-	public static string? EnvironmentCommandExecuting = null;
-
-	/// <summary>
-	/// The puzzle.
-	/// </summary>
-	public static Grid Puzzle = Grid.Empty;
-
-	/// <summary>
-	/// The painter.
-	/// </summary>
-	public static ISudokuPainter? Painter = null;
+	internal static readonly ConcurrentDictionary<string, BotRunningContext> RunningContexts = new();
 }

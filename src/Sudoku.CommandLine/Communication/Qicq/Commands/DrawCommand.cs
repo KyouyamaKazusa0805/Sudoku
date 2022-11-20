@@ -37,8 +37,9 @@ internal sealed class DrawCommand : Command
 			return false;
 		}
 
-		Debug.Assert(Painter is not null);
-
+		var context = RunningContexts[e.GroupId];
+		var drawingContext = context.DrawingContext!;
+		
 		var tempNodes = new List<ViewNode>();
 		triplet.Switch(
 			cells => cells.ForEach(cell => tempNodes.Add(new CellViewNode(identifier, cell))),
@@ -46,7 +47,7 @@ internal sealed class DrawCommand : Command
 			house => tempNodes.Add(new HouseViewNode(identifier, house))
 		);
 
-		Painter.AddNodes(tempNodes);
+		drawingContext.Painter!.AddNodes(tempNodes);
 
 		await e.SendPictureThenDeleteAsync();
 		return true;

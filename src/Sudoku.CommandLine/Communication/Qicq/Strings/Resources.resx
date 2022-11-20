@@ -121,10 +121,6 @@
     <value>747507738</value>
     <comment>My QQ number. Congrats! You found my QQ number!</comment>
   </data>
-  <data name="BotQQ" xml:space="preserve">
-    <value>979329690</value>
-    <comment>This is the test bot number. You can change it to your bot number. This number should be logged-in on Mirai platform.</comment>
-  </data>
   <data name="BotSettingsFolderName" xml:space="preserve">
     <value>BotData</value>
     <comment>The folder names that stores your bot data. The code suggests the output JSON path be "My Documents" folder, so you should check that folder in "My Documents" folder as base one.</comment>
@@ -133,10 +129,6 @@
     <value>TempPictures</value>
     <comment>The folder that temporary pictures are generated and stored to.</comment>
   </data>
-  <data name="HostPort" xml:space="preserve">
-    <value>localhost:8080</value>
-    <comment>The Mirai host and port. This configuration can be found in your configuration file.</comment>
-  </data>
   <data name="SudokuGroupQQ" xml:space="preserve">
     <value>924849321</value>
     <comment>My sudoku group QQ number (Chinese name: 摇曳数独)</comment>
@@ -144,9 +136,5 @@
   <data name="UserSettingsFolderName" xml:space="preserve">
     <value>Users</value>
     <comment>User settings folder name.</comment>
-  </data>
-  <data name="VerifyKey" xml:space="preserve">
-    <value>helloworld</value>
-    <comment>This is the verify key. The value can be found in local configuration path "config/net.mamoe.mirai-api-http/settings.yml".</comment>
   </data>
 </root>

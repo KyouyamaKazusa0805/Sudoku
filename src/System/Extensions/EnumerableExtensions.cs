@@ -75,4 +75,36 @@ public static class EnumerableExtensions
 	/// <seealso cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static T[] CastToArray<T>(this IEnumerable<T> @this) => @this is T[] array ? array : @this.ToArray();
+
+	/// <summary>
+	/// Iterates all elements in this enumerable collection.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The collection.</param>
+	/// <param name="visitor">The visitor method to handle and operate with each element.</param>
+	public static void ForEach<T>(this IEnumerable<T> @this, Action<T> visitor)
+	{
+		switch (@this)
+		{
+			case T[] array:
+			{
+				Array.ForEach(array, visitor);
+				break;
+			}
+			case List<T> list:
+			{
+				list.ForEach(visitor);
+				break;
+			}
+			default:
+			{
+				foreach (var element in @this)
+				{
+					visitor(element);
+				}
+
+				break;
+			}
+		}
+	}
 }

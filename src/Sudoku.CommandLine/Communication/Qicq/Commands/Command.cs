@@ -47,7 +47,7 @@ internal abstract class Command
 			return false;
 		}
 
-		if (EnvironmentCommandExecuting != EnvironmentCommand)
+		if (RunningContexts.TryGetValue(e.GroupId, out var context) && context.ExecutingCommand != EnvironmentCommand)
 		{
 			return false;
 		}

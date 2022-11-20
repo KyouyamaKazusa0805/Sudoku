@@ -120,6 +120,9 @@
   <data name="BilibiliNameRegexPattern" xml:space="preserve">
     <value>((哔哩)\2|[Bb]\s{0,3}站|[Bb]i(li)bi\3)</value>
   </data>
+  <data name="BootingFailedDueToBotInvalid" xml:space="preserve">
+    <value>机器人启动失败，尝试 3 次后仍无法正确获取机器人的所在群信息，该数据对于程序运行非常关键。</value>
+  </data>
   <data name="BootingFailedDueToHttp" xml:space="preserve">
     <value>机器人启动失败，原因为 HTTP 导致的框架直接执行错误。请检查账号是否可以正常通过 Mirai 登录。</value>
   </data>
@@ -329,6 +332,9 @@
   </data>
   <data name="_MessageFormat_PermissionRequired" xml:space="preserve">
     <value>该功能需要更高权限者使用~</value>
+  </data>
+  <data name="_MessageFormat_PuzzleIsGenerating" xml:space="preserve">
+    <value>正在生成题目……</value>
   </data>
   <data name="_MessageFormat_RankingListIsEmpty" xml:space="preserve">
     <value>用户尚未加入进来~ 排名里没有人~</value>

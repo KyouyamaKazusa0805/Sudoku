@@ -6,6 +6,26 @@
 internal static class MiraiBotSubscribingExtensions
 {
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void SubscribeBotOnlined(this MiraiBot @this, Action<OnlineEvent> action)
+		=> @this.EventReceived.OfType<OnlineEvent>().Subscribe(action);
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void SubscribeBotOfflined(this MiraiBot @this, Action<OfflineEvent> action)
+		=> @this.EventReceived.OfType<OfflineEvent>().Subscribe(action);
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void SubscribeJoined(this MiraiBot @this, Action<JoinedEvent> action)
+		=> @this.EventReceived.OfType<JoinedEvent>().Subscribe(action);
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void SubscribeLeft(this MiraiBot @this, Action<LeftEvent> action)
+		=> @this.EventReceived.OfType<LeftEvent>().Subscribe(action);
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void SubscribeKicked(this MiraiBot @this, Action<KickedEvent> action)
+		=> @this.EventReceived.OfType<KickedEvent>().Subscribe(action);
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void SubscribeGroupMessageReceived(this MiraiBot @this, Action<GroupMessageReceiver> action)
 		=> @this.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(action);
 

@@ -17,9 +17,10 @@ internal sealed class DrawStartCommand : Command
 	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
-		EnvironmentCommandExecuting = CommandName;
-		Puzzle = Grid.Empty;
-		Painter = ISudokuPainter.Create(800, 10).WithGrid(Puzzle).WithRenderingCandidates(false);
+		var context = RunningContexts[e.GroupId];
+		context.ExecutingCommand = CommandName;
+		context.DrawingContext.Painter = ISudokuPainter.Create(800, 10).WithGrid(Grid.Empty).WithRenderingCandidates(false);
+		context.DrawingContext.Puzzle = Grid.Empty;
 
 		await e.SendMessageAsync(R["_MessageFormat_DrawStartMessage"]!);
 		return true;

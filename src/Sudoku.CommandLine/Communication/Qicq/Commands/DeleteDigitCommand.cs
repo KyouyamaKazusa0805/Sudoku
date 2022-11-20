@@ -31,10 +31,13 @@ internal sealed class DeleteDigitCommand : Command
 			return false;
 		}
 
-		Debug.Assert(Painter is not null);
+		var context = RunningContexts[e.GroupId];
+		var drawingContext = context.DrawingContext!;
+		var puzzle = drawingContext.Puzzle;
+		puzzle[cell, rawDigit - '1'] = false;
 
-		Puzzle[cell, rawDigit - '1'] = false;
-		Painter.WithGrid(Puzzle);
+		drawingContext.Puzzle = puzzle;
+		drawingContext.Painter!.WithGrid(puzzle);
 
 		await e.SendPictureThenDeleteAsync();
 		return true;
