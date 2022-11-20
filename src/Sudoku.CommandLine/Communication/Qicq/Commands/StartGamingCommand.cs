@@ -82,7 +82,7 @@ internal sealed class StartGamingCommand : Command
 
 							InternalReadWrite.Write(userData);
 
-							return true;
+							goto ReturnTrueAndInitializeContext;
 						}
 					}
 				}
@@ -92,6 +92,8 @@ internal sealed class StartGamingCommand : Command
 		}
 
 		await e.SendMessageAsync(R["_MessageFormat_GameTimeUp"]!);
+
+	ReturnTrueAndInitializeContext:
 		context.ExecutingCommand = null;
 		return true;
 	}
