@@ -330,17 +330,14 @@
     <value>待搜索用户名称或 QQ 号码错误，请检查。</value>
   </data>
   <data name="_MessageFormat_MatchReady" xml:space="preserve">
-    <value>游戏即将开始！
-游戏规则：游戏预留 5 分钟时间，并给出一道数独题。玩家需要根据数独基本规则获得该题目指定位置的填数结果，并通过回答结果来完成题目。回答请艾特机器人，格式为“@机器人 数字”，其中的“数字”为你填入的结果。回答正确将自动结束游戏并获得相应积分；若无人作答完成题目，将自动作废，游戏自动结束。</value>
+    <value>题目生成中，请稍候……
+游戏规则：游戏预留 5 分钟时间，并给出一道数独题。玩家需要根据数独基本规则获得该题目指定位置的填数结果，并按照图中给出的填空顺序给出结果，然后通过回答结果来完成题目。回答请艾特机器人，格式为“@机器人 数字序列”，如“@机器人 9 2”，其中的“数字”为你填入的结果，第一个格填入9，第二个格子填入2（中间可以有空格，也可以没有，也可以使用其他分隔记号，均不影响回答）。回答正确将自动结束游戏并获得相应积分，错误则失去当次答题资格；若无人作答完成题目，将自动作废，游戏自动结束。</value>
   </data>
   <data name="_MessageFormat_NoChanceToAnswer" xml:space="preserve">
     <value>抱歉，由于你之前回答错误，已经丧失本轮答题资格~</value>
   </data>
   <data name="_MessageFormat_PermissionRequired" xml:space="preserve">
     <value>该功能需要更高权限者使用~</value>
-  </data>
-  <data name="_MessageFormat_PuzzleIsGenerating" xml:space="preserve">
-    <value>正在生成题目……</value>
   </data>
   <data name="_MessageFormat_RankingListIsEmpty" xml:space="preserve">
     <value>用户尚未加入进来~ 排名里没有人~</value>

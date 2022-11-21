@@ -91,12 +91,41 @@ partial class Bot
 			case { Sender: var sender, MessageChain: [SourceMessage, AtMessage { Target: var qq }, PlainMessage { Text: var message }] }
 			when qq == BotNumber
 				&& RunningContexts.TryGetValue(e.GroupId, out var context)
-				&& context is { AnsweringContext.CurrentRoundAnsweredValues: { } answeredValues }:
+				&& context is { AnsweringContext.CurrentRoundAnsweredValues: { } answeredValues }
+				&& message.Trim() is var trimmed:
 			{
-				var answeredDigit = int.TryParse(message.Trim(), out var digit) && digit is >= 1 and <= 9 ? digit - 1 : -1;
-				answeredValues.Add(new(sender, answeredDigit));
+				if (int.TryParse(trimmed, out var validInteger))
+				{
+					tryParseDigits(validInteger, sender, answeredValues);
+				}
+				else if (trimmed.Reserve(@"\d") is var extraCharactersRemoved && int.TryParse(extraCharactersRemoved, out validInteger))
+				{
+					tryParseDigits(validInteger, sender, answeredValues);
+				}
 
 				break;
+
+
+				static bool tryParseDigits(int validInteger, Member sender, ConcurrentBag<UserPuzzleAnswerData> answeredValues)
+				{
+					if (validInteger < 0)
+					{
+						return false;
+					}
+
+					// Split by digit bits.
+					List<int> numberList;
+					for (numberList = new(); validInteger != 0; validInteger /= 10)
+					{
+						numberList.Add(validInteger % 10 - 1);
+					}
+
+					// Reverse the collection.
+					numberList.Reverse();
+
+					answeredValues.Add(new(sender, numberList.ToArray()));
+					return true;
+				}
 			}
 
 			// Normal command message.

@@ -335,7 +335,7 @@ file sealed class Preference : IPreference
 	public FontStyle CandidateFontStyle { get; set; } = FontStyle.Regular;
 
 	/// <inheritdoc/>
-	public FontStyle UnknownFontStyle { get; set; } = FontStyle.Regular;
+	public FontStyle UnknownFontStyle { get; set; } = FontStyle.Italic | FontStyle.Bold;
 
 	/// <inheritdoc/>
 	public FontStyle FooterTextFontStyle { get; set; } = FontStyle.Bold;

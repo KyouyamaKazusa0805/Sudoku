@@ -21,22 +21,17 @@ internal sealed class StartGamingCommand : Command
 		context.ExecutingCommand = CommandName;
 		context.AnsweringContext = new();
 
-#if !DEBUG
 		await e.SendMessageAsync(R["_MessageFormat_MatchReady"]!);
-#endif
-		await e.SendMessageAsync(R["_MessageFormat_PuzzleIsGenerating"]!);
-#if !DEBUG
-		await Task.Delay(15000);
-#endif
+		await Task.Delay(20.Seconds());
 
-		var (puzzle, resultCell, resultDigit, baseExp) = GeneratePuzzle();
+		var (puzzle, solutionData, baseExp) = GeneratePuzzle();
 
 		// Create picture and send message.
 		await e.SendPictureThenDeleteAsync(
 			() => ISudokuPainter.Create(1000)
 				.WithGrid(puzzle)
 				.WithRenderingCandidates(false)
-				.WithNodes(new[] { new CellViewNode(DisplayColorKind.Normal, resultCell) })
+				.WithNodes(solutionData.Select(markerNodeSelector))
 		);
 
 		var answeringContext = context.AnsweringContext;
@@ -58,12 +53,12 @@ internal sealed class StartGamingCommand : Command
 
 				foreach (var data in answeringContext.CurrentRoundAnsweredValues)
 				{
-					if (data is not { Conclusion: var answeredDigit and not -1, User: { Id: var userId, Name: var userName } })
+					if (data is not { Conclusions: var answeredDigits, User: { Id: var userId, Name: var userName } })
 					{
 						continue;
 					}
 
-					switch (answeredDigit == resultDigit, answeringContext.AnsweredUsers.Contains(userId))
+					switch (resultCorrector(answeredDigits, solutionData), answeringContext.AnsweredUsers.Contains(userId))
 					{
 						case (false, false):
 						{
@@ -106,25 +101,61 @@ internal sealed class StartGamingCommand : Command
 		return true;
 
 
-		static GeneratedGridData GeneratePuzzle()
+		static bool resultCorrector(int[]? answeredDigits, (int, int Digit)[] data)
 		{
+			if (answeredDigits is null || answeredDigits.Length != data.Length)
+			{
+				return false;
+			}
+
+			for (var i = 0; i < data.Length; i++)
+			{
+				if (answeredDigits[i] != data[i].Digit)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		static GeneratedGridData GeneratePuzzle(int[]? targetCells = null)
+		{
+			// Specifies the default locations to be answered.
+			targetCells ??= new[] { 10, 15, 20 };
+
 			while (true)
 			{
 				var grid = Generator.Generate();
-				if (Solver.Solve(grid) is
-					{
-						DifficultyLevel: var diffLevel and (DifficultyLevel.Easy or DifficultyLevel.Moderate),
-						Steps: [.., { Conclusions: [{ Cell: var targetCell, Digit: var targetDigit }] }] steps
-					})
+				var result = Solver.Solve(grid);
+				if (result is { DifficultyLevel: var l and (DifficultyLevel.Easy or DifficultyLevel.Moderate), Steps: { Length: var length } s }
+					&& length > targetCells.Max()
+					&& new List<(int Cell, int Digit)>() is var collection)
 				{
-					return new(grid, targetCell, targetDigit, diffLevel switch { DifficultyLevel.Easy => 12, DifficultyLevel.Moderate => 18 });
+					foreach (var targetCell in targetCells)
+					{
+						if (s[targetCell].Conclusions is [{ Cell: var c, Digit: var d }])
+						{
+							collection.Add((c, d));
+						}
+					}
+
+					return new(grid, collection.ToArray(), l switch { DifficultyLevel.Easy => 12, DifficultyLevel.Moderate => 18 });
 				}
 			}
 		}
+
+		static ViewNode markerNodeSelector((int Cell, int Digit) element, int i)
+			=> new UnknownViewNode(DisplayColorKind.Normal, element.Cell, (Utf8Char)(char)(i + '1'), (short)(1 << element.Digit));
 	}
 }
 
 /// <summary>
 /// The generated grid data.
 /// </summary>
-file readonly record struct GeneratedGridData(scoped in Grid Puzzle, int SolutionCell, int SolutionDigit, int BaseExperiencePointCanBeEarned);
+/// <param name="Puzzle">Indicates the puzzle.</param>
+/// <param name="SolutionData">Indicates all solution data that you should answer.</param>
+/// <param name="BaseExperiencePointCanBeEarned">
+/// Indicates how many experience point you can earn in the currently round if you've answered correctly.
+/// </param>
+file readonly record struct GeneratedGridData(scoped in Grid Puzzle, (int Cell, int Digit)[] SolutionData, int BaseExperiencePointCanBeEarned);

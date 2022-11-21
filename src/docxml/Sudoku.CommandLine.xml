@@ -867,10 +867,31 @@
             <summary>
             The generated grid data.
             </summary>
+            <param name="Puzzle">Indicates the puzzle.</param>
+            <param name="SolutionData">Indicates all solution data that you should answer.</param>
+            <param name="BaseExperiencePointCanBeEarned">
+            Indicates how many experience point you can earn in the currently round if you've answered correctly.
+            </param>
         </member>
-        <member name="M:Sudoku.Communication.Qicq.Commands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Communication.Qicq.Commands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.ValueTuple{System.Int32,System.Int32}[],System.Int32)">
             <summary>
             The generated grid data.
+            </summary>
+            <param name="Puzzle">Indicates the puzzle.</param>
+            <param name="SolutionData">Indicates all solution data that you should answer.</param>
+            <param name="BaseExperiencePointCanBeEarned">
+            Indicates how many experience point you can earn in the currently round if you've answered correctly.
+            </param>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.GeneratedGridData.Puzzle">
+            <summary>Indicates the puzzle.</summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.GeneratedGridData.SolutionData">
+            <summary>Indicates all solution data that you should answer.</summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.GeneratedGridData.BaseExperiencePointCanBeEarned">
+            <summary>
+            Indicates how many experience point you can earn in the currently round if you've answered correctly.
             </summary>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.UpdateScoreCommand">
@@ -948,19 +969,19 @@
             Defines a user answer data.
             </summary>
             <param name="User">The user who gives the conclusion.</param>
-            <param name="Conclusion">The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</param>
+            <param name="Conclusions">The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</param>
         </member>
-        <member name="M:Sudoku.Communication.Qicq.Models.UserPuzzleAnswerData.#ctor(Mirai.Net.Data.Shared.Member,System.Int32)">
+        <member name="M:Sudoku.Communication.Qicq.Models.UserPuzzleAnswerData.#ctor(Mirai.Net.Data.Shared.Member,System.Int32[])">
             <summary>
             Defines a user answer data.
             </summary>
             <param name="User">The user who gives the conclusion.</param>
-            <param name="Conclusion">The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</param>
+            <param name="Conclusions">The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</param>
         </member>
         <member name="P:Sudoku.Communication.Qicq.Models.UserPuzzleAnswerData.User">
             <summary>The user who gives the conclusion.</summary>
         </member>
-        <member name="P:Sudoku.Communication.Qicq.Models.UserPuzzleAnswerData.Conclusion">
+        <member name="P:Sudoku.Communication.Qicq.Models.UserPuzzleAnswerData.Conclusions">
             <summary>The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</summary>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Patterns">
@@ -1083,7 +1104,7 @@
         </member>
         <member name="M:Sudoku.Communication.Qicq.Text.MessageConcatenator.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Communication.Qicq.Text.MessageConcatenator"/> instance.
+            Initializes a <see cref="T:Sudoku.Communication.Qicq.Text.MessageConcatenator"/> instance. <b><i>Unused arguments. Keep those not removing them.</i></b>
             </summary>
         </member>
         <member name="P:Sudoku.Communication.Qicq.Text.MessageConcatenator.MessageBlocks">

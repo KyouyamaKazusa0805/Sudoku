@@ -7,7 +7,7 @@
 public sealed class MessageConcatenator
 {
 	/// <summary>
-	/// Initializes a <see cref="MessageConcatenator"/> instance.
+	/// Initializes a <see cref="MessageConcatenator"/> instance. <b><i>Unused arguments. Keep those not removing them.</i></b>
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
