@@ -48,6 +48,14 @@ internal sealed class StartGamingCommand : Command
 			{
 				await Task.Delay(245); // Reserve 5 milliseconds for executing the following slow steps.
 
+				if (context.AnsweringContext.IsCancelled is true)
+				{
+					// User cancelled.
+					await e.SendMessageAsync(R["_MessageFormat_GamingIsCancelled"]!);
+
+					goto ReturnTrueAndInitializeContext;
+				}
+
 				foreach (var data in answeringContext.CurrentRoundAnsweredValues)
 				{
 					if (data is not { Conclusion: var answeredDigit and not -1, User: { Id: var userId, Name: var userName } })
@@ -119,4 +127,4 @@ internal sealed class StartGamingCommand : Command
 /// <summary>
 /// The generated grid data.
 /// </summary>
-file readonly record struct GeneratedGridData(Grid Puzzle, int SolutionCell, int SolutionDigit, int BaseExperiencePointCanBeEarned);
+file readonly record struct GeneratedGridData(scoped in Grid Puzzle, int SolutionCell, int SolutionDigit, int BaseExperiencePointCanBeEarned);

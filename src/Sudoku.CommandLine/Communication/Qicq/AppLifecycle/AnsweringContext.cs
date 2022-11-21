@@ -14,4 +14,9 @@ internal sealed class AnsweringContext
 	/// The answered raw values in a loop-scoped round.
 	/// </summary>
 	public ConcurrentBag<UserPuzzleAnswerData> CurrentRoundAnsweredValues { get; set; } = new();
+
+	/// <summary>
+	/// Indicates whether the user has emitted cancelled command.
+	/// </summary>
+	public bool IsCancelled { get; set; }
 }

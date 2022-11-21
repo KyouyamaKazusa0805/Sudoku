@@ -461,6 +461,11 @@
             The answered raw values in a loop-scoped round.
             </summary>
         </member>
+        <member name="P:Sudoku.Communication.Qicq.AppLifecycle.AnsweringContext.IsCancelled">
+            <summary>
+            Indicates whether the user has emitted cancelled command.
+            </summary>
+        </member>
         <member name="T:Sudoku.Communication.Qicq.AppLifecycle.BotRunningContext">
             <summary>
             Defines a context that represents a detail data in a group used by a bot running.
@@ -703,6 +708,23 @@
         <member name="M:Sudoku.Communication.Qicq.Commands.DrawStartCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.GamingCancellingCommand">
+            <summary>
+            Defines a gaming cancelling command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.GamingCancellingCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.GamingCancellingCommand.EnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.GamingCancellingCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.GamingCancellingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.HelpCommand">
             <summary>
             Indicates the help command.
@@ -846,7 +868,7 @@
             The generated grid data.
             </summary>
         </member>
-        <member name="M:Sudoku.Communication.Qicq.Commands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Communication.Qicq.Commands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32)">
             <summary>
             The generated grid data.
             </summary>

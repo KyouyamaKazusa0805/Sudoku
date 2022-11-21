@@ -222,6 +222,9 @@
   <data name="SampleReplyMessage" xml:space="preserve">
     <value>Hello, world!</value>
   </data>
+  <data name="_Command_CancelGaming" xml:space="preserve">
+    <value>结束游戏</value>
+  </data>
   <data name="_Command_CheckIn" xml:space="preserve">
     <value>签到</value>
   </data>
@@ -316,6 +319,9 @@
   </data>
   <data name="_MessageFormat_GameTimeUp" xml:space="preserve">
     <value>游戏时间到~ 游戏结束~</value>
+  </data>
+  <data name="_MessageFormat_GamingIsCancelled" xml:space="preserve">
+    <value>游戏已中止。</value>
   </data>
   <data name="_MessageFormat_LookupNameOrIdAmbiguous" xml:space="preserve">
     <value>待搜索用户名称或 QQ 号码匹配到多个用户。请修改搜索条件或提醒用户更换名称并重试。</value>
