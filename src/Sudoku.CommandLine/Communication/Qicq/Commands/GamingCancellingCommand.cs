@@ -10,7 +10,7 @@ internal sealed class GamingCancellingCommand : Command
 	public override string CommandName => R["_Command_CancelGaming"]!;
 
 	/// <inheritdoc/>
-	public override string? EnvironmentCommand => R["_Command_MatchStart"]!;
+	public override string EnvironmentCommand => R["_Command_MatchStart"]!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Strict;
