@@ -55,6 +55,7 @@ global using Sudoku.Solving.Algorithms.EnumerableQuery;
 global using Sudoku.Solving.Logical;
 global using Sudoku.Text.Notations;
 global using Sudoku.Text.Parsing;
+global using static System.Algorithm.Sequences;
 global using static System.Math;
 global using static System.Runtime.CompilerServices.Unsafe;
 global using static System.Text.Json.JsonSerializer;

@@ -24,7 +24,7 @@ internal sealed class StartGamingCommand : Command
 		await e.SendMessageAsync(R["_MessageFormat_MatchReady"]!);
 		await Task.Delay(20.Seconds());
 
-		var (puzzle, solutionData, baseExp) = GeneratePuzzle();
+		var (puzzle, solutionData, baseExp) = GeneratePuzzle(10, 15, 20);
 
 		// Create picture and send message.
 		await e.SendPictureThenDeleteAsync(
@@ -119,11 +119,8 @@ internal sealed class StartGamingCommand : Command
 			return true;
 		}
 
-		static GeneratedGridData GeneratePuzzle(int[]? targetCells = null)
+		static GeneratedGridData GeneratePuzzle(params int[] targetCells)
 		{
-			// Specifies the default locations to be answered.
-			targetCells ??= new[] { 10, 15, 20 };
-
 			while (true)
 			{
 				var grid = Generator.Generate();
@@ -140,7 +137,7 @@ internal sealed class StartGamingCommand : Command
 						}
 					}
 
-					return new(grid, collection.ToArray(), l switch { DifficultyLevel.Easy => 12, DifficultyLevel.Moderate => 18 });
+					return new(grid, collection.ToArray(), ICommandDataProvider.GetEachGamingExperiencePointCanBeEarned(targetCells, l));
 				}
 			}
 		}

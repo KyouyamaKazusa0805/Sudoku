@@ -205,4 +205,33 @@ internal interface ICommandDataProvider
 		var level = continuousDaysCount / 7;
 		return (int)Round(earned * (level * .2 + 1));
 	}
+
+	/// <summary>
+	/// Gets the experience point that can be earned by a player in a single gaming.
+	/// </summary>
+	/// <param name="targetCells">The target cells.</param>
+	/// <param name="difficultyLevel">The difficulty level of the puzzle.</param>
+	/// <returns>The experience point.</returns>
+	/// <exception cref="NotSupportedException">Throws when the specified difficulty level is not supported.</exception>
+	/// <exception cref="ArgumentException">Throws when the arguemnt <paramref name="targetCells"/> has length greater than 9.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the specified difficulty level is invalid.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static int GetEachGamingExperiencePointCanBeEarned(int[] targetCells, DifficultyLevel difficultyLevel)
+	{
+		var @base = difficultyLevel switch
+		{
+			DifficultyLevel.Easy => 12,
+			DifficultyLevel.Moderate => 18,
+			_ when Enum.IsDefined(difficultyLevel) => throw new NotSupportedException("Other kinds of difficulty levels are not supported."),
+			_ => throw new ArgumentOutOfRangeException(nameof(difficultyLevel))
+		};
+
+		var answeredValuesExtra = targetCells.Length switch
+		{
+			> 9 => throw new ArgumentException("The specified length of the target solution data is too large.", nameof(targetCells)),
+			var count => A057353(count)
+		};
+
+		return @base + answeredValuesExtra;
+	}
 }

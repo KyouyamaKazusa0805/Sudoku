@@ -804,6 +804,17 @@
             <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
             <returns>The value.</returns>
         </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GetEachGamingExperiencePointCanBeEarned(System.Int32[],Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+            <summary>
+            Gets the experience point that can be earned by a player in a single gaming.
+            </summary>
+            <param name="targetCells">The target cells.</param>
+            <param name="difficultyLevel">The difficulty level of the puzzle.</param>
+            <returns>The experience point.</returns>
+            <exception cref="T:System.NotSupportedException">Throws when the specified difficulty level is not supported.</exception>
+            <exception cref="T:System.ArgumentException">Throws when the arguemnt <paramref name="targetCells"/> has length greater than 9.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified difficulty level is invalid.</exception>
+        </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.LookupScoreCommand">
             <summary>
             The lookup score command.
