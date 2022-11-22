@@ -131,12 +131,6 @@
             Represents a bot command.
             </summary>
         </member>
-        <member name="F:Sudoku.CommandLine.RootCommands.Bot.SudokuGroupQQ">
-            <summary>
-            The special group number. This number can be replaced with whatever possible group number you want.
-            This field will be used for automatically allowing requesting.
-            </summary>
-        </member>
         <member name="P:Sudoku.CommandLine.RootCommands.Bot.Address">
             <summary>
             The address.
@@ -429,6 +423,27 @@
         <member name="F:Sudoku.CommandLine.RootCommands.VisitLink.RepoGitee">
             <summary>
             Indicates the repository Gitee site.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CommandLine.Strings.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources.SudokuGroupQQ">
+            <summary>
+              Looks up a localized string similar to 924849321.
             </summary>
         </member>
         <member name="T:Sudoku.CommandLine.ValueConverters.CellCountRangeConverter">

@@ -216,12 +216,6 @@
   <data name="ExpString" xml:space="preserve">
     <value>积分</value>
   </data>
-  <data name="SampleMemberJoinedMessage" xml:space="preserve">
-    <value>欢迎新成员~ 这里是 B 站 up 主 SunnieShine 的数独交流群~</value>
-  </data>
-  <data name="SampleReplyMessage" xml:space="preserve">
-    <value>Hello, world!</value>
-  </data>
   <data name="_Command_CancelGaming" xml:space="preserve">
     <value>结束游戏</value>
   </data>
@@ -344,9 +338,6 @@
   </data>
   <data name="_MessageFormat_RankingResult" xml:space="preserve">
     <value>用户排名：</value>
-  </data>
-  <data name="_MessageFormat_RejectJoiningGroup" xml:space="preserve">
-    <value>机器人拒绝添加您到本群之中。请联系此群的管理员。</value>
   </data>
   <data name="_MessageFormat_ScoreAppending" xml:space="preserve">
     <value>恭喜群友 {0} 获得 {1} 积分！</value>
