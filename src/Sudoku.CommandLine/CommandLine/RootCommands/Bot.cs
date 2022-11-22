@@ -9,6 +9,13 @@
 file sealed partial class Bot : IExecutable
 {
 	/// <summary>
+	/// The special group number. This number can be replaced with whatever possible group number you want.
+	/// This field will be used for automatically allowing requesting.
+	/// </summary>
+	private const string SudokuGroupQQ = "924849321";
+
+
+	/// <summary>
 	/// The address.
 	/// </summary>
 	[DoubleArgumentsCommand('a', "address", "Indicates the address of the bot to be connected to. Generally the value is 'localhost:8080'.")]
@@ -50,15 +57,27 @@ file sealed partial class Bot : IExecutable
 				RunningContexts.TryAdd(group.Id, new());
 			}
 
-			await Terminal.WriteLineAsync(R["BootingSuccessMessage"]!, ConsoleColor.DarkGreen);
+			await Terminal.WriteLineAsync("QQ bot is launched successfully.", ConsoleColor.DarkGreen);
 		}
 		catch (FlurlHttpException)
 		{
-			await Terminal.WriteLineAsync(R["BootingFailedDueToMirai"]!, ConsoleColor.DarkRed);
+			await Terminal.WriteLineAsync(
+				"""
+				QQ bot is failed to be launched. The main reason causing this is Mirai console does not login the target user. 
+				Please login and try again later.
+				""".RemoveLineEndings(),
+				ConsoleColor.DarkRed
+			);
 		}
 		catch (InvalidResponseException)
 		{
-			await Terminal.WriteLineAsync(R["BootingFailedDueToHttp"]!, ConsoleColor.DarkRed);
+			await Terminal.WriteLineAsync(
+				"""
+				QQ bot is failed to be launched. The main reason causing this is the connection is lost. 
+				Please check your connection (Wi-Fi or cable web connection) and try again later.
+				""".RemoveLineEndings(),
+				ConsoleColor.DarkRed
+			);
 		}
 
 		Terminal.Pause();
@@ -147,7 +166,7 @@ partial class Bot
 			// Normal command message.
 			case { Sender.Permission: var permission, MessageChain: (_, { } messageTrimmed, _) }:
 			{
-				foreach (var type in GetType().Assembly.GetDerivedTypes<Command>())
+				foreach (var type in typeof(CommandAttribute).Assembly.GetDerivedTypes<Command>())
 				{
 					if (type.GetConstructor(Array.Empty<Type>()) is not null
 						&& type.GetCustomAttribute<CommandAttribute>() is { AllowedPermissions: var allowPermissions }
@@ -169,7 +188,7 @@ partial class Bot
 	/// <param name="e">The event handler.</param>
 	async partial void OnMemberJoinedAsync(MemberJoinedEvent e)
 	{
-		if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
+		if (e.Member.Group is { Id: var groupId } group && groupId == SudokuGroupQQ)
 		{
 			await group.SendGroupMessageAsync(R["SampleMemberJoinedMessage"]);
 		}
@@ -187,7 +206,7 @@ partial class Bot
 			&& message.IndexOf(answerLocatorStr) is var answerLocatorStrIndex and not -1
 			&& answerLocatorStrIndex + answerLocatorStr.Length is var finalIndex && finalIndex < message.Length
 			&& message[finalIndex..] is var finalMessage
-			&& groupId == R["SudokuGroupQQ"])
+			&& groupId == SudokuGroupQQ)
 		{
 			await (BilibiliPattern().IsMatch(finalMessage.Trim()) ? e.ApproveAsync() : e.RejectAsync(R["_MessageFormat_RejectJoiningGroup"]!));
 		}
@@ -199,7 +218,7 @@ partial class Bot
 	/// <param name="e">The event handler.</param>
 	async partial void OnNewInvitationRequestedAsync(NewInvitationRequestedEvent e)
 	{
-		if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"])
+		if (e is { GroupId: var groupId } && groupId == SudokuGroupQQ)
 		{
 			await e.ApproveAsync();
 		}

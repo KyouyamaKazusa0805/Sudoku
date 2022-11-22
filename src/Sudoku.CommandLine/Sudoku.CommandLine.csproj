@@ -12,30 +12,15 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Gdip\Sudoku.Gdip.csproj" />
+		<ProjectReference Include="..\Sudoku.Platforms.QQ\Sudoku.Platforms.QQ.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving.Algorithms\Sudoku.Solving.Algorithms.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving.Logical\Sudoku.Solving.Logical.csproj" />
-		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Mirai.Net" Version="2.4.6" />
 		<PackageReference Include="OneOf" Version="3.0.223" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Update="Communication\Qicq\Strings\Resources.Designer.cs">
-			<DependentUpon>Resources.resx</DependentUpon>
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Update="Communication\Qicq\Strings\Resources.resx">
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-			<Generator>ResXFileCodeGenerator</Generator>
-		</EmbeddedResource>
 	</ItemGroup>
 
 </Project>

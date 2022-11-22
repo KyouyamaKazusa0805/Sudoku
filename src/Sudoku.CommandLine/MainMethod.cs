@@ -1,4 +1,8 @@
-﻿try
+﻿// Registers the resource fetching.
+R.RegisterAssembly(typeof(Program).Assembly);
+
+// Parse and route commands.
+try
 {
 	await RootCommand.RouteAsync(args);
 	return 0;
