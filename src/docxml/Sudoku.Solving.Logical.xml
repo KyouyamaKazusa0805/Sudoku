@@ -437,8 +437,14 @@
             Indicates the puzzle to be solved and analyzed.
             </summary>
             <remarks>
-            This field is not encapsulated into a property because C# doesn't support auto read-only properties
-            returning <see langword="ref"/> or <see langword="ref readonly"/>.
+            <target name="field">
+				<b>
+					<i>
+						This field is not encapsulated into a property because C# doesn't support auto read-only properties
+						returning <see langword="ref" /> or <see langword="ref readonly" />.
+					</i>
+				</b>
+			</target>
             </remarks>
         </member>
         <member name="M:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.#ctor(System.Collections.Generic.ICollection{Sudoku.Solving.Logical.IStep},Sudoku.Concepts.Grid@,System.Boolean)">

@@ -9,8 +9,7 @@ public readonly ref struct LogicalAnalysisContext
 	/// Indicates the puzzle to be solved and analyzed.
 	/// </summary>
 	/// <remarks>
-	/// This field is not encapsulated into a property because C# doesn't support auto read-only properties
-	/// returning <see langword="ref"/> or <see langword="ref readonly"/>.
+	/// <include file="../../global-doc-comments.xml" path="/g/csharp11/feature[@name='ref-fields']/target[@name='field']" />
 	/// </remarks>
 	public readonly ref readonly Grid Grid;
 

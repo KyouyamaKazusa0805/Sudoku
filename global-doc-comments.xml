@@ -229,5 +229,15 @@ Then you can reference the doc here.
 				</para>
 			</target>
 		</feature>
+		<feature name="ref-fields">
+			<target name="field">
+				<b>
+					<i>
+						This field is not encapsulated into a property because C# doesn't support auto read-only properties
+						returning <see langword="ref"/> or <see langword="ref readonly"/>.
+					</i>
+				</b>
+			</target>
+		</feature>
 	</csharp11>
 </g>
