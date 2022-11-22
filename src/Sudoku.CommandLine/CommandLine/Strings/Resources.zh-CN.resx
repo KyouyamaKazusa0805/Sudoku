@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="_MessageFormat_MemberJoinedRejected" xml:space="preserve">
-    <value>机器人已拒绝您加群。请联系管理员或群主后并重试。</value>
+    <value>机器人因回复失配正确回答而拒绝您加群。请联系管理员或群主后并重试。</value>
   </data>
   <data name="_MessageFormat_SampleMemberJoined" xml:space="preserve">
     <value>欢迎新成员~ 这里是 B 站 up 主 SunnieShine 的数独交流群~</value>
