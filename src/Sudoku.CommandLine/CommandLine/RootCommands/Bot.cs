@@ -76,12 +76,28 @@ public sealed partial class Bot : IExecutable
 
 partial class Bot
 {
+	/// <summary>
+	/// Triggers when bot has already left the group.
+	/// </summary>
+	/// <param name="e">The event handler.</param>
 	partial void OnBotLeft(LeftEvent e) => RunningContexts.TryRemove(e.Group.Id, out _);
 
+	/// <summary>
+	/// Triggers when bot has already joined in the target group.
+	/// </summary>
+	/// <param name="e">The event handler.</param>
 	partial void OnBotJoined(JoinedEvent e) => RunningContexts.TryAdd(e.Group.Id, new());
 
+	/// <summary>
+	/// Triggers when bot has already been kicked by group owner.
+	/// </summary>
+	/// <param name="e">The event handler.</param>
 	partial void OnBotKicked(KickedEvent e) => RunningContexts.TryRemove(e.Group.Id, out _);
 
+	/// <summary>
+	/// Triggers when the group has been received a new message.
+	/// </summary>
+	/// <param name="e">The event handler.</param>
 	async partial void OnGroupMessageReceivedAsync(GroupMessageReceiver e)
 	{
 		switch (e)
@@ -147,6 +163,10 @@ partial class Bot
 		}
 	}
 
+	/// <summary>
+	/// Triggers when someone has already joined in this group.
+	/// </summary>
+	/// <param name="e">The event handler.</param>
 	async partial void OnMemberJoinedAsync(MemberJoinedEvent e)
 	{
 		if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
@@ -155,6 +175,10 @@ partial class Bot
 		}
 	}
 
+	/// <summary>
+	/// Triggers when someone has requested that he wants to join in this group.
+	/// </summary>
+	/// <param name="e">The event handler.</param>
 	async partial void OnNewMemberRequestedAsync(NewMemberRequestedEvent e)
 	{
 		const string answerLocatorStr = "\u7b54\u6848\uff1a";
@@ -169,6 +193,10 @@ partial class Bot
 		}
 	}
 
+	/// <summary>
+	/// Triggers when someone has been invited by another one to join in this group.
+	/// </summary>
+	/// <param name="e">The event handler.</param>
 	async partial void OnNewInvitationRequestedAsync(NewInvitationRequestedEvent e)
 	{
 		if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"])
