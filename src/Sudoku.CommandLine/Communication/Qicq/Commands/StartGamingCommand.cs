@@ -24,7 +24,7 @@ internal sealed class StartGamingCommand : Command
 		await e.SendMessageAsync(R["_MessageFormat_MatchReady"]!);
 		await Task.Delay(20.Seconds());
 
-		var (puzzle, solutionData, baseExp) = GeneratePuzzle(10, 15, 20);
+		var (puzzle, solutionData, baseExp) = generatePuzzle(10, 15, 20);
 
 		// Create picture and send message.
 		await e.SendPictureThenDeleteAsync(
@@ -119,7 +119,7 @@ internal sealed class StartGamingCommand : Command
 			return true;
 		}
 
-		static GeneratedGridData GeneratePuzzle(params int[] targetCells)
+		static GeneratedGridData generatePuzzle(params int[] targetCells)
 		{
 			while (true)
 			{

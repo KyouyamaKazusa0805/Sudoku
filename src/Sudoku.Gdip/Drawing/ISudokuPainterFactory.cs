@@ -40,14 +40,18 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="renderingCandidates">The <see cref="bool"/> value indicating that.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithRenderingCandidates(bool renderingCandidates);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	sealed ISudokuPainter WithRenderingCandidates(bool renderingCandidates)
+		=> WithPreferenceSettings(pref => pref.ShowCandidates = renderingCandidates);
 
 	/// <summary>
 	/// Sets a font name that is used for rendering text of value digits in a sudoku grid.
 	/// </summary>
 	/// <param name="fontName">The font name.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithValueFont(string fontName);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	sealed ISudokuPainter WithValueFont(string fontName)
+		=> WithPreferenceSettings(pref => pref.GivenFontName = pref.ModifiableFontName = fontName);
 
 	/// <summary>
 	/// Sets a font scale that is used for rendering text of digits (values and candidates) in a sudoku grid.
@@ -62,21 +66,38 @@ public interface ISudokuPainterFactory
 	/// <para>We recommend you assign the value with the range (0, 1], with the boundary value 1, but not containing 0.</para>
 	/// </param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithFontScale(decimal fontScale);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	sealed ISudokuPainter WithFontScale(decimal fontScale)
+		=> WithPreferenceSettings(
+			pref =>
+			{
+				pref.ValueScale = fontScale;
+				pref.CandidateScale = fontScale / 3;
+			}
+		);
 
 	/// <summary>
 	/// Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
 	/// </summary>
 	/// <param name="fontName">The font name.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithCandidateFont(string fontName);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	sealed ISudokuPainter WithCandidateFont(string fontName) => WithPreferenceSettings(pref => pref.CandidateFontName = fontName);
+
+	/// <summary>
+	/// Sets the preference to the target value.
+	/// </summary>
+	/// <param name="action">The action to set preference values.</param>
+	/// <returns>The target painter.</returns>
+	ISudokuPainter WithPreferenceSettings(Action<IPreference> action);
 
 	/// <summary>
 	/// Sets a font name that is used for rendering footer text.
 	/// </summary>
 	/// <param name="fontName">The font name.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithFooterTextFont(string fontName);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	sealed ISudokuPainter WithFooterTextFont(string fontName) => WithPreferenceSettings(pref => pref.FooterTextFontName = fontName);
 
 	/// <summary>
 	/// Sets the footer text that can be rendered below the picture.
@@ -101,7 +122,8 @@ public interface ISudokuPainterFactory
 	/// <param name="color">The color to set. We do not recommend you use hard-reading colors such as <see cref="Color.Transparent"/>.</param>
 	/// <returns>The target painter.</returns>
 	/// <seealso cref="Color.Transparent"/>
-	ISudokuPainter WithFooterTextColor(Color color);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	sealed ISudokuPainter WithFooterTextColor(Color color) => WithPreferenceSettings(pref => pref.FooterTextColor = color);
 
 	/// <summary>
 	/// Sets the conclusions used for rendering.

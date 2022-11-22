@@ -206,42 +206,9 @@ file sealed class SudokuPainter : ISudokuPainter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithRenderingCandidates(bool renderingCandidates)
+	public ISudokuPainter WithPreferenceSettings(Action<IPreference> action)
 	{
-		_generator.Preferences.ShowCandidates = renderingCandidates;
-		return this;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithValueFont(string fontName)
-	{
-		_generator.Preferences.GivenFontName = _generator.Preferences.ModifiableFontName = fontName;
-		return this;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithCandidateFont(string fontName)
-	{
-		_generator.Preferences.CandidateFontName = fontName;
-		return this;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithFooterTextFont(string fontName)
-	{
-		_generator.Preferences.FooterTextFontName = fontName;
-		return this;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithFontScale(decimal fontScale)
-	{
-		_generator.Preferences.ValueScale = fontScale;
-		_generator.Preferences.CandidateScale = fontScale / 3;
+		action(_generator.Preferences);
 		return this;
 	}
 
@@ -258,14 +225,6 @@ file sealed class SudokuPainter : ISudokuPainter
 			_ => throw new ArgumentOutOfRangeException(nameof(alignment))
 		};
 
-		return this;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithFooterTextColor(Color color)
-	{
-		_generator.Preferences.FooterTextColor = color;
 		return this;
 	}
 

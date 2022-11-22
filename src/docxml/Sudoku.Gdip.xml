@@ -125,25 +125,10 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithGrid(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithRenderingCandidates(System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithValueFont(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithCandidateFont(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterTextFont(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithFontScale(System.Decimal)">
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithPreferenceSettings(System.Action{Sudoku.Gdip.IPreference})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterText(System.String,Sudoku.Drawing.TextRendering.TextAlignmentType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterTextColor(System.Drawing.Color)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(Sudoku.Solving.Conclusion[])">
@@ -229,6 +214,13 @@
             Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
             </summary>
             <param name="fontName">The font name.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithPreferenceSettings(System.Action{Sudoku.Gdip.IPreference})">
+            <summary>
+            Sets the preference to the target value.
+            </summary>
+            <param name="action">The action to set preference values.</param>
             <returns>The target painter.</returns>
         </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithFooterTextFont(System.String)">
