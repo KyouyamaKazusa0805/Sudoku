@@ -4,7 +4,7 @@
 /// Defines a gaming cancelling command.
 /// </summary>
 [Command]
-internal sealed class GamingCancellingCommand : Command
+file sealed class GamingCancellingCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_CancelGaming"]!;

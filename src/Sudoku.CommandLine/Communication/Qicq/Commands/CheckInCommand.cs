@@ -4,7 +4,7 @@
 /// Indicates the check-in command.
 /// </summary>
 [Command]
-internal sealed class CheckInCommand : Command
+file sealed class CheckInCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_CheckIn"]!;

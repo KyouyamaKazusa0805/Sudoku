@@ -5,7 +5,7 @@
 /// </summary>
 [Command]
 [SupportedOSPlatform("windows")]
-internal sealed class ClearCommand : Command
+file sealed class ClearCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_Clear"]!;

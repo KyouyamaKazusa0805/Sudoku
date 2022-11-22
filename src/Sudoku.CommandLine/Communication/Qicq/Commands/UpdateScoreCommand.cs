@@ -4,7 +4,7 @@
 /// Indicates the update score command.
 /// </summary>
 [Command(Permissions.Owner)]
-internal sealed class UpdateScoreCommand : Command
+file sealed class UpdateScoreCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_UpdateScore"]!;

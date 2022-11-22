@@ -7,7 +7,7 @@ using static Constants;
 /// </summary>
 [Command]
 [SupportedOSPlatform("windows")]
-internal sealed class StartGamingCommand : Command
+file sealed class StartGamingCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_MatchStart"]!;

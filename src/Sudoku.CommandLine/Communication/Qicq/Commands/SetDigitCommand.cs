@@ -5,7 +5,7 @@
 /// </summary>
 [Command]
 [SupportedOSPlatform("windows")]
-internal sealed class SetDigitCommand : Command
+file sealed class SetDigitCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_Set"]!;

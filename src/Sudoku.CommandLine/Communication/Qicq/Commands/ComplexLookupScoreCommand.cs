@@ -4,7 +4,7 @@
 /// Indicates the complex lookup score command.
 /// </summary>
 [Command(Permissions.Owner, Permissions.Administrator)]
-internal sealed class ComplexLookupScoreCommand : Command
+file sealed class ComplexLookupScoreCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_ComplexLookupScore"]!;

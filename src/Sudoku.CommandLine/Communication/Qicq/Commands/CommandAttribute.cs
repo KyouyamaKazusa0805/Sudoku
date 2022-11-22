@@ -4,7 +4,7 @@
 /// Declares the command and its permission.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-internal sealed class CommandAttribute : Attribute
+public sealed class CommandAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="CommandAttribute"/> instance.

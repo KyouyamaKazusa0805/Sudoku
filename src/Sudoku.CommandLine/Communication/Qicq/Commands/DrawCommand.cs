@@ -5,7 +5,7 @@
 /// </summary>
 [Command]
 [SupportedOSPlatform("windows")]
-internal sealed class DrawCommand : Command
+file sealed class DrawCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_DrawSub"]!;

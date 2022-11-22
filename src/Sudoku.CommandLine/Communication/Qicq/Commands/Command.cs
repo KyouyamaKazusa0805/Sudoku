@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a command.
 /// </summary>
-internal abstract class Command
+public abstract class Command
 {
 	/// <summary>
 	/// Indicates the command name that will be used as comparison.

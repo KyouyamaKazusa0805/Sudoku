@@ -5,7 +5,7 @@
 /// </summary>
 [Command]
 [SupportedOSPlatform("windows")]
-internal sealed class DeleteDigitCommand : Command
+file sealed class DeleteDigitCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_Delete"]!;

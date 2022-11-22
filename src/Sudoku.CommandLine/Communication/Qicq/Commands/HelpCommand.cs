@@ -4,7 +4,7 @@
 /// Indicates the help command.
 /// </summary>
 [Command]
-internal sealed class HelpCommand : Command
+file sealed class HelpCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_Help"]!;

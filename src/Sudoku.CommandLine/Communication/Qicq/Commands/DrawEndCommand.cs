@@ -5,7 +5,7 @@
 /// </summary>
 [Command]
 [SupportedOSPlatform("windows")]
-internal sealed class DrawEndCommand : Command
+file sealed class DrawEndCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_End"]!;

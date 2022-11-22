@@ -4,7 +4,7 @@
 /// Indicates the ranking command.
 /// </summary>
 [Command(Permissions.Owner, Permissions.Administrator)]
-internal sealed class RankingCommand : Command
+file sealed class RankingCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_Ranking"]!;

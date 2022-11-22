@@ -6,7 +6,7 @@
 [RootCommand("bot", "To launch bot procedure.")]
 [SupportedArguments("bot")]
 [SupportedOSPlatform("windows")]
-public sealed partial class Bot : IExecutable
+file sealed partial class Bot : IExecutable
 {
 	/// <summary>
 	/// The address.

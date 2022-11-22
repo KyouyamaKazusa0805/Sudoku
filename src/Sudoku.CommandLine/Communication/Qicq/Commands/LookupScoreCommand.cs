@@ -4,7 +4,7 @@
 /// The lookup score command.
 /// </summary>
 [Command]
-internal sealed class LookupScoreCommand : Command
+file sealed class LookupScoreCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R["_Command_LookupScore"]!;
