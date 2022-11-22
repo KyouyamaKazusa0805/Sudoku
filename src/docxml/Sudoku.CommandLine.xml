@@ -873,6 +873,12 @@
             <param name="distribution">The distribution.</param>
             <returns>The value.</returns>
         </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GetWeekendFactor">
+            <summary>
+            Gets the factor that describes whether today is weekend.
+            </summary>
+            <returns>The factor value. If today is weekend, 2; otherwise 1.</returns>
+        </member>
         <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GenerateValueEarned(System.Int32)">
             <summary>
             Generates a value that describes the experience point that the current user can be earned.

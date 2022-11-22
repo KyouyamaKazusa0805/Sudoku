@@ -174,6 +174,13 @@ internal interface ICommandDataProvider
 	}
 
 	/// <summary>
+	/// Gets the factor that describes whether today is weekend.
+	/// </summary>
+	/// <returns>The factor value. If today is weekend, 2; otherwise 1.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static int GetWeekendFactor() => DateTime.Today.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday ? 2 : 1;
+
+	/// <summary>
 	/// Generates a value that describes the experience point that the current user can be earned.
 	/// </summary>
 	/// <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
@@ -183,7 +190,7 @@ internal interface ICommandDataProvider
 	{
 		var earned = GenerateOriginalValueEarned();
 		var level = continuousDaysCount / 7;
-		return (int)Round(earned * (level * .2 + 1));
+		return (int)Round(earned * (level * .2 + 1)) * GetWeekendFactor();
 	}
 
 	/// <summary>
@@ -213,7 +220,7 @@ internal interface ICommandDataProvider
 			_ => throw new NotSupportedException("The specified number of target cells is not supported.")
 		};
 
-		return @base + answeredValuesExtra;
+		return (@base + answeredValuesExtra) * GetWeekendFactor();
 	}
 
 	/// <summary>
