@@ -1,5 +1,7 @@
 ﻿namespace Sudoku.Communication.Qicq.Commands;
 
+using static Constants;
+
 /// <summary>
 /// Define a start gaming command.
 /// </summary>
@@ -21,13 +23,7 @@ internal sealed class StartGamingCommand : Command
 		context.ExecutingCommand = CommandName;
 		context.AnsweringContext = new();
 
-		var targetCells = Rng.Next(1, 99) switch
-		{
-			<= 33 => new[] { 10, 20 },
-			> 33 and <= 66 => new[] { 10, 15, 20 },
-			_ => new[] { 10, 15, 20, 25, 30 }
-		};
-
+		var targetCells = Rng.Next(1, 99) switch { <= 33 => TwoCells, > 33 and <= 66 => ThreeCells, _ => FiveCells };
 		var (puzzle, solutionData, timeLimit, baseExp) = generatePuzzle(targetCells);
 
 		await e.SendMessageAsync(string.Format(R["_MessageFormat_MatchReady"]!, timeLimit.ToChineseTimeSpanString()));
@@ -173,7 +169,15 @@ internal sealed class StartGamingCommand : Command
 file readonly record struct GeneratedGridData(scoped in Grid Puzzle, (int Cell, int Digit)[] SolutionData, TimeSpan TimeLimit, int ExperiencePoint);
 
 /// <summary>
-/// The internal extensions.
+/// Indicates file-local constants.
+/// </summary>
+file static class Constants
+{
+	public static readonly int[] TwoCells = { 10, 20 }, ThreeCells = { 10, 15, 20 }, FiveCells = { 10, 15, 20, 25, 30 };
+}
+
+/// <summary>
+/// The file-local extensions.
 /// </summary>
 file static class Extensions
 {

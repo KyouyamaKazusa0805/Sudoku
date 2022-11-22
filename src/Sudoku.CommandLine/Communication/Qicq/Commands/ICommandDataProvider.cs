@@ -2,53 +2,13 @@
 
 namespace Sudoku.Communication.Qicq.Commands;
 
+using static Constants;
+
 /// <summary>
 /// Extracts a type that creates data used by commands.
 /// </summary>
 internal interface ICommandDataProvider
 {
-	/// <summary>
-	/// The table of known colors.
-	/// </summary>
-	private static readonly Dictionary<string, Color> KnownColors = new()
-	{
-		{ R["ColorRed"]!, Color.Red },
-		{ R["ColorGreen"]!, Color.Green },
-		{ R["ColorBlue"]!, Color.Blue },
-		{ R["ColorYellow"]!, Color.Yellow },
-		{ R["ColorBlack"]!, Color.Black },
-		{ R["ColorPurple"]!, Color.Purple },
-		{ R["ColorSkyblue"]!, Color.SkyBlue },
-		{ R["ColorDarkYellow"]!, Color.Gold },
-		{ R["ColorDarkGreen"]!, Color.DarkGreen },
-		{ R["ColorPink"]!, Color.Pink },
-		{ R["ColorOrange1"]!, Color.Orange },
-		{ R["ColorOrange2"]!, Color.Orange },
-		{ R["ColorGray"]!, Color.Gray }
-	};
-
-	/// <summary>
-	/// The table of known kinds.
-	/// </summary>
-	private static readonly Dictionary<string, DisplayColorKind> KnownKinds = new()
-	{
-		{ R["ColorKind_Normal"]!, DisplayColorKind.Normal },
-		{ R["ColorKind_Aux1"]!, DisplayColorKind.Auxiliary1 },
-		{ R["ColorKind_Aux2"]!, DisplayColorKind.Auxiliary2 },
-		{ R["ColorKind_Aux3"]!, DisplayColorKind.Auxiliary3 },
-		{ R["ColorKind_Assignment"]!, DisplayColorKind.Assignment },
-		{ R["ColorKind_Elimination"]!, DisplayColorKind.Elimination },
-		{ R["ColorKind_Exofin"]!, DisplayColorKind.Exofin },
-		{ R["ColorKind_Endofin"]!, DisplayColorKind.Endofin },
-		{ R["ColorKind_Cannibalism"]!, DisplayColorKind.Cannibalism },
-		{ R["ColorKind_Als1"]!, DisplayColorKind.AlmostLockedSet1 },
-		{ R["ColorKind_Als2"]!, DisplayColorKind.AlmostLockedSet2 },
-		{ R["ColorKind_Als3"]!, DisplayColorKind.AlmostLockedSet3 },
-		{ R["ColorKind_Als4"]!, DisplayColorKind.AlmostLockedSet4 },
-		{ R["ColorKind_Als5"]!, DisplayColorKind.AlmostLockedSet5 }
-	};
-
-
 	/// <summary>
 	/// Try to fetch the identifier name via the color name.
 	/// </summary>
@@ -165,32 +125,52 @@ internal interface ICommandDataProvider
 	/// <summary>
 	/// Generates a value that describes the experience point that the current user can be earned.
 	/// </summary>
+	/// <param name="distribution">The distribution.</param>
 	/// <returns>The value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static int GenerateOriginalValueEarned()
+	internal static int GenerateOriginalValueEarned(Distribution distribution = Distribution.Normal)
 	{
-#if NORMAL_DISTRIBUTION
-		const double sigma = 2.5, mu = 0;
-		var table = new[] { -1, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16 };
-		return getNextRandomGaussian(sigma, mu, table);
-#elif EXPONENT_DISTRIBUTION
-		var a = new[] { 2, 3, 4, 6, 12 };
-		return a[Rng.Next(0, 10000) switch { < 5000 => 0, >= 5000 and < 7500 => 1, >= 7500 and < 8750 => 2, >= 8750 and < 9375 => 3, _ => 4 }];
-#else
-		return 4;
-#endif
-
-
-#if NORMAL_DISTRIBUTION
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static int getNextRandomGaussian(double sigma, double mu, int[] table)
+		switch (distribution)
 		{
-			var u1 = 1.0 - Rng.NextDouble();
-			var u2 = 1.0 - Rng.NextDouble();
-			var target = (int)(sigma * Sqrt(-2.0 * Log(u1)) * Sin(2.0 * PI * u2) + mu + (table.Length - 1) / 2.0);
-			return table[Clamp(target, 0, table.Length - 1)];
+			case Distribution.Constant:
+			{
+				return 4;
+			}
+			case Distribution.Exponent:
+			{
+				var a = new[] { 2, 3, 4, 6, 12 };
+				return a[
+					Rng.Next(0, 10000) switch
+					{
+						< 5000 => 0,
+						>= 5000 and < 7500 => 1,
+						>= 7500 and < 8750 => 2,
+						>= 8750 and < 9375 => 3,
+						_ => 4
+					}
+				];
+			}
+			case Distribution.Normal:
+			{
+				const double sigma = 2.5, mu = 0;
+				var table = new[] { -1, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16 };
+				return getNextRandomGaussian(sigma, mu, table);
+
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				static int getNextRandomGaussian(double sigma, double mu, int[] table)
+				{
+					var u1 = 1.0 - Rng.NextDouble();
+					var u2 = 1.0 - Rng.NextDouble();
+					var target = (int)(sigma * Sqrt(-2.0 * Log(u1)) * Sin(2.0 * PI * u2) + mu + (table.Length - 1) / 2.0);
+					return table[Clamp(target, 0, table.Length - 1)];
+				}
+			}
+			default:
+			{
+				throw new ArgumentOutOfRangeException(nameof(distribution));
+			}
 		}
-#endif
 	}
 
 	/// <summary>
@@ -264,4 +244,51 @@ internal interface ICommandDataProvider
 
 		return @base + difficultyExtra;
 	}
+}
+
+/// <summary>
+/// Provides with file-local constants.
+/// </summary>
+file static class Constants
+{
+	/// <summary>
+	/// The table of known colors.
+	/// </summary>
+	internal static readonly Dictionary<string, Color> KnownColors = new()
+	{
+		{ R["ColorRed"]!, Color.Red },
+		{ R["ColorGreen"]!, Color.Green },
+		{ R["ColorBlue"]!, Color.Blue },
+		{ R["ColorYellow"]!, Color.Yellow },
+		{ R["ColorBlack"]!, Color.Black },
+		{ R["ColorPurple"]!, Color.Purple },
+		{ R["ColorSkyblue"]!, Color.SkyBlue },
+		{ R["ColorDarkYellow"]!, Color.Gold },
+		{ R["ColorDarkGreen"]!, Color.DarkGreen },
+		{ R["ColorPink"]!, Color.Pink },
+		{ R["ColorOrange1"]!, Color.Orange },
+		{ R["ColorOrange2"]!, Color.Orange },
+		{ R["ColorGray"]!, Color.Gray }
+	};
+
+	/// <summary>
+	/// The table of known kinds.
+	/// </summary>
+	internal static readonly Dictionary<string, DisplayColorKind> KnownKinds = new()
+	{
+		{ R["ColorKind_Normal"]!, DisplayColorKind.Normal },
+		{ R["ColorKind_Aux1"]!, DisplayColorKind.Auxiliary1 },
+		{ R["ColorKind_Aux2"]!, DisplayColorKind.Auxiliary2 },
+		{ R["ColorKind_Aux3"]!, DisplayColorKind.Auxiliary3 },
+		{ R["ColorKind_Assignment"]!, DisplayColorKind.Assignment },
+		{ R["ColorKind_Elimination"]!, DisplayColorKind.Elimination },
+		{ R["ColorKind_Exofin"]!, DisplayColorKind.Exofin },
+		{ R["ColorKind_Endofin"]!, DisplayColorKind.Endofin },
+		{ R["ColorKind_Cannibalism"]!, DisplayColorKind.Cannibalism },
+		{ R["ColorKind_Als1"]!, DisplayColorKind.AlmostLockedSet1 },
+		{ R["ColorKind_Als2"]!, DisplayColorKind.AlmostLockedSet2 },
+		{ R["ColorKind_Als3"]!, DisplayColorKind.AlmostLockedSet3 },
+		{ R["ColorKind_Als4"]!, DisplayColorKind.AlmostLockedSet4 },
+		{ R["ColorKind_Als5"]!, DisplayColorKind.AlmostLockedSet5 }
+	};
 }

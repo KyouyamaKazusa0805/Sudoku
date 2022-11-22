@@ -787,16 +787,6 @@
             Extracts a type that creates data used by commands.
             </summary>
         </member>
-        <member name="F:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.KnownColors">
-            <summary>
-            The table of known colors.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.KnownKinds">
-            <summary>
-            The table of known kinds.
-            </summary>
-        </member>
         <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GetIdentifier(System.String)">
             <summary>
             Try to fetch the identifier name via the color name.
@@ -834,10 +824,11 @@
             <param name="rawCoordinate">The coordinate string value.</param>
             <returns>The cell index parsed. If failed to be parsed, <see langword="null"/> will be returned.</returns>
         </member>
-        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GenerateOriginalValueEarned">
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GenerateOriginalValueEarned(Sudoku.Communication.Qicq.Scoring.Distribution)">
             <summary>
             Generates a value that describes the experience point that the current user can be earned.
             </summary>
+            <param name="distribution">The distribution.</param>
             <returns>The value.</returns>
         </member>
         <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GenerateValueEarned(System.Int32)">
@@ -867,6 +858,21 @@
             <param name="difficultyLevel">The difficulty level of the puzzle.</param>
             <returns>The time limit.</returns>
             <exception cref="T:System.NotSupportedException">Throws when the specified argument value is not supported.</exception>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.Constants">
+            <summary>
+            Provides with file-local constants.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Commands.Constants.KnownColors">
+            <summary>
+            The table of known colors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Commands.Constants.KnownKinds">
+            <summary>
+            The table of known kinds.
+            </summary>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.LookupScoreCommand">
             <summary>
@@ -957,9 +963,14 @@
         <member name="P:Sudoku.Communication.Qicq.Commands.GeneratedGridData.ExperiencePoint">
             <summary>Indicates how many experience point you can earn in the current round if answered correctly.</summary>
         </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.Constants">
+            <summary>
+            Indicates file-local constants.
+            </summary>
+        </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.Extensions">
             <summary>
-            The internal extensions.
+            The file-local extensions.
             </summary>
         </member>
         <member name="M:Sudoku.Communication.Qicq.Commands.Extensions.ToChineseTimeSpanString(System.TimeSpan)">
@@ -1088,6 +1099,27 @@
                                 ○ Match the same text as matched by the 3rd capture group.<br/>
             </code>
             </remarks>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Scoring.Distribution">
+            <summary>
+            Defines a type of distribution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Scoring.Distribution.Constant">
+            <summary>
+            Indicates the distribution type is constant distribution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Scoring.Distribution.Exponent">
+            <summary>
+            Indicates the distribution type is exponent distribution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Communication.Qicq.Scoring.Distribution.Normal">
+            <summary>
+            Indicates the distribution type is normal distribution. Via this distribution type you can get a list of numbers
+            which contains more middle numbers and less border numbers.
+            </summary>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Strings.Resources">
             <summary>
