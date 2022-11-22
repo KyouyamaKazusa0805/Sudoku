@@ -1,8 +1,4 @@
-﻿#undef TWO_EMPTY_CELLS
-#undef THREE_EMPTY_CELLS
-#define FIVE_EMPTY_CELLS
-
-namespace Sudoku.Communication.Qicq.Commands;
+﻿namespace Sudoku.Communication.Qicq.Commands;
 
 /// <summary>
 /// Define a start gaming command.
@@ -25,17 +21,12 @@ internal sealed class StartGamingCommand : Command
 		context.ExecutingCommand = CommandName;
 		context.AnsweringContext = new();
 
-#if TWO_EMPTY_CELLS && THREE_EMPTY_CELLS || THREE_EMPTY_CELLS && FIVE_EMPTY_CELLS || TWO_EMPTY_CELLS && FIVE_EMPTY_CELLS || TWO_EMPTY_CELLS && THREE_EMPTY_CELLS && FIVE_EMPTY_CELLS
-#error Cannot set two or more symbols at same time.
-#elif TWO_EMPTY_CELLS
-		var targetCells = new[] { 10, 20 };
-#elif THREE_EMPTY_CELLS
-		var targetCells = new[] { 10, 15, 20 };
-#elif FIVE_EMPTY_CELLS
-		var targetCells = new[] { 10, 15, 20, 25, 30 };
-#else
-#error The configuration is invalid.
-#endif
+		var targetCells = Rng.Next(1, 99) switch
+		{
+			<= 33 => new[] { 10, 20 },
+			> 33 and <= 66 => new[] { 10, 15, 20 },
+			_ => new[] { 10, 15, 20, 25, 30 }
+		};
 
 		var (puzzle, solutionData, timeLimit, baseExp) = generatePuzzle(targetCells);
 
