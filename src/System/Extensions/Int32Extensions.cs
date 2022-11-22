@@ -13,4 +13,12 @@ public static class Int32Extensions
 	/// <returns>The equivalent <see cref="TimeSpan"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TimeSpan Seconds(this int @this) => TimeSpan.FromSeconds(@this);
+
+	/// <summary>
+	/// Gets the equivalent minutes of type <see cref="TimeSpan"/> from current integer value.
+	/// </summary>
+	/// <param name="this">The integer value.</param>
+	/// <returns>The equivalent <see cref="TimeSpan"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TimeSpan Minutes(this int @this) => TimeSpan.FromMinutes(@this);
 }

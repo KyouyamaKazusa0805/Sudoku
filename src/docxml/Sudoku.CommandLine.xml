@@ -854,9 +854,19 @@
             <param name="targetCells">The target cells.</param>
             <param name="difficultyLevel">The difficulty level of the puzzle.</param>
             <returns>The experience point.</returns>
-            <exception cref="T:System.NotSupportedException">Throws when the specified difficulty level is not supported.</exception>
-            <exception cref="T:System.ArgumentException">Throws when the arguemnt <paramref name="targetCells"/> has length greater than 9.</exception>
+            <exception cref="T:System.NotSupportedException">Throws when the specified difficulty level or target cells count is not supported.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified difficulty level is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.ICommandDataProvider.GetGamingTimeLimit(System.Int32[],Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+            <summary>
+            Gets the time limit for a single gaming.
+            </summary>
+            <param name="targetCells">
+            The target cells. The valid length must be 2, 3 or 5; otherwise, a <see cref="T:System.NotSupportedException"/> instance will be thrown.
+            </param>
+            <param name="difficultyLevel">The difficulty level of the puzzle.</param>
+            <returns>The time limit.</returns>
+            <exception cref="T:System.NotSupportedException">Throws when the specified argument value is not supported.</exception>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.LookupScoreCommand">
             <summary>
@@ -923,19 +933,17 @@
             </summary>
             <param name="Puzzle">Indicates the puzzle.</param>
             <param name="SolutionData">Indicates all solution data that you should answer.</param>
-            <param name="BaseExperiencePointCanBeEarned">
-            Indicates how many experience point you can earn in the currently round if you've answered correctly.
-            </param>
+            <param name="TimeLimit">The whole time limit of a single gaming.</param>
+            <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
         </member>
-        <member name="M:Sudoku.Communication.Qicq.Commands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.ValueTuple{System.Int32,System.Int32}[],System.Int32)">
+        <member name="M:Sudoku.Communication.Qicq.Commands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.ValueTuple{System.Int32,System.Int32}[],System.TimeSpan,System.Int32)">
             <summary>
             The generated grid data.
             </summary>
             <param name="Puzzle">Indicates the puzzle.</param>
             <param name="SolutionData">Indicates all solution data that you should answer.</param>
-            <param name="BaseExperiencePointCanBeEarned">
-            Indicates how many experience point you can earn in the currently round if you've answered correctly.
-            </param>
+            <param name="TimeLimit">The whole time limit of a single gaming.</param>
+            <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
         </member>
         <member name="P:Sudoku.Communication.Qicq.Commands.GeneratedGridData.Puzzle">
             <summary>Indicates the puzzle.</summary>
@@ -943,10 +951,23 @@
         <member name="P:Sudoku.Communication.Qicq.Commands.GeneratedGridData.SolutionData">
             <summary>Indicates all solution data that you should answer.</summary>
         </member>
-        <member name="P:Sudoku.Communication.Qicq.Commands.GeneratedGridData.BaseExperiencePointCanBeEarned">
+        <member name="P:Sudoku.Communication.Qicq.Commands.GeneratedGridData.TimeLimit">
+            <summary>The whole time limit of a single gaming.</summary>
+        </member>
+        <member name="P:Sudoku.Communication.Qicq.Commands.GeneratedGridData.ExperiencePoint">
+            <summary>Indicates how many experience point you can earn in the current round if answered correctly.</summary>
+        </member>
+        <member name="T:Sudoku.Communication.Qicq.Commands.Extensions">
             <summary>
-            Indicates how many experience point you can earn in the currently round if you've answered correctly.
+            The internal extensions.
             </summary>
+        </member>
+        <member name="M:Sudoku.Communication.Qicq.Commands.Extensions.ToChineseTimeSpanString(System.TimeSpan)">
+            <summary>
+            Converts the current <see cref="T:System.TimeSpan"/> instance into a Chinese text string that represents the current instance.
+            </summary>
+            <param name="this">The <see cref="T:System.TimeSpan"/> instance.</param>
+            <returns>The target string.</returns>
         </member>
         <member name="T:Sudoku.Communication.Qicq.Commands.UpdateScoreCommand">
             <summary>

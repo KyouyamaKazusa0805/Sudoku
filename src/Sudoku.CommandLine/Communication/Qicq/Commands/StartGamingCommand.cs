@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Communication.Qicq.Commands;
+﻿#undef TWO_EMPTY_CELLS
+#undef THREE_EMPTY_CELLS
+#define FIVE_EMPTY_CELLS
+
+namespace Sudoku.Communication.Qicq.Commands;
 
 /// <summary>
 /// Define a start gaming command.
@@ -21,10 +25,22 @@ internal sealed class StartGamingCommand : Command
 		context.ExecutingCommand = CommandName;
 		context.AnsweringContext = new();
 
-		await e.SendMessageAsync(R["_MessageFormat_MatchReady"]!);
-		await Task.Delay(20.Seconds());
+#if TWO_EMPTY_CELLS && THREE_EMPTY_CELLS || THREE_EMPTY_CELLS && FIVE_EMPTY_CELLS || TWO_EMPTY_CELLS && FIVE_EMPTY_CELLS || TWO_EMPTY_CELLS && THREE_EMPTY_CELLS && FIVE_EMPTY_CELLS
+#error Cannot set two or more symbols at same time.
+#elif TWO_EMPTY_CELLS
+		var targetCells = new[] { 10, 20 };
+#elif THREE_EMPTY_CELLS
+		var targetCells = new[] { 10, 15, 20 };
+#elif FIVE_EMPTY_CELLS
+		var targetCells = new[] { 10, 15, 20, 25, 30 };
+#else
+#error The configuration is invalid.
+#endif
 
-		var (puzzle, solutionData, baseExp) = generatePuzzle(10, 15, 20);
+		var (puzzle, solutionData, timeLimit, baseExp) = generatePuzzle(targetCells);
+
+		await e.SendMessageAsync(string.Format(R["_MessageFormat_MatchReady"]!, timeLimit.ToChineseTimeSpanString()));
+		await Task.Delay(20.Seconds());
 
 		// Create picture and send message.
 		await e.SendPictureThenDeleteAsync(
@@ -37,7 +53,7 @@ internal sealed class StartGamingCommand : Command
 		var answeringContext = context.AnsweringContext;
 
 		// Start gaming.
-		for (var timeLastSeconds = 300; timeLastSeconds > 0; timeLastSeconds--)
+		for (int timeLastSeconds = (int)timeLimit.TotalSeconds, elapsedTime = 0; timeLastSeconds > 0; timeLastSeconds--, elapsedTime++)
 		{
 			for (var internalTimes = 0; internalTimes < 4; internalTimes++)
 			{
@@ -78,7 +94,14 @@ internal sealed class StartGamingCommand : Command
 						case (true, false):
 						{
 							// Correct answer and first reply.
-							await e.SendMessageAsync(string.Format(R["_MessageFormat_CorrectAnswer"]!, $"{userName} ({userId})", baseExp));
+							await e.SendMessageAsync(
+								string.Format(
+									R["_MessageFormat_CorrectAnswer"]!,
+									$"{userName} ({userId})",
+									baseExp,
+									TimeSpan.FromSeconds(elapsedTime).ToChineseTimeSpanString()
+								)
+							);
 
 							var userData = InternalReadWrite.Read(userId, new() { QQ = userId, LastCheckIn = DateTime.MinValue });
 							userData.Score += baseExp;
@@ -137,7 +160,9 @@ internal sealed class StartGamingCommand : Command
 						}
 					}
 
-					return new(grid, collection.ToArray(), ICommandDataProvider.GetEachGamingExperiencePointCanBeEarned(targetCells, l));
+					var expEarned = ICommandDataProvider.GetEachGamingExperiencePointCanBeEarned(targetCells, l);
+					var timeLimit = ICommandDataProvider.GetGamingTimeLimit(targetCells, l);
+					return new(grid, collection.ToArray(), timeLimit, expEarned);
 				}
 			}
 		}
@@ -152,7 +177,26 @@ internal sealed class StartGamingCommand : Command
 /// </summary>
 /// <param name="Puzzle">Indicates the puzzle.</param>
 /// <param name="SolutionData">Indicates all solution data that you should answer.</param>
-/// <param name="BaseExperiencePointCanBeEarned">
-/// Indicates how many experience point you can earn in the currently round if you've answered correctly.
-/// </param>
-file readonly record struct GeneratedGridData(scoped in Grid Puzzle, (int Cell, int Digit)[] SolutionData, int BaseExperiencePointCanBeEarned);
+/// <param name="TimeLimit">The whole time limit of a single gaming.</param>
+/// <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
+file readonly record struct GeneratedGridData(scoped in Grid Puzzle, (int Cell, int Digit)[] SolutionData, TimeSpan TimeLimit, int ExperiencePoint);
+
+/// <summary>
+/// The internal extensions.
+/// </summary>
+file static class Extensions
+{
+	/// <summary>
+	/// Converts the current <see cref="TimeSpan"/> instance into a Chinese text string that represents the current instance.
+	/// </summary>
+	/// <param name="this">The <see cref="TimeSpan"/> instance.</param>
+	/// <returns>The target string.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ToChineseTimeSpanString(this TimeSpan @this)
+		=> @this switch
+		{
+			{ Minutes: 0 } => $"{@this:s' \u79d2'}",
+			{ Seconds: 0 } => $"{@this:m' \u5206\u949f'}",
+			_ => $"{@this:m' \u5206 'ss' \u79d2'}",
+		};
+}

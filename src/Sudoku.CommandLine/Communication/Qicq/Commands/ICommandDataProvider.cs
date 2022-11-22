@@ -212,8 +212,7 @@ internal interface ICommandDataProvider
 	/// <param name="targetCells">The target cells.</param>
 	/// <param name="difficultyLevel">The difficulty level of the puzzle.</param>
 	/// <returns>The experience point.</returns>
-	/// <exception cref="NotSupportedException">Throws when the specified difficulty level is not supported.</exception>
-	/// <exception cref="ArgumentException">Throws when the arguemnt <paramref name="targetCells"/> has length greater than 9.</exception>
+	/// <exception cref="NotSupportedException">Throws when the specified difficulty level or target cells count is not supported.</exception>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the specified difficulty level is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static int GetEachGamingExperiencePointCanBeEarned(int[] targetCells, DifficultyLevel difficultyLevel)
@@ -228,10 +227,41 @@ internal interface ICommandDataProvider
 
 		var answeredValuesExtra = targetCells.Length switch
 		{
-			> 9 => throw new ArgumentException("The specified length of the target solution data is too large.", nameof(targetCells)),
-			var count => A057353(count)
+			2 => 0,
+			3 => 1,
+			5 => 2,
+			_ => throw new NotSupportedException("The specified number of target cells is not supported.")
 		};
 
 		return @base + answeredValuesExtra;
+	}
+
+	/// <summary>
+	/// Gets the time limit for a single gaming.
+	/// </summary>
+	/// <param name="targetCells">
+	/// The target cells. The valid length must be 2, 3 or 5; otherwise, a <see cref="NotSupportedException"/> instance will be thrown.
+	/// </param>
+	/// <param name="difficultyLevel">The difficulty level of the puzzle.</param>
+	/// <returns>The time limit.</returns>
+	/// <exception cref="NotSupportedException">Throws when the specified argument value is not supported.</exception>
+	internal static TimeSpan GetGamingTimeLimit(int[] targetCells, DifficultyLevel difficultyLevel)
+	{
+		var @base = targetCells.Length switch
+		{
+			2 => 3.Minutes(),
+			3 => 5.Minutes(),
+			5 => 7.Minutes(),
+			_ => throw new NotSupportedException("The specified length of the target solution data is not supported.")
+		};
+
+		var difficultyExtra = difficultyLevel switch
+		{
+			DifficultyLevel.Easy => TimeSpan.Zero,
+			DifficultyLevel.Moderate => 30.Seconds(),
+			_ => throw new NotSupportedException("The specified difficulty is not supported.")
+		};
+
+		return @base + difficultyExtra;
 	}
 }
