@@ -271,6 +271,46 @@
             </summary>
             <param name="namedKind">The displaying color kind.</param>
         </member>
+        <member name="T:Sudoku.Presentation.JsonConverter">
+            <summary>
+            Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <remarks>
+            JSON Pattern:
+            <code>
+            {
+              "mode": "Raw",
+              "value": {
+                "a": 255,
+                "r": 0,
+                "g": 0,
+                "b": 0
+              }
+            }
+            </code>
+            </remarks>
+            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+        </member>
+        <member name="F:Sudoku.Presentation.JsonConverter.ValuePropertyName">
+            <summary>
+            Indicates the property name <c>"Value"</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Identifier,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.JsonConverter.ConvertName(System.String,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Try to convert the specified string value as the specified naming policy
+            specified in argument <paramref name="options"/>.
+            </summary>
+            <param name="base">The string to convert.</param>
+            <param name="options">The options.</param>
+            <returns>The value converted.</returns>
+        </member>
         <member name="T:Sudoku.Presentation.IdentifierColorMode">
             <summary>
             Indicates a mode to display a color used by type <see cref="T:Sudoku.Presentation.Identifier"/>.
@@ -1408,46 +1448,6 @@
         </member>
         <member name="M:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.GetTypeInfo(System.Type)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Serialization.Specialized.IdentifierJsonConverter">
-            <summary>
-            Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Presentation.Identifier"/>.
-            </summary>
-            <remarks>
-            JSON Pattern:
-            <code>
-            {
-              "mode": "Raw",
-              "value": {
-                "a": 255,
-                "r": 0,
-                "g": 0,
-                "b": 0
-              }
-            }
-            </code>
-            </remarks>
-            <seealso cref="T:Sudoku.Presentation.Identifier"/>
-        </member>
-        <member name="F:Sudoku.Text.Serialization.Specialized.IdentifierJsonConverter.ValuePropertyName">
-            <summary>
-            Indicates the property name <c>"Value"</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.IdentifierJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.IdentifierJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Identifier,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.IdentifierJsonConverter.ConvertName(System.String,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            Try to convert the specified string value as the specified naming policy
-            specified in argument <paramref name="options"/>.
-            </summary>
-            <param name="base">The string to convert.</param>
-            <param name="options">The options.</param>
-            <returns>The value converted.</returns>
         </member>
     </members>
 </doc>
