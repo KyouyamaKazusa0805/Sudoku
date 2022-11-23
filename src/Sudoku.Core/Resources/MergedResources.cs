@@ -102,6 +102,7 @@ public sealed class MergedResources
 
 	/// <summary>
 	/// Registers a new assembly that can use and fetch resource via field <see cref="R"/>.
+	/// This method is used for fetching resources from external projects whose containing types are not stored in <c>Sudoku.Core</c>.
 	/// </summary>
 	/// <param name="assembly">The assembly.</param>
 	/// <seealso cref="R"/>

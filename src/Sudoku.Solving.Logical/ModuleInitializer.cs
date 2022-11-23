@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0130
-namespace Sudoku.Solving.Logical;
-#pragma warning restore IDE0130
+﻿namespace Sudoku.Solving.Logical;
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp9/feature[@name="module-initializer"]/target[@name="type"]' />
 internal static class ModuleInitializer
