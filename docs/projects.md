@@ -18,26 +18,6 @@
 * [`Sudoku.Solving.Logical`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Logical)：提供对于逻辑解题过程处理的 API；
 * [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System)：为整个解决方案的别的项目提供关于 .NET 基本库 API 拓展 API 或功能代码。
 
-## 代码分析器项目
-
-本项目甚至提供了代码分析服务。
-
-属于该类型的项目有：
-
-* [`Sudoku.Diagnostics.CodeAnalysis`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis/Sudoku.Diagnostics.CodeAnalysis)：提供基本的代码分析功能的项目；该项目只包含分析器；
-* [`Sudoku.Diagnostics.CodeAnalysis.CodeFixes`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis/Sudoku.Diagnostics.CodeAnalysis.CodeFixes)：提供配合 [`Sudoku.Diagnostics.CodeAnalysis`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis/Sudoku.Diagnostics.CodeAnalysis) 项目进行代码修补工具的项目；
-* [`Sudoku.Diagnostics.CodeAnalysis.Package`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis/Sudoku.Diagnostics.CodeAnalysis.Package)：提供前面这两个项目打包（NuGet 包）使用脚本的项目；
-* [`Sudoku.Diagnostics.CodeAnalysis.Vsix`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis/Sudoku.Diagnostics.CodeAnalysis.Vsix)：提供前面两个项目的 Vsix 插件打包配置的项目。
-
-## 测试项目
-
-测试项目仅用于调试和测试代码正确性、健壮性、严谨性。
-
-属于该类型的项目有：
-
-* [`Sudoku.Test`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Test)：API 测试项目；
-* [`Sudoku.Diagnostics.CodeAnalysis.Test`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis/Sudoku.Diagnostics.CodeAnalysis.Test)：是 [`Sudoku.Diagnostics.CodeAnalysis`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis/Sudoku.Diagnostics.CodeAnalysis) 和 [`Sudoku.Diagnostics.CodeAnalysis.CodeFixes`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis/Sudoku.Diagnostics.CodeAnalysis.CodeFixes) 项目进行单元测试的项目。
-
 ## 源代码生成器项目
 
 **源代码生成器**（Source Generator）也经常被简称为源生成器或者源码生成器，不过源代码生成器这个名字更贴近它的真正用法和作用对象。正常在看这个术语的时候，如果没有写清楚是源代码的话，读者有可能会不知道源生成器的“源”是什么。
@@ -56,6 +36,5 @@
 
 属于该类型的项目有：
 
-* [`Sudoku.CommandLine`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine)（控制台）：提供一个关于数独基本运算和操作的控制台实现，偶尔也被用来调试代码；
-* [`Sudoku.Maui`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Maui)：使用 MAUI 框架创建的跨平台 UI 应用程序实现。**正在更新中~**
+* [`Sudoku.CommandLine`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine)（控制台）：提供一个关于数独基本运算和操作的控制台实现，偶尔也被用来调试代码。
 

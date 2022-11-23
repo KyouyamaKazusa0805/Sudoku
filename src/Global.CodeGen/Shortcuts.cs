@@ -16,9 +16,6 @@ internal static class Shortcuts
 	public const string BitOperations_SkipSetBit = "b.ssb";
 	public const string StepSearcherOptions = "sso";
 	public const string LogicalSolverOptions = "lso";
-	public const string DisallowParameterlessConstructorInStruct = "dpc";
-	public const string CodeAnalyzer = "ca";
-	public const string DiagnosticDescriptorList = "ddl";
 	public const string GeneratedDeconstruction = "gd";
 	public const string GeneratedExtensionDeconstruction = "ged";
 	public const string GeneratedOverriddenMemberEquals = "gom.e";
