@@ -1,2 +1,1 @@
-﻿[assembly: InternalsVisibleTo("Sudoku.UI")]
-[module: SkipLocalsInit]
+﻿[module: SkipLocalsInit]
