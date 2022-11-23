@@ -264,8 +264,7 @@ public interface IPreference : ICloneable<IPreference>
 	{
 		if (colorIdentifier is { Mode: IdentifierColorMode.Id, Id: var id })
 		{
-			result = (Color?)typeof(IPreference).GetProperty($"Color{id}")?.GetValue(this) ?? Color.Transparent;
-			return result != Color.Transparent;
+			return (result = (Color?)typeof(IPreference).GetProperty($"Color{id}")?.GetValue(this) ?? Color.Transparent) != Color.Transparent;
 		}
 		else
 		{
