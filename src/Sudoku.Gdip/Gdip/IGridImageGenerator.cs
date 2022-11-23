@@ -180,7 +180,7 @@ public interface IGridImageGenerator
 /// <summary>
 /// Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
 /// </summary>
-file sealed class GridImageGenerator : IGridImageGenerator
+file sealed partial class GridImageGenerator : IGridImageGenerator
 {
 	/// <inheritdoc/>
 	public float Width => Calculator.Width;
@@ -254,11 +254,26 @@ file sealed class GridImageGenerator : IGridImageGenerator
 		};
 
 
+	partial void DrawFooterText(Graphics g);
+	partial void DrawValue(Graphics g);
+	partial void DrawView(Graphics g);
+	partial void DrawBackground(Graphics g);
+	partial void DrawGridAndBlockLines(Graphics g);
+	partial void DrawEliminations(Graphics g);
+	partial void DrawCells(Graphics g);
+	partial void DrawCandidates(Graphics g);
+	partial void DrawHouses(Graphics g);
+	partial void DrawLinks(Graphics g);
+	partial void DrawUnknownValue(Graphics g);
+}
+
+partial class GridImageGenerator
+{
 	/// <summary>
 	/// Draw footer text.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	private void DrawFooterText(Graphics g)
+	partial void DrawFooterText(Graphics g)
 	{
 		if (this is not { Width: var w, FooterText: { } text, Preferences.FooterTextColor: var color })
 		{
@@ -275,7 +290,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// Draw givens, modifiables and candidates, where the values are specified as a grid.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	private void DrawValue(Graphics g)
+	partial void DrawValue(Graphics g)
 	{
 		if (this is not
 			{
@@ -352,7 +367,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// </summary>
 	/// <param name="g">The graphics.</param>
 	/// <seealso cref="View"/>
-	private void DrawView(Graphics g)
+	partial void DrawView(Graphics g)
 	{
 		if (View is null)
 		{
@@ -371,13 +386,13 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// </summary>
 	/// <param name="g">The graphics.</param>
 	/// <seealso cref="IPreference.BackgroundColor"/>
-	private void DrawBackground(Graphics g) => g.Clear(Preferences.BackgroundColor);
+	partial void DrawBackground(Graphics g) => g.Clear(Preferences.BackgroundColor);
 
 	/// <summary>
 	/// Draw grid lines and block lines.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	private void DrawGridAndBlockLines(Graphics g)
+	partial void DrawGridAndBlockLines(Graphics g)
 	{
 		if (this is not
 			{
@@ -415,7 +430,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// Draw eliminations.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	private void DrawEliminations(Graphics g)
+	partial void DrawEliminations(Graphics g)
 	{
 		if (this is not
 			{
@@ -472,7 +487,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// Draw cells.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	private void DrawCells(Graphics g)
+	partial void DrawCells(Graphics g)
 	{
 		if (View is not { CellNodes: var cellNodes })
 		{
@@ -493,7 +508,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// Draw candidates.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	private void DrawCandidates(Graphics g)
+	partial void DrawCandidates(Graphics g)
 	{
 		if (this is not
 			{
@@ -612,7 +627,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// Draw houses.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	private void DrawHouses(Graphics g)
+	partial void DrawHouses(Graphics g)
 	{
 		if (this is not { Calculator: { CellSize: var (w, h) } calc, View.HouseNodes: var houseNodes, Preferences.ShowLightHouse: var showLightHouse })
 		{
@@ -675,7 +690,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// Draw links.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	private void DrawLinks(Graphics g)
+	partial void DrawLinks(Graphics g)
 	{
 		if (this is not
 			{
@@ -850,7 +865,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// Draw unknown values.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	private void DrawUnknownValue(Graphics g)
+	partial void DrawUnknownValue(Graphics g)
 	{
 		if (this is not
 			{
