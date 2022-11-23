@@ -322,7 +322,7 @@ file sealed class PointCalculator : IPointCalculator
 			{
 				throw new ArgumentException("Cannot get at least 1 candidate in the map.");
 			}
-		};
+		}
 	}
 
 	/// <inheritdoc/>
