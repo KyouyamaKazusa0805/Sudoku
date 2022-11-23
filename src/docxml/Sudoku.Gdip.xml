@@ -1605,16 +1605,16 @@
             <summary>
             Create an instance with two points.
             </summary>
-            <param name="leftUp">The left up point.</param>
-            <param name="rightDown">The right down point.</param>
+            <param name="topLeft">The top-left point.</param>
+            <param name="bottomRight">The bottom-right point.</param>
             <returns>The rectangle.</returns>
         </member>
         <member name="M:System.Drawing.RectangleMarshal.CreateInstance(System.Drawing.PointF@,System.Drawing.PointF@)">
             <summary>
             Create an instance with two points.
             </summary>
-            <param name="leftUp">The left up point.</param>
-            <param name="rightDown">The right down point.</param>
+            <param name="topLeft">The top-left point.</param>
+            <param name="buttomRight">The bottom-right point.</param>
             <returns>The rectangle.</returns>
         </member>
         <member name="T:System.Drawing.SizeExtensions">

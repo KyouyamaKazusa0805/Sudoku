@@ -144,7 +144,7 @@ public interface IPointCalculator
 	/// </summary>
 	/// <param name="house">The house.</param>
 	/// <returns>The anchor points.</returns>
-	(PointF LeftUp, PointF RightDown) GetAnchorsViaHouse(int house);
+	(PointF TopLeft, PointF BottomRight) GetAnchorsViaHouse(int house);
 
 
 	/// <summary>
@@ -351,7 +351,7 @@ file sealed class PointCalculator : IPointCalculator
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public (PointF LeftUp, PointF RightDown) GetAnchorsViaHouse(int house)
+	public (PointF TopLeft, PointF BottomRight) GetAnchorsViaHouse(int house)
 		=> house switch
 		{
 			>= 0 and < 9 when (house % 3, house / 3) is var (v1, v2) => (GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
