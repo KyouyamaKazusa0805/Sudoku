@@ -73,11 +73,9 @@ public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualit
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<LockedTarget, LockedTarget, bool>.operator ==(LockedTarget left, LockedTarget right)
-		=> left == right;
+	static bool IEqualityOperators<LockedTarget, LockedTarget, bool>.operator ==(LockedTarget left, LockedTarget right) => left == right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<LockedTarget, LockedTarget, bool>.operator !=(LockedTarget left, LockedTarget right)
-		=> left != right;
+	static bool IEqualityOperators<LockedTarget, LockedTarget, bool>.operator !=(LockedTarget left, LockedTarget right) => left != right;
 }
