@@ -111,12 +111,7 @@ public interface IGridImageGenerator
 			{
 				FooterTextAlignment: var footerAlignment,
 				FooterText: var footer,
-				Preferences:
-				{
-					FooterTextFontName: var fontName,
-					FooterTextFontSize: var fontSize,
-					FooterTextFontStyle: var fontStyle
-				}
+				Preferences: { FooterTextFontName: var fontName, FooterTextFontSize: var fontSize, FooterTextFontStyle: var fontStyle }
 			})
 		{
 			throw new();
@@ -244,18 +239,17 @@ file sealed class GridImageGenerator : IGridImageGenerator
 		{
 			{ Mode: IdentifierColorMode.Raw, A: var alpha, R: var red, G: var green, B: var blue } => Color.FromArgb(alpha, red, green, blue),
 			{ Mode: IdentifierColorMode.Id } when Preferences.TryGetColor(id, out var color) => Color.FromArgb(64, color),
-			{ Mode: IdentifierColorMode.Named, NamedKind: var namedKind }
-				=> namedKind switch
-				{
-					DisplayColorKind.Normal => Preferences.Color1,
-					DisplayColorKind.Assignment => Preferences.Color1,
-					DisplayColorKind.Elimination => Preferences.EliminationColor,
-					DisplayColorKind.Exofin => Preferences.Color2,
-					DisplayColorKind.Endofin => Preferences.Color3,
-					DisplayColorKind.Cannibalism => Preferences.CannibalismColor,
-					DisplayColorKind.Link => Preferences.ChainColor,
-					_ => throw new InvalidOperationException("Such displaying color kind is invalid.")
-				},
+			{ Mode: IdentifierColorMode.Named, NamedKind: var namedKind } => namedKind switch
+			{
+				DisplayColorKind.Normal => Preferences.Color1,
+				DisplayColorKind.Assignment => Preferences.Color1,
+				DisplayColorKind.Elimination => Preferences.EliminationColor,
+				DisplayColorKind.Exofin => Preferences.Color2,
+				DisplayColorKind.Endofin => Preferences.Color3,
+				DisplayColorKind.Cannibalism => Preferences.CannibalismColor,
+				DisplayColorKind.Link => Preferences.ChainColor,
+				_ => throw new InvalidOperationException("Such displaying color kind is invalid.")
+			},
 			_ => throw new InvalidOperationException("Such identifier instance contains invalid value.")
 		};
 
@@ -620,12 +614,7 @@ file sealed class GridImageGenerator : IGridImageGenerator
 	/// <param name="g">The graphics.</param>
 	private void DrawHouses(Graphics g)
 	{
-		if (this is not
-			{
-				Calculator: { CellSize: var (w, h) } calc,
-				View.HouseNodes: var houseNodes,
-				Preferences.ShowLightHouse: var showLightHouse
-			})
+		if (this is not { Calculator: { CellSize: var (w, h) } calc, View.HouseNodes: var houseNodes, Preferences.ShowLightHouse: var showLightHouse })
 		{
 			return;
 		}
