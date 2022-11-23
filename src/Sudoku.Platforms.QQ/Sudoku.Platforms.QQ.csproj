@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<Description>The project provides APIs for interaction on Tencent platform "QQ".</Description>
-		<DocumentationFile>..\docxml\Sudoku.Sudoku.Platforms.QQ.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Platforms.QQ.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
