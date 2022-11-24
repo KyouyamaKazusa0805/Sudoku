@@ -33,7 +33,7 @@ public interface ISudokuPainterFactory
 	/// <param name="gridCode">The new grid string code.</param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	ISudokuPainter WithGridCode(string gridCode) => WithGrid(Grid.Parse(gridCode));
+	sealed ISudokuPainter WithGridCode(string gridCode) => WithGrid(Grid.Parse(gridCode));
 
 	/// <summary>
 	/// Sets whether the candidates in the grid will also be rendered.
