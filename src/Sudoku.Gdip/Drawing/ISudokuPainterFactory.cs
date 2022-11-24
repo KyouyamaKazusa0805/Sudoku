@@ -68,13 +68,7 @@ public interface ISudokuPainterFactory
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	sealed ISudokuPainter WithFontScale(decimal fontScale)
-		=> WithPreferenceSettings(
-			pref =>
-			{
-				pref.ValueScale = fontScale;
-				pref.CandidateScale = fontScale / 3;
-			}
-		);
+		=> WithPreferenceSettings(pref => { pref.ValueScale = fontScale; pref.CandidateScale = fontScale / 3; });
 
 	/// <summary>
 	/// Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
@@ -89,7 +83,7 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="action">The action to set preference values.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithPreferenceSettings(Action<IPreference> action);
+	ISudokuPainter WithPreferenceSettings(Action<DrawingConfigurations> action);
 
 	/// <summary>
 	/// Sets a font name that is used for rendering footer text.

@@ -125,7 +125,7 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithGrid(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithPreferenceSettings(System.Action{Sudoku.Gdip.IPreference})">
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithPreferenceSettings(System.Action{Sudoku.Gdip.DrawingConfigurations})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterText(System.String,Sudoku.Drawing.TextRendering.TextAlignmentType)">
@@ -216,7 +216,7 @@
             <param name="fontName">The font name.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithPreferenceSettings(System.Action{Sudoku.Gdip.IPreference})">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithPreferenceSettings(System.Action{Sudoku.Gdip.DrawingConfigurations})">
             <summary>
             Sets the preference to the target value.
             </summary>
@@ -309,127 +309,351 @@
             Indicates the alignment is as right.
             </summary>
         </member>
-        <member name="T:Sudoku.Gdip.IGridImageGenerator">
+        <member name="T:Sudoku.Drawing.ProjectWideConstants">
             <summary>
-            Defines a grid image generator that parses a sudoku grid and converts it to an image
-            as the result representation.
+            Provides with project-wide constants.
             </summary>
         </member>
-        <member name="F:Sudoku.Gdip.IGridImageGenerator.SqrtOf2">
+        <member name="F:Sudoku.Drawing.ProjectWideConstants.SqrtOf2">
             <summary>
             The square root of 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Gdip.IGridImageGenerator.RotateAngle">
+        <member name="F:Sudoku.Drawing.ProjectWideConstants.RotateAngle">
             <summary>
             The rotate angle (45 degrees). This field is used for rotate the chains if some of them are overlapped.
             </summary>
         </member>
-        <member name="F:Sudoku.Gdip.IGridImageGenerator.DefaultStringFormat">
+        <member name="F:Sudoku.Drawing.ProjectWideConstants.DefaultOffset">
+            <summary>
+            Indicates the default offset value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.ProjectWideConstants.AnchorsCount">
+            <summary>
+            Indicates the number of anchors hold per house.
+            </summary>
+            <remarks>
+            The sudoku grid painter will draw the outlines and the inner lines, and correct the point
+            of each digits (candidates also included). Each row or column always contains 27 candidates,
+            so this value is 27.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Gdip.DrawingConfigurations">
+            <summary>
+            Represents with a preference type that stores the configurations on drawing.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Gdip.DrawingConfigurations.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Gdip.DrawingConfigurations"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ShowCandidates">
+            <summary>
+            Indicates whether the form shows candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ShowLightHouse">
+            <summary>
+            Indicates whether the grid painter will use new algorithm to render a house (lighter).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ValueScale">
+            <summary>
+            Indicates the scale of values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CandidateScale">
+            <summary>
+            Indicates the scale of candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.GridLineWidth">
+            <summary>
+            Indicates the grid line width of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.BlockLineWidth">
+            <summary>
+            Indicates the block line width of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFontSize">
+            <summary>
+            Indicates the footer text font size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
+            <summary>
+            Indicates the font of given digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ModifiableFontName">
+            <summary>
+            Indicates the font of modifiable digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CandidateFontName">
+            <summary>
+            Indicates the font of candidate digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.UnknownFontName">
+            <summary>
+            Indicates the font of unknown values to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFontName">
+            <summary>
+            Indicates the font of footer text.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontStyle">
+            <summary>
+            Indicates the font style of the givens.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ModifiableFontStyle">
+            <summary>
+            Indicates the font style of the modifiables.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CandidateFontStyle">
+            <summary>
+            Indicates the font style of the candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.UnknownFontStyle">
+            <summary>
+            Indicates the font style of an unknown.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFontStyle">
+            <summary>
+            Indicates the font style of footer text.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenColor">
+            <summary>
+            Indicates the given digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ModifiableColor">
+            <summary>
+            Indicates the modifiable digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CandidateColor">
+            <summary>
+            Indicates the candidate digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.FocusedCellColor">
+            <summary>
+            Indicates the color used for painting for focused cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.EliminationColor">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CannibalismColor">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ChainColor">
+            <summary>
+            Indicates the chain color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.BackgroundColor">
+            <summary>
+            Indicates the background color of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.GridLineColor">
+            <summary>
+            Indicates the grid line color of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.BlockLineColor">
+            <summary>
+            Indicates the block line color of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CrosshatchingOutlineColor">
+            <summary>
+            Indicates the color of the crosshatching outline.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CrosshatchingInnerColor">
+            <summary>
+            Indicates the color of the crosshatching inner.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.UnknownIdentifierColor">
+            <summary>
+            Indicates the color of the unknown identifier color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CrossSignColor">
+            <summary>
+            Indicates the color of the cross sign.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextColor">
+            <summary>
+            Indicates footer text color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ColorPalette">
+            <summary>
+            The color palette. This property stores a list of customized colors to be used as user-defined colors.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Gdip.DrawingConfigurations.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Gdip.DrawingConfigurations.CoverBy(Sudoku.Gdip.DrawingConfigurations)">
+            <summary>
+            Copies and covers the current instance via the newer instance.
+            </summary>
+            <param name="newPreferences">The newer instance to copy.</param>
+        </member>
+        <member name="T:Sudoku.Gdip.GridImageGenerator">
+            <summary>
+            Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Gdip.GridImageGenerator.DefaultStringFormat">
             <summary>
             Indicates the default string format.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.IGridImageGenerator.Width">
+        <member name="P:Sudoku.Gdip.GridImageGenerator.Width">
             <summary>
             Indicates the drawing width.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.IGridImageGenerator.Height">
+        <member name="P:Sudoku.Gdip.GridImageGenerator.Height">
             <summary>
             Indicates the drawing height.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.IGridImageGenerator.FooterText">
+        <member name="P:Sudoku.Gdip.GridImageGenerator.FooterText">
             <summary>
             Indicate the footer text. This property is optional, and you can keep this with <see langword="null"/> value
             if you don't want to make any footers on a picture.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.IGridImageGenerator.View">
-            <summary>
-            Indicates the view.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IGridImageGenerator.FooterTextAlignment">
+        <member name="P:Sudoku.Gdip.GridImageGenerator.FooterTextAlignment">
             <summary>
             Indicates the footer text alignment.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.IGridImageGenerator.Puzzle">
+        <member name="P:Sudoku.Gdip.GridImageGenerator.Puzzle">
             <summary>
             Indicates the puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.IGridImageGenerator.Conclusions">
+        <member name="P:Sudoku.Gdip.GridImageGenerator.View">
+            <summary>
+            Indicates the view.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.GridImageGenerator.Conclusions">
             <summary>
             Indicates all conclusions.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.IGridImageGenerator.Calculator">
+        <member name="P:Sudoku.Gdip.GridImageGenerator.Calculator">
             <summary>
-            Indicates the <see cref="T:Sudoku.Gdip.IPointCalculator"/> instance that calculates the pixels to help the inner
+            Indicates the <see cref="T:Sudoku.Gdip.PointCalculator"/> instance that calculates the pixels to help the inner
             methods to handle and draw the picture used for displaying onto the UI projects.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.IGridImageGenerator.Preferences">
+        <member name="P:Sudoku.Gdip.GridImageGenerator.Preferences">
             <summary>
-            Indicates the <see cref="T:Sudoku.Gdip.IPreference"/> instance that stores the default preferences
+            Indicates the <see cref="T:Sudoku.Gdip.DrawingConfigurations"/> instance that stores the default preferences
             that decides the drawing behavior.
             </summary>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.Render(System.Drawing.Image,System.Drawing.Graphics)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)">
             <summary>
             To render the image.
             </summary>
-            <param name="bitmap">The bitmap result.</param>
             <param name="g">The graphics instance.</param>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.Render">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.RenderTo">
             <summary>
             Render the image, with automatically calculation to get the target <see cref="T:System.Drawing.Image"/> instance, and then return it.
             </summary>
             <returns>The default-generated <see cref="T:System.Drawing.Image"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.GetFooterTextRenderingData">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.GetFooterTextRenderingData">
             <summary>
             Gets the rendering data.
             </summary>
             <returns>Rendering data.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.Create(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.GetValueById(Sudoku.Presentation.Identifier,System.Drawing.Color@)">
             <summary>
-            Creates an <see cref="T:Sudoku.Gdip.IGridImageGenerator"/> instance via the specified values.
+            Try to get the result color value.
+            </summary>
+            <param name="identifier">The color identifier.</param>
+            <param name="result">The result color got.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the ID is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.GetColor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Gets the color value.
+            </summary>
+            <param name="id">The identifier instance.</param>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified value is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.Create(System.Int32,System.Int32)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance via the specified values.
             </summary>
             <param name="canvasSize">The canvas size.</param>
             <param name="canvasOffset">The canvas offset.</param>
             <returns>The target result.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.Create(Sudoku.Gdip.IPointCalculator)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.Create(Sudoku.Gdip.PointCalculator)">
             <summary>
-            Creates an <see cref="T:Sudoku.Gdip.IGridImageGenerator"/> instance via the specified values.
+            Creates an <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance via the specified values.
             </summary>
             <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
             <returns>The target result.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.Create(Sudoku.Gdip.IPointCalculator,Sudoku.Gdip.IPreference)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.Create(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations)">
             <summary>
-            Creates an <see cref="T:Sudoku.Gdip.IGridImageGenerator"/> instance via the specified values.
+            Creates an <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance via the specified values.
             </summary>
             <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
             <param name="preferences">The user-defined preferences.</param>
             <returns>The target result.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.Create(Sudoku.Gdip.IPointCalculator,Sudoku.Gdip.IPreference,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.Create(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)">
             <summary>
-            Creates an <see cref="T:Sudoku.Gdip.IGridImageGenerator"/> instance via the specified values.
+            Creates an <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance via the specified values.
             </summary>
             <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
             <param name="preferences">The user-defined preferences.</param>
             <param name="puzzle">The puzzle.</param>
             <returns>The target result.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.IGridImageGenerator.GetFont(System.String,System.Single,System.Decimal,System.Drawing.FontStyle)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.GetFont(System.String,System.Single,System.Decimal,System.Drawing.FontStyle)">
             <summary>
             Get the font via the specified name, size and the scale.
             </summary>
@@ -439,49 +663,6 @@
             <param name="style">The style that decides the font style of the text in the picture.</param>
             <returns>The font.</returns>
             <exception cref="T:System.ArgumentNullException">Throws when <paramref name="fontName"/> is <see langword="null"/>.</exception>
-        </member>
-        <member name="T:Sudoku.Gdip.GridImageGenerator">
-            <summary>
-            Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.Width">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.Height">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.FooterText">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.Puzzle">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.FooterTextAlignment">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.View">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.Conclusions">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.Calculator">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.Preferences">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.Render(System.Drawing.Image,System.Drawing.Graphics)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.GetColor(Sudoku.Presentation.Identifier)">
-            <summary>
-            Gets the color value.
-            </summary>
-            <param name="id">The identifier instance.</param>
-            <returns></returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the specified value is invalid.</exception>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFooterText(System.Drawing.Graphics)">
             <summary>
@@ -504,10 +685,10 @@
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBackground(System.Drawing.Graphics)">
             <summary>
-            Draw the background, where the color is specified in <see cref="P:Sudoku.Gdip.IPreference.BackgroundColor"/>.
+            Draw the background, where the color is specified in <see cref="P:Sudoku.Gdip.DrawingConfigurations.BackgroundColor"/>.
             </summary>
             <param name="g">The graphics.</param>
-            <seealso cref="P:Sudoku.Gdip.IPreference.BackgroundColor"/>
+            <seealso cref="P:Sudoku.Gdip.DrawingConfigurations.BackgroundColor"/>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGridAndBlockLines(System.Drawing.Graphics)">
             <summary>
@@ -551,161 +732,9 @@
             </summary>
             <param name="g">The graphics.</param>
         </member>
-        <member name="T:Sudoku.Gdip.IPointCalculator">
-            <summary>
-            Provides a serial of methods for a point calculator that interacts with the UI projects.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Gdip.IPointCalculator.DefaultOffset">
-            <summary>
-            Indicates the default offset value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Gdip.IPointCalculator.AnchorsCount">
-            <summary>
-            Indicates the number of anchors hold per house.
-            </summary>
-            <remarks>
-            The sudoku grid painter will draw the outlines and the inner lines, and correct the point
-            of each digits (candidates also included). Each row or column always contains 27 candidates,
-            so this value is 27.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Gdip.IPointCalculator.Width">
-            <summary>
-            Indicates the width of the picture to draw.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPointCalculator.Height">
-            <summary>
-            Indicates the height of the picture to draw.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPointCalculator.Offset">
-            <summary>
-            Indicates the offset of the gap between the picture box outline and the sudoku grid outline.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPointCalculator.ControlSize">
-            <summary>
-            Indicates the control size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPointCalculator.GridSize">
-            <summary>
-            Indicates the grid size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPointCalculator.CellSize">
-            <summary>
-            Indicates the cell size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPointCalculator.CandidateSize">
-            <summary>
-            Indicates the candidate size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPointCalculator.GridPoints">
-            <summary>
-            Indicates the absolutely points in grid cross-lines.
-            This property will be assigned later (and not <see langword="null"/>).
-            </summary>
-            <remarks>Note that the size of this 2D array is always 28 by 28.</remarks>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetCell(System.Drawing.PointF@)">
-            <summary>
-            Get the focus cell offset via a mouse point.
-            </summary>
-            <param name="point">The mouse point.</param>
-            <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetCandidate(System.Drawing.PointF@)">
-            <summary>
-            Get the focus candidate offset via a mouse point.
-            </summary>
-            <param name="point">The mouse point.</param>
-            <returns>The candidate offset.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetMouseCenter(Sudoku.Concepts.Candidates@)">
-            <summary>
-            Get the center mouse point of all candidates.
-            </summary>
-            <param name="map">The map of candidates.</param>
-            <returns>The center mouse point.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetMouseCenter(Sudoku.Presentation.LockedTarget@)">
-            <summary>
-            Gets the center mouse point of the specified locked target.
-            </summary>
-            <param name="lockedTarget">The locked target.</param>
-            <returns>The center mouse point.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetMouseRectangle(Sudoku.Concepts.Candidates@)">
-            <summary>
-            Get the rectangle from all candidates.
-            </summary>
-            <param name="map">The candidates.</param>
-            <returns>The rectangle.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetMouseRectangleViaCell(System.Int32)">
-            <summary>
-            Get the rectangle (4 mouse points) via the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>The rectangle.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetMouseRectangle(System.Int32,System.Int32)">
-            <summary>
-            Get the rectangle (4 mouse points) for the specified cell and digit of a candidate.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <returns>The rectangle.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetMouseRectangleViaHouse(System.Int32)">
-            <summary>
-            Get the rectangle (4 mouse points) via the specified house.
-            </summary>
-            <param name="house">The house.</param>
-            <returns>The rectangle.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetMousePointInCenter(System.Int32)">
-            <summary>
-            Get the mouse point of the center of a cell via its offset.
-            </summary>
-            <param name="cell">The cell offset.</param>
-            <returns>The mouse point.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetMousePointInCenter(System.Int32,System.Int32)">
-            <summary>
-            Get the mouse point of the center of a cell via its offset and the digit.
-            </summary>
-            <param name="cell">The cell offset.</param>
-            <param name="digit">The digit.</param>
-            <returns>The mouse point.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.GetAnchorsViaHouse(System.Int32)">
-            <summary>
-            Gets two points that specifies and represents the anchors of this house.
-            </summary>
-            <param name="house">The house.</param>
-            <returns>The anchor points.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.IPointCalculator.Create(System.Single,System.Single)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Gdip.IPointCalculator"/> instance with the specified size, and the offset.
-            </summary>
-            <param name="size">The size.</param>
-            <param name="offset">The offset. The default value is <c>10</c>.</param>
-            <returns>An <see cref="T:Sudoku.Gdip.IPointCalculator"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.Gdip.PointCalculator">
             <summary>
-            Defines a point calculator that interacts with the UI projects.
+            Provides a serial of methods for a point calculator that interacts with the UI projects.
             </summary>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.#ctor(System.Drawing.SizeF@,System.Single)">
@@ -717,484 +746,142 @@
             <param name="offset">
             Indicates the offset to set to allow the output items moving a little bit left or right,
             in order to correct the position on drawing. The default value is <c>10F</c>, which is specified
-            in <see cref="F:Sudoku.Gdip.IPointCalculator.DefaultOffset"/>
+            in <see cref="F:Sudoku.Drawing.ProjectWideConstants.DefaultOffset"/>
             </param>
-            <seealso cref="F:Sudoku.Gdip.IPointCalculator.DefaultOffset"/>
+            <seealso cref="F:Sudoku.Drawing.ProjectWideConstants.DefaultOffset"/>
         </member>
         <member name="P:Sudoku.Gdip.PointCalculator.Width">
-            <inheritdoc/>
+            <summary>
+            Indicates the width of the picture to draw.
+            </summary>
         </member>
         <member name="P:Sudoku.Gdip.PointCalculator.Height">
-            <inheritdoc/>
+            <summary>
+            Indicates the height of the picture to draw.
+            </summary>
         </member>
         <member name="P:Sudoku.Gdip.PointCalculator.Offset">
-            <inheritdoc/>
+            <summary>
+            Indicates the offset of the gap between the picture box outline and the sudoku grid outline.
+            </summary>
             <remarks>The default value is <c>10</c>.</remarks>
         </member>
         <member name="P:Sudoku.Gdip.PointCalculator.ControlSize">
-            <inheritdoc/>
+            <summary>
+            Indicates the control size.
+            </summary>
         </member>
         <member name="P:Sudoku.Gdip.PointCalculator.GridSize">
-            <inheritdoc/>
+            <summary>
+            Indicates the grid size.
+            </summary>
         </member>
         <member name="P:Sudoku.Gdip.PointCalculator.CellSize">
-            <inheritdoc/>
+            <summary>
+            Indicates the cell size.
+            </summary>
         </member>
         <member name="P:Sudoku.Gdip.PointCalculator.CandidateSize">
-            <inheritdoc/>
+            <summary>
+            Indicates the candidate size.
+            </summary>
         </member>
         <member name="P:Sudoku.Gdip.PointCalculator.GridPoints">
-            <inheritdoc/>
+            <summary>
+            Indicates the absolutely points in grid cross-lines.
+            This property will be assigned later (and not <see langword="null"/>).
+            </summary>
+            <remarks>Note that the size of this 2D array is always 28 by 28.</remarks>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetCell(System.Drawing.PointF@)">
-            <inheritdoc/>
+            <summary>
+            Get the focus cell offset via a mouse point.
+            </summary>
+            <param name="point">The mouse point.</param>
+            <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetCandidate(System.Drawing.PointF@)">
-            <inheritdoc/>
+            <summary>
+            Get the focus candidate offset via a mouse point.
+            </summary>
+            <param name="point">The mouse point.</param>
+            <returns>The candidate offset.</returns>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetMouseCenter(Sudoku.Concepts.Candidates@)">
-            <inheritdoc/>
+            <summary>
+            Get the center mouse point of all candidates.
+            </summary>
+            <param name="map">The map of candidates.</param>
+            <returns>The center mouse point.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetMouseCenter(Sudoku.Presentation.LockedTarget@)">
-            <inheritdoc/>
+            <summary>
+            Gets the center mouse point of the specified locked target.
+            </summary>
+            <param name="lockedTarget">The locked target.</param>
+            <returns>The center mouse point.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetMouseRectangle(Sudoku.Concepts.Candidates@)">
-            <inheritdoc/>
+            <summary>
+            Get the rectangle from all candidates.
+            </summary>
+            <param name="map">The candidates.</param>
+            <returns>The rectangle.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetMouseRectangleViaCell(System.Int32)">
-            <inheritdoc/>
+            <summary>
+            Get the rectangle (4 mouse points) via the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The rectangle.</returns>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetMouseRectangle(System.Int32,System.Int32)">
-            <inheritdoc/>
+            <summary>
+            Get the rectangle (4 mouse points) for the specified cell and digit of a candidate.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The rectangle.</returns>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetMouseRectangleViaHouse(System.Int32)">
-            <inheritdoc/>
+            <summary>
+            Get the rectangle (4 mouse points) via the specified house.
+            </summary>
+            <param name="house">The house.</param>
+            <returns>The rectangle.</returns>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetAnchorsViaHouse(System.Int32)">
-            <inheritdoc/>
+            <summary>
+            Gets two points that specifies and represents the anchors of this house.
+            </summary>
+            <param name="house">The house.</param>
+            <returns>The anchor points.</returns>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetMousePointInCenter(System.Int32)">
-            <inheritdoc/>
+            <summary>
+            Get the mouse point of the center of a cell via its offset.
+            </summary>
+            <param name="cell">The cell offset.</param>
+            <returns>The mouse point.</returns>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetMousePointInCenter(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Gdip.IPreference">
             <summary>
-            Defines the basic preferences.
+            Get the mouse point of the center of a cell via its offset and the digit.
             </summary>
+            <param name="cell">The cell offset.</param>
+            <param name="digit">The digit.</param>
+            <returns>The mouse point.</returns>
         </member>
-        <member name="P:Sudoku.Gdip.IPreference.ShowCandidates">
+        <member name="M:Sudoku.Gdip.PointCalculator.Create(System.Single,System.Single)">
             <summary>
-            Indicates whether the form shows candidates.
+            Creates a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance with the specified size, and the offset.
             </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.ShowLightHouse">
-            <summary>
-            Indicates whether the grid painter will use new algorithm to render a house (lighter).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.ValueScale">
-            <summary>
-            Indicates the scale of values.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.CandidateScale">
-            <summary>
-            Indicates the scale of candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.GridLineWidth">
-            <summary>
-            Indicates the grid line width of the sudoku grid to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.BlockLineWidth">
-            <summary>
-            Indicates the block line width of the sudoku grid to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.FooterTextFontSize">
-            <summary>
-            Indicates the footer text font size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.GivenFontName">
-            <summary>
-            Indicates the font of given digits to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.ModifiableFontName">
-            <summary>
-            Indicates the font of modifiable digits to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.CandidateFontName">
-            <summary>
-            Indicates the font of candidate digits to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.UnknownFontName">
-            <summary>
-            Indicates the font of unknown values to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.FooterTextFontName">
-            <summary>
-            Indicates the font of footer text.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.GivenFontStyle">
-            <summary>
-            Indicates the font style of the givens.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.ModifiableFontStyle">
-            <summary>
-            Indicates the font style of the modifiables.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.CandidateFontStyle">
-            <summary>
-            Indicates the font style of the candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.UnknownFontStyle">
-            <summary>
-            Indicates the font style of an unknown.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.FooterTextFontStyle">
-            <summary>
-            Indicates the font style of footer text.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.GivenColor">
-            <summary>
-            Indicates the given digits to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.ModifiableColor">
-            <summary>
-            Indicates the modifiable digits to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.CandidateColor">
-            <summary>
-            Indicates the candidate digits to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.FocusedCellColor">
-            <summary>
-            Indicates the color used for painting for focused cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.EliminationColor">
-            <summary>
-            Indicates the elimination color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.CannibalismColor">
-            <summary>
-            Indicates the cannibalism color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.ChainColor">
-            <summary>
-            Indicates the chain color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.BackgroundColor">
-            <summary>
-            Indicates the background color of the sudoku grid to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.GridLineColor">
-            <summary>
-            Indicates the grid line color of the sudoku grid to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.BlockLineColor">
-            <summary>
-            Indicates the block line color of the sudoku grid to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.CrosshatchingOutlineColor">
-            <summary>
-            Indicates the color of the crosshatching outline.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.CrosshatchingInnerColor">
-            <summary>
-            Indicates the color of the crosshatching inner.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.UnknownIdentifierColor">
-            <summary>
-            Indicates the color of the unknown identifier color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.CrossSignColor">
-            <summary>
-            Indicates the color of the cross sign.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.FooterTextColor">
-            <summary>
-            Indicates footer text color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color1">
-            <summary>
-            Indicates the color 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color2">
-            <summary>
-            Indicates the color 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color3">
-            <summary>
-            Indicates the color 3.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color4">
-            <summary>
-            Indicates the color 4.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color5">
-            <summary>
-            Indicates the color 5.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color6">
-            <summary>
-            Indicates the color 6.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color7">
-            <summary>
-            Indicates the color 7.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color8">
-            <summary>
-            Indicates the color 8.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color9">
-            <summary>
-            Indicates the color 9.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color10">
-            <summary>
-            Indicates the color 10.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color11">
-            <summary>
-            Indicates the color 11.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color12">
-            <summary>
-            Indicates the color 12.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color13">
-            <summary>
-            Indicates the color 13.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color14">
-            <summary>
-            Indicates the color 14.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Color15">
-            <summary>
-            Indicates the color 15.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.IPreference.Default">
-            <summary>
-            Indicates the default instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Gdip.IPreference.CoverBy(Sudoku.Gdip.IPreference)">
-            <summary>
-            Copies and covers the current instance via the newer instance.
-            </summary>
-            <param name="newPreferences">The newer instance to copy.</param>
-        </member>
-        <member name="M:Sudoku.Gdip.IPreference.TryGetColor(Sudoku.Presentation.Identifier,System.Drawing.Color@)">
-            <summary>
-            Try to get the result color value.
-            </summary>
-            <param name="colorIdentifier">The color identifier.</param>
-            <param name="result">The result color got.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the ID is invalid.</exception>
-        </member>
-        <member name="T:Sudoku.Gdip.Preference">
-            <summary>
-            Indicates a preference instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Gdip.Preference.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Gdip.Preference"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.ShowCandidates">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.ShowLightHouse">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.ValueScale">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.CandidateScale">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.GridLineWidth">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.BlockLineWidth">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.FooterTextFontSize">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.GivenFontName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.ModifiableFontName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.CandidateFontName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.UnknownFontName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.FooterTextFontName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.GivenFontStyle">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.ModifiableFontStyle">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.CandidateFontStyle">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.UnknownFontStyle">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.FooterTextFontStyle">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.GivenColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.ModifiableColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.CandidateColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.FocusedCellColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.EliminationColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.CannibalismColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.ChainColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.BackgroundColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.GridLineColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.BlockLineColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.CrosshatchingOutlineColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.CrosshatchingInnerColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.UnknownIdentifierColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.CrossSignColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.FooterTextColor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color1">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color2">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color3">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color4">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color5">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color6">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color7">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color8">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color9">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color10">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color11">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color12">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color13">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color14">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Gdip.Preference.Color15">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Gdip.Preference.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Gdip.Preference.CoverBy(Sudoku.Gdip.IPreference)">
-            <inheritdoc/>
+            <param name="size">The size.</param>
+            <param name="offset">The offset. The default value is <c>10</c>.</param>
+            <returns>An <see cref="T:Sudoku.Gdip.PointCalculator"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Gdip.TextRenderingData">
             <summary>
@@ -1297,6 +984,25 @@
             <summary>
             Provides extension methods for <see cref="T:System.Drawing.Graphics"/>.
             </summary>
+        </member>
+        <member name="M:System.Drawing.GraphicsExtensions.DrawImage(System.Drawing.Graphics,System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.GraphicsUnit)">
+            <summary>
+            Draws an image onto the target <see cref="T:System.Drawing.Graphics"/> instance, with specified customized data.
+            </summary>
+            <param name="this">The <see cref="T:System.Drawing.Graphics"/> instance.</param>
+            <param name="bitmap">The image to be used for drawing onto the target <see cref="T:System.Drawing.Graphics"/> instance.</param>
+            <param name="destX">The X coordinate of the destination point.</param>
+            <param name="destY">The Y coordinate of the destination point.</param>
+            <param name="destWidth">The width of the destination point.</param>
+            <param name="destHeight">The height of the destination point.</param>
+            <param name="srcX">The X coordinate of the source point.</param>
+            <param name="srcY">The Y coordinate of the source point.</param>
+            <param name="srcWidth">The width of the source point.</param>
+            <param name="srcHeight">The height of the source point.</param>
+            <param name="srcUnit">
+            The source graphics unit <see cref="T:System.Drawing.GraphicsUnit"/> instance indicating which kind of unit those coordinate arguments
+            (e.g. <paramref name="destX"/>, <paramref name="destY"/>, <paramref name="srcX"/>, <paramref name="srcY"/>, etc.) uses.
+            </param>
         </member>
         <member name="M:System.Drawing.GraphicsExtensions.DrawValue``1(System.Drawing.Graphics,``0,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF@)">
             <summary>

@@ -1,91 +1,90 @@
 ﻿namespace Sudoku.Gdip;
 
-using static MathF;
-
 /// <summary>
-/// Defines a grid image generator that parses a sudoku grid and converts it to an image
-/// as the result representation.
+/// Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
 /// </summary>
-public interface IGridImageGenerator
+public sealed partial class GridImageGenerator
 {
-	/// <summary>
-	/// The square root of 2.
-	/// </summary>
-	protected const float SqrtOf2 = 1.4142135F;
-
-	/// <summary>
-	/// The rotate angle (45 degrees). This field is used for rotate the chains if some of them are overlapped.
-	/// </summary>
-	protected const float RotateAngle = PI / 4;
-
-
 	/// <summary>
 	/// Indicates the default string format.
 	/// </summary>
-	protected static readonly StringFormat DefaultStringFormat = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+	private static readonly StringFormat DefaultStringFormat = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
 
 
 	/// <summary>
 	/// Indicates the drawing width.
 	/// </summary>
-	float Width { get; }
+	public float Width => Calculator.Width;
 
 	/// <summary>
 	/// Indicates the drawing height.
 	/// </summary>
-	float Height { get; }
+	public float Height => Calculator.Height;
 
 	/// <summary>
 	/// Indicate the footer text. This property is optional, and you can keep this with <see langword="null"/> value
 	/// if you don't want to make any footers on a picture.
 	/// </summary>
-	string? FooterText { get; set; }
-
-	/// <summary>
-	/// Indicates the view.
-	/// </summary>
-	View? View { get; set; }
+	public string? FooterText { get; set; }
 
 	/// <summary>
 	/// Indicates the footer text alignment.
 	/// </summary>
-	StringAlignment FooterTextAlignment { get; set; }
+	public StringAlignment FooterTextAlignment { get; set; }
 
 	/// <summary>
 	/// Indicates the puzzle.
 	/// </summary>
-	Grid Puzzle { get; set; }
+	public required Grid Puzzle { get; set; }
+
+	/// <summary>
+	/// Indicates the view.
+	/// </summary>
+	public View? View { get; set; }
 
 	/// <summary>
 	/// Indicates all conclusions.
 	/// </summary>
-	IEnumerable<Conclusion>? Conclusions { get; set; }
+	public IEnumerable<Conclusion>? Conclusions { get; set; }
 
 	/// <summary>
-	/// Indicates the <see cref="IPointCalculator"/> instance that calculates the pixels to help the inner
+	/// Indicates the <see cref="PointCalculator"/> instance that calculates the pixels to help the inner
 	/// methods to handle and draw the picture used for displaying onto the UI projects.
 	/// </summary>
-	IPointCalculator Calculator { get; set; }
+	public required PointCalculator Calculator { get; set; }
 
 	/// <summary>
-	/// Indicates the <see cref="IPreference"/> instance that stores the default preferences
+	/// Indicates the <see cref="DrawingConfigurations"/> instance that stores the default preferences
 	/// that decides the drawing behavior.
 	/// </summary>
-	IPreference Preferences { get; set; }
+	public required DrawingConfigurations Preferences { get; set; }
 
 
 	/// <summary>
 	/// To render the image.
 	/// </summary>
-	/// <param name="bitmap">The bitmap result.</param>
 	/// <param name="g">The graphics instance.</param>
-	void Render(Image bitmap, Graphics g);
+	public void RenderTo(Graphics g)
+	{
+		DrawBackground(g);
+		DrawGridAndBlockLines(g);
+
+		g.SmoothingMode = SmoothingMode.HighQuality;
+		g.TextRenderingHint = TextRenderingHint.AntiAlias;
+		g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+		g.CompositingQuality = CompositingQuality.HighQuality;
+
+		DrawView(g);
+		DrawEliminations(g);
+		DrawValue(g);
+		DrawFooterText(g);
+	}
 
 	/// <summary>
 	/// Render the image, with automatically calculation to get the target <see cref="Image"/> instance, and then return it.
 	/// </summary>
 	/// <returns>The default-generated <see cref="Image"/> instance.</returns>
-	sealed Image Render()
+	public Image RenderTo()
 	{
 		using var data = GetFooterTextRenderingData();
 		var (font, extraHeight, alignment) = data;
@@ -96,7 +95,7 @@ public interface IGridImageGenerator
 		var bitmap = new Bitmap((int)Width, (int)(FooterText is not null ? Height + extraHeight : Height));
 
 		using var g = Graphics.FromImage(bitmap);
-		Render(bitmap, g);
+		RenderTo(g);
 
 		return bitmap;
 	}
@@ -105,7 +104,7 @@ public interface IGridImageGenerator
 	/// Gets the rendering data.
 	/// </summary>
 	/// <returns>Rendering data.</returns>
-	internal sealed TextRenderingData GetFooterTextRenderingData()
+	internal TextRenderingData GetFooterTextRenderingData()
 	{
 		if (this is not
 			{
@@ -124,107 +123,24 @@ public interface IGridImageGenerator
 		return new(footerFont, footerHeight, new() { Alignment = footerAlignment });
 	}
 
-
 	/// <summary>
-	/// Creates an <see cref="IGridImageGenerator"/> instance via the specified values.
+	/// Try to get the result color value.
 	/// </summary>
-	/// <param name="canvasSize">The canvas size.</param>
-	/// <param name="canvasOffset">The canvas offset.</param>
-	/// <returns>The target result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static IGridImageGenerator Create(int canvasSize, int canvasOffset)
-		=> Create(IPointCalculator.Create(canvasSize, canvasOffset), IPreference.Default, Grid.Empty);
-
-	/// <summary>
-	/// Creates an <see cref="IGridImageGenerator"/> instance via the specified values.
-	/// </summary>
-	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
-	/// <returns>The target result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static IGridImageGenerator Create(IPointCalculator calculator) => Create(calculator, IPreference.Default, Grid.Empty);
-
-	/// <summary>
-	/// Creates an <see cref="IGridImageGenerator"/> instance via the specified values.
-	/// </summary>
-	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
-	/// <param name="preferences">The user-defined preferences.</param>
-	/// <returns>The target result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static IGridImageGenerator Create(IPointCalculator calculator, IPreference preferences) => Create(calculator, preferences, Grid.Empty);
-
-	/// <summary>
-	/// Creates an <see cref="IGridImageGenerator"/> instance via the specified values.
-	/// </summary>
-	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
-	/// <param name="preferences">The user-defined preferences.</param>
-	/// <param name="puzzle">The puzzle.</param>
-	/// <returns>The target result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static IGridImageGenerator Create(IPointCalculator calculator, IPreference preferences, scoped in Grid puzzle)
-		=> new GridImageGenerator { Calculator = calculator, Preferences = preferences, Puzzle = puzzle };
-
-	/// <summary>
-	/// Get the font via the specified name, size and the scale.
-	/// </summary>
-	/// <param name="fontName">The font name that decides the font to use and presentation.</param>
-	/// <param name="size">The size that decides the default font size.</param>
-	/// <param name="scale">The scale that decides the result font size.</param>
-	/// <param name="style">The style that decides the font style of the text in the picture.</param>
-	/// <returns>The font.</returns>
-	/// <exception cref="ArgumentNullException">Throws when <paramref name="fontName"/> is <see langword="null"/>.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected static Font GetFont(string? fontName, float size, decimal scale, FontStyle style)
-		=> new(fontName ?? throw new ArgumentNullException(nameof(size)), size * (float)scale, style);
-}
-
-/// <summary>
-/// Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
-/// </summary>
-file sealed partial class GridImageGenerator : IGridImageGenerator
-{
-	/// <inheritdoc/>
-	public float Width => Calculator.Width;
-
-	/// <inheritdoc/>
-	public float Height => Calculator.Height;
-
-	/// <inheritdoc/>
-	public string? FooterText { get; set; }
-
-	/// <inheritdoc/>
-	public required Grid Puzzle { get; set; }
-
-	/// <inheritdoc/>
-	public StringAlignment FooterTextAlignment { get; set; }
-
-	/// <inheritdoc/>
-	public View? View { get; set; }
-
-	/// <inheritdoc/>
-	public IEnumerable<Conclusion>? Conclusions { get; set; }
-
-	/// <inheritdoc/>
-	public required IPointCalculator Calculator { get; set; }
-
-	/// <inheritdoc/>
-	public required IPreference Preferences { get; set; }
-
-
-	/// <inheritdoc/>
-	public void Render(Image bitmap, Graphics g)
+	/// <param name="identifier">The color identifier.</param>
+	/// <param name="result">The result color got.</param>
+	/// <returns>The <see cref="bool"/> result.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the ID is invalid.</exception>
+	private bool GetValueById(Identifier identifier, out Color result)
 	{
-		DrawBackground(g);
-		DrawGridAndBlockLines(g);
-
-		g.SmoothingMode = SmoothingMode.HighQuality;
-		g.TextRenderingHint = TextRenderingHint.AntiAlias;
-		g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-		g.CompositingQuality = CompositingQuality.HighQuality;
-
-		DrawView(g);
-		DrawEliminations(g);
-		DrawValue(g);
-		DrawFooterText(g);
+		if ((Preferences, identifier) is ({ ColorPalette: var palette }, { Mode: IdentifierColorMode.Id, Id: var id }))
+		{
+			return (result = palette.Length > id ? palette[id] : Color.Transparent) != Color.Transparent;
+		}
+		else
+		{
+			result = Color.Transparent;
+			return false;
+		}
 	}
 
 	/// <summary>
@@ -238,20 +154,73 @@ file sealed partial class GridImageGenerator : IGridImageGenerator
 		=> id switch
 		{
 			{ Mode: IdentifierColorMode.Raw, A: var alpha, R: var red, G: var green, B: var blue } => Color.FromArgb(alpha, red, green, blue),
-			{ Mode: IdentifierColorMode.Id } when Preferences.TryGetColor(id, out var color) => Color.FromArgb(64, color),
+			{ Mode: IdentifierColorMode.Id } when GetValueById(id, out var color) => Color.FromArgb(64, color),
 			{ Mode: IdentifierColorMode.Named, NamedKind: var namedKind } => namedKind switch
 			{
-				DisplayColorKind.Normal => Preferences.Color1,
-				DisplayColorKind.Assignment => Preferences.Color1,
+				DisplayColorKind.Normal => Preferences.ColorPalette[0],
+				DisplayColorKind.Assignment => Preferences.ColorPalette[0],
 				DisplayColorKind.Elimination => Preferences.EliminationColor,
-				DisplayColorKind.Exofin => Preferences.Color2,
-				DisplayColorKind.Endofin => Preferences.Color3,
+				DisplayColorKind.Exofin => Preferences.ColorPalette[1],
+				DisplayColorKind.Endofin => Preferences.ColorPalette[2],
 				DisplayColorKind.Cannibalism => Preferences.CannibalismColor,
 				DisplayColorKind.Link => Preferences.ChainColor,
 				_ => throw new InvalidOperationException("Such displaying color kind is invalid.")
 			},
 			_ => throw new InvalidOperationException("Such identifier instance contains invalid value.")
 		};
+
+
+	/// <summary>
+	/// Creates an <see cref="GridImageGenerator"/> instance via the specified values.
+	/// </summary>
+	/// <param name="canvasSize">The canvas size.</param>
+	/// <param name="canvasOffset">The canvas offset.</param>
+	/// <returns>The target result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static GridImageGenerator Create(int canvasSize, int canvasOffset)
+		=> Create(PointCalculator.Create(canvasSize, canvasOffset), DrawingConfigurations.Instance, Grid.Empty);
+
+	/// <summary>
+	/// Creates an <see cref="GridImageGenerator"/> instance via the specified values.
+	/// </summary>
+	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
+	/// <returns>The target result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static GridImageGenerator Create(PointCalculator calculator) => Create(calculator, DrawingConfigurations.Instance, Grid.Empty);
+
+	/// <summary>
+	/// Creates an <see cref="GridImageGenerator"/> instance via the specified values.
+	/// </summary>
+	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
+	/// <param name="preferences">The user-defined preferences.</param>
+	/// <returns>The target result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static GridImageGenerator Create(PointCalculator calculator, DrawingConfigurations preferences)
+		=> Create(calculator, preferences, Grid.Empty);
+
+	/// <summary>
+	/// Creates an <see cref="GridImageGenerator"/> instance via the specified values.
+	/// </summary>
+	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
+	/// <param name="preferences">The user-defined preferences.</param>
+	/// <param name="puzzle">The puzzle.</param>
+	/// <returns>The target result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static GridImageGenerator Create(PointCalculator calculator, DrawingConfigurations preferences, scoped in Grid puzzle)
+		=> new() { Calculator = calculator, Preferences = preferences, Puzzle = puzzle };
+
+	/// <summary>
+	/// Get the font via the specified name, size and the scale.
+	/// </summary>
+	/// <param name="fontName">The font name that decides the font to use and presentation.</param>
+	/// <param name="size">The size that decides the default font size.</param>
+	/// <param name="scale">The scale that decides the result font size.</param>
+	/// <param name="style">The style that decides the font style of the text in the picture.</param>
+	/// <returns>The font.</returns>
+	/// <exception cref="ArgumentNullException">Throws when <paramref name="fontName"/> is <see langword="null"/>.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static Font GetFont(string? fontName, float size, decimal scale, FontStyle style)
+		=> new(fontName ?? throw new ArgumentNullException(nameof(size)), size * (float)scale, style);
 
 
 	partial void DrawFooterText(Graphics g);
@@ -281,7 +250,7 @@ partial class GridImageGenerator
 		}
 
 		using var brush = new SolidBrush(color);
-		using var data = ((IGridImageGenerator)this).GetFooterTextRenderingData();
+		using var data = GetFooterTextRenderingData();
 		var (font, extraHeight, alignment) = data;
 		g.DrawString(text, font, brush, new RectangleF(0, w, w, extraHeight), alignment);
 	}
@@ -382,10 +351,10 @@ partial class GridImageGenerator
 	}
 
 	/// <summary>
-	/// Draw the background, where the color is specified in <see cref="IPreference.BackgroundColor"/>.
+	/// Draw the background, where the color is specified in <see cref="DrawingConfigurations.BackgroundColor"/>.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <seealso cref="IPreference.BackgroundColor"/>
+	/// <seealso cref="DrawingConfigurations.BackgroundColor"/>
 	partial void DrawBackground(Graphics g) => g.Clear(Preferences.BackgroundColor);
 
 	/// <summary>
@@ -522,7 +491,7 @@ partial class GridImageGenerator
 					CandidateScale: var cScale,
 					CandidateFontStyle: var cFontStyle,
 					ShowCandidates: var showCandidates
-				} prefs
+				}
 			})
 		{
 			return;
@@ -580,7 +549,7 @@ partial class GridImageGenerator
 					{
 						var color = mode switch
 						{
-							IdentifierColorMode.Id when prefs.TryGetColor(id, out var c) => c,
+							IdentifierColorMode.Id when GetValueById(id, out var c) => c,
 							IdentifierColorMode.Named => GetColor(id),
 							_ => throw new InvalidOperationException()
 						};

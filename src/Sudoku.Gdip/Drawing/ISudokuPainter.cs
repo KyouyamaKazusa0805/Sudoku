@@ -18,7 +18,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// <summary>
 	/// The grid image generator.
 	/// </summary>
-	protected internal IGridImageGenerator GridImageGenerator { get; }
+	protected internal GridImageGenerator GridImageGenerator { get; }
 
 
 	/// <summary>
@@ -46,7 +46,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 				using var tempGraphics = Graphics.FromImage(tempBitmap);
 				using var metaFile = new Metafile(path, tempGraphics.GetHdc());
 				using var g = Graphics.FromImage(metaFile);
-				GridImageGenerator.Render(metaFile, g);
+				GridImageGenerator.RenderTo(g);
 
 				tempGraphics.ReleaseHdc();
 
@@ -155,7 +155,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	/// <summary>
 	/// The inner image generator instance.
 	/// </summary>
-	private readonly IGridImageGenerator _generator;
+	private readonly GridImageGenerator _generator;
 
 
 	/// <summary>
@@ -163,7 +163,11 @@ file sealed class SudokuPainter : ISudokuPainter
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SudokuPainter(int defaultSize, int defaultOffset)
-		=> _generator = Create(Create(defaultSize, (float)defaultOffset), IPreference.Default, Grid.Empty);
+		=> _generator = GridImageGenerator.Create(
+			PointCalculator.Create(defaultSize, defaultOffset),
+			DrawingConfigurations.Instance,
+			Grid.Empty
+		);
 
 
 	/// <inheritdoc/>
@@ -173,18 +177,18 @@ file sealed class SudokuPainter : ISudokuPainter
 	public float Height => _generator.Height;
 
 	/// <inheritdoc/>
-	IGridImageGenerator ISudokuPainter.GridImageGenerator => _generator;
+	GridImageGenerator ISudokuPainter.GridImageGenerator => _generator;
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Image Render() => _generator.Render();
+	public Image Render() => _generator.RenderTo();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithCanvasSize(int size)
 	{
-		_generator.Calculator = Create(size);
+		_generator.Calculator = PointCalculator.Create(size);
 		return this;
 	}
 
@@ -192,7 +196,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithCanvasOffset(int offset)
 	{
-		_generator.Calculator = Create(_generator.Width, offset);
+		_generator.Calculator = PointCalculator.Create((int)_generator.Width, offset);
 		return this;
 	}
 
@@ -206,7 +210,7 @@ file sealed class SudokuPainter : ISudokuPainter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithPreferenceSettings(Action<IPreference> action)
+	public ISudokuPainter WithPreferenceSettings(Action<DrawingConfigurations> action)
 	{
 		action(_generator.Preferences);
 		return this;
