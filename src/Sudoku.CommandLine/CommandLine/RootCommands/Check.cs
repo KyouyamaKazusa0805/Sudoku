@@ -3,23 +3,23 @@
 /// <summary>
 /// Represents a check command.
 /// </summary>
-[RootCommand("check", "To check the attributes for a sudoku grid.")]
+[RootCommand("check", DescriptionResourceKey = "_Description_Check")]
 [SupportedArguments("check")]
-[Usage("check --grid <grid> --type <type>", IsPattern = true)]
-[Usage($"""check -g "{SampleGrid}" -t validity""", "To check the validity of the specified sudoku grid.")]
+[Usage("check -g <grid> -t <type>", IsPattern = true)]
+[Usage($"""check -g "{SampleGrid}" -t validity""", DescriptionResourceKey = "_Usage_Check_1")]
 public sealed class Check : IExecutable
 {
 	/// <summary>
 	/// Indicates the check type.
 	/// </summary>
-	[DoubleArgumentsCommand('t', "type", "Indicates what kind of attribute will be checked.")]
+	[DoubleArgumentsCommand('t', "type", DescriptionResourceKey = "_Description_CheckType_Check")]
 	[CommandConverter<EnumTypeConverter<CheckType>>]
 	public CheckType CheckType { get; set; } = CheckType.Validity;
 
 	/// <summary>
 	/// Indicates the grid used.
 	/// </summary>
-	[DoubleArgumentsCommand('g', "grid", "Indicates the sudoku grid as string representation.", IsRequired = true)]
+	[DoubleArgumentsCommand('g', "grid", DescriptionResourceKey = "_Description_Grid_Check", IsRequired = true)]
 	[CommandConverter<GridConverter>]
 	public Grid Grid { get; set; }
 
@@ -32,10 +32,11 @@ public sealed class Check : IExecutable
 			case CheckType.Validity:
 			{
 				await Terminal.WriteLineAsync(
-					$"""
-					Puzzle: '{Grid:#}'
-					The puzzle {(Grid.IsValid() ? "has" : "doesn't have")} a unique solution.
-					"""
+					string.Format(
+						R["_MessageFormat_CheckValidityResult"]!,
+						Grid.ToString("#"),
+						(Grid.IsValid() ? R["_MessageFormat_Has"] : R["_MessageFormat_DoesNotHave"])!
+					)
 				);
 
 				return;

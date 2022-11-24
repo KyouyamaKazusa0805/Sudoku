@@ -3,23 +3,23 @@
 /// <summary>
 /// Represents a generate command.
 /// </summary>
-[RootCommand("generate", "To generate a sudoku puzzle.")]
+[RootCommand("generate", DescriptionResourceKey = "_Description_Generate")]
 [SupportedArguments("generate", "gen")]
 [Usage("generate -m <method> -c <range>", IsPattern = true)]
-[Usage("""generate -m hard -c 24..30""", "Generates a sudoku puzzle, which contains givens of number between 24 and 30, and using the hard-pattern algorithm to generate puzzle.")]
+[Usage("generate -m hard -c 24..30", DescriptionResourceKey = "_Usage_Generate_1")]
 public sealed class Generate : IExecutable
 {
 	/// <summary>
 	/// Indicates the range of givens that generated puzzle should be.
 	/// </summary>
-	[DoubleArgumentsCommand('c', "count", "The range of given cells that generated puzzle should be.")]
+	[DoubleArgumentsCommand('c', "count", DescriptionResourceKey = "_Description_Range_Generate")]
 	[CommandConverter<CellCountRangeConverter>]
 	public (int Min, int Max) Range { get; set; } = (24, 30);
 
 	/// <summary>
 	/// Indicates the algorithm to generate the puzzle.
 	/// </summary>
-	[DoubleArgumentsCommand('m', "method", "The method that defines what algorithm used for generating a sudoku puzzle.")]
+	[DoubleArgumentsCommand('m', "method", DescriptionResourceKey = "_Description_GenerateType_Generate")]
 	[CommandConverter<EnumTypeConverter<GenerateType>>]
 	public GenerateType GenerateType { get; set; } = GenerateType.HardPatternLike;
 
@@ -34,14 +34,14 @@ public sealed class Generate : IExecutable
 				var generator = new HardLikePuzzleGenerator();
 				while (true)
 				{
-					var targetPuzzle = generator.Generate();
+					var targetPuzzle = generator.Generate(cancellationToken);
 					var c = targetPuzzle.GivensCount;
 					if (c < Range.Min || c >= Range.Max)
 					{
 						continue;
 					}
 
-					await Terminal.WriteLineAsync($"The puzzle generated: '{targetPuzzle:0}'");
+					await Terminal.WriteLineAsync(string.Format(R["_MessageFormat_GeneratedPuzzleIs"]!, targetPuzzle.ToString("0")));
 
 					return;
 				}
@@ -51,14 +51,14 @@ public sealed class Generate : IExecutable
 				var generator = new PatternBasedPuzzleGenerator();
 				while (true)
 				{
-					var targetPuzzle = generator.Generate();
+					var targetPuzzle = generator.Generate(cancellationToken);
 					var c = targetPuzzle.GivensCount;
 					if (c < Range.Min || c >= Range.Max)
 					{
 						continue;
 					}
 
-					await Terminal.WriteLineAsync($"The puzzle generated: '{targetPuzzle:0}'");
+					await Terminal.WriteLineAsync(string.Format(R["_MessageFormat_GeneratedPuzzleIs"]!, targetPuzzle.ToString("0")));
 
 					return;
 				}

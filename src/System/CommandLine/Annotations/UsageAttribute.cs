@@ -10,8 +10,7 @@ public sealed class UsageAttribute : Attribute
 	/// Initializes a <see cref="UsageAttribute"/> instance via the specified example command and the description.
 	/// </summary>
 	/// <param name="example">The example command.</param>
-	/// <param name="description">The description.</param>
-	public UsageAttribute(string example, string? description = null) => (ExampleCommand, Description) = (example, description);
+	public UsageAttribute(string example) => ExampleCommand = example;
 
 
 	/// <summary>
@@ -68,7 +67,6 @@ public sealed class UsageAttribute : Attribute
 	/// </item>
 	/// </list>
 	/// </remarks>
-	[MemberNotNullWhen(false, nameof(Description))]
 	public bool IsPattern { get; init; } = false;
 
 	/// <summary>
@@ -79,5 +77,21 @@ public sealed class UsageAttribute : Attribute
 	/// <summary>
 	/// Indicates the description of the example command.
 	/// </summary>
-	public string? Description { get; }
+	/// <remarks><b>
+	/// This property can be <see langword="null"/>. However, both properties <see cref="Description"/> and <see cref="DescriptionResourceKey"/>
+	/// cannot be <see langword="null"/>.
+	/// </b></remarks>
+	/// <seealso cref="Description"/>
+	/// <seealso cref="DescriptionResourceKey"/>
+	public string? Description { get; init; }
+
+	/// <summary>
+	/// Indicates the description key of the example command stored in resource dictionary.
+	/// </summary>
+	/// <remarks>
+	/// <inheritdoc cref="Description" path="/remarks"/>
+	/// </remarks>
+	/// <seealso cref="Description"/>
+	/// <seealso cref="DescriptionResourceKey"/>
+	public string? DescriptionResourceKey { get; init; }
 }

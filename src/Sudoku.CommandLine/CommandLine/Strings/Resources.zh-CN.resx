@@ -117,11 +117,151 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="_Description_Address_Bot" xml:space="preserve">
+    <value>表示机器人需要连接的地址信息。一般来说都是“localhost:8080”。</value>
+  </data>
+  <data name="_Description_Bot" xml:space="preserve">
+    <value>启动一个机器人框架。</value>
+  </data>
+  <data name="_Description_BotNumber_Bot" xml:space="preserve">
+    <value>表示机器人自身的 QQ 号。</value>
+  </data>
+  <data name="_Description_Check" xml:space="preserve">
+    <value>检查一个题目满足的一些独有特性。</value>
+  </data>
+  <data name="_Description_CheckType_Check" xml:space="preserve">
+    <value>表示你查询的题目的特性是哪一个。</value>
+  </data>
+  <data name="_Description_Draw" xml:space="preserve">
+    <value>将盘面的信息呈现到图片上。</value>
+  </data>
+  <data name="_Description_FooterText_Draw" xml:space="preserve">
+    <value>表示绘制的图片最下方的额外呈现文字。</value>
+  </data>
+  <data name="_Description_Format" xml:space="preserve">
+    <value>将一个盘面的数据结构显示成等价的字符串形式。</value>
+  </data>
+  <data name="_Description_FormatString_Format" xml:space="preserve">
+    <value>表示格式化盘面为字符串写法的格式化模式字符串。</value>
+  </data>
+  <data name="_Description_Generate" xml:space="preserve">
+    <value>产生一个数独盘面的唯一解题目。</value>
+  </data>
+  <data name="_Description_GenerateType_Generate" xml:space="preserve">
+    <value>表示用来生成盘面的算法。</value>
+  </data>
+  <data name="_Description_Grid_Check" xml:space="preserve">
+    <value>表示你查询题目特性的具体题目的字符串写法。</value>
+  </data>
+  <data name="_Description_Grid_Draw" xml:space="preserve">
+    <value>表示绘制的图片的盘面的字符串表达。</value>
+  </data>
+  <data name="_Description_Grid_Format" xml:space="preserve">
+    <value>表示格式化盘面为字符串写法的盘面本身的某种字符串写法。</value>
+  </data>
+  <data name="_Description_Grid_Solve" xml:space="preserve">
+    <value>表示用来解答的盘面的字符串表达。</value>
+  </data>
+  <data name="_Description_Help" xml:space="preserve">
+    <value>显示程序各个指令的使用说明。</value>
+  </data>
+  <data name="_Description_HelpCommandName_Help" xml:space="preserve">
+    <value>表示你想要查看哪一个指令。</value>
+  </data>
+  <data name="_Description_OutputPath_Draw" xml:space="preserve">
+    <value>表示绘制完成的图片保存的本地路径。</value>
+  </data>
+  <data name="_Description_OutsideOffset_Draw" xml:space="preserve">
+    <value>表示绘制的盘面和图片边界之间的留白缝隙的宽度。</value>
+  </data>
+  <data name="_Description_Range_Generate" xml:space="preserve">
+    <value>表示盘面生成的提示数数字个数的范围。</value>
+  </data>
+  <data name="_Description_Size_Draw" xml:space="preserve">
+    <value>表示图片绘制的尺寸大小。</value>
+  </data>
+  <data name="_Description_Solve" xml:space="preserve">
+    <value>使用固定算法来完成解答一个唯一解的数独题目。</value>
+  </data>
+  <data name="_Description_SolveMethod_Solve" xml:space="preserve">
+    <value>表示用来解答盘面的算法。</value>
+  </data>
+  <data name="_Description_VerifyKey_Bot" xml:space="preserve">
+    <value>表示机器人需要连接时使用的验证字符串信息。该字符串匹配的是你配置文件里设置的内容。</value>
+  </data>
+  <data name="_Description_Version" xml:space="preserve">
+    <value>显示该程序的版本信息。</value>
+  </data>
+  <data name="_Description_Visit" xml:space="preserve">
+    <value>显示作者的联系方式。</value>
+  </data>
+  <data name="_Description_VisitLink_Visit" xml:space="preserve">
+    <value>表示想查看的链接。</value>
+  </data>
+  <data name="_MessageFormat_AnalysisResult" xml:space="preserve">
+    <value>题目：{0}
+使用的解题算法：{1}
+---
+答案：{2}
+解题详情步骤：
+{3}</value>
+  </data>
+  <data name="_MessageFormat_AndIsRequired" xml:space="preserve">
+    <value>，必需参数</value>
+  </data>
+  <data name="_MessageFormat_CheckValidityResult" xml:space="preserve">
+    <value>题目：{0}
+该题目{1}唯一解。</value>
+  </data>
+  <data name="_MessageFormat_CommandsAre" xml:space="preserve">
+    <value>命令为：</value>
+  </data>
+  <data name="_MessageFormat_DoesNotHave" xml:space="preserve">
+    <value>不具有</value>
+  </data>
+  <data name="_MessageFormat_FormatResult" xml:space="preserve">
+    <value>盘面：{0}
+模式字符串：{1}
+转换结果：{2}</value>
+  </data>
+  <data name="_MessageFormat_GeneratedPuzzleIs" xml:space="preserve">
+    <value>生成的盘面为 {0}。</value>
+  </data>
+  <data name="_MessageFormat_Has" xml:space="preserve">
+    <value>具有</value>
+  </data>
   <data name="_MessageFormat_MemberJoinedRejected" xml:space="preserve">
     <value>机器人因回复失配正确回答而拒绝您加群。请联系管理员或群主后并重试。</value>
   </data>
+  <data name="_MessageFormat_OutputSuccess" xml:space="preserve">
+    <value>保存文件成功。请前往路径 {0} 查看。</value>
+  </data>
+  <data name="_MessageFormat_PleaseVisitFollowingLink" xml:space="preserve">
+    <value>请访问如下地址：</value>
+  </data>
+  <data name="_MessageFormat_Project" xml:space="preserve">
+    <value>程序</value>
+  </data>
+  <data name="_MessageFormat_RootCommandsAre" xml:space="preserve">
+    <value>主要命令为：</value>
+  </data>
   <data name="_MessageFormat_SampleMemberJoined" xml:space="preserve">
     <value>欢迎新成员~ 这里是 B 站 up 主 SunnieShine 的数独交流群~</value>
+  </data>
+  <data name="_MessageFormat_SolveResult" xml:space="preserve">
+    <value>题目：{0}
+使用的解题算法：{1}{2}
+---
+答案：{3}</value>
+  </data>
+  <data name="_MessageFormat_SyntaxAndUsageIs" xml:space="preserve">
+    <value>格式和用法：</value>
+  </data>
+  <data name="_MessageFormat_UriLinkIs" xml:space="preserve">
+    <value>链接：</value>
+  </data>
+  <data name="_MessageFormat_Version" xml:space="preserve">
+    <value>版本</value>
   </data>
   <data name="_Message_BootFailed_Connection" xml:space="preserve">
     <value>机器人项目启动失败。多数原因为连接错误导致的失败。请检查你的网络（Wi-Fi 或网线连接是否正常），然后稍后重试。</value>
@@ -131,5 +271,26 @@
   </data>
   <data name="_Message_BootSuccess" xml:space="preserve">
     <value>机器人项目启动成功。</value>
+  </data>
+  <data name="_Usage_Bot_1" xml:space="preserve">
+    <value>尝试连接 Mirai 平台服务启动机器人，机器人 QQ 号为 1357924680，登录地址为 localhost，端口号为 8080，并且连接的验证字符串为“HelloWorld”。</value>
+  </data>
+  <data name="_Usage_Check_1" xml:space="preserve">
+    <value>验证指定盘面的唯一性，即是否唯一解。</value>
+  </data>
+  <data name="_Usage_Draw_1" xml:space="preserve">
+    <value>将指定盘面按图片尺寸 1000 像素来绘制，保留外边框留白 10 像素宽度大小，生成的盘面保存路径为当前用户的桌面文件夹，文件名为“output.png”。</value>
+  </data>
+  <data name="_Usage_Format_1" xml:space="preserve">
+    <value>将一个盘面格式化处理为字符串形式：所有的提示数都会显示为对应的数字，所有的空格也都会按数字 0 呈现出来；自己填入的数字也会被视为空格显示为 0。</value>
+  </data>
+  <data name="_Usage_Generate_1" xml:space="preserve">
+    <value>生成一个数独唯一解题目，提示数个数控制在 24 到 30 个之间，且使用广泛采用的出难题的算法进行出题。</value>
+  </data>
+  <data name="_Usage_Solve_1" xml:space="preserve">
+    <value>使用位运算算法来解答一个数独题目。</value>
+  </data>
+  <data name="_Usage_Visit_1" xml:space="preserve">
+    <value>查看作者 GitHub 的信息。</value>
   </data>
 </root>

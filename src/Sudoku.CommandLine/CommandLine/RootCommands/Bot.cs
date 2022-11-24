@@ -3,27 +3,30 @@
 /// <summary>
 /// Represents a bot command.
 /// </summary>
-[RootCommand("bot", "To launch bot procedure.")]
-[SupportedArguments("bot")]
+[type:
+	RootCommand("bot", DescriptionResourceKey = "_Description_Bot"),
+	SupportedArguments("bot"),
+	Usage("bot -a <address> -q <number> -k <key>", IsPattern = true),
+	Usage("bot -a localhost:8080 -q 1357924680 -k HelloWorld", DescriptionResourceKey = "_Usage_Bot_1")]
 [SupportedOSPlatform("windows")]
 file sealed partial class Bot : IExecutable
 {
 	/// <summary>
 	/// The address.
 	/// </summary>
-	[DoubleArgumentsCommand('a', "address", "Indicates the address of the bot to be connected to. Generally the value is 'localhost:8080'.")]
+	[DoubleArgumentsCommand('a', "address", DescriptionResourceKey = "_Description_Address_Bot")]
 	public string Address { get; set; } = "localhost:8080";
 
 	/// <summary>
 	/// The number of the bot.
 	/// </summary>
-	[DoubleArgumentsCommand('q', "qq", "Indicates the real number of the bot.", IsRequired = true)]
+	[DoubleArgumentsCommand('q', "qq", DescriptionResourceKey = "_Description_BotNumber_Bot", IsRequired = true)]
 	public string BotNumber { get; set; } = string.Empty;
 
 	/// <summary>
 	/// The verify key.
 	/// </summary>
-	[DoubleArgumentsCommand('k', "key", "Indicates the verify key used for making communication of web socket.", IsRequired = true)]
+	[DoubleArgumentsCommand('k', "key", DescriptionResourceKey = "_Description_VerifyKey_Bot", IsRequired = true)]
 	public string VerifyKey { get; set; } = string.Empty;
 
 

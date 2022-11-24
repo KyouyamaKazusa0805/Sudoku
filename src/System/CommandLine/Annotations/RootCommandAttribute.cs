@@ -10,8 +10,7 @@ public sealed class RootCommandAttribute : Attribute
 	/// Initializes a <see cref="RootCommandAttribute"/> instance via the name and its description.
 	/// </summary>
 	/// <param name="name">The name of the command.</param>
-	/// <param name="description">The description of the command.</param>
-	public RootCommandAttribute(string name, string description) => (Name, Description) = (name, description);
+	public RootCommandAttribute(string name) => Name = name;
 
 
 	/// <summary>
@@ -28,5 +27,23 @@ public sealed class RootCommandAttribute : Attribute
 	/// <summary>
 	/// Indicates the description of the command.
 	/// </summary>
-	public string Description { get; }
+	/// <remarks><b>
+	/// This property can be <see langword="null"/>. However, both properties <see cref="Description"/> and <see cref="DescriptionResourceKey"/>
+	/// cannot be <see langword="null"/>.
+	/// </b></remarks>
+	/// <seealso cref="Description"/>
+	/// <seealso cref="DescriptionResourceKey"/>
+	[DisallowNull]
+	public string? Description { get; init; }
+
+	/// <summary>
+	/// Indicates the description of the command, represented as a resource key related to a resource dictionary.
+	/// </summary>
+	/// <remarks>
+	/// <inheritdoc cref="Description" path="/remarks"/>
+	/// </remarks>
+	/// <seealso cref="Description"/>
+	/// <seealso cref="DescriptionResourceKey"/>
+	[DisallowNull]
+	public string? DescriptionResourceKey { get; init; }
 }

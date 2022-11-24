@@ -441,6 +441,267 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Address_Bot">
+            <summary>
+              Looks up a localized string similar to Indicates the address of the bot to be connected to. Generally the value is &apos;localhost:8080&apos;..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Bot">
+            <summary>
+              Looks up a localized string similar to To launch bot procedure..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_BotNumber_Bot">
+            <summary>
+              Looks up a localized string similar to Indicates the real number of the bot..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Check">
+            <summary>
+              Looks up a localized string similar to To check the attributes for a sudoku grid..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_CheckType_Check">
+            <summary>
+              Looks up a localized string similar to Indicates what kind of attribute will be checked..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Draw">
+            <summary>
+              Looks up a localized string similar to Draw a sudoku grid onto a picture..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_FooterText_Draw">
+            <summary>
+              Looks up a localized string similar to Indicates the extra footer text displayed below the picture..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Format">
+            <summary>
+              Looks up a localized string similar to To format a sudoku grid using string as the result representation..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_FormatString_Format">
+            <summary>
+              Looks up a localized string similar to Indicates the format string used..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Generate">
+            <summary>
+              Looks up a localized string similar to To generate a sudoku puzzle..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_GenerateType_Generate">
+            <summary>
+              Looks up a localized string similar to The method that defines what algorithm used for generating a sudoku puzzle..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Grid_Check">
+            <summary>
+              Looks up a localized string similar to Indicates the sudoku grid as string representation..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Grid_Draw">
+            <summary>
+              Looks up a localized string similar to Indicates the sudoku grid as string representation..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Grid_Format">
+            <summary>
+              Looks up a localized string similar to Indicates the grid to be formatted..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Grid_Solve">
+            <summary>
+              Looks up a localized string similar to Indicates the grid used for being solved..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Help">
+            <summary>
+              Looks up a localized string similar to Displays all possible root commands provided..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_HelpCommandName_Help">
+            <summary>
+              Looks up a localized string similar to Indicates the type name whose corresponding command introduction is what you want to see..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_OutputPath_Draw">
+            <summary>
+              Looks up a localized string similar to Indicates the output path..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_OutsideOffset_Draw">
+            <summary>
+              Looks up a localized string similar to Indicates the blank between the grid lines and the picture border..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Range_Generate">
+            <summary>
+              Looks up a localized string similar to The range of given cells that generated puzzle should be..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Size_Draw">
+            <summary>
+              Looks up a localized string similar to Indicates the size of the picture..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Solve">
+            <summary>
+              Looks up a localized string similar to To solve a sudoku grid using the specified algorithm..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_SolveMethod_Solve">
+            <summary>
+              Looks up a localized string similar to Indicates the method to be used for solving a sudoku..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_VerifyKey_Bot">
+            <summary>
+              Looks up a localized string similar to Indicates the verify key used for making communication of web socket..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Version">
+            <summary>
+              Looks up a localized string similar to Displays the version of the current command line project..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_Visit">
+            <summary>
+              Looks up a localized string similar to To fetch the author or the repository link..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Description_VisitLink_Visit">
+            <summary>
+              Looks up a localized string similar to Indicates the link that outputs..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_AnalysisResult">
+             <summary>
+               Looks up a localized string similar to Puzzle: &apos;{0}&apos;
+            Method name used: &apos;{1}&apos;
+            ---
+            Solution: {2}
+            Solving details:
+            {3}.
+             </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_AndIsRequired">
+            <summary>
+              Looks up a localized string similar to , required.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_CheckValidityResult">
+             <summary>
+               Looks up a localized string similar to Puzzle: &apos;{0}&apos;
+            The puzzle {1} a unique solution..
+             </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_CommandsAre">
+            <summary>
+              Looks up a localized string similar to Commands:.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_DoesNotHave">
+            <summary>
+              Looks up a localized string similar to doesn&apos;t have.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_FormatResult">
+             <summary>
+               Looks up a localized string similar to Grid: &apos;{0}&apos;
+            Format: &apos;{1}&apos;
+            Result: {2}.
+             </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_GeneratedPuzzleIs">
+            <summary>
+              Looks up a localized string similar to The puzzle generated: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_Has">
+            <summary>
+              Looks up a localized string similar to has.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_OutputSuccess">
+            <summary>
+              Looks up a localized string similar to Success. Please visit the path &apos;{0}&apos; to view the file..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_PleaseVisitFollowingLink">
+            <summary>
+              Looks up a localized string similar to Please visit the following site to learn more information..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_Project">
+            <summary>
+              Looks up a localized string similar to Project.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_RootCommandsAre">
+            <summary>
+              Looks up a localized string similar to Root commands:.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_SolveResult">
+             <summary>
+               Looks up a localized string similar to Puzzle: &apos;{0}&apos;
+            Method name used: &apos;{1}&apos;{2}
+            ---
+            Solution: {3}.
+             </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_SyntaxAndUsageIs">
+            <summary>
+              Looks up a localized string similar to Syntax &amp; Usage:.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_UriLinkIs">
+            <summary>
+              Looks up a localized string similar to URL link:.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._MessageFormat_Version">
+            <summary>
+              Looks up a localized string similar to Version.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Usage_Bot_1">
+            <summary>
+              Looks up a localized string similar to Try to connect server of platform Mirai, with target bot number 1357924680, connection is localhost with port 8080, and verify key is &quot;HelloWorld&quot;..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Usage_Check_1">
+            <summary>
+              Looks up a localized string similar to To check the validity of the specified sudoku grid..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Usage_Draw_1">
+            <summary>
+              Looks up a localized string similar to Draw a grid onto a picture, with specified size 1000 and outside blank (pixels) 10, then output the picture to the local path to user&apos;s desktop, and output file name is &quot;output.png&quot;..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Usage_Format_1">
+            <summary>
+              Looks up a localized string similar to Formats the specified grid, using the string &quot;0&quot; as the format one, which means the grid only displays the given cells, modifiables are treated as the empty ones, and all empty cells will be displayed as a zero character &apos;0&apos;..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Usage_Generate_1">
+            <summary>
+              Looks up a localized string similar to Generates a sudoku puzzle, which contains givens of number between 24 and 30, and using the hard-pattern algorithm to generate puzzle..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Usage_Solve_1">
+            <summary>
+              Looks up a localized string similar to Solves a sudoku puzzle, using the bitwise algorithm..
+            </summary>
+        </member>
+        <member name="P:Sudoku.CommandLine.Strings.Resources._Usage_Visit_1">
+            <summary>
+              Looks up a localized string similar to Visits the GitHub link of the author..
+            </summary>
+        </member>
         <member name="P:Sudoku.CommandLine.Strings.Resources.SudokuGroupQQ">
             <summary>
               Looks up a localized string similar to 924849321.

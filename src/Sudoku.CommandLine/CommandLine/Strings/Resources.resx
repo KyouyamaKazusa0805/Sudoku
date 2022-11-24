@@ -121,4 +121,165 @@
     <value>924849321</value>
     <comment>This is my sudoku QQ group.</comment>
   </data>
+  <data name="_Description_Address_Bot" xml:space="preserve">
+    <value>Indicates the address of the bot to be connected to. Generally the value is 'localhost:8080'.</value>
+  </data>
+  <data name="_Description_Bot" xml:space="preserve">
+    <value>To launch bot procedure.</value>
+  </data>
+  <data name="_Description_BotNumber_Bot" xml:space="preserve">
+    <value>Indicates the real number of the bot.</value>
+  </data>
+  <data name="_Description_Check" xml:space="preserve">
+    <value>To check the attributes for a sudoku grid.</value>
+  </data>
+  <data name="_Description_CheckType_Check" xml:space="preserve">
+    <value>Indicates what kind of attribute will be checked.</value>
+  </data>
+  <data name="_Description_Draw" xml:space="preserve">
+    <value>Draw a sudoku grid onto a picture.</value>
+  </data>
+  <data name="_Description_FooterText_Draw" xml:space="preserve">
+    <value>Indicates the extra footer text displayed below the picture.</value>
+  </data>
+  <data name="_Description_Format" xml:space="preserve">
+    <value>To format a sudoku grid using string as the result representation.</value>
+  </data>
+  <data name="_Description_FormatString_Format" xml:space="preserve">
+    <value>Indicates the format string used.</value>
+  </data>
+  <data name="_Description_Generate" xml:space="preserve">
+    <value>To generate a sudoku puzzle.</value>
+  </data>
+  <data name="_Description_GenerateType_Generate" xml:space="preserve">
+    <value>The method that defines what algorithm used for generating a sudoku puzzle.</value>
+  </data>
+  <data name="_Description_Grid_Check" xml:space="preserve">
+    <value>Indicates the sudoku grid as string representation.</value>
+  </data>
+  <data name="_Description_Grid_Draw" xml:space="preserve">
+    <value>Indicates the sudoku grid as string representation.</value>
+  </data>
+  <data name="_Description_Grid_Format" xml:space="preserve">
+    <value>Indicates the grid to be formatted.</value>
+  </data>
+  <data name="_Description_Grid_Solve" xml:space="preserve">
+    <value>Indicates the grid used for being solved.</value>
+  </data>
+  <data name="_Description_Help" xml:space="preserve">
+    <value>Displays all possible root commands provided.</value>
+  </data>
+  <data name="_Description_HelpCommandName_Help" xml:space="preserve">
+    <value>Indicates the type name whose corresponding command introduction is what you want to see.</value>
+  </data>
+  <data name="_Description_OutputPath_Draw" xml:space="preserve">
+    <value>Indicates the output path.</value>
+  </data>
+  <data name="_Description_OutsideOffset_Draw" xml:space="preserve">
+    <value>Indicates the blank between the grid lines and the picture border.</value>
+  </data>
+  <data name="_Description_Range_Generate" xml:space="preserve">
+    <value>The range of given cells that generated puzzle should be.</value>
+  </data>
+  <data name="_Description_Size_Draw" xml:space="preserve">
+    <value>Indicates the size of the picture.</value>
+  </data>
+  <data name="_Description_Solve" xml:space="preserve">
+    <value>To solve a sudoku grid using the specified algorithm.</value>
+  </data>
+  <data name="_Description_SolveMethod_Solve" xml:space="preserve">
+    <value>Indicates the method to be used for solving a sudoku.</value>
+  </data>
+  <data name="_Description_VerifyKey_Bot" xml:space="preserve">
+    <value>Indicates the verify key used for making communication of web socket.</value>
+  </data>
+  <data name="_Description_Version" xml:space="preserve">
+    <value>Displays the version of the current command line project.</value>
+  </data>
+  <data name="_Description_Visit" xml:space="preserve">
+    <value>To fetch the author or the repository link.</value>
+  </data>
+  <data name="_Description_VisitLink_Visit" xml:space="preserve">
+    <value>Indicates the link that outputs.</value>
+  </data>
+  <data name="_MessageFormat_AnalysisResult" xml:space="preserve">
+    <value>Puzzle: '{0}'
+Method name used: '{1}'
+---
+Solution: {2}
+Solving details:
+{3}</value>
+  </data>
+  <data name="_MessageFormat_AndIsRequired" xml:space="preserve">
+    <value>, required</value>
+  </data>
+  <data name="_MessageFormat_CheckValidityResult" xml:space="preserve">
+    <value>Puzzle: '{0}'
+The puzzle {1} a unique solution.</value>
+  </data>
+  <data name="_MessageFormat_CommandsAre" xml:space="preserve">
+    <value>Commands:</value>
+  </data>
+  <data name="_MessageFormat_DoesNotHave" xml:space="preserve">
+    <value>doesn't have</value>
+  </data>
+  <data name="_MessageFormat_FormatResult" xml:space="preserve">
+    <value>Grid: '{0}'
+Format: '{1}'
+Result: {2}</value>
+  </data>
+  <data name="_MessageFormat_GeneratedPuzzleIs" xml:space="preserve">
+    <value>The puzzle generated: '{0}'.</value>
+  </data>
+  <data name="_MessageFormat_Has" xml:space="preserve">
+    <value>has</value>
+  </data>
+  <data name="_MessageFormat_OutputSuccess" xml:space="preserve">
+    <value>Success. Please visit the path '{0}' to view the file.</value>
+  </data>
+  <data name="_MessageFormat_PleaseVisitFollowingLink" xml:space="preserve">
+    <value>Please visit the following site to learn more information.</value>
+  </data>
+  <data name="_MessageFormat_Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="_MessageFormat_RootCommandsAre" xml:space="preserve">
+    <value>Root commands:</value>
+  </data>
+  <data name="_MessageFormat_SolveResult" xml:space="preserve">
+    <value>Puzzle: '{0}'
+Method name used: '{1}'{2}
+---
+Solution: {3}</value>
+  </data>
+  <data name="_MessageFormat_SyntaxAndUsageIs" xml:space="preserve">
+    <value>Syntax &amp; Usage:</value>
+  </data>
+  <data name="_MessageFormat_UriLinkIs" xml:space="preserve">
+    <value>URL link:</value>
+  </data>
+  <data name="_MessageFormat_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="_Usage_Bot_1" xml:space="preserve">
+    <value>Try to connect server of platform Mirai, with target bot number 1357924680, connection is localhost with port 8080, and verify key is "HelloWorld".</value>
+  </data>
+  <data name="_Usage_Check_1" xml:space="preserve">
+    <value>To check the validity of the specified sudoku grid.</value>
+  </data>
+  <data name="_Usage_Draw_1" xml:space="preserve">
+    <value>Draw a grid onto a picture, with specified size 1000 and outside blank (pixels) 10, then output the picture to the local path to user's desktop, and output file name is "output.png".</value>
+  </data>
+  <data name="_Usage_Format_1" xml:space="preserve">
+    <value>Formats the specified grid, using the string "0" as the format one, which means the grid only displays the given cells, modifiables are treated as the empty ones, and all empty cells will be displayed as a zero character '0'.</value>
+  </data>
+  <data name="_Usage_Generate_1" xml:space="preserve">
+    <value>Generates a sudoku puzzle, which contains givens of number between 24 and 30, and using the hard-pattern algorithm to generate puzzle.</value>
+  </data>
+  <data name="_Usage_Solve_1" xml:space="preserve">
+    <value>Solves a sudoku puzzle, using the bitwise algorithm.</value>
+  </data>
+  <data name="_Usage_Visit_1" xml:space="preserve">
+    <value>Visits the GitHub link of the author.</value>
+  </data>
 </root>

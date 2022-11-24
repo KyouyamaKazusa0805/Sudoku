@@ -3,23 +3,23 @@
 /// <summary>
 /// Represents a solve command.
 /// </summary>
-[RootCommand("solve", "To solve a sudoku grid using the specified algorithm.")]
+[RootCommand("solve", DescriptionResourceKey = "_Description_Solve")]
 [SupportedArguments("solve")]
 [Usage("solve -g <grid> -m <method>", IsPattern = true)]
-[Usage($"""solve -g "{SampleGrid}" -m bitwise""", "Solves a sudoku puzzle, using the bitwise algorithm.")]
+[Usage($"""solve -g "{SampleGrid}" -m bitwise""", DescriptionResourceKey = "_Usage_Solve_1")]
 public sealed class Solve : IExecutable
 {
 	/// <summary>
 	/// Indicates the method to be used.
 	/// </summary>
-	[DoubleArgumentsCommand('m', "method", "Indicates the method to be used for solving a sudoku.")]
+	[DoubleArgumentsCommand('m', "method", DescriptionResourceKey = "_Description_SolveMethod_Solve")]
 	[CommandConverter<EnumTypeConverter<SolveAlgorithm>>]
 	public SolveAlgorithm SolveMethod { get; set; } = SolveAlgorithm.Bitwise;
 
 	/// <summary>
 	/// Indicates the grid used.
 	/// </summary>
-	[DoubleArgumentsCommand('g', "grid", "Indicates the grid used for being solved.", IsRequired = true)]
+	[DoubleArgumentsCommand('g', "grid", DescriptionResourceKey = "_Description_Grid_Solve", IsRequired = true)]
 	[CommandConverter<GridConverter>]
 	public Grid Grid { get; set; }
 
@@ -66,12 +66,13 @@ public sealed class Solve : IExecutable
 					// Same reason for the below output case.
 					var uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))?.GetValue(null);
 					await Terminal.WriteLineAsync(
-						$"""
-						Puzzle: {Grid:#}
-						Method name used: '{name}'{(uriLink is null ? string.Empty : $"\r\nURI link: '{uriLink}'")}
-						---
-						Solution: {solution:!}
-						"""
+						string.Format(
+							R["_MessageFormat_SolveResult"]!,
+							Grid.ToString("#"),
+							name,
+							uriLink is null ? string.Empty : $"\r\n{R["_MessageFormat_UriLinkIs"]!} {uriLink}",
+							solution.ToString("!")
+						)
 					);
 
 					break;
@@ -84,14 +85,13 @@ public sealed class Solve : IExecutable
 					}
 
 					await Terminal.WriteLineAsync(
-						$"""
-						Puzzle: {Grid:#}
-						Method name used: '{name}'
-						---
-						Solution: {solution:!}
-						Solving details:
-						{solverResult}
-						"""
+						string.Format(
+							R["_MessageFormat_AnalysisResult"]!,
+							Grid.ToString("#"),
+							name,
+							solution.ToString("!"),
+							solverResult.ToString()
+						)
 					);
 
 					break;

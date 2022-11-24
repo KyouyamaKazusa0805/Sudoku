@@ -5,16 +5,16 @@ namespace Sudoku.CommandLine.RootCommands;
 /// <summary>
 /// Represents a visit command.
 /// </summary>
-[RootCommand("visit", "To fetch the author or the repository link.")]
+[RootCommand("visit", DescriptionResourceKey = "_Description_Visit")]
 [SupportedArguments("visit")]
 [Usage("visit -l <link>", IsPattern = true)]
-[Usage("""visit -l author-github""", "Visits the GitHub link of the author.")]
+[Usage("visit -l author-github", DescriptionResourceKey = "_Usage_Visit_1")]
 public sealed class Visit : IExecutable
 {
 	/// <summary>
 	/// Indicates the link to visit.
 	/// </summary>
-	[DoubleArgumentsCommand('l', "link", "Indicates the link that outputs.")]
+	[DoubleArgumentsCommand('l', "link", DescriptionResourceKey = "_Description_VisitLink_Visit")]
 	[CommandConverter<EnumTypeConverter<VisitLink>>]
 	public VisitLink VisitLink { get; set; } = VisitLink.AuthorGitHub;
 
@@ -43,7 +43,7 @@ public sealed class Visit : IExecutable
 		}
 #else
 		// Output the site link.
-		await Terminal.WriteLineAsync($"Please visit the following site to learn more information.\r\n{link.AbsoluteUri}");
+		await Terminal.WriteLineAsync($"{R["_MessageFormat_PleaseVisitFollowingLink"]!}\r\n{link.AbsoluteUri}");
 #endif
 	}
 }

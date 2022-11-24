@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines the type that stores the help options.
 /// </summary>
-[RootCommand("help", "Displays all possible root commands provided.", IsSpecial = true)]
+[RootCommand("help", DescriptionResourceKey = "_Description_Help", IsSpecial = true)]
 [SupportedArguments("help", "?")]
 [Usage("help", IsPattern = true)]
 public sealed class Help : IExecutable
@@ -11,7 +11,7 @@ public sealed class Help : IExecutable
 	/// <summary>
 	/// Indicates the name of the help command. If <see langword="null"/>, all commands will be displayed.
 	/// </summary>
-	[SingleArgumentCommand("type-name", "Indicates the type name whose corresponding command introduction is what you want to see.")]
+	[SingleArgumentCommand("type-name", DescriptionResourceKey = "_Description_HelpCommandName_Help")]
 	public string? HelpCommandName { get; set; }
 
 
@@ -28,7 +28,7 @@ public sealed class Help : IExecutable
 		var thisAssembly = thisType.Assembly;
 
 		// Defines a builder that stores the content in order to output.
-		var helpTextContentBuilder = new StringBuilder($"Project {realName}\r\nVersion {version}\r\n\r\n");
+		var helpTextContentBuilder = new StringBuilder($"{R["_MessageFormat_Project"]} {realName}\r\n{R["_MessageFormat_Version"]} {version}\r\n\r\n");
 		if (HelpCommandName is null)
 		{
 			// Iterates on each command type, to get the maximum length of the command,
@@ -38,18 +38,31 @@ public sealed class Help : IExecutable
 			var listOfDescriptionParts = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();
 			foreach (var commandType in commandTypes)
 			{
-				var commandAttribute = commandType.GetCustomAttribute<RootCommandAttribute>()!;
+				switch (commandType.GetCustomAttribute<RootCommandAttribute>())
+				{
+					case { Name: { Length: var commandNameLength } commandName, DescriptionResourceKey: { } key }:
+					{
+						maxWidth = Max(commandNameLength, maxWidth);
 
-				var commandName = commandAttribute.Name;
-				maxWidth = Max(commandName.Length, maxWidth);
+						var parts = R[key]!.SplitByLength(Console.LargestWindowWidth);
+						listOfDescriptionParts.Add((commandName, parts));
 
-				var parts = commandAttribute.Description.SplitByLength(Console.LargestWindowWidth);
+						break;
+					}
+					case { Name: { Length: var commandNameLength } commandName, Description: { } description }:
+					{
+						maxWidth = Max(commandNameLength, maxWidth);
 
-				listOfDescriptionParts.Add((commandName, parts));
+						var parts = description.SplitByLength(Console.LargestWindowWidth);
+						listOfDescriptionParts.Add((commandName, parts));
+
+						break;
+					}
+				}
 			}
 
 			// Build the content.
-			helpTextContentBuilder.AppendLine("Root commands:").AppendLine();
+			helpTextContentBuilder.AppendLine(R["_MessageFormat_RootCommandsAre"]!).AppendLine();
 			foreach (var (commandName, parts) in listOfDescriptionParts)
 			{
 				helpTextContentBuilder
@@ -92,7 +105,7 @@ public sealed class Help : IExecutable
 			if (usageAttributes is [{ IsPattern: var firstIsPattern }, .. { Length: var otherArgsCount }])
 			{
 				// Output the title.
-				helpTextContentBuilder.AppendLine("Syntax & Usage:").AppendLine();
+				helpTextContentBuilder.AppendLine(R["_MessageFormat_SyntaxAndUsageIs"]!).AppendLine();
 
 				// Determines whether the collection has more than one pattern syntax usages.
 				if (Array.FindAll(usageAttributes, static e => e.IsPattern).Length >= 2)
@@ -116,18 +129,33 @@ public sealed class Help : IExecutable
 				// Then output the details.
 				foreach (var usageAttribute in usageAttributes)
 				{
-					var patternSyntax = usageAttribute.ExampleCommand;
-					var parts = usageAttribute.Description?.SplitByLength(Console.LargestWindowWidth);
-					if (usageAttribute.IsPattern)
+					switch (usageAttribute)
 					{
-						helpTextContentBuilder.AppendLine($"{new string(' ', 4)}{patternSyntax}").AppendLine();
-					}
-					else if (parts is not null)
-					{
-						helpTextContentBuilder
-							.AppendLine($"{new string(' ', 4)}{patternSyntax}")
-							.AppendLine(string.Concat(from part in parts select $"{new string(' ', 8)}{part}"))
-							.AppendLine();
+						case { ExampleCommand: var pattern, IsPattern: true }:
+						{
+							helpTextContentBuilder.AppendLine($"{new string(' ', 4)}{pattern}").AppendLine();
+							break;
+						}
+						case { ExampleCommand: var pattern, DescriptionResourceKey: { } key }
+						when R[key]?.SplitByLength(Console.LargestWindowWidth) is { } parts:
+						{
+							helpTextContentBuilder
+								.AppendLine($"{new string(' ', 4)}{pattern}")
+								.AppendLine(string.Concat(from part in parts select $"{new string(' ', 8)}{part}"))
+								.AppendLine();
+
+							break;
+						}
+						case { ExampleCommand: var pattern, Description: { } description }
+						when description.SplitByLength(Console.LargestWindowWidth) is var parts:
+						{
+							helpTextContentBuilder
+								.AppendLine($"{new string(' ', 4)}{pattern}")
+								.AppendLine(string.Concat(from part in parts select $"{new string(' ', 8)}{part}"))
+								.AppendLine();
+
+							break;
+						}
 					}
 				}
 
@@ -138,7 +166,7 @@ public sealed class Help : IExecutable
 			var doubleArguments = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();
 
 			// Gets and iterates on all possible commands of the instance type.
-			foreach (var (type, l1, l2) in
+			foreach (var (l1, l2) in
 				from property in instanceType.GetProperties(BindingFlags.Instance | BindingFlags.Public)
 				where property is { CanRead: true, CanWrite: true }
 				let l1 = property.GetCustomAttribute<SingleArgumentCommandAttribute>()
@@ -146,18 +174,25 @@ public sealed class Help : IExecutable
 				where l1 is not null || l2 is not null
 				let rootCommandAttribute = instance.GetType().GetCustomAttribute<RootCommandAttribute>()
 				where rootCommandAttribute is not null
-				select (Type: rootCommandAttribute, L1: l1, L2: l2))
+				select (l1, l2))
 			{
 				switch (l1, l2)
 				{
-					case ({ Notation: var notation, Description: var description, IsRequired: var isRequired }, null):
+					case ({ Notation: var notation, DescriptionResourceKey: { } key, IsRequired: var isRequired }, null):
+					{
+						// l1 is not null
+						singleArguments.Add(($"<{notation}>", R[key]!.SplitByLength(Console.LargestWindowWidth - 4)));
+
+						break;
+					}
+					case ({ Notation: var notation, Description: { } description, IsRequired: var isRequired }, null):
 					{
 						// l1 is not null
 						singleArguments.Add(($"<{notation}>", description.SplitByLength(Console.LargestWindowWidth - 4)));
 
 						break;
 					}
-					case (null, { FullName: var fullName, ShortName: var shortName, Description: var description, IsRequired: var isRequired }):
+					case (null, { FullName: var fullName, ShortName: var shortName, DescriptionResourceKey: { } key, IsRequired: var isRequired }):
 					{
 						// l2 is not null
 						var config = thisAssembly.GetCustomAttribute<GlobalConfigurationAttribute>() ?? new();
@@ -168,7 +203,25 @@ public sealed class Help : IExecutable
 
 						doubleArguments.Add(
 							(
-								$"{fullCommand} ({shortCommand}){(isRequired ? ", required" : string.Empty)}",
+								$"{fullCommand} ({shortCommand}){(isRequired ? R["_MessageFormat_AndIsRequired"]! : string.Empty)}",
+								R[key]!.SplitByLength(Console.LargestWindowWidth - 4)
+							)
+						);
+
+						break;
+					}
+					case (null, { FullName: var fullName, ShortName: var shortName, Description: { } description, IsRequired: var isRequired }):
+					{
+						// l2 is not null
+						var config = thisAssembly.GetCustomAttribute<GlobalConfigurationAttribute>() ?? new();
+						var fullCommandNameSuffix = config.FullCommandNamePrefix;
+						var shortCommandNameSuffix = config.ShortCommandNamePrefix;
+						var fullCommand = $"{fullCommandNameSuffix}{fullName}";
+						var shortCommand = $"{shortCommandNameSuffix}{shortName}";
+
+						doubleArguments.Add(
+							(
+								$"{fullCommand} ({shortCommand}){(isRequired ? R["_MessageFormat_AndIsRequired"]! : string.Empty)}",
 								description.SplitByLength(Console.LargestWindowWidth - 4)
 							)
 						);
@@ -183,7 +236,7 @@ public sealed class Help : IExecutable
 			}
 
 			// Build the content.
-			helpTextContentBuilder.AppendLine("Commands:").AppendLine();
+			helpTextContentBuilder.AppendLine(R["_MessageFormat_CommandsAre"]!).AppendLine();
 			foreach (var (commandName, parts) in singleArguments)
 			{
 				helpTextContentBuilder

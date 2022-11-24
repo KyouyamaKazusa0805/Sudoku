@@ -3,42 +3,44 @@
 /// <summary>
 /// Represents a draw command.
 /// </summary>
+[type:
+	RootCommand("draw", DescriptionResourceKey = "_Description_Draw"),
+	SupportedArguments("draw"),
+	Usage("draw -s <size> -o <offset> -g <grid> -p <path>", IsPattern = true),
+	Usage($"""draw -s 1000 -o 10 -g {SampleGrid} -p C:\Users\UserName\Desktop\output.png""", DescriptionResourceKey = "_Usage_Draw_1")]
 [SupportedOSPlatform("windows")]
-[RootCommand("draw", "Draw a sudoku grid onto a picture.")]
-[SupportedArguments("draw")]
-[Usage("draw -s <size> -o <offset> -g <grid> -p <path>", "Draw a grid onto a picture, with specified size and outside blank (pixels), then output the picture to the local path.")]
 public sealed class Draw : IExecutable
 {
 	/// <summary>
 	/// The size of the picture.
 	/// </summary>
-	[DoubleArgumentsCommand('s', "size", "Indicates the size of the picture.", IsRequired = true)]
+	[DoubleArgumentsCommand('s', "size", DescriptionResourceKey = "_Description_Size_Draw", IsRequired = true)]
 	[CommandConverter<NumericConverter<float>>]
 	public float Size { get; set; }
 
 	/// <summary>
 	/// The outside offset.
 	/// </summary>
-	[DoubleArgumentsCommand('o', "offset", "Indicates the blank between the grid lines and the picture border.")]
+	[DoubleArgumentsCommand('o', "offset", DescriptionResourceKey = "_Description_OutsideOffset_Draw")]
 	[CommandConverter<NumericConverter<float>>]
 	public float OutsideOffset { get; set; } = 10;
 
 	/// <summary>
 	/// The extra footer.
 	/// </summary>
-	[DoubleArgumentsCommand('f', "footer", "Indicates the extra footer text displayed below the picture.")]
+	[DoubleArgumentsCommand('f', "footer", DescriptionResourceKey = "_Description_FooterText_Draw")]
 	public string? ExtraFooter { get; set; }
 
 	/// <summary>
 	/// The output path.
 	/// </summary>
-	[DoubleArgumentsCommand('p', "path", "Indicates the output path.", IsRequired = true)]
+	[DoubleArgumentsCommand('p', "path", DescriptionResourceKey = "_Description_OutputPath_Draw", IsRequired = true)]
 	public string? OutputPath { get; set; }
 
 	/// <summary>
 	/// Indicates the grid used.
 	/// </summary>
-	[DoubleArgumentsCommand('g', "grid", "Indicates the sudoku grid as string representation.")]
+	[DoubleArgumentsCommand('g', "grid", DescriptionResourceKey = "_Description_Grid_Draw")]
 	[CommandConverter<GridConverter>]
 	public Grid Grid { get; set; } = Grid.Empty;
 
@@ -64,7 +66,7 @@ public sealed class Draw : IExecutable
 		{
 			sudokuPainter.SaveTo(OutputPath!);
 
-			await Terminal.WriteLineAsync($"Success. Please visit the path '{OutputPath}' to view the file.");
+			await Terminal.WriteLineAsync(string.Format(R["_MessageFormat_OutputSuccess"]!, OutputPath));
 		}
 		catch (Exception ex)
 		{

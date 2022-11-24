@@ -949,13 +949,12 @@
             such as "<c>-g grid</c>".
             </summary>
         </member>
-        <member name="M:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.#ctor(System.Char,System.String,System.String)">
+        <member name="M:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.#ctor(System.Char,System.String)">
             <summary>
             Initializes a <see cref="T:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute"/> instance via the specified short name and the full name.
             </summary>
             <param name="shortName">The short name of the command.</param>
             <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
-            <param name="description">The description of the command.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="shortName"/> is not a letter.
             </exception>
@@ -981,8 +980,24 @@
         </member>
         <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.Description">
             <summary>
-            Indicates the description of the command.
+            Indicates the description of the argument.
             </summary>
+            <remarks><b>
+            This property can be <see langword="null"/>. However, both properties <see cref="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.Description"/> and <see cref="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.DescriptionResourceKey"/>
+            cannot be <see langword="null"/>.
+            </b></remarks>
+            <seealso cref="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.Description"/>
+            <seealso cref="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.DescriptionResourceKey"/>
+        </member>
+        <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.DescriptionResourceKey">
+            <summary>
+            Indicates the description key of the argument in resource dictionary.
+            </summary>
+            <remarks>
+            <inheritdoc cref="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.Description" path="/remarks"/>
+            </remarks>
+            <seealso cref="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.Description"/>
+            <seealso cref="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.DescriptionResourceKey"/>
         </member>
         <member name="T:System.CommandLine.Annotations.GlobalConfigurationAttribute">
             <summary>
@@ -1039,12 +1054,11 @@
             Represents a root command description.
             </summary>
         </member>
-        <member name="M:System.CommandLine.Annotations.RootCommandAttribute.#ctor(System.String,System.String)">
+        <member name="M:System.CommandLine.Annotations.RootCommandAttribute.#ctor(System.String)">
             <summary>
             Initializes a <see cref="T:System.CommandLine.Annotations.RootCommandAttribute"/> instance via the name and its description.
             </summary>
             <param name="name">The name of the command.</param>
-            <param name="description">The description of the command.</param>
         </member>
         <member name="P:System.CommandLine.Annotations.RootCommandAttribute.IsSpecial">
             <summary>
@@ -1061,6 +1075,22 @@
             <summary>
             Indicates the description of the command.
             </summary>
+            <remarks><b>
+            This property can be <see langword="null"/>. However, both properties <see cref="P:System.CommandLine.Annotations.RootCommandAttribute.Description"/> and <see cref="P:System.CommandLine.Annotations.RootCommandAttribute.DescriptionResourceKey"/>
+            cannot be <see langword="null"/>.
+            </b></remarks>
+            <seealso cref="P:System.CommandLine.Annotations.RootCommandAttribute.Description"/>
+            <seealso cref="P:System.CommandLine.Annotations.RootCommandAttribute.DescriptionResourceKey"/>
+        </member>
+        <member name="P:System.CommandLine.Annotations.RootCommandAttribute.DescriptionResourceKey">
+            <summary>
+            Indicates the description of the command, represented as a resource key related to a resource dictionary.
+            </summary>
+            <remarks>
+            <inheritdoc cref="P:System.CommandLine.Annotations.RootCommandAttribute.Description" path="/remarks"/>
+            </remarks>
+            <seealso cref="P:System.CommandLine.Annotations.RootCommandAttribute.Description"/>
+            <seealso cref="P:System.CommandLine.Annotations.RootCommandAttribute.DescriptionResourceKey"/>
         </member>
         <member name="T:System.CommandLine.Annotations.RouteToTypeAttribute">
             <summary>
@@ -1084,13 +1114,11 @@
             Represents a single-argument command. The command don't require any argument name such as "<c>-f</c>".
             </summary>
         </member>
-        <member name="M:System.CommandLine.Annotations.SingleArgumentCommandAttribute.#ctor(System.String,System.String)">
+        <member name="M:System.CommandLine.Annotations.SingleArgumentCommandAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.SingleArgumentCommandAttribute"/> instance via the specified description
-            for the command.
+            Initializes a <see cref="T:System.CommandLine.Annotations.SingleArgumentCommandAttribute"/> instance via the specified description for the command.
             </summary>
             <param name="notation">The notation of the command.</param>
-            <param name="description">The description.</param>
         </member>
         <member name="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.IgnoreCase">
             <summary>
@@ -1113,6 +1141,22 @@
             <summary>
             Indicates the description of the argument.
             </summary>
+            <remarks><b>
+            This property can be <see langword="null"/>. However, both properties <see cref="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.Description"/> and <see cref="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.DescriptionResourceKey"/>
+            cannot be <see langword="null"/>.
+            </b></remarks>
+            <seealso cref="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.Description"/>
+            <seealso cref="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.DescriptionResourceKey"/>
+        </member>
+        <member name="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.DescriptionResourceKey">
+            <summary>
+            Indicates the description key of the argument in resource dictionary.
+            </summary>
+            <remarks>
+            <inheritdoc cref="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.Description" path="/remarks"/>
+            </remarks>
+            <seealso cref="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.Description"/>
+            <seealso cref="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.DescriptionResourceKey"/>
         </member>
         <member name="T:System.CommandLine.Annotations.SupportedArgumentsAttribute">
             <summary>
@@ -1145,12 +1189,11 @@
             Represents an attribute that is applied to a command type, indicating the usage of the current root command.
             </summary>
         </member>
-        <member name="M:System.CommandLine.Annotations.UsageAttribute.#ctor(System.String,System.String)">
+        <member name="M:System.CommandLine.Annotations.UsageAttribute.#ctor(System.String)">
             <summary>
             Initializes a <see cref="T:System.CommandLine.Annotations.UsageAttribute"/> instance via the specified example command and the description.
             </summary>
             <param name="example">The example command.</param>
-            <param name="description">The description.</param>
         </member>
         <member name="P:System.CommandLine.Annotations.UsageAttribute.IsPattern">
             <summary>
@@ -1217,6 +1260,22 @@
             <summary>
             Indicates the description of the example command.
             </summary>
+            <remarks><b>
+            This property can be <see langword="null"/>. However, both properties <see cref="P:System.CommandLine.Annotations.UsageAttribute.Description"/> and <see cref="P:System.CommandLine.Annotations.UsageAttribute.DescriptionResourceKey"/>
+            cannot be <see langword="null"/>.
+            </b></remarks>
+            <seealso cref="P:System.CommandLine.Annotations.UsageAttribute.Description"/>
+            <seealso cref="P:System.CommandLine.Annotations.UsageAttribute.DescriptionResourceKey"/>
+        </member>
+        <member name="P:System.CommandLine.Annotations.UsageAttribute.DescriptionResourceKey">
+            <summary>
+            Indicates the description key of the example command stored in resource dictionary.
+            </summary>
+            <remarks>
+            <inheritdoc cref="P:System.CommandLine.Annotations.UsageAttribute.Description" path="/remarks"/>
+            </remarks>
+            <seealso cref="P:System.CommandLine.Annotations.UsageAttribute.Description"/>
+            <seealso cref="P:System.CommandLine.Annotations.UsageAttribute.DescriptionResourceKey"/>
         </member>
         <member name="T:System.CommandLine.Annotations.WebsiteAttribute">
             <summary>

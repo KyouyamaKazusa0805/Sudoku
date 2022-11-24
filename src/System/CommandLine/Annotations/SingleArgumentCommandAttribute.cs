@@ -7,13 +7,10 @@
 public sealed class SingleArgumentCommandAttribute : Attribute
 {
 	/// <summary>
-	/// Initializes a <see cref="SingleArgumentCommandAttribute"/> instance via the specified description
-	/// for the command.
+	/// Initializes a <see cref="SingleArgumentCommandAttribute"/> instance via the specified description for the command.
 	/// </summary>
 	/// <param name="notation">The notation of the command.</param>
-	/// <param name="description">The description.</param>
-	public SingleArgumentCommandAttribute(string description, string notation)
-		=> (Notation, Description) = (notation, description);
+	public SingleArgumentCommandAttribute(string notation) => Notation = notation;
 
 
 	/// <summary>
@@ -36,5 +33,23 @@ public sealed class SingleArgumentCommandAttribute : Attribute
 	/// <summary>
 	/// Indicates the description of the argument.
 	/// </summary>
-	public string Description { get; }
+	/// <remarks><b>
+	/// This property can be <see langword="null"/>. However, both properties <see cref="Description"/> and <see cref="DescriptionResourceKey"/>
+	/// cannot be <see langword="null"/>.
+	/// </b></remarks>
+	/// <seealso cref="Description"/>
+	/// <seealso cref="DescriptionResourceKey"/>
+	[DisallowNull]
+	public string? Description { get; init; }
+
+	/// <summary>
+	/// Indicates the description key of the argument in resource dictionary.
+	/// </summary>
+	/// <remarks>
+	/// <inheritdoc cref="Description" path="/remarks"/>
+	/// </remarks>
+	/// <seealso cref="Description"/>
+	/// <seealso cref="DescriptionResourceKey"/>
+	[DisallowNull]
+	public string? DescriptionResourceKey { get; init; }
 }

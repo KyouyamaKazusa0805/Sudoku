@@ -12,15 +12,13 @@ public sealed class DoubleArgumentsCommandAttribute : Attribute
 	/// </summary>
 	/// <param name="shortName">The short name of the command.</param>
 	/// <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
-	/// <param name="description">The description of the command.</param>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="shortName"/> is not a letter.
 	/// </exception>
 	/// <exception cref="ArgumentException">
 	/// Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
 	/// </exception>
-	public DoubleArgumentsCommandAttribute(char shortName, string fullName, string description)
-		=> (ShortName, FullName, Description) = (shortName, fullName, description);
+	public DoubleArgumentsCommandAttribute(char shortName, string fullName) => (ShortName, FullName) = (shortName, fullName);
 
 
 	/// <summary>
@@ -40,7 +38,25 @@ public sealed class DoubleArgumentsCommandAttribute : Attribute
 	public string FullName { get; }
 
 	/// <summary>
-	/// Indicates the description of the command.
+	/// Indicates the description of the argument.
 	/// </summary>
-	public string Description { get; }
+	/// <remarks><b>
+	/// This property can be <see langword="null"/>. However, both properties <see cref="Description"/> and <see cref="DescriptionResourceKey"/>
+	/// cannot be <see langword="null"/>.
+	/// </b></remarks>
+	/// <seealso cref="Description"/>
+	/// <seealso cref="DescriptionResourceKey"/>
+	[DisallowNull]
+	public string? Description { get; init; }
+
+	/// <summary>
+	/// Indicates the description key of the argument in resource dictionary.
+	/// </summary>
+	/// <remarks>
+	/// <inheritdoc cref="Description" path="/remarks"/>
+	/// </remarks>
+	/// <seealso cref="Description"/>
+	/// <seealso cref="DescriptionResourceKey"/>
+	[DisallowNull]
+	public string? DescriptionResourceKey { get; init; }
 }

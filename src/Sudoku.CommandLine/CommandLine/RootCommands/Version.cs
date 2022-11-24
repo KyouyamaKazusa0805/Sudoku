@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines the type that stores the version options.
 /// </summary>
-[RootCommand("version", "Displays the version of the current command line project.", IsSpecial = true)]
+[RootCommand("version", DescriptionResourceKey = "_Description_Version", IsSpecial = true)]
 [SupportedArguments("version", "ver")]
 [Usage("version", IsPattern = true)]
 public sealed class Version : IExecutable
@@ -17,6 +17,6 @@ public sealed class Version : IExecutable
 			throw new CommandLineRuntimeException((int)ErrorCode.AssemblyNameIsNull);
 		}
 
-		await Terminal.WriteLineAsync($"Project {realName}\r\nVersion {version}");
+		await Terminal.WriteLineAsync($"{R["_MessageFormat_Project"]!} {realName}\r\n{R["_MessageFormat_Version"]!} {version}");
 	}
 }
