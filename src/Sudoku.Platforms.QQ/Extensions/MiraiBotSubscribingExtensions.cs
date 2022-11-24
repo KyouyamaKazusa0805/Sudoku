@@ -6,6 +6,12 @@
 public static class MiraiBotSubscribingExtensions
 {
 	/// <summary>
+	/// The object provided with methods to control <see cref="BotRunningContext.IsMuted"/> to be synchronized.
+	/// </summary>
+	private static readonly object MuteSyncRoot = new();
+
+
+	/// <summary>
 	/// Subscribes for event <see cref="OnlineEvent"/>.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -45,7 +51,33 @@ public static class MiraiBotSubscribingExtensions
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void SubscribeGroupMessageReceived(this MiraiBot @this, Action<GroupMessageReceiver> action)
-		=> @this.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(action);
+		=> @this.MessageReceived.OfType<GroupMessageReceiver>().Subscribe(
+			async gmr =>
+			{
+				switch (@this, gmr)
+				{
+					case ({ QQ: var botNumber }, { GroupId: var groupId }):
+					{
+						if (await GroupManager.GetMemberAsync(botNumber, groupId) is { MuteTimeRemaining: not "0" })
+						{
+							return;
+						}
+
+						lock (MuteSyncRoot)
+						{
+							if (RunningContexts[groupId].IsMuted)
+							{
+								return;
+							}
+						}
+
+						action(gmr);
+
+						break;
+					}
+				}
+			}
+		);
 
 	/// <summary>
 	/// Subscribes for event <see cref="MemberJoinedEvent"/>.
@@ -66,5 +98,39 @@ public static class MiraiBotSubscribingExtensions
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void SubscribeNewInvitationRequested(this MiraiBot @this, Action<NewInvitationRequestedEvent> action)
-		 => @this.EventReceived.OfType<NewInvitationRequestedEvent>().Subscribe(action);
+		=> @this.EventReceived.OfType<NewInvitationRequestedEvent>().Subscribe(action);
+
+	/// <summary>
+	/// Subscribes for event <see cref="MutedEvent"/>.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void SubscribeMuted(this MiraiBot @this, Action<MutedEvent>? action = null)
+		=> @this.EventReceived.OfType<MutedEvent>().Subscribe(
+			me =>
+			{
+				lock (MuteSyncRoot)
+				{
+					RunningContexts[me.Operator.Group.Id].IsMuted = true;
+				}
+
+				action?.Invoke(me);
+			}
+		);
+
+	/// <summary>
+	/// Subscribes for event <see cref="UnmutedEvent"/>.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void SubscribeUnmuted(this MiraiBot @this, Action<UnmutedEvent>? action = null)
+		=> @this.EventReceived.OfType<UnmutedEvent>().Subscribe(
+			ue =>
+			{
+				lock (MuteSyncRoot)
+				{
+					RunningContexts[ue.Operator.Group.Id].IsMuted = false;
+				}
+
+				action?.Invoke(ue);
+			}
+		);
 }

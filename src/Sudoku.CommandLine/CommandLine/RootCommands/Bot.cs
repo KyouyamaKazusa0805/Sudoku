@@ -43,6 +43,8 @@ file sealed partial class Bot : IExecutable
 			bot.SubscribeMemberJoined(OnMemberJoinedAsync);
 			bot.SubscribeNewMemberRequested(OnNewMemberRequestedAsync);
 			bot.SubscribeNewInvitationRequested(OnNewInvitationRequestedAsync);
+			bot.SubscribeMuted();
+			bot.SubscribeUnmuted();
 
 			var groups = await AccountManager.GetGroupsAsync();
 			foreach (var group in groups)

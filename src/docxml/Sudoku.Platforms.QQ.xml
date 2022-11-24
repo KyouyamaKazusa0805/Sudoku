@@ -29,6 +29,11 @@
             Defines a context that represents a detail data in a group used by a bot running.
             </summary>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.IsMuted">
+            <summary>
+            Indicates whether the bot has been muted by other users in the same group that can mute bot.
+            </summary>
+        </member>
         <member name="P:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.ExecutingCommand">
             <summary>
             The command currently executing.
@@ -922,6 +927,11 @@
             Provides with extenions methods on subscribing events for a <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.
             </summary>
         </member>
+        <member name="F:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.MuteSyncRoot">
+            <summary>
+            The object provided with methods to control <see cref="P:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.IsMuted"/> to be synchronized.
+            </summary>
+        </member>
         <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeBotOnlined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Bot.OnlineEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Bot.OnlineEvent"/>.
@@ -965,6 +975,16 @@
         <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeNewInvitationRequested(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Request.NewInvitationRequestedEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Request.NewInvitationRequestedEvent"/>.
+            </summary>
+        </member>
+        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeMuted(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.MutedEvent})">
+            <summary>
+            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.MutedEvent"/>.
+            </summary>
+        </member>
+        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeUnmuted(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.UnmutedEvent})">
+            <summary>
+            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.UnmutedEvent"/>.
             </summary>
         </member>
         <member name="T:OneOf.OneOfExtensions">
