@@ -25,46 +25,18 @@ namespace Sudoku.Concepts;
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
-	IAdditiveIdentity<CellMap, CellMap>,
-	IBitwiseOperators<CellMap, CellMap, CellMap>,
-	IBooleanOperators<CellMap>,
-	ICollection<int>,
-	IComparable,
-	IComparable<CellMap>,
-	IComparisonOperators<CellMap, CellMap, bool>,
 	IDivisionOperators<CellMap, int, short>,
-	IEnumerable,
-	IEnumerable<int>,
-	IEquatable<CellMap>,
-	IEqualityOperators<CellMap, CellMap, bool>,
-	IFormattable,
-	ILogicalNotOperators<CellMap, bool>,
-	ILogicalOperators<CellMap, CellMap, CellMap>,
-	IMinMaxValue<CellMap>,
 	IModulusOperators<CellMap, CellMap, CellMap>,
 	IMultiplyOperators<CellMap, int, Candidates>,
-	IParsable<CellMap>,
-	IReadOnlyCollection<int>,
-	IReadOnlyList<int>,
-	IReadOnlySet<int>,
-	ISet<int>,
-	ISelectClauseProvider<int>,
-	ISimpleFormattable,
-	ISimpleParsable<CellMap>,
-	ISlicable<CellMap, int>,
 	ISubtractionOperators<CellMap, int, CellMap>,
-	ISubtractionOperators<CellMap, CellMap, CellMap>,
-	ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>
+	ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>,
+	IStatusMapBase<CellMap>
 {
-	/// <summary>
-	/// The value used for shifting.
-	/// </summary>
+	/// <inheritdoc cref="IStatusMapBase{TSelf}.Shifting"/>
 	private const int Shifting = 41;
 
 
-	/// <summary>
-	/// Indicates the empty instance.
-	/// </summary>
+	/// <inheritdoc cref="IStatusMapBase{TSelf}.Empty"/>
 	public static readonly CellMap Empty;
 
 	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
@@ -269,9 +241,7 @@ public unsafe partial struct CellMap :
 		get => TrailingZeroCount(CoveredHouses & ~511);
 	}
 
-	/// <summary>
-	/// Indicates the number of the values stored in this collection.
-	/// </summary>
+	/// <inheritdoc/>
 	public readonly int Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -417,10 +387,7 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	readonly bool ICollection<int>.IsReadOnly => false;
-
-	/// <inheritdoc/>
-	readonly int ISlicable<CellMap, int>.Length => Count;
+	readonly int IStatusMapBase<CellMap>.Shifting => Shifting;
 
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
@@ -471,22 +438,10 @@ public unsafe partial struct CellMap :
 
 
 	/// <inheritdoc/>
-	static CellMap IAdditiveIdentity<CellMap, CellMap>.AdditiveIdentity => Empty;
+	static CellMap IStatusMapBase<CellMap>.Empty => Empty;
+
 
 	/// <inheritdoc/>
-	static CellMap IMinMaxValue<CellMap>.MinValue => MinValue;
-
-	/// <inheritdoc/>
-	static CellMap IMinMaxValue<CellMap>.MaxValue => MaxValue;
-
-
-	/// <summary>
-	/// Get the offset at the specified position index.
-	/// </summary>
-	/// <param name="index">The index.</param>
-	/// <returns>
-	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
-	/// </returns>
 	public readonly int this[int index]
 	{
 		get
@@ -524,17 +479,7 @@ public unsafe partial struct CellMap :
 	}
 
 
-	/// <summary>
-	/// Copies the current instance to the target array specified as an <see cref="int"/>*.
-	/// </summary>
-	/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
-	/// <param name="length">The length of that array.</param>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
-	/// </exception>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the capacity isn't enough to store all values.
-	/// </exception>
+	/// <inheritdoc/>
 	public readonly void CopyTo(int* arr, int length)
 	{
 		ArgumentNullException.ThrowIfNull(arr);
@@ -570,35 +515,17 @@ public unsafe partial struct CellMap :
 		}
 	}
 
-	/// <summary>
-	/// Copies the current instance to the target <see cref="Span{T}"/> instance.
-	/// </summary>
-	/// <param name="span">
-	/// The target <see cref="Span{T}"/> instance.
-	/// </param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly void CopyTo(scoped Span<int> span)
-	{
-		fixed (int* arr = span)
-		{
-			CopyTo(arr, span.Length);
-		}
-	}
-
-	/// <summary>
-	/// Iterates on each element in this collection.
-	/// </summary>
-	/// <param name="action">The visitor that handles for each element in this collection.</param>
-	public readonly void ForEach(Action<int> action)
-	{
-		foreach (var cell in this)
-		{
-			action(cell);
-		}
-	}
-
 	[GeneratedDeconstruction]
 	public readonly partial void Deconstruct(out long low, out long high);
+
+	/// <inheritdoc/>
+	public readonly void ForEach(Action<int> action)
+	{
+		foreach (var element in this)
+		{
+			action(element);
+		}
+	}
 
 	/// <summary>
 	/// Indicates whether all cells in this instance are in one house.
@@ -649,18 +576,14 @@ public unsafe partial struct CellMap :
 		return false;
 	}
 
-	/// <summary>
-	/// Determine whether the map contains the specified offset.
-	/// </summary>
-	/// <param name="item">The offset.</param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(int item) => ((item < Shifting ? _low : _high) >> item % Shifting & 1) != 0;
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override readonly partial bool Equals(object? obj);
 
-	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped in CellMap other) => _low == other._low && _high == other._high;
 
@@ -668,13 +591,15 @@ public unsafe partial struct CellMap :
 	public override readonly partial int GetHashCode();
 
 	/// <summary>
-	/// <inheritdoc cref="IComparable{T}.CompareTo(T)" path="/summary"/>
+	/// <inheritdoc cref="IStatusMapBase{TSelf}.CompareTo(in TSelf)" path="/summary"/>
 	/// </summary>
 	/// <param name="other">
-	/// <inheritdoc cref="IComparable{T}.CompareTo(T)" path="/param[@name='other']"/>
+	/// <inheritdoc cref="IStatusMapBase{TSelf}.CompareTo(in TSelf)" path="/param[@name='other']"/>
 	/// </param>
 	/// <returns>
-	/// An indicating the result. The result value only contains 3 possible values: 1, 0 and -1.
+	/// <para><inheritdoc cref="IStatusMapBase{TSelf}.CompareTo(in TSelf)" path="/returns"/></para>
+	/// <para>
+	/// The result value only contains 3 possible values: 1, 0 and -1.
 	/// The comparison rule is:
 	/// <list type="number">
 	/// <item>
@@ -700,15 +625,13 @@ public unsafe partial struct CellMap :
 	/// </item>
 	/// </list>
 	/// If all rules are compared, but they are still considered equal, then return 0.
+	/// </para>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int CompareTo(scoped in CellMap other)
-		=> Count > other.Count ? 1 : Count < other.Count ? -1 : Sign($"{this:b}".CompareTo($"{other:b}"));
+		=> _count > other._count ? 1 : _count < other._count ? -1 : Sign($"{this:b}".CompareTo($"{other:b}"));
 
-	/// <summary>
-	/// Get all offsets whose bits are set <see langword="true"/>.
-	/// </summary>
-	/// <returns>An array of offsets.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int[] ToArray() => Offsets;
 
@@ -782,10 +705,7 @@ public unsafe partial struct CellMap :
 			_ => ToString(RxCyFormat.Default)
 		};
 
-	/// <summary>
-	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-	/// </summary>
-	/// <returns>The enumerator instance.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly OneDimensionalArrayEnumerator<int> GetEnumerator() => Offsets.EnumerateImmutable();
 
@@ -802,10 +722,7 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
-	/// <summary>
-	/// Set the specified offset as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="item">The offset.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(int item)
 	{
@@ -818,13 +735,16 @@ public unsafe partial struct CellMap :
 		}
 	}
 
-	/// <summary>
-	/// Set the specified offset as <see langword="true"/> value, with range check.
-	/// </summary>
-	/// <param name="offset">The offset.</param>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the specified cell offset is invalid.
-	/// </exception>
+	/// <inheritdoc/>
+	public void AddRange(IEnumerable<int> offsets)
+	{
+		foreach (var offset in offsets)
+		{
+			Add(offset);
+		}
+	}
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddChecked(int offset)
 	{
@@ -842,49 +762,7 @@ public unsafe partial struct CellMap :
 		}
 	}
 
-	/// <summary>
-	/// Set the specified offsets as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="offsets">The offsets to add.</param>
-	public void AddRange(scoped ReadOnlySpan<int> offsets)
-	{
-		foreach (var cell in offsets)
-		{
-			Add(cell);
-		}
-	}
-
-	/// <inheritdoc cref="AddRange(ReadOnlySpan{int})"/>
-	public void AddRange(IEnumerable<int> offsets)
-	{
-		foreach (var cell in offsets)
-		{
-			Add(cell);
-		}
-	}
-
-	/// <inheritdoc cref="AddRange(ReadOnlySpan{int})"/>
-	/// <remarks>
-	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
-	/// also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
-	/// this method will throw an exception to report about this.
-	/// </remarks>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when found at least one cell offset invalid.
-	/// </exception>
-	public void AddRangeChecked(IEnumerable<int> offsets)
-	{
-		const string error = "The value cannot be added because the cell offset is an invalid value.";
-		foreach (var cell in offsets)
-		{
-			Add(cell is < 0 or >= 81 ? throw new InvalidOperationException(error) : cell);
-		}
-	}
-
-	/// <summary>
-	/// Set the specified offset as <see langword="false"/> value.
-	/// </summary>
-	/// <param name="offset">The offset.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(int offset)
 	{
@@ -897,133 +775,21 @@ public unsafe partial struct CellMap :
 		}
 	}
 
-	/// <summary>
-	/// Clear all bits.
-	/// </summary>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => _low = _high = _count = 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly void ICollection<int>.CopyTo(int[] array, int arrayIndex)
-	{
-		fixed (int* pArray = array)
-		{
-			CopyTo(pArray + arrayIndex, _count - arrayIndex);
-		}
-	}
+	void IStatusMapBase<CellMap>.ExceptWith(IEnumerable<int> other) => this -= Empty + other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IEquatable<CellMap>.Equals(CellMap other) => Equals(other);
+	void IStatusMapBase<CellMap>.IntersectWith(IEnumerable<int> other) => this &= Empty + other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IReadOnlySet<int>.IsProperSubsetOf(IEnumerable<int> other)
-	{
-		var otherCells = Empty + other;
-		return this != otherCells && (otherCells & this) == this;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IReadOnlySet<int>.IsProperSupersetOf(IEnumerable<int> other)
-	{
-		var otherCells = Empty + other;
-		return this != otherCells && (this & otherCells) == otherCells;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IReadOnlySet<int>.IsSubsetOf(IEnumerable<int> other) => ((Empty + other) & this) == this;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IReadOnlySet<int>.IsSupersetOf(IEnumerable<int> other)
-	{
-		var otherCells = Empty + other;
-		return (this & otherCells) == otherCells;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IReadOnlySet<int>.Overlaps(IEnumerable<int> other) => (this & (Empty + other)) is not [];
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IReadOnlySet<int>.SetEquals(IEnumerable<int> other) => this == Empty + other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool ISet<int>.IsProperSubsetOf(IEnumerable<int> other) => ((IReadOnlySet<int>)this).IsProperSubsetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool ISet<int>.IsProperSupersetOf(IEnumerable<int> other) => ((IReadOnlySet<int>)this).IsProperSupersetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool ISet<int>.IsSubsetOf(IEnumerable<int> other) => ((IReadOnlySet<int>)this).IsSubsetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool ISet<int>.IsSupersetOf(IEnumerable<int> other) => ((IReadOnlySet<int>)this).IsSupersetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool ISet<int>.Overlaps(IEnumerable<int> other) => ((IReadOnlySet<int>)this).Overlaps(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool ISet<int>.SetEquals(IEnumerable<int> other) => ((IReadOnlySet<int>)this).SetEquals(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly int IComparable<CellMap>.CompareTo(CellMap other) => CompareTo(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly int IComparable.CompareTo([NotNull] object? obj)
-	{
-		ArgumentNullException.ThrowIfNull(obj);
-
-		return obj is CellMap other
-			? CompareTo(other)
-			: throw new ArgumentException($"The argument must be of type '{nameof(CellMap)}'.", nameof(obj));
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
-
-	/// <inheritdoc/>
-	readonly IEnumerable<TResult> ISelectClauseProvider<int>.Select<TResult>(Func<int, TResult> selector)
-	{
-		var result = new TResult[_count];
-		var i = 0;
-		foreach (var cell in this)
-		{
-			result[i++] = selector(cell);
-		}
-
-		return ImmutableArray.Create(result);
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.ExceptWith(IEnumerable<int> other) => this -= Empty + other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.IntersectWith(IEnumerable<int> other) => this &= Empty + other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.SymmetricExceptWith(IEnumerable<int> other)
+	void IStatusMapBase<CellMap>.SymmetricExceptWith(IEnumerable<int> other)
 	{
 		Clear();
 		this |= (this - (Empty + other)) | (Empty + other - this);
@@ -1031,43 +797,7 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.UnionWith(IEnumerable<int> other) => this |= Empty + other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<int>.Add(int item)
-	{
-		scoped ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
-		var older = Contains(item);
-		v |= 1L << item % Shifting;
-		if (!older)
-		{
-			_count++;
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ICollection<int>.Remove(int item)
-	{
-		scoped ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
-		var older = Contains(item);
-		v &= ~(1L << item % Shifting);
-		if (older)
-		{
-			_count--;
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+	void IStatusMapBase<CellMap>.UnionWith(IEnumerable<int> other) => this |= Empty + other;
 
 
 	/// <inheritdoc/>
@@ -1133,37 +863,17 @@ public unsafe partial struct CellMap :
 		return false;
 	}
 
+
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IParsable<CellMap>.Parse(string s, IFormatProvider? provider) => Parse(s);
-
-
-	/// <summary>
-	/// Determines whether the current collection is empty.
-	/// </summary>
-	/// <param name="offsets">The cells to be checked.</param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !(scoped in CellMap offsets) => offsets ? false : true;
 
-	/// <summary>
-	/// Reverse status for all offsets, which means all <see langword="true"/> bits
-	/// will be set <see langword="false"/>, and all <see langword="false"/> bits
-	/// will be set <see langword="true"/>.
-	/// </summary>
-	/// <param name="offsets">The instance to negate.</param>
-	/// <returns>The negative result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator ~(scoped in CellMap offsets)
 		=> CreateByBits(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
 
-	/// <summary>
-	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
-	/// and returns the added result.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	/// <param name="offset">The offset to be added.</param>
-	/// <returns>The result collection.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator +(scoped in CellMap collection, int offset)
 	{
@@ -1178,29 +888,7 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
-	/// <summary>
-	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
-	/// and returns the added result.
-	/// This operator will check the validity of the argument <paramref name="offset"/>.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	/// <param name="offset">The offset to be added.</param>
-	/// <returns>The result collection.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator checked +(scoped in CellMap collection, int offset)
-	{
-		Argument.ThrowIfInvalid(offset is >= 0 and < 81, "The offset is invalid.");
-
-		return collection + offset;
-	}
-
-	/// <summary>
-	/// Adds the specified list of <paramref name="cells"/> to the <paramref name="collection"/>,
-	/// and returns the added result.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	/// <param name="cells">A list of cells to be added.</param>
-	/// <returns>The result collection.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator +(scoped in CellMap collection, IEnumerable<int> cells)
 	{
@@ -1209,29 +897,7 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
-	/// <summary>
-	/// Adds the specified list of <paramref name="cells"/> to the <paramref name="collection"/>,
-	/// and returns the added result.
-	/// This operator will check the validity of the argument <paramref name="cells"/>.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	/// <param name="cells">A list of cells to be added.</param>
-	/// <returns>The result collection.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator checked +(scoped in CellMap collection, IEnumerable<int> cells)
-	{
-		var result = collection;
-		result.AddRangeChecked(cells);
-		return result;
-	}
-
-	/// <summary>
-	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
-	/// and returns the removed result.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	/// <param name="offset">The offset to be removed.</param>
-	/// <returns>The result collection.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator -(scoped in CellMap collection, int offset)
 	{
@@ -1246,28 +912,7 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
-	/// <summary>
-	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
-	/// and returns the removed result. This operator will check the validity of the argument <paramref name="offset"/>.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	/// <param name="offset">The offset to be removed.</param>
-	/// <returns>The result collection.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator checked -(scoped in CellMap collection, int offset)
-	{
-		Argument.ThrowIfInvalid(offset is >= 0 and < 81, "The offset is invalid.");
-
-		return collection - offset;
-	}
-
-	/// <summary>
-	/// Get a <see cref="CellMap"/> that contains all <paramref name="collection"/> instance
-	/// but not in <paramref name="offsets"/> instance.
-	/// </summary>
-	/// <param name="collection">The left instance.</param>
-	/// <param name="offsets">The right instance.</param>
-	/// <returns>The result.</returns>
+	/// <inheritdoc/>
 	public static CellMap operator -(scoped in CellMap collection, IEnumerable<int> offsets)
 	{
 		var result = collection;
@@ -1279,72 +924,11 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
-	/// <summary>
-	/// Get a <see cref="CellMap"/> that contains all <paramref name="collection"/> instance
-	/// but not in <paramref name="offsets"/> instance.
-	/// This operator will check the validity of each element in the argument <paramref name="offsets"/>.
-	/// </summary>
-	/// <param name="collection">The left instance.</param>
-	/// <param name="offsets">The right instance.</param>
-	/// <returns>The result.</returns>
-	public static CellMap operator checked -(scoped in CellMap collection, IEnumerable<int> offsets)
-	{
-		var result = collection;
-		foreach (var offset in offsets)
-		{
-			result = checked(result - offset);
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Get a <see cref="CellMap"/> that contains all <paramref name="left"/> instance
-	/// but not in <paramref name="right"/> instance.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator -(scoped in CellMap left, scoped in CellMap right) => left & ~right;
 
-	/// <summary>
-	/// Gets the subsets of the current collection via the specified size
-	/// indicating the number of elements of the each subset.
-	/// </summary>
-	/// <param name="cells">Indicates the base template cells.</param>
-	/// <param name="subsetSize">The size to get.</param>
-	/// <returns>
-	/// All possible subsets. If:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Condition</term>
-	/// <description>Meaning</description>
-	/// </listheader>
-	/// <item>
-	/// <term><c><paramref name="subsetSize"/> &gt; <paramref name="cells"/>.Count</c></term>
-	/// <description>Will return an empty array</description>
-	/// </item>
-	/// <item>
-	/// <term><c><paramref name="subsetSize"/> == <paramref name="cells"/>.Count</c></term>
-	/// <description>
-	/// Will return an array that contains only one element, same as the argument <paramref name="cells"/>.
-	/// </description>
-	/// </item>
-	/// <item>
-	/// <term>Other cases</term>
-	/// <description>The valid combinations.</description>
-	/// </item>
-	/// </list>
-	/// </returns>
-	/// <exception cref="NotSupportedException">
-	/// Throws when both <paramref name="cells"/> count and <paramref name="subsetSize"/> are greater than 30.
-	/// </exception>
-	/// <remarks>
-	/// For example, if the argument <paramref name="cells"/> is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
-	/// and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
-	/// will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
-	/// </remarks>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap[] operator &(scoped in CellMap cells, int subsetSize)
 	{
@@ -1396,8 +980,7 @@ public unsafe partial struct CellMap :
 			throw new NotSupportedException(
 				"""
 				Both cells count and subset size is too large, which may cause potential out of memory exception. 
-				This operator will throw this exception to calculate the result, 
-				in order to prevent any possible exceptions thrown.
+				This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
 				""".RemoveLineEndings()
 			);
 		}
@@ -1432,44 +1015,12 @@ public unsafe partial struct CellMap :
 		}
 	}
 
-	/// <summary>
-	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator &(scoped in CellMap left, scoped in CellMap right)
 		=> CreateByBits(left._high & right._high, left._low & right._low);
 
-	/// <summary>
-	/// Gets all subsets of the current collection via the specified size
-	/// indicating the <b>maximum</b> number of elements of the each subset.
-	/// </summary>
-	/// <param name="cells">Indicates the base template cells.</param>
-	/// <param name="subsetSize">The size to get.</param>
-	/// <returns>
-	/// All possible subsets. If:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Condition</term>
-	/// <description>Meaning</description>
-	/// </listheader>
-	/// <item>
-	/// <term><c><paramref name="subsetSize"/> &gt; <paramref name="cells"/>.Count</c></term>
-	/// <description>Will return an empty array</description>
-	/// </item>
-	/// <item>
-	/// <term>Other cases</term>
-	/// <description>The valid combinations.</description>
-	/// </item>
-	/// </list>
-	/// </returns>
-	/// <remarks>
-	/// For example, the expression <c>cells | 3</c> is equivalent to all possible cases
-	/// coming from <c><![CDATA[cells & 1]]></c>,
-	/// <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
-	/// </remarks>
+	/// <inheritdoc/>
 	public static CellMap[] operator |(scoped in CellMap cells, int subsetSize)
 	{
 		if (subsetSize == 0 || cells is [])
@@ -1496,23 +1047,12 @@ public unsafe partial struct CellMap :
 		return result.ToArray();
 	}
 
-	/// <summary>
-	/// Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
-	/// and return the merged result.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator |(scoped in CellMap left, scoped in CellMap right)
 		=> CreateByBits(left._high | right._high, left._low | right._low);
 
-	/// <summary>
-	/// Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator ^(scoped in CellMap left, scoped in CellMap right)
 		=> CreateByBits(left._high ^ right._high, left._low ^ right._low);
@@ -1609,49 +1149,37 @@ public unsafe partial struct CellMap :
 		return map / houseIndex;
 	}
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator >(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) > 0;
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator >=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) >= 0;
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) < 0;
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) <= 0;
 
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(scoped in CellMap left, scoped in CellMap right) => left.Equals(right);
 
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(scoped in CellMap left, scoped in CellMap right) => !(left == right);
 
-	/// <summary>
-	/// Determines whether the specified <see cref="CellMap"/> collection is not empty.
-	/// </summary>
-	/// <param name="cells">The collection.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator true(scoped in CellMap cells) => cells.Count != 0;
-
-	/// <summary>
-	/// Determines whether the specified <see cref="CellMap"/> collection is empty.
-	/// </summary>
-	/// <param name="cells">The collection.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator false(scoped in CellMap cells) => cells.Count == 0;
+	public static bool operator true(scoped in CellMap cells) => cells._count != 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool ILogicalNotOperators<CellMap, bool>.operator !(CellMap value) => !value;
+	public static bool operator false(scoped in CellMap cells) => cells._count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1671,10 +1199,6 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap ISubtractionOperators<CellMap, CellMap, CellMap>.operator -(CellMap left, CellMap right) => left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>.operator -(CellMap left, IEnumerable<int> right) => left - right;
 
 	/// <inheritdoc/>
@@ -1685,70 +1209,12 @@ public unsafe partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap IModulusOperators<CellMap, CellMap, CellMap>.operator %(CellMap left, CellMap right) => left % right;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IBitwiseOperators<CellMap, CellMap, CellMap>.operator ~(CellMap value) => ~value;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IBitwiseOperators<CellMap, CellMap, CellMap>.operator &(CellMap left, CellMap right) => left & right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IBitwiseOperators<CellMap, CellMap, CellMap>.operator |(CellMap left, CellMap right) => left | right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IBitwiseOperators<CellMap, CellMap, CellMap>.operator ^(CellMap left, CellMap right) => left ^ right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap ILogicalOperators<CellMap, CellMap, CellMap>.operator &(CellMap value, CellMap other) => value & other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap ILogicalOperators<CellMap, CellMap, CellMap>.operator |(CellMap value, CellMap other) => value | other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<CellMap, CellMap, bool>.operator ==(CellMap left, CellMap right) => left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<CellMap, CellMap, bool>.operator !=(CellMap left, CellMap right) => left != right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IBooleanOperators<CellMap>.operator true(CellMap value) => value ? true : false;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >(CellMap left, CellMap right) => left > right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >=(CellMap left, CellMap right) => left >= right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <(CellMap left, CellMap right) => left < right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <=(CellMap left, CellMap right) => left <= right;
-
-
-	/// <summary>
-	/// Implicit cast from <see cref="CellMap"/> to <see cref="int"/>[].
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator int[](scoped in CellMap offsets) => offsets.ToArray();
 
-	/// <summary>
-	/// Implicit cast from <see cref="Span{T}"/> to <see cref="CellMap"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
+	/// <inheritdoc/>
 	public static implicit operator CellMap(scoped Span<int> offsets)
 	{
 		var result = Empty;
@@ -1760,10 +1226,7 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
-	/// <summary>
-	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="CellMap"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
+	/// <inheritdoc/>
 	public static implicit operator CellMap(scoped ReadOnlySpan<int> offsets)
 	{
 		var result = Empty;
@@ -1775,10 +1238,7 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
-	/// <summary>
-	/// Explicit cast from <see cref="int"/>[] to <see cref="CellMap"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
+	/// <inheritdoc/>
 	public static explicit operator CellMap(int[] offsets)
 	{
 		var result = Empty;
@@ -1790,14 +1250,7 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
-	/// <summary>
-	/// Explicit cast from <see cref="int"/>[] to <see cref="CellMap"/>, with cell range check.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when a certain element in the argument <paramref name="offsets"/>
-	/// is not a valid value to represent a cell offset.
-	/// </exception>
+	/// <inheritdoc/>
 	public static explicit operator checked CellMap(int[] offsets)
 	{
 		var result = Empty;
@@ -1837,17 +1290,11 @@ public unsafe partial struct CellMap :
 			? CreateByInt128(int128)
 			: throw new OverflowException($"The base {nameof(Int128)} integer is greater than '{nameof(MaxValue)}'.");
 
-	/// <summary>
-	/// Explicit cast from <see cref="CellMap"/> to <see cref="Span{T}"/> of element type <see cref="int"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Span<int>(scoped in CellMap offsets) => offsets.Offsets;
 
-	/// <summary>
-	/// Explicit cast from <see cref="CellMap"/> to <see cref="ReadOnlySpan{T}"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator ReadOnlySpan<int>(scoped in CellMap offsets) => offsets.Offsets;
 }
