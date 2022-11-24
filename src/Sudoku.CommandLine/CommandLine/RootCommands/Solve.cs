@@ -57,6 +57,7 @@ public sealed class Solve : IExecutable
 						throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
 					}
 
+#if false
 					// .NET Runtime issue: If the type does not implement 'IFormattable',
 					// the format string is meaningless to be used in the interpolated string holes.
 					// In this invocation, type 'Grid' does not implement the type 'IFormattable',
@@ -64,6 +65,7 @@ public sealed class Solve : IExecutable
 					// to get the same result as 'grid.ToString("#")'; on contrast, 'grid.ToString("#")'
 					// as expected will be replaced with 'grid.ToString()'.
 					// Same reason for the below output case.
+#endif
 					var uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))?.GetValue(null);
 					await Terminal.WriteLineAsync(
 						string.Format(
