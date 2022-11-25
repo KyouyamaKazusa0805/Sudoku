@@ -777,11 +777,11 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Clear() => _low = _high = _count = 0;
+	public void Clear() => this = default;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CellMap>.ExceptWith(IEnumerable<int> other) => this -= Empty + other;
+	void IStatusMapBase<CellMap>.ExceptWith(IEnumerable<int> other) => this -= other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -789,15 +789,11 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CellMap>.SymmetricExceptWith(IEnumerable<int> other)
-	{
-		Clear();
-		this |= (this - (Empty + other)) | (Empty + other - this);
-	}
+	void IStatusMapBase<CellMap>.SymmetricExceptWith(IEnumerable<int> other) => this = (this - other) | (Empty + other - this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CellMap>.UnionWith(IEnumerable<int> other) => this |= Empty + other;
+	void IStatusMapBase<CellMap>.UnionWith(IEnumerable<int> other) => this += other;
 
 
 	/// <inheritdoc/>
