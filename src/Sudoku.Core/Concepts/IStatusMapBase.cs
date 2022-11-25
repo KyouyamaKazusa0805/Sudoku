@@ -278,6 +278,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	bool IEquatable<TSelf>.Equals(TSelf other) => Equals(other);
 
+	#region Not fully tested
 	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	new sealed bool IsProperSubsetOf(IEnumerable<int> other)
@@ -313,6 +314,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <inheritdoc cref="ISet{T}.SetEquals(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	new sealed bool SetEquals(IEnumerable<int> other) => (TSelf)this == TSelf.Empty + other;
+	#endregion
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
