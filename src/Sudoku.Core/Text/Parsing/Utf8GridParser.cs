@@ -119,7 +119,7 @@ public unsafe ref struct Utf8GridParser
 				return grid;
 			}
 		}
-		else if (ParsingValue.Contains("-+-"u8))
+		else if (ParsingValue.Contains("-+-"U8))
 		{
 			foreach (var parseMethod in MultilineParseFunctions)
 			{
@@ -181,7 +181,7 @@ public unsafe ref struct Utf8GridParser
 	/// <returns>The result.</returns>
 	private static Grid OnParsingSimpleMultilineGrid(ref Utf8GridParser parser)
 	{
-		var matches = parser.ParsingValue.MatchAll("""(\+?\d|\.)"""u8);
+		var matches = parser.ParsingValue.MatchAll("""(\+?\d|\.)"""U8);
 		var length = matches.Length;
 		if (length is not (81 or 85))
 		{
@@ -271,7 +271,7 @@ public unsafe ref struct Utf8GridParser
 	/// <returns>The result.</returns>
 	private static Grid OnParsingOpenSudoku(ref Utf8GridParser parser)
 	{
-		if (parser.ParsingValue.Match("""\d(\|\d){242}"""u8) is not { } match)
+		if (parser.ParsingValue.Match("""\d(\|\d){242}"""U8) is not { } match)
 		{
 			return Grid.Undefined;
 		}
@@ -316,7 +316,7 @@ public unsafe ref struct Utf8GridParser
 	private static Grid OnParsingPencilMarked(ref Utf8GridParser parser)
 	{
 		// Older regular expression pattern:
-		if (parser.ParsingValue.MatchAll("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)"""u8) is not { Length: 81 } matches)
+		if (parser.ParsingValue.MatchAll("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)"""U8) is not { Length: 81 } matches)
 		{
 			return Grid.Undefined;
 		}
@@ -423,7 +423,7 @@ public unsafe ref struct Utf8GridParser
 	/// <returns>The grid.</returns>
 	private static Grid OnParsingSimpleTable(ref Utf8GridParser parser)
 	{
-		if (parser.ParsingValue.Match("""([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}"""u8) is not { } match)
+		if (parser.ParsingValue.Match("""([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}"""U8) is not { } match)
 		{
 			return Grid.Undefined;
 		}
@@ -444,8 +444,8 @@ public unsafe ref struct Utf8GridParser
 	private static Grid OnParsingSusser(ref Utf8GridParser parser, bool shortenSusser)
 	{
 		var match = shortenSusser
-			? parser.ParsingValue.Match("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}"""u8)
-			: parser.ParsingValue.Match("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?"""u8);
+			? parser.ParsingValue.Match("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}"""U8)
+			: parser.ParsingValue.Match("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?"""U8);
 
 		switch (shortenSusser)
 		{
@@ -660,7 +660,7 @@ public unsafe ref struct Utf8GridParser
 		}
 		else
 		{
-			var matches = parser.ParsingValue.MatchAll("""\d*[\-\+]?\d+"""u8);
+			var matches = parser.ParsingValue.MatchAll("""\d*[\-\+]?\d+"""U8);
 			if (matches is { Length: not 81 })
 			{
 				return Grid.Undefined;
