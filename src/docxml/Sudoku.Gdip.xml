@@ -538,6 +538,42 @@
             Indicates the default string format.
             </summary>
         </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(System.Single,System.Single)">
+            <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)"/>
+            <summary>
+            <inheritdoc path="/summary"/>
+            </summary>
+            <param name="canvasSize">The size of the drawing canvas.</param>
+            <param name="outsideOffset">The outside offset.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator)">
+            <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)"/>
+            <summary>
+            <inheritdoc path="/summary"/>
+            </summary>
+            <param name="calculator"><inheritdoc path="/param[@name='calculator']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations)">
+            <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)"/>
+            <summary>
+            <inheritdoc path="/summary"/>
+            </summary>
+            <param name="calculator"><inheritdoc path="/param[@name='calculator']"/></param>
+            <param name="preferences"><inheritdoc path="/param[@name='preferences']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance via the specified values.
+            </summary>
+            <param name="calculator">The point calculator that is used for conversion of drawing pixels.</param>
+            <param name="preferences">The user-defined preferences.</param>
+            <param name="puzzle">The puzzle.</param>
+        </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.Width">
             <summary>
             Indicates the drawing width.
@@ -588,9 +624,10 @@
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)">
             <summary>
-            To render the image.
+            To render the image onto the canvas specified as parameter <paramref name="g"/> of type <see cref="T:System.Drawing.Graphics"/>.
             </summary>
             <param name="g">The graphics instance.</param>
+            <seealso cref="T:System.Drawing.Graphics"/>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.RenderTo">
             <summary>
@@ -620,38 +657,6 @@
             <param name="id">The identifier instance.</param>
             <returns></returns>
             <exception cref="T:System.InvalidOperationException">Throws when the specified value is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.Create(System.Int32,System.Int32)">
-            <summary>
-            Creates an <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance via the specified values.
-            </summary>
-            <param name="canvasSize">The canvas size.</param>
-            <param name="canvasOffset">The canvas offset.</param>
-            <returns>The target result.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.Create(Sudoku.Gdip.PointCalculator)">
-            <summary>
-            Creates an <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance via the specified values.
-            </summary>
-            <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
-            <returns>The target result.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.Create(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations)">
-            <summary>
-            Creates an <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance via the specified values.
-            </summary>
-            <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
-            <param name="preferences">The user-defined preferences.</param>
-            <returns>The target result.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.Create(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)">
-            <summary>
-            Creates an <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance via the specified values.
-            </summary>
-            <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
-            <param name="preferences">The user-defined preferences.</param>
-            <param name="puzzle">The puzzle.</param>
-            <returns>The target result.</returns>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.GetFont(System.String,System.Single,System.Decimal,System.Drawing.FontStyle)">
             <summary>
@@ -737,10 +742,16 @@
             Provides a serial of methods for a point calculator that interacts with the UI projects.
             </summary>
         </member>
+        <member name="M:Sudoku.Gdip.PointCalculator.#ctor(System.Single,System.Single)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance via the specified picture size and offset value.
+            </summary>
+            <param name="size">The size of the picture.</param>
+            <param name="offset">The offset.</param>
+        </member>
         <member name="M:Sudoku.Gdip.PointCalculator.#ctor(System.Drawing.SizeF@,System.Single)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance with
-            the specified picture size instance of type <see cref="T:System.Drawing.SizeF"/>, and an offset.
+            Initializes a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance with the specified picture size instance and offset value.
             </summary>
             <param name="size">The <see cref="T:System.Drawing.SizeF"/> instance.</param>
             <param name="offset">
@@ -874,14 +885,6 @@
             <param name="cell">The cell offset.</param>
             <param name="digit">The digit.</param>
             <returns>The mouse point.</returns>
-        </member>
-        <member name="M:Sudoku.Gdip.PointCalculator.Create(System.Single,System.Single)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance with the specified size, and the offset.
-            </summary>
-            <param name="size">The size.</param>
-            <param name="offset">The offset. The default value is <c>10</c>.</param>
-            <returns>An <see cref="T:Sudoku.Gdip.PointCalculator"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Gdip.TextRenderingData">
             <summary>

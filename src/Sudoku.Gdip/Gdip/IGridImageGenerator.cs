@@ -12,6 +12,61 @@ public sealed partial class GridImageGenerator
 
 
 	/// <summary>
+	/// Initializes a <see cref="GridImageGenerator"/> instance.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public GridImageGenerator()
+	{
+	}
+
+	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations, in Grid)"/>
+	/// <summary>
+	/// <inheritdoc path="/summary"/>
+	/// </summary>
+	/// <param name="canvasSize">The size of the drawing canvas.</param>
+	/// <param name="outsideOffset">The outside offset.</param>
+	[SetsRequiredMembers]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public GridImageGenerator(float canvasSize, float outsideOffset) : this(new(canvasSize, outsideOffset))
+	{
+	}
+
+	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations, in Grid)"/>
+	/// <summary>
+	/// <inheritdoc path="/summary"/>
+	/// </summary>
+	/// <param name="calculator"><inheritdoc path="/param[@name='calculator']"/></param>
+	[SetsRequiredMembers]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public GridImageGenerator(PointCalculator calculator) : this(calculator, DrawingConfigurations.Instance, Grid.Empty)
+	{
+	}
+
+	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations, in Grid)"/>
+	/// <summary>
+	/// <inheritdoc path="/summary"/>
+	/// </summary>
+	/// <param name="calculator"><inheritdoc path="/param[@name='calculator']"/></param>
+	/// <param name="preferences"><inheritdoc path="/param[@name='preferences']"/></param>
+	[SetsRequiredMembers]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public GridImageGenerator(PointCalculator calculator, DrawingConfigurations preferences) : this(calculator, preferences, Grid.Empty)
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="GridImageGenerator"/> instance via the specified values.
+	/// </summary>
+	/// <param name="calculator">The point calculator that is used for conversion of drawing pixels.</param>
+	/// <param name="preferences">The user-defined preferences.</param>
+	/// <param name="puzzle">The puzzle.</param>
+	[SetsRequiredMembers]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public GridImageGenerator(PointCalculator calculator, DrawingConfigurations preferences, scoped in Grid puzzle)
+		=> (Calculator, Preferences, Puzzle) = (calculator, preferences, puzzle);
+
+
+	/// <summary>
 	/// Indicates the drawing width.
 	/// </summary>
 	public float Width => Calculator.Width;
@@ -61,9 +116,10 @@ public sealed partial class GridImageGenerator
 
 
 	/// <summary>
-	/// To render the image.
+	/// To render the image onto the canvas specified as parameter <paramref name="g"/> of type <see cref="Graphics"/>.
 	/// </summary>
 	/// <param name="g">The graphics instance.</param>
+	/// <seealso cref="Graphics"/>
 	public void RenderTo(Graphics g)
 	{
 		DrawBackground(g);
@@ -153,7 +209,7 @@ public sealed partial class GridImageGenerator
 	private Color GetColor(Identifier id)
 		=> id switch
 		{
-			{ Mode: IdentifierColorMode.Raw, A: var alpha, R: var red, G: var green, B: var blue } => Color.FromArgb(alpha, red, green, blue),
+			{ Mode: IdentifierColorMode.Raw, A: var a, R: var r, G: var g, B: var b } => Color.FromArgb(a, r, g, b),
 			{ Mode: IdentifierColorMode.Id } when GetValueById(id, out var color) => Color.FromArgb(64, color),
 			{ Mode: IdentifierColorMode.Named, NamedKind: var namedKind } => namedKind switch
 			{
@@ -169,45 +225,6 @@ public sealed partial class GridImageGenerator
 			_ => throw new InvalidOperationException("Such identifier instance contains invalid value.")
 		};
 
-
-	/// <summary>
-	/// Creates an <see cref="GridImageGenerator"/> instance via the specified values.
-	/// </summary>
-	/// <param name="canvasSize">The canvas size.</param>
-	/// <param name="canvasOffset">The canvas offset.</param>
-	/// <returns>The target result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static GridImageGenerator Create(int canvasSize, int canvasOffset)
-		=> Create(PointCalculator.Create(canvasSize, canvasOffset), DrawingConfigurations.Instance, Grid.Empty);
-
-	/// <summary>
-	/// Creates an <see cref="GridImageGenerator"/> instance via the specified values.
-	/// </summary>
-	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
-	/// <returns>The target result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static GridImageGenerator Create(PointCalculator calculator) => Create(calculator, DrawingConfigurations.Instance, Grid.Empty);
-
-	/// <summary>
-	/// Creates an <see cref="GridImageGenerator"/> instance via the specified values.
-	/// </summary>
-	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
-	/// <param name="preferences">The user-defined preferences.</param>
-	/// <returns>The target result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static GridImageGenerator Create(PointCalculator calculator, DrawingConfigurations preferences)
-		=> Create(calculator, preferences, Grid.Empty);
-
-	/// <summary>
-	/// Creates an <see cref="GridImageGenerator"/> instance via the specified values.
-	/// </summary>
-	/// <param name="calculator">The point calculator instance to calculate the points used by painter.</param>
-	/// <param name="preferences">The user-defined preferences.</param>
-	/// <param name="puzzle">The puzzle.</param>
-	/// <returns>The target result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static GridImageGenerator Create(PointCalculator calculator, DrawingConfigurations preferences, scoped in Grid puzzle)
-		=> new() { Calculator = calculator, Preferences = preferences, Puzzle = puzzle };
 
 	/// <summary>
 	/// Get the font via the specified name, size and the scale.
@@ -320,12 +337,13 @@ partial class GridImageGenerator
 					// Draw values.
 					var originalPoint = calc.GetMousePointInCenter(cell);
 					var point = originalPoint with { Y = originalPoint.Y + vOffsetValue };
-					g.DrawValue(
-						puzzle[cell] + 1, status == CellStatus.Given ? fGiven : fModifiable,
-						status == CellStatus.Given ? bGiven : bModifiable, point, DefaultStringFormat
-					);
+					g.DrawValue(puzzle[cell] + 1, f(status, fGiven, fModifiable), f(status, bGiven, bModifiable), point, DefaultStringFormat);
 
 					break;
+
+
+					[MethodImpl(MethodImplOptions.AggressiveInlining)]
+					static T f<T>(CellStatus status, T given, T modifiable) => status == CellStatus.Given ? given : modifiable;
 				}
 			}
 		}

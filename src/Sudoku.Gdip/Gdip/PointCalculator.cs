@@ -6,8 +6,17 @@
 public sealed class PointCalculator
 {
 	/// <summary>
-	/// Initializes a <see cref="PointCalculator"/> instance with
-	/// the specified picture size instance of type <see cref="SizeF"/>, and an offset.
+	/// Initializes a <see cref="PointCalculator"/> instance via the specified picture size and offset value.
+	/// </summary>
+	/// <param name="size">The size of the picture.</param>
+	/// <param name="offset">The offset.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public PointCalculator(float size, float offset = DefaultOffset) : this(new SizeF(size, size), offset)
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="PointCalculator"/> instance with the specified picture size instance and offset value.
 	/// </summary>
 	/// <param name="size">The <see cref="SizeF"/> instance.</param>
 	/// <param name="offset">
@@ -16,7 +25,7 @@ public sealed class PointCalculator
 	/// in <see cref="DefaultOffset"/>
 	/// </param>
 	/// <seealso cref="DefaultOffset"/>
-	private PointCalculator(scoped in SizeF size, float offset = DefaultOffset)
+	private PointCalculator(scoped in SizeF size, float offset)
 	{
 		// Initialize sizes.
 		ControlSize = size;
@@ -285,14 +294,4 @@ public sealed class PointCalculator
 		var ((cw, ch), (x, y)) = (CandidateSize, GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3]);
 		return new(x + cw / 2, y + ch / 2);
 	}
-
-
-	/// <summary>
-	/// Creates a <see cref="PointCalculator"/> instance with the specified size, and the offset.
-	/// </summary>
-	/// <param name="size">The size.</param>
-	/// <param name="offset">The offset. The default value is <c>10</c>.</param>
-	/// <returns>An <see cref="PointCalculator"/> instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static PointCalculator Create(float size, float offset = 10) => new(new(size, size), offset);
 }
