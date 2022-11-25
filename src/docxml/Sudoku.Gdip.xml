@@ -513,10 +513,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Gdip.DrawingConfigurations.CoverBy(Sudoku.Gdip.DrawingConfigurations)">
-            <summary>
-            Copies and covers the current instance via the newer instance.
-            </summary>
-            <param name="newPreferences">The newer instance to copy.</param>
+            <inheritdoc cref="M:System.Reflection.ReflectionCopying.ReflectionCover``1(``0,``0)"/>
         </member>
         <member name="T:Sudoku.Gdip.GridImageGenerator">
             <summary>

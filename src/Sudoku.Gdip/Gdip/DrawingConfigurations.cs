@@ -189,34 +189,10 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 
 
 	/// <inheritdoc/>
-	public DrawingConfigurations Clone()
-	{
-		var instance = new DrawingConfigurations();
-		foreach (var propertyInfo in typeof(DrawingConfigurations).GetProperties(BindingFlags.Instance | BindingFlags.Public))
-		{
-			if (propertyInfo is { CanRead: true, CanWrite: true })
-			{
-				var originalValue = propertyInfo.GetValue(this);
-				propertyInfo.SetValue(instance, originalValue);
-			}
-		}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public DrawingConfigurations Clone() => this.ReflectionClone();
 
-		return instance;
-	}
-
-	/// <summary>
-	/// Copies and covers the current instance via the newer instance.
-	/// </summary>
-	/// <param name="newPreferences">The newer instance to copy.</param>
-	public void CoverBy(DrawingConfigurations newPreferences)
-	{
-		foreach (var propertyInfo in typeof(DrawingConfigurations).GetProperties(BindingFlags.Instance | BindingFlags.Public))
-		{
-			if (propertyInfo is { CanRead: true, CanWrite: true })
-			{
-				var originalValue = propertyInfo.GetValue(newPreferences);
-				propertyInfo.SetValue(this, originalValue);
-			}
-		}
-	}
+	/// <inheritdoc cref="ReflectionCopying.ReflectionCover{T}(T, T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void CoverBy(DrawingConfigurations @new) => this.ReflectionCover(@new);
 }

@@ -7,6 +7,7 @@ global using System.Drawing;
 global using System.IO;
 global using System.Linq;
 global using System.Reactive.Linq;
+global using System.Reflection;
 global using System.Resources;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.Messages;

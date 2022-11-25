@@ -2047,6 +2047,27 @@
             <param name="genericAttributeType">The generic attribute type.</param>
             <returns>The types of the generic type arguments.</returns>
         </member>
+        <member name="T:System.Reflection.ReflectionCopying">
+            <summary>
+            Provides a way to simplify the copying using reflection on cloneable types having implemented <see cref="T:System.ICloneable`1"/>.
+            </summary>
+            <seealso cref="T:System.ICloneable`1"/>
+        </member>
+        <member name="M:System.Reflection.ReflectionCopying.ReflectionClone``1(``0)">
+            <summary>
+            Defines a default clone method using reflection to copy all auto properties.
+            </summary>
+            <typeparam name="T">The type of the cloneable object. It must contain a parameterless constructor.</typeparam>
+            <param name="this">The type of the instance to copy.</param>
+            <returns>The copied result. The result has totally same value as <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:System.Reflection.ReflectionCopying.ReflectionCover``1(``0,``0)">
+            <summary>
+            Copies and covers the current instance via the newer instance to copy all auto properties.
+            </summary>
+            <param name="this">The current instance to copy.</param>
+            <param name="new">The newer instance to copy.</param>
+        </member>
         <member name="T:System.DelegateExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Delegate"/>.
