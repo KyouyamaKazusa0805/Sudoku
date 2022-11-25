@@ -576,7 +576,8 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	static abstract TSelf operator -(scoped in TSelf left, scoped in TSelf right);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static virtual TSelf operator -(scoped in TSelf left, scoped in TSelf right) => left & ~right;
 
 	/// <summary>
 	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
