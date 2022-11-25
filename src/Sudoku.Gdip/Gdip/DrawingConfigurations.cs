@@ -16,6 +16,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public bool ShowLightHouse { get; set; } = true;
 
 	/// <summary>
+	/// Indicates whether border bars will fully overlaps the shared grid line while rendering.
+	/// </summary>
+	public bool BorderBarFullyOverlapsGridLine { get; set; } = false;
+
+	/// <summary>
 	/// Indicates the scale of values.
 	/// </summary>
 	public decimal ValueScale { get; set; } = .9M;
@@ -36,9 +41,14 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public float BlockLineWidth { get; set; } = 3F;
 
 	/// <summary>
+	/// Indicates the border bar width.
+	/// </summary>
+	public float BorderBarWidth { get; set; } = 6F;
+
+	/// <summary>
 	/// Indicates the footer text font size.
 	/// </summary>
-	public float FooterTextFontSize { get; set; } = 24;
+	public float FooterTextFontSize { get; set; } = 24F;
 
 	/// <summary>
 	/// Indicates the font of given digits to render.

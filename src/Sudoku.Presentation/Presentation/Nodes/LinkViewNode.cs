@@ -43,8 +43,7 @@ public sealed partial class LinkViewNode : ViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is LinkViewNode comparer
-		&& Start == comparer.Start && End == comparer.End && Inference == comparer.Inference;
+		=> other is LinkViewNode comparer && Start == comparer.Start && End == comparer.End && Inference == comparer.Inference;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Start), nameof(End))]
 	public override partial int GetHashCode();

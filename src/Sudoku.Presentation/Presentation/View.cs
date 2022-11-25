@@ -57,6 +57,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<UnknownViewNode> UnknownNodes => _nodes.OfType<UnknownViewNode>();
 
+	/// <summary>
+	/// Indicates the border bar nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<BorderBarViewNode> BorderBarNodes => _nodes.OfType<BorderBarViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

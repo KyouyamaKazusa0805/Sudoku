@@ -354,6 +354,11 @@
             Indicates whether the grid painter will use new algorithm to render a house (lighter).
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.BorderBarFullyOverlapsGridLine">
+            <summary>
+            Indicates whether border bars will fully overlaps the shared grid line while rendering.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.ValueScale">
             <summary>
             Indicates the scale of values.
@@ -372,6 +377,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.BlockLineWidth">
             <summary>
             Indicates the block line width of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.BorderBarWidth">
+            <summary>
+            Indicates the border bar width.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFontSize">
@@ -724,6 +734,12 @@
             </summary>
             <param name="g">The graphics.</param>
         </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBorderBar(System.Drawing.Graphics)">
+            <summary>
+            Draw border bars.
+            </summary>
+            <param name="g">The graphics.</param>
+        </member>
         <member name="T:Sudoku.Gdip.PointCalculator">
             <summary>
             Provides a serial of methods for a point calculator that interacts with the UI projects.
@@ -857,6 +873,25 @@
             </summary>
             <param name="house">The house.</param>
             <returns>The anchor points.</returns>
+        </member>
+        <member name="M:Sudoku.Gdip.PointCalculator.GetSharedLinePosition(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Gets two points specifies and represents a line as shared border grid lines between two adjacent cells.
+            </summary>
+            <param name="cell1">The first cell.</param>
+            <param name="cell2">The second cell that is adjacent with <paramref name="cell1"/> by row or column.</param>
+            <param name="borderBarFullyOverlapsGridLine">
+            <inheritdoc cref="P:Sudoku.Gdip.DrawingConfigurations.BorderBarFullyOverlapsGridLine" path="/summary"/>
+            </param>
+            <returns>The two points representing with a line.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two cells <paramref name="cell1"/> and <paramref name="cell2"/> holds invalid value:
+            <list type="number">
+            <item><paramref name="cell1"/> is greater than <paramref name="cell2"/>.</item>
+            <item><paramref name="cell1"/> is not adjacent with <paramref name="cell2"/>.</item>
+            <item><paramref name="cell1"/> or <paramref name="cell2"/> is below 0 or greater than 80.</item>
+            </list>
+            </exception>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetMousePointInCenter(System.Int32)">
             <summary>

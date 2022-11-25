@@ -700,6 +700,50 @@
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode">
+            <summary>
+            Defines a view node that displays as a bar on shared border line of two adjacent cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode"/> instance via the identifier and two adjacent cells.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell1">The cell 1.</param>
+            <param name="cell2">The cell 2.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.IsRow">
+            <summary>
+            Indicates whether two cells <see cref="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell1"/> and <see cref="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell2"/> are adjacent by row.
+            If <see langword="true"/>, row; otherwise, column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell1">
+            <summary>
+            Indicates the first cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell2">
+            <summary>
+            Indicates the second cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.UnknownViewNode">
             <summary>
             Defines a view node that highlights for a unknown.
@@ -1140,6 +1184,11 @@
         <member name="P:Sudoku.Presentation.View.UnknownNodes">
             <summary>
             Indicates the unknown nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.BorderBarNodes">
+            <summary>
+            Indicates the border bar nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

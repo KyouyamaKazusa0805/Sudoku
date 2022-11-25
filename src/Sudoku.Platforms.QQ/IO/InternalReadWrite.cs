@@ -13,7 +13,7 @@ internal static class InternalReadWrite
 	/// <returns>
 	/// The converted data. The result value of <see langword="await"/> expression has a same nullability
 	/// with argument <paramref name="default"/>, which means if <paramref name="default"/> is <see langword="null"/>,
-	/// the expression <c>await PlayerReadWrite.ReadValueAsync(...)</c> will also be <see langword="null"/>.
+	/// the expression <c>await InternalReadWrite.ReadValueAsync(...)</c> will also be <see langword="null"/>.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.Synchronized)]
 	[return: NotNullIfNotNull(nameof(@default))]

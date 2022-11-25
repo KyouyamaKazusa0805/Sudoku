@@ -251,6 +251,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawHouses(Graphics g);
 	partial void DrawLinks(Graphics g);
 	partial void DrawUnknownValue(Graphics g);
+	partial void DrawBorderBar(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -361,11 +362,15 @@ partial class GridImageGenerator
 			return;
 		}
 
+		// Normal nodes
 		DrawHouses(g);
 		DrawCells(g);
 		DrawCandidates(g);
 		DrawLinks(g);
 		DrawUnknownValue(g);
+
+		// Shapes
+		DrawBorderBar(g);
 	}
 
 	/// <summary>
@@ -885,6 +890,38 @@ partial class GridImageGenerator
 			var orginalPoint = calc.GetMousePointInCenter(cell);
 			var point = orginalPoint with { Y = orginalPoint.Y + vOffsetValue };
 			g.DrawValue(character, font, brush, point, DefaultStringFormat);
+		}
+	}
+
+	/// <summary>
+	/// Draw border bars.
+	/// </summary>
+	/// <param name="g">The graphics.</param>
+	partial void DrawBorderBar(Graphics g)
+	{
+		if (this is not
+			{
+				View.BorderBarNodes: var barNodes,
+				Calculator: var calc,
+				Preferences: { BorderBarWidth: var barWidth, BorderBarFullyOverlapsGridLine: var fullyOverlapping }
+			})
+		{
+			return;
+		}
+
+		foreach (var barNode in barNodes)
+		{
+			var c1 = barNode.Cell1;
+			var c2 = barNode.Cell2;
+			var isRow = barNode.IsRow;
+			var identifier = barNode.Identifier;
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			using var pen = new Pen(brush, barWidth);
+
+			// Draw bars.
+			var (start, end) = calc.GetSharedLinePosition(c1, c2, fullyOverlapping);
+			g.DrawLine(pen, start, end);
 		}
 	}
 }

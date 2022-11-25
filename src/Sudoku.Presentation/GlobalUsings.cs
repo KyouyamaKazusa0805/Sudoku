@@ -12,6 +12,7 @@ global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using Sudoku.Concepts;
 global using Sudoku.Presentation.Nodes;
+global using Sudoku.Presentation.Nodes.Shapes;
 global using Sudoku.Solving;
 global using Sudoku.Text.Serialization;
 global using static System.Text.Json.JsonSerializer;

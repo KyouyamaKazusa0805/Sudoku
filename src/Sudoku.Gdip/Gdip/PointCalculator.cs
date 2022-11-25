@@ -271,6 +271,41 @@ public sealed class PointCalculator
 		};
 
 	/// <summary>
+	/// Gets two points specifies and represents a line as shared border grid lines between two adjacent cells.
+	/// </summary>
+	/// <param name="cell1">The first cell.</param>
+	/// <param name="cell2">The second cell that is adjacent with <paramref name="cell1"/> by row or column.</param>
+	/// <param name="borderBarFullyOverlapsGridLine">
+	/// <inheritdoc cref="DrawingConfigurations.BorderBarFullyOverlapsGridLine" path="/summary"/>
+	/// </param>
+	/// <returns>The two points representing with a line.</returns>
+	/// <exception cref="ArgumentException">
+	/// Throws when two cells <paramref name="cell1"/> and <paramref name="cell2"/> holds invalid value:
+	/// <list type="number">
+	/// <item><paramref name="cell1"/> is greater than <paramref name="cell2"/>.</item>
+	/// <item><paramref name="cell1"/> is not adjacent with <paramref name="cell2"/>.</item>
+	/// <item><paramref name="cell1"/> or <paramref name="cell2"/> is below 0 or greater than 80.</item>
+	/// </list>
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public (PointF Start, PointF End) GetSharedLinePosition(int cell1, int cell2, bool borderBarFullyOverlapsGridLine)
+	{
+		Argument.ThrowIfFalse(cell1 is >= 0 and < 81, "The argument must be between 0 and 80.");
+		Argument.ThrowIfFalse(cell2 is >= 0 and < 81, "The argument must be between 0 and 80.");
+		Argument.ThrowIfFalse(cell1 < cell2, $"The argument '{nameof(cell1)}' must be lower than another argument '{nameof(cell2)}'.");
+		Argument.ThrowIfFalse(cell2 - cell1 is 1 or 9, $"Two cells '{nameof(cell1)}' and '{nameof(cell2)}' must be adjacent with each other.");
+
+		var ((x, y), (cw, ch)) = GetMouseRectangleViaCell(cell2);
+		return (cell2 - cell1 == 1, borderBarFullyOverlapsGridLine) switch
+		{
+			(true, false) => (new(x, y + ch * .2F), new(x, y + ch * .8F)),
+			(false, false) => (new(x + cw * .2F, y), new(x + cw * .8F, y)),
+			(true, true) => (new(x, y), new(x, y + ch)),
+			(false, true) => (new(x, y), new(x + cw, y))
+		};
+	}
+
+	/// <summary>
 	/// Get the mouse point of the center of a cell via its offset.
 	/// </summary>
 	/// <param name="cell">The cell offset.</param>
