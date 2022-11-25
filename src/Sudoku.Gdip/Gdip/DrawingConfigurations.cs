@@ -6,21 +6,6 @@
 public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 {
 	/// <summary>
-	/// Initializes a <see cref="DrawingConfigurations"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private DrawingConfigurations()
-	{
-	}
-
-
-	/// <summary>
-	/// Indicates the singleton instance.
-	/// </summary>
-	public static DrawingConfigurations Instance => new();
-
-
-	/// <summary>
 	/// Indicates whether the form shows candidates.
 	/// </summary>
 	public bool ShowCandidates { get; set; } = true;
@@ -206,7 +191,7 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// <inheritdoc/>
 	public DrawingConfigurations Clone()
 	{
-		var instance = Instance;
+		var instance = new DrawingConfigurations();
 		foreach (var propertyInfo in typeof(DrawingConfigurations).GetProperties(BindingFlags.Instance | BindingFlags.Public))
 		{
 			if (propertyInfo is { CanRead: true, CanWrite: true })

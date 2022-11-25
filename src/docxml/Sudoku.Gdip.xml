@@ -344,16 +344,6 @@
             Represents with a preference type that stores the configurations on drawing.
             </summary>
         </member>
-        <member name="M:Sudoku.Gdip.DrawingConfigurations.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Gdip.DrawingConfigurations"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.Instance">
-            <summary>
-            Indicates the singleton instance.
-            </summary>
-        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.ShowCandidates">
             <summary>
             Indicates whether the form shows candidates.

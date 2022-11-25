@@ -38,7 +38,7 @@ public sealed partial class GridImageGenerator
 	/// <param name="calculator"><inheritdoc path="/param[@name='calculator']"/></param>
 	[SetsRequiredMembers]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridImageGenerator(PointCalculator calculator) : this(calculator, DrawingConfigurations.Instance, Grid.Empty)
+	public GridImageGenerator(PointCalculator calculator) : this(calculator, new(), Grid.Empty)
 	{
 	}
 
