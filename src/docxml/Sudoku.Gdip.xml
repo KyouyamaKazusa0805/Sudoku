@@ -389,6 +389,16 @@
             Indicates the footer text font size.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotBorderWidth">
+            <summary>
+            Indicates the border width of Kropki dots.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotSize">
+            <summary>
+            Indicates the size of Kropki dots.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
             <summary>
             Indicates the font of given digits to render.
@@ -737,6 +747,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBorderBar(System.Drawing.Graphics)">
             <summary>
             Draw border bars.
+            </summary>
+            <param name="g">The graphics.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawKropkiDot(System.Drawing.Graphics)">
+            <summary>
+            Draw Kropki dots.
             </summary>
             <param name="g">The graphics.</param>
         </member>

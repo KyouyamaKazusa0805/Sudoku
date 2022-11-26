@@ -51,6 +51,16 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public float FooterTextFontSize { get; set; } = 24F;
 
 	/// <summary>
+	/// Indicates the border width of Kropki dots.
+	/// </summary>
+	public float KropkiDotBorderWidth { get; set; } = 3F;
+
+	/// <summary>
+	/// Indicates the size of Kropki dots.
+	/// </summary>
+	public float KropkiDotSize { get; set; } = 6F;
+
+	/// <summary>
 	/// Indicates the font of given digits to render.
 	/// </summary>
 	public string? GivenFontName { get; set; } = "MiSans";

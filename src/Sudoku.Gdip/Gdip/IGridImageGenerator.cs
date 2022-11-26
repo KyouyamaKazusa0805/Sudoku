@@ -252,6 +252,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawLinks(Graphics g);
 	partial void DrawUnknownValue(Graphics g);
 	partial void DrawBorderBar(Graphics g);
+	partial void DrawKropkiDot(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -371,6 +372,7 @@ partial class GridImageGenerator
 
 		// Shapes
 		DrawBorderBar(g);
+		DrawKropkiDot(g);
 	}
 
 	/// <summary>
@@ -922,6 +924,40 @@ partial class GridImageGenerator
 			// Draw bars.
 			var (start, end) = calc.GetSharedLinePosition(c1, c2, fullyOverlapping);
 			g.DrawLine(pen, start, end);
+		}
+	}
+
+	/// <summary>
+	/// Draw Kropki dots.
+	/// </summary>
+	/// <param name="g">The graphics.</param>
+	partial void DrawKropkiDot(Graphics g)
+	{
+		if (this is not
+			{
+				View.KropkiDotNodes: var kropkiNodes,
+				Calculator: var calc,
+				Preferences: { KropkiDotBorderWidth: var borderWidth, KropkiDotSize: var dotSize, BackgroundColor: var backColor }
+			})
+		{
+			return;
+		}
+
+		foreach (var kropkiNode in kropkiNodes)
+		{
+			var c1 = kropkiNode.Cell1;
+			var c2 = kropkiNode.Cell2;
+			var isSolid = kropkiNode.IsSolid;
+			var identifier = kropkiNode.Identifier;
+
+			using var solidBrush = new SolidBrush(GetColor(identifier));
+			using var hollowBrush = new SolidBrush(backColor);
+			using var pen = new Pen(solidBrush, borderWidth);
+
+			var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
+			var (centerX, centerY) = ((x1 + x2) / 2 - dotSize / 2, (y1 + y2) / 2 - dotSize / 2);
+			g.DrawEllipse(pen, centerX, centerY, dotSize, dotSize);
+			g.FillEllipse(isSolid ? solidBrush : hollowBrush, centerX, centerY, dotSize, dotSize);
 		}
 	}
 }

@@ -62,6 +62,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<BorderBarViewNode> BorderBarNodes => _nodes.OfType<BorderBarViewNode>();
 
+	/// <summary>
+	/// Indicates the Kropki dot nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<KropkiDotViewNode> KropkiDotNodes => _nodes.OfType<KropkiDotViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

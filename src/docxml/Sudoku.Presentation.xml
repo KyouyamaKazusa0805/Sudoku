@@ -744,6 +744,52 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode">
+            <summary>
+            Represents with a Kropki dot view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode"/> instance via the identifier and two adjacent cells.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell1">The cell 1.</param>
+            <param name="cell2">The cell 2.</param>
+            <param name="isSolid">Indicates whether the dot is solid.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.IsRow">
+            <summary>
+            Indicates whether two cells <see cref="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Cell1"/> and <see cref="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Cell2"/> are adjacent by row.
+            If <see langword="true"/>, row; otherwise, column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.IsSolid">
+            <summary>
+            Indicates whether the dot will be displayed as solid one.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Cell1">
+            <inheritdoc cref="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell1"/>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Cell2">
+            <inheritdoc cref="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell2"/>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.UnknownViewNode">
             <summary>
             Defines a view node that highlights for a unknown.
@@ -1189,6 +1235,11 @@
         <member name="P:Sudoku.Presentation.View.BorderBarNodes">
             <summary>
             Indicates the border bar nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.KropkiDotNodes">
+            <summary>
+            Indicates the Kropki dot nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">
