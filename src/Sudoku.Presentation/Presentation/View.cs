@@ -67,6 +67,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<KropkiDotViewNode> KropkiDotNodes => _nodes.OfType<KropkiDotViewNode>();
 
+	/// <summary>
+	/// Indicates the greater-than sign nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<GreaterThanSignViewNode> GreaterThanNodes => _nodes.OfType<GreaterThanSignViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

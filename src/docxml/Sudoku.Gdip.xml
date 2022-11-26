@@ -389,6 +389,11 @@
             Indicates the footer text font size.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.GreaterThanTextFontSize">
+            <summary>
+            Indicates the greater-than symbol text font size.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotBorderWidth">
             <summary>
             Indicates the border width of Kropki dots.
@@ -424,6 +429,11 @@
             Indicates the font of footer text.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.GreaterThanSignFontName">
+            <summary>
+            Indicates the font of greater-than signs.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontStyle">
             <summary>
             Indicates the font style of the givens.
@@ -447,6 +457,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFontStyle">
             <summary>
             Indicates the font style of footer text.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.GreaterThanSignFontStyle">
+            <summary>
+            Indicates the font style of greater-than signs.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenColor">
@@ -756,6 +771,12 @@
             </summary>
             <param name="g">The graphics.</param>
         </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGreaterThanSigns(System.Drawing.Graphics)">
+            <summary>
+            Draw greater-than signs.
+            </summary>
+            <param name="g">The graphics.</param>
+        </member>
         <member name="T:Sudoku.Gdip.PointCalculator">
             <summary>
             Provides a serial of methods for a point calculator that interacts with the UI projects.
@@ -897,14 +918,6 @@
             <param name="cell1">The first cell.</param>
             <param name="cell2">The second cell that is adjacent with <paramref name="cell1"/> by row or column.</param>
             <returns>The two points representing with a line.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when two cells <paramref name="cell1"/> and <paramref name="cell2"/> holds invalid value:
-            <list type="number">
-            <item><paramref name="cell1"/> is greater than <paramref name="cell2"/>.</item>
-            <item><paramref name="cell1"/> is not adjacent with <paramref name="cell2"/>.</item>
-            <item><paramref name="cell1"/> or <paramref name="cell2"/> is below 0 or greater than 80.</item>
-            </list>
-            </exception>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.GetMousePointInCenter(System.Int32)">
             <summary>
@@ -932,7 +945,6 @@
             <inheritdoc cref="P:Sudoku.Gdip.DrawingConfigurations.BorderBarFullyOverlapsGridLine" path="/summary"/>
             </param>
             <returns><inheritdoc path="/returns"/></returns>
-            <exception cref="T:System.ArgumentException"><inheritdoc path="/exception[cref='ArgumentException']"/></exception>
         </member>
         <member name="T:Sudoku.Gdip.TextRenderingData">
             <summary>

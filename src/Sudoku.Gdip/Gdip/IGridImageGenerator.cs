@@ -253,6 +253,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawUnknownValue(Graphics g);
 	partial void DrawBorderBar(Graphics g);
 	partial void DrawKropkiDot(Graphics g);
+	partial void DrawGreaterThanSigns(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -373,6 +374,7 @@ partial class GridImageGenerator
 		// Shapes
 		DrawBorderBar(g);
 		DrawKropkiDot(g);
+		DrawGreaterThanSigns(g);
 	}
 
 	/// <summary>
@@ -961,6 +963,75 @@ partial class GridImageGenerator
 			// Please note that method 'DrawEllipse' and 'FillEllipse' starts with the point at top-left position, rather than the center.
 			g.DrawEllipse(pen, rect);
 			g.FillEllipse(isSolid ? solidBrush : hollowBrush, rect);
+		}
+	}
+
+	/// <summary>
+	/// Draw greater-than signs.
+	/// </summary>
+	/// <param name="g">The graphics.</param>
+	partial void DrawGreaterThanSigns(Graphics g)
+	{
+		if (this is not
+			{
+				View.GreaterThanNodes: var greaterThanNodes,
+				Calculator: var calc,
+				Preferences:
+				{
+					GreaterThanSignFontName: var fontName,
+					GreaterThanSignFontStyle: var fontStyle,
+					GreaterThanTextFontSize: var fontSize,
+					BackgroundColor: var backColor
+				}
+			})
+		{
+			return;
+		}
+
+		using var font = new Font(fontName, fontSize, fontStyle);
+		using var backBrush = new SolidBrush(backColor);
+		foreach (var greaterThanNode in greaterThanNodes)
+		{
+			if (greaterThanNode is not (var c1, var c2, var isRow) { Identifier: var identifier, IsGreaterThan: var isGreaterThan })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			var text = isGreaterThan ? ">" : "<";
+			var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
+			var centerPoint = new PointF((x1 + x2) / 2, (y1 + y2) / 2);
+
+			// Draw sign.
+			if (isRow)
+			{
+				var textSize = g.MeasureString(text, font);
+				var (tw, th) = textSize;
+				var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
+
+				g.FillRectangle(backBrush, pointX, pointY, tw, th);
+				g.DrawString(text, font, brush, centerPoint, DefaultStringFormat);
+			}
+			else
+			{
+				// If column-ish, we need rotate the text.
+				// By using 'g.Transform', we can rotate a text shape on rendering.
+				// Please note that 'Matrix' type is a reference type: be careful to assign and replace.
+
+				var matrixOriginal = g.Transform;
+				var matrixRotating = g.Transform.Clone();
+				matrixRotating.RotateAt(90, centerPoint);
+				g.Transform = matrixRotating;
+
+				var textSize = g.MeasureString(text, font);
+				var (tw, th) = textSize;
+				var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
+
+				g.FillRectangle(backBrush, pointX, pointY, tw, th);
+				g.DrawString(text, font, brush, centerPoint, DefaultStringFormat);
+
+				g.Transform = matrixOriginal;
+			}
 		}
 	}
 }

@@ -51,6 +51,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public float FooterTextFontSize { get; set; } = 24F;
 
 	/// <summary>
+	/// Indicates the greater-than symbol text font size.
+	/// </summary>
+	public float GreaterThanTextFontSize { get; set; } = 24F;
+
+	/// <summary>
 	/// Indicates the border width of Kropki dots.
 	/// </summary>
 	public float KropkiDotBorderWidth { get; set; } = 3F;
@@ -86,6 +91,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public string FooterTextFontName { get; set; } = "MiSans";
 
 	/// <summary>
+	/// Indicates the font of greater-than signs.
+	/// </summary>
+	public string GreaterThanSignFontName { get; set; } = "Consolas";
+
+	/// <summary>
 	/// Indicates the font style of the givens.
 	/// </summary>
 	public FontStyle GivenFontStyle { get; set; } = FontStyle.Regular;
@@ -109,6 +119,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// Indicates the font style of footer text.
 	/// </summary>
 	public FontStyle FooterTextFontStyle { get; set; } = FontStyle.Bold;
+
+	/// <summary>
+	/// Indicates the font style of greater-than signs.
+	/// </summary>
+	public FontStyle GreaterThanSignFontStyle { get; set; } = FontStyle.Bold;
 
 	/// <summary>
 	/// Indicates the given digits to render.

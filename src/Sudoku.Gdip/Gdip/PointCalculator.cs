@@ -276,14 +276,6 @@ public sealed class PointCalculator
 	/// <param name="cell1">The first cell.</param>
 	/// <param name="cell2">The second cell that is adjacent with <paramref name="cell1"/> by row or column.</param>
 	/// <returns>The two points representing with a line.</returns>
-	/// <exception cref="ArgumentException">
-	/// Throws when two cells <paramref name="cell1"/> and <paramref name="cell2"/> holds invalid value:
-	/// <list type="number">
-	/// <item><paramref name="cell1"/> is greater than <paramref name="cell2"/>.</item>
-	/// <item><paramref name="cell1"/> is not adjacent with <paramref name="cell2"/>.</item>
-	/// <item><paramref name="cell1"/> or <paramref name="cell2"/> is below 0 or greater than 80.</item>
-	/// </list>
-	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public (PointF Start, PointF End) GetSharedLinePosition(int cell1, int cell2) => GetSharedLinePosition(cell1, cell2, false);
 
@@ -322,15 +314,9 @@ public sealed class PointCalculator
 	/// <inheritdoc cref="DrawingConfigurations.BorderBarFullyOverlapsGridLine" path="/summary"/>
 	/// </param>
 	/// <returns><inheritdoc path="/returns"/></returns>
-	/// <exception cref="ArgumentException"><inheritdoc path="/exception[cref='ArgumentException']"/></exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal (PointF Start, PointF End) GetSharedLinePosition(int cell1, int cell2, bool borderBarFullyOverlapsGridLine)
 	{
-		Argument.ThrowIfFalse(cell1 is >= 0 and < 81, "The argument must be between 0 and 80.");
-		Argument.ThrowIfFalse(cell2 is >= 0 and < 81, "The argument must be between 0 and 80.");
-		Argument.ThrowIfFalse(cell1 < cell2, $"The argument '{nameof(cell1)}' must be lower than another argument '{nameof(cell2)}'.");
-		Argument.ThrowIfFalse(cell2 - cell1 is 1 or 9, $"Two cells '{nameof(cell1)}' and '{nameof(cell2)}' must be adjacent with each other.");
-
 		var ((x, y), (cw, ch)) = GetMouseRectangleViaCell(cell2);
 		return (cell2 - cell1 == 1, borderBarFullyOverlapsGridLine) switch
 		{

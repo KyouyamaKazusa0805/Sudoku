@@ -836,6 +836,37 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode">
+            <summary>
+            Represents with a greater-than sign view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode"/> instance via the identifier and two adjacent cells.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell1">The cell 1.</param>
+            <param name="cell2">The cell 2.</param>
+            <param name="isGreaterThan">Indicates whether the current sign is a greater-than sign.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.IsGreaterThan">
+            <summary>
+            Indicates whether the current sign is a greater-than sign.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode">
             <summary>
             Represents with a Kropki dot view node.
@@ -1328,6 +1359,11 @@
         <member name="P:Sudoku.Presentation.View.KropkiDotNodes">
             <summary>
             Indicates the Kropki dot nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.GreaterThanNodes">
+            <summary>
+            Indicates the greater-than sign nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">
