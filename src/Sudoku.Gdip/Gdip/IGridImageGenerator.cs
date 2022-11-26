@@ -913,10 +913,10 @@ partial class GridImageGenerator
 
 		foreach (var barNode in barNodes)
 		{
-			var c1 = barNode.Cell1;
-			var c2 = barNode.Cell2;
-			var isRow = barNode.IsRow;
-			var identifier = barNode.Identifier;
+			if (barNode is not (var c1, var c2) { Identifier: var identifier })
+			{
+				continue;
+			}
 
 			using var brush = new SolidBrush(GetColor(identifier));
 			using var pen = new Pen(brush, barWidth);
@@ -945,19 +945,22 @@ partial class GridImageGenerator
 
 		foreach (var kropkiNode in kropkiNodes)
 		{
-			var c1 = kropkiNode.Cell1;
-			var c2 = kropkiNode.Cell2;
-			var isSolid = kropkiNode.IsSolid;
-			var identifier = kropkiNode.Identifier;
+			if (kropkiNode is not (var c1, var c2) { Identifier: var identifier, IsSolid: var isSolid })
+			{
+				continue;
+			}
 
 			using var solidBrush = new SolidBrush(GetColor(identifier));
 			using var hollowBrush = new SolidBrush(backColor);
 			using var pen = new Pen(solidBrush, borderWidth);
 
 			var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
-			var (centerX, centerY) = ((x1 + x2) / 2 - dotSize / 2, (y1 + y2) / 2 - dotSize / 2);
-			g.DrawEllipse(pen, centerX, centerY, dotSize, dotSize);
-			g.FillEllipse(isSolid ? solidBrush : hollowBrush, centerX, centerY, dotSize, dotSize);
+			var rect = new RectangleF((x1 + x2) / 2 - dotSize / 2, (y1 + y2) / 2 - dotSize / 2, dotSize, dotSize);
+
+			// Draw Kropki dots.
+			// Please note that method 'DrawEllipse' and 'FillEllipse' starts with the point at top-left position, rather than the center.
+			g.DrawEllipse(pen, rect);
+			g.FillEllipse(isSolid ? solidBrush : hollowBrush, rect);
 		}
 	}
 }

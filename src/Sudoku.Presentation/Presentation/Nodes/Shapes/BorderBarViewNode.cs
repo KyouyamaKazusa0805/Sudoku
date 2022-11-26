@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that displays as a bar on shared border line of two adjacent cells.
 /// </summary>
-public sealed partial class BorderBarViewNode : ViewNode
+public sealed partial class BorderBarViewNode : AdjacentCellMarkViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="BorderBarViewNode"/> instance via the identifier and two adjacent cells.
@@ -12,35 +12,9 @@ public sealed partial class BorderBarViewNode : ViewNode
 	/// <param name="cell1">The cell 1.</param>
 	/// <param name="cell2">The cell 2.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public BorderBarViewNode(Identifier identifier, int cell1, int cell2) : base(identifier)
+	public BorderBarViewNode(Identifier identifier, int cell1, int cell2) : base(identifier, cell1, cell2)
 	{
-		Argument.ThrowIfFalse(cell1 is >= 0 and < 81, "The argument must be between 0 and 80.");
-		Argument.ThrowIfFalse(cell2 is >= 0 and < 81, "The argument must be between 0 and 80.");
-		Argument.ThrowIfFalse(cell1 < cell2, $"The argument '{nameof(cell1)}' must be lower than another argument '{nameof(cell2)}'.");
-		Argument.ThrowIfFalse(cell2 - cell1 is 1 or 9, $"Two cells '{nameof(cell1)}' and '{nameof(cell2)}' must be adjacent with each other.");
-
-		(Cell1, Cell2) = (cell1, cell2);
 	}
-
-
-	/// <summary>
-	/// Indicates whether two cells <see cref="Cell1"/> and <see cref="Cell2"/> are adjacent by row.
-	/// If <see langword="true"/>, row; otherwise, column.
-	/// </summary>
-	public bool IsRow => Cell2 - Cell1 == 1;
-
-	/// <summary>
-	/// Indicates the first cell used.
-	/// </summary>
-	public int Cell1 { get; }
-
-	/// <summary>
-	/// Indicates the second cell used.
-	/// </summary>
-	public int Cell2 { get; }
-
-	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(BorderBarViewNode);
 
 
 	/// <inheritdoc/>
