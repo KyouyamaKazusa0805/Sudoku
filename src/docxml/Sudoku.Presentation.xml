@@ -709,9 +709,9 @@
             <summary>
             Assigns <see cref="T:Sudoku.Presentation.Identifier"/> instance and two adjacent cells' indices into the type.
             </summary>
-            <param name="identifier"></param>
-            <param name="cell1"></param>
-            <param name="cell2"></param>
+            <param name="identifier">The identifier.</param>
+            <param name="cell1">The cell 1.</param>
+            <param name="cell2">The cell 2.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.IsRow">
             <summary>

@@ -8,9 +8,9 @@ public abstract partial class AdjacentCellMarkViewNode : ShapeViewNode
 	/// <summary>
 	/// Assigns <see cref="Identifier"/> instance and two adjacent cells' indices into the type.
 	/// </summary>
-	/// <param name="identifier"></param>
-	/// <param name="cell1"></param>
-	/// <param name="cell2"></param>
+	/// <param name="identifier">The identifier.</param>
+	/// <param name="cell1">The cell 1.</param>
+	/// <param name="cell2">The cell 2.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	protected AdjacentCellMarkViewNode(Identifier identifier, int cell1, int cell2) : base(identifier) => (Cell1, Cell2) = (cell1, cell2);
 
