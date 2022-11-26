@@ -1019,7 +1019,7 @@ partial class GridImageGenerator
 				// Please note that 'Matrix' type is a reference type: be careful to assign and replace.
 
 				var matrixOriginal = g.Transform;
-				var matrixRotating = g.Transform.Clone();
+				using var matrixRotating = g.Transform.Clone();
 				matrixRotating.RotateAt(90, centerPoint);
 				g.Transform = matrixRotating;
 
