@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Variants.Verifiers</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Variants.Verifiers.ConsecutiveSudoku">
+            <summary>
+            Defines a verifier that checks for consecutive border bars.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Variants.Verifiers.ConsecutiveSudoku.#ctor(Sudoku.Concepts.Grid@,Sudoku.Presentation.Identifier)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Variants.Verifiers.ConsecutiveSudoku"/> instance via the target grid and identifier.
+            </summary>
+            <param name="targetGrid">The target grid.</param>
+            <param name="identifier">The identifier.</param>
+        </member>
+        <member name="M:Sudoku.Variants.Verifiers.ConsecutiveSudoku.Verify">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Variants.Verifiers.KropkiSudoku">
+            <summary>
+            Defines a verifier that checks for Kropki dots.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Variants.Verifiers.KropkiSudoku.#ctor(Sudoku.Concepts.Grid@,Sudoku.Presentation.Identifier)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Variants.Verifiers.KropkiSudoku"/> instance via the target grid and identifier.
+            </summary>
+            <param name="targetGrid">The target grid.</param>
+            <param name="identifier">The identifier.</param>
+        </member>
+        <member name="M:Sudoku.Variants.Verifiers.KropkiSudoku.Verify">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1">
+            <summary>
+            Defines a verifier that can get all possbible variant elements in a solution grid.
+            </summary>
+            <typeparam name="TNode">The type of the node.</typeparam>
+        </member>
+        <member name="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.#ctor(Sudoku.Concepts.Grid@,Sudoku.Presentation.Identifier)">
+            <summary>
+            Assigns <see cref="T:Sudoku.Concepts.Grid"/> instance to the target propety <see cref="P:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.TargetGrid"/> and identifier.
+            </summary>
+            <param name="targetGrid">The target grid.</param>
+            <param name="identifier">The identifier.</param>
+            <exception cref="T:System.ArgumentException">Throws when the argument <paramref name="targetGrid"/> must be solved.</exception>
+        </member>
+        <member name="P:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.TargetGrid">
+            <summary>
+            Indicates the target grid used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.Identifier">
+            <summary>
+            Indicates the identifier used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.Verify">
+            <summary>
+            Try to verify the current grid and get all possible view nodes.
+            </summary>
+            <returns>All view nodes.</returns>
+        </member>
+    </members>
+</doc>
