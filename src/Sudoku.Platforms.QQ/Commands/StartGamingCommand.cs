@@ -147,6 +147,12 @@ file sealed class StartGamingCommand : Command
 						}
 					}
 
+					if (collection.Count != targetCells.Length)
+					{
+						// Invalid case - This is a potential bug :P
+						continue;
+					}
+
 					var expEarned = ICommandDataProvider.GetEachGamingExperiencePointCanBeEarned(targetCells, l);
 					var timeLimit = ICommandDataProvider.GetGamingTimeLimit(targetCells, l);
 					return new(grid, collection.ToArray(), timeLimit, expEarned);
