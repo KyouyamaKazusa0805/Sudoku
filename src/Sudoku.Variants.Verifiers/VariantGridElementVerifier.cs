@@ -13,7 +13,7 @@ public abstract record VariantGridElementVerifier<TNode>(scoped in Grid TargetGr
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle is not solved.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ThrowIfNoSolved()
+	public void ThrowIfNotSolved()
 	{
 		if (!TargetGrid.IsSolved)
 		{
@@ -23,7 +23,9 @@ public abstract record VariantGridElementVerifier<TNode>(scoped in Grid TargetGr
 
 	/// <summary>
 	/// Try to verify the current grid and get all possible view nodes.
+	/// Put <see cref="ThrowIfNotSolved"/> into the first place if you want to verify the validity of the target puzzle.
 	/// </summary>
 	/// <returns>All view nodes.</returns>
+	/// <seealso cref="ThrowIfNotSolved"/>
 	public abstract TNode[] Verify();
 }

@@ -60,7 +60,7 @@
         <member name="P:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.Identifier">
             <summary>Indicates the identifier used.</summary>
         </member>
-        <member name="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.ThrowIfNoSolved">
+        <member name="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.ThrowIfNotSolved">
             <summary>
             To verify whether the target puzzle is solved.
             </summary>
@@ -69,8 +69,10 @@
         <member name="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.Verify">
             <summary>
             Try to verify the current grid and get all possible view nodes.
+            Put <see cref="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.ThrowIfNotSolved"/> into the first place if you want to verify the validity of the target puzzle.
             </summary>
             <returns>All view nodes.</returns>
+            <seealso cref="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.ThrowIfNotSolved"/>
         </member>
     </members>
 </doc>

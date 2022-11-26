@@ -11,6 +11,8 @@ public sealed record ConsecutiveSudoku(scoped in Grid TargetGrid, Identifier Ide
 	/// <inheritdoc/>
 	public override BorderBarViewNode[] Verify()
 	{
+		ThrowIfNotSolved();
+
 		var result = new List<BorderBarViewNode>();
 
 		for (var row = 0; row < 8; row++)

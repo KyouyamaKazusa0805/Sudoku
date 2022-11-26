@@ -11,6 +11,8 @@ public sealed record KropkiSudoku(scoped in Grid TargetGrid, Identifier Identifi
 	/// <inheritdoc/>
 	public override KropkiDotViewNode[] Verify()
 	{
+		ThrowIfNotSolved();
+
 		var result = new List<KropkiDotViewNode>();
 		var random = new Random();
 
