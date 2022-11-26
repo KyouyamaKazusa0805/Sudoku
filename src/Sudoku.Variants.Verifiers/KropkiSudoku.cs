@@ -3,19 +3,11 @@
 /// <summary>
 /// Defines a verifier that checks for Kropki dots.
 /// </summary>
-public sealed class KropkiSudoku : VariantGridElementVerifier<KropkiDotViewNode>
+/// <param name="TargetGrid"><inheritdoc path="/param[@name='TargetGrid']"/></param>
+/// <param name="Identifier"><inheritdoc path="/param[@name='Identifier']"/></param>
+public sealed record KropkiSudoku(scoped in Grid TargetGrid, Identifier Identifier) :
+	VariantGridElementVerifier<KropkiDotViewNode>(TargetGrid, Identifier)
 {
-	/// <summary>
-	/// Initializes a <see cref="KropkiSudoku"/> instance via the target grid and identifier.
-	/// </summary>
-	/// <param name="targetGrid">The target grid.</param>
-	/// <param name="identifier">The identifier.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public KropkiSudoku(scoped in Grid targetGrid, Identifier identifier) : base(targetGrid, identifier)
-	{
-	}
-
-
 	/// <inheritdoc/>
 	public override KropkiDotViewNode[] Verify()
 	{

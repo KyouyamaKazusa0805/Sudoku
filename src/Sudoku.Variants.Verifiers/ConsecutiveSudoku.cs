@@ -3,19 +3,11 @@
 /// <summary>
 /// Defines a verifier that checks for consecutive border bars.
 /// </summary>
-public sealed class ConsecutiveSudoku : VariantGridElementVerifier<BorderBarViewNode>
+/// <param name="TargetGrid"><inheritdoc path="/param[@name='TargetGrid']"/></param>
+/// <param name="Identifier"><inheritdoc path="/param[@name='Identifier']"/></param>
+public sealed record ConsecutiveSudoku(scoped in Grid TargetGrid, Identifier Identifier) :
+	VariantGridElementVerifier<BorderBarViewNode>(TargetGrid, Identifier)
 {
-	/// <summary>
-	/// Initializes a <see cref="ConsecutiveSudoku"/> instance via the target grid and identifier.
-	/// </summary>
-	/// <param name="targetGrid">The target grid.</param>
-	/// <param name="identifier">The identifier.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ConsecutiveSudoku(scoped in Grid targetGrid, Identifier identifier) : base(targetGrid, identifier)
-	{
-	}
-
-
 	/// <inheritdoc/>
 	public override BorderBarViewNode[] Verify()
 	{

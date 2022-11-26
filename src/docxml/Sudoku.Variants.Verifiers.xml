@@ -8,13 +8,15 @@
             <summary>
             Defines a verifier that checks for consecutive border bars.
             </summary>
+            <param name="TargetGrid"><inheritdoc path="/param[@name='TargetGrid']"/></param>
+            <param name="Identifier"><inheritdoc path="/param[@name='Identifier']"/></param>
         </member>
         <member name="M:Sudoku.Variants.Verifiers.ConsecutiveSudoku.#ctor(Sudoku.Concepts.Grid@,Sudoku.Presentation.Identifier)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Variants.Verifiers.ConsecutiveSudoku"/> instance via the target grid and identifier.
+            Defines a verifier that checks for consecutive border bars.
             </summary>
-            <param name="targetGrid">The target grid.</param>
-            <param name="identifier">The identifier.</param>
+            <param name="TargetGrid"><inheritdoc path="/param[@name='TargetGrid']"/></param>
+            <param name="Identifier"><inheritdoc path="/param[@name='Identifier']"/></param>
         </member>
         <member name="M:Sudoku.Variants.Verifiers.ConsecutiveSudoku.Verify">
             <inheritdoc/>
@@ -23,13 +25,15 @@
             <summary>
             Defines a verifier that checks for Kropki dots.
             </summary>
+            <param name="TargetGrid"><inheritdoc path="/param[@name='TargetGrid']"/></param>
+            <param name="Identifier"><inheritdoc path="/param[@name='Identifier']"/></param>
         </member>
         <member name="M:Sudoku.Variants.Verifiers.KropkiSudoku.#ctor(Sudoku.Concepts.Grid@,Sudoku.Presentation.Identifier)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Variants.Verifiers.KropkiSudoku"/> instance via the target grid and identifier.
+            Defines a verifier that checks for Kropki dots.
             </summary>
-            <param name="targetGrid">The target grid.</param>
-            <param name="identifier">The identifier.</param>
+            <param name="TargetGrid"><inheritdoc path="/param[@name='TargetGrid']"/></param>
+            <param name="Identifier"><inheritdoc path="/param[@name='Identifier']"/></param>
         </member>
         <member name="M:Sudoku.Variants.Verifiers.KropkiSudoku.Verify">
             <inheritdoc/>
@@ -39,24 +43,28 @@
             Defines a verifier that can get all possbible variant elements in a solution grid.
             </summary>
             <typeparam name="TNode">The type of the node.</typeparam>
+            <param name="TargetGrid">Indicates the target grid used.</param>
+            <param name="Identifier">Indicates the identifier used.</param>
         </member>
         <member name="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.#ctor(Sudoku.Concepts.Grid@,Sudoku.Presentation.Identifier)">
             <summary>
-            Assigns <see cref="T:Sudoku.Concepts.Grid"/> instance to the target propety <see cref="P:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.TargetGrid"/> and identifier.
+            Defines a verifier that can get all possbible variant elements in a solution grid.
             </summary>
-            <param name="targetGrid">The target grid.</param>
-            <param name="identifier">The identifier.</param>
-            <exception cref="T:System.ArgumentException">Throws when the argument <paramref name="targetGrid"/> must be solved.</exception>
+            <typeparam name="TNode">The type of the node.</typeparam>
+            <param name="TargetGrid">Indicates the target grid used.</param>
+            <param name="Identifier">Indicates the identifier used.</param>
         </member>
         <member name="P:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.TargetGrid">
-            <summary>
-            Indicates the target grid used.
-            </summary>
+            <summary>Indicates the target grid used.</summary>
         </member>
         <member name="P:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.Identifier">
+            <summary>Indicates the identifier used.</summary>
+        </member>
+        <member name="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.ThrowIfNoSolved">
             <summary>
-            Indicates the identifier used.
+            To verify whether the target puzzle is solved.
             </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is not solved.</exception>
         </member>
         <member name="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.Verify">
             <summary>

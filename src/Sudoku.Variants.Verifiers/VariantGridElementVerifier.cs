@@ -4,29 +4,22 @@
 /// Defines a verifier that can get all possbible variant elements in a solution grid.
 /// </summary>
 /// <typeparam name="TNode">The type of the node.</typeparam>
-public abstract class VariantGridElementVerifier<TNode> where TNode : ShapeViewNode
+/// <param name="TargetGrid">Indicates the target grid used.</param>
+/// <param name="Identifier">Indicates the identifier used.</param>
+public abstract record VariantGridElementVerifier<TNode>(scoped in Grid TargetGrid, Identifier Identifier) where TNode : ShapeViewNode
 {
 	/// <summary>
-	/// Assigns <see cref="Grid"/> instance to the target propety <see cref="TargetGrid"/> and identifier.
+	/// To verify whether the target puzzle is solved.
 	/// </summary>
-	/// <param name="targetGrid">The target grid.</param>
-	/// <param name="identifier">The identifier.</param>
-	/// <exception cref="ArgumentException">Throws when the argument <paramref name="targetGrid"/> must be solved.</exception>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle is not solved.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected VariantGridElementVerifier(scoped in Grid targetGrid, Identifier identifier)
-		=> (TargetGrid, Identifier) = (targetGrid.IsSolved ? targetGrid : throw new ArgumentException("The argument must be solved.", nameof(targetGrid)), identifier);
-
-
-	/// <summary>
-	/// Indicates the target grid used.
-	/// </summary>
-	public Grid TargetGrid { get; }
-
-	/// <summary>
-	/// Indicates the identifier used.
-	/// </summary>
-	public Identifier Identifier { get; }
-
+	public void ThrowIfNoSolved()
+	{
+		if (!TargetGrid.IsSolved)
+		{
+			throw new InvalidOperationException("The target grid must be solved.");
+		}
+	}
 
 	/// <summary>
 	/// Try to verify the current grid and get all possible view nodes.
