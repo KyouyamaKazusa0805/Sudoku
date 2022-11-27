@@ -66,6 +66,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public float NumberLabelFontSize { get; set; } = 24F;
 
 	/// <summary>
+	/// Indicates the quadruple hint text font size.
+	/// </summary>
+	public float QuadrupleHintFontSize { get; set; } = 24F;
+
+	/// <summary>
 	/// Indicates the border width of Kropki dots.
 	/// </summary>
 	public float KropkiDotBorderWidth { get; set; } = 3F;
@@ -121,6 +126,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public string NumberLabelFontName { get; set; } = "Consolas";
 
 	/// <summary>
+	/// Indicates the font of quadruple hint.
+	/// </summary>
+	public string QuadrupleHintFontName { get; set; } = "Cosolas";
+
+	/// <summary>
 	/// Indicates the font style of the givens.
 	/// </summary>
 	public FontStyle GivenFontStyle { get; set; } = FontStyle.Regular;
@@ -159,6 +169,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// Indicates the font style of number labels.
 	/// </summary>
 	public FontStyle NumberLabelFontStyle { get; set; } = FontStyle.Bold;
+
+	/// <summary>
+	/// Indicates the font style of quadruple hint.
+	/// </summary>
+	public FontStyle QuadrupleHintFontStyle { get; set; } = FontStyle.Regular;
 
 	/// <summary>
 	/// Indicates the given digits to render.

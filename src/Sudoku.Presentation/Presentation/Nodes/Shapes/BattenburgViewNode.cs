@@ -6,7 +6,7 @@
 public sealed partial class BattenburgViewNode : QuadrupleCellMarkViewNode
 {
 	/// <summary>
-	/// Initializes a <see cref="BattenburgViewNode"/> instance via the values.
+	/// Initializes a <see cref="BattenburgViewNode"/> instance via the specified values.
 	/// </summary>
 	/// <param name="identifier">The identifier.</param>
 	/// <param name="topLeftCell">The top-left cell used.</param>
@@ -16,7 +16,7 @@ public sealed partial class BattenburgViewNode : QuadrupleCellMarkViewNode
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="BattenburgViewNode"/> instance via the values.
+	/// Initializes a <see cref="BattenburgViewNode"/> instance via the specified values.
 	/// </summary>
 	/// <param name="identifier">The identifier.</param>
 	/// <param name="cells">The cells used.</param>

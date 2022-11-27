@@ -252,6 +252,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawXvSigns(Graphics g);
 	partial void DrawNumberLabels(Graphics g);
 	partial void DrawBattenburg(Graphics g);
+	partial void DrawQuadrupleHint(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -376,6 +377,7 @@ partial class GridImageGenerator
 		DrawXvSigns(g);
 		DrawNumberLabels(g);
 		DrawBattenburg(g);
+		DrawQuadrupleHint(g);
 	}
 
 	/// <summary>
@@ -1129,19 +1131,23 @@ partial class GridImageGenerator
 	/// <param name="g">The graphics.</param>
 	partial void DrawBattenburg(Graphics g)
 	{
-		if (this is not { View.BattenburgNodes: var battenburgNodes, Calculator: var calc, Preferences.BattenburgSize: var battenburgSize })
+		if (this is not
+			{
+				View.BattenburgNodes: var battenburgNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences.BattenburgSize: var battenburgSize
+			})
 		{
 			return;
 		}
 
 		foreach (var battenburgNode in battenburgNodes)
 		{
-			if (battenburgNode is not { Identifier: var identifier, Cells: [.. { Count: 3 }, var lastCell] })
+			if (battenburgNode is not { Identifier: var identifier, Cells: [.., var lastCell] })
 			{
 				continue;
 			}
 
-			var (cw, ch) = calc.CellSize;
 			var (tempX, tempY) = calc.GetMousePointInCenter(lastCell) - new SizeF(cw / 2, ch / 2);
 
 			var p1 = new PointF(tempX - battenburgSize / 2, tempY - battenburgSize / 2);
@@ -1152,7 +1158,7 @@ partial class GridImageGenerator
 			using var brush = new SolidBrush(GetColor(identifier));
 			using var pen = new Pen(Brushes.Black);
 
-			var points = (stackalloc[] { p1, p2, p3, p4 });
+			scoped var points = (stackalloc[] { p1, p2, p3, p4 });
 			for (var i = 0; i < points.Length; i++)
 			{
 				var (x, y) = points[i];
@@ -1167,6 +1173,46 @@ partial class GridImageGenerator
 					g.DrawRectangle(pen, x, y, battenburgSize / 2, battenburgSize / 2);
 				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// Draw quadruple hint.
+	/// </summary>
+	/// <param name="g">The graphics.</param>
+	partial void DrawQuadrupleHint(Graphics g)
+	{
+		if (this is not
+			{
+				View.QuadrupleHintNodes: var quadrupleHintNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences:
+				{
+					QuadrupleHintFontSize: var fontSize,
+					QuadrupleHintFontName: var fontName,
+					QuadrupleHintFontStyle: var fontStyle,
+					BackgroundColor: var backColor
+				}
+			})
+		{
+			return;
+		}
+
+		using var font = new Font(fontName, fontSize, fontStyle);
+		foreach (var quadrupleHintNode in quadrupleHintNodes)
+		{
+			if (quadrupleHintNode is not { Identifier: var identifier, Cells: [.., var lastCell], Hint: var hint })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(backColor);
+			using var textColor = new SolidBrush(GetColor(identifier));
+			var (tw, th) = g.MeasureString(hint, font);
+			var (x, y) = calc.GetMousePointInCenter(lastCell);
+
+			g.FillRectangle(brush, x - cw / 2 - tw / 2, y - ch / 2 - th / 2, tw, th);
+			g.DrawString(hint, font, textColor, x - cw / 2, y - ch / 2, DefaultStringFormat);
 		}
 	}
 }

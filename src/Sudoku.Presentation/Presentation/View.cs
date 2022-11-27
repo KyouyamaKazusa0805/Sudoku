@@ -87,6 +87,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<BattenburgViewNode> BattenburgNodes => _nodes.OfType<BattenburgViewNode>();
 
+	/// <summary>
+	/// Indicates quadruple hint nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<QuadrupleHintViewNode> QuadrupleHintNodes => _nodes.OfType<QuadrupleHintViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

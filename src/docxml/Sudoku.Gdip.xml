@@ -383,6 +383,11 @@
             Indicates the number label text font size.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleHintFontSize">
+            <summary>
+            Indicates the quadruple hint text font size.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotBorderWidth">
             <summary>
             Indicates the border width of Kropki dots.
@@ -438,6 +443,11 @@
             Indicates the font of number labels.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleHintFontName">
+            <summary>
+            Indicates the font of quadruple hint.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontStyle">
             <summary>
             Indicates the font style of the givens.
@@ -476,6 +486,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFontStyle">
             <summary>
             Indicates the font style of number labels.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleHintFontStyle">
+            <summary>
+            Indicates the font style of quadruple hint.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenColor">
@@ -797,6 +812,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBattenburg(System.Drawing.Graphics)">
             <summary>
             Draw Batternburg.
+            </summary>
+            <param name="g">The graphics.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawQuadrupleHint(System.Drawing.Graphics)">
+            <summary>
+            Draw quadruple hint.
             </summary>
             <param name="g">The graphics.</param>
         </member>

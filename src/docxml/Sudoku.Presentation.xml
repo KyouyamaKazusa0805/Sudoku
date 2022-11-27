@@ -818,14 +818,14 @@
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode"/> instance via the values.
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode"/> instance via the specified values.
             </summary>
             <param name="identifier">The identifier.</param>
             <param name="topLeftCell">The top-left cell used.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode"/> instance via the values.
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode"/> instance via the specified values.
             </summary>
             <param name="identifier">The identifier.</param>
             <param name="cells">The cells used.</param>
@@ -987,6 +987,44 @@
             <summary>
             Indicates the cells used.
             </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode">
+            <summary>
+            Defines a quadruple hint view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="topLeftCell">The top-left cell.</param>
+            <param name="s">The string.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cells">The cells used.</param>
+            <param name="s">The string.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.Hint">
+            <summary>
+            The hint string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.Clone">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode">
             <summary>
@@ -1500,6 +1538,11 @@
         <member name="P:Sudoku.Presentation.View.BattenburgNodes">
             <summary>
             Indicates battenburg nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.QuadrupleHintNodes">
+            <summary>
+            Indicates quadruple hint nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

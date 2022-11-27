@@ -22,7 +22,12 @@ public abstract class QuadrupleCellMarkViewNode : ShapeViewNode
 	/// <param name="identifier">The identifier.</param>
 	/// <param name="cells">The cells.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected QuadrupleCellMarkViewNode(Identifier identifier, scoped in CellMap cells) : base(identifier) => Cells = cells;
+	protected QuadrupleCellMarkViewNode(Identifier identifier, scoped in CellMap cells) : base(identifier)
+	{
+		Argument.ThrowIfFalse(cells.Count == 4, $"The argument '{nameof(cells)}' must hold 4 cells.");
+
+		Cells = cells;
+	}
 
 
 	/// <summary>
