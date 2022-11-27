@@ -9,16 +9,6 @@
             Defines a sudoku painter instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.ISudokuPainter.Width">
-            <summary>
-            The width.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.ISudokuPainter.Height">
-            <summary>
-            The height.
-            </summary>
-        </member>
         <member name="P:Sudoku.Drawing.ISudokuPainter.GridImageGenerator">
             <summary>
             The grid image generator.
@@ -94,23 +84,12 @@
             </summary>
             <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
         </member>
-        <member name="F:Sudoku.Drawing.SudokuPainter._generator">
-            <summary>
-            The inner image generator instance.
-            </summary>
-        </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.#ctor(System.Int32,System.Int32)">
             <summary>
             Initializes a <see cref="T:Sudoku.Drawing.SudokuPainter"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.SudokuPainter.Width">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Drawing.SudokuPainter.Height">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Drawing.SudokuPainter.Sudoku#Drawing#ISudokuPainter#GridImageGenerator">
+        <member name="P:Sudoku.Drawing.SudokuPainter.GridImageGenerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.Render">
@@ -399,6 +378,11 @@
             Indicates the XV symbol text font size.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFontSize">
+            <summary>
+            Indicates the number label text font size.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotBorderWidth">
             <summary>
             Indicates the border width of Kropki dots.
@@ -407,6 +391,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotSize">
             <summary>
             Indicates the size of Kropki dots.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.BattenburgSize">
+            <summary>
+            Indicates the size of battenburg.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
@@ -444,6 +433,11 @@
             Indicates the font of XV signs.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFontName">
+            <summary>
+            Indicates the font of number labels.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontStyle">
             <summary>
             Indicates the font style of the givens.
@@ -477,6 +471,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.XvSignFontStyle">
             <summary>
             Indicates the font style of XV signs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFontStyle">
+            <summary>
+            Indicates the font style of number labels.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenColor">
@@ -590,18 +589,9 @@
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator)">
             <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)"/>
-            <summary>
-            <inheritdoc path="/summary"/>
-            </summary>
-            <param name="calculator"><inheritdoc path="/param[@name='calculator']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations)">
             <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)"/>
-            <summary>
-            <inheritdoc path="/summary"/>
-            </summary>
-            <param name="calculator"><inheritdoc path="/param[@name='calculator']"/></param>
-            <param name="preferences"><inheritdoc path="/param[@name='preferences']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)">
             <summary>
@@ -795,6 +785,18 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawXvSigns(System.Drawing.Graphics)">
             <summary>
             Draw XV signs.
+            </summary>
+            <param name="g">The graphics.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawNumberLabels(System.Drawing.Graphics)">
+            <summary>
+            Draw number labels.
+            </summary>
+            <param name="g">The graphics.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBattenburg(System.Drawing.Graphics)">
+            <summary>
+            Draw Batternburg.
             </summary>
             <param name="g">The graphics.</param>
         </member>

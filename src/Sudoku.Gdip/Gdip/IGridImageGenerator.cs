@@ -251,6 +251,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawGreaterThanSigns(Graphics g);
 	partial void DrawXvSigns(Graphics g);
 	partial void DrawNumberLabels(Graphics g);
+	partial void DrawBattenburg(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -374,6 +375,7 @@ partial class GridImageGenerator
 		DrawGreaterThanSigns(g);
 		DrawXvSigns(g);
 		DrawNumberLabels(g);
+		DrawBattenburg(g);
 	}
 
 	/// <summary>
@@ -1118,6 +1120,53 @@ partial class GridImageGenerator
 
 			g.FillRectangle(backBrush, pointX, pointY, tw, th);
 			g.DrawString(label, font, brush, centerPoint, DefaultStringFormat);
+		}
+	}
+
+	/// <summary>
+	/// Draw Batternburg.
+	/// </summary>
+	/// <param name="g">The graphics.</param>
+	partial void DrawBattenburg(Graphics g)
+	{
+		if (this is not { View.BattenburgNodes: var battenburgNodes, Calculator: var calc, Preferences.BattenburgSize: var battenburgSize })
+		{
+			return;
+		}
+
+		foreach (var battenburgNode in battenburgNodes)
+		{
+			if (battenburgNode is not { Identifier: var identifier, Cells: [.. { Count: 3 }, var lastCell] })
+			{
+				continue;
+			}
+
+			var (cw, ch) = calc.CellSize;
+			var (tempX, tempY) = calc.GetMousePointInCenter(lastCell) - new SizeF(cw / 2, ch / 2);
+
+			var p1 = new PointF(tempX - battenburgSize / 2, tempY - battenburgSize / 2);
+			var p2 = new PointF(tempX, tempY - battenburgSize / 2);
+			var p3 = new PointF(tempX - battenburgSize / 2, tempY);
+			var p4 = new PointF(tempX, tempY);
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			using var pen = new Pen(Brushes.Black);
+
+			var points = (stackalloc[] { p1, p2, p3, p4 });
+			for (var i = 0; i < points.Length; i++)
+			{
+				var (x, y) = points[i];
+				var shouldBeFilled = i is 0 or 3;
+				if (shouldBeFilled)
+				{
+					g.DrawRectangle(pen, x, y, battenburgSize / 2, battenburgSize / 2);
+					g.FillRectangle(brush, x, y, battenburgSize / 2, battenburgSize / 2);
+				}
+				else
+				{
+					g.DrawRectangle(pen, x, y, battenburgSize / 2, battenburgSize / 2);
+				}
+			}
 		}
 	}
 }

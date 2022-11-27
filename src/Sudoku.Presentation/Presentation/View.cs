@@ -82,6 +82,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<NumberLabelViewNode> NumberLabelNodes => _nodes.OfType<NumberLabelViewNode>();
 
+	/// <summary>
+	/// Indicates battenburg nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<BattenburgViewNode> BattenburgNodes => _nodes.OfType<BattenburgViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

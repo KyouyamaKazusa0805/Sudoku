@@ -811,6 +811,37 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode">
+            <summary>
+            Defines a battenburg view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode"/> instance via the values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="topLeftCell">The top-left cell used.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode"/> instance via the values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cells">The cells used.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode">
             <summary>
             Defines a view node that displays as a bar on shared border line of two adjacent cells.
@@ -932,6 +963,23 @@
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode">
+            <summary>
+            Defines a quadruple cell mark view node that lies on a 2x2 squared cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Assigns properties with target values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cells">The cells.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode">
             <summary>
@@ -1440,6 +1488,11 @@
         <member name="P:Sudoku.Presentation.View.NumberLabelNodes">
             <summary>
             Indicates number label nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.BattenburgNodes">
+            <summary>
+            Indicates battenburg nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

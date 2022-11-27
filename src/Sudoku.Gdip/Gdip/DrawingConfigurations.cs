@@ -76,6 +76,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public float KropkiDotSize { get; set; } = 6F;
 
 	/// <summary>
+	/// Indicates the size of battenburg.
+	/// </summary>
+	public float BattenburgSize { get; set; } = 6F;
+
+	/// <summary>
 	/// Indicates the font of given digits to render.
 	/// </summary>
 	public string? GivenFontName { get; set; } = "MiSans";
