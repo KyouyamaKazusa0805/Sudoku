@@ -6,16 +6,6 @@
 public interface ISudokuPainter : ISudokuPainterFactory
 {
 	/// <summary>
-	/// The width.
-	/// </summary>
-	protected internal float Width { get; }
-
-	/// <summary>
-	/// The height.
-	/// </summary>
-	protected internal float Height { get; }
-
-	/// <summary>
 	/// The grid image generator.
 	/// </summary>
 	protected internal GridImageGenerator GridImageGenerator { get; }
@@ -42,7 +32,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 			}
 			case ".wmf":
 			{
-				using var tempBitmap = new Bitmap((int)Width, (int)Height);
+				using var tempBitmap = new Bitmap((int)GridImageGenerator.Width, (int)GridImageGenerator.Height);
 				using var tempGraphics = Graphics.FromImage(tempBitmap);
 				using var metaFile = new Metafile(path, tempGraphics.GetHdc());
 				using var g = Graphics.FromImage(metaFile);
@@ -153,37 +143,25 @@ public interface ISudokuPainter : ISudokuPainterFactory
 file sealed class SudokuPainter : ISudokuPainter
 {
 	/// <summary>
-	/// The inner image generator instance.
-	/// </summary>
-	private readonly GridImageGenerator _generator;
-
-
-	/// <summary>
 	/// Initializes a <see cref="SudokuPainter"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SudokuPainter(int defaultSize, int defaultOffset) => _generator = new(new(defaultSize, defaultOffset));
+	public SudokuPainter(int defaultSize, int defaultOffset) => GridImageGenerator = new(new(defaultSize, defaultOffset));
 
 
 	/// <inheritdoc/>
-	public float Width => _generator.Width;
-
-	/// <inheritdoc/>
-	public float Height => _generator.Height;
-
-	/// <inheritdoc/>
-	GridImageGenerator ISudokuPainter.GridImageGenerator => _generator;
+	public GridImageGenerator GridImageGenerator { get; }
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Image Render() => _generator.RenderTo();
+	public Image Render() => GridImageGenerator.RenderTo();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithCanvasSize(int size)
 	{
-		_generator.Calculator = new(size);
+		GridImageGenerator.Calculator = new(size);
 		return this;
 	}
 
@@ -191,7 +169,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithCanvasOffset(int offset)
 	{
-		_generator.Calculator = new(_generator.Width, offset);
+		GridImageGenerator.Calculator = new(GridImageGenerator.Width, offset);
 		return this;
 	}
 
@@ -199,7 +177,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithGrid(scoped in Grid grid)
 	{
-		_generator.Puzzle = grid;
+		GridImageGenerator.Puzzle = grid;
 		return this;
 	}
 
@@ -207,7 +185,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithPreferenceSettings(Action<DrawingConfigurations> action)
 	{
-		action(_generator.Preferences);
+		action(GridImageGenerator.Preferences);
 		return this;
 	}
 
@@ -215,8 +193,8 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithFooterText(string footerText, TextAlignmentType alignment)
 	{
-		_generator.FooterText = footerText;
-		_generator.FooterTextAlignment = alignment switch
+		GridImageGenerator.FooterText = footerText;
+		GridImageGenerator.FooterTextAlignment = alignment switch
 		{
 			TextAlignmentType.Left => StringAlignment.Near,
 			TextAlignmentType.Center => StringAlignment.Center,
@@ -231,7 +209,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithConclusions(params Conclusion[] conclusions)
 	{
-		_generator.Conclusions = conclusions;
+		GridImageGenerator.Conclusions = conclusions;
 		return this;
 	}
 
@@ -239,7 +217,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithNodes(IEnumerable<ViewNode> nodes)
 	{
-		_generator.View = View.Empty | nodes;
+		GridImageGenerator.View = View.Empty | nodes;
 		return this;
 	}
 
@@ -247,8 +225,8 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter AddNodes(IEnumerable<ViewNode> nodes)
 	{
-		_generator.View ??= View.Empty;
-		_generator.View.AddRange(nodes);
+		GridImageGenerator.View ??= View.Empty;
+		GridImageGenerator.View.AddRange(nodes);
 
 		return this;
 	}
@@ -256,7 +234,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	/// <inheritdoc/>
 	public ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes)
 	{
-		if (_generator.View is not { } view)
+		if (GridImageGenerator.View is not { } view)
 		{
 			goto ReturnThis;
 		}
@@ -273,7 +251,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	/// <inheritdoc/>
 	public ISudokuPainter RemoveNodesWhen(Predicate<ViewNode> predicate)
 	{
-		if (_generator.View is not { } view)
+		if (GridImageGenerator.View is not { } view)
 		{
 			goto ReturnThis;
 		}
