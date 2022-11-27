@@ -76,6 +76,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public float KropkiDotBorderWidth { get; set; } = 3F;
 
 	/// <summary>
+	/// Indicates the border width of clockface dots.
+	/// </summary>
+	public float ClockfaceDotBorderWidth { get; set; } = 3F;
+
+	/// <summary>
 	/// Indicates the size of Kropki dots.
 	/// </summary>
 	public float KropkiDotSize { get; set; } = 6F;
@@ -84,6 +89,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// Indicates the size of battenburg.
 	/// </summary>
 	public float BattenburgSize { get; set; } = 6F;
+
+	/// <summary>
+	/// Indicates the size of clockface dot.
+	/// </summary>
+	public float ClockfaceDotSize { get; set; } = 6F;
 
 	/// <summary>
 	/// Indicates the font of given digits to render.
@@ -128,7 +138,7 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// <summary>
 	/// Indicates the font of quadruple hint.
 	/// </summary>
-	public string QuadrupleHintFontName { get; set; } = "Cosolas";
+	public string QuadrupleHintFontName { get; set; } = "Consolas";
 
 	/// <summary>
 	/// Indicates the font style of the givens.

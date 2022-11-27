@@ -253,6 +253,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawNumberLabels(Graphics g);
 	partial void DrawBattenburg(Graphics g);
 	partial void DrawQuadrupleHint(Graphics g);
+	partial void DrawClockfaceDot(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -378,6 +379,7 @@ partial class GridImageGenerator
 		DrawNumberLabels(g);
 		DrawBattenburg(g);
 		DrawQuadrupleHint(g);
+		DrawClockfaceDot(g);
 	}
 
 	/// <summary>
@@ -1213,6 +1215,52 @@ partial class GridImageGenerator
 
 			g.FillRectangle(brush, x - cw / 2 - tw / 2, y - ch / 2 - th / 2, tw, th);
 			g.DrawString(hint, font, textColor, x - cw / 2, y - ch / 2, DefaultStringFormat);
+		}
+	}
+
+	/// <summary>
+	/// Draw clockface dots.
+	/// </summary>
+	/// <param name="g">The grapics.</param>
+	partial void DrawClockfaceDot(Graphics g)
+	{
+		if (this is not
+			{
+				View.ClockfaceDotNodes: var clockfaceDotNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences:
+				{
+					ClockfaceDotSize: var dotSize,
+					ClockfaceDotBorderWidth: var borderWidth,
+					BackgroundColor: var backColor
+				}
+			})
+		{
+			return;
+		}
+
+		foreach (var clockfaceDotNode in clockfaceDotNodes)
+		{
+			if (clockfaceDotNode is not { Identifier: var identifier, Cells: [.., var lastCell], IsClockwise: var isClockwise })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			using var pen = new Pen(brush, borderWidth);
+			using var backBrush = new SolidBrush(backColor);
+
+			var (x, y) = calc.GetMousePointInCenter(lastCell);
+			if (isClockwise)
+			{
+				g.DrawEllipse(pen, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
+				g.FillEllipse(backBrush, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
+			}
+			else
+			{
+				g.DrawEllipse(pen, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
+				g.FillEllipse(brush, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
+			}
 		}
 	}
 }

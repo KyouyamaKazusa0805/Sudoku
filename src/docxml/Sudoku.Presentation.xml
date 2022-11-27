@@ -867,6 +867,44 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode">
+            <summary>
+            Defines a clockface dot view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="topLeftCell">The top-left cell.</param>
+            <param name="isClockwise">Indicates whether the dot is marked as clockwise.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cells">The cells used.</param>
+            <param name="isClockwise">Indicates whether the dot is marked as clockwise.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.IsClockwise">
+            <summary>
+            Indicates whether the dot is marked as clockwise. If <see langword="true"/>, clockwise; otherwise, counterclockwise.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode">
             <summary>
             Represents with a greater-than sign view node.
@@ -1543,6 +1581,11 @@
         <member name="P:Sudoku.Presentation.View.QuadrupleHintNodes">
             <summary>
             Indicates quadruple hint nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.ClockfaceDotNodes">
+            <summary>
+            Indicates clockface dot nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

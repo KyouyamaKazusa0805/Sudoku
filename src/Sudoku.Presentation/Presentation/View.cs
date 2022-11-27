@@ -92,6 +92,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<QuadrupleHintViewNode> QuadrupleHintNodes => _nodes.OfType<QuadrupleHintViewNode>();
 
+	/// <summary>
+	/// Indicates clockface dot nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<ClockfaceDotViewNode> ClockfaceDotNodes => _nodes.OfType<ClockfaceDotViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

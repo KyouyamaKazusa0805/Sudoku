@@ -393,6 +393,11 @@
             Indicates the border width of Kropki dots.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ClockfaceDotBorderWidth">
+            <summary>
+            Indicates the border width of clockface dots.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotSize">
             <summary>
             Indicates the size of Kropki dots.
@@ -401,6 +406,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.BattenburgSize">
             <summary>
             Indicates the size of battenburg.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ClockfaceDotSize">
+            <summary>
+            Indicates the size of clockface dot.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
@@ -820,6 +830,12 @@
             Draw quadruple hint.
             </summary>
             <param name="g">The graphics.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawClockfaceDot(System.Drawing.Graphics)">
+            <summary>
+            Draw clockface dots.
+            </summary>
+            <param name="g">The grapics.</param>
         </member>
         <member name="T:Sudoku.Gdip.PointCalculator">
             <summary>

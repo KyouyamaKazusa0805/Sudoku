@@ -12,9 +12,11 @@ public sealed partial class QuadrupleHintViewNode : QuadrupleCellMarkViewNode
 	/// <param name="topLeftCell">The top-left cell.</param>
 	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public QuadrupleHintViewNode(Identifier identifier, int topLeftCell, string s) :
-		this(identifier, CellsMap[topLeftCell] + (topLeftCell + 1) + (topLeftCell + 9) + (topLeftCell + 10), s)
+	public QuadrupleHintViewNode(Identifier identifier, int topLeftCell, string s) : base(identifier, topLeftCell)
 	{
+		Argument.ThrowIfFalse(s.Length == 4 && int.TryParse(s, out _), "The hint length must be 4.");
+
+		Hint = s;
 	}
 
 	/// <summary>
