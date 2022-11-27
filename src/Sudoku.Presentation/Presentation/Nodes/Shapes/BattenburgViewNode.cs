@@ -11,8 +11,7 @@ public sealed partial class BattenburgViewNode : QuadrupleCellMarkViewNode
 	/// <param name="identifier">The identifier.</param>
 	/// <param name="topLeftCell">The top-left cell used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public BattenburgViewNode(Identifier identifier, int topLeftCell) :
-		base(identifier, CellsMap[topLeftCell] + (topLeftCell + 1) + (topLeftCell + 9) + (topLeftCell + 10))
+	public BattenburgViewNode(Identifier identifier, int topLeftCell) : base(identifier, topLeftCell)
 	{
 	}
 

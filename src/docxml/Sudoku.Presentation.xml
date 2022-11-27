@@ -969,6 +969,13 @@
             Defines a quadruple cell mark view node that lies on a 2x2 squared cells.
             </summary>
         </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Assigns properties with target values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="topLeftCell">The top-left cell.</param>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@)">
             <summary>
             Assigns properties with target values.

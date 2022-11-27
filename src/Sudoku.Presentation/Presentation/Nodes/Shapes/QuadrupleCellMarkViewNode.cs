@@ -9,6 +9,17 @@ public abstract class QuadrupleCellMarkViewNode : ShapeViewNode
 	/// Assigns properties with target values.
 	/// </summary>
 	/// <param name="identifier">The identifier.</param>
+	/// <param name="topLeftCell">The top-left cell.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	protected QuadrupleCellMarkViewNode(Identifier identifier, int topLeftCell) :
+		this(identifier, CellsMap[topLeftCell] + (topLeftCell + 1) + (topLeftCell + 9) + (topLeftCell + 10))
+	{
+	}
+
+	/// <summary>
+	/// Assigns properties with target values.
+	/// </summary>
+	/// <param name="identifier">The identifier.</param>
 	/// <param name="cells">The cells.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	protected QuadrupleCellMarkViewNode(Identifier identifier, scoped in CellMap cells) : base(identifier) => Cells = cells;
