@@ -61,6 +61,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public float XvTextFontSize { get; set; } = 24F;
 
 	/// <summary>
+	/// Indicates the number label text font size.
+	/// </summary>
+	public float NumberLabelFontSize { get; set; } = 24F;
+
+	/// <summary>
 	/// Indicates the border width of Kropki dots.
 	/// </summary>
 	public float KropkiDotBorderWidth { get; set; } = 3F;
@@ -106,6 +111,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public string XvSignFontName { get; set; } = "Consolas";
 
 	/// <summary>
+	/// Indicates the font of number labels.
+	/// </summary>
+	public string NumberLabelFontName { get; set; } = "Consolas";
+
+	/// <summary>
 	/// Indicates the font style of the givens.
 	/// </summary>
 	public FontStyle GivenFontStyle { get; set; } = FontStyle.Regular;
@@ -139,6 +149,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// Indicates the font style of XV signs.
 	/// </summary>
 	public FontStyle XvSignFontStyle { get; set; } = FontStyle.Bold;
+
+	/// <summary>
+	/// Indicates the font style of number labels.
+	/// </summary>
+	public FontStyle NumberLabelFontStyle { get; set; } = FontStyle.Bold;
 
 	/// <summary>
 	/// Indicates the given digits to render.

@@ -77,6 +77,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<XvSignViewNode> XvNodes => _nodes.OfType<XvSignViewNode>();
 
+	/// <summary>
+	/// Indicates number label nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<NumberLabelViewNode> NumberLabelNodes => _nodes.OfType<NumberLabelViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

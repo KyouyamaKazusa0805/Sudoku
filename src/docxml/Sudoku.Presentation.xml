@@ -898,6 +898,41 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode">
+            <summary>
+            Defines a number label view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode"/> instance.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell1">The cell 1.</param>
+            <param name="cell2">The cell 2.</param>
+            <param name="label">Indicates the label you want to display.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Label">
+            <summary>
+            Indicates the target value you want to display.
+            </summary>
+            <remarks><i>
+            Please note that the target value is a <see cref="T:System.String"/> value. We don't limit you only input numbers <b>on purpose</b>.
+            You can use instances of the current type to display what you want to display.
+            </i></remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode">
             <summary>
             Defines a shape view node.
@@ -1400,6 +1435,11 @@
         <member name="P:Sudoku.Presentation.View.XvNodes">
             <summary>
             Indicates the XV sign nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.NumberLabelNodes">
+            <summary>
+            Indicates number label nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

@@ -36,10 +36,6 @@ public sealed partial class GridImageGenerator
 	}
 
 	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations, in Grid)"/>
-	/// <summary>
-	/// <inheritdoc path="/summary"/>
-	/// </summary>
-	/// <param name="calculator"><inheritdoc path="/param[@name='calculator']"/></param>
 	[SetsRequiredMembers]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public GridImageGenerator(PointCalculator calculator) : this(calculator, new(), Grid.Empty)
@@ -47,11 +43,6 @@ public sealed partial class GridImageGenerator
 	}
 
 	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations, in Grid)"/>
-	/// <summary>
-	/// <inheritdoc path="/summary"/>
-	/// </summary>
-	/// <param name="calculator"><inheritdoc path="/param[@name='calculator']"/></param>
-	/// <param name="preferences"><inheritdoc path="/param[@name='preferences']"/></param>
 	[SetsRequiredMembers]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public GridImageGenerator(PointCalculator calculator, DrawingConfigurations preferences) : this(calculator, preferences, Grid.Empty)
@@ -259,6 +250,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawKropkiDot(Graphics g);
 	partial void DrawGreaterThanSigns(Graphics g);
 	partial void DrawXvSigns(Graphics g);
+	partial void DrawNumberLabels(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -381,6 +373,7 @@ partial class GridImageGenerator
 		DrawKropkiDot(g);
 		DrawGreaterThanSigns(g);
 		DrawXvSigns(g);
+		DrawNumberLabels(g);
 	}
 
 	/// <summary>
@@ -1082,6 +1075,49 @@ partial class GridImageGenerator
 
 			g.FillRectangle(backBrush, pointX, pointY, tw, th);
 			g.DrawString(text, font, brush, centerPoint, DefaultStringFormat);
+		}
+	}
+
+	/// <summary>
+	/// Draw number labels.
+	/// </summary>
+	/// <param name="g">The graphics.</param>
+	partial void DrawNumberLabels(Graphics g)
+	{
+		if (this is not
+			{
+				View.NumberLabelNodes: var numberLabelNodes,
+				Calculator: var calc,
+				Preferences:
+				{
+					NumberLabelFontSize: var fontSize,
+					NumberLabelFontName: var fontName,
+					NumberLabelFontStyle: var fontStyle,
+					BackgroundColor: var backColor
+				}
+			})
+		{
+			return;
+		}
+
+		using var font = new Font(fontName, fontSize, fontStyle);
+		using var backBrush = new SolidBrush(backColor);
+		foreach (var numberLabelNode in numberLabelNodes)
+		{
+			if (numberLabelNode is not (var c1, var c2) { Identifier: var identifier, Label: var label })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
+			var centerPoint = new PointF((x1 + x2) / 2, (y1 + y2) / 2);
+			var textSize = g.MeasureString(label, font);
+			var (tw, th) = textSize;
+			var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
+
+			g.FillRectangle(backBrush, pointX, pointY, tw, th);
+			g.DrawString(label, font, brush, centerPoint, DefaultStringFormat);
 		}
 	}
 }
