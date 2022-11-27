@@ -8,12 +8,12 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// <summary>
 	/// The width.
 	/// </summary>
-	float Width { get; }
+	protected internal float Width { get; }
 
 	/// <summary>
 	/// The height.
 	/// </summary>
-	float Height { get; }
+	protected internal float Height { get; }
 
 	/// <summary>
 	/// The grid image generator.
