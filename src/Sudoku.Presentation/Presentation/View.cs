@@ -72,6 +72,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<GreaterThanSignViewNode> GreaterThanNodes => _nodes.OfType<GreaterThanSignViewNode>();
 
+	/// <summary>
+	/// Indicates the XV sign nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<XvSignViewNode> XvNodes => _nodes.OfType<XvSignViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

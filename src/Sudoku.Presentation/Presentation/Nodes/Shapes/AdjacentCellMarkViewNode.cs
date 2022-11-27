@@ -17,7 +17,7 @@ public abstract partial class AdjacentCellMarkViewNode : ShapeViewNode
 		Argument.ThrowIfFalse(cell1 is >= 0 and < 81, $"Argument '{nameof(cell1)}' must be a valid cell index.");
 		Argument.ThrowIfFalse(cell2 is >= 0 and < 81, $"Argument '{nameof(cell2)}' must be a valid cell index.");
 		Argument.ThrowIfFalse(cell2 > cell1, $"Constructor requires that argument '{nameof(cell2)}' should be greater than '{nameof(cell1)}'.");
-		Argument.ThrowIfFalse(cell2 - cell1 is 1 or 9 && cell1 % 9 != 8, $"Cells '{nameof(cell1)} and '{nameof(cell2)}' should be adjacent with each other.");
+		Argument.ThrowIfFalse(cell2 - cell1 is 1 or 9, $"Cells '{nameof(cell1)} and '{nameof(cell2)}' should be adjacent with each other.");
 
 		(Cell1, Cell2) = (cell1, cell2);
 	}

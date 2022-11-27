@@ -909,6 +909,37 @@
         <member name="P:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode.TypeIdentifier">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode">
+            <summary>
+            Defines a XV sign view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode"/> instance via identifier and cells.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell1">The cell 1.</param>
+            <param name="cell2">The cell 2.</param>
+            <param name="isX">Indicates whether the mark is <c>X</c>.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.IsX">
+            <summary>
+            Indicates whether the mark is <c>X</c>. If <see langword="true"/>, <c>X</c>; otherwise, <c>V</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.UnknownViewNode">
             <summary>
             Defines a view node that highlights for a unknown.
@@ -1364,6 +1395,11 @@
         <member name="P:Sudoku.Presentation.View.GreaterThanNodes">
             <summary>
             Indicates the greater-than sign nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.XvNodes">
+            <summary>
+            Indicates the XV sign nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

@@ -74,5 +74,22 @@
             <returns>All view nodes.</returns>
             <seealso cref="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.ThrowIfNotSolved"/>
         </member>
+        <member name="T:Sudoku.Variants.Verifiers.XvSudoku">
+            <summary>
+            Defines a verifier that checks for XV marks.
+            </summary>
+            <param name="TargetGrid"><inheritdoc path="/param[@name='TargetGrid']"/></param>
+            <param name="Identifier"><inheritdoc path="/param[@name='Identifier']"/></param>
+        </member>
+        <member name="M:Sudoku.Variants.Verifiers.XvSudoku.#ctor(Sudoku.Concepts.Grid@,Sudoku.Presentation.Identifier)">
+            <summary>
+            Defines a verifier that checks for XV marks.
+            </summary>
+            <param name="TargetGrid"><inheritdoc path="/param[@name='TargetGrid']"/></param>
+            <param name="Identifier"><inheritdoc path="/param[@name='Identifier']"/></param>
+        </member>
+        <member name="M:Sudoku.Variants.Verifiers.XvSudoku.Verify">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>

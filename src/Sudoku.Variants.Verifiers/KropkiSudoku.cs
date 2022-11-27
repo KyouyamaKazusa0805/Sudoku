@@ -21,12 +21,18 @@ public sealed record KropkiSudoku(scoped in Grid TargetGrid, Identifier Identifi
 			for (var column = 0; column < 8; column++)
 			{
 				var cell = row * 9 + column;
-				var adjacent1 = row * 9 + column + 1;
-				var adjacent2 = (row + 1) * 9 + column;
+				var adjacent1 = column + 1 >= 9 ? -1 : row * 9 + column + 1;
+				var adjacent2 = row + 1 >= 9 ? -1 : (row + 1) * 9 + column;
 
 				var a = TargetGrid[cell];
-				foreach (var (adjacent, b) in stackalloc[] { (adjacent1, TargetGrid[adjacent1]), (adjacent2, TargetGrid[adjacent2]) })
+				foreach (var adjacent in stackalloc[] { adjacent1, adjacent2 })
 				{
+					if (adjacent == -1)
+					{
+						continue;
+					}
+
+					var b = TargetGrid[adjacent];
 					switch (a, b)
 					{
 						case (1, 2) or (2, 1):

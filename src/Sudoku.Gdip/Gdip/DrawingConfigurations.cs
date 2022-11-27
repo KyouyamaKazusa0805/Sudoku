@@ -56,6 +56,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public float GreaterThanTextFontSize { get; set; } = 24F;
 
 	/// <summary>
+	/// Indicates the XV symbol text font size.
+	/// </summary>
+	public float XvTextFontSize { get; set; } = 24F;
+
+	/// <summary>
 	/// Indicates the border width of Kropki dots.
 	/// </summary>
 	public float KropkiDotBorderWidth { get; set; } = 3F;
@@ -96,6 +101,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public string GreaterThanSignFontName { get; set; } = "Consolas";
 
 	/// <summary>
+	/// Indicates the font of XV signs.
+	/// </summary>
+	public string XvSignFontName { get; set; } = "Consolas";
+
+	/// <summary>
 	/// Indicates the font style of the givens.
 	/// </summary>
 	public FontStyle GivenFontStyle { get; set; } = FontStyle.Regular;
@@ -124,6 +134,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// Indicates the font style of greater-than signs.
 	/// </summary>
 	public FontStyle GreaterThanSignFontStyle { get; set; } = FontStyle.Bold;
+
+	/// <summary>
+	/// Indicates the font style of XV signs.
+	/// </summary>
+	public FontStyle XvSignFontStyle { get; set; } = FontStyle.Bold;
 
 	/// <summary>
 	/// Indicates the given digits to render.

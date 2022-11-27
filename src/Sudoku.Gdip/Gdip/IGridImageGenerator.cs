@@ -8,7 +8,11 @@ public sealed partial class GridImageGenerator
 	/// <summary>
 	/// Indicates the default string format.
 	/// </summary>
-	private static readonly StringFormat DefaultStringFormat = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+	private static readonly StringFormat DefaultStringFormat = new()
+	{
+		Alignment = StringAlignment.Center,
+		LineAlignment = StringAlignment.Center
+	};
 
 
 	/// <summary>
@@ -254,6 +258,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawBorderBar(Graphics g);
 	partial void DrawKropkiDot(Graphics g);
 	partial void DrawGreaterThanSigns(Graphics g);
+	partial void DrawXvSigns(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -375,6 +380,7 @@ partial class GridImageGenerator
 		DrawBorderBar(g);
 		DrawKropkiDot(g);
 		DrawGreaterThanSigns(g);
+		DrawXvSigns(g);
 	}
 
 	/// <summary>
@@ -1032,6 +1038,50 @@ partial class GridImageGenerator
 
 				g.Transform = matrixOriginal;
 			}
+		}
+	}
+
+	/// <summary>
+	/// Draw XV signs.
+	/// </summary>
+	/// <param name="g">The graphics.</param>
+	partial void DrawXvSigns(Graphics g)
+	{
+		if (this is not
+			{
+				View.XvNodes: var xvNodes,
+				Calculator: var calc,
+				Preferences:
+				{
+					XvTextFontSize: var fontSize,
+					XvSignFontName: var fontName,
+					XvSignFontStyle: var fontStyle,
+					BackgroundColor: var backColor
+				}
+			})
+		{
+			return;
+		}
+
+		using var font = new Font(fontName, fontSize, fontStyle);
+		using var backBrush = new SolidBrush(backColor);
+		foreach (var xvNode in xvNodes)
+		{
+			if (xvNode is not (var c1, var c2) { Identifier: var identifier, IsX: var isX })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			var text = isX ? "X" : "V";
+			var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
+			var centerPoint = new PointF((x1 + x2) / 2, (y1 + y2) / 2);
+			var textSize = g.MeasureString(text, font);
+			var (tw, th) = textSize;
+			var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
+
+			g.FillRectangle(backBrush, pointX, pointY, tw, th);
+			g.DrawString(text, font, brush, centerPoint, DefaultStringFormat);
 		}
 	}
 }
