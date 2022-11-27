@@ -14,28 +14,15 @@ public sealed record ConsecutiveSudoku(scoped in Grid TargetGrid, Identifier Ide
 		ThrowIfNotSolved();
 
 		var result = new List<BorderBarViewNode>();
-
-		for (var row = 0; row < 9; row++)
+		for (var cell = 0; cell < 81; cell++)
 		{
-			for (var column = 0; column < 9; column++)
+			var a = TargetGrid[cell];
+			foreach (var adjacent in AdjacentCellPairsTable[cell] ?? Array.Empty<int>())
 			{
-				var cell = row * 9 + column;
-				var adjacent1 = column + 1 >= 9 ? -1 : row * 9 + column + 1;
-				var adjacent2 = row + 1 >= 9 ? -1 : (row + 1) * 9 + column;
-
-				var a = TargetGrid[cell];
-				foreach (var adjacent in stackalloc[] { adjacent1, adjacent2 })
+				var b = TargetGrid[adjacent];
+				if (Abs(a - b) == 1)
 				{
-					if (adjacent == -1)
-					{
-						continue;
-					}
-
-					var b = TargetGrid[adjacent];
-					if (Abs(a - b) == 1)
-					{
-						result.Add(new(Identifier, cell, adjacent));
-					}
+					result.Add(new(Identifier, cell, adjacent));
 				}
 			}
 		}

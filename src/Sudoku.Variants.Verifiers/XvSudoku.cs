@@ -14,35 +14,23 @@ public sealed record XvSudoku(scoped in Grid TargetGrid, Identifier Identifier) 
 		ThrowIfNotSolved();
 
 		var result = new List<XvSignViewNode>();
-		for (var row = 0; row < 9; row++)
+		for (var cell = 0; cell < 81; cell++)
 		{
-			for (var column = 0; column < 9; column++)
+			var a = TargetGrid[cell];
+			foreach (var adjacent in AdjacentCellPairsTable[cell] ?? Array.Empty<int>())
 			{
-				var cell = row * 9 + column;
-				var adjacent1 = column + 1 >= 9 ? -1 : row * 9 + column + 1;
-				var adjacent2 = row + 1 >= 9 ? -1 : (row + 1) * 9 + column;
-
-				var a = TargetGrid[cell];
-				foreach (var adjacent in stackalloc[] { adjacent1, adjacent2 })
+				var b = TargetGrid[adjacent];
+				switch (a + b + 2) // (a + 1) + (b + 1)
 				{
-					if (adjacent == -1)
+					case 5:
 					{
-						continue;
+						result.Add(new(Identifier, cell, adjacent, false));
+						break;
 					}
-
-					var b = TargetGrid[adjacent];
-					switch (a + b + 2) // (a + 1) + (b + 1)
+					case 10:
 					{
-						case 5:
-						{
-							result.Add(new(Identifier, cell, adjacent, false));
-							break;
-						}
-						case 10:
-						{
-							result.Add(new(Identifier, cell, adjacent, true));
-							break;
-						}
+						result.Add(new(Identifier, cell, adjacent, true));
+						break;
 					}
 				}
 			}

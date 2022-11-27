@@ -15,42 +15,29 @@ public sealed record KropkiSudoku(scoped in Grid TargetGrid, Identifier Identifi
 
 		var result = new List<KropkiDotViewNode>();
 		var random = new Random();
-
-		for (var row = 0; row < 8; row++)
+		for (var cell = 0; cell < 81; cell++)
 		{
-			for (var column = 0; column < 8; column++)
+			var a = TargetGrid[cell];
+			foreach (var adjacent in AdjacentCellPairsTable[cell] ?? Array.Empty<int>())
 			{
-				var cell = row * 9 + column;
-				var adjacent1 = column + 1 >= 9 ? -1 : row * 9 + column + 1;
-				var adjacent2 = row + 1 >= 9 ? -1 : (row + 1) * 9 + column;
-
-				var a = TargetGrid[cell];
-				foreach (var adjacent in stackalloc[] { adjacent1, adjacent2 })
+				var b = TargetGrid[adjacent];
+				switch (a, b)
 				{
-					if (adjacent == -1)
+					case (1, 2) or (2, 1):
 					{
-						continue;
+						// This case will use randomized algorithm to decide whether displaying as solid circles.
+						result.Add(new(Identifier, cell, adjacent, random.Next(1, 100) >= 50));
+						break;
 					}
-
-					var b = TargetGrid[adjacent];
-					switch (a, b)
+					case var _ when a - b == 1 || b - a == 1:
 					{
-						case (1, 2) or (2, 1):
-						{
-							// This case will use randomized algorithm to decide whether displaying as solid circles.
-							result.Add(new(Identifier, cell, adjacent, random.Next(1, 100) >= 50));
-							break;
-						}
-						case var _ when a - b == 1 || b - a == 1:
-						{
-							result.Add(new(Identifier, cell, adjacent, false));
-							break;
-						}
-						case var _ when a << 1 == b || a == b << 1:
-						{
-							result.Add(new(Identifier, cell, adjacent, true));
-							break;
-						}
+						result.Add(new(Identifier, cell, adjacent, false));
+						break;
+					}
+					case var _ when a << 1 == b || a == b << 1:
+					{
+						result.Add(new(Identifier, cell, adjacent, true));
+						break;
 					}
 				}
 			}

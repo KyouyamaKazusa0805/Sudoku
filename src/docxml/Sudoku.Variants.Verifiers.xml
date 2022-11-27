@@ -60,6 +60,16 @@
         <member name="P:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.Identifier">
             <summary>Indicates the identifier used.</summary>
         </member>
+        <member name="F:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.AdjacentCellPairsTable">
+            <summary>
+            The table of adjacent cells data.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.#cctor">
+            <summary>
+            Initializes for field <see cref="F:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.AdjacentCellPairsTable"/>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Variants.Verifiers.VariantGridElementVerifier`1.ThrowIfNotSolved">
             <summary>
             To verify whether the target puzzle is solved.
