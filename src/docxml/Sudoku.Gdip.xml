@@ -701,7 +701,7 @@
             <summary>
             To render the image onto the canvas specified as parameter <paramref name="g"/> of type <see cref="T:System.Drawing.Graphics"/>.
             </summary>
-            <param name="g">The graphics instance.</param>
+            <param name="g">The graphics instance as base canvas, offering APIs allowing you doing drawing operations.</param>
             <seealso cref="T:System.Drawing.Graphics"/>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.RenderTo">
@@ -744,133 +744,133 @@
             <returns>The font.</returns>
             <exception cref="T:System.ArgumentNullException">Throws when <paramref name="fontName"/> is <see langword="null"/>.</exception>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFooterText(System.Drawing.Graphics)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGridAndBlockLines(System.Drawing.Graphics)">
             <summary>
-            Draw footer text.
+            Draw grid lines and block lines.
             </summary>
-            <param name="g">The graphics.</param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawValue(System.Drawing.Graphics)">
-            <summary>
-            Draw givens, modifiables and candidates, where the values are specified as a grid.
-            </summary>
-            <param name="g">The graphics.</param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawView(System.Drawing.Graphics)">
-            <summary>
-            Draw custom view if <see cref="P:Sudoku.Gdip.GridImageGenerator.View"/> is not <see langword="null"/>.
-            </summary>
-            <param name="g">The graphics.</param>
-            <seealso cref="P:Sudoku.Gdip.GridImageGenerator.View"/>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBackground(System.Drawing.Graphics)">
             <summary>
             Draw the background, where the color is specified in <see cref="P:Sudoku.Gdip.DrawingConfigurations.BackgroundColor"/>.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
             <seealso cref="P:Sudoku.Gdip.DrawingConfigurations.BackgroundColor"/>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGridAndBlockLines(System.Drawing.Graphics)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawValue(System.Drawing.Graphics)">
             <summary>
-            Draw grid lines and block lines.
+            Draw givens, modifiables and candidates, where the values are specified as a grid.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawEliminations(System.Drawing.Graphics)">
             <summary>
             Draw eliminations.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFooterText(System.Drawing.Graphics)">
+            <summary>
+            Draw footer text.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawView(System.Drawing.Graphics)">
+            <summary>
+            Draw custom view if <see cref="P:Sudoku.Gdip.GridImageGenerator.View"/> is not <see langword="null"/>.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+            <seealso cref="P:Sudoku.Gdip.GridImageGenerator.View"/>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawCells(System.Drawing.Graphics)">
             <summary>
             Draw cells.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawCandidates(System.Drawing.Graphics)">
             <summary>
             Draw candidates.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawHouses(System.Drawing.Graphics)">
             <summary>
             Draw houses.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawLinks(System.Drawing.Graphics)">
             <summary>
             Draw links.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawUnknownValue(System.Drawing.Graphics)">
             <summary>
             Draw unknown values.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBorderBar(System.Drawing.Graphics)">
             <summary>
             Draw border bars.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawKropkiDot(System.Drawing.Graphics)">
             <summary>
             Draw Kropki dots.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGreaterThanSigns(System.Drawing.Graphics)">
             <summary>
             Draw greater-than signs.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawXvSigns(System.Drawing.Graphics)">
             <summary>
             Draw XV signs.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawNumberLabels(System.Drawing.Graphics)">
             <summary>
             Draw number labels.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBattenburg(System.Drawing.Graphics)">
             <summary>
             Draw Batternburg.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawQuadrupleHint(System.Drawing.Graphics)">
             <summary>
             Draw quadruple hint.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawClockfaceDot(System.Drawing.Graphics)">
             <summary>
             Draw clockface dots.
             </summary>
-            <param name="g">The grapics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawNeighborSigns(System.Drawing.Graphics)">
             <summary>
             Draw neighbor signs.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawWheel(System.Drawing.Graphics)">
             <summary>
             Draw wheels.
             </summary>
-            <param name="g">The graphics.</param>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="T:Sudoku.Gdip.PointCalculator">
             <summary>

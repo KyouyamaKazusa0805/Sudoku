@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Gdip;
+﻿#define ENHANCED_DRAWING_APIS
+
+namespace Sudoku.Gdip;
 
 /// <summary>
 /// Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
@@ -41,7 +43,7 @@ public sealed partial class GridImageGenerator
 	/// <param name="preferences">The user-defined preferences.</param>
 	[SetsRequiredMembers]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridImageGenerator(PointCalculator calculator, DrawingConfigurations preferences) 
+	public GridImageGenerator(PointCalculator calculator, DrawingConfigurations preferences)
 		=> (Calculator, Preferences) = (calculator, preferences);
 
 
@@ -97,7 +99,7 @@ public sealed partial class GridImageGenerator
 	/// <summary>
 	/// To render the image onto the canvas specified as parameter <paramref name="g"/> of type <see cref="Graphics"/>.
 	/// </summary>
-	/// <param name="g">The graphics instance.</param>
+	/// <param name="g">The graphics instance as base canvas, offering APIs allowing you doing drawing operations.</param>
 	/// <seealso cref="Graphics"/>
 	public void RenderTo(Graphics g)
 	{
@@ -219,12 +221,12 @@ public sealed partial class GridImageGenerator
 		=> new(fontName ?? throw new ArgumentNullException(nameof(size)), size * (float)scale, style);
 
 
-	partial void DrawFooterText(Graphics g);
-	partial void DrawValue(Graphics g);
-	partial void DrawView(Graphics g);
-	partial void DrawBackground(Graphics g);
 	partial void DrawGridAndBlockLines(Graphics g);
+	partial void DrawBackground(Graphics g);
+	partial void DrawValue(Graphics g);
 	partial void DrawEliminations(Graphics g);
+	partial void DrawFooterText(Graphics g);
+	partial void DrawView(Graphics g);
 	partial void DrawCells(Graphics g);
 	partial void DrawCandidates(Graphics g);
 	partial void DrawHouses(Graphics g);
@@ -247,7 +249,7 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw footer text.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	partial void DrawFooterText(Graphics g)
 	{
 		if (this is not { Width: var w, FooterText: { } text, Preferences.FooterTextColor: var color })
@@ -264,7 +266,7 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw givens, modifiables and candidates, where the values are specified as a grid.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	partial void DrawValue(Graphics g)
 	{
 		if (this is not
@@ -341,7 +343,7 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw custom view if <see cref="View"/> is not <see langword="null"/>.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	/// <seealso cref="View"/>
 	partial void DrawView(Graphics g)
 	{
@@ -357,6 +359,7 @@ partial class GridImageGenerator
 		DrawLinks(g);
 		DrawUnknownValue(g);
 
+#if ENHANCED_DRAWING_APIS
 		// Shapes
 		DrawBorderBar(g);
 		DrawKropkiDot(g);
@@ -368,19 +371,20 @@ partial class GridImageGenerator
 		DrawClockfaceDot(g);
 		DrawNeighborSigns(g);
 		DrawWheel(g);
+#endif
 	}
 
 	/// <summary>
 	/// Draw the background, where the color is specified in <see cref="DrawingConfigurations.BackgroundColor"/>.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	/// <seealso cref="DrawingConfigurations.BackgroundColor"/>
 	partial void DrawBackground(Graphics g) => g.Clear(Preferences.BackgroundColor);
 
 	/// <summary>
 	/// Draw grid lines and block lines.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	partial void DrawGridAndBlockLines(Graphics g)
 	{
 		if (this is not
@@ -418,7 +422,7 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw eliminations.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	partial void DrawEliminations(Graphics g)
 	{
 		if (this is not
@@ -475,7 +479,7 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw cells.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	partial void DrawCells(Graphics g)
 	{
 		if (View is not { CellNodes: var cellNodes })
@@ -496,7 +500,7 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw candidates.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	partial void DrawCandidates(Graphics g)
 	{
 		if (this is not
@@ -615,7 +619,7 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw houses.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	partial void DrawHouses(Graphics g)
 	{
 		if (this is not { Calculator: { CellSize: var (w, h) } calc, View.HouseNodes: var houseNodes, Preferences.ShowLightHouse: var showLightHouse })
@@ -678,7 +682,7 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw links.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	partial void DrawLinks(Graphics g)
 	{
 		if (this is not
@@ -853,7 +857,7 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw unknown values.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	partial void DrawUnknownValue(Graphics g)
 	{
 		if (this is not
@@ -893,7 +897,8 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw border bars.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawBorderBar(Graphics g)
 	{
 		if (this is not
@@ -925,7 +930,8 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw Kropki dots.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawKropkiDot(Graphics g)
 	{
 		if (this is not
@@ -962,7 +968,8 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw greater-than signs.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawGreaterThanSigns(Graphics g)
 	{
 		if (this is not
@@ -1025,7 +1032,8 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw XV signs.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawXvSigns(Graphics g)
 	{
 		if (this is not
@@ -1063,7 +1071,8 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw number labels.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawNumberLabels(Graphics g)
 	{
 		if (this is not
@@ -1100,7 +1109,8 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw Batternburg.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawBattenburg(Graphics g)
 	{
 		if (this is not
@@ -1151,7 +1161,8 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw quadruple hint.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawQuadrupleHint(Graphics g)
 	{
 		if (this is not
@@ -1185,7 +1196,8 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw clockface dots.
 	/// </summary>
-	/// <param name="g">The grapics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawClockfaceDot(Graphics g)
 	{
 		if (this is not
@@ -1231,7 +1243,8 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw neighbor signs.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawNeighborSigns(Graphics g)
 	{
 		if (this is not
@@ -1279,7 +1292,8 @@ partial class GridImageGenerator
 	/// <summary>
 	/// Draw wheels.
 	/// </summary>
-	/// <param name="g">The graphics.</param>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawWheel(Graphics g)
 	{
 		if (this is not
