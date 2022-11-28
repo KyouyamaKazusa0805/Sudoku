@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents with a preference type that stores the configurations on drawing.
 /// </summary>
-public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
+public sealed class DrawingConfigurations
 {
 	/// <summary>
 	/// Indicates whether the form shows candidates.
@@ -44,31 +44,6 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// Indicates the border bar width.
 	/// </summary>
 	public float BorderBarWidth { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the footer text font size.
-	/// </summary>
-	public float FooterTextFontSize { get; set; } = 24F;
-
-	/// <summary>
-	/// Indicates the greater-than symbol text font size.
-	/// </summary>
-	public float GreaterThanTextFontSize { get; set; } = 24F;
-
-	/// <summary>
-	/// Indicates the XV symbol text font size.
-	/// </summary>
-	public float XvTextFontSize { get; set; } = 24F;
-
-	/// <summary>
-	/// Indicates the number label text font size.
-	/// </summary>
-	public float NumberLabelFontSize { get; set; } = 24F;
-
-	/// <summary>
-	/// Indicates the quadruple hint text font size.
-	/// </summary>
-	public float QuadrupleHintFontSize { get; set; } = 24F;
 
 	/// <summary>
 	/// Indicates the border width of Kropki dots.
@@ -128,27 +103,27 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// <summary>
 	/// Indicates the font of footer text.
 	/// </summary>
-	public string FooterTextFontName { get; set; } = "MiSans";
+	public FontData FooterTextFont { get; set; } = new("MiSans", 24F, FontStyle.Bold);
 
 	/// <summary>
 	/// Indicates the font of greater-than signs.
 	/// </summary>
-	public string GreaterThanSignFontName { get; set; } = "Consolas";
+	public FontData GreaterThanSignFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
 
 	/// <summary>
 	/// Indicates the font of XV signs.
 	/// </summary>
-	public string XvSignFontName { get; set; } = "Consolas";
+	public FontData XvSignFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
 
 	/// <summary>
 	/// Indicates the font of number labels.
 	/// </summary>
-	public string NumberLabelFontName { get; set; } = "Consolas";
+	public FontData NumberLabelFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
 
 	/// <summary>
 	/// Indicates the font of quadruple hint.
 	/// </summary>
-	public string QuadrupleHintFontName { get; set; } = "Consolas";
+	public FontData QuadrupleHintFont { get; set; } = new("MiSans", 24F, FontStyle.Regular);
 
 	/// <summary>
 	/// Indicates the font style of the givens.
@@ -169,31 +144,6 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// Indicates the font style of an unknown.
 	/// </summary>
 	public FontStyle UnknownFontStyle { get; set; } = FontStyle.Italic | FontStyle.Bold;
-
-	/// <summary>
-	/// Indicates the font style of footer text.
-	/// </summary>
-	public FontStyle FooterTextFontStyle { get; set; } = FontStyle.Bold;
-
-	/// <summary>
-	/// Indicates the font style of greater-than signs.
-	/// </summary>
-	public FontStyle GreaterThanSignFontStyle { get; set; } = FontStyle.Bold;
-
-	/// <summary>
-	/// Indicates the font style of XV signs.
-	/// </summary>
-	public FontStyle XvSignFontStyle { get; set; } = FontStyle.Bold;
-
-	/// <summary>
-	/// Indicates the font style of number labels.
-	/// </summary>
-	public FontStyle NumberLabelFontStyle { get; set; } = FontStyle.Bold;
-
-	/// <summary>
-	/// Indicates the font style of quadruple hint.
-	/// </summary>
-	public FontStyle QuadrupleHintFontStyle { get; set; } = FontStyle.Regular;
 
 	/// <summary>
 	/// Indicates the given digits to render.
@@ -291,13 +241,4 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 		Color.FromArgb(215, 255, 215),
 		Color.FromArgb(192, 192, 192)
 	};
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public DrawingConfigurations Clone() => this.ReflectionClone();
-
-	/// <inheritdoc cref="ReflectionCopying.ReflectionCover{T}(T, T)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void CoverBy(DrawingConfigurations @new) => this.ReflectionCover(@new);
 }

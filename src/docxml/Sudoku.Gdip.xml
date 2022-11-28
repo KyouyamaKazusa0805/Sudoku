@@ -202,13 +202,6 @@
             <param name="action">The action to set preference values.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithFooterTextFont(System.String)">
-            <summary>
-            Sets a font name that is used for rendering footer text.
-            </summary>
-            <param name="fontName">The font name.</param>
-            <returns>The target painter.</returns>
-        </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithFooterText(System.String)">
             <summary>
             Sets the footer text that can be rendered below the picture.
@@ -224,14 +217,6 @@
             <param name="alignment">The alignment.</param>
             <returns>The target painter.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="alignment"/> is not defined.</exception>
-        </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithFooterTextColor(System.Drawing.Color)">
-            <summary>
-            Sets the footer text color that is used by rendering the text.
-            </summary>
-            <param name="color">The color to set. We do not recommend you use hard-reading colors such as <see cref="P:System.Drawing.Color.Transparent"/>.</param>
-            <returns>The target painter.</returns>
-            <seealso cref="P:System.Drawing.Color.Transparent"/>
         </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(Sudoku.Solving.Conclusion[])">
             <summary>
@@ -363,31 +348,6 @@
             Indicates the border bar width.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFontSize">
-            <summary>
-            Indicates the footer text font size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.GreaterThanTextFontSize">
-            <summary>
-            Indicates the greater-than symbol text font size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.XvTextFontSize">
-            <summary>
-            Indicates the XV symbol text font size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFontSize">
-            <summary>
-            Indicates the number label text font size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleHintFontSize">
-            <summary>
-            Indicates the quadruple hint text font size.
-            </summary>
-        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotBorderWidth">
             <summary>
             Indicates the border width of Kropki dots.
@@ -443,27 +403,27 @@
             Indicates the font of unknown values to render.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFontName">
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFont">
             <summary>
             Indicates the font of footer text.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.GreaterThanSignFontName">
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.GreaterThanSignFont">
             <summary>
             Indicates the font of greater-than signs.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.XvSignFontName">
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.XvSignFont">
             <summary>
             Indicates the font of XV signs.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFontName">
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFont">
             <summary>
             Indicates the font of number labels.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleHintFontName">
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleHintFont">
             <summary>
             Indicates the font of quadruple hint.
             </summary>
@@ -486,31 +446,6 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.UnknownFontStyle">
             <summary>
             Indicates the font style of an unknown.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFontStyle">
-            <summary>
-            Indicates the font style of footer text.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.GreaterThanSignFontStyle">
-            <summary>
-            Indicates the font style of greater-than signs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.XvSignFontStyle">
-            <summary>
-            Indicates the font style of XV signs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFontStyle">
-            <summary>
-            Indicates the font style of number labels.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleHintFontStyle">
-            <summary>
-            Indicates the font style of quadruple hint.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenColor">
@@ -593,11 +528,83 @@
             The color palette. This property stores a list of customized colors to be used as user-defined colors.
             </summary>
         </member>
-        <member name="M:Sudoku.Gdip.DrawingConfigurations.Clone">
+        <member name="T:Sudoku.Gdip.FontData">
+            <summary>
+            Encapsulates a font data to be serialized.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Gdip.FontData.#ctor(System.String,System.Single,System.Drawing.FontStyle)">
+            <summary>
+            Initalizes a <see cref="T:Sudoku.Gdip.FontData"/> instance.
+            </summary>
+            <param name="fontName">The font name.</param>
+            <param name="fontSize">The font size.</param>
+            <param name="fontStyle">The font style.</param>
+        </member>
+        <member name="P:Sudoku.Gdip.FontData.FontName">
+            <summary>
+            Indicates the name of the font.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.FontData.FontSize">
+            <summary>
+            Indicates the font size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.FontData.FontStyle">
+            <summary>
+            Indicates the font style.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Gdip.FontData.Deconstruct(System.String@,System.Single@,System.Drawing.FontStyle@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Gdip.FontData.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Gdip.FontData.Equals(Sudoku.Gdip.FontData)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Gdip.DrawingConfigurations.CoverBy(Sudoku.Gdip.DrawingConfigurations)">
-            <inheritdoc cref="M:System.Reflection.ReflectionCopying.ReflectionCover``1(``0,``0)"/>
+        <member name="M:Sudoku.Gdip.FontData.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Gdip.GridImageGenerator">
             <summary>

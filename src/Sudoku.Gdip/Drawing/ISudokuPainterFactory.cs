@@ -86,14 +86,6 @@ public interface ISudokuPainterFactory
 	ISudokuPainter WithPreferenceSettings(Action<DrawingConfigurations> action);
 
 	/// <summary>
-	/// Sets a font name that is used for rendering footer text.
-	/// </summary>
-	/// <param name="fontName">The font name.</param>
-	/// <returns>The target painter.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithFooterTextFont(string fontName) => WithPreferenceSettings(pref => pref.FooterTextFontName = fontName);
-
-	/// <summary>
 	/// Sets the footer text that can be rendered below the picture.
 	/// </summary>
 	/// <param name="footerText">The footer text.</param>
@@ -109,15 +101,6 @@ public interface ISudokuPainterFactory
 	/// <returns>The target painter.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="alignment"/> is not defined.</exception>
 	ISudokuPainter WithFooterText(string footerText, TextAlignmentType alignment);
-
-	/// <summary>
-	/// Sets the footer text color that is used by rendering the text.
-	/// </summary>
-	/// <param name="color">The color to set. We do not recommend you use hard-reading colors such as <see cref="Color.Transparent"/>.</param>
-	/// <returns>The target painter.</returns>
-	/// <seealso cref="Color.Transparent"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithFooterTextColor(Color color) => WithPreferenceSettings(pref => pref.FooterTextColor = color);
 
 	/// <summary>
 	/// Sets the conclusions used for rendering.

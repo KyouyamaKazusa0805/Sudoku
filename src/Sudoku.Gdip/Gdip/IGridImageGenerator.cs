@@ -161,7 +161,7 @@ public sealed partial class GridImageGenerator
 			{
 				FooterTextAlignment: var footerAlignment,
 				FooterText: var footer,
-				Preferences: { FooterTextFontName: var fontName, FooterTextFontSize: var fontSize, FooterTextFontStyle: var fontStyle }
+				Preferences.FooterTextFont: var (fontName, fontSize, fontStyle)
 			})
 		{
 			throw new();
@@ -983,13 +983,7 @@ partial class GridImageGenerator
 			{
 				View.GreaterThanNodes: var greaterThanNodes,
 				Calculator: var calc,
-				Preferences:
-				{
-					GreaterThanSignFontName: var fontName,
-					GreaterThanSignFontStyle: var fontStyle,
-					GreaterThanTextFontSize: var fontSize,
-					BackgroundColor: var backColor
-				}
+				Preferences: { GreaterThanSignFont: var (fontName, fontSize, fontStyle), BackgroundColor: var backColor }
 			})
 		{
 			return;
@@ -1052,13 +1046,7 @@ partial class GridImageGenerator
 			{
 				View.XvNodes: var xvNodes,
 				Calculator: var calc,
-				Preferences:
-				{
-					XvTextFontSize: var fontSize,
-					XvSignFontName: var fontName,
-					XvSignFontStyle: var fontStyle,
-					BackgroundColor: var backColor
-				}
+				Preferences: { XvSignFont: var (fontName, fontSize, fontStyle), BackgroundColor: var backColor }
 			})
 		{
 			return;
@@ -1096,13 +1084,7 @@ partial class GridImageGenerator
 			{
 				View.NumberLabelNodes: var numberLabelNodes,
 				Calculator: var calc,
-				Preferences:
-				{
-					NumberLabelFontSize: var fontSize,
-					NumberLabelFontName: var fontName,
-					NumberLabelFontStyle: var fontStyle,
-					BackgroundColor: var backColor
-				}
+				Preferences: { NumberLabelFont: var (fontName, fontSize, fontStyle), BackgroundColor: var backColor }
 			})
 		{
 			return;
@@ -1190,13 +1172,7 @@ partial class GridImageGenerator
 			{
 				View.QuadrupleHintNodes: var quadrupleHintNodes,
 				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences:
-				{
-					QuadrupleHintFontSize: var fontSize,
-					QuadrupleHintFontName: var fontName,
-					QuadrupleHintFontStyle: var fontStyle,
-					BackgroundColor: var backColor
-				}
+				Preferences: { QuadrupleHintFont: var (fontName, fontSize, fontStyle), BackgroundColor: var backColor }
 			})
 		{
 			return;
