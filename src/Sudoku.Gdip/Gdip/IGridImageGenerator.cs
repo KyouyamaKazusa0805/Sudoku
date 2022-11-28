@@ -23,7 +23,7 @@ public sealed partial class GridImageGenerator
 	{
 	}
 
-	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations, in Grid)"/>
+	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations)"/>
 	/// <summary>
 	/// <inheritdoc path="/summary"/>
 	/// </summary>
@@ -35,17 +35,10 @@ public sealed partial class GridImageGenerator
 	{
 	}
 
-	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations, in Grid)"/>
+	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations)"/>
 	[SetsRequiredMembers]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridImageGenerator(PointCalculator calculator) : this(calculator, new(), Grid.Empty)
-	{
-	}
-
-	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations, in Grid)"/>
-	[SetsRequiredMembers]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridImageGenerator(PointCalculator calculator, DrawingConfigurations preferences) : this(calculator, preferences, Grid.Empty)
+	public GridImageGenerator(PointCalculator calculator) : this(calculator, new())
 	{
 	}
 
@@ -54,11 +47,9 @@ public sealed partial class GridImageGenerator
 	/// </summary>
 	/// <param name="calculator">The point calculator that is used for conversion of drawing pixels.</param>
 	/// <param name="preferences">The user-defined preferences.</param>
-	/// <param name="puzzle">The puzzle.</param>
-	[SetsRequiredMembers]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridImageGenerator(PointCalculator calculator, DrawingConfigurations preferences, scoped in Grid puzzle)
-		=> (Calculator, Preferences, Puzzle) = (calculator, preferences, puzzle);
+	public GridImageGenerator(PointCalculator calculator, DrawingConfigurations preferences) 
+		=> (Calculator, Preferences) = (calculator, preferences);
 
 
 	/// <summary>
@@ -85,7 +76,7 @@ public sealed partial class GridImageGenerator
 	/// <summary>
 	/// Indicates the puzzle.
 	/// </summary>
-	public required Grid Puzzle { get; set; }
+	public Grid Puzzle { get; set; } = Grid.Empty;
 
 	/// <summary>
 	/// Indicates the view.
