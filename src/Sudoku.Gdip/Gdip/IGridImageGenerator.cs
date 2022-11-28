@@ -15,14 +15,6 @@ public sealed partial class GridImageGenerator
 	};
 
 
-	/// <summary>
-	/// Initializes a <see cref="GridImageGenerator"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridImageGenerator()
-	{
-	}
-
 	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations)"/>
 	/// <summary>
 	/// <inheritdoc path="/summary"/>
@@ -47,6 +39,7 @@ public sealed partial class GridImageGenerator
 	/// </summary>
 	/// <param name="calculator">The point calculator that is used for conversion of drawing pixels.</param>
 	/// <param name="preferences">The user-defined preferences.</param>
+	[SetsRequiredMembers]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public GridImageGenerator(PointCalculator calculator, DrawingConfigurations preferences) 
 		=> (Calculator, Preferences) = (calculator, preferences);

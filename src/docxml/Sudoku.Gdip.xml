@@ -631,13 +631,8 @@
             Indicates the default string format.
             </summary>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance.
-            </summary>
-        </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(System.Single,System.Single)">
-            <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)"/>
+            <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations)"/>
             <summary>
             <inheritdoc path="/summary"/>
             </summary>
@@ -645,18 +640,14 @@
             <param name="outsideOffset">The outside offset.</param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator)">
-            <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)"/>
+            <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations)"/>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations)">
-            <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)"/>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations,Sudoku.Concepts.Grid@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Gdip.GridImageGenerator"/> instance via the specified values.
             </summary>
             <param name="calculator">The point calculator that is used for conversion of drawing pixels.</param>
             <param name="preferences">The user-defined preferences.</param>
-            <param name="puzzle">The puzzle.</param>
         </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.Width">
             <summary>
