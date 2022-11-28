@@ -905,6 +905,56 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.Direction">
+            <summary>
+            Defines a direction.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.None">
+            <summary>
+            Indicates the direction is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.TopLeft">
+            <summary>
+            Indicates the direction is top-left.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.TopCenter">
+            <summary>
+            Indicates the direction is top-center.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.TopRight">
+            <summary>
+            Indicates the direction is top-right.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.MiddleLeft">
+            <summary>
+            Indicates the direction is middle-left.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.MiddleRight">
+            <summary>
+            Indicates the direction is middle-right.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.BottomLeft">
+            <summary>
+            Indicates the direction is bottom-left.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.BottomCenter">
+            <summary>
+            Indicates the direction is bottom-center.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.BottomRight">
+            <summary>
+            Indicates the direction is bottom-right.
+            </summary>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode">
             <summary>
             Represents with a greater-than sign view node.
@@ -965,6 +1015,37 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode">
+            <summary>
+            Defines a neighbor sign view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode"/> instance via specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+            <param name="isFourDirections">Indicates whether the sign only records for 4 directions.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.IsFourDirections">
+            <summary>
+            Indicates whether the sign only records for 4 directions (top-left, top-right, bottom-left and bottom-right).
+            If <see langword="true"/>, 4 directions; otherwise, 8 directions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.Clone">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode">
@@ -1073,6 +1154,82 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode">
+            <summary>
+            Defines a single-cell mark view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Assigns the values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell used.</param>
+            <param name="directions">The directions used.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.Directions">
+            <summary>
+            Indicates the directions that the current mark points to. <see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.None"/> is for default case.
+            Use <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/>.<see langword="operator"/> |(<see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/>, <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/>)
+            to combine multiple directions.
+            </summary>
+            <seealso cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.None"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.Deconstruct(System.Int32@,Sudoku.Presentation.Nodes.Shapes.Direction@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode">
@@ -1586,6 +1743,11 @@
         <member name="P:Sudoku.Presentation.View.ClockfaceDotNodes">
             <summary>
             Indicates clockface dot nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.NeighborNodes">
+            <summary>
+            Indicates neighbor nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

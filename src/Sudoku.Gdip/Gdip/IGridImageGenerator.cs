@@ -254,6 +254,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawBattenburg(Graphics g);
 	partial void DrawQuadrupleHint(Graphics g);
 	partial void DrawClockfaceDot(Graphics g);
+	partial void DrawNeighborSigns(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -380,6 +381,7 @@ partial class GridImageGenerator
 		DrawBattenburg(g);
 		DrawQuadrupleHint(g);
 		DrawClockfaceDot(g);
+		DrawNeighborSigns(g);
 	}
 
 	/// <summary>
@@ -1260,6 +1262,54 @@ partial class GridImageGenerator
 			{
 				g.DrawEllipse(pen, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
 				g.FillEllipse(brush, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Draw neighbor signs.
+	/// </summary>
+	/// <param name="g">The graphics.</param>
+	partial void DrawNeighborSigns(Graphics g)
+	{
+		if (this is not
+			{
+				View.NeighborNodes: var neighborNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences: { NeighborSignsWidth: var width, NeighborSignCellPadding: var padding }
+			})
+		{
+			return;
+		}
+
+		foreach (var neighborNode in neighborNodes)
+		{
+			if (neighborNode is not (var cell, _) { Identifier: var identifier, IsFourDirections: var isFourDirections })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			using var pen = new Pen(brush, width);
+
+			var (x, y) = calc.GetMousePointInCenter(cell);
+			var topLeft = new PointF(x - cw / 2 + padding, y - ch / 2 + padding);
+			var bottomRight = new PointF(x + cw / 2 - padding, y + ch / 2 - padding);
+
+			if (isFourDirections)
+			{
+				// Draw cross sign.
+				var topRight = new PointF(x + cw / 2 - padding, y - ch / 2 + padding);
+				var bottomLeft = new PointF(x - cw / 2 + padding, y + ch / 2 - padding);
+
+				g.DrawLine(pen, topLeft, bottomRight);
+				g.DrawLine(pen, topRight, bottomLeft);
+			}
+			else
+			{
+				// Draw circle.
+				var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+				g.DrawEllipse(pen, rect);
 			}
 		}
 	}

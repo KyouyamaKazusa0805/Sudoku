@@ -398,6 +398,11 @@
             Indicates the border width of clockface dots.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignsWidth">
+            <summary>
+            Indicates the width of neighbor signs.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotSize">
             <summary>
             Indicates the size of Kropki dots.
@@ -411,6 +416,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.ClockfaceDotSize">
             <summary>
             Indicates the size of clockface dot.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignCellPadding">
+            <summary>
+            Indicates the padding of neighbor signs.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
@@ -836,6 +846,12 @@
             Draw clockface dots.
             </summary>
             <param name="g">The grapics.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawNeighborSigns(System.Drawing.Graphics)">
+            <summary>
+            Draw neighbor signs.
+            </summary>
+            <param name="g">The graphics.</param>
         </member>
         <member name="T:Sudoku.Gdip.PointCalculator">
             <summary>

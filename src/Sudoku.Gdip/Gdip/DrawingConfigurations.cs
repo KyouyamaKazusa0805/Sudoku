@@ -81,6 +81,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	public float ClockfaceDotBorderWidth { get; set; } = 3F;
 
 	/// <summary>
+	/// Indicates the width of neighbor signs.
+	/// </summary>
+	public float NeighborSignsWidth { get; set; } = 3F;
+
+	/// <summary>
 	/// Indicates the size of Kropki dots.
 	/// </summary>
 	public float KropkiDotSize { get; set; } = 6F;
@@ -94,6 +99,11 @@ public sealed class DrawingConfigurations : ICloneable<DrawingConfigurations>
 	/// Indicates the size of clockface dot.
 	/// </summary>
 	public float ClockfaceDotSize { get; set; } = 6F;
+
+	/// <summary>
+	/// Indicates the padding of neighbor signs.
+	/// </summary>
+	public float NeighborSignCellPadding { get; set; } = 5F;
 
 	/// <summary>
 	/// Indicates the font of given digits to render.
