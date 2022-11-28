@@ -363,6 +363,11 @@
             Indicates the width of neighbor signs.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.WheelWidth">
+            <summary>
+            Indicates the width of wheel.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotSize">
             <summary>
             Indicates the size of Kropki dots.
@@ -401,31 +406,6 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.UnknownFontName">
             <summary>
             Indicates the font of unknown values to render.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFont">
-            <summary>
-            Indicates the font of footer text.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.GreaterThanSignFont">
-            <summary>
-            Indicates the font of greater-than signs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.XvSignFont">
-            <summary>
-            Indicates the font of XV signs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFont">
-            <summary>
-            Indicates the font of number labels.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleHintFont">
-            <summary>
-            Indicates the font of quadruple hint.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontStyle">
@@ -523,9 +503,44 @@
             Indicates footer text color.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.WheelTextColor">
+            <summary>
+            Indicates wheel text color.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.ColorPalette">
             <summary>
             The color palette. This property stores a list of customized colors to be used as user-defined colors.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFont">
+            <summary>
+            Indicates the font of footer text.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.GreaterThanSignFont">
+            <summary>
+            Indicates the font of greater-than signs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.XvSignFont">
+            <summary>
+            Indicates the font of XV signs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFont">
+            <summary>
+            Indicates the font of number labels.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleHintFont">
+            <summary>
+            Indicates the font of quadruple hint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.WheelFont">
+            <summary>
+            Indicates the font of wheel text.
             </summary>
         </member>
         <member name="T:Sudoku.Gdip.FontData">
@@ -857,6 +872,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawNeighborSigns(System.Drawing.Graphics)">
             <summary>
             Draw neighbor signs.
+            </summary>
+            <param name="g">The graphics.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawWheel(System.Drawing.Graphics)">
+            <summary>
+            Draw wheels.
             </summary>
             <param name="g">The graphics.</param>
         </member>

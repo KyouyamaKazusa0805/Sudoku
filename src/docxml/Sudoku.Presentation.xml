@@ -1232,6 +1232,37 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.WheelViewNode">
+            <summary>
+            Defines a wheel view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.WheelViewNode"/> instance via specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+            <param name="digits">The four-number digit, in clockwise order. The first one is displayed on the top cell.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.DigitString">
+            <summary>
+            The digit string. The string is of length 4, as a four-number digit, describing 4 digits surroundding with the target cell
+            in clockwise order. The first one is displayed on the top cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode">
             <summary>
             Defines a XV sign view node.
@@ -1748,6 +1779,11 @@
         <member name="P:Sudoku.Presentation.View.NeighborNodes">
             <summary>
             Indicates neighbor nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.WheelNodes">
+            <summary>
+            Indicates wheel nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

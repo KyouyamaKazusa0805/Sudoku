@@ -255,6 +255,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawQuadrupleHint(Graphics g);
 	partial void DrawClockfaceDot(Graphics g);
 	partial void DrawNeighborSigns(Graphics g);
+	partial void DrawWheel(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -382,6 +383,7 @@ partial class GridImageGenerator
 		DrawQuadrupleHint(g);
 		DrawClockfaceDot(g);
 		DrawNeighborSigns(g);
+		DrawWheel(g);
 	}
 
 	/// <summary>
@@ -1286,6 +1288,69 @@ partial class GridImageGenerator
 				// Draw circle.
 				var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
 				g.DrawEllipse(pen, rect);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Draw wheels.
+	/// </summary>
+	/// <param name="g">The graphics.</param>
+	partial void DrawWheel(Graphics g)
+	{
+		if (this is not
+			{
+				View.WheelNodes: var wheelNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences:
+				{
+					WheelFont: var (fontName, fontSize, fontStyle),
+					WheelWidth: var width,
+					WheelTextColor: var textColor,
+					BackgroundColor: var backColor
+				}
+			})
+		{
+			return;
+		}
+
+		using var backBrush = new SolidBrush(backColor);
+		using var font = new Font(fontName, fontSize, fontStyle);
+		using var textBrush = new SolidBrush(textColor);
+
+		var positions = (stackalloc PointF[4]);
+		foreach (var wheelNode in wheelNodes)
+		{
+			if (wheelNode is not (var cell, _) { Identifier: var identifier, DigitString: var digitString })
+			{
+				continue;
+			}
+
+			using var pen = new Pen(GetColor(identifier), width);
+
+			var (x, y) = calc.GetMousePointInCenter(cell);
+			var topLeft = new PointF(x - cw * SqrtOf2 / 2, y - ch * SqrtOf2 / 2);
+			var bottomRight = new PointF(x + cw * SqrtOf2 / 2, y + ch * SqrtOf2 / 2);
+			var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+
+			// Draw wheel main circle.
+			g.DrawEllipse(pen, rect);
+
+			// Draw strings.
+			positions[0] = new(x, y - ch * SqrtOf2 / 2/* - fontSize / 4*/); // fontSize / 4: a little offset correction.
+			positions[1] = new(x + ch * SqrtOf2 / 2, y);
+			positions[2] = new(x, y + ch * SqrtOf2 / 2/* + fontSize / 4*/);
+			positions[3] = new(x - ch * SqrtOf2 / 2, y);
+			for (var i = 0; i < 4; i++)
+			{
+				var renderingText = digitString[i].ToString();
+				var position = positions[i];
+				var (px, py) = position;
+				var renderingSize = g.MeasureString(renderingText, font);
+				var (tw, th) = renderingSize;
+
+				g.FillRectangle(backBrush, new RectangleF(new(px - tw / 2, py - th / 2), renderingSize));
+				g.DrawString(renderingText, font, textBrush, position, DefaultStringFormat);
 			}
 		}
 	}

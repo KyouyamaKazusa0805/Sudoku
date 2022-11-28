@@ -61,6 +61,11 @@ public sealed class DrawingConfigurations
 	public float NeighborSignsWidth { get; set; } = 3F;
 
 	/// <summary>
+	/// Indicates the width of wheel.
+	/// </summary>
+	public float WheelWidth { get; set; } = 6F;
+
+	/// <summary>
 	/// Indicates the size of Kropki dots.
 	/// </summary>
 	public float KropkiDotSize { get; set; } = 6F;
@@ -99,31 +104,6 @@ public sealed class DrawingConfigurations
 	/// Indicates the font of unknown values to render.
 	/// </summary>
 	public string? UnknownFontName { get; set; } = "Times New Roman";
-
-	/// <summary>
-	/// Indicates the font of footer text.
-	/// </summary>
-	public FontData FooterTextFont { get; set; } = new("MiSans", 24F, FontStyle.Bold);
-
-	/// <summary>
-	/// Indicates the font of greater-than signs.
-	/// </summary>
-	public FontData GreaterThanSignFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
-
-	/// <summary>
-	/// Indicates the font of XV signs.
-	/// </summary>
-	public FontData XvSignFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
-
-	/// <summary>
-	/// Indicates the font of number labels.
-	/// </summary>
-	public FontData NumberLabelFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
-
-	/// <summary>
-	/// Indicates the font of quadruple hint.
-	/// </summary>
-	public FontData QuadrupleHintFont { get; set; } = new("MiSans", 24F, FontStyle.Regular);
 
 	/// <summary>
 	/// Indicates the font style of the givens.
@@ -221,6 +201,11 @@ public sealed class DrawingConfigurations
 	public Color FooterTextColor { get; set; } = Color.Black;
 
 	/// <summary>
+	/// Indicates wheel text color.
+	/// </summary>
+	public Color WheelTextColor { get; set; } = Color.Black;
+
+	/// <summary>
 	/// The color palette. This property stores a list of customized colors to be used as user-defined colors.
 	/// </summary>
 	public Color[] ColorPalette { get; set; } =
@@ -241,4 +226,34 @@ public sealed class DrawingConfigurations
 		Color.FromArgb(215, 255, 215),
 		Color.FromArgb(192, 192, 192)
 	};
+
+	/// <summary>
+	/// Indicates the font of footer text.
+	/// </summary>
+	public FontData FooterTextFont { get; set; } = new("MiSans", 24F, FontStyle.Bold);
+
+	/// <summary>
+	/// Indicates the font of greater-than signs.
+	/// </summary>
+	public FontData GreaterThanSignFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
+
+	/// <summary>
+	/// Indicates the font of XV signs.
+	/// </summary>
+	public FontData XvSignFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
+
+	/// <summary>
+	/// Indicates the font of number labels.
+	/// </summary>
+	public FontData NumberLabelFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
+
+	/// <summary>
+	/// Indicates the font of quadruple hint.
+	/// </summary>
+	public FontData QuadrupleHintFont { get; set; } = new("MiSans", 24F, FontStyle.Regular);
+
+	/// <summary>
+	/// Indicates the font of wheel text.
+	/// </summary>
+	public FontData WheelFont { get; set; } = new("MiSans", 12F, FontStyle.Regular);
 }
