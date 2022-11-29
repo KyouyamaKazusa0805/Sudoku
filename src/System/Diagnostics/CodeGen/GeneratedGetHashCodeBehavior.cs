@@ -26,7 +26,7 @@ public enum GeneratedGetHashCodeBehavior
 	///         DiagnosticId = "SCA0105",
 	///         UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0105")]
 	///     public override readonly partial int GetHashCode()
-	///			=> throw new NotSupportedException(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod);
+	///         => throw new NotSupportedException(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod);
 	/// }
 	/// ]]></code>
 	/// </remarks>
