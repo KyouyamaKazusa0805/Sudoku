@@ -2417,7 +2417,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Patterns.UniquePolygonPattern">
             <summary>
@@ -2610,7 +2610,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.UniquePolygonPattern.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Solving.Logical.SolverResultFormattingOptions">
             <summary>

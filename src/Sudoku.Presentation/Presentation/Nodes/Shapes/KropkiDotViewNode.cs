@@ -21,6 +21,20 @@ public sealed partial class KropkiDotViewNode : AdjacentCellMarkViewNode
 	/// </summary>
 	public bool IsSolid { get; }
 
+	/// <summary>
+	/// Indicates the cell 1 string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell1))]
+	private string Cell1String => CellsMap[Cell1].ToString();
+
+	/// <summary>
+	/// Indicates the cell 2 string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell2))]
+	private string Cell2String => CellsMap[Cell2].ToString();
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -32,10 +46,8 @@ public sealed partial class KropkiDotViewNode : AdjacentCellMarkViewNode
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Cell1), nameof(Cell2), nameof(IsSolid))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{nameof(KropkiDotViewNode)}} { {{nameof(Cell1)}} = {{CellsMap[Cell1]}}, {{nameof(Cell2)}} = {{CellsMap[Cell2]}}, {{nameof(IsSolid)}} = {{IsSolid}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String), nameof(IsSolid))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -33,6 +33,13 @@ public abstract partial class SingleCellMarkViewNode : ShapeViewNode
 	/// <seealso cref="Direction.None"/>
 	public Direction Directions { get; }
 
+	/// <summary>
+	/// Indicates the cell string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell))]
+	private string CellString => CellsMap[Cell].ToString();
+
 
 	[GeneratedDeconstruction]
 	public partial void Deconstruct(out int cell, out Direction directions);
@@ -46,8 +53,6 @@ public abstract partial class SingleCellMarkViewNode : ShapeViewNode
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell), nameof(Directions))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{GetType().Name}} { {{nameof(Cell)}} = {{CellsMap[Cell]}}, {{nameof(Directions)}} = {{Directions}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(Directions))]
+	public override partial string ToString();
 }

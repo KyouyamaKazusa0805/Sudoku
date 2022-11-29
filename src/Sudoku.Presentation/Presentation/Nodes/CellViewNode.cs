@@ -23,6 +23,13 @@ public sealed partial class CellViewNode : ViewNode
 	/// <inheritdoc/>
 	protected override string TypeIdentifier => nameof(CellViewNode);
 
+	/// <summary>
+	/// Indicates the cell string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell))]
+	private string CellString => CellsMap[Cell].ToString();
+
 
 	[GeneratedDeconstruction]
 	public partial void Deconstruct(out Identifier identifier, out int cell);
@@ -35,10 +42,8 @@ public sealed partial class CellViewNode : ViewNode
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Cell))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{nameof(CellViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(Cell)}} = {{CellsMap[Cell]}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

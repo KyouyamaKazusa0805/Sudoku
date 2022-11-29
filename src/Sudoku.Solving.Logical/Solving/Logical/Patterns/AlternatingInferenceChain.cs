@@ -270,7 +270,7 @@ public sealed class AlternatingInferenceChain : Chain
 	}
 
 	/// <inheritdoc/>
-	public override ImmutableArray<Conclusion> GetConclusions(scoped in Grid grid)
+	public override ConclusionList GetConclusions(scoped in Grid grid)
 		=> ImmutableArray.Create(
 			IsStrong switch
 			{

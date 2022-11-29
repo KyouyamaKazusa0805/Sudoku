@@ -127,9 +127,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Mode), nameof(TemporaryHashCodeBase))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $$"""{{nameof(Identifier)}} { {{RawValueDisplayer}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(RawValueDisplayer))]
+	public override partial string ToString();
 
 
 	/// <summary>

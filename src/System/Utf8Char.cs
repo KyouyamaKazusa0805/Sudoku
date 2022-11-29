@@ -40,6 +40,13 @@ public readonly partial struct Utf8Char :
 	private Utf8Char(byte value) => _char = value;
 
 
+	/// <summary>
+	/// Indicates the character string.
+	/// </summary>
+	[DebuggerHidden]
+	private string CharString => ((char)_char).ToString();
+
+
 	/// <inheritdoc/>
 	static Utf8Char IMinMaxValue<Utf8Char>.MinValue => MinValue;
 
@@ -96,9 +103,8 @@ public readonly partial struct Utf8Char :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Utf8Char other) => _char.CompareTo(_char);
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ((char)_char).ToString();
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.SimpleMember, nameof(CharString))]
+	public override partial string ToString();
 
 	/// <summary>
 	/// Converts the current character to the upper-casing letter.

@@ -42,6 +42,13 @@ public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualit
 	/// </summary>
 	public CellMap Cells { get; init; }
 
+	/// <summary>
+	/// The digit string value.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Digit))]
+	private int DigitString => Digit + 1;
+
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
@@ -53,10 +60,8 @@ public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualit
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Cells), nameof(Digit))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{nameof(LockedTarget)}} { {{nameof(Digit)}} = {{Digit + 1}}, {{nameof(Cells)}} = {{Cells}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(DigitString), nameof(Cells))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

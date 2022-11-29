@@ -635,8 +635,8 @@ public unsafe partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int[] ToArray() => Offsets;
 
-	/// <inheritdoc cref="object.ToString"/>
-	public override readonly string ToString() => ToString((string?)null);
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
+	public override readonly partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

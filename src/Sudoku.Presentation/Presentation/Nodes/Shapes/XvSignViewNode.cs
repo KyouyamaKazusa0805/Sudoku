@@ -21,21 +21,32 @@ public sealed partial class XvSignViewNode : AdjacentCellMarkViewNode
 	/// </summary>
 	public bool IsX { get; }
 
+	/// <summary>
+	/// Indicates the cell 1 string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell1))]
+	private string Cell1String => CellsMap[Cell1].ToString();
+
+	/// <summary>
+	/// Indicates the cell 2 string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell2))]
+	private string Cell2String => CellsMap[Cell2].ToString();
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is XvSignViewNode comparer
-		&& Identifier == comparer.Identifier
-		&& Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2 && IsX == comparer.IsX;
+		&& Identifier == comparer.Identifier && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2 && IsX == comparer.IsX;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell1), nameof(Cell2), nameof(IsX))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{nameof(XvSignViewNode)}} { {{nameof(Cell1)}} = {{CellsMap[Cell1]}}, {{nameof(Cell2)}} = {{CellsMap[Cell2]}}, {{nameof(IsX)}} = {{IsX}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String), nameof(IsX))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

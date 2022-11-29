@@ -13,5 +13,5 @@ internal static class ExtendedSymbolDisplayFormat
 	public static SymbolDisplayFormat FullyQualifiedFormatWithConstraints
 		=> SymbolDisplayFormat
 			.FullyQualifiedFormat
-			.WithGenericsOptions(SymbolDisplayGenericsOptions.IncludeTypeConstraints);
+			.WithGenericsOptions(SymbolDisplayGenericsOptions.IncludeTypeParameters | SymbolDisplayGenericsOptions.IncludeTypeConstraints);
 }

@@ -177,9 +177,8 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 		return false;
 	}
 
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => ToString(null);
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
+	public override readonly partial string ToString();
 
 	/// <summary>
 	/// Returns a string that represents the current object with the custom format string.

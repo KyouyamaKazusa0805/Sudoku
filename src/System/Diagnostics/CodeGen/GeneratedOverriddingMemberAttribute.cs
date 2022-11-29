@@ -9,9 +9,7 @@
 /// <list type="bullet">
 /// <item><see cref="object.Equals(object?)"/> and <see cref="ValueType.Equals(object?)"/></item>
 /// <item><see cref="object.GetHashCode"/> and <see cref="ValueType.GetHashCode"/></item>
-/// <!--
 /// <item><see cref="object.ToString"/> and <see cref="ValueType.ToString"/></item>
-/// -->
 /// </list>
 /// </remarks>
 /// <seealso cref="object"/>
@@ -36,6 +34,15 @@ public sealed class GeneratedOverriddingMemberAttribute : Attribute
 	public GeneratedOverriddingMemberAttribute(GeneratedGetHashCodeBehavior overriddingGetHashCodeBehavior, params object?[]? arguments)
 		=> (OverriddingGetHashCodeBehavior, ExtraArguments) = (overriddingGetHashCodeBehavior, arguments);
 
+	/// <summary>
+	/// Initializes a <see cref="GeneratedOverriddingMemberAttribute"/> instance via the specified behavior on generating
+	/// <see cref="object.ToString"/>, with the specified array as extra arguments.
+	/// </summary>
+	/// <param name="overriddingToStringBehavior">The behavior.</param>
+	/// <param name="arguments">Extra arguments.</param>
+	public GeneratedOverriddingMemberAttribute(GeneratedToStringBehavior overriddingToStringBehavior, params object?[]? arguments)
+		=> (OverriddingToStringBehavior, ExtraArguments) = (overriddingToStringBehavior, arguments);
+
 
 	/// <summary>
 	/// The extra arguments.
@@ -51,4 +58,9 @@ public sealed class GeneratedOverriddingMemberAttribute : Attribute
 	/// Indicates the behavior describing source generator's generated source code on overridding <see cref="object.GetHashCode"/>.
 	/// </summary>
 	public GeneratedGetHashCodeBehavior? OverriddingGetHashCodeBehavior { get; }
+
+	/// <summary>
+	/// Indicates the behavior describing source generator's generated source code on overridding <see cref="object.ToString"/>.
+	/// </summary>
+	public GeneratedToStringBehavior? OverriddingToStringBehavior { get; }
 }

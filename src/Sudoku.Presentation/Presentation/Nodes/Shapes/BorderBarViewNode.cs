@@ -17,6 +17,21 @@ public sealed partial class BorderBarViewNode : AdjacentCellMarkViewNode
 	}
 
 
+	/// <summary>
+	/// Indicates the cell 1 string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell1))]
+	private string Cell1String => CellsMap[Cell1].ToString();
+
+	/// <summary>
+	/// Indicates the cell 2 string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell2))]
+	private string Cell2String => CellsMap[Cell2].ToString();
+
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
@@ -25,10 +40,8 @@ public sealed partial class BorderBarViewNode : AdjacentCellMarkViewNode
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell1), nameof(Cell2))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{nameof(BorderBarViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(Cell1)}} = {{CellsMap[Cell1]}}, {{nameof(Cell2)}} = {{CellsMap[Cell2]}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

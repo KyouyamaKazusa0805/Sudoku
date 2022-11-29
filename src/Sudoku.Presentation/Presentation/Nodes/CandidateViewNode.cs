@@ -23,6 +23,13 @@ public sealed partial class CandidateViewNode : ViewNode
 	/// <inheritdoc/>
 	protected override string TypeIdentifier => nameof(CandidateViewNode);
 
+	/// <summary>
+	/// Indicates the candidate string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Candidate))]
+	private string CandidateString => (Candidates.Empty + Candidate).ToString();
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -32,10 +39,8 @@ public sealed partial class CandidateViewNode : ViewNode
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Candidate))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{nameof(CandidateViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(Candidate)}} = {{Candidates.Empty + Candidate}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CandidateString))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

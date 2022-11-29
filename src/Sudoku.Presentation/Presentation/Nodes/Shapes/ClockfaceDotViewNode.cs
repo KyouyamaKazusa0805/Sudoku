@@ -40,9 +40,8 @@ public sealed partial class ClockfaceDotViewNode : QuadrupleCellMarkViewNode
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cells), nameof(IsClockwise))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	public override string ToString()
-		=> $$"""{{nameof(ClockfaceDotViewNode)}} { {{nameof(Cells)}} = {{Cells}}, {{nameof(IsClockwise)}} = {{IsClockwise}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells), nameof(IsClockwise))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	public override ClockfaceDotViewNode Clone() => new(Identifier, Cells, IsClockwise);

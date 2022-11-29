@@ -40,13 +40,11 @@ public readonly partial record struct QiuDeadlyPattern(scoped in CellMap Square,
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(scoped in QiuDeadlyPattern other)
-		=> Square == other.Square && BaseLine == other.BaseLine && Pair == other.Pair;
+	public bool Equals(scoped in QiuDeadlyPattern other) => Square == other.Square && BaseLine == other.BaseLine && Pair == other.Pair;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Square), nameof(BaseLine), nameof(Pair))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $$"""{{nameof(QiuDeadlyPattern)}} { {{nameof(Map)}} = {{Map}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Map))]
+	public override partial string ToString();
 }

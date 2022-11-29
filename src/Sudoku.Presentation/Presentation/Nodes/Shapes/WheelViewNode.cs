@@ -27,6 +27,13 @@ public sealed partial class WheelViewNode : SingleCellMarkViewNode
 	/// </summary>
 	public string DigitString { get; }
 
+	/// <summary>
+	/// Indicates the cell string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell))]
+	private string CellString => CellsMap[Cell].ToString();
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -37,10 +44,8 @@ public sealed partial class WheelViewNode : SingleCellMarkViewNode
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell), nameof(DigitString))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{nameof(WheelViewNode)}} { {{nameof(Cell)}} = {{CellsMap[Cell]}}, {{nameof(DigitString)}} = "{{DigitString}}" }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(CellString), nameof(DigitString))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

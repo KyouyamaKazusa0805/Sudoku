@@ -2,6 +2,7 @@
 
 using EqualsData = ValueTuple<int /*GeneratedMode*/, SyntaxTokenList /*MethodModifiers*/, INamedTypeSymbol /*Type*/, string /*ParameterName*/>;
 using GetHashCodeData = ValueTuple<int /*GeneratedMode*/, SyntaxTokenList /*MethodModifiers*/, INamedTypeSymbol /*Type*/, IEnumerable<string> /*ExpressionValueNames*/>;
+using ToStringData = ValueTuple<int /*GeneratedMode*/, SyntaxTokenList /*MethodModifiers*/, INamedTypeSymbol /*Type*/, INamedTypeSymbol /*SpecialAttributeType*/, IEnumerable<string> /*ExpressionValueNames*/>;
 
 /// <summary>
 /// Defines a source generator that generates the source code for default-overridden members
@@ -14,56 +15,15 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
-		=> context
-			.WithRegisteredSourceOutput(TransformEqualsData, OutputEquals)
-			.WithRegisteredSourceOutput(TransformGetHashCodeData, OutputGetHashCode);
-
-
-	/// <summary>
-	/// Transforms the data from current context into a tuple of values as generated data.
-	/// </summary>
-	private static GetHashCodeData? TransformGetHashCodeData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
 	{
-		if (gasc is not
-			{
-				Attributes: [{ ConstructorArguments: [{ Value: int rawMode }, { Values: var extraArguments }] }],
-				TargetNode: MethodDeclarationSyntax { Modifiers: var modifiers },
-				TargetSymbol: IMethodSymbol
-				{
-					OverriddenMethod: var overridenMethod,
-					ContainingType: { } type,
-					Name: nameof(object.GetHashCode),
-					IsOverride: true,
-					IsStatic: false,
-					ReturnType.SpecialType: SpecialType.System_Int32,
-					IsGenericMethod: false,
-					Parameters: []
-				} method
-			})
-		{
-			return null;
-		}
-
-		// Check whether the method is overridden from object.Equals(object?).
-		var rootMethod = overridenMethod;
-		var currentMethod = method;
-		for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod) ;
-		if (currentMethod!.ContainingType.SpecialType is not (SpecialType.System_Object or SpecialType.System_ValueType))
-		{
-			return null;
-		}
-
-		if ((rawMode, type) switch { (0, { TypeKind: TypeKind.Struct, IsRefLikeType: true }) => false, (1 or 2, _) => false, _ => true })
-		{
-			return null;
-		}
-
-		return new(rawMode, modifiers, type, from extraArgument in extraArguments select (string)extraArgument.Value!);
+		context
+			.WithRegisteredSourceOutput(TransformEqualsData, OutputEquals)
+			.WithRegisteredSourceOutput(TransformGetHashCodeData, OutputGetHashCode)
+			.WithRegisteredSourceOutput(TransformToStringData, OutputToStringCode);
 	}
 
-	/// <summary>
-	/// Transforms the data from current context into a tuple of values as generated data.
-	/// </summary>
+
+	/// <inheritdoc cref="TransformGetHashCodeData"/>
 	private static EqualsData? TransformEqualsData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
 	{
 #pragma warning disable format
@@ -117,6 +77,90 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 		}
 
 		return new(rawMode, modifiers, type, parameterName);
+	}
+
+	/// <summary>
+	/// Transforms the data from current context into a tuple of values as generated data.
+	/// </summary>
+	private static GetHashCodeData? TransformGetHashCodeData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
+	{
+		if (gasc is not
+			{
+				Attributes: [{ ConstructorArguments: [{ Value: int rawMode }, { Values: var extraArguments }] }],
+				TargetNode: MethodDeclarationSyntax { Modifiers: var modifiers },
+				TargetSymbol: IMethodSymbol
+				{
+					OverriddenMethod: var overriddenMethod,
+					ContainingType: { } type,
+					Name: nameof(object.GetHashCode),
+					IsOverride: true,
+					IsStatic: false,
+					ReturnType.SpecialType: SpecialType.System_Int32,
+					IsGenericMethod: false,
+					Parameters: []
+				} method
+			})
+		{
+			return null;
+		}
+
+		// Check whether the method is overridden from object.GetHashCode.
+		var rootMethod = overriddenMethod;
+		var currentMethod = method;
+		for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod) ;
+		if (currentMethod!.ContainingType.SpecialType is not (SpecialType.System_Object or SpecialType.System_ValueType))
+		{
+			return null;
+		}
+
+		if ((rawMode, type) switch { (0, { TypeKind: TypeKind.Struct, IsRefLikeType: true }) => false, (1 or 2, _) => false, _ => true })
+		{
+			return null;
+		}
+
+		return new(rawMode, modifiers, type, from extraArgument in extraArguments select (string)extraArgument.Value!);
+	}
+
+	/// <inheritdoc cref="TransformGetHashCodeData"/>
+	private static ToStringData? TransformToStringData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
+	{
+		if (gasc is not
+			{
+				Attributes: [{ ConstructorArguments: [{ Value: int rawMode }, { Values: var extraArguments }] }],
+				TargetNode: MethodDeclarationSyntax { Modifiers: var modifiers },
+				TargetSymbol: IMethodSymbol
+				{
+					OverriddenMethod: var overriddenMethod,
+					ContainingType: { } type,
+					Name: nameof(object.ToString),
+					IsOverride: true,
+					IsStatic: false,
+					ReturnType.SpecialType: SpecialType.System_String,
+					IsGenericMethod: false,
+					Parameters: []
+				} method,
+				SemanticModel.Compilation: var compilation
+			})
+		{
+			return null;
+		}
+
+		// Check whether the method is overridden from object.ToString.
+		var rootMethod = overriddenMethod;
+		var currentMethod = method;
+		for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod) ;
+		if (currentMethod!.ContainingType.SpecialType is not (SpecialType.System_Object or SpecialType.System_ValueType))
+		{
+			return null;
+		}
+
+		var attributeType = compilation.GetTypeByMetadataName("System.Diagnostics.CodeGen.GeneratedDisplayNameAttribute");
+		if (attributeType is null)
+		{
+			return null;
+		}
+
+		return new(rawMode, modifiers, type, attributeType, from extraArgument in extraArguments select (string)extraArgument.Value!);
 	}
 
 	/// <summary>
@@ -184,9 +228,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 		);
 	}
 
-	/// <summary>
-	/// Generates the source code.
-	/// </summary>
+	/// <inheritdoc cref="OutputEquals"/>
 	private static void OutputGetHashCode(SourceProductionContext spc, ImmutableArray<GetHashCodeData?> data, Type sourceGeneratorType)
 	{
 		var codeSnippets = new List<string>();
@@ -271,6 +313,108 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 
 		spc.AddSource(
 			$"DefaultOverrides.g.{Shortcuts.GeneratedOverriddenMemberGetHashCode}.cs",
+			$"""
+			// <auto-generated/>
+			
+			#nullable enable
+			
+			{string.Join("\r\n\r\n", codeSnippets)}
+			"""
+		);
+	}
+
+	/// <inheritdoc cref="OutputEquals"/>
+	private static void OutputToStringCode(SourceProductionContext spc, ImmutableArray<ToStringData?> data, Type sourceGeneratorType)
+	{
+		var codeSnippets = new List<string>();
+
+		foreach (var tuple in data.CastToNotNull())
+		{
+#pragma warning disable format
+			if (tuple is not (
+				var mode,
+				var modifiers,
+				{ Name: var typeName, ContainingNamespace: var @namespace } type,
+				var attributeType,
+				var rawMemberNames
+			))
+#pragma warning restore format
+			{
+				continue;
+			}
+
+			var (_, _, _, genericArgs, _, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
+
+			var needCast = mode switch
+			{
+				0 => (
+					from IMethodSymbol method in type.GetAllMembers().OfType<IMethodSymbol>().Distinct(SymbolEqualityComparer.Default)
+					where method is
+					{
+						Name: nameof(object.ToString),
+						Parameters: [{ Type.IsReferenceType: true }]
+					}
+					select method
+				).Take(2).Count() == 2,
+				_ => (bool?)null
+			};
+
+			var targetExpression = (mode, rawMemberNames.ToArray(), needCast) switch
+			{
+				(0, [], true) => $"\t=> ToString((string?)null);",
+				(0, [], _) => $"\t=> ToString(null);",
+				(1, [var memberName], _) => $"\t=> {memberName};",
+				(2, var memberNames, _) when argStr(memberNames) is var a => $$$""""{{{"\t"}}}=> $$"""{{nameof({{{typeName}}})}} { {{{a}}} }""";"""",
+			};
+
+			var namespaceStr = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
+			codeSnippets.Add(
+				$$"""
+				namespace {{namespaceStr}}
+				{
+					partial {{type.GetTypeKindModifier()}} {{typeName}}{{genericArgs}}
+					{
+						/// <inheritdoc cref="object.ToString"/>
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{sourceGeneratorType.FullName}}", "{{VersionValue}}")]
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						{{modifiers}} string ToString()
+						{{targetExpression}}
+					}
+				}
+				"""
+			);
+
+
+			string argStr(string[] memberNames)
+			{
+				return string.Join(
+					", ",
+					from memberName in memberNames
+					let targetMember = (
+						from internalMember in type.GetAllMembers()
+						where internalMember is IFieldSymbol or IPropertySymbol
+						let internalMemberName = internalMember.Name
+						where internalMemberName == memberName
+						select internalMember
+					).FirstOrDefault()
+					where targetMember is not null
+					let foundAttribute = targetMember.GetAttributes().FirstOrDefault(attributePredicate)
+					let projectedMemberName = foundAttribute switch { { ConstructorArguments: [{ Value: string value }] } => value, _ => null }
+					select projectedMemberName switch
+					{
+						null => $$$""""{{nameof({{{memberName}}})}} = {{{{{memberName}}}}}"""",
+						_ => $$$""""{{nameof({{{memberName}}})}} = {{{{{projectedMemberName}}}}}"""",
+					}
+				);
+
+
+				bool attributePredicate(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType);
+			}
+		}
+
+		spc.AddSource(
+			$"DefaultOverrides.g.{Shortcuts.GeneratedOverriddenMemberToString}.cs",
 			$"""
 			// <auto-generated/>
 			

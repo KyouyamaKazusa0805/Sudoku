@@ -851,9 +851,8 @@ public unsafe partial struct Grid :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public readonly ref readonly short GetPinnableReference() => ref _values[0];
 
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => ToString((string?)null);
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
+	public override readonly partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

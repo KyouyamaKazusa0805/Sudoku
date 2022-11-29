@@ -22,21 +22,32 @@ public sealed partial class GreaterThanSignViewNode : AdjacentCellMarkViewNode
 	/// </summary>
 	public bool IsGreaterThan { get; }
 
+	/// <summary>
+	/// Indicates the cell 1 string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell1))]
+	private string Cell1String => CellsMap[Cell1].ToString();
+
+	/// <summary>
+	/// Indicates the cell 2 string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell2))]
+	private string Cell2String => CellsMap[Cell2].ToString();
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is GreaterThanSignViewNode comparer
-		&& Identifier == comparer.Identifier
-		&& Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2 && IsGreaterThan == comparer.IsGreaterThan;
+		&& Identifier == comparer.Identifier && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2 && IsGreaterThan == comparer.IsGreaterThan;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(TypeIdentifier), nameof(Cell1), nameof(Cell2), nameof(IsGreaterThan))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{nameof(GreaterThanSignViewNode)}} { {{nameof(Cell1)}} = {{CellsMap[Cell1]}}, {{nameof(Cell2)}} = {{CellsMap[Cell2]}}, {{nameof(IsGreaterThan)}} = {{IsGreaterThan}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String), nameof(IsGreaterThan))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

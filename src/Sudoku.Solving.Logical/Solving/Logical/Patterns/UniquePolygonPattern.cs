@@ -135,7 +135,6 @@ public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniq
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(Mask))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $$"""{{nameof(UniquePolygonPattern)}} { {{nameof(Map)}} = {{Map}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Map))]
+	public override partial string ToString();
 }

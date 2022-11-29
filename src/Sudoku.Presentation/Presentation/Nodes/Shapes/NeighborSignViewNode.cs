@@ -22,6 +22,13 @@ public sealed partial class NeighborSignViewNode : SingleCellMarkViewNode
 	/// </summary>
 	public bool IsFourDirections { get; }
 
+	/// <summary>
+	/// Indicates the cell string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell))]
+	private string CellString => CellsMap[Cell].ToString();
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -32,10 +39,8 @@ public sealed partial class NeighborSignViewNode : SingleCellMarkViewNode
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell), nameof(IsFourDirections))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{nameof(NeighborSignViewNode)}} { {{nameof(Cell)}} = {{CellsMap[Cell]}}, {{nameof(IsFourDirections)}} = {{IsFourDirections}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(IsFourDirections))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

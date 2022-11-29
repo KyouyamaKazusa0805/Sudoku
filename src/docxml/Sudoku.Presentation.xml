@@ -172,7 +172,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.FromId(System.Int32)">
             <summary>
@@ -382,6 +382,11 @@
             Indicates the cells used.
             </summary>
         </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.DigitString">
+            <summary>
+            The digit string value.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.LockedTarget.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -392,7 +397,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.System#IEquatable{Sudoku#Presentation#LockedTarget}#Equals(Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
@@ -448,6 +453,11 @@
         <member name="P:Sudoku.Presentation.Nodes.CandidateViewNode.TypeIdentifier">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Presentation.Nodes.CandidateViewNode.CandidateString">
+            <summary>
+            Indicates the candidate string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
@@ -455,7 +465,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.Clone">
             <inheritdoc/>
@@ -479,6 +489,11 @@
         </member>
         <member name="P:Sudoku.Presentation.Nodes.CellViewNode.TypeIdentifier">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CellViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Deconstruct(Sudoku.Presentation.Identifier@,System.Int32@)">
             <target name="method">
@@ -528,7 +543,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Clone">
             <inheritdoc/>
@@ -577,7 +592,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.Clone">
             <inheritdoc/>
@@ -609,7 +624,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.Clone">
             <inheritdoc/>
@@ -695,7 +710,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Clone">
             <inheritdoc/>
@@ -837,7 +852,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.Clone">
             <inheritdoc/>
@@ -855,6 +870,16 @@
             <param name="cell1">The cell 1.</param>
             <param name="cell2">The cell 2.</param>
         </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell1String">
+            <summary>
+            Indicates the cell 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell2String">
+            <summary>
+            Indicates the cell 2 string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
@@ -862,7 +887,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Clone">
             <inheritdoc/>
@@ -900,7 +925,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.Clone">
             <inheritdoc/>
@@ -974,6 +999,16 @@
             Indicates whether the current sign is a greater-than sign.
             </summary>
         </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.Cell1String">
+            <summary>
+            Indicates the cell 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.Cell2String">
+            <summary>
+            Indicates the cell 2 string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
@@ -981,7 +1016,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.Clone">
             <inheritdoc/>
@@ -1005,6 +1040,16 @@
             Indicates whether the dot will be displayed as solid one.
             </summary>
         </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Cell1String">
+            <summary>
+            Indicates the cell 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Cell2String">
+            <summary>
+            Indicates the cell 2 string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
@@ -1012,7 +1057,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Clone">
             <inheritdoc/>
@@ -1036,6 +1081,11 @@
             If <see langword="true"/>, 4 directions; otherwise, 8 directions.
             </summary>
         </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
@@ -1043,7 +1093,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.Clone">
             <inheritdoc/>
@@ -1071,6 +1121,16 @@
             You can use instances of the current type to display what you want to display.
             </i></remarks>
         </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Cell1String">
+            <summary>
+            Indicates the cell 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Cell2String">
+            <summary>
+            Indicates the cell 2 string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
@@ -1078,7 +1138,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Clone">
             <inheritdoc/>
@@ -1140,7 +1200,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.Clone">
             <inheritdoc/>
@@ -1181,6 +1241,11 @@
             to combine multiple directions.
             </summary>
             <seealso cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.None"/>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.Deconstruct(System.Int32@,Sudoku.Presentation.Nodes.Shapes.Direction@)">
             <target name="method">
@@ -1230,7 +1295,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.WheelViewNode">
             <summary>
@@ -1251,6 +1316,11 @@
             in clockwise order. The first one is displayed on the top cell.
             </summary>
         </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
@@ -1258,7 +1328,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.Clone">
             <inheritdoc/>
@@ -1282,6 +1352,16 @@
             Indicates whether the mark is <c>X</c>. If <see langword="true"/>, <c>X</c>; otherwise, <c>V</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Cell1String">
+            <summary>
+            Indicates the cell 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Cell2String">
+            <summary>
+            Indicates the cell 2 string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
@@ -1289,7 +1369,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Clone">
             <inheritdoc/>
@@ -1327,6 +1407,16 @@
         <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.TypeIdentifier">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.DigitsMaskString">
+            <summary>
+            Indicates the digits mask string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
@@ -1334,7 +1424,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.Clone">
             <inheritdoc/>

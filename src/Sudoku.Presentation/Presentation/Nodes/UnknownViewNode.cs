@@ -36,22 +36,33 @@ public sealed partial class UnknownViewNode : ViewNode
 	/// <inheritdoc/>
 	protected override string TypeIdentifier => nameof(UnknownViewNode);
 
+	/// <summary>
+	/// Indicates the cell string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell))]
+	private string CellString => CellsMap[Cell].ToString();
+
+	/// <summary>
+	/// Indicates the digits mask string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(DigitsMask))]
+	private string DigitsMaskString => Convert.ToString(DigitsMask, 2).ToString();
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is UnknownViewNode comparer
 		&& Identifier == comparer.Identifier
-		&& Cell == comparer.Cell && DigitsMask == comparer.DigitsMask
-		&& UnknownValueChar == comparer.UnknownValueChar;
+		&& Cell == comparer.Cell && DigitsMask == comparer.DigitsMask && UnknownValueChar == comparer.UnknownValueChar;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Cell), nameof(DigitsMask), nameof(UnknownValueChar))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $$"""{{nameof(UnknownViewNode)}} { {{nameof(Identifier)}} = {{Identifier}}, {{nameof(Cell)}} = {{CellsMap[Cell]}}, {{nameof(DigitsMask)}} = {{Convert.ToString(DigitsMask, 2)}}, {{nameof(UnknownValueChar)}} = {{UnknownValueChar}} }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(DigitsMaskString), nameof(UnknownValueChar))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

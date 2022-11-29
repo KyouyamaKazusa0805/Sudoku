@@ -25,19 +25,31 @@ public sealed partial class NumberLabelViewNode : AdjacentCellMarkViewNode
 	/// </i></remarks>
 	public string Label { get; }
 
+	/// <summary>
+	/// Indicates the cell 1 string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell1))]
+	private string Cell1String => CellsMap[Cell1].ToString();
+
+	/// <summary>
+	/// Indicates the cell 2 string.
+	/// </summary>
+	[DebuggerHidden]
+	[GeneratedDisplayName(nameof(Cell2))]
+	private string Cell2String => CellsMap[Cell2].ToString();
+
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is NumberLabelViewNode comparer
-		&& Identifier == comparer.Identifier
-		&& Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2 && Label == comparer.Label;
+		&& Identifier == comparer.Identifier && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2 && Label == comparer.Label;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell1), nameof(Cell2), nameof(Label))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc/>
-	public override string ToString()
-		=> $$"""{{nameof(NumberLabelViewNode)}} { {{nameof(Cell1)}} = {{CellsMap[Cell1]}}, {{nameof(Cell2)}} = {{CellsMap[Cell2]}}, {{nameof(Label)}} = "{{Label}}" }""";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String), nameof(Label))]
+	public override partial string ToString();
 
 	/// <inheritdoc/>
 	public override NumberLabelViewNode Clone() => new(Identifier, Cell1, Cell2, Label);
