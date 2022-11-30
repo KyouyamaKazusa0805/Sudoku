@@ -215,21 +215,21 @@ public sealed class DrawingConfigurations
 	/// </summary>
 	public Color[] ColorPalette { get; set; } =
 	{
-		Color.FromArgb( 63, 218, 101),
-		Color.FromArgb(255, 192,  89),
-		Color.FromArgb(127, 187, 255),
-		Color.FromArgb(216, 178, 255),
-		Color.FromArgb(197, 232, 140),
-		Color.FromArgb(255, 203, 203),
-		Color.FromArgb(178, 223, 223),
-		Color.FromArgb(252, 220, 165),
-		Color.FromArgb(255, 255, 150),
-		Color.FromArgb(247, 222, 143),
-		Color.FromArgb(220, 212, 252),
-		Color.FromArgb(255, 118, 132),
-		Color.FromArgb(206, 251, 237),
-		Color.FromArgb(215, 255, 215),
-		Color.FromArgb(192, 192, 192)
+		Color.FromArgb( 63, 218, 101), // Green (normal)
+		Color.FromArgb(255, 192,  89), // Orange (auxiliary)
+		Color.FromArgb(127, 187, 255), // Skyblue (exo-fin)
+		Color.FromArgb(216, 178, 255), // Purple (endo-fin)
+		Color.FromArgb(197, 232, 140), // Yellowgreen
+		Color.FromArgb(255, 203, 203), // Light red (eliminations)
+		Color.FromArgb(178, 223, 223), // Blue green
+		Color.FromArgb(252, 220, 165), // Light orange
+		Color.FromArgb(255, 255, 150), // Yellow
+		Color.FromArgb(247, 222, 143), // Golden yellow
+		Color.FromArgb(220, 212, 252), // Purple
+		Color.FromArgb(255, 118, 132), // Red
+		Color.FromArgb(206, 251, 237), // Light skyblue
+		Color.FromArgb(215, 255, 215), // Light green
+		Color.FromArgb(192, 192, 192) // Gray
 	};
 
 	/// <summary>
