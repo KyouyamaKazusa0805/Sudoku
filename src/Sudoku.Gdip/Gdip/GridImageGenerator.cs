@@ -8,13 +8,12 @@ namespace Sudoku.Gdip;
 public sealed partial class GridImageGenerator
 {
 	/// <summary>
-	/// Indicates the default string format.
+	/// Indicates the <see cref="StringFormat"/> instance that locates the text drawn by
+	/// <see cref="Graphics.DrawString(string?, Font, Brush, RectangleF, StringFormat?)"/>,
+	/// center the text with both horizontal and vertical.
 	/// </summary>
-	private static readonly StringFormat DefaultStringFormat = new()
-	{
-		Alignment = StringAlignment.Center,
-		LineAlignment = StringAlignment.Center
-	};
+	/// <seealso cref="Graphics.DrawString(string?, Font, Brush, RectangleF, StringFormat?)"/>
+	private static readonly StringFormat StringLocating = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
 
 
 	/// <inheritdoc cref="GridImageGenerator(PointCalculator, DrawingConfigurations)"/>
@@ -314,7 +313,7 @@ partial class GridImageGenerator
 					{
 						var originalPoint = calc.GetMousePointInCenter(cell, digit);
 						var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };
-						g.DrawValue(digit + 1, fCandidate, overlaps ? bCandidateLighter : bCandidate, point, DefaultStringFormat);
+						g.DrawValue(digit + 1, fCandidate, overlaps ? bCandidateLighter : bCandidate, point, StringLocating);
 					}
 
 					break;
@@ -324,7 +323,7 @@ partial class GridImageGenerator
 					// Draw values.
 					var originalPoint = calc.GetMousePointInCenter(cell);
 					var point = originalPoint with { Y = originalPoint.Y + vOffsetValue };
-					g.DrawValue(puzzle[cell] + 1, f(status, fGiven, fModifiable), f(status, bGiven, bModifiable), point, DefaultStringFormat);
+					g.DrawValue(puzzle[cell] + 1, f(status, fGiven, fModifiable), f(status, bGiven, bModifiable), point, StringLocating);
 
 					break;
 
@@ -607,7 +606,7 @@ partial class GridImageGenerator
 		{
 			var originalPoint = calc.GetMousePointInCenter(cell, digit);
 			var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };
-			g.DrawValue(digit + 1, fCandidate, brush, point, DefaultStringFormat);
+			g.DrawValue(digit + 1, fCandidate, brush, point, StringLocating);
 		}
 	}
 
@@ -885,7 +884,7 @@ partial class GridImageGenerator
 			// Draw values.
 			var orginalPoint = calc.GetMousePointInCenter(cell);
 			var point = orginalPoint with { Y = orginalPoint.Y + vOffsetValue };
-			g.DrawValue(character, font, brush, point, DefaultStringFormat);
+			g.DrawValue(character, font, brush, point, StringLocating);
 		}
 	}
 
@@ -999,7 +998,7 @@ partial class GridImageGenerator
 				var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
 
 				g.FillRectangle(backBrush, pointX, pointY, tw, th);
-				g.DrawString(text, font, brush, centerPoint, DefaultStringFormat);
+				g.DrawString(text, font, brush, centerPoint, StringLocating);
 			}
 			else
 			{
@@ -1017,7 +1016,7 @@ partial class GridImageGenerator
 				var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
 
 				g.FillRectangle(backBrush, pointX, pointY, tw, th);
-				g.DrawString(text, font, brush, centerPoint, DefaultStringFormat);
+				g.DrawString(text, font, brush, centerPoint, StringLocating);
 
 				g.Transform = matrixOriginal;
 			}
@@ -1059,7 +1058,7 @@ partial class GridImageGenerator
 			var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
 
 			g.FillRectangle(backBrush, pointX, pointY, tw, th);
-			g.DrawString(text, font, brush, centerPoint, DefaultStringFormat);
+			g.DrawString(text, font, brush, centerPoint, StringLocating);
 		}
 	}
 
@@ -1097,7 +1096,7 @@ partial class GridImageGenerator
 			var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
 
 			g.FillRectangle(backBrush, pointX, pointY, tw, th);
-			g.DrawString(label, font, brush, centerPoint, DefaultStringFormat);
+			g.DrawString(label, font, brush, centerPoint, StringLocating);
 		}
 	}
 
@@ -1184,7 +1183,7 @@ partial class GridImageGenerator
 			var (x, y) = calc.GetMousePointInCenter(lastCell);
 
 			g.FillRectangle(brush, x - cw / 2 - tw / 2, y - ch / 2 - th / 2, tw, th);
-			g.DrawString(hint, font, textColor, x - cw / 2, y - ch / 2, DefaultStringFormat);
+			g.DrawString(hint, font, textColor, x - cw / 2, y - ch / 2, StringLocating);
 		}
 	}
 
@@ -1343,7 +1342,7 @@ partial class GridImageGenerator
 				var (tw, th) = renderingSize;
 
 				g.FillRectangle(backBrush, new RectangleF(new(px - tw / 2, py - th / 2), renderingSize));
-				g.DrawString(renderingText, font, textBrush, position, DefaultStringFormat);
+				g.DrawString(renderingText, font, textBrush, position, StringLocating);
 			}
 		}
 	}
@@ -1381,7 +1380,7 @@ partial class GridImageGenerator
 			var position = new PointF(centerX, centerY - ch / 2 + th / 2);
 
 			// Draw text.
-			g.DrawString(notation, font, textBrush, position, DefaultStringFormat);
+			g.DrawString(notation, font, textBrush, position, StringLocating);
 		}
 	}
 }

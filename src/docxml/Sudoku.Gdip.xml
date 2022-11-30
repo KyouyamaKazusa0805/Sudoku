@@ -508,6 +508,11 @@
             Indicates wheel text color.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.PencilmarkTextColor">
+            <summary>
+            Indicates pencilmark text color.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.ColorPalette">
             <summary>
             The color palette. This property stores a list of customized colors to be used as user-defined colors.
@@ -541,6 +546,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.WheelFont">
             <summary>
             Indicates the font of wheel text.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.PencilmarkFont">
+            <summary>
+            Indicates the font of pencilmarks.
             </summary>
         </member>
         <member name="T:Sudoku.Gdip.FontData">
@@ -621,15 +631,30 @@
         <member name="M:Sudoku.Gdip.FontData.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="M:Sudoku.Gdip.FontData.CreateFont">
+            <summary>
+            Creates a <see cref="T:System.Drawing.Font"/> instance via the current <see cref="T:Sudoku.Gdip.FontData"/> instance.
+            </summary>
+            <returns>
+            The <see cref="T:System.Drawing.Font"/> instance created. Please note that the created result should use <see langword="using"/> statement
+            to limit the lifestyle:
+            <code><![CDATA[
+            using var font = data.CreateFont();
+            ]]></code>
+            </returns>
+        </member>
         <member name="T:Sudoku.Gdip.GridImageGenerator">
             <summary>
             Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
             </summary>
         </member>
-        <member name="F:Sudoku.Gdip.GridImageGenerator.DefaultStringFormat">
+        <member name="F:Sudoku.Gdip.GridImageGenerator.StringLocating">
             <summary>
-            Indicates the default string format.
+            Indicates the <see cref="T:System.Drawing.StringFormat"/> instance that locates the text drawn by
+            <see cref="M:System.Drawing.Graphics.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Drawing.StringFormat)"/>,
+            center the text with both horizontal and vertical.
             </summary>
+            <seealso cref="M:System.Drawing.Graphics.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Drawing.StringFormat)"/>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(System.Single,System.Single)">
             <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations)"/>
@@ -869,6 +894,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawWheel(System.Drawing.Graphics)">
             <summary>
             Draw wheels.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawPencilmarks(System.Drawing.Graphics)">
+            <summary>
+            Draw pencilmarks.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
