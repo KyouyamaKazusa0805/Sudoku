@@ -117,6 +117,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<TriangleSumViewNode> TriangleSumNodes => _nodes.OfType<TriangleSumViewNode>();
 
+	/// <summary>
+	/// Indicates star product star nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<StarProductStarViewNode> StarProductStarNodes => _nodes.OfType<StarProductStarViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

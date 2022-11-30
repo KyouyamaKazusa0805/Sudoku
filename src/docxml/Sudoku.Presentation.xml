@@ -1326,6 +1326,31 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode">
+            <summary>
+            Defines a star view node used by star product.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+            <param name="directions">The directions.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode">
             <summary>
             Defines a triangle-sum view node.
@@ -1943,6 +1968,11 @@
         <member name="P:Sudoku.Presentation.View.TriangleSumNodes">
             <summary>
             Indicates triangle sum nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.StarProductStarNodes">
+            <summary>
+            Indicates star product star nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

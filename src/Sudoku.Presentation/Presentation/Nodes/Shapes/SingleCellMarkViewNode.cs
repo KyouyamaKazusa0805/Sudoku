@@ -47,8 +47,8 @@ public abstract partial class SingleCellMarkViewNode : ShapeViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> GetType() == other?.GetType()
-		&& other is SingleCellMarkViewNode comparer && Cell == comparer.Cell && Directions == comparer.Directions;
+		=> GetType() == other?.GetType() && other is SingleCellMarkViewNode comparer
+		&& Identifier == comparer.Identifier && Cell == comparer.Cell && Directions == comparer.Directions;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell), nameof(Directions))]
 	public override partial int GetHashCode();

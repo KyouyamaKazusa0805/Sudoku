@@ -238,6 +238,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawWheel(Graphics g);
 	partial void DrawPencilmarks(Graphics g);
 	partial void DrawTriangleSumSigns(Graphics g);
+	partial void DrawStarProductStar(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -368,6 +369,7 @@ partial class GridImageGenerator
 		DrawWheel(g);
 		DrawPencilmarks(g);
 		DrawTriangleSumSigns(g);
+		DrawStarProductStar(g);
 	}
 
 	/// <summary>
@@ -1440,6 +1442,54 @@ partial class GridImageGenerator
 
 				return path;
 			}
+		}
+	}
+
+	/// <summary>
+	/// Draw star product stars.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
+	partial void DrawStarProductStar(Graphics g)
+	{
+		const string star = "*";
+
+		if (this is not
+			{
+				View.StarProductStarNodes: var starProductStarNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences.StarProductStarFont: var fontData
+			})
+		{
+			return;
+		}
+
+		using var font = fontData.CreateFont();
+		
+		foreach (var starProductStarNode in starProductStarNodes)
+		{
+			if (starProductStarNode is not (var cell, var direction) { Identifier: var identifier })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			var (tw, th) = g.MeasureString(star, font);
+			var (x, y) = calc.GetMousePointInCenter(cell);
+			var point = direction switch
+			{
+				Direction.TopLeft => new(x - cw / 2 + tw / 2, y - ch / 2 + th / 2),
+				Direction.TopCenter => new(x, y - ch / 2 + th / 2),
+				Direction.TopRight => new(x - cw / 2 + tw / 2, y + ch / 2 - th / 2),
+				Direction.MiddleLeft => new(x - cw / 2 + tw / 2, y),
+				Direction.MiddleRight => new(x + cw / 2 - tw / 2, y + ch / 2 - th / 2),
+				Direction.BottomLeft => new(x - cw / 2 + tw / 2, y + ch / 2 - th / 2),
+				Direction.BottomCenter => new(x, y - ch / 2 + th / 2),
+				Direction.BottomRight => new(x + cw / 2 - tw / 2, y + ch / 2 - th / 2),
+				_ => default(PointF)
+			};
+
+			g.DrawString(star, font, brush, point, StringLocating);
 		}
 	}
 }

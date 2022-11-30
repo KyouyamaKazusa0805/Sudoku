@@ -271,4 +271,9 @@ public sealed class DrawingConfigurations
 	/// Indicates the font of pencilmarks.
 	/// </summary>
 	public FontData PencilmarkFont { get; set; } = new("Segoe UI", 12F, FontStyle.Regular);
+
+	/// <summary>
+	/// Indicates the font of star product star.
+	/// </summary>
+	public FontData StarProductStarFont { get; set; } = new("Times New Roman", 12F, FontStyle.Regular);
 }
