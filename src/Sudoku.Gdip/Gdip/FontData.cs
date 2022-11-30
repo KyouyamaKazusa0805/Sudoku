@@ -45,4 +45,22 @@ public sealed partial class FontData : IEquatable<FontData>
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(FontName), nameof(FontSize), nameof(FontStyle))]
 	public override partial int GetHashCode();
+
+
+	/// <summary>
+	/// Creates a <see cref="Font"/> instance via the current <see cref="FontData"/> instance.
+	/// </summary>
+	/// <returns>
+	/// The <see cref="Font"/> instance created. Please note that the created result should use <see langword="using"/> statement
+	/// to limit the lifestyle:
+	/// <code><![CDATA[
+	/// using var font = data.CreateFont();
+	/// ]]></code>
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Font CreateFont()
+	{
+		var (fontName, fontSize, fontStyle) = this;
+		return new(fontName, fontSize, fontStyle);
+	}
 }

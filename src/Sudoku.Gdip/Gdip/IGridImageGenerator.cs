@@ -242,6 +242,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawClockfaceDot(Graphics g);
 	partial void DrawNeighborSigns(Graphics g);
 	partial void DrawWheel(Graphics g);
+	partial void DrawPencilmarks(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -359,7 +360,6 @@ partial class GridImageGenerator
 		DrawLinks(g);
 		DrawUnknownValue(g);
 
-#if ENHANCED_DRAWING_APIS
 		// Shapes
 		DrawBorderBar(g);
 		DrawKropkiDot(g);
@@ -371,7 +371,7 @@ partial class GridImageGenerator
 		DrawClockfaceDot(g);
 		DrawNeighborSigns(g);
 		DrawWheel(g);
-#endif
+		DrawPencilmarks(g);
 	}
 
 	/// <summary>
@@ -1316,7 +1316,7 @@ partial class GridImageGenerator
 		using var font = new Font(fontName, fontSize, fontStyle);
 		using var textBrush = new SolidBrush(textColor);
 
-		var positions = (stackalloc PointF[4]);
+		scoped var positions = (stackalloc PointF[4]);
 		foreach (var wheelNode in wheelNodes)
 		{
 			if (wheelNode is not (var cell, _) { Identifier: var identifier, DigitString: var digitString })
@@ -1335,9 +1335,9 @@ partial class GridImageGenerator
 			g.DrawEllipse(pen, rect);
 
 			// Draw strings.
-			positions[0] = new(x, y - ch * SqrtOf2 / 2/* - fontSize / 4*/); // fontSize / 4: a little offset correction.
+			positions[0] = new(x, y - ch * SqrtOf2 / 2);
 			positions[1] = new(x + ch * SqrtOf2 / 2, y);
-			positions[2] = new(x, y + ch * SqrtOf2 / 2/* + fontSize / 4*/);
+			positions[2] = new(x, y + ch * SqrtOf2 / 2);
 			positions[3] = new(x - ch * SqrtOf2 / 2, y);
 			for (var i = 0; i < 4; i++)
 			{
@@ -1350,6 +1350,43 @@ partial class GridImageGenerator
 				g.FillRectangle(backBrush, new RectangleF(new(px - tw / 2, py - th / 2), renderingSize));
 				g.DrawString(renderingText, font, textBrush, position, DefaultStringFormat);
 			}
+		}
+	}
+
+	/// <summary>
+	/// Draw pencilmarks.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
+	partial void DrawPencilmarks(Graphics g)
+	{
+		if (this is not
+			{
+				View.PencilMarkNodes: var pencilmarkNodes,
+				Calculator: { CellSize: var (_, ch) } calc,
+				Preferences: { PencilmarkFont: var fontData, PencilmarkTextColor: var textColor }
+			})
+		{
+			return;
+		}
+
+		using var font = fontData.CreateFont();
+		using var textBrush = new SolidBrush(textColor);
+
+		foreach (var pencilmarkNode in pencilmarkNodes)
+		{
+			if (pencilmarkNode is not (var cell, _) { Notation: var notation })
+			{
+				continue;
+			}
+
+			var renderingSize = g.MeasureString(notation, font);
+			var (_, th) = renderingSize;
+			var (centerX, centerY) = calc.GetMousePointInCenter(cell);
+			var position = new PointF(centerX, centerY - ch / 2 + th / 2);
+
+			// Draw text.
+			g.DrawString(notation, font, textBrush, position, DefaultStringFormat);
 		}
 	}
 }

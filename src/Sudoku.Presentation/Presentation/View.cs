@@ -107,6 +107,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<WheelViewNode> WheelNodes => _nodes.OfType<WheelViewNode>();
 
+	/// <summary>
+	/// Indicates pencilmark nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<PencilMarkViewNode> PencilMarkNodes => _nodes.OfType<PencilMarkViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

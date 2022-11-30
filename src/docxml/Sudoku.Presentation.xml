@@ -1143,6 +1143,35 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode">
+            <summary>
+            Defines a pencil-mark view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode"/> instance via the specified values.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="notation">The notation.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.Notation">
+            <summary>
+            Indicates the notation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode">
             <summary>
             Defines a quadruple cell mark view node that lies on a 2x2 squared cells.
@@ -1874,6 +1903,11 @@
         <member name="P:Sudoku.Presentation.View.WheelNodes">
             <summary>
             Indicates wheel nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.PencilMarkNodes">
+            <summary>
+            Indicates pencilmark nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

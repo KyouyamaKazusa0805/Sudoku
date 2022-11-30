@@ -206,6 +206,11 @@ public sealed class DrawingConfigurations
 	public Color WheelTextColor { get; set; } = Color.Black;
 
 	/// <summary>
+	/// Indicates pencilmark text color.
+	/// </summary>
+	public Color PencilmarkTextColor { get; set; } = Color.DimGray;
+
+	/// <summary>
 	/// The color palette. This property stores a list of customized colors to be used as user-defined colors.
 	/// </summary>
 	public Color[] ColorPalette { get; set; } =
@@ -256,4 +261,9 @@ public sealed class DrawingConfigurations
 	/// Indicates the font of wheel text.
 	/// </summary>
 	public FontData WheelFont { get; set; } = new("MiSans", 12F, FontStyle.Regular);
+
+	/// <summary>
+	/// Indicates the font of pencilmarks.
+	/// </summary>
+	public FontData PencilmarkFont { get; set; } = new("Segoe UI", 12F, FontStyle.Regular);
 }
