@@ -15,15 +15,15 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
-	{
-		context
+		=> context
 			.WithRegisteredSourceOutput(TransformEqualsData, OutputEquals)
 			.WithRegisteredSourceOutput(TransformGetHashCodeData, OutputGetHashCode)
 			.WithRegisteredSourceOutput(TransformToStringData, OutputToStringCode);
-	}
 
 
-	/// <inheritdoc cref="TransformGetHashCodeData"/>
+	/// <summary>
+	/// Transforms the data from current context into a tuple of values as generated data.
+	/// </summary>
 	private static EqualsData? TransformEqualsData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
 	{
 #pragma warning disable format
@@ -79,9 +79,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 		return new(rawMode, modifiers, type, parameterName);
 	}
 
-	/// <summary>
-	/// Transforms the data from current context into a tuple of values as generated data.
-	/// </summary>
+	/// <inheritdoc cref="TransformEqualsData"/>
 	private static GetHashCodeData? TransformGetHashCodeData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
 	{
 		if (gasc is not
@@ -121,7 +119,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 		return new(rawMode, modifiers, type, from extraArgument in extraArguments select (string)extraArgument.Value!);
 	}
 
-	/// <inheritdoc cref="TransformGetHashCodeData"/>
+	/// <inheritdoc cref="TransformEqualsData"/>
 	private static ToStringData? TransformToStringData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
 	{
 		if (gasc is not
@@ -426,8 +424,22 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 	}
 }
 
+/// <summary>
+/// Provides with file-local extension methods.
+/// </summary>
 file static class Extensions
 {
+	/// <summary>
+	/// Regiseters a source output action.
+	/// </summary>
+	/// <typeparam name="T">The type of the output data structure.</typeparam>
+	/// <param name="this">The <see cref="IncrementalGeneratorInitializationContext"/> instance.</param>
+	/// <param name="transformAction">The transform action to project the data to <typeparamref name="T"/> instance.</param>
+	/// <param name="outputAction">The output action using <typeparamref name="T"/> instance as data.</param>
+	/// <param name="nodePredicate">
+	/// The node predicate. By default, the predicate only checks for <see cref="SyntaxKind.PartialKeyword"/> on method body.
+	/// </param>
+	/// <returns>The reference same as <paramref name="this"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref readonly IncrementalGeneratorInitializationContext WithRegisteredSourceOutput<T>(
 		this in IncrementalGeneratorInitializationContext @this,
