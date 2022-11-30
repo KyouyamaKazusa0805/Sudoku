@@ -382,6 +382,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 
 			string argStr(string[] memberNames)
 			{
+				bool attributePredicate(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType);
 				return string.Join(
 					", ",
 					from memberName in memberNames
@@ -395,15 +396,8 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 					where targetMember is not null
 					let foundAttribute = targetMember.GetAttributes().FirstOrDefault(attributePredicate)
 					let projectedMemberName = foundAttribute switch { { ConstructorArguments: [{ Value: string value }] } => value, _ => null }
-					select projectedMemberName switch
-					{
-						null => $$$""""{{nameof({{{memberName}}})}} = {{{{{memberName}}}}}"""",
-						_ => $$$""""{{nameof({{{memberName}}})}} = {{{{{projectedMemberName}}}}}"""",
-					}
+					select $$$""""{{nameof({{{memberName}}})}} = {{{{{(projectedMemberName is null ? memberName : projectedMemberName)}}}}}""""
 				);
-
-
-				bool attributePredicate(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeType);
 			}
 		}
 
