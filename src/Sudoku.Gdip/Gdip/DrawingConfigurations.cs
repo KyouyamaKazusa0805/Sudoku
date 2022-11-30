@@ -216,6 +216,11 @@ public sealed class DrawingConfigurations
 	public Color PencilmarkTextColor { get; set; } = Color.DimGray;
 
 	/// <summary>
+	/// Indicates cell arrow color.
+	/// </summary>
+	public Color CellArrowColor { get; set; } = Color.FromArgb(128, Color.Black);
+
+	/// <summary>
 	/// The color palette. This property stores a list of customized colors to be used as user-defined colors.
 	/// </summary>
 	public Color[] ColorPalette { get; set; } =

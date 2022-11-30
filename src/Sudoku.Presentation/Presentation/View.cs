@@ -122,6 +122,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<StarProductStarViewNode> StarProductStarNodes => _nodes.OfType<StarProductStarViewNode>();
 
+	/// <summary>
+	/// Indicates cell arrow nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<CellArrowViewNode> CellArrowNodes => _nodes.OfType<CellArrowViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

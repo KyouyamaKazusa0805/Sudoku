@@ -239,6 +239,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawPencilmarks(Graphics g);
 	partial void DrawTriangleSumSigns(Graphics g);
 	partial void DrawStarProductStar(Graphics g);
+	partial void DrawCellArrow(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -370,6 +371,7 @@ partial class GridImageGenerator
 		DrawPencilmarks(g);
 		DrawTriangleSumSigns(g);
 		DrawStarProductStar(g);
+		DrawCellArrow(g);
 	}
 
 	/// <summary>
@@ -1465,7 +1467,7 @@ partial class GridImageGenerator
 		}
 
 		using var font = fontData.CreateFont();
-		
+
 		foreach (var starProductStarNode in starProductStarNodes)
 		{
 			if (starProductStarNode is not (var cell, var direction) { Identifier: var identifier })
@@ -1490,6 +1492,49 @@ partial class GridImageGenerator
 			};
 
 			g.DrawString(star, font, brush, point, StringLocating);
+		}
+	}
+
+	/// <summary>
+	/// Draw cell arrow.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
+	partial void DrawCellArrow(Graphics g)
+	{
+		if (this is not
+			{
+				View.CellArrowNodes: var cellArrowNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences.CellArrowColor: var color
+			})
+		{
+			return;
+		}
+
+		using var brush = new SolidBrush(color);
+
+		foreach (var cellArrowNode in cellArrowNodes)
+		{
+			if (cellArrowNode is not var (cell, direction))
+			{
+				continue;
+			}
+
+			var center = calc.GetMousePointInCenter(cell);
+			var rotation = direction switch
+			{
+				Direction.TopLeft => 315,
+				Direction.Up => 0,
+				Direction.TopRight => 45,
+				Direction.Left => 270,
+				Direction.Right => 90,
+				Direction.BottomLeft => 225,
+				Direction.Down => 180,
+				Direction.BottomRight => 135
+			};
+
+			g.DrawHollowArrow(brush, center, cw / 4, cw / 2, ch / 2, rotation);
 		}
 	}
 }

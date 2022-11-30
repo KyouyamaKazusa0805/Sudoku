@@ -16,5 +16,6 @@ global using Sudoku.Presentation.Nodes;
 global using Sudoku.Presentation.Nodes.Shapes;
 global using Sudoku.Solving;
 global using Sudoku.Text.Serialization;
+global using static System.Numerics.BitOperations;
 global using static System.Text.Json.JsonSerializer;
 global using static Sudoku.SolutionWideReadOnlyFields;

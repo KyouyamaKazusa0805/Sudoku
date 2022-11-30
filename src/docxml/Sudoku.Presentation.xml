@@ -892,6 +892,30 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode">
+            <summary>
+            Defines a cell arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.#ctor(System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode"/> instance via the specified values.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="directions">The directions.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode">
             <summary>
             Defines a clockface dot view node.
@@ -932,7 +956,15 @@
         </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.Direction">
             <summary>
-            Defines a direction.
+            Defines a direction. This type provides both 4-direction values and 8-direction values.
+            If you want to use by 4-direction notation, just use values:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.Up"/></item>
+            <item><see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.Down"/></item>
+            <item><see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.Left"/></item>
+            <item><see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.Right"/></item>
+            </list>
+            Others are provided and used by 8-direction notation.
             </summary>
         </member>
         <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.None">
@@ -950,6 +982,11 @@
             Indicates the direction is top-center.
             </summary>
         </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.Up">
+            <summary>
+            Indicates the up direction.
+            </summary>
+        </member>
         <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.TopRight">
             <summary>
             Indicates the direction is top-right.
@@ -960,9 +997,19 @@
             Indicates the direction is middle-left.
             </summary>
         </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.Left">
+            <summary>
+            Indicates the left direction.
+            </summary>
+        </member>
         <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.MiddleRight">
             <summary>
             Indicates the direction is middle-right.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.Right">
+            <summary>
+            Indicates the right direction.
             </summary>
         </member>
         <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.BottomLeft">
@@ -973,6 +1020,11 @@
         <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.BottomCenter">
             <summary>
             Indicates the direction is bottom-center.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.Down">
+            <summary>
+            Indicates the down direction.
             </summary>
         </member>
         <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.BottomRight">
@@ -1973,6 +2025,11 @@
         <member name="P:Sudoku.Presentation.View.StarProductStarNodes">
             <summary>
             Indicates star product star nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.CellArrowNodes">
+            <summary>
+            Indicates cell arrow nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">
