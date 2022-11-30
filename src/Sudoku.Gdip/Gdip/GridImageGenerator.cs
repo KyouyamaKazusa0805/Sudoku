@@ -237,6 +237,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawNeighborSigns(Graphics g);
 	partial void DrawWheel(Graphics g);
 	partial void DrawPencilmarks(Graphics g);
+	partial void DrawTriangleSumSigns(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -366,6 +367,7 @@ partial class GridImageGenerator
 		DrawNeighborSigns(g);
 		DrawWheel(g);
 		DrawPencilmarks(g);
+		DrawTriangleSumSigns(g);
 	}
 
 	/// <summary>
@@ -1381,6 +1383,63 @@ partial class GridImageGenerator
 
 			// Draw text.
 			g.DrawString(notation, font, textBrush, position, StringLocating);
+		}
+	}
+
+	/// <summary>
+	/// Draw triangle sum signs.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
+	partial void DrawTriangleSumSigns(Graphics g)
+	{
+		if (this is not { View.TriangleSumNodes: var triangleSumNodes, Calculator: var calc, Preferences.TriangleSumCellPadding: var padding })
+		{
+			return;
+		}
+
+		foreach (var triangleSumNode in triangleSumNodes)
+		{
+			if (triangleSumNode is not (var cell, var directions) { Identifier: var identifier, IsComplement: var isComplement })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			using var path = createPath(padding, cell, directions, isComplement);
+
+			// Draw shape.
+			g.FillPath(brush, path);
+
+
+			GraphicsPath createPath(float padding, int cell, Direction directions, bool isComplement)
+			{
+				var (cw, ch) = calc.CellSize;
+				var (x, y) = calc.GetMousePointInCenter(cell);
+				var p1 = new PointF(x - cw / 2 + padding, y - ch / 2 + padding);
+				var p2 = new PointF(x + cw / 2 - padding, y - ch / 2 + padding);
+				var p3 = new PointF(x - cw / 2 + padding, y + ch / 2 - padding);
+				var p4 = new PointF(x + cw / 2 - padding, y + ch / 2 - padding);
+
+				var path = new GraphicsPath(FillMode.Winding);
+				var pathPointsOrdering = (isComplement, directions) switch
+				{
+					(true, _) => stackalloc[] { p1, p2, p4, p3 },
+					(_, Direction.TopLeft) => stackalloc[] { p1, p2, p3 },
+					(_, Direction.TopRight) => stackalloc[] { p1, p2, p4 },
+					(_, Direction.BottomLeft) => stackalloc[] { p1, p4, p3 },
+					(_, Direction.BottomRight) => stackalloc[] { p2, p4, p3 }
+				};
+
+				for (var i = 0; i < pathPointsOrdering.Length - 1; i++)
+				{
+					var p = pathPointsOrdering[i];
+					var q = pathPointsOrdering[i + 1];
+					path.AddLine(p, q);
+				}
+
+				return path;
+			}
 		}
 	}
 }

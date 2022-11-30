@@ -112,6 +112,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<PencilMarkViewNode> PencilMarkNodes => _nodes.OfType<PencilMarkViewNode>();
 
+	/// <summary>
+	/// Indicates triangle sum nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<TriangleSumViewNode> TriangleSumNodes => _nodes.OfType<TriangleSumViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

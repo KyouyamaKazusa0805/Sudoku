@@ -388,6 +388,11 @@
             Indicates the padding of neighbor signs.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.TriangleSumCellPadding">
+            <summary>
+            Indicates the padding of triangle sums.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
             <summary>
             Indicates the font of given digits to render.
@@ -900,6 +905,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawPencilmarks(System.Drawing.Graphics)">
             <summary>
             Draw pencilmarks.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawTriangleSumSigns(System.Drawing.Graphics)">
+            <summary>
+            Draw triangle sum signs.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>

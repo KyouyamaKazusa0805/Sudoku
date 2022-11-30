@@ -86,6 +86,11 @@ public sealed class DrawingConfigurations
 	public float NeighborSignCellPadding { get; set; } = 5F;
 
 	/// <summary>
+	/// Indicates the padding of triangle sums.
+	/// </summary>
+	public float TriangleSumCellPadding { get; set; } = 5F;
+
+	/// <summary>
 	/// Indicates the font of given digits to render.
 	/// </summary>
 	public string? GivenFontName { get; set; } = "MiSans";

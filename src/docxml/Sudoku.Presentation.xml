@@ -1326,6 +1326,36 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode">
+            <summary>
+            Defines a triangle-sum view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+            <param name="directions">The directions.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.IsComplement">
+            <summary>
+            Determines whether the shape is full complement.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.WheelViewNode">
             <summary>
             Defines a wheel view node.
@@ -1908,6 +1938,11 @@
         <member name="P:Sudoku.Presentation.View.PencilMarkNodes">
             <summary>
             Indicates pencilmark nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.TriangleSumNodes">
+            <summary>
+            Indicates triangle sum nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">
