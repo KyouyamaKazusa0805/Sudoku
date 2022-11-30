@@ -347,11 +347,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 			{
 				0 => (
 					from IMethodSymbol method in type.GetAllMembers().OfType<IMethodSymbol>().Distinct(SymbolEqualityComparer.Default)
-					where method is
-					{
-						Name: nameof(object.ToString),
-						Parameters: [{ Type.IsReferenceType: true }]
-					}
+					where method is { Name: nameof(object.ToString), Parameters: [{ Type.IsReferenceType: true }] }
 					select method
 				).Take(2).Count() == 2,
 				_ => (bool?)null
