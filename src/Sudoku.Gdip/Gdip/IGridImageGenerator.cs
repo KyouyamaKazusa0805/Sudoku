@@ -143,19 +143,14 @@ public sealed partial class GridImageGenerator
 	/// <returns>Rendering data.</returns>
 	internal TextRenderingData GetFooterTextRenderingData()
 	{
-		if (this is not
-			{
-				FooterTextAlignment: var footerAlignment,
-				FooterText: var footer,
-				Preferences.FooterTextFont: var (fontName, fontSize, fontStyle)
-			})
+		if (this is not { FooterTextAlignment: var footerAlignment, FooterText: var footer, Preferences.FooterTextFont: var fontData })
 		{
 			throw new();
 		}
 
 		using var tempBitmap = new Bitmap((int)Width, (int)Height);
 		using var tempGraphics = Graphics.FromImage(tempBitmap);
-		var footerFont = new Font(fontName, fontSize, fontStyle);
+		var footerFont = fontData.CreateFont();
 		var (_, footerHeight) = footer is not null ? tempGraphics.MeasureString(footer, footerFont) : default;
 		return new(footerFont, footerHeight, new() { Alignment = footerAlignment });
 	}
@@ -976,13 +971,13 @@ partial class GridImageGenerator
 			{
 				View.GreaterThanNodes: var greaterThanNodes,
 				Calculator: var calc,
-				Preferences: { GreaterThanSignFont: var (fontName, fontSize, fontStyle), BackgroundColor: var backColor }
+				Preferences: { GreaterThanSignFont: var fontData, BackgroundColor: var backColor }
 			})
 		{
 			return;
 		}
 
-		using var font = new Font(fontName, fontSize, fontStyle);
+		using var font = fontData.CreateFont();
 		using var backBrush = new SolidBrush(backColor);
 		foreach (var greaterThanNode in greaterThanNodes)
 		{
@@ -1040,13 +1035,13 @@ partial class GridImageGenerator
 			{
 				View.XvNodes: var xvNodes,
 				Calculator: var calc,
-				Preferences: { XvSignFont: var (fontName, fontSize, fontStyle), BackgroundColor: var backColor }
+				Preferences: { XvSignFont: var fontData, BackgroundColor: var backColor }
 			})
 		{
 			return;
 		}
 
-		using var font = new Font(fontName, fontSize, fontStyle);
+		using var font = fontData.CreateFont();
 		using var backBrush = new SolidBrush(backColor);
 		foreach (var xvNode in xvNodes)
 		{
@@ -1079,13 +1074,13 @@ partial class GridImageGenerator
 			{
 				View.NumberLabelNodes: var numberLabelNodes,
 				Calculator: var calc,
-				Preferences: { NumberLabelFont: var (fontName, fontSize, fontStyle), BackgroundColor: var backColor }
+				Preferences: { NumberLabelFont: var fontData, BackgroundColor: var backColor }
 			})
 		{
 			return;
 		}
 
-		using var font = new Font(fontName, fontSize, fontStyle);
+		using var font = fontData.CreateFont();
 		using var backBrush = new SolidBrush(backColor);
 		foreach (var numberLabelNode in numberLabelNodes)
 		{
@@ -1169,13 +1164,13 @@ partial class GridImageGenerator
 			{
 				View.QuadrupleHintNodes: var quadrupleHintNodes,
 				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences: { QuadrupleHintFont: var (fontName, fontSize, fontStyle), BackgroundColor: var backColor }
+				Preferences: { QuadrupleHintFont: var fontData, BackgroundColor: var backColor }
 			})
 		{
 			return;
 		}
 
-		using var font = new Font(fontName, fontSize, fontStyle);
+		using var font = fontData.CreateFont();
 		foreach (var quadrupleHintNode in quadrupleHintNodes)
 		{
 			if (quadrupleHintNode is not { Identifier: var identifier, Cells: [.., var lastCell], Hint: var hint })
@@ -1302,7 +1297,7 @@ partial class GridImageGenerator
 				Calculator: { CellSize: var (cw, ch) } calc,
 				Preferences:
 				{
-					WheelFont: var (fontName, fontSize, fontStyle),
+					WheelFont: var fontData,
 					WheelWidth: var width,
 					WheelTextColor: var textColor,
 					BackgroundColor: var backColor
@@ -1313,7 +1308,7 @@ partial class GridImageGenerator
 		}
 
 		using var backBrush = new SolidBrush(backColor);
-		using var font = new Font(fontName, fontSize, fontStyle);
+		using var font = fontData.CreateFont();
 		using var textBrush = new SolidBrush(textColor);
 
 		scoped var positions = (stackalloc PointF[4]);
