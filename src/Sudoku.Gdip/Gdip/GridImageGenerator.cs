@@ -916,7 +916,7 @@ partial class GridImageGenerator
 		{
 			switch (figureNode)
 			{
-				case (TriangleViewNode or DiamondViewNode) and (var cell) { Identifier: var identifier }:
+				case (TriangleViewNode or DiamondViewNode or StarViewNode) and (var cell) { Identifier: var identifier }:
 				{
 					using var brush = new SolidBrush(GetColor(identifier));
 					var (x, y) = calc.GetMousePointInCenter(cell);
@@ -926,6 +926,7 @@ partial class GridImageGenerator
 						{
 							TriangleViewNode => triangle,
 							DiamondViewNode => diamond,
+							StarViewNode => star,
 							_ => default(PathCreator?)!
 						}
 					)(x, y);
@@ -981,6 +982,57 @@ partial class GridImageGenerator
 					path.AddLine(p2, p1);
 
 					return path;
+				}
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				GraphicsPath star(float x, float y)
+				{
+					var angles1 = getAngles(-PI / 2);
+					var angles2 = getAngles(-PI / 2 + PI / 5);
+					var points1 = getPoints(x, y, cw / 2 - padding, angles1);
+					var points2 = getPoints(x, y, (ch / 2 - padding) / 2, angles2);
+					var points = new PointF[points1.Length + points2.Length];
+					for (var (i, j) = (0, 0); i < points.Length; i += 2, j++)
+					{
+						points[i] = points1[j];
+						points[i + 1] = points2[j];
+					}
+
+					var path = new GraphicsPath();
+					for (var i = 0; i < points.Length - 1; i++)
+					{
+						path.AddLine(points[i], points[i + 1]);
+					}
+					path.AddLine(points[^1], points[0]);
+
+					return path;
+
+
+					static float[] getAngles(float startAngle)
+					{
+						var result = new[] { startAngle, default, default, default, default };
+						for (var i = 1; i < 5; i++)
+						{
+							result[i] = result[i - 1] + 2 * PI / 5;
+						}
+
+						return result;
+					}
+
+					[MethodImpl(MethodImplOptions.AggressiveInlining)]
+					static PointF getPoint(float x, float y, float length, float angle)
+						=> new(x + length * Cos(angle), y + length * Sin(angle));
+
+					static PointF[] getPoints(float x, float y, float length, params float[] angles)
+					{
+						var result = new PointF[angles.Length];
+						for (var i = 0; i < result.Length; i++)
+						{
+							result[i] = getPoint(x, y, length, angles[i]);
+						}
+
+						return result;
+					}
 				}
 			}
 		}

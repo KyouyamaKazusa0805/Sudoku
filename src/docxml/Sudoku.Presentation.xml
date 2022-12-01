@@ -1625,6 +1625,21 @@
         <member name="M:Sudoku.Presentation.Nodes.SquareViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.StarViewNode">
+            <summary>
+            Defines a star view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.StarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.StarViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.StarViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.TriangleViewNode">
             <summary>
             Defines a triangle view node.
