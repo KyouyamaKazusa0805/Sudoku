@@ -1386,6 +1386,44 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode">
+            <summary>
+            Defines a quadruple max arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="topLeftCell">The top-left cell.</param>
+            <param name="arrowDirection">The arrow direction.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cells">The cells used.</param>
+            <param name="arrowDirection">The arrow direction.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.ArrowDirection">
+            <summary>
+            Indicates the arrow direction.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode">
             <summary>
             Defines a shape view node.
@@ -2175,6 +2213,11 @@
         <member name="P:Sudoku.Presentation.View.CellArrowNodes">
             <summary>
             Indicates cell arrow nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.QuadrupleMaxArrowNodes">
+            <summary>
+            Indicates quadruple max arrow nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.FigureNodes">

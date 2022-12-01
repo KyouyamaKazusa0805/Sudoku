@@ -128,6 +128,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	public IEnumerable<CellArrowViewNode> CellArrowNodes => _nodes.OfType<CellArrowViewNode>();
 
 	/// <summary>
+	/// Indicates quadruple max arrow nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<QuadrupleMaxArrowViewNode> QuadrupleMaxArrowNodes => _nodes.OfType<QuadrupleMaxArrowViewNode>();
+
+	/// <summary>
 	/// Indicates figure nodes that the current data type stores.
 	/// </summary>
 	public IEnumerable<FigureViewNode> FigureNodes => _nodes.OfType<FigureViewNode>();

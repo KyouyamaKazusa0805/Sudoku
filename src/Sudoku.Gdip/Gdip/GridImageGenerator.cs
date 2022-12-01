@@ -241,6 +241,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawStarProductStar(Graphics g);
 	partial void DrawCellArrow(Graphics g);
 	partial void DrawFigure(Graphics g);
+	partial void DrawQuadrupleMaxArrow(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -374,6 +375,7 @@ partial class GridImageGenerator
 		DrawTriangleSumSigns(g);
 		DrawStarProductStar(g);
 		DrawCellArrow(g);
+		DrawQuadrupleMaxArrow(g);
 	}
 
 	/// <summary>
@@ -1679,6 +1681,45 @@ partial class GridImageGenerator
 			};
 
 			g.DrawHollowArrow(brush, center, cw / 4, cw / 2, ch / 2, rotation);
+		}
+	}
+
+	/// <summary>
+	/// Draw quadruple max arrow.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
+	partial void DrawQuadrupleMaxArrow(Graphics g)
+	{
+		if (this is not
+			{
+				View.QuadrupleMaxArrowNodes: var quadrupleMaxArrowNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences.QuadrupleMaxArrowSize: var size
+			})
+		{
+			return;
+		}
+
+		foreach (var quadrupleMaxArrowNode in quadrupleMaxArrowNodes)
+		{
+			if (quadrupleMaxArrowNode is not { Cells: [.., var lastCell], Identifier: var identifier, ArrowDirection: var direction })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			var (centerX, centerY) = calc.GetMousePointInCenter(lastCell);
+			var point = new PointF(centerX - cw / 2, centerY - ch / 2);
+			var rotation = direction switch
+			{
+				Direction.TopLeft => 315,
+				Direction.TopRight => 45,
+				Direction.BottomLeft => 225,
+				Direction.BottomRight => 135
+			};
+
+			g.DrawHollowArrow(brush, point, size, size * 2, size * 2, rotation);
 		}
 	}
 }

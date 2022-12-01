@@ -81,6 +81,11 @@ public sealed class DrawingConfigurations
 	public float ClockfaceDotSize { get; set; } = 6F;
 
 	/// <summary>
+	/// Indicates the size of quadruple max arrows.
+	/// </summary>
+	public float QuadrupleMaxArrowSize { get; set; } = 6F;
+
+	/// <summary>
 	/// Indicates the padding of neighbor signs.
 	/// </summary>
 	public float NeighborSignCellPadding { get; set; } = 5F;

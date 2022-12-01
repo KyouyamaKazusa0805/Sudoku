@@ -383,6 +383,11 @@
             Indicates the size of clockface dot.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleMaxArrowSize">
+            <summary>
+            Indicates the size of quadruple max arrows.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignCellPadding">
             <summary>
             Indicates the padding of neighbor signs.
@@ -944,6 +949,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFigure(System.Drawing.Graphics)">
             <summary>
             Draw figures.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawQuadrupleMaxArrow(System.Drawing.Graphics)">
+            <summary>
+            Draw quadruple max arrow.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
