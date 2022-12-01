@@ -934,12 +934,19 @@ partial class GridImageGenerator
 
 					break;
 				}
-				case SquareViewNode(var cell) { Identifier: var identifier }:
+				case (SquareViewNode or CircleViewNode) and (var cell) { Identifier: var identifier }:
 				{
 					using var brush = new SolidBrush(GetColor(identifier));
 					var (x, y) = calc.GetMousePointInCenter(cell);
 
-					g.FillRectangle(brush, x - cw / 2 + padding, y - ch / 2 + padding, cw - 2 * padding, ch - 2 * padding);
+					(
+						figureNode switch
+						{
+							SquareViewNode => g.FillRectangle,
+							CircleViewNode => g.FillEllipse,
+							_ => default(Action<Brush, float, float, float, float>?)!
+						}
+					)(brush, x - cw / 2 + padding, y - ch / 2 + padding, cw - 2 * padding, ch - 2 * padding);
 
 					break;
 				}
@@ -1589,5 +1596,57 @@ partial class GridImageGenerator
 
 			g.DrawHollowArrow(brush, center, cw / 4, cw / 2, ch / 2, rotation);
 		}
+	}
+}
+
+/// <summary>
+/// Provides with file-local extension methods.
+/// </summary>
+file static class DrawingExtensions
+{
+	/// <summary>
+	/// Fills a hollow arrow.
+	/// </summary>
+	/// <param name="g">The graphics instance.</param>
+	/// <param name="brush">The brush.</param>
+	/// <param name="center">The center point.</param>
+	/// <param name="length">The length.</param>
+	/// <param name="width">The width.</param>
+	/// <param name="height">The height.</param>
+	/// <param name="angle">The angle.</param>
+	/// <exception cref="ArgumentException">
+	/// Throws when the argument <paramref name="length"/> is below 0,
+	/// or argument <paramref name="width"/> or <paramref name="height"/> is below 0.
+	/// </exception>
+	public static void DrawHollowArrow(this Graphics g, Brush brush, PointF center, float length, float width, float height, float angle)
+	{
+		Argument.ThrowIfFalse(length > 0, $"Argument '{nameof(length)}' cannot be negative or 0.");
+		Argument.ThrowIfFalse(width > 0, $"Argument '{nameof(width)}' cannot be negative or 0.");
+		Argument.ThrowIfFalse(height > 0, $"Argument '{nameof(height)}' cannot be negative or 0.");
+
+		var halfWidth = width / 2;
+		var totalHeight = height + length;
+		var heightHalf = (height + length) / 2;
+		var arrowBarWidth = (width + height) / 4;
+		var (x, y) = center;
+		var points = new PointF[]
+		{
+			new(x, y - (height + length) / 2),
+			new(x + halfWidth, y - (height + length) / 2 + height),
+			new(x + halfWidth - (width - arrowBarWidth) / 2, y - heightHalf + height),
+			new(x + halfWidth - (width - arrowBarWidth) / 2, y - heightHalf + totalHeight),
+			new(x - halfWidth + (width - arrowBarWidth) / 2, y - heightHalf + totalHeight),
+			new(x - halfWidth + (width - arrowBarWidth) / 2, y - heightHalf + height),
+			new(x - halfWidth, y - heightHalf + height),
+		};
+
+		// Rotating.
+		var oldMatrix = g.Transform;
+		using var newMatrix = g.Transform.Clone();
+		newMatrix.RotateAt(angle, center);
+
+		g.Transform = newMatrix;
+		g.FillPolygon(brush, points);
+		g.Transform = oldMatrix;
 	}
 }
