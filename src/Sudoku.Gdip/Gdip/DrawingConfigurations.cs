@@ -91,6 +91,11 @@ public sealed class DrawingConfigurations
 	public float TriangleSumCellPadding { get; set; } = 5F;
 
 	/// <summary>
+	/// Indicates the padding of figures.
+	/// </summary>
+	public float FigurePadding { get; set; } = 5F;
+
+	/// <summary>
 	/// Indicates the font of given digits to render.
 	/// </summary>
 	public string? GivenFontName { get; set; } = "MiSans";

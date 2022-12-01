@@ -393,6 +393,11 @@
             Indicates the padding of triangle sums.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.FigurePadding">
+            <summary>
+            Indicates the padding of figures.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
             <summary>
             Indicates the font of given digits to render.
@@ -933,6 +938,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawCellArrow(System.Drawing.Graphics)">
             <summary>
             Draw cell arrow.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFigure(System.Drawing.Graphics)">
+            <summary>
+            Draw figures.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>

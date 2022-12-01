@@ -597,6 +597,76 @@
         <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.FigureViewNode">
+            <summary>
+            Defines a figure view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Assigns the values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.FigureViewNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.FigureViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.Deconstruct(System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.HouseViewNode">
             <summary>
             Defines a view node that highlights for a house.
@@ -1510,6 +1580,21 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.TriangleViewNode">
+            <summary>
+            Defines a triangle view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.TriangleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.TriangleViewNode"/> instance via the specified identfier value.
+            </summary>
+            <param name="identifier">The identfier.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.TriangleViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.UnknownViewNode">
             <summary>
             Defines a view node that highlights for a unknown.
@@ -2030,6 +2115,11 @@
         <member name="P:Sudoku.Presentation.View.CellArrowNodes">
             <summary>
             Indicates cell arrow nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.FigureNodes">
+            <summary>
+            Indicates figure nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

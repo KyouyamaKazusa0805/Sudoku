@@ -127,6 +127,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<CellArrowViewNode> CellArrowNodes => _nodes.OfType<CellArrowViewNode>();
 
+	/// <summary>
+	/// Indicates figure nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<FigureViewNode> FigureNodes => _nodes.OfType<FigureViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

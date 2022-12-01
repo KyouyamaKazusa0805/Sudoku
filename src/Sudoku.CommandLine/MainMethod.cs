@@ -1,4 +1,26 @@
-﻿// Registers the resource fetching.
+﻿#pragma warning disable CA1416
+
+using Sudoku.Presentation.Nodes;
+
+var sudokuPainter = ISudokuPainter.Create(1000, 20)
+	.WithPreferenceSettings(static pref => pref.FigurePadding = 20F)
+	.WithRenderingCandidates(false)
+	.WithGrid(Grid.Empty)
+	.WithNodes(
+		new FigureViewNode[]
+		{
+			new TriangleViewNode((96, 0, 0, 0), 0),
+			new TriangleViewNode((96, 0, 0, 0), 10),
+			new TriangleViewNode((96, 0, 0, 0), 20)
+		}
+	);
+
+var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+sudokuPainter.SaveTo($"""{desktop}\temp.png""");
+
+return 0;
+
+// Registers the resource fetching.
 R.AddExternalResourceFetecher(typeof(Program).Assembly, static key => Resources.ResourceManager.GetString(key));
 
 // Parse and route commands.

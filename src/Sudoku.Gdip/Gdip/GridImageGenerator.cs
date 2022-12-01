@@ -240,6 +240,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawTriangleSumSigns(Graphics g);
 	partial void DrawStarProductStar(Graphics g);
 	partial void DrawCellArrow(Graphics g);
+	partial void DrawFigure(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -356,8 +357,9 @@ partial class GridImageGenerator
 		DrawCandidates(g);
 		DrawLinks(g);
 		DrawUnknownValue(g);
+		DrawFigure(g);
 
-		// Shapes
+		// Shapes nodes
 		DrawBorderBar(g);
 		DrawKropkiDot(g);
 		DrawGreaterThanSigns(g);
@@ -891,6 +893,48 @@ partial class GridImageGenerator
 			var orginalPoint = calc.GetMousePointInCenter(cell);
 			var point = orginalPoint with { Y = orginalPoint.Y + vOffsetValue };
 			g.DrawValue(character, font, brush, point, StringLocating);
+		}
+	}
+
+	/// <summary>
+	/// Draw figures.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	partial void DrawFigure(Graphics g)
+	{
+		if (this is not
+			{
+				View.FigureNodes: var figureNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences: { FigurePadding: var padding, ShowCandidates: false }
+			})
+		{
+			return;
+		}
+
+		foreach (var figureNode in figureNodes)
+		{
+			switch (figureNode)
+			{
+				case TriangleViewNode(var cell) { Identifier: var identifier }:
+				{
+					using var brush = new SolidBrush(GetColor(identifier));
+					var (x, y) = calc.GetMousePointInCenter(cell);
+
+					var top = new PointF(x, y - Tan(PI / 3) / 4 * (cw - 2 * padding));
+					var left = new PointF(x - (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
+					var right = new PointF(x + (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
+
+					using var path = new GraphicsPath();
+					path.AddLine(top, left);
+					path.AddLine(left, right);
+					path.AddLine(right, top);
+
+					g.FillPath(brush, path);
+
+					break;
+				}
+			}
 		}
 	}
 

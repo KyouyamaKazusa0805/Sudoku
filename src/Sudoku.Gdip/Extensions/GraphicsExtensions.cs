@@ -138,7 +138,7 @@ internal static class GraphicsExtensions
 		r3 = new(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
 		r4 = new(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
 
-		var path = new GraphicsPath();
+		using var path = new GraphicsPath();
 		path.AddLine(p1, p2);
 		path.AddArc(r2, 270, 90);
 		path.AddLine(p4, p6);
@@ -191,7 +191,7 @@ internal static class GraphicsExtensions
 		r3 = new(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
 		r4 = new(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
 
-		var path = new GraphicsPath();
+		using var path = new GraphicsPath();
 		path.AddLine(p1, p2);
 		path.AddArc(r2, 270, 90);
 		path.AddLine(p4, p6);
