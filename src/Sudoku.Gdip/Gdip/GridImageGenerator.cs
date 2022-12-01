@@ -1721,7 +1721,7 @@ file static class DrawingExtensions
 			new(x + halfWidth - (width - arrowBarWidth) / 2, y - heightHalf + totalHeight),
 			new(x - halfWidth + (width - arrowBarWidth) / 2, y - heightHalf + totalHeight),
 			new(x - halfWidth + (width - arrowBarWidth) / 2, y - heightHalf + height),
-			new(x - halfWidth, y - heightHalf + height),
+			new(x - halfWidth, y - heightHalf + height)
 		};
 
 		// Rotating.
