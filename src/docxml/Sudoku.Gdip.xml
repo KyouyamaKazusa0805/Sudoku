@@ -968,6 +968,24 @@
             or argument <paramref name="width"/> or <paramref name="height"/> is below 0.
             </exception>
         </member>
+        <member name="T:Sudoku.Gdip.PathCreator">
+            <summary>
+            The path creator via <paramref name="x"/> and <paramref name="y"/> coordinate values.
+            </summary>
+            <param name="x">The x coordinate.</param>
+            <param name="y">The y coordinate.</param>
+            <returns>The <see cref="T:System.Drawing.Drawing2D.GraphicsPath"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Gdip.FigureFilling">
+            <summary>
+            The figure filling method.
+            </summary>
+            <param name="brush">The <see cref="T:System.Drawing.Brush"/> instance to be used by filling.</param>
+            <param name="x">The x coordinate.</param>
+            <param name="y">The y coordinate.</param>
+            <param name="w">The width of the filling figure.</param>
+            <param name="h">The height of the filling figure.</param>
+        </member>
         <member name="T:Sudoku.Gdip.PointCalculator">
             <summary>
             Provides a serial of methods for a point calculator that interacts with the UI projects.

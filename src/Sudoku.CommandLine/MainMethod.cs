@@ -11,7 +11,8 @@ var sudokuPainter = ISudokuPainter.Create(1000, 20)
 		{
 			new SquareViewNode((96, 0, 0, 0), 0),
 			new TriangleViewNode((96, 0, 0, 0), 10),
-			new CircleViewNode((96, 0, 0, 0), 20)
+			new CircleViewNode((96, 0, 0, 0), 20),
+			new DiamondViewNode((96, 0, 0, 0), 30)
 		}
 	);
 

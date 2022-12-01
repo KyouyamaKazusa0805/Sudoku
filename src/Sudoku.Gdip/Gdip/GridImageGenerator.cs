@@ -916,20 +916,19 @@ partial class GridImageGenerator
 		{
 			switch (figureNode)
 			{
-				case TriangleViewNode(var cell) { Identifier: var identifier }:
+				case (TriangleViewNode or DiamondViewNode) and (var cell) { Identifier: var identifier }:
 				{
 					using var brush = new SolidBrush(GetColor(identifier));
 					var (x, y) = calc.GetMousePointInCenter(cell);
 
-					var top = new PointF(x, y - Tan(PI / 3) / 4 * (cw - 2 * padding));
-					var left = new PointF(x - (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
-					var right = new PointF(x + (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
-
-					using var path = new GraphicsPath();
-					path.AddLine(top, left);
-					path.AddLine(left, right);
-					path.AddLine(right, top);
-
+					using var path = (
+						figureNode switch
+						{
+							TriangleViewNode => triangle,
+							DiamondViewNode => diamond,
+							_ => default(PathCreator?)!
+						}
+					)(x, y);
 					g.FillPath(brush, path);
 
 					break;
@@ -944,11 +943,44 @@ partial class GridImageGenerator
 						{
 							SquareViewNode => g.FillRectangle,
 							CircleViewNode => g.FillEllipse,
-							_ => default(Action<Brush, float, float, float, float>?)!
+							_ => default(FigureFilling?)!
 						}
 					)(brush, x - cw / 2 + padding, y - ch / 2 + padding, cw - 2 * padding, ch - 2 * padding);
 
 					break;
+				}
+
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				GraphicsPath triangle(float x, float y)
+				{
+					var top = new PointF(x, y - Tan(PI / 3) / 4 * (cw - 2 * padding));
+					var left = new PointF(x - (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
+					var right = new PointF(x + (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
+
+					var path = new GraphicsPath();
+					path.AddLine(top, left);
+					path.AddLine(left, right);
+					path.AddLine(right, top);
+
+					return path;
+				}
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				GraphicsPath diamond(float x, float y)
+				{
+					var p1 = new PointF(x, y - ch / 2 + padding);
+					var p2 = new PointF(x - cw / 2 + padding, y);
+					var p3 = new PointF(x + cw / 2 - padding, y);
+					var p4 = new PointF(x, y + ch / 2 - padding);
+
+					var path = new GraphicsPath();
+					path.AddLine(p1, p3);
+					path.AddLine(p3, p4);
+					path.AddLine(p4, p2);
+					path.AddLine(p2, p1);
+
+					return path;
 				}
 			}
 		}
@@ -1650,3 +1682,21 @@ file static class DrawingExtensions
 		g.Transform = oldMatrix;
 	}
 }
+
+/// <summary>
+/// The path creator via <paramref name="x"/> and <paramref name="y"/> coordinate values.
+/// </summary>
+/// <param name="x">The x coordinate.</param>
+/// <param name="y">The y coordinate.</param>
+/// <returns>The <see cref="GraphicsPath"/> result.</returns>
+file delegate GraphicsPath PathCreator(float x, float y);
+
+/// <summary>
+/// The figure filling method.
+/// </summary>
+/// <param name="brush">The <see cref="Brush"/> instance to be used by filling.</param>
+/// <param name="x">The x coordinate.</param>
+/// <param name="y">The y coordinate.</param>
+/// <param name="w">The width of the filling figure.</param>
+/// <param name="h">The height of the filling figure.</param>
+file delegate void FigureFilling(Brush brush, float x, float y, float w, float h);

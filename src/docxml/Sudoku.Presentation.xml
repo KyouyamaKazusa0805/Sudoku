@@ -612,6 +612,21 @@
         <member name="M:Sudoku.Presentation.Nodes.CircleViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.DiamondViewNode">
+            <summary>
+            Defines a diamond view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.DiamondViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.DiamondViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identfier.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.DiamondViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.FigureViewNode">
             <summary>
             Defines a figure view node.
