@@ -906,7 +906,7 @@ partial class GridImageGenerator
 			{
 				View.FigureNodes: var figureNodes,
 				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences: { FigurePadding: var padding, ShowCandidates: false }
+				Preferences.FigurePadding: var padding
 			})
 		{
 			return;
@@ -931,6 +931,15 @@ partial class GridImageGenerator
 					path.AddLine(right, top);
 
 					g.FillPath(brush, path);
+
+					break;
+				}
+				case SquareViewNode(var cell) { Identifier: var identifier }:
+				{
+					using var brush = new SolidBrush(GetColor(identifier));
+					var (x, y) = calc.GetMousePointInCenter(cell);
+
+					g.FillRectangle(brush, x - cw / 2 + padding, y - ch / 2 + padding, cw - 2 * padding, ch - 2 * padding);
 
 					break;
 				}
