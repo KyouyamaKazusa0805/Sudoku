@@ -1668,17 +1668,7 @@ partial class GridImageGenerator
 			}
 
 			var center = calc.GetMousePointInCenter(cell);
-			var rotation = direction switch
-			{
-				Direction.TopLeft => 315,
-				Direction.Up => 0,
-				Direction.TopRight => 45,
-				Direction.Left => 270,
-				Direction.Right => 90,
-				Direction.BottomLeft => 225,
-				Direction.Down => 180,
-				Direction.BottomRight => 135
-			};
+			var rotation = direction.GetRotatingAngle();
 
 			g.DrawHollowArrow(brush, center, cw / 4, cw / 2, ch / 2, rotation);
 		}
@@ -1711,13 +1701,7 @@ partial class GridImageGenerator
 			using var brush = new SolidBrush(GetColor(identifier));
 			var (centerX, centerY) = calc.GetMousePointInCenter(lastCell);
 			var point = new PointF(centerX - cw / 2, centerY - ch / 2);
-			var rotation = direction switch
-			{
-				Direction.TopLeft => 315,
-				Direction.TopRight => 45,
-				Direction.BottomLeft => 225,
-				Direction.BottomRight => 135
-			};
+			var rotation = direction.GetRotatingAngle();
 
 			g.DrawHollowArrow(brush, point, size, size * 2, size * 2, rotation);
 		}
