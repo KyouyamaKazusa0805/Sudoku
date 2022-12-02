@@ -142,6 +142,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<CellCornerTriangleViewNode> CellCornerTriangleNodes => _nodes.OfType<CellCornerTriangleViewNode>();
 
+	/// <summary>
+	/// Indicates average bar nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<AverageBarViewNode> AverageBarNodes => _nodes.OfType<AverageBarViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.

@@ -393,6 +393,11 @@
             Indicates the size of cell corner triangles.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.AverageBarWidth">
+            <summary>
+            Indicates the width of average bars.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignCellPadding">
             <summary>
             Indicates the padding of neighbor signs.
@@ -971,6 +976,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawCellCornerTriangle(System.Drawing.Graphics)">
             <summary>
             Draw cell corner triangles.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawAverageBar(System.Drawing.Graphics)">
+            <summary>
+            Draw average bars.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>

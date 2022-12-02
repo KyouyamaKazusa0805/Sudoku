@@ -243,6 +243,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawFigure(Graphics g);
 	partial void DrawQuadrupleMaxArrow(Graphics g);
 	partial void DrawCellCornerTriangle(Graphics g);
+	partial void DrawAverageBar(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -378,6 +379,7 @@ partial class GridImageGenerator
 		DrawCellArrow(g);
 		DrawQuadrupleMaxArrow(g);
 		DrawCellCornerTriangle(g);
+		DrawAverageBar(g);
 	}
 
 	/// <summary>
@@ -1777,6 +1779,51 @@ partial class GridImageGenerator
 			path.AddLine(points[2], points[0]);
 
 			g.FillPath(brush, path);
+		}
+	}
+
+	/// <summary>
+	/// Draw average bars.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
+	partial void DrawAverageBar(Graphics g)
+	{
+		if (this is not
+			{
+				View.AverageBarNodes: var averageBarNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences.AverageBarWidth: var width
+			})
+		{
+			return;
+		}
+
+		foreach (var averageBarNode in averageBarNodes)
+		{
+			if (averageBarNode is not { Identifier: var identifier, Cell: var cell, Type: var type })
+			{
+				continue;
+			}
+
+			using var pen = new Pen(GetColor(identifier), width);
+			var (x, y) = calc.GetMousePointInCenter(cell);
+			var pointPairs = type switch
+			{
+				AdjacentCellType.Rowish => new (PointF, PointF)[] { (new(x - cw / 2, y), new(x + cw / 2, y)) },
+				AdjacentCellType.Columnish => new (PointF, PointF)[] { (new(x, y - ch / 2), new(x, y + ch / 2)) },
+				AdjacentCellType.Rowish | AdjacentCellType.Columnish => new (PointF, PointF)[]
+				{
+					(new(x - cw / 2, y), new(x + cw / 2, y)),
+					(new(x, y - ch / 2), new(x, y + ch / 2))
+				}
+			};
+
+			// Draw line.
+			foreach (var (p1, p2) in pointPairs)
+			{
+				g.DrawLine(pen, p1, p2);
+			}
 		}
 	}
 }

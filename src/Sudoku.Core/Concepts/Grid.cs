@@ -1456,7 +1456,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="Parse(string)"/>
 	/// <seealso cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Grid(string? gridCode) => gridCode is null ? Undefined : Parse(gridCode);
+	public static explicit operator Grid([ConstantExpected] string? gridCode) => gridCode is null ? Undefined : Parse(gridCode);
 
 #if false
 	/// <summary>
@@ -1481,7 +1481,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="Parse(Utf8String)"/>
 	/// <seealso cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Grid(Utf8String gridCode) => gridCode == Utf8String.Empty ? Undefined : Parse(gridCode);
+	public static explicit operator Grid([ConstantExpected] Utf8String gridCode) => gridCode == Utf8String.Empty ? Undefined : Parse(gridCode);
 #endif
 }
 

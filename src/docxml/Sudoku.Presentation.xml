@@ -129,6 +129,56 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.AdjacentCellType">
+            <summary>
+            Defines an adjacent cell type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.AdjacentCellType.None">
+            <summary>
+            Indicates the default value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.AdjacentCellType.Rowish">
+            <summary>
+            Indicates the adjacent cell type is rowish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.AdjacentCellType.Columnish">
+            <summary>
+            Indicates the adjacent cell type is columnish.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode">
+            <summary>
+            Defines an average bar view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.AdjacentCellType)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+            <param name="type">The adjacent cell type.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.Type">
+            <summary>
+            Indicates the adjacent cell type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode">
             <summary>
             Defines a battenburg view node.
@@ -2258,6 +2308,11 @@
         <member name="P:Sudoku.Presentation.View.CellCornerTriangleNodes">
             <summary>
             Indicates cell corner triangle nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.AverageBarNodes">
+            <summary>
+            Indicates average bar nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">
