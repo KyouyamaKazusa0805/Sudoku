@@ -41,7 +41,7 @@ internal static class GraphicsExtensions
 	/// <param name="brush">The brush.</param>
 	/// <param name="point">The point.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void DrawValue<T>(this Graphics @this, T value, Font font, Brush brush, scoped in PointF point) where T : notnull
+	public static void DrawValue<T>(this Graphics @this, T value, Font font, Brush brush, PointF point) where T : notnull
 		=> @this.DrawString(value.ToString(), font, brush, point);
 
 	/// <summary>
@@ -55,7 +55,7 @@ internal static class GraphicsExtensions
 	/// <param name="point">The point.</param>
 	/// <param name="stringFormat">The string format instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void DrawValue<T>(this Graphics @this, T value, Font font, Brush brush, scoped in PointF point, StringFormat stringFormat)
+	public static void DrawValue<T>(this Graphics @this, T value, Font font, Brush brush, PointF point, StringFormat stringFormat)
 		where T : notnull => @this.DrawString(value.ToString(), font, brush, point, stringFormat);
 
 	/// <summary>
@@ -68,7 +68,7 @@ internal static class GraphicsExtensions
 	/// This method will draw a cross sign and fill with the specified color, so you don't need
 	/// to find any fill methods.
 	/// </remarks>
-	public static void DrawCrossSign(this Graphics @this, Pen pen, scoped in RectangleF rectangle)
+	public static void DrawCrossSign(this Graphics @this, Pen pen, RectangleF rectangle)
 	{
 		var (x, y, w, h) = rectangle;
 		var p1 = new PointF(x, y + h);
@@ -87,7 +87,7 @@ internal static class GraphicsExtensions
 	/// <param name="pen">The pen.</param>
 	/// <param name="rectangle">The rectangle.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void DrawCapsule(this Graphics @this, Pen pen, scoped in RectangleF rectangle) => @this.DrawRoundedRectangle(pen, rectangle, 0);
+	public static void DrawCapsule(this Graphics @this, Pen pen, RectangleF rectangle) => @this.DrawRoundedRectangle(pen, rectangle, 0);
 
 	/// <summary>
 	/// Fill a capsule.
@@ -96,8 +96,7 @@ internal static class GraphicsExtensions
 	/// <param name="brush">The brush.</param>
 	/// <param name="rectangle">The rectangle.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void FillCapsule(this Graphics @this, Brush brush, scoped in RectangleF rectangle)
-		=> @this.FillRoundedRectangle(brush, rectangle, 0);
+	public static void FillCapsule(this Graphics @this, Brush brush, RectangleF rectangle) => @this.FillRoundedRectangle(brush, rectangle, 0);
 
 	/// <summary>
 	/// Draw a rounded rectangle.
@@ -110,7 +109,7 @@ internal static class GraphicsExtensions
 	/// Throws when <paramref name="circleRadius"/> is greater than the value in
 	/// <paramref name="rectangle"/>.
 	/// </exception>
-	public static void DrawRoundedRectangle(this Graphics @this, Pen pen, in RectangleF rectangle, float circleRadius)
+	public static void DrawRoundedRectangle(this Graphics @this, Pen pen, RectangleF rectangle, float circleRadius)
 	{
 		if (circleRadius > Max(rectangle.Width, rectangle.Height))
 		{
@@ -163,7 +162,7 @@ internal static class GraphicsExtensions
 	/// Throws when <paramref name="circleRadius"/> is greater than the value in
 	/// <paramref name="rectangle"/>.
 	/// </exception>
-	public static void FillRoundedRectangle(this Graphics @this, Brush brush, scoped in RectangleF rectangle, float circleRadius)
+	public static void FillRoundedRectangle(this Graphics @this, Brush brush, RectangleF rectangle, float circleRadius)
 	{
 		if (circleRadius >= Max(rectangle.Width, rectangle.Height))
 		{

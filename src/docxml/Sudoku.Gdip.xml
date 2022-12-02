@@ -1303,7 +1303,7 @@
             (e.g. <paramref name="destX"/>, <paramref name="destY"/>, <paramref name="srcX"/>, <paramref name="srcY"/>, etc.) uses.
             </param>
         </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawValue``1(System.Drawing.Graphics,``0,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF@)">
+        <member name="M:System.Drawing.GraphicsExtensions.DrawValue``1(System.Drawing.Graphics,``0,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF)">
             <summary>
             Draw the string representation an instance onto the current <see cref="T:System.Drawing.Graphics"/> instance.
             </summary>
@@ -1314,7 +1314,7 @@
             <param name="brush">The brush.</param>
             <param name="point">The point.</param>
         </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawValue``1(System.Drawing.Graphics,``0,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF@,System.Drawing.StringFormat)">
+        <member name="M:System.Drawing.GraphicsExtensions.DrawValue``1(System.Drawing.Graphics,``0,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF,System.Drawing.StringFormat)">
             <summary>
             Draw the string representation of an instance onto the current <see cref="T:System.Drawing.Graphics"/> instance.
             </summary>
@@ -1326,7 +1326,7 @@
             <param name="point">The point.</param>
             <param name="stringFormat">The string format instance.</param>
         </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawCrossSign(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF@)">
+        <member name="M:System.Drawing.GraphicsExtensions.DrawCrossSign(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF)">
             <summary>
             Draw a cross sign (<c>x</c>).
             </summary>
@@ -1338,7 +1338,7 @@
             to find any fill methods.
             </remarks>
         </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawCapsule(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF@)">
+        <member name="M:System.Drawing.GraphicsExtensions.DrawCapsule(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF)">
             <summary>
             Draw a capsule.
             </summary>
@@ -1346,7 +1346,7 @@
             <param name="pen">The pen.</param>
             <param name="rectangle">The rectangle.</param>
         </member>
-        <member name="M:System.Drawing.GraphicsExtensions.FillCapsule(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF@)">
+        <member name="M:System.Drawing.GraphicsExtensions.FillCapsule(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF)">
             <summary>
             Fill a capsule.
             </summary>
@@ -1354,7 +1354,7 @@
             <param name="brush">The brush.</param>
             <param name="rectangle">The rectangle.</param>
         </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF@,System.Single)">
+        <member name="M:System.Drawing.GraphicsExtensions.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF,System.Single)">
             <summary>
             Draw a rounded rectangle.
             </summary>
@@ -1367,7 +1367,7 @@
             <paramref name="rectangle"/>.
             </exception>
         </member>
-        <member name="M:System.Drawing.GraphicsExtensions.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF@,System.Single)">
+        <member name="M:System.Drawing.GraphicsExtensions.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF,System.Single)">
             <summary>
             Fill a rounded rectangle.
             </summary>
