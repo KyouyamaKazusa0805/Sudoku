@@ -308,7 +308,7 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public void AppendLiteral(string? value)
+	public void AppendLiteral([ConstantExpected] string? value)
 	{
 		if (value is null)
 		{
@@ -846,7 +846,7 @@ public unsafe ref partial struct StringHandler
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendLargeObjectFormatted<T>(T value, int alignment, string? format)
+	public void AppendLargeObjectFormatted<T>(scoped in T value, int alignment, string? format)
 	{
 		var startingPos = Length;
 		AppendFormatted(value, format);

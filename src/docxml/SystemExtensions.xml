@@ -3256,7 +3256,7 @@
             </param>
             <typeparam name="T">The type of the value to write.</typeparam>
         </member>
-        <member name="M:System.Text.StringHandler.AppendLargeObjectFormatted``1(``0,System.Int32,System.String)">
+        <member name="M:System.Text.StringHandler.AppendLargeObjectFormatted``1(``0@,System.Int32,System.String)">
             <summary>
             Writes the specified large-object value to the handler.
             </summary>
