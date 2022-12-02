@@ -32,7 +32,7 @@ public sealed class ArgumentNullRefException : ArgumentNullException
 	/// <exception cref="ArgumentNullRefException">Throws when <paramref name="argument"/> is <see langword="null"/>.</exception>
 	/// <seealso cref="IsNullRef{T}(ref T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNullRef<T>(ref T argument, [CallerArgumentExpression(nameof(argument))] string? paramName = null)
+	public static void ThrowIfNullRef<T>(ref T argument, [ConstantExpected, CallerArgumentExpression(nameof(argument))] string? paramName = null)
 	{
 		if (IsNullRef(ref argument))
 		{

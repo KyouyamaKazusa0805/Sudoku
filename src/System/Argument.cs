@@ -17,8 +17,11 @@ public static class Argument
 	/// Throws when the argument <paramref name="argName"/> is not equal to <paramref name="value"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNotEqual<T>(T instance, T value, [CallerArgumentExpression(nameof(instance))] string? argName = null)
-		where T : notnull, IEquatable<T>
+	public static void ThrowIfNotEqual<T>(
+		T instance,
+		T value,
+		[ConstantExpected, CallerArgumentExpression(nameof(instance))] string? argName = null
+	) where T : notnull, IEquatable<T>
 	{
 		if (!instance.Equals(value))
 		{
@@ -39,8 +42,9 @@ public static class Argument
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void ThrowIfFalse(
 		[DoesNotReturnIf(false)] bool condition,
-		string? message = null,
-		[CallerArgumentExpression(nameof(condition))] string? conditionStr = null)
+		[ConstantExpected] string? message = null,
+		[ConstantExpected, CallerArgumentExpression(nameof(condition))] string? conditionStr = null
+	)
 	{
 		if (!condition)
 		{
@@ -61,8 +65,9 @@ public static class Argument
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void ThrowIfInvalid(
 		[DoesNotReturnIf(false)] bool condition,
-		string? message = null,
-		[CallerArgumentExpression(nameof(condition))] string? conditionStr = null)
+		[ConstantExpected] string? message = null,
+		[ConstantExpected, CallerArgumentExpression(nameof(condition))] string? conditionStr = null
+	)
 	{
 		if (!condition)
 		{

@@ -341,7 +341,7 @@ public readonly unsafe partial struct Utf8String :
 	/// <param name="left">The left-side instance to be catenated.</param>
 	/// <param name="right">The right-side instance to be catenated.</param>
 	/// <returns>The final string.</returns>
-	public static Utf8String operator +(Utf8String left, Utf8String right)
+	public static Utf8String operator +([ConstantExpected] Utf8String left, [ConstantExpected] Utf8String right)
 	{
 		SkipInit(out Utf8Char[] targetBuffer);
 		try
