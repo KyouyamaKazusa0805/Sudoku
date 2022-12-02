@@ -86,6 +86,11 @@ public sealed class DrawingConfigurations
 	public float QuadrupleMaxArrowSize { get; set; } = 6F;
 
 	/// <summary>
+	/// Indicates the size of cell corner triangles.
+	/// </summary>
+	public float CellCornerTriangleSize { get; set; } = 6F;
+
+	/// <summary>
 	/// Indicates the padding of neighbor signs.
 	/// </summary>
 	public float NeighborSignCellPadding { get; set; } = 5F;
@@ -99,6 +104,11 @@ public sealed class DrawingConfigurations
 	/// Indicates the padding of figures.
 	/// </summary>
 	public float FigurePadding { get; set; } = 5F;
+
+	/// <summary>
+	/// Indicates the padding of cell corner triangles.
+	/// </summary>
+	public float CellCornerTriangleCellPadding { get; set; } = 5F;
 
 	/// <summary>
 	/// Indicates the font of given digits to render.

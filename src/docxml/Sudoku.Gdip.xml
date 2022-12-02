@@ -388,6 +388,11 @@
             Indicates the size of quadruple max arrows.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CellCornerTriangleSize">
+            <summary>
+            Indicates the size of cell corner triangles.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignCellPadding">
             <summary>
             Indicates the padding of neighbor signs.
@@ -401,6 +406,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.FigurePadding">
             <summary>
             Indicates the padding of figures.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CellCornerTriangleCellPadding">
+            <summary>
+            Indicates the padding of cell corner triangles.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
@@ -955,6 +965,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawQuadrupleMaxArrow(System.Drawing.Graphics)">
             <summary>
             Draw quadruple max arrow.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawCellCornerTriangle(System.Drawing.Graphics)">
+            <summary>
+            Draw cell corner triangles.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>

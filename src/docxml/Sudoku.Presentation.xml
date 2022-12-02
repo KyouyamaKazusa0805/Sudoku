@@ -219,6 +219,22 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode">
+            <summary>
+            Defines a triangle view node that is used in a cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+            <param name="directions">The directions.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode">
             <summary>
             Defines a clockface dot view node.
@@ -2237,6 +2253,11 @@
         <member name="P:Sudoku.Presentation.View.FigureNodes">
             <summary>
             Indicates figure nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.CellCornerTriangleNodes">
+            <summary>
+            Indicates cell corner triangle nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

@@ -242,6 +242,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawCellArrow(Graphics g);
 	partial void DrawFigure(Graphics g);
 	partial void DrawQuadrupleMaxArrow(Graphics g);
+	partial void DrawCellCornerTriangle(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -376,6 +377,7 @@ partial class GridImageGenerator
 		DrawStarProductStar(g);
 		DrawCellArrow(g);
 		DrawQuadrupleMaxArrow(g);
+		DrawCellCornerTriangle(g);
 	}
 
 	/// <summary>
@@ -383,7 +385,15 @@ partial class GridImageGenerator
 	/// </summary>
 	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	/// <seealso cref="DrawingConfigurations.BackgroundColor"/>
-	partial void DrawBackground(Graphics g) => g.Clear(Preferences.BackgroundColor);
+	partial void DrawBackground(Graphics g)
+	{
+		if (this is not { Preferences.BackgroundColor: var backColor })
+		{
+			return;
+		}
+
+		g.Clear(backColor);
+	}
 
 	/// <summary>
 	/// Draw grid lines and block lines.
@@ -1704,6 +1714,69 @@ partial class GridImageGenerator
 			var rotation = direction.GetRotatingAngle();
 
 			g.DrawHollowArrow(brush, point, size, size * 2, size * 2, rotation);
+		}
+	}
+
+	/// <summary>
+	/// Draw cell corner triangles.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
+	partial void DrawCellCornerTriangle(Graphics g)
+	{
+		if (this is not
+			{
+				View.CellCornerTriangleNodes: var cellCornerTriangleNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences: { CellCornerTriangleSize: var size, CellCornerTriangleCellPadding: var padding }
+			})
+		{
+			return;
+		}
+
+		foreach (var cellCornerTriangleNode in cellCornerTriangleNodes)
+		{
+			if (cellCornerTriangleNode is not { Identifier: var identifier, Cell: var cell, Directions: var direction })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+			var (centerX, centerY) = calc.GetMousePointInCenter(cell);
+			var points = direction switch
+			{
+				Direction.TopLeft => new PointF[]
+				{
+					new(centerX - cw / 2 + padding, centerY - ch / 2 + padding),
+					new(centerX - cw / 2 + padding + size, centerY - ch / 2 + padding),
+					new(centerX - cw / 2 + padding, centerY - ch / 2 + padding + size)
+				},
+				Direction.TopRight => new PointF[]
+				{
+					new(centerX + cw / 2 - padding, centerY - ch / 2 + padding),
+					new(centerX + cw / 2 - padding - size, centerY - ch / 2 + padding),
+					new(centerX + cw / 2 - padding, centerY - ch / 2 + padding + size)
+				},
+				Direction.BottomLeft => new PointF[]
+				{
+					new(centerX - cw / 2 + padding, centerY + ch / 2 - padding),
+					new(centerX - cw / 2 + padding + size, centerY + ch / 2 - padding),
+					new(centerX - cw / 2 + padding, centerY + ch / 2 - padding - size)
+				},
+				Direction.BottomRight => new PointF[]
+				{
+					new(centerX + cw / 2 - padding, centerY + ch / 2 - padding),
+					new(centerX + cw / 2 - padding - size, centerY + ch / 2 - padding),
+					new(centerX + cw / 2 - padding, centerY + ch / 2 - padding - size)
+				}
+			};
+
+			using var path = new GraphicsPath();
+			path.AddLine(points[0], points[1]);
+			path.AddLine(points[1], points[2]);
+			path.AddLine(points[2], points[0]);
+
+			g.FillPath(brush, path);
 		}
 	}
 }

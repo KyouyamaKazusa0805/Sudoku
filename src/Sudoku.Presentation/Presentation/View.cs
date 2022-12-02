@@ -137,6 +137,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<FigureViewNode> FigureNodes => _nodes.OfType<FigureViewNode>();
 
+	/// <summary>
+	/// Indicates cell corner triangle nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<CellCornerTriangleViewNode> CellCornerTriangleNodes => _nodes.OfType<CellCornerTriangleViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.
