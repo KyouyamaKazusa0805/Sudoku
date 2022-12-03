@@ -5,6 +5,7 @@
 		<AssemblyName>SystemExtensions.CodeGen</AssemblyName>
 		<Description>A project that generates the source code for extension project 'SystemExtensions'.</Description>
 		<DocumentationFile>..\docxml\SystemExtensions.CodeGen.xml</DocumentationFile>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	</PropertyGroup>
 
 	<ItemGroup>

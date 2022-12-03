@@ -4,6 +4,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<Description>A project that generates the source code for logically solving project 'Sudoku.Solving.Logical'.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Solving.Logical.CodeGen.xml</DocumentationFile>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	</PropertyGroup>
 
 	<ItemGroup>

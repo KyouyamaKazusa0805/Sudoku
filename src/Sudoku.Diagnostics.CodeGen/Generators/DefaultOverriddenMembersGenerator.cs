@@ -435,8 +435,8 @@ file static class Extensions
 		this in IncrementalGeneratorInitializationContext @this,
 		Func<GeneratorAttributeSyntaxContext, CancellationToken, T?> transformAction,
 		Action<SourceProductionContext, ImmutableArray<T?>, Type> outputAction,
-		Predicate<SyntaxNode>? nodePredicate = null)
-		where T : struct
+		Predicate<SyntaxNode>? nodePredicate = null
+	) where T : struct
 	{
 		const string attributeFullName = "System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute";
 
