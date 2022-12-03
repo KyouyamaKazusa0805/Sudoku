@@ -1,12 +1,12 @@
 ﻿namespace Sudoku.Presentation.Nodes;
 
 /// <summary>
-/// Defines a view node that highlights for a unknown.
+/// Defines a view node that highlights for a Baba group.
 /// </summary>
-public sealed partial class UnknownViewNode : ViewNode
+public sealed partial class BabaGroupViewNode : ViewNode
 {
 	/// <summary>
-	/// Initializes an <see cref="UnknownViewNode"/> instance via the specified identifier,
+	/// Initializes an <see cref="BabaGroupViewNode"/> instance via the specified identifier,
 	/// the cell used, the unknown value character and the mask representing the digits used.
 	/// </summary>
 	/// <param name="identifier">The identifier.</param>
@@ -14,7 +14,7 @@ public sealed partial class UnknownViewNode : ViewNode
 	/// <param name="unknownValueChar">The character that represents the range of the unknown.</param>
 	/// <param name="digitsMask">The mask representing digits used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public UnknownViewNode(Identifier identifier, int cell, Utf8Char unknownValueChar, short digitsMask) : base(identifier)
+	public BabaGroupViewNode(Identifier identifier, int cell, Utf8Char unknownValueChar, short digitsMask) : base(identifier)
 		=> (Cell, UnknownValueChar, DigitsMask) = (cell, unknownValueChar, digitsMask);
 
 
@@ -34,7 +34,7 @@ public sealed partial class UnknownViewNode : ViewNode
 	public Utf8Char UnknownValueChar { get; }
 
 	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(UnknownViewNode);
+	protected override string TypeIdentifier => nameof(BabaGroupViewNode);
 
 	/// <summary>
 	/// Indicates the cell string.
@@ -54,7 +54,7 @@ public sealed partial class UnknownViewNode : ViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is UnknownViewNode comparer
+		=> other is BabaGroupViewNode comparer
 		&& Identifier == comparer.Identifier
 		&& Cell == comparer.Cell && DigitsMask == comparer.DigitsMask && UnknownValueChar == comparer.UnknownValueChar;
 
@@ -66,5 +66,5 @@ public sealed partial class UnknownViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override UnknownViewNode Clone() => new(Identifier, Cell, UnknownValueChar, DigitsMask);
+	public override BabaGroupViewNode Clone() => new(Identifier, Cell, UnknownValueChar, DigitsMask);
 }

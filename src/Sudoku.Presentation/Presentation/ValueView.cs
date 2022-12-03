@@ -55,7 +55,7 @@ public readonly partial struct ValueView : IEnumerable<ViewNode>
 	/// <summary>
 	/// Indicates the unknown nodes that the current data type stores.
 	/// </summary>
-	public OfTypeEnumerator<UnknownViewNode> UnknownNodes => EnumerateNodes<UnknownViewNode>();
+	public OfTypeEnumerator<BabaGroupViewNode> UnknownNodes => EnumerateNodes<BabaGroupViewNode>();
 
 
 	/// <summary>

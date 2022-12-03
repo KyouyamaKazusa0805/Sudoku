@@ -272,7 +272,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 				cellOffsets.Add(new(DisplayColorKind.Elimination, house2CellExcluded));
 			}
 
-			var unknowns = new List<UnknownViewNode>(4);
+			var unknowns = new List<BabaGroupViewNode>(4);
 			var house1 = (CellsMap[cell1] + pivot).CoveredLine;
 			var house2 = (CellsMap[cell2] + pivot).CoveredLine;
 			foreach (var cell in (HousesMap[house1] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
@@ -291,7 +291,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 					View.Empty
 						| cellOffsets
 						| unknowns
-						| new UnknownViewNode[]
+						| new BabaGroupViewNode[]
 						{
 							new(
 								DisplayColorKind.Normal,

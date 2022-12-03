@@ -3432,7 +3432,7 @@ unsafe partial class UniqueRectangleStepSearcher
 											new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit),
 											new(DisplayColorKind.Auxiliary1, targetCell * 9 + extraDigit)
 										}
-										| new UnknownViewNode[]
+										| new BabaGroupViewNode[]
 										{
 											new(DisplayColorKind.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask),
 											new(DisplayColorKind.Normal, targetCell, (byte)'x', _xOr_yMask),
@@ -3561,7 +3561,7 @@ unsafe partial class UniqueRectangleStepSearcher
 										},
 									View.Empty
 										| candidateOffsetsAnotherSubtypeLighter
-										| new UnknownViewNode[]
+										| new BabaGroupViewNode[]
 										{
 											new(DisplayColorKind.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask2),
 											new(DisplayColorKind.Normal, targetCell, (byte)'x', _xOr_yMask2),

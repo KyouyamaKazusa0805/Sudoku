@@ -57,7 +57,7 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// <summary>
 	/// Indicates the unknown nodes that the current data type stores.
 	/// </summary>
-	public IEnumerable<UnknownViewNode> UnknownNodes => _nodes.OfType<UnknownViewNode>();
+	public IEnumerable<BabaGroupViewNode> UnknownNodes => _nodes.OfType<BabaGroupViewNode>();
 
 #if ENHANCED_DRAWING_APIS
 	/// <summary>

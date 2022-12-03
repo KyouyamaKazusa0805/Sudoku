@@ -161,7 +161,7 @@ file sealed class StartGamingCommand : Command
 		}
 
 		static ViewNode markerNodeSelector((int Cell, int Digit) element, int i)
-			=> new UnknownViewNode(DisplayColorKind.Normal, element.Cell, (Utf8Char)(char)(i + '1'), (short)(1 << element.Digit));
+			=> new BabaGroupViewNode(DisplayColorKind.Normal, element.Cell, (Utf8Char)(char)(i + '1'), (short)(1 << element.Digit));
 	}
 }
 

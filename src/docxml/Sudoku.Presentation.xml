@@ -917,6 +917,61 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.BabaGroupViewNode">
+            <summary>
+            Defines a view node that highlights for a Baba group.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Utf8Char,System.Int16)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/> instance via the specified identifier,
+            the cell used, the unknown value character and the mask representing the digits used.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell used.</param>
+            <param name="unknownValueChar">The character that represents the range of the unknown.</param>
+            <param name="digitsMask">The mask representing digits used.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.DigitsMask">
+            <summary>
+            Indicates the digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.UnknownValueChar">
+            <summary>
+            Indicates the character that represents the unknown range.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.DigitsMaskString">
+            <summary>
+            Indicates the digits mask string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.CandidateViewNode">
             <summary>
             Defines a view node that highlights for a candidate.
@@ -1342,61 +1397,6 @@
             <param name="cell">The cell.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.TriangleViewNode.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Presentation.Nodes.UnknownViewNode">
-            <summary>
-            Defines a view node that highlights for a unknown.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Utf8Char,System.Int16)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/> instance via the specified identifier,
-            the cell used, the unknown value character and the mask representing the digits used.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell used.</param>
-            <param name="unknownValueChar">The character that represents the range of the unknown.</param>
-            <param name="digitsMask">The mask representing digits used.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.Cell">
-            <summary>
-            Indicates the cell used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.DigitsMask">
-            <summary>
-            Indicates the digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.UnknownValueChar">
-            <summary>
-            Indicates the character that represents the unknown range.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.TypeIdentifier">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.CellString">
-            <summary>
-            Indicates the cell string.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.DigitsMaskString">
-            <summary>
-            Indicates the digits mask string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.Clone">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.ViewNode">
@@ -2414,7 +2414,7 @@
         </member>
         <member name="M:Sudoku.Presentation.ViewExtensions.UnknownOverlaps(Sudoku.Presentation.View,System.Int32)">
             <summary>
-            Determines whether the specified <see cref="T:Sudoku.Presentation.View"/> stores several <see cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/>s,
+            Determines whether the specified <see cref="T:Sudoku.Presentation.View"/> stores several <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>s,
             and at least one of it overlaps the specified cell.
             </summary>
             <param name="this">The view instance.</param>
