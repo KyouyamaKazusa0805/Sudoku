@@ -244,6 +244,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawQuadrupleMaxArrow(Graphics g);
 	partial void DrawCellCornerTriangle(Graphics g);
 	partial void DrawAverageBar(Graphics g);
+	partial void DrawCellCornerArrow(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -380,6 +381,7 @@ partial class GridImageGenerator
 		DrawQuadrupleMaxArrow(g);
 		DrawCellCornerTriangle(g);
 		DrawAverageBar(g);
+		DrawCellCornerArrow(g);
 	}
 
 	/// <summary>
@@ -1823,6 +1825,58 @@ partial class GridImageGenerator
 			foreach (var (p1, p2) in pointPairs)
 			{
 				g.DrawLine(pen, p1, p2);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Draw cell corner arrows.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
+	partial void DrawCellCornerArrow(Graphics g)
+	{
+		if (this is not
+			{
+				View.CellCornerArrowNodes: var cellCornerArrowNodes,
+				Calculator: { CellSize: var (_, ch) } calc,
+				Preferences.CellCornerArrowWidth: var width
+			})
+		{
+			return;
+		}
+
+		foreach (var cellCornerArrowNode in cellCornerArrowNodes)
+		{
+			if (cellCornerArrowNode is not { Identifier: var identifier, Cell: var cell, Directions: var directions })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+
+			var center = calc.GetMousePointInCenter(cell);
+			var (centerX, centerY) = center;
+			var (x, y) = new PointF(centerX, centerY - ch / 2 + Tan(PI / 3) / 2 * width);
+			var p1 = new PointF(x - width / 2, y);
+			var p2 = new PointF(x + width / 2, y);
+			var p3 = new PointF(x, centerY - ch / 2);
+
+			foreach (var direction in directions.GetAllFlags()!.DistinctBy(static self => self))
+			{
+				using var path = new GraphicsPath();
+				path.AddLine(p1, p2);
+				path.AddLine(p2, p3);
+				path.AddLine(p3, p1);
+
+				// Rotating.
+				var oldMatrix = g.Transform;
+				using var newMatrix = g.Transform.Clone();
+				newMatrix.RotateAt(direction.GetRotatingAngle(), center);
+
+				g.Transform = newMatrix;
+				g.FillPath(brush, path);
+				g.Transform = oldMatrix;
 			}
 		}
 	}

@@ -149,6 +149,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// Indicates average bar nodes that the current data type stores.
 	/// </summary>
 	public IEnumerable<AverageBarViewNode> AverageBarNodes => _nodes.OfType<AverageBarViewNode>();
+
+	/// <summary>
+	/// Indicates cell corner arrow nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<CellCornerArrowViewNode> CellCornerArrowNodes => _nodes.OfType<CellCornerArrowViewNode>();
 #endif
 
 

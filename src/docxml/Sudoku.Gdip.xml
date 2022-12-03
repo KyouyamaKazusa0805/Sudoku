@@ -398,6 +398,11 @@
             Indicates the width of average bars.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CellCornerArrowWidth">
+            <summary>
+            Indicates the width of cell corner arrows.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignCellPadding">
             <summary>
             Indicates the padding of neighbor signs.
@@ -985,6 +990,12 @@
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawCellCornerArrow(System.Drawing.Graphics)">
+            <summary>
+            Draw cell corner arrows.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
         <member name="T:Sudoku.Gdip.DrawingExtensions">
             <summary>
             Provides with file-local extension methods.
@@ -1397,7 +1408,7 @@
             </summary>
             <seealso cref="T:System.Drawing.Point"/>
         </member>
-        <member name="M:System.Drawing.PointExtensions.Deconstruct(System.Drawing.Point@,System.Int32@,System.Int32@)">
+        <member name="M:System.Drawing.PointExtensions.Deconstruct(System.Drawing.Point,System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -1444,14 +1455,14 @@
             </summary>
             <seealso cref="T:System.Drawing.PointF"/>
         </member>
-        <member name="M:System.Drawing.PointFExtensions.Truncate(System.Drawing.PointF@)">
+        <member name="M:System.Drawing.PointFExtensions.Truncate(System.Drawing.PointF)">
             <summary>
             To truncate the point.
             </summary>
             <param name="this">The point to truncate.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:System.Drawing.PointFExtensions.Deconstruct(System.Drawing.PointF@,System.Single@,System.Single@)">
+        <member name="M:System.Drawing.PointFExtensions.Deconstruct(System.Drawing.PointF,System.Single@,System.Single@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -1498,7 +1509,7 @@
             </summary>
             <seealso cref="T:System.Drawing.Rectangle"/>
         </member>
-        <member name="M:System.Drawing.RectangleExtensions.Zoom(System.Drawing.Rectangle@,System.Int32)">
+        <member name="M:System.Drawing.RectangleExtensions.Zoom(System.Drawing.Rectangle,System.Int32)">
             <summary>
             Zoom in or out the rectangle by the specified offset.
             If the offset is positive, the rectangle will be larger; otherwise, smaller.
@@ -1513,7 +1524,7 @@
             </summary>
             <seealso cref="T:System.Drawing.RectangleF"/>
         </member>
-        <member name="M:System.Drawing.RectangleFExtensions.Zoom(System.Drawing.RectangleF@,System.Single)">
+        <member name="M:System.Drawing.RectangleFExtensions.Zoom(System.Drawing.RectangleF,System.Single)">
             <summary>
             Zoom in or out the rectangle by the specified offset.
             If the offset is positive, the rectangle will be larger; otherwise, smaller.
@@ -1522,14 +1533,14 @@
             <param name="offset">The offset to zoom in or out.</param>
             <returns>The new rectangle.</returns>
         </member>
-        <member name="M:System.Drawing.RectangleFExtensions.Truncate(System.Drawing.RectangleF@)">
+        <member name="M:System.Drawing.RectangleFExtensions.Truncate(System.Drawing.RectangleF)">
             <summary>
             Truncate the specified rectangle.
             </summary>
             <param name="this">The rectangle.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:System.Drawing.RectangleFExtensions.Deconstruct(System.Drawing.RectangleF@,System.Drawing.PointF@,System.Drawing.SizeF@)">
+        <member name="M:System.Drawing.RectangleFExtensions.Deconstruct(System.Drawing.RectangleF,System.Drawing.PointF@,System.Drawing.SizeF@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -1570,7 +1581,7 @@
 				</remarks>
 			</target>
         </member>
-        <member name="M:System.Drawing.RectangleFExtensions.Deconstruct(System.Drawing.RectangleF@,System.Single@,System.Single@,System.Single@,System.Single@)">
+        <member name="M:System.Drawing.RectangleFExtensions.Deconstruct(System.Drawing.RectangleF,System.Single@,System.Single@,System.Single@,System.Single@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -1617,7 +1628,7 @@
             </summary>
             <seealso cref="T:System.Drawing.Rectangle"/>
         </member>
-        <member name="M:System.Drawing.RectangleMarshal.CreateInstance(System.Drawing.Point@,System.Drawing.Point@)">
+        <member name="M:System.Drawing.RectangleMarshal.CreateInstance(System.Drawing.Point,System.Drawing.Point)">
             <summary>
             Create an instance with two points.
             </summary>
@@ -1625,7 +1636,7 @@
             <param name="bottomRight">The bottom-right point.</param>
             <returns>The rectangle.</returns>
         </member>
-        <member name="M:System.Drawing.RectangleMarshal.CreateInstance(System.Drawing.PointF@,System.Drawing.PointF@)">
+        <member name="M:System.Drawing.RectangleMarshal.CreateInstance(System.Drawing.PointF,System.Drawing.PointF)">
             <summary>
             Create an instance with two points.
             </summary>
@@ -1639,7 +1650,7 @@
             </summary>
             <seealso cref="T:System.Drawing.Size"/>
         </member>
-        <member name="M:System.Drawing.SizeExtensions.Deconstruct(System.Drawing.Size@,System.Int32@,System.Int32@)">
+        <member name="M:System.Drawing.SizeExtensions.Deconstruct(System.Drawing.Size,System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -1686,14 +1697,14 @@
             </summary>
             <seealso cref="T:System.Drawing.SizeF"/>
         </member>
-        <member name="M:System.Drawing.SizeFExtensions.Truncate(System.Drawing.SizeF@)">
+        <member name="M:System.Drawing.SizeFExtensions.Truncate(System.Drawing.SizeF)">
             <summary>
             To truncate the size.
             </summary>
             <param name="this">The size.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:System.Drawing.SizeFExtensions.Deconstruct(System.Drawing.SizeF@,System.Single@,System.Single@)">
+        <member name="M:System.Drawing.SizeFExtensions.Deconstruct(System.Drawing.SizeF,System.Single@,System.Single@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

@@ -96,6 +96,11 @@ public sealed class DrawingConfigurations
 	public float AverageBarWidth { get; set; } = 6F;
 
 	/// <summary>
+	/// Indicates the width of cell corner arrows.
+	/// </summary>
+	public float CellCornerArrowWidth { get; set; } = 6F;
+
+	/// <summary>
 	/// Indicates the padding of neighbor signs.
 	/// </summary>
 	public float NeighborSignCellPadding { get; set; } = 5F;

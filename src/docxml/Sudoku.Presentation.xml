@@ -269,6 +269,31 @@
         <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode">
+            <summary>
+            Defines a cell corner arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+            <param name="directions">The directions.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode">
             <summary>
             Defines a triangle view node that is used in a cell.
@@ -2313,6 +2338,11 @@
         <member name="P:Sudoku.Presentation.View.AverageBarNodes">
             <summary>
             Indicates average bar nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.CellCornerArrowNodes">
+            <summary>
+            Indicates cell corner arrow nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">
