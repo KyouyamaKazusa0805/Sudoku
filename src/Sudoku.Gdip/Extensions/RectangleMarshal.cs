@@ -13,7 +13,7 @@ internal static class RectangleMarshal
 	/// <param name="bottomRight">The bottom-right point.</param>
 	/// <returns>The rectangle.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Rectangle CreateInstance(scoped in Point topLeft, scoped in Point bottomRight)
+	public static Rectangle CreateInstance(Point topLeft, Point bottomRight)
 		=> new(topLeft.X, topLeft.Y, bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
 
 	/// <summary>
@@ -23,6 +23,6 @@ internal static class RectangleMarshal
 	/// <param name="buttomRight">The bottom-right point.</param>
 	/// <returns>The rectangle.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static RectangleF CreateInstance(scoped in PointF topLeft, scoped in PointF buttomRight)
+	public static RectangleF CreateInstance(PointF topLeft, PointF buttomRight)
 		=> new(topLeft.X, topLeft.Y, buttomRight.X - topLeft.X, buttomRight.Y - topLeft.Y);
 }

@@ -12,8 +12,8 @@ internal static partial class SizeFExtensions
 	/// <param name="this">The size.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Size Truncate(this scoped in SizeF @this) => new((int)@this.Width, (int)@this.Height);
+	public static Size Truncate(this SizeF @this) => new((int)@this.Width, (int)@this.Height);
 
 	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this scoped in SizeF @this, out float width, out float height);
+	public static partial void Deconstruct(this SizeF @this, out float width, out float height);
 }

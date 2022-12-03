@@ -7,5 +7,5 @@
 internal static partial class PointExtensions
 {
 	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this scoped in Point @this, out int x, out int y);
+	public static partial void Deconstruct(this Point @this, out int x, out int y);
 }

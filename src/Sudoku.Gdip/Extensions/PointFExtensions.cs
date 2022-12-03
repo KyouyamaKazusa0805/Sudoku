@@ -12,8 +12,8 @@ internal static partial class PointFExtensions
 	/// <param name="this">The point to truncate.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Point Truncate(this scoped in PointF @this) => new((int)@this.X, (int)@this.Y);
+	public static Point Truncate(this PointF @this) => new((int)@this.X, (int)@this.Y);
 
 	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this scoped in PointF @this, out float x, out float y);
+	public static partial void Deconstruct(this PointF @this, out float x, out float y);
 }

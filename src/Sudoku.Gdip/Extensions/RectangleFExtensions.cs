@@ -14,7 +14,7 @@ internal static partial class RectangleFExtensions
 	/// <param name="offset">The offset to zoom in or out.</param>
 	/// <returns>The new rectangle.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static RectangleF Zoom(this scoped in RectangleF @this, float offset)
+	public static RectangleF Zoom(this RectangleF @this, float offset)
 	{
 		var result = @this;
 		result.X -= offset;
@@ -30,11 +30,11 @@ internal static partial class RectangleFExtensions
 	/// <param name="this">The rectangle.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Rectangle Truncate(this scoped in RectangleF @this) => new((int)@this.X, (int)@this.Y, (int)@this.Width, (int)@this.Height);
+	public static Rectangle Truncate(this RectangleF @this) => new((int)@this.X, (int)@this.Y, (int)@this.Width, (int)@this.Height);
 
 	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this scoped in RectangleF @this, [GeneratedDeconstructionArgument(nameof(RectangleF.Location))] out PointF point, out SizeF size);
+	public static partial void Deconstruct(this RectangleF @this, [GeneratedDeconstructionArgument(nameof(RectangleF.Location))] out PointF point, out SizeF size);
 
 	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this scoped in RectangleF @this, out float x, out float y, out float width, out float height);
+	public static partial void Deconstruct(this RectangleF @this, out float x, out float y, out float width, out float height);
 }

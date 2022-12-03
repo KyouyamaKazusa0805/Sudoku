@@ -7,5 +7,5 @@
 internal static partial class SizeExtensions
 {
 	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this scoped in Size @this, out int width, out int height);
+	public static partial void Deconstruct(this Size @this, out int width, out int height);
 }
