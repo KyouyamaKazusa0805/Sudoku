@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Presentation;
+﻿#define ENHANCED_DRAWING_APIS
+
+namespace Sudoku.Presentation;
 
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
@@ -57,6 +59,7 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<UnknownViewNode> UnknownNodes => _nodes.OfType<UnknownViewNode>();
 
+#if ENHANCED_DRAWING_APIS
 	/// <summary>
 	/// Indicates the border bar nodes that the current data type stores.
 	/// </summary>
@@ -146,6 +149,7 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// Indicates average bar nodes that the current data type stores.
 	/// </summary>
 	public IEnumerable<AverageBarViewNode> AverageBarNodes => _nodes.OfType<AverageBarViewNode>();
+#endif
 
 
 	/// <summary>
