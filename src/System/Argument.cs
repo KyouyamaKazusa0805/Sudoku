@@ -19,11 +19,11 @@ public static class Argument
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void ThrowIfNotEqual<T>(
 		T instance,
-		T value,
+		[ConstantExpected] T value,
 		[ConstantExpected, CallerArgumentExpression(nameof(instance))] string? argName = null
-	) where T : notnull, IEquatable<T>
+	) where T : notnull, IEqualityOperators<T, T, bool>
 	{
-		if (!instance.Equals(value))
+		if (instance != value)
 		{
 			throw new ArgumentException($"The argument '{argName}' must be '{value}'.", argName);
 		}
