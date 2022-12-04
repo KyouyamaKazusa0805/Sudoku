@@ -1261,6 +1261,21 @@
         <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.HeartViewNode">
+            <summary>
+            Defines a heart view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HeartViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.HeartViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HeartViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.HouseViewNode">
             <summary>
             Defines a view node that highlights for a house.

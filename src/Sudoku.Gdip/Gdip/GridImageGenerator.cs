@@ -954,7 +954,6 @@ partial class GridImageGenerator
 				{
 					using var brush = new SolidBrush(GetColor(identifier));
 					var (x, y) = calc.GetMousePointInCenter(cell);
-
 					(
 						figureNode switch
 						{
@@ -965,6 +964,43 @@ partial class GridImageGenerator
 					)(brush, x - cw / 2 + padding, y - ch / 2 + padding, cw - 2 * padding, ch - 2 * padding);
 
 					break;
+				}
+				case HeartViewNode(var cell) { Identifier: var identifier }:
+				{
+					// https://mathworld.wolfram.com/HeartCurve.html
+					using var brush = new SolidBrush(GetColor(identifier));
+
+					var center = calc.GetMousePointInCenter(cell);
+					
+					// Rotating.
+					var oldMatrix = g.Transform;
+					using var newMatrix = g.Transform.Clone();
+					newMatrix.RotateAt(180, center);
+
+					g.Transform = newMatrix;
+					g.FillClosedCurve(brush, getPoints());
+					g.Transform = oldMatrix;
+
+					break;
+
+
+					PointF[] getPoints()
+					{
+						const int maxTrialTimes = 360;
+
+						var (centerX, centerY) = center;
+						var result = new PointF[maxTrialTimes];
+						for (var i = 0; i < maxTrialTimes; i++)
+						{
+							var t = 2 * PI / maxTrialTimes * i;
+							var x = centerX + 16 * Pow(Sin(t), 3) / (32 + 2 * padding) * cw;
+							var y = centerY + (13 * Cos(t) - 5 * Cos(2 * t) - 2 * Cos(3 * t) - Cos(4 * t)) / (32 + 2 * padding) * ch;
+
+							result[i] = new(x, y);
+						}
+
+						return result;
+					}
 				}
 
 
