@@ -245,6 +245,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawCellCornerTriangle(Graphics g);
 	partial void DrawAverageBar(Graphics g);
 	partial void DrawCellCornerArrow(Graphics g);
+	partial void DrawEmbeddedSkyscraperArrow(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -382,6 +383,7 @@ partial class GridImageGenerator
 		DrawCellCornerTriangle(g);
 		DrawAverageBar(g);
 		DrawCellCornerArrow(g);
+		DrawEmbeddedSkyscraperArrow(g);
 	}
 
 	/// <summary>
@@ -971,7 +973,7 @@ partial class GridImageGenerator
 					using var brush = new SolidBrush(GetColor(identifier));
 
 					var center = calc.GetMousePointInCenter(cell);
-					
+
 					// Rotating.
 					var oldMatrix = g.Transform;
 					using var newMatrix = g.Transform.Clone();
@@ -1913,6 +1915,54 @@ partial class GridImageGenerator
 				g.Transform = newMatrix;
 				g.FillPath(brush, path);
 				g.Transform = oldMatrix;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Draw cell corner arrows.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
+	partial void DrawEmbeddedSkyscraperArrow(Graphics g)
+	{
+		const string left = "\u2190", up = "\u2191", right = "\u2192", down = "\u2193";
+
+		if (this is not
+			{
+				View.EmbeddedSkyscraperArrowNodes: var embeddedSkyscraperArrowNodes,
+				Calculator: { CellSize: var (cw, ch) } calc,
+				Preferences.EmbeddedSkyscraperArrowFont: var fontData
+			})
+		{
+			return;
+		}
+
+		using var font = fontData.CreateFont();
+
+		foreach (var embeddedSkyscraperArrowNode in embeddedSkyscraperArrowNodes)
+		{
+			if (embeddedSkyscraperArrowNode is not { Identifier: var identifier, Cell: var cell, Directions: var directions })
+			{
+				continue;
+			}
+
+			using var brush = new SolidBrush(GetColor(identifier));
+
+			var (centerX, centerY) = calc.GetMousePointInCenter(cell);
+			foreach (var direction in directions.GetAllFlags()!.DistinctBy(static self => self))
+			{
+				var finalText = direction switch { Direction.Up => up, Direction.Down => down, Direction.Left => left, Direction.Right => right };
+				var (tw, th) = g.MeasureString(finalText, font);
+				var textCenter = direction switch
+				{
+					Direction.Up => new PointF(centerX, centerY - ch / 2 + th / 2),
+					Direction.Down => new PointF(centerX, centerY + ch / 2 - th / 2),
+					Direction.Left => new PointF(centerX - cw / 2 + tw / 2, centerY),
+					Direction.Right => new PointF(centerX + cw / 2 - tw / 2, centerY)
+				};
+
+				g.DrawString(finalText, font, brush, textCenter, StringLocating);
 			}
 		}
 	}

@@ -154,6 +154,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// Indicates cell corner arrow nodes that the current data type stores.
 	/// </summary>
 	public IEnumerable<CellCornerArrowViewNode> CellCornerArrowNodes => _nodes.OfType<CellCornerArrowViewNode>();
+
+	/// <summary>
+	/// Indicates embedded skyscraper arrow nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<EmbeddedSkyscraperArrowViewNode> EmbeddedSkyscraperArrowNodes => _nodes.OfType<EmbeddedSkyscraperArrowViewNode>();
 #endif
 
 

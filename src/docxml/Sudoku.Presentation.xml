@@ -426,6 +426,22 @@
             Indicates the direction is bottom-right.
             </summary>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode">
+            <summary>
+            Defines an embedded skyscraper arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+            <param name="directions">The directions.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode">
             <summary>
             Represents with a greater-than sign view node.
@@ -2358,6 +2374,11 @@
         <member name="P:Sudoku.Presentation.View.CellCornerArrowNodes">
             <summary>
             Indicates cell corner arrow nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.EmbeddedSkyscraperArrowNodes">
+            <summary>
+            Indicates embedded skyscraper arrow nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

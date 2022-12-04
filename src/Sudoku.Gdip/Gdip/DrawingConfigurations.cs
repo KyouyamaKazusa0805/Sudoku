@@ -311,4 +311,9 @@ public sealed class DrawingConfigurations
 	/// Indicates the font of star product star.
 	/// </summary>
 	public FontData StarProductStarFont { get; set; } = new("Times New Roman", 12F, FontStyle.Regular);
+
+	/// <summary>
+	/// Indicates the font of embedded skyscraper arrow.
+	/// </summary>
+	public FontData EmbeddedSkyscraperArrowFont { get; set; } = new("Times New Roman", 12F, FontStyle.Bold);
 }
