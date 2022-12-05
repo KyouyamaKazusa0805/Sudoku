@@ -9,21 +9,26 @@ public abstract partial class GroupedViewNode : ViewNode
 	/// Assigns the property <see cref="ViewNode.Identifier"/> with target value.
 	/// </summary>
 	/// <param name="identifier">The identifier.</param>
+	/// <param name="headCell">The head cell.</param>
+	/// <param name="cells">The cells.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected GroupedViewNode(Identifier identifier) : base(identifier)
-	{
-	}
+	protected GroupedViewNode(Identifier identifier, int headCell, ImmutableArray<int> cells) : base(identifier)
+		=> (HeadCell, Cells) = (headCell, cells);
 
 
 	/// <summary>
-	/// Indicates the head cell.
+	/// Indicates the head cell. If the node does not use this property, assign -1.
 	/// </summary>
 	public int HeadCell { get; }
 
 	/// <summary>
-	/// Indicates the cells used.
+	/// Indicates the cells used. If the node does not use this property, assign <see cref="ImmutableArray{T}.Empty"/>.
 	/// </summary>
+	/// <seealso cref="ImmutableArray{T}.Empty"/>
 	public ImmutableArray<int> Cells { get; }
+
+	/// <inheritdoc/>
+	protected sealed override string TypeIdentifier => GetType().Name;
 
 
 	[GeneratedDeconstruction]

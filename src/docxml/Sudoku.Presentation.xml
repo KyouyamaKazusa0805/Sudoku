@@ -1277,26 +1277,46 @@
         <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode">
+            <summary>
+            Defines a diagonal line pair view node. The node can only contain one in a <see cref="T:Sudoku.Presentation.View"/> because it is special.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode">
             <summary>
             Defines a grouped view node.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier)">
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})">
             <summary>
             Assigns the property <see cref="P:Sudoku.Presentation.Nodes.ViewNode.Identifier"/> with target value.
             </summary>
             <param name="identifier">The identifier.</param>
+            <param name="headCell">The head cell.</param>
+            <param name="cells">The cells.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.HeadCell">
             <summary>
-            Indicates the head cell.
+            Indicates the head cell. If the node does not use this property, assign -1.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.Cells">
             <summary>
-            Indicates the cells used.
+            Indicates the cells used. If the node does not use this property, assign <see cref="F:System.Collections.Immutable.ImmutableArray`1.Empty"/>.
             </summary>
+            <seealso cref="F:System.Collections.Immutable.ImmutableArray`1.Empty"/>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.TypeIdentifier">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.Deconstruct(System.Int32@,System.Collections.Immutable.ImmutableArray{System.Int32}@)">
             <target name="method">
