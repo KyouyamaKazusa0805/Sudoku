@@ -330,6 +330,9 @@ dotnet_diagnostic.CS0078.severity = none
 # CS0184: 'is' expression's given expression is never of the provided type
 dotnet_diagnostic.CS0184.severity = error
 
+# CS1587: XML comment is not placed on a valid language element
+dotnet_diagnostic.CS1587.severity = none
+
 # CS8500: This takes the address of, gets the size of, or declares a pointer to a managed type
 dotnet_diagnostic.CS8500.severity = none
 
