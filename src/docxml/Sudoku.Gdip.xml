@@ -598,6 +598,11 @@
             Indicates the font of star product star.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.EmbeddedSkyscraperArrowFont">
+            <summary>
+            Indicates the font of embedded skyscraper arrow.
+            </summary>
+        </member>
         <member name="T:Sudoku.Gdip.FontData">
             <summary>
             Encapsulates a font data to be serialized.
@@ -996,12 +1001,30 @@
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
-        <member name="T:Sudoku.Gdip.DrawingExtensions">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawEmbeddedSkyscraperArrow(System.Drawing.Graphics)">
+            <summary>
+            Draw cell corner arrows.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="T:Sudoku.Gdip.Extensions">
             <summary>
             Provides with file-local extension methods.
             </summary>
         </member>
-        <member name="M:Sudoku.Gdip.DrawingExtensions.DrawHollowArrow(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.PointF,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:Sudoku.Gdip.Extensions.DrawValue``1(System.Drawing.Graphics,``0,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF,System.Drawing.StringFormat)">
+            <summary>
+            Draw the string representation of an instance onto the current <see cref="T:System.Drawing.Graphics"/> instance.
+            </summary>
+            <typeparam name="T">The type of the value to draw.</typeparam>
+            <param name="this">The graphics instance.</param>
+            <param name="value">The value to drawing onto.</param>
+            <param name="font">The font.</param>
+            <param name="brush">The brush.</param>
+            <param name="point">The point.</param>
+            <param name="stringFormat">The string format instance.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.Extensions.DrawHollowArrow(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.PointF,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             Fills a hollow arrow.
             </summary>
@@ -1015,6 +1038,60 @@
             <exception cref="T:System.ArgumentException">
             Throws when the argument <paramref name="length"/> is below 0,
             or argument <paramref name="width"/> or <paramref name="height"/> is below 0.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Gdip.Extensions.DrawCrossSign(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF)">
+            <summary>
+            Draw a cross sign (<c>x</c>).
+            </summary>
+            <param name="this">The graphics.</param>
+            <param name="pen">The pen.</param>
+            <param name="rectangle">The rectangle.</param>
+            <remarks>
+            This method will draw a cross sign and fill with the specified color, so you don't need
+            to find any fill methods.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Gdip.Extensions.DrawCapsule(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF)">
+            <summary>
+            Draw a capsule.
+            </summary>
+            <param name="this">The graphics.</param>
+            <param name="pen">The pen.</param>
+            <param name="rectangle">The rectangle.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.Extensions.FillCapsule(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF)">
+            <summary>
+            Fill a capsule.
+            </summary>
+            <param name="this">The graphics.</param>
+            <param name="brush">The brush.</param>
+            <param name="rectangle">The rectangle.</param>
+        </member>
+        <member name="M:Sudoku.Gdip.Extensions.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF,System.Single)">
+            <summary>
+            Draw a rounded rectangle.
+            </summary>
+            <param name="this">The graphics.</param>
+            <param name="pen">The pen.</param>
+            <param name="rectangle">The rectangle to draw.</param>
+            <param name="circleRadius">The radius of each vertex.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when <paramref name="circleRadius"/> is greater than the value in
+            <paramref name="rectangle"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Gdip.Extensions.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF,System.Single)">
+            <summary>
+            Fill a rounded rectangle.
+            </summary>
+            <param name="this">The graphics.</param>
+            <param name="brush">The brush.</param>
+            <param name="rectangle">The rectangle to fill.</param>
+            <param name="circleRadius">The radius of each vertex.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when <paramref name="circleRadius"/> is greater than the value in
+            <paramref name="rectangle"/>.
             </exception>
         </member>
         <member name="T:Sudoku.Gdip.PathCreator">
@@ -1300,107 +1377,6 @@
 					</para>
 				</remarks>
 			</target>
-        </member>
-        <member name="T:System.Drawing.GraphicsExtensions">
-            <summary>
-            Provides extension methods for <see cref="T:System.Drawing.Graphics"/>.
-            </summary>
-        </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawImage(System.Drawing.Graphics,System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.GraphicsUnit)">
-            <summary>
-            Draws an image onto the target <see cref="T:System.Drawing.Graphics"/> instance, with specified customized data.
-            </summary>
-            <param name="this">The <see cref="T:System.Drawing.Graphics"/> instance.</param>
-            <param name="bitmap">The image to be used for drawing onto the target <see cref="T:System.Drawing.Graphics"/> instance.</param>
-            <param name="destX">The X coordinate of the destination point.</param>
-            <param name="destY">The Y coordinate of the destination point.</param>
-            <param name="destWidth">The width of the destination point.</param>
-            <param name="destHeight">The height of the destination point.</param>
-            <param name="srcX">The X coordinate of the source point.</param>
-            <param name="srcY">The Y coordinate of the source point.</param>
-            <param name="srcWidth">The width of the source point.</param>
-            <param name="srcHeight">The height of the source point.</param>
-            <param name="srcUnit">
-            The source graphics unit <see cref="T:System.Drawing.GraphicsUnit"/> instance indicating which kind of unit those coordinate arguments
-            (e.g. <paramref name="destX"/>, <paramref name="destY"/>, <paramref name="srcX"/>, <paramref name="srcY"/>, etc.) uses.
-            </param>
-        </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawValue``1(System.Drawing.Graphics,``0,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF)">
-            <summary>
-            Draw the string representation an instance onto the current <see cref="T:System.Drawing.Graphics"/> instance.
-            </summary>
-            <typeparam name="T">The type of the value to draw.</typeparam>
-            <param name="this">The graphics instance.</param>
-            <param name="value">The value to drawing onto.</param>
-            <param name="font">The font.</param>
-            <param name="brush">The brush.</param>
-            <param name="point">The point.</param>
-        </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawValue``1(System.Drawing.Graphics,``0,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF,System.Drawing.StringFormat)">
-            <summary>
-            Draw the string representation of an instance onto the current <see cref="T:System.Drawing.Graphics"/> instance.
-            </summary>
-            <typeparam name="T">The type of the value to draw.</typeparam>
-            <param name="this">The graphics instance.</param>
-            <param name="value">The value to drawing onto.</param>
-            <param name="font">The font.</param>
-            <param name="brush">The brush.</param>
-            <param name="point">The point.</param>
-            <param name="stringFormat">The string format instance.</param>
-        </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawCrossSign(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF)">
-            <summary>
-            Draw a cross sign (<c>x</c>).
-            </summary>
-            <param name="this">The graphics.</param>
-            <param name="pen">The pen.</param>
-            <param name="rectangle">The rectangle.</param>
-            <remarks>
-            This method will draw a cross sign and fill with the specified color, so you don't need
-            to find any fill methods.
-            </remarks>
-        </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawCapsule(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF)">
-            <summary>
-            Draw a capsule.
-            </summary>
-            <param name="this">The graphics.</param>
-            <param name="pen">The pen.</param>
-            <param name="rectangle">The rectangle.</param>
-        </member>
-        <member name="M:System.Drawing.GraphicsExtensions.FillCapsule(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF)">
-            <summary>
-            Fill a capsule.
-            </summary>
-            <param name="this">The graphics.</param>
-            <param name="brush">The brush.</param>
-            <param name="rectangle">The rectangle.</param>
-        </member>
-        <member name="M:System.Drawing.GraphicsExtensions.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF,System.Single)">
-            <summary>
-            Draw a rounded rectangle.
-            </summary>
-            <param name="this">The graphics.</param>
-            <param name="pen">The pen.</param>
-            <param name="rectangle">The rectangle to draw.</param>
-            <param name="circleRadius">The radius of each vertex.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when <paramref name="circleRadius"/> is greater than the value in
-            <paramref name="rectangle"/>.
-            </exception>
-        </member>
-        <member name="M:System.Drawing.GraphicsExtensions.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF,System.Single)">
-            <summary>
-            Fill a rounded rectangle.
-            </summary>
-            <param name="this">The graphics.</param>
-            <param name="brush">The brush.</param>
-            <param name="rectangle">The rectangle to fill.</param>
-            <param name="circleRadius">The radius of each vertex.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when <paramref name="circleRadius"/> is greater than the value in
-            <paramref name="rectangle"/>.
-            </exception>
         </member>
         <member name="T:System.Drawing.PointExtensions">
             <summary>
