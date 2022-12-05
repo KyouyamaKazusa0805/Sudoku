@@ -1997,8 +1997,7 @@ file static class Extensions
 	/// <param name="height">The height.</param>
 	/// <param name="angle">The angle.</param>
 	/// <exception cref="ArgumentException">
-	/// Throws when the argument <paramref name="length"/> is below 0,
-	/// or argument <paramref name="width"/> or <paramref name="height"/> is below 0.
+	/// Throws when the argument <paramref name="length"/> is below 0 or either <paramref name="width"/> or <paramref name="height"/> is below 0.
 	/// </exception>
 	public static void DrawHollowArrow(this Graphics g, Brush brush, PointF center, float length, float width, float height, float angle)
 	{
@@ -2085,31 +2084,33 @@ file static class Extensions
 	/// </exception>
 	public static void DrawRoundedRectangle(this Graphics @this, Pen pen, RectangleF rectangle, float circleRadius)
 	{
-		if (circleRadius > Max(rectangle.Width, rectangle.Height))
+		_ = rectangle is var (x, y, w, h) and (var l, _);
+
+		if (circleRadius > Max(w, h))
 		{
 			throw new ArgumentOutOfRangeException(nameof(circleRadius));
 		}
 
 		PointF p1, p2, p3, p4, p5, p6, p7, p8;
-		p8 = p7 = p6 = p5 = p4 = p3 = p2 = p1 = rectangle.Location;
+		p8 = p7 = p6 = p5 = p4 = p3 = p2 = p1 = l;
 		p1.X += circleRadius;
-		p2.X += rectangle.Width - circleRadius;
+		p2.X += w - circleRadius;
 		p3.Y += circleRadius;
-		p4.X += rectangle.Width;
+		p4.X += w;
 		p4.Y += circleRadius;
-		p5.Y += rectangle.Height - circleRadius;
-		p6.X += rectangle.Width;
-		p6.Y += rectangle.Height - circleRadius;
+		p5.Y += h - circleRadius;
+		p6.X += w;
+		p6.Y += h - circleRadius;
 		p7.X += circleRadius;
-		p7.Y += rectangle.Height;
-		p8.X += rectangle.Width - circleRadius;
-		p8.Y += rectangle.Height;
+		p7.Y += h;
+		p8.X += w - circleRadius;
+		p8.Y += h;
 
 		RectangleF r1, r2, r3, r4;
-		r1 = new(rectangle.X, rectangle.Y, circleRadius * 2, circleRadius * 2);
-		r2 = new(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y, circleRadius * 2, circleRadius * 2);
-		r3 = new(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
-		r4 = new(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
+		r1 = new(x, y, circleRadius * 2, circleRadius * 2);
+		r2 = new(x + w - 2 * circleRadius, y, circleRadius * 2, circleRadius * 2);
+		r3 = new(x, y + h - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
+		r4 = new(x + w - 2 * circleRadius, y + h - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
 
 		using var path = new GraphicsPath();
 		path.AddLine(p1, p2);
@@ -2138,31 +2139,33 @@ file static class Extensions
 	/// </exception>
 	public static void FillRoundedRectangle(this Graphics @this, Brush brush, RectangleF rectangle, float circleRadius)
 	{
-		if (circleRadius >= Max(rectangle.Width, rectangle.Height))
+		_ = rectangle is var (x, y, w, h) and (var l, _);
+
+		if (circleRadius >= Max(w, h))
 		{
 			throw new ArgumentException("Specified argument is greater than the value in rectangle", nameof(circleRadius));
 		}
 
 		PointF p1, p2, p3, p4, p5, p6, p7, p8;
-		p8 = p7 = p6 = p5 = p4 = p3 = p2 = p1 = rectangle.Location;
+		p8 = p7 = p6 = p5 = p4 = p3 = p2 = p1 = l;
 		p1.X += circleRadius;
-		p2.X += rectangle.Width - circleRadius;
+		p2.X += w - circleRadius;
 		p3.Y += circleRadius;
-		p4.X += rectangle.Width;
+		p4.X += w;
 		p4.Y += circleRadius;
-		p5.Y += rectangle.Height - circleRadius;
-		p6.X += rectangle.Width;
-		p6.Y += rectangle.Height - circleRadius;
+		p5.Y += h - circleRadius;
+		p6.X += w;
+		p6.Y += h - circleRadius;
 		p7.X += circleRadius;
-		p7.Y += rectangle.Height;
-		p8.X += rectangle.Width - circleRadius;
-		p8.Y += rectangle.Height;
+		p7.Y += h;
+		p8.X += w - circleRadius;
+		p8.Y += h;
 
 		RectangleF r1, r2, r3, r4;
-		r1 = new(rectangle.X, rectangle.Y, circleRadius * 2, circleRadius * 2);
-		r2 = new(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y, circleRadius * 2, circleRadius * 2);
-		r3 = new(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
-		r4 = new(rectangle.X + rectangle.Width - 2 * circleRadius, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
+		r1 = new(x, y, circleRadius * 2, circleRadius * 2);
+		r2 = new(x + w - 2 * circleRadius, y, circleRadius * 2, circleRadius * 2);
+		r3 = new(x, y + h - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
+		r4 = new(x + w - 2 * circleRadius, y + h - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
 
 		using var path = new GraphicsPath();
 		path.AddLine(p1, p2);
