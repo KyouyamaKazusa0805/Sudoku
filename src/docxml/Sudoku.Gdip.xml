@@ -1008,9 +1008,11 @@
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="T:Sudoku.Gdip.Extensions">
-            <summary>
-            Provides with file-local extension methods.
-            </summary>
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
         </member>
         <member name="M:Sudoku.Gdip.Extensions.DrawValue``1(System.Drawing.Graphics,``0,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF,System.Drawing.StringFormat)">
             <summary>

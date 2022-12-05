@@ -253,9 +253,7 @@ internal interface ICommandDataProvider
 	}
 }
 
-/// <summary>
-/// Provides with file-local constants.
-/// </summary>
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
 file static class Constants
 {
 	/// <summary>

@@ -429,9 +429,11 @@
             <exception cref="T:System.NotSupportedException">Throws when the specified argument value is not supported.</exception>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.Constants">
-            <summary>
-            Provides with file-local constants.
-            </summary>
+            <target name="class" when="constant">
+				<summary>
+					Provides with constants and read-only values used by code in the current file.
+				</summary>
+			</target>
         </member>
         <member name="F:Sudoku.Platforms.QQ.Commands.Constants.KnownColors">
             <summary>
@@ -533,14 +535,18 @@
             <summary>Indicates how many experience point you can earn in the current round if answered correctly.</summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.Constants">
-            <summary>
-            Indicates file-local constants.
-            </summary>
+            <target name="class" when="constant">
+				<summary>
+					Provides with constants and read-only values used by code in the current file.
+				</summary>
+			</target>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.Extensions">
-            <summary>
-            The file-local extensions.
-            </summary>
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Commands.Extensions.ToChineseTimeSpanString(System.TimeSpan)">
             <summary>

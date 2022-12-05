@@ -2,7 +2,7 @@
 
 namespace Sudoku.Solving.Algorithms.Bitwise;
 
-using static LocalConstants;
+using static Constants;
 
 /// <summary>
 /// Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
@@ -991,10 +991,8 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 	private static byte BitPos(uint map) => MultiplyDeBruijnBitPosition32[map * 0x077CB531U >> 27];
 }
 
-/// <summary>
-/// Represents for a list of constants.
-/// </summary>
-file static class LocalConstants
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
+file static class Constants
 {
 	public static readonly byte[] TblShrinkMask =
 	{

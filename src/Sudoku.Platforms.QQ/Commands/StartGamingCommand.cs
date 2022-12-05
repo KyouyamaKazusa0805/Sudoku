@@ -174,17 +174,13 @@ file sealed class StartGamingCommand : Command
 /// <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
 file readonly record struct GeneratedGridData(scoped in Grid Puzzle, (int Cell, int Digit)[] SolutionData, TimeSpan TimeLimit, int ExperiencePoint);
 
-/// <summary>
-/// Indicates file-local constants.
-/// </summary>
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
 file static class Constants
 {
 	public static readonly int[] TwoCells = { 10, 20 }, ThreeCells = { 10, 15, 20 }, FiveCells = { 10, 15, 20, 25, 30 };
 }
 
-/// <summary>
-/// The file-local extensions.
-/// </summary>
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
 	/// <summary>

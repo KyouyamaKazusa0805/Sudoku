@@ -219,6 +219,18 @@ Then you can reference the doc here.
 		</feature>
 	</csharp9>
 	<csharp11>
+		<feature name="file-local">
+			<target name="class" when="constant">
+				<summary>
+					Provides with constants and read-only values used by code in the current file.
+				</summary>
+			</target>
+			<target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+		</feature>
 		<feature name="scoped-ref">
 			<target name="foreach-variables">
 				<para>

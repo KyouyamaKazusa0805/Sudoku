@@ -38,9 +38,11 @@
             <inheritdoc cref="M:Sudoku.Diagnostics.CodeGen.Generators.DefaultOverriddenMembersGenerator.OutputEquals(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{System.ValueTuple{System.Int32,Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol,System.String}}},System.Type)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Extensions">
-            <summary>
-            Provides with file-local extension methods.
-            </summary>
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.WithRegisteredSourceOutput``1(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,System.Func{Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken,System.Nullable{``0}},System.Action{Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{``0}},System.Type},System.Predicate{Microsoft.CodeAnalysis.SyntaxNode})">
             <summary>

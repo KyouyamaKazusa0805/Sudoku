@@ -414,9 +414,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 	}
 }
 
-/// <summary>
-/// Provides with file-local extension methods.
-/// </summary>
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
 	/// <summary>

@@ -868,37 +868,39 @@
             <param name="map">The map.</param>
             <returns>The position.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Algorithms.Bitwise.LocalConstants">
-            <summary>
-            Represents for a list of constants.
-            </summary>
+        <member name="T:Sudoku.Solving.Algorithms.Bitwise.Constants">
+            <target name="class" when="constant">
+				<summary>
+					Provides with constants and read-only values used by code in the current file.
+				</summary>
+			</target>
         </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.LocalConstants.TblComplexMask">
+        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblComplexMask">
             <summary>
             To keep mini rows still valid.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.LocalConstants.TblMaskSingle">
+        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblMaskSingle">
             <summary>
             Kill in other blocks locked column/box.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.LocalConstants.TblShrinkSingle">
+        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblShrinkSingle">
             <summary>
             Keep only rows with single.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.LocalConstants.TblRowUniq">
+        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblRowUniq">
             <remarks>
             1 is row not defined in block mode <c>1</c> to <c>111</c>.
             </remarks>
         </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.LocalConstants.TblColumnSingle">
+        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblColumnSingle">
             <summary>
             Single in column applied to shrunk block.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.LocalConstants.TblRowMask">
+        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblRowMask">
             <summary>
             Rows where single found: <c>000</c> to <c>111</c>.
             </summary>
