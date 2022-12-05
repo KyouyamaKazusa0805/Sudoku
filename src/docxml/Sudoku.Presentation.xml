@@ -1277,6 +1277,77 @@
         <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode">
+            <summary>
+            Defines a grouped view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Assigns the property <see cref="P:Sudoku.Presentation.Nodes.ViewNode.Identifier"/> with target value.
+            </summary>
+            <param name="identifier">The identifier.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.HeadCell">
+            <summary>
+            Indicates the head cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.Deconstruct(System.Int32@,System.Collections.Immutable.ImmutableArray{System.Int32}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+						public static void Deconstruct(out string name, out int age)
+						{
+						    name = Name;
+						    age = Age;
+						}
+						</code>
+						The following code will be legal.
+						<code>
+						// Use explicitly typed variables to get a deconstruction.
+						(string name, int age) = student;
+
+						// Or use the type inferring to omit the type of each variable having been deconstructed.
+						var (name, age) = student;
+
+						// Of course, you can also use the invocation to get values.
+						student.Deconstruct(out string name, out int age);
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+						if (student is (name: var name, age: &gt;= 18))
+						{
+						    Console.WriteLine(name);
+						}
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.HeartViewNode">
             <summary>
             Defines a heart view node.
