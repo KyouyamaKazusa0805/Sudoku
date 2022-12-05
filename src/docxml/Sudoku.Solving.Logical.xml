@@ -6782,6 +6782,9 @@
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -7639,6 +7642,12 @@
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.DigitsMask">
             <summary>Indicates the mask that contains the digits used.</summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.Type">
             <summary>
             Indicates the type of the step. The value must be between 1 and 4.
@@ -7647,10 +7656,7 @@
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.DistinctionDegree">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.BaseDifficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.Format">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.ExtraDifficultyValues">
@@ -8392,6 +8398,9 @@
             <param name="ConjugatePairs"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.HiddenUniqueRectangleStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.IntersectionStep">
             <summary>
             Provides with a step that is an <b>Intersection</b> technique.
@@ -8980,6 +8989,9 @@
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.Name">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -9290,6 +9302,9 @@
             Indicates the type of the step.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ReverseBivalueUniversalGraveStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ReverseBivalueUniversalGraveStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -9431,6 +9446,9 @@
             <summary>Indicates the global chute index.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.Format">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.TechniqueCode">
@@ -10342,6 +10360,9 @@
             Indicates the type.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -10540,6 +10561,9 @@
             Indicates the type of the current technique step.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -10733,13 +10757,16 @@
         <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.Type">
             <summary>
             Indicates the type.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.ExtraDifficultyValues">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.TechniqueCode">
             <inheritdoc/>
@@ -10829,6 +10856,9 @@
             <summary>
             Indicates the type of the technique.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonStep.Format">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonStep.DifficultyLevel">
             <inheritdoc/>
@@ -11496,6 +11526,9 @@
             </para>
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -11726,6 +11759,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.Format">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyValues">

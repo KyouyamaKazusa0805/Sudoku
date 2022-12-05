@@ -11,6 +11,9 @@ internal abstract record BivalueUniversalGraveStep(ConclusionList Conclusions, V
 	public override decimal Difficulty => 5.6M;
 
 	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
+
+	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>

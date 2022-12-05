@@ -27,6 +27,9 @@ internal abstract record QiuDeadlyPatternStep(
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
+
+	/// <inheritdoc/>
 	public sealed override Technique TechniqueCode
 		=> Type == 5 ? Technique.LockedQiuDeadlyPattern : Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
 

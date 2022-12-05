@@ -14,6 +14,12 @@ internal abstract record ExtendedRectangleStep(
 	short DigitsMask
 ) : DeadlyPatternStep(Conclusions, Views), IStepWithPhasedDifficulty, IStepWithDistinctionDegree
 {
+	/// <inheritdoc/>
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 4.5M;
+
 	/// <summary>
 	/// Indicates the type of the step. The value must be between 1 and 4.
 	/// </summary>
@@ -23,10 +29,7 @@ internal abstract record ExtendedRectangleStep(
 	public int DistinctionDegree => 1;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 4.5M;
+	public sealed override string? Format => base.Format;
 
 	/// <inheritdoc/>
 	public virtual (string Name, decimal Value)[] ExtraDifficultyValues

@@ -11,7 +11,7 @@ internal abstract record DeadlyPatternStep(ConclusionList Conclusions, ViewList 
 	public override string Name => base.Name;
 
 	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
+	public override string? Format => base.Format;
 
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.DeadlyPattern;

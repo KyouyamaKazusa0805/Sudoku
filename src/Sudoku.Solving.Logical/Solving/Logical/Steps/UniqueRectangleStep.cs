@@ -47,6 +47,9 @@ internal abstract record UniqueRectangleStep(
 ) : DeadlyPatternStep(Conclusions, Views), IDistinctableStep<UniqueRectangleStep>
 {
 	/// <inheritdoc/>
+	public override string? Format => base.Format;
+
+	/// <inheritdoc/>
 	public sealed override Technique TechniqueCode
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

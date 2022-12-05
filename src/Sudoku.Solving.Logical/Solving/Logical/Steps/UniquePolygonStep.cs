@@ -23,6 +23,9 @@ internal abstract record UniquePolygonStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
+
+	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>

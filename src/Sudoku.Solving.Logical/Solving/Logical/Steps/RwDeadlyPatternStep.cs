@@ -20,6 +20,9 @@ internal sealed record RwDeadlyPatternStep(
 	public override decimal Difficulty => 7.5M;
 
 	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
+
+	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.RwDeadlyPattern;
 
 	/// <inheritdoc/>

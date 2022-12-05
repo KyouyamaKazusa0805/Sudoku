@@ -30,4 +30,8 @@ internal sealed record HiddenUniqueRectangleStep(
 	IsAvoidable,
 	ConjugatePairs,
 	AbsoluteOffset
-);
+)
+{
+	/// <inheritdoc/>
+	public sealed override string? Format => R[$"TechniqueFormat_{nameof(UniqueRectangleWithConjugatePairStep)}"];
+}

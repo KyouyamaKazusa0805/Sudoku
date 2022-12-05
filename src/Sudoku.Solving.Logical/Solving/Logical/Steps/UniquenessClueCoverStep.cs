@@ -18,14 +18,17 @@ internal abstract record UniquenessClueCoverStep(
 	/// <inheritdoc/>
 	public decimal BaseDifficulty => 6.5M;
 
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Size, A004526(ExtraCells.Count) * .1M) };
-
 	/// <summary>
 	/// Indicates the type.
 	/// </summary>
 	public abstract int Type { get; }
+
+	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { (PhasedDifficultyRatingKinds.Size, A004526(ExtraCells.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Enum.Parse<Technique>($"UniquenessClueCoverType{Type}");

@@ -38,6 +38,9 @@ internal abstract record UniqueLoopStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
+
+	/// <inheritdoc/>
 	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UniqueLoopType{Type}");
 
 	/// <inheritdoc/>
