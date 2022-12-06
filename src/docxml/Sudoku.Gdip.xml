@@ -887,15 +887,15 @@
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawShapeNodes(System.Drawing.Graphics)">
-            <summary>
-            Draw <see cref="T:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode"/> instances.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFigure(System.Drawing.Graphics)">
             <summary>
             Draw figures.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawShapeNodes(System.Drawing.Graphics)">
+            <summary>
+            Draw <see cref="T:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode"/> instances.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
@@ -987,13 +987,12 @@
             <paramref name="rectangle"/>.
             </exception>
         </member>
-        <member name="T:Sudoku.Gdip.PathCreator">
+        <member name="T:Sudoku.Gdip.NeighborDrawing">
             <summary>
-            The path creator via <paramref name="x"/> and <paramref name="y"/> coordinate values.
+            Defines a method invoker that draws a neighbor mark (cross or circle).
             </summary>
-            <param name="x">The x coordinate.</param>
-            <param name="y">The y coordinate.</param>
-            <returns>The <see cref="T:System.Drawing.Drawing2D.GraphicsPath"/> result.</returns>
+            <param name="pen">The pen to be used by drawing shapes.</param>
+            <param name="rect">The rectangle.</param>
         </member>
         <member name="T:Sudoku.Gdip.FigureFilling">
             <summary>
@@ -1004,6 +1003,14 @@
             <param name="y">The y coordinate.</param>
             <param name="w">The width of the filling figure.</param>
             <param name="h">The height of the filling figure.</param>
+        </member>
+        <member name="T:Sudoku.Gdip.PathCreator">
+            <summary>
+            The path creator via <paramref name="x"/> and <paramref name="y"/> coordinate values.
+            </summary>
+            <param name="x">The x coordinate.</param>
+            <param name="y">The y coordinate.</param>
+            <returns>The <see cref="T:System.Drawing.Drawing2D.GraphicsPath"/> result.</returns>
         </member>
         <member name="T:Sudoku.Gdip.PointCalculator">
             <summary>

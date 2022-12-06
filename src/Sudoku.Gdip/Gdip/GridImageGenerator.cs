@@ -1277,22 +1277,9 @@ partial class GridImageGenerator
 					var (x, y) = calc.GetMousePointInCenter(cell);
 					var topLeft = new PointF(x - cw / 2 + padding, y - ch / 2 + padding);
 					var bottomRight = new PointF(x + cw / 2 - padding, y + ch / 2 - padding);
+					var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
 
-					if (isFourDirections)
-					{
-						// Draw cross sign.
-						var topRight = new PointF(x + cw / 2 - padding, y - ch / 2 + padding);
-						var bottomLeft = new PointF(x - cw / 2 + padding, y + ch / 2 - padding);
-
-						g.DrawLine(pen, topLeft, bottomRight);
-						g.DrawLine(pen, topRight, bottomLeft);
-					}
-					else
-					{
-						// Draw circle.
-						var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
-						g.DrawEllipse(pen, rect);
-					}
+					((NeighborDrawing)(isFourDirections ? g.DrawCrossSign : g.DrawEllipse))(pen, rect);
 
 					break;
 				}
@@ -1665,6 +1652,7 @@ file static class Extensions
 	/// This method will draw a cross sign and fill with the specified color, so you don't need
 	/// to find any fill methods.
 	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void DrawCrossSign(this Graphics @this, Pen pen, RectangleF rectangle)
 	{
 		var (x, y, w, h) = rectangle;
@@ -1807,12 +1795,11 @@ file static class Extensions
 }
 
 /// <summary>
-/// The path creator via <paramref name="x"/> and <paramref name="y"/> coordinate values.
+/// Defines a method invoker that draws a neighbor mark (cross or circle).
 /// </summary>
-/// <param name="x">The x coordinate.</param>
-/// <param name="y">The y coordinate.</param>
-/// <returns>The <see cref="GraphicsPath"/> result.</returns>
-file delegate GraphicsPath PathCreator(float x, float y);
+/// <param name="pen">The pen to be used by drawing shapes.</param>
+/// <param name="rect">The rectangle.</param>
+file delegate void NeighborDrawing(Pen pen, RectangleF rect);
 
 /// <summary>
 /// The figure filling method.
@@ -1823,3 +1810,11 @@ file delegate GraphicsPath PathCreator(float x, float y);
 /// <param name="w">The width of the filling figure.</param>
 /// <param name="h">The height of the filling figure.</param>
 file delegate void FigureFilling(Brush brush, float x, float y, float w, float h);
+
+/// <summary>
+/// The path creator via <paramref name="x"/> and <paramref name="y"/> coordinate values.
+/// </summary>
+/// <param name="x">The x coordinate.</param>
+/// <param name="y">The y coordinate.</param>
+/// <returns>The <see cref="GraphicsPath"/> result.</returns>
+file delegate GraphicsPath PathCreator(float x, float y);
