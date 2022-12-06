@@ -226,8 +226,8 @@ public sealed partial class GridImageGenerator
 	partial void DrawHouses(Graphics g);
 	partial void DrawLinks(Graphics g);
 	partial void DrawUnknownValue(Graphics g);
-	partial void DrawShapeNodes(Graphics g);
 	partial void DrawFigure(Graphics g);
+	partial void DrawShapeNodes(Graphics g);
 }
 
 partial class GridImageGenerator
