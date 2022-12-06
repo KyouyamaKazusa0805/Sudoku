@@ -887,123 +887,15 @@
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBorderBar(System.Drawing.Graphics)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawShapeNodes(System.Drawing.Graphics)">
             <summary>
-            Draw border bars.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawKropkiDot(System.Drawing.Graphics)">
-            <summary>
-            Draw Kropki dots.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGreaterThanSigns(System.Drawing.Graphics)">
-            <summary>
-            Draw greater-than signs.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawXvSigns(System.Drawing.Graphics)">
-            <summary>
-            Draw XV signs.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawNumberLabels(System.Drawing.Graphics)">
-            <summary>
-            Draw number labels.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBattenburg(System.Drawing.Graphics)">
-            <summary>
-            Draw Batternburg.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawQuadrupleHint(System.Drawing.Graphics)">
-            <summary>
-            Draw quadruple hint.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawClockfaceDot(System.Drawing.Graphics)">
-            <summary>
-            Draw clockface dots.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawNeighborSigns(System.Drawing.Graphics)">
-            <summary>
-            Draw neighbor signs.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawWheel(System.Drawing.Graphics)">
-            <summary>
-            Draw wheels.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawPencilmarks(System.Drawing.Graphics)">
-            <summary>
-            Draw pencilmarks.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawTriangleSumSigns(System.Drawing.Graphics)">
-            <summary>
-            Draw triangle sum signs.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawStarProductStar(System.Drawing.Graphics)">
-            <summary>
-            Draw star product stars.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawCellArrow(System.Drawing.Graphics)">
-            <summary>
-            Draw cell arrow.
+            Draw <see cref="T:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode"/> instances.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFigure(System.Drawing.Graphics)">
             <summary>
             Draw figures.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawQuadrupleMaxArrow(System.Drawing.Graphics)">
-            <summary>
-            Draw quadruple max arrow.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawCellCornerTriangle(System.Drawing.Graphics)">
-            <summary>
-            Draw cell corner triangles.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawAverageBar(System.Drawing.Graphics)">
-            <summary>
-            Draw average bars.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawCellCornerArrow(System.Drawing.Graphics)">
-            <summary>
-            Draw cell corner arrows.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawEmbeddedSkyscraperArrow(System.Drawing.Graphics)">
-            <summary>
-            Draw cell corner arrows.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>

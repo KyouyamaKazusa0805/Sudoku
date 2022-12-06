@@ -226,26 +226,8 @@ public sealed partial class GridImageGenerator
 	partial void DrawHouses(Graphics g);
 	partial void DrawLinks(Graphics g);
 	partial void DrawUnknownValue(Graphics g);
-	partial void DrawBorderBar(Graphics g);
-	partial void DrawKropkiDot(Graphics g);
-	partial void DrawGreaterThanSigns(Graphics g);
-	partial void DrawXvSigns(Graphics g);
-	partial void DrawNumberLabels(Graphics g);
-	partial void DrawBattenburg(Graphics g);
-	partial void DrawQuadrupleHint(Graphics g);
-	partial void DrawClockfaceDot(Graphics g);
-	partial void DrawNeighborSigns(Graphics g);
-	partial void DrawWheel(Graphics g);
-	partial void DrawPencilmarks(Graphics g);
-	partial void DrawTriangleSumSigns(Graphics g);
-	partial void DrawStarProductStar(Graphics g);
-	partial void DrawCellArrow(Graphics g);
+	partial void DrawShapeNodes(Graphics g);
 	partial void DrawFigure(Graphics g);
-	partial void DrawQuadrupleMaxArrow(Graphics g);
-	partial void DrawCellCornerTriangle(Graphics g);
-	partial void DrawAverageBar(Graphics g);
-	partial void DrawCellCornerArrow(Graphics g);
-	partial void DrawEmbeddedSkyscraperArrow(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -356,7 +338,6 @@ partial class GridImageGenerator
 			return;
 		}
 
-		// Normal nodes
 		DrawHouses(g);
 		DrawCells(g);
 		DrawCandidates(g);
@@ -364,26 +345,7 @@ partial class GridImageGenerator
 		DrawUnknownValue(g);
 		DrawFigure(g);
 
-		// Shapes nodes
-		DrawBorderBar(g);
-		DrawKropkiDot(g);
-		DrawGreaterThanSigns(g);
-		DrawXvSigns(g);
-		DrawNumberLabels(g);
-		DrawBattenburg(g);
-		DrawQuadrupleHint(g);
-		DrawClockfaceDot(g);
-		DrawNeighborSigns(g);
-		DrawWheel(g);
-		DrawPencilmarks(g);
-		DrawTriangleSumSigns(g);
-		DrawStarProductStar(g);
-		DrawCellArrow(g);
-		DrawQuadrupleMaxArrow(g);
-		DrawCellCornerTriangle(g);
-		DrawAverageBar(g);
-		DrawCellCornerArrow(g);
-		DrawEmbeddedSkyscraperArrow(g);
+		DrawShapeNodes(g);
 	}
 
 	/// <summary>
@@ -1093,876 +1055,538 @@ partial class GridImageGenerator
 	}
 
 	/// <summary>
-	/// Draw border bars.
+	/// Draw <see cref="ShapeViewNode"/> instances.
 	/// </summary>
 	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawBorderBar(Graphics g)
+	partial void DrawShapeNodes(Graphics g)
 	{
-		if (this is not
-			{
-				View.BorderBarNodes: var barNodes,
-				Calculator: var calc,
-				Preferences: { BorderBarWidth: var barWidth, BorderBarFullyOverlapsGridLine: var fullyOverlapping }
-			})
+		if (this is not { View.ShapeViewNodes: var shapeViewNodes, Calculator: { CellSize: var (cw, ch) } calc })
 		{
 			return;
 		}
 
-		foreach (var barNode in barNodes)
+		foreach (var node in shapeViewNodes)
 		{
-			if (barNode is not (var c1, var c2) { Identifier: var identifier })
+			switch (This: this, Node: node)
 			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			using var pen = new Pen(brush, barWidth);
-
-			// Draw bars.
-			var (start, end) = calc.GetSharedLinePosition(c1, c2, fullyOverlapping);
-			g.DrawLine(pen, start, end);
-		}
-	}
-
-	/// <summary>
-	/// Draw Kropki dots.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawKropkiDot(Graphics g)
-	{
-		if (this is not
-			{
-				View.KropkiDotNodes: var kropkiNodes,
-				Calculator: var calc,
-				Preferences: { KropkiDotBorderWidth: var borderWidth, KropkiDotSize: var dotSize, BackgroundColor: var backColor }
-			})
-		{
-			return;
-		}
-
-		foreach (var kropkiNode in kropkiNodes)
-		{
-			if (kropkiNode is not (var c1, var c2) { Identifier: var identifier, IsSolid: var isSolid })
-			{
-				continue;
-			}
-
-			using var solidBrush = new SolidBrush(GetColor(identifier));
-			using var hollowBrush = new SolidBrush(backColor);
-			using var pen = new Pen(solidBrush, borderWidth);
-
-			var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
-			var rect = new RectangleF((x1 + x2) / 2 - dotSize / 2, (y1 + y2) / 2 - dotSize / 2, dotSize, dotSize);
-
-			// Draw Kropki dots.
-			// Please note that method 'DrawEllipse' and 'FillEllipse' starts with the point at top-left position, rather than the center.
-			g.DrawEllipse(pen, rect);
-			g.FillEllipse(isSolid ? solidBrush : hollowBrush, rect);
-		}
-	}
-
-	/// <summary>
-	/// Draw greater-than signs.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawGreaterThanSigns(Graphics g)
-	{
-		if (this is not
-			{
-				View.GreaterThanNodes: var greaterThanNodes,
-				Calculator: var calc,
-				Preferences: { GreaterThanSignFont: var fontData, BackgroundColor: var backColor }
-			})
-		{
-			return;
-		}
-
-		using var font = fontData.CreateFont();
-		using var backBrush = new SolidBrush(backColor);
-		foreach (var greaterThanNode in greaterThanNodes)
-		{
-			if (greaterThanNode is not (var c1, var c2, var isRow) { Identifier: var identifier, IsGreaterThan: var isGreaterThan })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			var text = isGreaterThan ? ">" : "<";
-			var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
-			var centerPoint = new PointF((x1 + x2) / 2, (y1 + y2) / 2);
-
-			// Draw sign.
-			if (isRow)
-			{
-				var textSize = g.MeasureString(text, font);
-				var (tw, th) = textSize;
-				var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
-
-				g.FillRectangle(backBrush, pointX, pointY, tw, th);
-				g.DrawString(text, font, brush, centerPoint, StringLocating);
-			}
-			else
-			{
-				// If column-ish, we need rotate the text.
-				// By using 'g.Transform', we can rotate a text shape on rendering.
-				// Please note that 'Matrix' type is a reference type: be careful to assign and replace.
-
-				var matrixOriginal = g.Transform;
-				using var matrixRotating = g.Transform.Clone();
-				matrixRotating.RotateAt(90, centerPoint);
-				g.Transform = matrixRotating;
-
-				var textSize = g.MeasureString(text, font);
-				var (tw, th) = textSize;
-				var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
-
-				g.FillRectangle(backBrush, pointX, pointY, tw, th);
-				g.DrawString(text, font, brush, centerPoint, StringLocating);
-
-				g.Transform = matrixOriginal;
-			}
-		}
-	}
-
-	/// <summary>
-	/// Draw XV signs.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawXvSigns(Graphics g)
-	{
-		if (this is not
-			{
-				View.XvNodes: var xvNodes,
-				Calculator: var calc,
-				Preferences: { XvSignFont: var fontData, BackgroundColor: var backColor }
-			})
-		{
-			return;
-		}
-
-		using var font = fontData.CreateFont();
-		using var backBrush = new SolidBrush(backColor);
-		foreach (var xvNode in xvNodes)
-		{
-			if (xvNode is not (var c1, var c2) { Identifier: var identifier, IsX: var isX })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			var text = isX ? "X" : "V";
-			var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
-			var centerPoint = new PointF((x1 + x2) / 2, (y1 + y2) / 2);
-			var textSize = g.MeasureString(text, font);
-			var (tw, th) = textSize;
-			var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
-
-			g.FillRectangle(backBrush, pointX, pointY, tw, th);
-			g.DrawString(text, font, brush, centerPoint, StringLocating);
-		}
-	}
-
-	/// <summary>
-	/// Draw number labels.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawNumberLabels(Graphics g)
-	{
-		if (this is not
-			{
-				View.NumberLabelNodes: var numberLabelNodes,
-				Calculator: var calc,
-				Preferences: { NumberLabelFont: var fontData, BackgroundColor: var backColor }
-			})
-		{
-			return;
-		}
-
-		using var font = fontData.CreateFont();
-		using var backBrush = new SolidBrush(backColor);
-		foreach (var numberLabelNode in numberLabelNodes)
-		{
-			if (numberLabelNode is not (var c1, var c2) { Identifier: var identifier, Label: var label })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
-			var centerPoint = new PointF((x1 + x2) / 2, (y1 + y2) / 2);
-			var textSize = g.MeasureString(label, font);
-			var (tw, th) = textSize;
-			var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
-
-			g.FillRectangle(backBrush, pointX, pointY, tw, th);
-			g.DrawString(label, font, brush, centerPoint, StringLocating);
-		}
-	}
-
-	/// <summary>
-	/// Draw Batternburg.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawBattenburg(Graphics g)
-	{
-		if (this is not
-			{
-				View.BattenburgNodes: var battenburgNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences.BattenburgSize: var battenburgSize
-			})
-		{
-			return;
-		}
-
-		foreach (var battenburgNode in battenburgNodes)
-		{
-			if (battenburgNode is not { Identifier: var identifier, Cells: [.., var lastCell] })
-			{
-				continue;
-			}
-
-			var (tempX, tempY) = calc.GetMousePointInCenter(lastCell) - new SizeF(cw / 2, ch / 2);
-
-			var p1 = new PointF(tempX - battenburgSize / 2, tempY - battenburgSize / 2);
-			var p2 = new PointF(tempX, tempY - battenburgSize / 2);
-			var p3 = new PointF(tempX - battenburgSize / 2, tempY);
-			var p4 = new PointF(tempX, tempY);
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			using var pen = new Pen(Brushes.Black);
-
-			scoped var points = (stackalloc[] { p1, p2, p3, p4 });
-			for (var i = 0; i < points.Length; i++)
-			{
-				var (x, y) = points[i];
-				var shouldBeFilled = i is 0 or 3;
-				if (shouldBeFilled)
+				case
 				{
-					g.DrawRectangle(pen, x, y, battenburgSize / 2, battenburgSize / 2);
-					g.FillRectangle(brush, x, y, battenburgSize / 2, battenburgSize / 2);
+					This.Preferences: { BorderBarWidth: var barWidth, BorderBarFullyOverlapsGridLine: var fullyOverlapping },
+					Node: BorderBarViewNode(var c1, var c2) { Identifier: var identifier }
+				}:
+				{
+					using var brush = new SolidBrush(GetColor(identifier));
+					using var pen = new Pen(brush, barWidth);
+
+					// Draw bars.
+					var (start, end) = calc.GetSharedLinePosition(c1, c2, fullyOverlapping);
+					g.DrawLine(pen, start, end);
+
+					break;
 				}
-				else
+				case
 				{
-					g.DrawRectangle(pen, x, y, battenburgSize / 2, battenburgSize / 2);
+					This.Preferences: { KropkiDotBorderWidth: var borderWidth, KropkiDotSize: var dotSize, BackgroundColor: var backColor },
+					Node: KropkiDotViewNode(var c1, var c2) { Identifier: var identifier, IsSolid: var isSolid }
+				}:
+				{
+					using var solidBrush = new SolidBrush(GetColor(identifier));
+					using var hollowBrush = new SolidBrush(backColor);
+					using var pen = new Pen(solidBrush, borderWidth);
+
+					var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
+					var rect = new RectangleF((x1 + x2) / 2 - dotSize / 2, (y1 + y2) / 2 - dotSize / 2, dotSize, dotSize);
+
+					/// Draw Kropki dots.
+					/// Please note that method <see cref="Graphics.DrawEllipse"/> and <see cref="Graphics.FillEllipse"/>
+					/// starts with the point at top-left position, rather than the center.
+					g.DrawEllipse(pen, rect);
+					g.FillEllipse(isSolid ? solidBrush : hollowBrush, rect);
+
+					break;
 				}
-			}
-		}
-	}
-
-	/// <summary>
-	/// Draw quadruple hint.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawQuadrupleHint(Graphics g)
-	{
-		if (this is not
-			{
-				View.QuadrupleHintNodes: var quadrupleHintNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences: { QuadrupleHintFont: var fontData, BackgroundColor: var backColor }
-			})
-		{
-			return;
-		}
-
-		using var font = fontData.CreateFont();
-		foreach (var quadrupleHintNode in quadrupleHintNodes)
-		{
-			if (quadrupleHintNode is not { Identifier: var identifier, Cells: [.., var lastCell], Hint: var hint })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(backColor);
-			using var textColor = new SolidBrush(GetColor(identifier));
-			var (tw, th) = g.MeasureString(hint, font);
-			var (x, y) = calc.GetMousePointInCenter(lastCell);
-
-			g.FillRectangle(brush, x - cw / 2 - tw / 2, y - ch / 2 - th / 2, tw, th);
-			g.DrawString(hint, font, textColor, x - cw / 2, y - ch / 2, StringLocating);
-		}
-	}
-
-	/// <summary>
-	/// Draw clockface dots.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawClockfaceDot(Graphics g)
-	{
-		if (this is not
-			{
-				View.ClockfaceDotNodes: var clockfaceDotNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences:
+				case
 				{
-					ClockfaceDotSize: var dotSize,
-					ClockfaceDotBorderWidth: var borderWidth,
-					BackgroundColor: var backColor
+					This.Preferences: { GreaterThanSignFont: var fontData, BackgroundColor: var backColor },
+					Node: GreaterThanSignViewNode(var c1, var c2, var isRow) { Identifier: var identifier, IsGreaterThan: var isGreaterThan }
+				}:
+				{
+					using var font = fontData.CreateFont();
+					using var backBrush = new SolidBrush(backColor);
+					using var brush = new SolidBrush(GetColor(identifier));
+					var text = isGreaterThan ? ">" : "<";
+					var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
+					var centerPoint = new PointF((x1 + x2) / 2, (y1 + y2) / 2);
+
+					// Draw sign.
+					if (isRow)
+					{
+						var textSize = g.MeasureString(text, font);
+						var (tw, th) = textSize;
+						var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
+
+						g.FillRectangle(backBrush, pointX, pointY, tw, th);
+						g.DrawString(text, font, brush, centerPoint, StringLocating);
+					}
+					else
+					{
+						// If column-ish, we need rotate the text.
+						// By using 'g.Transform', we can rotate a text shape on rendering.
+						// Please note that 'Matrix' type is a reference type: be careful to assign and replace.
+
+						var matrixOriginal = g.Transform;
+						using var matrixRotating = g.Transform.Clone();
+						matrixRotating.RotateAt(90, centerPoint);
+						g.Transform = matrixRotating;
+
+						var textSize = g.MeasureString(text, font);
+						var (tw, th) = textSize;
+						var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
+
+						g.FillRectangle(backBrush, pointX, pointY, tw, th);
+						g.DrawString(text, font, brush, centerPoint, StringLocating);
+
+						g.Transform = matrixOriginal;
+					}
+
+					break;
 				}
-			})
-		{
-			return;
-		}
-
-		foreach (var clockfaceDotNode in clockfaceDotNodes)
-		{
-			if (clockfaceDotNode is not { Identifier: var identifier, Cells: [.., var lastCell], IsClockwise: var isClockwise })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			using var pen = new Pen(brush, borderWidth);
-			using var backBrush = new SolidBrush(backColor);
-
-			var (x, y) = calc.GetMousePointInCenter(lastCell);
-			if (isClockwise)
-			{
-				g.DrawEllipse(pen, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
-				g.FillEllipse(backBrush, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
-			}
-			else
-			{
-				g.DrawEllipse(pen, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
-				g.FillEllipse(brush, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
-			}
-		}
-	}
-
-	/// <summary>
-	/// Draw neighbor signs.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawNeighborSigns(Graphics g)
-	{
-		if (this is not
-			{
-				View.NeighborNodes: var neighborNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences: { NeighborSignsWidth: var width, NeighborSignCellPadding: var padding }
-			})
-		{
-			return;
-		}
-
-		foreach (var neighborNode in neighborNodes)
-		{
-			if (neighborNode is not (var cell, _) { Identifier: var identifier, IsFourDirections: var isFourDirections })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			using var pen = new Pen(brush, width);
-
-			var (x, y) = calc.GetMousePointInCenter(cell);
-			var topLeft = new PointF(x - cw / 2 + padding, y - ch / 2 + padding);
-			var bottomRight = new PointF(x + cw / 2 - padding, y + ch / 2 - padding);
-
-			if (isFourDirections)
-			{
-				// Draw cross sign.
-				var topRight = new PointF(x + cw / 2 - padding, y - ch / 2 + padding);
-				var bottomLeft = new PointF(x - cw / 2 + padding, y + ch / 2 - padding);
-
-				g.DrawLine(pen, topLeft, bottomRight);
-				g.DrawLine(pen, topRight, bottomLeft);
-			}
-			else
-			{
-				// Draw circle.
-				var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
-				g.DrawEllipse(pen, rect);
-			}
-		}
-	}
-
-	/// <summary>
-	/// Draw wheels.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawWheel(Graphics g)
-	{
-		if (this is not
-			{
-				View.WheelNodes: var wheelNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences:
+				case
 				{
-					WheelFont: var fontData,
-					WheelWidth: var width,
-					WheelTextColor: var textColor,
-					BackgroundColor: var backColor
+					This.Preferences: { XvSignFont: var fontData, BackgroundColor: var backColor },
+					Node: XvSignViewNode(var c1, var c2) { Identifier: var identifier, IsX: var isX }
+				}:
+				{
+					using var font = fontData.CreateFont();
+					using var backBrush = new SolidBrush(backColor);
+					using var brush = new SolidBrush(GetColor(identifier));
+					var text = isX ? "X" : "V";
+					var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
+					var centerPoint = new PointF((x1 + x2) / 2, (y1 + y2) / 2);
+					var textSize = g.MeasureString(text, font);
+					var (tw, th) = textSize;
+					var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
+
+					g.FillRectangle(backBrush, pointX, pointY, tw, th);
+					g.DrawString(text, font, brush, centerPoint, StringLocating);
+
+					break;
 				}
-			})
-		{
-			return;
-		}
-
-		using var backBrush = new SolidBrush(backColor);
-		using var font = fontData.CreateFont();
-		using var textBrush = new SolidBrush(textColor);
-
-		scoped var positions = (stackalloc PointF[4]);
-		foreach (var wheelNode in wheelNodes)
-		{
-			if (wheelNode is not (var cell, _) { Identifier: var identifier, DigitString: var digitString })
-			{
-				continue;
-			}
-
-			using var pen = new Pen(GetColor(identifier), width);
-
-			var (x, y) = calc.GetMousePointInCenter(cell);
-			var topLeft = new PointF(x - cw * SqrtOf2 / 2, y - ch * SqrtOf2 / 2);
-			var bottomRight = new PointF(x + cw * SqrtOf2 / 2, y + ch * SqrtOf2 / 2);
-			var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
-
-			// Draw wheel main circle.
-			g.DrawEllipse(pen, rect);
-
-			// Draw strings.
-			positions[0] = new(x, y - ch * SqrtOf2 / 2);
-			positions[1] = new(x + ch * SqrtOf2 / 2, y);
-			positions[2] = new(x, y + ch * SqrtOf2 / 2);
-			positions[3] = new(x - ch * SqrtOf2 / 2, y);
-			for (var i = 0; i < 4; i++)
-			{
-				var renderingText = digitString[i].ToString();
-				var position = positions[i];
-				var (px, py) = position;
-				var renderingSize = g.MeasureString(renderingText, font);
-				var (tw, th) = renderingSize;
-
-				g.FillRectangle(backBrush, new RectangleF(new(px - tw / 2, py - th / 2), renderingSize));
-				g.DrawString(renderingText, font, textBrush, position, StringLocating);
-			}
-		}
-	}
-
-	/// <summary>
-	/// Draw pencilmarks.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawPencilmarks(Graphics g)
-	{
-		if (this is not
-			{
-				View.PencilMarkNodes: var pencilmarkNodes,
-				Calculator: { CellSize: var (_, ch) } calc,
-				Preferences: { PencilmarkFont: var fontData, PencilmarkTextColor: var textColor }
-			})
-		{
-			return;
-		}
-
-		using var font = fontData.CreateFont();
-		using var textBrush = new SolidBrush(textColor);
-
-		foreach (var pencilmarkNode in pencilmarkNodes)
-		{
-			if (pencilmarkNode is not (var cell, _) { Notation: var notation })
-			{
-				continue;
-			}
-
-			var renderingSize = g.MeasureString(notation, font);
-			var (_, th) = renderingSize;
-			var (centerX, centerY) = calc.GetMousePointInCenter(cell);
-			var position = new PointF(centerX, centerY - ch / 2 + th / 2);
-
-			// Draw text.
-			g.DrawString(notation, font, textBrush, position, StringLocating);
-		}
-	}
-
-	/// <summary>
-	/// Draw triangle sum signs.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawTriangleSumSigns(Graphics g)
-	{
-		if (this is not { View.TriangleSumNodes: var triangleSumNodes, Calculator: var calc, Preferences.TriangleSumCellPadding: var padding })
-		{
-			return;
-		}
-
-		foreach (var triangleSumNode in triangleSumNodes)
-		{
-			if (triangleSumNode is not (var cell, var directions) { Identifier: var identifier, IsComplement: var isComplement })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			using var path = createPath(padding, cell, directions, isComplement);
-
-			// Draw shape.
-			g.FillPath(brush, path);
-
-
-			GraphicsPath createPath(float padding, int cell, Direction directions, bool isComplement)
-			{
-				var (cw, ch) = calc.CellSize;
-				var (x, y) = calc.GetMousePointInCenter(cell);
-				var p1 = new PointF(x - cw / 2 + padding, y - ch / 2 + padding);
-				var p2 = new PointF(x + cw / 2 - padding, y - ch / 2 + padding);
-				var p3 = new PointF(x - cw / 2 + padding, y + ch / 2 - padding);
-				var p4 = new PointF(x + cw / 2 - padding, y + ch / 2 - padding);
-
-				var path = new GraphicsPath(FillMode.Winding);
-				var pathPointsOrdering = (isComplement, directions) switch
+				case
 				{
-					(true, _) => stackalloc[] { p1, p2, p4, p3 },
-					(_, Direction.TopLeft) => stackalloc[] { p1, p2, p3 },
-					(_, Direction.TopRight) => stackalloc[] { p1, p2, p4 },
-					(_, Direction.BottomLeft) => stackalloc[] { p1, p4, p3 },
-					(_, Direction.BottomRight) => stackalloc[] { p2, p4, p3 }
-				};
-
-				for (var i = 0; i < pathPointsOrdering.Length - 1; i++)
+					This.Preferences: { NumberLabelFont: var fontData, BackgroundColor: var backColor },
+					Node: NumberLabelViewNode(var c1, var c2) { Identifier: var identifier, Label: var label }
+				}:
 				{
-					var p = pathPointsOrdering[i];
-					var q = pathPointsOrdering[i + 1];
-					path.AddLine(p, q);
+					using var font = fontData.CreateFont();
+					using var backBrush = new SolidBrush(backColor);
+					using var brush = new SolidBrush(GetColor(identifier));
+					var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
+					var centerPoint = new PointF((x1 + x2) / 2, (y1 + y2) / 2);
+					var textSize = g.MeasureString(label, font);
+					var (tw, th) = textSize;
+					var (pointX, pointY) = centerPoint - new SizeF(tw / 2, th / 2);
+
+					g.FillRectangle(backBrush, pointX, pointY, tw, th);
+					g.DrawString(label, font, brush, centerPoint, StringLocating);
+
+					break;
 				}
-
-				return path;
-			}
-		}
-	}
-
-	/// <summary>
-	/// Draw star product stars.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawStarProductStar(Graphics g)
-	{
-		const string star = "*";
-
-		if (this is not
-			{
-				View.StarProductStarNodes: var starProductStarNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences.StarProductStarFont: var fontData
-			})
-		{
-			return;
-		}
-
-		using var font = fontData.CreateFont();
-
-		foreach (var starProductStarNode in starProductStarNodes)
-		{
-			if (starProductStarNode is not (var cell, var direction) { Identifier: var identifier })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			var (tw, th) = g.MeasureString(star, font);
-			var (x, y) = calc.GetMousePointInCenter(cell);
-			var point = direction switch
-			{
-				Direction.TopLeft => new(x - cw / 2 + tw / 2, y - ch / 2 + th / 2),
-				Direction.TopCenter => new(x, y - ch / 2 + th / 2),
-				Direction.TopRight => new(x - cw / 2 + tw / 2, y + ch / 2 - th / 2),
-				Direction.MiddleLeft => new(x - cw / 2 + tw / 2, y),
-				Direction.MiddleRight => new(x + cw / 2 - tw / 2, y + ch / 2 - th / 2),
-				Direction.BottomLeft => new(x - cw / 2 + tw / 2, y + ch / 2 - th / 2),
-				Direction.BottomCenter => new(x, y - ch / 2 + th / 2),
-				Direction.BottomRight => new(x + cw / 2 - tw / 2, y + ch / 2 - th / 2),
-				_ => default(PointF)
-			};
-
-			g.DrawString(star, font, brush, point, StringLocating);
-		}
-	}
-
-	/// <summary>
-	/// Draw cell arrow.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawCellArrow(Graphics g)
-	{
-		if (this is not
-			{
-				View.CellArrowNodes: var cellArrowNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences.CellArrowColor: var color
-			})
-		{
-			return;
-		}
-
-		using var brush = new SolidBrush(color);
-
-		foreach (var cellArrowNode in cellArrowNodes)
-		{
-			if (cellArrowNode is not var (cell, direction))
-			{
-				continue;
-			}
-
-			var center = calc.GetMousePointInCenter(cell);
-			var rotation = direction.GetRotatingAngle();
-
-			g.DrawHollowArrow(brush, center, cw / 4, cw / 2, ch / 2, rotation);
-		}
-	}
-
-	/// <summary>
-	/// Draw quadruple max arrow.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawQuadrupleMaxArrow(Graphics g)
-	{
-		if (this is not
-			{
-				View.QuadrupleMaxArrowNodes: var quadrupleMaxArrowNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences.QuadrupleMaxArrowSize: var size
-			})
-		{
-			return;
-		}
-
-		foreach (var quadrupleMaxArrowNode in quadrupleMaxArrowNodes)
-		{
-			if (quadrupleMaxArrowNode is not { Cells: [.., var lastCell], Identifier: var identifier, ArrowDirection: var direction })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			var (centerX, centerY) = calc.GetMousePointInCenter(lastCell);
-			var point = new PointF(centerX - cw / 2, centerY - ch / 2);
-			var rotation = direction.GetRotatingAngle();
-
-			g.DrawHollowArrow(brush, point, size, size * 2, size * 2, rotation);
-		}
-	}
-
-	/// <summary>
-	/// Draw cell corner triangles.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawCellCornerTriangle(Graphics g)
-	{
-		if (this is not
-			{
-				View.CellCornerTriangleNodes: var cellCornerTriangleNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences: { CellCornerTriangleSize: var size, CellCornerTriangleCellPadding: var padding }
-			})
-		{
-			return;
-		}
-
-		foreach (var cellCornerTriangleNode in cellCornerTriangleNodes)
-		{
-			if (cellCornerTriangleNode is not { Identifier: var identifier, Cell: var cell, Directions: var direction })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-			var (centerX, centerY) = calc.GetMousePointInCenter(cell);
-			var points = direction switch
-			{
-				Direction.TopLeft => new PointF[]
+				case
 				{
-					new(centerX - cw / 2 + padding, centerY - ch / 2 + padding),
-					new(centerX - cw / 2 + padding + size, centerY - ch / 2 + padding),
-					new(centerX - cw / 2 + padding, centerY - ch / 2 + padding + size)
-				},
-				Direction.TopRight => new PointF[]
+					This.Preferences.BattenburgSize: var battenburgSize,
+					Node: BattenburgViewNode { Identifier: var identifier, Cells: [.., var lastCell] }
+				}:
 				{
-					new(centerX + cw / 2 - padding, centerY - ch / 2 + padding),
-					new(centerX + cw / 2 - padding - size, centerY - ch / 2 + padding),
-					new(centerX + cw / 2 - padding, centerY - ch / 2 + padding + size)
-				},
-				Direction.BottomLeft => new PointF[]
-				{
-					new(centerX - cw / 2 + padding, centerY + ch / 2 - padding),
-					new(centerX - cw / 2 + padding + size, centerY + ch / 2 - padding),
-					new(centerX - cw / 2 + padding, centerY + ch / 2 - padding - size)
-				},
-				Direction.BottomRight => new PointF[]
-				{
-					new(centerX + cw / 2 - padding, centerY + ch / 2 - padding),
-					new(centerX + cw / 2 - padding - size, centerY + ch / 2 - padding),
-					new(centerX + cw / 2 - padding, centerY + ch / 2 - padding - size)
+					using var brush = new SolidBrush(GetColor(identifier));
+					using var pen = new Pen(Brushes.Black);
+
+					var (tempX, tempY) = calc.GetMousePointInCenter(lastCell) - new SizeF(cw / 2, ch / 2);
+					var p1 = new PointF(tempX - battenburgSize / 2, tempY - battenburgSize / 2);
+					var p2 = new PointF(tempX, tempY - battenburgSize / 2);
+					var p3 = new PointF(tempX - battenburgSize / 2, tempY);
+					var p4 = new PointF(tempX, tempY);
+					scoped var points = (stackalloc[] { p1, p2, p3, p4 });
+					for (var i = 0; i < points.Length; i++)
+					{
+						var (x, y) = points[i];
+						if (i is 0 or 3)
+						{
+							g.DrawRectangle(pen, x, y, battenburgSize / 2, battenburgSize / 2);
+							g.FillRectangle(brush, x, y, battenburgSize / 2, battenburgSize / 2);
+						}
+						else
+						{
+							g.DrawRectangle(pen, x, y, battenburgSize / 2, battenburgSize / 2);
+						}
+					}
+
+					break;
 				}
-			};
-
-			using var path = new GraphicsPath();
-			path.AddLine(points[0], points[1]);
-			path.AddLine(points[1], points[2]);
-			path.AddLine(points[2], points[0]);
-
-			g.FillPath(brush, path);
-		}
-	}
-
-	/// <summary>
-	/// Draw average bars.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawAverageBar(Graphics g)
-	{
-		if (this is not
-			{
-				View.AverageBarNodes: var averageBarNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences.AverageBarWidth: var width
-			})
-		{
-			return;
-		}
-
-		foreach (var averageBarNode in averageBarNodes)
-		{
-			if (averageBarNode is not { Identifier: var identifier, Cell: var cell, Type: var type })
-			{
-				continue;
-			}
-
-			using var pen = new Pen(GetColor(identifier), width);
-			var (x, y) = calc.GetMousePointInCenter(cell);
-			var pointPairs = type switch
-			{
-				AdjacentCellType.Rowish => new (PointF, PointF)[] { (new(x - cw / 2, y), new(x + cw / 2, y)) },
-				AdjacentCellType.Columnish => new (PointF, PointF)[] { (new(x, y - ch / 2), new(x, y + ch / 2)) },
-				AdjacentCellType.Rowish | AdjacentCellType.Columnish => new (PointF, PointF)[]
+				case
 				{
-					(new(x - cw / 2, y), new(x + cw / 2, y)),
-					(new(x, y - ch / 2), new(x, y + ch / 2))
+					This.Preferences: { QuadrupleHintFont: var fontData, BackgroundColor: var backColor },
+					Node: QuadrupleHintViewNode { Identifier: var identifier, Cells: [.., var lastCell], Hint: var hint }
+				}:
+				{
+					using var font = fontData.CreateFont();
+					using var brush = new SolidBrush(backColor);
+					using var textColor = new SolidBrush(GetColor(identifier));
+					var (tw, th) = g.MeasureString(hint, font);
+					var (x, y) = calc.GetMousePointInCenter(lastCell);
+
+					g.FillRectangle(brush, x - cw / 2 - tw / 2, y - ch / 2 - th / 2, tw, th);
+					g.DrawString(hint, font, textColor, x - cw / 2, y - ch / 2, StringLocating);
+
+					break;
 				}
-			};
-
-			// Draw line.
-			foreach (var (p1, p2) in pointPairs)
-			{
-				g.DrawLine(pen, p1, p2);
-			}
-		}
-	}
-
-	/// <summary>
-	/// Draw cell corner arrows.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawCellCornerArrow(Graphics g)
-	{
-		if (this is not
-			{
-				View.CellCornerArrowNodes: var cellCornerArrowNodes,
-				Calculator: { CellSize: var (_, ch) } calc,
-				Preferences.CellCornerArrowWidth: var width
-			})
-		{
-			return;
-		}
-
-		foreach (var cellCornerArrowNode in cellCornerArrowNodes)
-		{
-			if (cellCornerArrowNode is not { Identifier: var identifier, Cell: var cell, Directions: var directions })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-
-			var center = calc.GetMousePointInCenter(cell);
-			var (centerX, centerY) = center;
-			var (x, y) = new PointF(centerX, centerY - ch / 2 + Tan(PI / 3) / 2 * width);
-			var p1 = new PointF(x - width / 2, y);
-			var p2 = new PointF(x + width / 2, y);
-			var p3 = new PointF(x, centerY - ch / 2);
-
-			foreach (var direction in directions.GetAllFlags()!.DistinctBy(static self => self))
-			{
-				using var path = new GraphicsPath();
-				path.AddLine(p1, p2);
-				path.AddLine(p2, p3);
-				path.AddLine(p3, p1);
-
-				// Rotating.
-				var oldMatrix = g.Transform;
-				using var newMatrix = g.Transform.Clone();
-				newMatrix.RotateAt(direction.GetRotatingAngle(), center);
-
-				g.Transform = newMatrix;
-				g.FillPath(brush, path);
-				g.Transform = oldMatrix;
-			}
-		}
-	}
-
-	/// <summary>
-	/// Draw cell corner arrows.
-	/// </summary>
-	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
-	partial void DrawEmbeddedSkyscraperArrow(Graphics g)
-	{
-		const string left = "\u2190", up = "\u2191", right = "\u2192", down = "\u2193";
-
-		if (this is not
-			{
-				View.EmbeddedSkyscraperArrowNodes: var embeddedSkyscraperArrowNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences.EmbeddedSkyscraperArrowFont: var fontData
-			})
-		{
-			return;
-		}
-
-		using var font = fontData.CreateFont();
-
-		foreach (var embeddedSkyscraperArrowNode in embeddedSkyscraperArrowNodes)
-		{
-			if (embeddedSkyscraperArrowNode is not { Identifier: var identifier, Cell: var cell, Directions: var directions })
-			{
-				continue;
-			}
-
-			using var brush = new SolidBrush(GetColor(identifier));
-
-			var (centerX, centerY) = calc.GetMousePointInCenter(cell);
-			foreach (var direction in directions.GetAllFlags()!.DistinctBy(static self => self))
-			{
-				var finalText = direction switch { Direction.Up => up, Direction.Down => down, Direction.Left => left, Direction.Right => right };
-				var (tw, th) = g.MeasureString(finalText, font);
-				var textCenter = direction switch
+				case
 				{
-					Direction.Up => new PointF(centerX, centerY - ch / 2 + th / 2),
-					Direction.Down => new PointF(centerX, centerY + ch / 2 - th / 2),
-					Direction.Left => new PointF(centerX - cw / 2 + tw / 2, centerY),
-					Direction.Right => new PointF(centerX + cw / 2 - tw / 2, centerY)
-				};
+					This.Preferences: { ClockfaceDotSize: var dotSize, ClockfaceDotBorderWidth: var borderWidth, BackgroundColor: var backColor },
+					Node: ClockfaceDotViewNode { Identifier: var identifier, Cells: [.., var lastCell], IsClockwise: var isClockwise }
+				}:
+				{
+					using var brush = new SolidBrush(GetColor(identifier));
+					using var pen = new Pen(brush, borderWidth);
+					using var backBrush = new SolidBrush(backColor);
 
-				g.DrawString(finalText, font, brush, textCenter, StringLocating);
+					var (x, y) = calc.GetMousePointInCenter(lastCell);
+					if (isClockwise)
+					{
+						g.DrawEllipse(pen, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
+						g.FillEllipse(backBrush, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
+					}
+					else
+					{
+						g.DrawEllipse(pen, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
+						g.FillEllipse(brush, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
+					}
+
+					break;
+				}
+				case
+				{
+					This.Preferences: { NeighborSignsWidth: var width, NeighborSignCellPadding: var padding },
+					Node: NeighborSignViewNode(var cell, _) { Identifier: var identifier, IsFourDirections: var isFourDirections }
+				}:
+				{
+					using var brush = new SolidBrush(GetColor(identifier));
+					using var pen = new Pen(brush, width);
+
+					var (x, y) = calc.GetMousePointInCenter(cell);
+					var topLeft = new PointF(x - cw / 2 + padding, y - ch / 2 + padding);
+					var bottomRight = new PointF(x + cw / 2 - padding, y + ch / 2 - padding);
+
+					if (isFourDirections)
+					{
+						// Draw cross sign.
+						var topRight = new PointF(x + cw / 2 - padding, y - ch / 2 + padding);
+						var bottomLeft = new PointF(x - cw / 2 + padding, y + ch / 2 - padding);
+
+						g.DrawLine(pen, topLeft, bottomRight);
+						g.DrawLine(pen, topRight, bottomLeft);
+					}
+					else
+					{
+						// Draw circle.
+						var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+						g.DrawEllipse(pen, rect);
+					}
+
+					break;
+				}
+				case
+				{
+					This.Preferences: { WheelFont: var fontData, WheelWidth: var width, WheelTextColor: var textColor, BackgroundColor: var backColor },
+					Node: WheelViewNode(var cell, _) { Identifier: var identifier, DigitString: var digitString }
+				}:
+				{
+					using var backBrush = new SolidBrush(backColor);
+					using var font = fontData.CreateFont();
+					using var textBrush = new SolidBrush(textColor);
+
+					scoped var positions = (stackalloc PointF[4]);
+					using var pen = new Pen(GetColor(identifier), width);
+
+					var (x, y) = calc.GetMousePointInCenter(cell);
+					var topLeft = new PointF(x - cw * SqrtOf2 / 2, y - ch * SqrtOf2 / 2);
+					var bottomRight = new PointF(x + cw * SqrtOf2 / 2, y + ch * SqrtOf2 / 2);
+					var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+
+					// Draw wheel main circle.
+					g.DrawEllipse(pen, rect);
+
+					// Draw strings.
+					positions[0] = new(x, y - ch * SqrtOf2 / 2);
+					positions[1] = new(x + ch * SqrtOf2 / 2, y);
+					positions[2] = new(x, y + ch * SqrtOf2 / 2);
+					positions[3] = new(x - ch * SqrtOf2 / 2, y);
+					for (var i = 0; i < 4; i++)
+					{
+						var renderingText = digitString[i].ToString();
+						var position = positions[i];
+						var (px, py) = position;
+						var renderingSize = g.MeasureString(renderingText, font);
+						var (tw, th) = renderingSize;
+
+						g.FillRectangle(backBrush, new RectangleF(new(px - tw / 2, py - th / 2), renderingSize));
+						g.DrawString(renderingText, font, textBrush, position, StringLocating);
+					}
+
+					break;
+				}
+				case
+				{
+					This.Preferences: { PencilmarkFont: var fontData, PencilmarkTextColor: var textColor },
+					Node: PencilMarkViewNode(var cell, _) { Notation: var notation }
+				}:
+				{
+					using var font = fontData.CreateFont();
+					using var textBrush = new SolidBrush(textColor);
+					var renderingSize = g.MeasureString(notation, font);
+					var (_, th) = renderingSize;
+					var (centerX, centerY) = calc.GetMousePointInCenter(cell);
+					var position = new PointF(centerX, centerY - ch / 2 + th / 2);
+
+					// Draw text.
+					g.DrawString(notation, font, textBrush, position, StringLocating);
+
+					break;
+				}
+				case
+				{
+					This.Preferences.TriangleSumCellPadding: var padding,
+					Node: TriangleSumViewNode(var cell, var directions) { Identifier: var identifier, IsComplement: var isComplement }
+				}:
+				{
+					using var brush = new SolidBrush(GetColor(identifier));
+					using var path = createPath(padding, cell, directions, isComplement);
+
+					// Draw shape.
+					g.FillPath(brush, path);
+
+					break;
+
+
+					GraphicsPath createPath(float padding, int cell, Direction directions, bool isComplement)
+					{
+						var (cw, ch) = calc.CellSize;
+						var (x, y) = calc.GetMousePointInCenter(cell);
+						var p1 = new PointF(x - cw / 2 + padding, y - ch / 2 + padding);
+						var p2 = new PointF(x + cw / 2 - padding, y - ch / 2 + padding);
+						var p3 = new PointF(x - cw / 2 + padding, y + ch / 2 - padding);
+						var p4 = new PointF(x + cw / 2 - padding, y + ch / 2 - padding);
+
+						var path = new GraphicsPath(FillMode.Winding);
+						scoped var pathPointsOrdering = (isComplement, directions) switch
+						{
+							(true, _) => stackalloc[] { p1, p2, p4, p3 },
+							(_, Direction.TopLeft) => stackalloc[] { p1, p2, p3 },
+							(_, Direction.TopRight) => stackalloc[] { p1, p2, p4 },
+							(_, Direction.BottomLeft) => stackalloc[] { p1, p4, p3 },
+							(_, Direction.BottomRight) => stackalloc[] { p2, p4, p3 }
+						};
+
+						for (var i = 0; i < pathPointsOrdering.Length - 1; i++)
+						{
+							var p = pathPointsOrdering[i];
+							var q = pathPointsOrdering[i + 1];
+							path.AddLine(p, q);
+						}
+
+						return path;
+					}
+				}
+				case
+				{
+					This.Preferences.StarProductStarFont: var fontData,
+					Node: StarProductStarViewNode(var cell, var direction) { Identifier: var identifier }
+				}:
+				{
+					const string star = "*";
+
+					using var font = fontData.CreateFont();
+					using var brush = new SolidBrush(GetColor(identifier));
+					var (tw, th) = g.MeasureString(star, font);
+					var (x, y) = calc.GetMousePointInCenter(cell);
+					var point = direction switch
+					{
+						Direction.TopLeft => new(x - cw / 2 + tw / 2, y - ch / 2 + th / 2),
+						Direction.TopCenter => new(x, y - ch / 2 + th / 2),
+						Direction.TopRight => new(x - cw / 2 + tw / 2, y + ch / 2 - th / 2),
+						Direction.MiddleLeft => new(x - cw / 2 + tw / 2, y),
+						Direction.MiddleRight => new(x + cw / 2 - tw / 2, y + ch / 2 - th / 2),
+						Direction.BottomLeft => new(x - cw / 2 + tw / 2, y + ch / 2 - th / 2),
+						Direction.BottomCenter => new(x, y - ch / 2 + th / 2),
+						Direction.BottomRight => new(x + cw / 2 - tw / 2, y + ch / 2 - th / 2),
+						_ => default(PointF)
+					};
+
+					g.DrawString(star, font, brush, point, StringLocating);
+
+					break;
+				}
+				case { This.Preferences.CellArrowColor: var color, Node: CellArrowViewNode(var cell, var direction) }:
+				{
+					using var brush = new SolidBrush(color);
+
+					var center = calc.GetMousePointInCenter(cell);
+					var rotation = direction.GetRotatingAngle();
+
+					g.DrawHollowArrow(brush, center, cw / 4, cw / 2, ch / 2, rotation);
+
+					break;
+				}
+				case
+				{
+					This.Preferences.QuadrupleMaxArrowSize: var size,
+					Node: QuadrupleMaxArrowViewNode { Cells: [.., var lastCell], Identifier: var identifier, ArrowDirection: var direction }
+				}:
+				{
+					using var brush = new SolidBrush(GetColor(identifier));
+					var (centerX, centerY) = calc.GetMousePointInCenter(lastCell);
+					var point = new PointF(centerX - cw / 2, centerY - ch / 2);
+					var rotation = direction.GetRotatingAngle();
+
+					g.DrawHollowArrow(brush, point, size, size * 2, size * 2, rotation);
+
+					break;
+				}
+				case
+				{
+					This.Preferences: { CellCornerTriangleSize: var size, CellCornerTriangleCellPadding: var padding },
+					Node: CellCornerTriangleViewNode { Identifier: var identifier, Cell: var cell, Directions: var direction }
+				}:
+				{
+					using var brush = new SolidBrush(GetColor(identifier));
+					var (centerX, centerY) = calc.GetMousePointInCenter(cell);
+					var points = direction switch
+					{
+						Direction.TopLeft => new PointF[]
+						{
+							new(centerX - cw / 2 + padding, centerY - ch / 2 + padding),
+							new(centerX - cw / 2 + padding + size, centerY - ch / 2 + padding),
+							new(centerX - cw / 2 + padding, centerY - ch / 2 + padding + size)
+						},
+						Direction.TopRight => new PointF[]
+						{
+							new(centerX + cw / 2 - padding, centerY - ch / 2 + padding),
+							new(centerX + cw / 2 - padding - size, centerY - ch / 2 + padding),
+							new(centerX + cw / 2 - padding, centerY - ch / 2 + padding + size)
+						},
+						Direction.BottomLeft => new PointF[]
+						{
+							new(centerX - cw / 2 + padding, centerY + ch / 2 - padding),
+							new(centerX - cw / 2 + padding + size, centerY + ch / 2 - padding),
+							new(centerX - cw / 2 + padding, centerY + ch / 2 - padding - size)
+						},
+						Direction.BottomRight => new PointF[]
+						{
+							new(centerX + cw / 2 - padding, centerY + ch / 2 - padding),
+							new(centerX + cw / 2 - padding - size, centerY + ch / 2 - padding),
+							new(centerX + cw / 2 - padding, centerY + ch / 2 - padding - size)
+						},
+					};
+
+					using var path = new GraphicsPath();
+					path.AddLine(points[0], points[1]);
+					path.AddLine(points[1], points[2]);
+					path.AddLine(points[2], points[0]);
+
+					g.FillPath(brush, path);
+
+					break;
+				}
+				case
+				{
+					This.Preferences.AverageBarWidth: var width,
+					Node: AverageBarViewNode { Identifier: var identifier, Cell: var cell, Type: var type }
+				}:
+				{
+					using var pen = new Pen(GetColor(identifier), width);
+					var (x, y) = calc.GetMousePointInCenter(cell);
+
+					// Draw line.
+					foreach (var (p1, p2) in type switch
+					{
+						AdjacentCellType.Rowish => new (PointF, PointF)[] { (new(x - cw / 2, y), new(x + cw / 2, y)) },
+						AdjacentCellType.Columnish => new (PointF, PointF)[] { (new(x, y - ch / 2), new(x, y + ch / 2)) },
+						AdjacentCellType.Rowish | AdjacentCellType.Columnish => new (PointF, PointF)[]
+						{
+							(new(x - cw / 2, y), new(x + cw / 2, y)),
+							(new(x, y - ch / 2), new(x, y + ch / 2))
+						}
+					})
+					{
+						g.DrawLine(pen, p1, p2);
+					}
+
+					break;
+				}
+				case
+				{
+					This.Preferences.CellCornerArrowWidth: var width,
+					Node: CellCornerArrowViewNode { Identifier: var identifier, Cell: var cell, Directions: var directions }
+				}:
+				{
+					using var brush = new SolidBrush(GetColor(identifier));
+
+					var center = calc.GetMousePointInCenter(cell);
+					var (centerX, centerY) = center;
+					var (x, y) = new PointF(centerX, centerY - ch / 2 + Tan(PI / 3) / 2 * width);
+					var p1 = new PointF(x - width / 2, y);
+					var p2 = new PointF(x + width / 2, y);
+					var p3 = new PointF(x, centerY - ch / 2);
+
+					foreach (var direction in directions.GetAllFlagsDistinct()!)
+					{
+						using var path = new GraphicsPath();
+						path.AddLine(p1, p2);
+						path.AddLine(p2, p3);
+						path.AddLine(p3, p1);
+
+						// Rotating.
+						var oldMatrix = g.Transform;
+						using var newMatrix = g.Transform.Clone();
+						newMatrix.RotateAt(direction.GetRotatingAngle(), center);
+
+						g.Transform = newMatrix;
+						g.FillPath(brush, path);
+						g.Transform = oldMatrix;
+					}
+
+					break;
+				}
+				case
+				{
+					This.Preferences.EmbeddedSkyscraperArrowFont: var fontData,
+					Node: EmbeddedSkyscraperArrowViewNode { Identifier: var identifier, Cell: var cell, Directions: var directions }
+				}:
+				{
+					const string left = "\u2190", up = "\u2191", right = "\u2192", down = "\u2193";
+
+					using var font = fontData.CreateFont();
+					using var brush = new SolidBrush(GetColor(identifier));
+
+					var (centerX, centerY) = calc.GetMousePointInCenter(cell);
+					foreach (var direction in directions.GetAllFlagsDistinct()!)
+					{
+						var finalText = direction switch { Direction.Up => up, Direction.Down => down, Direction.Left => left, Direction.Right => right };
+						var (tw, th) = g.MeasureString(finalText, font);
+						var textCenter = direction switch
+						{
+							Direction.Up => new PointF(centerX, centerY - ch / 2 + th / 2),
+							Direction.Down => new PointF(centerX, centerY + ch / 2 - th / 2),
+							Direction.Left => new PointF(centerX - cw / 2 + tw / 2, centerY),
+							Direction.Right => new PointF(centerX + cw / 2 - tw / 2, centerY)
+						};
+
+						g.DrawString(finalText, font, brush, textCenter, StringLocating);
+					}
+
+					break;
+				}
 			}
 		}
 	}

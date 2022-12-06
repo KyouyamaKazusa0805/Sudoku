@@ -56,6 +56,21 @@ public static unsafe class EnumExtensions
 	}
 
 	/// <summary>
+	/// <para><inheritdoc cref="GetAllFlags{T}(T)" path="/summary"/></para>
+	/// <para>
+	/// Different with method <see cref="GetAllFlags{T}(T)"/>, this method is used when an enumeration type <typeparamref name="T"/>
+	/// contains duplicated values naming differently.
+	/// </para>
+	/// </summary>
+	/// <typeparam name="T"><inheritdoc cref="GetAllFlags{T}(T)" path="/typeparam[@name='T']"/></typeparam>
+	/// <param name="this"><inheritdoc cref="GetAllFlags{T}(T)" path="/param[@name='this']"/></param>
+	/// <returns><inheritdoc cref="GetAllFlags{T}(T)" path="/returns"/></returns>
+	/// <seealso cref="GetAllFlags{T}(T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static T[]? GetAllFlagsDistinct<T>(this T @this) where T : unmanaged, Enum
+		=> @this.GetAllFlags()?.DistinctBy(static self => self).ToArray();
+
+	/// <summary>
 	/// Determines whether one or more bit fields are set in the current instance.
 	/// </summary>
 	/// <typeparam name="T">The type of the enumeration.</typeparam>

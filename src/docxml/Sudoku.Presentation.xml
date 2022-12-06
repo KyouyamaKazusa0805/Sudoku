@@ -2372,104 +2372,14 @@
             Indicates the unknown nodes that the current data type stores.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.View.BorderBarNodes">
-            <summary>
-            Indicates the border bar nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.KropkiDotNodes">
-            <summary>
-            Indicates the Kropki dot nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.GreaterThanNodes">
-            <summary>
-            Indicates the greater-than sign nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.XvNodes">
-            <summary>
-            Indicates the XV sign nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.NumberLabelNodes">
-            <summary>
-            Indicates number label nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.BattenburgNodes">
-            <summary>
-            Indicates battenburg nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.QuadrupleHintNodes">
-            <summary>
-            Indicates quadruple hint nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.ClockfaceDotNodes">
-            <summary>
-            Indicates clockface dot nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.NeighborNodes">
-            <summary>
-            Indicates neighbor nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.WheelNodes">
-            <summary>
-            Indicates wheel nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.PencilMarkNodes">
-            <summary>
-            Indicates pencilmark nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.TriangleSumNodes">
-            <summary>
-            Indicates triangle sum nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.StarProductStarNodes">
-            <summary>
-            Indicates star product star nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.CellArrowNodes">
-            <summary>
-            Indicates cell arrow nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.QuadrupleMaxArrowNodes">
-            <summary>
-            Indicates quadruple max arrow nodes that the current data type stores.
-            </summary>
-        </member>
         <member name="P:Sudoku.Presentation.View.FigureNodes">
             <summary>
             Indicates figure nodes that the current data type stores.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.View.CellCornerTriangleNodes">
+        <member name="P:Sudoku.Presentation.View.ShapeViewNodes">
             <summary>
-            Indicates cell corner triangle nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.AverageBarNodes">
-            <summary>
-            Indicates average bar nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.CellCornerArrowNodes">
-            <summary>
-            Indicates cell corner arrow nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.EmbeddedSkyscraperArrowNodes">
-            <summary>
-            Indicates embedded skyscraper arrow nodes that the current data type stores.
+            Indicates the shape view nodes.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Empty">

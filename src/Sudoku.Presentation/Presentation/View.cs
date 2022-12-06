@@ -59,106 +59,16 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public IEnumerable<BabaGroupViewNode> UnknownNodes => _nodes.OfType<BabaGroupViewNode>();
 
-#if ENHANCED_DRAWING_APIS
-	/// <summary>
-	/// Indicates the border bar nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<BorderBarViewNode> BorderBarNodes => _nodes.OfType<BorderBarViewNode>();
-
-	/// <summary>
-	/// Indicates the Kropki dot nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<KropkiDotViewNode> KropkiDotNodes => _nodes.OfType<KropkiDotViewNode>();
-
-	/// <summary>
-	/// Indicates the greater-than sign nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<GreaterThanSignViewNode> GreaterThanNodes => _nodes.OfType<GreaterThanSignViewNode>();
-
-	/// <summary>
-	/// Indicates the XV sign nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<XvSignViewNode> XvNodes => _nodes.OfType<XvSignViewNode>();
-
-	/// <summary>
-	/// Indicates number label nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<NumberLabelViewNode> NumberLabelNodes => _nodes.OfType<NumberLabelViewNode>();
-
-	/// <summary>
-	/// Indicates battenburg nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<BattenburgViewNode> BattenburgNodes => _nodes.OfType<BattenburgViewNode>();
-
-	/// <summary>
-	/// Indicates quadruple hint nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<QuadrupleHintViewNode> QuadrupleHintNodes => _nodes.OfType<QuadrupleHintViewNode>();
-
-	/// <summary>
-	/// Indicates clockface dot nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<ClockfaceDotViewNode> ClockfaceDotNodes => _nodes.OfType<ClockfaceDotViewNode>();
-
-	/// <summary>
-	/// Indicates neighbor nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<NeighborSignViewNode> NeighborNodes => _nodes.OfType<NeighborSignViewNode>();
-
-	/// <summary>
-	/// Indicates wheel nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<WheelViewNode> WheelNodes => _nodes.OfType<WheelViewNode>();
-
-	/// <summary>
-	/// Indicates pencilmark nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<PencilMarkViewNode> PencilMarkNodes => _nodes.OfType<PencilMarkViewNode>();
-
-	/// <summary>
-	/// Indicates triangle sum nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<TriangleSumViewNode> TriangleSumNodes => _nodes.OfType<TriangleSumViewNode>();
-
-	/// <summary>
-	/// Indicates star product star nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<StarProductStarViewNode> StarProductStarNodes => _nodes.OfType<StarProductStarViewNode>();
-
-	/// <summary>
-	/// Indicates cell arrow nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<CellArrowViewNode> CellArrowNodes => _nodes.OfType<CellArrowViewNode>();
-
-	/// <summary>
-	/// Indicates quadruple max arrow nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<QuadrupleMaxArrowViewNode> QuadrupleMaxArrowNodes => _nodes.OfType<QuadrupleMaxArrowViewNode>();
-
 	/// <summary>
 	/// Indicates figure nodes that the current data type stores.
 	/// </summary>
 	public IEnumerable<FigureViewNode> FigureNodes => _nodes.OfType<FigureViewNode>();
 
+#if ENHANCED_DRAWING_APIS
 	/// <summary>
-	/// Indicates cell corner triangle nodes that the current data type stores.
+	/// Indicates the shape view nodes.
 	/// </summary>
-	public IEnumerable<CellCornerTriangleViewNode> CellCornerTriangleNodes => _nodes.OfType<CellCornerTriangleViewNode>();
-
-	/// <summary>
-	/// Indicates average bar nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<AverageBarViewNode> AverageBarNodes => _nodes.OfType<AverageBarViewNode>();
-
-	/// <summary>
-	/// Indicates cell corner arrow nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<CellCornerArrowViewNode> CellCornerArrowNodes => _nodes.OfType<CellCornerArrowViewNode>();
-
-	/// <summary>
-	/// Indicates embedded skyscraper arrow nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<EmbeddedSkyscraperArrowViewNode> EmbeddedSkyscraperArrowNodes => _nodes.OfType<EmbeddedSkyscraperArrowViewNode>();
+	public IEnumerable<ShapeViewNode> ShapeViewNodes => _nodes.OfType<ShapeViewNode>();
 #endif
 
 
