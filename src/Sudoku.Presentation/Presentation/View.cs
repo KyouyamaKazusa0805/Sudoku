@@ -69,6 +69,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// Indicates the shape view nodes.
 	/// </summary>
 	public IEnumerable<ShapeViewNode> ShapeViewNodes => _nodes.OfType<ShapeViewNode>();
+
+	/// <summary>
+	/// Indicates the grouped view nodes.
+	/// </summary>
+	public IEnumerable<GroupedViewNode> GroupedViewNodes => _nodes.OfType<GroupedViewNode>();
 #endif
 
 

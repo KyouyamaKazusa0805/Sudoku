@@ -228,6 +228,7 @@ public sealed partial class GridImageGenerator
 	partial void DrawUnknownValue(Graphics g);
 	partial void DrawFigure(Graphics g);
 	partial void DrawShapeNodes(Graphics g);
+	partial void DrawGroupedNodes(Graphics g);
 }
 
 partial class GridImageGenerator
@@ -346,6 +347,7 @@ partial class GridImageGenerator
 		DrawFigure(g);
 
 		DrawShapeNodes(g);
+		DrawGroupedNodes(g);
 	}
 
 	/// <summary>
@@ -1061,13 +1063,17 @@ partial class GridImageGenerator
 	[Conditional("ENHANCED_DRAWING_APIS")]
 	partial void DrawShapeNodes(Graphics g)
 	{
-		if (this is not { View.ShapeViewNodes: var shapeViewNodes, Calculator: { CellSize: var (cw, ch) } calc })
+		if (this is not { View.ShapeViewNodes: var nodes, Calculator: { CellSize: var (cw, ch) } calc })
 		{
 			return;
 		}
 
-		foreach (var node in shapeViewNodes)
+		foreach (var node in nodes)
 		{
+			/// <b>Author Notes</b>
+			///
+			/// Here I just use property patterns instead of positional pattern because VS formatter
+			/// is not friendly with multi-line positional patterns with property patterns nested in it.
 			switch (This: this, Node: node)
 			{
 				case
@@ -1571,6 +1577,35 @@ partial class GridImageGenerator
 
 						g.DrawString(finalText, font, brush, textCenter, StringLocating);
 					}
+
+					break;
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Draw <see cref="GroupedViewNode"/> instances.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	[Conditional("ENHANCED_DRAWING_APIS")]
+	partial void DrawGroupedNodes(Graphics g)
+	{
+		if (this is not { View.GroupedViewNodes: var nodes, Calculator: { CellSize: var cs, GridSize: var gs } calc })
+		{
+			return;
+		}
+
+		foreach (var node in nodes)
+		{
+			switch (This: this, Node: node)
+			{
+				case { This.Preferences.DiagonalLinesWidth: var width, Node: DiagonalLinesViewNode { Identifier: var identifier } }:
+				{
+					using var pen = new Pen(GetColor(identifier), width);
+
+					var rect = new RectangleF(calc.GetMousePointInCenter(0) - cs, gs);
+					g.DrawCrossSign(pen, rect);
 
 					break;
 				}

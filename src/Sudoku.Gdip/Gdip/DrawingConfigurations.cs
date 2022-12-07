@@ -66,6 +66,11 @@ public sealed class DrawingConfigurations
 	public float WheelWidth { get; set; } = 6F;
 
 	/// <summary>
+	/// Indicates the width of diagonal lines.
+	/// </summary>
+	public float DiagonalLinesWidth { get; set; } = 6F;
+
+	/// <summary>
 	/// Indicates the size of Kropki dots.
 	/// </summary>
 	public float KropkiDotSize { get; set; } = 6F;

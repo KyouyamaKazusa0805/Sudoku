@@ -17,6 +17,7 @@ global using Sudoku.Drawing.TextRendering;
 global using Sudoku.Gdip;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
+global using Sudoku.Presentation.Nodes.Grouped;
 global using Sudoku.Presentation.Nodes.Shapes;
 global using Sudoku.Solving;
 global using static System.MathF;

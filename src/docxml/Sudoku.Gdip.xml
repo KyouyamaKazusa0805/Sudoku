@@ -368,6 +368,11 @@
             Indicates the width of wheel.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.DiagonalLinesWidth">
+            <summary>
+            Indicates the width of diagonal lines.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotSize">
             <summary>
             Indicates the size of Kropki dots.
@@ -896,6 +901,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawShapeNodes(System.Drawing.Graphics)">
             <summary>
             Draw <see cref="T:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode"/> instances.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGroupedNodes(System.Drawing.Graphics)">
+            <summary>
+            Draw <see cref="T:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode"/> instances.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
