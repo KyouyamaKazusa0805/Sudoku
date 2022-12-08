@@ -1609,6 +1609,24 @@ partial class GridImageGenerator
 
 					break;
 				}
+				case
+				{
+					This.Preferences: { CapsulePadding: var padding, CapsuleWidth: var width },
+					Node: CapsuleViewNode(var head, _) { Identifier: var identifier, AdjacentType: var adjacentType }
+				}:
+				{
+					var nextCell = head + adjacentType switch { AdjacentCellType.Rowish => 1, AdjacentCellType.Columnish => 9 };
+					var paddingSize = new SizeF(padding, padding);
+					var topLeft = calc.GetMousePointInCenter(head) - cs / 2 + paddingSize;
+					var bottomRight = calc.GetMousePointInCenter(nextCell) + cs / 2 - paddingSize;
+					var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+
+					using var pen = new Pen(GetColor(identifier), width);
+
+					g.DrawCapsule(pen, rect);
+
+					break;
+				}
 			}
 		}
 	}

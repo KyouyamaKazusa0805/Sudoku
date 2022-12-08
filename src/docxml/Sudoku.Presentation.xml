@@ -1277,6 +1277,36 @@
         <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode">
+            <summary>
+            Defines a capsule view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.AdjacentCellType)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="headCell">The head cells.</param>
+            <param name="adjacentType">The adjacent cells type.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.AdjacentType">
+            <summary>
+            Indicates the adjacent cell type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode">
             <summary>
             Defines a diagonal line pair view node. The node can only contain one in a <see cref="T:Sudoku.Presentation.View"/> because it is special.

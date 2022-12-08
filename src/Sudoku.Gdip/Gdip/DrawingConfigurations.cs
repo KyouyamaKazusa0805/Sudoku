@@ -106,6 +106,11 @@ public sealed class DrawingConfigurations
 	public float CellCornerArrowWidth { get; set; } = 6F;
 
 	/// <summary>
+	/// Indicates the width of capsules.
+	/// </summary>
+	public float CapsuleWidth { get; set; } = 6F;
+
+	/// <summary>
 	/// Indicates the padding of neighbor signs.
 	/// </summary>
 	public float NeighborSignCellPadding { get; set; } = 5F;
@@ -124,6 +129,11 @@ public sealed class DrawingConfigurations
 	/// Indicates the padding of cell corner triangles.
 	/// </summary>
 	public float CellCornerTriangleCellPadding { get; set; } = 5F;
+
+	/// <summary>
+	/// Indicates the padding of capsules.
+	/// </summary>
+	public float CapsulePadding { get; set; } = 5F;
 
 	/// <summary>
 	/// Indicates the font of given digits to render.

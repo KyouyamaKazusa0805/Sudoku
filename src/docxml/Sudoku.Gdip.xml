@@ -408,6 +408,11 @@
             Indicates the width of cell corner arrows.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CapsuleWidth">
+            <summary>
+            Indicates the width of capsules.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignCellPadding">
             <summary>
             Indicates the padding of neighbor signs.
@@ -426,6 +431,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.CellCornerTriangleCellPadding">
             <summary>
             Indicates the padding of cell corner triangles.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.CapsulePadding">
+            <summary>
+            Indicates the padding of capsules.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
