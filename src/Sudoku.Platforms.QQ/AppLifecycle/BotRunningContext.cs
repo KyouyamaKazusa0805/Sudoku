@@ -20,4 +20,15 @@ internal sealed class BotRunningContext
 
 	/// <inheritdoc cref="AppLifecycle.DrawingContext"/>
 	public DrawingContext DrawingContext { get; set; } = new();
+
+
+	/// <summary>
+	/// Try to fetch <see cref="BotRunningContext"/> instance of the specified group.
+	/// </summary>
+	/// <param name="group">The group.</param>
+	/// <returns>The <see cref="BotRunningContext"/> result if found.</returns>
+	public static BotRunningContext? GetContext(string group) => RunningContexts.TryGetValue(group, out var result) ? result : null;
+
+	/// <inheritdoc cref="GetContext(string)"/>
+	public static BotRunningContext? GetContext(Group group) => GetContext(group.Id);
 }
