@@ -105,7 +105,7 @@ public sealed class PointCalculator
 	/// <param name="point">The mouse point.</param>
 	/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetCell(scoped in PointF point)
+	public int GetCell(PointF point)
 	{
 		var (x, y) = point with { X = point.X - Offset, Y = point.Y - Offset };
 		if (x < 0 || x > GridSize.Width || y < 0 || y > GridSize.Height)
@@ -129,7 +129,7 @@ public sealed class PointCalculator
 	/// <param name="point">The mouse point.</param>
 	/// <returns>The candidate offset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetCandidate(scoped in PointF point)
+	public int GetCandidate(PointF point)
 	{
 		var ((x, y), (cw, ch)) = (point, CandidateSize);
 		var (a, b) = ((int)((y - Offset) / ch), (int)((x - Offset) / cw));

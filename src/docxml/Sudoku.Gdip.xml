@@ -1100,14 +1100,14 @@
             </summary>
             <remarks>Note that the size of this 2D array is always 28 by 28.</remarks>
         </member>
-        <member name="M:Sudoku.Gdip.PointCalculator.GetCell(System.Drawing.PointF@)">
+        <member name="M:Sudoku.Gdip.PointCalculator.GetCell(System.Drawing.PointF)">
             <summary>
             Get the focus cell offset via a mouse point.
             </summary>
             <param name="point">The mouse point.</param>
             <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.PointCalculator.GetCandidate(System.Drawing.PointF@)">
+        <member name="M:Sudoku.Gdip.PointCalculator.GetCandidate(System.Drawing.PointF)">
             <summary>
             Get the focus candidate offset via a mouse point.
             </summary>
