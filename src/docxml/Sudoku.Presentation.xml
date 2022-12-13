@@ -1398,6 +1398,36 @@
         <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode">
+            <summary>
+            Defines an oblique line view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="firstCell">The first cell.</param>
+            <param name="lastCell">The last cell.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.TailCell">
+            <summary>
+            Indicates the last cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.HeartViewNode">
             <summary>
             Defines a heart view node.

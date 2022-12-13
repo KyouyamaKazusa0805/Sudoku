@@ -413,6 +413,11 @@
             Indicates the width of capsules.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.ObliqueLineWidth">
+            <summary>
+            Indicates the width of oblique lines.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignCellPadding">
             <summary>
             Indicates the padding of neighbor signs.

@@ -111,6 +111,11 @@ public sealed class DrawingConfigurations
 	public float CapsuleWidth { get; set; } = 6F;
 
 	/// <summary>
+	/// Indicates the width of oblique lines.
+	/// </summary>
+	public float ObliqueLineWidth { get; set; } = 6F;
+
+	/// <summary>
 	/// Indicates the padding of neighbor signs.
 	/// </summary>
 	public float NeighborSignCellPadding { get; set; } = 5F;
