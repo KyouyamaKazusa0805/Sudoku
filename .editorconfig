@@ -480,6 +480,9 @@ dotnet_diagnostic.CS8848.severity = none
 # CS8907: Parameter is unread. Did you forget to use it to initialize the property with that name?
 dotnet_diagnostic.CS8907.severity = error
 
+# CS9084: Struct member returns 'this' or other instance members by reference
+dotnet_diagnostic.CS9084.severity = error
+
 
 # IDE0001: Simplify Names
 dotnet_diagnostic.IDE0001.severity = suggestion

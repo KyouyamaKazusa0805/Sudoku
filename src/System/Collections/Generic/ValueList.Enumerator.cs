@@ -7,6 +7,18 @@ partial struct ValueList<T>
 		/// <summary>
 		/// Indicates the inner pointer.
 		/// </summary>
+		/// <remarks>
+		/// <para><i>
+		/// Due to the C# implementation, feature "<see href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/declarations#scoped-ref"><b><see langword="ref"/> fields</b></see>"
+		/// does not support for native memory,
+		/// which means you cannot define a reference-based field that reference to native memory.
+		/// Therefore, here we can only use bare pointers to describe the internal data. <b>Do not change this field.</b>
+		/// </i></para>
+		/// <para><i>
+		/// C# 11 does not support "<see href="https://github.com/dotnet/roslyn/issues/62243"><b><see langword="ref"/> to <see langword="ref struct"/></b></see>"
+		/// neither.
+		/// </i></para>
+		/// </remarks>
 		private readonly unsafe ValueList<T>* _ptr;
 
 		/// <summary>

@@ -252,7 +252,7 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 		/// <param name="ptr">The pointer that points to the list.</param>
 		[FileAccessOnly]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Enumerator(in ValueList<T> ptr)
+		internal Enumerator(scoped in ValueList<T> ptr)
 		{
 			fixed (ValueList<T>* p = &ptr)
 			{
