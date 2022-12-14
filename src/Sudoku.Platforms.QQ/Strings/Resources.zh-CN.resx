@@ -333,6 +333,12 @@
   <data name="_MessageFormat_PermissionRequired" xml:space="preserve">
     <value>该功能需要更高权限者使用~</value>
   </data>
+  <data name="_MessageFormat_PingFailed" xml:space="preserve">
+    <value>测试连接失败。</value>
+  </data>
+  <data name="_MessageFormat_PingSuccess" xml:space="preserve">
+    <value>测试连接成功。耗时 {0} 毫秒。</value>
+  </data>
   <data name="_MessageFormat_RankingListIsEmpty" xml:space="preserve">
     <value>用户尚未加入进来~ 排名里没有人~</value>
   </data>

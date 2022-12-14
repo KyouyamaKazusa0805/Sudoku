@@ -45,6 +45,16 @@
         <member name="P:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.DrawingContext">
             <inheritdoc cref="T:Sudoku.Platforms.QQ.AppLifecycle.DrawingContext"/>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.GetContext(System.String)">
+            <summary>
+            Try to fetch <see cref="T:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext"/> instance of the specified group.
+            </summary>
+            <param name="group">The group.</param>
+            <returns>The <see cref="T:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext"/> result if found.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.GetContext(Mirai.Net.Data.Shared.Group)">
+            <inheritdoc cref="M:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.GetContext(System.String)"/>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.AppLifecycle.DrawingContext">
             <summary>
             The drawing context.
@@ -457,6 +467,23 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Commands.LookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.PingCommand">
+            <summary>
+            Defines a ping command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.PingCommand.Prefixes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.PingCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.PingCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.PingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.RankingCommand">

@@ -6,6 +6,7 @@ global using System.Diagnostics.CodeGen;
 global using System.Drawing;
 global using System.IO;
 global using System.Linq;
+global using System.Net.NetworkInformation;
 global using System.Reactive.Linq;
 global using System.Reflection;
 global using System.Resources;
