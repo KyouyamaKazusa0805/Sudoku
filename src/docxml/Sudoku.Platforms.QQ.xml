@@ -606,12 +606,6 @@
             Indicates how many members will be displayed onto the ranking page. The more members to display, the longer the output text will be.
             </summary>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.CoverBy(Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations)">
-            <inheritdoc cref="M:System.Reflection.ReflectionCopying.ReflectionCover``1(``0,``0)"/>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.IO.InternalReadWrite">
             <summary>
             Represents a type that interacts with local files. All methods in this type are synchronized methods.
