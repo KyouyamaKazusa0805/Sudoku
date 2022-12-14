@@ -692,150 +692,136 @@ partial class GridImageGenerator
 
 		foreach (var node in nodes)
 		{
-			(
-				(This: this, Node: node) switch
+			_ = (This: this, Node: node) switch
+			{
+				// Consecutive bar
 				{
-					// Consecutive bar
-					{
-						This.Preferences: { BorderBarWidth: var barWidth, BorderBarFullyOverlapsGridLine: var fullyOverlapping },
-						Node: BorderBarViewNode(var c1, var c2) { Identifier: var identifier }
-					} => () => DrawBorderBar(identifier, barWidth, calc, c1, c2, fullyOverlapping, g),
+					This.Preferences: { BorderBarWidth: var barWidth, BorderBarFullyOverlapsGridLine: var fullyOverlapping },
+					Node: BorderBarViewNode(var c1, var c2) { Identifier: var identifier }
+				} => DrawBorderBar(identifier, barWidth, calc, c1, c2, fullyOverlapping, g),
 
-					// Kropki dot
-					{
-						This.Preferences:
-						{
-							KropkiDotBorderWidth: var borderWidth,
-							KropkiDotSize: var dotSize,
-							BackgroundColor: var backColor
-						},
-						Node: KropkiDotViewNode(var c1, var c2) { Identifier: var identifier, IsSolid: var isSolid }
-					} => () => DrawKropkiDot(identifier, backColor, borderWidth, calc, c1, c2, dotSize, isSolid, g),
+				// Kropki dot
+				{
+					This.Preferences: { KropkiDotBorderWidth: var borderWidth, KropkiDotSize: var dotSize, BackgroundColor: var backColor },
+					Node: KropkiDotViewNode(var c1, var c2) { Identifier: var identifier, IsSolid: var isSolid }
+				} => DrawKropkiDot(identifier, backColor, borderWidth, calc, c1, c2, dotSize, isSolid, g),
 
-					// Greater-than sign
+				// Greater-than sign
+				{
+					This.Preferences: { GreaterThanSignFont: var fontData, BackgroundColor: var backColor },
+					Node: GreaterThanSignViewNode(var c1, var c2, var isRow)
 					{
-						This.Preferences: { GreaterThanSignFont: var fontData, BackgroundColor: var backColor },
-						Node: GreaterThanSignViewNode(var c1, var c2, var isRow)
-						{
-							Identifier: var identifier,
-							IsGreaterThan: var isGreaterThan
-						}
-					} => () => DrawGreaterThanSign(fontData, backColor, identifier, isGreaterThan, calc, c1, c2, isRow, g),
+						Identifier: var identifier,
+						IsGreaterThan: var isGreaterThan
+					}
+				} => DrawGreaterThanSign(fontData, backColor, identifier, isGreaterThan, calc, c1, c2, isRow, g),
 
-					// XV sign
+				// XV sign
+				{
+					This.Preferences: { XvSignFont: var fontData, BackgroundColor: var backColor },
+					Node: XvSignViewNode(var c1, var c2) { Identifier: var identifier, IsX: var isX }
+				} => DrawXvSign(fontData, backColor, identifier, isX, calc, c1, c2, g),
+
+				// Number label
+				{
+					This.Preferences: { NumberLabelFont: var fontData, BackgroundColor: var backColor },
+					Node: NumberLabelViewNode(var c1, var c2) { Identifier: var identifier, Label: var label }
+				} => DrawNumberLabel(fontData, backColor, identifier, calc, c1, c2, g, label),
+
+				// Battenburg
+				{
+					This.Preferences.BattenburgSize: var battenburgSize,
+					Node: BattenburgViewNode { Identifier: var identifier, Cells: [.., var lastCell] }
+				} => DrawBattenburg(identifier, calc, lastCell, cellSize, battenburgSize, g),
+
+				// Quadruple hint
+				{
+					This.Preferences: { QuadrupleHintFont: var fontData, BackgroundColor: var backColor },
+					Node: QuadrupleHintViewNode { Identifier: var identifier, Cells: [.., var lastCell], Hint: var hint }
+				} => DrawQuadrupleHint(fontData, backColor, identifier, g, hint, calc, lastCell, cw, ch),
+
+				// Clockface dot
+				{
+					This.Preferences:
 					{
-						This.Preferences: { XvSignFont: var fontData, BackgroundColor: var backColor },
-						Node: XvSignViewNode(var c1, var c2) { Identifier: var identifier, IsX: var isX }
-					} => () => DrawXvSign(fontData, backColor, identifier, isX, calc, c1, c2, g),
+						ClockfaceDotSize: var dotSize,
+						ClockfaceDotBorderWidth: var borderWidth,
+						BackgroundColor: var backColor
+					},
+					Node: ClockfaceDotViewNode { Identifier: var identifier, Cells: [.., var lastCell], IsClockwise: var isClockwise }
+				} => DrawClockfaceDot(identifier, borderWidth, backColor, calc, lastCell, isClockwise, g, cw, ch, dotSize),
 
-					// Number label
+				// Neighbor sign
+				{
+					This.Preferences: { NeighborSignsWidth: var width, NeighborSignCellPadding: var padding },
+					Node: NeighborSignViewNode(var cell, _) { Identifier: var identifier, IsFourDirections: var isFourDirections }
+				} => DrawNeighborSign(identifier, width, calc, cell, cw, ch, padding, isFourDirections, g),
+
+				// Wheel
+				{
+					This.Preferences:
 					{
-						This.Preferences: { NumberLabelFont: var fontData, BackgroundColor: var backColor },
-						Node: NumberLabelViewNode(var c1, var c2) { Identifier: var identifier, Label: var label }
-					} => () => DrawNumberLabel(fontData, backColor, identifier, calc, c1, c2, g, label),
+						WheelFont: var fontData,
+						WheelWidth: var width,
+						WheelTextColor: var textColor,
+						BackgroundColor: var backColor
+					},
+					Node: WheelViewNode(var cell, _) { Identifier: var identifier, DigitString: var digitString }
+				} => DrawWheel(backColor, fontData, textColor, identifier, width, calc, cell, cw, ch, digitString, g),
 
-					// Battenburg
-					{
-						This.Preferences.BattenburgSize: var battenburgSize,
-						Node: BattenburgViewNode { Identifier: var identifier, Cells: [.., var lastCell] }
-					} => () => DrawBattenburg(identifier, calc, lastCell, cellSize, battenburgSize, g),
+				// Pencilmark
+				{
+					This.Preferences: { PencilmarkFont: var fontData, PencilmarkTextColor: var textColor },
+					Node: PencilMarkViewNode(var cell, _) { Notation: var notation }
+				} => DrawPencilmark(fontData, textColor, g, notation, calc, cell, ch),
 
-					// Quadruple hint
-					{
-						This.Preferences: { QuadrupleHintFont: var fontData, BackgroundColor: var backColor },
-						Node: QuadrupleHintViewNode { Identifier: var identifier, Cells: [.., var lastCell], Hint: var hint }
-					} => () => DrawQuadrupleHint(fontData, backColor, identifier, g, hint, calc, lastCell, cw, ch),
+				// Triangle sum
+				{
+					This.Preferences.TriangleSumCellPadding: var padding,
+					Node: TriangleSumViewNode(var cell, var directions) { Identifier: var identifier, IsComplement: var isComplement }
+				} => DrawTriangleSum(identifier, padding, cell, directions, isComplement, g, calc),
 
-					// Clockface dot
-					{
-						This.Preferences:
-						{
-							ClockfaceDotSize: var dotSize,
-							ClockfaceDotBorderWidth: var borderWidth,
-							BackgroundColor: var backColor
-						},
-						Node: ClockfaceDotViewNode { Identifier: var identifier, Cells: [.., var lastCell], IsClockwise: var isClockwise }
-					} => () => DrawClockfaceDot(identifier, borderWidth, backColor, calc, lastCell, isClockwise, g, cw, ch, dotSize),
+				// Star product star
+				{
+					This.Preferences.StarProductStarFont: var fontData,
+					Node: StarProductStarViewNode(var cell, var direction) { Identifier: var identifier }
+				} => DrawStarProductStar(fontData, identifier, g, calc, cell, direction, cw, ch),
 
-					// Neighbor sign
-					{
-						This.Preferences: { NeighborSignsWidth: var width, NeighborSignCellPadding: var padding },
-						Node: NeighborSignViewNode(var cell, _) { Identifier: var identifier, IsFourDirections: var isFourDirections }
-					} => () => DrawNeighborSign(identifier, width, calc, cell, cw, ch, padding, isFourDirections, g),
+				// Cell arrow
+				{
+					Node: CellArrowViewNode(var cell, var direction) { Identifier: var identifier }
+				} => DrawCellArrow(identifier, calc, cell, direction, cw, ch, g),
 
-					// Wheel
-					{
-						This.Preferences:
-						{
-							WheelFont: var fontData,
-							WheelWidth: var width,
-							WheelTextColor: var textColor,
-							BackgroundColor: var backColor
-						},
-						Node: WheelViewNode(var cell, _) { Identifier: var identifier, DigitString: var digitString }
-					} => () => DrawWheel(backColor, fontData, textColor, identifier, width, calc, cell, cw, ch, digitString, g),
+				// Quadruple max arrow
+				{
+					This.Preferences.QuadrupleMaxArrowSize: var size,
+					Node: QuadrupleMaxArrowViewNode { Cells: [.., var lastCell], Identifier: var identifier, ArrowDirection: var direction }
+				} => DrawQuadrupleMaxArrow(identifier, calc, lastCell, cw, ch, direction, g, size),
 
-					// Pencilmark
-					{
-						This.Preferences: { PencilmarkFont: var fontData, PencilmarkTextColor: var textColor },
-						Node: PencilMarkViewNode(var cell, _) { Notation: var notation }
-					} => () => DrawPencilmark(fontData, textColor, g, notation, calc, cell, ch),
+				// Cell-corner triangle
+				{
+					This.Preferences: { CellCornerTriangleSize: var size, CellCornerTriangleCellPadding: var padding },
+					Node: CellCornerTriangleViewNode { Identifier: var identifier, Cell: var cell, Directions: var direction }
+				} => DrawCellCornerTriangle(identifier, calc, cell, direction, cw, ch, padding, size, g),
 
-					// Triangle sum
-					{
-						This.Preferences.TriangleSumCellPadding: var padding,
-						Node: TriangleSumViewNode(var cell, var directions) { Identifier: var identifier, IsComplement: var isComplement }
-					} => () => DrawTriangleSum(identifier, padding, cell, directions, isComplement, g, calc),
+				// Average bar
+				{
+					This.Preferences.AverageBarWidth: var width,
+					Node: AverageBarViewNode { Identifier: var identifier, Cell: var cell, Type: var type }
+				} => DrawAverageBar(identifier, width, calc, cell, type, cw, ch, g),
 
-					// Star product star
-					{
-						This.Preferences.StarProductStarFont: var fontData,
-						Node: StarProductStarViewNode(var cell, var direction) { Identifier: var identifier }
-					} => () => DrawStarProductStar(fontData, identifier, g, calc, cell, direction, cw, ch),
+				// Cell-corner arrow
+				{
+					This.Preferences.CellCornerArrowWidth: var width,
+					Node: CellCornerArrowViewNode { Identifier: var identifier, Cell: var cell, Directions: var directions }
+				} => DrawCellCornerArrow(identifier, calc, cell, ch, width, directions, g),
 
-					// Cell arrow
-					{
-						Node: CellArrowViewNode(var cell, var direction) { Identifier: var identifier }
-					} => () => DrawCellArrow(identifier, calc, cell, direction, cw, ch, g),
-
-					// Quadruple max arrow
-					{
-						This.Preferences.QuadrupleMaxArrowSize: var size,
-						Node: QuadrupleMaxArrowViewNode
-						{
-							Cells: [.., var lastCell],
-							Identifier: var identifier,
-							ArrowDirection: var direction
-						}
-					} => () => DrawQuadrupleMaxArrow(identifier, calc, lastCell, cw, ch, direction, g, size),
-
-					// Cell-corner triangle
-					{
-						This.Preferences: { CellCornerTriangleSize: var size, CellCornerTriangleCellPadding: var padding },
-						Node: CellCornerTriangleViewNode { Identifier: var identifier, Cell: var cell, Directions: var direction }
-					} => () => DrawCellCornerTriangle(identifier, calc, cell, direction, cw, ch, padding, size, g),
-
-					// Average bar
-					{
-						This.Preferences.AverageBarWidth: var width,
-						Node: AverageBarViewNode { Identifier: var identifier, Cell: var cell, Type: var type }
-					} => () => DrawAverageBar(identifier, width, calc, cell, type, cw, ch, g),
-
-					// Cell-corner arrow
-					{
-						This.Preferences.CellCornerArrowWidth: var width,
-						Node: CellCornerArrowViewNode { Identifier: var identifier, Cell: var cell, Directions: var directions }
-					} => () => DrawCellCornerArrow(identifier, calc, cell, ch, width, directions, g),
-
-					// Embedded skyscraper arrow
-					{
-						This.Preferences.EmbeddedSkyscraperArrowFont: var fontData,
-						Node: EmbeddedSkyscraperArrowViewNode { Identifier: var identifier, Cell: var cell, Directions: var directions }
-					} => () => DrawEmbeddedSkyscraperArrow(fontData, identifier, calc, cell, directions, g, cw, ch),
-
-					_ => default(Action?)!
-				}
-			)();
+				// Embedded skyscraper arrow
+				{
+					This.Preferences.EmbeddedSkyscraperArrowFont: var fontData,
+					Node: EmbeddedSkyscraperArrowViewNode { Identifier: var identifier, Cell: var cell, Directions: var directions }
+				} => DrawEmbeddedSkyscraperArrow(fontData, identifier, calc, cell, directions, g, cw, ch)
+			};
 		}
 	}
 
@@ -853,30 +839,26 @@ partial class GridImageGenerator
 
 		foreach (var node in nodes)
 		{
-			(
-				(This: this, Node: node) switch
+			_ = (This: this, Node: node) switch
+			{
+				// Diagonal lines
 				{
-					// Diagonal lines
-					{
-						This.Preferences.DiagonalLinesWidth: var width,
-						Node: DiagonalLinesViewNode { Identifier: var identifier }
-					} => () => DrawDiagonalLines(identifier, width, calc, cs, gs, g),
+					This.Preferences.DiagonalLinesWidth: var width,
+					Node: DiagonalLinesViewNode { Identifier: var identifier }
+				} => DrawDiagonalLines(identifier, width, calc, cs, gs, g),
 
-					// Capsule
-					{
-						This.Preferences: { CapsulePadding: var padding, CapsuleWidth: var width },
-						Node: CapsuleViewNode(var head, _) { Identifier: var identifier, AdjacentType: var adjacentType }
-					} => () => DrawCapsule(head, adjacentType, padding, calc, cs, identifier, width, g),
+				// Capsule
+				{
+					This.Preferences: { CapsulePadding: var padding, CapsuleWidth: var width },
+					Node: CapsuleViewNode(var head, _) { Identifier: var identifier, AdjacentType: var adjacentType }
+				} => DrawCapsule(head, adjacentType, padding, calc, cs, identifier, width, g),
 
-					// Oblique line
-					{
-						This.Preferences.ObliqueLineWidth: var width,
-						Node: ObliqueLineViewNode(var head, _) { Identifier: var identifier, TailCell: var tail }
-					} => () => DrawObliqueLine(),
-
-					_ => default(Action?)!
-				}
-			)();
+				// Oblique line
+				{
+					This.Preferences.ObliqueLineWidth: var width,
+					Node: ObliqueLineViewNode(var head, _) { Identifier: var identifier, TailCell: var tail }
+				} => DrawObliqueLine()
+			};
 		}
 	}
 }

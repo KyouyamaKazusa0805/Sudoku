@@ -2,7 +2,7 @@
 
 partial class GridImageGenerator
 {
-	private void DrawDiagonalLines(
+	private bool DrawDiagonalLines(
 		Identifier identifier,
 		float width,
 		PointCalculator calc,
@@ -15,9 +15,11 @@ partial class GridImageGenerator
 
 		var rect = new RectangleF(calc.GetMousePointInCenter(0) - cs, gs);
 		g.DrawCrossSign(pen, rect);
+
+		return true;
 	}
 
-	private void DrawCapsule(
+	private bool DrawCapsule(
 		int head,
 		AdjacentCellType adjacentType,
 		float padding,
@@ -37,9 +39,11 @@ partial class GridImageGenerator
 		using var pen = new Pen(GetColor(identifier), width);
 
 		g.DrawCapsule(pen, rect);
+
+		return true;
 	}
 
-	private void DrawObliqueLine()
+	private bool DrawObliqueLine()
 	{
 #if true
 		throw new NotImplementedException();
@@ -50,7 +54,7 @@ partial class GridImageGenerator
 
 		using var pen = new Pen(GetColor(identifier), width);
 
-		break;
+		return true;
 #endif
 	}
 }

@@ -2,7 +2,7 @@
 
 partial class GridImageGenerator
 {
-	private void DrawBorderBar(
+	private bool DrawBorderBar(
 		Identifier identifier,
 		float barWidth,
 		PointCalculator calc,
@@ -18,9 +18,11 @@ partial class GridImageGenerator
 		// Draw bars.
 		var (start, end) = calc.GetSharedLinePosition(c1, c2, fullyOverlapping);
 		g.DrawLine(pen, start, end);
+
+		return true;
 	}
 
-	private void DrawKropkiDot(
+	private bool DrawKropkiDot(
 		Identifier identifier,
 		Color backColor,
 		float borderWidth,
@@ -44,9 +46,11 @@ partial class GridImageGenerator
 		/// starts with the point at top-left position, rather than the center.
 		g.DrawEllipse(pen, rect);
 		g.FillEllipse(isSolid ? solidBrush : hollowBrush, rect);
+
+		return true;
 	}
 
-	private void DrawGreaterThanSign(
+	private bool DrawGreaterThanSign(
 		FontData fontData,
 		Color backColor,
 		Identifier identifier,
@@ -95,9 +99,11 @@ partial class GridImageGenerator
 
 			g.Transform = matrixOriginal;
 		}
+
+		return true;
 	}
 
-	private void DrawXvSign(
+	private bool DrawXvSign(
 		FontData fontData,
 		Color backColor,
 		Identifier identifier,
@@ -120,9 +126,11 @@ partial class GridImageGenerator
 
 		g.FillRectangle(backBrush, pointX, pointY, tw, th);
 		g.DrawString(text, font, brush, centerPoint, StringLocating);
+
+		return true;
 	}
 
-	private void DrawNumberLabel(
+	private bool DrawNumberLabel(
 		FontData fontData,
 		Color backColor,
 		Identifier identifier,
@@ -144,9 +152,11 @@ partial class GridImageGenerator
 
 		g.FillRectangle(backBrush, pointX, pointY, tw, th);
 		g.DrawString(label, font, brush, centerPoint, StringLocating);
+
+		return true;
 	}
 
-	private void DrawBattenburg(
+	private bool DrawBattenburg(
 		Identifier identifier,
 		PointCalculator calc,
 		int lastCell,
@@ -177,9 +187,11 @@ partial class GridImageGenerator
 				g.DrawRectangle(pen, x, y, battenburgSize / 2, battenburgSize / 2);
 			}
 		}
+
+		return true;
 	}
 
-	private void DrawQuadrupleHint(
+	private bool DrawQuadrupleHint(
 		FontData fontData,
 		Color backColor,
 		Identifier identifier,
@@ -199,9 +211,11 @@ partial class GridImageGenerator
 
 		g.FillRectangle(brush, x - cw / 2 - tw / 2, y - ch / 2 - th / 2, tw, th);
 		g.DrawString(hint, font, textColor, x - cw / 2, y - ch / 2, StringLocating);
+
+		return true;
 	}
 
-	private void DrawClockfaceDot(
+	private bool DrawClockfaceDot(
 		Identifier identifier,
 		float borderWidth,
 		Color backColor,
@@ -229,9 +243,11 @@ partial class GridImageGenerator
 			g.DrawEllipse(pen, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
 			g.FillEllipse(brush, x - cw / 2 - dotSize / 2, y - ch / 2 - dotSize / 2, dotSize, dotSize);
 		}
+
+		return true;
 	}
 
-	private void DrawNeighborSign(
+	private bool DrawNeighborSign(
 		Identifier identifier,
 		float width,
 		PointCalculator calc,
@@ -252,9 +268,11 @@ partial class GridImageGenerator
 		var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
 
 		((Action<Pen, RectangleF>)(isFourDirections ? g.DrawCrossSign : g.DrawEllipse))(pen, rect);
+
+		return true;
 	}
 
-	private void DrawWheel(
+	private bool DrawWheel(
 		Color backColor,
 		FontData fontData,
 		Color textColor,
@@ -298,9 +316,11 @@ partial class GridImageGenerator
 			g.FillRectangle(backBrush, new RectangleF(position - renderingSize / 2, renderingSize));
 			g.DrawString(renderingText, font, textBrush, position, StringLocating);
 		}
+
+		return true;
 	}
 
-	private void DrawPencilmark(
+	private bool DrawPencilmark(
 		FontData fontData,
 		Color textColor,
 		Graphics g,
@@ -319,9 +339,11 @@ partial class GridImageGenerator
 
 		// Draw text.
 		g.DrawString(notation, font, textBrush, position, StringLocating);
+
+		return true;
 	}
 
-	private void DrawTriangleSum(
+	private bool DrawTriangleSum(
 		Identifier identifier,
 		float padding,
 		int cell,
@@ -336,6 +358,8 @@ partial class GridImageGenerator
 
 		// Draw shape.
 		g.FillPath(brush, path);
+
+		return true;
 
 
 		GraphicsPath createPath(float padding, int cell, Direction directions, bool isComplement)
@@ -368,7 +392,7 @@ partial class GridImageGenerator
 		}
 	}
 
-	private void DrawStarProductStar(
+	private bool DrawStarProductStar(
 		FontData fontData,
 		Identifier identifier,
 		Graphics g,
@@ -399,9 +423,11 @@ partial class GridImageGenerator
 		};
 
 		g.DrawString(star, font, brush, point, StringLocating);
+
+		return true;
 	}
 
-	private void DrawCellArrow(
+	private bool DrawCellArrow(
 		Identifier identifier,
 		PointCalculator calc,
 		int cell,
@@ -417,9 +443,11 @@ partial class GridImageGenerator
 		var rotation = direction.GetRotatingAngle();
 
 		g.DrawHollowArrow(brush, center, cw / 4, cw / 2, ch / 2, rotation);
+
+		return true;
 	}
 
-	private void DrawQuadrupleMaxArrow(
+	private bool DrawQuadrupleMaxArrow(
 		Identifier identifier,
 		PointCalculator calc,
 		int lastCell,
@@ -436,9 +464,11 @@ partial class GridImageGenerator
 		var rotation = direction.GetRotatingAngle();
 
 		g.DrawHollowArrow(brush, point, size, size * 2, size * 2, rotation);
+
+		return true;
 	}
 
-	private void DrawCellCornerTriangle(
+	private bool DrawCellCornerTriangle(
 		Identifier identifier,
 		PointCalculator calc,
 		int cell,
@@ -486,9 +516,11 @@ partial class GridImageGenerator
 		path.AddLine(points[2], points[0]);
 
 		g.FillPath(brush, path);
+
+		return true;
 	}
 
-	private void DrawAverageBar(
+	private bool DrawAverageBar(
 		Identifier identifier,
 		float width,
 		PointCalculator calc,
@@ -516,9 +548,11 @@ partial class GridImageGenerator
 		{
 			g.DrawLine(pen, p1, p2);
 		}
+
+		return true;
 	}
 
-	private void DrawCellCornerArrow(
+	private bool DrawCellCornerArrow(
 		Identifier identifier,
 		PointCalculator calc,
 		int cell,
@@ -553,9 +587,11 @@ partial class GridImageGenerator
 			g.FillPath(brush, path);
 			g.Transform = oldMatrix;
 		}
+
+		return true;
 	}
 
-	private void DrawEmbeddedSkyscraperArrow(
+	private bool DrawEmbeddedSkyscraperArrow(
 		FontData fontData,
 		Identifier identifier,
 		PointCalculator calc,
@@ -586,5 +622,7 @@ partial class GridImageGenerator
 
 			g.DrawString(finalText, font, brush, textCenter, StringLocating);
 		}
+
+		return true;
 	}
 }
