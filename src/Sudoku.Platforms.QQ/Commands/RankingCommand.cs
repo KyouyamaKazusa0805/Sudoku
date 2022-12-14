@@ -43,7 +43,8 @@ file sealed class RankingCommand : Command
 			return true;
 		}
 
-		// If the number of members are too large, we should only iterate top 10 elements.
+		// If the number of members are too large, we should only iterate the specified number of elements from top.
+		var context = BotRunningContext.GetContext(group);
 		var usersData = (
 			from file in Directory.GetFiles(botUsersDataFolder, "*.json")
 			let ud = Deserialize<UserData>(File.ReadAllText(file))
@@ -54,7 +55,7 @@ file sealed class RankingCommand : Command
 			let numericQQ = int.TryParse(qq, out var result) ? result : 0
 			orderby ud.Score descending, numericQQ
 			select (Name: nickname, Data: ud)
-		).Take(10);
+		).Take(context?.Configuration.RankingDisplayUsersCount ?? 10);
 
 		var rankingStr = string.Join("\r\n", usersData.Select(selector));
 		await e.SendMessageAsync($"{R["_MessageFormat_RankingResult"]!}{"\r\n---\r\n"}{rankingStr}");

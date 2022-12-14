@@ -348,6 +348,9 @@
   <data name="_MessageFormat_ScoreAppending" xml:space="preserve">
     <value>恭喜群友 {0} 获得 {1} 积分！</value>
   </data>
+  <data name="_MessageFormat_SetConfigSuccess" xml:space="preserve">
+    <value>配置项设置成功。</value>
+  </data>
   <data name="_MessageFormat_UserScoreIs" xml:space="preserve">
     <value>用户 {0}（{2}）当前积分为 {1}。</value>
   </data>

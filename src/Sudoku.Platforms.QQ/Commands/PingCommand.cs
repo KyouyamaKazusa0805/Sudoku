@@ -7,7 +7,7 @@
 file sealed class PingCommand : Command
 {
 	/// <inheritdoc/>
-	public override string[] Prefixes => new[] { "#" };
+	public override string[] Prefixes => CommonCommandPrefixes.HashTag;
 
 	/// <inheritdoc/>
 	public override string CommandName => "ping";

@@ -45,6 +45,9 @@
         <member name="P:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.DrawingContext">
             <inheritdoc cref="T:Sudoku.Platforms.QQ.AppLifecycle.DrawingContext"/>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.Configuration">
+            <inheritdoc cref="T:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations"/>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.GetContext(System.String)">
             <summary>
             Try to fetch <see cref="T:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext"/> instance of the specified group.
@@ -243,6 +246,21 @@
         <member name="P:Sudoku.Platforms.QQ.Commands.CommandAttribute.AllowedPermissions">
             <summary>
             Indicates the permission.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.CommonCommandPrefixes">
+            <summary>
+            Extracts the prefix array provided, used by commands.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Commands.CommonCommandPrefixes.HashTag">
+            <summary>
+            The hashtag symbol.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Commands.CommonCommandPrefixes.Bang">
+            <summary>
+            The bang symbol.
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.ComplexLookupScoreCommand">
@@ -499,6 +517,30 @@
         </member>
         <member name="M:Sudoku.Platforms.QQ.Commands.RankingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.SetConfigCommand">
+            <summary>
+            Defines a set config command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.SetConfigCommand.Prefixes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.SetConfigCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.SetConfigCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.SetConfigCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.SetDigitCommand">
             <summary>

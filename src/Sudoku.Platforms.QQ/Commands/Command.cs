@@ -18,7 +18,7 @@ public abstract class Command
 	/// <summary>
 	/// Indicates the prefix.
 	/// </summary>
-	public virtual string[] Prefixes { get; } = { "!", "\uff01" };
+	public virtual string[] Prefixes { get; } = CommonCommandPrefixes.Bang;
 
 	/// <summary>
 	/// Indicates the comparison mode that will be used as check commands.
