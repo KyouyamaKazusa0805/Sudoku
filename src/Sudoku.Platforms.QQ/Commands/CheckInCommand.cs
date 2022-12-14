@@ -27,7 +27,10 @@ file sealed class CheckInCommand : Command
 			case { LastCheckIn: { Date: var date, TimeOfDay: var time } } when date == DateTime.Today:
 			{
 				// Disallow user checking in multiple times in a same day.
-				await e.SendMessageAsync(string.Format(R["_MessageFormat_CheckInFailedDueToMultipleInSameDay"]!, $"{time:hh \u70b9 mm \u5206}"));
+				await e.SendMessageAsync(
+					string.Format(R["_MessageFormat_CheckInFailedDueToMultipleInSameDay"]!, $"{time:hh' \u70b9 'mm' \u5206'}")
+				);
+
 				return true;
 			}
 			case { LastCheckIn: var dateTime } when (DateTime.Today - dateTime).Days == 1:
