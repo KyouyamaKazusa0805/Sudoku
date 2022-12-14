@@ -48,6 +48,11 @@ file sealed class SetConfigCommand : Command
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
+	/// <summary>
+	/// Converts the raw name like <c>prop-name-is-like-this</c> to pascal-casing one: <c>PropNameIsLikeThis</c>.
+	/// </summary>
+	/// <param name="this">The string identifier.</param>
+	/// <returns>The converted value.</returns>
 	public static string? ToPascalCasing(this string @this)
 	{
 		if (@this[0] == '-')
