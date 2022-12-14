@@ -20,21 +20,13 @@ file sealed class PingCommand : Command
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
 		using var ping = new Ping();
-		switch (ping.Send("www.baidu.com"))
+		_ = ping.Send("www.baidu.com") switch
 		{
-			case { Status: IPStatus.Success, RoundtripTime: var time }:
-			{
-				await e.SendMessageAsync(string.Format(R["_MessageFormat_PingSuccess"]!, time));
-
-				break;
-			}
-			default:
-			{
-				await e.SendMessageAsync(R["_MessageFormat_PingFailed"]!);
-
-				break;
-			}
-		}
+			{ Status: IPStatus.Success, RoundtripTime: var time }
+				=> await e.SendMessageAsync(string.Format(R["_MessageFormat_PingSuccess"]!, time)),
+			_
+				=> await e.SendMessageAsync(R["_MessageFormat_PingFailed"]!)
+		};
 
 		return true;
 	}
