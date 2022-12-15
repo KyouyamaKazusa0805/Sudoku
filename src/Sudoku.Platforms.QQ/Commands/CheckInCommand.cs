@@ -42,7 +42,10 @@ file sealed class CheckInCommand : Command
 				userData.Score += expEarned;
 				userData.LastCheckIn = DateTime.Now;
 
-				await e.SendMessageAsync(string.Format(R["_MessageFormat_CheckInSuccessfulAndContinuous"]!, userData.ComboCheckedIn, expEarned));
+				await e.SendMessageAsync(
+					string.Format(R["_MessageFormat_CheckInSuccessfulAndContinuous"]!, userData.ComboCheckedIn, expEarned)
+				);
+
 				break;
 			}
 			default:
