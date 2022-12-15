@@ -33,7 +33,7 @@ file sealed class CheckInCommand : Command
 
 				return true;
 			}
-			case { LastCheckIn: var dateTime } when (DateTime.Today - dateTime).Days == 1:
+			case { LastCheckIn: var dateTime } when (DateTime.Today - dateTime.Date).Days == 1:
 			{
 				// Continuous.
 				userData.ComboCheckedIn++;
