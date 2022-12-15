@@ -8,7 +8,7 @@ internal sealed class AnsweringContext
 	/// <summary>
 	/// The answered users.
 	/// </summary>
-	public ConcurrentBag<string> AnsweredUsers { get; set; } = new();
+	public ConcurrentDictionary<string, int> AnsweredUsers { get; set; } = new();
 
 	/// <summary>
 	/// The answered raw values in a loop-scoped round.

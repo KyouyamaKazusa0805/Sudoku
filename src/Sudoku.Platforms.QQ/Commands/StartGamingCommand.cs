@@ -19,6 +19,8 @@ file sealed class StartGamingCommand : Command
 	/// <inheritdoc/>
 	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
 	{
+		var separator = new string(' ', 4);
+
 		var context = RunningContexts[e.GroupId];
 		context.ExecutingCommand = CommandName;
 		context.AnsweringContext = new();
@@ -27,7 +29,7 @@ file sealed class StartGamingCommand : Command
 		var (puzzle, solutionData, timeLimit, baseExp) = generatePuzzle(targetCells);
 
 		await e.SendMessageAsync(string.Format(R["_MessageFormat_MatchReady"]!, timeLimit.ToChineseTimeSpanString()));
-		await Task.Delay(20.Seconds());
+		await Task.Delay(10.Seconds());
 
 		// Create picture and send message.
 		await e.SendPictureThenDeleteAsync(
@@ -61,39 +63,57 @@ file sealed class StartGamingCommand : Command
 						continue;
 					}
 
-					switch (resultCorrector(answeredDigits, solutionData), answeringContext.AnsweredUsers.Contains(userId))
+					switch (resultCorrector(answeredDigits, solutionData), answeringContext.AnsweredUsers.ContainsKey(userId))
 					{
 						case (false, false):
 						{
 							// Wrong answer and no records.
 							await e.SendMessageAsync(R["_MessageFormat_WrongAnswer"]!);
-							answeringContext.AnsweredUsers.Add(userId);
+							answeringContext.AnsweredUsers.TryAdd(userId, 1);
 
 							break;
 						}
-						case (_, true):
+						case (false, true):
 						{
-							// The user has already answered the result.
-							await e.SendMessageAsync($"{new AtMessage(userId)}{" "}{R["_MessageFormat_NoChanceToAnswer"]!}");
+							// Wrong answer but containing records.
+							await e.SendMessageAsync(R["_MessageFormat_WrongAnswer"]!);
+							answeringContext.AnsweredUsers[userId]++;
 
 							break;
 						}
-						case (true, false):
+						case (true, _):
 						{
+							var scoringTableLines =
+								from pair in answeringContext.AnsweredUsers
+								let currentUserId = pair.Key
+								let times = pair.Value
+								let deduct = -Enumerable.Range(1, times).Sum(ICommandDataProvider.GetDeduct)
+								let currentUser = e.Sender.Group.GetMemberFromQQAsync(currentUserId).Result
+								select (currentUser.Name, Id: currentUserId, Score: deduct + (currentUserId == userId ? baseExp : 0));
+
+							if (!scoringTableLines.Any(e => e.Id == userId))
+							{
+								scoringTableLines = scoringTableLines.Prepend((userName, userId, baseExp));
+							}
+
 							// Correct answer and first reply.
 							await e.SendMessageAsync(
 								string.Format(
 									R["_MessageFormat_CorrectAnswer"]!,
 									$"{userName} ({userId})",
 									baseExp,
-									TimeSpan.FromSeconds(elapsedTime).ToChineseTimeSpanString()
+									TimeSpan.FromSeconds(elapsedTime).ToChineseTimeSpanString(),
+									scoringTableLines.Any()
+										? string.Join(
+											Environment.NewLine,
+											from triplet in scoringTableLines
+											select $"{triplet.Name} ({triplet.Id}){separator}{triplet.Score}"
+										)
+										: R["None"]!
 								)
 							);
 
-							var userData = InternalReadWrite.Read(userId, new() { QQ = userId, LastCheckIn = DateTime.MinValue });
-							userData.Score += baseExp;
-
-							InternalReadWrite.Write(userData);
+							appendOrDeduceScore(scoringTableLines);
 
 							goto ReturnTrueAndInitializeContext;
 						}
@@ -104,12 +124,45 @@ file sealed class StartGamingCommand : Command
 			}
 		}
 
-		await e.SendMessageAsync(R["_MessageFormat_GameTimeUp"]!);
+		// Deduce scores if worth.
+		var scoringTableLinesDeductOnly =
+			from pair in answeringContext.AnsweredUsers
+			let currentUserId = pair.Key
+			let times = pair.Value
+			let deduct = -Enumerable.Range(1, times).Sum(ICommandDataProvider.GetDeduct)
+			let currentUser = e.Sender.Group.GetMemberFromQQAsync(currentUserId).Result
+			select (currentUser.Name, Id: currentUserId, Score: deduct);
+
+		appendOrDeduceScore(scoringTableLinesDeductOnly);
+
+		await e.SendMessageAsync(
+			string.Format(
+				R["_MessageFormat_GameTimeUp"]!,
+				scoringTableLinesDeductOnly.Any()
+					? string.Join(
+						Environment.NewLine,
+						from triplet in scoringTableLinesDeductOnly
+						select $"{triplet.Name} ({triplet.Id}){separator}{triplet.Score}"
+					)
+					: R["None"]!
+			)
+		);
 
 	ReturnTrueAndInitializeContext:
 		context.ExecutingCommand = null;
 		return true;
 
+
+		static void appendOrDeduceScore(IEnumerable<(string, string Id, int Score)> scoringTableLines)
+		{
+			foreach (var (_, id, score) in scoringTableLines)
+			{
+				var userData = InternalReadWrite.Read(id, new() { QQ = id, LastCheckIn = DateTime.MinValue });
+				userData.Score += score;
+
+				InternalReadWrite.Write(userData);
+			}
+		}
 
 		static bool resultCorrector(int[]? answeredDigits, (int, int Digit)[] data)
 		{

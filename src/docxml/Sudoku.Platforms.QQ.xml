@@ -428,12 +428,28 @@
             </summary>
             <returns>The factor value. If today is weekend, 2; otherwise 1.</returns>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetGrade(System.Int32)">
+            <summary>
+            Gets the grade via the specified score value.
+            </summary>
+            <param name="score">The score.</param>
+            <returns>The grade.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the grade value is too large.</exception>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GenerateValueEarned(System.Int32)">
             <summary>
             Generates a value that describes the experience point that the current user can be earned.
             </summary>
             <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
             <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetDeduct(System.Int32)">
+            <summary>
+            Get deduct via the specified times per gaming.
+            </summary>
+            <param name="times">The times the user has answered with wrong result.</param>
+            <returns>The deduct.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="times"/> is below 0.</exception>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetEachGamingExperiencePointCanBeEarned(System.Int32[],Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
             <summary>

@@ -39,6 +39,7 @@ global using Sudoku.Presentation.Nodes;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving.Logical;
 global using Sudoku.Text.Notations;
+global using static System.Algorithm.Sequences;
 global using static System.Math;
 global using static System.Text.Json.JsonSerializer;
 global using static Sudoku.Platforms.QQ.AppLifecycle.EnvironmentData;

@@ -58,7 +58,7 @@ file sealed class RankingCommand : Command
 		).Take(context?.Configuration.RankingDisplayUsersCount ?? 10);
 
 		var rankingStr = string.Join("\r\n", usersData.Select(selector));
-		await e.SendMessageAsync($"{R["_MessageFormat_RankingResult"]!}{"\r\n---\r\n"}{rankingStr}");
+		await e.SendMessageAsync($"{R["_MessageFormat_RankingResult"]!}{Environment.NewLine}{"---"}{Environment.NewLine}{rankingStr}");
 		return true;
 
 
@@ -74,7 +74,9 @@ file sealed class RankingCommand : Command
 			var colon = R["_Token_Colon"]!;
 			var comma = R["_Token_Comma"]!;
 			var scoreSuffix = R["ExpString"]!;
-			return $"#{i + 1}{colon}{name}{openBrace}{qq}{closedBrace}{comma}{score} {scoreSuffix}";
+			var grade = ICommandDataProvider.GetGrade(score);
+			var gradePrefix = R["GradeString"]!;
+			return $"#{i + 1}{colon}{name}{openBrace}{qq}{closedBrace}{comma}{score} {scoreSuffix}{comma}{gradePrefix} {grade}";
 		}
 	}
 }

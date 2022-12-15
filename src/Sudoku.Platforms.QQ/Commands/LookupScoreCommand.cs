@@ -21,13 +21,14 @@ file sealed class LookupScoreCommand : Command
 			return false;
 		}
 
-		if (InternalReadWrite.Read(senderId) is not { } userData)
+		if (InternalReadWrite.Read(senderId) is not { Score: var score } userData)
 		{
 			await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreNotFound"]!, senderName, senderOriginalName));
 			return true;
 		}
 
-		await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, userData.Score, senderOriginalName));
+		var grade = ICommandDataProvider.GetGrade(score);
+		await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, score, senderOriginalName, grade));
 		return true;
 	}
 }

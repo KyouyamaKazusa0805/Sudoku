@@ -41,13 +41,14 @@ file sealed class ComplexLookupScoreCommand : Command
 			}
 			case [{ Id: var foundMemberId }]:
 			{
-				if (InternalReadWrite.Read(foundMemberId) is not { } userData)
+				if (InternalReadWrite.Read(foundMemberId) is not { Score: var score } userData)
 				{
 					await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreNotFound"]!, senderName, senderOriginalName));
 					return true;
 				}
 
-				await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, userData.Score, senderOriginalName));
+				var grade = ICommandDataProvider.GetGrade(score);
+				await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, score, senderOriginalName, grade));
 				return true;
 			}
 		}

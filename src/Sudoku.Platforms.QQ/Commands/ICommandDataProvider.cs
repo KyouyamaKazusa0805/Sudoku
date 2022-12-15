@@ -181,6 +181,53 @@ internal interface ICommandDataProvider
 	internal static int GetWeekendFactor() => DateTime.Today.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday ? 2 : 1;
 
 	/// <summary>
+	/// Gets the grade via the specified score value.
+	/// </summary>
+	/// <param name="score">The score.</param>
+	/// <returns>The grade.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the grade value is too large.</exception>
+	internal static int GetGrade(int score)
+	{
+		switch (score)
+		{
+			case 0 or 1:
+			{
+				return 1;
+			}
+			case >= 2 and < 7:
+			{
+				return 2;
+			}
+			case >= 7 and < 15:
+			{
+				return 3;
+			}
+			default:
+			{
+				foreach (var (level, threshold) in f())
+				{
+					if (score < threshold)
+					{
+						return level - 1;
+					}
+				}
+
+				throw new InvalidOperationException("The grade value is too large.");
+			}
+		}
+
+
+		static IEnumerable<(int Level, int Threshold)> f()
+		{
+			// A000217(41449) is the last and biggest value that is lower than int.MaxValue.
+			for (var levelCurrent = 1; levelCurrent <= 41449; levelCurrent++)
+			{
+				yield return (levelCurrent, (int)(A000217(levelCurrent) * 1.25F));
+			}
+		}
+	}
+
+	/// <summary>
 	/// Generates a value that describes the experience point that the current user can be earned.
 	/// </summary>
 	/// <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
@@ -192,6 +239,24 @@ internal interface ICommandDataProvider
 		var level = continuousDaysCount / 7;
 		return (int)Round(earned * (level * .2 + 1)) * GetWeekendFactor();
 	}
+
+	/// <summary>
+	/// Get deduct via the specified times per gaming.
+	/// </summary>
+	/// <param name="times">The times the user has answered with wrong result.</param>
+	/// <returns>The deduct.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="times"/> is below 0.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static int GetDeduct(int times)
+		=> times switch
+		{
+			0 => 0,
+			1 => 2,
+			2 => 3,
+			3 => 4,
+			> 3 => 6,
+			_ => throw new ArgumentOutOfRangeException(nameof(times))
+		};
 
 	/// <summary>
 	/// Gets the experience point that can be earned by a player in a single gaming.

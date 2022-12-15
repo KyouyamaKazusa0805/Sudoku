@@ -11,6 +11,15 @@
 public static class Sequences
 {
 	/// <summary>
+	/// Gets the value at the specified index in the sequence <see href="https://oeis.org/A000217">A000217</see>
+	/// (0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ..).
+	/// </summary>
+	/// <param name="index"><inheritdoc cref="Sequences" path="//shared-comments/para[1]"/></param>
+	/// <returns>The result value at the specified index.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int A000217(int index) => index * (index - 1) / 2;
+
+	/// <summary>
 	/// Gets the value at the specified index in the sequence <see href="https://oeis.org/A002024">A002024</see>
 	/// (1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, ..).
 	/// </summary>
