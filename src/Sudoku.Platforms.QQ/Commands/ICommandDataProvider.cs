@@ -222,7 +222,7 @@ internal interface ICommandDataProvider
 			// A000217(41449) is the last and biggest value that is lower than int.MaxValue.
 			for (var levelCurrent = 1; levelCurrent <= 41449; levelCurrent++)
 			{
-				yield return (levelCurrent, (int)(A000217(levelCurrent) * 1.25F));
+				yield return (levelCurrent, (int)(A000217(levelCurrent) * 2.5F));
 			}
 		}
 	}
