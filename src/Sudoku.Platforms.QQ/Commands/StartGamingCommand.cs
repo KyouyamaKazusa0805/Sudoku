@@ -107,7 +107,8 @@ file sealed class StartGamingCommand : Command
 										? string.Join(
 											Environment.NewLine,
 											from triplet in scoringTableLines
-											select $"{triplet.Name} ({triplet.Id}){separator}{triplet.Score}"
+											let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(triplet.Score)
+											select $"{triplet.Name} ({triplet.Id}){separator}{finalScoreToDisplay}"
 										)
 										: R["None"]!
 								)
@@ -142,7 +143,8 @@ file sealed class StartGamingCommand : Command
 					? string.Join(
 						Environment.NewLine,
 						from triplet in scoringTableLinesDeductOnly
-						select $"{triplet.Name} ({triplet.Id}){separator}{triplet.Score}"
+						let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(triplet.Score)
+						select $"{triplet.Name} ({triplet.Id}){separator}{finalScoreToDisplay}"
 					)
 					: R["None"]!
 			)

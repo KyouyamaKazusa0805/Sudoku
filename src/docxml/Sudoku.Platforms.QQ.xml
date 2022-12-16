@@ -839,6 +839,13 @@
             <returns>The deduct.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="times"/> is below 0.</exception>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetEarnedScoringDisplayingString(System.Int32)">
+            <summary>
+            Get display string for scores.
+            </summary>
+            <param name="base">The base score value to be displayed.</param>
+            <returns>The score to be displayed.</returns>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Strings.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.

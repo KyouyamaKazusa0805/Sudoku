@@ -27,9 +27,8 @@ file sealed class CheckInCommand : Command
 			case { LastCheckIn: { Date: var date, TimeOfDay: var time } } when date == DateTime.Today:
 			{
 				// Disallow user checking in multiple times in a same day.
-				await e.SendMessageAsync(
-					string.Format(R["_MessageFormat_CheckInFailedDueToMultipleInSameDay"]!, $"{time:hh' \u70b9 'mm' \u5206'}")
-				);
+				var timeStr = time.ToString("hh' \u70b9 'mm' \u5206'");
+				await e.SendMessageAsync(string.Format(R["_MessageFormat_CheckInFailedDueToMultipleInSameDay"]!, timeStr));
 
 				return true;
 			}
@@ -43,7 +42,11 @@ file sealed class CheckInCommand : Command
 				userData.LastCheckIn = DateTime.Now;
 
 				await e.SendMessageAsync(
-					string.Format(R["_MessageFormat_CheckInSuccessfulAndContinuous"]!, userData.ComboCheckedIn, expEarned)
+					string.Format(
+						R["_MessageFormat_CheckInSuccessfulAndContinuous"]!,
+						userData.ComboCheckedIn,
+						Scorer.GetEarnedScoringDisplayingString(expEarned)
+					)
 				);
 
 				break;
@@ -57,7 +60,7 @@ file sealed class CheckInCommand : Command
 				userData.Score += expEarned;
 				userData.LastCheckIn = DateTime.Now;
 
-				await e.SendMessageAsync(string.Format(R["_MessageFormat_CheckInSuccessful"]!, expEarned));
+				await e.SendMessageAsync(string.Format(R["_MessageFormat_CheckInSuccessful"]!, Scorer.GetEarnedScoringDisplayingString(expEarned)));
 				break;
 			}
 		}

@@ -66,7 +66,7 @@ file sealed class UpdateScoreCommand : Command
 
 		await File.WriteAllTextAsync(fileName, Serialize(userData));
 
-		await e.SendMessageAsync(string.Format(R["_MessageFormat_ScoreAppending"]!, targetName, value));
+		await e.SendMessageAsync(string.Format(R["_MessageFormat_ScoreAppending"]!, targetName, Scorer.GetEarnedScoringDisplayingString(value)));
 		return true;
 	}
 }

@@ -156,4 +156,13 @@ public static class Scorer
 			> 3 => 6,
 			_ => throw new ArgumentOutOfRangeException(nameof(times))
 		};
+
+	/// <summary>
+	/// Get display string for scores.
+	/// </summary>
+	/// <param name="base">The base score value to be displayed.</param>
+	/// <returns>The score to be displayed.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static string GetEarnedScoringDisplayingString(int @base)
+		=> (DateTime.Today switch { { Date: { Month: 4, Day: 1 } } => int.MinValue, _ => @base }).ToString();
 }
