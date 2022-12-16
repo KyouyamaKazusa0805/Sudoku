@@ -47,7 +47,7 @@ file sealed class ComplexLookupScoreCommand : Command
 					return true;
 				}
 
-				var grade = ICommandDataProvider.GetGrade(score);
+				var grade = Scorer.GetGrade(score);
 				await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, score, senderOriginalName, grade));
 				return true;
 			}

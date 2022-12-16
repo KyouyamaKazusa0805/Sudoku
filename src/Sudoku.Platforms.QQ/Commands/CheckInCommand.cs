@@ -38,7 +38,7 @@ file sealed class CheckInCommand : Command
 				// Continuous.
 				userData.ComboCheckedIn++;
 
-				var expEarned = ICommandDataProvider.GenerateValueEarned(userData.ComboCheckedIn);
+				var expEarned = Scorer.GenerateValueEarned(userData.ComboCheckedIn);
 				userData.Score += expEarned;
 				userData.LastCheckIn = DateTime.Now;
 
@@ -53,7 +53,7 @@ file sealed class CheckInCommand : Command
 				// Normal case.
 				userData.ComboCheckedIn = 1;
 
-				var expEarned = ICommandDataProvider.GenerateOriginalValueEarned();
+				var expEarned = Scorer.GenerateOriginalValueEarned();
 				userData.Score += expEarned;
 				userData.LastCheckIn = DateTime.Now;
 

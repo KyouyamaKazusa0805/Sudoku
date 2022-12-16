@@ -415,52 +415,6 @@
             <param name="rawCoordinate">The coordinate string value.</param>
             <returns>The cell index parsed. If failed to be parsed, <see langword="null"/> will be returned.</returns>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GenerateOriginalValueEarned(Sudoku.Platforms.QQ.Scoring.Distribution)">
-            <summary>
-            Generates a value that describes the experience point that the current user can be earned.
-            </summary>
-            <param name="distribution">The distribution.</param>
-            <returns>The value.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetWeekendFactor">
-            <summary>
-            Gets the factor that describes whether today is weekend.
-            </summary>
-            <returns>The factor value. If today is weekend, 2; otherwise 1.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetGrade(System.Int32)">
-            <summary>
-            Gets the grade via the specified score value.
-            </summary>
-            <param name="score">The score.</param>
-            <returns>The grade.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the grade value is too large.</exception>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GenerateValueEarned(System.Int32)">
-            <summary>
-            Generates a value that describes the experience point that the current user can be earned.
-            </summary>
-            <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
-            <returns>The value.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetDeduct(System.Int32)">
-            <summary>
-            Get deduct via the specified times per gaming.
-            </summary>
-            <param name="times">The times the user has answered with wrong result.</param>
-            <returns>The deduct.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="times"/> is below 0.</exception>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetEachGamingExperiencePointCanBeEarned(System.Int32[],Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
-            <summary>
-            Gets the experience point that can be earned by a player in a single gaming.
-            </summary>
-            <param name="targetCells">The target cells.</param>
-            <param name="difficultyLevel">The difficulty level of the puzzle.</param>
-            <returns>The experience point.</returns>
-            <exception cref="T:System.NotSupportedException">Throws when the specified difficulty level or target cells count is not supported.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified difficulty level is invalid.</exception>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetGamingTimeLimit(System.Int32[],Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
             <summary>
             Gets the time limit for a single gaming.
@@ -797,6 +751,57 @@
             Indicates the distribution type is normal distribution. Via this distribution type you can get a list of numbers
             which contains more middle numbers and less border numbers.
             </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Scoring.Scorer">
+            <summary>
+            Represents a type that handles and creates the data that are used for grading and scoring.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetGrade(System.Int32)">
+            <summary>
+            Gets the grade via the specified score value.
+            </summary>
+            <param name="score">The score.</param>
+            <returns>The grade.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the grade value is too large.</exception>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetWeekendFactor">
+            <summary>
+            Gets the factor that describes whether today is weekend.
+            </summary>
+            <returns>The factor value. If today is weekend, 2; otherwise 1.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GenerateValueEarned(System.Int32)">
+            <summary>
+            Generates a value that describes the experience point that the current user can be earned.
+            </summary>
+            <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GenerateOriginalValueEarned(Sudoku.Platforms.QQ.Scoring.Distribution)">
+            <summary>
+            Generates a value that describes the experience point that the current user can be earned.
+            </summary>
+            <param name="distribution">The distribution.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetScoreEarnedInEachGaming(System.Int32[],Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+            <summary>
+            Gets the experience point that can be earned by a player in a single gaming.
+            </summary>
+            <param name="targetCells">The target cells.</param>
+            <param name="difficultyLevel">The difficulty level of the puzzle.</param>
+            <returns>The experience point.</returns>
+            <exception cref="T:System.NotSupportedException">Throws when the specified difficulty level or target cells count is not supported.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified difficulty level is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetDeduct(System.Int32)">
+            <summary>
+            Get deduct via the specified times per gaming.
+            </summary>
+            <param name="times">The times the user has answered with wrong result.</param>
+            <returns>The deduct.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="times"/> is below 0.</exception>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Strings.Resources">
             <summary>

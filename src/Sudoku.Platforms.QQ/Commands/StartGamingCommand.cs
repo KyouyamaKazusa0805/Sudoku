@@ -87,7 +87,7 @@ file sealed class StartGamingCommand : Command
 								from pair in answeringContext.AnsweredUsers
 								let currentUserId = pair.Key
 								let times = pair.Value
-								let deduct = -Enumerable.Range(1, times).Sum(ICommandDataProvider.GetDeduct)
+								let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
 								let currentUser = e.Sender.Group.GetMemberFromQQAsync(currentUserId).Result
 								select (currentUser.Name, Id: currentUserId, Score: deduct + (currentUserId == userId ? baseExp : 0));
 
@@ -129,7 +129,7 @@ file sealed class StartGamingCommand : Command
 			from pair in answeringContext.AnsweredUsers
 			let currentUserId = pair.Key
 			let times = pair.Value
-			let deduct = -Enumerable.Range(1, times).Sum(ICommandDataProvider.GetDeduct)
+			let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
 			let currentUser = e.Sender.Group.GetMemberFromQQAsync(currentUserId).Result
 			select (currentUser.Name, Id: currentUserId, Score: deduct);
 
@@ -206,7 +206,7 @@ file sealed class StartGamingCommand : Command
 						continue;
 					}
 
-					var expEarned = ICommandDataProvider.GetEachGamingExperiencePointCanBeEarned(targetCells, l);
+					var expEarned = Scorer.GetScoreEarnedInEachGaming(targetCells, l);
 					var timeLimit = ICommandDataProvider.GetGamingTimeLimit(targetCells, l);
 					return new(grid, collection.ToArray(), timeLimit, expEarned);
 				}
