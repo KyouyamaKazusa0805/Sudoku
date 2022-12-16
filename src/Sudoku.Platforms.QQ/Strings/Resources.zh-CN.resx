@@ -282,7 +282,7 @@
 所有指令请都带上感叹号，例如“！查询”。</value>
   </data>
   <data name="_MessageFormat_CheckInFailedDueToMultipleInSameDay" xml:space="preserve">
-    <value>签到失败~ 你今天 {0} 的时候已经签过到了，明天再来试试吧~</value>
+    <value>签到失败~ 你今天 {0}的时候已经签过到了，明天再来试试吧~</value>
   </data>
   <data name="_MessageFormat_CheckInSuccessful" xml:space="preserve">
     <value>签到成功！恭喜你获得 {0} 积分。一天只能签到一次哦~</value>
