@@ -148,7 +148,7 @@ partial class GridImageGenerator
 	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	private void DrawHouses(Graphics g)
 	{
-		if (this is not { Calculator: { CellSize: var (w, h) } calc, View: { } view, Preferences.ShowLightHouse: var showLightHouse })
+		if (this is not { Calculator: { CellSize: var cs } calc, View: { } view, Preferences.ShowLightHouse: var showLightHouse })
 		{
 			return;
 		}
@@ -157,21 +157,7 @@ partial class GridImageGenerator
 		{
 			var house = houseNode.House;
 			var id = houseNode.Identifier;
-
-			Color? tempColor;
-			try
-			{
-				tempColor = GetColor(id);
-			}
-			catch (InvalidOperationException)
-			{
-				tempColor = null;
-			}
-			if (tempColor is not { } color)
-			{
-				continue;
-			}
-
+			var color = GetColor(id);
 			if (showLightHouse)
 			{
 				using var pen = new Pen(color, 4F);
@@ -186,10 +172,8 @@ partial class GridImageGenerator
 					case >= 9 and < 27:
 					{
 						var (l, r) = calc.GetAnchorsViaHouse(house);
-						w /= 2;
-						h /= 2;
-						l = l with { X = l.X + w, Y = l.Y + h };
-						r = r with { X = r.X - w, Y = r.Y - h };
+						l += cs / 2;
+						r -= cs / 2;
 
 						g.DrawLine(pen, l, r);
 
