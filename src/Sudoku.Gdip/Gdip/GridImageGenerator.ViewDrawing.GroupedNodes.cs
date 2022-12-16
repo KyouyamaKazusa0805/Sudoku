@@ -43,18 +43,40 @@ partial class GridImageGenerator
 		return true;
 	}
 
-	private bool DrawObliqueLine()
+	private bool DrawObliqueLine(
+		PointCalculator calc,
+		int head,
+		int tail,
+		Identifier identifier,
+		float width,
+		float cw,
+		float ch,
+		Graphics g
+	)
 	{
-#if true
-		throw new NotImplementedException();
-#else
 		var (x1, y1) = calc.GetMousePointInCenter(head);
 		var (x2, y2) = calc.GetMousePointInCenter(tail);
 		var slope = x1 == x2 ? float.NaN : (y2 - y1) / (x2 - x1);
 
 		using var pen = new Pen(GetColor(identifier), width);
 
+		if (slope < 0)
+		{
+			x1 -= cw / 2;
+			y1 -= ch / 2;
+			x2 += cw / 2;
+			y2 += ch / 2;
+		}
+		else
+		{
+			x1 -= cw / 2;
+			y1 += ch / 2;
+			x2 += cw / 2;
+			y2 -= ch / 2;
+		}
+
+		g.DrawLine(pen, x1, y1, x2, y2);
+
 		return true;
-#endif
 	}
 }

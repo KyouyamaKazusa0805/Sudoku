@@ -832,7 +832,7 @@ partial class GridImageGenerator
 	[Conditional("ENHANCED_DRAWING_APIS")]
 	private void DrawGroupedNodes(Graphics g)
 	{
-		if (this is not { View.GroupedViewNodes: var nodes, Calculator: { CellSize: var cs, GridSize: var gs } calc })
+		if (this is not { View.GroupedViewNodes: var nodes, Calculator: { CellSize: (var cw, var ch) cs, GridSize: var gs } calc })
 		{
 			return;
 		}
@@ -857,7 +857,7 @@ partial class GridImageGenerator
 				{
 					This.Preferences.ObliqueLineWidth: var width,
 					Node: ObliqueLineViewNode(var head, _) { Identifier: var identifier, TailCell: var tail }
-				} => DrawObliqueLine()
+				} => DrawObliqueLine(calc, head, tail, identifier, width, cw, ch, g)
 			};
 		}
 	}
