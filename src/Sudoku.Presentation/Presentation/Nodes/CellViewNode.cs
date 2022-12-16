@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a cell.
 /// </summary>
-public sealed partial class CellViewNode : ViewNode
+public sealed partial class CellViewNode : BasicViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="CellViewNode"/> instance via the identifier and the highlight cell.
@@ -19,9 +19,6 @@ public sealed partial class CellViewNode : ViewNode
 	/// </summary>
 	[JsonInclude]
 	public int Cell { get; }
-
-	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(CellViewNode);
 
 	/// <summary>
 	/// Indicates the cell string.

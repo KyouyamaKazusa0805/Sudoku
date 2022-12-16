@@ -14,8 +14,8 @@ public enum ViewNodeAddBehavior
 
 	/// <summary>
 	/// Indicates replace the view node if a new duplicate one should be added.
-	/// This option is used when the method <see cref="View.Contains(Predicate{ViewNode})"/> is called.
+	/// This option is used when the method <see cref="View.Exists(Predicate{ViewNode})"/> is called.
 	/// </summary>
-	/// <seealso cref="View.Contains(Predicate{ViewNode})"/>
+	/// <seealso cref="View.Exists(Predicate{ViewNode})"/>
 	ReplaceIfDuplicate
 }

@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a house.
 /// </summary>
-public sealed partial class HouseViewNode : ViewNode
+public sealed partial class HouseViewNode : BasicViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="HouseViewNode"/> instance via the identifier and the highlight house.
@@ -18,9 +18,6 @@ public sealed partial class HouseViewNode : ViewNode
 	/// Indicates the house highlighted.
 	/// </summary>
 	public int House { get; }
-
-	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(HouseViewNode);
 
 
 	/// <inheritdoc/>

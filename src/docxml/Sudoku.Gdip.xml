@@ -859,19 +859,6 @@
             <returns>The font.</returns>
             <exception cref="T:System.ArgumentNullException">Throws when <paramref name="fontName"/> is <see langword="null"/>.</exception>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawView(System.Drawing.Graphics)">
-            <summary>
-            Draw custom view if <see cref="P:Sudoku.Gdip.GridImageGenerator.View"/> is not <see langword="null"/>.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-            <seealso cref="P:Sudoku.Gdip.GridImageGenerator.View"/>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawEliminations(System.Drawing.Graphics)">
-            <summary>
-            Draw eliminations.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawCells(System.Drawing.Graphics)">
             <summary>
             Draw cells.
@@ -902,9 +889,16 @@
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFigure(System.Drawing.Graphics)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawView(System.Drawing.Graphics)">
             <summary>
-            Draw figures.
+            Draw custom view if <see cref="P:Sudoku.Gdip.GridImageGenerator.View"/> is not <see langword="null"/>.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+            <seealso cref="P:Sudoku.Gdip.GridImageGenerator.View"/>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawEliminations(System.Drawing.Graphics)">
+            <summary>
+            Draw eliminations.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
@@ -917,6 +911,12 @@
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGroupedNodes(System.Drawing.Graphics)">
             <summary>
             Draw <see cref="T:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode"/> instances.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFigure(System.Drawing.Graphics)">
+            <summary>
+            Draw figures.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>

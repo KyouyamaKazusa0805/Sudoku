@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a Baba group.
 /// </summary>
-public sealed partial class BabaGroupViewNode : ViewNode
+public sealed partial class BabaGroupViewNode : BasicViewNode
 {
 	/// <summary>
 	/// Initializes an <see cref="BabaGroupViewNode"/> instance via the specified identifier,
@@ -32,9 +32,6 @@ public sealed partial class BabaGroupViewNode : ViewNode
 	/// Indicates the character that represents the unknown range.
 	/// </summary>
 	public Utf8Char UnknownValueChar { get; }
-
-	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(BabaGroupViewNode);
 
 	/// <summary>
 	/// Indicates the cell string.

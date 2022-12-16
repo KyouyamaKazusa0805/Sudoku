@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a link.
 /// </summary>
-public sealed partial class LinkViewNode : ViewNode
+public sealed partial class LinkViewNode : BasicViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="LinkViewNode"/> instance via the specified identifier,
@@ -32,9 +32,6 @@ public sealed partial class LinkViewNode : ViewNode
 	/// Indicates the inference type.
 	/// </summary>
 	public Inference Inference { get; }
-
-	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(LinkViewNode);
 
 
 	[GeneratedDeconstruction]

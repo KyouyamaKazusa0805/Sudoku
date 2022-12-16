@@ -66,7 +66,7 @@ public sealed class UserDefinedVisual :
 	public CellViewNode[] CellNodes
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _view.CellNodes.ToArray();
+		get => _view.OfType<CellViewNode>().ToArray();
 
 		[Obsolete("This setter is reserved by compiler.", true)]
 		set
@@ -84,7 +84,7 @@ public sealed class UserDefinedVisual :
 	public CandidateViewNode[] CandidateNodes
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _view.CandidateNodes.ToArray();
+		get => _view.OfType<CandidateViewNode>().ToArray();
 
 		[Obsolete("This setter is reserved by compiler.", true)]
 		set
@@ -133,7 +133,7 @@ public sealed class UserDefinedVisual :
 				if (_cellsUsedMap.Contains(c))
 				{
 					bool predicate(ViewNode n) => n is CellViewNode { Cell: var c2 } && c == c2;
-					var foundNode = _view.Contains(predicate);
+					var foundNode = _view.Exists(predicate);
 					if (foundNode is not null)
 					{
 						_cellsUsedMap.Remove(c);
@@ -157,7 +157,7 @@ public sealed class UserDefinedVisual :
 				if (_candidatesUsedMap.Contains(c))
 				{
 					bool predicate(ViewNode n) => n is CandidateViewNode { Candidate: var c2 } && c == c2;
-					var foundNode = _view.Contains(predicate);
+					var foundNode = _view.Exists(predicate);
 					if (foundNode is not null)
 					{
 						_candidatesUsedMap.Remove(c);

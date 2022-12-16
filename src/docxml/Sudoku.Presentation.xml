@@ -988,9 +988,6 @@
             Indicates the character that represents the unknown range.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.TypeIdentifier">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.CellString">
             <summary>
             Indicates the cell string.
@@ -1013,6 +1010,20 @@
         <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.BasicViewNode">
+            <summary>
+            Defines a basic view node type that provides with basic displaying elements from a grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Assigns the property <see cref="P:Sudoku.Presentation.Nodes.ViewNode.Identifier"/> with the specified value.
+            </summary>
+            <param name="identifier">The identifier.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BasicViewNode.TypeIdentifier">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.CandidateViewNode">
             <summary>
             Defines a view node that highlights for a candidate.
@@ -1029,9 +1040,6 @@
             <summary>
             Indicates the candidate highlighted.
             </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.CandidateViewNode.TypeIdentifier">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.CandidateViewNode.CandidateString">
             <summary>
@@ -1066,9 +1074,6 @@
             <summary>
             Indicates the cell highlighted.
             </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.CellViewNode.TypeIdentifier">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.CellViewNode.CellString">
             <summary>
@@ -1460,9 +1465,6 @@
             Indicates the house highlighted.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.Nodes.HouseViewNode.TypeIdentifier">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
@@ -1504,9 +1506,6 @@
             <summary>
             Indicates the inference type.
             </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.TypeIdentifier">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Deconstruct(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.Concepts.Inference@)">
             <target name="method">
@@ -2074,9 +2073,9 @@
         <member name="F:Sudoku.Presentation.ViewNodeAddBehavior.ReplaceIfDuplicate">
             <summary>
             Indicates replace the view node if a new duplicate one should be added.
-            This option is used when the method <see cref="M:Sudoku.Presentation.View.Contains(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})"/> is called.
+            This option is used when the method <see cref="M:Sudoku.Presentation.View.Exists(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})"/> is called.
             </summary>
-            <seealso cref="M:Sudoku.Presentation.View.Contains(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})"/>
+            <seealso cref="M:Sudoku.Presentation.View.Exists(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})"/>
         </member>
         <member name="T:Sudoku.Presentation.UserDefinedVisual">
             <summary>
@@ -2407,29 +2406,9 @@
             Indicates the number of elements stored in the current collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.View.CellNodes">
+        <member name="P:Sudoku.Presentation.View.BasicNodes">
             <summary>
-            Indicates the cell nodes that the current data type stored.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.CandidateNodes">
-            <summary>
-            Indicates the candidate nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.HouseNodes">
-            <summary>
-            Indicates the house nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.LinkNodes">
-            <summary>
-            Indicates the link nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.UnknownNodes">
-            <summary>
-            Indicates the unknown nodes that the current data type stores.
+            Indicates the basic nodes that the current data type stores.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.FigureNodes">
@@ -2484,13 +2463,6 @@
             <param name="node">The node.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Presentation.View.Contains(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
-            <summary>
-            Determines whether an element satisfying the specified condition is in the current collection.
-            </summary>
-            <param name="predicate">The predicate.</param>
-            <returns>If found, the first found node will be returned; otherwise, <see langword="null"/>.</returns>
-        </member>
         <member name="M:Sudoku.Presentation.View.ConflictWith(System.Int32)">
             <summary>
             <para>Determines whether the current view contains a view node using the specified candidate value.</para>
@@ -2502,8 +2474,22 @@
         <member name="M:Sudoku.Presentation.View.Clone">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Presentation.View.Exists(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Determines whether an element satisfying the specified condition is in the current collection.
+            </summary>
+            <param name="predicate">The predicate.</param>
+            <returns>If found, the first found node will be returned; otherwise, <see langword="null"/>.</returns>
+        </member>
         <member name="M:Sudoku.Presentation.View.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfType``1">
+            <summary>
+            Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the node.</typeparam>
+            <returns>The target collection of element type <typeparamref name="T"/>.</returns>
         </member>
         <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>

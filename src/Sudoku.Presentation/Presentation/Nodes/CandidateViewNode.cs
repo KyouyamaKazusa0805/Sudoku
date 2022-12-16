@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a candidate.
 /// </summary>
-public sealed partial class CandidateViewNode : ViewNode
+public sealed partial class CandidateViewNode : BasicViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="CandidateViewNode"/> instance via the identifier and the highlight candidate.
@@ -19,9 +19,6 @@ public sealed partial class CandidateViewNode : ViewNode
 	/// </summary>
 	[JsonInclude]
 	public int Candidate { get; }
-
-	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(CandidateViewNode);
 
 	/// <summary>
 	/// Indicates the candidate string.

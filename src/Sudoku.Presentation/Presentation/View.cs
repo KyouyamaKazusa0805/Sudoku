@@ -35,29 +35,9 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	public int Count => _nodes.Count;
 
 	/// <summary>
-	/// Indicates the cell nodes that the current data type stored.
+	/// Indicates the basic nodes that the current data type stores.
 	/// </summary>
-	public IEnumerable<CellViewNode> CellNodes => _nodes.OfType<CellViewNode>();
-
-	/// <summary>
-	/// Indicates the candidate nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<CandidateViewNode> CandidateNodes => _nodes.OfType<CandidateViewNode>();
-
-	/// <summary>
-	/// Indicates the house nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<HouseViewNode> HouseNodes => _nodes.OfType<HouseViewNode>();
-
-	/// <summary>
-	/// Indicates the link nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<LinkViewNode> LinkNodes => _nodes.OfType<LinkViewNode>();
-
-	/// <summary>
-	/// Indicates the unknown nodes that the current data type stores.
-	/// </summary>
-	public IEnumerable<BabaGroupViewNode> UnknownNodes => _nodes.OfType<BabaGroupViewNode>();
+	public IEnumerable<BasicViewNode> BasicNodes => _nodes.OfType<BasicViewNode>();
 
 	/// <summary>
 	/// Indicates figure nodes that the current data type stores.
@@ -142,11 +122,24 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	public bool Contains(ViewNode node) => _nodes.Contains(node);
 
 	/// <summary>
+	/// <para>Determines whether the current view contains a view node using the specified candidate value.</para>
+	/// <para>This method will be useful for cannibalism checking cases.</para>
+	/// </summary>
+	/// <param name="candidate">The candidate to be determined.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool ConflictWith(int candidate) => OfType<CandidateViewNode>().Any(n => n.Candidate == candidate);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View Clone() => Count == 0 ? Empty : new(new(from node in _nodes select node.Clone()));
+
+	/// <summary>
 	/// Determines whether an element satisfying the specified condition is in the current collection.
 	/// </summary>
 	/// <param name="predicate">The predicate.</param>
 	/// <returns>If found, the first found node will be returned; otherwise, <see langword="null"/>.</returns>
-	public ViewNode? Contains(Predicate<ViewNode> predicate)
+	public ViewNode? Exists(Predicate<ViewNode> predicate)
 	{
 		for (var i = 0; i < _nodes.Count; i++)
 		{
@@ -160,22 +153,17 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 		return null;
 	}
 
-	/// <summary>
-	/// <para>Determines whether the current view contains a view node using the specified candidate value.</para>
-	/// <para>This method will be useful for cannibalism checking cases.</para>
-	/// </summary>
-	/// <param name="candidate">The candidate to be determined.</param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool ConflictWith(int candidate) => CandidateNodes.Any(n => n.Candidate == candidate);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View Clone() => Count == 0 ? Empty : new(new(from node in _nodes select node.Clone()));
-
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public List<ViewNode>.Enumerator GetEnumerator() => _nodes.GetEnumerator();
+
+	/// <summary>
+	/// Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of the node.</typeparam>
+	/// <returns>The target collection of element type <typeparamref name="T"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public IEnumerable<T> OfType<T>() where T : ViewNode => _nodes.OfType<T>();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

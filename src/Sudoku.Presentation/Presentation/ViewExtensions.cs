@@ -20,9 +20,9 @@ public static class ViewExtensions
 			return false;
 		}
 
-		foreach (var unknownNode in @this.UnknownNodes)
+		foreach (var babaGroupNode in @this.OfType<BabaGroupViewNode>())
 		{
-			if (unknownNode.Cell == cell)
+			if (babaGroupNode.Cell == cell)
 			{
 				return true;
 			}
