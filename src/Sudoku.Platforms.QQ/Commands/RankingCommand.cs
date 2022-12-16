@@ -75,8 +75,8 @@ file sealed class RankingCommand : Command
 			var comma = R["_Token_Comma"]!;
 			var scoreSuffix = R["ExpString"]!;
 			var grade = Scorer.GetGrade(score);
-			var gradePrefix = R["GradeString"]!;
-			return $"#{i + 1}{colon}{name}{openBrace}{qq}{closedBrace}{comma}{score} {scoreSuffix}{comma}{gradePrefix} {grade}";
+			var gradeSuffix = R["GradeString"]!;
+			return $"#{i + 1}{colon}{name}{openBrace}{qq}{closedBrace}{comma}{score} {scoreSuffix}{comma}{grade} {gradeSuffix}";
 		}
 	}
 }

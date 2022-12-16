@@ -32,12 +32,12 @@ internal interface ICommandDataProvider
 			return Identifier.FromNamedKind(colorKind);
 		}
 
-		if (name.Match("""#([1-9]|1[0-5])""") is [_, .. var rawId] colorLabel)
+		if (Patterns.ColorIdPattern().Match(name) is { Success: true, Value: [_, .. var rawId] colorLabel })
 		{
 			return Identifier.FromId(int.Parse(rawId));
 		}
 
-		if (name.Match("""#[\dA-Fa-f]{6}([\dA-Fa-f]{2})?""") is { } colorHtml)
+		if (Patterns.ColorHexValuePattern().Match(name) is { Success: true, Value: var colorHtml })
 		{
 			return f(ColorTranslator.FromHtml(colorHtml));
 		}
@@ -73,6 +73,8 @@ internal interface ICommandDataProvider
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static OneOf<CellMap, Candidates, int> GetCoordinate(string rawCoordinate)
 	{
+		const StringSplitOptions splitOptions = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
+
 		if (RxCyNotation.TryParseCandidates(rawCoordinate, out var candidates1))
 		{
 			return candidates1;
@@ -88,12 +90,8 @@ internal interface ICommandDataProvider
 			return cells1;
 		}
 
-		if (rawCoordinate.Match("""[\u884c\u5217\u5bab]\s*[1-9]""") is { } parts
-			&& parts.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) is
-			[
-				[var houseNotation],
-				[var label]
-			])
+		if (Patterns.ChineseHouseIndexPattern().Match(rawCoordinate) is { Success: true, Value: var parts }
+			&& parts.Split(' ', splitOptions) is [[var houseNotation], [var label]])
 		{
 			return houseNotation switch { '\u884c' => 9, '\u5217' => 18, _ => 0 } + (label - '1');
 		}
