@@ -57,7 +57,7 @@ file sealed class RankingCommand : Command
 			select (Name: nickname, Data: ud)
 		).Take(context?.Configuration.RankingDisplayUsersCount ?? 10);
 
-		var rankingStr = string.Join("\r\n", usersData.Select(selector));
+		var rankingStr = string.Join(Environment.NewLine, usersData.Select(selector));
 		await e.SendMessageAsync($"{R["_MessageFormat_RankingResult"]!}{Environment.NewLine}{"---"}{Environment.NewLine}{rankingStr}");
 		return true;
 
