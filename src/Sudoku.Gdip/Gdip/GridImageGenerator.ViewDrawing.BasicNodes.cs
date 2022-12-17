@@ -59,7 +59,7 @@ partial class GridImageGenerator
 			var id = candidateNode.Identifier;
 
 			var isOverlapped = false;
-			if (conclusions is null)
+			if (conclusions is [])
 			{
 				goto IsOverlapped;
 			}
@@ -120,7 +120,7 @@ partial class GridImageGenerator
 			}
 		}
 
-		if (!showCandidates && conclusions is not null)
+		if (!showCandidates && conclusions is not [])
 		{
 			foreach (var (type, cell, digit) in conclusions)
 			{
@@ -215,7 +215,7 @@ partial class GridImageGenerator
 			points.Add(calc.GetMouseCenter(linkNode.End));
 		}
 
-		if (conclusions is not null)
+		if (conclusions is not [])
 		{
 			foreach (var conclusion in conclusions)
 			{

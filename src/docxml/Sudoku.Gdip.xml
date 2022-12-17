@@ -790,14 +790,14 @@
             Indicates the puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.GridImageGenerator.View">
-            <summary>
-            Indicates the view.
-            </summary>
-        </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.Conclusions">
             <summary>
             Indicates all conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.GridImageGenerator.View">
+            <summary>
+            Indicates the view.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.GridImageGenerator.Calculator">

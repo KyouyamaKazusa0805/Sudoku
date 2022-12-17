@@ -73,14 +73,14 @@ public sealed partial class GridImageGenerator
 	public Grid Puzzle { get; set; } = Grid.Empty;
 
 	/// <summary>
+	/// Indicates all conclusions.
+	/// </summary>
+	public ImmutableArray<Conclusion> Conclusions { get; set; }
+
+	/// <summary>
 	/// Indicates the view.
 	/// </summary>
 	public View? View { get; set; }
-
-	/// <summary>
-	/// Indicates all conclusions.
-	/// </summary>
-	public IEnumerable<Conclusion>? Conclusions { get; set; }
 
 	/// <summary>
 	/// Indicates the <see cref="PointCalculator"/> instance that calculates the pixels to help the inner

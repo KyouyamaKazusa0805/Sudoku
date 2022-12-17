@@ -209,7 +209,7 @@ file sealed class SudokuPainter : ISudokuPainter
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithConclusions(params Conclusion[] conclusions)
 	{
-		GridImageGenerator.Conclusions = conclusions;
+		GridImageGenerator.Conclusions = ImmutableArray.Create(conclusions);
 		return this;
 	}
 
