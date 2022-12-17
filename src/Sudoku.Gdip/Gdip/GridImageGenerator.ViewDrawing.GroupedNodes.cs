@@ -79,4 +79,27 @@ partial class GridImageGenerator
 
 		return true;
 	}
+
+	private bool DrawWindoku(Identifier identifier, PointCalculator calc, SizeF cs, Graphics g)
+	{
+		using var brush = new SolidBrush(GetColor(identifier));
+
+		for (var row = 0; row < 9; row++)
+		{
+			for (var column = 0; column < 9; column++)
+			{
+				if ((row, column) is (0 or 4 or 8, 0 or 4 or 8))
+				{
+					var center = calc.GetMousePointInCenter(row * 9 + column);
+					var topLeft = center - cs / 2;
+					var bottomRight = center + cs / 2;
+					var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+
+					g.FillRectangle(brush, rect);
+				}
+			}
+		}
+
+		return true;
+	}
 }

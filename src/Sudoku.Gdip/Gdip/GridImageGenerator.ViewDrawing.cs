@@ -261,7 +261,10 @@ partial class GridImageGenerator
 				{
 					This.Preferences.ObliqueLineWidth: var width,
 					Node: ObliqueLineViewNode(var head, _) { Identifier: var identifier, TailCell: var tail }
-				} => DrawObliqueLine(calc, head, tail, identifier, width, cw, ch, g)
+				} => DrawObliqueLine(calc, head, tail, identifier, width, cw, ch, g),
+
+				// Windoku
+				{ Node: WindokuViewNode { Identifier: var identifier } } => DrawWindoku(identifier, calc, cs, g)
 			};
 		}
 	}

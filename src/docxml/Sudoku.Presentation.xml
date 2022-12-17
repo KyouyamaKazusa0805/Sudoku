@@ -1433,6 +1433,29 @@
         <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode">
+            <summary>
+            Defines a windoku view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.HeartViewNode">
             <summary>
             Defines a heart view node.
