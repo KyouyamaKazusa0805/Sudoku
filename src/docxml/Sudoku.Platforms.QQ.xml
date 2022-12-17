@@ -98,23 +98,6 @@
             The internal running context.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.CommandComparison">
-            <summary>
-            Represents a comparison type that compares for two commands, using key value (<see cref="T:System.String"/> values).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.CommandComparison.Strict">
-            <summary>
-            Indicates the comparison type is struct. Two commands should compare their <see cref="T:System.String"/> value.
-            They are same if and only if they holds a same <see cref="T:System.String"/> value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.CommandComparison.Prefix">
-            <summary>
-            Indicates the comparison type is comparing as prefixes. If the target <see cref="T:System.String"/> starts with the specified value,
-            the comparison will be determined as <see langword="true"/>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.CheckInCommand">
             <summary>
             Indicates the check-in command.
@@ -191,11 +174,11 @@
             with different settings of property <see cref="P:Sudoku.Platforms.QQ.Commands.Command.ComparisonMode"/>, if the property is:
             <list type="table">
             <item>
-            <term><see cref="F:Sudoku.Platforms.QQ.CommandComparison.Strict"/></term>
+            <term><see cref="F:Sudoku.Platforms.QQ.Commands.CommandComparison.Strict"/></term>
             <description>The argument <paramref name="args"/> will be strictly equal to command name <see cref="P:Sudoku.Platforms.QQ.Commands.Command.CommandName"/>.</description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Platforms.QQ.CommandComparison.Prefix"/></term>
+            <term><see cref="F:Sudoku.Platforms.QQ.Commands.CommandComparison.Prefix"/></term>
             <description>
             <para>The message received from QQ client will start with the command name <see cref="P:Sudoku.Platforms.QQ.Commands.Command.CommandName"/>.</para>
             <para>
@@ -246,6 +229,23 @@
         <member name="P:Sudoku.Platforms.QQ.Commands.CommandAttribute.AllowedPermissions">
             <summary>
             Indicates the permission.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.CommandComparison">
+            <summary>
+            Represents a comparison type that compares for two commands, using key value (<see cref="T:System.String"/> values).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Commands.CommandComparison.Strict">
+            <summary>
+            Indicates the comparison type is struct. Two commands should compare their <see cref="T:System.String"/> value.
+            They are same if and only if they holds a same <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Commands.CommandComparison.Prefix">
+            <summary>
+            Indicates the comparison type is comparing as prefixes. If the target <see cref="T:System.String"/> starts with the specified value,
+            the comparison will be determined as <see langword="true"/>.
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.CommonCommandPrefixes">

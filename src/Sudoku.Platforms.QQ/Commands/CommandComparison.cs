@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Platforms.QQ;
+﻿namespace Sudoku.Platforms.QQ.Commands;
 
 /// <summary>
 /// Represents a comparison type that compares for two commands, using key value (<see cref="string"/> values).
