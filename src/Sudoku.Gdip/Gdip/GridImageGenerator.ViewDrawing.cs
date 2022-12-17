@@ -33,10 +33,10 @@ partial class GridImageGenerator
 	{
 		if (this is not
 			{
-				Conclusions: { } conclusions,
+				Conclusions: var conclusions and not [],
 				Preferences: { EliminationColor: var eColor, CannibalismColor: var cColor },
 				View: var view
-			} || !conclusions.Any())
+			})
 		{
 			return;
 		}

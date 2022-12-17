@@ -75,7 +75,7 @@ public sealed partial class GridImageGenerator
 	/// <summary>
 	/// Indicates all conclusions.
 	/// </summary>
-	public ImmutableArray<Conclusion> Conclusions { get; set; }
+	public ImmutableArray<Conclusion> Conclusions { get; set; } = ImmutableArray<Conclusion>.Empty;
 
 	/// <summary>
 	/// Indicates the view.
