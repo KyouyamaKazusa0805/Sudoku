@@ -2101,328 +2101,6 @@
         <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Presentation.ViewNodeAddBehavior">
-            <summary>
-            Represents an enumeration type that stores some kinds of possible behaviors on adding a view node
-            into a view node collection such as <see cref="T:Sudoku.Presentation.UserDefinedVisual"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Presentation.UserDefinedVisual"/>
-        </member>
-        <member name="F:Sudoku.Presentation.ViewNodeAddBehavior.ForceAdd">
-            <summary>
-            Indicates the view node will be added without any reason.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.ViewNodeAddBehavior.ReplaceIfDuplicate">
-            <summary>
-            Indicates replace the view node if a new duplicate one should be added.
-            This option is used when the method <see cref="M:Sudoku.Presentation.View.Exists(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})"/> is called.
-            </summary>
-            <seealso cref="M:Sudoku.Presentation.View.Exists(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})"/>
-        </member>
-        <member name="T:Sudoku.Presentation.UserDefinedVisual">
-            <summary>
-            Defines a visual item that is user-defined.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.UserDefinedVisual._view">
-            <summary>
-            Indicates the inner view.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.UserDefinedVisual._cellsUsedMap">
-            <summary>
-            Indicates the cells used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.UserDefinedVisual._candidatesUsedMap">
-            <summary>
-            Indicates the candidates used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance via the specified view nodes.
-            </summary>
-            <param name="viewNodes">A list of view nodes.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.UserDefinedVisual.Count">
-            <summary>
-            Indicates the number of elements stored in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.UserDefinedVisual.CellNodes">
-            <summary>
-            Indicates the cell nodes.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.UserDefinedVisual.CandidateNodes">
-            <summary>
-            Indicates the candidate nodes.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.UserDefinedVisual.Sudoku#Presentation#IVisual#Conclusions">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Presentation.UserDefinedVisual.Sudoku#Presentation#IVisual#Views">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Presentation.UserDefinedVisual.Item(System.Int32)">
-            <summary>
-            Gets the view node at the specified index stored in this collection.
-            </summary>
-            <param name="index">The index that you want to get.</param>
-            <returns>The view node at the specified index.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.Add(Sudoku.Presentation.Nodes.ViewNode)">
-            <summary>
-            Adds a view node into the current collection.
-            </summary>
-            <param name="viewNode">The view node to be added.</param>
-            <exception cref="T:System.NotSupportedException">
-            Throws when the specified view node kind is invalid (Not a <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
-            or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>).
-            </exception>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.Remove(Sudoku.Presentation.Nodes.ViewNode)">
-            <summary>
-            Removes a view node from the current collection.
-            </summary>
-            <param name="viewNode">The view node to be removed.</param>
-            <exception cref="T:System.NotSupportedException">
-            Throws when the specified view node kind is invalid (Not a <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
-            or <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>).
-            </exception>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.op_Implicit(Sudoku.Presentation.UserDefinedVisual)~Sudoku.Presentation.View">
-            <summary>
-            Converts the <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance to the <see cref="T:Sudoku.Presentation.View"/> instance. 
-            </summary>
-            <param name="baseDisplayable">The base visual instance.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.UserDefinedVisual.op_Explicit(Sudoku.Presentation.View)~Sudoku.Presentation.UserDefinedVisual">
-            <summary>
-            Converts the <see cref="T:Sudoku.Presentation.View"/> instance to the <see cref="T:Sudoku.Presentation.UserDefinedVisual"/> instance. 
-            </summary>
-            <param name="baseView">The base view instance.</param>
-        </member>
-        <member name="T:Sudoku.Presentation.ValueView">
-            <summary>
-            Represents with a value-typed <see cref="T:Sudoku.Presentation.View"/> equivalent implementation that displays for a sudoku drawing elements.
-            </summary>
-            <seealso cref="T:Sudoku.Presentation.View"/>
-        </member>
-        <member name="F:Sudoku.Presentation.ValueView.Empty">
-            <summary>
-            Indicates the default instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.ValueView._viewNodeSegements">
-            <summary>
-            Defines a view node segments.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.ValueView"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ValueView.Count">
-            <summary>
-            Indicates the number of elements stored in the current collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ValueView.CellNodes">
-            <summary>
-            Indicates the cell nodes that the current data type stored.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ValueView.CandidateNodes">
-            <summary>
-            Indicates the candidate nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ValueView.HouseNodes">
-            <summary>
-            Indicates the house nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ValueView.LinkNodes">
-            <summary>
-            Indicates the link nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ValueView.UnknownNodes">
-            <summary>
-            Indicates the unknown nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.Add(Sudoku.Presentation.ViewNodeSegment)">
-            <summary>
-            Adds the specified segment into the collection.
-            </summary>
-            <param name="segment">The segment.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.Remove(Sudoku.Presentation.Nodes.ViewNode)">
-            <summary>
-            Removes the specified view node instance from the current collection.
-            </summary>
-            <param name="node">The node to be removed.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.EnumerateNodes">
-            <summary>
-            Enumerates all <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s stored in this collection.
-            </summary>
-            <returns>An <see cref="T:Sudoku.Presentation.ValueView.Enumerator"/> instance of element type <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.EnumerateNodes``1">
-            <summary>
-            Enumerates all <typeparamref name="T"/> nodes stored in this collection.
-            </summary>
-            <typeparam name="T">The type of the view node to be fetched and iterated.</typeparam>
-            <returns>An <see cref="T:Sudoku.Presentation.ValueView.OfTypeEnumerator`1"/> instance of element type <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.EnumerateSegments">
-            <summary>
-            Creates an <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance of element type <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.
-            </summary>
-            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance of element type <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Presentation.ValueView.Enumerator">
-            <summary>
-            Defines a basic enumerator that iterates on each <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s.
-            </summary>
-            <remarks>
-            This type is decompiled by <see langword="yield"/> statements. For more information please learn C# 2 syntax feature "Yield Statements".
-            </remarks>
-            <seealso cref="T:Sudoku.Presentation.Nodes.ViewNode"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.Enumerator.#ctor(Sudoku.Presentation.ValueView)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.ValueView.Enumerator"/> instance via the specified view.
-            </summary>
-            <param name="view">View.</param>
-        </member>
-        <member name="F:Sudoku.Presentation.ValueView.Enumerator._instance">
-            <summary>
-            The <see cref="T:Sudoku.Presentation.ValueView"/> instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.ValueView.Enumerator._state">
-            <summary>
-            The state of the iteration. The value can be both negative and positive.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.ValueView.Enumerator._arrayIteratedIndex">
-            <summary>
-            Records the index having been iterated. <b>This field is only used for the case that the current segment is an array.</b>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.ValueView.Enumerator._array">
-            <summary>
-            Indicates the array to be iterated. <b>This field is only used for the case that the current segment is an array.</b>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.ValueView.Enumerator._nestedEnumerator">
-            <summary>
-            Indicates the target enumerator used for the whole iteration.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.ValueView.Enumerator._listEnumerator">
-            <summary>
-            Indicates the enumerator of <see cref="T:System.Collections.Generic.List`1"/>. <b>This field is only used for the case that the current segment is a list.</b>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ValueView.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.Enumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="T:Sudoku.Presentation.ValueView.SegmentEnumerator">
-            <summary>
-            Defines an enumeratot that iterates on each <see cref="T:Sudoku.Presentation.ViewNodeSegment"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Presentation.ViewNodeSegment"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.SegmentEnumerator.#ctor(System.Collections.Generic.LinkedList{Sudoku.Presentation.ViewNodeSegment})">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.ValueView.SegmentEnumerator"/> instance via the specified segments.
-            </summary>
-            <param name="segments">Segments.</param>
-        </member>
-        <member name="F:Sudoku.Presentation.ValueView.SegmentEnumerator._enumerator">
-            <summary>
-            The inner enumerator.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ValueView.SegmentEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.SegmentEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.SegmentEnumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="T:Sudoku.Presentation.ValueView.OfTypeEnumerator`1">
-            <summary>
-            Defines an enumerator that only iterates for a fixed type of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s,
-            specified as type argument <typeparamref name="T"/>.
-            </summary>
-            <typeparam name="T">The type of the node to be iterated.</typeparam>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.#ctor(Sudoku.Presentation.ValueView.Enumerator)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.ValueView.OfTypeEnumerator`1"/> instance via the specified segments.
-            </summary>
-            <param name="enumerator">Enumerator.</param>
-        </member>
-        <member name="F:Sudoku.Presentation.ValueView.OfTypeEnumerator`1._enumerator">
-            <summary>
-            The inner enumerator.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.Current">
-            <summary>
-            Indicates the current node to be iterated.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ValueView.OfTypeEnumerator`1.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
         <member name="T:Sudoku.Presentation.View">
             <summary>
             Provides with a data structure that displays a view for basic information.
@@ -2499,13 +2177,6 @@
             </summary>
             <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
         </member>
-        <member name="M:Sudoku.Presentation.View.Contains(Sudoku.Presentation.Nodes.ViewNode)">
-            <summary>
-            Determines whether an element is in the current collection.
-            </summary>
-            <param name="node">The node.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Presentation.View.ConflictWith(System.Int32)">
             <summary>
             <para>Determines whether the current view contains a view node using the specified candidate value.</para>
@@ -2514,15 +2185,19 @@
             <param name="candidate">The candidate to be determined.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Presentation.View.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.Exists(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
+        <member name="M:Sudoku.Presentation.View.Select``1(System.Func{Sudoku.Presentation.Nodes.ViewNode,``0})">
             <summary>
-            Determines whether an element satisfying the specified condition is in the current collection.
+            Projects the collection, converting it into a new collection whose elements is converted by the specified method.
             </summary>
-            <param name="predicate">The predicate.</param>
-            <returns>If found, the first found node will be returned; otherwise, <see langword="null"/>.</returns>
+            <param name="selector">The selector.</param>
+            <returns>The target iterator.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Where(System.Func{Sudoku.Presentation.Nodes.ViewNode,System.Boolean})">
+            <summary>
+            Filters the collection by specified condition.
+            </summary>
+            <param name="selector">The selector.</param>
+            <returns>The target iterator.</returns>
         </member>
         <member name="M:Sudoku.Presentation.View.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
@@ -2533,6 +2208,9 @@
             </summary>
             <typeparam name="T">The type of the node.</typeparam>
             <returns>The target collection of element type <typeparamref name="T"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Clone">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -2566,6 +2244,160 @@
             Please note that the operator is mutable one, which means the appending operation
             is based on the argument <paramref name="originalView"/>.
             </remarks>
+        </member>
+        <member name="T:Sudoku.Presentation.View.Iterator">
+            <summary>
+            Represents with a default enumerator type that provides the mechanism of elementary operations
+            used by <see langword="foreach"/> statements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Iterator.#ctor(Sudoku.Presentation.View)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.View.Iterator"/> instance via the specified list of nodes.
+            </summary>
+            <param name="view">The internal nodes.</param>
+        </member>
+        <member name="F:Sudoku.Presentation.View.Iterator._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.Iterator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Iterator.Any(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Determines whether the collection contains at least one element satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Iterator.GetEnumerator">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Iterator.MoveNext">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="T:Sudoku.Presentation.View.SelectIterator`1">
+            <summary>
+            Represents an enumerator that iterates for a list of elements that is projected by the current collection,
+            converting by the specified converter.
+            </summary>
+            <typeparam name="T">The type of projected elements.</typeparam>
+        </member>
+        <member name="M:Sudoku.Presentation.View.SelectIterator`1.#ctor(Sudoku.Presentation.View,System.Func{Sudoku.Presentation.Nodes.ViewNode,`0})">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance via the specified list of nodes.
+            </summary>
+            <param name="view">The internal nodes.</param>
+            <param name="selector">The selector.</param>
+        </member>
+        <member name="F:Sudoku.Presentation.View.SelectIterator`1._selector">
+            <summary>
+            The selector method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.View.SelectIterator`1._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.SelectIterator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.SelectIterator`1.GetEnumerator">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.SelectIterator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.Presentation.View.WhereIterator">
+            <summary>
+            Represents an enumerator that iterates for view nodes satisfying the specified condition.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.WhereIterator.#ctor(Sudoku.Presentation.View,System.Func{Sudoku.Presentation.Nodes.ViewNode,System.Boolean})">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance via the specified list of nodes.
+            </summary>
+            <param name="view">The internal nodes.</param>
+            <param name="filteringCondition">The condition.</param>
+        </member>
+        <member name="F:Sudoku.Presentation.View.WhereIterator._filteringCondition">
+            <summary>
+            The filtering condition.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.View.WhereIterator._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.WhereIterator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.WhereIterator.GetEnumerator">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.WhereIterator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.Presentation.View.OfTypeIterator`1">
+            <summary>
+            Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
+            </summary>
+            <typeparam name="T">The type of the element node.</typeparam>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.#ctor(Sudoku.Presentation.View)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance via the specified list of nodes.
+            </summary>
+            <param name="view">The internal nodes.</param>
+        </member>
+        <member name="F:Sudoku.Presentation.View.OfTypeIterator`1._count">
+            <summary>
+            The total number of elements.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.View.OfTypeIterator`1._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.OfTypeIterator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.Any(System.Predicate{`0})">
+            <summary>
+            Determines whether the collection of elements of type <typeparamref name="T"/> contains at least one element
+            satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.GetEnumerator">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.ToArray">
+            <summary>
+            Casts the iterator, enumerating all elements and converting into an array.
+            </summary>
+            <returns>An array of elements.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="T:Sudoku.Presentation.ViewExtensions">
             <summary>

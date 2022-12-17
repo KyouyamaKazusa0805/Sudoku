@@ -5,7 +5,7 @@ namespace Sudoku.Presentation;
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
 /// </summary>
-public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
+public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 {
 	/// <summary>
 	/// Indicates the inner dictionary.
@@ -37,23 +37,23 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// <summary>
 	/// Indicates the basic nodes that the current data type stores.
 	/// </summary>
-	public IEnumerable<BasicViewNode> BasicNodes => _nodes.OfType<BasicViewNode>();
+	public OfTypeIterator<BasicViewNode> BasicNodes => OfType<BasicViewNode>();
 
 	/// <summary>
 	/// Indicates figure nodes that the current data type stores.
 	/// </summary>
-	public IEnumerable<FigureViewNode> FigureNodes => _nodes.OfType<FigureViewNode>();
+	public OfTypeIterator<FigureViewNode> FigureNodes => OfType<FigureViewNode>();
 
 #if ENHANCED_DRAWING_APIS
 	/// <summary>
 	/// Indicates the shape view nodes.
 	/// </summary>
-	public IEnumerable<ShapeViewNode> ShapeViewNodes => _nodes.OfType<ShapeViewNode>();
+	public OfTypeIterator<ShapeViewNode> ShapeViewNodes => OfType<ShapeViewNode>();
 
 	/// <summary>
 	/// Indicates the grouped view nodes.
 	/// </summary>
-	public IEnumerable<GroupedViewNode> GroupedViewNodes => _nodes.OfType<GroupedViewNode>();
+	public OfTypeIterator<GroupedViewNode> GroupedViewNodes => OfType<GroupedViewNode>();
 #endif
 
 
@@ -72,7 +72,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	/// <param name="index">The index.</param>
 	/// <returns>The <see cref="ViewNode"/> instance.</returns>
-	public ViewNode this[int index] => _nodes[index];
+	public ViewNode this[int index]
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _nodes[index];
+	}
 
 
 	/// <summary>
@@ -114,14 +118,6 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	}
 
 	/// <summary>
-	/// Determines whether an element is in the current collection.
-	/// </summary>
-	/// <param name="node">The node.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Contains(ViewNode node) => _nodes.Contains(node);
-
-	/// <summary>
 	/// <para>Determines whether the current view contains a view node using the specified candidate value.</para>
 	/// <para>This method will be useful for cannibalism checking cases.</para>
 	/// </summary>
@@ -130,32 +126,25 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool ConflictWith(int candidate) => OfType<CandidateViewNode>().Any(n => n.Candidate == candidate);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Projects the collection, converting it into a new collection whose elements is converted by the specified method.
+	/// </summary>
+	/// <param name="selector">The selector.</param>
+	/// <returns>The target iterator.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View Clone() => Count == 0 ? Empty : new(new(from node in _nodes select node.Clone()));
+	public SelectIterator<T> Select<T>(Func<ViewNode, T> selector) => new(this, selector);
 
 	/// <summary>
-	/// Determines whether an element satisfying the specified condition is in the current collection.
+	/// Filters the collection by specified condition.
 	/// </summary>
-	/// <param name="predicate">The predicate.</param>
-	/// <returns>If found, the first found node will be returned; otherwise, <see langword="null"/>.</returns>
-	public ViewNode? Exists(Predicate<ViewNode> predicate)
-	{
-		for (var i = 0; i < _nodes.Count; i++)
-		{
-			var node = _nodes[i];
-			if (predicate(node))
-			{
-				return node;
-			}
-		}
-
-		return null;
-	}
+	/// <param name="selector">The selector.</param>
+	/// <returns>The target iterator.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public WhereIterator Where(Func<ViewNode, bool> selector) => new(this, selector);
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public List<ViewNode>.Enumerator GetEnumerator() => _nodes.GetEnumerator();
+	public Iterator GetEnumerator() => new(this);
 
 	/// <summary>
 	/// Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
@@ -163,7 +152,11 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// <typeparam name="T">The type of the node.</typeparam>
 	/// <returns>The target collection of element type <typeparamref name="T"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public IEnumerable<T> OfType<T>() where T : ViewNode => _nodes.OfType<T>();
+	public OfTypeIterator<T> OfType<T>() where T : ViewNode => new(this);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View Clone() => Count == 0 ? Empty : new(new(from node in _nodes select node.Clone()));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -234,5 +227,73 @@ public sealed class View : ICloneable<View>, IEnumerable<ViewNode>
 		}
 
 		return originalView;
+	}
+
+
+	/// <summary>
+	/// Represents with a default enumerator type that provides the mechanism of elementary operations
+	/// used by <see langword="foreach"/> statements.
+	/// </summary>
+	public ref partial struct Iterator
+	{
+		/// <summary>
+		/// Initializes an <see cref="Iterator"/> instance via the specified list of nodes.
+		/// </summary>
+		/// <param name="view">The internal nodes.</param>
+		[FileAccessOnly]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal Iterator(View view) => _enumerator = view._nodes.GetEnumerator();
+	}
+
+	/// <summary>
+	/// Represents an enumerator that iterates for a list of elements that is projected by the current collection,
+	/// converting by the specified converter.
+	/// </summary>
+	/// <typeparam name="T">The type of projected elements.</typeparam>
+	public ref partial struct SelectIterator<T>
+	{
+		/// <summary>
+		/// Initializes an <see cref="SelectIterator{T}"/> instance via the specified list of nodes.
+		/// </summary>
+		/// <param name="view">The internal nodes.</param>
+		/// <param name="selector">The selector.</param>
+		[FileAccessOnly]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal SelectIterator(View view, Func<ViewNode, T> selector) => (_enumerator, _selector) = (view._nodes.GetEnumerator(), selector);
+	}
+
+	/// <summary>
+	/// Represents an enumerator that iterates for view nodes satisfying the specified condition.
+	/// </summary>
+	public ref partial struct WhereIterator
+	{
+		/// <summary>
+		/// Initializes an <see cref="WhereIterator"/> instance via the specified list of nodes.
+		/// </summary>
+		/// <param name="view">The internal nodes.</param>
+		/// <param name="filteringCondition">The condition.</param>
+		[FileAccessOnly]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal WhereIterator(View view, Func<ViewNode, bool> filteringCondition)
+			=> (_enumerator, _filteringCondition) = (view._nodes.GetEnumerator(), filteringCondition);
+	}
+
+	/// <summary>
+	/// Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
+	/// </summary>
+	/// <typeparam name="T">The type of the element node.</typeparam>
+	public ref partial struct OfTypeIterator<T> where T : ViewNode
+	{
+		/// <summary>
+		/// Initializes an <see cref="OfTypeIterator{T}"/> instance via the specified list of nodes.
+		/// </summary>
+		/// <param name="view">The internal nodes.</param>
+		[FileAccessOnly]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal OfTypeIterator(View view)
+		{
+			_count = view._nodes.Count;
+			_enumerator = view._nodes.GetEnumerator();
+		}
 	}
 }
