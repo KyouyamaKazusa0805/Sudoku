@@ -1433,6 +1433,26 @@
         <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode">
+            <summary>
+            Defines a pyramid view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode">
             <summary>
             Defines a windoku view node.

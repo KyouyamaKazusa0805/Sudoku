@@ -264,7 +264,10 @@ partial class GridImageGenerator
 				} => DrawObliqueLine(calc, head, tail, identifier, width, cw, ch, g),
 
 				// Windoku
-				{ Node: WindokuViewNode { Identifier: var identifier } } => DrawWindoku(identifier, calc, cs, g)
+				{ Node: WindokuViewNode { Identifier: var identifier } } => DrawWindoku(identifier, calc, cs, g),
+
+				// Pyramid
+				{ Node: PyramidViewNode { Identifier: var identifier } } => DrawPyramid(identifier, calc, cs, g)
 			};
 		}
 	}

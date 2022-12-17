@@ -1,5 +1,7 @@
 ﻿namespace Sudoku.Gdip;
 
+using static Constants;
+
 partial class GridImageGenerator
 {
 	private bool DrawDiagonalLines(
@@ -102,4 +104,47 @@ partial class GridImageGenerator
 
 		return true;
 	}
+
+	private bool DrawPyramid(Identifier identifier, PointCalculator calc, SizeF cs, Graphics g)
+	{
+		using var brush = new SolidBrush(GetColor(identifier));
+
+		for (var row = 0; row < 9; row++)
+		{
+			for (var column = 0; column < 9; column++)
+			{
+				if (PyramidStatusTable[row, column])
+				{
+					var center = calc.GetMousePointInCenter(row * 9 + column);
+					var topLeft = center - cs / 2;
+					var bottomRight = center + cs / 2;
+					var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+
+					g.FillRectangle(brush, rect);
+				}
+			}
+		}
+
+		return true;
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
+file static class Constants
+{
+	/// <summary>
+	/// The pyramid status table.
+	/// </summary>
+	public static readonly bool[,] PyramidStatusTable =
+	{
+		{ false, false, false,  true,  true,  true,  true,  true, false },
+		{  true, false, false, false,  true,  true,  true, false, false },
+		{  true,  true, false, false, false,  true, false, false, false },
+		{  true,  true,  true, false, false, false, false, false,  true },
+		{  true,  true, false, false, false, false, false,  true,  true },
+		{  true, false, false, false, false, false,  true,  true,  true },
+		{ false, false, false,  true, false, false, false,  true,  true },
+		{ false, false,  true,  true,  true, false, false, false,  true },
+		{ false,  true,  true,  true,  true,  true, false, false, false }
+	};
 }
