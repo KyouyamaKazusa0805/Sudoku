@@ -16,4 +16,7 @@ internal static partial class Patterns
 
 	[GeneratedRegex("""[\u884c\u5217\u5bab]\s*[1-9]""", RegexOptions.Compiled, 5000, "zh-CN")]
 	public static partial Regex ChineseHouseIndexPattern();
+
+	[GeneratedRegex("""(?<h>(\d|[01]\d|2[0-3])[Hh])?(?<m>(\d|[1-5]\d)[Mm])?(?<s>(\d|[1-5]\d)[Ss])?""", RegexOptions.Compiled, 5000)]
+	public static partial Regex SimpleTimeSpanPattern();
 }

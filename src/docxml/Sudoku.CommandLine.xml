@@ -149,6 +149,13 @@
         <member name="M:Sudoku.CommandLine.RootCommands.Bot.ExecuteAsync(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Bot.ExecuteScheduledCommands(Sudoku.Platforms.QQ.Scheduler.ScheduledCommand[])">
+            <summary>
+            Execute scheduled commands.
+            </summary>
+            <param name="scheduledInstances">The commands.</param>
+            <returns>The timer instance.</returns>
+        </member>
         <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnBotLeft(Mirai.Net.Data.Events.Concretes.Group.LeftEvent)">
             <summary>
             Triggers when bot has already left the group.

@@ -213,6 +213,21 @@
   <data name="ColorYellow" xml:space="preserve">
     <value>黄</value>
   </data>
+  <data name="DifficultyLevelIs" xml:space="preserve">
+    <value>难度级别：</value>
+  </data>
+  <data name="DiffLevelEasy" xml:space="preserve">
+    <value>简单</value>
+  </data>
+  <data name="DiffLevelHard" xml:space="preserve">
+    <value>困难</value>
+  </data>
+  <data name="DiffLevelModerate" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="DiffRatingIs" xml:space="preserve">
+    <value>难度系数：</value>
+  </data>
   <data name="ExpString" xml:space="preserve">
     <value>分</value>
   </data>
@@ -298,6 +313,13 @@
   </data>
   <data name="_MessageFormat_CurrentCommandIsUnderConstruction" xml:space="preserve">
     <value>当前命令暂时不支持使用~</value>
+  </data>
+  <data name="_MessageFormat_DailyPuzzle" xml:space="preserve">
+    <value>【每日一题】
+这是为本群特意设定的一个机制，在每一天的固定时刻发布每日一题给大家完成~</value>
+  </data>
+  <data name="_MessageFormat_DailyPuzzleGeneratingFailed" xml:space="preserve">
+    <value>每日一题发送失败，原因多半是机器人生成题目失败。</value>
   </data>
   <data name="_MessageFormat_DrawStartMessage" xml:space="preserve">
     <value>绘图说明📖

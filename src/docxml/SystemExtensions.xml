@@ -2603,6 +2603,13 @@
             <param name="this">The integer value.</param>
             <returns>The equivalent <see cref="T:System.TimeSpan"/> result.</returns>
         </member>
+        <member name="M:System.Int32Extensions.Days(System.Int32)">
+            <summary>
+            Gets the equivalent days of type <see cref="T:System.TimeSpan"/> from current integer value.
+            </summary>
+            <param name="this">The integer value.</param>
+            <returns>The equivalent <see cref="T:System.TimeSpan"/> result.</returns>
+        </member>
         <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.JsonSerializerOptions"/>.

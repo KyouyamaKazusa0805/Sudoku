@@ -767,6 +767,80 @@
             </code>
             </remarks>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Patterns.SimpleTimeSpanPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Optional (greedy).<br/>
+                ○ "h" capture group.<br/>
+                    ○ 1st capture group.<br/>
+                        ○ Match with 3 alternative expressions.<br/>
+                            ○ Match a Unicode digit.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match a character in the set [01].<br/>
+                                ○ Match a Unicode digit.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match '2'.<br/>
+                                ○ Match a character in the set [0-3].<br/>
+                    ○ Match a character in the set [Hh].<br/>
+            ○ Optional (greedy).<br/>
+                ○ "m" capture group.<br/>
+                    ○ 2nd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a Unicode digit.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match a character in the set [1-5].<br/>
+                                ○ Match a Unicode digit.<br/>
+                    ○ Match a character in the set [Mm].<br/>
+            ○ Optional (greedy).<br/>
+                ○ "s" capture group.<br/>
+                    ○ 3rd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a Unicode digit.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match a character in the set [1-5].<br/>
+                                ○ Match a Unicode digit.<br/>
+                    ○ Match a character in the set [Ss].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Scheduler.DailyPuzzleCommand">
+            <summary>
+            Defines a daily puzzle generating command.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Scheduler.DailyPuzzleCommand.Generator">
+            <summary>
+            Defines a default puzzle generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Scheduler.DailyPuzzleCommand.Solver">
+            <summary>
+            Defines a default puzzle solver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Scheduler.DailyPuzzleCommand.TriggeringTime">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Scheduler.DailyPuzzleCommand.ExecuteTaskAsync">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Scheduler.ScheduledCommand">
+            <summary>
+            Defines a scheduled command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Scheduler.ScheduledCommand.TriggeringTime">
+            <summary>
+            Indicates the <see cref="T:System.TimeOnly"/> instance that describes the time that the operation will be triggered daily.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Scheduler.ScheduledCommand.ExecuteTaskAsync">
+            <summary>
+            Try to execute the task.
+            </summary>
+            <returns>The task.</returns>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Scoring.Distribution">
             <summary>
             Defines a type of distribution.
@@ -1400,11 +1474,47 @@
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the SimpleTimeSpanPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
         <member name="T:System.Text.RegularExpressions.Generated.Utilities">
             <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
         </member>
         <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
             <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32,System.Int32)">
+            <summary>Pushes 3 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Pops 2 values from the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32)">
+            <summary>Pushes 1 value onto the backtracking stack.</summary>
         </member>
     </members>
 </doc>
