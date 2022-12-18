@@ -14,6 +14,7 @@ global using System.Runtime.Messages;
 global using System.Runtime.Versioning;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
+global using System.Threading;
 global using System.Threading.Tasks;
 global using Mirai.Net.Data.Events.Concretes.Bot;
 global using Mirai.Net.Data.Events.Concretes.Group;

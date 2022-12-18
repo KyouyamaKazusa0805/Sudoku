@@ -33,16 +33,6 @@ file sealed partial class Bot : IExecutable
 	/// <inheritdoc/>
 	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
-		var scheduledInstances = (
-			from type in typeof(ScheduledCommand).Assembly.GetTypes()
-			where type.IsAssignableTo(typeof(ScheduledCommand))
-			let constructor = type.GetConstructor(Array.Empty<Type>())
-			where constructor is not null
-			let instance = Activator.CreateInstance(type) as ScheduledCommand
-			where instance is not null
-			select instance
-		).ToArray();
-
 		using var bot = new MiraiBot { Address = Address, QQ = BotNumber, VerifyKey = VerifyKey };
 
 		try
@@ -66,8 +56,6 @@ file sealed partial class Bot : IExecutable
 			}
 
 			await Terminal.WriteLineAsync(R["_Message_BootSuccess"]!, ConsoleColor.DarkGreen);
-
-			ExecuteScheduledCommands(scheduledInstances).Start();
 		}
 		catch (FlurlHttpException)
 		{
@@ -78,34 +66,17 @@ file sealed partial class Bot : IExecutable
 			await Terminal.WriteLineAsync(R["_Message_BootFailed_Connection"]!, ConsoleColor.DarkRed);
 		}
 
+		PeriodicOperationPool.Instance.AddRange(
+			from type in typeof(PeriodicOperation).Assembly.GetTypes()
+			where type.IsAssignableTo(typeof(PeriodicOperation))
+			let constructor = type.GetConstructor(Array.Empty<Type>())
+			where constructor is not null
+			let operation = Activator.CreateInstance(type) as PeriodicOperation
+			where operation is not null
+			select operation
+		);
+
 		Terminal.Pause();
-	}
-
-	/// <summary>
-	/// Execute scheduled commands.
-	/// </summary>
-	/// <param name="scheduledInstances">The commands.</param>
-	/// <returns>The timer instance.</returns>
-	private PeriodicTimer ExecuteScheduledCommands(ScheduledCommand[] scheduledInstances)
-	{
-		const int interval = 10;
-		var timer = new PeriodicTimer(TimeSpan.FromMinutes(interval));
-		timer.Elapsed += async (_, e) =>
-		{
-			var time = TimeOnly.FromDateTime(e.SignalTime);
-
-			// Execute scheduled commands.
-			foreach (var instance in scheduledInstances)
-			{
-				var triggeringTime = instance.TriggeringTime;
-				if (time > triggeringTime && (time - triggeringTime).TotalMinutes < interval)
-				{
-					await instance.ExecuteTaskAsync();
-				}
-			}
-		};
-
-		return timer;
 	}
 
 

@@ -1,10 +1,10 @@
 ﻿namespace Sudoku.Platforms.QQ.Scheduler;
 
 /// <summary>
-/// Defines a daily puzzle generating command.
+/// Defines a daily puzzle generating operation.
 /// </summary>
 [SupportedOSPlatform("windows")]
-file sealed class DailyPuzzleCommand : ScheduledCommand
+file sealed class DailyPuzzleOperation : PeriodicOperation
 {
 	/// <summary>
 	/// Defines a default puzzle generator.
@@ -18,11 +18,11 @@ file sealed class DailyPuzzleCommand : ScheduledCommand
 
 
 	/// <inheritdoc/>
-	public override TimeOnly TriggeringTime => new(23, 0);
+	public override TimeOnly TriggeringTime => new(12, 0);
 
 
 	/// <inheritdoc/>
-	public override async Task ExecuteTaskAsync()
+	public override async Task ExecuteAsync()
 	{
 		var groupId = R["SudokuGroupQQ"]!;
 		for (var trial = 0; trial < 100; trial++)

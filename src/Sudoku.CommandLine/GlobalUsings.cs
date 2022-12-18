@@ -50,4 +50,3 @@ global using static Sudoku.CommandLine.CommonConstants;
 global using static Sudoku.Platforms.QQ.AppLifecycle.EnvironmentData;
 global using static Sudoku.Platforms.QQ.Patterns;
 global using static Sudoku.Resources.MergedResources;
-global using PeriodicTimer = System.Timers.Timer;
