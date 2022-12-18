@@ -105,6 +105,18 @@ public unsafe ref struct GridParser
 	/// </summary>
 	public bool ShortenSusserFormat { get; private set; }
 
+	/// <summary>
+	/// Indicates whether the property <see cref="ParsingValue"/> of this instance contains multiline limitators.
+	/// </summary>
+	/// <seealso cref="ParsingValue"/>
+	private bool ContainsMultilineLimitator => ParsingValue.Contains("-+-");
+
+	/// <summary>
+	/// Indicates whether the property <see cref="ParsingValue"/> of this instance contains tab character '<c>\t</c>'.
+	/// </summary>
+	/// <seealso cref="ParsingValue"/>
+	private bool ContainsTab => ParsingValue.Contains('\t');
+
 
 	/// <summary>
 	/// To parse the value.
@@ -112,38 +124,39 @@ public unsafe ref struct GridParser
 	/// <returns>The grid.</returns>
 	public Grid Parse()
 	{
-		if (ParsingValue.Length == 729)
+		switch (this)
 		{
-			if (OnParsingExcel(ref this) is { IsUndefined: false } grid)
+			case { ParsingValue.Length: 729 } when OnParsingExcel(ref this) is { IsUndefined: false } grid:
 			{
 				return grid;
 			}
-		}
-		else if (ParsingValue.Contains("-+-"))
-		{
-			foreach (var parseMethod in MultilineParseFunctions)
+			case { ContainsMultilineLimitator: true }:
 			{
-				if (parseMethod(ref this) is { IsUndefined: false } grid)
+				foreach (var parseMethod in MultilineParseFunctions)
 				{
-					return grid;
+					if (parseMethod(ref this) is { IsUndefined: false } grid)
+					{
+						return grid;
+					}
 				}
+
+				break;
 			}
-		}
-		else if (ParsingValue.Contains('\t'))
-		{
-			if (OnParsingExcel(ref this) is { IsUndefined: false } grid)
+			case { ContainsTab: true } when OnParsingExcel(ref this) is { IsUndefined: false } grid:
 			{
 				return grid;
 			}
-		}
-		else
-		{
-			for (int trial = 0, length = ParseFunctions.Length; trial < length; trial++)
+			default:
 			{
-				if (ParseFunctions[trial](ref this) is { IsUndefined: false } grid)
+				for (int trial = 0, length = ParseFunctions.Length; trial < length; trial++)
 				{
-					return grid;
+					if (ParseFunctions[trial](ref this) is { IsUndefined: false } grid)
+					{
+						return grid;
+					}
 				}
+
+				break;
 			}
 		}
 
@@ -181,7 +194,7 @@ public unsafe ref struct GridParser
 	/// <returns>The result.</returns>
 	private static Grid OnParsingSimpleMultilineGrid(ref GridParser parser)
 	{
-		var matches = parser.ParsingValue.MatchAll("""(\+?\d|\.)""");
+		var matches = from match in GridParserPatterns.SusserDigitPattern().Matches(parser.ParsingValue) select match.Value;
 		var length = matches.Length;
 		if (length is not (81 or 85))
 		{
@@ -271,7 +284,7 @@ public unsafe ref struct GridParser
 	/// <returns>The result.</returns>
 	private static Grid OnParsingOpenSudoku(ref GridParser parser)
 	{
-		if (parser.ParsingValue.Match("""\d(\|\d){242}""") is not { } match)
+		if (GridParserPatterns.OpenSudokuPattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
 		{
 			return Grid.Undefined;
 		}
@@ -316,7 +329,7 @@ public unsafe ref struct GridParser
 	private static Grid OnParsingPencilMarked(ref GridParser parser)
 	{
 		// Older regular expression pattern:
-		if (parser.ParsingValue.MatchAll("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)""") is not { Length: 81 } matches)
+		if ((from m in GridParserPatterns.PencilmarkedPattern().Matches(parser.ParsingValue) select m.Value) is not { Length: 81 } matches)
 		{
 			return Grid.Undefined;
 		}
@@ -423,7 +436,7 @@ public unsafe ref struct GridParser
 	/// <returns>The grid.</returns>
 	private static Grid OnParsingSimpleTable(ref GridParser parser)
 	{
-		if (parser.ParsingValue.Match("""([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}""") is not { } match)
+		if (GridParserPatterns.SimpleMultilinePattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
 		{
 			return Grid.Undefined;
 		}
@@ -443,9 +456,9 @@ public unsafe ref struct GridParser
 	/// <returns>The result.</returns>
 	private static Grid OnParsingSusser(ref GridParser parser, bool shortenSusser)
 	{
-		var match = shortenSusser
-			? parser.ParsingValue.Match("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}""")
-			: parser.ParsingValue.Match("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?""");
+		var match = (
+			shortenSusser ? GridParserPatterns.ShortenedSusserPattern() : GridParserPatterns.SusserPattern()
+		).Match(parser.ParsingValue).Value;
 
 		switch (shortenSusser)
 		{
@@ -493,8 +506,7 @@ public unsafe ref struct GridParser
 
 					break;
 				}
-				case '.':
-				case '0':
+				case '.' or '0':
 				{
 					// A placeholder.
 					// Do nothing but only move 1 step forward.
@@ -660,7 +672,7 @@ public unsafe ref struct GridParser
 		}
 		else
 		{
-			var matches = parser.ParsingValue.MatchAll("""\d*[\-\+]?\d+""");
+			var matches = from m in GridParserPatterns.SukakuSegmentPattern().Matches(parser.ParsingValue) select m.Value;
 			if (matches is { Length: not 81 })
 			{
 				return Grid.Undefined;

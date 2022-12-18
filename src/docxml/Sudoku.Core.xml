@@ -2242,27 +2242,6 @@
             <param name="gridParsingOption">The grid parsing type.</param>
             <returns>The result instance had converted.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Parse(System.Utf8String)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.Parse(System.String,System.Boolean)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,Sudoku.Text.Parsing.GridParsingOption)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Text.Parsing.GridParsingOption)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Byte})">
-            <summary>
-            <para>Parses a string value and converts to this type.</para>
-            <para>
-            If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,Sudoku.Text.Parsing.GridParsingOption)"/> instead of this method.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.Utf8String,Sudoku.Text.Parsing.GridParsingOption)"/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Char})">
             <summary>
             <para>Parses a string value and converts to this type.</para>
@@ -8488,6 +8467,18 @@
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Text.Parsing.GridParser.ContainsMultilineLimitator">
+            <summary>
+            Indicates whether the property <see cref="P:Sudoku.Text.Parsing.GridParser.ParsingValue"/> of this instance contains multiline limitators.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Parsing.GridParser.ParsingValue"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsing.GridParser.ContainsTab">
+            <summary>
+            Indicates whether the property <see cref="P:Sudoku.Text.Parsing.GridParser.ParsingValue"/> of this instance contains tab character '<c>\t</c>'.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Parsing.GridParser.ParsingValue"/>
+        </member>
         <member name="M:Sudoku.Text.Parsing.GridParser.Parse">
             <summary>
             To parse the value.
@@ -8556,6 +8547,112 @@
             Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
             </param>
             <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Parsing.GridParserPatterns">
+            <summary>
+            Provides with <see cref="T:System.Text.RegularExpressions.Regex"/> patterns used by <see cref="T:Sudoku.Text.Parsing.GridParser"/>.
+            </summary>
+            <seealso cref="T:System.Text.RegularExpressions.Regex"/>
+            <seealso cref="T:Sudoku.Text.Parsing.GridParser"/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParserPatterns.SusserDigitPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '+' atomically, optionally.<br/>
+                        ○ Match a Unicode digit.<br/>
+                    ○ Match '.'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParserPatterns.OpenSudokuPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match a Unicode digit.<br/>
+            ○ Loop exactly 242 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match '|'.<br/>
+                    ○ Match a Unicode digit.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParserPatterns.PencilmarkedPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 3 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '&lt;'.<br/>
+                        ○ Match a Unicode digit.<br/>
+                        ○ Match '&gt;'.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '*'.<br/>
+                        ○ Match a Unicode digit.<br/>
+                        ○ Match '*'.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a Unicode digit greedily any number of times.<br/>
+                        ○ Match a character in the set [+-] atomically, optionally.<br/>
+                        ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParserPatterns.SimpleMultilinePattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Loop exactly 8 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a character in the set [+.\d] exactly 9 times.<br/>
+                    ○ 2nd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a character in the set [\n\r].<br/>
+                            ○ Match the string "\r\n".<br/>
+            ○ Match a character in the set [+.\d] exactly 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParserPatterns.SusserPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match a character in the set [+.\d] greedily at least 80 times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ':'.<br/>
+                    ○ Loop greedily any number of times.<br/>
+                        ○ 2nd capture group.<br/>
+                            ○ Match a Unicode digit exactly 3 times.<br/>
+                            ○ Match a whitespace character atomically at least once.<br/>
+                    ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParserPatterns.ShortenedSusserPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
+            ○ Loop exactly 8 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParserPatterns.SukakuSegmentPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match a Unicode digit greedily any number of times.<br/>
+            ○ Match a character in the set [+-] atomically, optionally.<br/>
+            ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="T:Sudoku.Text.Parsing.GridParsingOption">
             <summary>
@@ -8742,154 +8839,6 @@
             ]]></code>
             </para>
             </summary>
-        </member>
-        <member name="T:Sudoku.Text.Parsing.Utf8GridParser">
-            <summary>
-            Encapsulates a grid parser that can parse a <see cref="T:System.Utf8String"/> value and convert it
-            into a valid <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Parsing.Utf8GridParser.ParseFunctions">
-            <summary>
-            The list of all methods to parse.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Parsing.Utf8GridParser.MultilineParseFunctions">
-            <summary>
-            The list of all methods to parse multiple-line grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.#ctor(System.Utf8String)">
-            <summary>
-            Initializes an instance with parsing data.
-            </summary>
-            <param name="parsingValue">The string to parse.</param>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.#ctor(System.Utf8String,System.Boolean)">
-            <summary>
-            Initializes an instance with parsing data and a bool value
-            indicating whether the parsing operation should use compatible mode.
-            </summary>
-            <param name="parsingValue">The string to parse.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Text.Parsing.Utf8GridParser.CompatibleFirst"/> to learn more.
-            </param>
-            <seealso cref="P:Sudoku.Text.Parsing.Utf8GridParser.CompatibleFirst"/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.#ctor(System.Utf8String,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes an instance with parsing data and a bool value
-            indicating whether the parsing operation should use compatible mode.
-            </summary>
-            <param name="parsingValue">The string to parse.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Text.Parsing.Utf8GridParser.CompatibleFirst"/> to learn more.
-            </param>
-            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
-            <seealso cref="P:Sudoku.Text.Parsing.Utf8GridParser.CompatibleFirst"/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="P:Sudoku.Text.Parsing.Utf8GridParser.ParsingValue">
-            <summary>
-            The string value to parse.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Parsing.Utf8GridParser.CompatibleFirst">
-            <summary>
-            Indicates whether the parser will change the execution order of PM grid.
-            If the value is <see langword="true"/>, the parser will check compatible one
-            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Parsing.Utf8GridParser.ShortenSusserFormat">
-            <summary>
-            Indicates whether the parser will use shorten mode to parse a susser format grid.
-            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-            <c>.</c>s or <c>0</c>s to a <c>*</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.Parse">
-            <summary>
-            To parse the value.
-            </summary>
-            <returns>The grid.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.Parse(Sudoku.Text.Parsing.GridParsingOption)">
-            <summary>
-            To parse the value with a specified grid parsing type.
-            </summary>
-            <param name="gridParsingOption">A specified parsing type.</param>
-            <returns>The grid.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="gridParsingOption"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingSimpleMultilineGrid(Sudoku.Text.Parsing.Utf8GridParser@)">
-            <summary>
-            Parse the value using multi-line simple grid (without any candidates).
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingExcel(Sudoku.Text.Parsing.Utf8GridParser@)">
-            <summary>
-            Parse the Excel format.
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingOpenSudoku(Sudoku.Text.Parsing.Utf8GridParser@)">
-            <summary>
-            Parse the open sudoku format grid.
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingPencilMarked(Sudoku.Text.Parsing.Utf8GridParser@)">
-            <summary>
-            Parse the PM grid.
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingSimpleTable(Sudoku.Text.Parsing.Utf8GridParser@)">
-            <summary>
-            Parse the simple table format string (Sudoku explainer format).
-            </summary>
-            <param name="parser">The parser.</param>
-            <returns>The grid.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingSusser(Sudoku.Text.Parsing.Utf8GridParser@,System.Boolean)">
-            <summary>
-            Parse the susser format string.
-            </summary>
-            <param name="parser">The parser.</param>
-            <param name="shortenSusser">Indicates whether the parser will shorten the susser format.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.Utf8GridParser.OnParsingSukaku(Sudoku.Text.Parsing.Utf8GridParser@,System.Boolean)">
-            <summary>
-            Parse the sukaku format string.
-            </summary>
-            <param name="parser">The parser.</param>
-            <param name="compatibleFirst">
-            Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
-            </param>
-            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Text.ResourceTextFormatterAttribute">
             <summary>
@@ -9153,6 +9102,230 @@
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
         <member name="M:System.Text.RegularExpressions.Generated.Candidates_ComplexPostpositionalFormPattern_7.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SusserDigitPattern_8">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the SusserDigitPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.SusserDigitPattern_8.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SusserDigitPattern_8.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SusserDigitPattern_8.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SusserDigitPattern_8.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SusserDigitPattern_8.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SusserDigitPattern_8.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SusserDigitPattern_8.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SusserDigitPattern_8.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.OpenSudokuPattern_9">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the OpenSudokuPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.OpenSudokuPattern_9.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.OpenSudokuPattern_9.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.OpenSudokuPattern_9.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.OpenSudokuPattern_9.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.OpenSudokuPattern_9.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.OpenSudokuPattern_9.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.OpenSudokuPattern_9.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.OpenSudokuPattern_9.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PencilmarkedPattern_10">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the PencilmarkedPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.PencilmarkedPattern_10.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PencilmarkedPattern_10.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PencilmarkedPattern_10.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PencilmarkedPattern_10.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PencilmarkedPattern_10.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PencilmarkedPattern_10.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PencilmarkedPattern_10.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PencilmarkedPattern_10.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SimpleMultilinePattern_11">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the SimpleMultilinePattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.SimpleMultilinePattern_11.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SimpleMultilinePattern_11.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SimpleMultilinePattern_11.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SimpleMultilinePattern_11.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SimpleMultilinePattern_11.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SimpleMultilinePattern_11.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SimpleMultilinePattern_11.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SimpleMultilinePattern_11.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SusserPattern_12">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the SusserPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.SusserPattern_12.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SusserPattern_12.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SusserPattern_12.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SusserPattern_12.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SusserPattern_12.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SusserPattern_12.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SusserPattern_12.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SusserPattern_12.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ShortenedSusserPattern_13">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ShortenedSusserPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.ShortenedSusserPattern_13.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ShortenedSusserPattern_13.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ShortenedSusserPattern_13.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ShortenedSusserPattern_13.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ShortenedSusserPattern_13.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ShortenedSusserPattern_13.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ShortenedSusserPattern_13.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ShortenedSusserPattern_13.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SukakuSegmentPattern_14">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the SukakuSegmentPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.SukakuSegmentPattern_14.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SukakuSegmentPattern_14.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SukakuSegmentPattern_14.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SukakuSegmentPattern_14.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SukakuSegmentPattern_14.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SukakuSegmentPattern_14.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SukakuSegmentPattern_14.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SukakuSegmentPattern_14.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
