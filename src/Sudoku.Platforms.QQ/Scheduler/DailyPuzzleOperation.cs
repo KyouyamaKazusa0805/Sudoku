@@ -4,7 +4,7 @@
 /// Defines a daily puzzle generating operation.
 /// </summary>
 [SupportedOSPlatform("windows")]
-file sealed class DailyPuzzleOperation : PeriodicOperation
+file sealed record DailyPuzzleOperation() : PeriodicOperation(new TimeOnly(12, 0))
 {
 	/// <summary>
 	/// Defines a default puzzle generator.
@@ -15,10 +15,6 @@ file sealed class DailyPuzzleOperation : PeriodicOperation
 	/// Defines a default puzzle solver.
 	/// </summary>
 	private static readonly LogicalSolver Solver = new();
-
-
-	/// <inheritdoc/>
-	public override TimeOnly TriggeringTime => new(12, 0);
 
 
 	/// <inheritdoc/>

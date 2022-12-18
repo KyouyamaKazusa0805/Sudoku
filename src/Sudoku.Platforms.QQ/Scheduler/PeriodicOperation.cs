@@ -3,14 +3,11 @@
 /// <summary>
 /// Defines a periodic operation.
 /// </summary>
-public abstract class PeriodicOperation
+/// <param name="TriggeringTime">
+/// Indicates the <see cref="TimeOnly"/> instance that describes the time that the operation will be triggered daily.
+/// </param>
+public abstract record PeriodicOperation(TimeOnly TriggeringTime)
 {
-	/// <summary>
-	/// Indicates the <see cref="TimeOnly"/> instance that describes the time that the operation will be triggered daily.
-	/// </summary>
-	public abstract TimeOnly TriggeringTime { get; }
-
-
 	/// <summary>
 	/// Try to execute the task.
 	/// </summary>

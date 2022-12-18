@@ -9,7 +9,7 @@ public sealed class PeriodicOperationPool
 	/// <summary>
 	/// The internal singleton field.
 	/// </summary>
-	private static PeriodicOperationPool? _instance;
+	private static PeriodicOperationPool? _sharedInstance;
 
 
 	/// <summary>
@@ -29,15 +29,15 @@ public sealed class PeriodicOperationPool
 	/// <summary>
 	/// Indicates the singleton instance.
 	/// </summary>
-	public static PeriodicOperationPool Instance => _instance ??= new PeriodicOperationPool();
+	public static PeriodicOperationPool Shared => _sharedInstance ??= new();
 
 
 	/// <summary>
-	/// Try to stack a new scheduled task.
+	/// Try to enqueue a new scheduled task.
 	/// </summary>
 	/// <param name="time">The time that the operation will be executed at.</param>
 	/// <param name="action">The task.</param>
-	public void Add(TimeOnly time, Action action)
+	public void Enqueue(TimeOnly time, Action action)
 	{
 		var now = DateTime.Now;
 		var firstRun = new DateTime(now.Year, now.Month, now.Day, time.Hour, time.Minute, time.Second, time.Millisecond);
@@ -56,20 +56,20 @@ public sealed class PeriodicOperationPool
 	}
 
 	/// <summary>
-	/// Try to stack a new scheduled task.
+	/// Try to enqueue a new scheduled task.
 	/// </summary>
 	/// <param name="operation">The periodic operation instance.</param>
-	public void Add(PeriodicOperation operation) => Add(operation.TriggeringTime, async () => await operation.ExecuteAsync());
+	public void Enqueue(PeriodicOperation operation) => Enqueue(operation.TriggeringTime, async () => await operation.ExecuteAsync());
 
 	/// <summary>
-	/// Try to stack a list of new scheduled tasks.
+	/// Try to enqueue a list of new scheduled tasks.
 	/// </summary>
 	/// <param name="operations">The periodic operation instances.</param>
-	public void AddRange(IEnumerable<PeriodicOperation> operations)
+	public void EnqueueRange(IEnumerable<PeriodicOperation> operations)
 	{
 		foreach (var operation in operations)
 		{
-			Add(operation);
+			Enqueue(operation);
 		}
 	}
 }

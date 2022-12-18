@@ -809,6 +809,11 @@
             Defines a daily puzzle generating operation.
             </summary>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Scheduler.DailyPuzzleOperation.#ctor">
+            <summary>
+            Defines a daily puzzle generating operation.
+            </summary>
+        </member>
         <member name="F:Sudoku.Platforms.QQ.Scheduler.DailyPuzzleOperation.Generator">
             <summary>
             Defines a default puzzle generator.
@@ -819,9 +824,6 @@
             Defines a default puzzle solver.
             </summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Scheduler.DailyPuzzleOperation.TriggeringTime">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Scheduler.DailyPuzzleOperation.ExecuteAsync">
             <inheritdoc/>
         </member>
@@ -829,6 +831,17 @@
             <summary>
             Defines a periodic operation.
             </summary>
+            <param name="TriggeringTime">
+            Indicates the <see cref="T:System.TimeOnly"/> instance that describes the time that the operation will be triggered daily.
+            </param>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Scheduler.PeriodicOperation.#ctor(System.TimeOnly)">
+            <summary>
+            Defines a periodic operation.
+            </summary>
+            <param name="TriggeringTime">
+            Indicates the <see cref="T:System.TimeOnly"/> instance that describes the time that the operation will be triggered daily.
+            </param>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Scheduler.PeriodicOperation.TriggeringTime">
             <summary>
@@ -847,7 +860,7 @@
             </summary>
             <seealso cref="T:Sudoku.Platforms.QQ.Scheduler.PeriodicOperation"/>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool._instance">
+        <member name="F:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool._sharedInstance">
             <summary>
             The internal singleton field.
             </summary>
@@ -862,27 +875,27 @@
             Initializes a <see cref="T:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool.Instance">
+        <member name="P:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool.Shared">
             <summary>
             Indicates the singleton instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool.Add(System.TimeOnly,System.Action)">
+        <member name="M:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool.Enqueue(System.TimeOnly,System.Action)">
             <summary>
-            Try to stack a new scheduled task.
+            Try to enqueue a new scheduled task.
             </summary>
             <param name="time">The time that the operation will be executed at.</param>
             <param name="action">The task.</param>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool.Add(Sudoku.Platforms.QQ.Scheduler.PeriodicOperation)">
+        <member name="M:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool.Enqueue(Sudoku.Platforms.QQ.Scheduler.PeriodicOperation)">
             <summary>
-            Try to stack a new scheduled task.
+            Try to enqueue a new scheduled task.
             </summary>
             <param name="operation">The periodic operation instance.</param>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Platforms.QQ.Scheduler.PeriodicOperation})">
+        <member name="M:Sudoku.Platforms.QQ.Scheduler.PeriodicOperationPool.EnqueueRange(System.Collections.Generic.IEnumerable{Sudoku.Platforms.QQ.Scheduler.PeriodicOperation})">
             <summary>
-            Try to stack a list of new scheduled tasks.
+            Try to enqueue a list of new scheduled tasks.
             </summary>
             <param name="operations">The periodic operation instances.</param>
         </member>

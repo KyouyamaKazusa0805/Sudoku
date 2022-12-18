@@ -49,11 +49,7 @@ file sealed partial class Bot : IExecutable
 			bot.SubscribeMuted();
 			bot.SubscribeUnmuted();
 
-			var groups = await AccountManager.GetGroupsAsync();
-			foreach (var group in groups)
-			{
-				RunningContexts.TryAdd(group.Id, new());
-			}
+			(await AccountManager.GetGroupsAsync()).ForEach(static group => RunningContexts.TryAdd(group.Id, new()));
 
 			await Terminal.WriteLineAsync(R["_Message_BootSuccess"]!, ConsoleColor.DarkGreen);
 		}
@@ -66,7 +62,7 @@ file sealed partial class Bot : IExecutable
 			await Terminal.WriteLineAsync(R["_Message_BootFailed_Connection"]!, ConsoleColor.DarkRed);
 		}
 
-		PeriodicOperationPool.Instance.AddRange(
+		PeriodicOperationPool.Shared.EnqueueRange(
 			from type in typeof(PeriodicOperation).Assembly.GetTypes()
 			where type.IsAssignableTo(typeof(PeriodicOperation))
 			let constructor = type.GetConstructor(Array.Empty<Type>())
