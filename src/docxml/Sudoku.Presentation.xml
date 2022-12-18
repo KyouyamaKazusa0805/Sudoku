@@ -2414,54 +2414,6 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
         </member>
-        <member name="T:Sudoku.Presentation.ViewNodeSegment">
-            <summary>
-            Defines a view node segment.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNodeSegment.#ctor(System.Object,System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.ViewNodeSegment"/> instance via view nodes.
-            </summary>
-            <param name="viewNodes">View nodes.</param>
-            <param name="count">The number of elements.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.ViewNodeSegment.ActualValue">
-            <summary>
-            The actual value. The compatible types of this property can be <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>, <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>[]
-            and <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ViewNodeSegment.CollectionValuesCount">
-            <summary>
-            Indicates the number of elements stored in property <see cref="P:Sudoku.Presentation.ViewNodeSegment.ActualValue"/> of this instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNodeSegment.ToArray">
-            <summary>
-            Convert the current instance into an array, no matter what the inner type is. This method will not throw any exceptions;
-            it will always create an array and copy values into it if the inner field is not an array.
-            </summary>
-            <returns>An array of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNodeSegment.op_Implicit(Sudoku.Presentation.Nodes.ViewNode)~Sudoku.Presentation.ViewNodeSegment">
-            <summary>
-            Implicit cast from <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> to <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.
-            </summary>
-            <param name="viewNode">View node.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNodeSegment.op_Implicit(Sudoku.Presentation.Nodes.ViewNode[])~Sudoku.Presentation.ViewNodeSegment">
-            <summary>
-            Implicit cast from <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>[] to <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.
-            </summary>
-            <param name="viewNodes">View nodes.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNodeSegment.op_Implicit(System.Collections.Generic.List{Sudoku.Presentation.Nodes.ViewNode})~Sudoku.Presentation.ViewNodeSegment">
-            <summary>
-            Implicit cast from <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> to <see cref="T:Sudoku.Presentation.ViewNodeSegment"/>.
-            </summary>
-            <param name="viewNodes">View nodes.</param>
-        </member>
         <member name="T:Sudoku.Text.Serialization.ColorInternal">
             <summary>
             The internal color structure.
