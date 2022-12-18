@@ -139,9 +139,10 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	private IList<LinkViewNode> GetLinks()
 	{
 		var result = new List<LinkViewNode>();
-		for (int i = 0, iterationCount = _tempConclusions.Count - 1; i < iterationCount; i++)
+		for (var i = 0; i < _tempConclusions.Count - 1; i++)
 		{
-			int c1 = _tempConclusions[i].Candidate, c2 = _tempConclusions[i + 1].Candidate;
+			var c1 = _tempConclusions[i].Candidate;
+			var c2 = _tempConclusions[i + 1].Candidate;
 			result.Add(new(DisplayColorKind.Normal, new(c1 % 9, c1 / 9), new(c2 % 9, c2 / 9), Inference.Default));
 		}
 

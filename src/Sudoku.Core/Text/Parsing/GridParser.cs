@@ -148,7 +148,7 @@ public unsafe ref struct GridParser
 			}
 			default:
 			{
-				for (int trial = 0, length = ParseFunctions.Length; trial < length; trial++)
+				for (var trial = 0; trial < ParseFunctions.Length; trial++)
 				{
 					if (ParseFunctions[trial](ref this) is { IsUndefined: false } grid)
 					{

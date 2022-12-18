@@ -187,7 +187,7 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 			foreach (var house in tempMap.CoveredHouses)
 			{
 				var allCells = (HousesMap[house] & EmptyCells) - pattern;
-				for (int size = PopCount((uint)extraDigitsMask) - 1, count = allCells.Count; size < count; size++)
+				for (var size = PopCount((uint)extraDigitsMask) - 1; size < allCells.Count; size++)
 				{
 					foreach (var cells in allCells & size)
 					{

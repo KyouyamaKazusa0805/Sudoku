@@ -15,7 +15,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
-		for (int i = 0, end = EmptyCells.Count == 7 ? BdpTemplatesSize3Count : BdpTemplatesSize4Count; i < end; i++)
+		for (var i = 0; i < (EmptyCells.Count == 7 ? BdpTemplatesSize3Count : BdpTemplatesSize4Count); i++)
 		{
 			var pattern = IUniquePolygonStepSearcher.Patterns[i];
 			if ((EmptyCells & pattern.Map) != pattern.Map)
@@ -218,7 +218,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 				// Iterate on the cells by the specified size.
 				var iterationCellsMap = (HousesMap[houseIndex] - currentMap) & EmptyCells;
 				var otherDigitsMask = (short)(orMask & ~tempMask);
-				for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationCellsMap.Count; size < count; size++)
+				for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationCellsMap.Count; size++)
 				{
 					foreach (var combination in iterationCellsMap & size)
 					{

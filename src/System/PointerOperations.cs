@@ -149,7 +149,7 @@ public static unsafe class PointerOperations
 			}
 
 			var result = new int[length - count - index];
-			for (int i = index, iterationLength = length - count; i < iterationLength; i++)
+			for (var i = index; i < length - count; i++)
 			{
 				result[i - index] = ptr[i];
 			}

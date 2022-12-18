@@ -44,7 +44,7 @@ public ref struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, Enum
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	public unsafe bool MoveNext()
 	{
-		for (int index = _index + 1, length = _fields.Length; index < length; index++)
+		for (var index = _index + 1; index < _fields.Length; index++)
 		{
 			var field = _fields[index];
 			switch (sizeof(T))

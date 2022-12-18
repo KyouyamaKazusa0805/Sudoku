@@ -67,7 +67,7 @@ public abstract class Chain :
 	{
 		var hashCodeHandler = new HashCode();
 		hashCodeHandler.Add(GetType());
-		for (int i = 0, length = _nodes.Length - 1; i < length; i++)
+		for (var i = 0; i < _nodes.Length - 1; i++)
 		{
 			hashCodeHandler.Add(_nodes[i]);
 			hashCodeHandler.Add(_nodesStatus[i]);
@@ -118,7 +118,7 @@ public abstract class Chain :
 #if true
 	{
 		var result = new (Node, bool)[_nodes.Length];
-		for (int i = 0, length = _nodes.Length; i < length; i++)
+		for (int i = 0; i < _nodes.Length; i++)
 		{
 			result[i] = (_nodes[i], _nodesStatus[i]);
 		}

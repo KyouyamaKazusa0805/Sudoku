@@ -88,7 +88,7 @@ public sealed class TrueCandidatesSearcher
 		SkipInit(out short mask);
 		var pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
 		var multivalueCells = (Puzzle.EmptyCells - Puzzle.BivalueCells).ToArray();
-		for (int i = 0, length = multivalueCells.Length; i < length; i++)
+		for (var i = 0; i < multivalueCells.Length; i++)
 		{
 			// e.g. { 2, 4, 6 } (42)
 			mask = Puzzle.GetCandidates(multivalueCells[i]);
@@ -98,7 +98,7 @@ public sealed class TrueCandidatesSearcher
 
 			// e.g. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
 			pairs[i, 0] = (short)pairList.Length;
-			for (int z = 1, pairListLength = pairList.Length; z <= pairListLength; z++)
+			for (var z = 1; z <= pairList.Length; z++)
 			{
 				pairs[i, z] = pairList[z - 1];
 			}
@@ -147,7 +147,7 @@ public sealed class TrueCandidatesSearcher
 
 			if (@continue)
 			{
-				for (int z = 0, stackLength = stack.GetLength(1); z < stackLength; z++)
+				for (var z = 0; z < stack.GetLength(1); z++)
 				{
 					stack[currentIndex, z] = stack[currentIndex - 1, z];
 				}

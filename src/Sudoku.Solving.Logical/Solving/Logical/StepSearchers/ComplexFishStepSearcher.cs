@@ -159,8 +159,9 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						}
 
 						// Get the primary map of endo-fins.
-						CellMap tempMap = CellMap.Empty, endofins = CellMap.Empty;
-						for (int i = 0, length = baseSets.Length; i < length; i++)
+						var tempMap = CellMap.Empty;
+						var endofins = CellMap.Empty;
+						for (var i = 0; i < baseSets.Length; i++)
 						{
 							var baseSet = baseSets[i];
 							if (i != 0)
@@ -403,7 +404,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								// Don't forget the extra cover set.
 								// Add it into the list now.
 								var actualCoverSets = new int[size];
-								for (int p = 0, iterationSize = size - 1; p < iterationSize; p++)
+								for (var p = 0; p < size - 1; p++)
 								{
 									actualCoverSets[p] = coverSets[p];
 								}

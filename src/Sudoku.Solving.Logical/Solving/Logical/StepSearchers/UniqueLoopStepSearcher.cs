@@ -263,7 +263,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 			}
 
 			var otherCells = (HousesMap[houseIndex] & EmptyCells) - loop;
-			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Count; size < count; size++)
+			for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 			{
 				foreach (int[] cells in otherCells & size)
 				{

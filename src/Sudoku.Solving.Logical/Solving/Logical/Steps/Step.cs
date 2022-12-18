@@ -86,7 +86,7 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 		scoped var sb = new StringHandler(length);
 		var formats = new List<string>(10);
 		var formatCount = 0;
-		for (int i = 0, iterationLength = length - 1; i < iterationLength; i++)
+		for (var i = 0; i < length - 1; i++)
 		{
 			switch (format[i], format[i + 1])
 			{

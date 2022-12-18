@@ -259,7 +259,7 @@ public sealed class AlternatingInferenceChain : Chain
 	{
 		scoped var sb = new StringHandler();
 		var realChain = RealChainNodes;
-		for (int i = 0, length = realChain.Length; i < length; i++)
+		for (var i = 0; i < realChain.Length; i++)
 		{
 			sb.Append(realChain[i].ToSimpleString());
 			sb.Append(((Inference)(i & 1)).GetIdentifier());

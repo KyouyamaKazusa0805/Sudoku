@@ -220,7 +220,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			}
 
 			// Iterate on each size.
-			for (int size = 1, length = otherCellsMap.Count; size < length; size++)
+			for (var size = 1; size < otherCellsMap.Count; size++)
 			{
 				foreach (var cells in otherCellsMap & size)
 				{
@@ -502,7 +502,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			}
 
 			var candidateOffsets = new CandidateViewNode[trueCandidates.Count];
-			for (int i = 0, count = trueCandidates.Count; i < count; i++)
+			for (var i = 0; i < trueCandidates.Count; i++)
 			{
 				candidateOffsets[i] = new(DisplayColorKind.Normal, trueCandidates[i]);
 			}

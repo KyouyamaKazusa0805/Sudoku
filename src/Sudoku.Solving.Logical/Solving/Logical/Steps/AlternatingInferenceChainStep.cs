@@ -142,7 +142,7 @@ internal sealed record AlternatingInferenceChainStep(
 		get
 		{
 			var realChainNodes = Chain.RealChainNodes;
-			for (int i = 0, count = realChainNodes.Length; i < count; i += 2)
+			for (var i = 0; i < realChainNodes.Length; i += 2)
 			{
 				if ((realChainNodes[i].Cells, realChainNodes[i + 1].Cells) is not ([var c1], [var c2]) || c1 != c2)
 				{

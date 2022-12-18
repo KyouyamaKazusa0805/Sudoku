@@ -36,8 +36,9 @@ public interface IChainStep : IStep
 		// Sort the array.
 		if (shouldSort)
 		{
-			ConclusionList lc = lConclusions.Sort(), rc = rConclusions.Sort();
-			for (int i = 0, length = lc.Length; i < length; i++)
+			var lc = lConclusions.Sort();
+			var rc = rConclusions.Sort();
+			for (var i = 0; i < lc.Length; i++)
 			{
 				if (lc[i] != rc[i])
 				{
@@ -49,7 +50,7 @@ public interface IChainStep : IStep
 		}
 		else
 		{
-			for (int i = 0, length = lConclusions.Length; i < length; i++)
+			for (var i = 0; i < lConclusions.Length; i++)
 			{
 				if (lConclusions[i] != rConclusions[i])
 				{

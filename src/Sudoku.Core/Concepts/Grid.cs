@@ -778,8 +778,8 @@ public unsafe partial struct Grid :
 	/// <inheritdoc cref="GetDigitsUnion(in CellMap)"/>
 	public readonly short GetDigitsUnion(int[] cells)
 	{
-		short result = 0;
-		for (int i = 0, length = cells.Length; i < length; i++)
+		var result = (short)0;
+		for (var i = 0; i < cells.Length; i++)
 		{
 			result |= _values[cells[i]];
 		}

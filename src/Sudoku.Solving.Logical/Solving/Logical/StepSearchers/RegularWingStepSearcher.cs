@@ -15,7 +15,7 @@ internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepS
 		// Note that the greatest size is determined by two factors: the size that you specified
 		// and the number of bi-value cells in the grid.
 		scoped ref readonly var grid = ref context.Grid;
-		for (int size = 3, count = Min(MaxSize, BivalueCells.Count); size <= count; size++)
+		for (var size = 3; size <= Min(MaxSize, BivalueCells.Count); size++)
 		{
 			// Iterate on each pivot cell.
 			foreach (var pivot in EmptyCells)
@@ -41,7 +41,7 @@ internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepS
 					// Check duplicate.
 					// If two cells contain same candidates, the wing can't be formed.
 					var flag = false;
-					for (int i = 0, length = cells.Count, outerLength = length - 1; i < outerLength; i++)
+					for (int i = 0, length = cells.Count; i < length - 1; i++)
 					{
 						for (var j = i + 1; j < length; j++)
 						{

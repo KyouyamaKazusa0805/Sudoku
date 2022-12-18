@@ -82,7 +82,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 			var pairMask = grid.GetDigitsUnion(pair);
 
 			// Iterate on each combination.
-			for (int size = 2, count = PopCount((uint)pairMask); size < count; size++)
+			for (var size = 2; size < PopCount((uint)pairMask); size++)
 			{
 				foreach (var digits in pairMask.GetAllSets().GetSubsets(size))
 				{

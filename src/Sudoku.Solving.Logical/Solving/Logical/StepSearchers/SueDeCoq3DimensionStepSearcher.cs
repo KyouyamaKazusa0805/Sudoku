@@ -53,7 +53,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 					var columnMap = HousesMap[c] - HousesMap[b] & EmptyCells;
 
 					// Iterate on the number of the cells that should be selected in block.
-					for (int i = 1, count = blockMap.Count; i < count; i++)
+					for (var i = 1; i < blockMap.Count; i++)
 					{
 						foreach (var selectedBlockCells in blockMap & i)
 						{
@@ -67,7 +67,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 							}
 							elimMapBlock &= blockMap - selectedBlockCells;
 
-							for (int j = 1, limit = MathExtensions.Min(9 - i - selectedBlockCells.Count, rowMap.Count, columnMap.Count); j < limit; j++)
+							for (var j = 1; j < MathExtensions.Min(9 - i - selectedBlockCells.Count, rowMap.Count, columnMap.Count); j++)
 							{
 								foreach (var selectedRowCells in rowMap & j)
 								{

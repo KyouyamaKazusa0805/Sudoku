@@ -35,11 +35,11 @@ public interface IQiuDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 			{ 27, 36 }, { 27, 45 }, { 36, 45 }, { 54, 63 }, { 54, 72 }, { 63, 72 }
 		};
 
-		for (int i = 0, n = 0, length = BaseLineIterator.Length, outerLength = length >> 1; i < outerLength; i++)
+		for (int i = 0, n = 0, length = BaseLineIterator.Length; i < length >> 1; i++)
 		{
 			var isRow = i < length >> 2;
 			var baseLineMap = HousesMap[BaseLineIterator[i, 0]] | HousesMap[BaseLineIterator[i, 1]];
-			for (int j = isRow ? 0 : 9, z = 0, iterationLengthInner = length >> 2; z < iterationLengthInner; j++, z++)
+			for (int j = isRow ? 0 : 9, z = 0; z < length >> 2; j++, z++)
 			{
 				int c1 = StartCells[j, 0], c2 = StartCells[j, 1];
 				for (var k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
@@ -50,8 +50,7 @@ public interface IQiuDeadlyPatternStepSearcher : IDeadlyPatternStepSearcher
 						continue;
 					}
 
-					var tempMapBlock = HousesMap[c1.ToHouseIndex(HouseType.Block)]
-						| HousesMap[c2.ToHouseIndex(HouseType.Block)];
+					var tempMapBlock = HousesMap[c1.ToHouseIndex(HouseType.Block)] | HousesMap[c2.ToHouseIndex(HouseType.Block)];
 					if (baseLineMap && tempMapBlock)
 					{
 						continue;

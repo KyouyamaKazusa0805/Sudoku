@@ -164,7 +164,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 			}
 
 			var otherCells = (HousesMap[house] & EmptyCells) - loop;
-			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Count; size < count; size++)
+			for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 			{
 				foreach (var cells in otherCells & size)
 				{

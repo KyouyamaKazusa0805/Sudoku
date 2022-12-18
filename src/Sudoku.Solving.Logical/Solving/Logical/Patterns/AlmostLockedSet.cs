@@ -73,7 +73,7 @@ public sealed partial class AlmostLockedSet :
 		{
 			scoped var digits = DigitsMask.GetAllSets();
 			var result = new short[StrongRelationsCount[digits.Length - 1]];
-			for (int i = 0, x = 0, l = digits.Length, iterationLength = l - 1; i < iterationLength; i++)
+			for (int i = 0, x = 0, l = digits.Length; i < l - 1; i++)
 			{
 				for (var j = i + 1; j < l; j++)
 				{

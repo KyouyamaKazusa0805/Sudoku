@@ -28,7 +28,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 		var house = stackalloc int[2];
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
-		for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
+		for (int i = 0, length = alses.Length; i < length - 1; i++)
 		{
 			var als1 = alses[i];
 			var house1 = als1.House;

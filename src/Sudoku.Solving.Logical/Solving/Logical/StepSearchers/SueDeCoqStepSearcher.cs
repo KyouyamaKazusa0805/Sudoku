@@ -66,7 +66,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 					var lineMap = a & EmptyCells;
 
 					// Iterate on the number of the cells that should be selected in block.
-					for (int i = 1, count = blockMap.Count; i < count; i++)
+					for (var i = 1; i < blockMap.Count; i++)
 					{
 						// Iterate on each combination in block.
 						foreach (var currentBlockMap in blockMap & i)

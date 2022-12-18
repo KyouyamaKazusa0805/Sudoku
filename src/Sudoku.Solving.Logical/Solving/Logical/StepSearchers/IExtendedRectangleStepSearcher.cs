@@ -72,11 +72,14 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 		// Initializes fit types.
 		for (var j = 0; j < 3; j++)
 		{
-			for (int i = 0, length = fitTableRow.Length >> 1; i < length; i++)
+			for (var i = 0; i < fitTableRow.Length >> 1; i++)
 			{
-				int c11 = fitTableRow[i, 0] + j * 27, c21 = fitTableRow[i, 1] + j * 27;
-				int c12 = c11 + 9, c22 = c21 + 9;
-				int c13 = c11 + 18, c23 = c21 + 18;
+				var c11 = fitTableRow[i, 0] + j * 27;
+				var c21 = fitTableRow[i, 1] + j * 27;
+				var c12 = c11 + 9;
+				var c22 = c21 + 9;
+				var c13 = c11 + 18;
+				var c23 = c21 + 18;
 				combinations.Add(
 					(
 						CellsMap[c11] + c12 + c13 + c21 + c22 + c23,
@@ -88,11 +91,14 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 		}
 		for (var j = 0; j < 3; j++)
 		{
-			for (int i = 0, length = fitTableColumn.Length >> 1; i < length; i++)
+			for (var i = 0; i < fitTableColumn.Length >> 1; i++)
 			{
-				int c11 = fitTableColumn[i, 0] + j * 3, c21 = fitTableColumn[i, 1] + j * 3;
-				int c12 = c11 + 1, c22 = c21 + 1;
-				int c13 = c11 + 2, c23 = c21 + 2;
+				var c11 = fitTableColumn[i, 0] + j * 3;
+				var c21 = fitTableColumn[i, 1] + j * 3;
+				var c12 = c11 + 1;
+				var c22 = c21 + 1;
+				var c13 = c11 + 2;
+				var c23 = c21 + 2;
 				combinations.Add(
 					(
 						CellsMap[c11] + c12 + c13 + c21 + c22 + c23,
@@ -106,9 +112,10 @@ public interface IExtendedRectangleStepSearcher : IDeadlyPatternStepSearcher
 		// Initializes fat types.
 		for (var size = 3; size <= 7; size++)
 		{
-			for (int i = 0, length = houses.Length >> 1; i < length; i++)
+			for (var i = 0; i < houses.Length >> 1; i++)
 			{
-				int house1 = houses[i, 0], house2 = houses[i, 1];
+				var house1 = houses[i, 0];
+				var house2 = houses[i, 1];
 				foreach (short mask in new BitSubsetsGenerator(9, size))
 				{
 					// Check whether all cells are in same house.

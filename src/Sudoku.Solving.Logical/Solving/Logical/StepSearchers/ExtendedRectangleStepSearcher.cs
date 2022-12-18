@@ -253,7 +253,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 		foreach (var houseIndex in extraCellsMap.CoveredHouses)
 		{
 			var otherCells = (HousesMap[houseIndex] & EmptyCells) - allCellsMap;
-			for (int size = 1, length = otherCells.Count; size < length; size++)
+			for (var size = 1; size < otherCells.Count; size++)
 			{
 				foreach (var cells in otherCells & size)
 				{

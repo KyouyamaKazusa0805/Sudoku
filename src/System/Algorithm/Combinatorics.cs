@@ -35,7 +35,7 @@ public static class Combinatorics
 				else
 				{
 					var temp = new T[count];
-					for (int j = 0, length = tempArray.Length; j < length; j++)
+					for (var j = 0; j < tempArray.Length; j++)
 					{
 						temp[j] = @this[tempArray[j]];
 					}
@@ -76,7 +76,7 @@ public static class Combinatorics
 				else
 				{
 					var temp = new T[count];
-					for (int j = 0, length = tempArray.Length; j < length; j++)
+					for (var j = 0; j < tempArray.Length; j++)
 					{
 						temp[j] = @this[tempArray[j]];
 					}
@@ -108,7 +108,7 @@ public static class Combinatorics
 	/// </returns>
 	public static IEnumerable<T[]> GetSubsets<T>(this IReadOnlyList<T> @this)
 	{
-		for (int size = 1, count = @this.Count; size <= count; size++)
+		for (var size = 1; size <= @this.Count; size++)
 		{
 			foreach (var subset in @this.GetSubsets(size))
 			{
@@ -157,7 +157,7 @@ public static class Combinatorics
 				else
 				{
 					var temp = new T[count];
-					for (int j = 0, length = tempArray.Length; j < length; j++)
+					for (var j = 0; j < tempArray.Length; j++)
 					{
 						temp[j] = @this[tempArray[j]];
 					}

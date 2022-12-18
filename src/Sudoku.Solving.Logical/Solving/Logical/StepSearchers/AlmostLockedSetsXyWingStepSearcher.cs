@@ -16,7 +16,7 @@ internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmos
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
 		// Gather all RCCs.
-		for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
+		for (int i = 0, length = alses.Length; i < length - 1; i++)
 		{
 			var als1 = alses[i];
 			var map1 = als1.Map;
@@ -53,7 +53,7 @@ internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmos
 		}
 
 		// Now check them.
-		for (int i = 0, count = rccs.Count, iterationCountOuter = count - 1; i < iterationCountOuter; i++)
+		for (int i = 0, count = rccs.Count; i < count - 1; i++)
 		{
 			var (als11, als12, mask1) = rccs[i];
 			for (var j = i + 1; j < count; j++)

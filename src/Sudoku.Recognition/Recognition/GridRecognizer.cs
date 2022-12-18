@@ -51,7 +51,7 @@ internal sealed class GridRecognizer : IDisposable
 		// Finding contours and choosing needed.
 		Cv.FindContours(edges, contours, null, RetrType.List, ChainApprox);
 
-		for (int i = 0, size = contours.Size; i < size; i++)
+		for (var i = 0; i < contours.Size; i++)
 		{
 			if (contours[i].Size < 4)
 			{

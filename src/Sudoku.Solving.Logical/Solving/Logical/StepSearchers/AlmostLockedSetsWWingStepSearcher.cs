@@ -13,7 +13,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 		var conjugatePairs = IConjugatesGatherable.Gather();
 
 		// Iterate on each ALS.
-		for (int i = 0, length = alses.Length, iterationLength = length - 1; i < iterationLength; i++)
+		for (int i = 0, length = alses.Length; i < length - 1; i++)
 		{
 			var als1 = alses[i];
 			var map1 = als1.Map;

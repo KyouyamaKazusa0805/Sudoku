@@ -270,7 +270,7 @@ public unsafe ref partial struct StringHandler
 		return ref MemoryMarshal.GetReference(_chars);
 	}
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]	
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override readonly partial int GetHashCode();
 
 	/// <inheritdoc/>
@@ -403,7 +403,7 @@ public unsafe ref partial struct StringHandler
 		}
 
 		scoped var dst = _chars.Slice(Length, count);
-		for (int i = 0, length = dst.Length; i < length; i++)
+		for (var i = 0; i < dst.Length; i++)
 		{
 			dst[i] = c;
 		}
@@ -430,7 +430,7 @@ public unsafe ref partial struct StringHandler
 		}
 
 		var dst = _chars.Slice(Length, length);
-		for (int i = 0, iterationLength = dst.Length; i < iterationLength; i++)
+		for (var i = 0; i < dst.Length; i++)
 		{
 			dst[i] = *value++;
 		}
@@ -1124,7 +1124,7 @@ public unsafe ref partial struct StringHandler
 	{
 		fixed (char* p = _chars)
 		{
-			for (int i = 0, iterationLength = Length >> 1; i < iterationLength; i++)
+			for (var i = 0; i < Length >> 1; i++)
 			{
 				var c = p[i];
 				p[i] = p[Length - 1 - i];

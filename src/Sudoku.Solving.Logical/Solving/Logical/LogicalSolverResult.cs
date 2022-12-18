@@ -74,7 +74,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 		{
 			if (!Steps.IsDefaultOrEmpty)
 			{
-				for (int i = 0, length = Steps.Length; i < length; i++)
+				for (var i = 0; i < Steps.Length; i++)
 				{
 					var step = Steps[i];
 					if (step.HasTag(TechniqueTags.Singles))
@@ -85,7 +85,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 						}
 						else
 						{
-							decimal max = 0;
+							var max = 0.0M;
 							for (var j = 0; j < i; j++)
 							{
 								var difficulty = Steps[j].Difficulty;
@@ -331,7 +331,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 
 			if (getBottleneck() is var (bIndex, bInfo))
 			{
-				for (int i = 0, count = steps.Length; i < count; i++)
+				for (var i = 0; i < steps.Length; i++)
 				{
 					if (i > bIndex && options.Flags(SolverResultFormattingOptions.ShowStepsAfterBottleneck))
 					{

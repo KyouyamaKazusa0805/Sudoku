@@ -62,7 +62,7 @@ internal static class INamedTypeSymbolExtensions
 		scoped var buffer = (stackalloc char[result.Length]);
 		buffer.Fill('\0');
 		var pointer = 0;
-		for (int i = 0, length = result.Length; i < length; i++)
+		for (var i = 0; i < result.Length; i++)
 		{
 			switch (result[i])
 			{

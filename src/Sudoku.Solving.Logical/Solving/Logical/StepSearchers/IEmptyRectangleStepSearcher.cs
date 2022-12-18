@@ -24,7 +24,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 	protected internal static bool IsEmptyRectangle(scoped in CellMap cells, int block, out int row, out int column)
 	{
 		int r = block / 3 * 3 + 9, c = block % 3 * 3 + 18;
-		for (int i = r, count = 0, rPlus3 = r + 3; i < rPlus3; i++)
+		for (int i = r, count = 0; i < r + 3; i++)
 		{
 			if ((cells & HousesMap[i]) is not [] || ++count <= 1)
 			{
@@ -35,7 +35,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 			return false;
 		}
 
-		for (int i = c, count = 0, cPlus3 = c + 3; i < cPlus3; i++)
+		for (int i = c, count = 0; i < c + 3; i++)
 		{
 			if ((cells & HousesMap[i]) is not [] || ++count <= 1)
 			{
@@ -46,9 +46,9 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 			return false;
 		}
 
-		for (int i = r, rPlus3 = r + 3; i < rPlus3; i++)
+		for (var i = r; i < r + 3; i++)
 		{
-			for (int j = c, cPlus3 = c + 3; j < cPlus3; j++)
+			for (var j = c; j < c + 3; j++)
 			{
 				if (cells - (HousesMap[i] | HousesMap[j]))
 				{

@@ -57,7 +57,7 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
 		// Iterate on each possible UR structure.
-		for (int index = 0, outerLength = UniqueRectanglePatterns.Length; index < outerLength; index++)
+		for (var index = 0; index < UniqueRectanglePatterns.Length; index++)
 		{
 			var urCells = UniqueRectanglePatterns[index];
 
@@ -72,7 +72,7 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 
 			// Iterate on each possible digit combination.
 			scoped var allDigitsInThem = mask.GetAllSets();
-			for (int i = 0, length = allDigitsInThem.Length, innerLength = length - 1; i < innerLength; i++)
+			for (int i = 0, length = allDigitsInThem.Length; i < length - 1; i++)
 			{
 				var d1 = allDigitsInThem[i];
 				for (var j = i + 1; j < length; j++)
@@ -506,7 +506,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			}
 
 			var iterationMap = (HousesMap[houseIndex] & EmptyCells) - otherCellsMap;
-			for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationMap.Count; size < count; size++)
+			for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationMap.Count; size++)
 			{
 				foreach (var iteratedCells in iterationMap & size)
 				{
@@ -2536,7 +2536,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			var testMap = (CellsMap[otherCell1] + otherCell2).PeerIntersection;
 			var extraDigitsMask = (short)(mask ^ comparer);
 			var cells = map.ToArray();
-			for (int i1 = 0, length = cells.Length, outerLength = length - size + 1; i1 < outerLength; i1++)
+			for (int i1 = 0, length = cells.Length; i1 < length - size + 1; i1++)
 			{
 				var c1 = cells[i1];
 				var m1 = grid.GetCandidates(c1);
@@ -2545,7 +2545,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				for (int i2 = i1 + 1, lengthMinusSizePlus2 = length - size + 2; i2 < lengthMinusSizePlus2; i2++)
+				for (int i2 = i1 + 1; i2 < length - size + 2; i2++)
 				{
 					var c2 = cells[i2];
 					var m2 = grid.GetCandidates(c2);

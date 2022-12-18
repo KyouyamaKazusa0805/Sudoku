@@ -23,7 +23,7 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 				// Please note that cases whose cardinality (i.e. size of the subset) is greater than 5
 				// is extremely rare to appear. Therefore we can just skip on such cases,
 				// although the limit will miss some rare cases.
-				for (int size = 3, count = Min(possibleCells.Count, 5); size <= count; size++)
+				for (var size = 3; size <= Min(possibleCells.Count, 5); size++)
 				{
 					// Iterates on each combination.
 					foreach (var cells in possibleCells & size)

@@ -105,8 +105,8 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 							pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1]
 						};
 
-						long v = 0;
-						for (int z = 0, iterationCount = allCells.Count; z < iterationCount; z++)
+						var v = 0L;
+						for (var z = 0; z < allCells.Count; z++)
 						{
 							v |= (long)allCells[z];
 
@@ -171,8 +171,8 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 						pair2[i2, 1]
 					};
 
-					long v = 0;
-					for (int z = 0, iterationCount = allCells.Count; z < iterationCount; z++)
+					var v = 0L;
+					for (var z = 0; z < allCells.Count; z++)
 					{
 						var cell = allCells[z];
 						v |= (long)cell;

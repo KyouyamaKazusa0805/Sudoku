@@ -52,17 +52,18 @@ public interface IExocetStepSearcher : IStepSearcher
 		var n = 0;
 		for (var i = 0; i < 18; i++)
 		{
-			for (int z = i / 9 * 9, j = z, zPlus9 = z + 9; j < zPlus9; j++)
+			for (int z = i / 9 * 9, j = z; j < z + 9; j++)
 			{
-				for (int y = j / 3 * 3, k = y, yPlus3Outer = y + 3; k < yPlus3Outer; k++)
+				for (int y = j / 3 * 3, k = y; k < y + 3; k++)
 				{
-					for (int l = y, yPlus3Inner = y + 3; l < yPlus3Inner; l++)
+					for (var l = y; l < y + 3; l++)
 					{
 						scoped ref var exocet = ref Patterns[n];
 						var (b1, b2) = (bb[i] + b[j, 0], bb[i] + b[j, 1]);
 						var (tq1, tr1) = (bb[bc[i, 0]] + rq[k, 0], bb[bc[i, 1]] + rq[l, 0]);
 
-						int index = 6, x = i / 3 % 3;
+						var index = 6;
+						var x = i / 3 % 3;
 						var tt = i < 9 ? b1 % 9 + b2 % 9 : b1 / 9 + b2 / 9;
 						tt = tt switch { < 4 => 3 - tt, < 13 => 12 - tt, _ => 21 - tt };
 

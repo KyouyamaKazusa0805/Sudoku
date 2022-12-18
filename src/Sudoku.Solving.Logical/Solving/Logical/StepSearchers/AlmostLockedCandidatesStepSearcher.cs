@@ -14,7 +14,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 	/// <inheritdoc/>
 	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
-		for (int size = 2, maxSize = CheckAlmostLockedQuadruple ? 4 : 3; size <= maxSize; size++)
+		for (var size = 2; size <= (CheckAlmostLockedQuadruple ? 4 : 3); size++)
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
