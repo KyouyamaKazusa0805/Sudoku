@@ -124,7 +124,7 @@ internal interface ICommandDataProvider
 	/// Gets the time limit for a single gaming.
 	/// </summary>
 	/// <param name="targetCells">
-	/// The target cells. The valid length must be 2, 3 or 5; otherwise, a <see cref="NotSupportedException"/> instance will be thrown.
+	/// The target cells. The valid length must be 2, 3, 5 or 7; otherwise, a <see cref="NotSupportedException"/> instance will be thrown.
 	/// </param>
 	/// <param name="difficultyLevel">The difficulty level of the puzzle.</param>
 	/// <returns>The time limit.</returns>
@@ -136,6 +136,7 @@ internal interface ICommandDataProvider
 			2 => 3.Minutes(),
 			3 => 5.Minutes(),
 			5 => 7.Minutes(),
+			7 => 10.Minutes(),
 			_ => throw new NotSupportedException("The specified length of the target solution data is not supported.")
 		};
 

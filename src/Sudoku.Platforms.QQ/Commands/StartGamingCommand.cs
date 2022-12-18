@@ -25,7 +25,18 @@ file sealed class StartGamingCommand : Command
 		context.ExecutingCommand = CommandName;
 		context.AnsweringContext = new();
 
-		var targetCells = Rng.Next(1, 99) switch { <= 33 => TwoCells, > 33 and <= 66 => ThreeCells, _ => FiveCells };
+		var targetCells = DateTime.Today switch
+		{
+			{ DayOfWeek: DayOfWeek.Saturday or DayOfWeek.Sunday } => Rng.Next(1, 100) switch
+			{
+				<= 25 => TwoCells,
+				> 25 and <= 50 => ThreeCells,
+				> 50 and <= 75 => FiveCells,
+				_ => SevenCells
+			},
+			_ => Rng.Next(1, 99) switch { <= 33 => TwoCells, > 33 and <= 66 => ThreeCells, _ => FiveCells }
+		};
+
 		var (puzzle, solutionData, timeLimit, baseExp) = generatePuzzle(targetCells);
 
 		await e.SendMessageAsync(string.Format(R["_MessageFormat_MatchReady"]!, timeLimit.ToChineseTimeSpanString()));
@@ -189,28 +200,29 @@ file sealed class StartGamingCommand : Command
 			while (true)
 			{
 				var grid = Generator.Generate();
-				var result = Solver.Solve(grid);
-				if (result is { DifficultyLevel: var l and (DifficultyLevel.Easy or DifficultyLevel.Moderate), Steps: { Length: var length } s }
-					&& length > targetCells.Max()
-					&& new List<(int Cell, int Digit)>() is var collection)
+				switch (Solver.Solve(grid))
 				{
-					foreach (var targetCell in targetCells)
+					case { DifficultyLevel: var l and (DifficultyLevel.Easy or DifficultyLevel.Moderate), Steps: { Length: var length } s }
+					when length > targetCells.Max() && new List<(int Cell, int Digit)>() is var collection:
 					{
-						if (s[targetCell].Conclusions is [{ Cell: var c, Digit: var d }])
+						foreach (var targetCell in targetCells)
 						{
-							collection.Add((c, d));
+							if (s[targetCell].Conclusions is [{ Cell: var c, Digit: var d }])
+							{
+								collection.Add((c, d));
+							}
 						}
-					}
 
-					if (collection.Count != targetCells.Length)
-					{
-						// Invalid case - This is a potential bug :P
-						continue;
-					}
+						if (collection.Count != targetCells.Length)
+						{
+							// Invalid case - This is a potential bug :P
+							continue;
+						}
 
-					var expEarned = Scorer.GetScoreEarnedInEachGaming(targetCells, l);
-					var timeLimit = ICommandDataProvider.GetGamingTimeLimit(targetCells, l);
-					return new(grid, collection.ToArray(), timeLimit, expEarned);
+						var expEarned = Scorer.GetScoreEarnedInEachGaming(targetCells, l);
+						var timeLimit = ICommandDataProvider.GetGamingTimeLimit(targetCells, l);
+						return new(grid, collection.ToArray(), timeLimit, expEarned);
+					}
 				}
 			}
 		}
@@ -232,7 +244,14 @@ file readonly record struct GeneratedGridData(scoped in Grid Puzzle, (int Cell, 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
 file static class Constants
 {
-	public static readonly int[] TwoCells = { 10, 20 }, ThreeCells = { 10, 15, 20 }, FiveCells = { 10, 15, 20, 25, 30 };
+	/// <summary>
+	/// Indicates the cell indices that the puzzle will be extracted.
+	/// </summary>
+	public static readonly int[]
+		TwoCells = { 10, 20 },
+		ThreeCells = { 10, 15, 20 },
+		FiveCells = { 10, 15, 20, 25, 30 },
+		SevenCells = { 1, 3, 6, 10, 15, 21, 28 };
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

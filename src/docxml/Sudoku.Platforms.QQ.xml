@@ -420,7 +420,7 @@
             Gets the time limit for a single gaming.
             </summary>
             <param name="targetCells">
-            The target cells. The valid length must be 2, 3 or 5; otherwise, a <see cref="T:System.NotSupportedException"/> instance will be thrown.
+            The target cells. The valid length must be 2, 3, 5 or 7; otherwise, a <see cref="T:System.NotSupportedException"/> instance will be thrown.
             </param>
             <param name="difficultyLevel">The difficulty level of the puzzle.</param>
             <returns>The time limit.</returns>
@@ -586,6 +586,26 @@
 					Provides with constants and read-only values used by code in the current file.
 				</summary>
 			</target>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Commands.Constants.TwoCells">
+            <summary>
+            Indicates the cell indices that the puzzle will be extracted.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Commands.Constants.ThreeCells">
+            <summary>
+            Indicates the cell indices that the puzzle will be extracted.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Commands.Constants.FiveCells">
+            <summary>
+            Indicates the cell indices that the puzzle will be extracted.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Commands.Constants.SevenCells">
+            <summary>
+            Indicates the cell indices that the puzzle will be extracted.
+            </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.Extensions">
             <target name="class" when="extension">

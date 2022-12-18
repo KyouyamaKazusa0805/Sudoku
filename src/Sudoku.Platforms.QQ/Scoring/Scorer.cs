@@ -133,6 +133,7 @@ public static class Scorer
 			2 => 0,
 			3 => 1,
 			5 => 2,
+			7 => 4,
 			_ => throw new NotSupportedException("The specified number of target cells is not supported.")
 		};
 
