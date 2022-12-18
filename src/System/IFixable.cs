@@ -24,7 +24,7 @@ public interface IFixable<[Self] TSelf, TFixedVariable> : IEnumerable<TFixedVari
 	/// to bind with pinnable references. Therefore you should check for the nullability of the property
 	/// using both methods <see cref="IsNullRef{T}(ref T)"/> and <see cref="AsRef{T}(in T)"/>:
 	/// <code><![CDATA[
-	/// scoped ref readonly var @ref = ref instance.BlockRef;
+	/// scoped ref readonly var @ref = ref instance.BlockReference;
 	/// if (Unsafe.IsNullRef(ref Unsafe.AsRef(in @ref)))
 	/// {
 	///     // Here '@ref' is null reference. If we use it ignoring it being null,
