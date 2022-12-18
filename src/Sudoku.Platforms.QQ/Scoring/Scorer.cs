@@ -155,7 +155,7 @@ public static class Scorer
 			3 => 4,
 			> 3 => 6,
 			_ => throw new ArgumentOutOfRangeException(nameof(times))
-		};
+		} * GetWeekendFactor();
 
 	/// <summary>
 	/// Get display string for scores.
