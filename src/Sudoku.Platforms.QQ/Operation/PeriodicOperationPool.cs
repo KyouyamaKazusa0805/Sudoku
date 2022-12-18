@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Platforms.QQ.Scheduler;
+﻿namespace Sudoku.Platforms.QQ.Operation;
 
 /// <summary>
 /// Defines a scheduled service that can stores a list of <see cref="PeriodicOperation"/> instances.

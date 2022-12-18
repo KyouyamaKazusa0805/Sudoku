@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Platforms.QQ.Scheduler;
+﻿namespace Sudoku.Platforms.QQ.Operation;
 
 /// <summary>
 /// Defines a daily puzzle generating operation.
@@ -56,6 +56,13 @@ file sealed record DailyPuzzleOperation() : PeriodicOperation(new TimeOnly(12, 0
 		//await MessageManager.SendGroupMessageAsync(groupId, R["_MessageFormat_DailyPuzzleGeneratingFailed"]!);
 	}
 
+	/// <summary>
+	/// Sends a picture using the specified text and grid code.
+	/// </summary>
+	/// <param name="groupId">The group QQ number.</param>
+	/// <param name="grid">The grid code.</param>
+	/// <param name="footerText">The footer text.</param>
+	/// <returns>The result.</returns>
 	private async Task SendPictureAsync(string groupId, string grid, string footerText)
 	{
 		var picturePath = InternalReadWrite.GenerateCachedPicturePath(
