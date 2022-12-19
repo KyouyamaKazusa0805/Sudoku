@@ -222,8 +222,7 @@ public unsafe partial struct Grid :
 			{
 				switch (GetStatus(i))
 				{
-					case CellStatus.Given:
-					case CellStatus.Modifiable:
+					case CellStatus.Given or CellStatus.Modifiable:
 					{
 						var curDigit = this[i];
 						foreach (var cell in PeersMap[i])
