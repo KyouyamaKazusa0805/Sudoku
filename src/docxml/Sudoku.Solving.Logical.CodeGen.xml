@@ -4,6 +4,14 @@
         <name>Sudoku.Solving.Logical.CodeGen</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.InvalidStepGenerator">
+            <summary>
+            Defines a source generator that generates the source code for invalid step instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.InvalidStepGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.LogicalSolverOperationsGenerator">
             <summary>
             Defines a source generator that generates the source code that are options used in logical solver type.

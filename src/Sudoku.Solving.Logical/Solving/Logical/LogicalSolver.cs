@@ -164,16 +164,14 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 				}
 				default:
 				{
-					scoped var context = new LogicalAnalysisContext(null, playground, true);
-					var foundStep = searcher.GetAll(context);
-					switch (foundStep)
+					switch (searcher.GetAll(new(null, playground, true)))
 					{
 						case null:
-						case IInvalidStep when ReferenceEquals(IInvalidStep.Instance, foundStep):
+						case IInvalidStep foundStep when ReferenceEquals(IInvalidStep.Instance, foundStep):
 						{
 							continue;
 						}
-						default:
+						case var foundStep:
 						{
 							if (verifyConclusionValidity(solution, foundStep))
 							{

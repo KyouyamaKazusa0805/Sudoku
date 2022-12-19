@@ -9725,63 +9725,6 @@
             </remarks>
             <seealso cref="T:System.NotSupportedException"/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep">
-            <summary>
-            The background type that has implemented the type <see cref="T:Sudoku.Solving.Logical.Steps.Specialized.IInvalidStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.Steps.Specialized.IInvalidStep"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Stableness">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Presentation#IVisual#Conclusions">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Presentation#IVisual#Views">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ApplyTo(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Formatize(System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#HasTag(Sudoku.Solving.Logical.Techniques.TechniqueTags)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ToFullString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ToSimpleString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ElimStr">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.Specialized.ILoopLikeStep">
             <summary>
             Defines a step whose technique used is the loop.
@@ -9913,6 +9856,63 @@
             <summary>
             Indicates the size of the current step instance related to the specified technique.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep">
+            <summary>
+            The background type that has implemented the type <see cref="T:Sudoku.Solving.Logical.Steps.Specialized.IInvalidStep"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.Steps.Specialized.IInvalidStep"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Presentation#IVisual#Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Presentation#IVisual#Views">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ApplyTo(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Formatize(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#HasTag(Sudoku.Solving.Logical.Techniques.TechniqueTags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ToFullString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ToSimpleString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ElimStr">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.Step">
             <summary>
