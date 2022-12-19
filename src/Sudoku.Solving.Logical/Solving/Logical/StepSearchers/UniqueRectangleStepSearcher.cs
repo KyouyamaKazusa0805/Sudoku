@@ -2545,7 +2545,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				for (int i2 = i1 + 1; i2 < length - size + 2; i2++)
+				for (var i2 = i1 + 1; i2 < length - size + 2; i2++)
 				{
 					var c2 = cells[i2];
 					var m2 = grid.GetCandidates(c2);
