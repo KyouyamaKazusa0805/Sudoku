@@ -1,12 +1,6 @@
-﻿#define TARGET_64BIT
+﻿namespace Sudoku.Concepts;
 
-namespace Sudoku.Concepts;
-
-/// <summary>
-/// Defines the default enumerator that iterates the <see cref="Grid"/> through the candidates in the current <see cref="Grid"/> instance.
-/// </summary>
-/// <see cref="Grid"/>
-public ref partial struct GridCandidateEnumerator
+partial struct GridCandidateEnumerator
 {
 	/// <summary>
 	/// The pointer to the start value.

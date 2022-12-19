@@ -1431,35 +1431,12 @@ public unsafe partial struct Grid :
 	/// <seealso cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Grid([ConstantExpected] string? gridCode) => gridCode is null ? Undefined : Parse(gridCode);
-
-#if false
-	/// <summary>
-	/// Implicit cast from <see cref="Utf8String"/> code to its equivalent <see cref="Grid"/> instance representation.
-	/// </summary>
-	/// <param name="gridCode">The grid code.</param>
-	/// <remarks>
-	/// <para>
-	/// This explicit operator has same meaning for method <see cref="Parse(Utf8String)"/>. You can also use
-	/// <see cref="Parse(Utf8String)"/> to get the same result as this operator.
-	/// </para>
-	/// <para>
-	/// If the argument being passed is <see langword="null"/>, this operator will return <see cref="Undefined"/>
-	/// as the final result, whose behavior is the only one that is different with method <see cref="Parse(Utf8String)"/>.
-	/// That method will throw a <see cref="FormatException"/> instance to report the invalid argument being passed.
-	/// </para>
-	/// </remarks>
-	/// <exception cref="FormatException">
-	/// See exception thrown cases for method <see cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>.
-	/// </exception>
-	/// <seealso cref="Undefined"/>
-	/// <seealso cref="Parse(Utf8String)"/>
-	/// <seealso cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Grid([ConstantExpected] Utf8String gridCode) => gridCode == Utf8String.Empty ? Undefined : Parse(gridCode);
-#endif
 }
 
-partial struct GridRefreshingCandidatesEventArgs
+/// <summary>
+/// Defines a type that is triggered when the candidates are refreshed.
+/// </summary>
+public readonly ref partial struct GridRefreshingCandidatesEventArgs
 {
 	/// <summary>
 	/// Initializes a <see cref="GridRefreshingCandidatesEventArgs"/> instance.
@@ -1478,7 +1455,10 @@ partial struct GridRefreshingCandidatesEventArgs
 	internal GridRefreshingCandidatesEventArgs(in Grid gridRef) => _gridRef = ref gridRef;
 }
 
-partial struct GridValueChangedEventArgs
+/// <summary>
+/// Defines a type that is triggered when the specified value in a grid has been changed.
+/// </summary>
+public readonly ref partial struct GridValueChangedEventArgs
 {
 	/// <summary>
 	/// Initializes a <see cref="GridValueChangedEventArgs"/> instance.
@@ -1507,7 +1487,11 @@ partial struct GridValueChangedEventArgs
 	}
 }
 
-partial struct GridCandidateEnumerator
+/// <summary>
+/// Defines the default enumerator that iterates the <see cref="Grid"/> through the candidates in the current <see cref="Grid"/> instance.
+/// </summary>
+/// <see cref="Grid"/>
+public ref partial struct GridCandidateEnumerator
 {
 	/// <summary>
 	/// Initializes an instance with the specified reference to an array to iterate.
@@ -1526,7 +1510,11 @@ partial struct GridCandidateEnumerator
 	}
 }
 
-partial struct GridMaskEnumerator
+/// <summary>
+/// Defines the default enumerator that iterates the <see cref="Grid"/> through the masks in the current <see cref="Grid"/> instance.
+/// </summary>
+/// <seealso cref="Grid"/>
+public ref partial struct GridMaskEnumerator
 {
 	/// <summary>
 	/// Initializes an instance with the specified pointer to an array to iterate.

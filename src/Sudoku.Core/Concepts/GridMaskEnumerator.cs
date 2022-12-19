@@ -1,12 +1,6 @@
-﻿#define TARGET_64BIT
+﻿namespace Sudoku.Concepts;
 
-namespace Sudoku.Concepts;
-
-/// <summary>
-/// Defines the default enumerator that iterates the <see cref="Grid"/> through the masks in the current <see cref="Grid"/> instance.
-/// </summary>
-/// <seealso cref="Grid"/>
-public ref partial struct GridMaskEnumerator
+partial struct GridMaskEnumerator
 {
 	/// <summary>
 	/// The pointer to the start value.

@@ -1,11 +1,6 @@
-﻿#define TARGET_64BIT
+﻿namespace Sudoku.Concepts;
 
-namespace Sudoku.Concepts;
-
-/// <summary>
-/// Defines a type that is triggered when the specified value in a grid has been changed.
-/// </summary>
-public readonly ref partial struct GridValueChangedEventArgs
+partial struct GridValueChangedEventArgs
 {
 	/// <summary>
 	/// The backing field of property <see cref="GridRef"/>.

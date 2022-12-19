@@ -1,11 +1,6 @@
-﻿#define TARGET_64BIT
+﻿namespace Sudoku.Concepts;
 
-namespace Sudoku.Concepts;
-
-/// <summary>
-/// Defines a type that is triggered when the candidates are refreshed.
-/// </summary>
-public readonly ref partial struct GridRefreshingCandidatesEventArgs
+partial struct GridRefreshingCandidatesEventArgs
 {
 	/// <summary>
 	/// The backing field of property <see cref="GridRef"/>.
