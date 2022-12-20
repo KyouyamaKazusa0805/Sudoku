@@ -16,8 +16,7 @@ public static class IttouryuPuzzleChecker
 	/// <param name="grid">The grid to be determined.</param>
 	/// <param name="solvingPath">The solving path.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public static bool IsIttouryu(
-		scoped in Grid grid, [NotNullWhen(true)] out (int Candidate, bool IsHiddenSingle)[]? solvingPath)
+	public static bool IsIttouryu(scoped in Grid grid, [NotNullWhen(true)] out (int Candidate, bool IsHiddenSingle)[]? solvingPath)
 	{
 		var (listOfSteps, tempGrid, currentDigit) = (new List<(int, bool)>(), grid, -1);
 
@@ -65,8 +64,7 @@ public static class IttouryuPuzzleChecker
 					if (conclusionCell != -1)
 					{
 						// Hidden single found.
-						if (currentDigit != -1
-							&& (currentDigit == 9 && digit != 1 || currentDigit != 9 && digit - currentDigit > 1))
+						if (currentDigit != -1 && (currentDigit == 9 && digit != 1 || currentDigit != 9 && digit - currentDigit > 1))
 						{
 							solvingPath = null;
 							return false;
@@ -98,8 +96,7 @@ public static class IttouryuPuzzleChecker
 				if (IsPow2(mask) && TrailingZeroCount(mask) is var conclusionDigit && conclusionDigit == digit)
 				{
 					// Naked single found.
-					if (currentDigit != -1
-						&& (currentDigit == 9 && digit != 1 || currentDigit != 9 && digit - currentDigit > 1))
+					if (currentDigit != -1 && (currentDigit == 9 && digit != 1 || currentDigit != 9 && digit - currentDigit > 1))
 					{
 						solvingPath = null;
 						return false;
