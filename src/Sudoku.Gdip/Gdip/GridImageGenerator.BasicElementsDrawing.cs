@@ -23,7 +23,7 @@ partial class GridImageGenerator
 	/// Draw givens, modifiables and candidates, where the values are specified as a grid.
 	/// </summary>
 	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	private void DrawValue(Graphics g)
+	private unsafe void DrawValue(Graphics g)
 	{
 		if (this is not
 			{
@@ -63,7 +63,7 @@ partial class GridImageGenerator
 
 		for (var cell = 0; cell < 81; cell++)
 		{
-			var mask = puzzle.GetMask(cell);
+			var mask = puzzle._values[cell];
 			switch (MaskToStatus(mask))
 			{
 				case CellStatus.Empty when showCandidates:

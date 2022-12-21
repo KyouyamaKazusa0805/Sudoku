@@ -2098,7 +2098,7 @@
             <param name="cell">The cell.</param>
             <param name="mask">The mask to set.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GetMaskRefAt(System.Int32)">
+        <member name="M:Sudoku.Concepts.Grid.GetMaskRef(System.Int32)">
             <summary>
             Gets the mask at the specified position. This method returns the reference of the mask.
             </summary>

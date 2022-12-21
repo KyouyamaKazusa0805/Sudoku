@@ -185,7 +185,7 @@ public unsafe partial struct Grid :
 	{
 		// Initializes the empty grid.
 		Empty = default;
-		scoped ref var firstElement = ref Empty.GetMaskRefAt(0);
+		scoped ref var firstElement = ref Empty.GetMaskRef(0);
 		for (var i = 0; i < 81; i++)
 		{
 			AddByteOffset(ref firstElement, (nuint)(i * sizeof(short))) = DefaultMask;
@@ -833,7 +833,6 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
 	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetDigitsIntersection(scoped in CellMap cells)
 	{
 		var result = MaxCandidatesMask;
@@ -1095,7 +1094,7 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="GetPinnableReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ref short GetMaskRefAt(int index) => ref _values[index];
+	public ref short GetMaskRef(int index) => ref _values[index];
 
 	/// <summary>
 	/// Gets a sudoku grid, replacing all digits with modifiable

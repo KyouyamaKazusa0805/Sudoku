@@ -17,7 +17,7 @@ public static class DeadlyPatternChecker
 	/// <exception cref="ArgumentException">
 	/// Throws when the argument <paramref name="maskArray"/> is a valid puzzle, or length is not 81.
 	/// </exception>
-	public static bool IsDeadlyPattern(
+	public static unsafe bool IsDeadlyPattern(
 		short[] maskArray,
 		[NotNullWhen(true)] out int[]? firstFoundGrid,
 		[NotNullWhen(true)] out int[]? secondFoundGrid)
@@ -44,7 +44,7 @@ public static class DeadlyPatternChecker
 		var cellsUsed = CellMap.Empty;
 		for (var cell = 0; cell < 81; cell++)
 		{
-			if (patternGrid.GetMask(cell) != 0)
+			if (patternGrid._values[cell] != 0)
 			{
 				cellsUsed.Add(cell);
 			}
@@ -63,7 +63,7 @@ public static class DeadlyPatternChecker
 			var targetMask = patternGrid.GetDigitsUnion(currentHouseCells);
 			foreach (var currentHouseCell in currentHouseCells)
 			{
-				patternGrid.GetMaskRefAt(currentHouseCell) |= targetMask;
+				patternGrid.GetMaskRef(currentHouseCell) |= targetMask;
 			}
 		}
 
