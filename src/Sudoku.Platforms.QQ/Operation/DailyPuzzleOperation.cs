@@ -46,7 +46,7 @@ file sealed record DailyPuzzleOperation() : PeriodicOperation(new TimeOnly(12, 0
 					DifficultyLevel.Easy => R["DiffLevelEasy"]!,
 					DifficultyLevel.Moderate => R["DiffLevelModerate"]!,
 					DifficultyLevel.Hard => R["DiffLevelHard"]!,
-				}}{R["_Token_Comma"]!}{R["DiffRatingIs"]!}{diff:0.0}"
+				}}{R["_Token_Comma"]!}{R["DiffRatingIs"]!} {diff:0.0}"
 			);
 
 			// Exit the command if any one time the command has been executed successfully.

@@ -129,6 +129,9 @@
     <value>TempPictures</value>
     <comment>The folder that temporary pictures are generated and stored to.</comment>
   </data>
+  <data name="LibraryFolderName" xml:space="preserve">
+    <value>Puzzles</value>
+  </data>
   <data name="SudokuGroupQQ" xml:space="preserve">
     <value>924849321</value>
     <comment>My sudoku group QQ number (Chinese name: 摇曳数独)</comment>

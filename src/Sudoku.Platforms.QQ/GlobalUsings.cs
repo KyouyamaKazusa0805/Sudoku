@@ -37,6 +37,7 @@ global using Sudoku.Platforms.QQ.Scoring;
 global using Sudoku.Platforms.QQ.Text;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
+global using Sudoku.Resources;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving.Logical;
 global using Sudoku.Text.Notations;

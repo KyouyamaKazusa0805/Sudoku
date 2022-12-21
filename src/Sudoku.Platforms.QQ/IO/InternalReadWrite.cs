@@ -42,6 +42,93 @@ internal static class InternalReadWrite
 	}
 
 	/// <summary>
+	/// Gets the puzzle library for the target group specified as its group ID.
+	/// </summary>
+	/// <param name="groupId">The group ID.</param>
+	/// <returns>The puzzle library data.</returns>
+	public static PuzzleLibraryData[]? ReadLibraries(string groupId)
+	{
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			// Error. The computer does not contain "My Documents" folder.
+			throw new InvalidOperationException("The key path is not found.");
+		}
+
+		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			return null;
+		}
+
+		var libraryFolder = $"""{botDataFolder}\{R["LibraryFolderName"]}""";
+		if (!Directory.Exists(libraryFolder))
+		{
+			return null;
+		}
+
+		var groupLibraryFolder = $"""{libraryFolder}\{groupId}""";
+		if (!Directory.Exists(groupLibraryFolder))
+		{
+			return null;
+		}
+
+		var final = new List<PuzzleLibraryData>();
+		var di = new DirectoryInfo(groupLibraryFolder);
+		foreach (var textFile in di.EnumerateFiles("*.txt"))
+		{
+			if (textFile is { Length: not 0, FullName: var path })
+			{
+				final.Add(new() { Name = Path.GetFileNameWithoutExtension(path), PuzzleFilePath = path });
+			}
+		}
+
+		return final.ToArray();
+	}
+
+	/// <summary>
+	/// Gets the puzzle library for the target group specified as its group ID, and the specified library name.
+	/// </summary>
+	/// <param name="groupId">The group ID.</param>
+	/// <param name="libraryName">The library name.</param>
+	/// <returns>The puzzle library data.</returns>
+	public static PuzzleLibraryData? ReadLibrary(string groupId, string libraryName)
+	{
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			// Error. The computer does not contain "My Documents" folder.
+			throw new InvalidOperationException("The key path is not found.");
+		}
+
+		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			return null;
+		}
+
+		var libraryFolder = $"""{botDataFolder}\{R["LibraryFolderName"]}""";
+		if (!Directory.Exists(libraryFolder))
+		{
+			return null;
+		}
+
+		var groupLibraryFolder = $"""{libraryFolder}\{groupId}""";
+		if (!Directory.Exists(groupLibraryFolder))
+		{
+			return null;
+		}
+
+		var di = new DirectoryInfo(groupLibraryFolder);
+		foreach (var textFile in di.EnumerateFiles($"{libraryName}.txt"))
+		{
+			return new() { Name = Path.GetFileNameWithoutExtension(textFile.FullName), PuzzleFilePath = textFile.FullName };
+		}
+
+		return null;
+	}
+
+	/// <summary>
 	/// Writes the specified user's data to the local file.
 	/// </summary>
 	/// <param name="userData">The user data.</param>

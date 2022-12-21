@@ -3721,6 +3721,22 @@
             <param name="c">The third value.</param>
             <returns>Which is the maximum value.</returns>
         </member>
+        <member name="T:System.RandomExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Random"/>.
+            </summary>
+            <seealso cref="T:System.Random"/>
+        </member>
+        <member name="M:System.RandomExtensions.NextInArray``1(System.Random,``0[],System.Int32@)">
+            <summary>
+            Try to get the random element in the specified array.
+            </summary>
+            <typeparam name="T">The type of the array.</typeparam>
+            <param name="this">The random number generator.</param>
+            <param name="array">The array.</param>
+            <param name="index">The index generated.</param>
+            <returns>The random element fetched.</returns>
+        </member>
         <member name="T:System.SingleExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Single"/>.

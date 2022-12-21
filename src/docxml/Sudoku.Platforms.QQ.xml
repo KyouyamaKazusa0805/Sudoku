@@ -474,6 +474,20 @@
         <member name="M:Sudoku.Platforms.QQ.Commands.PingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.PuzzleLibraryExtractCommand">
+            <summary>
+            Defines a puzzle library extract command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.PuzzleLibraryExtractCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.PuzzleLibraryExtractCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.PuzzleLibraryExtractCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.RankingCommand">
             <summary>
             Indicates the ranking command.
@@ -662,6 +676,21 @@
             the expression <c>await InternalReadWrite.ReadValueAsync(...)</c> will also be <see langword="null"/>.
             </returns>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.ReadLibraries(System.String)">
+            <summary>
+            Gets the puzzle library for the target group specified as its group ID.
+            </summary>
+            <param name="groupId">The group ID.</param>
+            <returns>The puzzle library data.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.ReadLibrary(System.String,System.String)">
+            <summary>
+            Gets the puzzle library for the target group specified as its group ID, and the specified library name.
+            </summary>
+            <param name="groupId">The group ID.</param>
+            <param name="libraryName">The library name.</param>
+            <returns>The puzzle library data.</returns>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.Write(Sudoku.Platforms.QQ.Models.UserData)">
             <summary>
             Writes the specified user's data to the local file.
@@ -675,6 +704,21 @@
             </summary>
             <param name="painterCreator">The painter creator method.</param>
             <returns>The target path of the picture.</returns>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryData">
+            <summary>
+            Indicates a puzzle library.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.Name">
+            <summary>
+            Indicates the name of the library.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.PuzzleFilePath">
+            <summary>
+            Indicates the puzzles in the library.
+            </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Models.UserData">
             <summary>
@@ -1043,6 +1087,11 @@
               Looks up a localized string similar to TempPictures.
             </summary>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Strings.Resources.LibraryFolderName">
+            <summary>
+              Looks up a localized string similar to Puzzles.
+            </summary>
+        </member>
         <member name="P:Sudoku.Platforms.QQ.Strings.Resources.SudokuGroupQQ">
             <summary>
               Looks up a localized string similar to 924849321.
@@ -1127,6 +1176,20 @@
             </summary>
             <typeparam name="T">The type of the message.</typeparam>
             <param name="message">The message instance.</param>
+        </member>
+        <member name="T:Sudoku.Resources.MergedResourcesFetcher">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Resources.MergedResources"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Resources.MergedResources"/>
+        </member>
+        <member name="M:Sudoku.Resources.MergedResourcesFetcher.CommandName(Sudoku.Resources.MergedResources,System.String)">
+            <summary>
+            Try to fetch the command name.
+            </summary>
+            <param name="this">The resource fetcher.</param>
+            <param name="command">The internal name of the command as the key, with the prefix "<c>_Command_</c>" removed.</param>
+            <returns>The target command in the resource dictionary.</returns>
         </member>
         <member name="T:Sudoku.CommandLine.ModuleInitializer">
             <target name="type">

@@ -88,6 +88,15 @@ namespace Sudoku.Platforms.QQ.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Puzzles.
+        /// </summary>
+        internal static string LibraryFolderName {
+            get {
+                return ResourceManager.GetString("LibraryFolderName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 924849321.
         /// </summary>
         internal static string SudokuGroupQQ {

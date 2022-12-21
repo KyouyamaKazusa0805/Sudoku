@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnalysisResultIs" xml:space="preserve">
+    <value>题目分析结果：</value>
+  </data>
   <data name="BilibiliNameRegexPattern" xml:space="preserve">
     <value>((哔哩)\2|[Bb]\s{0,3}站|[Bb]i(li)bi\3)</value>
   </data>
@@ -226,7 +229,7 @@
     <value>一般</value>
   </data>
   <data name="DiffRatingIs" xml:space="preserve">
-    <value>难度系数：</value>
+    <value>难度系数</value>
   </data>
   <data name="ExpString" xml:space="preserve">
     <value>分</value>
@@ -234,8 +237,20 @@
   <data name="GradeString" xml:space="preserve">
     <value>级</value>
   </data>
+  <data name="LibraryNameIs" xml:space="preserve">
+    <value>题库名：</value>
+  </data>
   <data name="None" xml:space="preserve">
     <value>无</value>
+  </data>
+  <data name="PuzzleLibraryIndexIs" xml:space="preserve">
+    <value>题目编号：</value>
+  </data>
+  <data name="TotalDiffRatingIs" xml:space="preserve">
+    <value>难度系数和：</value>
+  </data>
+  <data name="TotalStepCountIs" xml:space="preserve">
+    <value>步骤数：</value>
   </data>
   <data name="_Command_CancelGaming" xml:space="preserve">
     <value>结束游戏</value>
@@ -260,6 +275,9 @@
   </data>
   <data name="_Command_End" xml:space="preserve">
     <value>退出</value>
+  </data>
+  <data name="_Command_ExtractPuzzle" xml:space="preserve">
+    <value>抽题</value>
   </data>
   <data name="_Command_Help" xml:space="preserve">
     <value>帮助</value>
@@ -287,7 +305,8 @@
 ・查询：查询当前用户的积分数据；
 ・帮助：查看帮助文字；
 ・开始游戏：开始数独填空的 PK 游戏；
-・绘图：启动绘图功能。
+・绘图：启动绘图功能；
+・抽题 &lt;题库名&gt;?：抽取本群预存题库里的题目。
 【管理员限定】
 ・详细查询 &lt;用户&gt;：查询指定用户的积分；
 ・排名：查询所有记录了的该群成员的积分，并排名。
@@ -295,6 +314,9 @@
 你猜~
 ---
 所有指令请都带上感叹号，例如“！查询”。</value>
+  </data>
+  <data name="_MessageFormat_AnalyzePuzzleLibrary" xml:space="preserve">
+    <value>正在解析题库内容，请稍候……</value>
   </data>
   <data name="_MessageFormat_CheckInFailedDueToMultipleInSameDay" xml:space="preserve">
     <value>签到失败~ 你今天 {0}的时候已经签过到了，明天再来试试吧~</value>
@@ -369,6 +391,18 @@
   </data>
   <data name="_MessageFormat_PingSuccess" xml:space="preserve">
     <value>测试连接成功。耗时 {0} 毫秒。</value>
+  </data>
+  <data name="_MessageFormat_PuzzleLibraryIsBroken" xml:space="preserve">
+    <value>题库存在损坏，读取的题目无法解析成合适的数独题目。请联系管理员或群主题库存储是否正确。</value>
+  </data>
+  <data name="_MessageFormat_PuzzleLibraryIsNotFound" xml:space="preserve">
+    <value>当前题库“{0}”不存在。请检查题库名称输入是否错误，或联系管理员是否成功录入该题库。</value>
+  </data>
+  <data name="_MessageFormat_PuzzleLibraryIsNotUnique" xml:space="preserve">
+    <value>不带题库名称的默认指令只能在题库只有唯一一个的时候使用。本群目前存储有至少两个题库，请在指令后带上你要抽取的题库名称，以正确抽取题目。</value>
+  </data>
+  <data name="_MessageFormat_PuzzleLibraryIsNullOrEmpty" xml:space="preserve">
+    <value>本群没有预存题库。</value>
   </data>
   <data name="_MessageFormat_RankingListIsEmpty" xml:space="preserve">
     <value>用户尚未加入进来~ 排名里没有人~</value>
