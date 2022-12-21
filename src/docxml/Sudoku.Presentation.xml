@@ -1403,6 +1403,42 @@
         <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.LeverViewNode">
+            <summary>
+            Defines a lever view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Grouped.LeverViewNode"/> via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="headCell">The head cell.</param>
+            <param name="tailCell">The tail cell.</param>
+            <param name="centerCell">The center cell.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.TailCell">
+            <summary>
+            Indicates the tail cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.CenterCell">
+            <summary>
+            Indicates the center cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode">
             <summary>
             Defines an oblique line view node.

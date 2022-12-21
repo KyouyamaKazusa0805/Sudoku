@@ -236,7 +236,7 @@ partial class GridImageGenerator
 	[Conditional("ENHANCED_DRAWING_APIS")]
 	private void DrawGroupedNodes(Graphics g)
 	{
-		if (this is not { View.GroupedViewNodes: var nodes, Calculator: { CellSize: (var cw, var ch) cs, GridSize: var gs } calc })
+		if (this is not { View.GroupedViewNodes: var nodes, Calculator: { CellSize: (var cw, var ch) cs, GridSize: (var gw, var gh) gs } calc })
 		{
 			return;
 		}
@@ -267,7 +267,13 @@ partial class GridImageGenerator
 				{ Node: WindokuViewNode { Identifier: var identifier } } => DrawWindoku(identifier, calc, cs, g),
 
 				// Pyramid
-				{ Node: PyramidViewNode { Identifier: var identifier } } => DrawPyramid(identifier, calc, cs, g)
+				{ Node: PyramidViewNode { Identifier: var identifier } } => DrawPyramid(identifier, calc, cs, g),
+
+				// Lever
+				{
+					This.Preferences: { LeverBarPadding: var padding, LeverBarWidth: var barWidth, LeverPivotWidth: var pivotWidth },
+					Node: LeverViewNode { Identifier: var identifier, HeadCell: var headCell, TailCell: var tailCell, CenterCell: var centerCell }
+				} => DrawLever(gw, gh, cw, ch, padding, identifier, headCell, tailCell, centerCell, barWidth, pivotWidth, g)
 			};
 		}
 	}

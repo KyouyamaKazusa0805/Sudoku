@@ -127,6 +127,48 @@ partial class GridImageGenerator
 
 		return true;
 	}
+
+	private bool DrawLever(
+		float gw,
+		float gh,
+		float cw,
+		float ch,
+		float padding,
+		Identifier identifier,
+		int left,
+		int right,
+		int center,
+		float barWidth,
+		float pivotWidth,
+		Graphics g
+	)
+	{
+		var color = GetColor(identifier);
+		var l = center % 9 * ch + ch;
+		var r = center / 9 * cw + (cw - padding);
+		var leverCenterPoint = new PointF(l, r);
+		var leverLeftPoint = new PointF(left % 9 * ch + padding, left / 9 * cw + (cw - padding));
+		var leverRightPoint = new PointF(right % 9 * ch + (ch - padding), right / 9 * cw + (cw - padding));
+
+		// The lower points of the lever pivot.
+		var ttl = new PointF(l - padding, r + padding / 2 + 2 * padding);
+		var ttr = new PointF(l + padding, r + padding / 2 + 2 * padding);
+
+		using var brush = new SolidBrush(color);
+		using var pivotPen = new Pen(Color.FromArgb(192, color), pivotWidth);
+		using var linePen = new Pen(Color.FromArgb(192, color), barWidth);
+		using var pivorFillBrush = new SolidBrush(Color.FromArgb(128, color));
+
+		// Draw bars.
+		g.DrawLine(linePen, leverCenterPoint, leverLeftPoint);
+		g.DrawLine(linePen, leverCenterPoint, leverRightPoint);
+
+		// Draw pivot.
+		g.DrawPolygon(pivotPen, new[] { leverCenterPoint, ttl, ttr });
+		g.FillPolygon(pivorFillBrush, new[] { leverCenterPoint, ttl, ttr });
+
+		return true;
+	}
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>

@@ -116,6 +116,16 @@ public sealed class DrawingConfigurations
 	public float ObliqueLineWidth { get; set; } = 6F;
 
 	/// <summary>
+	/// Indicates the width of lever bars.
+	/// </summary>
+	public float LeverBarWidth { get; set; } = 5F;
+
+	/// <summary>
+	/// Indicates the width of lever pivots.
+	/// </summary>
+	public float LeverPivotWidth { get; set; } = 2F;
+
+	/// <summary>
 	/// Indicates the padding of neighbor signs.
 	/// </summary>
 	public float NeighborSignCellPadding { get; set; } = 5F;
@@ -139,6 +149,11 @@ public sealed class DrawingConfigurations
 	/// Indicates the padding of capsules.
 	/// </summary>
 	public float CapsulePadding { get; set; } = 5F;
+
+	/// <summary>
+	/// Indicates the padding of lever bars.
+	/// </summary>
+	public float LeverBarPadding { get; set; } = 5F;
 
 	/// <summary>
 	/// Indicates the font of given digits to render.

@@ -418,6 +418,16 @@
             Indicates the width of oblique lines.
             </summary>
         </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.LeverBarWidth">
+            <summary>
+            Indicates the width of lever bars.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.LeverPivotWidth">
+            <summary>
+            Indicates the width of lever pivots.
+            </summary>
+        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignCellPadding">
             <summary>
             Indicates the padding of neighbor signs.
@@ -441,6 +451,11 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.CapsulePadding">
             <summary>
             Indicates the padding of capsules.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.LeverBarPadding">
+            <summary>
+            Indicates the padding of lever bars.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
