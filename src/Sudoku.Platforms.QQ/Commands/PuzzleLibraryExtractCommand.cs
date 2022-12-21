@@ -94,6 +94,7 @@ file sealed class PuzzleLibraryExtractCommand : Command
 					await e.SendMessageAsync(
 						new MessageChainBuilder()
 							.Plain(R["AnalysisResultIs"]!)
+							.Plain(Environment.NewLine)
 							.Plain("---")
 							.Plain(Environment.NewLine)
 							.Plain($"{R["LibraryNameIs"]!}{name}")
@@ -102,7 +103,7 @@ file sealed class PuzzleLibraryExtractCommand : Command
 							.Plain(Environment.NewLine)
 							.Plain("---")
 							.Plain(Environment.NewLine)
-							.Plain(analysisResult.ToString(SolverResultFormattingOptions.ShowSeparators))
+							.Plain(analysisResult.ToString(SolverResultFormattingOptions.None))
 							.Build()
 					);
 

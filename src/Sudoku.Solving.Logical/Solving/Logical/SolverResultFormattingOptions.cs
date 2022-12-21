@@ -50,5 +50,10 @@ public enum SolverResultFormattingOptions : short
 	/// <summary>
 	/// Indicates the analysis result will show the steps.
 	/// </summary>
-	ShowSteps = 1 << 7
+	ShowSteps = 1 << 7,
+
+	/// <summary>
+	/// Indicates the analysis result will show grid code for the puzzle itself and its solution.
+	/// </summary>
+	ShowGridAndSolutionCode = 1 << 8
 }

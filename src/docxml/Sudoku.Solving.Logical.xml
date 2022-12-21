@@ -2663,6 +2663,11 @@
             Indicates the analysis result will show the steps.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Logical.SolverResultFormattingOptions.ShowGridAndSolutionCode">
+            <summary>
+            Indicates the analysis result will show grid code for the puzzle itself and its solution.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Logical.StepExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Solving.Logical.IStep"/>.

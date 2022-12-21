@@ -319,9 +319,12 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 
 		// Print header.
 		scoped var sb = new StringHandler();
-		sb.Append(R["AnalysisResultPuzzle"]!);
-		sb.Append(puzzle.ToString("#"));
-		sb.AppendLine();
+		if (options.Flags(SolverResultFormattingOptions.ShowGridAndSolutionCode))
+		{
+			sb.Append(R["AnalysisResultPuzzle"]!);
+			sb.Append(puzzle.ToString("#"));
+			sb.AppendLine();
+		}
 
 		// Print solving steps (if worth).
 		if (options.Flags(SolverResultFormattingOptions.ShowSteps) && !steps.IsDefaultOrEmpty)
@@ -448,8 +451,8 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 		sb.Append(diamond, "0.0");
 		sb.AppendLine();
 
-		// Print the solution (if not null).
-		if (!solution.IsUndefined)
+		// Print the solution (if not null and worth).
+		if (!solution.IsUndefined && options.Flags(SolverResultFormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.Append(R["AnalysisResultPuzzleSolution"]!);
 			sb.Append(solution.ToString("!"));
