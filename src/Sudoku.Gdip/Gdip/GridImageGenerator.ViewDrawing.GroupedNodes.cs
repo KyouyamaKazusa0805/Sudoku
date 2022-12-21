@@ -36,7 +36,7 @@ partial class GridImageGenerator
 		var paddingSize = new SizeF(padding, padding);
 		var topLeft = calc.GetMousePointInCenter(head) - cs / 2 + paddingSize;
 		var bottomRight = calc.GetMousePointInCenter(nextCell) + cs / 2 - paddingSize;
-		var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+		var rect = RectangleCreator.Create(topLeft, bottomRight);
 
 		using var pen = new Pen(GetColor(identifier), width);
 
@@ -95,7 +95,7 @@ partial class GridImageGenerator
 					var center = calc.GetMousePointInCenter(row * 9 + column);
 					var topLeft = center - cs / 2;
 					var bottomRight = center + cs / 2;
-					var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+					var rect = RectangleCreator.Create(topLeft, bottomRight);
 
 					g.FillRectangle(brush, rect);
 				}
@@ -118,7 +118,7 @@ partial class GridImageGenerator
 					var center = calc.GetMousePointInCenter(row * 9 + column);
 					var topLeft = center - cs / 2;
 					var bottomRight = center + cs / 2;
-					var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+					var rect = RectangleCreator.Create(topLeft, bottomRight);
 
 					g.FillRectangle(brush, rect);
 				}

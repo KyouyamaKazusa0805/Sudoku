@@ -209,7 +209,7 @@ public sealed class PointCalculator
 				var (cMin, dMin, cMax, dMax) = (min / 9, min % 9, max / 9, max % 9);
 				var (a, b) = (GetMousePointInCenter(cMin, dMin), GetMousePointInCenter(cMax, dMax));
 				var (p, q) = (a with { X = a.X - cw / 2, Y = a.Y - ch / 2 }, b with { X = b.X + cw / 2, Y = b.Y + ch / 2 });
-				return RectangleMarshal.CreateInstance(p, q);
+				return RectangleCreator.Create(p, q);
 			}
 			default:
 			{
@@ -252,7 +252,7 @@ public sealed class PointCalculator
 	public RectangleF GetMouseRectangleViaHouse(int house)
 	{
 		var (l, r) = GetAnchorsViaHouse(house);
-		return RectangleMarshal.CreateInstance(l, r);
+		return RectangleCreator.Create(l, r);
 	}
 
 	/// <summary>

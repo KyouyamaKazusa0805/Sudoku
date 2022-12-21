@@ -1386,6 +1386,28 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:System.Drawing.RectangleCreator">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Rectangle"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Rectangle"/>
+        </member>
+        <member name="M:System.Drawing.RectangleCreator.Create(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            Create an instance with two points.
+            </summary>
+            <param name="topLeft">The top-left point.</param>
+            <param name="bottomRight">The bottom-right point.</param>
+            <returns>The rectangle.</returns>
+        </member>
+        <member name="M:System.Drawing.RectangleCreator.Create(System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            Create an instance with two points.
+            </summary>
+            <param name="topLeft">The top-left point.</param>
+            <param name="bottomRight">The bottom-right point.</param>
+            <returns>The rectangle.</returns>
+        </member>
         <member name="T:System.Drawing.RectangleExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Rectangle"/>.
@@ -1504,28 +1526,6 @@
 					</para>
 				</remarks>
 			</target>
-        </member>
-        <member name="T:System.Drawing.RectangleMarshal">
-            <summary>
-            Provides extension methods on <see cref="T:System.Drawing.Rectangle"/>.
-            </summary>
-            <seealso cref="T:System.Drawing.Rectangle"/>
-        </member>
-        <member name="M:System.Drawing.RectangleMarshal.CreateInstance(System.Drawing.Point,System.Drawing.Point)">
-            <summary>
-            Create an instance with two points.
-            </summary>
-            <param name="topLeft">The top-left point.</param>
-            <param name="bottomRight">The bottom-right point.</param>
-            <returns>The rectangle.</returns>
-        </member>
-        <member name="M:System.Drawing.RectangleMarshal.CreateInstance(System.Drawing.PointF,System.Drawing.PointF)">
-            <summary>
-            Create an instance with two points.
-            </summary>
-            <param name="topLeft">The top-left point.</param>
-            <param name="buttomRight">The bottom-right point.</param>
-            <returns>The rectangle.</returns>
         </member>
         <member name="T:System.Drawing.SizeExtensions">
             <summary>

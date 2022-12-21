@@ -265,7 +265,7 @@ partial class GridImageGenerator
 		var (x, y) = calc.GetMousePointInCenter(cell);
 		var topLeft = new PointF(x - cw / 2 + padding, y - ch / 2 + padding);
 		var bottomRight = new PointF(x + cw / 2 - padding, y + ch / 2 - padding);
-		var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+		var rect = RectangleCreator.Create(topLeft, bottomRight);
 
 		((Action<Pen, RectangleF>)(isFourDirections ? g.DrawCrossSign : g.DrawEllipse))(pen, rect);
 
@@ -294,7 +294,7 @@ partial class GridImageGenerator
 		var (x, y) = calc.GetMousePointInCenter(cell);
 		var topLeft = new PointF(x - cw * SqrtOf2 / 2, y - ch * SqrtOf2 / 2);
 		var bottomRight = new PointF(x + cw * SqrtOf2 / 2, y + ch * SqrtOf2 / 2);
-		var rect = RectangleMarshal.CreateInstance(topLeft, bottomRight);
+		var rect = RectangleCreator.Create(topLeft, bottomRight);
 
 		// Draw wheel main circle.
 		g.DrawEllipse(pen, rect);
