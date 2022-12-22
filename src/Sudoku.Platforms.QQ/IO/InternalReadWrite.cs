@@ -46,6 +46,7 @@ internal static class InternalReadWrite
 	/// </summary>
 	/// <param name="groupId">The group ID.</param>
 	/// <returns>The puzzle library data.</returns>
+	[MethodImpl(MethodImplOptions.Synchronized)]
 	public static PuzzleLibraryData[]? ReadLibraries(string groupId)
 	{
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
@@ -92,6 +93,7 @@ internal static class InternalReadWrite
 	/// <param name="groupId">The group ID.</param>
 	/// <param name="libraryName">The library name.</param>
 	/// <returns>The puzzle library data.</returns>
+	[MethodImpl(MethodImplOptions.Synchronized)]
 	public static PuzzleLibraryData? ReadLibrary(string groupId, string libraryName)
 	{
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
