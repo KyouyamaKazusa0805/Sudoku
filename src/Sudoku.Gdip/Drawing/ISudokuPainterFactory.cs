@@ -67,8 +67,7 @@ public interface ISudokuPainterFactory
 	/// </param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithFontScale(decimal fontScale)
-		=> WithPreferenceSettings(pref => { pref.ValueScale = fontScale; pref.CandidateScale = fontScale / 3; });
+	sealed ISudokuPainter WithFontScale(decimal fontScale) => WithFontScale(fontScale, fontScale / 3);
 
 	/// <summary>
 	/// <inheritdoc cref="WithFontScale(decimal)" path="/summary"/>
