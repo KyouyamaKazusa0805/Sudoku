@@ -31,24 +31,24 @@ file sealed class ComplexLookupScoreCommand : Command
 		{
 			case []:
 			{
-				await e.SendMessageAsync(R["_MessageFormat_LookupNameOrIdInvalid"]);
+				await e.SendMessageAsync(R.MessageFormat("LookupNameOrIdInvalid"));
 				break;
 			}
 			case { Length: >= 2 }:
 			{
-				await e.SendMessageAsync(R["_MessageFormat_LookupNameOrIdAmbiguous"]);
+				await e.SendMessageAsync(R.MessageFormat("LookupNameOrIdAmbiguous"));
 				break;
 			}
 			case [{ Id: var foundMemberId }]:
 			{
 				if (InternalReadWrite.Read(foundMemberId) is not { Score: var score } userData)
 				{
-					await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreNotFound"]!, senderName, senderOriginalName));
+					await e.SendMessageAsync(string.Format(R.MessageFormat("UserScoreNotFound")!, senderName, senderOriginalName));
 					return true;
 				}
 
 				var grade = Scorer.GetGrade(score);
-				await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, score, senderOriginalName, grade));
+				await e.SendMessageAsync(string.Format(R.MessageFormat("UserScoreIs")!, senderName, score, senderOriginalName, grade));
 				return true;
 			}
 		}

@@ -8,10 +8,10 @@
 file sealed class DeleteDigitCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_Delete"]!;
+	public override string CommandName => R.Command("Delete")!;
 
 	/// <inheritdoc/>
-	public override string EnvironmentCommand => R["_Command_Draw"]!;
+	public override string EnvironmentCommand => R.Command("Draw")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Prefix;

@@ -34,7 +34,7 @@ file sealed record DailyPuzzleOperation() : PeriodicOperation(new TimeOnly(12, 0
 				continue;
 			}
 
-			await MessageManager.SendGroupMessageAsync(groupId, R["_MessageFormat_DailyPuzzle"]!);
+			await MessageManager.SendGroupMessageAsync(groupId, R.MessageFormat("DailyPuzzle")!);
 			await Task.Delay(10.Seconds());
 
 			// Create picture and send message.
@@ -53,7 +53,7 @@ file sealed record DailyPuzzleOperation() : PeriodicOperation(new TimeOnly(12, 0
 			return;
 		}
 
-		//await MessageManager.SendGroupMessageAsync(groupId, R["_MessageFormat_DailyPuzzleGeneratingFailed"]!);
+		//await MessageManager.SendGroupMessageAsync(groupId, R.MessageFormat("DailyPuzzleGeneratingFailed")!);
 	}
 
 	/// <summary>

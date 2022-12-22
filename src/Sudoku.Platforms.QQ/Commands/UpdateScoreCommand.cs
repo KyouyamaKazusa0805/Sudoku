@@ -7,7 +7,7 @@
 file sealed class UpdateScoreCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_UpdateScore"]!;
+	public override string CommandName => R.Command("UpdateScore")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Prefix;
@@ -66,7 +66,7 @@ file sealed class UpdateScoreCommand : Command
 
 		await File.WriteAllTextAsync(fileName, Serialize(userData));
 
-		await e.SendMessageAsync(string.Format(R["_MessageFormat_ScoreAppending"]!, targetName, Scorer.GetEarnedScoringDisplayingString(value)));
+		await e.SendMessageAsync(string.Format(R.MessageFormat("ScoreAppending")!, targetName, Scorer.GetEarnedScoringDisplayingString(value)));
 		return true;
 	}
 }

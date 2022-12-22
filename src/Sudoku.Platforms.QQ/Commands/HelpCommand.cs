@@ -7,7 +7,7 @@
 file sealed class HelpCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_Help"]!;
+	public override string CommandName => R.Command("Help")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Strict;

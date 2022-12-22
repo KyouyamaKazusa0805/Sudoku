@@ -7,7 +7,7 @@
 file sealed class LookupScoreCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_LookupScore"]!;
+	public override string CommandName => R.Command("LookupScore")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Strict;
@@ -23,12 +23,12 @@ file sealed class LookupScoreCommand : Command
 
 		if (InternalReadWrite.Read(senderId) is not { Score: var score } userData)
 		{
-			await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreNotFound"]!, senderName, senderOriginalName));
+			await e.SendMessageAsync(string.Format(R.MessageFormat("UserScoreNotFound")!, senderName, senderOriginalName));
 			return true;
 		}
 
 		var grade = Scorer.GetGrade(score);
-		await e.SendMessageAsync(string.Format(R["_MessageFormat_UserScoreIs"]!, senderName, score, senderOriginalName, grade));
+		await e.SendMessageAsync(string.Format(R.MessageFormat("UserScoreIs")!, senderName, score, senderOriginalName, grade));
 		return true;
 	}
 }

@@ -1188,7 +1188,7 @@
             </summary>
             <seealso cref="T:Sudoku.Resources.MergedResources"/>
         </member>
-        <member name="M:Sudoku.Resources.MergedResourcesFetcher.CommandName(Sudoku.Resources.MergedResources,System.String)">
+        <member name="M:Sudoku.Resources.MergedResourcesFetcher.Command(Sudoku.Resources.MergedResources,System.String)">
             <summary>
             Try to fetch the command name.
             </summary>
@@ -1201,8 +1201,16 @@
             Try to fetch the token.
             </summary>
             <param name="this">The resource fetcher.</param>
-            <param name="token">The internal name o the token, with the prefix "<c>_Token_</c>" removed.</param>
+            <param name="token">The internal name of the token, with the prefix "<c>_Token_</c>" removed.</param>
             <returns>The target token in the resource dictionary.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.MergedResourcesFetcher.MessageFormat(Sudoku.Resources.MergedResources,System.String)">
+            <summary>
+            Try to fetch the message format.
+            </summary>
+            <param name="this">The resource fetcher.</param>
+            <param name="messageFormat">The message format, with the prefix "<c>_MessageFormat_</c>" removed.</param>
+            <returns>The target message format in the resource dictionary.</returns>
         </member>
         <member name="T:Sudoku.CommandLine.ModuleInitializer">
             <target name="type">

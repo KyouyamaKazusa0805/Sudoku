@@ -182,7 +182,7 @@ partial class Bot
 	{
 		if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
 		{
-			await group.SendGroupMessageAsync(R["_MessageFormat_SampleMemberJoined"]);
+			await group.SendGroupMessageAsync(R.MessageFormat("SampleMemberJoined"));
 		}
 	}
 
@@ -203,7 +203,7 @@ partial class Bot
 			await (
 				BilibiliPattern().IsMatch(finalMessage.Trim())
 					? e.ApproveAsync()
-					: e.RejectAsync(R["_MessageFormat_MemberJoinedRejected"]!)
+					: e.RejectAsync(R.MessageFormat("MemberJoinedRejected")!)
 			);
 		}
 	}

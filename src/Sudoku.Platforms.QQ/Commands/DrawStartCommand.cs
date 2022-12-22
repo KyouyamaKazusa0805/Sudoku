@@ -8,7 +8,7 @@
 file sealed class DrawStartCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_Draw"]!;
+	public override string CommandName => R.Command("Draw")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Strict;
@@ -22,7 +22,7 @@ file sealed class DrawStartCommand : Command
 		context.DrawingContext.Painter = ISudokuPainter.Create(800, 10).WithGrid(Grid.Empty).WithRenderingCandidates(false);
 		context.DrawingContext.Puzzle = Grid.Empty;
 
-		await e.SendMessageAsync(R["_MessageFormat_DrawStartMessage"]!);
+		await e.SendMessageAsync(R.MessageFormat("DrawStartMessage")!);
 		return true;
 	}
 }

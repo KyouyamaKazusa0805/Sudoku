@@ -29,7 +29,7 @@ public sealed class Format : IExecutable
 		var format = FormatString;
 		try
 		{
-			await Terminal.WriteLineAsync(string.Format( R["_MessageFormat_FormatResult"]!, Grid.ToString("0"), c(format), Grid.ToString(format)));
+			await Terminal.WriteLineAsync(string.Format(R.MessageFormat("FormatResult")!, Grid.ToString("0"), c(format), Grid.ToString(format)));
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -10,7 +10,7 @@ using static Constants;
 file sealed class StartGamingCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_MatchStart"]!;
+	public override string CommandName => R.Command("MatchStart")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Strict;
@@ -39,7 +39,7 @@ file sealed class StartGamingCommand : Command
 
 		var (puzzle, solutionData, timeLimit, baseExp) = generatePuzzle(targetCells);
 
-		await e.SendMessageAsync(string.Format(R["_MessageFormat_MatchReady"]!, timeLimit.ToChineseTimeSpanString()));
+		await e.SendMessageAsync(string.Format(R.MessageFormat("MatchReady")!, timeLimit.ToChineseTimeSpanString()));
 		await Task.Delay(10.Seconds());
 
 		// Create picture and send message.
@@ -62,7 +62,7 @@ file sealed class StartGamingCommand : Command
 				if (context.AnsweringContext.IsCancelled is true)
 				{
 					// User cancelled.
-					await e.SendMessageAsync(R["_MessageFormat_GamingIsCancelled"]!);
+					await e.SendMessageAsync(R.MessageFormat("GamingIsCancelled")!);
 
 					goto ReturnTrueAndInitializeContext;
 				}
@@ -79,7 +79,7 @@ file sealed class StartGamingCommand : Command
 						case (false, false):
 						{
 							// Wrong answer and no records.
-							await e.SendMessageAsync(R["_MessageFormat_WrongAnswer"]!);
+							await e.SendMessageAsync(R.MessageFormat("WrongAnswer")!);
 							answeringContext.AnsweredUsers.TryAdd(userId, 1);
 
 							break;
@@ -87,7 +87,7 @@ file sealed class StartGamingCommand : Command
 						case (false, true):
 						{
 							// Wrong answer but containing records.
-							await e.SendMessageAsync(R["_MessageFormat_WrongAnswer"]!);
+							await e.SendMessageAsync(R.MessageFormat("WrongAnswer")!);
 							answeringContext.AnsweredUsers[userId]++;
 
 							break;
@@ -110,7 +110,7 @@ file sealed class StartGamingCommand : Command
 							// Correct answer and first reply.
 							await e.SendMessageAsync(
 								string.Format(
-									R["_MessageFormat_CorrectAnswer"]!,
+									R.MessageFormat("CorrectAnswer")!,
 									$"{userName} ({userId})",
 									baseExp,
 									TimeSpan.FromSeconds(elapsedTime).ToChineseTimeSpanString(),
@@ -149,7 +149,7 @@ file sealed class StartGamingCommand : Command
 
 		await e.SendMessageAsync(
 			string.Format(
-				R["_MessageFormat_GameTimeUp"]!,
+				R.MessageFormat("GameTimeUp")!,
 				scoringTableLinesDeductOnly.Any()
 					? string.Join(
 						Environment.NewLine,

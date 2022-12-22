@@ -8,10 +8,10 @@
 file sealed class ClearCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_Clear"]!;
+	public override string CommandName => R.Command("Clear")!;
 
 	/// <inheritdoc/>
-	public override string? EnvironmentCommand => R["_Command_Draw"];
+	public override string? EnvironmentCommand => R.Command("Draw");
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Prefix;

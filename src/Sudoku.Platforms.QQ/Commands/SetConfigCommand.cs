@@ -36,7 +36,7 @@ file sealed class SetConfigCommand : Command
 			{
 				config.RankingDisplayUsersCount = targetValue;
 
-				await e.SendMessageAsync(R["_MessageFormat_SetConfigSuccess"]!);
+				await e.SendMessageAsync(R.MessageFormat("SetConfigSuccess")!);
 				break;
 			}
 		}

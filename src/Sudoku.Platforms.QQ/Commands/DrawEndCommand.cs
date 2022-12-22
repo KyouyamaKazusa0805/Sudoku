@@ -8,10 +8,10 @@
 file sealed class DrawEndCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_End"]!;
+	public override string CommandName => R.Command("End")!;
 
 	/// <inheritdoc/>
-	public override string EnvironmentCommand => R["_Command_Draw"]!;
+	public override string EnvironmentCommand => R.Command("Draw")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Strict;
@@ -24,7 +24,7 @@ file sealed class DrawEndCommand : Command
 		context.ExecutingCommand = null;
 		context.DrawingContext = new();
 
-		await e.SendMessageAsync(R["_MessageFormat_EndOkay"]!);
+		await e.SendMessageAsync(R.MessageFormat("EndOkay")!);
 		return true;
 	}
 }

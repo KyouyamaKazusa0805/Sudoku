@@ -13,14 +13,23 @@ internal static class MergedResourcesFetcher
 	/// <param name="command">The internal name of the command as the key, with the prefix "<c>_Command_</c>" removed.</param>
 	/// <returns>The target command in the resource dictionary.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? CommandName(this MergedResources @this, string command) => @this[$"_Command_{command}"];
+	public static string? Command(this MergedResources @this, string command) => @this[$"_{nameof(Command)}_{command}"];
 
 	/// <summary>
 	/// Try to fetch the token.
 	/// </summary>
 	/// <param name="this">The resource fetcher.</param>
-	/// <param name="token">The internal name o the token, with the prefix "<c>_Token_</c>" removed.</param>
+	/// <param name="token">The internal name of the token, with the prefix "<c>_Token_</c>" removed.</param>
 	/// <returns>The target token in the resource dictionary.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? Token(this MergedResources @this, string token) => @this[$"_Token_{token}"];
+	public static string? Token(this MergedResources @this, string token) => @this[$"_{nameof(Token)}_{token}"];
+
+	/// <summary>
+	/// Try to fetch the message format.
+	/// </summary>
+	/// <param name="this">The resource fetcher.</param>
+	/// <param name="messageFormat">The message format, with the prefix "<c>_MessageFormat_</c>" removed.</param>
+	/// <returns>The target message format in the resource dictionary.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string? MessageFormat(this MergedResources @this, string messageFormat) => @this[$"_{nameof(MessageFormat)}_{messageFormat}"];
 }

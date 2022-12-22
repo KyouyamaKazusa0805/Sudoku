@@ -8,10 +8,10 @@
 file sealed class SetDigitCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_Set"]!;
+	public override string CommandName => R.Command("Set")!;
 
 	/// <inheritdoc/>
-	public override string EnvironmentCommand => R["_Command_Draw"]!;
+	public override string EnvironmentCommand => R.Command("Draw")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Prefix;

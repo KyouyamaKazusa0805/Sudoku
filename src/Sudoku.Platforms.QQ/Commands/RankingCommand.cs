@@ -7,7 +7,7 @@
 file sealed class RankingCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_Ranking"]!;
+	public override string CommandName => R.Command("Ranking")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Prefix;
@@ -32,14 +32,14 @@ file sealed class RankingCommand : Command
 		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
 		if (!Directory.Exists(botDataFolder))
 		{
-			await e.SendMessageAsync(R["_MessageFormat_RankingListIsEmpty"]!);
+			await e.SendMessageAsync(R.MessageFormat("RankingListIsEmpty")!);
 			return true;
 		}
 
 		var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
 		if (!Directory.Exists(botUsersDataFolder))
 		{
-			await e.SendMessageAsync(R["_MessageFormat_RankingListIsEmpty"]!);
+			await e.SendMessageAsync(R.MessageFormat("RankingListIsEmpty")!);
 			return true;
 		}
 
@@ -58,7 +58,7 @@ file sealed class RankingCommand : Command
 		).Take(context?.Configuration.RankingDisplayUsersCount ?? 10);
 
 		var rankingStr = string.Join(Environment.NewLine, usersData.Select(selector));
-		await e.SendMessageAsync($"{R["_MessageFormat_RankingResult"]!}{Environment.NewLine}{"---"}{Environment.NewLine}{rankingStr}");
+		await e.SendMessageAsync($"{R.MessageFormat("RankingResult")!}{Environment.NewLine}{"---"}{Environment.NewLine}{rankingStr}");
 		return true;
 
 
@@ -69,10 +69,10 @@ file sealed class RankingCommand : Command
 				throw new();
 			}
 
-			var openBrace = R["_Token_OpenBrace"]!;
-			var closedBrace = R["_Token_ClosedBrace"]!;
-			var colon = R["_Token_Colon"]!;
-			var comma = R["_Token_Comma"]!;
+			var openBrace = R.Token("OpenBrace")!;
+			var closedBrace = R.Token("ClosedBrace")!;
+			var colon = R.Token("Colon")!;
+			var comma = R.Token("Comma")!;
 			var scoreSuffix = R["ExpString"]!;
 			var grade = Scorer.GetGrade(score);
 			var gradeSuffix = R["GradeString"]!;

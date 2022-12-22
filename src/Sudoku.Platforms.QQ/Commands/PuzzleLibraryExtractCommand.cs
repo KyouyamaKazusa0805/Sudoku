@@ -8,7 +8,7 @@
 file sealed class PuzzleLibraryExtractCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R.CommandName("ExtractPuzzle")!;
+	public override string CommandName => R.Command("ExtractPuzzle")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Prefix;
@@ -22,7 +22,7 @@ file sealed class PuzzleLibraryExtractCommand : Command
 			return true;
 		}
 
-		await e.SendMessageAsync(R["_MessageFormat_AnalyzePuzzleLibrary"]!);
+		await e.SendMessageAsync(R.MessageFormat("AnalyzePuzzleLibrary")!);
 
 		return args switch
 		{
@@ -43,21 +43,21 @@ file sealed class PuzzleLibraryExtractCommand : Command
 		async Task<bool> sendLibraryNullOrEmptyMessageAsync()
 		{
 			await Task.Delay(2.Seconds());
-			await e.SendMessageAsync(R["_MessageFormat_PuzzleLibraryIsNullOrEmpty"]!);
+			await e.SendMessageAsync(R.MessageFormat("PuzzleLibraryIsNullOrEmpty")!);
 			return true;
 		}
 
 		async Task<bool> sendLibraryNotUniqueMessageAsync()
 		{
 			await Task.Delay(2.Seconds());
-			await e.SendMessageAsync(R["_MessageFormat_PuzzleLibraryIsNotUnique"]!);
+			await e.SendMessageAsync(R.MessageFormat("PuzzleLibraryIsNotUnique")!);
 			return true;
 		}
 
 		async Task<bool> sendLibraryNotFoundMessageAsync()
 		{
 			await Task.Delay(2.Seconds());
-			await e.SendMessageAsync(string.Format(R["_MessageFormat_PuzzleLibraryIsNotFound"]!, args));
+			await e.SendMessageAsync(string.Format(R.MessageFormat("PuzzleLibraryIsNotFound")!, args));
 			return true;
 		}
 
@@ -122,7 +122,7 @@ file sealed class PuzzleLibraryExtractCommand : Command
 			return true;
 
 		PuzzleIsBroken:
-			await e.SendMessageAsync(R["_MessageFormat_PuzzleLibraryIsBroken"]!);
+			await e.SendMessageAsync(R.MessageFormat("PuzzleLibraryIsBroken")!);
 			return true;
 		}
 	}

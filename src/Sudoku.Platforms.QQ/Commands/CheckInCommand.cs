@@ -7,7 +7,7 @@
 file sealed class CheckInCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_CheckIn"]!;
+	public override string CommandName => R.Command("CheckIn")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Strict;
@@ -28,7 +28,7 @@ file sealed class CheckInCommand : Command
 			{
 				// Disallow user checking in multiple times in a same day.
 				var timeStr = time.ToString("hh' \u70b9 'mm' \u5206'");
-				await e.SendMessageAsync(string.Format(R["_MessageFormat_CheckInFailedDueToMultipleInSameDay"]!, timeStr));
+				await e.SendMessageAsync(string.Format(R.MessageFormat("CheckInFailedDueToMultipleInSameDay")!, timeStr));
 
 				return true;
 			}
@@ -43,7 +43,7 @@ file sealed class CheckInCommand : Command
 
 				await e.SendMessageAsync(
 					string.Format(
-						R["_MessageFormat_CheckInSuccessfulAndContinuous"]!,
+						R.MessageFormat("CheckInSuccessfulAndContinuous")!,
 						userData.ComboCheckedIn,
 						Scorer.GetEarnedScoringDisplayingString(expEarned)
 					)
@@ -60,7 +60,7 @@ file sealed class CheckInCommand : Command
 				userData.Score += expEarned;
 				userData.LastCheckIn = DateTime.Now;
 
-				await e.SendMessageAsync(string.Format(R["_MessageFormat_CheckInSuccessful"]!, Scorer.GetEarnedScoringDisplayingString(expEarned)));
+				await e.SendMessageAsync(string.Format(R.MessageFormat("CheckInSuccessful")!, Scorer.GetEarnedScoringDisplayingString(expEarned)));
 				break;
 			}
 		}
