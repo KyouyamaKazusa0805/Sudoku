@@ -58,7 +58,15 @@ file sealed class RankingCommand : Command
 		).Take(context?.Configuration.RankingDisplayUsersCount ?? 10);
 
 		var rankingStr = string.Join(Environment.NewLine, usersData.Select(selector));
-		await e.SendMessageAsync($"{R.MessageFormat("RankingResult")!}{Environment.NewLine}{"---"}{Environment.NewLine}{rankingStr}");
+		await e.SendMessageAsync(
+			new MessageChainBuilder()
+				.Plain(R.MessageFormat("RankingResult")!)
+				.Plain(Environment.NewLine)
+				.Plain("---")
+				.Plain(Environment.NewLine)
+				.Plain(rankingStr)
+				.Build()
+		);
 		return true;
 
 
