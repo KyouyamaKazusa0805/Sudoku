@@ -77,37 +77,42 @@ file sealed class PuzzleLibraryExtractCommand : Command
 						IsSolved: true,
 						MaxDifficulty: var diff,
 						TotalDifficulty: var total,
+						DifficultyLevel: var diffLevel,
 						SolvingStepsCount: var stepsCount
 					} analysisResult)
 				{
-					var comma = R["_Token_Comma"]!;
+					GridAutoFiller.Fill(ref grid);
+
+					var comma = R.Token("Comma")!;
 					var footerText = $"@{name} #{index + 1}{comma}{R["DiffRatingIs"]!} {diff:0.0}{comma}{R["TotalDiffRatingIs"]!}{total:0.0}";
 					var picturePath = InternalReadWrite.GenerateCachedPicturePath(
 						() => ISudokuPainter.Create(1000)
+							.WithCanvasOffset(20)
 							.WithGrid(grid)
-							.WithRenderingCandidates(false)
+							.WithRenderingCandidates(diffLevel >= DifficultyLevel.Hard)
 							.WithFooterText(footerText)
 					)!;
 
+					const string separator = "---";
 					await e.SendMessageAsync(new ImageMessage { Path = picturePath });
 					await Task.Delay(3.Seconds());
 					await e.SendMessageAsync(
 						new MessageChainBuilder()
 							.Plain(R["AnalysisResultIs"]!)
 							.Plain(Environment.NewLine)
-							.Plain("---")
+							.Plain(separator)
 							.Plain(Environment.NewLine)
 							.Plain($"{R["LibraryNameIs"]!}{name}")
 							.Plain(Environment.NewLine)
 							.Plain($"{R["PuzzleLibraryIndexIs"]!}#{index + 1}")
 							.Plain(Environment.NewLine)
-							.Plain("---")
+							.Plain(separator)
 							.Plain(Environment.NewLine)
-							.Plain(analysisResult.ToString(SolverResultFormattingOptions.None))
+							.Plain(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime))
 							.Build()
 					);
 
-					// TODO: Update finished table, avoiding the puzzle to be re-extracted.
+					// TODO: Update finished table, in order to avoid the puzzle to be re-extracted.
 
 					File.Delete(picturePath);
 				}

@@ -14,4 +14,13 @@ internal static class MergedResourcesFetcher
 	/// <returns>The target command in the resource dictionary.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? CommandName(this MergedResources @this, string command) => @this[$"_Command_{command}"];
+
+	/// <summary>
+	/// Try to fetch the token.
+	/// </summary>
+	/// <param name="this">The resource fetcher.</param>
+	/// <param name="token">The internal name o the token, with the prefix "<c>_Token_</c>" removed.</param>
+	/// <returns>The target token in the resource dictionary.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string? Token(this MergedResources @this, string token) => @this[$"_Token_{token}"];
 }

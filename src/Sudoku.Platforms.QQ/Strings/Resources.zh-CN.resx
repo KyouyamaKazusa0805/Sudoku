@@ -316,7 +316,8 @@
 所有指令请都带上感叹号，例如“！查询”。</value>
   </data>
   <data name="_MessageFormat_AnalyzePuzzleLibrary" xml:space="preserve">
-    <value>正在解析题库内容，请稍候……</value>
+    <value>正在解析题库内容，请稍候……
+（该功能为预览状态，会存在 bug。）</value>
   </data>
   <data name="_MessageFormat_CheckInFailedDueToMultipleInSameDay" xml:space="preserve">
     <value>签到失败~ 你今天 {0}的时候已经签过到了，明天再来试试吧~</value>

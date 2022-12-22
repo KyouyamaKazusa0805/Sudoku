@@ -93,6 +93,11 @@
             The solver.
             </summary>
         </member>
+        <member name="F:Sudoku.Platforms.QQ.AppLifecycle.EnvironmentData.GridAutoFiller">
+            <summary>
+            Indicates the auto filler.
+            </summary>
+        </member>
         <member name="F:Sudoku.Platforms.QQ.AppLifecycle.EnvironmentData.RunningContexts">
             <summary>
             The internal running context.
@@ -1190,6 +1195,14 @@
             <param name="this">The resource fetcher.</param>
             <param name="command">The internal name of the command as the key, with the prefix "<c>_Command_</c>" removed.</param>
             <returns>The target command in the resource dictionary.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.MergedResourcesFetcher.Token(Sudoku.Resources.MergedResources,System.String)">
+            <summary>
+            Try to fetch the token.
+            </summary>
+            <param name="this">The resource fetcher.</param>
+            <param name="token">The internal name o the token, with the prefix "<c>_Token_</c>" removed.</param>
+            <returns>The target token in the resource dictionary.</returns>
         </member>
         <member name="T:Sudoku.CommandLine.ModuleInitializer">
             <target name="type">

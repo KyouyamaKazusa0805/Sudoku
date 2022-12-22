@@ -21,6 +21,11 @@ internal static class EnvironmentData
 	public static readonly LogicalSolver Solver = new();
 
 	/// <summary>
+	/// Indicates the auto filler.
+	/// </summary>
+	public static readonly DefaultAutoFiller GridAutoFiller = new();
+
+	/// <summary>
 	/// The internal running context.
 	/// </summary>
 	internal static readonly ConcurrentDictionary<string, BotRunningContext> RunningContexts = new();

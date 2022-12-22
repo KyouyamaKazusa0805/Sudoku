@@ -37,8 +37,7 @@ public enum DifficultyLevel : byte
 	Nightmare = 1 << 4,
 
 	/// <summary>
-	/// Indicates the puzzle can't be solved
-	/// unless using last resort methods.
+	/// Indicates the puzzle can't be solved unless using last resort methods.
 	/// </summary>
-	LastResort = 1 << 5,
+	LastResort = 1 << 5
 }

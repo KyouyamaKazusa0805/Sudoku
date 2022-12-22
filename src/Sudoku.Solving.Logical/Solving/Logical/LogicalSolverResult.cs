@@ -463,9 +463,12 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 		sb.AppendWhen(!isSolved, R["AnalysisResultNot"]!);
 		sb.Append(R["AnalysisResultBeenSolved"]!);
 		sb.AppendLine();
-		sb.Append(R["AnalysisResultTimeElapsed"]!);
-		sb.Append(elapsed.ToString("""hh\:mm\:ss\.fff"""));
-		sb.AppendLine();
+		if (options.Flags(SolverResultFormattingOptions.ShowElapsedTime))
+		{
+			sb.Append(R["AnalysisResultTimeElapsed"]!);
+			sb.Append(elapsed.ToString("""hh\:mm\:ss\.fff"""));
+			sb.AppendLine();
+		}
 
 		a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
 

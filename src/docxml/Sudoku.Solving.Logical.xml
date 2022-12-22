@@ -4,6 +4,31 @@
         <name>Sudoku.Solving.Logical</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.AutoFiller.DefaultAutoFiller">
+            <summary>
+            Defines a default auto filler instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.AutoFiller.DefaultAutoFiller.Solver">
+            <summary>
+            Indicates the default solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.AutoFiller.DefaultAutoFiller.Fill(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.AutoFiller.IAutoFiller">
+            <summary>
+            Defines an auto filler instance that can automatically fill some empty cells via the specified rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.AutoFiller.IAutoFiller.Fill(Sudoku.Concepts.Grid@)">
+            <summary>
+            To fill the current grid automatically with some digits input.
+            </summary>
+            <param name="grid">The target grid.</param>
+            <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="grid"/> is not unique.</exception>
+        </member>
         <member name="T:Sudoku.Buffers.FastProperties">
             <summary>
             Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
@@ -2666,6 +2691,11 @@
         <member name="F:Sudoku.Solving.Logical.SolverResultFormattingOptions.ShowGridAndSolutionCode">
             <summary>
             Indicates the analysis result will show grid code for the puzzle itself and its solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.SolverResultFormattingOptions.ShowElapsedTime">
+            <summary>
+            Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepExtensions">
@@ -14303,8 +14333,7 @@
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.LastResort">
             <summary>
-            Indicates the puzzle can't be solved
-            unless using last resort methods.
+            Indicates the puzzle can't be solved unless using last resort methods.
             </summary>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext">

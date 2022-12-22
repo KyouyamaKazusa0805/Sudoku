@@ -55,5 +55,10 @@ public enum SolverResultFormattingOptions : short
 	/// <summary>
 	/// Indicates the analysis result will show grid code for the puzzle itself and its solution.
 	/// </summary>
-	ShowGridAndSolutionCode = 1 << 8
+	ShowGridAndSolutionCode = 1 << 8,
+
+	/// <summary>
+	/// Indicates the analysis result will show elapsed time on solving the puzzle.
+	/// </summary>
+	ShowElapsedTime = 1 << 9
 }
