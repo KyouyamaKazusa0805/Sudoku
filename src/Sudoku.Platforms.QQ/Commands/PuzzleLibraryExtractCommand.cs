@@ -72,26 +72,18 @@ file sealed class PuzzleLibraryExtractCommand : Command
 			var gridCode = Rng.NextInArray(lines, out var index);
 			if (Grid.TryParse(gridCode, out var grid))
 			{
-				if (Solver.Solve(grid) is
-					{
-						IsSolved: true,
-						MaxDifficulty: var diff,
-						TotalDifficulty: var total,
-						DifficultyLevel: var diffLevel,
-						SolvingStepsCount: var stepsCount
-					} analysisResult)
+				if (Solver.Solve(grid) is { IsSolved: true, DifficultyLevel: var diffLevel, SolvingStepsCount: var stepsCount } analysisResult)
 				{
 					GridAutoFiller.Fill(ref grid);
 
 					var comma = R.Token("Comma")!;
-					var footerText = $"@{name} #{index + 1}{comma}{R["DiffRatingIs"]!} {diff:0.0}{comma}{R["TotalDiffRatingIs"]!}{total:0.0}";
 					var picturePath = InternalReadWrite.GenerateCachedPicturePath(
 						() => ISudokuPainter.Create(1000)
 							.WithCanvasOffset(20)
 							.WithGrid(grid)
 							.WithRenderingCandidates(diffLevel >= DifficultyLevel.Hard)
 							.WithFontScale(1.0M, .4M)
-							.WithFooterText(footerText)
+							.WithFooterText($"@{name} #{index + 1}")
 					)!;
 
 					const string separator = "---";
