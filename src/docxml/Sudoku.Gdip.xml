@@ -188,6 +188,24 @@
             </param>
             <returns>The target painter.</returns>
         </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal,System.Decimal)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="/summary"/>
+            </summary>
+            <param name="valueFontScale">
+            <para>Indicates the desired font scale that is applied to values (given and modifiable values).</para>
+            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[2]"/></para>
+            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[3]"/></para>
+            </param>
+            <param name="candidateFontScale">
+            <para>Indicates the desired font scale that is applied to candidates.</para>
+            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[2]"/></para>
+            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[3]"/></para>
+            </param>
+            <returns>
+            <inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="/returns"/>
+            </returns>
+        </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithCandidateFont(System.String)">
             <summary>
             Sets a font name that is used for rendering text of candidate digits in a sudoku grid.

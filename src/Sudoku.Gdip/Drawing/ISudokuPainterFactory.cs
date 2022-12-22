@@ -71,6 +71,26 @@ public interface ISudokuPainterFactory
 		=> WithPreferenceSettings(pref => { pref.ValueScale = fontScale; pref.CandidateScale = fontScale / 3; });
 
 	/// <summary>
+	/// <inheritdoc cref="WithFontScale(decimal)" path="/summary"/>
+	/// </summary>
+	/// <param name="valueFontScale">
+	/// <para>Indicates the desired font scale that is applied to values (given and modifiable values).</para>
+	/// <para><inheritdoc cref="WithFontScale(decimal)" path="//param[@name='fontScale']/para[2]"/></para>
+	/// <para><inheritdoc cref="WithFontScale(decimal)" path="//param[@name='fontScale']/para[3]"/></para>
+	/// </param>
+	/// <param name="candidateFontScale">
+	/// <para>Indicates the desired font scale that is applied to candidates.</para>
+	/// <para><inheritdoc cref="WithFontScale(decimal)" path="//param[@name='fontScale']/para[2]"/></para>
+	/// <para><inheritdoc cref="WithFontScale(decimal)" path="//param[@name='fontScale']/para[3]"/></para>
+	/// </param>
+	/// <returns>
+	/// <inheritdoc cref="WithFontScale(decimal)" path="/returns"/>
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	sealed ISudokuPainter WithFontScale(decimal valueFontScale, decimal candidateFontScale)
+		=> WithPreferenceSettings(pref => { pref.ValueScale = valueFontScale; pref.CandidateScale = candidateFontScale; });
+
+	/// <summary>
 	/// Sets a font name that is used for rendering text of candidate digits in a sudoku grid.
 	/// </summary>
 	/// <param name="fontName">The font name.</param>

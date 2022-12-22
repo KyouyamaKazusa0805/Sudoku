@@ -90,6 +90,7 @@ file sealed class PuzzleLibraryExtractCommand : Command
 							.WithCanvasOffset(20)
 							.WithGrid(grid)
 							.WithRenderingCandidates(diffLevel >= DifficultyLevel.Hard)
+							.WithFontScale(1.0M, .4M)
 							.WithFooterText(footerText)
 					)!;
 
