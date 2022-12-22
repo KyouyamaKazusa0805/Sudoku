@@ -710,6 +710,65 @@
             <param name="painterCreator">The painter creator method.</param>
             <returns>The target path of the picture.</returns>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection">
+            <summary>
+            Defines a collection that stores a list of puzzle library data <see cref="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryData"/> instances.
+            </summary>
+            <see cref="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryData"/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.GroupId">
+            <summary>
+            Indicates the group ID.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.PuzzleLibraries">
+            <summary>
+            Defines a list of puzzle libraries.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.System#ISlicable{Sudoku#Platforms#QQ#Models#PuzzleLibraryCollection,Sudoku#Platforms#QQ#Models#PuzzleLibraryData}#Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyList`1.Item(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.System#Collections#Generic#IEnumerable{Sudoku#Platforms#QQ#Models#PuzzleLibraryData}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator">
+            <summary>
+            Defines the internal enumerator of this type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator.#ctor(Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator"/> instance via the specified <see cref="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection"/> instance.
+            </summary>
+            <param name="collection">The <see cref="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection"/> instance.</param>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryData">
             <summary>
             Indicates a puzzle library.
@@ -720,9 +779,19 @@
             Indicates the name of the library.
             </summary>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.Description">
+            <summary>
+            Indicates the description of the puzzle library.
+            </summary>
+        </member>
         <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.PuzzleFilePath">
             <summary>
             Indicates the puzzles in the library.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.FinishedPuzzlesCount">
+            <summary>
+            Indicates how many puzzles the library has been finished.
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Models.UserData">

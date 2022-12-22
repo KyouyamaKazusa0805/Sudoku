@@ -13,8 +13,20 @@ public sealed class PuzzleLibraryData
 	public required string Name { get; set; }
 
 	/// <summary>
+	/// Indicates the description of the puzzle library.
+	/// </summary>
+	[JsonPropertyName("description")]
+	public string? Description { get; set; }
+
+	/// <summary>
 	/// Indicates the puzzles in the library.
 	/// </summary>
 	[JsonPropertyName("puzzlePath")]
 	public required string PuzzleFilePath { get; set; }
+
+	/// <summary>
+	/// Indicates how many puzzles the library has been finished.
+	/// </summary>
+	[JsonPropertyName("finishedCount")]
+	public int FinishedPuzzlesCount { get; set; }
 }

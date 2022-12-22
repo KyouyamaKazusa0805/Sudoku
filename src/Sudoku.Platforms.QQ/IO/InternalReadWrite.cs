@@ -47,7 +47,7 @@ internal static class InternalReadWrite
 	/// <param name="groupId">The group ID.</param>
 	/// <returns>The puzzle library data.</returns>
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public static PuzzleLibraryData[]? ReadLibraries(string groupId)
+	public static PuzzleLibraryCollection? ReadLibraries(string groupId)
 	{
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
@@ -84,7 +84,7 @@ internal static class InternalReadWrite
 			}
 		}
 
-		return final.ToArray();
+		return new() { GroupId = groupId, PuzzleLibraries = final };
 	}
 
 	/// <summary>
@@ -122,12 +122,11 @@ internal static class InternalReadWrite
 		}
 
 		var di = new DirectoryInfo(groupLibraryFolder);
-		foreach (var textFile in di.EnumerateFiles($"{libraryName}.txt"))
+		return di.EnumerateFiles($"{libraryName}.txt").FirstOrDefault() switch
 		{
-			return new() { Name = Path.GetFileNameWithoutExtension(textFile.FullName), PuzzleFilePath = textFile.FullName };
-		}
-
-		return null;
+			{ FullName: var fullName } => new() { Name = Path.GetFileNameWithoutExtension(fullName), PuzzleFilePath = fullName },
+			_ => null
+		};
 	}
 
 	/// <summary>
