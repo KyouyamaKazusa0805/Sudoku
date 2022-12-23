@@ -341,6 +341,13 @@
   <data name="_MessageFormat_CurrentCommandIsUnderConstruction" xml:space="preserve">
     <value>当前命令暂时不支持使用~</value>
   </data>
+  <data name="_MessageFormat_CurrentLibIsFullyFinished" xml:space="preserve">
+    <value>恭喜，该题库的题目已经全部完成！
+如果你还想重新做这个题库的题，请联系管理员重新初始化题库配置文件后方可。</value>
+  </data>
+  <data name="_MessageFormat_CurrentLibProgressIsReverted" xml:space="preserve">
+    <value>已回退题库“{0}”的完成进度。</value>
+  </data>
   <data name="_MessageFormat_DailyPuzzle" xml:space="preserve">
     <value>【每日一题】
 这是为本群特意设定的一个机制，在每一天的固定时刻发布每日一题给大家完成~</value>

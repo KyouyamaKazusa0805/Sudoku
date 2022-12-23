@@ -22,6 +22,19 @@ file sealed class UpdateLibraryPropertyCommand : Command
 		var groupId = e.GroupId;
 		switch (split(args, ' '))
 		{
+			case [var libraryName, var possibleRevert]
+			when propertyNameMatch(possibleRevert, "revert")
+				&& InternalReadWrite.ReadLibraryConfiguration(groupId) is { } libs && getFirstMatch(libs, libraryName) is { } lib:
+			{
+				lib.FinishedPuzzlesCount--;
+
+				InternalReadWrite.WriteLibraryConfiguration(libs);
+
+				await e.SendMessageAsync(string.Format(R.MessageFormat("CurrentLibProgressIsReverted")!, libraryName));
+
+				break;
+			}
+
 			case [var libraryName, var propName, var propValue]
 			when InternalReadWrite.ReadLibraryConfiguration(groupId) is { } libs && getFirstMatch(libs, libraryName) is { } lib:
 			{

@@ -29,12 +29,12 @@ file sealed class PuzzleLibraryExtractCommand : Command
 			[] => InternalReadWrite.ReadLibraries(groupId) switch
 			{
 				null or [] => await sendLibraryNullOrEmptyMessageAsync(),
-				[{ Name: var name, PuzzleFilePath: var path }] => await extractPuzzleAsync(name, path),
+				[{ Name: var name, PuzzleFilePath: var path }] => await extractPuzzleAsync(name, path, groupId),
 				_ => await sendLibraryNotUniqueMessageAsync()
 			},
 			_ => InternalReadWrite.ReadLibrary(groupId, args) switch
 			{
-				{ Name: var name, PuzzleFilePath: var path } => await extractPuzzleAsync(name, path),
+				{ Name: var name, PuzzleFilePath: var path } => await extractPuzzleAsync(name, path, groupId),
 				_ => await sendLibraryNotFoundMessageAsync()
 			}
 		};
@@ -61,68 +61,87 @@ file sealed class PuzzleLibraryExtractCommand : Command
 			return true;
 		}
 
-		async Task<bool> extractPuzzleAsync(string name, string path)
+		async Task<bool> extractPuzzleAsync(string name, string path, string groupId)
 		{
-			var lines = await File.ReadAllLinesAsync(path);
+			var lines = (
+				from line in await File.ReadAllLinesAsync(path)
+				where !string.IsNullOrWhiteSpace(line) && Grid.TryParse(line, out _)
+				select line
+			).ToArray();
 			if (lines.Length == 0)
 			{
 				goto PuzzleIsBroken;
 			}
 
-			var gridCode = Rng.NextInArray(lines, out var index);
-			if (Grid.TryParse(gridCode, out var grid))
-			{
-				if (Solver.Solve(grid) is { IsSolved: true, DifficultyLevel: var diffLevel, SolvingStepsCount: var stepsCount } analysisResult)
-				{
-					GridAutoFiller.Fill(ref grid);
-
-					var comma = R.Token("Comma")!;
-					var picturePath = InternalReadWrite.GenerateCachedPicturePath(
-						() => ISudokuPainter.Create(1000)
-							.WithCanvasOffset(20)
-							.WithGrid(grid)
-							.WithRenderingCandidates(diffLevel >= DifficultyLevel.Hard)
-							.WithFontScale(1.0M, .4M)
-							.WithFooterText($"@{name} #{index + 1}")
-					)!;
-
-					const string separator = "---";
-					await e.SendMessageAsync(new ImageMessage { Path = picturePath });
-					await Task.Delay(3.Seconds());
-					await e.SendMessageAsync(
-						new MessageChainBuilder()
-							.Plain(R["AnalysisResultIs"]!)
-							.Plain(Environment.NewLine)
-							.Plain(separator)
-							.Plain(Environment.NewLine)
-							.Plain($"{R["LibraryNameIs"]!}{name}")
-							.Plain(Environment.NewLine)
-							.Plain($"{R["PuzzleLibraryIndexIs"]!}#{index + 1}")
-							.Plain(Environment.NewLine)
-							.Plain(separator)
-							.Plain(Environment.NewLine)
-							.Plain(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime))
-							.Build()
-					);
-
-					// TODO: Update finished table, in order to avoid the puzzle to be re-extracted.
-
-					File.Delete(picturePath);
-				}
-				else
-				{
-					goto PuzzleIsBroken;
-				}
-			}
-			else
+			var libs = InternalReadWrite.ReadLibraryConfiguration(groupId);
+			if (libs is null)
 			{
 				goto PuzzleIsBroken;
 			}
+
+			var lib = libs.PuzzleLibraries.FirstOrDefault(lib => lib.Name == name);
+			if (lib is null)
+			{
+				goto PuzzleIsBroken;
+			}
+
+			var index = lib.FinishedPuzzlesCount;
+			if (index >= lines.Length)
+			{
+				goto PuzzleLibraryIsAllFinished;
+			}
+
+			var grid = Grid.Parse(lines[index]);
+			if (Solver.Solve(grid) is not { IsSolved: true, DifficultyLevel: var diffLevel, SolvingStepsCount: var stepsCount } analysisResult)
+			{
+				goto PuzzleIsBroken;
+			}
+
+			GridAutoFiller.Fill(ref grid);
+
+			var comma = R.Token("Comma")!;
+			var picturePath = InternalReadWrite.GenerateCachedPicturePath(
+				() => ISudokuPainter.Create(1000)
+					.WithCanvasOffset(20)
+					.WithGrid(grid)
+					.WithRenderingCandidates(diffLevel >= DifficultyLevel.Hard)
+					.WithFontScale(1.0M, .4M)
+					.WithFooterText($"@{name} #{index + 1}")
+			)!;
+
+			const string separator = "---";
+			await e.SendMessageAsync(new ImageMessage { Path = picturePath });
+			await Task.Delay(3.Seconds());
+			await e.SendMessageAsync(
+				new MessageChainBuilder()
+					.Plain(R["AnalysisResultIs"]!)
+					.Plain(Environment.NewLine)
+					.Plain(separator)
+					.Plain(Environment.NewLine)
+					.Plain($"{R["LibraryNameIs"]!}{name}")
+					.Plain(Environment.NewLine)
+					.Plain($"{R["PuzzleLibraryIndexIs"]!}#{index + 1}")
+					.Plain(Environment.NewLine)
+					.Plain(separator)
+					.Plain(Environment.NewLine)
+					.Plain(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime))
+					.Build()
+			);
+
+			File.Delete(picturePath);
+
+			lib.FinishedPuzzlesCount++;
+
+			InternalReadWrite.WriteLibraryConfiguration(libs);
 
 			return true;
 
 		PuzzleIsBroken:
 			await e.SendMessageAsync(R.MessageFormat("PuzzleLibraryIsBroken")!);
+			return true;
+
+		PuzzleLibraryIsAllFinished:
+			await e.SendMessageAsync(R.MessageFormat("CurrentLibIsFullyFinished")!);
 			return true;
 		}
 	}

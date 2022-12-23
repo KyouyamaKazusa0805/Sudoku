@@ -584,6 +584,11 @@
             Defines show library collection data command.
             </summary>
         </member>
+        <member name="F:Sudoku.Platforms.QQ.Commands.ShowLibraryCollectionCommand.SyncRoot">
+            <summary>
+            Indicates the object that is used for synchronization.
+            </summary>
+        </member>
         <member name="P:Sudoku.Platforms.QQ.Commands.ShowLibraryCollectionCommand.CommandName">
             <inheritdoc/>
         </member>

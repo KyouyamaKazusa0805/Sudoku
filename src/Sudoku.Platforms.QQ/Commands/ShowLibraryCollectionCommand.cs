@@ -6,6 +6,12 @@
 [Command]
 file sealed class ShowLibraryCollectionCommand : Command
 {
+	/// <summary>
+	/// Indicates the object that is used for synchronization.
+	/// </summary>
+	private static readonly object SyncRoot = new();
+
+
 	/// <inheritdoc/>
 	public override string CommandName => R.Command("DisplayLib")!;
 
@@ -42,7 +48,12 @@ file sealed class ShowLibraryCollectionCommand : Command
 					return true;
 				}
 
-				var validPuzzlesCount = File.ReadLines(lib.PuzzleFilePath).Count(lineValidator);
+				int validPuzzlesCount;
+				lock (SyncRoot)
+				{
+					validPuzzlesCount = File.ReadLines(lib.PuzzleFilePath).Count(lineValidator);
+				}
+
 				await e.SendMessageAsync(
 					string.Format(
 						R.MessageFormat("PuzzleLibSpecifiedInfo")!,
