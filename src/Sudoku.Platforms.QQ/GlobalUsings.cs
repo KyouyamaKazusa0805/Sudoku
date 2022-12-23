@@ -13,6 +13,8 @@ global using System.Resources;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.Messages;
 global using System.Runtime.Versioning;
+global using System.Text.Encodings.Web;
+global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;

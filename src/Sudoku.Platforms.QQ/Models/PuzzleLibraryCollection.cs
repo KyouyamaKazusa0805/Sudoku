@@ -4,31 +4,22 @@
 /// Defines a collection that stores a list of puzzle library data <see cref="PuzzleLibraryData"/> instances.
 /// </summary>
 /// <see cref="PuzzleLibraryData"/>
-internal sealed partial class PuzzleLibraryCollection :
-	IEnumerable<PuzzleLibraryData>,
-	IReadOnlyCollection<PuzzleLibraryData>,
-	IReadOnlyList<PuzzleLibraryData>,
-	ISlicable<PuzzleLibraryCollection, PuzzleLibraryData>
+internal sealed partial class PuzzleLibraryCollection
 {
 	/// <summary>
 	/// Indicates the group ID.
 	/// </summary>
-	[JsonPropertyName("groupId")]
 	[JsonPropertyOrder(0)]
 	public required string GroupId { get; set; }
 
 	/// <summary>
 	/// Defines a list of puzzle libraries.
 	/// </summary>
-	[JsonPropertyName("libraries")]
 	public List<PuzzleLibraryData> PuzzleLibraries { get; set; } = new();
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
 	[JsonIgnore]
 	public int Count => PuzzleLibraries.Count;
-
-	/// <inheritdoc/>
-	int ISlicable<PuzzleLibraryCollection, PuzzleLibraryData>.Length => Count;
 
 
 	/// <inheritdoc cref="IReadOnlyList{T}.this[int]"/>
@@ -38,19 +29,6 @@ internal sealed partial class PuzzleLibraryCollection :
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Enumerator GetEnumerator() => new(this);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PuzzleLibraryCollection Slice(int start, int count)
-		=> new() { GroupId = GroupId, PuzzleLibraries = PuzzleLibraries.Slice(start, count) };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<PuzzleLibraryData> IEnumerable<PuzzleLibraryData>.GetEnumerator() => PuzzleLibraries.GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => PuzzleLibraries.GetEnumerator();
 
 
 	/// <summary>

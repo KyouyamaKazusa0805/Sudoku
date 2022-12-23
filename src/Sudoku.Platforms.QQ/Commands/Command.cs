@@ -108,7 +108,14 @@ public abstract class Command
 	/// await e.SendMessageAsync(targetMessage);
 	/// ]]></code>
 	/// </param>
-	/// <returns></returns>
+	/// <returns>
+	/// <para>The task of the execution, and with the return value of <see cref="bool"/> type.</para>
+	/// <para>
+	/// By default, the <see cref="bool"/> result value indicates whether the command is correctly chosen.
+	/// If returning <see langword="false"/>, the bot will choose other commands to execute;
+	/// otherwise, <see langword="true"/> is okay as the returning value even if the operation is failed to execute.
+	/// </para>
+	/// </returns>
 	/// <seealso cref="ExecuteAsync(string, GroupMessageReceiver)"/>
 	/// <seealso cref="ComparisonMode"/>
 	/// <seealso cref="CommandName"/>

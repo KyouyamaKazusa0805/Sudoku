@@ -6,6 +6,12 @@
 internal static class InternalReadWrite
 {
 	/// <summary>
+	/// Indicates the name of the puzzle library configuration file.
+	/// </summary>
+	private const string PuzzleLibraryFileName = "config.json";
+
+
+	/// <summary>
 	/// Reads the specified user's local file, and returns <see cref="UserData"/> instance.
 	/// </summary>
 	/// <param name="userId">The user QQ number.</param>
@@ -38,7 +44,7 @@ internal static class InternalReadWrite
 		}
 
 		var fileName = $"""{botUsersDataFolder}\{userId}.json""";
-		return File.Exists(fileName) ? Deserialize<UserData>(File.ReadAllText(fileName)) : @default;
+		return File.Exists(fileName) ? Deserialize<UserData>(File.ReadAllText(fileName), CommonSerializerOptions.CamelCasing) : @default;
 	}
 
 	/// <summary>
@@ -80,7 +86,7 @@ internal static class InternalReadWrite
 		{
 			if (textFile is { Length: not 0, FullName: var path })
 			{
-				final.Add(new() { Name = Path.GetFileNameWithoutExtension(path), PuzzleFilePath = path });
+				final.Add(new() { Name = Path.GetFileNameWithoutExtension(path), GroupId = groupId, PuzzleFilePath = path });
 			}
 		}
 
@@ -124,7 +130,7 @@ internal static class InternalReadWrite
 		var di = new DirectoryInfo(groupLibraryFolder);
 		return di.EnumerateFiles($"{libraryName}.txt").FirstOrDefault() switch
 		{
-			{ FullName: var fullName } => new() { Name = Path.GetFileNameWithoutExtension(fullName), PuzzleFilePath = fullName },
+			{ FullName: var fullName } => new() { Name = Path.GetFileNameWithoutExtension(fullName), GroupId = groupId, PuzzleFilePath = fullName },
 			_ => null
 		};
 	}
@@ -157,7 +163,44 @@ internal static class InternalReadWrite
 
 		var userId = userData.QQ;
 		var fileName = $"""{botUsersDataFolder}\{userId}.json""";
-		File.WriteAllText(fileName, Serialize(userData));
+		File.WriteAllText(fileName, Serialize(userData, CommonSerializerOptions.CamelCasing));
+	}
+
+	/// <summary>
+	/// Writes library data to the bot configuration file path.
+	/// </summary>
+	/// <param name="libraryCollection">The library collection.</param>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public static void WriteLibraryConfiguration(PuzzleLibraryCollection libraryCollection)
+	{
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			// Error. The computer does not contain "My Documents" folder.
+			throw new InvalidOperationException("The key path is not found.");
+		}
+
+		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			Directory.CreateDirectory(botDataFolder);
+		}
+
+		var libraryFolder = $"""{botDataFolder}\{R["LibraryFolderName"]}""";
+		if (!Directory.Exists(libraryFolder))
+		{
+			Directory.CreateDirectory(libraryFolder);
+		}
+
+		var groupId = libraryCollection.GroupId;
+		var groupLibraryFolder = $"""{libraryFolder}\{groupId}""";
+		if (!Directory.Exists(groupLibraryFolder))
+		{
+			Directory.CreateDirectory(groupLibraryFolder);
+		}
+
+		var fileName = $"""{groupLibraryFolder}\{PuzzleLibraryFileName}""";
+		File.WriteAllText(fileName, Serialize(libraryCollection, CommonSerializerOptions.CamelCasing));
 	}
 
 	/// <summary>

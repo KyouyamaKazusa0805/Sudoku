@@ -149,33 +149,15 @@
         <member name="M:Sudoku.CommandLine.RootCommands.Bot.ExecuteAsync(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnBotLeft(Mirai.Net.Data.Events.Concretes.Group.LeftEvent)">
-            <summary>
-            Triggers when bot has already left the group.
-            </summary>
-            <param name="e">The event handler.</param>
-        </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnBotJoined(Mirai.Net.Data.Events.Concretes.Group.JoinedEvent)">
-            <summary>
-            Triggers when bot has already joined in the target group.
-            </summary>
-            <param name="e">The event handler.</param>
-        </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnBotKicked(Mirai.Net.Data.Events.Concretes.Group.KickedEvent)">
-            <summary>
-            Triggers when bot has already been kicked by group owner.
-            </summary>
-            <param name="e">The event handler.</param>
-        </member>
         <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnGroupMessageReceivedAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <summary>
             Triggers when the group has been received a new message.
             </summary>
             <param name="e">The event handler.</param>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnMemberJoinedAsync(Mirai.Net.Data.Events.Concretes.Group.MemberJoinedEvent)">
+        <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnNewInvitationRequestedAsync(Mirai.Net.Data.Events.Concretes.Request.NewInvitationRequestedEvent)">
             <summary>
-            Triggers when someone has already joined in this group.
+            Triggers when someone has been invited by another one to join in this group.
             </summary>
             <param name="e">The event handler.</param>
         </member>
@@ -185,9 +167,9 @@
             </summary>
             <param name="e">The event handler.</param>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnNewInvitationRequestedAsync(Mirai.Net.Data.Events.Concretes.Request.NewInvitationRequestedEvent)">
+        <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnMemberJoinedAsync(Mirai.Net.Data.Events.Concretes.Group.MemberJoinedEvent)">
             <summary>
-            Triggers when someone has been invited by another one to join in this group.
+            Triggers when someone has already joined in this group.
             </summary>
             <param name="e">The event handler.</param>
         </member>

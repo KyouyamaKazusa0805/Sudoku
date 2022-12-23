@@ -208,7 +208,14 @@
             await e.SendMessageAsync(targetMessage);
             ]]></code>
             </param>
-            <returns></returns>
+            <returns>
+            <para>The task of the execution, and with the return value of <see cref="T:System.Boolean"/> type.</para>
+            <para>
+            By default, the <see cref="T:System.Boolean"/> result value indicates whether the command is correctly chosen.
+            If returning <see langword="false"/>, the bot will choose other commands to execute;
+            otherwise, <see langword="true"/> is okay as the returning value even if the operation is failed to execute.
+            </para>
+            </returns>
             <seealso cref="M:Sudoku.Platforms.QQ.Commands.Command.ExecuteAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)"/>
             <seealso cref="P:Sudoku.Platforms.QQ.Commands.Command.ComparisonMode"/>
             <seealso cref="P:Sudoku.Platforms.QQ.Commands.Command.CommandName"/>
@@ -260,12 +267,12 @@
         </member>
         <member name="F:Sudoku.Platforms.QQ.Commands.CommonCommandPrefixes.HashTag">
             <summary>
-            The hashtag symbol.
+            The hashtag symbol "<c>#</c>".
             </summary>
         </member>
         <member name="F:Sudoku.Platforms.QQ.Commands.CommonCommandPrefixes.Bang">
             <summary>
-            The bang symbol.
+            The bang symbol "<c>!</c>".
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.ComplexLookupScoreCommand">
@@ -460,6 +467,23 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Commands.LookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.ManualUpdateLibraryCommand">
+            <summary>
+            Defines manual update library command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.ManualUpdateLibraryCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.ManualUpdateLibraryCommand.Prefixes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.ManualUpdateLibraryCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.ManualUpdateLibraryCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.PingCommand">
@@ -669,6 +693,11 @@
             Represents a type that interacts with local files. All methods in this type are synchronized methods.
             </summary>
         </member>
+        <member name="F:Sudoku.Platforms.QQ.IO.InternalReadWrite.PuzzleLibraryFileName">
+            <summary>
+            Indicates the name of the puzzle library configuration file.
+            </summary>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.Read(System.String,Sudoku.Platforms.QQ.Models.UserData)">
             <summary>
             Reads the specified user's local file, and returns <see cref="T:Sudoku.Platforms.QQ.Models.UserData"/> instance.
@@ -702,6 +731,12 @@
             </summary>
             <param name="userData">The user data.</param>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.WriteLibraryConfiguration(Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection)">
+            <summary>
+            Writes library data to the bot configuration file path.
+            </summary>
+            <param name="libraryCollection">The library collection.</param>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})">
             <summary>
             Generate a picture using the specified sudoku painter creator, storing it to the cached folder and return its file path.
@@ -727,25 +762,13 @@
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.System#ISlicable{Sudoku#Platforms#QQ#Models#PuzzleLibraryCollection,Sudoku#Platforms#QQ#Models#PuzzleLibraryData}#Length">
-            <inheritdoc/>
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Item(System.Int32)">
             <inheritdoc cref="P:System.Collections.Generic.IReadOnlyList`1.Item(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Slice(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.System#Collections#Generic#IEnumerable{Sudoku#Platforms#QQ#Models#PuzzleLibraryData}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator">
             <summary>
@@ -777,6 +800,11 @@
         <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.Name">
             <summary>
             Indicates the name of the library.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.GroupId">
+            <summary>
+            Indicates the name of the group ID.
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.Description">

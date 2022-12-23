@@ -32,13 +32,23 @@ file sealed class Bot : IExecutable
 	/// <inheritdoc/>
 	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
+		using var bot = new MiraiBot { Address = Address, QQ = BotNumber, VerifyKey = VerifyKey };
+
 		try
 		{
-			using var bot = new MiraiBot { Address = Address, QQ = BotNumber, VerifyKey = VerifyKey };
-
 			await bot.LaunchAsync();
-			RegisterEvents(bot);
-			await AddBotRunningContextsAsync();
+
+			bot.SubscribeJoined(OnBotJoined);
+			bot.SubscribeLeft(OnBotLeft);
+			bot.SubscribeKicked(OnBotKicked);
+			bot.SubscribeGroupMessageReceived(OnGroupMessageReceivedAsync);
+			bot.SubscribeMemberJoined(OnMemberJoinedAsync);
+			bot.SubscribeNewMemberRequested(OnNewMemberRequestedAsync);
+			bot.SubscribeNewInvitationRequested(OnNewInvitationRequestedAsync);
+			bot.SubscribeMuted();
+			bot.SubscribeUnmuted();
+
+			(await AccountManager.GetGroupsAsync()).ForEach(static group => RunningContexts.TryAdd(group.Id, new()));
 
 			await Terminal.WriteLineAsync(R["_Message_BootSuccess"]!, ConsoleColor.DarkGreen);
 		}
@@ -55,27 +65,24 @@ file sealed class Bot : IExecutable
 			);
 		}
 
-		RegisterPeriodicOperations();
+		PeriodicOperationPool.Shared.EnqueueRange(
+			from type in typeof(PeriodicOperation).Assembly.GetTypes()
+			where type.IsAssignableTo(typeof(PeriodicOperation))
+			let constructor = type.GetConstructor(Array.Empty<Type>())
+			where constructor is not null
+			let operation = Activator.CreateInstance(type) as PeriodicOperation
+			where operation is not null
+			select operation
+		);
 
 		Terminal.Pause();
 	}
 
-	/// <summary>
-	/// Registers the events of the bot.
-	/// </summary>
-	/// <param name="bot">The bot.</param>
-	private void RegisterEvents(MiraiBot bot)
-	{
-		bot.SubscribeJoined(static e => RunningContexts.TryAdd(e.Group.Id, new()));
-		bot.SubscribeLeft(static e => RunningContexts.TryRemove(e.Group.Id, out _));
-		bot.SubscribeKicked(static e => RunningContexts.TryRemove(e.Group.Id, out _));
-		bot.SubscribeGroupMessageReceived(OnGroupMessageReceivedAsync);
-		bot.SubscribeMemberJoined(OnMemberJoinedAsync);
-		bot.SubscribeNewMemberRequested(OnNewMemberRequestedAsync);
-		bot.SubscribeNewInvitationRequested(OnNewInvitationRequestedAsync);
-		bot.SubscribeMuted();
-		bot.SubscribeUnmuted();
-	}
+	private void OnBotLeft(LeftEvent e) => RunningContexts.TryRemove(e.Group.Id, out _);
+
+	private void OnBotKicked(KickedEvent e) => RunningContexts.TryRemove(e.Group.Id, out _);
+
+	private void OnBotJoined(JoinedEvent e) => RunningContexts.TryAdd(e.Group.Id, new());
 
 	/// <summary>
 	/// Triggers when the group has been received a new message.
@@ -150,33 +157,11 @@ file sealed class Bot : IExecutable
 		}
 	}
 
-
-	/// <summary>
-	/// Registers periodic operations of the bot.
-	/// </summary>
-	private static void RegisterPeriodicOperations()
-		=> PeriodicOperationPool.Shared.EnqueueRange(
-			from type in typeof(PeriodicOperation).Assembly.GetTypes()
-			where type.IsAssignableTo(typeof(PeriodicOperation))
-			let constructor = type.GetConstructor(Array.Empty<Type>())
-			where constructor is not null
-			let operation = Activator.CreateInstance(type) as PeriodicOperation
-			where operation is not null
-			select operation
-		);
-
-	/// <summary>
-	/// Adds contexts to field <see cref="RunningContexts"/>.
-	/// </summary>
-	/// <returns>The task that encapsulates the current operation.</returns>
-	private static async Task AddBotRunningContextsAsync()
-		=> (await AccountManager.GetGroupsAsync()).ForEach(static group => RunningContexts.TryAdd(group.Id, new()));
-
 	/// <summary>
 	/// Triggers when someone has been invited by another one to join in this group.
 	/// </summary>
 	/// <param name="e">The event handler.</param>
-	private static async void OnNewInvitationRequestedAsync(NewInvitationRequestedEvent e)
+	private async void OnNewInvitationRequestedAsync(NewInvitationRequestedEvent e)
 	{
 		if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"])
 		{
@@ -188,7 +173,7 @@ file sealed class Bot : IExecutable
 	/// Triggers when someone has requested that he wants to join in this group.
 	/// </summary>
 	/// <param name="e">The event handler.</param>
-	private static async void OnNewMemberRequestedAsync(NewMemberRequestedEvent e)
+	private async void OnNewMemberRequestedAsync(NewMemberRequestedEvent e)
 	{
 		const string answerLocatorStr = "\u7b54\u6848\uff1a";
 
@@ -210,7 +195,7 @@ file sealed class Bot : IExecutable
 	/// Triggers when someone has already joined in this group.
 	/// </summary>
 	/// <param name="e">The event handler.</param>
-	private static async void OnMemberJoinedAsync(MemberJoinedEvent e)
+	private async void OnMemberJoinedAsync(MemberJoinedEvent e)
 	{
 		if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
 		{
