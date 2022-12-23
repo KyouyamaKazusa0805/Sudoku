@@ -58,7 +58,7 @@ file sealed class ShowLibraryCollectionCommand : Command
 					string.Format(
 						R.MessageFormat("PuzzleLibSpecifiedInfo")!,
 						lib.Name,
-						lib.Description,
+						lib.Description switch { var d => string.IsNullOrWhiteSpace(d) ? R["None"]! : d },
 						lib.Tags switch { null or [] => R["None"]!, var tags => string.Join('\u3001', tags) },
 						validPuzzlesCount,
 						lib.FinishedPuzzlesCount,

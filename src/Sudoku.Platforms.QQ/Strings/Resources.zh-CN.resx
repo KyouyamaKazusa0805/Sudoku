@@ -341,6 +341,9 @@
   <data name="_MessageFormat_CurrentCommandIsUnderConstruction" xml:space="preserve">
     <value>当前命令暂时不支持使用~</value>
   </data>
+  <data name="_MessageFormat_CurrentLibCannotBeReverted" xml:space="preserve">
+    <value>题库“{0}”尚未完成任何一道题，无法回退。</value>
+  </data>
   <data name="_MessageFormat_CurrentLibIsFullyFinished" xml:space="preserve">
     <value>恭喜，该题库的题目已经全部完成！
 如果你还想重新做这个题库的题，请联系管理员重新初始化题库配置文件后方可。</value>
