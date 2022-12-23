@@ -252,6 +252,15 @@
   <data name="TotalStepCountIs" xml:space="preserve">
     <value>步骤数：</value>
   </data>
+  <data name="_CommandSegment_Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="_CommandSegment_Revert" xml:space="preserve">
+    <value>回退</value>
+  </data>
+  <data name="_CommandSegment_Tags" xml:space="preserve">
+    <value>标签</value>
+  </data>
   <data name="_Command_CancelGaming" xml:space="preserve">
     <value>结束游戏</value>
   </data>
@@ -288,6 +297,9 @@
   <data name="_Command_LookupScore" xml:space="preserve">
     <value>查询</value>
   </data>
+  <data name="_Command_ManualUpdatePuzzleLib" xml:space="preserve">
+    <value>题库配置更新 全局</value>
+  </data>
   <data name="_Command_MatchStart" xml:space="preserve">
     <value>开始游戏</value>
   </data>
@@ -296,6 +308,9 @@
   </data>
   <data name="_Command_Set" xml:space="preserve">
     <value>填</value>
+  </data>
+  <data name="_Command_UpdatePuzzleLibProp" xml:space="preserve">
+    <value>题库配置更新 属性</value>
   </data>
   <data name="_Command_UpdateScore" xml:space="preserve">
     <value>加分</value>
@@ -313,7 +328,7 @@
 ・题库数据 &lt;题库名&gt;?：查看本群预存题库的数据。
 【管理员限定】
 ・详细查询 &lt;用户&gt;：查询指定用户的积分；
-・排名：查询所有记录了的该群成员的积分，并排名。
+・排名：查询所有记录了的该群成员的积分，并排名；
 【群主限定】
 你猜~
 ---
@@ -411,7 +426,7 @@
     <value>测试连接成功。耗时 {0} 毫秒。</value>
   </data>
   <data name="_MessageFormat_PuzzleLibGlobalInfo" xml:space="preserve">
-    <value>本群题库数据📖
+    <value>本群题库数据📦
 题库数量：{0}
 题库名称：{1}
 ---
@@ -430,7 +445,7 @@
     <value>本群没有预存题库。</value>
   </data>
   <data name="_MessageFormat_PuzzleLibSpecifiedInfo" xml:space="preserve">
-    <value>题库“{0}”数据📖
+    <value>题库“{0}”数据📦
 ・题库名：{0}
 ・题库介绍：{1}
 ・题库标签：{2}

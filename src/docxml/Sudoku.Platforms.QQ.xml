@@ -531,37 +531,6 @@
         <member name="M:Sudoku.Platforms.QQ.Commands.RankingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.SetConfigCommand">
-            <summary>
-            Defines a set config command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.SetConfigCommand.Prefixes">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.SetConfigCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.SetConfigCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.SetConfigCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.Extensions.ToPascalCasing(System.String)">
-            <summary>
-            Converts the raw name like <c>prop-name-is-like-this</c> to pascal-casing one: <c>PropNameIsLikeThis</c>.
-            </summary>
-            <param name="this">The string identifier.</param>
-            <returns>The converted value.</returns>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.SetDigitCommand">
             <summary>
             Indicates the set digit command.
@@ -1279,6 +1248,16 @@
             <param name="this">The resource fetcher.</param>
             <param name="command">The internal name of the command as the key, with the prefix "<c>_Command_</c>" removed.</param>
             <returns>The target command in the resource dictionary.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.MergedResourcesFetcher.CommandSegment(Sudoku.Resources.MergedResources,System.String)">
+            <summary>
+            Try to fetch the command segment.
+            </summary>
+            <param name="this">The resource fetcher.</param>
+            <param name="commandSegment">
+            The internal name of the command segment as he key, with the prefix "<c>_CommandSegment_</c>" removed.
+            </param>
+            <returns>The target command segment in the resource dictionary.</returns>
         </member>
         <member name="M:Sudoku.Resources.MergedResourcesFetcher.Token(Sudoku.Resources.MergedResources,System.String)">
             <summary>

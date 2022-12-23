@@ -9,5 +9,5 @@ public sealed class UserDefinedConfigurations
 	/// Indicates how many members will be displayed onto the ranking page. The more members to display, the longer the output text will be.
 	/// </summary>
 	[JsonPropertyName("rankingDisplayUsersCount")]
-	public int RankingDisplayUsersCount { get; set; } = 10;
+	public int RankingDisplayUsersCount { get; set; } = 15;
 }

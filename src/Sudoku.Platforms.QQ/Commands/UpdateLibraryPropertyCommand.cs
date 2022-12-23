@@ -7,7 +7,7 @@
 file sealed class UpdateLibraryPropertyCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => "updatelib prop";
+	public override string CommandName => R.Command("UpdatePuzzleLibProp")!;
 
 	/// <inheritdoc/>
 	public override string[] Prefixes => CommonCommandPrefixes.HashTag;
@@ -23,7 +23,7 @@ file sealed class UpdateLibraryPropertyCommand : Command
 		switch (split(args, ' '))
 		{
 			case [var libraryName, var possibleRevert]
-			when propertyNameMatch(possibleRevert, "revert")
+			when possibleRevert == R.CommandSegment("Revert")!
 				&& InternalReadWrite.ReadLibraryConfiguration(groupId) is { } libs && getFirstMatch(libs, libraryName) is { } lib:
 			{
 				if (lib.FinishedPuzzlesCount > 0)
@@ -45,15 +45,15 @@ file sealed class UpdateLibraryPropertyCommand : Command
 			case [var libraryName, var propName, var propValue]
 			when InternalReadWrite.ReadLibraryConfiguration(groupId) is { } libs && getFirstMatch(libs, libraryName) is { } lib:
 			{
-				if (propertyNameMatch(propName, nameof(PuzzleLibraryData.Description)))
+				if (propName == R.CommandSegment(nameof(PuzzleLibraryData.Description))!)
 				{
 					lib.Description = propValue;
 
 					await updateLibConfigFile(libs);
 				}
-				else if (propertyNameMatch(propName, nameof(PuzzleLibraryData.Tags)))
+				else if (propName == R.CommandSegment(nameof(PuzzleLibraryData.Tags))!)
 				{
-					var tags = split(propValue, ',', '\uff0c', ';', '\uff1b') switch { [] => null, var t => t };
+					var tags = split(propValue, ',', '\uff0c', ';', '\uff1b', '\u3001') switch { [] => null, var t => t };
 
 					lib.Tags = tags;
 
@@ -72,17 +72,8 @@ file sealed class UpdateLibraryPropertyCommand : Command
 			}
 
 
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static bool propertyNameMatch(string propName, string nameToBeMatched)
-				=> propName.Equals(nameToBeMatched, StringComparison.OrdinalIgnoreCase);
-
 			static PuzzleLibraryData? getFirstMatch(PuzzleLibraryCollection libraries, string libraryName)
 			{
-				if (libraries is null)
-				{
-					return null;
-				}
-
 				foreach (var library in libraries)
 				{
 					if (library.Name == libraryName)

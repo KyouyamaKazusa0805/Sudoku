@@ -3,7 +3,7 @@
 /// <summary>
 /// Indicates a puzzle library.
 /// </summary>
-public sealed class PuzzleLibraryData
+internal sealed class PuzzleLibraryData
 {
 	/// <summary>
 	/// Indicates the name of the library.

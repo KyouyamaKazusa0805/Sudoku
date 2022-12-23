@@ -3,17 +3,11 @@
 /// <summary>
 /// Defines manual update library command.
 /// </summary>
-[Command(
-	Permissions.Owner
-#if DEBUG
-	,
-	Permissions.Administrator
-#endif
-)]
+[Command(Permissions.Owner, Permissions.Administrator)]
 file sealed class ManualUpdateLibraryCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => "updatelib global";
+	public override string CommandName => R.Command("ManualUpdatePuzzleLib")!;
 
 	/// <inheritdoc/>
 	public override string[] Prefixes => CommonCommandPrefixes.HashTag;

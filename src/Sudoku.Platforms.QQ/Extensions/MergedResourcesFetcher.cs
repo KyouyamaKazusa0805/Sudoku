@@ -16,6 +16,17 @@ internal static class MergedResourcesFetcher
 	public static string? Command(this MergedResources @this, string command) => @this[$"_{nameof(Command)}_{command}"];
 
 	/// <summary>
+	/// Try to fetch the command segment.
+	/// </summary>
+	/// <param name="this">The resource fetcher.</param>
+	/// <param name="commandSegment">
+	/// The internal name of the command segment as he key, with the prefix "<c>_CommandSegment_</c>" removed.
+	/// </param>
+	/// <returns>The target command segment in the resource dictionary.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string? CommandSegment(this MergedResources @this, string commandSegment) => @this[$"_{nameof(CommandSegment)}_{commandSegment}"];
+
+	/// <summary>
 	/// Try to fetch the token.
 	/// </summary>
 	/// <param name="this">The resource fetcher.</param>
