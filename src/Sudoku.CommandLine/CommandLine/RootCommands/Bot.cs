@@ -42,13 +42,17 @@ file sealed class Bot : IExecutable
 
 			await Terminal.WriteLineAsync(R["_Message_BootSuccess"]!, ConsoleColor.DarkGreen);
 		}
-		catch (FlurlHttpException)
+		catch (Exception ex)
 		{
-			await Terminal.WriteLineAsync(R["_Message_BootFailed_Mirai"]!, ConsoleColor.DarkRed);
-		}
-		catch (InvalidResponseException)
-		{
-			await Terminal.WriteLineAsync(R["_Message_BootFailed_Connection"]!, ConsoleColor.DarkRed);
+			await Terminal.WriteLineAsync(
+				ex switch
+				{
+					FlurlHttpException => R["_Message_BootFailed_Mirai"]!,
+					InvalidResponseException => R["_Message_BootFailed_Connection"]!,
+					_ => throw ex
+				},
+				ConsoleColor.DarkRed
+			);
 		}
 
 		RegisterPeriodicOperations();
