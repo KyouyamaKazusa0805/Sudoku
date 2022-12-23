@@ -579,6 +579,20 @@
         <member name="M:Sudoku.Platforms.QQ.Commands.SetDigitCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.ShowLibraryCollectionCommand">
+            <summary>
+            Defines show library collection data command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.ShowLibraryCollectionCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.ShowLibraryCollectionCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.ShowLibraryCollectionCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.StartGamingCommand">
             <summary>
             Define a start gaming command.
@@ -664,6 +678,23 @@
             <param name="this">The <see cref="T:System.TimeSpan"/> instance.</param>
             <returns>The target string.</returns>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand">
+            <summary>
+            Defines update library property command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand.Prefixes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.UpdateScoreCommand">
             <summary>
             Indicates the update score command.
@@ -709,6 +740,13 @@
             with argument <paramref name="default"/>, which means if <paramref name="default"/> is <see langword="null"/>,
             the expression <c>await InternalReadWrite.ReadValueAsync(...)</c> will also be <see langword="null"/>.
             </returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.ReadLibraryConfiguration(System.String)">
+            <summary>
+            Gets the puzzle library configuration file of the target group specified as its group ID.
+            </summary>
+            <param name="groupId">The group ID.</param>
+            <returns>The group library collection.</returns>
         </member>
         <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.ReadLibraries(System.String)">
             <summary>
@@ -770,6 +808,20 @@
         <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Select``1(System.Func{Sudoku.Platforms.QQ.Models.PuzzleLibraryData,``0})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
+            </summary>
+            <typeparam name="T">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TResult']"/>
+            </typeparam>
+            <param name="selector">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
+            </param>
+            <returns>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/returns"/>
+            </returns>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator">
             <summary>
             Defines the internal enumerator of this type.
@@ -815,6 +867,11 @@
         <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.PuzzleFilePath">
             <summary>
             Indicates the puzzles in the library.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.Tags">
+            <summary>
+            Indicates the tags of the library. For example, "Hard".
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.FinishedPuzzlesCount">

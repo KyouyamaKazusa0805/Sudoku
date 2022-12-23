@@ -267,6 +267,9 @@
   <data name="_Command_Delete" xml:space="preserve">
     <value>删</value>
   </data>
+  <data name="_Command_DisplayLib" xml:space="preserve">
+    <value>题库数据</value>
+  </data>
   <data name="_Command_Draw" xml:space="preserve">
     <value>绘图</value>
   </data>
@@ -306,7 +309,8 @@
 ・帮助：查看帮助文字；
 ・开始游戏：开始数独填空的 PK 游戏；
 ・绘图：启动绘图功能；
-・抽题 &lt;题库名&gt;?：抽取本群预存题库里的题目。
+・抽题 &lt;题库名&gt;?：抽取本群预存题库里的题目；
+・题库数据 &lt;题库名&gt;?：查看本群预存题库的数据。
 【管理员限定】
 ・详细查询 &lt;用户&gt;：查询指定用户的积分；
 ・排名：查询所有记录了的该群成员的积分，并排名。
@@ -384,6 +388,9 @@
     <value>题目生成中，请稍候……
 游戏规则：游戏预留 {0}，并给出一道数独题。玩家需要根据数独基本规则获得该题目指定位置的填数结果，并按照图中给出的填空顺序给出结果，然后通过回答结果来完成题目。回答请艾特机器人，格式为“@机器人 数字序列”，如“@机器人 9 2”，其中的“数字”为你填入的结果，第一个格填入9，第二个格子填入2（中间可以有空格，也可以没有，也可以使用其他分隔记号，均不影响回答）。回答正确将自动结束游戏并获得相应积分，错误则会扣除一定积分；题目可反复作答，但连续错误会导致连续扣分哦！若无人作答完成题目，将自动作废，游戏自动结束。</value>
   </data>
+  <data name="_MessageFormat_NoSpecifiedLibExists" xml:space="preserve">
+    <value>请检查题库名称。本群尚不包含叫“{0}”的题库。请配合“！题库数据”指令查询对应的合适名称后再试。</value>
+  </data>
   <data name="_MessageFormat_PermissionRequired" xml:space="preserve">
     <value>该功能需要更高权限者使用~</value>
   </data>
@@ -392,6 +399,13 @@
   </data>
   <data name="_MessageFormat_PingSuccess" xml:space="preserve">
     <value>测试连接成功。耗时 {0} 毫秒。</value>
+  </data>
+  <data name="_MessageFormat_PuzzleLibGlobalInfo" xml:space="preserve">
+    <value>本群题库数据📖
+题库数量：{0}
+题库名称：{1}
+---
+需要查看具体题库的数据信息，请在该指令后追加题库名称，以查看详细信息。</value>
   </data>
   <data name="_MessageFormat_PuzzleLibraryIsBroken" xml:space="preserve">
     <value>题库存在损坏，读取的题目无法解析成合适的数独题目。请联系管理员或群主题库存储是否正确。</value>
@@ -404,6 +418,15 @@
   </data>
   <data name="_MessageFormat_PuzzleLibraryIsNullOrEmpty" xml:space="preserve">
     <value>本群没有预存题库。</value>
+  </data>
+  <data name="_MessageFormat_PuzzleLibSpecifiedInfo" xml:space="preserve">
+    <value>题库“{0}”数据📖
+・题库名：{0}
+・题库介绍：{1}
+・题库标签：{2}
+・题库题目数量：{3}
+・完成题目数量：{4}
+・完成比例：{5:P}</value>
   </data>
   <data name="_MessageFormat_RankingListIsEmpty" xml:space="preserve">
     <value>用户尚未加入进来~ 排名里没有人~</value>
@@ -419,6 +442,9 @@
   </data>
   <data name="_MessageFormat_UpdateLibConfigSuccessfully" xml:space="preserve">
     <value>更新题库配置成功。</value>
+  </data>
+  <data name="_MessageFormat_UpdateLibPropertySuccessfully" xml:space="preserve">
+    <value>更新题库“{0}”的配置属性“{1}”成功。</value>
   </data>
   <data name="_MessageFormat_UserScoreIs" xml:space="preserve">
     <value>用户 {0}（{2}）数据📦

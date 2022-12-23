@@ -78,10 +78,22 @@ file sealed class Bot : IExecutable
 		Terminal.Pause();
 	}
 
+	/// <summary>
+	/// Triggers when bot has already left the group.
+	/// </summary>
+	/// <param name="e">The event handler.</param>
 	private void OnBotLeft(LeftEvent e) => RunningContexts.TryRemove(e.Group.Id, out _);
 
+	/// <summary>
+	/// Triggers when bot has already been kicked by group owner.
+	/// </summary>
+	/// <param name="e">The event handler.</param>
 	private void OnBotKicked(KickedEvent e) => RunningContexts.TryRemove(e.Group.Id, out _);
 
+	/// <summary>
+	/// Triggers when bot has already joined in the target group.
+	/// </summary>
+	/// <param name="e">The event handler.</param>
 	private void OnBotJoined(JoinedEvent e) => RunningContexts.TryAdd(e.Group.Id, new());
 
 	/// <summary>

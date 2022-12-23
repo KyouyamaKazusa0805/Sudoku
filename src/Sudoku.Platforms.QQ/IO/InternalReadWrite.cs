@@ -48,6 +48,49 @@ internal static class InternalReadWrite
 	}
 
 	/// <summary>
+	/// Gets the puzzle library configuration file of the target group specified as its group ID.
+	/// </summary>
+	/// <param name="groupId">The group ID.</param>
+	/// <returns>The group library collection.</returns>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public static PuzzleLibraryCollection? ReadLibraryConfiguration(string groupId)
+	{
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			// Error. The computer does not contain "My Documents" folder.
+			throw new InvalidOperationException("The key path is not found.");
+		}
+
+		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			return null;
+		}
+
+		var libraryFolder = $"""{botDataFolder}\{R["LibraryFolderName"]}""";
+		if (!Directory.Exists(libraryFolder))
+		{
+			return null;
+		}
+
+		var groupLibraryFolder = $"""{libraryFolder}\{groupId}""";
+		if (!Directory.Exists(groupLibraryFolder))
+		{
+			return null;
+		}
+
+		var filePath = $"""{groupLibraryFolder}\{PuzzleLibraryFileName}""";
+		if (!File.Exists(filePath))
+		{
+			return null;
+		}
+
+		var json = File.ReadAllText(filePath);
+		return Deserialize<PuzzleLibraryCollection>(json, CommonSerializerOptions.CamelCasing);
+	}
+
+	/// <summary>
 	/// Gets the puzzle library for the target group specified as its group ID.
 	/// </summary>
 	/// <param name="groupId">The group ID.</param>

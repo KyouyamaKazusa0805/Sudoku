@@ -13,7 +13,7 @@
 file sealed class ManualUpdateLibraryCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => "updatelib";
+	public override string CommandName => "updatelib global";
 
 	/// <inheritdoc/>
 	public override string[] Prefixes => CommonCommandPrefixes.HashTag;

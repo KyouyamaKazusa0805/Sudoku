@@ -28,6 +28,11 @@ public sealed class PuzzleLibraryData
 	public required string PuzzleFilePath { get; set; }
 
 	/// <summary>
+	/// Indicates the tags of the library. For example, "Hard".
+	/// </summary>
+	public string[]? Tags { get; set; }
+
+	/// <summary>
 	/// Indicates how many puzzles the library has been finished.
 	/// </summary>
 	public int FinishedPuzzlesCount { get; set; }

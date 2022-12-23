@@ -30,6 +30,26 @@ internal sealed partial class PuzzleLibraryCollection
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Enumerator GetEnumerator() => new(this);
 
+	/// <summary>
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/summary"/>
+	/// </summary>
+	/// <typeparam name="T">
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/typeparam[@name='TResult']"/>
+	/// </typeparam>
+	/// <param name="selector">
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/param[@name='selector']"/>
+	/// </param>
+	/// <returns>
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/returns"/>
+	/// </returns>
+	public IEnumerable<T> Select<T>(Func<PuzzleLibraryData, T> selector)
+	{
+		foreach (var element in PuzzleLibraries)
+		{
+			yield return selector(element);
+		}
+	}
+
 
 	/// <summary>
 	/// Defines the internal enumerator of this type.
