@@ -244,7 +244,7 @@ public static unsafe partial class StringExtensions
 	/// Throws when the <paramref name="reservePattern"/> is invalid.
 	/// All possible patterns are shown in the tip for the parameter <paramref name="reservePattern"/>.
 	/// </exception>
-	public static string Reserve(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string reservePattern)
+	public static string Reserve(this string @this, [StringSyntax(StringSyntaxAttribute.Regex), ConstantExpected] string reservePattern)
 	{
 		delegate*<char, bool> predicate = reservePattern switch
 		{

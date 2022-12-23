@@ -3,13 +3,12 @@
 /// <summary>
 /// Represents a bot command.
 /// </summary>
-[type:
-	RootCommand("bot", DescriptionResourceKey = "_Description_Bot"),
-	SupportedArguments("bot"),
-	Usage("bot -a <address> -q <number> -k <key>", IsPattern = true),
-	Usage("bot -a localhost:8080 -q 1357924680 -k HelloWorld", DescriptionResourceKey = "_Usage_Bot_1")]
+[RootCommand("bot", DescriptionResourceKey = "_Description_Bot")]
+[SupportedArguments("bot")]
+[Usage("bot -a <address> -q <number> -k <key>", IsPattern = true)]
+[Usage("bot -a localhost:8080 -q 1357924680 -k HelloWorld", DescriptionResourceKey = "_Usage_Bot_1")]
 [SupportedOSPlatform("windows")]
-file sealed partial class Bot : IExecutable
+file sealed class Bot : IExecutable
 {
 	/// <summary>
 	/// The address.
@@ -33,23 +32,13 @@ file sealed partial class Bot : IExecutable
 	/// <inheritdoc/>
 	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
-		using var bot = new MiraiBot { Address = Address, QQ = BotNumber, VerifyKey = VerifyKey };
-
 		try
 		{
+			using var bot = new MiraiBot { Address = Address, QQ = BotNumber, VerifyKey = VerifyKey };
+
 			await bot.LaunchAsync();
-
-			bot.SubscribeJoined(OnBotJoined);
-			bot.SubscribeLeft(OnBotLeft);
-			bot.SubscribeKicked(OnBotKicked);
-			bot.SubscribeGroupMessageReceived(OnGroupMessageReceivedAsync);
-			bot.SubscribeMemberJoined(OnMemberJoinedAsync);
-			bot.SubscribeNewMemberRequested(OnNewMemberRequestedAsync);
-			bot.SubscribeNewInvitationRequested(OnNewInvitationRequestedAsync);
-			bot.SubscribeMuted();
-			bot.SubscribeUnmuted();
-
-			(await AccountManager.GetGroupsAsync()).ForEach(static group => RunningContexts.TryAdd(group.Id, new()));
+			RegisterEvents(bot);
+			await AddBotRunningContextsAsync();
 
 			await Terminal.WriteLineAsync(R["_Message_BootSuccess"]!, ConsoleColor.DarkGreen);
 		}
@@ -62,65 +51,49 @@ file sealed partial class Bot : IExecutable
 			await Terminal.WriteLineAsync(R["_Message_BootFailed_Connection"]!, ConsoleColor.DarkRed);
 		}
 
-		PeriodicOperationPool.Shared.EnqueueRange(
-			from type in typeof(PeriodicOperation).Assembly.GetTypes()
-			where type.IsAssignableTo(typeof(PeriodicOperation))
-			let constructor = type.GetConstructor(Array.Empty<Type>())
-			where constructor is not null
-			let operation = Activator.CreateInstance(type) as PeriodicOperation
-			where operation is not null
-			select operation
-		);
+		RegisterPeriodicOperations();
 
 		Terminal.Pause();
 	}
 
-
-	partial void OnBotLeft(LeftEvent e);
-	partial void OnBotJoined(JoinedEvent e);
-	partial void OnBotKicked(KickedEvent e);
-	partial void OnGroupMessageReceivedAsync(GroupMessageReceiver e);
-	partial void OnMemberJoinedAsync(MemberJoinedEvent e);
-	partial void OnNewMemberRequestedAsync(NewMemberRequestedEvent e);
-	partial void OnNewInvitationRequestedAsync(NewInvitationRequestedEvent e);
-}
-
-partial class Bot
-{
 	/// <summary>
-	/// Triggers when bot has already left the group.
+	/// Registers the events of the bot.
 	/// </summary>
-	/// <param name="e">The event handler.</param>
-	partial void OnBotLeft(LeftEvent e) => RunningContexts.TryRemove(e.Group.Id, out _);
-
-	/// <summary>
-	/// Triggers when bot has already joined in the target group.
-	/// </summary>
-	/// <param name="e">The event handler.</param>
-	partial void OnBotJoined(JoinedEvent e) => RunningContexts.TryAdd(e.Group.Id, new());
-
-	/// <summary>
-	/// Triggers when bot has already been kicked by group owner.
-	/// </summary>
-	/// <param name="e">The event handler.</param>
-	partial void OnBotKicked(KickedEvent e) => RunningContexts.TryRemove(e.Group.Id, out _);
+	/// <param name="bot">The bot.</param>
+	private void RegisterEvents(MiraiBot bot)
+	{
+		bot.SubscribeJoined(static e => RunningContexts.TryAdd(e.Group.Id, new()));
+		bot.SubscribeLeft(static e => RunningContexts.TryRemove(e.Group.Id, out _));
+		bot.SubscribeKicked(static e => RunningContexts.TryRemove(e.Group.Id, out _));
+		bot.SubscribeGroupMessageReceived(OnGroupMessageReceivedAsync);
+		bot.SubscribeMemberJoined(OnMemberJoinedAsync);
+		bot.SubscribeNewMemberRequested(OnNewMemberRequestedAsync);
+		bot.SubscribeNewInvitationRequested(OnNewInvitationRequestedAsync);
+		bot.SubscribeMuted();
+		bot.SubscribeUnmuted();
+	}
 
 	/// <summary>
 	/// Triggers when the group has been received a new message.
 	/// </summary>
 	/// <param name="e">The event handler.</param>
-	async partial void OnGroupMessageReceivedAsync(GroupMessageReceiver e)
+	private async void OnGroupMessageReceivedAsync(GroupMessageReceiver e)
 	{
 		switch (e)
 		{
-			// At message: special use. Gaming will rely on this case.
-			// I think this way to handle messages is too complex and ugly. I may change the design on commands later.
-			case { Sender: var sender, MessageChain: [SourceMessage, AtMessage { Target: var qq }, PlainMessage { Text: var message }] }
-			when qq == BotNumber
-				&& RunningContexts.TryGetValue(e.GroupId, out var context)
-				&& context is { AnsweringContext.CurrentRoundAnsweredValues: { } answeredValues }
-				&& message.Trim() is var trimmed:
+			case
 			{
+				GroupId: var groupId,
+				Sender: var sender,
+				MessageChain: [SourceMessage, AtMessage { Target: var qq }, PlainMessage { Text: var message }]
+			}
+			when qq == BotNumber
+				&& RunningContexts.TryGetValue(groupId, out var context)
+				&& context is { AnsweringContext.CurrentRoundAnsweredValues: { } answeredValues }:
+			{
+				// At message: special use. Gaming will rely on this case.
+				// I think this way to handle messages is too complex and ugly. I may change the design on commands later.
+				var trimmed = message.Trim();
 				if (int.TryParse(trimmed, out var validInteger))
 				{
 					tryParseDigits(validInteger, sender, answeredValues);
@@ -131,33 +104,10 @@ partial class Bot
 				}
 
 				break;
-
-
-				static bool tryParseDigits(int validInteger, Member sender, ConcurrentBag<UserPuzzleAnswerData> answeredValues)
-				{
-					if (validInteger < 0)
-					{
-						return false;
-					}
-
-					// Split by digit bits.
-					List<int> numberList;
-					for (numberList = new(); validInteger != 0; validInteger /= 10)
-					{
-						numberList.Add(validInteger % 10 - 1);
-					}
-
-					// Reverse the collection.
-					numberList.Reverse();
-
-					answeredValues.Add(new(sender, numberList.ToArray()));
-					return true;
-				}
 			}
-
-			// Normal command message.
 			case { Sender.Permission: var permission, MessageChain: (_, { } messageTrimmed, _) }:
 			{
+				// Normal command message.
 				foreach (var type in typeof(CommandAttribute).Assembly.GetDerivedTypes<Command>())
 				{
 					if (type.GetConstructor(Array.Empty<Type>()) is not null
@@ -171,18 +121,62 @@ partial class Bot
 
 				break;
 			}
+
+
+			static bool tryParseDigits(int validInteger, Member sender, ConcurrentBag<UserPuzzleAnswerData> answeredValues)
+			{
+				if (validInteger < 0)
+				{
+					return false;
+				}
+
+				// Split by digit bits.
+				List<int> numberList;
+				for (numberList = new(); validInteger != 0; validInteger /= 10)
+				{
+					numberList.Add(validInteger % 10 - 1);
+				}
+
+				// Reverse the collection.
+				numberList.Reverse();
+
+				answeredValues.Add(new(sender, numberList.ToArray()));
+				return true;
+			}
 		}
 	}
 
+
 	/// <summary>
-	/// Triggers when someone has already joined in this group.
+	/// Registers periodic operations of the bot.
+	/// </summary>
+	private static void RegisterPeriodicOperations()
+		=> PeriodicOperationPool.Shared.EnqueueRange(
+			from type in typeof(PeriodicOperation).Assembly.GetTypes()
+			where type.IsAssignableTo(typeof(PeriodicOperation))
+			let constructor = type.GetConstructor(Array.Empty<Type>())
+			where constructor is not null
+			let operation = Activator.CreateInstance(type) as PeriodicOperation
+			where operation is not null
+			select operation
+		);
+
+	/// <summary>
+	/// Adds contexts to field <see cref="RunningContexts"/>.
+	/// </summary>
+	/// <returns>The task that encapsulates the current operation.</returns>
+	private static async Task AddBotRunningContextsAsync()
+		=> (await AccountManager.GetGroupsAsync()).ForEach(static group => RunningContexts.TryAdd(group.Id, new()));
+
+	/// <summary>
+	/// Triggers when someone has been invited by another one to join in this group.
 	/// </summary>
 	/// <param name="e">The event handler.</param>
-	async partial void OnMemberJoinedAsync(MemberJoinedEvent e)
+	private static async void OnNewInvitationRequestedAsync(NewInvitationRequestedEvent e)
 	{
-		if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
+		if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"])
 		{
-			await group.SendGroupMessageAsync(R.MessageFormat("SampleMemberJoined"));
+			await e.ApproveAsync();
 		}
 	}
 
@@ -190,7 +184,7 @@ partial class Bot
 	/// Triggers when someone has requested that he wants to join in this group.
 	/// </summary>
 	/// <param name="e">The event handler.</param>
-	async partial void OnNewMemberRequestedAsync(NewMemberRequestedEvent e)
+	private static async void OnNewMemberRequestedAsync(NewMemberRequestedEvent e)
 	{
 		const string answerLocatorStr = "\u7b54\u6848\uff1a";
 
@@ -209,14 +203,14 @@ partial class Bot
 	}
 
 	/// <summary>
-	/// Triggers when someone has been invited by another one to join in this group.
+	/// Triggers when someone has already joined in this group.
 	/// </summary>
 	/// <param name="e">The event handler.</param>
-	async partial void OnNewInvitationRequestedAsync(NewInvitationRequestedEvent e)
+	private static async void OnMemberJoinedAsync(MemberJoinedEvent e)
 	{
-		if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"])
+		if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
 		{
-			await e.ApproveAsync();
+			await group.SendGroupMessageAsync(R.MessageFormat("SampleMemberJoined"));
 		}
 	}
 }
