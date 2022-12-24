@@ -29,7 +29,7 @@ public sealed class DefaultAutoFiller : IAutoFiller
 			{
 				return;
 			}
-			case >= DifficultyLevel.Hard and <= DifficultyLevel.Nightmare:
+			case >= DifficultyLevel.Hard and <= DifficultyLevel.Nightmare or DifficultyLevel.LastResort:
 			{
 				foreach (var (stepGrid, step) in path)
 				{
