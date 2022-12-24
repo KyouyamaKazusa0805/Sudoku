@@ -6,12 +6,6 @@
 [Command]
 file sealed class ShowLibraryCollectionCommand : Command
 {
-	/// <summary>
-	/// Indicates the object that is used for synchronization.
-	/// </summary>
-	private static readonly object SyncRoot = new();
-
-
 	/// <inheritdoc/>
 	public override string CommandName => R.Command("DisplayLib")!;
 
