@@ -3,11 +3,12 @@
 /// <summary>
 /// Indicates the complex lookup score command.
 /// </summary>
-[Command(Permissions.Owner, Permissions.Administrator)]
+[Command(Permissions.Owner, Permissions.Administrator, IsDeprecated = true)]
+[Obsolete("The type is being deprecated.", false)]
 file sealed class ComplexLookupScoreCommand : Command
 {
 	/// <inheritdoc/>
-	public override string CommandName => R["_Command_ComplexLookupScore"]!;
+	public override string CommandName => R.Command("ComplexLookupScore")!;
 
 	/// <inheritdoc/>
 	public override CommandComparison ComparisonMode => CommandComparison.Prefix;
@@ -26,7 +27,11 @@ file sealed class ComplexLookupScoreCommand : Command
 			return false;
 		}
 
-		var satisfiedMembers = (from member in await @group.GetGroupMembersAsync() where member.Id == args || member.Name == args select member).ToArray();
+		var satisfiedMembers = (
+			from member in await @group.GetGroupMembersAsync()
+			where new[] { member.Id, member.Name }.Any(e => e == args)
+			select member
+		).ToArray();
 		switch (satisfiedMembers)
 		{
 			case []:
