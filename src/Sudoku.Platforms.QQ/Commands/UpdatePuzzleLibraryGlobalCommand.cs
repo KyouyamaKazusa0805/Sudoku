@@ -4,7 +4,7 @@
 /// Defines update puzzle library global command.
 /// </summary>
 [Command(Permissions.Owner, Permissions.Administrator, IsDeprecated = true)]
-[Obsolete("The type cannot be used.", false)]
+[Obsolete("The type should be used.", false)]
 file sealed class UpdatePuzzleLibraryGlobalCommand : Command
 {
 	/// <inheritdoc/>
