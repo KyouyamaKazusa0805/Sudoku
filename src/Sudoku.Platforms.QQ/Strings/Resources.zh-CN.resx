@@ -255,6 +255,9 @@
   <data name="_CommandSegment_Description" xml:space="preserve">
     <value>描述</value>
   </data>
+  <data name="_CommandSegment_FinishedPuzzlesCount" xml:space="preserve">
+    <value>完成题目数</value>
+  </data>
   <data name="_CommandSegment_Revert" xml:space="preserve">
     <value>回退</value>
   </data>
@@ -478,6 +481,12 @@
   </data>
   <data name="_MessageFormat_UpdateLibPropertySuccessfully" xml:space="preserve">
     <value>更新题库“{0}”的配置属性“{1}”成功。</value>
+  </data>
+  <data name="_MessageFormat_UpdateLibPropFailed_ValueMustBeInteger" xml:space="preserve">
+    <value>更新题库“{0}”的配置属性“{1}”失败，该属性是整数数据，不能写入其他的东西。</value>
+  </data>
+  <data name="_MessageFormat_UpdateLibPropFailed_ValueMustLowerThanLibPuzzlesCount" xml:space="preserve">
+    <value>更新题库“{0}”的配置属性“{1}”失败，该属性的数值必须小于整个题库的题目数量，也不能为负数。</value>
   </data>
   <data name="_MessageFormat_UserScoreIs" xml:space="preserve">
     <value>用户 {0}（{2}）数据📦

@@ -641,23 +641,6 @@
             <param name="this">The <see cref="T:System.TimeSpan"/> instance.</param>
             <returns>The target string.</returns>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand">
-            <summary>
-            Defines update library property command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand.Prefixes">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand">
             <summary>
             Defines update puzzle library global command.
@@ -673,6 +656,23 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryPropertyCommand">
+            <summary>
+            Defines update library property command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryPropertyCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryPropertyCommand.Prefixes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryPropertyCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryPropertyCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibrarySpecifiedCommand">
@@ -771,6 +771,20 @@
             Writes library data to the bot configuration file path.
             </summary>
             <param name="libraryCollection">The library collection.</param>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.CheckValidPuzzlesCountInPuzzleLibrary(System.String,System.String)">
+            <summary>
+            Checks for the specified library, to get the total number of valid puzzles stored in the file.
+            </summary>
+            <param name="groupId">The group ID.</param>
+            <param name="libraryName">The library name.</param>
+            <returns>
+            The number of valid puzzles. -1 for the case that the specified group does not store any library whose name is the specified name.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.CheckValidPuzzlesCountInPuzzleLibrary(Sudoku.Platforms.QQ.Models.PuzzleLibraryData)">
+            <inheritdoc cref="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.CheckValidPuzzlesCountInPuzzleLibrary(System.String,System.String)"/>
+            <param name="puzzleLibrary">The <see cref="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryData"/> instance.</param>
         </member>
         <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})">
             <summary>

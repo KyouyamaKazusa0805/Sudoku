@@ -247,6 +247,29 @@ internal static class InternalReadWrite
 	}
 
 	/// <summary>
+	/// Checks for the specified library, to get the total number of valid puzzles stored in the file.
+	/// </summary>
+	/// <param name="groupId">The group ID.</param>
+	/// <param name="libraryName">The library name.</param>
+	/// <returns>
+	/// The number of valid puzzles. -1 for the case that the specified group does not store any library whose name is the specified name.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public static int CheckValidPuzzlesCountInPuzzleLibrary(string groupId, string libraryName)
+		=> ReadLibrary(groupId, libraryName) switch { { } lib => CheckValidPuzzlesCountInPuzzleLibrary(lib), _ => -1 };
+
+	/// <inheritdoc cref="CheckValidPuzzlesCountInPuzzleLibrary(string, string)"/>
+	/// <param name="puzzleLibrary">The <see cref="PuzzleLibraryData"/> instance.</param>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public static int CheckValidPuzzlesCountInPuzzleLibrary(PuzzleLibraryData puzzleLibrary)
+	{
+		return File.ReadLines(puzzleLibrary.PuzzleFilePath).Count(lineValidator);
+
+
+		static bool lineValidator(string line) => !string.IsNullOrWhiteSpace(line) && Grid.TryParse(line, out _);
+	}
+
+	/// <summary>
 	/// Generate a picture using the specified sudoku painter creator, storing it to the cached folder and return its file path.
 	/// This method also saves the picture into the local path.
 	/// </summary>

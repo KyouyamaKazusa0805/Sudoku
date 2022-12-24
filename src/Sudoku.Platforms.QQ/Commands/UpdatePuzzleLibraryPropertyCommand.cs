@@ -4,7 +4,7 @@
 /// Defines update library property command.
 /// </summary>
 [Command(Permissions.Owner, Permissions.Administrator)]
-file sealed class UpdateLibraryPropertyCommand : Command
+file sealed class UpdatePuzzleLibraryPropertyCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R.Command("UpdatePuzzleLibProp")!;
@@ -58,6 +58,38 @@ file sealed class UpdateLibraryPropertyCommand : Command
 					lib.Tags = tags;
 
 					await updateLibConfigFile(libs);
+				}
+				else if (propName == R.CommandSegment(nameof(PuzzleLibraryData.FinishedPuzzlesCount))!)
+				{
+					if (int.TryParse(propValue, out var finishedPuzzlesCount))
+					{
+						if (finishedPuzzlesCount >= 0 && finishedPuzzlesCount < InternalReadWrite.CheckValidPuzzlesCountInPuzzleLibrary(lib))
+						{
+							lib.FinishedPuzzlesCount = finishedPuzzlesCount;
+
+							await updateLibConfigFile(libs);
+						}
+						else
+						{
+							await e.SendMessageAsync(
+								string.Format(
+									R.MessageFormat("UpdateLibPropFailed_ValueMustLowerThanLibPuzzlesCount")!,
+									libraryName,
+									propName
+								)
+							);
+						}
+					}
+					else
+					{
+						await e.SendMessageAsync(
+							string.Format(
+								R.MessageFormat("UpdateLibPropFailed_ValueMustBeInteger")!,
+								libraryName,
+								propName
+							)
+						);
+					}
 				}
 
 				break;

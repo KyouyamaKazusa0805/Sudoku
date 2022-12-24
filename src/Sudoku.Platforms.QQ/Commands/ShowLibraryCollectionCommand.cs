@@ -48,12 +48,7 @@ file sealed class ShowLibraryCollectionCommand : Command
 					return true;
 				}
 
-				int validPuzzlesCount;
-				lock (SyncRoot)
-				{
-					validPuzzlesCount = File.ReadLines(lib.PuzzleFilePath).Count(lineValidator);
-				}
-
+				var validPuzzlesCount = InternalReadWrite.CheckValidPuzzlesCountInPuzzleLibrary(lib);
 				await e.SendMessageAsync(
 					string.Format(
 						R.MessageFormat("PuzzleLibSpecifiedInfo")!,
@@ -67,9 +62,6 @@ file sealed class ShowLibraryCollectionCommand : Command
 				);
 
 				break;
-
-
-				static bool lineValidator(string line) => !string.IsNullOrWhiteSpace(line) && Grid.TryParse(line, out _);
 			}
 		}
 
