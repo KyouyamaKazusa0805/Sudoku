@@ -21,6 +21,11 @@ file sealed class ManualUpdateLibraryCommand : Command
 	{
 		if (InternalReadWrite.ReadLibraries(e.GroupId) is { } libs and not [])
 		{
+			// TODO: A little bug :D
+			// This write operation will reset all configuration files, which contains the case
+			// that some members has already finished some puzzles leading to configuration files having been modified.
+			// I will fix it later.
+
 			InternalReadWrite.WriteLibraryConfiguration(libs);
 
 			await e.SendMessageAsync(R.MessageFormat("UpdateLibConfigSuccessfully")!);

@@ -195,11 +195,14 @@ file sealed class Bot : IExecutable
 			&& message[finalIndex..] is var finalMessage
 			&& groupId == R["SudokuGroupQQ"])
 		{
-			await (
-				BilibiliPattern().IsMatch(finalMessage.Trim())
-					? e.ApproveAsync()
-					: e.RejectAsync(R.MessageFormat("MemberJoinedRejected")!)
-			);
+			if (BilibiliPattern().IsMatch(finalMessage.Trim()))
+			{
+				await e.ApproveAsync();
+			}
+			else
+			{
+				await e.RejectAsync(R.MessageFormat("MemberJoinedRejected")!);
+			}
 		}
 	}
 

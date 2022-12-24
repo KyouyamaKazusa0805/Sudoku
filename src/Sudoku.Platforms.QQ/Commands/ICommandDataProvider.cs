@@ -1,6 +1,4 @@
-﻿#define NORMAL_DISTRIBUTION
-
-namespace Sudoku.Platforms.QQ.Commands;
+﻿namespace Sudoku.Platforms.QQ.Commands;
 
 using static Constants;
 
