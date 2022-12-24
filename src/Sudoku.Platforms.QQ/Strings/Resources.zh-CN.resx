@@ -309,6 +309,9 @@
   <data name="_Command_Set" xml:space="preserve">
     <value>填</value>
   </data>
+  <data name="_Command_UpdateLibSpecified" xml:space="preserve">
+    <value>题库配置更新 仓库</value>
+  </data>
   <data name="_Command_UpdatePuzzleLibProp" xml:space="preserve">
     <value>题库配置更新 属性</value>
   </data>
@@ -467,8 +470,14 @@
   <data name="_MessageFormat_SetConfigSuccess" xml:space="preserve">
     <value>配置项设置成功。</value>
   </data>
+  <data name="_MessageFormat_UpdateLibConfigFailed_SpecifiedLibNameNotFound" xml:space="preserve">
+    <value>更新题库配置失败。请检查提交的题库名称是否正确对应需更新的题库名。</value>
+  </data>
   <data name="_MessageFormat_UpdateLibConfigSuccessfully" xml:space="preserve">
     <value>更新题库配置成功。</value>
+  </data>
+  <data name="_MessageFormat_UpdateLibGlobalCommandIsDangerous" xml:space="preserve">
+    <value>全局更新题库配置指令非常敏感——它会全局更新本地存储的所有题库的配置，因此会刷新全部的内容。强烈不建议使用此指令。</value>
   </data>
   <data name="_MessageFormat_UpdateLibPropertySuccessfully" xml:space="preserve">
     <value>更新题库“{0}”的配置属性“{1}”成功。</value>

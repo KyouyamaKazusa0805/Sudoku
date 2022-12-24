@@ -238,6 +238,12 @@
             </summary>
             <param name="permission">The permission.</param>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.CommandAttribute.IsDeprecated">
+            <summary>
+            Indicates whether the command is deprecated. If so, the command will not be used by users,
+            and runtime will automatically skip the command.
+            </summary>
+        </member>
         <member name="P:Sudoku.Platforms.QQ.Commands.CommandAttribute.AllowedPermissions">
             <summary>
             Indicates the permission.
@@ -469,23 +475,6 @@
         <member name="M:Sudoku.Platforms.QQ.Commands.LookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.ManualUpdateLibraryCommand">
-            <summary>
-            Defines manual update library command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ManualUpdateLibraryCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ManualUpdateLibraryCommand.Prefixes">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ManualUpdateLibraryCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ManualUpdateLibraryCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.PingCommand">
             <summary>
             Defines a ping command.
@@ -667,6 +656,37 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Commands.UpdateLibraryPropertyCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand">
+            <summary>
+            Defines update puzzle library global command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand.Prefixes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibrarySpecifiedCommand">
+            <summary>
+            Defines a update puzzle library specified command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibrarySpecifiedCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibrarySpecifiedCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibrarySpecifiedCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.UpdateScoreCommand">

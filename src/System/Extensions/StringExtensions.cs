@@ -246,13 +246,15 @@ public static unsafe partial class StringExtensions
 	/// </exception>
 	public static string Reserve(this string @this, [StringSyntax(StringSyntaxAttribute.Regex), ConstantExpected] string reservePattern)
 	{
+#pragma warning disable format
 		delegate*<char, bool> predicate = reservePattern switch
 		{
-			@"\d" => &char.IsDigit,
-			@"\t" => &isTab,
-			@"\w" => &isLetterDigitOrUnderscore,
+			/*lang = regex*/ @"\d" => &char.IsDigit,
+			/*lang = regex*/ @"\t" => &isTab,
+			/*lang = regex*/ @"\w" => &isLetterDigitOrUnderscore,
 			_ => throw InvalidOperation
 		};
+#pragma warning restore format
 
 		var length = @this.Length;
 		var ptr = stackalloc char[length];

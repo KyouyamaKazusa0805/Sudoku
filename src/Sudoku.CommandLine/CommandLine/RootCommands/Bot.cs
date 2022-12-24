@@ -1,4 +1,10 @@
-﻿namespace Sudoku.CommandLine.RootCommands;
+﻿#define AUTO_SEND_MESSAGE_AFTER_MEMBER_JOINED
+#define ALLOW_MEMBER_REQUEST
+#undef ALLOW_INVITATION
+#define BASIC_LOG_INFO_OUTPUT
+#define ALLOW_PERIODIC_OPERATION
+
+namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Represents a bot command.
@@ -42,18 +48,27 @@ file sealed class Bot : IExecutable
 			bot.SubscribeLeft(OnBotLeft);
 			bot.SubscribeKicked(OnBotKicked);
 			bot.SubscribeGroupMessageReceived(OnGroupMessageReceivedAsync);
+#if AUTO_SEND_MESSAGE_AFTER_MEMBER_JOINED
 			bot.SubscribeMemberJoined(OnMemberJoinedAsync);
+#endif
+#if ALLOW_MEMBER_REQUEST
 			bot.SubscribeNewMemberRequested(OnNewMemberRequestedAsync);
+#endif
+#if ALLOW_INVITATION
 			bot.SubscribeNewInvitationRequested(OnNewInvitationRequestedAsync);
+#endif
 			bot.SubscribeMuted();
 			bot.SubscribeUnmuted();
 
 			(await AccountManager.GetGroupsAsync()).ForEach(static group => RunningContexts.TryAdd(group.Id, new()));
 
+#if BASIC_LOG_INFO_OUTPUT
 			await Terminal.WriteLineAsync(R["_Message_BootSuccess"]!, ConsoleColor.DarkGreen);
+#endif
 		}
 		catch (Exception ex)
 		{
+#if BASIC_LOG_INFO_OUTPUT
 			await Terminal.WriteLineAsync(
 				ex switch
 				{
@@ -63,8 +78,10 @@ file sealed class Bot : IExecutable
 				},
 				ConsoleColor.DarkRed
 			);
+#endif
 		}
 
+#if ALLOW_PERIODIC_OPERATION
 		PeriodicOperationPool.Shared.EnqueueRange(
 			from type in typeof(PeriodicOperation).Assembly.GetTypes()
 			where type.IsAssignableTo(typeof(PeriodicOperation))
@@ -74,6 +91,7 @@ file sealed class Bot : IExecutable
 			where operation is not null
 			select operation
 		);
+#endif
 
 		Terminal.Pause();
 	}
@@ -134,7 +152,7 @@ file sealed class Bot : IExecutable
 				foreach (var type in typeof(CommandAttribute).Assembly.GetDerivedTypes<Command>())
 				{
 					if (type.GetConstructor(Array.Empty<Type>()) is not null
-						&& type.GetCustomAttribute<CommandAttribute>() is { AllowedPermissions: var allowPermissions }
+						&& type.GetCustomAttribute<CommandAttribute>() is { AllowedPermissions: var allowPermissions, IsDeprecated: false }
 						&& Array.IndexOf(allowPermissions, permission) != -1
 						&& await ((Command)Activator.CreateInstance(type)!).ExecuteAsync(messageTrimmed, e))
 					{
@@ -169,6 +187,7 @@ file sealed class Bot : IExecutable
 		}
 	}
 
+#if ALLOW_INVITATION
 	/// <summary>
 	/// Triggers when someone has been invited by another one to join in this group.
 	/// </summary>
@@ -180,7 +199,9 @@ file sealed class Bot : IExecutable
 			await e.ApproveAsync();
 		}
 	}
+#endif
 
+#if ALLOW_MEMBER_REQUEST
 	/// <summary>
 	/// Triggers when someone has requested that he wants to join in this group.
 	/// </summary>
@@ -205,7 +226,9 @@ file sealed class Bot : IExecutable
 			}
 		}
 	}
+#endif
 
+#if AUTO_SEND_MESSAGE_AFTER_MEMBER_JOINED
 	/// <summary>
 	/// Triggers when someone has already joined in this group.
 	/// </summary>
@@ -217,4 +240,5 @@ file sealed class Bot : IExecutable
 			await group.SendGroupMessageAsync(R.MessageFormat("SampleMemberJoined"));
 		}
 	}
+#endif
 }

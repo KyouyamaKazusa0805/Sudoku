@@ -21,6 +21,12 @@ public sealed class CommandAttribute : Attribute
 
 
 	/// <summary>
+	/// Indicates whether the command is deprecated. If so, the command will not be used by users,
+	/// and runtime will automatically skip the command.
+	/// </summary>
+	public bool IsDeprecated { get; init; }
+
+	/// <summary>
 	/// Indicates the permission.
 	/// </summary>
 	public Permissions[] AllowedPermissions { get; }

@@ -173,12 +173,6 @@
             </summary>
             <param name="e">The event handler.</param>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnNewInvitationRequestedAsync(Mirai.Net.Data.Events.Concretes.Request.NewInvitationRequestedEvent)">
-            <summary>
-            Triggers when someone has been invited by another one to join in this group.
-            </summary>
-            <param name="e">The event handler.</param>
-        </member>
         <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnNewMemberRequestedAsync(Mirai.Net.Data.Events.Concretes.Request.NewMemberRequestedEvent)">
             <summary>
             Triggers when someone has requested that he wants to join in this group.

@@ -1,10 +1,11 @@
 ﻿namespace Sudoku.Platforms.QQ.Commands;
 
 /// <summary>
-/// Defines manual update library command.
+/// Defines update puzzle library global command.
 /// </summary>
-[Command(Permissions.Owner, Permissions.Administrator)]
-file sealed class ManualUpdateLibraryCommand : Command
+[Command(Permissions.Owner, Permissions.Administrator, IsDeprecated = true)]
+[Obsolete("The type cannot be used.", false)]
+file sealed class UpdatePuzzleLibraryGlobalCommand : Command
 {
 	/// <inheritdoc/>
 	public override string CommandName => R.Command("ManualUpdatePuzzleLib")!;
@@ -21,14 +22,12 @@ file sealed class ManualUpdateLibraryCommand : Command
 	{
 		if (InternalReadWrite.ReadLibraries(e.GroupId) is { } libs and not [])
 		{
-			// TODO: A little bug :D
-			// This write operation will reset all configuration files, which contains the case
-			// that some members has already finished some puzzles leading to configuration files having been modified.
-			// I will fix it later.
-
 			InternalReadWrite.WriteLibraryConfiguration(libs);
 
 			await e.SendMessageAsync(R.MessageFormat("UpdateLibConfigSuccessfully")!);
+
+			await Task.Delay(2.Seconds());
+			await e.SendMessageAsync(R.MessageFormat("UpdateLibGlobalCommandIsDangerous")!);
 		}
 
 		return true;
