@@ -310,7 +310,7 @@
     <value>填</value>
   </data>
   <data name="_Command_UpdateLibSpecified" xml:space="preserve">
-    <value>题库配置更新 仓库</value>
+    <value>题库配置更新 题库</value>
   </data>
   <data name="_Command_UpdatePuzzleLibProp" xml:space="preserve">
     <value>题库配置更新 属性</value>
