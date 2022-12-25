@@ -126,7 +126,15 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="conclusions">The conclusions.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithConclusions(params Conclusion[] conclusions);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	sealed ISudokuPainter WithConclusions(params Conclusion[] conclusions) => WithConclusions(ImmutableArray.Create(conclusions));
+
+	/// <summary>
+	/// Sets the conclusions used for rendering.
+	/// </summary>
+	/// <param name="conclusions">The conclusions.</param>
+	/// <returns>The target painter.</returns>
+	ISudokuPainter WithConclusions(ImmutableArray<Conclusion> conclusions);
 
 	/// <summary>
 	/// Sets the view nodes used for rendering.

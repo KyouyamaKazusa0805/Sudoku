@@ -701,6 +701,47 @@
         <member name="M:Sudoku.Platforms.QQ.Commands.UpdateScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.ViewPuzzleLogicalStepCommand">
+            <summary>
+            Defines a view puzzle logical step command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.ViewPuzzleLogicalStepCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.ViewPuzzleLogicalStepCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.ViewPuzzleLogicalStepCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.Extensions.WithRenderingStep(Sudoku.Drawing.ISudokuPainter,Sudoku.Solving.Logical.IStep)">
+            <summary>
+            Render the <see cref="T:Sudoku.Solving.Logical.IStep"/> instance onto the target painter.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</param>
+            <param name="step">The step.</param>
+            <returns>The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.Extensions.FirstOrDefaultSelector``2(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,System.Int32,System.Boolean},System.Func{``0,System.Int32,``1})">
+            <summary>
+            Try to find the first element that satisfies the specified condition <paramref name="predicate"/>,
+            and projects it into the target value of type <typeparamref name="TResult"/>, using the specified converter <paramref name="selector"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TResult">The type of the projected result.</typeparam>
+            <param name="this">The collection to be iterated.</param>
+            <param name="predicate">The condition that the element should be satisfied.</param>
+            <param name="selector">The converter method that projects the found element to the target one.</param>
+            <returns>The projected value.</returns>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations">
             <summary>
             Defines a type that stores a user-defined configurations.

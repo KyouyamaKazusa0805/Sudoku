@@ -110,7 +110,7 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterText(System.String,Sudoku.Drawing.TextRendering.TextAlignmentType)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(Sudoku.Solving.Conclusion[])">
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
@@ -237,6 +237,13 @@
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="alignment"/> is not defined.</exception>
         </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(Sudoku.Solving.Conclusion[])">
+            <summary>
+            Sets the conclusions used for rendering.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
             <summary>
             Sets the conclusions used for rendering.
             </summary>

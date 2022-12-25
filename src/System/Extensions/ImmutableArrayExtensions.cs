@@ -60,8 +60,7 @@ public static class ImmutableArrayExtensions
 	/// The selector method that converts each elements to an instance of type <typeparamref name="TResult"/>.
 	/// </param>
 	/// <returns>The sum of the projected values.</returns>
-	public static TResult Sum<T, TResult>(this ImmutableArray<T> @this, Func<T, TResult> selector)
-		where TResult : INumber<TResult>
+	public static TResult Sum<T, TResult>(this ImmutableArray<T> @this, Func<T, TResult> selector) where TResult : INumber<TResult>
 	{
 		var result = TResult.Zero;
 		foreach (var element in @this)

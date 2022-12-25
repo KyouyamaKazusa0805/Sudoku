@@ -195,6 +195,14 @@ public sealed partial class GridImageGenerator
 				DisplayColorKind.Endofin => Preferences.ColorPalette[2],
 				DisplayColorKind.Cannibalism => Preferences.CannibalismColor,
 				DisplayColorKind.Link => Preferences.ChainColor,
+				DisplayColorKind.Auxiliary1 => Preferences.ColorPalette[1],
+				DisplayColorKind.Auxiliary2 => Preferences.ColorPalette[2],
+				DisplayColorKind.Auxiliary3 => Preferences.ColorPalette[3],
+				DisplayColorKind.AlmostLockedSet1 => Preferences.ColorPalette[^5],
+				DisplayColorKind.AlmostLockedSet2 => Preferences.ColorPalette[^4],
+				DisplayColorKind.AlmostLockedSet3 => Preferences.ColorPalette[^3],
+				DisplayColorKind.AlmostLockedSet4 => Preferences.ColorPalette[^2],
+				DisplayColorKind.AlmostLockedSet5 => Preferences.ColorPalette[^1],
 				_ => throw new InvalidOperationException("Such displaying color kind is invalid.")
 			},
 			_ => throw new InvalidOperationException("Such identifier instance contains invalid value.")

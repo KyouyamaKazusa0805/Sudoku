@@ -246,6 +246,9 @@
   <data name="PuzzleLibraryIndexIs" xml:space="preserve">
     <value>题目编号：</value>
   </data>
+  <data name="StepInfoIs" xml:space="preserve">
+    <value>步骤信息：</value>
+  </data>
   <data name="TotalDiffRatingIs" xml:space="preserve">
     <value>难度系数和：</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="_CommandSegment_FinishedPuzzlesCount" xml:space="preserve">
     <value>完成题目数</value>
+  </data>
+  <data name="_CommandSegment_PuzzleLib" xml:space="preserve">
+    <value>题库</value>
   </data>
   <data name="_CommandSegment_Revert" xml:space="preserve">
     <value>回退</value>
@@ -323,6 +329,9 @@
   </data>
   <data name="_Command_UpdateScore" xml:space="preserve">
     <value>加分</value>
+  </data>
+  <data name="_Command_ViewStep" xml:space="preserve">
+    <value>查看</value>
   </data>
   <data name="_HelpMessage" xml:space="preserve">
     <value>帮助说明📖
@@ -439,6 +448,9 @@
   <data name="_MessageFormat_PingSuccess" xml:space="preserve">
     <value>测试连接成功。耗时 {0} 毫秒。</value>
   </data>
+  <data name="_MessageFormat_PuzzleHasMultipleSolutionsOrNoSolution" xml:space="preserve">
+    <value>解析失败。该题目为非唯一解题目，无法继续正常技巧校验。请联系管理员检查题库内容。</value>
+  </data>
   <data name="_MessageFormat_PuzzleLibGlobalInfo" xml:space="preserve">
     <value>本群题库数据📦
 题库数量：{0}
@@ -484,6 +496,9 @@
   </data>
   <data name="_MessageFormat_SpecifiedPuzzleLibIndexIsOutOfRange" xml:space="preserve">
     <value>当前指定的题库的抽题索引不合适：它不能小于或等于 0，也不能超过该题库的题目数量。</value>
+  </data>
+  <data name="_MessageFormat_SpecifiedStepNameIsNotFound" xml:space="preserve">
+    <value>本题不存在技巧名为“{0}”的技巧步骤。</value>
   </data>
   <data name="_MessageFormat_SyncPuzzleLibFailed_NoPuzzleLibFound" xml:space="preserve">
     <value>同步操作完成。本群尚不包含任何题库。</value>
