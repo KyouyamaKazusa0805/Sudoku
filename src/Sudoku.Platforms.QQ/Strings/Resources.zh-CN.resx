@@ -329,16 +329,19 @@
 欢迎使用机器人！该机器人提供如下功能：
 【基本功能】
 ・签到：签到可以获得积分；
-・查询：查询当前用户的积分数据；
+・查询 &lt;目前用户名|QQ&gt;?：查询用户的存档数据；
 ・帮助：查看帮助文字；
 ・开始游戏：开始数独填空的 PK 游戏；
 ・绘图：启动绘图功能；
-・抽题 &lt;题库名&gt;?：抽取本群预存题库里的题目；
+・抽题 &lt;群名|QQ&gt;? &lt;题库名&gt;?：抽取群预存题库里的题目；
 ・题库数据 &lt;题库名&gt;?：查看本群预存题库的数据。
 【管理员限定】
 ・排名：查询所有记录了的该群成员的积分，并排名；
 ---
 所有指令请都带上感叹号，例如“！查询”。</value>
+  </data>
+  <data name="_MessageFormat_AmbiguousGroupNameOrIdFound" xml:space="preserve">
+    <value>同时找到多个满足输入的匹配群。多半原因是机器人添加了恰好两个完全一样的群名的群。请改用存储该题库的群的QQ号，然后重试。</value>
   </data>
   <data name="_MessageFormat_AnalyzePuzzleLibrary" xml:space="preserve">
     <value>正在解析题库内容，请稍候……</value>
@@ -424,6 +427,9 @@
   <data name="_MessageFormat_NoSpecifiedLibExists" xml:space="preserve">
     <value>请检查题库名称。本群尚不包含叫“{0}”的题库。请配合“！题库数据”指令查询对应的合适名称后再试。</value>
   </data>
+  <data name="_MessageFormat_NumberIsInvalid" xml:space="preserve">
+    <value>你输入的编号不是一个合适的整数数值。</value>
+  </data>
   <data name="_MessageFormat_PermissionRequired" xml:space="preserve">
     <value>该功能需要更高权限者使用~</value>
   </data>
@@ -472,6 +478,12 @@
   </data>
   <data name="_MessageFormat_SetConfigSuccess" xml:space="preserve">
     <value>配置项设置成功。</value>
+  </data>
+  <data name="_MessageFormat_SpecifiedGroupNameOrIdNotFound" xml:space="preserve">
+    <value>无法找到机器人加入了的指定群名或QQ号。请检查输入的群名或QQ号码是否有误。</value>
+  </data>
+  <data name="_MessageFormat_SpecifiedPuzzleLibIndexIsOutOfRange" xml:space="preserve">
+    <value>当前指定的题库的抽题索引不合适：它不能小于或等于 0，也不能超过该题库的题目数量。</value>
   </data>
   <data name="_MessageFormat_SyncPuzzleLibFailed_NoPuzzleLibFound" xml:space="preserve">
     <value>同步操作完成。本群尚不包含任何题库。</value>

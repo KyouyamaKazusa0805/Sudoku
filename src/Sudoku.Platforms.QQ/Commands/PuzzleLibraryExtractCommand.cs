@@ -32,13 +32,64 @@ file sealed class PuzzleLibraryExtractCommand : Command
 				[{ Name: var name, PuzzleFilePath: var path }] => await extractPuzzleAsync(name, path, groupId),
 				_ => await sendLibraryNotUniqueMessageAsync()
 			},
-			_ => InternalReadWrite.ReadLibrary(groupId, args) switch
+			_ => args.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) switch
 			{
-				{ Name: var name, PuzzleFilePath: var path } => await extractPuzzleAsync(name, path, groupId),
-				_ => await sendLibraryNotFoundMessageAsync()
+				[var libName] => InternalReadWrite.ReadLibrary(groupId, libName) switch
+				{
+					{ Name: var name, PuzzleFilePath: var path } => await extractPuzzleAsync(name, path, groupId),
+					_ => await sendLibraryNotFoundMessageAsync()
+				},
+				[var groupNameOrId, var libName, var numberLabel] => await getMatchedGroups(groupNameOrId) switch
+				{
+					[] => await sendGroupNameOrIdNotFoundMessageAsync(),
+					[{ Id: var targetGroupId }] => InternalReadWrite.ReadLibrary(targetGroupId, libName) switch
+					{
+						{ Name: var name, PuzzleFilePath: var path } => int.TryParse(numberLabel.TrimStart('\uff03', '#'), out var index) switch
+						{
+							true => await extractPuzzleAsync(name, path, targetGroupId, index - 1),
+							_ => await sendNumberLabelIsNotNumberMessageAsync()
+						},
+						_ => await sendLibraryNotFoundMessageAsync()
+					},
+					{ Length: > 1 } => await sendAmbiguousMatchedGroupsMessageAsync(),
+				},
+				_ => true
 			}
 		};
 
+
+		static async Task<Group[]> getMatchedGroups(string groupNameOrId)
+			=> (
+				from @group in await AccountManager.GetGroupsAsync()
+				where groupNameOrId switch
+				{
+					['Q' or 'q', '\uff1a' or ':', .. var expr] => @group.Id == groupNameOrId,
+					['N' or 'n', '\uff1a' or ':', .. var expr] => @group.Name == groupNameOrId,
+					_ => new[] { @group.Name, @group.Id }.Any(e => e == groupNameOrId)
+				}
+				select @group
+			).ToArray();
+
+		async Task<bool> sendGroupNameOrIdNotFoundMessageAsync()
+		{
+			await Task.Delay(2.Seconds());
+			await e.SendMessageAsync(R.MessageFormat("SpecifiedGroupNameOrIdNotFound"));
+			return true;
+		}
+
+		async Task<bool> sendNumberLabelIsNotNumberMessageAsync()
+		{
+			await Task.Delay(2.Seconds());
+			await e.SendMessageAsync(R.MessageFormat("NumberIsInvalid"));
+			return true;
+		}
+
+		async Task<bool> sendAmbiguousMatchedGroupsMessageAsync()
+		{
+			await Task.Delay(2.Seconds());
+			await e.SendMessageAsync(R.MessageFormat("AmbiguousGroupNameOrIdFound"));
+			return true;
+		}
 
 		async Task<bool> sendLibraryNullOrEmptyMessageAsync()
 		{
@@ -61,7 +112,7 @@ file sealed class PuzzleLibraryExtractCommand : Command
 			return true;
 		}
 
-		async Task<bool> extractPuzzleAsync(string name, string path, string groupId)
+		async Task<bool> extractPuzzleAsync(string name, string path, string groupId, int? specifiedNumber = null)
 		{
 			var lines = (
 				from line in await File.ReadAllLinesAsync(path)
@@ -85,10 +136,15 @@ file sealed class PuzzleLibraryExtractCommand : Command
 				goto PuzzleIsBroken;
 			}
 
-			var index = lib.FinishedPuzzlesCount;
-			if (index >= lines.Length)
+			var index = specifiedNumber switch { { } l => l, _ => lib.FinishedPuzzlesCount };
+			if (specifiedNumber is null && index >= lines.Length)
 			{
 				goto PuzzleLibraryIsAllFinished;
+			}
+
+			if (specifiedNumber is { } specifiedIndex && (specifiedIndex < 0 || specifiedIndex >= lines.Length))
+			{
+				goto SpecifiedPuzzleLibraryIndexIsOutOfRange;
 			}
 
 			var grid = Grid.Parse(lines[index]);
@@ -130,9 +186,12 @@ file sealed class PuzzleLibraryExtractCommand : Command
 
 			File.Delete(picturePath);
 
-			lib.FinishedPuzzlesCount++;
+			if (specifiedNumber is null)
+			{
+				lib.FinishedPuzzlesCount++;
 
-			InternalReadWrite.WriteLibraryConfiguration(libs);
+				InternalReadWrite.WriteLibraryConfiguration(libs);
+			}
 
 			return true;
 
@@ -142,6 +201,10 @@ file sealed class PuzzleLibraryExtractCommand : Command
 
 		PuzzleLibraryIsAllFinished:
 			await e.SendMessageAsync(R.MessageFormat("CurrentLibIsFullyFinished")!);
+			return true;
+
+		SpecifiedPuzzleLibraryIndexIsOutOfRange:
+			await e.SendMessageAsync(R.MessageFormat("SpecifiedPuzzleLibIndexIsOutOfRange"));
 			return true;
 		}
 	}
