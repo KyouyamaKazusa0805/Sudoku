@@ -60,7 +60,7 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 				}
 
 				var foundStepInfo = solvingPath.FirstOrDefaultSelector(
-					(pair, _) => pair.Step.Name.StartsWith(techniqueName),
+					(pair, _) => pair.Step.Name.Contains(techniqueName),
 					static (pair, i) => (pair, i)
 				);
 				if (foundStepInfo is not var ((stepGrid, step), stepIndex))
