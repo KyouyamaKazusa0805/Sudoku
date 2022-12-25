@@ -281,20 +281,6 @@
             The bang symbol "<c>!</c>".
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.ComplexLookupScoreCommand">
-            <summary>
-            Indicates the complex lookup score command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ComplexLookupScoreCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ComplexLookupScoreCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ComplexLookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.DeleteDigitCommand">
             <summary>
             Indicates the delete command.
