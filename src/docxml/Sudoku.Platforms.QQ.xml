@@ -622,6 +622,20 @@
             <param name="this">The <see cref="T:System.TimeSpan"/> instance.</param>
             <returns>The target string.</returns>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.SyncPuzzleLibraryGlobalCommand">
+            <summary>
+            Defines sync puzzle library global command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.SyncPuzzleLibraryGlobalCommand.CommandName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.SyncPuzzleLibraryGlobalCommand.ComparisonMode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.SyncPuzzleLibraryGlobalCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand">
             <summary>
             Defines update puzzle library global command.
@@ -795,7 +809,32 @@
             <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Item(System.Int32)">
-            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyList`1.Item(System.Int32)"/>
+            <summary>
+            Gets the target puzzle library at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The library at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Contains(Sudoku.Platforms.QQ.Models.PuzzleLibraryData)">
+            <summary>
+            Determines whether the current collection contains the specified puzzle library.
+            </summary>
+            <param name="puzzleLibrary">The puzzle library to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Exists(System.Predicate{Sudoku.Platforms.QQ.Models.PuzzleLibraryData})">
+            <summary>
+            Determines whether the current collection contains the specified element satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.IndexOf(Sudoku.Platforms.QQ.Models.PuzzleLibraryData)">
+            <summary>
+            Gets the index of the element that is equal to the specified library.
+            </summary>
+            <param name="puzzleLibrary">The puzzle library to be checked.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating the index of the first satisfied element; -1 if none found.</returns>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
@@ -870,6 +909,25 @@
             <summary>
             Indicates how many puzzles the library has been finished.
             </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.Equals(Sudoku.Platforms.QQ.Models.PuzzleLibraryData)">
+            <inheritdoc/>
+            <remarks>
+            Please note that the equality of two <see cref="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryData"/> instances only checks for their properties
+            <see cref="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.Name"/> and <see cref="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.GroupId"/>. Other properties will not be checked even if they may be different.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.op_Equality(Sudoku.Platforms.QQ.Models.PuzzleLibraryData,Sudoku.Platforms.QQ.Models.PuzzleLibraryData)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.op_Inequality(Sudoku.Platforms.QQ.Models.PuzzleLibraryData,Sudoku.Platforms.QQ.Models.PuzzleLibraryData)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Models.UserData">
             <summary>

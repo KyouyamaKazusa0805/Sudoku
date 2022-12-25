@@ -3,7 +3,7 @@
 /// <summary>
 /// Indicates a puzzle library.
 /// </summary>
-internal sealed class PuzzleLibraryData
+internal sealed partial class PuzzleLibraryData : IEquatable<PuzzleLibraryData>, IEqualityOperators<PuzzleLibraryData, PuzzleLibraryData, bool>
 {
 	/// <summary>
 	/// Indicates the name of the library.
@@ -36,4 +36,28 @@ internal sealed class PuzzleLibraryData
 	/// Indicates how many puzzles the library has been finished.
 	/// </summary>
 	public int FinishedPuzzlesCount { get; set; }
+
+
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// Please note that the equality of two <see cref="PuzzleLibraryData"/> instances only checks for their properties
+	/// <see cref="Name"/> and <see cref="GroupId"/>. Other properties will not be checked even if they may be different.
+	/// </remarks>
+	public bool Equals([NotNullWhen(true)] PuzzleLibraryData? other) => other is not null && GroupId == other.GroupId && Name == other.Name;
+
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(GroupId), nameof(Name))]
+	public override partial int GetHashCode();
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(PuzzleLibraryData? left, PuzzleLibraryData? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(PuzzleLibraryData? left, PuzzleLibraryData? right) => !(left == right);
 }

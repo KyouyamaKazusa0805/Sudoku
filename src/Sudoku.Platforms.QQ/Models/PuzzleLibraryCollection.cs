@@ -22,9 +22,67 @@ internal sealed partial class PuzzleLibraryCollection
 	public int Count => PuzzleLibraries.Count;
 
 
-	/// <inheritdoc cref="IReadOnlyList{T}.this[int]"/>
+	/// <summary>
+	/// Gets the target puzzle library at the specified index.
+	/// </summary>
+	/// <param name="index">The desired index.</param>
+	/// <returns>The library at the specified index.</returns>
 	public PuzzleLibraryData this[int index] => PuzzleLibraries[index];
 
+
+	/// <summary>
+	/// Determines whether the current collection contains the specified puzzle library.
+	/// </summary>
+	/// <param name="puzzleLibrary">The puzzle library to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool Contains(PuzzleLibraryData puzzleLibrary)
+	{
+		foreach (var element in PuzzleLibraries)
+		{
+			if (element == puzzleLibrary)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
+	/// Determines whether the current collection contains the specified element satisfying the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool Exists(Predicate<PuzzleLibraryData> predicate)
+	{
+		foreach (var element in PuzzleLibraries)
+		{
+			if (predicate(element))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
+	/// Gets the index of the element that is equal to the specified library.
+	/// </summary>
+	/// <param name="puzzleLibrary">The puzzle library to be checked.</param>
+	/// <returns>An <see cref="int"/> value indicating the index of the first satisfied element; -1 if none found.</returns>
+	public int IndexOf(PuzzleLibraryData puzzleLibrary)
+	{
+		for (var i = 0; i < PuzzleLibraries.Count; i++)
+		{
+			if (PuzzleLibraries[i] == puzzleLibrary)
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
