@@ -11205,6 +11205,9 @@
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
@@ -11990,7 +11993,7 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="Cells"><inheritdoc/></param>
             <param name="IsAvoidable"><inheritdoc/></param>
-            <param name="Pivots">Indicates the pivots used.</param>
+            <param name="Branches">Indicates the branches used.</param>
             <param name="Petals">Indicates the petals used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
@@ -12006,13 +12009,13 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="Cells"><inheritdoc/></param>
             <param name="IsAvoidable"><inheritdoc/></param>
-            <param name="Pivots">Indicates the pivots used.</param>
+            <param name="Branches">Indicates the branches used.</param>
             <param name="Petals">Indicates the petals used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.Pivots">
-            <summary>Indicates the pivots used.</summary>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.Branches">
+            <summary>Indicates the branches used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.Petals">
             <summary>Indicates the petals used.</summary>

@@ -58,6 +58,9 @@ internal sealed record UniqueRectangleExternalTurbotFishStep(
 	public decimal BaseDifficulty => 4.6M;
 
 	/// <inheritdoc/>
+	public override string? Format => R[$"TechniqueFormat_{nameof(UniqueRectangleStep)}"];
+
+	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
 		=> new[]
 		{

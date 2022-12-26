@@ -10,7 +10,7 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="IsAvoidable"><inheritdoc/></param>
-/// <param name="Pivots">Indicates the pivots used.</param>
+/// <param name="Branches">Indicates the branches used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
@@ -23,7 +23,7 @@ internal sealed record UniqueRectangleWithWingStep(
 	int Digit2,
 	scoped in CellMap Cells,
 	bool IsAvoidable,
-	scoped in CellMap Pivots,
+	scoped in CellMap Branches,
 	scoped in CellMap Petals,
 	short ExtraDigitsMask,
 	int AbsoluteOffset
@@ -72,8 +72,9 @@ internal sealed record UniqueRectangleWithWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
+
 	[ResourceTextFormatter]
-	internal string PivotsStr() => Pivots.ToString();
+	internal string BranchesStr() => Branches.ToString();
 
 	[ResourceTextFormatter]
 	internal string DigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);

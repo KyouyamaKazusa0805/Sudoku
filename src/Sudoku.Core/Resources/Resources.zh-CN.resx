@@ -481,7 +481,7 @@
     <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带代数结构：设单元格 {TargetCellStr} 填入 X（X 是 {DigitsStr} 其一），则四个单元格将构成关于 X 和数字 {ExtraDigitStr} 的唯一矩形致命形式 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithWingStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带一个简化版的融合待定数组存在于单元格 {MergedCellsStr} 里，涉及数字 {DigitsStr} =&gt; {ElimStr}</value>
+    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带有 Wing 结构，使用 UR 的单元格为拐点，分支分别为 {BranchesStr}，涉及数字 {DigitsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType1Step" xml:space="preserve">
     <value>{Name}：如果候选数 {CandidateStr} 为假，则位于单元格 {CellsStr} 的数字 {DigitsStr} 将构成致命形式 =&gt; {ElimStr}</value>
