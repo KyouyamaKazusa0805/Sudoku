@@ -722,7 +722,7 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.Extensions.FirstOrDefaultSelector``2(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,System.Int32,System.Boolean},System.Func{``0,System.Int32,``1})">
+        <member name="M:Sudoku.Platforms.QQ.Commands.Extensions.FirstOrDefaultSelector``2(System.Collections.Immutable.ImmutableArray{``0},Sudoku.Platforms.QQ.Commands.PredicateWithIndex{``0},Sudoku.Platforms.QQ.Commands.ConverterWithIndex{``0,``1})">
             <summary>
             Try to find the first element that satisfies the specified condition <paramref name="predicate"/>,
             and projects it into the target value of type <typeparamref name="TResult"/>, using the specified converter <paramref name="selector"/>.

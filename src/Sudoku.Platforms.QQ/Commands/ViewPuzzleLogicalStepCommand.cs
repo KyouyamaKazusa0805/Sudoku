@@ -29,10 +29,9 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 				}
 
 				await renderGridAndSendMessageAsync(
-					e,
 					Grid.Parse(puzzleStr),
-					(step, _) => step.Name.Contains(techniqueName),
-					async e => await e.SendMessageAsync(string.Format(R.MessageFormat("SpecifiedStepNameIsNotFound")!, techniqueName)),
+					(pair, _) => pair.Step.Name.Contains(techniqueName),
+					async () => await e.SendMessageAsync(string.Format(R.MessageFormat("SpecifiedStepNameIsNotFound")!, techniqueName)),
 					static stepIndex => $"{R["SpecifiedPuzzle"]!} [{stepIndex + 1}]"
 				);
 
@@ -70,10 +69,9 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 				}
 
 				await renderGridAndSendMessageAsync(
-					e,
 					Grid.Parse(lines[index - 1]),
-					(step, _) => step.Name.Contains(techniqueName),
-					async e => await e.SendMessageAsync(string.Format(R.MessageFormat("SpecifiedStepNameIsNotFound")!, techniqueName)),
+					(pair, _) => pair.Step.Name.Contains(techniqueName),
+					async () => await e.SendMessageAsync(string.Format(R.MessageFormat("SpecifiedStepNameIsNotFound")!, techniqueName)),
 					stepIndex => $"@{libName} #{index + 1} [{stepIndex + 1}]"
 				);
 
@@ -89,13 +87,7 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 		return true;
 
 
-		static async Task renderGridAndSendMessageAsync(
-			GroupMessageReceiver e,
-			Grid grid,
-			Func<IStep, int, bool> predicate,
-			Func<GroupMessageReceiver, Task> actionWhenPredicateFailedToCheck,
-			Func<int, string> footerTextCreator
-		)
+		async Task renderGridAndSendMessageAsync(Grid grid, StepInfoPredicate predicate, AsyncAction failedAction, FooterTextCreator creator)
 		{
 			if (Solver.Solve(grid) is not { IsSolved: true, SolvingPath: var solvingPath })
 			{
@@ -103,10 +95,10 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 				return;
 			}
 
-			var foundStepInfo = solvingPath.FirstOrDefaultSelector((pair, i) => predicate(pair.Step, i), static (pair, i) => (pair, i));
+			var foundStepInfo = solvingPath.FirstOrDefaultSelector((pair, i) => predicate(pair, i), static (pair, i) => (pair, i));
 			if (foundStepInfo is not var ((stepGrid, step), stepIndex))
 			{
-				await actionWhenPredicateFailedToCheck(e);
+				await failedAction();
 				return;
 			}
 
@@ -117,7 +109,7 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 					.WithRenderingStep(step)
 					.WithPreferenceSettings(static pref => pref.ShowLightHouse = false)
 					.WithFontScale(1.0M, .4M)
-					.WithFooterText(footerTextCreator(stepIndex))
+					.WithFooterText(creator(stepIndex))
 			)!;
 
 			await e.SendMessageAsync(new ImageMessage { Path = picturePath });
@@ -148,11 +140,7 @@ file static class Extensions
 	/// <param name="predicate">The condition that the element should be satisfied.</param>
 	/// <param name="selector">The converter method that projects the found element to the target one.</param>
 	/// <returns>The projected value.</returns>
-	public static TResult? FirstOrDefaultSelector<T, TResult>(
-		this ImmutableArray<T> @this,
-		Func<T, int, bool> predicate,
-		Func<T, int, TResult> selector
-	) where TResult : struct
+	public static TResult? FirstOrDefaultSelector<T, TResult>(this ImmutableArray<T> @this, PredicateWithIndex<T> predicate, ConverterWithIndex<T, TResult> selector) where TResult : struct
 	{
 		for (var i = 0; i < @this.Length; i++)
 		{
@@ -166,3 +154,13 @@ file static class Extensions
 		return null;
 	}
 }
+
+file delegate bool StepInfoPredicate((Grid SteppingGrid, IStep Step) steppingPair, int stepIndex);
+
+file delegate Task AsyncAction();
+
+file delegate string FooterTextCreator(int stepIndex);
+
+file delegate bool PredicateWithIndex<T>(T element, int index);
+
+file delegate TResult ConverterWithIndex<T, TResult>(T element, int index);
