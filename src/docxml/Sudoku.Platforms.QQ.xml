@@ -734,6 +734,75 @@
             <param name="converter">The converting method that projects the found element to the target one.</param>
             <returns>The projected value.</returns>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions">
+            <summary>
+            Defines an option that determines what kind of case that the candidate will be printed by <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions.Never">
+            <summary>
+            Indicates <see cref="T:Sudoku.Drawing.ISudokuPainter"/> never prints candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions.PrintIfPuzzleIndirect">
+            <summary>
+            <para>Indicates <see cref="T:Sudoku.Drawing.ISudokuPainter"/> prints candidates when the puzzle cannot be solved using SSTS only.</para>
+            <para>
+            All SSTS are:
+            <list type="bullet">
+            <item>Hidden Single</item>
+            <item>Naked Single</item>
+            <item>Locked Candidates</item>
+            <item>Hidden Subset</item>
+            <item>Naked Subset</item>
+            </list>
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions.Always">
+            <summary>
+            Indicates <see cref="T:Sudoku.Drawing.ISudokuPainter"/> always prints candidates.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Configurations.FontScale">
+            <summary>
+            Indicates the font rendering scale values.
+            </summary>
+            <param name="ValueScale">Indicates the value scale.</param>
+            <param name="CandidateScale">Indicates the candidate scale.</param>
+            <remarks>
+            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[2]"/></para>
+            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[3]"/></para>
+            <para>
+            In addition, I don't use keyword <see langword="readonly"/> to modify the type on purpose,
+            because <see langword="record struct"/> types will automatically generate for <see langword="init"/> properties if so;
+            otherwise, we'll get a normal property will both normal <see langword="get"/> and <see langword="set"/> accessors.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Configurations.FontScale.#ctor(System.Decimal,System.Decimal)">
+            <summary>
+            Indicates the font rendering scale values.
+            </summary>
+            <param name="ValueScale">Indicates the value scale.</param>
+            <param name="CandidateScale">Indicates the candidate scale.</param>
+            <remarks>
+            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[2]"/></para>
+            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[3]"/></para>
+            <para>
+            In addition, I don't use keyword <see langword="readonly"/> to modify the type on purpose,
+            because <see langword="record struct"/> types will automatically generate for <see langword="init"/> properties if so;
+            otherwise, we'll get a normal property will both normal <see langword="get"/> and <see langword="set"/> accessors.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Configurations.FontScale.ValueScale">
+            <summary>Indicates the value scale.</summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Configurations.FontScale.CandidateScale">
+            <summary>Indicates the candidate scale.</summary>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations">
             <summary>
             Defines a type that stores a user-defined configurations.
@@ -743,6 +812,43 @@
             <summary>
             Indicates how many members will be displayed onto the ranking page. The more members to display, the longer the output text will be.
             </summary>
+            <remarks>
+            The default value is <c>15</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.CanvasSize">
+            <summary>
+            Indicates the size of the rendering canvas used by <see cref="T:Sudoku.Drawing.ISudokuPainter"/> to create <see cref="T:System.Drawing.Bitmap"/> instances.
+            </summary>
+            <remarks>
+            The default value is <c>1000</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.CanvasPadding">
+            <summary>
+            Indicates the padding of rendering canvas used by <see cref="T:Sudoku.Drawing.ISudokuPainter"/> to create <see cref="T:System.Drawing.Bitmap"/> instances.
+            </summary>
+            <remarks>
+            The default value is <c>20</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.FontScale">
+            <summary>
+            Indicates the font scale used by <see cref="T:Sudoku.Drawing.ISudokuPainter"/> to render given, modifiable values and candidates.
+            </summary>
+            <remarks>
+            The default value is <c>new(1.0M, 0.4M)</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.CandidatePrinting">
+            <summary>
+            Indicates whether <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance prints candidates.
+            </summary>
+            <remarks>
+            The default value is <c><see cref="F:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions.PrintIfPuzzleIndirect"/></c>.
+            </remarks>
+            <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
+            <seealso cref="T:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions"/>
         </member>
         <member name="T:Sudoku.Platforms.QQ.IO.InternalReadWrite">
             <summary>
@@ -1398,6 +1504,16 @@
             <param name="step">The step.</param>
             <returns>The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.Drawing.SudokuPainterExtensions.WithRenderingCandidates(Sudoku.Drawing.ISudokuPainter,Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions,Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+            <summary>
+            Render candidates with specified option.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</param>
+            <param name="candidatePrinting">The printing options.</param>
+            <param name="difficultyLevel">The difficulty level.</param>
+            <returns>The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when argument <paramref name="candidatePrinting"/> is not defined.</exception>
+        </member>
         <member name="T:Sudoku.CommandLine.ModuleInitializer">
             <target name="type">
 				<summary>
@@ -1484,31 +1600,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1596,31 +1712,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1637,31 +1753,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1678,31 +1794,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>

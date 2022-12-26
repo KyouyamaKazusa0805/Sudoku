@@ -134,6 +134,23 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10) => new SudokuPainter(canvasDefaultSize, canvasOffset);
+
+	/// <summary>
+	/// Create an instance using the specified <see cref="SudokuPainterPropertySetter"/> method,
+	/// and a default base <see cref="ISudokuPainter"/> instance.
+	/// </summary>
+	/// <param name="base">The base instance.</param>
+	/// <param name="propertySetters">The property setter method.</param>
+	/// <returns>Created <see cref="ISudokuPainter"/> instance.</returns>
+	static ISudokuPainter Create(ISudokuPainter @base, SudokuPainterPropertySetter propertySetters)
+	{
+		foreach (var method in propertySetters.GetInvocations())
+		{
+			@base = method(@base);
+		}
+
+		return @base;
+	}
 }
 
 /// <summary>

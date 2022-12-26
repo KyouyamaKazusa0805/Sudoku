@@ -112,7 +112,6 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 					.WithCanvasOffset(20)
 					.WithGrid(stepGrid)
 					.WithRenderingStep(step)
-					.WithPreferenceSettings(static pref => pref.ShowLightHouse = false)
 					.WithFontScale(1.0M, .4M)
 					.WithFooterText(creator(stepIndex))
 			)!;

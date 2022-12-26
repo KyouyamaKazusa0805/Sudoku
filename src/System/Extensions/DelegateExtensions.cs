@@ -13,5 +13,5 @@ public static class DelegateExtensions
 	/// <param name="this">The instance.</param>
 	/// <returns>An array of delegates representing the invocation list of the current delegate.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IEnumerable<T> GetInvocations<T>(this T? @this) where T : Delegate => (@this?.GetInvocationList() ?? Array.Empty<T>()).Cast<T>();
+	public static IEnumerable<T> GetInvocations<T>(this T @this) where T : Delegate => @this.GetInvocationList().Cast<T>();
 }

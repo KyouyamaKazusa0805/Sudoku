@@ -78,6 +78,15 @@
             The default singleton instance that you can get.
             </summary>
         </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainter.Create(Sudoku.Drawing.ISudokuPainter,Sudoku.Drawing.SudokuPainterPropertySetter)">
+            <summary>
+            Create an instance using the specified <see cref="T:Sudoku.Drawing.SudokuPainterPropertySetter"/> method,
+            and a default base <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.
+            </summary>
+            <param name="base">The base instance.</param>
+            <param name="propertySetters">The property setter method.</param>
+            <returns>Created <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.Drawing.SudokuPainter">
             <summary>
             The backing type that implements type <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.
@@ -277,6 +286,13 @@
             </summary>
             <param name="predicate">The predicate.</param>
             <returns>The target painter.</returns>
+        </member>
+        <member name="T:Sudoku.Drawing.SudokuPainterPropertySetter">
+            <summary>
+            Defines a type that holds a list of methods to create <see cref="T:Sudoku.Drawing.ISudokuPainter"/> using the specified rule.
+            </summary>
+            <param name="base">The base <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</param>
+            <returns><see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance returned.</returns>
         </member>
         <member name="T:Sudoku.Drawing.TextRendering.TextAlignmentType">
             <summary>
@@ -697,31 +713,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1208,31 +1224,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1342,31 +1358,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1396,31 +1412,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1496,31 +1512,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1537,31 +1553,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1584,31 +1600,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1638,31 +1654,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>

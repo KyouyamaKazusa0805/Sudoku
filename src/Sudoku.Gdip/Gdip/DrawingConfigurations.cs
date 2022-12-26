@@ -13,7 +13,7 @@ public sealed class DrawingConfigurations
 	/// <summary>
 	/// Indicates whether the grid painter will use new algorithm to render a house (lighter).
 	/// </summary>
-	public bool ShowLightHouse { get; set; } = true;
+	public bool ShowLightHouse { get; set; } = false;
 
 	/// <summary>
 	/// Indicates whether border bars will fully overlaps the shared grid line while rendering.

@@ -20,4 +20,33 @@ public static class SudokuPainterExtensions
 			{ Views: [var view], Conclusions: var conclusions } => @this.AddNodes(view).WithConclusions(conclusions).WithRenderingCandidates(true),
 			{ Conclusions: var conclusions } => @this.WithConclusions(conclusions).WithRenderingCandidates(true)
 		};
+
+	/// <summary>
+	/// Render candidates with specified option.
+	/// </summary>
+	/// <param name="this">The <see cref="ISudokuPainter"/> instance.</param>
+	/// <param name="candidatePrinting">The printing options.</param>
+	/// <param name="difficultyLevel">The difficulty level.</param>
+	/// <returns>The <see cref="ISudokuPainter"/> instance.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when argument <paramref name="candidatePrinting"/> is not defined.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[SupportedOSPlatform("windows")]
+	internal static ISudokuPainter WithRenderingCandidates(
+		this ISudokuPainter @this,
+		CandidatePrintingOptions candidatePrinting,
+		DifficultyLevel difficultyLevel
+	)
+	{
+		@this.WithRenderingCandidates(
+			candidatePrinting switch
+			{
+				CandidatePrintingOptions.Never => false,
+				CandidatePrintingOptions.PrintIfPuzzleIndirect => difficultyLevel >= DifficultyLevel.Hard,
+				CandidatePrintingOptions.Always => true,
+				_ => throw new ArgumentOutOfRangeException(nameof(candidatePrinting))
+			}
+		);
+
+		return @this;
+	}
 }
