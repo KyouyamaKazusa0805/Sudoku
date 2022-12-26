@@ -41,7 +41,7 @@ public sealed class Generate : IExecutable
 						continue;
 					}
 
-					await Terminal.WriteLineAsync(string.Format(R.MessageFormat("GeneratedPuzzleIs")!, targetPuzzle.ToString("0")));
+					await Terminal.WriteLineAsync(string.Format(R["_MessageFormat_GeneratedPuzzleIs"]!, targetPuzzle.ToString("0")));
 
 					return;
 				}
@@ -58,7 +58,7 @@ public sealed class Generate : IExecutable
 						continue;
 					}
 
-					await Terminal.WriteLineAsync(string.Format(R.MessageFormat("GeneratedPuzzleIs")!, targetPuzzle.ToString("0")));
+					await Terminal.WriteLineAsync(string.Format(R["_MessageFormat_GeneratedPuzzleIs"]!, targetPuzzle.ToString("0")));
 
 					return;
 				}

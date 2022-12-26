@@ -28,7 +28,7 @@ public sealed class Help : IExecutable
 		var thisAssembly = thisType.Assembly;
 
 		// Defines a builder that stores the content in order to output.
-		var helpTextContentBuilder = new StringBuilder($"{R.MessageFormat("Project")} {realName}\r\n{R.MessageFormat("Version")} {version}\r\n\r\n");
+		var helpTextContentBuilder = new StringBuilder($"{R["_MessageFormat_Project"]} {realName}\r\n{R["_MessageFormat_Version"]} {version}\r\n\r\n");
 		if (HelpCommandName is null)
 		{
 			// Iterates on each command type, to get the maximum length of the command,
@@ -62,7 +62,7 @@ public sealed class Help : IExecutable
 			}
 
 			// Build the content.
-			helpTextContentBuilder.AppendLine(R.MessageFormat("RootCommandsAre")!).AppendLine();
+			helpTextContentBuilder.AppendLine(R["_MessageFormat_RootCommandsAre"]!).AppendLine();
 			foreach (var (commandName, parts) in listOfDescriptionParts)
 			{
 				helpTextContentBuilder
@@ -105,7 +105,7 @@ public sealed class Help : IExecutable
 			if (usageAttributes is [{ IsPattern: var firstIsPattern }, .. { Length: var otherArgsCount }])
 			{
 				// Output the title.
-				helpTextContentBuilder.AppendLine(R.MessageFormat("SyntaxAndUsageIs")!).AppendLine();
+				helpTextContentBuilder.AppendLine(R["_MessageFormat_SyntaxAndUsageIs"]!).AppendLine();
 
 				// Determines whether the collection has more than one pattern syntax usages.
 				if (Array.FindAll(usageAttributes, static e => e.IsPattern).Length >= 2)
@@ -203,7 +203,7 @@ public sealed class Help : IExecutable
 
 						doubleArguments.Add(
 							(
-								$"{fullCommand} ({shortCommand}){(isRequired ? R.MessageFormat("AndIsRequired")! : string.Empty)}",
+								$"{fullCommand} ({shortCommand}){(isRequired ? R["_MessageFormat_AndIsRequired"]! : string.Empty)}",
 								R[key]!.SplitByLength(Console.LargestWindowWidth - 4)
 							)
 						);
@@ -221,7 +221,7 @@ public sealed class Help : IExecutable
 
 						doubleArguments.Add(
 							(
-								$"{fullCommand} ({shortCommand}){(isRequired ? R.MessageFormat("AndIsRequired")! : string.Empty)}",
+								$"{fullCommand} ({shortCommand}){(isRequired ? R["_MessageFormat_AndIsRequired"]! : string.Empty)}",
 								description.SplitByLength(Console.LargestWindowWidth - 4)
 							)
 						);
@@ -236,7 +236,7 @@ public sealed class Help : IExecutable
 			}
 
 			// Build the content.
-			helpTextContentBuilder.AppendLine(R.MessageFormat("CommandsAre")!).AppendLine();
+			helpTextContentBuilder.AppendLine(R["_MessageFormat_CommandsAre"]!).AppendLine();
 			foreach (var (commandName, parts) in singleArguments)
 			{
 				helpTextContentBuilder

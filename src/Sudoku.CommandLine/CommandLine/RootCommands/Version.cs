@@ -17,6 +17,6 @@ public sealed class Version : IExecutable
 			throw new CommandLineRuntimeException((int)ErrorCode.AssemblyNameIsNull);
 		}
 
-		await Terminal.WriteLineAsync($"{R.MessageFormat("Project")!} {realName}\r\n{R.MessageFormat("Version")!} {version}");
+		await Terminal.WriteLineAsync($"{R["_MessageFormat_Project"]!} {realName}\r\n{R["_MessageFormat_Version"]!} {version}");
 	}
 }

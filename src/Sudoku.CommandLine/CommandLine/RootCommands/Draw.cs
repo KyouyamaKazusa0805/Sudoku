@@ -66,7 +66,7 @@ public sealed class Draw : IExecutable
 		{
 			sudokuPainter.SaveTo(OutputPath!);
 
-			await Terminal.WriteLineAsync(string.Format(R.MessageFormat("OutputSuccess")!, OutputPath));
+			await Terminal.WriteLineAsync(string.Format(R["_MessageFormat_OutputSuccess"]!, OutputPath));
 		}
 		catch (Exception ex)
 		{

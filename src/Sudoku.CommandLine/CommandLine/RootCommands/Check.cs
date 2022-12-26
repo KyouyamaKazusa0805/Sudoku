@@ -33,9 +33,9 @@ public sealed class Check : IExecutable
 			{
 				await Terminal.WriteLineAsync(
 					string.Format(
-						R.MessageFormat("CheckValidityResult")!,
+						R["_MessageFormat_CheckValidityResult"]!,
 						Grid.ToString("#"),
-						(Grid.IsValid() ? R.MessageFormat("Has") : R.MessageFormat("DoesNotHave"))!
+						(Grid.IsValid() ? R["_MessageFormat_Has"] : R["_MessageFormat_DoesNotHave"])!
 					)
 				);
 

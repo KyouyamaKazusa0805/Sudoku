@@ -222,7 +222,7 @@ file sealed class Bot : IExecutable
 			}
 			else
 			{
-				await e.RejectAsync(R.MessageFormat("MemberJoinedRejected")!);
+				await e.RejectAsync(R["_MessageFormat_MemberJoinedRejected"]!);
 			}
 		}
 	}
@@ -237,7 +237,7 @@ file sealed class Bot : IExecutable
 	{
 		if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
 		{
-			await group.SendGroupMessageAsync(R.MessageFormat("SampleMemberJoined"));
+			await group.SendGroupMessageAsync(R["_MessageFormat_SampleMemberJoined"]!);
 		}
 	}
 #endif
