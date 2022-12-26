@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
-[SukakuNotSupported]
+[StepSearcherRunningOptions(StepSearcherRunningOptions.OnlyForStandardSudoku)]
 internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueCoverStepSearcher
 {
 	/// <inheritdoc/>

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
-[StepSearcherOptions(IsDirect = true)]
+[StepSearcherMetadata(IsDirect = true)]
 internal sealed partial class PatternOverlayStepSearcher : IPatternOverlayStepSearcher
 {
 	/// <inheritdoc/>

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
-[StepSearcherOptions(PuzzleNotRelying = true)]
+[StepSearcherMetadata(PuzzleNotRelying = true)]
 internal sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
 {
 	/// <inheritdoc/>

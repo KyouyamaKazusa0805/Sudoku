@@ -39,11 +39,11 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 	public LogicalSolverResult Solve(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
 	{
 		var result = new LogicalSolverResult(puzzle);
-		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } s)
+		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
 		{
 			try
 			{
-				return InternalSolve(puzzle, solution, s, result, progress, cancellationToken);
+				return InternalSolve(puzzle, solution, isSukaku, result, progress, cancellationToken);
 			}
 			catch (OperationCanceledException ex) when (ex.CancellationToken != cancellationToken)
 			{
@@ -95,7 +95,8 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 		bool isSukaku,
 		LogicalSolverResult resultBase,
 		IProgress<double>? progress = null,
-		CancellationToken cancellationToken = default)
+		CancellationToken cancellationToken = default
+	)
 	{
 		var playground = puzzle;
 

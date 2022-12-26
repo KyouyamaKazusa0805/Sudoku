@@ -17,9 +17,10 @@ public interface ILogicalSolverOptions
 	bool IsFullApplying { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver will ignore slow step searchers being marked <see cref="AlgorithmTooSlowAttribute"/>.
+	/// Indicates whether the solver will ignore slow step searchers being configured
+	/// <see cref="StepSearcherRunningOptions.SlowAlgorithm"/>.
 	/// </summary>
-	/// <seealso cref="AlgorithmTooSlowAttribute"/>
+	/// <seealso cref="StepSearcherRunningOptions.SlowAlgorithm"/>
 	bool IgnoreSlowAlgorithms { get; set; }
 
 	/// <summary>

@@ -46,7 +46,7 @@
             </para>
             <para>
             If a step searcher doesn't rely on this class, it'll be <see langword="true"/> for the property named
-            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>.
             If you find that the step searcher marks that attribute,
             you can call it everywhere safely; however, if the searcher isn't marked that attribute, you
             can't call it everywhere unless you call the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
@@ -66,7 +66,7 @@
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
             <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
-            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.EmptyCells">
@@ -76,10 +76,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.BivalueCells">
             <summary>
@@ -88,10 +88,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.CandidatesMap">
             <summary>
@@ -100,10 +100,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.DigitsMap">
             <summary>
@@ -112,10 +112,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Buffers.FastProperties.ValuesMap">
             <summary>
@@ -124,10 +124,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>
         </member>
         <member name="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)">
             <summary>
@@ -562,18 +562,18 @@
             To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute">
+        <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute">
             <summary>
             Defines an attribute that applies to a step searcher, to define more options on UI configurations.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsOptionsFixed">
+        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsOptionsFixed">
             <summary>
             <para>Indicates whether the option is fixed that can't be modified in UI.</para>
             <para><i>The default value is <see langword="false"/>.</i></para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect">
+        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect">
             <summary>
             <para>
             Indicates the technique searcher can or can't be used in some scenarios
@@ -612,15 +612,9 @@
             <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
             <seealso cref="T:Sudoku.Buffers.FastProperties"/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.PuzzleNotRelying">
+        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.PuzzleNotRelying">
             <summary>
             <para>Indicates whether the specified step searcher doesn't rely on the puzzle.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDeprecated">
-            <summary>
-            <para>Indicates whether the step searcher is deprecated.</para>
             <para><i>The default value is <see langword="false"/>.</i></para>
             </summary>
         </member>
@@ -631,6 +625,59 @@
             with the <see cref="T:Sudoku.Solving.IComplexSolver`2"/> type.
             </summary>
             <seealso cref="T:Sudoku.Solving.IComplexSolver`2"/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions">
+            <summary>
+            Defines a list of options that is used by type <see cref="T:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptionsAttribute"/>,
+            indicating the extra options that are configured and used by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
+            to control some extra operation that cannot do on basic options being marked <see cref="T:Sudoku.Solving.Logical.Annotations.StepSearcherPropertyAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptionsAttribute"/>
+            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
+            <seealso cref="T:Sudoku.Solving.Logical.Annotations.StepSearcherPropertyAttribute"/>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.None">
+            <summary>
+            Indicates the options is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.TemporarilyDisabled">
+            <summary>
+            Indicates the step searcher will be temporarily disabled due to some reason,
+            e.g. the step searcher algorithm has bugs waiting to be fixed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.OnlyForStandardSudoku">
+            <summary>
+            Indicates the step searcher is running only on standard sudoku puzzles.
+            If a puzzle is sukaku, the step searcher will be skipped.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm">
+            <summary>
+            Indicates the step searcher chooses for a slow algorithm. If <see cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreSlowAlgorithms"/>
+            is configured, the step searcher will be ignored.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreSlowAlgorithms"/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptionsAttribute">
+            <summary>
+            Defines an attribute that is used for <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> derived types,
+            to tell the runtime that the extra information on controlling running operation on <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptionsAttribute.#ctor(Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptionsAttribute"/> instance via the specified options.
+            </summary>
+            <param name="options">The options.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptionsAttribute.Options">
+            <summary>
+            Indicates the options.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Logical.Annotations.SukakuNotSupportedAttribute">
             <summary>
@@ -843,9 +890,10 @@
         </member>
         <member name="P:Sudoku.Solving.Logical.ILogicalSolverOptions.IgnoreSlowAlgorithms">
             <summary>
-            Indicates whether the solver will ignore slow step searchers being marked <see cref="T:Sudoku.Solving.Logical.Annotations.AlgorithmTooSlowAttribute"/>.
+            Indicates whether the solver will ignore slow step searchers being configured
+            <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.Annotations.AlgorithmTooSlowAttribute"/>
+            <seealso cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.ILogicalSolverOptions.CustomSearcherCollection">
             <summary>
@@ -6072,9 +6120,9 @@
             </summary>
             <remarks>
             If you don't know what is a direct step searcher, please visit the property
-            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/> to learn more information.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.IStepSearcher.IsOptionsFixed">
             <summary>
@@ -6083,19 +6131,14 @@
             </summary>
             <remarks>
             If you don't know what is a direct step searcher, please visit the property
-            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsOptionsFixed"/> to learn more information.
+            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsOptionsFixed"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsOptionsFixed"/>
+            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsOptionsFixed"/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.IStepSearcher.IsDeprecated">
+        <member name="P:Sudoku.Solving.Logical.IStepSearcher.IsTemporarilyDisabled">
             <summary>
-            Determines whether the current step searcher is deprecated.
+            Determines whether the current step searcher is temporarily disabled.
             </summary>
-            <remarks>
-            If you don't know what is a direct step searcher, please visit the property
-            <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDeprecated"/> to learn more information.
-            </remarks>
-            <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherOptionsAttribute.IsDeprecated"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.IStepSearcher.IsNotSupportedForSukaku">
             <summary>
@@ -6104,10 +6147,10 @@
         </member>
         <member name="P:Sudoku.Solving.Logical.IStepSearcher.IsConfiguredSlow">
             <summary>
-            Determines whether the current step searcher is too slow,
-            with being applied <see cref="T:Sudoku.Solving.Logical.Annotations.AlgorithmTooSlowAttribute"/>.
+            Determines whether the current step searcher is disabled
+            by option <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/> being configured.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.Annotations.AlgorithmTooSlowAttribute"/>
+            <seealso cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.IStepSearcher.Options">
             <summary>

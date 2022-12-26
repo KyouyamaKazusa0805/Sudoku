@@ -20,13 +20,13 @@ public interface IStepSearcher
 	/// </summary>
 	/// <remarks>
 	/// If you don't know what is a direct step searcher, please visit the property
-	/// <see cref="StepSearcherOptionsAttribute.IsDirect"/> to learn more information.
+	/// <see cref="StepSearcherMetadataAttribute.IsDirect"/> to learn more information.
 	/// </remarks>
-	/// <seealso cref="StepSearcherOptionsAttribute.IsDirect"/>
+	/// <seealso cref="StepSearcherMetadataAttribute.IsDirect"/>
 	sealed bool IsDirect
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => GetType().GetCustomAttribute<StepSearcherOptionsAttribute>()?.IsDirect ?? false;
+		get => GetType().GetCustomAttribute<StepSearcherMetadataAttribute>()?.IsDirect ?? false;
 	}
 
 	/// <summary>
@@ -35,27 +35,23 @@ public interface IStepSearcher
 	/// </summary>
 	/// <remarks>
 	/// If you don't know what is a direct step searcher, please visit the property
-	/// <see cref="StepSearcherOptionsAttribute.IsOptionsFixed"/> to learn more information.
+	/// <see cref="StepSearcherMetadataAttribute.IsOptionsFixed"/> to learn more information.
 	/// </remarks>
-	/// <seealso cref="StepSearcherOptionsAttribute.IsOptionsFixed"/>
+	/// <seealso cref="StepSearcherMetadataAttribute.IsOptionsFixed"/>
 	sealed bool IsOptionsFixed
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => GetType().GetCustomAttribute<StepSearcherOptionsAttribute>()?.IsOptionsFixed ?? false;
+		get => GetType().GetCustomAttribute<StepSearcherMetadataAttribute>()?.IsOptionsFixed ?? false;
 	}
 
 	/// <summary>
-	/// Determines whether the current step searcher is deprecated.
+	/// Determines whether the current step searcher is temporarily disabled.
 	/// </summary>
-	/// <remarks>
-	/// If you don't know what is a direct step searcher, please visit the property
-	/// <see cref="StepSearcherOptionsAttribute.IsDeprecated"/> to learn more information.
-	/// </remarks>
-	/// <seealso cref="StepSearcherOptionsAttribute.IsDeprecated"/>
-	sealed bool IsDeprecated
+	sealed bool IsTemporarilyDisabled
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => GetType().GetCustomAttribute<StepSearcherOptionsAttribute>()?.IsDeprecated ?? false;
+		get => GetType().GetCustomAttribute<StepSearcherRunningOptionsAttribute>() is { Options: var options }
+			&& options.Flags(StepSearcherRunningOptions.TemporarilyDisabled);
 	}
 
 	/// <summary>
@@ -64,18 +60,20 @@ public interface IStepSearcher
 	sealed bool IsNotSupportedForSukaku
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => GetType().IsDefined(typeof(SukakuNotSupportedAttribute));
+		get => GetType().GetCustomAttribute<StepSearcherRunningOptionsAttribute>() is { Options: var options }
+			&& options.Flags(StepSearcherRunningOptions.OnlyForStandardSudoku);
 	}
 
 	/// <summary>
-	/// Determines whether the current step searcher is too slow,
-	/// with being applied <see cref="AlgorithmTooSlowAttribute"/>.
+	/// Determines whether the current step searcher is disabled
+	/// by option <see cref="StepSearcherRunningOptions.SlowAlgorithm"/> being configured.
 	/// </summary>
-	/// <seealso cref="AlgorithmTooSlowAttribute"/>
+	/// <seealso cref="StepSearcherRunningOptions.SlowAlgorithm"/>
 	sealed bool IsConfiguredSlow
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => GetType().IsDefined(typeof(AlgorithmTooSlowAttribute));
+		get => GetType().GetCustomAttribute<StepSearcherRunningOptionsAttribute>() is { Options: var options }
+			&& options.Flags(StepSearcherRunningOptions.SlowAlgorithm);
 	}
 
 	/// <summary>

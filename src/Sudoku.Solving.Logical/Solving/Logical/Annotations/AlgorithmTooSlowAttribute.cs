@@ -8,6 +8,7 @@
 /// This attribute can be ignored when a logical solver enables them regardless of execution speed.
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
+[Obsolete($"The type is being deprecated. Please use option '{nameof(StepSearcherRunningOptions.SlowAlgorithm)}' instead.", false)]
 public sealed class AlgorithmTooSlowAttribute : Attribute
 {
 }

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
-[StepSearcherOptions(IsOptionsFixed = true, IsDirect = true)]
+[StepSearcherMetadata(IsOptionsFixed = true, IsDirect = true)]
 internal sealed unsafe partial class BruteForceStepSearcher : IBruteForceStepSearcher
 {
 	/// <inheritdoc/>

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
-[SukakuNotSupported]
+[StepSearcherRunningOptions(StepSearcherRunningOptions.OnlyForStandardSudoku)]
 internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepSearcher
 {
 	/// <inheritdoc/>

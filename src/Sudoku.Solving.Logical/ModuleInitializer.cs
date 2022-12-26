@@ -22,7 +22,8 @@ internal static class ModuleInitializer
 			}
 
 			// The step searcher cannot be deprecated.
-			if (type.GetCustomAttribute<StepSearcherOptionsAttribute>() is { IsDeprecated: true })
+			if (type.GetCustomAttribute<StepSearcherRunningOptionsAttribute>() is { Options: var options }
+				&& options.Flags(StepSearcherRunningOptions.TemporarilyDisabled))
 			{
 				continue;
 			}

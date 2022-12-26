@@ -4,7 +4,7 @@
 /// Defines an attribute that applies to a step searcher, to define more options on UI configurations.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-public sealed class StepSearcherOptionsAttribute : Attribute
+public sealed class StepSearcherMetadataAttribute : Attribute
 {
 	/// <summary>
 	/// <para>Indicates whether the option is fixed that can't be modified in UI.</para>
@@ -56,10 +56,4 @@ public sealed class StepSearcherOptionsAttribute : Attribute
 	/// <para><i>The default value is <see langword="false"/>.</i></para>
 	/// </summary>
 	public bool PuzzleNotRelying { get; init; }
-
-	/// <summary>
-	/// <para>Indicates whether the step searcher is deprecated.</para>
-	/// <para><i>The default value is <see langword="false"/>.</i></para>
-	/// </summary>
-	public bool IsDeprecated { get; init; }
 }

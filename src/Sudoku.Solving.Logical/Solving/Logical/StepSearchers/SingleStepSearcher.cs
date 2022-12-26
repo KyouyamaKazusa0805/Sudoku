@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
-[StepSearcherOptions(IsDirect = true, IsOptionsFixed = true)]
+[StepSearcherMetadata(IsDirect = true, IsOptionsFixed = true)]
 internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>

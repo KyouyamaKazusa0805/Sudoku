@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
-[StepSearcherOptions(IsDirect = true)]
+[StepSearcherMetadata(IsDirect = true)]
 internal sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : IGurthSymmetricalPlacementStepSearcher
 {
 	/// <inheritdoc/>
