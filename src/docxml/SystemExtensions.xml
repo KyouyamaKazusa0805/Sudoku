@@ -878,6 +878,9 @@
             <param name="index">The desired index.</param>
             <returns>The target list.</returns>
         </member>
+        <member name="M:System.Collections.Generic.ListExtensions.ToImmutableArray``1(System.Collections.Generic.List{``0})">
+            <inheritdoc cref="M:System.Collections.Immutable.ImmutableArray.ToImmutableArray``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
         <member name="T:System.Collections.BitArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.

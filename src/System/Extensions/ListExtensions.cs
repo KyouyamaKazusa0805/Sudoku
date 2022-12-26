@@ -59,4 +59,8 @@ public static class ListExtensions
 
 		return result;
 	}
+
+	/// <inheritdoc cref="ImmutableArray.ToImmutableArray{TSource}(IEnumerable{TSource})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ImmutableArray<T> ToImmutableArray<T>(this List<T> @this) => ImmutableArray.Create(@this.ToArray());
 }
