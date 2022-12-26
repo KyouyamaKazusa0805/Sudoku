@@ -155,12 +155,42 @@ file static class Extensions
 	}
 }
 
+/// <summary>
+/// Defines a condition that uses <see cref="Grid"/> and <see cref="IStep"/> to indicate a gathered information on a step.
+/// </summary>
+/// <param name="steppingPair">The pair of step information.</param>
+/// <param name="stepIndex">The index of the step.</param>
+/// <returns>A <see cref="bool"/> result indicating whether the condition is passed.</returns>
 file delegate bool StepInfoPredicate((Grid SteppingGrid, IStep Step) steppingPair, int stepIndex);
 
+/// <summary>
+/// Defines an asynchronous action.
+/// </summary>
+/// <returns>The task that holds the operation of the asynchronous action.</returns>
 file delegate Task AsyncAction();
 
+/// <summary>
+/// Defines a footer text creator.
+/// </summary>
+/// <param name="stepIndex">The step index.</param>
+/// <returns>The footer text.</returns>
 file delegate string FooterTextCreator(int stepIndex);
 
+/// <summary>
+/// Indicates the predicate with element's index.
+/// </summary>
+/// <typeparam name="T">The type of the element.</typeparam>
+/// <param name="element">The element iterated.</param>
+/// <param name="index">The index of the element iterated.</param>
+/// <returns>A <see cref="bool"/> result indicating whether the condition is passed.</returns>
 file delegate bool PredicateWithIndex<T>(T element, int index);
 
+/// <summary>
+/// Defines a converter method that uses an index.
+/// </summary>
+/// <typeparam name="T">The type of the base element.</typeparam>
+/// <typeparam name="TResult">The type of converted and returned value.</typeparam>
+/// <param name="element">The element.</param>
+/// <param name="index">The index of the element in the list.</param>
+/// <returns>The target element converted.</returns>
 file delegate TResult ConverterWithIndex<T, TResult>(T element, int index);

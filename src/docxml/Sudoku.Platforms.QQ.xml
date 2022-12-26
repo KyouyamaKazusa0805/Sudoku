@@ -734,6 +734,46 @@
             <param name="selector">The converter method that projects the found element to the target one.</param>
             <returns>The projected value.</returns>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.StepInfoPredicate">
+            <summary>
+            Defines a condition that uses <see cref="T:Sudoku.Concepts.Grid"/> and <see cref="T:Sudoku.Solving.Logical.IStep"/> to indicate a gathered information on a step.
+            </summary>
+            <param name="steppingPair">The pair of step information.</param>
+            <param name="stepIndex">The index of the step.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the condition is passed.</returns>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.AsyncAction">
+            <summary>
+            Defines an asynchronous action.
+            </summary>
+            <returns>The task that holds the operation of the asynchronous action.</returns>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.FooterTextCreator">
+            <summary>
+            Defines a footer text creator.
+            </summary>
+            <param name="stepIndex">The step index.</param>
+            <returns>The footer text.</returns>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.PredicateWithIndex`1">
+            <summary>
+            Indicates the predicate with element's index.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="element">The element iterated.</param>
+            <param name="index">The index of the element iterated.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the condition is passed.</returns>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Commands.ConverterWithIndex`2">
+            <summary>
+            Defines a converter method that uses an index.
+            </summary>
+            <typeparam name="T">The type of the base element.</typeparam>
+            <typeparam name="TResult">The type of converted and returned value.</typeparam>
+            <param name="element">The element.</param>
+            <param name="index">The index of the element in the list.</param>
+            <returns>The target element converted.</returns>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations">
             <summary>
             Defines a type that stores a user-defined configurations.
