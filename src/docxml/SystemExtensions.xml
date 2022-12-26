@@ -1479,6 +1479,35 @@
             Throws when the current method has encountered an unexpected error.
             </exception>
         </member>
+        <member name="T:System.CommandLine.MetaParser">
+            <summary>
+            Defines a meta parser that parses the raw string in a single line, separating them into multiple arguments using spaces and quotes.
+            </summary>
+            <remarks>
+            This type uses a method by regular expressions to parse strings, referenced from StackOverflow.
+            For more information please visit <see href="https://stackoverflow.com/a/59638741/13613782">this link</see>.
+            </remarks>
+        </member>
+        <member name="M:System.CommandLine.MetaParser.Parse(System.String)">
+            <summary>
+            Parses a line of command, separating the command line into multiple <see cref="T:System.String"/> arguments using spaces and quotes.
+            </summary>
+            <param name="commandLine">The command line.</param>
+            <returns>Parsed arguments, represented as an array of <see cref="T:System.String"/> values.</returns>
+        </member>
+        <member name="M:System.CommandLine.MetaParser.CommandArgumentsPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match with 2 alternative expressions, atomically.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match '"'.<br/>
+                    ○ Match any character lazily at least once.<br/>
+                    ○ Match '"'.<br/>
+                ○ Match a character other than ' ' atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
         <member name="T:System.CommandLine.Parser">
             <summary>
             Defines a command line parser that can parse the command line arguments as real instances.
@@ -2819,29 +2848,61 @@
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the NullLinesOrHeaderSpacesPattern method.</summary>
+        <member name="T:System.Text.RegularExpressions.Generated.CommandArgumentsPattern_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CommandArgumentsPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.CommandArgumentsPattern_1.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.CommandArgumentsPattern_1.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.CommandArgumentsPattern_1.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.CommandArgumentsPattern_1.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.CommandArgumentsPattern_1.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CommandArgumentsPattern_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CommandArgumentsPattern_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.CommandArgumentsPattern_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_2">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the NullLinesOrHeaderSpacesPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_2.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_2.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_2.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_2.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_2.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_2.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_2.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
