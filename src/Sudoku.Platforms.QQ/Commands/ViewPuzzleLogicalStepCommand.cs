@@ -20,6 +20,24 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 		var groupId = e.GroupId;
 		switch (args.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries))
 		{
+			case [var puzzleKeyword, var puzzleStr, var techniqueName] when puzzleKeyword == R.CommandSegment("Puzzle")!:
+			{
+				if (!Grid.TryParse(puzzleStr, out var puzzle))
+				{
+					await e.SendMessageAsync(R.MessageFormat("PuzzleStrIsInvalid")!);
+					break;
+				}
+
+				await renderGridAndSendMessageAsync(
+					e,
+					Grid.Parse(puzzleStr),
+					(step, _) => step.Name.Contains(techniqueName),
+					async e => await e.SendMessageAsync(string.Format(R.MessageFormat("SpecifiedStepNameIsNotFound")!, techniqueName)),
+					static stepIndex => $"{R["SpecifiedPuzzle"]!} [{stepIndex + 1}]"
+				);
+
+				break;
+			}
 			case [var puzzleLibKeyword, var libName, var numberLabel, var techniqueName] when puzzleLibKeyword == R.CommandSegment("PuzzleLib")!:
 			{
 				if (InternalReadWrite.ReadLibrary(groupId, libName) is not { PuzzleFilePath: var filePath })
@@ -51,45 +69,13 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 					break;
 				}
 
-				index--;
-				var grid = Grid.Parse(lines[index]);
-				if (Solver.Solve(grid) is not { IsSolved: true, SolvingPath: var solvingPath })
-				{
-					await e.SendMessageAsync(R.MessageFormat("PuzzleHasMultipleSolutionsOrNoSolution"));
-					break;
-				}
-
-				var foundStepInfo = solvingPath.FirstOrDefaultSelector(
-					(pair, _) => pair.Step.Name.Contains(techniqueName),
-					static (pair, i) => (pair, i)
+				await renderGridAndSendMessageAsync(
+					e,
+					Grid.Parse(lines[index - 1]),
+					(step, _) => step.Name.Contains(techniqueName),
+					async e => await e.SendMessageAsync(string.Format(R.MessageFormat("SpecifiedStepNameIsNotFound")!, techniqueName)),
+					stepIndex => $"@{libName} #{index + 1} [{stepIndex + 1}]"
 				);
-				if (foundStepInfo is not var ((stepGrid, step), stepIndex))
-				{
-					await e.SendMessageAsync(string.Format(R.MessageFormat("SpecifiedStepNameIsNotFound")!, techniqueName));
-					break;
-				}
-
-				var picturePath = InternalReadWrite.GenerateCachedPicturePath(
-					() => ISudokuPainter.Create(1000)
-						.WithCanvasOffset(20)
-						.WithGrid(stepGrid)
-						.WithRenderingStep(step)
-						.WithPreferenceSettings(static pref => pref.ShowLightHouse = false)
-						.WithFontScale(1.0M, .4M)
-						.WithFooterText($"@{libName} #{index + 1} [{stepIndex + 1}]")
-				)!;
-
-				await e.SendMessageAsync(new ImageMessage { Path = picturePath });
-				await Task.Delay(2.Seconds());
-				await e.SendMessageAsync(
-					new MessageChainBuilder()
-						.Plain(R["StepInfoIs"]!)
-						.Plain(Environment.NewLine)
-						.Plain(step.ToString())
-						.Build()
-				);
-
-				File.Delete(picturePath);
 
 				break;
 			}
@@ -101,6 +87,51 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 		}
 
 		return true;
+
+
+		static async Task renderGridAndSendMessageAsync(
+			GroupMessageReceiver e,
+			Grid grid,
+			Func<IStep, int, bool> predicate,
+			Func<GroupMessageReceiver, Task> actionWhenPredicateFailedToCheck,
+			Func<int, string> footerTextCreator
+		)
+		{
+			if (Solver.Solve(grid) is not { IsSolved: true, SolvingPath: var solvingPath })
+			{
+				await e.SendMessageAsync(R.MessageFormat("PuzzleHasMultipleSolutionsOrNoSolution"));
+				return;
+			}
+
+			var foundStepInfo = solvingPath.FirstOrDefaultSelector((pair, i) => predicate(pair.Step, i), static (pair, i) => (pair, i));
+			if (foundStepInfo is not var ((stepGrid, step), stepIndex))
+			{
+				await actionWhenPredicateFailedToCheck(e);
+				return;
+			}
+
+			var picturePath = InternalReadWrite.GenerateCachedPicturePath(
+				() => ISudokuPainter.Create(1000)
+					.WithCanvasOffset(20)
+					.WithGrid(stepGrid)
+					.WithRenderingStep(step)
+					.WithPreferenceSettings(static pref => pref.ShowLightHouse = false)
+					.WithFontScale(1.0M, .4M)
+					.WithFooterText(footerTextCreator(stepIndex))
+			)!;
+
+			await e.SendMessageAsync(new ImageMessage { Path = picturePath });
+			await Task.Delay(2.Seconds());
+			await e.SendMessageAsync(
+				new MessageChainBuilder()
+					.Plain(R["StepInfoIs"]!)
+					.Plain(Environment.NewLine)
+					.Plain(step.ToString())
+					.Build()
+			);
+
+			File.Delete(picturePath);
+		}
 	}
 }
 
