@@ -1710,31 +1710,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -1751,31 +1751,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -2649,31 +2649,31 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-						public static void Deconstruct(out string name, out int age)
-						{
-						    name = Name;
-						    age = Age;
-						}
+							public static void Deconstruct(out string name, out int age)
+							{
+							name = Name;
+							age = Age;
+							}
 						</code>
 						The following code will be legal.
 						<code>
-						// Use explicitly typed variables to get a deconstruction.
-						(string name, int age) = student;
+							// Use explicitly typed variables to get a deconstruction.
+							(string name, int age) = student;
 
-						// Or use the type inferring to omit the type of each variable having been deconstructed.
-						var (name, age) = student;
+							// Or use the type inferring to omit the type of each variable having been deconstructed.
+							var (name, age) = student;
 
-						// Of course, you can also use the invocation to get values.
-						student.Deconstruct(out string name, out int age);
+							// Of course, you can also use the invocation to get values.
+							student.Deconstruct(out string name, out int age);
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-						if (student is (name: var name, age: &gt;= 18))
-						{
-						    Console.WriteLine(name);
-						}
+							if (student is (name: var name, age: &gt;= 18))
+							{
+							Console.WriteLine(name);
+							}
 						</code>
 					</para>
 				</remarks>
@@ -2957,9 +2957,13 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.AlmostLockedSetsXzStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
-            <inheritdoc/>
+            <inheritdoc />
             <remarks>
-            <para><b>Developer notes</b></para>
+            <deverloper-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</deverloper-notes>
             <para>
             This algorithm uses a concept called Restricted Common Candidate (abbr. RCC) to limit the implementation.
             If you don't know that is an RCC,
@@ -3059,9 +3063,13 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.AlternatingInferenceChainStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
-            <inheritdoc/>
+            <inheritdoc />
             <remarks>
-            <para><b>Developer notes</b></para>
+            <deverloper-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</deverloper-notes>
             <para>
             This method use a very simple method to search for AICs. We should treat all AICs
             as "specialized" discontinuous nice loops. In this way we can get two kinds of chains:
@@ -3133,7 +3141,11 @@
             Gather the strong and weak inferences on locked candidates nodes.
             </summary>
             <remarks>
-            <para><b>Developer notes</b></para>
+            <deverloper-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</deverloper-notes>
             <para>
             When we implement on this, we should consider 5 cases in total:
             <list type="number">
@@ -4909,9 +4921,13 @@
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.LockedCandidatesStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
-            <inheritdoc/>
+            <inheritdoc />
             <remarks>
-            <para><b>Developer notes</b></para>
+            <deverloper-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</deverloper-notes>
             <para>The main idea of this searching operation:</para>
             <para>
             <code><![CDATA[
@@ -5059,9 +5075,13 @@
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IRwDeadlyPatternStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.RwDeadlyPatternStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
-            <inheritdoc/>
+            <inheritdoc />
             <remarks>
-            <para><b>Developer Notes</b></para>
+            <deverloper-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</deverloper-notes>
             <para>
             This implementation is based on the theory mentioned from RW:
             </para>
@@ -5071,7 +5091,7 @@
             </para>
             <para>
             This technique too complex to be proved, but I find this link to describe about this technique:
-            <see href="http://forum.enjoysudoku.com/yet-another-crazy-uniqueness-technique-t5589.html"/>
+            <see href="http://forum.enjoysudoku.com/yet-another-crazy-uniqueness-technique-t5589.html" />
             </para>
             </remarks>
         </member>
@@ -5351,14 +5371,18 @@
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IUniquenessClueCoverStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.UniquenessClueCoverStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
-            <inheritdoc/>
+            <inheritdoc />
             <remarks>
-            <para><b>Developer notes</b></para>
+            <deverloper-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</deverloper-notes>
             <para>
             The technique is very complex that I cannot enumerate all possible cases.
             Here I only give you some cases that satisfy the pattern:
             <list type="bullet">
-            <item><see href="http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html"/></item>
+            <item><see href="http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html" /></item>
             </list>
             </para>
             </remarks>

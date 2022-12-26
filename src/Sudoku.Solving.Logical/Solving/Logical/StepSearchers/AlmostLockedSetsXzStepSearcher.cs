@@ -14,7 +14,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// <para><b>Developer notes</b></para>
+	/// <include file="../../global-doc-comments.xml" path="/g/deverloper-notes" />
 	/// <para>
 	/// This algorithm uses a concept called Restricted Common Candidate (abbr. RCC) to limit the implementation.
 	/// If you don't know that is an RCC,

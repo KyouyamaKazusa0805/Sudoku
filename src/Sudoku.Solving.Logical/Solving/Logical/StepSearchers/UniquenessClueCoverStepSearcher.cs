@@ -6,7 +6,7 @@ internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueC
 {
 	/// <inheritdoc/>
 	/// <remarks>
-	/// <para><b>Developer notes</b></para>
+	/// <include file="../../global-doc-comments.xml" path="/g/deverloper-notes" />
 	/// <para>
 	/// The technique is very complex that I cannot enumerate all possible cases.
 	/// Here I only give you some cases that satisfy the pattern:

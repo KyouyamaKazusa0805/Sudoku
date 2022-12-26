@@ -98,7 +98,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 
 	/// <inheritdoc/>
 	/// <remarks>
-	/// <para><b>Developer notes</b></para>
+	/// <include file="../../global-doc-comments.xml" path="/g/deverloper-notes" />
 	/// <para>
 	/// This method use a very simple method to search for AICs. We should treat all AICs
 	/// as "specialized" discontinuous nice loops. In this way we can get two kinds of chains:
@@ -593,7 +593,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 	/// Gather the strong and weak inferences on locked candidates nodes.
 	/// </summary>
 	/// <remarks>
-	/// <para><b>Developer notes</b></para>
+	/// <include file="../../global-doc-comments.xml" path="/g/deverloper-notes" />
 	/// <para>
 	/// When we implement on this, we should consider 5 cases in total:
 	/// <list type="number">
