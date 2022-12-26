@@ -18,7 +18,25 @@ internal static class EnvironmentData
 	/// <summary>
 	/// The solver.
 	/// </summary>
-	public static readonly LogicalSolver Solver = new();
+	public static readonly LogicalSolver Solver = new()
+	{
+		SingleStepSearcher_EnableFullHouse = true,
+		SingleStepSearcher_EnableLastDigit = true,
+		SingleStepSearcher_HiddenSinglesInBlockFirst = true,
+		UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles = true,
+		UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles = true,
+		BivalueUniversalGraveStepSearcher_SearchExtendedTypes = true,
+		AlmostLockedSetsXyWingStepSearcher_AllowCollision = true,
+		AlmostLockedSetsXzStepSearcher_AllowCollision = true,
+		AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns = true,
+		AlternatingInferenceChainStepSearcher_MaxCapacity = 3000,
+		RegularWingStepSearcher_MaxSize = 5,
+		TemplateStepSearcher_TemplateDeleteOnly = false,
+		ComplexFishStepSearcher_MaxSize = 5,
+		BowmanBingoStepSearcher_MaxLength = 64,
+		AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple = false,
+		IgnoreSlowAlgorithms = false
+	};
 
 	/// <summary>
 	/// Indicates the auto filler.

@@ -1,6 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
+[StepSearcherOptions(IsDeprecated = true)]
 [SukakuNotSupported]
 internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStepSearcher
 {

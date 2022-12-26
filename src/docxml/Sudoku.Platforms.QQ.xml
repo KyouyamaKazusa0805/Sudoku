@@ -722,14 +722,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.Extensions.WithRenderingStep(Sudoku.Drawing.ISudokuPainter,Sudoku.Solving.Logical.IStep)">
-            <summary>
-            Render the <see cref="T:Sudoku.Solving.Logical.IStep"/> instance onto the target painter.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</param>
-            <param name="step">The step.</param>
-            <returns>The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Commands.Extensions.FirstOrDefaultSelector``2(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,System.Int32,System.Boolean},System.Func{``0,System.Int32,``1})">
             <summary>
             Try to find the first element that satisfies the specified condition <paramref name="predicate"/>,
@@ -1391,6 +1383,20 @@
             <param name="this">The resource fetcher.</param>
             <param name="messageFormat">The message format, with the prefix "<c>_MessageFormat_</c>" removed.</param>
             <returns>The target message format in the resource dictionary.</returns>
+        </member>
+        <member name="T:Sudoku.Drawing.SudokuPainterExtensions">
+            <summary>
+            Provides with extension methods <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
+        </member>
+        <member name="M:Sudoku.Drawing.SudokuPainterExtensions.WithRenderingStep(Sudoku.Drawing.ISudokuPainter,Sudoku.Solving.Logical.IStep)">
+            <summary>
+            Render the <see cref="T:Sudoku.Solving.Logical.IStep"/> instance onto the target painter.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</param>
+            <param name="step">The step.</param>
+            <returns>The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
         </member>
         <member name="T:Sudoku.CommandLine.ModuleInitializer">
             <target name="type">

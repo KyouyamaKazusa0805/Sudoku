@@ -155,49 +155,75 @@ file sealed class PuzzleLibraryExtractCommand : Command
 			}
 
 			var grid = Grid.Parse(lines[index]);
-			if (Solver.Solve(grid) is not { IsSolved: true, DifficultyLevel: var diffLevel, SolvingStepsCount: var stepsCount } analysisResult)
+			switch (Solver.Solve(grid))
 			{
-				goto PuzzleIsBroken;
-			}
+				case { UnhandledException: WrongStepException { CurrentInvalidGrid: var currentGrid, WrongStep: var wrongStep } }:
+				{
+					await e.SendMessageAsync(string.Format(R.MessageFormat("WrongStepEncountered")!, wrongStep.ToString()));
+					await Task.Delay(2.Seconds());
 
-			GridAutoFiller.Fill(ref grid);
+					var picturePath = InternalReadWrite.GenerateCachedPicturePath(
+						() => ISudokuPainter.Create(1000)
+							.WithCanvasOffset(20)
+							.WithGrid(currentGrid)
+							.WithRenderingStep(wrongStep)
+							.WithFontScale(1.0M, .4M)
+					)!;
 
-			var comma = R.Token("Comma")!;
-			var picturePath = InternalReadWrite.GenerateCachedPicturePath(
-				() => ISudokuPainter.Create(1000)
-					.WithCanvasOffset(20)
-					.WithGrid(grid)
-					.WithRenderingCandidates(diffLevel >= DifficultyLevel.Hard)
-					.WithFontScale(1.0M, .4M)
-					.WithFooterText($"@{name} #{index + 1}")
-			)!;
+					await e.SendMessageAsync(new ImageMessage { Path = picturePath });
 
-			const string separator = "---";
-			await e.SendMessageAsync(new ImageMessage { Path = picturePath });
-			await Task.Delay(3.Seconds());
-			await e.SendMessageAsync(
-				new MessageChainBuilder()
-					.Plain(R["AnalysisResultIs"]!)
-					.Plain(Environment.NewLine)
-					.Plain(separator)
-					.Plain(Environment.NewLine)
-					.Plain($"{R["LibraryNameIs"]!}{name}")
-					.Plain(Environment.NewLine)
-					.Plain($"{R["PuzzleLibraryIndexIs"]!}#{index + 1}")
-					.Plain(Environment.NewLine)
-					.Plain(separator)
-					.Plain(Environment.NewLine)
-					.Plain(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime))
-					.Build()
-			);
+					File.Delete(picturePath);
 
-			File.Delete(picturePath);
+					break;
+				}
+				case { IsSolved: true, DifficultyLevel: var diffLevel, SolvingStepsCount: var stepsCount } analysisResult:
+				{
+					GridAutoFiller.Fill(ref grid);
 
-			if (specifiedNumber is null)
-			{
-				lib.FinishedPuzzlesCount++;
+					var comma = R.Token("Comma")!;
+					var picturePath = InternalReadWrite.GenerateCachedPicturePath(
+						() => ISudokuPainter.Create(1000)
+							.WithCanvasOffset(20)
+							.WithGrid(grid)
+							.WithRenderingCandidates(diffLevel >= DifficultyLevel.Hard)
+							.WithFontScale(1.0M, .4M)
+							.WithFooterText($"@{name} #{index + 1}")
+					)!;
 
-				InternalReadWrite.WriteLibraryConfiguration(libs);
+					const string separator = "---";
+					await e.SendMessageAsync(new ImageMessage { Path = picturePath });
+					await Task.Delay(3.Seconds());
+					await e.SendMessageAsync(
+						new MessageChainBuilder()
+							.Plain(R["AnalysisResultIs"]!)
+							.Plain(Environment.NewLine)
+							.Plain(separator)
+							.Plain(Environment.NewLine)
+							.Plain($"{R["LibraryNameIs"]!}{name}")
+							.Plain(Environment.NewLine)
+							.Plain($"{R["PuzzleLibraryIndexIs"]!}#{index + 1}")
+							.Plain(Environment.NewLine)
+							.Plain(separator)
+							.Plain(Environment.NewLine)
+							.Plain(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime))
+							.Build()
+					);
+
+					File.Delete(picturePath);
+
+					if (specifiedNumber is null)
+					{
+						lib.FinishedPuzzlesCount++;
+
+						InternalReadWrite.WriteLibraryConfiguration(libs);
+					}
+
+					break;
+				}
+				default:
+				{
+					goto PuzzleIsBroken;
+				}
 			}
 
 			return true;

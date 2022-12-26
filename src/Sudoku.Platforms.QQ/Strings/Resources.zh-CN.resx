@@ -539,6 +539,13 @@
   <data name="_MessageFormat_WrongAnswer" xml:space="preserve">
     <value>回答错误~</value>
   </data>
+  <data name="_MessageFormat_WrongStepEncountered" xml:space="preserve">
+    <value>分析失败，错误步骤如下：
+---
+{0}
+---
+因步骤错误导致题目无法正常解出，因此无法判断题目唯一性。请联系机器人作者以修正 bug。</value>
+  </data>
   <data name="_Token_ClosedBrace" xml:space="preserve">
     <value>）</value>
   </data>

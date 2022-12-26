@@ -108,21 +108,6 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 file static class Extensions
 {
 	/// <summary>
-	/// Render the <see cref="IStep"/> instance onto the target painter.
-	/// </summary>
-	/// <param name="this">The <see cref="ISudokuPainter"/> instance.</param>
-	/// <param name="step">The step.</param>
-	/// <returns>The <see cref="ISudokuPainter"/> instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SupportedOSPlatform("windows")]
-	public static ISudokuPainter WithRenderingStep(this ISudokuPainter @this, IStep step)
-		=> step switch
-		{
-			{ Views: [var view], Conclusions: var conclusions } => @this.AddNodes(view).WithConclusions(conclusions).WithRenderingCandidates(true),
-			{ Conclusions: var conclusions } => @this.WithConclusions(conclusions).WithRenderingCandidates(true)
-		};
-
-	/// <summary>
 	/// Try to find the first element that satisfies the specified condition <paramref name="predicate"/>,
 	/// and projects it into the target value of type <typeparamref name="TResult"/>, using the specified converter <paramref name="selector"/>.
 	/// </summary>
