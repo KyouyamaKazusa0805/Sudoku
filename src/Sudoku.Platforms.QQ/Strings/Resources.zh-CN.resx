@@ -355,6 +355,9 @@
   <data name="_MessageFormat_AnalyzePuzzleLibrary" xml:space="preserve">
     <value>正在解析题库内容，请稍候……</value>
   </data>
+  <data name="_MessageFormat_ArgFormatIsInvalid" xml:space="preserve">
+    <value>参数格式错误。请检查指令“{0}”的参数输入是否存在问题。</value>
+  </data>
   <data name="_MessageFormat_CheckInFailedDueToMultipleInSameDay" xml:space="preserve">
     <value>签到失败~ 你今天 {0}的时候已经签过到了，明天再来试试吧~</value>
   </data>

@@ -93,6 +93,11 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 
 				break;
 			}
+			default:
+			{
+				await e.SendMessageAsync(string.Format(R.MessageFormat("ArgFormatIsInvalid")!, CommandName));
+				break;
+			}
 		}
 
 		return true;

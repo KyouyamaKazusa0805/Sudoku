@@ -53,7 +53,7 @@ file sealed class PuzzleLibraryExtractCommand : Command
 					},
 					{ Length: > 1 } => await sendAmbiguousMatchedGroupsMessageAsync(),
 				},
-				_ => true
+				_ => await sendArgFormatInvalidMessageAsync()
 			}
 		};
 
@@ -69,6 +69,13 @@ file sealed class PuzzleLibraryExtractCommand : Command
 				}
 				select @group
 			).ToArray();
+
+		async Task<bool> sendArgFormatInvalidMessageAsync()
+		{
+			await Task.Delay(2.Seconds());
+			await e.SendMessageAsync(string.Format(R.MessageFormat("ArgFormatIsInvalid")!, CommandName));
+			return true;
+		}
 
 		async Task<bool> sendGroupNameOrIdNotFoundMessageAsync()
 		{
