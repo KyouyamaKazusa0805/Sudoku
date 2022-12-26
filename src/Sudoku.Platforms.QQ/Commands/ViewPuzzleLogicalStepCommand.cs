@@ -137,18 +137,18 @@ file static class Extensions
 {
 	/// <summary>
 	/// Try to find the first element that satisfies the specified condition <paramref name="predicate"/>,
-	/// and projects it into the target value of type <typeparamref name="TResult"/>, using the specified converter <paramref name="selector"/>.
+	/// and projects it into the target value of type <typeparamref name="TResult"/>, using the specified converter <paramref name="converter"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <typeparam name="TResult">The type of the projected result.</typeparam>
 	/// <param name="this">The collection to be iterated.</param>
 	/// <param name="predicate">The condition that the element should be satisfied.</param>
-	/// <param name="selector">The converter method that projects the found element to the target one.</param>
+	/// <param name="converter">The converting method that projects the found element to the target one.</param>
 	/// <returns>The projected value.</returns>
 	public static TResult? FirstOrDefaultConvert<T, TResult>(
 		this ImmutableArray<T> @this,
 		Func<T, int, bool> predicate,
-		Func<T, int, TResult> selector
+		Func<T, int, TResult> converter
 	) where TResult : struct
 	{
 		for (var i = 0; i < @this.Length; i++)
@@ -156,7 +156,7 @@ file static class Extensions
 			var element = @this[i];
 			if (predicate(element, i))
 			{
-				return selector(element, i);
+				return converter(element, i);
 			}
 		}
 
