@@ -3985,9 +3985,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							var conclusions = new List<Conclusion>();
 							foreach (var cell in elimMap)
 							{
-								var elimDigitsMask = guardianCellPair.Contains(cell)
-									? (short)(subsetDigitsMask & ~comparer)
-									: subsetDigitsMask;
+								var elimDigitsMask = guardianCellPair.Contains(cell) ? (short)(subsetDigitsMask & ~comparer) : subsetDigitsMask;
 
 								foreach (var digit in elimDigitsMask)
 								{
@@ -4293,14 +4291,13 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			var digit1IntersectionMap = guardianCells & CandidatesMap[d1];
 			var digit2IntersectionMap = guardianCells & CandidatesMap[d2];
-			if (!(digit1IntersectionMap ^ digit2IntersectionMap))
+			if (digit1IntersectionMap && ~digit2IntersectionMap || ~digit1IntersectionMap && digit2IntersectionMap)
 			{
 				// For this type guardian cells can only hold one digit appeared in UR.
 				continue;
 			}
 
 			var guardianDigit = digit1IntersectionMap ? d1 : d2;
-			guardianCells &= CandidatesMap[guardianDigit];
 			if (guardianCells.Count != 2)
 			{
 				continue;
