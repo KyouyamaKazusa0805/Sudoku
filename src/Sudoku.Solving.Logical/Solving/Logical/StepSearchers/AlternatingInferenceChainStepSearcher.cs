@@ -227,10 +227,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 	/// <paramref name="a"/> and <paramref name="b"/> registered.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private (int AId, int BId) AppendInference(
-		scoped in Node a,
-		scoped in Node b,
-		Dictionary<int, HashSet<int>?> inferences)
+	private (int AId, int BId) AppendInference(scoped in Node a, scoped in Node b, Dictionary<int, HashSet<int>?> inferences)
 	{
 		int bId;
 		if (_idLookup.TryGetValue(a, out var aId))
@@ -499,8 +496,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 			// Bug fix (But bug is not fixed, only filtered by this condition).
 			// This bug is a weird one that I can't find out how to reproduce it.
 			// The step searcher may find some weird "Normal" AICs that only contains 4 nodes.
-			// Some adjacent node pairs of this chain are not "Normal" or even incorrect strong or weak
-			// inferences.
+			// Some adjacent node pairs of this chain are not "Normal" or even incorrect strong or weak inferences.
 			return null;
 		}
 
@@ -651,11 +647,7 @@ internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternati
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		void checkFirstFourCases(
-			scoped in CellMap cells,
-			byte digit,
-			int offset,
-			delegate*<in CellMap, short> maskSelector)
+		void checkFirstFourCases(scoped in CellMap cells, byte digit, int offset, delegate*<in CellMap, short> maskSelector)
 		{
 			var houseMask = maskSelector(cells);
 			switch (PopCount((uint)houseMask))
