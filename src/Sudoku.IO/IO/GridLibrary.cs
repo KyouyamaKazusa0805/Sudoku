@@ -1,13 +1,14 @@
 ﻿namespace Sudoku.IO;
 
 /// <summary>
-/// Defines a puzzle library that stores in a file.
+/// Defines a <see cref="Grid"/> library that stores in a file, using lines to describe puzzles.
 /// </summary>
-public sealed partial class PuzzleLibrary :
+/// <seealso cref="Grid"/>
+public sealed partial class GridLibrary :
 	IAsyncEnumerable<Grid>,
 	IEnumerable<Grid>,
-	IEquatable<PuzzleLibrary>,
-	IEqualityOperators<PuzzleLibrary, PuzzleLibrary, bool>
+	IEquatable<GridLibrary>,
+	IEqualityOperators<GridLibrary, GridLibrary, bool>
 {
 	/// <summary>
 	/// Indicates the solver to verify the puzzle.
@@ -16,7 +17,7 @@ public sealed partial class PuzzleLibrary :
 
 
 	/// <summary>
-	/// Initializes a <see cref="PuzzleLibrary"/> instance via the specified puzzle library file.
+	/// Initializes a <see cref="GridLibrary"/> instance via the specified puzzle library file.
 	/// </summary>
 	/// <param name="filePath">The file path.</param>
 	/// <param name="ignoreOption">Ignoring option.</param>
@@ -25,7 +26,7 @@ public sealed partial class PuzzleLibrary :
 	/// Throws when the argument <paramref name="ignoreOption"/> is not defined in enumeration type.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PuzzleLibrary(string filePath, PuzzleLibraryIgnoringOption ignoreOption = PuzzleLibraryIgnoringOption.Never)
+	public GridLibrary(string filePath, GridLibraryIgnoringOption ignoreOption = GridLibraryIgnoringOption.Never)
 		=> (FilePath, IgnoringOption) = (
 			Uri.IsWellFormedUriString(filePath, UriKind.Absolute)
 				? File.Exists(filePath)
@@ -44,7 +45,7 @@ public sealed partial class PuzzleLibrary :
 	/// <summary>
 	/// Indicates the ignore option that will be used for ignoring on iteration of library file.
 	/// </summary>
-	public PuzzleLibraryIgnoringOption IgnoringOption { get; }
+	public GridLibraryIgnoringOption IgnoringOption { get; }
 
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
@@ -52,7 +53,7 @@ public sealed partial class PuzzleLibrary :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] PuzzleLibrary? other) => other is not null && FilePath == other.FilePath;
+	public bool Equals([NotNullWhen(true)] GridLibrary? other) => other is not null && FilePath == other.FilePath;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(FilePath))]
 	public override partial int GetHashCode();
@@ -81,8 +82,8 @@ public sealed partial class PuzzleLibrary :
 				{
 					switch (IgnoringOption)
 					{
-						case PuzzleLibraryIgnoringOption.Never:
-						case PuzzleLibraryIgnoringOption.NotUnique when Solver.CheckValidity(grid.ToString()):
+						case GridLibraryIgnoringOption.Never:
+						case GridLibraryIgnoringOption.NotUnique when Solver.CheckValidity(grid.ToString()):
 						{
 							yield return grid;
 							break;
@@ -102,8 +103,8 @@ public sealed partial class PuzzleLibrary :
 			{
 				switch (IgnoringOption)
 				{
-					case PuzzleLibraryIgnoringOption.Never:
-					case PuzzleLibraryIgnoringOption.NotUnique when Solver.CheckValidity(grid.ToString()):
+					case GridLibraryIgnoringOption.Never:
+					case GridLibraryIgnoringOption.NotUnique when Solver.CheckValidity(grid.ToString()):
 					{
 						yield return grid;
 						break;
@@ -122,8 +123,8 @@ public sealed partial class PuzzleLibrary :
 			{
 				switch (IgnoringOption)
 				{
-					case PuzzleLibraryIgnoringOption.Never:
-					case PuzzleLibraryIgnoringOption.NotUnique when Solver.CheckValidity(grid.ToString()):
+					case GridLibraryIgnoringOption.Never:
+					case GridLibraryIgnoringOption.NotUnique when Solver.CheckValidity(grid.ToString()):
 					{
 						yield return grid;
 						break;
@@ -140,10 +141,10 @@ public sealed partial class PuzzleLibrary :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(PuzzleLibrary? left, PuzzleLibrary? right)
+	public static bool operator ==(GridLibrary? left, GridLibrary? right)
 		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(PuzzleLibrary? left, PuzzleLibrary? right) => !(left == right);
+	public static bool operator !=(GridLibrary? left, GridLibrary? right) => !(left == right);
 }

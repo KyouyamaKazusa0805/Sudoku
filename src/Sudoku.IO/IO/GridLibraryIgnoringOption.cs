@@ -1,9 +1,10 @@
 ﻿namespace Sudoku.IO;
 
 /// <summary>
-/// Indicates the option that will be used for ignoring puzzles in the target file.
+/// Indicates the option that will be used for ignoring <see cref="Grid"/> puzzles in the target file.
 /// </summary>
-public enum PuzzleLibraryIgnoringOption
+/// <seealso cref="Grid"/>
+public enum GridLibraryIgnoringOption
 {
 	/// <summary>
 	/// Indicates the puzzle will be never ignored.
