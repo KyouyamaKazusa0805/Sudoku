@@ -27,8 +27,18 @@ file sealed class ShowLibraryCollectionCommand : Command
 		{
 			case []:
 			{
+				var totalPuzzlesCount = libs.PuzzleLibraries.Sum(InternalReadWrite.CheckValidPuzzlesCountInPuzzleLibrary);
+				var finishedPuzzlesCount = libs.PuzzleLibraries.Sum(static lib => lib.FinishedPuzzlesCount);
+
 				await e.SendMessageAsync(
-					string.Format(R.MessageFormat("PuzzleLibGlobalInfo")!, libCount, string.Join('\u3001', from lib in libs select lib.Name))
+					string.Format(
+						R.MessageFormat("PuzzleLibGlobalInfo")!,
+						libCount,
+						string.Join('\u3001', from lib in libs select lib.Name),
+						finishedPuzzlesCount,
+						totalPuzzlesCount,
+						(double)finishedPuzzlesCount / totalPuzzlesCount
+					)
 				);
 
 				break;
