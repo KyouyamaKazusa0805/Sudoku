@@ -19,12 +19,12 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 
 	/// <inheritdoc/>
 	[DisallowNull]
-	public IStepSearcher[]? CustomSearcherCollection { get; set; }
+	public StepSearcherCollection? CustomSearcherCollection { get; set; }
 
 	/// <summary>
 	/// Indicates the target step searcher collection.
 	/// </summary>
-	private IStepSearcher[] TargetSearcherCollection
+	private StepSearcherCollection TargetSearcherCollection
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (

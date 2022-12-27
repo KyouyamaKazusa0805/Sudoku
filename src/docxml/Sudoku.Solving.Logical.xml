@@ -137,9 +137,9 @@
         </member>
         <member name="T:Sudoku.Buffers.StepSearcherPool">
             <summary>
-            Indicates a pool that stores the <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s.
+            Indicates a pool that stores a <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/>
         </member>
         <member name="F:Sudoku.Buffers.StepSearcherPool.Collection">
             <summary>
@@ -152,34 +152,34 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.IStepSearcher[])">
+        <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection)">
             <summary>
             Try to fetch a valid <typeparamref name="T"/> instance via the specified pool.
             </summary>
             <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
-            <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
+            <param name="this">The pool where all possible step searchers are stored.</param>
             <returns>
             The found step searcher instance. If the type is marked <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>,
             the method will return the first found instance.
             </returns>
             <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>
         </member>
-        <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.IStepSearcher[],System.Boolean)">
+        <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection,System.Boolean)">
             <summary>
             Try to fetch a valid <typeparamref name="T"/> instances via the specified pool.
             </summary>
             <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
-            <param name="stepSearchersPool">The pool where all possible step searchers are stored.</param>
+            <param name="this">The pool where all possible step searchers are stored.</param>
             <param name="getAll">
             Indicates whether you want to fetch all possible instances at the same time.
             </param>
             <returns>
             The found step searcher instances. If the type is marked <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>,
             the method will return all possible instances, whose behavior is different with the other method
-            <see cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.IStepSearcher[])"/>.
+            <see cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection)"/>.
             </returns>
             <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>
-            <seealso cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.IStepSearcher[])"/>
+            <seealso cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection)"/>
         </member>
         <member name="T:Sudoku.Checking.BackdoorSearcher">
             <summary>
@@ -901,8 +901,7 @@
             Indicates the custom searcher collection you defined to solve a puzzle. By default,
             the solver will use <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/> to solve a puzzle.
             If you assign a new array of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s into this property
-            the step searchers will use this property instead of <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/>
-            to solve a puzzle.
+            the step searchers will use this property instead of <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/> to solve a puzzle.
             </para>
             <para>
             Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
@@ -5238,6 +5237,54 @@
             Indicates the reference of the solution sudoku grid.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection">
+            <summary>
+            Defines a collection that only stores for <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
+            <completionlist cref="T:Sudoku.Solving.Logical.StepSearchers.WellKnownStepSearcherCollections"/>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection._stepSearchers">
+            <summary>
+            The internal array of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.#ctor(Sudoku.Solving.Logical.IStepSearcher[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/> instance via the specified collection of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.System#ISlicable{Sudoku#Solving#Logical#StepSearchers#StepSearcherCollection,Sudoku#Solving#Logical#IStepSearcher}#Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.OfType``1">
+            <summary>
+            Filters the collection, removing <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances that is not target type.
+            </summary>
+            <typeparam name="T">The type of the target step searcher.</typeparam>
+            <returns>A list of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s that are of type <typeparamref name="T"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.op_Implicit(Sudoku.Solving.Logical.IStepSearcher[])~Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>[] to <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/>.
+            </summary>
+            <param name="stepSearchers">The step searchers.</param>
+        </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.SubsetStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.ISubsetStepSearcher"/>
         </member>
@@ -6117,6 +6164,22 @@
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.UniqueRectangleStepSearcher.Options">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.WellKnownStepSearcherCollections">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.StepSearchers.WellKnownStepSearcherCollections.SimpleSudokuTechniqueSet">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/> instance that only contains SSTS step searchers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.StepSearchers.WellKnownStepSearcherCollections.AdvancedTechniqueSet">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/> instance that contains advanced techniques.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.WWingStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IWWingStepSearcher"/>

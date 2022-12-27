@@ -31,7 +31,7 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 
 		const SearcherDisplayingLevel defaultLevelValue = (SearcherDisplayingLevel)255;
 
-		var totalSearchersCount = StepSearcherPool.Collection.Length;
+		var totalSearchersCount = StepSearcherPool.Collection.Count;
 
 		InitializeMaps(puzzle);
 		var i = defaultLevelValue;

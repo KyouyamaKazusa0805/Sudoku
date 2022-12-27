@@ -41,4 +41,3 @@
 [assembly: SearcherConfiguration<                    DominoLoopStepSearcher>(SearcherDisplayingLevel.D)]
 [assembly: SearcherConfiguration<         MultisectorLockedSetsStepSearcher>(SearcherDisplayingLevel.D)]
 [assembly: SearcherConfiguration<                    BruteForceStepSearcher>(SearcherDisplayingLevel.E, EnabledArea = SearcherEnabledArea.  Default, DisabledReason = SearcherDisabledReason.                LastResort)]
-#pragma warning restore format

@@ -28,11 +28,7 @@ public sealed partial class GridLibrary :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public GridLibrary(string filePath, GridLibraryIgnoringOption ignoreOption = GridLibraryIgnoringOption.Never)
 		=> (FilePath, IgnoringOption) = (
-			Uri.IsWellFormedUriString(filePath, UriKind.Absolute)
-				? File.Exists(filePath)
-					? filePath
-					: throw new ArgumentException("Specified file does not exist.", nameof(filePath))
-				: throw new ArgumentException("Specified file path is invalid.", nameof(filePath)),
+			File.Exists(filePath) ? filePath : throw new ArgumentException("Specified file does not exist.", nameof(filePath)),
 			Enum.IsDefined(ignoreOption) ? ignoreOption : throw new ArgumentOutOfRangeException(nameof(ignoreOption))
 		);
 

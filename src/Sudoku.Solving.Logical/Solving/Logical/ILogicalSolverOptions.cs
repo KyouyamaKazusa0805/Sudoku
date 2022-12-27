@@ -28,8 +28,7 @@ public interface ILogicalSolverOptions
 	/// Indicates the custom searcher collection you defined to solve a puzzle. By default,
 	/// the solver will use <see cref="StepSearcherPool.Collection"/> to solve a puzzle.
 	/// If you assign a new array of <see cref="IStepSearcher"/>s into this property
-	/// the step searchers will use this property instead of <see cref="StepSearcherPool.Collection"/>
-	/// to solve a puzzle.
+	/// the step searchers will use this property instead of <see cref="StepSearcherPool.Collection"/> to solve a puzzle.
 	/// </para>
 	/// <para>
 	/// Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
@@ -39,5 +38,5 @@ public interface ILogicalSolverOptions
 	/// </summary>
 	/// <seealso cref="StepSearcherPool.Collection"/>
 	[DisallowNull]
-	IStepSearcher[]? CustomSearcherCollection { get; set; }
+	StepSearcherCollection? CustomSearcherCollection { get; set; }
 }
