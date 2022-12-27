@@ -31,6 +31,7 @@ internal sealed record RwDeadlyPatternStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
+
 	[ResourceTextFormatter]
 	internal string CellsStr() => RxCyNotation.ToCellsString(Pattern);
 

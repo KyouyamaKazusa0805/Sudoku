@@ -27,7 +27,7 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 			var (chute, isRow, _) = Chutes[chuteIndex];
 			var elimHouseType = isRow ? HouseType.Column : HouseType.Row;
 			var emptyMinilineSpannedHousesCount = 0;
-			short valueDigitsMask = 0;
+			var valueDigitsMask = (short)0;
 			var isPassedPrechecking = true;
 			var availableElimMap = CellMap.Empty;
 			for (var i = (int)elimHouseType * 9; i < (int)elimHouseType * 9 + 9; i++)
