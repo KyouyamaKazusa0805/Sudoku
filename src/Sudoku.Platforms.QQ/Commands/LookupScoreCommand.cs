@@ -23,20 +23,26 @@ file sealed class LookupScoreCommand : Command
 
 		var targetMessage = args switch
 		{
-			[] => InternalReadWrite.Read(senderId) switch
+			[] => await group.GetMemberFromQQAsync(senderId) switch
 			{
-				{ Score: var score } userData when Scorer.GetGrade(score) is var grade
-					=> string.Format(R.MessageFormat("UserScoreIs")!, senderName, score, senderOriginalName, grade),
-				_ => string.Format(R.MessageFormat("UserScoreNotFound")!, senderName, senderOriginalName)
+				{ Name: var nickname } => InternalReadWrite.Read(senderId) switch
+				{
+					{ Score: var score } userData => validMessage(senderName, score, nickname, Scorer.GetGrade(score)),
+					_ => notFoundMessage(senderName, nickname)
+				},
+				_ => null
 			},
 			_ => await getMatchedMembers(group, args) switch
 			{
 				[] => R.MessageFormat("LookupNameOrIdInvalid")!,
-				[{ Id: var foundMemberId }] => InternalReadWrite.Read(foundMemberId) switch
+				[{ Name: var foundMemberName, Id: var foundMemberId }] => await group.GetMemberFromQQAsync(foundMemberId) switch
 				{
-					{ Score: var score } userData when Scorer.GetGrade(score) is var grade
-						=> string.Format(R.MessageFormat("UserScoreIs")!, senderName, score, senderOriginalName, grade),
-					_ => string.Format(R.MessageFormat("UserScoreNotFound")!, senderName, senderOriginalName)
+					{ Name: var nickname } => InternalReadWrite.Read(foundMemberId) switch
+					{
+						{ Score: var score } userData => validMessage(foundMemberName, score, nickname, Scorer.GetGrade(score)),
+						_ => notFoundMessage(foundMemberName, nickname)
+					},
+					_ => null
 				},
 				{ Length: > 1 } => R.MessageFormat("LookupNameOrIdAmbiguous")!,
 				_ => null
@@ -50,6 +56,13 @@ file sealed class LookupScoreCommand : Command
 
 		return true;
 
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string validMessage(string name, int score, string nickname, int grade)
+			=> string.Format(R.MessageFormat("UserScoreIs")!, name, score, nickname, grade);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string notFoundMessage(string name, string nickname) => string.Format(R.MessageFormat("UserScoreNotFound")!, name, nickname);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static async Task<Member[]> getMatchedMembers(Group group, string args)
