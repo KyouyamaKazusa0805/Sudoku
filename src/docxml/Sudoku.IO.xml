@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.IO</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.IO.PuzzleLibrary">
+            <summary>
+            Defines a puzzle library that stores in a file.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.PuzzleLibrary.Solver">
+            <summary>
+            Indicates the solver to verify the puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.#ctor(System.String,Sudoku.IO.PuzzleLibraryIgnoringOption)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.IO.PuzzleLibrary"/> instance via the specified puzzle library file.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="ignoreOption">Ignoring option.</param>
+            <exception cref="T:System.ArgumentException">Throws when the specified file path is invalid or the file does not exist.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="ignoreOption"/> is not defined in enumeration type.
+            </exception>
+        </member>
+        <member name="P:Sudoku.IO.PuzzleLibrary.FilePath">
+            <summary>
+            Indicates the file path.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.PuzzleLibrary.IgnoringOption">
+            <summary>
+            Indicates the ignore option that will be used for ignoring on iteration of library file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.Equals(Sudoku.IO.PuzzleLibrary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.GetPuzzlesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Try to get puzzles from the target file, and parses them, returning the valid list of <see cref="T:Sudoku.Concepts.Grid"/> encapsulated instances.
+            </summary>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task`1"/> instance that encapsulates the current asynchronous operation,
+            with an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> value to be returned.
+            </returns>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.GetAsyncEnumerator(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.op_Equality(Sudoku.IO.PuzzleLibrary,Sudoku.IO.PuzzleLibrary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.IO.PuzzleLibrary.op_Inequality(Sudoku.IO.PuzzleLibrary,Sudoku.IO.PuzzleLibrary)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.IO.PuzzleLibraryIgnoringOption">
+            <summary>
+            Indicates the option that will be used for ignoring puzzles in the target file.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.PuzzleLibraryIgnoringOption.Never">
+            <summary>
+            Indicates the puzzle will be never ignored.
+            </summary>
+        </member>
+        <member name="F:Sudoku.IO.PuzzleLibraryIgnoringOption.NotUnique">
+            <summary>
+            Indicates the puzzle will be ignored when it is not unique.
+            </summary>
+        </member>
+    </members>
+</doc>
