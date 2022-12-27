@@ -61,39 +61,6 @@ public sealed partial class GridLibrary :
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(FilePath))]
 	public override partial string ToString();
 
-	/// <summary>
-	/// Try to get puzzles from the target file, and parses them, returning the valid list of <see cref="Grid"/> encapsulated instances.
-	/// </summary>
-	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-	/// <returns>
-	/// A <see cref="Task{TResult}"/> instance that encapsulates the current asynchronous operation,
-	/// with an <see cref="IEnumerable{T}"/> of <see cref="Grid"/> value to be returned.
-	/// </returns>
-	public async Task<IEnumerable<Grid>> GetPuzzlesAsync(CancellationToken cancellationToken = default)
-	{
-		return g(await File.ReadAllLinesAsync(FilePath, cancellationToken));
-
-
-		IEnumerable<Grid> g(string[] lines)
-		{
-			foreach (var line in lines)
-			{
-				if (Grid.TryParse(line, out var grid))
-				{
-					switch (IgnoringOption)
-					{
-						case GridLibraryIgnoringOption.Never:
-						case GridLibraryIgnoringOption.NotUnique when Solver.CheckValidity(grid.ToString()):
-						{
-							yield return grid;
-							break;
-						}
-					}
-				}
-			}
-		}
-	}
-
 	/// <inheritdoc/>
 	public async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
 	{
@@ -114,6 +81,27 @@ public sealed partial class GridLibrary :
 		}
 	}
 
+	/// <summary>
+	/// Reads the library file, and then parses puzzles into <see cref="Grid"/> instances, and finally filters
+	/// <see cref="Grid"/> instances when puzzles don't pass the verification.
+	/// </summary>
+	/// <param name="gridFilter">The grid filter.</param>
+	/// <param name="cancellationToken">The cancellation token that is used for cancelling the asynchronous operation.</param>
+	/// <returns>An <see cref="IAsyncEnumerable{T}"/> instance that iterates on filtered <see cref="Grid"/> instances.</returns>
+	public async IAsyncEnumerable<Grid> FilterAsync(
+		AsyncGridFilter gridFilter,
+		[EnumeratorCancellation] CancellationToken cancellationToken = default
+	)
+	{
+		await foreach (var grid in this)
+		{
+			if (await gridFilter(grid, cancellationToken))
+			{
+				yield return grid;
+			}
+		}
+	}
+
 	/// <inheritdoc/>
 	public IEnumerator<Grid> GetEnumerator()
 	{
@@ -130,6 +118,23 @@ public sealed partial class GridLibrary :
 						break;
 					}
 				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Reads the library file, and then parses puzzles into <see cref="Grid"/> instances, and finally filters
+	/// <see cref="Grid"/> instances when puzzles don't pass the verification.
+	/// </summary>
+	/// <param name="gridFilter">The grid filter.</param>
+	/// <returns>An <see cref="IEnumerable{T}"/> instance that iterates on filtered <see cref="Grid"/> instances.</returns>
+	public IEnumerable<Grid> Filter(GridFilter gridFilter)
+	{
+		foreach (var grid in this)
+		{
+			if (gridFilter(grid))
+			{
+				yield return grid;
 			}
 		}
 	}
