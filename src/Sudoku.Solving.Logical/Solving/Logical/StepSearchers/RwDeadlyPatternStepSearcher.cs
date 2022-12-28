@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
-[StepSearcherRunningOptions(StepSearcherRunningOptions.OnlyForStandardSudoku | StepSearcherRunningOptions.TemporarilyDisabled)]
+[StepSearcherRunningOptions(StepSearcherRunningOptions.OnlyForStandardSudoku)]
 internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStepSearcher
 {
 	/// <inheritdoc/>

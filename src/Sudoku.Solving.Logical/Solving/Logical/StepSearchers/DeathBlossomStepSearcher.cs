@@ -1,7 +1,6 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
-[StepSearcherRunningOptions(StepSearcherRunningOptions.TemporarilyDisabled)]
 internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearcher
 {
 	/// <inheritdoc/>

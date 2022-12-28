@@ -34,6 +34,7 @@
           "IEmptyRectangleIntersectionPairStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
 
           "IAlternatingInferenceChainStepSearcher.cs": [ "IChainStepSearcher.cs" ],
+          "ISudokuExplainerCompatibleChainingStepSearcher.cs": [ "IChainStepSearcher.cs" ],
 
           "IUniquenessClueCoverStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
           "IExtendedRectangleStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
@@ -61,7 +62,7 @@
           "IBruteForceStepSearcher.cs": [ "ILastResortStepSearcher.cs" ],
           "IPatternOverlayStepSearcher.cs": [ "ILastResortStepSearcher.cs" ],
           "ITemplateStepSearcher.cs": [ "ILastResortStepSearcher.cs" ],
-          
+
           "IBivalueOddagonStepSearcher.cs": [ "INegativeRankStepSearcher.cs" ],
           "IChromaticPatternStepSearcher.cs": [ "INegativeRankStepSearcher.cs" ],
           "IGuardianStepSearcher.cs": [ "INegativeRankStepSearcher.cs" ],
@@ -92,6 +93,7 @@
           "EmptyRectangleIntersectionPairStepSearcher.cs": [ "IEmptyRectangleIntersectionPairStepSearcher.cs" ],
 
           "AlternatingInferenceChainStepSearcher.cs": [ "IAlternatingInferenceChainStepSearcher.cs" ],
+          "SudokuExplainerCompatibleChainingStepSearcher.cs": [ "ISudokuExplainerCompatibleChainingStepSearcher.cs" ],
 
           "UniquenessClueCoverStepSearcher.cs": [ "IUniquenessClueCoverStepSearcher.cs" ],
           "ExtendedRectangleStepSearcher.cs": [ "IExtendedRectangleStepSearcher.cs" ],
@@ -119,7 +121,7 @@
           "BruteForceStepSearcher.cs": [ "IBruteForceStepSearcher.cs" ],
           "PatternOverlayStepSearcher.cs": [ "IPatternOverlayStepSearcher.cs" ],
           "TemplateStepSearcher.cs": [ "ITemplateStepSearcher.cs" ],
-          
+
           "BivalueOddagonStepSearcher.cs": [ "IBivalueOddagonStepSearcher.cs" ],
           "ChromaticPatternStepSearcher.cs": [ "IChromaticPatternStepSearcher.cs" ],
           "GuardianStepSearcher.cs": [ "IGuardianStepSearcher.cs" ],
@@ -273,7 +275,7 @@
           "IrregularWingStep.cs": [ "WingStep.cs" ],
           "WWingStep.cs": [ "IrregularWingStep.cs" ],
           "MultiBranchWWingStep.cs": [ "IrregularWingStep.cs" ],
-          "GroupedWWingStep.cs": [ "IrregularWingStep.cs" ],
+          "GroupedWWingStep.cs": [ "IrregularWingStep.cs" ]
         }
       }
     }
