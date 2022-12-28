@@ -1,16 +1,18 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
+[StepSearcherRunningOptions(StepSearcherRunningOptions.TemporarilyDisabled)]
 internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearcher
 {
 	/// <inheritdoc/>
 	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
-#if false
+		scoped ref readonly var grid = ref context.Grid;
+		var accumulator = context.Accumulator!;
 		var dic = IDeathBlossomStepSearcher.GatherGroupedByCell(grid);
 
 		// Cell Type.
-		foreach (int hubCell in EmptyCells)
+		foreach (var hubCell in EmptyCells)
 		{
 			if (IsPow2(grid.GetCandidates(hubCell)))
 			{
@@ -24,10 +26,10 @@ internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearch
 				continue;
 			}
 
-			short digitsMask = grid.GetCandidates(hubCell);
+			var digitsMask = grid.GetCandidates(hubCell);
 			var alsesGroupedByDigit = new List<AlmostLockedSet[]>(PopCount((uint)digitsMask));
-			bool containsDigitDoesNotContainRelatedAlses = false;
-			foreach (int digit in digitsMask)
+			var containsDigitDoesNotContainRelatedAlses = false;
+			foreach (var digit in digitsMask)
 			{
 				if (!alsGroupedByCell.TryGetValue(digit, out var list)/* || list.Count == 0*/)
 				{
@@ -44,11 +46,11 @@ internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearch
 
 			foreach (var combination in Combinatorics.GetExtractedCombinations(alsesGroupedByDigit.ToArray()))
 			{
-				bool isDuplicated = false;
-				for (int i = 0; i < combination.Length - 1; i++)
+				var isDuplicated = false;
+				for (var i = 0; i < combination.Length - 1; i++)
 				{
 					var a = combination[i];
-					for (int j = i + 1; j < combination.Length; j++)
+					for (var j = i + 1; j < combination.Length; j++)
 					{
 						var b = combination[j];
 						switch (a, b)
@@ -72,7 +74,7 @@ internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearch
 					continue;
 				}
 
-				short elimDigitsMask = Grid.MaxCandidatesMask;
+				var elimDigitsMask = Grid.MaxCandidatesMask;
 				foreach (var als in combination)
 				{
 					elimDigitsMask &= als.DigitsMask;
@@ -87,7 +89,7 @@ internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearch
 
 				var conclusions = new List<Conclusion>();
 				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (int elimDigit in elimDigitsMask)
+				foreach (var elimDigit in elimDigitsMask)
 				{
 					var cellsHavingElimDigit = CellMap.Empty;
 					foreach (var als in combination)
@@ -95,17 +97,17 @@ internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearch
 						cellsHavingElimDigit |= als.Map & CandidatesMap[elimDigit];
 					}
 
-					if (((CandidatesMap[elimDigit] & +cellsHavingElimDigit) - hubCell) is not (var elimMap and not []))
+					if ((CandidatesMap[elimDigit] & cellsHavingElimDigit.ExpandedPeers) - hubCell is not (var elimMap and not []))
 					{
 						// No eliminations found.
 						continue;
 					}
 
-					foreach (int elimCell in elimMap)
+					foreach (var elimCell in elimMap)
 					{
 						conclusions.Add(new(Elimination, elimCell, elimDigit));
 					}
-					foreach (int cellHavingElimDigit in cellsHavingElimDigit)
+					foreach (var cellHavingElimDigit in cellsHavingElimDigit)
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, cellHavingElimDigit * 9 + elimDigit));
 					}
@@ -119,9 +121,9 @@ internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearch
 				byte alsIdentifier = 0;
 				foreach (var als in combination)
 				{
-					foreach (int alsCell in als.Map)
+					foreach (var alsCell in als.Map)
 					{
-						foreach (int digit in (short)(grid.GetCandidates(alsCell) & ~elimDigitsMask))
+						foreach (var digit in (short)(grid.GetCandidates(alsCell) & ~elimDigitsMask))
 						{
 							candidateOffsets.Add(new((DisplayColorKind)alsIdentifier, alsCell * 9 + digit));
 						}
@@ -132,16 +134,12 @@ internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearch
 
 				var step = new DeathBlossomCellTypeStep(
 					conclusions.ToImmutableArray(),
-					ImmutableArray.Create(
-						View.Empty
-							| candidateOffsets
-							| new CellViewNode(DisplayColorKind.Normal, hubCell)
-					),
+					ImmutableArray.Create(View.Empty | candidateOffsets | new CellViewNode(DisplayColorKind.Normal, hubCell)),
 					hubCell,
 					elimDigitsMask,
 					combination
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
@@ -149,7 +147,6 @@ internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearch
 				accumulator.Add(step);
 			}
 		}
-#endif
 
 		return null;
 	}
