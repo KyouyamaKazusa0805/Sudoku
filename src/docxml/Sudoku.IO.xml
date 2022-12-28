@@ -4,21 +4,6 @@
         <name>Sudoku.IO</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.IO.AsyncGridFilter">
-            <summary>
-            Defines a type that holds a method to filter <see cref="T:Sudoku.Concepts.Grid"/> instances.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="cancellationToken">The cancellation token that can be used for cancelling the asynchronous operation.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the <see cref="T:Sudoku.Concepts.Grid"/> can be passed.</returns>
-        </member>
-        <member name="T:Sudoku.IO.GridFilter">
-            <summary>
-            Defines a type that holds a method to filter <see cref="T:Sudoku.Concepts.Grid"/> instances.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the <see cref="T:Sudoku.Concepts.Grid"/> can be passed.</returns>
-        </member>
         <member name="T:Sudoku.IO.GridLibrary">
             <summary>
             Defines a <see cref="T:Sudoku.Concepts.Grid"/> library that stores in a file, using lines to describe puzzles.
@@ -66,7 +51,7 @@
         <member name="M:Sudoku.IO.GridLibrary.GetAsyncEnumerator(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.IO.GridLibrary.FilterAsync(Sudoku.IO.AsyncGridFilter,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.IO.GridLibrary.FilterAsync(System.Func{Sudoku.Concepts.Grid,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">
             <summary>
             Reads the library file, and then parses puzzles into <see cref="T:Sudoku.Concepts.Grid"/> instances, and finally filters
             <see cref="T:Sudoku.Concepts.Grid"/> instances when puzzles don't pass the verification.
@@ -74,20 +59,6 @@
             <param name="gridFilter">The grid filter.</param>
             <param name="cancellationToken">The cancellation token that is used for cancelling the asynchronous operation.</param>
             <returns>An <see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/> instance that iterates on filtered <see cref="T:Sudoku.Concepts.Grid"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.IO.GridLibrary.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.IO.GridLibrary.Filter(Sudoku.IO.GridFilter)">
-            <summary>
-            Reads the library file, and then parses puzzles into <see cref="T:Sudoku.Concepts.Grid"/> instances, and finally filters
-            <see cref="T:Sudoku.Concepts.Grid"/> instances when puzzles don't pass the verification.
-            </summary>
-            <param name="gridFilter">The grid filter.</param>
-            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance that iterates on filtered <see cref="T:Sudoku.Concepts.Grid"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.IO.GridLibrary.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.IO.GridLibrary.op_Equality(Sudoku.IO.GridLibrary,Sudoku.IO.GridLibrary)">
             <inheritdoc/>

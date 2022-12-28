@@ -4,11 +4,7 @@
 /// Defines a <see cref="Grid"/> library that stores in a file, using lines to describe puzzles.
 /// </summary>
 /// <seealso cref="Grid"/>
-public sealed partial class GridLibrary :
-	IAsyncEnumerable<Grid>,
-	IEnumerable<Grid>,
-	IEquatable<GridLibrary>,
-	IEqualityOperators<GridLibrary, GridLibrary, bool>
+public sealed partial class GridLibrary : IAsyncEnumerable<Grid>, IEquatable<GridLibrary>, IEqualityOperators<GridLibrary, GridLibrary, bool>
 {
 	/// <summary>
 	/// Indicates the solver to verify the puzzle.
@@ -85,7 +81,7 @@ public sealed partial class GridLibrary :
 	/// <param name="cancellationToken">The cancellation token that is used for cancelling the asynchronous operation.</param>
 	/// <returns>An <see cref="IAsyncEnumerable{T}"/> instance that iterates on filtered <see cref="Grid"/> instances.</returns>
 	public async IAsyncEnumerable<Grid> FilterAsync(
-		AsyncGridFilter gridFilter,
+		Func<Grid, CancellationToken, Task<bool>> gridFilter,
 		[EnumeratorCancellation] CancellationToken cancellationToken = default
 	)
 	{
@@ -97,47 +93,6 @@ public sealed partial class GridLibrary :
 			}
 		}
 	}
-
-	/// <inheritdoc/>
-	public IEnumerator<Grid> GetEnumerator()
-	{
-		foreach (var line in File.ReadAllLines(FilePath))
-		{
-			if (Grid.TryParse(line, out var grid))
-			{
-				switch (IgnoringOption)
-				{
-					case GridLibraryIgnoringOption.Never:
-					case GridLibraryIgnoringOption.NotUnique when Solver.CheckValidity(grid.ToString()):
-					{
-						yield return grid;
-						break;
-					}
-				}
-			}
-		}
-	}
-
-	/// <summary>
-	/// Reads the library file, and then parses puzzles into <see cref="Grid"/> instances, and finally filters
-	/// <see cref="Grid"/> instances when puzzles don't pass the verification.
-	/// </summary>
-	/// <param name="gridFilter">The grid filter.</param>
-	/// <returns>An <see cref="IEnumerable{T}"/> instance that iterates on filtered <see cref="Grid"/> instances.</returns>
-	public IEnumerable<Grid> Filter(GridFilter gridFilter)
-	{
-		foreach (var grid in this)
-		{
-			if (gridFilter(grid))
-			{
-				yield return grid;
-			}
-		}
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
 	/// <inheritdoc/>
