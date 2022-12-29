@@ -126,7 +126,7 @@ internal sealed record AlternatingInferenceChainStep(
 		};
 
 	/// <inheritdoc/>
-	public override ChainTypeCode SortKey => Enum.Parse<ChainTypeCode>(TechniqueCode.ToString());
+	public ChainTypeCode SortKey => Enum.Parse<ChainTypeCode>(TechniqueCode.ToString());
 
 	/// <summary>
 	/// Indicates whether the current chain is irregular wing, and not grouped.

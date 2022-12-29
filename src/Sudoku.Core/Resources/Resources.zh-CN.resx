@@ -1827,4 +1827,43 @@
     <value>唯一矩形・外部双线风筝</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="AbsurdChains" xml:space="preserve">
+    <value>动态矛盾强制链</value>
+  </data>
+  <data name="CellChains" xml:space="preserve">
+    <value>单元格强制链</value>
+  </data>
+  <data name="DoubleChains" xml:space="preserve">
+    <value>动态逆矛盾强制链</value>
+  </data>
+  <data name="DynamicKeyword" xml:space="preserve">
+    <value>动态</value>
+  </data>
+  <data name="HouseChains" xml:space="preserve">
+    <value>区域强制链</value>
+  </data>
+  <data name="NestedSuffix_Level1" xml:space="preserve">
+    <value>（+）</value>
+  </data>
+  <data name="NestedSuffix_Level2" xml:space="preserve">
+    <value>（+ 普通链）</value>
+  </data>
+  <data name="NestedSuffix_Level3" xml:space="preserve">
+    <value>（+ 强制链）</value>
+  </data>
+  <data name="NestedSuffix_Level4" xml:space="preserve">
+    <value>（+ 动态强制链）</value>
+  </data>
+  <data name="NestedSuffix_Level5OrGreater" xml:space="preserve">
+    <value>（+ 动态强制链{0}）</value>
+  </data>
+  <data name="NishioChains" xml:space="preserve">
+    <value>西尾彻也强制链</value>
+  </data>
+  <data name="NishioKeyword" xml:space="preserve">
+    <value>西尾彻也</value>
+  </data>
+  <data name="NormalChains" xml:space="preserve">
+    <value>普通链</value>
+  </data>
 </root>

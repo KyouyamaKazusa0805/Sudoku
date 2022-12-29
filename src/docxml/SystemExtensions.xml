@@ -4296,21 +4296,25 @@
 					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
 					of element type:
 					<code>
-						class ExampleType
-						{
-						private fixed short _maskList[100];
+<![CDATA[
+class ExampleType
+{
+    private fixed short _maskList[100];
 
-						public ref readonly short GetPinnableReference() =&gt; ref _maskList[0];
-						}
+    public ref readonly short GetPinnableReference() => ref _maskList[0];
+}
+]]>
 					</code>
 					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
 					as the left-value.
 					<code>
-						var instance = new ExampleType();
-						fixed (short* ptr = instance)
-						{
-						// Operation here.
-						}
+<![CDATA[
+var instance = new ExampleType();
+fixed (short* ptr = instance)
+{
+    // Operation here.
+}
+]]>
 					</code>
 				</remarks>
 			</target>

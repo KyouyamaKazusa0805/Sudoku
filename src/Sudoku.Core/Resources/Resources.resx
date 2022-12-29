@@ -1512,4 +1512,43 @@
   <data name="UniqueRectangleExternalTwoStringKite" xml:space="preserve">
     <value>Unique Rectangle External Two-String Kite</value>
   </data>
+  <data name="AbsurdChains" xml:space="preserve">
+    <value>Dynamic Contradiction Forcing Chains</value>
+  </data>
+  <data name="CellChains" xml:space="preserve">
+    <value>Cell Forcing Chains</value>
+  </data>
+  <data name="DoubleChains" xml:space="preserve">
+    <value>Dynamic Double Forcing Chains</value>
+  </data>
+  <data name="DynamicKeyword" xml:space="preserve">
+    <value>Dynamic</value>
+  </data>
+  <data name="HouseChains" xml:space="preserve">
+    <value>House Forcing Chains</value>
+  </data>
+  <data name="NestedSuffix_Level1" xml:space="preserve">
+    <value> (+)</value>
+  </data>
+  <data name="NestedSuffix_Level2" xml:space="preserve">
+    <value> (+ AICs)</value>
+  </data>
+  <data name="NestedSuffix_Level3" xml:space="preserve">
+    <value> (+ Multiple Forcing Chains)</value>
+  </data>
+  <data name="NestedSuffix_Level4" xml:space="preserve">
+    <value> (+ Dynamic Forcing Chains)</value>
+  </data>
+  <data name="NestedSuffix_Level5OrGreater" xml:space="preserve">
+    <value> (+ Dynamic Forcing Chains {0})</value>
+  </data>
+  <data name="NishioChains" xml:space="preserve">
+    <value>Nishio Forcing Chains</value>
+  </data>
+  <data name="NishioKeyword" xml:space="preserve">
+    <value>Nishio</value>
+  </data>
+  <data name="NormalChains" xml:space="preserve">
+    <value>AICs</value>
+  </data>
 </root>

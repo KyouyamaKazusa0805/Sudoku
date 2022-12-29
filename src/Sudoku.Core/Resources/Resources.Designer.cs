@@ -61,6 +61,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
+        /// </summary>
+        internal static string AbsurdChains {
+            get {
+                return ResourceManager.GetString("AbsurdChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Almost Hidden Sets Chain.
         /// </summary>
         internal static string AlmostHiddenSetsChain {
@@ -684,6 +693,15 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cell Forcing Chains.
         /// </summary>
+        internal static string CellChains {
+            get {
+                return ResourceManager.GetString("CellChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell Forcing Chains.
+        /// </summary>
         internal static string CellForcingChains {
             get {
                 return ResourceManager.GetString("CellForcingChains", resourceCulture);
@@ -835,6 +853,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dynamic Double Forcing Chains.
+        /// </summary>
+        internal static string DoubleChains {
+            get {
+                return ResourceManager.GetString("DoubleChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Doubly-Linked Almost Locked Sets XZ Rule.
         /// </summary>
         internal static string DoublyLinkedAlmostLockedSetsXzRule {
@@ -876,6 +903,15 @@ namespace Sudoku.Resources {
         internal static string DynamicForcingChains {
             get {
                 return ResourceManager.GetString("DynamicForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamic.
+        /// </summary>
+        internal static string DynamicKeyword {
+            get {
+                return ResourceManager.GetString("DynamicKeyword", resourceCulture);
             }
         }
         
@@ -1609,6 +1645,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to House Forcing Chains.
+        /// </summary>
+        internal static string HouseChains {
+            get {
+                return ResourceManager.GetString("HouseChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hybrid Wing.
         /// </summary>
         internal static string HybridWing {
@@ -1942,11 +1987,74 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  (+).
+        /// </summary>
+        internal static string NestedSuffix_Level1 {
+            get {
+                return ResourceManager.GetString("NestedSuffix_Level1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  (+ AICs).
+        /// </summary>
+        internal static string NestedSuffix_Level2 {
+            get {
+                return ResourceManager.GetString("NestedSuffix_Level2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  (+ Multiple Forcing Chains).
+        /// </summary>
+        internal static string NestedSuffix_Level3 {
+            get {
+                return ResourceManager.GetString("NestedSuffix_Level3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  (+ Dynamic Forcing Chains).
+        /// </summary>
+        internal static string NestedSuffix_Level4 {
+            get {
+                return ResourceManager.GetString("NestedSuffix_Level4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  (+ Dynamic Forcing Chains {0}).
+        /// </summary>
+        internal static string NestedSuffix_Level5OrGreater {
+            get {
+                return ResourceManager.GetString("NestedSuffix_Level5OrGreater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nishio Forcing Chains.
+        /// </summary>
+        internal static string NishioChains {
+            get {
+                return ResourceManager.GetString("NishioChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nishio Forcing Chains.
         /// </summary>
         internal static string NishioForcingChains {
             get {
                 return ResourceManager.GetString("NishioForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nishio.
+        /// </summary>
+        internal static string NishioKeyword {
+            get {
+                return ResourceManager.GetString("NishioKeyword", resourceCulture);
             }
         }
         
@@ -1965,6 +2073,15 @@ namespace Sudoku.Resources {
         internal static string NoMappingRelation {
             get {
                 return ResourceManager.GetString("NoMappingRelation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AICs.
+        /// </summary>
+        internal static string NormalChains {
+            get {
+                return ResourceManager.GetString("NormalChains", resourceCulture);
             }
         }
         

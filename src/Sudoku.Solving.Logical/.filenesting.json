@@ -166,6 +166,12 @@
           "DeathBlossomCellTypeStep.cs": [ "DeathBlossomStep.cs" ],
 
           "AlternatingInferenceChainStep.cs": [ "ChainStep.cs" ],
+          "SudokuExplainerCompatibleChainStep.cs": [ "ChainStep.cs" ],
+          "SudokuExplainerCompatibleAlternatingInferenceChainStep.cs": [ "ChainStep.cs" ],
+          "SudokuExplainerCompatibleCycleStep.cs": [ "ChainStep.cs" ],
+          "SudokuExplainerCompatibleCellForcingChainsStep.cs": [ "ChainStep.cs" ],
+          "SudokuExplainerCompatibleHouseForcingChainsStep.cs": [ "ChainStep.cs" ],
+          "SudokuExplainerCompatibleBinaryForcingChainsStep.cs": [ "ChainStep.cs" ],
 
           "UniquenessClueCoverStep.cs": [ "DeadlyPatternStep.cs" ],
           "ExtendedRectangleStep.cs": [ "DeadlyPatternStep.cs" ],

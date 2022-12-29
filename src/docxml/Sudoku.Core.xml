@@ -761,31 +761,37 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-							public static void Deconstruct(out string name, out int age)
-							{
-							name = Name;
-							age = Age;
-							}
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
 						</code>
 						The following code will be legal.
 						<code>
-							// Use explicitly typed variables to get a deconstruction.
-							(string name, int age) = student;
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
 
-							// Or use the type inferring to omit the type of each variable having been deconstructed.
-							var (name, age) = student;
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
 
-							// Of course, you can also use the invocation to get values.
-							student.Deconstruct(out string name, out int age);
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-							if (student is (name: var name, age: &gt;= 18))
-							{
-							Console.WriteLine(name);
-							}
+<![CDATA[
+if (student is (name: var name, age: &gt;= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
 						</code>
 					</para>
 				</remarks>
@@ -1280,31 +1286,37 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-							public static void Deconstruct(out string name, out int age)
-							{
-							name = Name;
-							age = Age;
-							}
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
 						</code>
 						The following code will be legal.
 						<code>
-							// Use explicitly typed variables to get a deconstruction.
-							(string name, int age) = student;
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
 
-							// Or use the type inferring to omit the type of each variable having been deconstructed.
-							var (name, age) = student;
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
 
-							// Of course, you can also use the invocation to get values.
-							student.Deconstruct(out string name, out int age);
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-							if (student is (name: var name, age: &gt;= 18))
-							{
-							Console.WriteLine(name);
-							}
+<![CDATA[
+if (student is (name: var name, age: &gt;= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
 						</code>
 					</para>
 				</remarks>
@@ -3736,6 +3748,11 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.AbsurdChains">
+            <summary>
+              Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.AlmostHiddenSetsChain">
             <summary>
               Looks up a localized string similar to Almost Hidden Sets Chain.
@@ -4081,6 +4098,11 @@
               Looks up a localized string similar to Time elapsed: .
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.CellChains">
+            <summary>
+              Looks up a localized string similar to Cell Forcing Chains.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.CellForcingChains">
             <summary>
               Looks up a localized string similar to Cell Forcing Chains.
@@ -4166,6 +4188,11 @@
               Looks up a localized string similar to Domino Loop.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.DoubleChains">
+            <summary>
+              Looks up a localized string similar to Dynamic Double Forcing Chains.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.DoublyLinkedAlmostLockedSetsXzRule">
             <summary>
               Looks up a localized string similar to Doubly-Linked Almost Locked Sets XZ Rule.
@@ -4189,6 +4216,11 @@
         <member name="P:Sudoku.Resources.Resources.DynamicForcingChains">
             <summary>
               Looks up a localized string similar to Dynamic Forcing Chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.DynamicKeyword">
+            <summary>
+              Looks up a localized string similar to Dynamic.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.DynamicRegionForcingChains">
@@ -4596,6 +4628,11 @@
               Looks up a localized string similar to Hidden Unique Rectangle.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.HouseChains">
+            <summary>
+              Looks up a localized string similar to House Forcing Chains.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.HybridWing">
             <summary>
               Looks up a localized string similar to Hybrid Wing.
@@ -4781,9 +4818,44 @@
               Looks up a localized string similar to Naked Triple (+).
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.NestedSuffix_Level1">
+            <summary>
+              Looks up a localized string similar to  (+).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.NestedSuffix_Level2">
+            <summary>
+              Looks up a localized string similar to  (+ AICs).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.NestedSuffix_Level3">
+            <summary>
+              Looks up a localized string similar to  (+ Multiple Forcing Chains).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.NestedSuffix_Level4">
+            <summary>
+              Looks up a localized string similar to  (+ Dynamic Forcing Chains).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.NestedSuffix_Level5OrGreater">
+            <summary>
+              Looks up a localized string similar to  (+ Dynamic Forcing Chains {0}).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.NishioChains">
+            <summary>
+              Looks up a localized string similar to Nishio Forcing Chains.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.NishioForcingChains">
             <summary>
               Looks up a localized string similar to Nishio Forcing Chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.NishioKeyword">
+            <summary>
+              Looks up a localized string similar to Nishio.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.NodeCollision">
@@ -4794,6 +4866,11 @@
         <member name="P:Sudoku.Resources.Resources.NoMappingRelation">
             <summary>
               Looks up a localized string similar to No mapping.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.NormalChains">
+            <summary>
+              Looks up a localized string similar to AICs.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.OrKeywordWithSpaces">
@@ -6324,31 +6401,37 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-							public static void Deconstruct(out string name, out int age)
-							{
-							name = Name;
-							age = Age;
-							}
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
 						</code>
 						The following code will be legal.
 						<code>
-							// Use explicitly typed variables to get a deconstruction.
-							(string name, int age) = student;
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
 
-							// Or use the type inferring to omit the type of each variable having been deconstructed.
-							var (name, age) = student;
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
 
-							// Of course, you can also use the invocation to get values.
-							student.Deconstruct(out string name, out int age);
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-							if (student is (name: var name, age: &gt;= 18))
-							{
-							Console.WriteLine(name);
-							}
+<![CDATA[
+if (student is (name: var name, age: &gt;= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
 						</code>
 					</para>
 				</remarks>
@@ -6365,31 +6448,37 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-							public static void Deconstruct(out string name, out int age)
-							{
-							name = Name;
-							age = Age;
-							}
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
 						</code>
 						The following code will be legal.
 						<code>
-							// Use explicitly typed variables to get a deconstruction.
-							(string name, int age) = student;
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
 
-							// Or use the type inferring to omit the type of each variable having been deconstructed.
-							var (name, age) = student;
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
 
-							// Of course, you can also use the invocation to get values.
-							student.Deconstruct(out string name, out int age);
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-							if (student is (name: var name, age: &gt;= 18))
-							{
-							Console.WriteLine(name);
-							}
+<![CDATA[
+if (student is (name: var name, age: &gt;= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
 						</code>
 					</para>
 				</remarks>
@@ -8328,31 +8417,37 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-							public static void Deconstruct(out string name, out int age)
-							{
-							name = Name;
-							age = Age;
-							}
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
 						</code>
 						The following code will be legal.
 						<code>
-							// Use explicitly typed variables to get a deconstruction.
-							(string name, int age) = student;
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
 
-							// Or use the type inferring to omit the type of each variable having been deconstructed.
-							var (name, age) = student;
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
 
-							// Of course, you can also use the invocation to get values.
-							student.Deconstruct(out string name, out int age);
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
 						</code>
 					</para>
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-							if (student is (name: var name, age: &gt;= 18))
-							{
-							Console.WriteLine(name);
-							}
+<![CDATA[
+if (student is (name: var name, age: &gt;= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
 						</code>
 					</para>
 				</remarks>
