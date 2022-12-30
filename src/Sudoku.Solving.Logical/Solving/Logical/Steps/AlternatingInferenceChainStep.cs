@@ -76,18 +76,12 @@ internal sealed record AlternatingInferenceChainStep(
 					_ => Technique.XChain
 				},
 			{ Chain: { IsGrouped: true, Count: 3 } } => Technique.GroupedXyWing,
-			{ IsWWing: true, Chain.IsGrouped: var isGrouped }
-				=> isGrouped ? Technique.GroupedWWing : Technique.WWing,
-			{ IsMWing: true, Chain.IsGrouped: var isGrouped }
-				=> isGrouped ? Technique.GroupedMWing : Technique.MWing,
-			{ IsSplitWing: true, Chain.IsGrouped: var isGrouped }
-				=> isGrouped ? Technique.GroupedSplitWing : Technique.SplitWing,
-			{ IsHybridWing: true, Chain.IsGrouped: var isGrouped }
-				=> isGrouped ? Technique.GroupedHybridWing : Technique.HybridWing,
-			{ IsLocalWing: true, Chain.IsGrouped: var isGrouped }
-				=> isGrouped ? Technique.GroupedLocalWing : Technique.LocalWing,
-			{ Chain: { IsGrouped: var isGrouped, IsIrregularWing: true } }
-				=> isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
+			{ IsWWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
+			{ IsMWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
+			{ IsSplitWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedSplitWing : Technique.SplitWing,
+			{ IsHybridWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedHybridWing : Technique.HybridWing,
+			{ IsLocalWing: true, Chain.IsGrouped: var isGrouped } => isGrouped ? Technique.GroupedLocalWing : Technique.LocalWing,
+			{ Chain: { IsGrouped: var isGrouped, IsIrregularWing: true } } => isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
 			{ Chain.IsGrouped: false, IsRemotePair: true } => Technique.RemotePair,
 			{ Chain.IsAlmostLockedSetsOnly: true } => Technique.AlmostLockedSetsChain,
 			{ Chain.IsAlmostHiddenSetsOnly: true } => Technique.AlmostHiddenSetsChain,

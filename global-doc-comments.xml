@@ -110,7 +110,7 @@ student.Deconstruct(out string name, out int age);
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
 <![CDATA[
-if (student is (name: var name, age: &gt;= 18))
+if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
 }

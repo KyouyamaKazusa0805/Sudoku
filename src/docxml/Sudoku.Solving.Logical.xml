@@ -1691,7 +1691,7 @@ student.Deconstruct(out string name, out int age);
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
 <![CDATA[
-if (student is (name: var name, age: &gt;= 18))
+if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
 }
@@ -1738,7 +1738,7 @@ student.Deconstruct(out string name, out int age);
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
 <![CDATA[
-if (student is (name: var name, age: &gt;= 18))
+if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
 }
@@ -1970,7 +1970,7 @@ student.Deconstruct(out string name, out int age);
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
 <![CDATA[
-if (student is (name: var name, age: &gt;= 18))
+if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
 }
@@ -2017,7 +2017,7 @@ student.Deconstruct(out string name, out int age);
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
 <![CDATA[
-if (student is (name: var name, age: &gt;= 18))
+if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
 }
@@ -2921,7 +2921,7 @@ student.Deconstruct(out string name, out int age);
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
 <![CDATA[
-if (student is (name: var name, age: &gt;= 18))
+if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
 }
@@ -5667,12 +5667,13 @@ if (student is (name: var name, age: &gt;= 18))
         <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.GetBaseDifficulty">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.IsParent(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential)">
             <summary>
-            Gets the base difficulty rating via the settings of the current step searcher.
+            Checks whether hte specified <paramref name="child"/> is the real child node of <paramref name="parent"/>.
             </summary>
-            <returns>The base difficulty rating.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the current state of the step searcher is invalid.</exception>
+            <param name="child">The child node to be checked.</param>
+            <param name="parent">The parent node to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
             <summary>
@@ -5683,6 +5684,13 @@ if (student is (name: var name, age: &gt;= 18))
             <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
             <returns>All possible found <see cref="T:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep"/>s.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.GetMultipleChainsHintList(Sudoku.Concepts.Grid@)">
+            <summary>
+            Search for hints on the given grid.
+            </summary>
+            <param name="grid">The grid on which to search for hints.</param>
+            <returns>The hints found.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep},System.Boolean,System.Boolean)">
             <summary>
             Look for, and add single forcing chains, and bidirectional cycles.
@@ -5692,6 +5700,53 @@ if (student is (name: var name, age: &gt;= 18))
             <param name="result">The result steps found.</param>
             <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
             <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean)">
+            <summary>
+            <para>From the potential <c>p</c>, compute the consequences from both states.</para>
+            <para>
+            More precisely, <c>p</c> is first assumed to be correct ("on"), and then to be incorrect ("off");
+            and the following sets are created:
+            <list type="bullet">
+            <item><c><paramref name="onToOn"/></c> the set of potentials that must be "on" when <c>p</c> is "on"</item>
+            <item><c><paramref name="onToOff"/></c> the set of potentials that must be "off" when <c>p</c> is "on"</item>
+            <item><c>offToOn</c> the set of potentials that must be "on" when <c>p</c> is "off"</item>
+            <item><c>offToOff</c> the set of potentials that must be "off" when <c>p</c> is "off"</item>
+            </list>
+            Then the following rules are applied:
+            <list type="bullet">
+            <item>
+            If a potential belongs to both <c><paramref name="onToOn"/></c> and <c><paramref name="onToOff"/></c>,
+            the potential <c>p</c> cannot be "on" because it would imply a potential
+            to be both "on" and "off", which is an absurd.
+            </item>
+            <item>
+            If a potential belongs to both <c>offToOn</c> and <c>offToOff</c>,
+            the potential <c>p</c> cannot be "off" because it would imply a potential
+            to be both "on" and "off", which is an absurd.
+            </item>
+            <item>
+            If a potential belongs to both <c><paramref name="onToOn"/></c> and <c>offToOn</c>,
+            this potential must be "on", because it is implied to be "on" by the two possible
+            states of <c>p</c>.
+            </item>
+            <item>
+            If a potential belongs to both <c><paramref name="onToOff"/></c> and <c>offToOff</c>,
+            this potential must be "off", because it is implied to be "off" by the two possible
+            states of <c>p</c>.
+            </item>
+            </list>
+            Note that if a potential belongs to all the four sets, the sudoku has no solution. This is not checked.
+            </para>
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="pOn"></param>
+            <param name="pOff"></param>
+            <param name="result"></param>
+            <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
+            <param name="onToOff">An empty set, filled with potentials that get off if the given potential is on.</param>
+            <param name="doReduction"></param>
+            <param name="doContradiction"></param>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)">
             <summary>
@@ -5732,6 +5787,16 @@ if (student is (name: var name, age: &gt;= 18))
             <param name="source">
             <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='source']"/>
             </param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.DoChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential})">
+            <summary>
+            Given the initial sets of potentials that are assumed to be "on" and "off",
+            complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="toOn">The potentials that are assumed to be "on".</param>
+            <param name="toOff">The potentials that are assumed to be "off".</param>
+            <returns>If success, <see langword="null"/>.</returns>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.GetOnToOff(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
             <summary>
@@ -5779,18 +5844,28 @@ if (student is (name: var name, age: &gt;= 18))
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.CreateForcingChainHint(Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean)">
             <summary>
-            Try to create a chain hint.
+            Try to create an AIC hint.
             </summary>
-            <param name="target">Indicates the target node.</param>
-            <param name="isX">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='isX']"/>
-            </param>
-            <param name="isY">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='isY']"/>
-            </param>
-            <returns>
-            A valid <see cref="T:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleAlternatingInferenceChainStep"/> instance.
-            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.CreateChainingOnHint(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
+            <summary>
+            Try to create a binary forcing chain hint on "on" state.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.CreateChainingOffHint(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
+            <summary>
+            Try to create a binary forcing chain hint on "off" state.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.CreateCellReductionHint(System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
+            <summary>
+            Try to create a cell forcing chain hint.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.CreateHouseReductionHint(System.Int32,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
+            <summary>
+            Try to create a region (house) forcing chain hint.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.SudokuExplainerCompatibleChainingStepSearcher.Options">
             <inheritdoc/>
@@ -7778,7 +7853,7 @@ if (student is (name: var name, age: &gt;= 18))
             <param name="Views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainStep.FlatComplexity">
-            <inheritdoc/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.Steps.Specialized.IChainStep.FlatComplexity"/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.ChromaticPatternStep">
             <summary>
@@ -10812,6 +10887,170 @@ if (student is (name: var name, age: &gt;= 18))
             <param name="state">The state of the candidate you want to color.</param>
             <returns>All colored candidates with a same state.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep">
+            <summary>
+            Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            The technique contains two kinds of forcing chains:
+            <list type="bullet">
+            <item>Dynamic Contradiction Forcing Chains</item>
+            <item>Dynamic Double Forcing Chains</item>
+            </list>
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="SourcePotential">Indicates the source potential of the chain.</param>
+            <param name="FromOnPotential">Indicates the "on" branch.</param>
+            <param name="FromOffPotential">Indicates the "off" branch.</param>
+            <param name="IsAbsurd">Indicates whether the forcing chains kind is contradiction.</param>
+            <param name="IsNishio"><inheritdoc/></param>
+            <param name="DynamicNestingLevel"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            The technique contains two kinds of forcing chains:
+            <list type="bullet">
+            <item>Dynamic Contradiction Forcing Chains</item>
+            <item>Dynamic Double Forcing Chains</item>
+            </list>
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="SourcePotential">Indicates the source potential of the chain.</param>
+            <param name="FromOnPotential">Indicates the "on" branch.</param>
+            <param name="FromOffPotential">Indicates the "off" branch.</param>
+            <param name="IsAbsurd">Indicates whether the forcing chains kind is contradiction.</param>
+            <param name="IsNishio"><inheritdoc/></param>
+            <param name="DynamicNestingLevel"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.SourcePotential">
+            <summary>Indicates the source potential of the chain.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.FromOnPotential">
+            <summary>Indicates the "on" branch.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.FromOffPotential">
+            <summary>Indicates the "off" branch.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.IsAbsurd">
+            <summary>Indicates whether the forcing chains kind is contradiction.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.FlatViewsCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.Result">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.GetChainsTargets">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.GetChainTargetAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.GetGreenPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.GetRedPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.GetLinks(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleBinaryForcingChainsStep.GetColorCandidates(System.Int32,System.Boolean)">
+            <summary>
+            Gets all colored candidates with the specified state.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <param name="state">The state of the candidate you want to color.</param>
+            <returns>All colored candidates with a same state.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep">
+            <summary>
+            Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="SourceCell">Indicates the source cell that all branches start.</param>
+            <param name="Chains">Indicates all possible branches in this technique.</param>
+            <param name="IsDynamic"><inheritdoc/></param>
+            <param name="DynamicNestingLevel"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Byte,System.Collections.Generic.IReadOnlyDictionary{System.Byte,Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="SourceCell">Indicates the source cell that all branches start.</param>
+            <param name="Chains">Indicates all possible branches in this technique.</param>
+            <param name="IsDynamic"><inheritdoc/></param>
+            <param name="DynamicNestingLevel"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.SourceCell">
+            <summary>Indicates the source cell that all branches start.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.Chains">
+            <summary>Indicates all possible branches in this technique.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.FlatViewsCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.Result">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.GetChainsTargets">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.GetChainTargetAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.GetGreenPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.GetRedPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCellForcingChainsStep.GetLinks(System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep">
             <summary>
             Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
@@ -10879,6 +11118,13 @@ if (student is (name: var name, age: &gt;= 18))
             Indicates the difficulty rating of the current step, which binds with length factor.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep.BaseDifficultyNonAlternatingInference">
+            <summary>
+            Gets the base difficulty rating for non-AICs via the settings of the current step.
+            </summary>
+            <returns>The base difficulty rating.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the current state of the step is invalid.</exception>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep.FlatViewsCount">
             <summary>
             Returns how many views the current step will be used.
@@ -10938,7 +11184,7 @@ student.Deconstruct(out string name, out int age);
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
 <![CDATA[
-if (student is (name: var name, age: &gt;= 18))
+if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
 }
@@ -11162,6 +11408,79 @@ if (student is (name: var name, age: &gt;= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCycleStep.GetLinks(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep">
+            <summary>
+            Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="HouseIndex">Indicates the index of the house represented.</param>
+            <param name="Digit">Indicates the digit of the chain bound with.</param>
+            <param name="Chains">Indicates all possible branches in this technique.</param>
+            <param name="IsDynamic"><inheritdoc/></param>
+            <param name="DynamicNestingLevel"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Int32,System.Byte,System.Collections.Generic.IReadOnlyDictionary{System.Byte,Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="HouseIndex">Indicates the index of the house represented.</param>
+            <param name="Digit">Indicates the digit of the chain bound with.</param>
+            <param name="Chains">Indicates all possible branches in this technique.</param>
+            <param name="IsDynamic"><inheritdoc/></param>
+            <param name="DynamicNestingLevel"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.HouseIndex">
+            <summary>Indicates the index of the house represented.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.Digit">
+            <summary>Indicates the digit of the chain bound with.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.Chains">
+            <summary>Indicates all possible branches in this technique.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.FlatViewsCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.Result">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.GetChainsTargets">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.GetChainTargetAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.GetGreenPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.GetRedPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleHouseForcingChainsStep.GetLinks(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep">

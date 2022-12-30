@@ -88,6 +88,22 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 	}
 
 	/// <summary>
+	/// Gets the base difficulty rating for non-AICs via the settings of the current step.
+	/// </summary>
+	/// <returns>The base difficulty rating.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the current state of the step is invalid.</exception>
+	protected decimal BaseDifficultyNonAlternatingInference
+		=> this switch
+		{
+			{ DynamicNestingLevel: var l and >= 2 } => 9.5M + .5M * (l - 2),
+			{ DynamicNestingLevel: var l and > 0 } => 8.5M + .5M * l,
+			{ IsNishio: true } => 7.5M,
+			{ IsDynamic: true } => 8.5M,
+			{ IsMultiple: true } => 8.0M,
+			_ => throw new InvalidOperationException("The current state of the step searcher is invalid.")
+		};
+
+	/// <summary>
 	/// Returns how many views the current step will be used.
 	/// </summary>
 	protected abstract int FlatViewsCount { get; }
@@ -547,29 +563,4 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 			({ Complexity: var l1 }, { Complexity: var l2 }) when l1 != l2 => Sign(l1 - l2),
 			({ SortKey: var s1 }, { SortKey: var s2 }) => Sign(s1 - s2)
 		};
-}
-
-internal abstract record SudokuExplainerCompatibleCellForcingChainsStep(
-	ConclusionList Conclusions,
-	bool IsDynamic,
-	int DynamicNestingLevel
-) : SudokuExplainerCompatibleChainStep(Conclusions, true, true, true, IsDynamic, false, DynamicNestingLevel)
-{
-}
-
-internal abstract record SudokuExplainerCompatibleHouseForcingChainsStep(
-	ConclusionList Conclusions,
-	bool IsDynamic,
-	int DynamicNestingLevel
-) : SudokuExplainerCompatibleChainStep(Conclusions, true, true, true, IsDynamic, false, DynamicNestingLevel)
-{
-}
-
-internal abstract record SudokuExplainerCompatibleBinaryForcingChainsStep(
-	ConclusionList Conclusions,
-	bool IsNishio,
-	bool IsAbsurd,
-	int DynamicNestingLevel
-) : SudokuExplainerCompatibleChainStep(Conclusions, true, true, true, true, IsNishio, DynamicNestingLevel)
-{
 }

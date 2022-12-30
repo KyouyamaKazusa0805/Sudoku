@@ -7,6 +7,6 @@
 /// <param name="Views"><inheritdoc/></param>
 internal abstract record ChainStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views), IChainLikeStep
 {
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IChainStep.FlatComplexity"/>
 	public abstract int FlatComplexity { get; }
 }

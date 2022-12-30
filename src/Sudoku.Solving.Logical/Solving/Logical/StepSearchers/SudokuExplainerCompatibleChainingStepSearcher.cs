@@ -4,16 +4,17 @@ namespace Sudoku.Solving.Logical.StepSearchers;
 
 using PotentialList = List<Potential>;
 using PotentialSet = HashSet<Potential>;
+using Step = SudokuExplainerCompatibleChainStep;
 
 [StepSearcher]
 [SeparatedStepSearcher(0, nameof(AllowMultiple), false, nameof(AllowDynamic), false, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
 [SeparatedStepSearcher(1, nameof(AllowMultiple), true, nameof(AllowDynamic), false, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
 [SeparatedStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
-[SeparatedStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 1)]
-[SeparatedStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 2)]
-[SeparatedStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 3)]
-[SeparatedStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 4)]
-[SeparatedStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 5)]
+[SeparatedStepSearcher(3, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 1)]
+[SeparatedStepSearcher(4, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 2)]
+[SeparatedStepSearcher(5, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 3)]
+[SeparatedStepSearcher(6, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 4)]
+[SeparatedStepSearcher(7, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 5)]
 internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : ISudokuExplainerCompatibleChainingStepSearcher
 {
 	/// <summary>
@@ -104,23 +105,24 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 		// TODO: Implement an implications cache.
 
 		scoped ref readonly var grid = ref context.Grid;
-		List<SudokuExplainerCompatibleChainStep> result;
+		List<Step> result;
 		if (AllowMultiple || AllowDynamic)
 		{
-			result = new();//GetMultipleChainsHintList(grid);
+			var tempGrid = grid;
+			result = GetMultipleChainsHintList(ref tempGrid);
 		}
 		else
 		{
-			var xLoops = GetLoopHintList(grid, true, false); // Cycles with X-Links (Coloring / Fishy).
-			var yLoops = GetLoopHintList(grid, false, true); // Cycles with Y-Links.
-			var xyLoops = GetLoopHintList(grid, true, true); // Cycles with both.
+			var xCycles = GetLoopHintList(grid, true, false);
+			var yCycles = GetLoopHintList(grid, false, true);
+			var xyCycles = GetLoopHintList(grid, true, true);
 
-			result = xLoops;
-			result.AddRange(yLoops);
-			result.AddRange(xyLoops);
+			result = xCycles;
+			result.AddRange(yCycles);
+			result.AddRange(xyCycles);
 		}
 
-		result.Sort(SudokuExplainerCompatibleChainStep.Compare);
+		result.Sort(Step.Compare);
 
 		if (context.OnlyFindOne)
 		{
@@ -131,6 +133,12 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 		return null;
 	}
 
+	/// <summary>
+	/// Checks whether hte specified <paramref name="child"/> is the real child node of <paramref name="parent"/>.
+	/// </summary>
+	/// <param name="child">The child node to be checked.</param>
+	/// <param name="parent">The parent node to be checked.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
 	internal bool IsParent(Potential child, Potential parent)
 	{
 		var pTest = child;
@@ -148,32 +156,15 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	}
 
 	/// <summary>
-	/// Gets the base difficulty rating via the settings of the current step searcher.
-	/// </summary>
-	/// <returns>The base difficulty rating.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the current state of the step searcher is invalid.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal decimal GetBaseDifficulty()
-		=> this switch
-		{
-			{ DynamicNestingLevel: var l and >= 2 } => 9.5M + .5M * (l - 2),
-			{ DynamicNestingLevel: var l and > 0 } => 8.5M + .5M * l,
-			{ AllowNishio: true } => 7.5M,
-			{ AllowDynamic: true } => 8.5M,
-			{ AllowMultiple: true } => 8.0M,
-			_ => throw new InvalidOperationException("The current state of the step searcher is invalid.")
-		};
-
-	/// <summary>
 	/// Try to search for all AICs and continuous nice loops.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
 	/// <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
-	/// <returns>All possible found <see cref="SudokuExplainerCompatibleChainStep"/>s.</returns>
-	private List<SudokuExplainerCompatibleChainStep> GetLoopHintList(scoped in Grid grid, bool isX, bool isY)
+	/// <returns>All possible found <see cref="Step"/>s.</returns>
+	private List<Step> GetLoopHintList(scoped in Grid grid, bool isX, bool isY)
 	{
-		var result = new List<SudokuExplainerCompatibleChainStep>();
+		var result = new List<Step>();
 
 		foreach (byte cell in EmptyCells)
 		{
@@ -196,6 +187,93 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	}
 
 	/// <summary>
+	/// Search for hints on the given grid.
+	/// </summary>
+	/// <param name="grid">The grid on which to search for hints.</param>
+	/// <returns>The hints found.</returns>
+	private List<Step> GetMultipleChainsHintList(scoped ref Grid grid)
+	{
+		var result = new List<Step>();
+
+		// Iterate on all empty cells.
+		foreach (byte cell in EmptyCells)
+		{
+			// The cell is empty.
+			var cardinality = PopCount((uint)grid.GetCandidates(cell));
+			if (cardinality > 2 || cardinality > 1 && AllowDynamic)
+			{
+				// Prepare storage and accumulator for "Cell Reduction".
+				var digitToOn = new Dictionary<byte, PotentialSet>();
+				var digitToOff = new Dictionary<byte, PotentialSet>();
+				var cellToOn = default(PotentialSet?);
+				var cellToOff = default(PotentialSet?);
+
+				// Iterate on all potential values that are not alone.
+				for (byte digit = 1; digit <= 9; digit++)
+				{
+					if (CandidatesMap[digit].Contains(cell))
+					{
+						// Do Binary chaining (same potential either on or off).
+						var pOn = new Potential(cell, digit, true);
+						var pOff = new Potential(cell, digit, false);
+						var onToOn = new PotentialSet();
+						var onToOff = new PotentialSet();
+						var doDouble = cardinality >= 3 && !AllowNishio && AllowDynamic;
+						var doContradiction = AllowDynamic || AllowNishio;
+						DoBinaryChaining(ref grid, pOn, pOff, result, onToOn, onToOff, doDouble, doContradiction);
+
+						if (!AllowNishio)
+						{
+							// Do house chaining.
+							DoHouseChaining(ref grid, result, cell, digit, onToOn, onToOff);
+						}
+
+						// Collect results for cell chaining.
+						digitToOn.Add(digit, onToOn);
+						digitToOff.Add(digit, onToOff);
+						if (cellToOn is null)
+						{
+							cellToOn = new();
+							cellToOff = new();
+							cellToOn.AddRange(onToOn);
+							cellToOff.AddRange(onToOff);
+						}
+						else
+						{
+							cellToOn.IntersectWith(onToOn);
+							cellToOff!.IntersectWith(onToOff);
+						}
+					}
+				}
+
+				if (!AllowNishio)
+				{
+					// Do Cell reduction
+					if (cardinality == 2 || AllowMultiple)
+					{
+						if (cellToOn is not null)
+						{
+							foreach (var p in cellToOn)
+							{
+								result.Add(CreateCellReductionHint(cell, p, digitToOn));
+							}
+						}
+						if (cellToOff is not null)
+						{
+							foreach (var p in cellToOff)
+							{
+								result.Add(CreateCellReductionHint(cell, p, digitToOff));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// Look for, and add single forcing chains, and bidirectional cycles.
 	/// </summary>
 	/// <param name="grid"><inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
@@ -203,7 +281,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	/// <param name="result">The result steps found.</param>
 	/// <param name="isX"><inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
 	/// <param name="isY"><inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
-	private void DoUnaryChaining(scoped in Grid grid, Potential pOn, List<SudokuExplainerCompatibleChainStep> result, bool isX, bool isY)
+	private void DoUnaryChaining(scoped in Grid grid, Potential pOn, List<Step> result, bool isX, bool isY)
 	{
 		if (!BivalueCells.Contains(pOn.Cell) && !isX)
 		{
@@ -246,6 +324,173 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 		foreach (var target in chains)
 		{
 			result.Add(CreateForcingChainHint(target, isX, isY));
+		}
+	}
+
+	/// <summary>
+	/// <para>From the potential <c>p</c>, compute the consequences from both states.</para>
+	/// <para>
+	/// More precisely, <c>p</c> is first assumed to be correct ("on"), and then to be incorrect ("off");
+	/// and the following sets are created:
+	/// <list type="bullet">
+	/// <item><c><paramref name="onToOn"/></c> the set of potentials that must be "on" when <c>p</c> is "on"</item>
+	/// <item><c><paramref name="onToOff"/></c> the set of potentials that must be "off" when <c>p</c> is "on"</item>
+	/// <item><c>offToOn</c> the set of potentials that must be "on" when <c>p</c> is "off"</item>
+	/// <item><c>offToOff</c> the set of potentials that must be "off" when <c>p</c> is "off"</item>
+	/// </list>
+	/// Then the following rules are applied:
+	/// <list type="bullet">
+	/// <item>
+	/// If a potential belongs to both <c><paramref name="onToOn"/></c> and <c><paramref name="onToOff"/></c>,
+	/// the potential <c>p</c> cannot be "on" because it would imply a potential
+	/// to be both "on" and "off", which is an absurd.
+	/// </item>
+	/// <item>
+	/// If a potential belongs to both <c>offToOn</c> and <c>offToOff</c>,
+	/// the potential <c>p</c> cannot be "off" because it would imply a potential
+	/// to be both "on" and "off", which is an absurd.
+	/// </item>
+	/// <item>
+	/// If a potential belongs to both <c><paramref name="onToOn"/></c> and <c>offToOn</c>,
+	/// this potential must be "on", because it is implied to be "on" by the two possible
+	/// states of <c>p</c>.
+	/// </item>
+	/// <item>
+	/// If a potential belongs to both <c><paramref name="onToOff"/></c> and <c>offToOff</c>,
+	/// this potential must be "off", because it is implied to be "off" by the two possible
+	/// states of <c>p</c>.
+	/// </item>
+	/// </list>
+	/// Note that if a potential belongs to all the four sets, the sudoku has no solution. This is not checked.
+	/// </para>
+	/// </summary>
+	/// <param name="grid"><inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="pOn"></param>
+	/// <param name="pOff"></param>
+	/// <param name="result"></param>
+	/// <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
+	/// <param name="onToOff">An empty set, filled with potentials that get off if the given potential is on.</param>
+	/// <param name="doReduction"></param>
+	/// <param name="doContradiction"></param>
+	private void DoBinaryChaining(
+		scoped ref Grid grid,
+		Potential pOn,
+		Potential pOff,
+		List<Step> result,
+		PotentialSet onToOn,
+		PotentialSet onToOff,
+		bool doReduction,
+		bool doContradiction
+	)
+	{
+		var offToOn = new PotentialSet();
+		var offToOff = new PotentialSet();
+
+		// Circular Forcing Chains (hypothesis implying its negation) are already covered by Cell Forcing Chains,
+		// and are therefore not checked for.
+
+		// Test p = "on"
+		onToOn.Add(pOn);
+		var absurdPotential = DoChaining(ref grid, onToOn, onToOff);
+		if (doContradiction && absurdPotential is var (absurdOn1, absurdOff1))
+		{
+			// p cannot hold its value, because else it would lead to a contradiction.
+			result.Add(CreateChainingOffHint(absurdOn1, absurdOff1, pOn, pOn, true));
+		}
+
+		// Test p = "off"
+		offToOff.Add(pOff);
+		absurdPotential = DoChaining(ref grid, offToOn, offToOff);
+		if (doContradiction && absurdPotential is var (absurdOn2, absurdOff2))
+		{
+			// p must hold its value, because else it would lead to a contradiction.
+			result.Add(CreateChainingOnHint(absurdOn2, absurdOff2, pOff, pOff, true));
+		}
+
+		if (doReduction)
+		{
+			// Check potentials that must be on in both case.
+			foreach (var pFromOn in onToOn)
+			{
+				if (offToOn.GetNullable(pFromOn) is { } pFromOff)
+				{
+					result.Add(CreateChainingOnHint(pFromOn, pFromOff, pOn, pFromOn, false));
+				}
+			}
+
+			// Check potentials that must be off in both case.
+			foreach (var pFromOn in onToOff)
+			{
+				if (offToOff.GetNullable(pFromOn) is { } pFromOff)
+				{
+					result.Add(CreateChainingOffHint(pFromOn, pFromOff, pOff, pFromOff, false));
+				}
+			}
+		}
+	}
+
+	private void DoHouseChaining(
+		scoped ref Grid grid,
+		List<Step> result,
+		byte cell,
+		byte digit,
+		PotentialSet onToOn,
+		PotentialSet onToOff
+	)
+	{
+		foreach (var houseType in HouseTypes)
+		{
+			var houseIndex = cell.ToHouseIndex(houseType);
+			var potentialPositions = EmptyCells & HousesMap[houseIndex] & CandidatesMap[digit];
+			if (potentialPositions.Count == 2 || AllowMultiple && potentialPositions.Count > 2)
+			{
+				var firstCell = potentialPositions[0];
+
+				// Do we meet region for the first time?
+				if (firstCell == cell)
+				{
+					var posToOn = new Dictionary<byte, PotentialSet>();
+					var posToOff = new Dictionary<byte, PotentialSet>();
+					var regionToOn = new PotentialSet();
+					var regionToOff = new PotentialSet();
+
+					// Iterate on potential positions within the region.
+					foreach (byte otherCell in potentialPositions)
+					{
+						if (otherCell == cell)
+						{
+							posToOn.Add(otherCell, onToOn);
+							posToOff.Add(otherCell, onToOff);
+							regionToOn.AddRange(onToOn);
+							regionToOff.AddRange(onToOff);
+						}
+						else
+						{
+							var other = new Potential(otherCell, digit, true);
+							var otherToOn = new PotentialSet { other };
+							var otherToOff = new PotentialSet();
+
+							DoChaining(ref grid, otherToOn, otherToOff);
+
+							posToOn.Add(otherCell, otherToOn);
+							posToOff.Add(otherCell, otherToOff);
+
+							regionToOn.IntersectWith(otherToOn);
+							regionToOff.IntersectWith(otherToOff);
+						}
+					}
+
+					// Gather results.
+					foreach (var p in regionToOn)
+					{
+						result.Add(CreateHouseReductionHint(houseIndex, digit, p, posToOn));
+					}
+					foreach (var p in regionToOff)
+					{
+						result.Add(CreateHouseReductionHint(houseIndex, digit, p, posToOff));
+					}
+				}
+			}
 		}
 	}
 
@@ -404,7 +649,6 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 		}
 	}
 
-#if ALLOW_ADVANCED_CHAINING
 	/// <summary>
 	/// Given the initial sets of potentials that are assumed to be "on" and "off",
 	/// complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
@@ -493,6 +737,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 		}
 	}
 
+#if ALLOW_ADVANCED_CHAINING
 	/// <summary>
 	/// Get all non-trivial implications (involving fished, naked/hidden sets, etc).
 	/// </summary>
@@ -721,25 +966,98 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	}
 
 	/// <summary>
-	/// Try to create a chain hint.
+	/// Try to create an AIC hint.
 	/// </summary>
-	/// <param name="target">Indicates the target node.</param>
-	/// <param name="isX">
-	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='isX']"/>
-	/// </param>
-	/// <param name="isY">
-	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='isY']"/>
-	/// </param>
-	/// <returns>
-	/// A valid <see cref="SudokuExplainerCompatibleAlternatingInferenceChainStep"/> instance.
-	/// </returns>
 	private SudokuExplainerCompatibleAlternatingInferenceChainStep CreateForcingChainHint(Potential target, bool isX, bool isY)
-		=> new(
-			ImmutableArray.Create(new Conclusion(target.IsOn ? Assignment : Elimination, target.Candidate)),
-			target,
-			isX,
-			isY
-		);
+		=> new(ImmutableArray.Create(new Conclusion(target.IsOn ? Assignment : Elimination, target.Candidate)), target, isX, isY);
+
+	/// <summary>
+	/// Try to create a binary forcing chain hint on "on" state.
+	/// </summary>
+	private SudokuExplainerCompatibleBinaryForcingChainsStep CreateChainingOnHint(
+		Potential dstOn,
+		Potential dstOff,
+		Potential source,
+		Potential target,
+		bool isAbsurd
+	) => new(
+		ImmutableArray.Create(new Conclusion(Assignment, target.Cell, target.Digit)),
+		source,
+		dstOn,
+		dstOff,
+		isAbsurd,
+		AllowNishio,
+		DynamicNestingLevel
+	);
+
+	/// <summary>
+	/// Try to create a binary forcing chain hint on "off" state.
+	/// </summary>
+	private SudokuExplainerCompatibleBinaryForcingChainsStep CreateChainingOffHint(
+		Potential dstOn,
+		Potential dstOff,
+		Potential source,
+		Potential target,
+		bool isAbsurd
+	) => new(
+		ImmutableArray.Create(new Conclusion(Elimination, target.Cell, target.Digit)),
+		source,
+		dstOn,
+		dstOff,
+		isAbsurd,
+		AllowNishio,
+		DynamicNestingLevel
+	);
+
+	/// <summary>
+	/// Try to create a cell forcing chain hint.
+	/// </summary>
+	private SudokuExplainerCompatibleCellForcingChainsStep CreateCellReductionHint(
+		byte srcCell,
+		Potential target,
+		Dictionary<byte, PotentialSet> outcomes
+	)
+	{
+		var (targetCell, targetDigit, targetIsOn) = target;
+		var conclusions = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
+
+		// Build chains.
+		var chains = new Dictionary<byte, Potential>();
+		for (byte tempDigit = 1; tempDigit <= 9; tempDigit++)
+		{
+			if (CandidatesMap[targetDigit].Contains(srcCell))
+			{
+				// Get corresponding value with the matching parents.
+				chains.Add(tempDigit, outcomes[tempDigit].GetNullable(target) ?? default);
+			}
+		}
+
+		return new(conclusions, srcCell, chains, AllowDynamic, DynamicNestingLevel);
+	}
+
+	/// <summary>
+	/// Try to create a region (house) forcing chain hint.
+	/// </summary>
+	private SudokuExplainerCompatibleHouseForcingChainsStep CreateHouseReductionHint(
+		int houseIndex,
+		byte digit,
+		Potential target,
+		Dictionary<byte, PotentialSet> outcomes
+	)
+	{
+		var (targetCell, targetDigit, targetIsOn) = target;
+		var conclusions = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
+
+		// Build chains.
+		var chains = new Dictionary<byte, Potential>();
+		foreach (byte tempCell in CandidatesMap[digit] & HousesMap[houseIndex])
+		{
+			// Get corresponding value with the matching parents.
+			chains.Add(tempCell, outcomes[tempCell].GetNullable(target) ?? default);
+		}
+
+		return new(conclusions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
+	}
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
