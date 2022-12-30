@@ -33,20 +33,15 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 		get
 		{
 			var result = 0;
-			var processed = new HashSet<FullChain>();
+			var processed = new HashSet<SudokuExplainerCompatibleChainStep>(EqualityComparer.Instance);
 			foreach (var target in GetChainsTargets())
 			{
 				foreach (var p in GetChain(target))
 				{
-					if (p.NestedChain is { } nested)
+					if (p.NestedChain is { } nested && !processed.Contains(nested))
 					{
-						var f = new FullChain(nested);
-						if (!processed.Contains(f))
-						{
-							result += nested.Complexity;
-
-							processed.Add(f);
-						}
+						result += nested.Complexity;
+						processed.Add(nested);
 					}
 				}
 			}
@@ -116,19 +111,15 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 		get
 		{
 			var result = 0;
-			var processed = new HashSet<FullChain>();
+			var processed = new HashSet<SudokuExplainerCompatibleChainStep>(EqualityComparer.Instance);
 			foreach (var target in GetChainsTargets())
 			{
 				foreach (var p in GetChain(target))
 				{
-					if (p.NestedChain is not null)
+					if (p.NestedChain is { } nested && !processed.Contains(nested))
 					{
-						var f = new FullChain(p.NestedChain);
-						if (!processed.Contains(f))
-						{
-							result += p.NestedChain.ViewsCount;
-							processed.Add(f);
-						}
+						result += nested.ViewsCount;
+						processed.Add(nested);
 					}
 				}
 			}
@@ -478,19 +469,15 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 	private IEnumerable<SudokuExplainerCompatibleChainStep> GetNestedChains()
 	{
 		var result = new List<SudokuExplainerCompatibleChainStep>();
-		var processed = new HashSet<FullChain>();
+		var processed = new HashSet<SudokuExplainerCompatibleChainStep>(EqualityComparer.Instance);
 		foreach (var target in GetChainsTargets())
 		{
 			foreach (var p in GetChain(target))
 			{
-				if (p.NestedChain is not null)
+				if (p.NestedChain is { } nested && !processed.Contains(nested))
 				{
-					var f = new FullChain(p.NestedChain);
-					if (!processed.Contains(f))
-					{
-						result.Add(p.NestedChain);
-						processed.Add(f);
-					}
+					result.Add(nested);
+					processed.Add(nested);
 				}
 			}
 		}
@@ -521,25 +508,21 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 	/// <returns>A pair of values.</returns>
 	private (SudokuExplainerCompatibleChainStep Step, int ViewIndex) GetNestedChain(int nestedViewIndex)
 	{
-		var processed = new HashSet<FullChain>();
+		var processed = new HashSet<SudokuExplainerCompatibleChainStep>(EqualityComparer.Instance);
 		foreach (var target in GetChainsTargets())
 		{
 			foreach (var p in GetChain(target))
 			{
-				if (p.NestedChain is not null)
+				if (p.NestedChain is { } nested && !processed.Contains(nested))
 				{
-					var f = new FullChain(p.NestedChain);
-					if (!processed.Contains(f))
+					processed.Add(nested);
+					var localCount = nested.ViewsCount;
+					if (localCount > nestedViewIndex)
 					{
-						processed.Add(f);
-						var localCount = p.NestedChain.ViewsCount;
-						if (localCount > nestedViewIndex)
-						{
-							return (p.NestedChain, nestedViewIndex);
-						}
-
-						nestedViewIndex -= localCount;
+						return (nested, nestedViewIndex);
 					}
+
+					nestedViewIndex -= localCount;
 				}
 			}
 		}
@@ -563,4 +546,106 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 			({ Complexity: var l1 }, { Complexity: var l2 }) when l1 != l2 => Sign(l1 - l2),
 			({ SortKey: var s1 }, { SortKey: var s2 }) => Sign(s1 - s2)
 		};
+}
+
+/// <summary>
+/// Defines a equality comparer used for comparison with two <see cref="SudokuExplainerCompatibleChainStep"/> instances.
+/// </summary>
+/// <seealso cref="SudokuExplainerCompatibleChainStep"/>
+file sealed class EqualityComparer : IEqualityComparer<SudokuExplainerCompatibleChainStep>
+{
+	/// <summary>
+	/// Indicates the singleton instance.
+	/// </summary>
+	public static readonly EqualityComparer Instance = new();
+
+
+	/// <summary>
+	/// Initializes a <see cref="EqualityComparer"/> instance.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private EqualityComparer()
+	{
+	}
+
+
+	/// <inheritdoc/>
+	public bool Equals(SudokuExplainerCompatibleChainStep? x, SudokuExplainerCompatibleChainStep? y)
+	{
+		switch (x, y)
+		{
+			case (null, null):
+			{
+				return true;
+			}
+			case (not null, not null):
+			{
+				var thisTargets = x.GetChainsTargets();
+				var otherTargets = y.GetChainsTargets();
+				if (!thisTargets.SequenceEqual(otherTargets))
+				{
+					return false;
+				}
+
+				var i1 = thisTargets.GetEnumerator();
+				var i2 = otherTargets.GetEnumerator();
+				while (i1.MoveNext() && i2.MoveNext())
+				{
+					if (!x.GetChain(i1.Current).SequenceEqual(y.GetChain(i2.Current)))
+					{
+						return false;
+					}
+				}
+
+				return true;
+			}
+			default:
+			{
+				return false;
+			}
+		}
+	}
+
+	/// <inheritdoc/>
+	public int GetHashCode(SudokuExplainerCompatibleChainStep obj)
+	{
+		var result = 0;
+		foreach (var target in obj.GetChainsTargets())
+		{
+			foreach (var p in obj.GetChain(target))
+			{
+				result ^= p.GetHashCode();
+			}
+		}
+
+		return result;
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Determines whether two <see cref="List{T}"/> of <see cref="Potential"/>s are equal by comparing the elements.
+	/// </summary>
+	/// <param name="this">The first sequence to be compared.</param>
+	/// <param name="other">The second sequence to be compared.</param>
+	/// <returns><see langword="true"/> if the two sequences are equal; otherwise, <see langword="false"/>.</returns>
+	public static bool SequenceEqual(this List<Potential> @this, List<Potential> other)
+	{
+		if (@this.Count != other.Count)
+		{
+			return false;
+		}
+
+		for (var i = 0; i < @this.Count; i++)
+		{
+			if (@this[i] != other[i])
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
 }

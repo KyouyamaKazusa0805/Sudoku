@@ -1498,37 +1498,6 @@
         <member name="M:Sudoku.Solving.Logical.PatternData.ExocetElimination.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.PatternData.FullChain">
-            <summary>
-            Defines a full chain.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.PatternData.FullChain.#ctor(Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Logical.PatternData.FullChain"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep"/> instance.
-            </summary>
-            <param name="chain">The step.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.PatternData.FullChain.Step">
-            <summary>
-            Indicates the step used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.PatternData.FullChain.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.PatternData.FullChain.Equals(Sudoku.Solving.Logical.PatternData.FullChain)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.PatternData.FullChain.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.PatternData.FullChain.op_Equality(Sudoku.Solving.Logical.PatternData.FullChain,Sudoku.Solving.Logical.PatternData.FullChain)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.PatternData.FullChain.op_Inequality(Sudoku.Solving.Logical.PatternData.FullChain,Sudoku.Solving.Logical.PatternData.FullChain)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Logical.PatternData.GuardianDataInfo">
             <summary>
             Represents for a data set that describes the complete information about a guardian technique.
@@ -11350,6 +11319,43 @@ if (student is (name: var name, age: >= 18))
             <param name="left">The left-side value to be compared.</param>
             <param name="right">The right-side value to be compared.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.EqualityComparer">
+            <summary>
+            Defines a equality comparer used for comparison with two <see cref="T:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep"/>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Steps.EqualityComparer.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.EqualityComparer.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.Steps.EqualityComparer"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.EqualityComparer.Equals(Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep,Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.EqualityComparer.GetHashCode(Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleChainStep)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.Extensions.SequenceEqual(System.Collections.Generic.List{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.List{Sudoku.Solving.Logical.PatternData.Potential})">
+            <summary>
+            Determines whether two <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s are equal by comparing the elements.
+            </summary>
+            <param name="this">The first sequence to be compared.</param>
+            <param name="other">The second sequence to be compared.</param>
+            <returns><see langword="true"/> if the two sequences are equal; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.SudokuExplainerCompatibleCycleStep">
             <summary>
