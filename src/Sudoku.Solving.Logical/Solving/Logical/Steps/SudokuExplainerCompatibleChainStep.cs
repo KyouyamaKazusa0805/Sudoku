@@ -385,12 +385,12 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 
 			var (step, nestedViewNum) = GetNestedChain(viewIndex);
 			var target = GetContainerTarget(step);
-			foreach (var p in GetChain(target))
+			foreach (var (cell, digit, isOn) in GetChain(target))
 			{
-				if (!p.IsOn)
+				if (!isOn)
 				{
 					// Remove deductions of the container chain.
-					nestedGrid.GetMaskRef(p.Cell) &= (short)(1 << p.Digit);
+					nestedGrid.GetMaskRef(cell) &= (short)(1 << digit);
 				}
 			}
 
