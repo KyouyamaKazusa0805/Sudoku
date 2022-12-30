@@ -15,7 +15,7 @@
 /// <param name="IsAbsurd">Indicates whether the forcing chains kind is contradiction.</param>
 /// <param name="IsNishio"><inheritdoc/></param>
 /// <param name="DynamicNestingLevel"><inheritdoc/></param>
-internal sealed record SudokuExplainerCompatibleBinaryForcingChainsStep(
+internal sealed record BinaryForcingChainsStep(
 	ConclusionList Conclusions,
 	Potential SourcePotential,
 	Potential FromOnPotential,
@@ -23,7 +23,7 @@ internal sealed record SudokuExplainerCompatibleBinaryForcingChainsStep(
 	bool IsAbsurd,
 	bool IsNishio,
 	int DynamicNestingLevel
-) : SudokuExplainerCompatibleChainStep(Conclusions, true, true, true, true, IsNishio, DynamicNestingLevel)
+) : ChainingStep(Conclusions, true, true, true, true, IsNishio, DynamicNestingLevel)
 {
 	/// <inheritdoc/>
 	public override int SortKey => IsAbsurd ? 7 : 1;

@@ -1,25 +1,23 @@
 ﻿namespace Sudoku.Solving.Logical.Steps;
 
 /// <summary>
-/// Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+/// Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
-/// <param name="HouseIndex">Indicates the index of the house represented.</param>
-/// <param name="Digit">Indicates the digit of the chain bound with.</param>
+/// <param name="SourceCell">Indicates the source cell that all branches start.</param>
 /// <param name="Chains">Indicates all possible branches in this technique.</param>
 /// <param name="IsDynamic"><inheritdoc/></param>
 /// <param name="DynamicNestingLevel"><inheritdoc/></param>
-internal sealed record SudokuExplainerCompatibleHouseForcingChainsStep(
+internal sealed record CellForcingChainsStep(
 	ConclusionList Conclusions,
-	int HouseIndex,
-	byte Digit,
+	byte SourceCell,
 	IReadOnlyDictionary<byte, Potential> Chains,
 	bool IsDynamic,
 	int DynamicNestingLevel
-) : SudokuExplainerCompatibleChainStep(Conclusions, true, true, true, IsDynamic, false, DynamicNestingLevel)
+) : ChainingStep(Conclusions, true, true, true, IsDynamic, false, DynamicNestingLevel)
 {
 	/// <inheritdoc/>
-	public override int SortKey => 6;
+	public override int SortKey => 5;
 
 	/// <inheritdoc/>
 	public override int FlatComplexity => Chains.Values.Sum(AncestorsCountOf);
@@ -28,7 +26,7 @@ internal sealed record SudokuExplainerCompatibleHouseForcingChainsStep(
 	public override decimal Difficulty => BaseDifficultyNonAlternatingInference + LengthDifficulty;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => IsDynamic ? Technique.DynamicRegionForcingChains : Technique.RegionForcingChains;
+	public override Technique TechniqueCode => IsDynamic ? Technique.DynamicCellForcingChains : Technique.CellForcingChains;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;

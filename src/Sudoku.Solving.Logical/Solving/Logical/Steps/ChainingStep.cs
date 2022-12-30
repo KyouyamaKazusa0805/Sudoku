@@ -6,11 +6,11 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="IsX">Indicates whether the chain is X-Chain.</param>
 /// <param name="IsY">Indicates whether the chain is Y-Chain.</param>
-/// <param name="IsMultiple"><inheritdoc cref="SudokuExplainerCompatibleChainingStepSearcher.AllowMultiple"/></param>
-/// <param name="IsDynamic"><inheritdoc cref="SudokuExplainerCompatibleChainingStepSearcher.AllowDynamic"/></param>
-/// <param name="IsNishio"><inheritdoc cref="SudokuExplainerCompatibleChainingStepSearcher.AllowNishio"/></param>
-/// <param name="DynamicNestingLevel"><inheritdoc cref="SudokuExplainerCompatibleChainingStepSearcher.DynamicNestingLevel"/></param>
-internal abstract partial record SudokuExplainerCompatibleChainStep(
+/// <param name="IsMultiple"><inheritdoc cref="ChainingStepSearcher.AllowMultiple"/></param>
+/// <param name="IsDynamic"><inheritdoc cref="ChainingStepSearcher.AllowDynamic"/></param>
+/// <param name="IsNishio"><inheritdoc cref="ChainingStepSearcher.AllowNishio"/></param>
+/// <param name="DynamicNestingLevel"><inheritdoc cref="ChainingStepSearcher.DynamicNestingLevel"/></param>
+internal abstract partial record ChainingStep(
 	ConclusionList Conclusions,
 	bool IsX,
 	bool IsY,
@@ -18,12 +18,15 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 	bool IsDynamic,
 	bool IsNishio,
 	int DynamicNestingLevel
-) : ChainStep(Conclusions, ViewList.Empty)
+) : Step(Conclusions, ViewList.Empty), IChainLikeStep
 {
 	/// <summary>
 	/// Indicates the complexity of the chain.
 	/// </summary>
 	public int Complexity => FlatComplexity + NestedComplexity;
+
+	/// <inheritdoc cref="IChainStep.FlatComplexity"/>
+	public abstract int FlatComplexity { get; }
 
 	/// <summary>
 	/// Indicates the nested complexity of the chain. This property is useful on checking nesting chains.
@@ -33,7 +36,7 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 		get
 		{
 			var result = 0;
-			var processed = new HashSet<SudokuExplainerCompatibleChainStep>(EqualityComparer.Instance);
+			var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
 			foreach (var target in GetChainsTargets())
 			{
 				foreach (var p in GetChain(target))
@@ -111,7 +114,7 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 		get
 		{
 			var result = 0;
-			var processed = new HashSet<SudokuExplainerCompatibleChainStep>(EqualityComparer.Instance);
+			var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
 			foreach (var target in GetChainsTargets())
 			{
 				foreach (var p in GetChain(target))
@@ -176,13 +179,13 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 		return this switch
 		{
 			(false, false, false, 0) => R["NormalChains"]!,
-			SudokuExplainerCompatibleCellForcingChainsStep(_, false, _, 0) => R["CellChains"]!,
-			SudokuExplainerCompatibleCellForcingChainsStep(_, true, _, 0) => $"{dynamicKeyword()}{R["CellChains"]!}",
-			SudokuExplainerCompatibleHouseForcingChainsStep(_, false, _, 0) => R["HouseChains"]!,
-			SudokuExplainerCompatibleHouseForcingChainsStep(_, true, _, 0) => $"{dynamicKeyword()}{R["HouseChains"]!}",
-			SudokuExplainerCompatibleBinaryForcingChainsStep(_, _, true, _) => R["NishioChains"]!,
-			SudokuExplainerCompatibleBinaryForcingChainsStep { IsAbsurd: true } => R["AbsurdChains"]!,
-			SudokuExplainerCompatibleBinaryForcingChainsStep => R["DoubleChains"]!,
+			CellForcingChainsStep(_, false, _, 0) => R["CellChains"]!,
+			CellForcingChainsStep(_, true, _, 0) => $"{dynamicKeyword()}{R["CellChains"]!}",
+			RegionForcingChainsStep(_, false, _, 0) => R["HouseChains"]!,
+			RegionForcingChainsStep(_, true, _, 0) => $"{dynamicKeyword()}{R["HouseChains"]!}",
+			BinaryForcingChainsStep(_, _, true, _) => R["NishioChains"]!,
+			BinaryForcingChainsStep { IsAbsurd: true } => R["AbsurdChains"]!,
+			BinaryForcingChainsStep => R["DoubleChains"]!,
 			(_, _, _, var l and not 0) => $"{R[""]!}{nestedSuffix(l)}",
 			_ => throw new InvalidOperationException("The status of the current instance is invalid.")
 		};
@@ -446,13 +449,13 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 	/// </summary>
 	/// <param name="step">The step instance.</param>
 	/// <returns>The container target.</returns>
-	private Potential GetContainerTarget(SudokuExplainerCompatibleChainStep step)
+	private Potential GetContainerTarget(ChainingStep step)
 	{
 		foreach (var target in GetChainsTargets())
 		{
 			foreach (var p in GetChain(target))
 			{
-				if (p.NestedChain == step)
+				if (ReferenceEquals(p.NestedChain, step))
 				{
 					return p;
 				}
@@ -463,13 +466,13 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 	}
 
 	/// <summary>
-	/// Try to get nested chains, represented as <see cref="SudokuExplainerCompatibleChainStep"/> instances.
+	/// Try to get nested chains, represented as <see cref="ChainingStep"/> instances.
 	/// </summary>
-	/// <returns>A list of <see cref="SudokuExplainerCompatibleChainStep"/> instances.</returns>
-	private IEnumerable<SudokuExplainerCompatibleChainStep> GetNestedChains()
+	/// <returns>A list of <see cref="ChainingStep"/> instances.</returns>
+	private IEnumerable<ChainingStep> GetNestedChains()
 	{
-		var result = new List<SudokuExplainerCompatibleChainStep>();
-		var processed = new HashSet<SudokuExplainerCompatibleChainStep>(EqualityComparer.Instance);
+		var result = new List<ChainingStep>();
+		var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
 		foreach (var target in GetChainsTargets())
 		{
 			foreach (var p in GetChain(target))
@@ -483,7 +486,7 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 		}
 
 		// Recurse (in case there is more than one level of nesting).
-		foreach (var chain in new List<SudokuExplainerCompatibleChainStep>(result))
+		foreach (var chain in new List<ChainingStep>(result))
 		{
 			result.AddRange(chain.GetNestedChains());
 		}
@@ -496,7 +499,7 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 	/// <list type="number">
 	/// <item>
 	/// <term>First</term>
-	/// <description>A <see cref="SudokuExplainerCompatibleChainStep"/> instance.</description>
+	/// <description>A <see cref="ChainingStep"/> instance.</description>
 	/// </item>
 	/// <item>
 	/// <term>Second</term>
@@ -506,9 +509,9 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 	/// </summary>
 	/// <param name="nestedViewIndex">The nested view index.</param>
 	/// <returns>A pair of values.</returns>
-	private (SudokuExplainerCompatibleChainStep Step, int ViewIndex) GetNestedChain(int nestedViewIndex)
+	private (ChainingStep Step, int ViewIndex) GetNestedChain(int nestedViewIndex)
 	{
-		var processed = new HashSet<SudokuExplainerCompatibleChainStep>(EqualityComparer.Instance);
+		var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
 		foreach (var target in GetChainsTargets())
 		{
 			foreach (var p in GetChain(target))
@@ -532,14 +535,14 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 
 
 	/// <summary>
-	/// Compares two <see cref="SudokuExplainerCompatibleChainStep"/> instance, and returns an <see cref="int"/>
+	/// Compares two <see cref="ChainingStep"/> instance, and returns an <see cref="int"/>
 	/// indicating which value is greater.
 	/// </summary>
 	/// <param name="left">The left-side value to be compared.</param>
 	/// <param name="right">The right-side value to be compared.</param>
 	/// <returns>An <see cref="int"/> value indicating which is greater.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int Compare(SudokuExplainerCompatibleChainStep left, SudokuExplainerCompatibleChainStep right)
+	public static int Compare(ChainingStep left, ChainingStep right)
 		=> (left, right) switch
 		{
 			({ Difficulty: var d1 }, { Difficulty: var d2 }) when d1 != d2 => Sign(d1 - d2),
@@ -549,10 +552,10 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 }
 
 /// <summary>
-/// Defines a equality comparer used for comparison with two <see cref="SudokuExplainerCompatibleChainStep"/> instances.
+/// Defines a equality comparer used for comparison with two <see cref="ChainingStep"/> instances.
 /// </summary>
-/// <seealso cref="SudokuExplainerCompatibleChainStep"/>
-file sealed class EqualityComparer : IEqualityComparer<SudokuExplainerCompatibleChainStep>
+/// <seealso cref="ChainingStep"/>
+file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
 {
 	/// <summary>
 	/// Indicates the singleton instance.
@@ -570,7 +573,7 @@ file sealed class EqualityComparer : IEqualityComparer<SudokuExplainerCompatible
 
 
 	/// <inheritdoc/>
-	public bool Equals(SudokuExplainerCompatibleChainStep? x, SudokuExplainerCompatibleChainStep? y)
+	public bool Equals(ChainingStep? x, ChainingStep? y)
 	{
 		switch (x, y)
 		{
@@ -607,7 +610,7 @@ file sealed class EqualityComparer : IEqualityComparer<SudokuExplainerCompatible
 	}
 
 	/// <inheritdoc/>
-	public int GetHashCode(SudokuExplainerCompatibleChainStep obj)
+	public int GetHashCode(ChainingStep obj)
 	{
 		var result = 0;
 		foreach (var target in obj.GetChainsTargets())

@@ -7,12 +7,8 @@
 /// <param name="DestinationOn">Indicates the destination node that is "on" status.</param>
 /// <param name="IsX"><inheritdoc/></param>
 /// <param name="IsY"><inheritdoc/></param>
-internal sealed record SudokuExplainerCompatibleCycleStep(
-	ConclusionList Conclusions,
-	Potential DestinationOn,
-	bool IsX,
-	bool IsY
-) : SudokuExplainerCompatibleChainStep(Conclusions, IsX, IsY, false, false, false, 0)
+internal sealed record BidirectionalCycleStep(ConclusionList Conclusions, Potential DestinationOn, bool IsX, bool IsY) :
+	ChainingStep(Conclusions, IsX, IsY, false, false, false, 0)
 {
 	/// <inheritdoc/>
 	public override int SortKey => (IsX, IsY) switch { (true, true) => 4, (_, true) => 3, _ => 2 };

@@ -34,7 +34,7 @@
           "IEmptyRectangleIntersectionPairStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
 
           "IAlternatingInferenceChainStepSearcher.cs": [ "IChainStepSearcher.cs" ],
-          "ISudokuExplainerCompatibleChainingStepSearcher.cs": [ "IChainStepSearcher.cs" ],
+          "ChainingStepSearcher.cs": [ "IChainStepSearcher.cs" ],
 
           "IUniquenessClueCoverStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
           "IExtendedRectangleStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
@@ -93,7 +93,6 @@
           "EmptyRectangleIntersectionPairStepSearcher.cs": [ "IEmptyRectangleIntersectionPairStepSearcher.cs" ],
 
           "AlternatingInferenceChainStepSearcher.cs": [ "IAlternatingInferenceChainStepSearcher.cs" ],
-          "SudokuExplainerCompatibleChainingStepSearcher.cs": [ "ISudokuExplainerCompatibleChainingStepSearcher.cs" ],
 
           "UniquenessClueCoverStepSearcher.cs": [ "IUniquenessClueCoverStepSearcher.cs" ],
           "ExtendedRectangleStepSearcher.cs": [ "IExtendedRectangleStepSearcher.cs" ],
@@ -146,6 +145,7 @@
 
           "AlmostLockedSetsStep.cs": [ "Step.cs" ],
           "ChainStep.cs": [ "Step.cs" ],
+          "ChainingStep.cs": [ "Step.cs" ],
           "DeadlyPatternStep.cs": [ "Step.cs" ],
           "ExocetStep.cs": [ "Step.cs" ],
           "FishStep.cs": [ "Step.cs" ],
@@ -166,12 +166,13 @@
           "DeathBlossomCellTypeStep.cs": [ "DeathBlossomStep.cs" ],
 
           "AlternatingInferenceChainStep.cs": [ "ChainStep.cs" ],
-          "SudokuExplainerCompatibleChainStep.cs": [ "ChainStep.cs" ],
-          "SudokuExplainerCompatibleAlternatingInferenceChainStep.cs": [ "ChainStep.cs" ],
-          "SudokuExplainerCompatibleCycleStep.cs": [ "ChainStep.cs" ],
-          "SudokuExplainerCompatibleCellForcingChainsStep.cs": [ "ChainStep.cs" ],
-          "SudokuExplainerCompatibleHouseForcingChainsStep.cs": [ "ChainStep.cs" ],
-          "SudokuExplainerCompatibleBinaryForcingChainsStep.cs": [ "ChainStep.cs" ],
+
+          "SudokuExplainerCompatibleChainStep.cs": [ "ChainingStep.cs" ],
+          "AlternatingInferenceChain2Step.cs": [ "ChainingStep.cs" ],
+          "BidirectionalCycleStep.cs": [ "ChainingStep.cs" ],
+          "CellForcingChainsStep.cs": [ "ChainingStep.cs" ],
+          "RegionForcingChainsStep.cs": [ "ChainingStep.cs" ],
+          "BinaryForcingChainsStep.cs": [ "ChainingStep.cs" ],
 
           "UniquenessClueCoverStep.cs": [ "DeadlyPatternStep.cs" ],
           "ExtendedRectangleStep.cs": [ "DeadlyPatternStep.cs" ],

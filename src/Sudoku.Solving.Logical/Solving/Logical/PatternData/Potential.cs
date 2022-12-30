@@ -90,7 +90,7 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 	/// <summary>
 	/// Indicates the step detail of the nested chain.
 	/// </summary>
-	public SudokuExplainerCompatibleChainStep? NestedChain { get; init; }
+	public ChainingStep? NestedChain { get; init; }
 
 	/// <summary>
 	/// <para>Indicates the parents of the current instance.</para>

@@ -4,7 +4,6 @@ namespace Sudoku.Solving.Logical.StepSearchers;
 
 using PotentialList = List<Potential>;
 using PotentialSet = HashSet<Potential>;
-using Step = SudokuExplainerCompatibleChainStep;
 
 [StepSearcher]
 [SeparatedStepSearcher(0, nameof(AllowMultiple), false, nameof(AllowDynamic), false, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
@@ -15,7 +14,7 @@ using Step = SudokuExplainerCompatibleChainStep;
 [SeparatedStepSearcher(5, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 3)]
 [SeparatedStepSearcher(6, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 4)]
 [SeparatedStepSearcher(7, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 5)]
-internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : ISudokuExplainerCompatibleChainingStepSearcher
+internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 {
 	/// <summary>
 	/// <para>Indicates the temporary saved grid.</para>
@@ -109,7 +108,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 		// TODO: Implement an implications cache.
 
 		scoped ref readonly var grid = ref context.Grid;
-		List<Step> result;
+		List<ChainingStep> result;
 		if (AllowMultiple || AllowDynamic)
 		{
 			var tempGrid = grid;
@@ -126,7 +125,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 			result.AddRange(xyCycles);
 		}
 
-		result.Sort(Step.Compare);
+		result.Sort(ChainingStep.Compare);
 
 		if (context.OnlyFindOne)
 		{
@@ -165,10 +164,10 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	/// <param name="grid">The grid.</param>
 	/// <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
 	/// <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
-	/// <returns>All possible found <see cref="Step"/>s.</returns>
-	private List<Step> GetLoopHintList(scoped in Grid grid, bool isX, bool isY)
+	/// <returns>All possible found <see cref="ChainingStep"/>s.</returns>
+	private List<ChainingStep> GetLoopHintList(scoped in Grid grid, bool isX, bool isY)
 	{
-		var result = new List<Step>();
+		var result = new List<ChainingStep>();
 
 		foreach (byte cell in EmptyCells)
 		{
@@ -195,9 +194,9 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	/// </summary>
 	/// <param name="grid">The grid on which to search for hints.</param>
 	/// <returns>The hints found.</returns>
-	private List<Step> GetMultipleChainsHintList(scoped ref Grid grid)
+	private List<ChainingStep> GetMultipleChainsHintList(scoped ref Grid grid)
 	{
-		var result = new List<Step>();
+		var result = new List<ChainingStep>();
 
 		// Iterate on all empty cells.
 		foreach (byte cell in EmptyCells)
@@ -285,7 +284,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	/// <param name="result">The result steps found.</param>
 	/// <param name="isX"><inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
 	/// <param name="isY"><inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
-	private void DoUnaryChaining(scoped in Grid grid, Potential pOn, List<Step> result, bool isX, bool isY)
+	private void DoUnaryChaining(scoped in Grid grid, Potential pOn, List<ChainingStep> result, bool isX, bool isY)
 	{
 		if (!BivalueCells.Contains(pOn.Cell) && !isX)
 		{
@@ -380,7 +379,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 		scoped ref Grid grid,
 		Potential pOn,
 		Potential pOff,
-		List<Step> result,
+		List<ChainingStep> result,
 		PotentialSet onToOn,
 		PotentialSet onToOff,
 		bool doReduction,
@@ -435,7 +434,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 
 	private void DoHouseChaining(
 		scoped ref Grid grid,
-		List<Step> result,
+		List<ChainingStep> result,
 		byte cell,
 		byte digit,
 		PotentialSet onToOn,
@@ -921,7 +920,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 
 	/// <summary>
 	/// Try to create a cycle hint. If any conclusion (elimination, assignment) found and is available,
-	/// the method will return a <see cref="SudokuExplainerCompatibleCycleStep"/> instance with a non-<see langword="null"/> value.
+	/// the method will return a <see cref="BidirectionalCycleStep"/> instance with a non-<see langword="null"/> value.
 	/// </summary>
 	/// <param name="grid">
 	/// <inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='grid']"/>
@@ -934,9 +933,9 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='isY']"/>
 	/// </param>
 	/// <returns>
-	/// A valid <see cref="SudokuExplainerCompatibleCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
+	/// A valid <see cref="BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
 	/// </returns>
-	private SudokuExplainerCompatibleCycleStep? CreateCycleHint(scoped in Grid grid, Potential dstOn, bool isX, bool isY)
+	private BidirectionalCycleStep? CreateCycleHint(scoped in Grid grid, Potential dstOn, bool isX, bool isY)
 	{
 		var nodes = dstOn.ChainPotentials;
 
@@ -972,13 +971,13 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	/// <summary>
 	/// Try to create an AIC hint.
 	/// </summary>
-	private SudokuExplainerCompatibleAlternatingInferenceChainStep CreateForcingChainHint(Potential target, bool isX, bool isY)
+	private AlternatingInferenceChain2Step CreateForcingChainHint(Potential target, bool isX, bool isY)
 		=> new(ImmutableArray.Create(new Conclusion(target.IsOn ? Assignment : Elimination, target.Candidate)), target, isX, isY);
 
 	/// <summary>
 	/// Try to create a binary forcing chain hint on "on" state.
 	/// </summary>
-	private SudokuExplainerCompatibleBinaryForcingChainsStep CreateChainingOnHint(
+	private BinaryForcingChainsStep CreateChainingOnHint(
 		Potential dstOn,
 		Potential dstOff,
 		Potential source,
@@ -997,7 +996,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	/// <summary>
 	/// Try to create a binary forcing chain hint on "off" state.
 	/// </summary>
-	private SudokuExplainerCompatibleBinaryForcingChainsStep CreateChainingOffHint(
+	private BinaryForcingChainsStep CreateChainingOffHint(
 		Potential dstOn,
 		Potential dstOff,
 		Potential source,
@@ -1016,7 +1015,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	/// <summary>
 	/// Try to create a cell forcing chain hint.
 	/// </summary>
-	private SudokuExplainerCompatibleCellForcingChainsStep CreateCellReductionHint(
+	private CellForcingChainsStep CreateCellReductionHint(
 		byte srcCell,
 		Potential target,
 		Dictionary<byte, PotentialSet> outcomes
@@ -1042,7 +1041,7 @@ internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : IS
 	/// <summary>
 	/// Try to create a region (house) forcing chain hint.
 	/// </summary>
-	private SudokuExplainerCompatibleHouseForcingChainsStep CreateHouseReductionHint(
+	private RegionForcingChainsStep CreateHouseReductionHint(
 		int houseIndex,
 		byte digit,
 		Potential target,

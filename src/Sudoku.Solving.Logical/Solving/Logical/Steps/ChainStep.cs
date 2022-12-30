@@ -5,8 +5,11 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal abstract record ChainStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views), IChainLikeStep
+internal abstract record ChainStep(ConclusionList Conclusions, ViewList Views) : Step(Conclusions, Views), IChainStep, IChainLikeStep
 {
-	/// <inheritdoc cref="IChainStep.FlatComplexity"/>
+	/// <inheritdoc/>
 	public abstract int FlatComplexity { get; }
+
+	/// <inheritdoc/>
+	public abstract ChainTypeCode SortKey { get; }
 }

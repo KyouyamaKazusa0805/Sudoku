@@ -7,12 +7,8 @@
 /// <param name="Target">Indicates the target of the chain. This value can be used for constructing a whole chain.</param>
 /// <param name="IsX"><inheritdoc/></param>
 /// <param name="IsY"><inheritdoc/></param>
-internal sealed record SudokuExplainerCompatibleAlternatingInferenceChainStep(
-	ConclusionList Conclusions,
-	Potential Target,
-	bool IsX,
-	bool IsY
-) : SudokuExplainerCompatibleChainStep(Conclusions, IsX, IsY, false, false, false, 0)
+internal sealed record AlternatingInferenceChain2Step(ConclusionList Conclusions, Potential Target, bool IsX, bool IsY) :
+	ChainingStep(Conclusions, IsX, IsY, false, false, false, 0)
 {
 	/// <inheritdoc/>
 	public override int FlatComplexity => AncestorsCountOf(Target);
