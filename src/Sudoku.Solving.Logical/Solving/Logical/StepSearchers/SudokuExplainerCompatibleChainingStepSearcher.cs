@@ -18,7 +18,11 @@ using Step = SudokuExplainerCompatibleChainStep;
 internal sealed partial class SudokuExplainerCompatibleChainingStepSearcher : ISudokuExplainerCompatibleChainingStepSearcher
 {
 	/// <summary>
-	/// Indicates the temporary saved grid.
+	/// <para>Indicates the temporary saved grid.</para>
+	/// <para><i>
+	/// This field will be used when the step searcher uses advanced logic (dynamic forcing chains or dynamic forcing chains (+))
+	/// to search for chains.
+	/// </i></para>
 	/// </summary>
 	private Grid _savedGrid;
 
