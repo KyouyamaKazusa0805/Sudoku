@@ -34,7 +34,7 @@
           "IEmptyRectangleIntersectionPairStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
 
           "IAlternatingInferenceChainStepSearcher.cs": [ "IChainStepSearcher.cs" ],
-          "ChainingStepSearcher.cs": [ "IChainStepSearcher.cs" ],
+          "IChainingStepSearcher.cs": [ "IChainStepSearcher.cs" ],
 
           "IUniquenessClueCoverStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
           "IExtendedRectangleStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
@@ -93,6 +93,7 @@
           "EmptyRectangleIntersectionPairStepSearcher.cs": [ "IEmptyRectangleIntersectionPairStepSearcher.cs" ],
 
           "AlternatingInferenceChainStepSearcher.cs": [ "IAlternatingInferenceChainStepSearcher.cs" ],
+          "ChainingStepSearcher.cs": [ "IChainingStepSearcher.cs" ],
 
           "UniquenessClueCoverStepSearcher.cs": [ "IUniquenessClueCoverStepSearcher.cs" ],
           "ExtendedRectangleStepSearcher.cs": [ "IExtendedRectangleStepSearcher.cs" ],
