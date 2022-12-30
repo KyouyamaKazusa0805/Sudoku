@@ -399,9 +399,9 @@ internal abstract partial record SudokuExplainerCompatibleChainStep(
 			var nestedTarget = step.GetChainTargetAt(nestedViewNum);
 			step.CollectRuleParents(grid, nestedGrid, blues, nestedTarget);
 
-			foreach (var p in blues)
+			foreach (var (candidate, _) in blues)
 			{
-				result.Add(p.Cell * 9 + p.Digit);
+				result.Add(candidate);
 			}
 		}
 
