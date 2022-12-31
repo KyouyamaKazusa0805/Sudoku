@@ -7,11 +7,11 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Chain">Indicates the whole chain.</param>
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
-internal sealed record AlternatingInferenceChainStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	AlternatingInferenceChain Chain
-) : ChainStep(Conclusions, Views), IChainStep, IChainLikeStep, IStepWithPhasedDifficulty
+internal sealed record AlternatingInferenceChainStep(ConclusionList Conclusions, ViewList Views, AlternatingInferenceChain Chain) :
+	ChainStep(Conclusions, Views),
+	IChainStep,
+	IChainLikeStep,
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;

@@ -4,25 +4,7 @@
 /// Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>
-/// Alternating Inference Chains:
-/// <list type="bullet">
-/// <item>
-/// Irregular Wings:
-/// <list type="bullet">
-/// <item>W-Wing (Although it can be searched via <see cref="IIrregularWingStepSearcher"/>)</item>
-/// <item>M-Wing</item>
-/// <item>Split Wing</item>
-/// <item>Local Wing</item>
-/// <item>Hybrid Wing</item>
-/// <item>Purple Cow</item>
-/// </list>
-/// </item>
-/// <item>Discontinuous Nice Loop</item>
-/// <item>Alternating Inference Chain</item>
-/// <item>Continuous Nice Loop</item>
-/// </list>
-/// </item>
+/// <item>Alternating Inference Chains (Cycles)</item>
 /// <item>
 /// Forcing Chains:
 /// <list type="bullet">
@@ -34,15 +16,10 @@
 /// </list>
 /// </item>
 /// <item>
-/// Dynamic Multiple Forcing Chains:
+/// Dynamic Forcing Chains:
 /// <list type="bullet">
 /// <item>Dynamic Cell Forcing Chains</item>
 /// <item>Dynamic Region (House) Forcing Chains</item>
-/// </list>
-/// </item>
-/// <item>
-/// Dynamic Binary Forcing Chains:
-/// <list type="bullet">
 /// <item>Dynamic Contradiction Forcing Chains</item>
 /// <item>Dynamic Double Forcing Chains</item>
 /// </list>
