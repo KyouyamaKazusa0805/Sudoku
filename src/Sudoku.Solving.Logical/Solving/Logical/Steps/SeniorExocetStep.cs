@@ -44,7 +44,7 @@ internal sealed record SeniorExocetStep(
 	{
 		const string separator = ", ";
 		var endoTargetSnippet = R["EndoTarget"]!;
-		var endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
+		var endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr()}";
 		if (ExtraHousesMask is not null)
 		{
 			scoped var sb = new StringHandler(100);

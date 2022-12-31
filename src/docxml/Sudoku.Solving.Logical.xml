@@ -8122,10 +8122,21 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="IsX">Indicates whether the chain is X-Chain.</param>
             <param name="IsY">Indicates whether the chain is Y-Chain.</param>
-            <param name="IsMultiple"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple"/></param>
-            <param name="IsDynamic"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic"/></param>
-            <param name="IsNishio"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio"/></param>
-            <param name="DynamicNestingLevel"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel"/></param>
+            <param name="IsMultiple">
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
+            </param>
+            <param name="IsDynamic">
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
+            </param>
+            <param name="IsNishio">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio" path="/summary"/>
+            </param>
+            <param name="DynamicNestingLevel">
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+            </param>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
             <summary>
@@ -8134,10 +8145,21 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="IsX">Indicates whether the chain is X-Chain.</param>
             <param name="IsY">Indicates whether the chain is Y-Chain.</param>
-            <param name="IsMultiple"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple"/></param>
-            <param name="IsDynamic"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic"/></param>
-            <param name="IsNishio"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio"/></param>
-            <param name="DynamicNestingLevel"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel"/></param>
+            <param name="IsMultiple">
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
+            </param>
+            <param name="IsDynamic">
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
+            </param>
+            <param name="IsNishio">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio" path="/summary"/>
+            </param>
+            <param name="DynamicNestingLevel">
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+            </param>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.IsX">
             <summary>Indicates whether the chain is X-Chain.</summary>
@@ -8146,16 +8168,27 @@ if (student is (name: var name, age: >= 18))
             <summary>Indicates whether the chain is Y-Chain.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.IsMultiple">
-            <summary><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple"/></summary>
+            <summary>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.IsDynamic">
-            <summary><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic"/></summary>
+            <summary>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.IsNishio">
-            <summary><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio"/></summary>
+            <summary>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio" path="/summary"/>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.DynamicNestingLevel">
-            <summary><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel"/></summary>
+            <summary>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Complexity">
             <summary>

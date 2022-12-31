@@ -39,7 +39,7 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 						}
 
 						var rawTypeSymbol = semanticModel.GetDeclaredSymbol(enumDeclarationSyntaxNode, ct);
-						if (rawTypeSymbol is not INamedTypeSymbol typeSymbol)
+						if (rawTypeSymbol is not { } typeSymbol)
 						{
 							return null;
 						}
@@ -66,9 +66,9 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 								var fieldAttributeData = (
 									from fad in field.GetAttributes()
 									where SymbolEqualityComparer.Default.Equals(fad.AttributeClass, switchExprArm)
-									let construtorArgs = fad.ConstructorArguments
-									where construtorArgs.Length >= 1
-									let firstConstructorArg = (string)construtorArgs[0].Value!
+									let constructorArgs = fad.ConstructorArguments
+									where constructorArgs.Length >= 1
+									let firstConstructorArg = (string)constructorArgs[0].Value!
 									where firstConstructorArg == key
 									select fad
 								).FirstOrDefault();
@@ -76,7 +76,7 @@ public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 								fieldAndItsCorrespondingAttributeData.Add((field, fieldAttributeData));
 							}
 
-							result.Add(new(typeSymbol, key, attributeData, fieldAndItsCorrespondingAttributeData.ToArray()));
+							result.Add((typeSymbol, key, attributeData, fieldAndItsCorrespondingAttributeData.ToArray()));
 							fieldAndItsCorrespondingAttributeData.Clear();
 						}
 
