@@ -8,7 +8,7 @@
 /// <param name="IsX"><inheritdoc/></param>
 /// <param name="IsY"><inheritdoc/></param>
 internal sealed record BidirectionalCycleStep(ConclusionList Conclusions, Potential DestinationOn, bool IsX, bool IsY) :
-	ChainingStep(Conclusions, IsX, IsY, false, false, false, 0)
+	ChainingStep(Conclusions, IsX, IsY)
 {
 	/// <inheritdoc/>
 	public override int SortKey => (IsX, IsY) switch { (true, true) => 4, (_, true) => 3, _ => 2 };

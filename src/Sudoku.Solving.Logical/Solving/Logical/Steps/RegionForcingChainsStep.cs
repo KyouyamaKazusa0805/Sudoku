@@ -16,7 +16,7 @@ internal sealed record RegionForcingChainsStep(
 	IReadOnlyDictionary<byte, Potential> Chains,
 	bool IsDynamic,
 	int DynamicNestingLevel
-) : ChainingStep(Conclusions, true, true, true, IsDynamic, false, DynamicNestingLevel)
+) : ChainingStep(Conclusions, true, true, true, IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
 	/// <inheritdoc/>
 	public override int SortKey => 6;

@@ -25,10 +25,10 @@ internal abstract partial record ChainingStep(
 	ConclusionList Conclusions,
 	bool IsX,
 	bool IsY,
-	bool IsMultiple,
-	bool IsDynamic,
-	bool IsNishio,
-	int DynamicNestingLevel
+	bool IsMultiple = false,
+	bool IsDynamic = false,
+	bool IsNishio = false,
+	int DynamicNestingLevel = 0
 ) : Step(Conclusions, ViewList.Empty), IChainLikeStep
 {
 	/// <summary>
