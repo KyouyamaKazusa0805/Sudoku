@@ -971,7 +971,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <summary>
 	/// Try to create an AIC hint.
 	/// </summary>
-	private AlternatingInferenceChain2Step CreateForcingChainHint(Potential target, bool isX, bool isY)
+	private ForcingChainStep CreateForcingChainHint(Potential target, bool isX, bool isY)
 		=> new(ImmutableArray.Create(new Conclusion(target.IsOn ? Assignment : Elimination, target.Candidate)), target, isX, isY);
 
 	/// <summary>

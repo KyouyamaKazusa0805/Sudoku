@@ -13,12 +13,8 @@
 /// In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
 /// and a type 4 cannot be formed as a stable technique structure.
 /// </para>
-/// <para>
-/// A remote pair is a XY-Chain that only uses two digits.
-/// This technique will be resolved by <see cref="IAlternatingInferenceChainStepSearcher"/>.
-/// </para>
+/// <para>A remote pair is a XY-Chain that only uses two digits.</para>
 /// </summary>
-/// <seealso cref="IAlternatingInferenceChainStepSearcher"/>
 public interface IBivalueOddagonStepSearcher : INegativeRankStepSearcher
 {
 }

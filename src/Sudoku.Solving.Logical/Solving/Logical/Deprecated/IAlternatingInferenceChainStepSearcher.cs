@@ -1,4 +1,5 @@
-﻿namespace Sudoku.Solving.Logical.StepSearchers;
+﻿#if false
+namespace Sudoku.Solving.Logical.StepSearchers;
 
 /// <summary>
 /// Provides with an <b>Alternating Inference Chain</b> step searcher.
@@ -126,3 +127,5 @@ public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	protected static bool IsNodesRedundant(int[] ids) => ids[0] == ids[^1] && ids[1] == ids[^2];
 }
+
+#endif

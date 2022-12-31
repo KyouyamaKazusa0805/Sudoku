@@ -1,4 +1,5 @@
-﻿namespace Sudoku.Solving.Logical.Steps;
+﻿#if false
+namespace Sudoku.Solving.Logical.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Alternating Inference Chain</b> technique.
@@ -7,6 +8,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Chain">Indicates the whole chain.</param>
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
+[Obsolete("This type is being deprecated.", false)]
 internal sealed record AlternatingInferenceChainStep(ConclusionList Conclusions, ViewList Views, AlternatingInferenceChain Chain) :
 	ChainStep(Conclusions, Views),
 	IChainStep,
@@ -355,3 +357,5 @@ internal sealed record AlternatingInferenceChainStep(ConclusionList Conclusions,
 		};
 #endif
 }
+
+#endif

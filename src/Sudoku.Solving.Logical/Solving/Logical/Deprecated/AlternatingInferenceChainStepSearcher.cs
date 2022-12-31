@@ -1,4 +1,5 @@
-﻿namespace Sudoku.Solving.Logical.StepSearchers;
+﻿#if false
+namespace Sudoku.Solving.Logical.StepSearchers;
 
 #if ALLOW_DEPRECATED_LOGICAL_STEP_OR_STEP_SEARCHER
 [StepSearcher]
@@ -1138,3 +1139,5 @@ internal sealed
 		}
 	}
 }
+
+#endif
