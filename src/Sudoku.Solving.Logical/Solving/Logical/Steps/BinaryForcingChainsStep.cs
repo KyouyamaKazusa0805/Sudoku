@@ -26,9 +26,6 @@ internal sealed record BinaryForcingChainsStep(
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: true, IsNishio: IsNishio, DynamicNestingLevel: DynamicNestingLevel)
 {
 	/// <inheritdoc/>
-	protected override Potential GetChainTargetAt(int viewIndex) => viewIndex switch { 0 => FromOnPotential, 1 => FromOffPotential };
-
-	/// <inheritdoc/>
 	protected override Candidates GetGreenPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedGreenPotentials(viewIndex) : GetColorCandidates(viewIndex, true);
 

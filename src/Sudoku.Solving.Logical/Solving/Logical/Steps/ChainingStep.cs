@@ -388,13 +388,6 @@ internal abstract record ChainingStep(
 	}
 
 	/// <summary>
-	/// Try to get the target node of a chain, displayed in the view at the specified index.
-	/// </summary>
-	/// <param name="viewIndex">The view index.</param>
-	/// <returns>The <see cref="Potential"/> result.</returns>
-	protected abstract Potential GetChainTargetAt(int viewIndex);
-
-	/// <summary>
 	/// Indicates the source potential from the specified target. This method can only be used for finding AICs.
 	/// </summary>
 	/// <param name="target">The target node.</param>
@@ -555,6 +548,22 @@ internal abstract record ChainingStep(
 		var (step, nestedViewIndex) = GetNestedChain(nestedViewNum);
 		return step.GetLinks(nestedViewIndex);
 	}
+
+	/// <summary>
+	/// Try to get the target node of a chain, displayed in the view at the specified index.
+	/// </summary>
+	/// <param name="viewIndex">The view index.</param>
+	/// <returns>The <see cref="Potential"/> result.</returns>
+	private Potential GetChainTargetAt(int viewIndex)
+		=> this switch
+		{
+			ForcingChainStep { Target: var target } => target,
+			BidirectionalCycleStep { DestinationOn: var target } => target,
+			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => viewIndex switch { 0 => on, 1 => off },
+			CellForcingChainsStep { Chains.Values: var targets } => targets.ElementAt(viewIndex),
+			RegionForcingChainsStep { Chains.Values: var targets } => targets.ElementAt(viewIndex),
+			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+		};
 
 	/// <summary>
 	/// Try to get container target potential via the specified step.

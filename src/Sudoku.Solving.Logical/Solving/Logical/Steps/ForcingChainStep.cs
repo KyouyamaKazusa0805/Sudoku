@@ -10,9 +10,6 @@
 internal sealed record ForcingChainStep(ConclusionList Conclusions, Potential Target, bool IsX, bool IsY) : ChainingStep(Conclusions, IsX, IsY)
 {
 	/// <inheritdoc/>
-	protected override Potential GetChainTargetAt(int viewIndex) => Target;
-
-	/// <inheritdoc/>
 	protected override Candidates GetGreenPotentials(int viewIndex)
 	{
 		if (viewIndex >= FlatViewsCount)

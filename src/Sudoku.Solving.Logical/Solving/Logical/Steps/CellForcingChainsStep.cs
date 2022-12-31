@@ -17,9 +17,6 @@ internal sealed record CellForcingChainsStep(
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
 	/// <inheritdoc/>
-	protected override Potential GetChainTargetAt(int viewIndex) => Chains.Values.ElementAt(viewIndex);
-
-	/// <inheritdoc/>
 	protected override Candidates GetGreenPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount
 			? GetNestedGreenPotentials(viewIndex)

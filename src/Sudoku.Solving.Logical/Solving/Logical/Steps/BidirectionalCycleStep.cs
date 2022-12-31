@@ -11,9 +11,6 @@ internal sealed record BidirectionalCycleStep(ConclusionList Conclusions, Potent
 	ChainingStep(Conclusions, IsX, IsY)
 {
 	/// <inheritdoc/>
-	protected override Potential GetChainTargetAt(int viewIndex) => DestinationOn;
-
-	/// <inheritdoc/>
 	protected override Candidates GetGreenPotentials(int viewNum) => GetColorCandidates(DestinationOn, true, false);
 
 	/// <inheritdoc/>

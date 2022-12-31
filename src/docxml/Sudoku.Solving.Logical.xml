@@ -6861,9 +6861,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.DestinationOn">
             <summary>Indicates the destination node that is "on" status.</summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.GetChainTargetAt(System.Int32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.GetGreenPotentials(System.Int32)">
             <inheritdoc/>
         </member>
@@ -6918,9 +6915,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.IsAbsurd">
             <summary>Indicates whether the forcing chains kind is contradiction.</summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.GetChainTargetAt(System.Int32)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.GetGreenPotentials(System.Int32)">
             <inheritdoc/>
@@ -7507,9 +7501,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.Chains">
             <summary>Indicates all possible branches in this technique.</summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.GetChainTargetAt(System.Int32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.GetGreenPotentials(System.Int32)">
             <inheritdoc/>
         </member>
@@ -7698,13 +7689,6 @@ if (student is (name: var name, age: >= 18))
             This method will be implemented later.
             </i></b></summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetChainTargetAt(System.Int32)">
-            <summary>
-            Try to get the target node of a chain, displayed in the view at the specified index.
-            </summary>
-            <param name="viewIndex">The view index.</param>
-            <returns>The <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.SourcePotentialOf(Sudoku.Solving.Logical.PatternData.Potential)">
             <summary>
             Indicates the source potential from the specified target. This method can only be used for finding AICs.
@@ -7778,6 +7762,13 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="nestedViewNum">The specified index of the view.</param>
             <returns>All <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instance in this view.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetChainTargetAt(System.Int32)">
+            <summary>
+            Try to get the target node of a chain, displayed in the view at the specified index.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <returns>The <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetContainerTarget(Sudoku.Solving.Logical.Steps.ChainingStep)">
             <summary>
@@ -8894,9 +8885,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.Target">
             <summary>Indicates the target of the chain. This value can be used for constructing a whole chain.</summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ForcingChainStep.GetChainTargetAt(System.Int32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ForcingChainStep.GetGreenPotentials(System.Int32)">
             <inheritdoc/>
         </member>
@@ -10007,9 +9995,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.Chains">
             <summary>Indicates all possible branches in this technique.</summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.GetChainTargetAt(System.Int32)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.GetGreenPotentials(System.Int32)">
             <inheritdoc/>
