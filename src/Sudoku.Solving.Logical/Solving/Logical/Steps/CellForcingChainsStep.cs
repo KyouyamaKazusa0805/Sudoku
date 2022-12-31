@@ -14,7 +14,7 @@ internal sealed record CellForcingChainsStep(
 	IReadOnlyDictionary<byte, Potential> Chains,
 	bool IsDynamic,
 	int DynamicNestingLevel
-) : ChainingStep(Conclusions, true, true, true, IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
+) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
 	/// <inheritdoc/>
 	public override int SortKey => 5;

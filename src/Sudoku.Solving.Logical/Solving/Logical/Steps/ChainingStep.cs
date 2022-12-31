@@ -23,8 +23,8 @@
 /// </param>
 internal abstract partial record ChainingStep(
 	ConclusionList Conclusions,
-	bool IsX,
-	bool IsY,
+	bool IsX = true,
+	bool IsY = true,
 	bool IsMultiple = false,
 	bool IsDynamic = false,
 	bool IsNishio = false,

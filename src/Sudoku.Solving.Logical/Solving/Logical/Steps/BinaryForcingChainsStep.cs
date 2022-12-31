@@ -23,7 +23,7 @@ internal sealed record BinaryForcingChainsStep(
 	bool IsAbsurd,
 	bool IsNishio,
 	int DynamicNestingLevel
-) : ChainingStep(Conclusions, true, true, true, true, IsNishio, DynamicNestingLevel)
+) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: true, IsNishio: IsNishio, DynamicNestingLevel: DynamicNestingLevel)
 {
 	/// <inheritdoc/>
 	public override int SortKey => IsAbsurd ? 7 : 1;
