@@ -2178,6 +2178,12 @@
             </summary>
             <seealso cref="T:System.Array"/>
         </member>
+        <member name="M:System.ArrayExtensions.CollectionElementEquals``1(``0[],``0[],)">
+            <inheritdoc cref="!:Collections.Immutable.ImmutableArrayExtensions.CollectionElementEquals&lt;T&gt;(ImmutableArray&lt;T&gt;, ImmutableArray&lt;T&gt;, delegate*&lt;T, T, bool&gt;)"/>
+        </member>
+        <member name="M:System.ArrayExtensions.CollectionElementRefEquals``1(``0[],``0[],)">
+            <inheritdoc cref="!:Collections.Immutable.ImmutableArrayExtensions.CollectionElementRefEquals&lt;T&gt;(ImmutableArray&lt;T&gt;, ImmutableArray&lt;T&gt;, delegate*&lt;T, T, bool&gt;)"/>
+        </member>
         <member name="M:System.ArrayExtensions.CopyExcept``1(``0[],System.Int32)">
             <summary>
             Creates a new <see cref="T:System.Array"/> instance of type <typeparamref name="T"/>,

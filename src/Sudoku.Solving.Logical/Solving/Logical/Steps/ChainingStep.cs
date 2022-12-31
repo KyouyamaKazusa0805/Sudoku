@@ -21,7 +21,7 @@
 /// <para><inheritdoc cref="ChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
 /// <para><inheritdoc cref="ChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
 /// </param>
-internal abstract partial record ChainingStep(
+internal abstract record ChainingStep(
 	ConclusionList Conclusions,
 	bool IsX = true,
 	bool IsY = true,
@@ -32,115 +32,112 @@ internal abstract partial record ChainingStep(
 ) : Step(Conclusions, ViewList.Empty), IChainLikeStep
 {
 	/// <summary>
-	/// Indicates the complexity of the chain.
+	/// Defines a target type not supported message.
 	/// </summary>
-	public int Complexity => FlatComplexity + NestedComplexity;
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	private const string TargetTypeNotSupportedMessage = "The target type of the chain is not supported. You should override this property for that type.";
 
-	/// <inheritdoc cref="IChainStep.FlatComplexity"/>
-	public abstract int FlatComplexity { get; }
 
-	/// <summary>
-	/// Indicates the nested complexity of the chain. This property is useful on checking nesting chains.
-	/// </summary>
-	public int NestedComplexity
-	{
-		get
-		{
-			var result = 0;
-			var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
-			foreach (var target in GetChainsTargets())
-			{
-				foreach (var p in GetChain(target))
-				{
-					if (p.NestedChain is { } nested && !processed.Contains(nested))
-					{
-						result += nested.Complexity;
-						processed.Add(nested);
-					}
-				}
-			}
-
-			return result;
-		}
-	}
-
-	/// <summary>
-	/// Indicates an <see cref="int"/> value indicating the ordering priority of the chain. Greater is heavier.
-	/// </summary>
-	public abstract int SortKey { get; }
-
-	/// <summary>
-	/// Indicates the total number of views the step will be displayed.
-	/// </summary>
-	public int ViewsCount => FlatViewsCount + NestedViewsCount;
-
-	/// <summary>
-	/// Indicates the difficulty rating of the current step, which binds with length factor.
-	/// </summary>
-	protected decimal LengthDifficulty
-	{
-		get
-		{
-			var result = 0.0M;
-#if true
-			for (var (ceil, length, isOdd) = (4, Complexity - 2, false); length > ceil; result += .1M, isOdd = !isOdd)
-			{
-				ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
-			}
-#else
-			var steps = new[] { 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 768, 1024, 1536, 2048, 3072, 4096, 6144, 8192 };
-			for (var (length, index) = (Complexity - 2, 0); index < Steps.Length && length > Steps[index]; result += .1M, index++) ;
-#endif
-
-			return result;
-		}
-	}
-
-	/// <summary>
-	/// Gets the base difficulty rating for non-AICs via the settings of the current step.
-	/// </summary>
-	/// <returns>The base difficulty rating.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the current state of the step is invalid.</exception>
-	protected decimal BaseDifficultyNonAlternatingInference
-		=> this switch
+	/// <inheritdoc/>
+	public sealed override decimal Difficulty
+		=> LengthDifficulty + this switch
 		{
 			{ DynamicNestingLevel: var l and >= 2 } => 9.5M + .5M * (l - 2),
 			{ DynamicNestingLevel: var l and > 0 } => 8.5M + .5M * l,
 			{ IsNishio: true } => 7.5M,
 			{ IsDynamic: true } => 8.5M,
 			{ IsMultiple: true } => 8.0M,
-			_ => throw new InvalidOperationException("The current state of the step searcher is invalid.")
+			(BidirectionalCycleStep or ForcingChainStep) and { IsX: true, IsY: true } => 5.0M,
+			ForcingChainStep => 4.6M,
+			BidirectionalCycleStep => 4.5M,
+			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+		};
+
+	/// <summary>
+	/// Indicates the complexity of the chain.
+	/// </summary>
+	public int Complexity => FlatComplexity + NestedComplexity;
+
+	/// <summary>
+	/// Indicates the total number of views the step will be displayed.
+	/// </summary>
+	public int ViewsCount => FlatViewsCount + NestedViewsCount;
+
+	/// <inheritdoc/>
+	public sealed override Technique TechniqueCode
+		=> this switch
+		{
+			ForcingChainStep => (IsX, IsY) switch
+			{
+				(true, true) => Technique.AlternatingInferenceChain,
+				(_, true) => Technique.YChain,
+				_ => Technique.XChain
+			},
+			BidirectionalCycleStep => (IsX, IsY) switch
+			{
+				(true, true) => Technique.ContinuousNiceLoop,
+				(_, true) => Technique.XyChain,
+				_ => Technique.FishyCycle
+			},
+			CellForcingChainsStep { IsDynamic: true } => Technique.DynamicCellForcingChains,
+			CellForcingChainsStep => Technique.CellForcingChains,
+			RegionForcingChainsStep { IsDynamic: true } => Technique.DynamicRegionForcingChains,
+			RegionForcingChainsStep => Technique.RegionForcingChains,
+			BinaryForcingChainsStep { IsNishio: true } => Technique.NishioForcingChains,
+			BinaryForcingChainsStep { IsAbsurd: true } => Technique.DynamicContradictionForcingChains,
+			BinaryForcingChainsStep => Technique.DynamicDoubleForcingChains,
+			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+		};
+
+	/// <inheritdoc/>
+	public sealed override TechniqueTags TechniqueTags
+		=> this switch
+		{
+			ForcingChainStep or BidirectionalCycleStep => TechniqueTags.LongChaining,
+			CellForcingChainsStep or RegionForcingChainsStep or BinaryForcingChainsStep
+				=> TechniqueTags.LongChaining | TechniqueTags.ForcingChains,
+			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+		};
+
+	/// <inheritdoc/>
+	public sealed override DifficultyLevel DifficultyLevel
+		=> this switch
+		{
+			ForcingChainStep or BidirectionalCycleStep => DifficultyLevel.Fiendish,
+			CellForcingChainsStep or RegionForcingChainsStep or BinaryForcingChainsStep => DifficultyLevel.Nightmare,
+			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+		};
+
+	/// <inheritdoc/>
+	public sealed override Rarity Rarity
+		=> this switch { { DynamicNestingLevel: 0 or 1 } => Rarity.OnlyForSpecialPuzzles, _ => Rarity.HardlyEver };
+
+	/// <summary>
+	/// Indicates all possible targets that is used for checking the whole branches of the chain.
+	/// </summary>
+	protected internal Potential[] ChainsTargets
+		=> this switch
+		{
+			ForcingChainStep { Target: var target } => new[] { target },
+			BidirectionalCycleStep { DestinationOn: var target } => new[] { target },
+			CellForcingChainsStep { Chains.Values: var targets } => targets.ToArray(),
+			RegionForcingChainsStep { Chains.Values: var targets } => targets.ToArray(),
+			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => new[] { on, off },
+			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
 		};
 
 	/// <summary>
 	/// Returns how many views the current step will be used.
 	/// </summary>
-	protected abstract int FlatViewsCount { get; }
-
-	/// <summary>
-	/// Returns the number of nested views.
-	/// </summary>
-	protected int NestedViewsCount
-	{
-		get
+	protected int FlatViewsCount
+		=> this switch
 		{
-			var result = 0;
-			var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
-			foreach (var target in GetChainsTargets())
-			{
-				foreach (var p in GetChain(target))
-				{
-					if (p.NestedChain is { } nested && !processed.Contains(nested))
-					{
-						result += nested.ViewsCount;
-						processed.Add(nested);
-					}
-				}
-			}
-
-			return result;
-		}
-	}
+			ForcingChainStep or BidirectionalCycleStep => 1,
+			BinaryForcingChainsStep => 2,
+			CellForcingChainsStep { Chains.Count: var count } => count,
+			RegionForcingChainsStep { Chains.Count: var count } => count,
+			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+		};
 
 	/// <summary>
 	/// Gets the technique name.
@@ -191,7 +188,117 @@ internal abstract partial record ChainingStep(
 	/// <summary>
 	/// Indicates the result node.
 	/// </summary>
-	protected abstract Potential Result { get; }
+	protected Potential? Result
+		=> this switch
+		{
+			ForcingChainStep { Target: var target } => target,
+			BidirectionalCycleStep => null,
+			BinaryForcingChainsStep { SourcePotential: var (cell, digit, isOn) } and ({ IsNishio: true } or { IsAbsurd: true })
+				=> new(cell, digit, !isOn),
+			BinaryForcingChainsStep { FromOnPotential: var on } => on,
+			CellForcingChainsStep { Chains.Values: var branchedStarts } => branchedStarts.First(),
+			RegionForcingChainsStep { Chains.Values: var branchedStarts } => branchedStarts.First(),
+			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+		};
+
+	/// <summary>
+	/// Indicates the difficulty rating of the current step, which binds with length factor.
+	/// </summary>
+	private decimal LengthDifficulty
+	{
+		get
+		{
+			var result = 0.0M;
+#if true
+			for (var (ceil, length, isOdd) = (4, Complexity - 2, false); length > ceil; result += .1M, isOdd = !isOdd)
+			{
+				ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
+			}
+#else
+			var steps = new[] { 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 768, 1024, 1536, 2048, 3072, 4096, 6144, 8192 };
+			for (var (length, index) = (Complexity - 2, 0); index < Steps.Length && length > Steps[index]; result += .1M, index++) ;
+#endif
+
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.
+	/// </summary>
+	private int FlatComplexity
+		=> this switch
+		{
+			ForcingChainStep { Target: var target } => AncestorsCountOf(target),
+			BidirectionalCycleStep { DestinationOn: var target } => AncestorsCountOf(target),
+			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => AncestorsCountOf(on) + AncestorsCountOf(off),
+			CellForcingChainsStep { Chains.Values: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
+			RegionForcingChainsStep { Chains.Values: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
+			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+		};
+
+	/// <summary>
+	/// Indicates an <see cref="int"/> value indicating the ordering priority of the chain. Greater is heavier.
+	/// </summary>
+	private int SortKey
+		=> this switch
+		{
+			BinaryForcingChainsStep { IsAbsurd: false } => 1,
+			ForcingChainStep or BidirectionalCycleStep => (IsX, IsY) switch { (true, true) => 4, (_, true) => 3, _ => 2 },
+			CellForcingChainsStep => 5,
+			RegionForcingChainsStep => 6,
+			BinaryForcingChainsStep => 7
+		};
+
+	/// <summary>
+	/// Indicates the nested complexity of the chain. This property is useful on checking nesting chains.
+	/// </summary>
+	private int NestedComplexity
+	{
+		get
+		{
+			var result = 0;
+			var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
+			foreach (var target in ChainsTargets)
+			{
+				foreach (var p in GetChain(target))
+				{
+					if (p.NestedChain is { } nested && !processed.Contains(nested))
+					{
+						result += nested.Complexity;
+						processed.Add(nested);
+					}
+				}
+			}
+
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Returns the number of nested views.
+	/// </summary>
+	private int NestedViewsCount
+	{
+		get
+		{
+			var result = 0;
+			var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
+			foreach (var target in ChainsTargets)
+			{
+				foreach (var p in GetChain(target))
+				{
+					if (p.NestedChain is { } nested && !processed.Contains(nested))
+					{
+						result += nested.ViewsCount;
+						processed.Add(nested);
+					}
+				}
+			}
+
+			return result;
+		}
+	}
 
 
 	/// <summary>
@@ -233,7 +340,7 @@ internal abstract partial record ChainingStep(
 
 		// Warning: Iterate on each chain target separately.
 		// Reason: they may be equal according to equals() (same candidate), but they may have different parents !
-		foreach (var target in GetChainsTargets())
+		foreach (var target in ChainsTargets)
 		{
 			// Iterate on chain targets.
 			CollectRuleParents(initialGrid, currentGrid, result, target);
@@ -241,12 +348,6 @@ internal abstract partial record ChainingStep(
 
 		return result;
 	}
-
-	/// <summary>
-	/// Try to get all possible chains targets.
-	/// </summary>
-	/// <returns>All <see cref="Potential"/> instances.</returns>
-	protected internal abstract List<Potential> GetChainsTargets();
 
 	/// <summary>
 	/// Gets the chain of all <see cref="Potential"/>s from the specified target.
@@ -462,7 +563,7 @@ internal abstract partial record ChainingStep(
 	/// <returns>The container target.</returns>
 	private Potential GetContainerTarget(ChainingStep step)
 	{
-		foreach (var target in GetChainsTargets())
+		foreach (var target in ChainsTargets)
 		{
 			foreach (var p in GetChain(target))
 			{
@@ -484,7 +585,7 @@ internal abstract partial record ChainingStep(
 	{
 		var result = new List<ChainingStep>();
 		var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
-		foreach (var target in GetChainsTargets())
+		foreach (var target in ChainsTargets)
 		{
 			foreach (var p in GetChain(target))
 			{
@@ -523,7 +624,7 @@ internal abstract partial record ChainingStep(
 	private (ChainingStep Step, int ViewIndex) GetNestedChain(int nestedViewIndex)
 	{
 		var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
-		foreach (var target in GetChainsTargets())
+		foreach (var target in ChainsTargets)
 		{
 			foreach (var p in GetChain(target))
 			{
@@ -584,39 +685,32 @@ file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
 
 
 	/// <inheritdoc/>
-	public bool Equals(ChainingStep? x, ChainingStep? y)
+	public unsafe bool Equals(ChainingStep? x, ChainingStep? y)
 	{
-		switch (x, y)
+		return (x, y) switch
 		{
-			case (null, null):
+			(null, null) => true,
+			({ ChainsTargets: var targetsX }, { ChainsTargets: var targetsY })
+				=> targetsX.CollectionElementEquals(targetsY, &potentialComparison) && branchEquals(targetsX, targetsY),
+			_ => false
+		};
+
+
+		static bool potentialComparison(Potential a, Potential b) => a == b;
+
+		bool branchEquals(Potential[] a, Potential[] b)
+		{
+			scoped var i1 = a.EnumerateImmutable();
+			scoped var i2 = b.EnumerateImmutable();
+			while (i1.MoveNext() && i2.MoveNext())
 			{
-				return true;
-			}
-			case (not null, not null):
-			{
-				var thisTargets = x.GetChainsTargets();
-				var otherTargets = y.GetChainsTargets();
-				if (!thisTargets.SequenceEqual(otherTargets))
+				if (!x.GetChain(i1.Current).CollectionElementEquals(y.GetChain(i2.Current), &potentialComparison))
 				{
 					return false;
 				}
-
-				var i1 = thisTargets.GetEnumerator();
-				var i2 = otherTargets.GetEnumerator();
-				while (i1.MoveNext() && i2.MoveNext())
-				{
-					if (!x.GetChain(i1.Current).SequenceEqual(y.GetChain(i2.Current)))
-					{
-						return false;
-					}
-				}
-
-				return true;
 			}
-			default:
-			{
-				return false;
-			}
+
+			return true;
 		}
 	}
 
@@ -624,7 +718,7 @@ file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
 	public int GetHashCode(ChainingStep obj)
 	{
 		var result = 0;
-		foreach (var target in obj.GetChainsTargets())
+		foreach (var target in obj.ChainsTargets)
 		{
 			foreach (var p in obj.GetChain(target))
 			{
@@ -640,12 +734,13 @@ file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
 file static class Extensions
 {
 	/// <summary>
-	/// Determines whether two <see cref="List{T}"/> of <see cref="Potential"/>s are equal by comparing the elements.
+	/// Determines whether two <see cref="List{T}"/> of <typeparamref name="T"/>s are equal by comparing the elements.
 	/// </summary>
 	/// <param name="this">The first sequence to be compared.</param>
 	/// <param name="other">The second sequence to be compared.</param>
+	/// <param name="comparison">The comparsion method.</param>
 	/// <returns><see langword="true"/> if the two sequences are equal; otherwise, <see langword="false"/>.</returns>
-	public static bool SequenceEqual(this List<Potential> @this, List<Potential> other)
+	public static unsafe bool CollectionElementEquals<T>(this List<T> @this, List<T> other, delegate*<T, T, bool> comparison)
 	{
 		if (@this.Count != other.Count)
 		{
@@ -654,7 +749,7 @@ file static class Extensions
 
 		for (var i = 0; i < @this.Count; i++)
 		{
-			if (@this[i] != other[i])
+			if (!comparison(@this[i], other[i]))
 			{
 				return false;
 			}

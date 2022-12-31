@@ -27,7 +27,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 
 	/// <summary>
-	/// Indicates whether the step searcher allows nishio forcing chains.
+	/// Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
+	/// that only uses a single digit. It is a brute-force view of a fish.
 	/// </summary>
 	public bool AllowNishio { get; init; }
 
@@ -44,10 +45,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <item>
 	/// For dynamic forcing chains:
 	/// <list type="bullet">
-	/// <item>Cell forcing chains</item>
-	/// <item>Region (House) forcing chains</item>
-	/// <item>Contradiction forcing chains</item>
-	/// <item>Double forcing chains</item>
+	/// <item>Dynamic Cell forcing chains</item>
+	/// <item>Dynamic Region (House) forcing chains</item>
 	/// </list>
 	/// </item>
 	/// </list>
@@ -55,7 +54,11 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	public bool AllowMultiple { get; init; }
 
 	/// <summary>
-	/// Indicates whether the step searcher allows dynamic forcing chains.
+	/// Indicates whether the step searcher allows dynamic forcing chains:
+	/// <list type="bullet">
+	/// <item>Dynamic Contradiction forcing chains</item>
+	/// <item>Dynamic Double forcing chains</item>
+	/// </list>
 	/// </summary>
 	/// <remarks>
 	/// If step searcher enables for dynamic forcing chains, forcing chains will contain branches,

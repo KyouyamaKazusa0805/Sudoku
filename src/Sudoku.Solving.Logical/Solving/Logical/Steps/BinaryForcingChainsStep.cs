@@ -26,48 +26,6 @@ internal sealed record BinaryForcingChainsStep(
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: true, IsNishio: IsNishio, DynamicNestingLevel: DynamicNestingLevel)
 {
 	/// <inheritdoc/>
-	public override int SortKey => IsAbsurd ? 7 : 1;
-
-	/// <inheritdoc/>
-	public override int FlatComplexity => AncestorsCountOf(FromOnPotential) + AncestorsCountOf(FromOffPotential);
-
-	/// <inheritdoc/>
-	public override decimal Difficulty => BaseDifficultyNonAlternatingInference + LengthDifficulty;
-
-	/// <inheritdoc/>
-	public override Technique TechniqueCode
-		=> this switch
-		{
-			{ IsNishio: true } => Technique.NishioForcingChains,
-			{ IsAbsurd: true } => Technique.DynamicContradictionForcingChains,
-			_ => Technique.DynamicDoubleForcingChains
-		};
-
-	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
-
-	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
-
-	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.HardlyEver;
-
-	/// <inheritdoc/>
-	protected override int FlatViewsCount => 2;
-
-	/// <inheritdoc/>
-	protected override Potential Result
-		=> this switch
-		{
-			{ SourcePotential: var (cell, digit, isOn) } and ({ IsNishio: true } or { IsAbsurd: true }) => new(cell, digit, !isOn),
-			_ => FromOnPotential
-		};
-
-
-	/// <inheritdoc/>
-	protected internal override List<Potential> GetChainsTargets() => new() { FromOnPotential, FromOffPotential };
-
-	/// <inheritdoc/>
 	protected override Potential GetChainTargetAt(int viewIndex) => viewIndex switch { 0 => FromOnPotential, 1 => FromOffPotential };
 
 	/// <inheritdoc/>

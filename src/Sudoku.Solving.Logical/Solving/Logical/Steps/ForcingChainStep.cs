@@ -10,38 +10,6 @@
 internal sealed record ForcingChainStep(ConclusionList Conclusions, Potential Target, bool IsX, bool IsY) : ChainingStep(Conclusions, IsX, IsY)
 {
 	/// <inheritdoc/>
-	public override int FlatComplexity => AncestorsCountOf(Target);
-
-	/// <inheritdoc/>
-	public override int SortKey => (IsX, IsY) switch { (true, true) => 4, (_, true) => 3, _ => 2 };
-
-	/// <inheritdoc/>
-	public override decimal Difficulty => (IsX, IsY) switch { (true, true) => 5.0M, _ => 4.6M } + LengthDifficulty;
-
-	/// <inheritdoc/>
-	public override Technique TechniqueCode
-		=> (IsX, IsY) switch { (true, true) => Technique.AlternatingInferenceChain, (_, true) => Technique.YChain, _ => Technique.XChain };
-
-	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags => TechniqueTags.ShortChaining;
-
-	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.Seldom;
-
-	/// <inheritdoc/>
-	protected override int FlatViewsCount => 1;
-
-	/// <inheritdoc/>
-	protected override Potential Result => Target;
-
-
-	/// <inheritdoc/>
-	protected internal override List<Potential> GetChainsTargets() => new() { Target };
-
-	/// <inheritdoc/>
 	protected override Potential GetChainTargetAt(int viewIndex) => Target;
 
 	/// <inheritdoc/>

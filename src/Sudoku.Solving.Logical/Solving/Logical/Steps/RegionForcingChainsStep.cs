@@ -19,37 +19,6 @@ internal sealed record RegionForcingChainsStep(
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
 	/// <inheritdoc/>
-	public override int SortKey => 6;
-
-	/// <inheritdoc/>
-	public override int FlatComplexity => Chains.Values.Sum(AncestorsCountOf);
-
-	/// <inheritdoc/>
-	public override decimal Difficulty => BaseDifficultyNonAlternatingInference + LengthDifficulty;
-
-	/// <inheritdoc/>
-	public override Technique TechniqueCode => IsDynamic ? Technique.DynamicRegionForcingChains : Technique.RegionForcingChains;
-
-	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
-
-	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
-
-	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.HardlyEver;
-
-	/// <inheritdoc/>
-	protected override int FlatViewsCount => Chains.Count;
-
-	/// <inheritdoc/>
-	protected override Potential Result => Chains.Values.First();
-
-
-	/// <inheritdoc/>
-	protected internal override List<Potential> GetChainsTargets() => Chains.Values.ToList();
-
-	/// <inheritdoc/>
 	protected override Potential GetChainTargetAt(int viewIndex) => Chains.Values.ElementAt(viewIndex);
 
 	/// <inheritdoc/>

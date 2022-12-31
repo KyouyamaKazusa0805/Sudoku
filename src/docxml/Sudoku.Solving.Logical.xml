@@ -3302,7 +3302,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio">
             <summary>
-            Indicates whether the step searcher allows nishio forcing chains.
+            Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
+            that only uses a single digit. It is a brute-force view of a fish.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple">
@@ -3319,10 +3320,8 @@ if (student is (name: var name, age: >= 18))
             <item>
             For dynamic forcing chains:
             <list type="bullet">
-            <item>Cell forcing chains</item>
-            <item>Region (House) forcing chains</item>
-            <item>Contradiction forcing chains</item>
-            <item>Double forcing chains</item>
+            <item>Dynamic Cell forcing chains</item>
+            <item>Dynamic Region (House) forcing chains</item>
             </list>
             </item>
             </list>
@@ -3330,7 +3329,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic">
             <summary>
-            Indicates whether the step searcher allows dynamic forcing chains.
+            Indicates whether the step searcher allows dynamic forcing chains:
+            <list type="bullet">
+            <item>Dynamic Contradiction forcing chains</item>
+            <item>Dynamic Double forcing chains</item>
+            </list>
             </summary>
             <remarks>
             If step searcher enables for dynamic forcing chains, forcing chains will contain branches,
@@ -6858,36 +6861,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.DestinationOn">
             <summary>Indicates the destination node that is "on" status.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.SortKey">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.FlatComplexity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.FlatViewsCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.Result">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.GetChainsTargets">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.GetChainTargetAt(System.Int32)">
             <inheritdoc/>
         </member>
@@ -6945,36 +6918,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.IsAbsurd">
             <summary>Indicates whether the forcing chains kind is contradiction.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.SortKey">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.FlatComplexity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.FlatViewsCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.Result">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.GetChainsTargets">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.GetChainTargetAt(System.Int32)">
             <inheritdoc/>
@@ -7564,36 +7507,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.Chains">
             <summary>Indicates all possible branches in this technique.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.SortKey">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.FlatComplexity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.FlatViewsCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.Result">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.GetChainsTargets">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.GetChainTargetAt(System.Int32)">
             <inheritdoc/>
         </member>
@@ -7681,22 +7594,17 @@ if (student is (name: var name, age: >= 18))
             <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Logical.Steps.ChainingStep.TargetTypeNotSupportedMessage">
+            <summary>
+            Defines a target type not supported message.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Difficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Complexity">
             <summary>
             Indicates the complexity of the chain.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.FlatComplexity">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.Steps.Specialized.IChainStep.FlatComplexity"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.NestedComplexity">
-            <summary>
-            Indicates the nested complexity of the chain. This property is useful on checking nesting chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.SortKey">
-            <summary>
-            Indicates an <see cref="T:System.Int32"/> value indicating the ordering priority of the chain. Greater is heavier.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.ViewsCount">
@@ -7704,26 +7612,26 @@ if (student is (name: var name, age: >= 18))
             Indicates the total number of views the step will be displayed.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.LengthDifficulty">
-            <summary>
-            Indicates the difficulty rating of the current step, which binds with length factor.
-            </summary>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.TechniqueCode">
+            <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.BaseDifficultyNonAlternatingInference">
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.ChainsTargets">
             <summary>
-            Gets the base difficulty rating for non-AICs via the settings of the current step.
+            Indicates all possible targets that is used for checking the whole branches of the chain.
             </summary>
-            <returns>The base difficulty rating.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the current state of the step is invalid.</exception>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.FlatViewsCount">
             <summary>
             Returns how many views the current step will be used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.NestedViewsCount">
-            <summary>
-            Returns the number of nested views.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.TechniqueNameInternal">
@@ -7736,6 +7644,31 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Result">
             <summary>
             Indicates the result node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.LengthDifficulty">
+            <summary>
+            Indicates the difficulty rating of the current step, which binds with length factor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.FlatComplexity">
+            <summary>
+            Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.SortKey">
+            <summary>
+            Indicates an <see cref="T:System.Int32"/> value indicating the ordering priority of the chain. Greater is heavier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.NestedComplexity">
+            <summary>
+            Indicates the nested complexity of the chain. This property is useful on checking nesting chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.NestedViewsCount">
+            <summary>
+            Returns the number of nested views.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.AncestorsCountOf(Sudoku.Solving.Logical.PatternData.Potential)">
@@ -7752,12 +7685,6 @@ if (student is (name: var name, age: >= 18))
             <param name="initialGrid">The initial grid.</param>
             <param name="currentGrid">The current grid.</param>
             <returns>All found potentials.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetChainsTargets">
-            <summary>
-            Try to get all possible chains targets.
-            </summary>
-            <returns>All <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetChain(Sudoku.Solving.Logical.PatternData.Potential)">
             <summary>
@@ -7920,12 +7847,13 @@ if (student is (name: var name, age: >= 18))
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Extensions.SequenceEqual(System.Collections.Generic.List{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.List{Sudoku.Solving.Logical.PatternData.Potential})">
+        <member name="M:Sudoku.Solving.Logical.Steps.Extensions.CollectionElementEquals``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0},)">
             <summary>
-            Determines whether two <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s are equal by comparing the elements.
+            Determines whether two <see cref="T:System.Collections.Generic.List`1"/> of <typeparamref name="T"/>s are equal by comparing the elements.
             </summary>
             <param name="this">The first sequence to be compared.</param>
             <param name="other">The second sequence to be compared.</param>
+            <param name="comparison">The comparsion method.</param>
             <returns><see langword="true"/> if the two sequences are equal; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.ChromaticPatternStep">
@@ -8965,36 +8893,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.Target">
             <summary>Indicates the target of the chain. This value can be used for constructing a whole chain.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.FlatComplexity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.SortKey">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.FlatViewsCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.Result">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ForcingChainStep.GetChainsTargets">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ForcingChainStep.GetChainTargetAt(System.Int32)">
             <inheritdoc/>
@@ -10109,36 +10007,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.Chains">
             <summary>Indicates all possible branches in this technique.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.SortKey">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.FlatComplexity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.FlatViewsCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.Result">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.GetChainsTargets">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.GetChainTargetAt(System.Int32)">
             <inheritdoc/>
