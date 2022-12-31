@@ -169,7 +169,7 @@
           "AlternatingInferenceChainStep.cs": [ "ChainStep.cs" ],
 
           "SudokuExplainerCompatibleChainStep.cs": [ "ChainingStep.cs" ],
-          "AlternatingInferenceChain2Step.cs": [ "ChainingStep.cs" ],
+          "ForcingChainStep.cs": [ "ChainingStep.cs" ],
           "BidirectionalCycleStep.cs": [ "ChainingStep.cs" ],
           "CellForcingChainsStep.cs": [ "ChainingStep.cs" ],
           "RegionForcingChainsStep.cs": [ "ChainingStep.cs" ],
