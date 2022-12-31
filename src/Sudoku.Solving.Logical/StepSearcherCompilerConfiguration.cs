@@ -32,7 +32,9 @@
 [assembly: SearcherConfiguration<        AlmostLockedSetsXyWingStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<         AlmostLockedSetsWWingStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<                  DeathBlossomStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                   HasBugs)]
+#if ALLOW_DEPRECATED_LOGICAL_STEP_OR_STEP_SEARCHER
 [assembly: SearcherConfiguration<     AlternatingInferenceChainStepSearcher>(SearcherDisplayingLevel.C)]
+#endif
 [assembly: SearcherConfiguration<                      ChainingStepSearcher>(SearcherDisplayingLevel.C)]
 [assembly: SearcherConfiguration<                   BowmanBingoStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                LastResort)]
 [assembly: SearcherConfiguration<                PatternOverlayStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.Gathering, DisabledReason = SearcherDisabledReason.                LastResort)]

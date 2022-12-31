@@ -1,5 +1,6 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
+#if ALLOW_DEPRECATED_LOGICAL_STEP_OR_STEP_SEARCHER
 [StepSearcher]
 [StepSearcherRunningOptions(StepSearcherRunningOptions.TemporarilyDisabled)]
 [SeparatedStepSearcher(0, nameof(NodeTypes), SearcherNodeTypeLevel.SingleDigit)]
@@ -8,8 +9,37 @@
 [SeparatedStepSearcher(3, nameof(NodeTypes), SearcherNodeTypeLevel.LockedSets)]
 [SeparatedStepSearcher(4, nameof(NodeTypes), SearcherNodeTypeLevel.HiddenSets)]
 [SeparatedStepSearcher(5, nameof(NodeTypes), SearcherNodeTypeLevel.UniqueRectangles)]
-internal sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
+#else
+/// <inheritdoc cref="IAlternatingInferenceChainStepSearcher"/>
+[Obsolete($"This type is being deprecated due to algorithm chosen. Please use another type '{nameof(ChainingStepSearcher)}' instead.", false)]
+#endif
+internal sealed
+#if ALLOW_DEPRECATED_LOGICAL_STEP_OR_STEP_SEARCHER
+	partial
+#endif
+	class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
+#if !ALLOW_DEPRECATED_LOGICAL_STEP_OR_STEP_SEARCHER
+	/// <summary>
+	/// Defines a default exception instance to report <see cref="NotImplementedException"/> with deprecated information.
+	/// </summary>
+	private static readonly NotImplementedException NotImplementedExceptionInstance = new("This type is being deprecated.");
+
+
+	/// <inheritdoc/>
+	[Obsolete("This type is being deprecated. You shouldn't get any meaningful value via this property.", false)]
+	SearcherInitializationOptions IStepSearcher.Options
+	{
+		[DoesNotReturn]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => throw NotImplementedExceptionInstance;
+
+		[DoesNotReturn]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => throw NotImplementedExceptionInstance;
+	}
+#endif
+
 	/// <summary>
 	/// Indicates the field that stores the temporary strong inferences during the searching.
 	/// </summary>

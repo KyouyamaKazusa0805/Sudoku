@@ -34,6 +34,9 @@
 /// </item>
 /// </list>
 /// </summary>
+#if !ALLOW_DEPRECATED_LOGICAL_STEP_OR_STEP_SEARCHER
+[Obsolete($"This type is being deprecated due to algorithm chosen. Please use another type '{nameof(IChainingStepSearcher)}' instead.", false)]
+#endif
 public interface IAlternatingInferenceChainStepSearcher : IChainStepSearcher
 {
 	/// <summary>
