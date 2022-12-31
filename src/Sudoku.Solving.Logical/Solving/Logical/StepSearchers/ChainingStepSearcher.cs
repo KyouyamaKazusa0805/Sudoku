@@ -79,7 +79,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// </item>
 	/// <item>
 	/// <term>1</term>
-	/// <description>Dynamic forcing chains (+ Structural techniques)</description>
+	/// <description>Dynamic forcing chains (+ Structural techniques, e.g. <see cref="ILockedCandidatesStepSearcher"/>)</description>
 	/// </item>
 	/// <item>
 	/// <term>2</term>
@@ -99,6 +99,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// </item>
 	/// </list>
 	/// </remarks>
+	/// <seealso cref="ILockedCandidatesStepSearcher"/>
 	public int DynamicNestingLevel { get; init; }
 
 

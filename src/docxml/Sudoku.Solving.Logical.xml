@@ -3354,7 +3354,7 @@ if (student is (name: var name, age: >= 18))
             </item>
             <item>
             <term>1</term>
-            <description>Dynamic forcing chains (+ Structural techniques)</description>
+            <description>Dynamic forcing chains (+ Structural techniques, e.g. <see cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>)</description>
             </item>
             <item>
             <term>2</term>
@@ -3374,6 +3374,7 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </remarks>
+            <seealso cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
             <inheritdoc/>
@@ -7725,6 +7726,13 @@ if (student is (name: var name, age: >= 18))
             Returns the number of nested views.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.TechniqueNameInternal">
+            <summary>
+            Gets the technique name.
+            </summary>
+            <returns>The technique name.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the state of the current instance is invalid.</exception>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Result">
             <summary>
             Indicates the result node.
@@ -7736,60 +7744,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="child">The specified node.</param>
             <returns>The total number of all found ancestors.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.Deconstruct(System.Boolean@,System.Boolean@,System.Boolean@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.TechniqueName(System.Int32)">
-            <summary>
-            Gets the technique name.
-            </summary>
-            <returns>The technique name.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the state of the current instance is invalid.</exception>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetRuleParents(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
@@ -13305,6 +13259,10 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a technique instance, which is used for comparison.
             </summary>
+            <remarks><b><i>
+            Please note that some fields declared in this type may not be used by neither direct reference nor reflection,
+            but they are reserved ones. In the future I'll implement the searching logic on those fields (maybe?)
+            </i></b></remarks>
         </member>
         <member name="F:Sudoku.Solving.Logical.Techniques.Technique.None">
             <summary>
