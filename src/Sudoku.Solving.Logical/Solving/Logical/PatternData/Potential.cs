@@ -31,7 +31,7 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 	public Potential(byte cell, byte digit, bool isOn) => _mask = (short)((isOn ? 1 : 0) << 10 | (cell * 9 + digit));
 
 	/// <summary>
-	/// Initializes a <see cref="Potential"/> instance via the specified data.
+	/// <inheritdoc cref="Potential(short, bool)" path="/summary"/>
 	/// </summary>
 	/// <param name="base">The base potential instance.</param>
 	/// <param name="isOn"><inheritdoc cref="Potential(short, bool)" path="/param[@name='isOn']"/></param>

@@ -185,19 +185,19 @@ internal abstract partial record ChainingStep(
 	/// <returns>The technique name.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the state of the current instance is invalid.</exception>
 	[ResourceTextFormatter]
-	internal string TechniqueName()
+	internal string TechniqueName(int level)
 	{
 		return this switch
 		{
-			(false, false, false, 0) => R["NormalChains"]!,
-			CellForcingChainsStep(_, false, _, 0) => R["CellChains"]!,
-			CellForcingChainsStep(_, true, _, 0) => $"{dynamicKeyword()}{R["CellChains"]!}",
-			RegionForcingChainsStep(_, false, _, 0) => R["HouseChains"]!,
-			RegionForcingChainsStep(_, true, _, 0) => $"{dynamicKeyword()}{R["HouseChains"]!}",
+			(false, false, false, _) => R["NormalChains"]!,
+			CellForcingChainsStep(_, false, _, _) => R["CellChains"]!,
+			CellForcingChainsStep(_, true, _, _) => $"{dynamicKeyword()}{R["CellChains"]!}",
+			RegionForcingChainsStep(_, false, _, _) => R["HouseChains"]!,
+			RegionForcingChainsStep(_, true, _, _) => $"{dynamicKeyword()}{R["HouseChains"]!}",
 			BinaryForcingChainsStep(_, _, true, _) => R["NishioChains"]!,
 			BinaryForcingChainsStep { IsAbsurd: true } => R["AbsurdChains"]!,
 			BinaryForcingChainsStep => R["DoubleChains"]!,
-			(_, _, _, var l and not 0) => $"{R[""]!}{nestedSuffix(l)}",
+			//(_, _, _, var l and not 0) => $"{TechniqueName(level - 3)}{nestedSuffix(l)}",
 			_ => throw new InvalidOperationException("The status of the current instance is invalid.")
 		};
 

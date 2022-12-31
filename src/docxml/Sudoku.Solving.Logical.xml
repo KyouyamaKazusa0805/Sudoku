@@ -1561,7 +1561,7 @@
         </member>
         <member name="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instance via the specified data.
+            <inheritdoc cref="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int16,System.Boolean)" path="/summary"/>
             </summary>
             <param name="base">The base potential instance.</param>
             <param name="isOn"><inheritdoc cref="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int16,System.Boolean)" path="/param[@name='isOn']"/></param>
@@ -7784,7 +7784,7 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.TechniqueName">
+        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.TechniqueName(System.Int32)">
             <summary>
             Gets the technique name.
             </summary>
