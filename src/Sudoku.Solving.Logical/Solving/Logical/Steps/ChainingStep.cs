@@ -65,27 +65,21 @@ internal abstract record ChainingStep(
 
 	/// <inheritdoc/>
 	public sealed override Technique TechniqueCode
-		=> this switch
+		=> (this, IsX, IsY, IsDynamic, IsNishio) switch
 		{
-			ForcingChainStep => (IsX, IsY) switch
-			{
-				(true, true) => Technique.AlternatingInferenceChain,
-				(_, true) => Technique.YChain,
-				_ => Technique.XChain
-			},
-			BidirectionalCycleStep => (IsX, IsY) switch
-			{
-				(true, true) => Technique.ContinuousNiceLoop,
-				(_, true) => Technique.XyChain,
-				_ => Technique.FishyCycle
-			},
-			CellForcingChainsStep { IsDynamic: true } => Technique.DynamicCellForcingChains,
-			CellForcingChainsStep => Technique.CellForcingChains,
-			RegionForcingChainsStep { IsDynamic: true } => Technique.DynamicRegionForcingChains,
-			RegionForcingChainsStep => Technique.RegionForcingChains,
-			BinaryForcingChainsStep { IsNishio: true } => Technique.NishioForcingChains,
-			BinaryForcingChainsStep { IsAbsurd: true } => Technique.DynamicContradictionForcingChains,
-			BinaryForcingChainsStep => Technique.DynamicDoubleForcingChains,
+			(ForcingChainStep, true, true, _, _) => Technique.AlternatingInferenceChain,
+			(ForcingChainStep, false, true, _, _) => Technique.YChain,
+			(ForcingChainStep, false, false, _, _) => Technique.XChain,
+			(BidirectionalCycleStep, true, true, _, _) => Technique.ContinuousNiceLoop,
+			(BidirectionalCycleStep, false, true, _, _) => Technique.XyChain,
+			(BidirectionalCycleStep, false, false, _, _) => Technique.FishyCycle,
+			(CellForcingChainsStep, _, _, true, _) => Technique.DynamicCellForcingChains,
+			(CellForcingChainsStep, _, _, false, _) => Technique.CellForcingChains,
+			(RegionForcingChainsStep, _, _, true, _) => Technique.DynamicRegionForcingChains,
+			(RegionForcingChainsStep, _, _, false, _) => Technique.RegionForcingChains,
+			(BinaryForcingChainsStep, _, _, _, true) => Technique.NishioForcingChains,
+			(BinaryForcingChainsStep { IsAbsurd: true }, _, _, _, false) => Technique.DynamicContradictionForcingChains,
+			(BinaryForcingChainsStep, _, _, _, _) => Technique.DynamicDoubleForcingChains,
 			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
 		};
 
@@ -120,8 +114,8 @@ internal abstract record ChainingStep(
 		{
 			ForcingChainStep { Target: var target } => new[] { target },
 			BidirectionalCycleStep { DestinationOn: var target } => new[] { target },
-			CellForcingChainsStep { Chains.Values: var targets } => targets.ToArray(),
-			RegionForcingChainsStep { Chains.Values: var targets } => targets.ToArray(),
+			CellForcingChainsStep { Chains.Potentials: var targets } => ((List<Potential>)targets).ToArray(),
+			RegionForcingChainsStep { Chains.Potentials: var targets } => ((List<Potential>)targets).ToArray(),
 			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => new[] { on, off },
 			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
 		};
@@ -196,8 +190,8 @@ internal abstract record ChainingStep(
 			BinaryForcingChainsStep { SourcePotential: var (cell, digit, isOn) } and ({ IsNishio: true } or { IsAbsurd: true })
 				=> new(cell, digit, !isOn),
 			BinaryForcingChainsStep { FromOnPotential: var on } => on,
-			CellForcingChainsStep { Chains.Values: var branchedStarts } => branchedStarts.First(),
-			RegionForcingChainsStep { Chains.Values: var branchedStarts } => branchedStarts.First(),
+			CellForcingChainsStep { Chains.Potentials: [var branchedStart, ..] } => branchedStart,
+			RegionForcingChainsStep { Chains.Potentials: [var branchedStart, ..] } => branchedStart,
 			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
 		};
 
@@ -232,8 +226,8 @@ internal abstract record ChainingStep(
 			ForcingChainStep { Target: var target } => AncestorsCountOf(target),
 			BidirectionalCycleStep { DestinationOn: var target } => AncestorsCountOf(target),
 			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => AncestorsCountOf(on) + AncestorsCountOf(off),
-			CellForcingChainsStep { Chains.Values: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
-			RegionForcingChainsStep { Chains.Values: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
+			CellForcingChainsStep { Chains.Potentials: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
+			RegionForcingChainsStep { Chains.Potentials: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
 			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
 		};
 
@@ -560,8 +554,8 @@ internal abstract record ChainingStep(
 			ForcingChainStep { Target: var target } => target,
 			BidirectionalCycleStep { DestinationOn: var target } => target,
 			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => viewIndex switch { 0 => on, 1 => off },
-			CellForcingChainsStep { Chains.Values: var targets } => targets.ElementAt(viewIndex),
-			RegionForcingChainsStep { Chains.Values: var targets } => targets.ElementAt(viewIndex),
+			CellForcingChainsStep { Chains.Potentials: var targets } => targets[viewIndex],
+			RegionForcingChainsStep { Chains.Potentials: var targets } => targets[viewIndex],
 			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
 		};
 

@@ -18,9 +18,9 @@ internal sealed record ForcingChainStep(ConclusionList Conclusions, Potential Ta
 		}
 
 		var result = GetColorCandidates(true);
-		if (!Target.IsOn)
+		if (Target is var (cand, isOn) && !isOn)
 		{
-			result.Remove(Target.Candidate);
+			result.Remove(cand);
 		}
 
 		return result;
@@ -35,9 +35,9 @@ internal sealed record ForcingChainStep(ConclusionList Conclusions, Potential Ta
 		}
 
 		var result = GetColorCandidates(false);
-		if (Target.IsOn)
+		if (Target is var (cand, isOn) && isOn)
 		{
-			result.Remove(Target.Candidate);
+			result.Remove(cand);
 		}
 
 		return result;
@@ -45,14 +45,7 @@ internal sealed record ForcingChainStep(ConclusionList Conclusions, Potential Ta
 
 	/// <inheritdoc/>
 	protected override List<LinkViewNode> GetLinks(int viewIndex)
-	{
-		if (viewIndex >= FlatViewsCount)
-		{
-			return GetNestedLinks(viewIndex);
-		}
-
-		return GetLinks(Target);
-	}
+		=> viewIndex >= FlatViewsCount ? GetNestedLinks(viewIndex) : GetLinks(Target);
 
 	/// <summary>
 	/// Gets all colored candidates with the specified state.

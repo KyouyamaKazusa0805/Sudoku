@@ -11,24 +11,28 @@
 internal sealed record CellForcingChainsStep(
 	ConclusionList Conclusions,
 	byte SourceCell,
-	IReadOnlyDictionary<byte, Potential> Chains,
+	MultipleForcingChains Chains,
 	bool IsDynamic,
 	int DynamicNestingLevel
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
 	/// <inheritdoc/>
 	protected override Candidates GetGreenPotentials(int viewIndex)
-		=> viewIndex >= FlatViewsCount
-			? GetNestedGreenPotentials(viewIndex)
-			: GetColorCandidates(Chains[Chains.Keys.ElementAt(viewIndex)], true, true);
+		=> viewIndex >= FlatViewsCount ? GetNestedGreenPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), true, true);
 
 	/// <inheritdoc/>
 	protected override Candidates GetRedPotentials(int viewIndex)
-		=> viewIndex >= FlatViewsCount
-			? GetNestedRedPotentials(viewIndex)
-			: GetColorCandidates(Chains[Chains.Keys.ElementAt(viewIndex)], false, false);
+		=> viewIndex >= FlatViewsCount ? GetNestedRedPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), false, false);
 
 	/// <inheritdoc/>
 	protected override List<LinkViewNode> GetLinks(int viewIndex)
-		=> viewIndex >= FlatViewsCount ? GetNestedLinks(viewIndex) : GetLinks(Chains[Chains.Keys.ElementAt(viewIndex)]);
+		=> viewIndex >= FlatViewsCount ? GetNestedLinks(viewIndex) : GetLinks(GetPotentialAt(viewIndex));
+
+	/// <summary>
+	/// Gets the potential at the specified index.
+	/// </summary>
+	/// <param name="viewIndex">The view index.</param>
+	/// <returns>The view index.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private Potential GetPotentialAt(int viewIndex) => Chains[viewIndex].Potential;
 }

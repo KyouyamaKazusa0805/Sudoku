@@ -2529,6 +2529,121 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid.</param>
             <returns>All possible found <typeparamref name="T"/>.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains">
+            <summary>
+            Defines a multiple forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Patterns.MultipleForcingChains._internalDictionary">
+            <summary>
+            Indicates the internal dictionary.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Patterns.MultipleForcingChains._keys">
+            <summary>
+            Indicates the keys.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Patterns.MultipleForcingChains._values">
+            <summary>
+            Indicates the values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Count">
+            <summary>
+            Indicates the number of elements stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.CellsOrDigits">
+            <summary>
+            Indicates the cells or digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Potentials">
+            <summary>
+            Indicates the potentials.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Item(System.Int32)">
+            <summary>
+            Gets the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The pair of data.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Add(System.Byte,Sudoku.Solving.Logical.PatternData.Potential)">
+            <summary>
+            Adds a pair of data into the collection.
+            </summary>
+            <param name="cellOrDigit">The cell or digit.</param>
+            <param name="potential">The potential.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Equals(Sudoku.Solving.Logical.Patterns.MultipleForcingChains)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.op_Equality(Sudoku.Solving.Logical.Patterns.MultipleForcingChains,Sudoku.Solving.Logical.Patterns.MultipleForcingChains)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.op_Inequality(Sudoku.Solving.Logical.Patterns.MultipleForcingChains,Sudoku.Solving.Logical.Patterns.MultipleForcingChains)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.op_Implicit(System.Collections.Generic.Dictionary{System.Byte,Sudoku.Solving.Logical.PatternData.Potential})~Sudoku.Solving.Logical.Patterns.MultipleForcingChains">
+            <summary>
+            Implicit cast from <see cref="T:System.Collections.Generic.Dictionary`2"/> to <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains"/>.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator">
+            <summary>
+            Defines an enumerator that iterates the current collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator.#ctor(Sudoku.Solving.Logical.Patterns.MultipleForcingChains)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains"/> instance.
+            </summary>
+            <param name="multipleForcingChains">The <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains"/> instance.</param>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Patterns.CellOrDigitComparer">
+            <summary>
+            Defines a comparer that compares with inner key.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Patterns.CellOrDigitComparer.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.CellOrDigitComparer.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.CellOrDigitComparer.Compare(System.Byte,System.Byte)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Patterns.Node">
             <summary>
             Defines a chain node.
@@ -7485,7 +7600,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsDynamic"><inheritdoc/></param>
             <param name="DynamicNestingLevel"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Byte,System.Collections.Generic.IReadOnlyDictionary{System.Byte,Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Byte,Sudoku.Solving.Logical.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -7509,6 +7624,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.GetLinks(System.Int32)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.GetPotentialAt(System.Int32)">
+            <summary>
+            Gets the potential at the specified index.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <returns>The view index.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.ChainingStep">
             <summary>
@@ -9976,7 +10098,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsDynamic"><inheritdoc/></param>
             <param name="DynamicNestingLevel"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Int32,System.Byte,System.Collections.Generic.IReadOnlyDictionary{System.Byte,Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Int32,System.Byte,Sudoku.Solving.Logical.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -10004,6 +10126,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.GetLinks(System.Int32)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.GetPotentialAt(System.Int32)">
+            <summary>
+            Gets the potential at the specified index.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <returns>The view index.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.RegularWingStep">
             <summary>

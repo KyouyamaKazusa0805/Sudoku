@@ -1029,7 +1029,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		var conclusions = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
 
 		// Build chains.
-		var chains = new Dictionary<byte, Potential>();
+		var chains = new MultipleForcingChains();
 		for (byte tempDigit = 1; tempDigit <= 9; tempDigit++)
 		{
 			if (CandidatesMap[targetDigit].Contains(srcCell))
@@ -1056,7 +1056,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		var conclusions = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
 
 		// Build chains.
-		var chains = new Dictionary<byte, Potential>();
+		var chains = new MultipleForcingChains();
 		foreach (byte tempCell in CandidatesMap[digit] & HousesMap[houseIndex])
 		{
 			// Get corresponding value with the matching parents.
