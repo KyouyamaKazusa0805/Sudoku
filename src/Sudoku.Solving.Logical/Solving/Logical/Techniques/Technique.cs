@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Logical.Techniques;
+﻿#undef COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
+
+namespace Sudoku.Solving.Logical.Techniques;
 
 /// <summary>
 /// Represents a technique instance, which is used for comparison.
@@ -140,7 +142,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0110")]
 	[HodokuDifficultyRating(40, HodokuDifficultyLevel.Medium)]
-#if false
+#if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainerDifficultyRating(2.0)]
 	[SudokuExplainerAliasNames("Direct Hidden Pair")]
 #endif
@@ -173,7 +175,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0111")]
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
-#if false
+#if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainerDifficultyRating(2.5)]
 	[SudokuExplainerAliasNames("Direct Hidden Triplet")]
 #endif
@@ -1272,7 +1274,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates extended rectangle type 1.
 	/// </summary>
-#if false
+#if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[HodokuTechniquePrefix("0620")]
 #endif
 	ExtendedRectangleType1,
@@ -1280,7 +1282,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates extended rectangle type 2.
 	/// </summary>
-#if false
+#if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[HodokuTechniquePrefix("0621")]
 #endif
 	ExtendedRectangleType2,
@@ -1288,7 +1290,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates extended rectangle type 3.
 	/// </summary>
-#if false
+#if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[HodokuTechniquePrefix("0622")]
 #endif
 	ExtendedRectangleType3,
@@ -1296,7 +1298,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates extended rectangle type 4.
 	/// </summary>
-#if false
+#if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[HodokuTechniquePrefix("0623")]
 #endif
 	ExtendedRectangleType4,
@@ -1499,7 +1501,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0400")]
 	[HodokuDifficultyRating(130, HodokuDifficultyLevel.Hard)]
-#if false
+#if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainerDifficultyRating(6.6)]
 	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
@@ -1510,7 +1512,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0401")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
-#if false
+#if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainerDifficultyRating(6.6)]
 	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
@@ -1593,7 +1595,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates Y-Chain.
 	/// </summary>
-#if false
+#if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[HodokuTechniquePrefix("0702")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 #endif
