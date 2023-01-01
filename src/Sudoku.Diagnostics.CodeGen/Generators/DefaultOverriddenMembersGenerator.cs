@@ -396,7 +396,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 					where targetMember is not null
 					let foundAttribute = targetMember.GetAttributes().FirstOrDefault(attributePredicate)
 					let projectedMemberName = foundAttribute switch { { ConstructorArguments: [{ Value: string value }] } => value, _ => null }
-					select $$$""""{{nameof({{{memberName}}})}} = {{{{{(projectedMemberName is null ? memberName : projectedMemberName)}}}}}""""
+					select $$$""""{{nameof({{{(projectedMemberName is null ? memberName : projectedMemberName)}}})}} = {{{{{memberName}}}}}""""
 				);
 			}
 		}
