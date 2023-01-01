@@ -1,8 +1,10 @@
-﻿namespace Sudoku.Solving.Logical.StepSearchers;
+﻿#if false
+namespace Sudoku.Solving.Logical.StepSearchers;
 
 /// <summary>
 /// Defines a step searcher that searches for chain steps.
 /// </summary>
+[Obsolete("This type is being deprecated.", false)]
 public interface IChainStepSearcher : IStepSearcher
 {
 	/// <summary>
@@ -198,3 +200,5 @@ public interface IChainStepSearcher : IStepSearcher
 	protected static string GetRawChainData(int[] chainIds, Node?[] nodeLookup)
 		=> string.Join(" -> ", from id in chainIds select nodeLookup[id]!.ToString());
 }
+
+#endif

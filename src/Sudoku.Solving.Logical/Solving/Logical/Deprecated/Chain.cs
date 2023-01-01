@@ -1,8 +1,10 @@
-﻿namespace Sudoku.Solving.Logical.Patterns;
+﻿#if false
+namespace Sudoku.Solving.Logical.Patterns;
 
 /// <summary>
 /// Represents an abstract data structure "Chain".
 /// </summary>
+[Obsolete("This type is being deprecated.", false)]
 public abstract class Chain :
 	IEquatable<Chain>,
 	IEnumerable<Node>,
@@ -97,7 +99,7 @@ public abstract class Chain :
 	/// are filled with modifiable values.
 	/// </para>
 	/// </remarks>
-	public abstract ImmutableArray<Conclusion> GetConclusions(scoped in Grid grid);
+	public abstract ConclusionList GetConclusions(scoped in Grid grid);
 
 	/// <summary>
 	/// Creates an array that stores the values with each element of a pair, where:
@@ -118,7 +120,7 @@ public abstract class Chain :
 #if true
 	{
 		var result = new (Node, bool)[_nodes.Length];
-		for (int i = 0; i < _nodes.Length; i++)
+		for (var i = 0; i < _nodes.Length; i++)
 		{
 			result[i] = (_nodes[i], _nodesStatus[i]);
 		}
@@ -147,3 +149,5 @@ public abstract class Chain :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(Chain? left, Chain? right) => !(left == right);
 }
+
+#endif

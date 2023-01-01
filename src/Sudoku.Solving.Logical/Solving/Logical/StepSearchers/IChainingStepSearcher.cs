@@ -33,6 +33,6 @@
 /// However unfortunately, I cannot find any sites available of the project.
 /// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
 /// </remarks>
-public interface IChainingStepSearcher : IChainStepSearcher
+public interface IChainingStepSearcher : IStepSearcher
 {
 }

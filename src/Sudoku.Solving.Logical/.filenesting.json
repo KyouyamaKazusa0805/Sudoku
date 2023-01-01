@@ -10,7 +10,7 @@
           // StepSearcher nesting rules
           //
           "IAlmostLockedSetsStepSearcher.cs": [ "IStepSearcher.cs" ],
-          "IChainStepSearcher.cs": [ "IStepSearcher.cs" ],
+          "IChainingStepSearcher.cs": [ "IStepSearcher.cs" ],
           "IDeadlyPatternStepSearcher.cs": [ "IStepSearcher.cs" ],
           "IExocetStepSearcher.cs": [ "IStepSearcher.cs" ],
           "IFishStepSearcher.cs": [ "IStepSearcher.cs" ],
@@ -34,7 +34,6 @@
           "IEmptyRectangleIntersectionPairStepSearcher.cs": [ "IAlmostLockedSetsStepSearcher.cs" ],
 
           "IAlternatingInferenceChainStepSearcher.cs": [ "IChainStepSearcher.cs" ],
-          "IChainingStepSearcher.cs": [ "IChainStepSearcher.cs" ],
 
           "IUniquenessClueCoverStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],
           "IExtendedRectangleStepSearcher.cs": [ "IDeadlyPatternStepSearcher.cs" ],

@@ -1,4 +1,5 @@
-﻿namespace Sudoku.Solving.Logical.Patterns;
+﻿#if false
+namespace Sudoku.Solving.Logical.Patterns;
 
 /// <summary>
 /// Defines an alternating inference chain. The data structure can describe the following techniques:
@@ -33,6 +34,7 @@
 /// </item>
 /// </list>
 /// </summary>
+[Obsolete("This type is being deprecated.", false)]
 public sealed class AlternatingInferenceChain : Chain
 {
 	/// <summary>
@@ -458,3 +460,5 @@ public sealed class AlternatingInferenceChain : Chain
 	private static Conclusion[] GetEliminationsSingleDigit(scoped in CellMap elimMap, byte digit)
 		=> (from cell in elimMap select new Conclusion(Elimination, cell, digit)).ToArray();
 }
+
+#endif

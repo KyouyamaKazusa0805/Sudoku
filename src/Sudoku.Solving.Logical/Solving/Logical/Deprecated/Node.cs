@@ -1,9 +1,11 @@
-﻿namespace Sudoku.Solving.Logical.Patterns;
+﻿#if false
+namespace Sudoku.Solving.Logical.Patterns;
 
 /// <summary>
 /// Defines a chain node.
 /// </summary>
 [IsLargeStruct]
+[Obsolete("This type is being deprecated.", false)]
 public readonly partial struct Node : IEquatable<Node>, IEqualityOperators<Node, Node, bool>, ITechniquePattern<Node>
 {
 	/// <summary>
@@ -182,3 +184,5 @@ public readonly partial struct Node : IEquatable<Node>, IEqualityOperators<Node,
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<Node, Node, bool>.operator !=(Node left, Node right) => left != right;
 }
+
+#endif
