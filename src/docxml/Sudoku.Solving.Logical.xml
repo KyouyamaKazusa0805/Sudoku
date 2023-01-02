@@ -3311,27 +3311,27 @@ if (student is (name: var name, age: >= 18))
             A valid <see cref="T:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateForcingChainHint(Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateAicStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean)">
             <summary>
             Try to create an AIC hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateChainingOnHint(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateChainingOnStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
             <summary>
             Try to create a binary forcing chain hint on "on" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateChainingOffHint(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateChainingOffStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
             <summary>
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCellReductionHint(System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCellReductionStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateHouseReductionHint(System.Int32,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateHouseReductionStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
@@ -7377,13 +7377,6 @@ if (student is (name: var name, age: >= 18))
             Returns the number of nested views.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.AncestorsCountOf(Sudoku.Solving.Logical.PatternData.Potential)">
-            <summary>
-            Try to get all ancestors from the specified node.
-            </summary>
-            <param name="child">The specified node.</param>
-            <returns>The total number of all found ancestors.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetRuleParents(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Gets parent rules. This method can only be used on advanced chain relations.
@@ -7392,10 +7385,11 @@ if (student is (name: var name, age: >= 18))
             <param name="currentGrid">The current grid.</param>
             <returns>All found potentials.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.CreateViews">
+        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.CreateViews(Sudoku.Concepts.Grid@)">
             <summary>
             To create views via the specified values.
             </summary>
+            <param name="grid">The grid used.</param>
             <returns>The values.</returns>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetChain(Sudoku.Solving.Logical.PatternData.Potential)">
@@ -7409,6 +7403,13 @@ if (student is (name: var name, age: >= 18))
             <summary><b><i>
             This method will be implemented later.
             </i></b></summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.AncestorsCountOf(Sudoku.Solving.Logical.PatternData.Potential)">
+            <summary>
+            Try to get all ancestors from the specified node.
+            </summary>
+            <param name="child">The specified node.</param>
+            <returns>The total number of all found ancestors.</returns>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.SourcePotentialOf(Sudoku.Solving.Logical.PatternData.Potential)">
             <summary>

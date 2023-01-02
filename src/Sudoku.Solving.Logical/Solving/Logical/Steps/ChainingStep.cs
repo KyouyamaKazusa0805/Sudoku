@@ -182,8 +182,8 @@ internal abstract record ChainingStep(
 		{
 			ForcingChainStep { Target: var target } => target,
 			BidirectionalCycleStep => null,
-			BinaryForcingChainsStep { SourcePotential: var (cell, digit, isOn) } and ({ IsNishio: true } or { IsAbsurd: true })
-				=> new(cell, digit, !isOn),
+			BinaryForcingChainsStep { SourcePotential: var (candidate, isOn), IsNishio: true } => new(candidate, !isOn),
+			BinaryForcingChainsStep { SourcePotential: var (candidate, isOn), IsAbsurd: true } => new(candidate, !isOn),
 			BinaryForcingChainsStep { FromOnPotential: var on } => on,
 			CellForcingChainsStep { Chains.Potentials: [var branchedStart, ..] } => branchedStart,
 			RegionForcingChainsStep { Chains.Potentials: [var branchedStart, ..] } => branchedStart,
@@ -296,33 +296,6 @@ internal abstract record ChainingStep(
 
 
 	/// <summary>
-	/// Try to get all ancestors from the specified node.
-	/// </summary>
-	/// <param name="child">The specified node.</param>
-	/// <returns>The total number of all found ancestors.</returns>
-	protected int AncestorsCountOf(Potential child)
-	{
-		var ancestors = new HashSet<Potential>();
-		var todo = new List<Potential> { child };
-		while (todo.Count > 0)
-		{
-			var next = new List<Potential>();
-			foreach (var p in todo)
-			{
-				if (!ancestors.Contains(p))
-				{
-					ancestors.Add(p);
-					next.AddRange(p.Parents);
-				}
-			}
-
-			todo = next;
-		}
-
-		return ancestors.Count;
-	}
-
-	/// <summary>
 	/// Gets parent rules. This method can only be used on advanced chain relations.
 	/// </summary>
 	/// <param name="initialGrid">The initial grid.</param>
@@ -346,8 +319,9 @@ internal abstract record ChainingStep(
 	/// <summary>
 	/// To create views via the specified values.
 	/// </summary>
+	/// <param name="grid">The grid used.</param>
 	/// <returns>The values.</returns>
-	protected internal ViewList CreateViews()
+	protected internal ViewList CreateViews(scoped in Grid grid)
 	{
 		var result = new View[ViewsCount];
 
@@ -368,6 +342,7 @@ internal abstract record ChainingStep(
 
 			GetNestedGreenPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Normal, candidate)));
 			GetNestedRedPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Auxiliary1, candidate)));
+			GetBluePotentials(grid, i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Auxiliary2, candidate)));
 			view.AddRange(GetNestedLinks(i));
 
 			result[i] = view;
@@ -412,6 +387,33 @@ internal abstract record ChainingStep(
 	protected void CollectRuleParents(scoped in Grid initialGrid, scoped in Grid currentGrid, List<Potential> result, Potential target)
 	{
 		return;
+	}
+
+	/// <summary>
+	/// Try to get all ancestors from the specified node.
+	/// </summary>
+	/// <param name="child">The specified node.</param>
+	/// <returns>The total number of all found ancestors.</returns>
+	protected int AncestorsCountOf(Potential child)
+	{
+		var ancestors = new HashSet<Potential>();
+		var todo = new List<Potential> { child };
+		while (todo.Count > 0)
+		{
+			var next = new List<Potential>();
+			foreach (var p in todo)
+			{
+				if (!ancestors.Contains(p))
+				{
+					ancestors.Add(p);
+					next.AddRange(p.Parents);
+				}
+			}
+
+			todo = next;
+		}
+
+		return ancestors.Count;
 	}
 
 	/// <summary>

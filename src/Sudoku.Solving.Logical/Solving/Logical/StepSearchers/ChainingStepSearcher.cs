@@ -262,14 +262,14 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						{
 							foreach (var p in cellToOn)
 							{
-								result.Add(CreateCellReductionHint(cell, p, digitToOn));
+								result.Add(CreateCellReductionStep(grid, cell, p, digitToOn));
 							}
 						}
 						if (cellToOff is not null)
 						{
 							foreach (var p in cellToOff)
 							{
-								result.Add(CreateCellReductionHint(cell, p, digitToOff));
+								result.Add(CreateCellReductionStep(grid, cell, p, digitToOff));
 							}
 						}
 					}
@@ -330,7 +330,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		foreach (var target in chains)
 		{
-			result.Add(CreateForcingChainHint(target, isX, isY));
+			result.Add(CreateAicStep(grid, target, isX, isY));
 		}
 	}
 
@@ -402,7 +402,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		if (doContradiction && absurdPotential is var (absurdOn1, absurdOff1))
 		{
 			// p cannot hold its value, because else it would lead to a contradiction.
-			result.Add(CreateChainingOffHint(absurdOn1, absurdOff1, pOn, pOn, true));
+			result.Add(CreateChainingOffStep(grid, absurdOn1, absurdOff1, pOn, pOn, true));
 		}
 
 		// Test p = "off"
@@ -411,7 +411,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		if (doContradiction && absurdPotential is var (absurdOn2, absurdOff2))
 		{
 			// p must hold its value, because else it would lead to a contradiction.
-			result.Add(CreateChainingOnHint(absurdOn2, absurdOff2, pOff, pOff, true));
+			result.Add(CreateChainingOnStep(grid, absurdOn2, absurdOff2, pOff, pOff, true));
 		}
 
 		if (doReduction)
@@ -421,7 +421,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			{
 				if (offToOn.GetNullable(pFromOn) is { } pFromOff)
 				{
-					result.Add(CreateChainingOnHint(pFromOn, pFromOff, pOn, pFromOn, false));
+					result.Add(CreateChainingOnStep(grid, pFromOn, pFromOff, pOn, pFromOn, false));
 				}
 			}
 
@@ -430,7 +430,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			{
 				if (offToOff.GetNullable(pFromOn) is { } pFromOff)
 				{
-					result.Add(CreateChainingOffHint(pFromOn, pFromOff, pOff, pFromOff, false));
+					result.Add(CreateChainingOffStep(grid, pFromOn, pFromOff, pOff, pFromOff, false));
 				}
 			}
 		}
@@ -490,11 +490,11 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 					// Gather results.
 					foreach (var p in regionToOn)
 					{
-						result.Add(CreateHouseReductionHint(houseIndex, digit, p, posToOn));
+						result.Add(CreateHouseReductionStep(grid, houseIndex, digit, p, posToOn));
 					}
 					foreach (var p in regionToOff)
 					{
-						result.Add(CreateHouseReductionHint(houseIndex, digit, p, posToOff));
+						result.Add(CreateHouseReductionStep(grid, houseIndex, digit, p, posToOff));
 					}
 				}
 			}
@@ -969,64 +969,87 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			}
 		}
 
-		return conclusions.Count == 0 ? null : new(ImmutableArray.CreateRange(conclusions), dstOn, isX, isY);
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var result = new BidirectionalCycleStep(ImmutableArray.CreateRange(conclusions), dstOn, isX, isY);
+		return result with { Views = result.CreateViews(grid) };
 	}
 
 	/// <summary>
 	/// Try to create an AIC hint.
 	/// </summary>
-	private ForcingChainStep CreateForcingChainHint(Potential target, bool isX, bool isY)
-		=> new(ImmutableArray.Create(new Conclusion(target.IsOn ? Assignment : Elimination, target.Candidate)), target, isX, isY);
+	private ForcingChainStep CreateAicStep(scoped in Grid grid, Potential target, bool isX, bool isY)
+	{
+		var conclusion = ImmutableArray.Create(new Conclusion(target.IsOn ? Assignment : Elimination, target.Candidate));
+		var result = new ForcingChainStep(conclusion, target, isX, isY);
+		return result with { Views = result.CreateViews(grid) };
+	}
 
 	/// <summary>
 	/// Try to create a binary forcing chain hint on "on" state.
 	/// </summary>
-	private BinaryForcingChainsStep CreateChainingOnHint(
+	private BinaryForcingChainsStep CreateChainingOnStep(
+		scoped in Grid grid,
 		Potential dstOn,
 		Potential dstOff,
 		Potential source,
 		Potential target,
 		bool isAbsurd
-	) => new(
-		ImmutableArray.Create(new Conclusion(Assignment, target.Cell, target.Digit)),
-		source,
-		dstOn,
-		dstOff,
-		isAbsurd,
-		AllowNishio,
-		DynamicNestingLevel
-	);
+	)
+	{
+		var result = new BinaryForcingChainsStep(
+			ImmutableArray.Create(new Conclusion(Assignment, target.Cell, target.Digit)),
+			source,
+			dstOn,
+			dstOff,
+			isAbsurd,
+			AllowNishio,
+			DynamicNestingLevel
+		);
+
+		return result with { Views = result.CreateViews(grid) };
+	}
 
 	/// <summary>
 	/// Try to create a binary forcing chain hint on "off" state.
 	/// </summary>
-	private BinaryForcingChainsStep CreateChainingOffHint(
+	private BinaryForcingChainsStep CreateChainingOffStep(
+		scoped in Grid grid,
 		Potential dstOn,
 		Potential dstOff,
 		Potential source,
 		Potential target,
 		bool isAbsurd
-	) => new(
-		ImmutableArray.Create(new Conclusion(Elimination, target.Cell, target.Digit)),
-		source,
-		dstOn,
-		dstOff,
-		isAbsurd,
-		AllowNishio,
-		DynamicNestingLevel
-	);
+	)
+	{
+		var result = new BinaryForcingChainsStep(
+			ImmutableArray.Create(new Conclusion(Elimination, target.Cell, target.Digit)),
+			source,
+			dstOn,
+			dstOff,
+			isAbsurd,
+			AllowNishio,
+			DynamicNestingLevel
+		);
+
+		return result with { Views = result.CreateViews(grid) };
+	}
 
 	/// <summary>
 	/// Try to create a cell forcing chain hint.
 	/// </summary>
-	private CellForcingChainsStep CreateCellReductionHint(
+	private CellForcingChainsStep CreateCellReductionStep(
+		scoped in Grid grid,
 		byte srcCell,
 		Potential target,
 		Dictionary<byte, PotentialSet> outcomes
 	)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
-		var conclusions = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
+		var conclusion = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
 
 		// Build chains.
 		var chains = new MultipleForcingChains();
@@ -1039,13 +1062,15 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			}
 		}
 
-		return new(conclusions, srcCell, chains, AllowDynamic, DynamicNestingLevel);
+		var result = new CellForcingChainsStep(conclusion, srcCell, chains, AllowDynamic, DynamicNestingLevel);
+		return result with { Views = result.CreateViews(grid) };
 	}
 
 	/// <summary>
 	/// Try to create a region (house) forcing chain hint.
 	/// </summary>
-	private RegionForcingChainsStep CreateHouseReductionHint(
+	private RegionForcingChainsStep CreateHouseReductionStep(
+		scoped in Grid grid,
 		int houseIndex,
 		byte digit,
 		Potential target,
@@ -1063,7 +1088,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			chains.Add(tempCell, outcomes[tempCell].GetNullable(target) ?? default);
 		}
 
-		return new(conclusions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
+		var result = new RegionForcingChainsStep(conclusions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
+		return result with { Views = result.CreateViews(grid) };
 	}
 }
 
