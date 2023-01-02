@@ -7313,11 +7313,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the complexity of the chain.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.ViewsCount">
-            <summary>
-            Indicates the total number of views the step will be displayed.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -7357,6 +7352,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the difficulty rating of the current step, which binds with length factor.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.ViewsCount">
+            <summary>
+            Indicates the total number of views the step will be displayed.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.FlatComplexity">
             <summary>
             Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.
@@ -7391,6 +7391,12 @@ if (student is (name: var name, age: >= 18))
             <param name="initialGrid">The initial grid.</param>
             <param name="currentGrid">The current grid.</param>
             <returns>All found potentials.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.CreateViews">
+            <summary>
+            To create views via the specified values.
+            </summary>
+            <returns>The values.</returns>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetChain(Sudoku.Solving.Logical.PatternData.Potential)">
             <summary>

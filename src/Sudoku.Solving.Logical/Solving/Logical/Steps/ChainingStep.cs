@@ -58,11 +58,6 @@ internal abstract record ChainingStep(
 	/// </summary>
 	public int Complexity => FlatComplexity + NestedComplexity;
 
-	/// <summary>
-	/// Indicates the total number of views the step will be displayed.
-	/// </summary>
-	public int ViewsCount => FlatViewsCount + NestedViewsCount;
-
 	/// <inheritdoc/>
 	public sealed override Technique TechniqueCode
 		=> (this, IsX, IsY, IsDynamic, IsNishio) switch
@@ -218,6 +213,11 @@ internal abstract record ChainingStep(
 	}
 
 	/// <summary>
+	/// Indicates the total number of views the step will be displayed.
+	/// </summary>
+	private int ViewsCount => FlatViewsCount + NestedViewsCount;
+
+	/// <summary>
 	/// Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.
 	/// </summary>
 	private int FlatComplexity
@@ -341,6 +341,39 @@ internal abstract record ChainingStep(
 		}
 
 		return result;
+	}
+
+	/// <summary>
+	/// To create views via the specified values.
+	/// </summary>
+	/// <returns>The values.</returns>
+	protected internal ViewList CreateViews()
+	{
+		var result = new View[ViewsCount];
+
+		for (var i = 0; i < FlatViewsCount; i++)
+		{
+			var view = View.Empty;
+
+			GetGreenPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Normal, candidate)));
+			GetRedPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Auxiliary1, candidate)));
+			view.AddRange(GetLinks(i));
+
+			result[i] = view;
+		}
+
+		for (var i = FlatViewsCount; i < ViewsCount; i++)
+		{
+			var view = View.Empty;
+
+			GetNestedGreenPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Normal, candidate)));
+			GetNestedRedPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Auxiliary1, candidate)));
+			view.AddRange(GetNestedLinks(i));
+
+			result[i] = view;
+		}
+
+		return ImmutableArray.Create(result);
 	}
 
 	/// <summary>
