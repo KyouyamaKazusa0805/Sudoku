@@ -1000,16 +1000,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		bool isAbsurd
 	)
 	{
-		var result = new BinaryForcingChainsStep(
-			ImmutableArray.Create(new Conclusion(Assignment, target.Cell, target.Digit)),
-			source,
-			dstOn,
-			dstOff,
-			isAbsurd,
-			AllowNishio,
-			DynamicNestingLevel
-		);
-
+		var conclusion = ImmutableArray.Create(new Conclusion(Assignment, target.Cell, target.Digit));
+		var result = new BinaryForcingChainsStep(conclusion, source, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return result with { Views = result.CreateViews(grid) };
 	}
 
@@ -1025,16 +1017,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		bool isAbsurd
 	)
 	{
-		var result = new BinaryForcingChainsStep(
-			ImmutableArray.Create(new Conclusion(Elimination, target.Cell, target.Digit)),
-			source,
-			dstOn,
-			dstOff,
-			isAbsurd,
-			AllowNishio,
-			DynamicNestingLevel
-		);
-
+		var conclusion = ImmutableArray.Create(new Conclusion(Elimination, target.Cell, target.Digit));
+		var result = new BinaryForcingChainsStep(conclusion, source, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return result with { Views = result.CreateViews(grid) };
 	}
 
