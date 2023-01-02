@@ -1866,4 +1866,22 @@
   <data name="NormalChains" xml:space="preserve">
     <value>普通链</value>
   </data>
+  <data name="TechniqueFormat_BidirectionalCycleStep" xml:space="preserve">
+    <value>{Name}：如果该环形成后，所有的候选数 {CandsStr} 均为假 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_CellForcingChainsStep" xml:space="preserve">
+    <value>{Name}：单元格 {CellStr} 里的所有候选数都会得到同样的结论 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_ContradictionForcingChainsStep" xml:space="preserve">
+    <value>{Name}：如果 {StartCandStr} 为 {StartCandOnOffStrZhCn}，那么候选数 {EndCandStr} 的真假两种状态都成立，这是不可能的 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_DoubleForcingChainsStep" xml:space="preserve">
+    <value>{Name}：不论 {EndCandStr} 是真是假，都可以得到 {StartCandStr} 为 {StartCandOnOffStrZhCn} 的结论 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_ForcingChainStep" xml:space="preserve">
+    <value>{Name}：如果 {CandStr} 为 {OnOffStrZhCn}，跟着结构绕一圈后发现该候选数刚好与原假设相反，产生矛盾 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_RegionForcingChainsStep" xml:space="preserve">
+    <value>{Name}：所有位于 {HouseStr} 里的数字 {DigitStr} 都会得到同样的结论 =&gt; {ElimStr}</value>
+  </data>
 </root>

@@ -18,6 +18,12 @@ internal sealed record RegionForcingChainsStep(
 	int DynamicNestingLevel
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
+	[ResourceTextFormatter]
+	internal string DigitStr() => (Digit + 1).ToString();
+
+	[ResourceTextFormatter]
+	internal string HouseStr() => $"{char.ToLower(HouseIndex.ToHouseType().ToString()[0])}{HouseIndex % 9 + 1}";
+
 	/// <inheritdoc/>
 	protected override Candidates GetGreenPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedGreenPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), true, true);

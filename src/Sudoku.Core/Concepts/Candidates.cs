@@ -894,6 +894,24 @@ public unsafe partial struct Candidates :
 	}
 
 	/// <summary>
+	/// Creates a copy of argument <paramref name="collection"/>, and adds a list of candidates into the copy,
+	/// then returns it.
+	/// </summary>
+	/// <param name="collection">The collection of candidates.</param>
+	/// <param name="candidates">The candidates to be added.</param>
+	/// <returns>The copy of argument <paramref name="collection"/>.</returns>
+	public static Candidates operator +(scoped in Candidates collection, IEnumerable<int> candidates)
+	{
+		var result = collection;
+		foreach (var candidate in candidates)
+		{
+			result.Add(candidate);
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>
 	/// <para>The operator is used for searching for and checking eliminations.</para>
 	/// </summary>

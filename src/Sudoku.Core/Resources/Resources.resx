@@ -1551,4 +1551,22 @@
   <data name="NormalChains" xml:space="preserve">
     <value>AICs</value>
   </data>
+  <data name="TechniqueFormat_BidirectionalCycleStep" xml:space="preserve">
+    <value>{Name}: All candidates {CandsStr} can be eliminated because a loop is formed =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_CellForcingChainsStep" xml:space="preserve">
+    <value>{Name}: It is proved that all candidates in cell {CellStr} will lead to a same conclusion =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_ContradictionForcingChainsStep" xml:space="preserve">
+    <value>{Name}: It is proved that the candidate {StartCandStr} is {StartCandOnOffStr}, both true and false states of candidate {EndCandStr} can be found, leading to a contradiction =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_DoubleForcingChainsStep" xml:space="preserve">
+    <value>{Name}: It is proved that a same conclusion - {StartCandStr} being {StartCandOnOffStr} can be found no matter what state the candidate {EndCandStr} now is =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_ForcingChainStep" xml:space="preserve">
+    <value>{Name}: It is proved that the candidate {CandStr} is {OnOffStr}, the state of the candidate will be flipped, forming a contradiction =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_RegionForcingChainsStep" xml:space="preserve">
+    <value>{Name}: It is proved that all position of digit {DigitStr} in house {HouseStr} will lead to a same conclusion =&gt; {ElimStr}</value>
+  </data>
 </root>

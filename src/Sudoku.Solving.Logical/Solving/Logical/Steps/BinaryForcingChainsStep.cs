@@ -26,6 +26,22 @@ internal sealed record BinaryForcingChainsStep(
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: true, IsNishio: IsNishio, DynamicNestingLevel: DynamicNestingLevel)
 {
 	/// <inheritdoc/>
+	public override string? Format
+		=> IsAbsurd ? R["TechniqueFormat_ContradictionForcingChainsStep"] : R["TechniqueFormat_DoubleForcingChainsStep"];
+
+	[ResourceTextFormatter]
+	internal string StartCandStr() => RxCyNotation.ToCandidateString(SourcePotential.Candidate);
+
+	[ResourceTextFormatter]
+	internal string StartCandOnOffStr() => SourcePotential.IsOn.ToString().ToLower();
+
+	[ResourceTextFormatter]
+	internal string StartCandOnOffStrZhCn() => (SourcePotential.IsOn ? R["TrueKeyword"] : R["FalseKeyword"])!;
+
+	[ResourceTextFormatter]
+	internal string EndCandStr() => RxCyNotation.ToCandidateString(FromOnPotential.Candidate);
+
+	/// <inheritdoc/>
 	protected override Candidates GetGreenPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedGreenPotentials(viewIndex) : GetColorCandidates(viewIndex, true);
 

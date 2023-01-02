@@ -2941,6 +2941,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: All candidates {CandsStr} can be eliminated because a loop is formed =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BidirectionalCycleStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BidirectionalCycleStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: It can be proved to be a contradiction if {AnchorIsTrueOrFalseStr} is {AnchorIsNotOnStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_BinaryChainingStep {
@@ -3067,6 +3076,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: It is proved that all candidates in cell {CellStr} will lead to a same conclusion =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_CellForcingChainsStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_CellForcingChainsStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {CellsStr} in blocks {BlocksStr} will form an invalid structure if these cells only contain the digits {DigitsStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_ChromaticPatternType1Step {
@@ -3103,6 +3121,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: It is proved that the candidate {StartCandStr} is {StartCandOnOffStr}, both true and false states of candidate {EndCandStr} can be found, leading to a contradiction =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_ContradictionForcingChainsStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ContradictionForcingChainsStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: No matter what digit will be filled in cell {CellStr}, the related ALSes {AlsesStr} will keep at least one digit {DigitStr} being true =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_DeathBlossomCellTypeStep {
@@ -3117,6 +3144,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_DominoLoopStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_DominoLoopStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: It is proved that a same conclusion - {StartCandStr} being {StartCandOnOffStr} can be found no matter what state the candidate {EndCandStr} now is =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_DoubleForcingChainsStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_DoubleForcingChainsStep", resourceCulture);
             }
         }
         
@@ -3234,6 +3270,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_FireworkTripleStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_FireworkTripleStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: It is proved that the candidate {CandStr} is {OnOffStr}, the state of the candidate will be flipped, forming a contradiction =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_ForcingChainStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ForcingChainStep", resourceCulture);
             }
         }
         
@@ -3423,6 +3468,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_QiuDeadlyPatternType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_QiuDeadlyPatternType4Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: It is proved that all position of digit {DigitStr} in house {HouseStr} will lead to a same conclusion =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_RegionForcingChainsStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_RegionForcingChainsStep", resourceCulture);
             }
         }
         

@@ -75,11 +75,11 @@ public interface IStep : IVisual
 	/// <para>
 	/// If you want to use the values in the resource documents,
 	/// just use the <see langword="static readonly"/> field <see cref="R"/> is okay:
-	/// <code>
+	/// <code><![CDATA[
 	/// using static Sudoku.Resources.MergedResources;
 	/// 
 	/// public override string Format => R["TheKeyYouWantToSearch"];
-	/// </code>
+	/// ]]></code>
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="ToFullString"/>

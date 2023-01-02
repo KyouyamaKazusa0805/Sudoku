@@ -16,6 +16,9 @@ internal sealed record CellForcingChainsStep(
 	int DynamicNestingLevel
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
+	[ResourceTextFormatter]
+	internal string CellStr() => RxCyNotation.ToCellString(SourceCell);
+
 	/// <inheritdoc/>
 	protected override Candidates GetGreenPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedGreenPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), true, true);

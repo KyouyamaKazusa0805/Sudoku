@@ -453,6 +453,15 @@
             Throws when the argument <paramref name="offset"/> is out of range.
             </exception>
         </member>
+        <member name="M:Sudoku.Concepts.Candidates.op_Addition(Sudoku.Concepts.Candidates@,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Creates a copy of argument <paramref name="collection"/>, and adds a list of candidates into the copy,
+            then returns it.
+            </summary>
+            <param name="collection">The collection of candidates.</param>
+            <param name="candidates">The candidates to be added.</param>
+            <returns>The copy of argument <paramref name="collection"/>.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Candidates.op_Modulus(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
             <summary>
             <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>
@@ -5348,6 +5357,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with hidden single: if cell {BaseCellStr} is filled with the digit {Digit1Str}, house {HouseStr} will only contain a cell {TargetCellStr} can be filled with that digit, but will raise the deadly pattern =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_BidirectionalCycleStep">
+            <summary>
+              Looks up a localized string similar to {Name}: All candidates {CandsStr} can be eliminated because a loop is formed =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_BinaryChainingStep">
             <summary>
               Looks up a localized string similar to {Name}: It can be proved to be a contradiction if {AnchorIsTrueOrFalseStr} is {AnchorIsNotOnStr} =&gt; {ElimStr}.
@@ -5418,6 +5432,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to {Name}: It can be proved using chains that all digits are false from {SourceCellStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_CellForcingChainsStep">
+            <summary>
+              Looks up a localized string similar to {Name}: It is proved that all candidates in cell {CellStr} will lead to a same conclusion =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ChromaticPatternType1Step">
             <summary>
               Looks up a localized string similar to {Name}: Cells {CellsStr} in blocks {BlocksStr} will form an invalid structure if these cells only contain the digits {DigitsStr} =&gt; {ElimStr}.
@@ -5438,6 +5457,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to {Name}: Loop {ChainStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ContradictionForcingChainsStep">
+            <summary>
+              Looks up a localized string similar to {Name}: It is proved that the candidate {StartCandStr} is {StartCandOnOffStr}, both true and false states of candidate {EndCandStr} can be found, leading to a contradiction =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_DeathBlossomCellTypeStep">
             <summary>
               Looks up a localized string similar to {Name}: No matter what digit will be filled in cell {CellStr}, the related ALSes {AlsesStr} will keep at least one digit {DigitStr} being true =&gt; {ElimStr}.
@@ -5446,6 +5470,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_DominoLoopStep">
             <summary>
               Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_DoubleForcingChainsStep">
+            <summary>
+              Looks up a localized string similar to {Name}: It is proved that a same conclusion - {StartCandStr} being {StartCandOnOffStr} can be found no matter what state the candidate {EndCandStr} now is =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_EmptyRectangleIntersectionPairStep">
@@ -5511,6 +5540,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FireworkTripleStep">
             <summary>
               Looks up a localized string similar to {Name}: Cells {CellsStr} Must form a hidden triple of digits {DigitsStr} in multi- houses =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ForcingChainStep">
+            <summary>
+              Looks up a localized string similar to {Name}: It is proved that the candidate {CandStr} is {OnOffStr}, the state of the candidate will be flipped, forming a contradiction =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FullHouseStep">
@@ -5616,6 +5650,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_QiuDeadlyPatternType4Step">
             <summary>
               Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if another digit in either cells lying on the conjugate pair {ConjStr} is true =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_RegionForcingChainsStep">
+            <summary>
+              Looks up a localized string similar to {Name}: It is proved that all position of digit {DigitStr} in house {HouseStr} will lead to a same conclusion =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_RegularWingStep">
@@ -8940,7 +8979,7 @@ if (student is (name: var name, age: >= 18))
             Marks on a method to tell the user the method is only used for the formatting.
             This attribute implies two things:
             <list type="number">
-            <item>The name of the method is appeared in resource dictionary</item>
+            <item>The name of the method is appeared in resource dictionary.</item>
             <item>The method can only be invoked by reflection.</item>
             </list>
             </summary>

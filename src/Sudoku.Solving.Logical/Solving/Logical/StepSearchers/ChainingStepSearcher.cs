@@ -399,8 +399,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		// Test p = "on"
 		onToOn.Add(pOn);
-		var absurdPotential = DoChaining(ref grid, onToOn, onToOff);
-		if (doContradiction && absurdPotential is var (absurdOn1, absurdOff1))
+		if (doContradiction && DoChaining(ref grid, onToOn, onToOff) is var (absurdOn1, absurdOff1))
 		{
 			// p cannot hold its value, because else it would lead to a contradiction.
 			result.Add(CreateChainingOffStep(grid, absurdOn1, absurdOff1, pOn, pOn, true));
@@ -408,8 +407,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		// Test p = "off"
 		offToOff.Add(pOff);
-		absurdPotential = DoChaining(ref grid, offToOn, offToOff);
-		if (doContradiction && absurdPotential is var (absurdOn2, absurdOff2))
+		if (doContradiction && DoChaining(ref grid, offToOn, offToOff) is var (absurdOn2, absurdOff2))
 		{
 			// p must hold its value, because else it would lead to a contradiction.
 			result.Add(CreateChainingOnStep(grid, absurdOn2, absurdOff2, pOff, pOff, true));

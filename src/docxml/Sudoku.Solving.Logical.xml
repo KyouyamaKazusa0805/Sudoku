@@ -6624,6 +6624,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.IsAbsurd">
             <summary>Indicates whether the forcing chains kind is contradiction.</summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.GetGreenPotentials(System.Int32)">
             <inheritdoc/>
         </member>
@@ -12716,11 +12719,11 @@ if (student is (name: var name, age: >= 18))
             <para>
             If you want to use the values in the resource documents,
             just use the <see langword="static readonly"/> field <see cref="F:Sudoku.Resources.MergedResources.R"/> is okay:
-            <code>
+            <code><![CDATA[
             using static Sudoku.Resources.MergedResources;
             
             public override string Format => R["TheKeyYouWantToSearch"];
-            </code>
+            ]]></code>
             </para>
             </remarks>
             <seealso cref="M:Sudoku.Solving.Logical.IStep.ToFullString"/>

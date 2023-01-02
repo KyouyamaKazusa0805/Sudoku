@@ -9,6 +9,15 @@
 /// <param name="IsY"><inheritdoc/></param>
 internal sealed record ForcingChainStep(ConclusionList Conclusions, Potential Target, bool IsX, bool IsY) : ChainingStep(Conclusions, IsX, IsY)
 {
+	[ResourceTextFormatter]
+	internal string CandStr() => RxCyNotation.ToCandidateString(Target.Candidate);
+
+	[ResourceTextFormatter]
+	internal string OnOffStr() => Target.IsOn.ToString().ToLower();
+
+	[ResourceTextFormatter]
+	internal string OnOffStrZhCn() => (Target.IsOn ? R["TrueKeyword"] : R["FalseKeyword"])!;
+
 	/// <inheritdoc/>
 	protected override Candidates GetGreenPotentials(int viewIndex)
 	{
