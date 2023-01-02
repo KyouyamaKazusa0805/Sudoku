@@ -340,10 +340,10 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// More precisely, <c>p</c> is first assumed to be correct ("on"), and then to be incorrect ("off");
 	/// and the following sets are created:
 	/// <list type="bullet">
-	/// <item><c><paramref name="onToOn"/></c> the set of potentials that must be "on" when <c>p</c> is "on"</item>
-	/// <item><c><paramref name="onToOff"/></c> the set of potentials that must be "off" when <c>p</c> is "on"</item>
-	/// <item><c>offToOn</c> the set of potentials that must be "on" when <c>p</c> is "off"</item>
-	/// <item><c>offToOff</c> the set of potentials that must be "off" when <c>p</c> is "off"</item>
+	/// <item><c><paramref name="onToOn"/></c> the set of potentials that must be "on" when <c>p</c> is "on".</item>
+	/// <item><c><paramref name="onToOff"/></c> the set of potentials that must be "off" when <c>p</c> is "on".</item>
+	/// <item><c>offToOn</c> the set of potentials that must be "on" when <c>p</c> is "off".</item>
+	/// <item><c>offToOff</c> the set of potentials that must be "off" when <c>p</c> is "off".</item>
 	/// </list>
 	/// Then the following rules are applied:
 	/// <list type="bullet">
