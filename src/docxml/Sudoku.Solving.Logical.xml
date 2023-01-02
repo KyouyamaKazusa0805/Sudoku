@@ -3326,12 +3326,12 @@ if (student is (name: var name, age: >= 18))
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCellReductionStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateHouseReductionStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>

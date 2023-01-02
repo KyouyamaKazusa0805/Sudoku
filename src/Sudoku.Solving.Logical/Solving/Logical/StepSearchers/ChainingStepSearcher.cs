@@ -4,6 +4,7 @@ namespace Sudoku.Solving.Logical.StepSearchers;
 
 using PotentialList = List<Potential>;
 using PotentialSet = HashSet<Potential>;
+using ChainBranch = Dictionary<byte, HashSet<Potential>>;
 
 [StepSearcher]
 [SeparatedStepSearcher(0, nameof(AllowMultiple), false, nameof(AllowDynamic), false, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
@@ -210,8 +211,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			if (cardinality > 2 || cardinality > 1 && AllowDynamic)
 			{
 				// Prepare storage and accumulator for "Cell Reduction".
-				var digitToOn = new Dictionary<byte, PotentialSet>();
-				var digitToOff = new Dictionary<byte, PotentialSet>();
+				var digitToOn = new ChainBranch();
+				var digitToOff = new ChainBranch();
 				var cellToOn = default(PotentialSet?);
 				var cellToOff = default(PotentialSet?);
 
@@ -262,14 +263,14 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						{
 							foreach (var p in cellToOn)
 							{
-								result.Add(CreateCellReductionStep(grid, cell, p, digitToOn));
+								result.Add(CreateCellForcingStep(grid, cell, p, digitToOn));
 							}
 						}
 						if (cellToOff is not null)
 						{
 							foreach (var p in cellToOff)
 							{
-								result.Add(CreateCellReductionStep(grid, cell, p, digitToOff));
+								result.Add(CreateCellForcingStep(grid, cell, p, digitToOff));
 							}
 						}
 					}
@@ -456,8 +457,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 				// Do we meet region for the first time?
 				if (firstCell == cell)
 				{
-					var posToOn = new Dictionary<byte, PotentialSet>();
-					var posToOff = new Dictionary<byte, PotentialSet>();
+					var posToOn = new ChainBranch();
+					var posToOff = new ChainBranch();
 					var regionToOn = new PotentialSet();
 					var regionToOff = new PotentialSet();
 
@@ -490,11 +491,11 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 					// Gather results.
 					foreach (var p in regionToOn)
 					{
-						result.Add(CreateHouseReductionStep(grid, houseIndex, digit, p, posToOn));
+						result.Add(CreateHouseForcingStep(grid, houseIndex, digit, p, posToOn));
 					}
 					foreach (var p in regionToOff)
 					{
-						result.Add(CreateHouseReductionStep(grid, houseIndex, digit, p, posToOff));
+						result.Add(CreateHouseForcingStep(grid, houseIndex, digit, p, posToOff));
 					}
 				}
 			}
@@ -991,46 +992,27 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <summary>
 	/// Try to create a binary forcing chain hint on "on" state.
 	/// </summary>
-	private BinaryForcingChainsStep CreateChainingOnStep(
-		scoped in Grid grid,
-		Potential dstOn,
-		Potential dstOff,
-		Potential source,
-		Potential target,
-		bool isAbsurd
-	)
+	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, Potential dstOn, Potential dstOff, Potential src, Potential target, bool isAbsurd)
 	{
 		var conclusion = ImmutableArray.Create(new Conclusion(Assignment, target.Cell, target.Digit));
-		var result = new BinaryForcingChainsStep(conclusion, source, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
+		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return result with { Views = result.CreateViews(grid) };
 	}
 
 	/// <summary>
 	/// Try to create a binary forcing chain hint on "off" state.
 	/// </summary>
-	private BinaryForcingChainsStep CreateChainingOffStep(
-		scoped in Grid grid,
-		Potential dstOn,
-		Potential dstOff,
-		Potential source,
-		Potential target,
-		bool isAbsurd
-	)
+	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, Potential dstOn, Potential dstOff, Potential src, Potential target, bool isAbsurd)
 	{
-		var conclusion = ImmutableArray.Create(new Conclusion(Elimination, target.Cell, target.Digit));
-		var result = new BinaryForcingChainsStep(conclusion, source, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
+		var conclusion = ImmutableArray.Create(new Conclusion(Elimination, target.Candidate));
+		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return result with { Views = result.CreateViews(grid) };
 	}
 
 	/// <summary>
 	/// Try to create a cell forcing chain hint.
 	/// </summary>
-	private CellForcingChainsStep CreateCellReductionStep(
-		scoped in Grid grid,
-		byte srcCell,
-		Potential target,
-		Dictionary<byte, PotentialSet> outcomes
-	)
+	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, Potential target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusion = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
@@ -1053,13 +1035,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <summary>
 	/// Try to create a region (house) forcing chain hint.
 	/// </summary>
-	private RegionForcingChainsStep CreateHouseReductionStep(
-		scoped in Grid grid,
-		int houseIndex,
-		byte digit,
-		Potential target,
-		Dictionary<byte, PotentialSet> outcomes
-	)
+	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, int houseIndex, byte digit, Potential target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusions = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
