@@ -984,7 +984,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// </summary>
 	private ForcingChainStep CreateAicStep(scoped in Grid grid, Potential target, bool isX, bool isY)
 	{
-		var conclusion = ImmutableArray.Create(new Conclusion(target.IsOn ? Assignment : Elimination, target.Candidate));
+		var (candidate, isOn) = target;
+		var conclusion = ImmutableArray.Create(new Conclusion(isOn ? Assignment : Elimination, candidate));
 		var result = new ForcingChainStep(conclusion, target, isX, isY);
 		return result with { Views = result.CreateViews(grid) };
 	}
@@ -994,7 +995,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// </summary>
 	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, Potential dstOn, Potential dstOff, Potential src, Potential target, bool isAbsurd)
 	{
-		var conclusion = ImmutableArray.Create(new Conclusion(Assignment, target.Cell, target.Digit));
+		var conclusion = ImmutableArray.Create(new Conclusion(Assignment, target.Candidate));
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return result with { Views = result.CreateViews(grid) };
 	}
