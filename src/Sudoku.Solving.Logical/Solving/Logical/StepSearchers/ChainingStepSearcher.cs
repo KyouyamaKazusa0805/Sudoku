@@ -534,7 +534,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 				{
 					if (!IsParent(p, pOff))
 					{
-						// Not processed yet
+						// Not processed yet.
 						pendingOff.Add(pOff);
 
 						Debug.Assert(length >= 1);
@@ -553,13 +553,13 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 				{
 					if (length >= 4 && pOn == source)
 					{
-						// Cycle found
+						// Cycle found.
 						cycles.Add(pOn);
 					}
 
 					if (!toOn.Contains(pOn))
 					{
-						// Not processed yet
+						// Not processed yet.
 						pendingOn.Add(pOn);
 
 						Debug.Assert(length >= 1);
@@ -713,7 +713,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						}
 						else if (!toOn.Contains(pOn))
 						{
-							// Not processed yet
+							// Not processed yet.
 							toOn.Add(pOn);
 							pendingOn.Add(pOn);
 						}
