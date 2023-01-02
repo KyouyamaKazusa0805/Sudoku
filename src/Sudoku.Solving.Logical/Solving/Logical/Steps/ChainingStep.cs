@@ -125,8 +125,7 @@ internal abstract record ChainingStep(
 		=> this switch
 		{
 			ForcingChainStep or BidirectionalCycleStep => TechniqueTags.LongChaining,
-			CellForcingChainsStep or RegionForcingChainsStep or BinaryForcingChainsStep
-				=> TechniqueTags.LongChaining | TechniqueTags.ForcingChains,
+			CellForcingChainsStep or RegionForcingChainsStep or BinaryForcingChainsStep => TechniqueTags.LongChaining | TechniqueTags.ForcingChains,
 			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
 		};
 
