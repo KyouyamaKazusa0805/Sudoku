@@ -7311,6 +7311,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Name">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Complexity">
             <summary>
             Indicates the complexity of the chain.
@@ -7337,13 +7340,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Returns how many views the current step will be used.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.TechniqueNameInternal">
-            <summary>
-            Gets the technique name.
-            </summary>
-            <returns>The technique name.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the state of the current instance is invalid.</exception>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Result">
             <summary>

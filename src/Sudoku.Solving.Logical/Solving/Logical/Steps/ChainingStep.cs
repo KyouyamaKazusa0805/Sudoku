@@ -53,6 +53,48 @@ internal abstract record ChainingStep(
 			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
 		};
 
+	/// <inheritdoc/>
+	public override string Name
+	{
+		get
+		{
+			return DynamicNestingLevel switch { 0 => prefixWithoutLevel(), var l => $"{prefixWithoutLevel()}{nestedSuffix(l)}" };
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static string space() => CultureInfo.CurrentCulture.Name switch { ['Z' or 'z', 'H' or 'h', ..] => string.Empty, _ => " " };
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static string dynamicKeyword() => $"{R["DynamicKeyword"]!}{space()}";
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static string nestedSuffix(int level)
+				=> level switch
+				{
+					1 => R["NestedSuffix_Level1"]!,
+					2 => R["NestedSuffix_Level2"]!,
+					3 => R["NestedSuffix_Level3"]!,
+					4 => R["NestedSuffix_Level4"]!,
+					>= 5 => string.Format(R["NestedSuffix_Level5OrGreater"]!, nestedSuffix(level - 3)),
+					_ => string.Empty
+				};
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			string prefixWithoutLevel()
+				=> this switch
+				{
+					ForcingChainStep => R["NormalChains"]!,
+					CellForcingChainsStep { IsDynamic: false } => R["CellChains"]!,
+					CellForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{R["CellChains"]!}",
+					RegionForcingChainsStep { IsDynamic: false } => R["HouseChains"]!,
+					RegionForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{R["HouseChains"]!}",
+					BinaryForcingChainsStep { IsNishio: true } => R["NishioChains"]!,
+					BinaryForcingChainsStep { IsAbsurd: true } => R["AbsurdChains"]!,
+					BinaryForcingChainsStep => R["DoubleChains"]!,
+				};
+		}
+	}
+
 	/// <summary>
 	/// Indicates the complexity of the chain.
 	/// </summary>
@@ -127,52 +169,6 @@ internal abstract record ChainingStep(
 			RegionForcingChainsStep { Chains.Count: var count } => count,
 			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
 		};
-
-	/// <summary>
-	/// Gets the technique name.
-	/// </summary>
-	/// <returns>The technique name.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the state of the current instance is invalid.</exception>
-	protected string TechniqueNameInternal
-	{
-		get
-		{
-			return DynamicNestingLevel switch { 0 => prefixWithoutLevel(), var l => $"{prefixWithoutLevel()}{nestedSuffix(l)}" };
-
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static string space() => CultureInfo.CurrentCulture.Name switch { ['Z' or 'z', 'H' or 'h', ..] => string.Empty, _ => " " };
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static string dynamicKeyword() => $"{R["DynamicKeyword"]!}{space()}";
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static string nestedSuffix(int level)
-				=> level switch
-				{
-					1 => R["NestedSuffix_Level1"]!,
-					2 => R["NestedSuffix_Level2"]!,
-					3 => R["NestedSuffix_Level3"]!,
-					4 => R["NestedSuffix_Level4"]!,
-					>= 5 => string.Format(R["NestedSuffix_Level5OrGreater"]!, nestedSuffix(level - 3)),
-					_ => string.Empty
-				};
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			string prefixWithoutLevel()
-				=> this switch
-				{
-					ForcingChainStep => R["NormalChains"]!,
-					CellForcingChainsStep { IsDynamic: false } => R["CellChains"]!,
-					CellForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{R["CellChains"]!}",
-					RegionForcingChainsStep { IsDynamic: false } => R["HouseChains"]!,
-					RegionForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{R["HouseChains"]!}",
-					BinaryForcingChainsStep { IsNishio: true } => R["NishioChains"]!,
-					BinaryForcingChainsStep { IsAbsurd: true } => R["AbsurdChains"]!,
-					BinaryForcingChainsStep => R["DoubleChains"]!,
-				};
-		}
-	}
 
 	/// <summary>
 	/// Indicates the result node.
