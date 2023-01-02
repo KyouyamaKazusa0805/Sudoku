@@ -751,7 +751,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	private List<Potential> GetAdvancedPotentials(
 		scoped in Grid grid,
 		scoped in Grid source,
-		HashSet<Potential> offPotentials
+		PotentialSet offPotentials
 	)
 	{
 		throw new NotImplementedException();
