@@ -2,9 +2,9 @@
 
 namespace Sudoku.Solving.Logical.StepSearchers;
 
+using ChainBranch = Dictionary<byte, HashSet<Potential>>;
 using PotentialList = List<Potential>;
 using PotentialSet = HashSet<Potential>;
-using ChainBranch = Dictionary<byte, HashSet<Potential>>;
 
 [StepSearcher]
 [SeparatedStepSearcher(0, nameof(AllowMultiple), false, nameof(AllowDynamic), false, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
