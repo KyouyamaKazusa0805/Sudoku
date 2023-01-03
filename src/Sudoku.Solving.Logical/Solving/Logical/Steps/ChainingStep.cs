@@ -140,7 +140,7 @@ internal abstract record ChainingStep(
 
 	/// <inheritdoc/>
 	public sealed override Rarity Rarity
-		=> this switch { { DynamicNestingLevel: 0 or 1 } => Rarity.OnlyForSpecialPuzzles, _ => Rarity.HardlyEver };
+		=> this switch { { DynamicNestingLevel: >= 2 } => Rarity.OnlyForSpecialPuzzles, _ => Rarity.HardlyEver };
 
 	/// <summary>
 	/// Indicates all possible targets that is used for checking the whole branches of the chain.
@@ -694,12 +694,23 @@ internal abstract record ChainingStep(
 	/// <returns>An <see cref="int"/> value indicating which is greater.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int Compare(ChainingStep left, ChainingStep right)
-		=> (left, right) switch
+	{
+		if (left.Difficulty < right.Difficulty)
 		{
-			({ Difficulty: var d1 }, { Difficulty: var d2 }) when d1 != d2 => Sign(d1 - d2),
-			({ Complexity: var l1 }, { Complexity: var l2 }) when l1 != l2 => Sign(l1 - l2),
-			({ SortKey: var s1 }, { SortKey: var s2 }) => Sign(s1 - s2)
-		};
+			return -1;
+		}
+		else if (left.Difficulty > right.Difficulty)
+		{
+			return 1;
+		}
+
+		if (left.Complexity == right.Complexity)
+		{
+			return left.SortKey - right.SortKey;
+		}
+
+		return left.Complexity - right.Complexity;
+	}
 }
 
 /// <summary>

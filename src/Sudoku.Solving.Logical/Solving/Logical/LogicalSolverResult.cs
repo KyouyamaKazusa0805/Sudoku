@@ -290,6 +290,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 				| SolverResultFormattingOptions.ShowSeparators
 				| SolverResultFormattingOptions.ShowDifficulty
 				| SolverResultFormattingOptions.ShowSteps
+				| SolverResultFormattingOptions.ShowElapsedTime
 		);
 
 	/// <summary>
@@ -336,7 +337,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 			{
 				for (var i = 0; i < steps.Length; i++)
 				{
-					if (i > bIndex && options.Flags(SolverResultFormattingOptions.ShowStepsAfterBottleneck))
+					if (i > bIndex && !options.Flags(SolverResultFormattingOptions.ShowStepsAfterBottleneck))
 					{
 						sb.Append(R.EmitPunctuation(Punctuation.Ellipsis));
 						sb.AppendLine();

@@ -1544,7 +1544,7 @@
             The internal mask.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int32,System.Boolean)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instance via the specified data.
             </summary>
@@ -1553,18 +1553,18 @@
         </member>
         <member name="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Byte,System.Byte,System.Boolean)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int16,System.Boolean)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int32,System.Boolean)" path="/summary"/>
             </summary>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
-            <param name="isOn"><inheritdoc cref="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int16,System.Boolean)" path="/param[@name='isOn']"/></param>
+            <param name="isOn"><inheritdoc cref="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int32,System.Boolean)" path="/param[@name='isOn']"/></param>
         </member>
         <member name="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int16,System.Boolean)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int32,System.Boolean)" path="/summary"/>
             </summary>
             <param name="base">The base potential instance.</param>
-            <param name="isOn"><inheritdoc cref="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int16,System.Boolean)" path="/param[@name='isOn']"/></param>
+            <param name="isOn"><inheritdoc cref="M:Sudoku.Solving.Logical.PatternData.Potential.#ctor(System.Int32,System.Boolean)" path="/param[@name='isOn']"/></param>
         </member>
         <member name="P:Sudoku.Solving.Logical.PatternData.Potential.IsOn">
             <summary>
@@ -1620,7 +1620,12 @@
             Indicates the candidate string representation.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.PatternData.Potential.Deconstruct(System.Int16@,System.Boolean@)">
+        <member name="P:Sudoku.Solving.Logical.PatternData.Potential.DebuggerDisplayString">
+            <summary>
+            Indicates the string that is used for display on debugger.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.Potential.Deconstruct(System.Int32@,System.Boolean@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -3292,7 +3297,7 @@ if (student is (name: var name, age: >= 18))
             <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCycleHint(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCycleStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean)">
             <summary>
             Try to create a cycle hint. If any conclusion (elimination, assignment) found and is available,
             the method will return a <see cref="T:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep"/> instance with a non-<see langword="null"/> value.
@@ -3337,6 +3342,27 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer">
+            <summary>
+            Defines an equality comparer that compares to <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer.Equals(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer.GetHashCode(Sudoku.Solving.Logical.PatternData.Potential)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.Extensions">

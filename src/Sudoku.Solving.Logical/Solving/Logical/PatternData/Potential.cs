@@ -3,6 +3,9 @@
 /// <summary>
 /// Defines a node used in chaining.
 /// </summary>
+#if DEBUG
+[DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
+#endif
 internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOperators<Potential, Potential, bool>
 {
 	/// <summary>
@@ -17,24 +20,24 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 	/// <param name="candidate">The candidate.</param>
 	/// <param name="isOn">Indicates whether the node is on.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Potential(short candidate, bool isOn) : this((byte)(candidate / 9), (byte)(candidate % 9), isOn)
+	public Potential(int candidate, bool isOn) : this((byte)(candidate / 9), (byte)(candidate % 9), isOn)
 	{
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="Potential(short, bool)" path="/summary"/>
+	/// <inheritdoc cref="Potential(int, bool)" path="/summary"/>
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
-	/// <param name="isOn"><inheritdoc cref="Potential(short, bool)" path="/param[@name='isOn']"/></param>
+	/// <param name="isOn"><inheritdoc cref="Potential(int, bool)" path="/param[@name='isOn']"/></param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Potential(byte cell, byte digit, bool isOn) => _mask = (short)((isOn ? 1 : 0) << 10 | (cell * 9 + digit));
 
 	/// <summary>
-	/// <inheritdoc cref="Potential(short, bool)" path="/summary"/>
+	/// <inheritdoc cref="Potential(int, bool)" path="/summary"/>
 	/// </summary>
 	/// <param name="base">The base potential instance.</param>
-	/// <param name="isOn"><inheritdoc cref="Potential(short, bool)" path="/param[@name='isOn']"/></param>
+	/// <param name="isOn"><inheritdoc cref="Potential(int, bool)" path="/param[@name='isOn']"/></param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Potential(Potential @base, bool isOn) : this(@base.Cell, @base.Digit, isOn)
 	{
@@ -59,7 +62,7 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 	/// <summary>
 	/// Indicates the candidate.
 	/// </summary>
-	public short Candidate => (short)(_mask & (1 << 10) - 1);
+	public int Candidate => _mask & (1 << 10) - 1;
 
 	/// <summary>
 	/// Defines an accessor that allows user assigning a singleton parent node into the current data structure on instantiation phase.
@@ -109,12 +112,29 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 	/// <summary>
 	/// Indicates the candidate string representation.
 	/// </summary>
+	[DebuggerHidden]
 	[GeneratedDisplayName(nameof(Candidate))]
 	private string CandidateString => $"{CellsMap[Cell]}({Digit + 1})";
 
+#if DEBUG
+	/// <summary>
+	/// Indicates the string that is used for display on debugger.
+	/// </summary>
+	[DebuggerHidden]
+	private string DebuggerDisplayString
+	{
+		get
+		{
+			const string trueStr = "true", falseStr = "false";
+
+			return $"{CandidateString} is {(IsOn ? trueStr : falseStr)}";
+		}
+	}
+#endif
+
 
 	[GeneratedDeconstruction]
-	public partial void Deconstruct(out short candidate, out bool isOn);
+	public partial void Deconstruct(out int candidate, out bool isOn);
 
 	[GeneratedDeconstruction]
 	public partial void Deconstruct(out byte cell, out byte digit, out bool isOn);

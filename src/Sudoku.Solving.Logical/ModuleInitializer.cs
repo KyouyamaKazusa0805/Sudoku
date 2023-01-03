@@ -60,11 +60,6 @@ internal static class ModuleInitializer
 						var propertyNamesAndValues = attributeInstance.PropertyNamesAndValues;
 						switch (propertyNamesAndValues.Length)
 						{
-							case 0:
-							{
-								t("The array is empty.");
-								break;
-							}
 							case var length when (length & 1) != 0:
 							{
 								t("The property value is invalid.");

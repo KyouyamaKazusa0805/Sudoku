@@ -8,14 +8,15 @@ using PotentialSet = HashSet<Potential>;
 
 [StepSearcher]
 [StepSearcherMetadata(IsDirect = true)]
-[SeparatedStepSearcher(0, nameof(AllowMultiple), false, nameof(AllowDynamic), false, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
-[SeparatedStepSearcher(1, nameof(AllowMultiple), true, nameof(AllowDynamic), false, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
-[SeparatedStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
-[SeparatedStepSearcher(3, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 1)]
-[SeparatedStepSearcher(4, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 2)]
-[SeparatedStepSearcher(5, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 3)]
-[SeparatedStepSearcher(6, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 4)]
-[SeparatedStepSearcher(7, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 5)]
+[SeparatedStepSearcher(0)]
+[SeparatedStepSearcher(1, nameof(AllowDynamic), true, nameof(AllowNishio), true)]
+[SeparatedStepSearcher(2, nameof(AllowMultiple), true)]
+[SeparatedStepSearcher(3, nameof(AllowMultiple), true, nameof(AllowDynamic), true)]
+[SeparatedStepSearcher(4, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 1)]
+[SeparatedStepSearcher(5, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 2)]
+[SeparatedStepSearcher(6, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 3)]
+[SeparatedStepSearcher(7, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 4)]
+[SeparatedStepSearcher(8, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 5)]
 internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 {
 	/// <summary>
@@ -131,11 +132,16 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			result.AddRange(xyCycles);
 		}
 
+		if (result.Count == 0)
+		{
+			return null;
+		}
+
 		result.Sort(ChainingStep.Compare);
 
 		if (context.OnlyFindOne)
 		{
-			return result switch { [var firstFoundStep, ..] => firstFoundStep, _ => null };
+			return result[0];
 		}
 
 		context.Accumulator.AddRange(result);
@@ -220,8 +226,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						// Do Binary chaining (same potential either on or off).
 						var pOn = new Potential(cell, digit, true);
 						var pOff = new Potential(cell, digit, false);
-						var onToOn = new PotentialSet();
-						var onToOff = new PotentialSet();
+						var onToOn = new PotentialSet(PotentialEqualityComparer.Instance);
+						var onToOff = new PotentialSet(PotentialEqualityComparer.Instance);
 						var doDouble = cardinality >= 3 && !AllowNishio && AllowDynamic;
 						var doContradiction = AllowDynamic || AllowNishio;
 						DoBinaryChaining(ref grid, pOn, pOff, result, onToOn, onToOff, doDouble, doContradiction);
@@ -295,8 +301,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		var cycles = new PotentialList();
 		var chains = new PotentialList();
-		var onToOn = new PotentialSet { pOn };
-		var onToOff = new PotentialSet();
+		var onToOn = new PotentialSet(PotentialEqualityComparer.Instance) { pOn };
+		var onToOff = new PotentialSet(PotentialEqualityComparer.Instance);
 
 		DoCycles(grid, onToOn, onToOff, isX, isY, cycles, pOn);
 
@@ -319,7 +325,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		foreach (var dstOn in cycles)
 		{
 			// Cycle found.
-			if (CreateCycleHint(grid, dstOn, isX, isY) is { } step)
+			if (CreateCycleStep(grid, dstOn, isX, isY) is { } step)
 			{
 				result.Add(step);
 			}
@@ -476,7 +482,6 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 							posToOn.Add(otherCell, otherToOn);
 							posToOff.Add(otherCell, otherToOff);
-
 							regionToOn.IntersectWith(otherToOn);
 							regionToOff.IntersectWith(otherToOff);
 						}
@@ -692,7 +697,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 				else
 				{
 					var p = pendingOff.RemoveFirstElement();
-					var makeOn = GetOffToOn(grid, p, _savedGrid, toOff, !AllowNishio, true);
+					var makeOn = GetOffToOn(grid, p, _savedGrid, toOff, true, !AllowNishio);
 					if (AllowDynamic)
 					{
 						// Memorize the shutted down potentials.
@@ -764,7 +769,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <returns>The set of potentials that must be "off".</returns>
 	private PotentialSet GetOnToOff(scoped in Grid grid, Potential p, bool isY)
 	{
-		var result = new PotentialSet();
+		var result = new PotentialSet(PotentialEqualityComparer.Instance);
 
 		var cell = p.Cell;
 		var digit = p.Digit;
@@ -817,14 +822,14 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	private PotentialSet GetOffToOn(scoped in Grid grid, Potential p, scoped in Grid source, PotentialSet offPotentials, bool isX, bool isY)
 	{
 		var (cell, digit, _) = p;
-		var result = new PotentialSet();
+		var result = new PotentialSet(PotentialEqualityComparer.Instance);
 
 		if (isY)
 		{
 			// First rule: if there is only two potentials in this cell, the other one gets on.
-			if (source.BivalueCells.Contains(cell))
+			if (grid.BivalueCells.Contains(cell))
 			{
-				var otherDigit = (byte)(source.GetCandidates(cell) & ~(1 << digit)).SetAt(0);
+				var otherDigit = (byte)(grid.GetCandidates(cell) & ~(1 << digit)).SetAt(0);
 				var pOn = new Potential(cell, otherDigit, true) { SingletonParent = p };
 
 				addHiddenParentsOfCell(pOn, grid, source, offPotentials);
@@ -838,7 +843,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			foreach (var houseType in HouseTypes)
 			{
 				var houseIndex = cell.ToHouseIndex(houseType);
-				if ((HousesMap[houseIndex] & source.CandidatesMap[digit]) - cell is [var otherCell])
+				if ((HousesMap[houseIndex] & grid.CandidatesMap[digit]) - cell is [var otherCell])
 				{
 					var pOn = new Potential((byte)otherCell, digit, true) { SingletonParent = p };
 
@@ -853,6 +858,11 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		static void addHiddenParentsOfCell(Potential p, scoped in Grid grid, scoped in Grid source, PotentialSet offPotentials)
 		{
+			if (source.IsUndefined)
+			{
+				return;
+			}
+
 			var cell = p.Cell;
 			for (byte digit = 0; digit < 9; digit++)
 			{
@@ -871,6 +881,11 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		static void addHiddenParentsOfHouse(Potential p, scoped in Grid source, HouseType currentHouseType, PotentialSet offPotentials)
 		{
+			if (source.IsUndefined)
+			{
+				return;
+			}
+
 			var (cell, digit, _) = p;
 
 			var houseIndex = cell.ToHouseIndex(currentHouseType);
@@ -921,7 +936,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <returns>
 	/// A valid <see cref="BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
 	/// </returns>
-	private BidirectionalCycleStep? CreateCycleHint(scoped in Grid grid, Potential dstOn, bool isX, bool isY)
+	private BidirectionalCycleStep? CreateCycleStep(scoped in Grid grid, Potential dstOn, bool isX, bool isY)
 	{
 		var nodes = dstOn.ChainPotentials;
 
@@ -1033,6 +1048,35 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		var result = new RegionForcingChainsStep(conclusions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
 		return result with { Views = result.CreateViews(grid) };
 	}
+}
+
+/// <summary>
+/// Defines an equality comparer that compares to <see cref="Potential"/> instances.
+/// </summary>
+file sealed class PotentialEqualityComparer : IEqualityComparer<Potential>
+{
+	/// <summary>
+	/// Indicates the singleton instance.
+	/// </summary>
+	public static readonly PotentialEqualityComparer Instance = new();
+
+
+	/// <summary>
+	/// Initializes a <see cref="PotentialEqualityComparer"/> instance.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private PotentialEqualityComparer()
+	{
+	}
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(Potential x, Potential y) => x == y;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public int GetHashCode(Potential obj) => obj.GetHashCode();
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

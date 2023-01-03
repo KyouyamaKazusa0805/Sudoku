@@ -212,7 +212,7 @@ public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, Logica
 		};
 
 	ReportStatusAndSkipToTryAgain:
-		progress?.Report((totalCandidatesCount - playground.CandidatesCount) * 100 / totalCandidatesCount);
+		progress?.Report((double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount);
 		goto TryAgain;
 
 
