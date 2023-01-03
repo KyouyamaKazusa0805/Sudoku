@@ -3,7 +3,7 @@
 namespace Sudoku.Solving.Logical.StepSearchers;
 
 using ChainBranch = Dictionary<byte, HashSet<Potential>>;
-using PotentialList = List<Potential>;
+using PotentialList = LinkedList<Potential>;
 using PotentialSet = HashSet<Potential>;
 
 [StepSearcher]
@@ -151,9 +151,9 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	internal bool IsParent(Potential child, Potential parent)
 	{
 		var pTest = child;
-		while (pTest.Parents.Count > 0)
+		while (pTest.Parents is [var first, ..])
 		{
-			pTest = pTest.Parents[0];
+			pTest = first;
 
 			if (pTest == parent)
 			{
@@ -530,7 +530,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 					if (!IsParent(p, pOff))
 					{
 						// Not processed yet.
-						pendingOff.Add(pOff);
+						pendingOff.AddLast(pOff);
 
 						Debug.Assert(length >= 1);
 
@@ -549,13 +549,13 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 					if (length >= 4 && pOn == source)
 					{
 						// Cycle found.
-						cycles.Add(pOn);
+						cycles.AddLast(pOn);
 					}
 
 					if (!toOn.Contains(pOn))
 					{
 						// Not processed yet.
-						pendingOn.Add(pOn);
+						pendingOn.AddLast(pOn);
 
 						Debug.Assert(length >= 1);
 
@@ -607,7 +607,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						// Cyclic contradiction (forcing chain) found.
 						if (!chains.Contains(pOff))
 						{
-							chains.Add(pOff);
+							chains.AddLast(pOff);
 						}
 					}
 
@@ -617,7 +617,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						if (!toOff.Contains(pOff))
 						{
 							// Not processed yet.
-							pendingOff.Add(pOff);
+							pendingOff.AddLast(pOff);
 							toOff.Add(pOff);
 						}
 					}
@@ -636,14 +636,14 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						// Cyclic contradiction (forcing chain) found.
 						if (!chains.Contains(pOn))
 						{
-							chains.Add(pOn);
+							chains.AddLast(pOn);
 						}
 					}
 
 					if (!toOn.Contains(pOn))
 					{
 						// Not processed yet.
-						pendingOn.Add(pOn);
+						pendingOn.AddLast(pOn);
 						toOn.Add(pOn);
 					}
 				}
@@ -685,7 +685,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						{
 							// Not processed yet.
 							toOff.Add(pOff);
-							pendingOff.Add(pOff);
+							pendingOff.AddLast(pOff);
 						}
 					}
 				}
@@ -710,7 +710,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						{
 							// Not processed yet.
 							toOn.Add(pOn);
-							pendingOn.Add(pOn);
+							pendingOn.AddLast(pOn);
 						}
 					}
 				}
@@ -1077,10 +1077,11 @@ file static class Extensions
 	/// <param name="this">The colllection.</param>
 	/// <returns>The removed element.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static T RemoveFirstElement<T>(this List<T> @this) where T : struct
+	public static T RemoveFirstElement<T>(this LinkedList<T> @this) where T : struct
 	{
-		var first = @this[0];
-		@this.RemoveAt(0);
+		var first = @this.First!.Value;
+
+		@this.RemoveFirst();
 		return first;
 	}
 }
