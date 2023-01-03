@@ -29,7 +29,6 @@ internal static class EnvironmentData
 		AlmostLockedSetsXyWingStepSearcher_AllowCollision = true,
 		AlmostLockedSetsXzStepSearcher_AllowCollision = true,
 		AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns = true,
-		AlternatingInferenceChainStepSearcher_MaxCapacity = 3000,
 		RegularWingStepSearcher_MaxSize = 5,
 		TemplateStepSearcher_TemplateDeleteOnly = false,
 		ComplexFishStepSearcher_MaxSize = 5,

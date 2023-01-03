@@ -7,6 +7,7 @@ using PotentialList = List<Potential>;
 using PotentialSet = HashSet<Potential>;
 
 [StepSearcher]
+[StepSearcherMetadata(IsDirect = true)]
 [SeparatedStepSearcher(0, nameof(AllowMultiple), false, nameof(AllowDynamic), false, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
 [SeparatedStepSearcher(1, nameof(AllowMultiple), true, nameof(AllowDynamic), false, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
 [SeparatedStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(AllowNishio), false, nameof(DynamicNestingLevel), 0)]
@@ -174,16 +175,11 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	{
 		var result = new List<ChainingStep>();
 
-		foreach (byte cell in EmptyCells)
+		foreach (byte cell in grid.EmptyCells)
 		{
-			if (grid.GetStatus(cell) != CellStatus.Empty)
+			for (byte digit = 0; digit < 9; digit++)
 			{
-				continue;
-			}
-
-			for (byte digit = 1; digit <= 9; digit++)
-			{
-				if (CandidatesMap[digit].Contains(cell))
+				if (grid.CandidatesMap[digit].Contains(cell))
 				{
 					var pOn = new Potential(cell, digit, true);
 					DoUnaryChaining(grid, pOn, result, isX, isY);
@@ -204,7 +200,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		var result = new List<ChainingStep>();
 
 		// Iterate on all empty cells.
-		foreach (byte cell in EmptyCells)
+		foreach (byte cell in grid.EmptyCells)
 		{
 			// The cell is empty.
 			var cardinality = PopCount((uint)grid.GetCandidates(cell));
@@ -217,9 +213,9 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 				var cellToOff = default(PotentialSet?);
 
 				// Iterate on all potential values that are not alone.
-				for (byte digit = 1; digit <= 9; digit++)
+				for (byte digit = 0; digit < 9; digit++)
 				{
-					if (CandidatesMap[digit].Contains(cell))
+					if (grid.CandidatesMap[digit].Contains(cell))
 					{
 						// Do Binary chaining (same potential either on or off).
 						var pOn = new Potential(cell, digit, true);
@@ -291,7 +287,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <param name="isY"><inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	private void DoUnaryChaining(scoped in Grid grid, Potential pOn, List<ChainingStep> result, bool isX, bool isY)
 	{
-		if (!BivalueCells.Contains(pOn.Cell) && !isX)
+		if (grid.BivalueCells.Contains(pOn.Cell) && !isX)
 		{
 			// Y-Cycles can only start if cell has 2 potential values.
 			return;
@@ -447,7 +443,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		foreach (var houseType in HouseTypes)
 		{
 			var houseIndex = cell.ToHouseIndex(houseType);
-			var potentialPositions = EmptyCells & HousesMap[houseIndex] & CandidatesMap[digit];
+			var potentialPositions = grid.EmptyCells & HousesMap[houseIndex] & grid.CandidatesMap[digit];
 			if (potentialPositions.Count == 2 || AllowMultiple && potentialPositions.Count > 2)
 			{
 				var firstCell = potentialPositions[0];
@@ -778,7 +774,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			// This rule is not used with X-Chains.
 			// First rule: other potential values for this cell get off.
 			var potentialValues = grid.GetCandidates(cell);
-			for (byte tempDigit = 1; tempDigit <= 9; tempDigit++)
+			for (byte tempDigit = 0; tempDigit < 9; tempDigit++)
 			{
 				if (tempDigit != digit && (potentialValues >> tempDigit & 1) != 0)
 				{
@@ -826,15 +822,9 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		if (isY)
 		{
 			// First rule: if there is only two potentials in this cell, the other one gets on.
-			if (BivalueCells.Contains(cell))
+			if (source.BivalueCells.Contains(cell))
 			{
-				var mask = grid.GetCandidates(cell);
-				var otherDigit = (byte)mask.GetNextSet(0);
-				if (otherDigit == digit)
-				{
-					otherDigit = (byte)mask.GetNextSet(otherDigit + 1);
-				}
-
+				var otherDigit = (byte)(source.GetCandidates(cell) & ~(1 << digit)).SetAt(0);
 				var pOn = new Potential(cell, otherDigit, true) { SingletonParent = p };
 
 				addHiddenParentsOfCell(pOn, grid, source, offPotentials);
@@ -848,17 +838,9 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			foreach (var houseType in HouseTypes)
 			{
 				var houseIndex = cell.ToHouseIndex(houseType);
-
-				var potentialPositions = HousesMap[houseIndex] & CandidatesMap[digit];
-				if (potentialPositions.Count == 2)
+				if ((HousesMap[houseIndex] & source.CandidatesMap[digit]) - cell is [var otherCell])
 				{
-					var otherCell = (byte)potentialPositions[0];
-					if (otherCell == cell)
-					{
-						otherCell = (byte)potentialPositions[1];
-					}
-
-					var pOn = new Potential(otherCell, digit, true) { SingletonParent = p };
+					var pOn = new Potential((byte)otherCell, digit, true) { SingletonParent = p };
 
 					addHiddenParentsOfHouse(pOn, source, houseType, offPotentials);
 					result.Add(pOn);
@@ -872,7 +854,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		static void addHiddenParentsOfCell(Potential p, scoped in Grid grid, scoped in Grid source, PotentialSet offPotentials)
 		{
 			var cell = p.Cell;
-			for (byte digit = 1; digit <= 9; digit++)
+			for (byte digit = 0; digit < 9; digit++)
 			{
 				if ((source.GetCandidates(cell) >> digit & 1) != 0 && (grid.GetCandidates(cell) >> digit & 1) == 0)
 				{
@@ -889,8 +871,9 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		static void addHiddenParentsOfHouse(Potential p, scoped in Grid source, HouseType currentHouseType, PotentialSet offPotentials)
 		{
-			var digit = p.Digit;
-			var houseIndex = p.Cell.ToHouseIndex(currentHouseType);
+			var (cell, digit, _) = p;
+
+			var houseIndex = cell.ToHouseIndex(currentHouseType);
 			var sourceDigitDistribution = (short)0;
 			var currentDigitDistribution = (short)0;
 			for (var i = 0; i < 9; i++)
@@ -901,7 +884,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 					sourceDigitDistribution |= (short)(1 << i);
 				}
 
-				if (CandidatesMap[digit].Contains(houseCell))
+				if (source.CandidatesMap[digit].Contains(houseCell))
 				{
 					currentDigitDistribution |= (short)(1 << i);
 				}
@@ -911,7 +894,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			foreach (var i in (short)(sourceDigitDistribution & ~currentDigitDistribution))
 			{
 				// Add a hidden parent.
-				if (offPotentials.GetNullable(new((byte)HouseCells[houseIndex][i], p.Digit, false)) is not { } parent)
+				if (offPotentials.GetNullable(new((byte)HouseCells[houseIndex][i], digit, false)) is not { } parent)
 				{
 					throw new InvalidOperationException("Parent not found.");
 				}
@@ -960,7 +943,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			{
 				foreach (var house in (CellsMap[c1] + c2).CoveredHouses)
 				{
-					foreach (var cell in (HousesMap[house] & DigitsMap[d1]) - c1 - c2)
+					foreach (var cell in (HousesMap[house] & grid.CandidatesMap[d1]) - c1 - c2)
 					{
 						conclusions.Add(new(Elimination, cell, d1));
 					}
@@ -1018,9 +1001,9 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		// Build chains.
 		var chains = new MultipleForcingChains();
-		for (byte tempDigit = 1; tempDigit <= 9; tempDigit++)
+		for (byte tempDigit = 0; tempDigit < 9; tempDigit++)
 		{
-			if (CandidatesMap[targetDigit].Contains(srcCell))
+			if (grid.CandidatesMap[tempDigit].Contains(srcCell))
 			{
 				// Get corresponding value with the matching parents.
 				chains.Add(tempDigit, outcomes[tempDigit].GetNullable(target) ?? default);
@@ -1041,7 +1024,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		// Build chains.
 		var chains = new MultipleForcingChains();
-		foreach (byte tempCell in CandidatesMap[digit] & HousesMap[houseIndex])
+		foreach (byte tempCell in grid.CandidatesMap[digit] & HousesMap[houseIndex])
 		{
 			// Get corresponding value with the matching parents.
 			chains.Add(tempCell, outcomes[tempCell].GetNullable(target) ?? default);

@@ -26,6 +26,7 @@
 [assembly: SearcherConfiguration<     GurthSymmetricalPlacementStepSearcher>(SearcherDisplayingLevel.A)]
 [assembly: SearcherConfiguration<                      GuardianStepSearcher>(SearcherDisplayingLevel.C)]
 [assembly: SearcherConfiguration<                   ComplexFishStepSearcher>(SearcherDisplayingLevel.C)]
+[assembly: SearcherConfiguration<                      ChainingStepSearcher>(SearcherDisplayingLevel.C)]
 [assembly: SearcherConfiguration<                BivalueOddagonStepSearcher>(SearcherDisplayingLevel.C)]
 [assembly: SearcherConfiguration<              ChromaticPatternStepSearcher>(SearcherDisplayingLevel.C)]
 [assembly: SearcherConfiguration<            AlmostLockedSetsXzStepSearcher>(SearcherDisplayingLevel.B)]
@@ -35,7 +36,6 @@
 #if ALLOW_DEPRECATED_LOGICAL_STEP_OR_STEP_SEARCHER
 [assembly: SearcherConfiguration<     AlternatingInferenceChainStepSearcher>(SearcherDisplayingLevel.C)]
 #endif
-[assembly: SearcherConfiguration<                      ChainingStepSearcher>(SearcherDisplayingLevel.C)]
 [assembly: SearcherConfiguration<                   BowmanBingoStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                LastResort)]
 [assembly: SearcherConfiguration<                PatternOverlayStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.Gathering, DisabledReason = SearcherDisabledReason.                LastResort)]
 [assembly: SearcherConfiguration<                      TemplateStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                LastResort)]
