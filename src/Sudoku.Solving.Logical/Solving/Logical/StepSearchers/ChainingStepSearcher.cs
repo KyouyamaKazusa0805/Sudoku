@@ -9,14 +9,16 @@ using PotentialSet = HashSet<Potential>;
 [StepSearcher]
 [StepSearcherMetadata(IsDirect = true)]
 [SeparatedStepSearcher(0)]
-[SeparatedStepSearcher(1, nameof(AllowDynamic), true, nameof(AllowNishio), true)]
+[SeparatedStepSearcher(1, nameof(AllowNishio), true, nameof(AllowDynamic), true)]
 [SeparatedStepSearcher(2, nameof(AllowMultiple), true)]
 [SeparatedStepSearcher(3, nameof(AllowMultiple), true, nameof(AllowDynamic), true)]
+#if false
 [SeparatedStepSearcher(4, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 1)]
 [SeparatedStepSearcher(5, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 2)]
 [SeparatedStepSearcher(6, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 3)]
 [SeparatedStepSearcher(7, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 4)]
 [SeparatedStepSearcher(8, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 5)]
+#endif
 internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 {
 	/// <summary>
@@ -48,8 +50,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <item>
 	/// For dynamic forcing chains:
 	/// <list type="bullet">
-	/// <item>Dynamic Cell forcing chains</item>
-	/// <item>Dynamic Region (House) forcing chains</item>
+	/// <item>Dynamic cell forcing chains</item>
+	/// <item>Dynamic region (house) forcing chains</item>
 	/// </list>
 	/// </item>
 	/// </list>
@@ -59,8 +61,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <summary>
 	/// Indicates whether the step searcher allows dynamic forcing chains:
 	/// <list type="bullet">
-	/// <item>Dynamic Contradiction forcing chains</item>
-	/// <item>Dynamic Double forcing chains</item>
+	/// <item>Dynamic contradiction forcing chains</item>
+	/// <item>Dynamic double forcing chains</item>
 	/// </list>
 	/// </summary>
 	/// <remarks>
@@ -123,13 +125,9 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		}
 		else
 		{
-			var xCycles = GetLoopHintList(grid, true, false);
-			var yCycles = GetLoopHintList(grid, false, true);
-			var xyCycles = GetLoopHintList(grid, true, true);
-
-			result = xCycles;
-			result.AddRange(yCycles);
-			result.AddRange(xyCycles);
+			result = GetLoopHintList(grid, true, false);
+			result.AddRange(GetLoopHintList(grid, false, true));
+			result.AddRange(GetLoopHintList(grid, true, true));
 		}
 
 		if (result.Count == 0)
@@ -181,11 +179,11 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	{
 		var result = new List<ChainingStep>();
 
-		foreach (byte cell in grid.EmptyCells)
+		foreach (byte cell in EmptyCells)
 		{
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				if (grid.CandidatesMap[digit].Contains(cell))
+				if (CandidatesMap[digit].Contains(cell))
 				{
 					var pOn = new Potential(cell, digit, true);
 					DoUnaryChaining(grid, pOn, result, isX, isY);
@@ -206,7 +204,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		var result = new List<ChainingStep>();
 
 		// Iterate on all empty cells.
-		foreach (byte cell in grid.EmptyCells)
+		foreach (byte cell in EmptyCells)
 		{
 			// The cell is empty.
 			var cardinality = PopCount((uint)grid.GetCandidates(cell));
@@ -221,7 +219,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 				// Iterate on all potential values that are not alone.
 				for (byte digit = 0; digit < 9; digit++)
 				{
-					if (grid.CandidatesMap[digit].Contains(cell))
+					if (CandidatesMap[digit].Contains(cell))
 					{
 						// Do Binary chaining (same potential either on or off).
 						var pOn = new Potential(cell, digit, true);
@@ -241,39 +239,34 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						// Collect results for cell chaining.
 						digitToOn.Add(digit, onToOn);
 						digitToOff.Add(digit, onToOff);
-						if (cellToOn is null)
+						if (cellToOn is null || cellToOff is null)
 						{
-							cellToOn = new();
-							cellToOff = new();
-							cellToOn.AddRange(onToOn);
-							cellToOff.AddRange(onToOff);
+							cellToOn = new(onToOn, PotentialEqualityComparer.Instance);
+							cellToOff = new(onToOff, PotentialEqualityComparer.Instance);
 						}
 						else
 						{
 							cellToOn.IntersectWith(onToOn);
-							cellToOff!.IntersectWith(onToOff);
+							cellToOff.IntersectWith(onToOff);
 						}
 					}
 				}
 
-				if (!AllowNishio)
+				// Do Cell reduction
+				if (!AllowNishio && (cardinality == 2 || AllowMultiple))
 				{
-					// Do Cell reduction
-					if (cardinality == 2 || AllowMultiple)
+					if (cellToOn is not null)
 					{
-						if (cellToOn is not null)
+						foreach (var p in cellToOn)
 						{
-							foreach (var p in cellToOn)
-							{
-								result.Add(CreateCellForcingStep(grid, cell, p, digitToOn));
-							}
+							result.Add(CreateCellForcingStep(grid, cell, p, digitToOn));
 						}
-						if (cellToOff is not null)
+					}
+					if (cellToOff is not null)
+					{
+						foreach (var p in cellToOff)
 						{
-							foreach (var p in cellToOff)
-							{
-								result.Add(CreateCellForcingStep(grid, cell, p, digitToOff));
-							}
+							result.Add(CreateCellForcingStep(grid, cell, p, digitToOff));
 						}
 					}
 				}
@@ -293,7 +286,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <param name="isY"><inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	private void DoUnaryChaining(scoped in Grid grid, Potential pOn, List<ChainingStep> result, bool isX, bool isY)
 	{
-		if (grid.BivalueCells.Contains(pOn.Cell) && !isX)
+		if (BivalueCells.Contains(pOn.Cell) && !isX)
 		{
 			// Y-Cycles can only start if cell has 2 potential values.
 			return;
@@ -377,7 +370,9 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <param name="grid"><inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="pOn"></param>
 	/// <param name="pOff"></param>
-	/// <param name="result"></param>
+	/// <param name="result">
+	/// <inheritdoc cref="DoUnaryChaining(in Grid, Potential, List{ChainingStep}, bool, bool)" path="/param[@name='result']"/>
+	/// </param>
 	/// <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
 	/// <param name="onToOff">An empty set, filled with potentials that get off if the given potential is on.</param>
 	/// <param name="doReduction"></param>
@@ -437,6 +432,25 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		}
 	}
 
+	/// <summary>
+	/// Search for region (house) forcing chains.
+	/// </summary>
+	/// <param name="grid"><inheritdoc cref="GetLoopHintList(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="result">
+	/// <inheritdoc cref="DoUnaryChaining(in Grid, Potential, List{ChainingStep}, bool, bool)" path="/param[@name='result']"/>
+	/// </param>
+	/// <param name="cell"></param>
+	/// <param name="digit"></param>
+	/// <param name="onToOn">
+	/// <inheritdoc
+	///     cref="DoBinaryChaining(ref Grid, Potential, Potential, List{ChainingStep}, PotentialSet, PotentialSet, bool, bool)"
+	///     path="/param[@name='onToOn']"/>
+	/// </param>
+	/// <param name="onToOff">
+	/// <inheritdoc
+	///     cref="DoBinaryChaining(ref Grid, Potential, Potential, List{ChainingStep}, PotentialSet, PotentialSet, bool, bool)"
+	///     path="/param[@name='onToOff']"/>
+	/// </param>
 	private void DoHouseChaining(
 		scoped ref Grid grid,
 		List<ChainingStep> result,
@@ -449,18 +463,16 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		foreach (var houseType in HouseTypes)
 		{
 			var houseIndex = cell.ToHouseIndex(houseType);
-			var potentialPositions = grid.EmptyCells & HousesMap[houseIndex] & grid.CandidatesMap[digit];
+			var potentialPositions = HousesMap[houseIndex] & CandidatesMap[digit];
 			if (potentialPositions.Count == 2 || AllowMultiple && potentialPositions.Count > 2)
 			{
-				var firstCell = potentialPositions[0];
-
 				// Do we meet region for the first time?
-				if (firstCell == cell)
+				if (potentialPositions[0] == cell)
 				{
 					var posToOn = new ChainBranch();
 					var posToOff = new ChainBranch();
-					var regionToOn = new PotentialSet();
-					var regionToOff = new PotentialSet();
+					var houseToOn = new PotentialSet();
+					var houseToOff = new PotentialSet();
 
 					// Iterate on potential positions within the region.
 					foreach (byte otherCell in potentialPositions)
@@ -469,8 +481,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						{
 							posToOn.Add(otherCell, onToOn);
 							posToOff.Add(otherCell, onToOff);
-							regionToOn.AddRange(onToOn);
-							regionToOff.AddRange(onToOff);
+							houseToOn.AddRange(onToOn);
+							houseToOff.AddRange(onToOff);
 						}
 						else
 						{
@@ -482,17 +494,17 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 							posToOn.Add(otherCell, otherToOn);
 							posToOff.Add(otherCell, otherToOff);
-							regionToOn.IntersectWith(otherToOn);
-							regionToOff.IntersectWith(otherToOff);
+							houseToOn.IntersectWith(otherToOn);
+							houseToOff.IntersectWith(otherToOff);
 						}
 					}
 
 					// Gather results.
-					foreach (var p in regionToOn)
+					foreach (var p in houseToOn)
 					{
 						result.Add(CreateHouseForcingStep(grid, houseIndex, digit, p, posToOn));
 					}
-					foreach (var p in regionToOff)
+					foreach (var p in houseToOff)
 					{
 						result.Add(CreateHouseForcingStep(grid, houseIndex, digit, p, posToOff));
 					}
@@ -709,7 +721,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						if (toOff.Contains(pOff))
 						{
 							// Contradiction found.
-							return (toOff.GetNullable(pOff) ?? default, pOff); // Cannot be both on and off at the same time.
+							return (pOn, toOff.GetNullable(pOff) ?? default); // Cannot be both on and off at the same time.
 						}
 						else if (!toOn.Contains(pOn))
 						{
@@ -778,10 +790,10 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		{
 			// This rule is not used with X-Chains.
 			// First rule: other potential values for this cell get off.
-			var potentialValues = grid.GetCandidates(cell);
+			var candidateMask = grid.GetCandidates(cell);
 			for (byte tempDigit = 0; tempDigit < 9; tempDigit++)
 			{
-				if (tempDigit != digit && (potentialValues >> tempDigit & 1) != 0)
+				if (tempDigit != digit && (candidateMask >> tempDigit & 1) != 0)
 				{
 					result.Add(new(cell, tempDigit, false) { SingletonParent = p });
 				}
@@ -792,10 +804,8 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		foreach (var houseType in HouseTypes)
 		{
 			var houseIndex = cell.ToHouseIndex(houseType);
-
-			for (var pos = 0; pos < 9; pos++)
+			foreach (byte tempCell in HouseCells[houseIndex])
 			{
-				var tempCell = (byte)HouseCells[houseIndex][pos];
 				if (tempCell != cell && (grid.GetCandidates(tempCell) >> digit & 1) != 0)
 				{
 					result.Add(new(tempCell, digit, false) { SingletonParent = p });
@@ -827,12 +837,12 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		if (isY)
 		{
 			// First rule: if there is only two potentials in this cell, the other one gets on.
-			if (grid.BivalueCells.Contains(cell))
+			if (BivalueCells.Contains(cell))
 			{
-				var otherDigit = (byte)(grid.GetCandidates(cell) & ~(1 << digit)).SetAt(0);
+				var otherDigit = (byte)TrailingZeroCount(grid.GetCandidates(cell) & ~(1 << digit));
 				var pOn = new Potential(cell, otherDigit, true) { SingletonParent = p };
 
-				addHiddenParentsOfCell(pOn, grid, source, offPotentials);
+				addHiddenParentsOfCell(ref pOn, grid, source, offPotentials);
 				result.Add(pOn);
 			}
 		}
@@ -843,11 +853,11 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			foreach (var houseType in HouseTypes)
 			{
 				var houseIndex = cell.ToHouseIndex(houseType);
-				if ((HousesMap[houseIndex] & grid.CandidatesMap[digit]) - cell is [var otherCell])
+				if ((HousesMap[houseIndex] & CandidatesMap[digit]) - cell is [var otherCell])
 				{
 					var pOn = new Potential((byte)otherCell, digit, true) { SingletonParent = p };
 
-					addHiddenParentsOfHouse(pOn, source, houseType, offPotentials);
+					addHiddenParentsOfHouse(ref pOn, grid, source, houseType, offPotentials);
 					result.Add(pOn);
 				}
 			}
@@ -856,7 +866,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		return result;
 
 
-		static void addHiddenParentsOfCell(Potential p, scoped in Grid grid, scoped in Grid source, PotentialSet offPotentials)
+		static void addHiddenParentsOfCell(scoped ref Potential p, scoped in Grid grid, scoped in Grid source, PotentialSet offPotentials)
 		{
 			if (source.IsUndefined)
 			{
@@ -879,7 +889,13 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			}
 		}
 
-		static void addHiddenParentsOfHouse(Potential p, scoped in Grid source, HouseType currentHouseType, PotentialSet offPotentials)
+		static void addHiddenParentsOfHouse(
+			scoped ref Potential p,
+			scoped in Grid grid,
+			scoped in Grid source,
+			HouseType currentHouseType,
+			PotentialSet offPotentials
+		)
 		{
 			if (source.IsUndefined)
 			{
@@ -899,7 +915,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 					sourceDigitDistribution |= (short)(1 << i);
 				}
 
-				if (source.CandidatesMap[digit].Contains(houseCell))
+				if ((grid.GetCandidates(houseCell) >> digit & 1) != 0)
 				{
 					currentDigitDistribution |= (short)(1 << i);
 				}
@@ -958,7 +974,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 			{
 				foreach (var house in (CellsMap[c1] + c2).CoveredHouses)
 				{
-					foreach (var cell in (HousesMap[house] & grid.CandidatesMap[d1]) - c1 - c2)
+					foreach (var cell in (HousesMap[house] & CandidatesMap[d1]) - c1 - c2)
 					{
 						conclusions.Add(new(Elimination, cell, d1));
 					}
@@ -1018,7 +1034,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		var chains = new MultipleForcingChains();
 		for (byte tempDigit = 0; tempDigit < 9; tempDigit++)
 		{
-			if (grid.CandidatesMap[tempDigit].Contains(srcCell))
+			if (CandidatesMap[tempDigit].Contains(srcCell))
 			{
 				// Get corresponding value with the matching parents.
 				chains.Add(tempDigit, outcomes[tempDigit].GetNullable(target) ?? default);
@@ -1039,7 +1055,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		// Build chains.
 		var chains = new MultipleForcingChains();
-		foreach (byte tempCell in grid.CandidatesMap[digit] & HousesMap[houseIndex])
+		foreach (byte tempCell in CandidatesMap[digit] & HousesMap[houseIndex])
 		{
 			// Get corresponding value with the matching parents.
 			chains.Add(tempCell, outcomes[tempCell].GetNullable(target) ?? default);

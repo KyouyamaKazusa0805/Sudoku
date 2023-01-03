@@ -3079,8 +3079,8 @@ if (student is (name: var name, age: >= 18))
             <item>
             For dynamic forcing chains:
             <list type="bullet">
-            <item>Dynamic Cell forcing chains</item>
-            <item>Dynamic Region (House) forcing chains</item>
+            <item>Dynamic cell forcing chains</item>
+            <item>Dynamic region (house) forcing chains</item>
             </list>
             </item>
             </list>
@@ -3090,8 +3090,8 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates whether the step searcher allows dynamic forcing chains:
             <list type="bullet">
-            <item>Dynamic Contradiction forcing chains</item>
-            <item>Dynamic Double forcing chains</item>
+            <item>Dynamic contradiction forcing chains</item>
+            <item>Dynamic double forcing chains</item>
             </list>
             </summary>
             <remarks>
@@ -3216,11 +3216,34 @@ if (student is (name: var name, age: >= 18))
             <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
             <param name="pOn"></param>
             <param name="pOff"></param>
-            <param name="result"></param>
+            <param name="result">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)" path="/param[@name='result']"/>
+            </param>
             <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
             <param name="onToOff">An empty set, filled with potentials that get off if the given potential is on.</param>
             <param name="doReduction"></param>
             <param name="doContradiction"></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Byte,System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential})">
+            <summary>
+            Search for region (house) forcing chains.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="result">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)" path="/param[@name='result']"/>
+            </param>
+            <param name="cell"></param>
+            <param name="digit"></param>
+            <param name="onToOn">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean)"
+                path="/param[@name='onToOn']"/>
+            </param>
+            <param name="onToOff">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean)"
+                path="/param[@name='onToOff']"/>
+            </param>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.LinkedList{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)">
             <summary>
