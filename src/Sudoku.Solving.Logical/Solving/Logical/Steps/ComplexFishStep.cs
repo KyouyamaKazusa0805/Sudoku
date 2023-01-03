@@ -85,6 +85,7 @@ internal sealed record ComplexFishStep(
 	/// <summary>
 	/// The internal name.
 	/// </summary>
+	[DebuggerHidden]
 	private string InternalName
 	{
 		get
@@ -107,23 +108,20 @@ internal sealed record ComplexFishStep(
 	/// <summary>
 	/// Indicates the fin modifier.
 	/// </summary>
+	[DebuggerHidden]
 	private ComplexFishFinKind FinModifier
-		=> IsSashimi switch
-		{
-			true => ComplexFishFinKind.Sashimi,
-			false => ComplexFishFinKind.Finned,
-			_ => ComplexFishFinKind.Normal
-		};
+		=> IsSashimi switch { true => ComplexFishFinKind.Sashimi, false => ComplexFishFinKind.Finned, _ => ComplexFishFinKind.Normal };
 
 	/// <summary>
 	/// The shape modifier.
 	/// </summary>
-	private ComplexFishShapeKind ShapeModifier
-		=> IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant;
+	[DebuggerHidden]
+	private ComplexFishShapeKind ShapeModifier => IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant;
 
 	/// <summary>
 	/// Indicates the base houses.
 	/// </summary>
+	[DebuggerHidden]
 	private int[] BaseHouses
 	{
 		get
@@ -142,6 +140,7 @@ internal sealed record ComplexFishStep(
 	/// <summary>
 	/// Indicates the cover houses.
 	/// </summary>
+	[DebuggerHidden]
 	private int[] CoverHouses
 	{
 		get
@@ -156,6 +155,7 @@ internal sealed record ComplexFishStep(
 			return result;
 		}
 	}
+
 
 	[ResourceTextFormatter]
 	internal string DigitStr() => (Digit + 1).ToString();

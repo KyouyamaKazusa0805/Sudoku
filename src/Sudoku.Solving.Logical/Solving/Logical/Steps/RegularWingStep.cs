@@ -131,6 +131,7 @@ internal sealed record RegularWingStep(
 	/// <summary>
 	/// Indicates the internal name.
 	/// </summary>
+	[DebuggerHidden]
 	private string InternalName
 		=> Size switch
 		{
@@ -145,6 +146,7 @@ internal sealed record RegularWingStep(
 				9 => "RSTUVWXYZ-Wing"
 			} is var name => IsIncomplete ? $"Incomplete {name}" : name
 		};
+
 
 	[ResourceTextFormatter]
 	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

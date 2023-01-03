@@ -39,26 +39,9 @@ internal abstract record ExocetStep(
 	public sealed override Rarity Rarity => Rarity.HardlyEver;
 
 	/// <summary>
-	/// Indicates the digits string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-
-	/// <summary>
-	/// Indicates the base map string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string BaseCellsStr() => BaseMap.ToString();
-
-	/// <summary>
-	/// Indicates the target map string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string TargetCellsStr() => TargetMap.ToString();
-
-	/// <summary>
 	/// Indicates the map of the base cells.
 	/// </summary>
+	[DebuggerHidden]
 	private CellMap BaseMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -68,6 +51,7 @@ internal abstract record ExocetStep(
 	/// <summary>
 	/// Indicates the map of the target cells.
 	/// </summary>
+	[DebuggerHidden]
 	private CellMap TargetMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -85,6 +69,24 @@ internal abstract record ExocetStep(
 
 		return sb.ToStringAndClear();
 	}
+
+	/// <summary>
+	/// Indicates the digits string.
+	/// </summary>
+	[ResourceTextFormatter]
+	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+
+	/// <summary>
+	/// Indicates the base map string.
+	/// </summary>
+	[ResourceTextFormatter]
+	internal string BaseCellsStr() => BaseMap.ToString();
+
+	/// <summary>
+	/// Indicates the target map string.
+	/// </summary>
+	[ResourceTextFormatter]
+	internal string TargetCellsStr() => TargetMap.ToString();
 
 
 	/// <summary>

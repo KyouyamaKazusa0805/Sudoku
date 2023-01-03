@@ -94,6 +94,7 @@ internal sealed record NormalFishStep(
 	/// <summary>
 	/// Indicates the internal name.
 	/// </summary>
+	[DebuggerHidden]
 	private string InternalName
 	{
 		get
@@ -103,6 +104,7 @@ internal sealed record NormalFishStep(
 			return $"{finModifier}{fishName}";
 		}
 	}
+
 
 	[ResourceTextFormatter]
 	internal string DigitStr() => (Digit + 1).ToString();
