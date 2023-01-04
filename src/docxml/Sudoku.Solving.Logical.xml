@@ -1724,12 +1724,6 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.Solving.Logical.PatternData.Potential.MakeOffIn(Sudoku.Concepts.Grid@)">
-            <summary>
-            Makes the candidate represented as the current <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instance of target grid eliminated.
-            </summary>
-            <param name="grid">The target grid.</param>
-        </member>
         <member name="M:Sudoku.Solving.Logical.PatternData.Potential.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -3320,15 +3314,6 @@ if (student is (name: var name, age: >= 18))
             <param name="toOff">The potentials that are assumed to be "off".</param>
             <returns>If success, <see langword="null"/>.</returns>
         </member>
-        <member name="F:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher._savedGrid">
-            <summary>
-            <para>Indicates the temporary saved grid.</para>
-            <para><i>
-            This field will be used when the step searcher uses advanced logic (dynamic forcing chains or dynamic forcing chains (+))
-            to search for chains.
-            </i></para>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio">
             <summary>
             Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
@@ -3445,7 +3430,7 @@ if (student is (name: var name, age: >= 18))
             <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)">
             <summary>
             Get the set of all <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s that cannot be valid (are "off") if the given potential is "on"
             (i.e. if its value is the correct one for the cell).
@@ -7466,6 +7451,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.SortKey">
+            <summary>
+            Indicates an <see cref="T:System.Int32"/> value indicating the ordering priority of the chain. Greater is heavier.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.ChainsTargets">
             <summary>
             Indicates all possible targets that is used for checking the whole branches of the chain.
@@ -7494,11 +7484,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.FlatComplexity">
             <summary>
             Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.SortKey">
-            <summary>
-            Indicates an <see cref="T:System.Int32"/> value indicating the ordering priority of the chain. Greater is heavier.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.NestedComplexity">
@@ -7657,6 +7642,7 @@ if (student is (name: var name, age: >= 18))
             <param name="left">The left-side value to be compared.</param>
             <param name="right">The right-side value to be compared.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.EqualityComparer">
             <summary>

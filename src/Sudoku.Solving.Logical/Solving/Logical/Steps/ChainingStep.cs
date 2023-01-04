@@ -151,6 +151,19 @@ internal abstract record ChainingStep(
 		=> this switch { { DynamicNestingLevel: >= 2 } => Rarity.OnlyForSpecialPuzzles, _ => Rarity.HardlyEver };
 
 	/// <summary>
+	/// Indicates an <see cref="int"/> value indicating the ordering priority of the chain. Greater is heavier.
+	/// </summary>
+	internal int SortKey
+		=> this switch
+		{
+			BinaryForcingChainsStep { IsAbsurd: false } => 1,
+			ForcingChainStep or BidirectionalCycleStep => (IsX, IsY) switch { (true, true) => 4, (_, true) => 3, _ => 2 },
+			CellForcingChainsStep => 5,
+			RegionForcingChainsStep => 6,
+			BinaryForcingChainsStep => 7
+		};
+
+	/// <summary>
 	/// Indicates all possible targets that is used for checking the whole branches of the chain.
 	/// </summary>
 	protected internal Potential[] ChainsTargets
@@ -235,20 +248,6 @@ internal abstract record ChainingStep(
 			CellForcingChainsStep { Chains.Potentials: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
 			RegionForcingChainsStep { Chains.Potentials: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
 			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
-		};
-
-	/// <summary>
-	/// Indicates an <see cref="int"/> value indicating the ordering priority of the chain. Greater is heavier.
-	/// </summary>
-	[DebuggerHidden]
-	private int SortKey
-		=> this switch
-		{
-			BinaryForcingChainsStep { IsAbsurd: false } => 1,
-			ForcingChainStep or BidirectionalCycleStep => (IsX, IsY) switch { (true, true) => 4, (_, true) => 3, _ => 2 },
-			CellForcingChainsStep => 5,
-			RegionForcingChainsStep => 6,
-			BinaryForcingChainsStep => 7
 		};
 
 	/// <summary>
@@ -686,6 +685,7 @@ internal abstract record ChainingStep(
 	/// <param name="left">The left-side value to be compared.</param>
 	/// <param name="right">The right-side value to be compared.</param>
 	/// <returns>An <see cref="int"/> value indicating which is greater.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int Compare(ChainingStep left, ChainingStep right)
 		=> Sign(left.Difficulty - right.Difficulty) is var d and not 0

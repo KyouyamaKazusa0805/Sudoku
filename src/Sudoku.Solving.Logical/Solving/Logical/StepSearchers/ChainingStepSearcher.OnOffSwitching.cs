@@ -60,7 +60,7 @@ partial class ChainingStepSearcher
 	/// <param name="isX"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
 	/// <param name="isY"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <returns>The set of potentials that must be "off".</returns>
-	private PotentialSet GetOffToOn(scoped in Grid grid, Potential p, scoped in Grid source, PotentialSet offPotentials, bool isX, bool isY)
+	private PotentialSet GetOffToOn(scoped in Grid grid, Potential p, scoped in Grid? source, PotentialSet offPotentials, bool isX, bool isY)
 	{
 		var (cell, digit, _) = p;
 		var result = new PotentialSet();
@@ -68,12 +68,16 @@ partial class ChainingStepSearcher
 		if (isY)
 		{
 			// First rule: if there is only two potentials in this cell, the other one gets on.
-			if (BivalueCells.Contains(cell))
+			var mask = (short)(grid.GetCandidates(cell) & ~(1 << digit));
+			if (AllowDynamic ? IsPow2(mask) : BivalueCells.Contains(cell))
 			{
-				var otherDigit = (byte)TrailingZeroCount(grid.GetCandidates(cell) & ~(1 << digit));
+				var otherDigit = (byte)TrailingZeroCount(mask);
 				var pOn = new Potential(cell, otherDigit, true) { SingletonParent = p };
+				if (source is { } original)
+				{
+					addHiddenParentsOfCell(ref pOn, grid, original, offPotentials);
+				}
 
-				addHiddenParentsOfCell(ref pOn, grid, source, offPotentials);
 				result.Add(pOn);
 			}
 		}
@@ -81,14 +85,18 @@ partial class ChainingStepSearcher
 		if (isX)
 		{
 			// Second rule: if there is only two positions for this potential, the other one gets on.
+			var candMaps = AllowDynamic ? grid.CandidatesMap[digit] : CandidatesMap[digit];
 			foreach (var houseType in HouseTypes)
 			{
 				var houseIndex = cell.ToHouseIndex(houseType);
-				if ((HousesMap[houseIndex] & CandidatesMap[digit]) - cell is [var otherCell])
+				if ((HousesMap[houseIndex] & candMaps) - cell is [var otherCell])
 				{
 					var pOn = new Potential((byte)otherCell, digit, true) { SingletonParent = p };
+					if (source is { } original)
+					{
+						addHiddenParentsOfHouse(ref pOn, grid, original, houseType, offPotentials);
+					}
 
-					addHiddenParentsOfHouse(ref pOn, grid, source, houseType, offPotentials);
 					result.Add(pOn);
 				}
 			}
@@ -97,17 +105,12 @@ partial class ChainingStepSearcher
 		return result;
 
 
-		static void addHiddenParentsOfCell(scoped ref Potential p, scoped in Grid grid, scoped in Grid source, PotentialSet offPotentials)
+		static void addHiddenParentsOfCell(scoped ref Potential p, scoped in Grid current, scoped in Grid original, PotentialSet offPotentials)
 		{
-			if (source.IsUndefined)
-			{
-				return;
-			}
-
 			var cell = p.Cell;
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				if ((source.GetCandidates(cell) >> digit & 1) != 0 && (grid.GetCandidates(cell) >> digit & 1) == 0)
+				if ((original.Exists(cell, digit), current.Exists(cell, digit)) is (true, false))
 				{
 					// Add a hidden parent.
 					if (offPotentials.GetNullable(new(cell, digit, false)) is not { } parent)
@@ -122,46 +125,41 @@ partial class ChainingStepSearcher
 
 		static void addHiddenParentsOfHouse(
 			scoped ref Potential p,
-			scoped in Grid grid,
-			scoped in Grid source,
+			scoped in Grid current,
+			scoped in Grid original,
 			HouseType currentHouseType,
 			PotentialSet offPotentials
 		)
 		{
-			if (source.IsUndefined)
-			{
-				return;
-			}
-
 			var (cell, digit, _) = p;
-
 			var houseIndex = cell.ToHouseIndex(currentHouseType);
-			var sourceDigitDistribution = (short)0;
-			var currentDigitDistribution = (short)0;
-			for (var i = 0; i < 9; i++)
-			{
-				var houseCell = HouseCells[houseIndex][i];
-				if (source.GetStatus(houseCell) == CellStatus.Empty && (source.GetCandidates(houseCell) >> digit & 1) != 0)
-				{
-					sourceDigitDistribution |= (short)(1 << i);
-				}
-
-				if ((grid.GetCandidates(houseCell) >> digit & 1) != 0)
-				{
-					currentDigitDistribution |= (short)(1 << i);
-				}
-			}
 
 			// Get positions of the potential value that have been removed.
-			foreach (var i in (short)(sourceDigitDistribution & ~currentDigitDistribution))
+			foreach (var pos in (short)(g(original, houseIndex, digit) & ~g(current, houseIndex, digit)))
 			{
 				// Add a hidden parent.
-				if (offPotentials.GetNullable(new((byte)HouseCells[houseIndex][i], digit, false)) is not { } parent)
+				if (offPotentials.GetNullable(new((byte)HouseCells[houseIndex][pos], digit, false)) is not { } parent)
 				{
 					throw new InvalidOperationException("Parent not found.");
 				}
 
 				p.Parents.Add(parent);
+			}
+
+
+			static short g(scoped in Grid grid, int houseIndex, int digit)
+			{
+				var result = (short)0;
+
+				for (var i = 0; i < 9; i++)
+				{
+					if (grid.Exists(HouseCells[houseIndex][i], digit) is true)
+					{
+						result |= (short)(1 << i);
+					}
+				}
+
+				return result;
 			}
 		}
 	}

@@ -106,7 +106,7 @@ partial class ChainingStepSearcher
 	/// <param name="doReduction"></param>
 	/// <param name="doContradiction"></param>
 	private void DoBinaryChaining(
-		scoped ref Grid grid,
+		scoped in Grid grid,
 		Potential pOn,
 		Potential pOff,
 		List<ChainingStep> result,
@@ -124,7 +124,8 @@ partial class ChainingStepSearcher
 
 		// Test p = "on"
 		onToOn.Add(pOn);
-		if (doContradiction && DoChaining(grid, onToOn, onToOff) is var (absurdOn1, absurdOff1))
+		var pair = DoChaining(grid, onToOn, onToOff);
+		if (doContradiction && pair is var (absurdOn1, absurdOff1))
 		{
 			// p cannot hold its value, because else it would lead to a contradiction.
 			result.Add(CreateChainingOffStep(grid, absurdOn1, absurdOff1, pOn, pOn, true));
@@ -132,7 +133,8 @@ partial class ChainingStepSearcher
 
 		// Test p = "off"
 		offToOff.Add(pOff);
-		if (doContradiction && DoChaining(grid, offToOn, offToOff) is var (absurdOn2, absurdOff2))
+		pair = DoChaining(grid, offToOn, offToOff);
+		if (doContradiction && pair is var (absurdOn2, absurdOff2))
 		{
 			// p must hold its value, because else it would lead to a contradiction.
 			result.Add(CreateChainingOnStep(grid, absurdOn2, absurdOff2, pOff, pOff, true));
@@ -171,16 +173,16 @@ partial class ChainingStepSearcher
 	/// <param name="digit"></param>
 	/// <param name="onToOn">
 	/// <inheritdoc
-	///     cref="DoBinaryChaining(ref Grid, Potential, Potential, List{ChainingStep}, PotentialSet, PotentialSet, bool, bool)"
+	///     cref="DoBinaryChaining(in Grid, Potential, Potential, List{ChainingStep}, PotentialSet, PotentialSet, bool, bool)"
 	///     path="/param[@name='onToOn']"/>
 	/// </param>
 	/// <param name="onToOff">
 	/// <inheritdoc
-	///     cref="DoBinaryChaining(ref Grid, Potential, Potential, List{ChainingStep}, PotentialSet, PotentialSet, bool, bool)"
+	///     cref="DoBinaryChaining(in Grid, Potential, Potential, List{ChainingStep}, PotentialSet, PotentialSet, bool, bool)"
 	///     path="/param[@name='onToOff']"/>
 	/// </param>
 	private void DoHouseChaining(
-		scoped ref Grid grid,
+		scoped in Grid grid,
 		List<ChainingStep> result,
 		byte cell,
 		byte digit,
@@ -286,7 +288,7 @@ partial class ChainingStepSearcher
 			while (pendingOff.Count > 0)
 			{
 				var p = pendingOff.RemoveFirst();
-				var makeOn = GetOffToOn(grid, p, _savedGrid, toOff, isX, isY);
+				var makeOn = GetOffToOn(grid, p, null, toOff, isX, isY);
 				foreach (var pOn in makeOn)
 				{
 					if (length >= 4 && pOn == source)
@@ -368,7 +370,7 @@ partial class ChainingStepSearcher
 			while (pendingOff.Count > 0)
 			{
 				var p = pendingOff.RemoveFirst();
-				var makeOn = GetOffToOn(grid, p, _savedGrid, toOff, true, isY);
+				var makeOn = GetOffToOn(grid, p, null, toOff, true, isY);
 				foreach (var pOn in makeOn)
 				{
 					var pOff = new Potential(pOn, false); // Conjugate.
@@ -402,7 +404,7 @@ partial class ChainingStepSearcher
 	/// <returns>If success, <see langword="null"/>.</returns>
 	private (Potential On, Potential Off)? DoChaining(Grid grid, PotentialSet toOn, PotentialSet toOff)
 	{
-		_savedGrid = grid;
+		var tempGrid = grid;
 
 		var pendingOn = new PotentialList(toOn);
 		var pendingOff = new PotentialList(toOff);
@@ -411,14 +413,13 @@ partial class ChainingStepSearcher
 			if (pendingOn.Count > 0)
 			{
 				var p = pendingOn.RemoveFirst();
-				var makeOff = GetOnToOff(grid, p, !AllowNishio);
-				foreach (var pOff in makeOff)
+				foreach (var pOff in GetOnToOff(grid, p, !AllowNishio))
 				{
 					var pOn = new Potential(pOff, true); // Conjugate.
-					if (toOn.Contains(pOn))
+					if (toOn.GetNullable(pOn) is { } pOnInSet)
 					{
 						// Contradiction found.
-						return (toOn.GetNullable(pOn) ?? default, pOff); // Cannot be both on and off at the same time.
+						return (pOnInSet, pOff); // Cannot be both on and off at the same time.
 					}
 					else if (!toOff.Contains(pOff))
 					{
@@ -431,19 +432,21 @@ partial class ChainingStepSearcher
 			else
 			{
 				var p = pendingOff.RemoveFirst();
-				var makeOn = GetOffToOn(grid, p, _savedGrid, toOff, true, !AllowNishio);
+				var makeOn = GetOffToOn(grid, p, tempGrid, toOff, true, !AllowNishio);
+
 				if (AllowDynamic)
 				{
 					// Memorize the shutted down potentials.
-					p.MakeOffIn(ref grid);
+					grid[p.Cell, p.Digit] = false;
 				}
+
 				foreach (var pOn in makeOn)
 				{
 					var pOff = new Potential(pOn, false); // Conjugate.
-					if (toOff.Contains(pOff))
+					if (toOff.GetNullable(pOff) is { } pOffInSet)
 					{
 						// Contradiction found.
-						return (pOn, toOff.GetNullable(pOff) ?? default); // Cannot be both on and off at the same time.
+						return (pOn, pOffInSet); // Cannot be both on and off at the same time.
 					}
 					else if (!toOn.Contains(pOn))
 					{

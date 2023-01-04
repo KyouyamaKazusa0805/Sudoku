@@ -17,16 +17,6 @@ namespace Sudoku.Solving.Logical.StepSearchers;
 internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 {
 	/// <summary>
-	/// <para>Indicates the temporary saved grid.</para>
-	/// <para><i>
-	/// This field will be used when the step searcher uses advanced logic (dynamic forcing chains or dynamic forcing chains (+))
-	/// to search for chains.
-	/// </i></para>
-	/// </summary>
-	private Grid _savedGrid;
-
-
-	/// <summary>
 	/// Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
 	/// that only uses a single digit. It is a brute-force view of a fish.
 	/// </summary>
@@ -146,14 +136,12 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <param name="child">The child node to be checked.</param>
 	/// <param name="parent">The parent node to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	internal bool IsParent(Potential child, Potential parent)
+	private bool IsParent(Potential child, Potential parent)
 	{
 		var pTest = child;
 		while (pTest.Parents is [var first, ..])
 		{
-			pTest = first;
-
-			if (pTest == parent)
+			if ((pTest = first) == parent)
 			{
 				return true;
 			}
@@ -195,15 +183,15 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <returns>The hints found.</returns>
 	private List<ChainingStep> GetMultipleChains(scoped in Grid grid)
 	{
-		var tempGrid = grid;
 		var result = new List<ChainingStep>();
 
 		// Iterate on all empty cells.
 		foreach (byte cell in EmptyCells)
 		{
 			// The cell is empty.
-			var cardinality = PopCount((uint)tempGrid.GetCandidates(cell));
-			if (cardinality > 2 || cardinality > 1 && AllowDynamic)
+			var mask = grid.GetCandidates(cell);
+			var count = PopCount((uint)mask);
+			if (count > 2 || count > 1 && AllowDynamic)
 			{
 				// Prepare storage and accumulator for "Cell Reduction".
 				var digitToOn = new ChainBranch();
@@ -212,43 +200,40 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 				var cellToOff = default(PotentialSet?);
 
 				// Iterate on all potential values that are not alone.
-				for (byte digit = 0; digit < 9; digit++)
+				foreach (byte digit in mask)
 				{
-					if (CandidatesMap[digit].Contains(cell))
+					// Do Binary chaining (same potential either on or off).
+					var pOn = new Potential(cell, digit, true);
+					var pOff = new Potential(cell, digit, false);
+					var onToOn = new PotentialSet();
+					var onToOff = new PotentialSet();
+					var doDouble = count >= 3 && !AllowNishio && AllowDynamic;
+					var doContradiction = AllowDynamic || AllowNishio;
+					DoBinaryChaining(grid, pOn, pOff, result, onToOn, onToOff, doDouble, doContradiction);
+
+					if (!AllowNishio)
 					{
-						// Do Binary chaining (same potential either on or off).
-						var pOn = new Potential(cell, digit, true);
-						var pOff = new Potential(cell, digit, false);
-						var onToOn = new PotentialSet();
-						var onToOff = new PotentialSet();
-						var doDouble = cardinality >= 3 && !AllowNishio && AllowDynamic;
-						var doContradiction = AllowDynamic || AllowNishio;
-						DoBinaryChaining(ref tempGrid, pOn, pOff, result, onToOn, onToOff, doDouble, doContradiction);
+						// Do house chaining.
+						DoHouseChaining(grid, result, cell, digit, onToOn, onToOff);
+					}
 
-						if (!AllowNishio)
-						{
-							// Do house chaining.
-							DoHouseChaining(ref tempGrid, result, cell, digit, onToOn, onToOff);
-						}
-
-						// Collect results for cell chaining.
-						digitToOn.Add(digit, onToOn);
-						digitToOff.Add(digit, onToOff);
-						if (cellToOn is null || cellToOff is null)
-						{
-							cellToOn = new(onToOn);
-							cellToOff = new(onToOff);
-						}
-						else
-						{
-							cellToOn &= onToOn;
-							cellToOff &= onToOff;
-						}
+					// Collect results for cell chaining.
+					digitToOn.Add(digit, onToOn);
+					digitToOff.Add(digit, onToOff);
+					if (cellToOn is null || cellToOff is null)
+					{
+						cellToOn = new(onToOn);
+						cellToOff = new(onToOff);
+					}
+					else
+					{
+						cellToOn &= onToOn;
+						cellToOff &= onToOff;
 					}
 				}
 
 				// Do cell reduction.
-				if (!AllowNishio && (cardinality == 2 || AllowMultiple))
+				if (!AllowNishio && (count == 2 || AllowMultiple))
 				{
 					if (cellToOn is not null)
 					{

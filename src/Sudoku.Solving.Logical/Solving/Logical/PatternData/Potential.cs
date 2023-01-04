@@ -169,13 +169,6 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 	[GeneratedDeconstruction]
 	public partial void Deconstruct(out byte cell, out byte digit, out bool isOn);
 
-	/// <summary>
-	/// Makes the candidate represented as the current <see cref="Potential"/> instance of target grid eliminated.
-	/// </summary>
-	/// <param name="grid">The target grid.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void MakeOffIn(scoped ref Grid grid) => grid.GetMaskRef(Cell) &= (short)~(1 << Digit);
-
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
