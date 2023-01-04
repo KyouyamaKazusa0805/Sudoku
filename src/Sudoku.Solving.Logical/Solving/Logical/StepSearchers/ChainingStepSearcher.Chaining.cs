@@ -122,7 +122,7 @@ partial class ChainingStepSearcher
 		// Circular Forcing Chains (hypothesis implying its negation) are already covered by Cell Forcing Chains,
 		// and are therefore not checked for.
 
-		// Test p = "on"
+		// Test p = "on".
 		onToOn.Add(pOn);
 		var pair = DoChaining(grid, onToOn, onToOff);
 		if (doContradiction && pair is var (absurdOn1, absurdOff1))
@@ -131,7 +131,7 @@ partial class ChainingStepSearcher
 			result.Add(CreateChainingOffStep(grid, absurdOn1, absurdOff1, pOn, pOn, true));
 		}
 
-		// Test p = "off"
+		// Test p = "off".
 		offToOff.Add(pOff);
 		pair = DoChaining(grid, offToOn, offToOff);
 		if (doContradiction && pair is var (absurdOn2, absurdOff2))
