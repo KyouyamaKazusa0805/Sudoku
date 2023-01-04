@@ -3182,315 +3182,49 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher">
-            <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IChainingStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)">
             <summary>
-            Look for, and add single forcing chains, and bidirectional cycles.
+            Provides with a base type as a step searcher operating on chaining.
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="pOn">The start potential.</param>
-            <param name="result">The result steps found.</param>
-            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)">
-            <summary>
-            <para>From the potential <c>p</c>, compute the consequences from both states.</para>
-            <para>
-            More precisely, <c>p</c> is first assumed to be correct ("on"), and then to be incorrect ("off");
-            and the following sets are created:
-            <list type="bullet">
-            <item><c><paramref name="onToOn"/></c> the set of potentials that must be "on" when <c>p</c> is "on".</item>
-            <item><c><paramref name="onToOff"/></c> the set of potentials that must be "off" when <c>p</c> is "on".</item>
-            <item><c>offToOn</c> the set of potentials that must be "on" when <c>p</c> is "off".</item>
-            <item><c>offToOff</c> the set of potentials that must be "off" when <c>p</c> is "off".</item>
-            </list>
-            Then the following rules are applied:
-            <list type="bullet">
-            <item>
-            If a potential belongs to both <c><paramref name="onToOn"/></c> and <c><paramref name="onToOff"/></c>,
-            the potential <c>p</c> cannot be "on" because it would imply a potential
-            to be both "on" and "off", which is an absurd.
-            </item>
-            <item>
-            If a potential belongs to both <c>offToOn</c> and <c>offToOff</c>,
-            the potential <c>p</c> cannot be "off" because it would imply a potential
-            to be both "on" and "off", which is an absurd.
-            </item>
-            <item>
-            If a potential belongs to both <c><paramref name="onToOn"/></c> and <c>offToOn</c>,
-            this potential must be "on", because it is implied to be "on" by the two possible
-            states of <c>p</c>.
-            </item>
-            <item>
-            If a potential belongs to both <c><paramref name="onToOff"/></c> and <c>offToOff</c>,
-            this potential must be "off", because it is implied to be "off" by the two possible
-            states of <c>p</c>.
-            </item>
-            </list>
-            Note that if a potential belongs to all the four sets, the sudoku has no solution. This is not checked.
-            </para>
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="pOn"></param>
-            <param name="pOff"></param>
-            <param name="result">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)" path="/param[@name='result']"/>
-            </param>
-            <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
-            <param name="onToOff">An empty set, filled with potentials that get off if the given potential is on.</param>
-            <param name="doReduction"></param>
-            <param name="doContradiction"></param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet)">
-            <summary>
-            Search for region (house) forcing chains.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="result">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)" path="/param[@name='result']"/>
-            </param>
-            <param name="cell"></param>
-            <param name="digit"></param>
-            <param name="onToOn">
-            <inheritdoc
-                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)"
-                path="/param[@name='onToOn']"/>
-            </param>
-            <param name="onToOff">
-            <inheritdoc
-                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)"
-                path="/param[@name='onToOff']"/>
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)">
-            <summary>
-            Construct cycles and return them, by recording them into argument <paramref name="cycles"/>.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="toOn">The potentials that are assumed to be "on".</param>
-            <param name="toOff">The potentials that are assumed to be "off".</param>
-            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
-            <param name="cycles">
-            <para>All found cycles, represented as their final <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> node.</para>
-            <para>By using <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.ChainPotentials"/>, we can get the whole chain.</para>
-            </param>
-            <param name="source">The source node.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoForcingChains(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)">
-            <summary>
-            Construct forcing chains (in Sudoku Explainer, AICs will be treated as forcing chains).
-            In other words, this method does find for AICs.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="toOn">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='toOn']"/>
-            </param>
-            <param name="toOff">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='toOff']"/>
-            </param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
-            <param name="chains">
-            <para>All found chains, represented as their final <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> node.</para>
-            <para>
-            <inheritdoc
-                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)"
-                path="//param[@name='cycles']/para[2]"/>
-            </para>
-            </param>
-            <param name="source">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='source']"/>
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoChaining(Sudoku.Concepts.Grid,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet)">
-            <summary>
-            Given the initial sets of potentials that are assumed to be "on" and "off",
-            complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="toOn">The potentials that are assumed to be "on".</param>
-            <param name="toOff">The potentials that are assumed to be "off".</param>
-            <returns>If success, <see langword="null"/>.</returns>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio">
-            <summary>
-            Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
-            that only uses a single digit. It is a brute-force view of a fish.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple">
-            <summary>
-            Indicates whether the step searcher allows multiple forcing chains:
-            <list type="bullet">
-            <item>
-            For non-dynamic forcing chains:
-            <list type="bullet">
-            <item>Cell forcing chains</item>
-            <item>Region (House) forcing chains</item>
-            </list>
-            </item>
-            <item>
-            For dynamic forcing chains:
-            <list type="bullet">
-            <item>Dynamic cell forcing chains</item>
-            <item>Dynamic region (house) forcing chains</item>
-            </list>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic">
-            <summary>
-            Indicates whether the step searcher allows dynamic forcing chains:
-            <list type="bullet">
-            <item>Dynamic contradiction forcing chains</item>
-            <item>Dynamic double forcing chains</item>
-            </list>
-            </summary>
-            <remarks>
-            If step searcher enables for dynamic forcing chains, forcing chains will contain branches,
-            or even branches over branches (recursively). It will be very useful on complex inferences.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel">
-            <summary>
-            Indicates the level of dynamic recursion. The value can be 0, 1, 2, 3, 4 and 5.
-            </summary>
-            <remarks>
-            All possible values corresponds to their own cases respectively:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Supported nesting rule</description>
-            </listheader>
-            <item>
-            <term>0</term>
-            <description>Non-dynamic forcing chains</description>
-            </item>
-            <item>
-            <term>1</term>
-            <description>Dynamic forcing chains (+ Structural techniques, e.g. <see cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>)</description>
-            </item>
-            <item>
-            <term>2</term>
-            <description>Dynamic forcing chains (+ AIC)</description>
-            </item>
-            <item>
-            <term>3</term>
-            <description>Dynamic forcing chains (+ Multiple forcing chains)</description>
-            </item>
-            <item>
-            <term>4</term>
-            <description>Dynamic forcing chains (+ Dynamic forcing chains)</description>
-            </item>
-            <item>
-            <term>5</term>
-            <description>Dynamic forcing chains (+ Dynamic forcing chains (+))</description>
-            </item>
-            </list>
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.IsParent(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential)">
-            <summary>
-            Checks whether hte specified <paramref name="child"/> is the real child node of <paramref name="parent"/>.
-            </summary>
-            <param name="child">The child node to be checked.</param>
-            <param name="parent">The parent node to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
-            <summary>
-            Try to search for all AICs and continuous nice loops.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
-            <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
-            <returns>All possible found <see cref="T:Sudoku.Solving.Logical.Steps.ChainingStep"/>s.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetMultipleChains(Sudoku.Concepts.Grid@)">
-            <summary>
-            Search for hints on the given grid.
-            </summary>
-            <param name="grid">The grid on which to search for hints.</param>
-            <returns>The hints found.</returns>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetOnToOff(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
             <summary>
             Get the set of all <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s that cannot be valid (are "off") if the given potential is "on"
             (i.e. if its value is the correct one for the cell).
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
             <param name="p">The potential that is assumed to be "on"</param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Get the set of all <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s that cannot be valid (are "off") if the given potential is "on"
             (i.e. if its value is the correct one for the cell).
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
             <param name="p">The potential that is assumed to be "off"</param>
             <param name="source">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='source']"/>
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)"
+                path="/param[@name='source']"/>
             </param>
             <param name="offPotentials">Indicates the <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances that are already set "off".</param>
-            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="allowDynamic"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCycleStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoChaining(Sudoku.Concepts.Grid,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)">
             <summary>
-            Try to create a cycle hint. If any conclusion (elimination, assignment) found and is available,
-            the method will return a <see cref="T:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep"/> instance with a non-<see langword="null"/> value.
+            Given the initial sets of potentials that are assumed to be "on" and "off",
+            complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
             </summary>
-            <param name="grid">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetNonMultipleChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
-            </param>
-            <param name="dstOn">Indicates the destination node that is at the state "on".</param>
-            <param name="isX">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='isX']"/>
-            </param>
-            <param name="isY">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='isY']"/>
-            </param>
-            <returns>
-            A valid <see cref="T:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateAicStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean)">
-            <summary>
-            Try to create an AIC hint.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateChainingOnStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
-            <summary>
-            Try to create a binary forcing chain hint on "on" state.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateChainingOffStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
-            <summary>
-            Try to create a binary forcing chain hint on "off" state.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet})">
-            <summary>
-            Try to create a cell forcing chain hint.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet})">
-            <summary>
-            Try to create a region (house) forcing chain hint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.Options">
-            <inheritdoc/>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="toOn">The potentials that are assumed to be "on".</param>
+            <param name="toOff">The potentials that are assumed to be "off".</param>
+            <param name="allowNishio"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowNishio" path="/summary"/></param>
+            <param name="allowDynamic"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
+            <returns>If success, <see langword="null"/>.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.ChromaticPatternStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IChromaticPatternStepSearcher"/>
@@ -5049,6 +4783,195 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.StepSearchers.MultiBranchWWingStepSearcher.Options">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IChainingStepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowNishio">
+            <summary>
+            Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
+            that only uses a single digit. It is a brute-force view of a fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowMultiple">
+            <summary>
+            Indicates whether the step searcher allows multiple forcing chains:
+            <list type="bullet">
+            <item>
+            For non-dynamic forcing chains:
+            <list type="bullet">
+            <item>Cell forcing chains</item>
+            <item>Region (House) forcing chains</item>
+            </list>
+            </item>
+            <item>
+            For dynamic forcing chains:
+            <list type="bullet">
+            <item>Dynamic cell forcing chains</item>
+            <item>Dynamic region (house) forcing chains</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowDynamic">
+            <summary>
+            Indicates whether the step searcher allows dynamic forcing chains:
+            <list type="bullet">
+            <item>Dynamic contradiction forcing chains</item>
+            <item>Dynamic double forcing chains</item>
+            </list>
+            </summary>
+            <remarks>
+            If step searcher enables for dynamic forcing chains, forcing chains will contain branches,
+            or even branches over branches (recursively). It will be very useful on complex inferences.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel">
+            <summary>
+            Indicates the level of dynamic recursion. The value can be 0, 1, 2, 3, 4 and 5.
+            </summary>
+            <remarks>
+            All possible values corresponds to their own cases respectively:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Supported nesting rule</description>
+            </listheader>
+            <item>
+            <term>0</term>
+            <description>Non-dynamic forcing chains</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>Dynamic forcing chains (+ Structural techniques, e.g. <see cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>)</description>
+            </item>
+            <item>
+            <term>2</term>
+            <description>Dynamic forcing chains (+ AIC)</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>Dynamic forcing chains (+ Multiple forcing chains)</description>
+            </item>
+            <item>
+            <term>4</term>
+            <description>Dynamic forcing chains (+ Dynamic forcing chains)</description>
+            </item>
+            <item>
+            <term>5</term>
+            <description>Dynamic forcing chains (+ Dynamic forcing chains (+))</description>
+            </item>
+            </list>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@)">
+            <summary>
+            Search for hints on the given grid.
+            </summary>
+            <param name="grid">The grid on which to search for hints.</param>
+            <returns>The hints found.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)">
+            <summary>
+            <para>From the potential <c>p</c>, compute the consequences from both states.</para>
+            <para>
+            More precisely, <c>p</c> is first assumed to be correct ("on"), and then to be incorrect ("off");
+            and the following sets are created:
+            <list type="bullet">
+            <item><c><paramref name="onToOn"/></c> the set of potentials that must be "on" when <c>p</c> is "on".</item>
+            <item><c><paramref name="onToOff"/></c> the set of potentials that must be "off" when <c>p</c> is "on".</item>
+            <item><c>offToOn</c> the set of potentials that must be "on" when <c>p</c> is "off".</item>
+            <item><c>offToOff</c> the set of potentials that must be "off" when <c>p</c> is "off".</item>
+            </list>
+            Then the following rules are applied:
+            <list type="bullet">
+            <item>
+            If a potential belongs to both <c><paramref name="onToOn"/></c> and <c><paramref name="onToOff"/></c>,
+            the potential <c>p</c> cannot be "on" because it would imply a potential
+            to be both "on" and "off", which is an absurd.
+            </item>
+            <item>
+            If a potential belongs to both <c>offToOn</c> and <c>offToOff</c>,
+            the potential <c>p</c> cannot be "off" because it would imply a potential
+            to be both "on" and "off", which is an absurd.
+            </item>
+            <item>
+            If a potential belongs to both <c><paramref name="onToOn"/></c> and <c>offToOn</c>,
+            this potential must be "on", because it is implied to be "on" by the two possible
+            states of <c>p</c>.
+            </item>
+            <item>
+            If a potential belongs to both <c><paramref name="onToOff"/></c> and <c>offToOff</c>,
+            this potential must be "off", because it is implied to be "off" by the two possible
+            states of <c>p</c>.
+            </item>
+            </list>
+            Note that if a potential belongs to all the four sets, the sudoku has no solution. This is not checked.
+            </para>
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="pOn"></param>
+            <param name="pOff"></param>
+            <param name="result">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)"
+                path="/param[@name='result']"/>
+            </param>
+            <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
+            <param name="onToOff">An empty set, filled with potentials that get off if the given potential is on.</param>
+            <param name="doReduction"></param>
+            <param name="doContradiction"></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet)">
+            <summary>
+            Search for region (house) forcing chains.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="result">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)"
+                path="/param[@name='result']"/>
+            </param>
+            <param name="cell"></param>
+            <param name="digit"></param>
+            <param name="onToOn">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)"
+                path="/param[@name='onToOn']"/>
+            </param>
+            <param name="onToOff">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)"
+                path="/param[@name='onToOff']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.CreateChainingOnStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
+            <summary>
+            Try to create a binary forcing chain hint on "on" state.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.CreateChainingOffStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
+            <summary>
+            Try to create a binary forcing chain hint on "off" state.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet})">
+            <summary>
+            Try to create a cell forcing chain hint.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet})">
+            <summary>
+            Try to create a region (house) forcing chain hint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.MultisectorLockedSetsStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IMultisectorLockedSetsStepSearcher"/>
         </member>
@@ -5056,6 +4979,106 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.MultisectorLockedSetsStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IChainingStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.IsParent(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential)">
+            <summary>
+            Checks whether hte specified <paramref name="child"/> is the real child node of <paramref name="parent"/>.
+            </summary>
+            <param name="child">The child node to be checked.</param>
+            <param name="parent">The parent node to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+            <summary>
+            Try to search for all AICs and continuous nice loops.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
+            <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
+            <returns>All possible found <see cref="T:Sudoku.Solving.Logical.Steps.ChainingStep"/>s.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)">
+            <summary>
+            Look for, and add single forcing chains, and bidirectional cycles.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="pOn">The start potential.</param>
+            <param name="result">The result steps found.</param>
+            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)">
+            <summary>
+            Construct cycles and return them, by recording them into argument <paramref name="cycles"/>.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="toOn">The potentials that are assumed to be "on".</param>
+            <param name="toOff">The potentials that are assumed to be "off".</param>
+            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="cycles">
+            <para>All found cycles, represented as their final <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> node.</para>
+            <para>By using <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.ChainPotentials"/>, we can get the whole chain.</para>
+            </param>
+            <param name="source">The source node.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoForcingChains(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)">
+            <summary>
+            Construct forcing chains (in Sudoku Explainer, AICs will be treated as forcing chains).
+            In other words, this method does find for AICs.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="toOn">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='toOn']"/>
+            </param>
+            <param name="toOff">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='toOff']"/>
+            </param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="chains">
+            <para>All found chains, represented as their final <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> node.</para>
+            <para>
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)"
+                path="//param[@name='cycles']/para[2]"/>
+            </para>
+            </param>
+            <param name="source">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='source']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.CreateCycleStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean)">
+            <summary>
+            Try to create a cycle hint. If any conclusion (elimination, assignment) found and is available,
+            the method will return a <see cref="T:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep"/> instance with a non-<see langword="null"/> value.
+            </summary>
+            <param name="grid">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            </param>
+            <param name="dstOn">Indicates the destination node that is at the state "on".</param>
+            <param name="isX">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='isX']"/>
+            </param>
+            <param name="isY">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='isY']"/>
+            </param>
+            <returns>
+            A valid <see cref="T:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.CreateAicStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean)">
+            <summary>
+            Try to create an AIC hint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.Options">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.NormalFishStepSearcher">
@@ -7353,19 +7376,19 @@ if (student is (name: var name, age: >= 18))
             <param name="IsX">Indicates whether the chain is X-Chain.</param>
             <param name="IsY">Indicates whether the chain is Y-Chain.</param>
             <param name="IsMultiple">
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowMultiple" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
             </param>
             <param name="IsDynamic">
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
             </param>
             <param name="IsNishio">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio" path="/summary"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowNishio" path="/summary"/>
             </param>
             <param name="DynamicNestingLevel">
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
             </param>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
@@ -7376,19 +7399,19 @@ if (student is (name: var name, age: >= 18))
             <param name="IsX">Indicates whether the chain is X-Chain.</param>
             <param name="IsY">Indicates whether the chain is Y-Chain.</param>
             <param name="IsMultiple">
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowMultiple" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
             </param>
             <param name="IsDynamic">
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
             </param>
             <param name="IsNishio">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio" path="/summary"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowNishio" path="/summary"/>
             </param>
             <param name="DynamicNestingLevel">
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
             </param>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.IsX">
@@ -7399,25 +7422,25 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.IsMultiple">
             <summary>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowMultiple" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.IsDynamic">
             <summary>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.IsNishio">
             <summary>
-            <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.AllowNishio" path="/summary"/>
+            <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowNishio" path="/summary"/>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.DynamicNestingLevel">
             <summary>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Logical.Steps.ChainingStep.TargetTypeNotSupportedMessage">

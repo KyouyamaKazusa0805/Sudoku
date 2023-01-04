@@ -24,7 +24,7 @@
 [assembly: SearcherConfiguration<EmptyRectangleIntersectionPairStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<                      FireworkStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<     GurthSymmetricalPlacementStepSearcher>(SearcherDisplayingLevel.A)]
-[assembly: SearcherConfiguration<                      ChainingStepSearcher>(SearcherDisplayingLevel.C)]
+[assembly: SearcherConfiguration<           NonMultipleChainingStepSearcher>(SearcherDisplayingLevel.C)]
 [assembly: SearcherConfiguration<            AlmostLockedSetsXzStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<        AlmostLockedSetsXyWingStepSearcher>(SearcherDisplayingLevel.B)]
 [assembly: SearcherConfiguration<         AlmostLockedSetsWWingStepSearcher>(SearcherDisplayingLevel.B)]
@@ -33,6 +33,7 @@
 [assembly: SearcherConfiguration<                BivalueOddagonStepSearcher>(SearcherDisplayingLevel.C)]
 [assembly: SearcherConfiguration<              ChromaticPatternStepSearcher>(SearcherDisplayingLevel.C)]
 [assembly: SearcherConfiguration<                  DeathBlossomStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                   HasBugs)]
+[assembly: SearcherConfiguration<              MultipleChainingStepSearcher>(SearcherDisplayingLevel.C)]
 #if ALLOW_DEPRECATED_LOGICAL_STEP_OR_STEP_SEARCHER
 [assembly: SearcherConfiguration<     AlternatingInferenceChainStepSearcher>(SearcherDisplayingLevel.C)]
 #endif

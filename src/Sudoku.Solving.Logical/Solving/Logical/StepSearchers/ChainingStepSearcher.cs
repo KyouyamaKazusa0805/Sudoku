@@ -1,174 +1,48 @@
-﻿#undef ALLOW_ADVANCED_CHAINING
+﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
-namespace Sudoku.Solving.Logical.StepSearchers;
-
-[StepSearcher]
-[SeparatedStepSearcher(0)]
-[SeparatedStepSearcher(1, nameof(AllowNishio), true, nameof(AllowDynamic), true)]
-[SeparatedStepSearcher(2, nameof(AllowMultiple), true)]
-[SeparatedStepSearcher(3, nameof(AllowMultiple), true, nameof(AllowDynamic), true)]
-#if false
-[SeparatedStepSearcher(4, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 1)]
-[SeparatedStepSearcher(5, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 2)]
-[SeparatedStepSearcher(6, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 3)]
-[SeparatedStepSearcher(7, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 4)]
-[SeparatedStepSearcher(8, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 5)]
-#endif
-internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
+/// <summary>
+/// Provides with a base type as a step searcher operating on chaining.
+/// </summary>
+internal abstract class ChainingStepSearcher
 {
 	/// <summary>
-	/// Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
-	/// that only uses a single digit. It is a brute-force view of a fish.
+	/// Get the set of all <see cref="Potential"/>s that cannot be valid (are "off") if the given potential is "on"
+	/// (i.e. if its value is the correct one for the cell).
 	/// </summary>
-	public bool AllowNishio { get; init; }
-
-	/// <summary>
-	/// Indicates whether the step searcher allows multiple forcing chains:
-	/// <list type="bullet">
-	/// <item>
-	/// For non-dynamic forcing chains:
-	/// <list type="bullet">
-	/// <item>Cell forcing chains</item>
-	/// <item>Region (House) forcing chains</item>
-	/// </list>
-	/// </item>
-	/// <item>
-	/// For dynamic forcing chains:
-	/// <list type="bullet">
-	/// <item>Dynamic cell forcing chains</item>
-	/// <item>Dynamic region (house) forcing chains</item>
-	/// </list>
-	/// </item>
-	/// </list>
-	/// </summary>
-	public bool AllowMultiple { get; init; }
-
-	/// <summary>
-	/// Indicates whether the step searcher allows dynamic forcing chains:
-	/// <list type="bullet">
-	/// <item>Dynamic contradiction forcing chains</item>
-	/// <item>Dynamic double forcing chains</item>
-	/// </list>
-	/// </summary>
-	/// <remarks>
-	/// If step searcher enables for dynamic forcing chains, forcing chains will contain branches,
-	/// or even branches over branches (recursively). It will be very useful on complex inferences.
-	/// </remarks>
-	public bool AllowDynamic { get; init; }
-
-	/// <summary>
-	/// Indicates the level of dynamic recursion. The value can be 0, 1, 2, 3, 4 and 5.
-	/// </summary>
-	/// <remarks>
-	/// All possible values corresponds to their own cases respectively:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Value</term>
-	/// <description>Supported nesting rule</description>
-	/// </listheader>
-	/// <item>
-	/// <term>0</term>
-	/// <description>Non-dynamic forcing chains</description>
-	/// </item>
-	/// <item>
-	/// <term>1</term>
-	/// <description>Dynamic forcing chains (+ Structural techniques, e.g. <see cref="ILockedCandidatesStepSearcher"/>)</description>
-	/// </item>
-	/// <item>
-	/// <term>2</term>
-	/// <description>Dynamic forcing chains (+ AIC)</description>
-	/// </item>
-	/// <item>
-	/// <term>3</term>
-	/// <description>Dynamic forcing chains (+ Multiple forcing chains)</description>
-	/// </item>
-	/// <item>
-	/// <term>4</term>
-	/// <description>Dynamic forcing chains (+ Dynamic forcing chains)</description>
-	/// </item>
-	/// <item>
-	/// <term>5</term>
-	/// <description>Dynamic forcing chains (+ Dynamic forcing chains (+))</description>
-	/// </item>
-	/// </list>
-	/// </remarks>
-	/// <seealso cref="ILockedCandidatesStepSearcher"/>
-	public int DynamicNestingLevel { get; init; }
-
-
-	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="p">The potential that is assumed to be "on"</param>
+	/// <param name="isY"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <returns>The set of potentials that must be "off".</returns>
+	protected PotentialSet GetOnToOff(scoped in Grid grid, Potential p, bool isY)
 	{
-		// TODO: Implement an implications cache.
+		var result = new PotentialSet();
 
-		scoped ref readonly var grid = ref context.Grid;
-		var result = AllowMultiple || AllowDynamic ? GetMultipleChains(grid) : getNonMultipleChains(grid);
-		if (result.Count == 0)
+		var cell = p.Cell;
+		var digit = p.Digit;
+
+		if (isY)
 		{
-			return null;
-		}
-
-		result.Sort(ChainingStep.Compare);
-
-		if (context.OnlyFindOne)
-		{
-			return result[0];
-		}
-
-		context.Accumulator.AddRange(result);
-		return null;
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		List<ChainingStep> getNonMultipleChains(scoped in Grid grid)
-		{
-			var result = GetNonMultipleChains(grid, true, false);
-			result.AddRange(GetNonMultipleChains(grid, false, true));
-			result.AddRange(GetNonMultipleChains(grid, true, true));
-
-			return result;
-		}
-	}
-
-	/// <summary>
-	/// Checks whether hte specified <paramref name="child"/> is the real child node of <paramref name="parent"/>.
-	/// </summary>
-	/// <param name="child">The child node to be checked.</param>
-	/// <param name="parent">The parent node to be checked.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	private bool IsParent(Potential child, Potential parent)
-	{
-		var pTest = child;
-		while (pTest.Parents is [var first, ..])
-		{
-			if ((pTest = first) == parent)
+			// This rule is not used with X-Chains.
+			// First rule: other potential values for this cell get off.
+			var candidateMask = grid.GetCandidates(cell);
+			for (byte tempDigit = 0; tempDigit < 9; tempDigit++)
 			{
-				return true;
+				if (tempDigit != digit && (candidateMask >> tempDigit & 1) != 0)
+				{
+					result.Add(new(cell, tempDigit, false) { SingletonParent = p });
+				}
 			}
 		}
 
-		return false;
-	}
-
-	/// <summary>
-	/// Try to search for all AICs and continuous nice loops.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
-	/// <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
-	/// <returns>All possible found <see cref="ChainingStep"/>s.</returns>
-	private List<ChainingStep> GetNonMultipleChains(scoped in Grid grid, bool isX, bool isY)
-	{
-		var result = new List<ChainingStep>();
-
-		foreach (byte cell in EmptyCells)
+		// Second rule: other potential position for this value get off.
+		foreach (var houseType in HouseTypes)
 		{
-			for (byte digit = 0; digit < 9; digit++)
+			var houseIndex = cell.ToHouseIndex(houseType);
+			foreach (byte tempCell in HouseCells[houseIndex])
 			{
-				if (CandidatesMap[digit].Contains(cell))
+				if (tempCell != cell && (grid.GetCandidates(tempCell) >> digit & 1) != 0)
 				{
-					var pOn = new Potential(cell, digit, true);
-					DoUnaryChaining(grid, pOn, result, isX, isY);
+					result.Add(new(tempCell, digit, false) { SingletonParent = p });
 				}
 			}
 		}
@@ -177,97 +51,214 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	}
 
 	/// <summary>
-	/// Search for hints on the given grid.
+	/// Get the set of all <see cref="Potential"/>s that cannot be valid (are "off") if the given potential is "on"
+	/// (i.e. if its value is the correct one for the cell).
 	/// </summary>
-	/// <param name="grid">The grid on which to search for hints.</param>
-	/// <returns>The hints found.</returns>
-	private List<ChainingStep> GetMultipleChains(scoped in Grid grid)
-	{
-		var result = new List<ChainingStep>();
-
-		// Iterate on all empty cells.
-		foreach (byte cell in EmptyCells)
-		{
-			// The cell is empty.
-			var mask = grid.GetCandidates(cell);
-			var count = PopCount((uint)mask);
-			if (count > 2 || count > 1 && AllowDynamic)
-			{
-				// Prepare storage and accumulator for "Cell Reduction".
-				var digitToOn = new ChainBranch();
-				var digitToOff = new ChainBranch();
-				var cellToOn = default(PotentialSet?);
-				var cellToOff = default(PotentialSet?);
-
-				// Iterate on all potential values that are not alone.
-				foreach (byte digit in mask)
-				{
-					// Do Binary chaining (same potential either on or off).
-					var pOn = new Potential(cell, digit, true);
-					var pOff = new Potential(cell, digit, false);
-					var onToOn = new PotentialSet();
-					var onToOff = new PotentialSet();
-					var doDouble = count >= 3 && !AllowNishio && AllowDynamic;
-					var doContradiction = AllowDynamic || AllowNishio;
-					DoBinaryChaining(grid, pOn, pOff, result, onToOn, onToOff, doDouble, doContradiction);
-
-					if (!AllowNishio)
-					{
-						// Do house chaining.
-						DoHouseChaining(grid, result, cell, digit, onToOn, onToOff);
-					}
-
-					// Collect results for cell chaining.
-					digitToOn.Add(digit, onToOn);
-					digitToOff.Add(digit, onToOff);
-					if (cellToOn is null || cellToOff is null)
-					{
-						cellToOn = new(onToOn);
-						cellToOff = new(onToOff);
-					}
-					else
-					{
-						cellToOn &= onToOn;
-						cellToOff &= onToOff;
-					}
-				}
-
-				// Do cell reduction.
-				if (!AllowNishio && (count == 2 || AllowMultiple))
-				{
-					if (cellToOn is not null)
-					{
-						foreach (var p in cellToOn)
-						{
-							result.Add(CreateCellForcingStep(grid, cell, p, digitToOn));
-						}
-					}
-					if (cellToOff is not null)
-					{
-						foreach (var p in cellToOff)
-						{
-							result.Add(CreateCellForcingStep(grid, cell, p, digitToOff));
-						}
-					}
-				}
-			}
-		}
-
-		return result;
-	}
-
-#if ALLOW_ADVANCED_CHAINING
-	/// <summary>
-	/// Get all non-trivial implications (involving fished, naked/hidden sets, etc).
-	/// </summary>
-	/// <returns>All found potentials off.</returns>
-	private List<Potential> GetAdvancedPotentials(
+	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="p">The potential that is assumed to be "off"</param>
+	/// <param name="source">
+	/// <inheritdoc
+	///     cref="NonMultipleChainingStepSearcher.DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)"
+	///     path="/param[@name='source']"/>
+	/// </param>
+	/// <param name="offPotentials">Indicates the <see cref="Potential"/> instances that are already set "off".</param>
+	/// <param name="isX"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
+	/// <param name="isY"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="allowDynamic"><inheritdoc cref="MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
+	/// <returns>The set of potentials that must be "off".</returns>
+	protected PotentialSet GetOffToOn(
 		scoped in Grid grid,
-		scoped in Grid source,
-		PotentialSet offPotentials
+		Potential p,
+		scoped in Grid? source,
+		PotentialSet offPotentials,
+		bool isX,
+		bool isY,
+		bool allowDynamic
 	)
 	{
-		throw new NotImplementedException();
+		var (cell, digit, _) = p;
+		var result = new PotentialSet();
+
+		if (isY)
+		{
+			// First rule: if there is only two potentials in this cell, the other one gets on.
+			var mask = (short)(grid.GetCandidates(cell) & ~(1 << digit));
+			if (allowDynamic ? IsPow2(mask) : BivalueCells.Contains(cell))
+			{
+				var otherDigit = (byte)TrailingZeroCount(mask);
+				var pOn = new Potential(cell, otherDigit, true) { SingletonParent = p };
+				if (source is { } original)
+				{
+					addHiddenParentsOfCell(ref pOn, grid, original, offPotentials);
+				}
+
+				result.Add(pOn);
+			}
+		}
+
+		if (isX)
+		{
+			// Second rule: if there is only two positions for this potential, the other one gets on.
+			var candMaps = allowDynamic ? grid.CandidatesMap[digit] : CandidatesMap[digit];
+			foreach (var houseType in HouseTypes)
+			{
+				var houseIndex = cell.ToHouseIndex(houseType);
+				if ((HousesMap[houseIndex] & candMaps) - cell is [var otherCell])
+				{
+					var pOn = new Potential((byte)otherCell, digit, true) { SingletonParent = p };
+					if (source is { } original)
+					{
+						addHiddenParentsOfHouse(ref pOn, grid, original, houseType, offPotentials);
+					}
+
+					result.Add(pOn);
+				}
+			}
+		}
+
+		return result;
+
+
+		static void addHiddenParentsOfCell(scoped ref Potential p, scoped in Grid current, scoped in Grid original, PotentialSet offPotentials)
+		{
+			var cell = p.Cell;
+			for (byte digit = 0; digit < 9; digit++)
+			{
+				if ((original.Exists(cell, digit), current.Exists(cell, digit)) is (true, false))
+				{
+					// Add a hidden parent.
+					if (offPotentials.GetNullable(new(cell, digit, false)) is not { } parent)
+					{
+						throw new InvalidOperationException("Parent not found.");
+					}
+
+					p.Parents.Add(parent);
+				}
+			}
+		}
+
+		static void addHiddenParentsOfHouse(
+			scoped ref Potential p,
+			scoped in Grid current,
+			scoped in Grid original,
+			HouseType currentHouseType,
+			PotentialSet offPotentials
+		)
+		{
+			var (cell, digit, _) = p;
+			var houseIndex = cell.ToHouseIndex(currentHouseType);
+
+			// Get positions of the potential value that have been removed.
+			foreach (var pos in (short)(g(original, houseIndex, digit) & ~g(current, houseIndex, digit)))
+			{
+				// Add a hidden parent.
+				if (offPotentials.GetNullable(new((byte)HouseCells[houseIndex][pos], digit, false)) is not { } parent)
+				{
+					throw new InvalidOperationException("Parent not found.");
+				}
+
+				p.Parents.Add(parent);
+			}
+
+
+			static short g(scoped in Grid grid, int houseIndex, int digit)
+			{
+				var result = (short)0;
+
+				for (var i = 0; i < 9; i++)
+				{
+					if (grid.Exists(HouseCells[houseIndex][i], digit) is true)
+					{
+						result |= (short)(1 << i);
+					}
+				}
+
+				return result;
+			}
+		}
 	}
+
+	/// <summary>
+	/// Given the initial sets of potentials that are assumed to be "on" and "off",
+	/// complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
+	/// </summary>
+	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="toOn">The potentials that are assumed to be "on".</param>
+	/// <param name="toOff">The potentials that are assumed to be "off".</param>
+	/// <param name="allowNishio"><inheritdoc cref="MultipleChainingStepSearcher.AllowNishio" path="/summary"/></param>
+	/// <param name="allowDynamic"><inheritdoc cref="MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
+	/// <returns>If success, <see langword="null"/>.</returns>
+	protected (Potential On, Potential Off)? DoChaining(Grid grid, PotentialSet toOn, PotentialSet toOff, bool allowNishio, bool allowDynamic)
+	{
+		var tempGrid = grid;
+
+		var pendingOn = new PotentialList(toOn);
+		var pendingOff = new PotentialList(toOff);
+		while (pendingOn.Count > 0 || pendingOff.Count > 0)
+		{
+			if (pendingOn.Count > 0)
+			{
+				var p = pendingOn.RemoveFirst();
+				foreach (var pOff in GetOnToOff(grid, p, !allowNishio))
+				{
+					var pOn = new Potential(pOff, true); // Conjugate.
+					if (toOn.GetNullable(pOn) is { } pOnInSet)
+					{
+						// Contradiction found.
+						return (pOnInSet, pOff); // Cannot be both on and off at the same time.
+					}
+					else if (!toOff.Contains(pOff))
+					{
+						// Not processed yet.
+						toOff.Add(pOff);
+						pendingOff.AddLast(pOff);
+					}
+				}
+			}
+			else
+			{
+				var p = pendingOff.RemoveFirst();
+				var makeOn = GetOffToOn(grid, p, tempGrid, toOff, true, !allowNishio, allowDynamic);
+
+				if (allowDynamic)
+				{
+					// Memorize the shutted down potentials.
+					grid[p.Cell, p.Digit] = false;
+				}
+
+				foreach (var pOn in makeOn)
+				{
+					var pOff = new Potential(pOn, false); // Conjugate.
+					if (toOff.GetNullable(pOff) is { } pOffInSet)
+					{
+						// Contradiction found.
+						return (pOn, pOffInSet); // Cannot be both on and off at the same time.
+					}
+					else if (!toOn.Contains(pOn))
+					{
+						// Not processed yet.
+						toOn.Add(pOn);
+						pendingOn.AddLast(pOn);
+					}
+				}
+			}
+
+#if ALLOW_ADVANCED_CHAINING
+			if (pendingOn.Count == 0 && pendingOff.Count == 0 && DynamicNestingLevel > 0)
+			{
+				foreach (var pOff in GetAdvancedPotentials(grid, _savedGrid, toOff))
+				{
+					if (!toOff.Contains(pOff))
+					{
+						// Not processed yet.
+						toOff.Add(pOff);
+						pendingOff.Add(pOff);
+					}
+				}
+			}
 #endif
+		}
+
+		return null;
+	}
 }

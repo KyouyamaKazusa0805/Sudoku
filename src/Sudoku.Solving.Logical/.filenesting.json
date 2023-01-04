@@ -93,6 +93,8 @@
 
           "AlternatingInferenceChainStepSearcher.cs": [ "IAlternatingInferenceChainStepSearcher.cs" ],
           "ChainingStepSearcher.cs": [ "IChainingStepSearcher.cs" ],
+          "MultipleChainingStepSearcher.cs": [ "IChainingStepSearcher.cs" ],
+          "NonMultipleChainingStepSearcher.cs": [ "IChainingStepSearcher.cs" ],
 
           "UniquenessClueCoverStepSearcher.cs": [ "IUniquenessClueCoverStepSearcher.cs" ],
           "ExtendedRectangleStepSearcher.cs": [ "IExtendedRectangleStepSearcher.cs" ],

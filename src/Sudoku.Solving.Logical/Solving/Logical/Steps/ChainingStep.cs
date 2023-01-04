@@ -7,19 +7,19 @@
 /// <param name="IsX">Indicates whether the chain is X-Chain.</param>
 /// <param name="IsY">Indicates whether the chain is Y-Chain.</param>
 /// <param name="IsMultiple">
-/// <para><inheritdoc cref="ChainingStepSearcher.AllowMultiple" path="/summary"/></para>
-/// <para><inheritdoc cref="ChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
+/// <para><inheritdoc cref="MultipleChainingStepSearcher.AllowMultiple" path="/summary"/></para>
+/// <para><inheritdoc cref="MultipleChainingStepSearcher.AllowMultiple" path="/remarks"/></para>
 /// </param>
 /// <param name="IsDynamic">
-/// <para><inheritdoc cref="ChainingStepSearcher.AllowDynamic" path="/summary"/></para>
-/// <para><inheritdoc cref="ChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
+/// <para><inheritdoc cref="MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></para>
+/// <para><inheritdoc cref="MultipleChainingStepSearcher.AllowDynamic" path="/remarks"/></para>
 /// </param>
 /// <param name="IsNishio">
-/// <inheritdoc cref="ChainingStepSearcher.AllowNishio" path="/summary"/>
+/// <inheritdoc cref="MultipleChainingStepSearcher.AllowNishio" path="/summary"/>
 /// </param>
 /// <param name="DynamicNestingLevel">
-/// <para><inheritdoc cref="ChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
-/// <para><inheritdoc cref="ChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+/// <para><inheritdoc cref="MultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+/// <para><inheritdoc cref="MultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
 /// </param>
 internal abstract record ChainingStep(
 	ConclusionList Conclusions,
