@@ -255,9 +255,9 @@ internal abstract record ChainingStep(
 			var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
 			foreach (var target in ChainsTargets)
 			{
-				foreach (var p in GetChain(target))
+				foreach (var p in target.FullChainPotentials)
 				{
-					if (p.NestedChain is { } nested && !processed.Contains(nested))
+					if (p.NestedChainDetails is { } nested && !processed.Contains(nested))
 					{
 						result += nested.Complexity;
 						processed.Add(nested);
@@ -281,9 +281,9 @@ internal abstract record ChainingStep(
 			var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
 			foreach (var target in ChainsTargets)
 			{
-				foreach (var p in GetChain(target))
+				foreach (var p in target.FullChainPotentials)
 				{
-					if (p.NestedChain is { } nested && !processed.Contains(nested))
+					if (p.NestedChainDetails is { } nested && !processed.Contains(nested))
 					{
 						result += nested.ViewsCount;
 						processed.Add(nested);
@@ -352,35 +352,6 @@ internal abstract record ChainingStep(
 		return ImmutableArray.Create(result);
 	}
 
-	/// <summary>
-	/// Gets the chain of all <see cref="Potential"/>s from the specified target.
-	/// </summary>
-	/// <param name="target">The target node.</param>
-	/// <returns>The chain of all <see cref="Potential"/>s</returns>
-	protected internal List<Potential> GetChain(Potential target)
-	{
-		var result = new List<Potential>();
-		var done = new HashSet<Potential>();
-		var todo = new List<Potential> { target };
-		while (todo.Count > 0)
-		{
-			var next = new List<Potential>();
-			foreach (var p in todo)
-			{
-				if (!done.Contains(p))
-				{
-					done.Add(p);
-					result.Add(p);
-					next.AddRange(p.Parents);
-				}
-			}
-
-			todo = next;
-		}
-
-		return result;
-	}
-
 	/// <summary><b><i>
 	/// This method will be implemented later.
 	/// </i></b></summary>
@@ -397,7 +368,7 @@ internal abstract record ChainingStep(
 	/// <returns>The total number of all found ancestors.</returns>
 	protected int AncestorsCountOf(Potential child)
 	{
-		var ancestors = new HashSet<Potential>();
+		var ancestors = new PotentialSet();
 		var todo = new List<Potential> { child };
 		while (todo.Count > 0)
 		{
@@ -443,7 +414,7 @@ internal abstract record ChainingStep(
 	protected Candidates GetColorCandidates(Potential target, bool state, bool skipTarget)
 	{
 		var result = Candidates.Empty;
-		foreach (var p in GetChain(target))
+		foreach (var p in target.FullChainPotentials)
 		{
 			var (cell, digit, isOn) = p;
 			if (isOn == state || state && (p != target || !skipTarget))
@@ -514,7 +485,7 @@ internal abstract record ChainingStep(
 
 			var (step, nestedViewNum) = GetNestedChain(viewIndex);
 			var target = GetContainerTarget(step);
-			foreach (var (cell, digit, isOn) in GetChain(target))
+			foreach (var (cell, digit, isOn) in target.FullChainPotentials)
 			{
 				if (!isOn)
 				{
@@ -552,14 +523,29 @@ internal abstract record ChainingStep(
 	protected List<LinkViewNode> GetLinks(Potential target)
 	{
 		var result = new List<LinkViewNode>();
-		foreach (var p in GetChain(target))
+		foreach (var p in target.FullChainPotentials)
 		{
-			if (p.Parents.Count <= 6)
+			if (p is not (var pCell, var pDigit, var pIsOn) { Parents: { Count: <= 6 } pParents })
 			{
-				foreach (var pr in p.Parents)
-				{
-					result.Add(new(DisplayColorKind.Normal, new(pr.Digit, pr.Cell), new(p.Digit, p.Cell), Inference.Default));
-				}
+				continue;
+			}
+
+			foreach (var (prCell, prDigit, prIsOn) in pParents)
+			{
+				result.Add(
+					new(
+						DisplayColorKind.Normal,
+						new(prDigit, prCell),
+						new(pDigit, pCell),
+						(prIsOn, pIsOn) switch
+						{
+							(false, true) => Inference.Strong,
+							(true, false) => Inference.Weak,
+							(true, true) => Inference.StrongGeneralized,
+							_ => Inference.WeakGeneralized
+						}
+					)
+				);
 			}
 		}
 
@@ -604,9 +590,9 @@ internal abstract record ChainingStep(
 	{
 		foreach (var target in ChainsTargets)
 		{
-			foreach (var p in GetChain(target))
+			foreach (var p in target.FullChainPotentials)
 			{
-				if (ReferenceEquals(p.NestedChain, step))
+				if (ReferenceEquals(p.NestedChainDetails, step))
 				{
 					return p;
 				}
@@ -626,9 +612,9 @@ internal abstract record ChainingStep(
 		var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
 		foreach (var target in ChainsTargets)
 		{
-			foreach (var p in GetChain(target))
+			foreach (var p in target.FullChainPotentials)
 			{
-				if (p.NestedChain is { } nested && !processed.Contains(nested))
+				if (p.NestedChainDetails is { } nested && !processed.Contains(nested))
 				{
 					result.Add(nested);
 					processed.Add(nested);
@@ -665,9 +651,9 @@ internal abstract record ChainingStep(
 		var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
 		foreach (var target in ChainsTargets)
 		{
-			foreach (var p in GetChain(target))
+			foreach (var p in target.FullChainPotentials)
 			{
-				if (p.NestedChain is { } nested && !processed.Contains(nested))
+				if (p.NestedChainDetails is { } nested && !processed.Contains(nested))
 				{
 					processed.Add(nested);
 					var localCount = nested.ViewsCount;
@@ -748,13 +734,13 @@ file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
 
 		static bool potentialComparison(Potential a, Potential b) => a == b;
 
-		bool branchEquals(Potential[] a, Potential[] b)
+		static bool branchEquals(Potential[] a, Potential[] b)
 		{
 			scoped var i1 = a.EnumerateImmutable();
 			scoped var i2 = b.EnumerateImmutable();
 			while (i1.MoveNext() && i2.MoveNext())
 			{
-				if (!x.GetChain(i1.Current).CollectionElementEquals(y.GetChain(i2.Current), &potentialComparison))
+				if (!i1.Current.FullChainPotentials.CollectionElementEquals(i2.Current.FullChainPotentials, &potentialComparison))
 				{
 					return false;
 				}
@@ -770,41 +756,12 @@ file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
 		var result = 0;
 		foreach (var target in obj.ChainsTargets)
 		{
-			foreach (var p in obj.GetChain(target))
+			foreach (var p in target.FullChainPotentials)
 			{
 				result ^= p.GetHashCode();
 			}
 		}
 
 		return result;
-	}
-}
-
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
-	/// <summary>
-	/// Determines whether two <see cref="List{T}"/> of <typeparamref name="T"/>s are equal by comparing the elements.
-	/// </summary>
-	/// <param name="this">The first sequence to be compared.</param>
-	/// <param name="other">The second sequence to be compared.</param>
-	/// <param name="comparison">The comparsion method.</param>
-	/// <returns><see langword="true"/> if the two sequences are equal; otherwise, <see langword="false"/>.</returns>
-	public static unsafe bool CollectionElementEquals<T>(this List<T> @this, List<T> other, delegate*<T, T, bool> comparison)
-	{
-		if (@this.Count != other.Count)
-		{
-			return false;
-		}
-
-		for (var i = 0; i < @this.Count; i++)
-		{
-			if (!comparison(@this[i], other[i]))
-			{
-				return false;
-			}
-		}
-
-		return true;
 	}
 }

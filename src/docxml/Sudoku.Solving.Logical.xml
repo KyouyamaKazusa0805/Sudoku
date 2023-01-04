@@ -1596,7 +1596,12 @@
             Indicates all <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s in a single chain. This property should only be used in normal AICs.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.PatternData.Potential.NestedChain">
+        <member name="P:Sudoku.Solving.Logical.PatternData.Potential.FullChainPotentials">
+            <summary>
+            Gets the chain of all <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s from the current <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> as the target node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.PatternData.Potential.NestedChainDetails">
             <summary>
             Indicates the step detail of the nested chain.
             </summary>
@@ -1741,6 +1746,141 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.PatternData.Potential.op_Inequality(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.PatternData.PotentialList">
+            <summary>
+            Defines a list of <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> using doubly linked list as the backing algorithm.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.PotentialList.#ctor">
+            <summary>
+            Creates a <see cref="T:Sudoku.Solving.Logical.PatternData.PotentialList"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.PotentialList.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logical.PatternData.Potential})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Solving.Logical.PatternData.PotentialList"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances.
+            </summary>
+            <param name="potentials">The base <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> values.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.PotentialList.RemoveFirst">
+            <summary>
+            <inheritdoc cref="M:System.Collections.Generic.LinkedList`1.RemoveFirst" path="/summary"/>
+            </summary>
+            <returns>The value of the first node removed.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.PatternData.PotentialSet">
+            <summary>
+            Defines a <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> collection using <see cref="T:System.Collections.Generic.HashSet`1"/> as backing implementation.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.PotentialSet.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.PatternData.PotentialSet"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.PotentialSet.#ctor(Sudoku.Solving.Logical.PatternData.PotentialSet)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.PatternData.PotentialSet"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> collection to be added.
+            </summary>
+            <param name="base">The collection of <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.PotentialSet.Contains(Sudoku.Solving.Logical.PatternData.Potential)">
+            <summary>
+            Determines whether a <see cref="T:Sudoku.Solving.Logical.PatternData.PotentialSet"/> object contains the specified element,
+            comparing for properties <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.Candidate"/> and <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.IsOn"/>.
+            </summary>
+            <param name="base">The element to locate in the <see cref="T:Sudoku.Solving.Logical.PatternData.PotentialSet"/> object.</param>
+            <returns>
+            <see langword="true"/> if the <see cref="T:Sudoku.Solving.Logical.PatternData.PotentialSet"/> object contains the specified element; otherwise, <see langword="false"/>.
+            </returns>
+            <seealso cref="P:Sudoku.Solving.Logical.PatternData.Potential.Candidate"/>
+            <seealso cref="P:Sudoku.Solving.Logical.PatternData.Potential.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.PotentialSet.GetNullable(Sudoku.Solving.Logical.PatternData.Potential)">
+            <summary>
+            <para>
+            Try to get the target <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instance whose internal value
+            (i.e. properties <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.Candidate"/> and <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.IsOn"/>) are same as
+            the specified one.
+            </para>
+            <para>
+            Please note that this method will return an instance inside the current collection
+            whose value equals to the specified one; however, property <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.Parents"/> may not be equal.
+            </para>
+            </summary>
+            <param name="base">The value to be checked.</param>
+            <returns>
+            <para>
+            The found value whose value is equal to <paramref name="base"/>; without checking for property <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.Parents"/>.
+            </para>
+            <para>If none found, <see langword="null"/> will be returned.</para>
+            </returns>
+            <seealso cref="P:Sudoku.Solving.Logical.PatternData.Potential.Candidate"/>
+            <seealso cref="P:Sudoku.Solving.Logical.PatternData.Potential.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.PotentialSet.op_BitwiseAnd(Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet)">
+            <summary>
+            <para>
+            Gets the <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances that both <paramref name="left"/> and <paramref name="right"/> contain,
+            and modifies the argument <paramref name="left"/>, replacing it with <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s mentioned above,
+            then returns it.
+            </para>
+            <para><b>This operator can only be used on compound cases: </b><c><![CDATA[a &= b]]></c>.</para>
+            </summary>
+            <param name="left">The first collection to be participated in merging operation.</param>
+            <param name="right">The second collection to be participated in merging operation.</param>
+            <returns>Modified collection <paramref name="left"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.PotentialSet.op_BitwiseOr(Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet)">
+            <summary>
+            <para>
+            Gets the <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances that comes from both collections <paramref name="left"/> and <paramref name="right"/>,
+            and modifies the argument <paramref name="left"/>, replacing it with <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s mentioned above,
+            then returns it.
+            </para>
+            <para><b>This operator can only be used on compound cases: </b><c><![CDATA[a |= b]]></c>.</para>
+            </summary>
+            <param name="left">The first collection to be participated in merging operation.</param>
+            <param name="right">The second collection to be participated in merging operation.</param>
+            <returns>Modified collection <paramref name="left"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.PotentialSet.op_ExclusiveOr(Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet)">
+            <summary>
+            <para>
+            Gets the <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances that only one collection in <paramref name="left"/> and <paramref name="right"/> contains,
+            and modifies the argument <paramref name="left"/>, replacing it with <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s mentioned above,
+            then returns it.
+            </para>
+            <para><b>This operator can only be used on compound cases: </b><c><![CDATA[a ^= b]]></c>.</para>
+            </summary>
+            <param name="left">The first collection to be participated in merging operation.</param>
+            <param name="right">The second collection to be participated in merging operation.</param>
+            <returns>Modified collection <paramref name="left"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.PatternData.EqualityComparer">
+            <summary>
+            Defines an equality comparer that compares to <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.PatternData.EqualityComparer.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.EqualityComparer.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.PatternData.EqualityComparer"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.EqualityComparer.Equals(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.PatternData.EqualityComparer.GetHashCode(Sudoku.Solving.Logical.PatternData.Potential)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.PatternData.UniqueLoopDataInfo">
@@ -3050,6 +3190,136 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IChainingStepSearcher"/>
         </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)">
+            <summary>
+            Look for, and add single forcing chains, and bidirectional cycles.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="pOn">The start potential.</param>
+            <param name="result">The result steps found.</param>
+            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)">
+            <summary>
+            <para>From the potential <c>p</c>, compute the consequences from both states.</para>
+            <para>
+            More precisely, <c>p</c> is first assumed to be correct ("on"), and then to be incorrect ("off");
+            and the following sets are created:
+            <list type="bullet">
+            <item><c><paramref name="onToOn"/></c> the set of potentials that must be "on" when <c>p</c> is "on".</item>
+            <item><c><paramref name="onToOff"/></c> the set of potentials that must be "off" when <c>p</c> is "on".</item>
+            <item><c>offToOn</c> the set of potentials that must be "on" when <c>p</c> is "off".</item>
+            <item><c>offToOff</c> the set of potentials that must be "off" when <c>p</c> is "off".</item>
+            </list>
+            Then the following rules are applied:
+            <list type="bullet">
+            <item>
+            If a potential belongs to both <c><paramref name="onToOn"/></c> and <c><paramref name="onToOff"/></c>,
+            the potential <c>p</c> cannot be "on" because it would imply a potential
+            to be both "on" and "off", which is an absurd.
+            </item>
+            <item>
+            If a potential belongs to both <c>offToOn</c> and <c>offToOff</c>,
+            the potential <c>p</c> cannot be "off" because it would imply a potential
+            to be both "on" and "off", which is an absurd.
+            </item>
+            <item>
+            If a potential belongs to both <c><paramref name="onToOn"/></c> and <c>offToOn</c>,
+            this potential must be "on", because it is implied to be "on" by the two possible
+            states of <c>p</c>.
+            </item>
+            <item>
+            If a potential belongs to both <c><paramref name="onToOff"/></c> and <c>offToOff</c>,
+            this potential must be "off", because it is implied to be "off" by the two possible
+            states of <c>p</c>.
+            </item>
+            </list>
+            Note that if a potential belongs to all the four sets, the sudoku has no solution. This is not checked.
+            </para>
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="pOn"></param>
+            <param name="pOff"></param>
+            <param name="result">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)" path="/param[@name='result']"/>
+            </param>
+            <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
+            <param name="onToOff">An empty set, filled with potentials that get off if the given potential is on.</param>
+            <param name="doReduction"></param>
+            <param name="doContradiction"></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet)">
+            <summary>
+            Search for region (house) forcing chains.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="result">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)" path="/param[@name='result']"/>
+            </param>
+            <param name="cell"></param>
+            <param name="digit"></param>
+            <param name="onToOn">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)"
+                path="/param[@name='onToOn']"/>
+            </param>
+            <param name="onToOff">
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)"
+                path="/param[@name='onToOff']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)">
+            <summary>
+            Construct cycles and return them, by recording them into argument <paramref name="cycles"/>.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="toOn">The potentials that are assumed to be "on".</param>
+            <param name="toOff">The potentials that are assumed to be "off".</param>
+            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="cycles">
+            <para>All found cycles, represented as their final <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> node.</para>
+            <para>By using <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.ChainPotentials"/>, we can get the whole chain.</para>
+            </param>
+            <param name="source">The source node.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoForcingChains(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)">
+            <summary>
+            Construct forcing chains (in Sudoku Explainer, AICs will be treated as forcing chains).
+            In other words, this method does find for AICs.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="toOn">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='toOn']"/>
+            </param>
+            <param name="toOff">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='toOff']"/>
+            </param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="chains">
+            <para>All found chains, represented as their final <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> node.</para>
+            <para>
+            <inheritdoc
+                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)"
+                path="//param[@name='cycles']/para[2]"/>
+            </para>
+            </param>
+            <param name="source">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='source']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet)">
+            <summary>
+            Given the initial sets of potentials that are assumed to be "on" and "off",
+            complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="toOn">The potentials that are assumed to be "on".</param>
+            <param name="toOff">The potentials that are assumed to be "off".</param>
+            <returns>If success, <see langword="null"/>.</returns>
+        </member>
         <member name="F:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher._savedGrid">
             <summary>
             <para>Indicates the temporary saved grid.</para>
@@ -3149,7 +3419,7 @@ if (student is (name: var name, age: >= 18))
             <param name="parent">The parent node to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
             <summary>
             Try to search for all AICs and continuous nice loops.
             </summary>
@@ -3158,166 +3428,36 @@ if (student is (name: var name, age: >= 18))
             <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
             <returns>All possible found <see cref="T:Sudoku.Solving.Logical.Steps.ChainingStep"/>s.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetMultipleChainsHintList(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetMultipleChains(Sudoku.Concepts.Grid@)">
             <summary>
             Search for hints on the given grid.
             </summary>
             <param name="grid">The grid on which to search for hints.</param>
             <returns>The hints found.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)">
-            <summary>
-            Look for, and add single forcing chains, and bidirectional cycles.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="pOn">The start potential.</param>
-            <param name="result">The result steps found.</param>
-            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean)">
-            <summary>
-            <para>From the potential <c>p</c>, compute the consequences from both states.</para>
-            <para>
-            More precisely, <c>p</c> is first assumed to be correct ("on"), and then to be incorrect ("off");
-            and the following sets are created:
-            <list type="bullet">
-            <item><c><paramref name="onToOn"/></c> the set of potentials that must be "on" when <c>p</c> is "on".</item>
-            <item><c><paramref name="onToOff"/></c> the set of potentials that must be "off" when <c>p</c> is "on".</item>
-            <item><c>offToOn</c> the set of potentials that must be "on" when <c>p</c> is "off".</item>
-            <item><c>offToOff</c> the set of potentials that must be "off" when <c>p</c> is "off".</item>
-            </list>
-            Then the following rules are applied:
-            <list type="bullet">
-            <item>
-            If a potential belongs to both <c><paramref name="onToOn"/></c> and <c><paramref name="onToOff"/></c>,
-            the potential <c>p</c> cannot be "on" because it would imply a potential
-            to be both "on" and "off", which is an absurd.
-            </item>
-            <item>
-            If a potential belongs to both <c>offToOn</c> and <c>offToOff</c>,
-            the potential <c>p</c> cannot be "off" because it would imply a potential
-            to be both "on" and "off", which is an absurd.
-            </item>
-            <item>
-            If a potential belongs to both <c><paramref name="onToOn"/></c> and <c>offToOn</c>,
-            this potential must be "on", because it is implied to be "on" by the two possible
-            states of <c>p</c>.
-            </item>
-            <item>
-            If a potential belongs to both <c><paramref name="onToOff"/></c> and <c>offToOff</c>,
-            this potential must be "off", because it is implied to be "off" by the two possible
-            states of <c>p</c>.
-            </item>
-            </list>
-            Note that if a potential belongs to all the four sets, the sudoku has no solution. This is not checked.
-            </para>
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="pOn"></param>
-            <param name="pOff"></param>
-            <param name="result">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)" path="/param[@name='result']"/>
-            </param>
-            <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
-            <param name="onToOff">An empty set, filled with potentials that get off if the given potential is on.</param>
-            <param name="doReduction"></param>
-            <param name="doContradiction"></param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Byte,System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential})">
-            <summary>
-            Search for region (house) forcing chains.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="result">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Boolean,System.Boolean)" path="/param[@name='result']"/>
-            </param>
-            <param name="cell"></param>
-            <param name="digit"></param>
-            <param name="onToOn">
-            <inheritdoc
-                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean)"
-                path="/param[@name='onToOn']"/>
-            </param>
-            <param name="onToOff">
-            <inheritdoc
-                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.List{Sudoku.Solving.Logical.Steps.ChainingStep},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean)"
-                path="/param[@name='onToOff']"/>
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.LinkedList{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)">
-            <summary>
-            Construct cycles and return them, by recording them into argument <paramref name="cycles"/>.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="toOn">The potentials that are assumed to be "on".</param>
-            <param name="toOff">The potentials that are assumed to be "off".</param>
-            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
-            <param name="cycles">
-            <para>All found cycles, represented as their final <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> node.</para>
-            <para>By using <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.ChainPotentials"/>, we can get the whole chain.</para>
-            </param>
-            <param name="source">The source node.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoForcingChains(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Collections.Generic.LinkedList{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)">
-            <summary>
-            Construct forcing chains (in Sudoku Explainer, AICs will be treated as forcing chains).
-            In other words, this method does find for AICs.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="toOn">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.LinkedList{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='toOn']"/>
-            </param>
-            <param name="toOff">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.LinkedList{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='toOff']"/>
-            </param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
-            <param name="chains">
-            <para>All found chains, represented as their final <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> node.</para>
-            <para>
-            <inheritdoc
-                cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.LinkedList{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)"
-                path="//param[@name='cycles']/para[2]"/>
-            </para>
-            </param>
-            <param name="source">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.LinkedList{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='source']"/>
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential})">
-            <summary>
-            Given the initial sets of potentials that are assumed to be "on" and "off",
-            complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="toOn">The potentials that are assumed to be "on".</param>
-            <param name="toOff">The potentials that are assumed to be "off".</param>
-            <returns>If success, <see langword="null"/>.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetOnToOff(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
             <summary>
             Get the set of all <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s that cannot be valid (are "off") if the given potential is "on"
             (i.e. if its value is the correct one for the cell).
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
             <param name="p">The potential that is assumed to be "on"</param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean)">
             <summary>
             Get the set of all <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s that cannot be valid (are "off") if the given potential is "on"
             (i.e. if its value is the correct one for the cell).
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
             <param name="p">The potential that is assumed to be "off"</param>
             <param name="source">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.LinkedList{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='source']"/>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='source']"/>
             </param>
             <param name="offPotentials">Indicates the <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances that are already set "off".</param>
-            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="isX"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCycleStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean,System.Boolean)">
@@ -3326,14 +3466,14 @@ if (student is (name: var name, age: >= 18))
             the method will return a <see cref="T:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep"/> instance with a non-<see langword="null"/> value.
             </summary>
             <param name="grid">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetLoopHintList(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.GetChainsOrCycles(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
             </param>
             <param name="dstOn">Indicates the destination node that is at the state "on".</param>
             <param name="isX">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.LinkedList{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='isX']"/>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='isX']"/>
             </param>
             <param name="isY">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},System.Boolean,System.Boolean,System.Collections.Generic.LinkedList{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='isY']"/>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Solving.Logical.PatternData.PotentialSet,System.Boolean,System.Boolean,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.Potential)" path="/param[@name='isY']"/>
             </param>
             <returns>
             A valid <see cref="T:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
@@ -3354,75 +3494,18 @@ if (student is (name: var name, age: >= 18))
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet})">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential}})">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet})">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer">
-            <summary>
-            Defines an equality comparer that compares to <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer.Instance">
-            <summary>
-            Indicates the singleton instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer.Equals(Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.PotentialEqualityComparer.GetHashCode(Sudoku.Solving.Logical.PatternData.Potential)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.StepSearchers.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Extensions.GetNullable(System.Collections.Generic.HashSet{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)">
-            <summary>
-            <para>
-            Try to get the target <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instance whose internal value
-            (i.e. properties <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.Cell"/>, <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.Digit"/> and <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.IsOn"/>) are same as
-            the specified one.
-            </para>
-            <para>
-            Please note that this method will return an instance inside the collection of <paramref name="this"/>
-            whose value equals to the specified one; however, property <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.Parents"/> may not be equal.
-            </para>
-            </summary>
-            <param name="this">The collection.</param>
-            <param name="base">The value to be checked.</param>
-            <returns>
-            <para>
-            The found value whose value is equal to <paramref name="base"/>; without checking for property <see cref="P:Sudoku.Solving.Logical.PatternData.Potential.Parents"/>.
-            </para>
-            <para>If none found, <see langword="null"/> will be returned.</para>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Extensions.RemoveFirstElement``1(System.Collections.Generic.LinkedList{``0})">
-            <summary>
-            Removes the element at the first position of the collection, and returns it.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The colllection.</param>
-            <returns>The removed element.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.ChromaticPatternStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IChromaticPatternStepSearcher"/>
@@ -7440,13 +7523,6 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid used.</param>
             <returns>The values.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetChain(Sudoku.Solving.Logical.PatternData.Potential)">
-            <summary>
-            Gets the chain of all <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s from the specified target.
-            </summary>
-            <param name="target">The target node.</param>
-            <returns>The chain of all <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/>s</returns>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.CollectRuleParents(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Solving.Logical.PatternData.Potential},Sudoku.Solving.Logical.PatternData.Potential)">
             <summary><b><i>
             This method will be implemented later.
@@ -7600,22 +7676,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.EqualityComparer.GetHashCode(Sudoku.Solving.Logical.Steps.ChainingStep)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Extensions.CollectionElementEquals``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0},)">
-            <summary>
-            Determines whether two <see cref="T:System.Collections.Generic.List`1"/> of <typeparamref name="T"/>s are equal by comparing the elements.
-            </summary>
-            <param name="this">The first sequence to be compared.</param>
-            <param name="other">The second sequence to be compared.</param>
-            <param name="comparison">The comparsion method.</param>
-            <returns><see langword="true"/> if the two sequences are equal; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.ChromaticPatternStep">
             <summary>

@@ -60,5 +60,6 @@ global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 global using static Sudoku.Runtime.MaskServices.MaskOperations;
 global using static Sudoku.SolutionWideReadOnlyFields;
 global using static Sudoku.Solving.ConclusionType;
+global using ChainBranch = System.Collections.Generic.Dictionary<byte, Sudoku.Solving.Logical.PatternData.PotentialSet>;
 global using ViewList = System.Collections.Immutable.ImmutableArray<Sudoku.Presentation.View>;
 global using ConclusionList = System.Collections.Immutable.ImmutableArray<Sudoku.Solving.Conclusion>;

@@ -91,9 +91,39 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 	}
 
 	/// <summary>
+	/// Gets the chain of all <see cref="Potential"/>s from the current <see cref="Potential"/> as the target node.
+	/// </summary>
+	public Potential[] FullChainPotentials
+	{
+		get
+		{
+			var result = new List<Potential>();
+			var done = new PotentialSet();
+			var todo = new List<Potential> { this };
+			while (todo.Count > 0)
+			{
+				var next = new List<Potential>();
+				foreach (var p in todo)
+				{
+					if (!done.Contains(p))
+					{
+						done.Add(p);
+						result.Add(p);
+						next.AddRange(p.Parents);
+					}
+				}
+
+				todo = next;
+			}
+
+			return result.ToArray();
+		}
+	}
+
+	/// <summary>
 	/// Indicates the step detail of the nested chain.
 	/// </summary>
-	public ChainingStep? NestedChain { get; init; }
+	public ChainingStep? NestedChainDetails { get; init; }
 
 	/// <summary>
 	/// <para>Indicates the parents of the current instance.</para>
