@@ -7,7 +7,7 @@ partial class ChainingStepSearcher
 	/// the method will return a <see cref="BidirectionalCycleStep"/> instance with a non-<see langword="null"/> value.
 	/// </summary>
 	/// <param name="grid">
-	/// <inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// <inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='grid']"/>
 	/// </param>
 	/// <param name="dstOn">Indicates the destination node that is at the state "on".</param>
 	/// <param name="isX">

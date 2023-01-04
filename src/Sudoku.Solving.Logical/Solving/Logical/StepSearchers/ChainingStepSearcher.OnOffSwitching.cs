@@ -6,9 +6,9 @@ partial class ChainingStepSearcher
 	/// Get the set of all <see cref="Potential"/>s that cannot be valid (are "off") if the given potential is "on"
 	/// (i.e. if its value is the correct one for the cell).
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="p">The potential that is assumed to be "on"</param>
-	/// <param name="isY"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isY"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <returns>The set of potentials that must be "off".</returns>
 	private PotentialSet GetOnToOff(scoped in Grid grid, Potential p, bool isY)
 	{
@@ -51,14 +51,14 @@ partial class ChainingStepSearcher
 	/// Get the set of all <see cref="Potential"/>s that cannot be valid (are "off") if the given potential is "on"
 	/// (i.e. if its value is the correct one for the cell).
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="p">The potential that is assumed to be "off"</param>
 	/// <param name="source">
 	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='source']"/>
 	/// </param>
 	/// <param name="offPotentials">Indicates the <see cref="Potential"/> instances that are already set "off".</param>
-	/// <param name="isX"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
-	/// <param name="isY"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isX"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
+	/// <param name="isY"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <returns>The set of potentials that must be "off".</returns>
 	private PotentialSet GetOffToOn(scoped in Grid grid, Potential p, scoped in Grid source, PotentialSet offPotentials, bool isX, bool isY)
 	{

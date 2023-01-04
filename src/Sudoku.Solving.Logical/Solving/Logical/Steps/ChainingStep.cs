@@ -130,6 +130,14 @@ internal abstract record ChainingStep(
 		};
 
 	/// <inheritdoc/>
+	public sealed override TechniqueGroup TechniqueGroup
+		=> this switch
+		{
+			ForcingChainStep or BidirectionalCycleStep => TechniqueGroup.AlternatingInferenceChain,
+			_ => TechniqueGroup.ForcingChains
+		};
+
+	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel
 		=> this switch
 		{
@@ -680,23 +688,11 @@ internal abstract record ChainingStep(
 	/// <returns>An <see cref="int"/> value indicating which is greater.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int Compare(ChainingStep left, ChainingStep right)
-	{
-		if (left.Difficulty < right.Difficulty)
-		{
-			return -1;
-		}
-		else if (left.Difficulty > right.Difficulty)
-		{
-			return 1;
-		}
-
-		if (left.Complexity == right.Complexity)
-		{
-			return left.SortKey - right.SortKey;
-		}
-
-		return left.Complexity - right.Complexity;
-	}
+		=> Sign(left.Difficulty - right.Difficulty) is var d and not 0
+			? d
+			: Sign(left.Complexity - right.Complexity) is var c and not 0
+				? c
+				: Sign(left.SortKey - right.SortKey) is var s and not 0 ? s : 0;
 }
 
 /// <summary>

@@ -112,19 +112,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 		// TODO: Implement an implications cache.
 
 		scoped ref readonly var grid = ref context.Grid;
-		List<ChainingStep> result;
-		if (AllowMultiple || AllowDynamic)
-		{
-			var tempGrid = grid;
-			result = GetMultipleChains(ref tempGrid);
-		}
-		else
-		{
-			result = GetChainsOrCycles(grid, true, false);
-			result.AddRange(GetChainsOrCycles(grid, false, true));
-			result.AddRange(GetChainsOrCycles(grid, true, true));
-		}
-
+		var result = AllowMultiple || AllowDynamic ? GetMultipleChains(grid) : getNonMultipleChains(grid);
 		if (result.Count == 0)
 		{
 			return null;
@@ -139,6 +127,17 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 
 		context.Accumulator.AddRange(result);
 		return null;
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		List<ChainingStep> getNonMultipleChains(scoped in Grid grid)
+		{
+			var result = GetNonMultipleChains(grid, true, false);
+			result.AddRange(GetNonMultipleChains(grid, false, true));
+			result.AddRange(GetNonMultipleChains(grid, true, true));
+
+			return result;
+		}
 	}
 
 	/// <summary>
@@ -170,7 +169,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
 	/// <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
 	/// <returns>All possible found <see cref="ChainingStep"/>s.</returns>
-	private List<ChainingStep> GetChainsOrCycles(scoped in Grid grid, bool isX, bool isY)
+	private List<ChainingStep> GetNonMultipleChains(scoped in Grid grid, bool isX, bool isY)
 	{
 		var result = new List<ChainingStep>();
 
@@ -194,15 +193,16 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 	/// </summary>
 	/// <param name="grid">The grid on which to search for hints.</param>
 	/// <returns>The hints found.</returns>
-	private List<ChainingStep> GetMultipleChains(scoped ref Grid grid)
+	private List<ChainingStep> GetMultipleChains(scoped in Grid grid)
 	{
+		var tempGrid = grid;
 		var result = new List<ChainingStep>();
 
 		// Iterate on all empty cells.
 		foreach (byte cell in EmptyCells)
 		{
 			// The cell is empty.
-			var cardinality = PopCount((uint)grid.GetCandidates(cell));
+			var cardinality = PopCount((uint)tempGrid.GetCandidates(cell));
 			if (cardinality > 2 || cardinality > 1 && AllowDynamic)
 			{
 				// Prepare storage and accumulator for "Cell Reduction".
@@ -223,12 +223,12 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 						var onToOff = new PotentialSet();
 						var doDouble = cardinality >= 3 && !AllowNishio && AllowDynamic;
 						var doContradiction = AllowDynamic || AllowNishio;
-						DoBinaryChaining(ref grid, pOn, pOff, result, onToOn, onToOff, doDouble, doContradiction);
+						DoBinaryChaining(ref tempGrid, pOn, pOff, result, onToOn, onToOff, doDouble, doContradiction);
 
 						if (!AllowNishio)
 						{
 							// Do house chaining.
-							DoHouseChaining(ref grid, result, cell, digit, onToOn, onToOff);
+							DoHouseChaining(ref tempGrid, result, cell, digit, onToOn, onToOff);
 						}
 
 						// Collect results for cell chaining.
@@ -247,7 +247,7 @@ internal sealed partial class ChainingStepSearcher : IChainingStepSearcher
 					}
 				}
 
-				// Do Cell reduction
+				// Do cell reduction.
 				if (!AllowNishio && (cardinality == 2 || AllowMultiple))
 				{
 					if (cellToOn is not null)

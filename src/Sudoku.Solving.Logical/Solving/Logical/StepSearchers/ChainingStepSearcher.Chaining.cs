@@ -7,11 +7,11 @@ partial class ChainingStepSearcher
 	/// <summary>
 	/// Look for, and add single forcing chains, and bidirectional cycles.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="pOn">The start potential.</param>
 	/// <param name="result">The result steps found.</param>
-	/// <param name="isX"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
-	/// <param name="isY"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isX"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
+	/// <param name="isY"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	private void DoUnaryChaining(scoped in Grid grid, Potential pOn, List<ChainingStep> result, bool isX, bool isY)
 	{
 		if (BivalueCells.Contains(pOn.Cell) && !isX)
@@ -95,7 +95,7 @@ partial class ChainingStepSearcher
 	/// Note that if a potential belongs to all the four sets, the sudoku has no solution. This is not checked.
 	/// </para>
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="pOn"></param>
 	/// <param name="pOff"></param>
 	/// <param name="result">
@@ -124,7 +124,7 @@ partial class ChainingStepSearcher
 
 		// Test p = "on"
 		onToOn.Add(pOn);
-		if (doContradiction && DoChaining(ref grid, onToOn, onToOff) is var (absurdOn1, absurdOff1))
+		if (doContradiction && DoChaining(grid, onToOn, onToOff) is var (absurdOn1, absurdOff1))
 		{
 			// p cannot hold its value, because else it would lead to a contradiction.
 			result.Add(CreateChainingOffStep(grid, absurdOn1, absurdOff1, pOn, pOn, true));
@@ -132,7 +132,7 @@ partial class ChainingStepSearcher
 
 		// Test p = "off"
 		offToOff.Add(pOff);
-		if (doContradiction && DoChaining(ref grid, offToOn, offToOff) is var (absurdOn2, absurdOff2))
+		if (doContradiction && DoChaining(grid, offToOn, offToOff) is var (absurdOn2, absurdOff2))
 		{
 			// p must hold its value, because else it would lead to a contradiction.
 			result.Add(CreateChainingOnStep(grid, absurdOn2, absurdOff2, pOff, pOff, true));
@@ -163,7 +163,7 @@ partial class ChainingStepSearcher
 	/// <summary>
 	/// Search for region (house) forcing chains.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="result">
 	/// <inheritdoc cref="DoUnaryChaining(in Grid, Potential, List{ChainingStep}, bool, bool)" path="/param[@name='result']"/>
 	/// </param>
@@ -218,7 +218,7 @@ partial class ChainingStepSearcher
 							var otherToOn = new PotentialSet { other };
 							var otherToOff = new PotentialSet();
 
-							DoChaining(ref grid, otherToOn, otherToOff);
+							DoChaining(grid, otherToOn, otherToOff);
 
 							posToOn.Add(otherCell, otherToOn);
 							posToOff.Add(otherCell, otherToOff);
@@ -244,11 +244,11 @@ partial class ChainingStepSearcher
 	/// <summary>
 	/// Construct cycles and return them, by recording them into argument <paramref name="cycles"/>.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="toOn">The potentials that are assumed to be "on".</param>
 	/// <param name="toOff">The potentials that are assumed to be "off".</param>
-	/// <param name="isX"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
-	/// <param name="isY"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isX"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
+	/// <param name="isY"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <param name="cycles">
 	/// <para>All found cycles, represented as their final <see cref="Potential"/> node.</para>
 	/// <para>By using <see cref="Potential.ChainPotentials"/>, we can get the whole chain.</para>
@@ -311,14 +311,14 @@ partial class ChainingStepSearcher
 	/// Construct forcing chains (in Sudoku Explainer, AICs will be treated as forcing chains).
 	/// In other words, this method does find for AICs.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="toOn">
 	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='toOn']"/>
 	/// </param>
 	/// <param name="toOff">
 	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='toOff']"/>
 	/// </param>
-	/// <param name="isY"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isY"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <param name="chains">
 	/// <para>All found chains, represented as their final <see cref="Potential"/> node.</para>
 	/// <para>
@@ -396,87 +396,80 @@ partial class ChainingStepSearcher
 	/// Given the initial sets of potentials that are assumed to be "on" and "off",
 	/// complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetChainsOrCycles(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="GetNonMultipleChains(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="toOn">The potentials that are assumed to be "on".</param>
 	/// <param name="toOff">The potentials that are assumed to be "off".</param>
 	/// <returns>If success, <see langword="null"/>.</returns>
-	private (Potential On, Potential Off)? DoChaining(scoped ref Grid grid, PotentialSet toOn, PotentialSet toOff)
+	private (Potential On, Potential Off)? DoChaining(Grid grid, PotentialSet toOn, PotentialSet toOff)
 	{
 		_savedGrid = grid;
 
-		try
+		var pendingOn = new PotentialList(toOn);
+		var pendingOff = new PotentialList(toOff);
+		while (pendingOn.Count > 0 || pendingOff.Count > 0)
 		{
-			var pendingOn = new PotentialList(toOn);
-			var pendingOff = new PotentialList(toOff);
-			while (pendingOn.Count > 0 || pendingOff.Count > 0)
+			if (pendingOn.Count > 0)
 			{
-				if (pendingOn.Count > 0)
+				var p = pendingOn.RemoveFirst();
+				var makeOff = GetOnToOff(grid, p, !AllowNishio);
+				foreach (var pOff in makeOff)
 				{
-					var p = pendingOn.RemoveFirst();
-					var makeOff = GetOnToOff(grid, p, !AllowNishio);
-					foreach (var pOff in makeOff)
+					var pOn = new Potential(pOff, true); // Conjugate.
+					if (toOn.Contains(pOn))
 					{
-						var pOn = new Potential(pOff, true); // Conjugate.
-						if (toOn.Contains(pOn))
-						{
-							// Contradiction found.
-							return (toOn.GetNullable(pOn) ?? default, pOff); // Cannot be both on and off at the same time.
-						}
-						else if (!toOff.Contains(pOff))
-						{
-							// Not processed yet.
-							toOff.Add(pOff);
-							pendingOff.AddLast(pOff);
-						}
+						// Contradiction found.
+						return (toOn.GetNullable(pOn) ?? default, pOff); // Cannot be both on and off at the same time.
+					}
+					else if (!toOff.Contains(pOff))
+					{
+						// Not processed yet.
+						toOff.Add(pOff);
+						pendingOff.AddLast(pOff);
 					}
 				}
-				else
+			}
+			else
+			{
+				var p = pendingOff.RemoveFirst();
+				var makeOn = GetOffToOn(grid, p, _savedGrid, toOff, true, !AllowNishio);
+				if (AllowDynamic)
 				{
-					var p = pendingOff.RemoveFirst();
-					var makeOn = GetOffToOn(grid, p, _savedGrid, toOff, true, !AllowNishio);
-					if (AllowDynamic)
+					// Memorize the shutted down potentials.
+					p.MakeOffIn(ref grid);
+				}
+				foreach (var pOn in makeOn)
+				{
+					var pOff = new Potential(pOn, false); // Conjugate.
+					if (toOff.Contains(pOff))
 					{
-						// Memorize the shutted down potentials.
-						p.MakeOffIn(ref grid);
+						// Contradiction found.
+						return (pOn, toOff.GetNullable(pOff) ?? default); // Cannot be both on and off at the same time.
 					}
-					foreach (var pOn in makeOn)
+					else if (!toOn.Contains(pOn))
 					{
-						var pOff = new Potential(pOn, false); // Conjugate.
-						if (toOff.Contains(pOff))
-						{
-							// Contradiction found.
-							return (pOn, toOff.GetNullable(pOff) ?? default); // Cannot be both on and off at the same time.
-						}
-						else if (!toOn.Contains(pOn))
-						{
-							// Not processed yet.
-							toOn.Add(pOn);
-							pendingOn.AddLast(pOn);
-						}
+						// Not processed yet.
+						toOn.Add(pOn);
+						pendingOn.AddLast(pOn);
 					}
 				}
-
-#if ALLOW_ADVANCED_CHAINING
-				if (pendingOn.Count == 0 && pendingOff.Count == 0 && DynamicNestingLevel > 0)
-				{
-					foreach (var pOff in GetAdvancedPotentials(grid, _savedGrid, toOff))
-					{
-						if (!toOff.Contains(pOff))
-						{
-							// Not processed yet.
-							toOff.Add(pOff);
-							pendingOff.Add(pOff);
-						}
-					}
-				}
-#endif
 			}
 
-			return null;
+#if ALLOW_ADVANCED_CHAINING
+			if (pendingOn.Count == 0 && pendingOff.Count == 0 && DynamicNestingLevel > 0)
+			{
+				foreach (var pOff in GetAdvancedPotentials(grid, _savedGrid, toOff))
+				{
+					if (!toOff.Contains(pOff))
+					{
+						// Not processed yet.
+						toOff.Add(pOff);
+						pendingOff.Add(pOff);
+					}
+				}
+			}
+#endif
 		}
-		finally
-		{
-			grid = _savedGrid;
-		}
+
+		return null;
 	}
 }
