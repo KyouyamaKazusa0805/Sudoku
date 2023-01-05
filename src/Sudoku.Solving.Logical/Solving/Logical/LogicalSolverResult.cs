@@ -285,13 +285,17 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
-		=> ToString(
-			SolverResultFormattingOptions.ShowStepsAfterBottleneck
-				| SolverResultFormattingOptions.ShowSeparators
-				| SolverResultFormattingOptions.ShowDifficulty
-				| SolverResultFormattingOptions.ShowSteps
-				| SolverResultFormattingOptions.ShowElapsedTime
-		);
+	{
+		var flags = SolverResultFormattingOptions.None;
+		flags |= SolverResultFormattingOptions.ShowSeparators;
+		flags |= SolverResultFormattingOptions.ShowDifficulty;
+		flags |= SolverResultFormattingOptions.ShowStepsAfterBottleneck;
+		flags |= SolverResultFormattingOptions.ShowSteps;
+		flags |= SolverResultFormattingOptions.ShowGridAndSolutionCode;
+		flags |= SolverResultFormattingOptions.ShowElapsedTime;
+
+		return ToString(flags);
+	}
 
 	/// <summary>
 	/// Returns a string that represents the current object, with the specified formatting options.
