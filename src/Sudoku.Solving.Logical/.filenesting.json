@@ -95,6 +95,7 @@
           "ChainingStepSearcher.cs": [ "IChainingStepSearcher.cs" ],
           "MultipleChainingStepSearcher.cs": [ "IChainingStepSearcher.cs" ],
           "NonMultipleChainingStepSearcher.cs": [ "IChainingStepSearcher.cs" ],
+          "AdvancedMultipleChainingStepSearcher.cs": [ "IChainingStepSearcher.cs" ],
 
           "UniquenessClueCoverStepSearcher.cs": [ "IUniquenessClueCoverStepSearcher.cs" ],
           "ExtendedRectangleStepSearcher.cs": [ "IExtendedRectangleStepSearcher.cs" ],
