@@ -138,12 +138,12 @@ file sealed class PuzzleLibraryExtractCommand : Command
 			}
 
 			var lib = libs.PuzzleLibraries.FirstOrDefault(lib => lib.Name == name);
-			if (lib is null)
+			if (lib is not { FinishedPuzzlesCount: var finishedCount, IsAutoPencilmarking: var autoPencilmark })
 			{
 				goto PuzzleIsBroken;
 			}
 
-			var index = specifiedNumber switch { { } l => l, _ => lib.FinishedPuzzlesCount };
+			var index = specifiedNumber switch { { } l => l, _ => finishedCount };
 			if (specifiedNumber is null && index >= lines.Length)
 			{
 				goto PuzzleLibraryIsAllFinished;
@@ -155,75 +155,28 @@ file sealed class PuzzleLibraryExtractCommand : Command
 			}
 
 			var grid = Grid.Parse(lines[index]);
-			switch (Solver.Solve(grid))
+
+			GridAutoFiller.Fill(ref grid);
+
+			var comma = R.Token("Comma")!;
+			var picturePath = InternalReadWrite.GenerateCachedPicturePath(
+				() => ISudokuPainter.Create(1000)
+					.WithCanvasOffset(20)
+					.WithGrid(grid)
+					.WithRenderingCandidates(autoPencilmark)
+					.WithFontScale(1.0M, .4M)
+					.WithFooterText($"@{name} #{index + 1}")
+			)!;
+
+			await e.SendMessageAsync(new ImageMessage { Path = picturePath });
+
+			File.Delete(picturePath);
+
+			if (specifiedNumber is null)
 			{
-				case { UnhandledException: WrongStepException { CurrentInvalidGrid: var currentGrid, WrongStep: var wrongStep } }:
-				{
-					await e.SendMessageAsync(string.Format(R.MessageFormat("WrongStepEncountered")!, wrongStep.ToString()));
-					await Task.Delay(2.Seconds());
+				lib.FinishedPuzzlesCount++;
 
-					var picturePath = InternalReadWrite.GenerateCachedPicturePath(
-						() => ISudokuPainter.Create(1000)
-							.WithCanvasOffset(20)
-							.WithGrid(currentGrid)
-							.WithRenderingStep(wrongStep)
-							.WithFontScale(1.0M, .4M)
-					)!;
-
-					await e.SendMessageAsync(new ImageMessage { Path = picturePath });
-
-					File.Delete(picturePath);
-
-					break;
-				}
-				case { IsSolved: true, DifficultyLevel: var diffLevel, SolvingStepsCount: var stepsCount } analysisResult:
-				{
-					GridAutoFiller.Fill(ref grid);
-
-					var comma = R.Token("Comma")!;
-					var picturePath = InternalReadWrite.GenerateCachedPicturePath(
-						() => ISudokuPainter.Create(1000)
-							.WithCanvasOffset(20)
-							.WithGrid(grid)
-							.WithRenderingCandidates(diffLevel >= DifficultyLevel.Hard)
-							.WithFontScale(1.0M, .4M)
-							.WithFooterText($"@{name} #{index + 1}")
-					)!;
-
-					const string separator = "---";
-					await e.SendMessageAsync(new ImageMessage { Path = picturePath });
-					await Task.Delay(3.Seconds());
-					await e.SendMessageAsync(
-						new MessageChainBuilder()
-							.Plain(R["AnalysisResultIs"]!)
-							.Plain(Environment.NewLine)
-							.Plain(separator)
-							.Plain(Environment.NewLine)
-							.Plain($"{R["LibraryNameIs"]!}{name}")
-							.Plain(Environment.NewLine)
-							.Plain($"{R["PuzzleLibraryIndexIs"]!}#{index + 1}")
-							.Plain(Environment.NewLine)
-							.Plain(separator)
-							.Plain(Environment.NewLine)
-							.Plain(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime))
-							.Build()
-					);
-
-					File.Delete(picturePath);
-
-					if (specifiedNumber is null)
-					{
-						lib.FinishedPuzzlesCount++;
-
-						InternalReadWrite.WriteLibraryConfiguration(libs);
-					}
-
-					break;
-				}
-				default:
-				{
-					goto PuzzleIsBroken;
-				}
+				InternalReadWrite.WriteLibraryConfiguration(libs);
 			}
 
 			return true;

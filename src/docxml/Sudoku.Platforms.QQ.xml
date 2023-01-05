@@ -1049,6 +1049,11 @@
             Indicates how many puzzles the library has been finished.
             </summary>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.IsAutoPencilmarking">
+            <summary>
+            Indicates whether the puzzle should render candidates after the puzzle extracted.
+            </summary>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryData.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>

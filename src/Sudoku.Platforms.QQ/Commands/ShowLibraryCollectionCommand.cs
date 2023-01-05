@@ -61,7 +61,8 @@ file sealed class ShowLibraryCollectionCommand : Command
 						lib.Tags switch { null or [] => R["None"]!, var tags => string.Join('\u3001', tags) },
 						validPuzzlesCount,
 						lib.FinishedPuzzlesCount,
-						(double)lib.FinishedPuzzlesCount / validPuzzlesCount
+						(double)lib.FinishedPuzzlesCount / validPuzzlesCount,
+						(lib.IsAutoPencilmarking ? R["Yes"] : R["No"])!
 					)
 				);
 

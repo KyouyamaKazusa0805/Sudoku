@@ -37,6 +37,11 @@ internal sealed partial class PuzzleLibraryData : IEquatable<PuzzleLibraryData>,
 	/// </summary>
 	public int FinishedPuzzlesCount { get; set; }
 
+	/// <summary>
+	/// Indicates whether the puzzle should render candidates after the puzzle extracted.
+	/// </summary>
+	public bool IsAutoPencilmarking { get; set; }
+
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
 	public override partial bool Equals(object? obj);

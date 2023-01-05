@@ -240,6 +240,9 @@
   <data name="LibraryNameIs" xml:space="preserve">
     <value>题库名：</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
   <data name="None" xml:space="preserve">
     <value>无</value>
   </data>
@@ -258,11 +261,17 @@
   <data name="TotalStepCountIs" xml:space="preserve">
     <value>步骤数：</value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
   <data name="_CommandSegment_Description" xml:space="preserve">
     <value>描述</value>
   </data>
   <data name="_CommandSegment_FinishedPuzzlesCount" xml:space="preserve">
     <value>完成题目数</value>
+  </data>
+  <data name="_CommandSegment_IsAutoPencilmarking" xml:space="preserve">
+    <value>是否全标</value>
   </data>
   <data name="_CommandSegment_Puzzle" xml:space="preserve">
     <value>代码</value>
@@ -485,6 +494,7 @@
 ・题库名：{0}
 ・题库介绍：{1}
 ・题库标签：{2}
+・该题库是否全标：{6}
 ・题库题目数量：{3}
 ・完成题目数量：{4}
 ・完成比例：{5:P}</value>
@@ -533,6 +543,9 @@
   </data>
   <data name="_MessageFormat_UpdateLibPropFailed_ValueMustBeInteger" xml:space="preserve">
     <value>更新题库“{0}”的配置属性“{1}”失败，该属性是整数数据，不能写入其他的东西。</value>
+  </data>
+  <data name="_MessageFormat_UpdateLibPropFailed_ValueMustBeYesOrNo" xml:space="preserve">
+    <value>更新题库“{0}”的配置属性“{1}”失败，该属性只有“是”或“否”两种情况。</value>
   </data>
   <data name="_MessageFormat_UpdateLibPropFailed_ValueMustLowerThanLibPuzzlesCount" xml:space="preserve">
     <value>更新题库“{0}”的配置属性“{1}”失败，该属性的数值必须小于整个题库的题目数量，也不能为负数。</value>

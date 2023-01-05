@@ -91,6 +91,26 @@ file sealed class UpdatePuzzleLibraryPropertyCommand : Command
 						);
 					}
 				}
+				else if (propName == R.CommandSegment(nameof(PuzzleLibraryData.IsAutoPencilmarking))!)
+				{
+					var t = propValue switch { _ when propValue == R["Yes"]! => true, _ when propValue == R["No"]! => false, _ => default(bool?) };
+					if (t is not { } targetValue)
+					{
+						await e.SendMessageAsync(
+							string.Format(
+								R.MessageFormat("UpdateLibPropFailed_ValueMustBeYesOrNo")!,
+								libraryName,
+								propName
+							)
+						);
+
+						break;
+					}
+
+					lib.IsAutoPencilmarking = targetValue;
+
+					await updateLibConfigFile(libs);
+				}
 
 				break;
 
