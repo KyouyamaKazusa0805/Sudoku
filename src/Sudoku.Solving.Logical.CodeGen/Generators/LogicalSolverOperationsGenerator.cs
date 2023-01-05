@@ -18,7 +18,7 @@ public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 				}
 
 				var manualSolverTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Logical.LogicalSolver");
-				if (manualSolverTypeSymbol is not { TypeKind: Kind.Class, IsRecord: false, IsSealed: true })
+				if (manualSolverTypeSymbol is not { TypeKind: Kind.Class, IsRecord: true, IsSealed: true })
 				{
 					// The core type cannot be found.
 					return;
@@ -125,7 +125,7 @@ public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 
 					namespace Sudoku.Solving.Logical;
 
-					partial class LogicalSolver
+					partial record LogicalSolver
 					{
 						{{targetPropertiesCode}}
 					}

@@ -3,7 +3,8 @@
 /// <summary>
 /// Provides a solver that solves a sudoku puzzle using the human-friendly logics.
 /// </summary>
-public sealed partial class LogicalSolver : IComplexSolver<LogicalSolver, LogicalSolverResult>, ILogicalSolverOptions
+/// <completionlist cref="CommonLogicalSolvers"/>
+public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, LogicalSolverResult>, ILogicalSolverOptions
 {
 	/// <inheritdoc/>
 	/// <remarks>

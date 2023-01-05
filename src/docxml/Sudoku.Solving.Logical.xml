@@ -685,6 +685,26 @@
             indicating the step searcher instance is not supported in sukaku solving mode.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Logical.CommonLogicalSolvers">
+            <summary>
+            Provides with some commonly-used <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> instances.
+            </summary>
+            <remarks><b>
+            You shouldn't modify any property from instances provided by this type because <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> is a reference type.
+            </b></remarks>
+            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.CommonLogicalSolvers.Default">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> instance that is created by default instantiation behavior.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.CommonLogicalSolvers.Suitable">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> instance that has configured some basic options that is suitable
+            for human to control sudoku puzzles.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Logical.ConceptGatherables.IConjugatesGatherable">
             <summary>
             Represents a type that can gather <see cref="T:Sudoku.Concepts.Conjugate"/> instances that exists in a grid.
@@ -915,6 +935,7 @@
             <summary>
             Provides a solver that solves a sudoku puzzle using the human-friendly logics.
             </summary>
+            <completionlist cref="T:Sudoku.Solving.Logical.CommonLogicalSolvers"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolver.IsFullApplying">
             <inheritdoc/>
