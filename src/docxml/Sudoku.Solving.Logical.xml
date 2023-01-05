@@ -935,6 +935,33 @@
             <summary>
             Provides a solver that solves a sudoku puzzle using the human-friendly logics.
             </summary>
+            <remarks>
+            Note: if you want to create an instance, I recommend you use another type called <see cref="T:Sudoku.Solving.Logical.CommonLogicalSolvers"/>
+            to get your desired instance. Two commonly-used instances of that type are:
+            <list type="table">
+            <listheader>
+            <term>Instance</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see cref="F:Sudoku.Solving.Logical.CommonLogicalSolvers.Default"/></term>
+            <description>A default solver that uses parameterless constructor to instantiate, without any extra properties assigned.</description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Solving.Logical.CommonLogicalSolvers.Suitable"/></term>
+            <description>A powerful instance that has already configured some properties.</description>
+            </item>
+            </list>
+            If you want to change some properties in this type, you can use C# 9 syntax "<see langword="with"/> Expressions in Records"
+            to describe the new assigning logic, e.g.
+            <code><![CDATA[
+            var yourOwnSolver = CommonLogicalSolvers.Suitable with
+            {
+                IsFullApplying = true,
+                IgnoreSlowAlgorithms = false
+            };
+            ]]></code>
+            </remarks>
             <completionlist cref="T:Sudoku.Solving.Logical.CommonLogicalSolvers"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolver.IsFullApplying">
