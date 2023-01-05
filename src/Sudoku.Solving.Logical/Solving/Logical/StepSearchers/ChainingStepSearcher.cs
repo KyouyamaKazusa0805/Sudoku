@@ -190,7 +190,7 @@ internal abstract class ChainingStepSearcher
 	/// <returns>If success, <see langword="null"/>.</returns>
 	protected (Potential On, Potential Off)? DoChaining(Grid grid, PotentialSet toOn, PotentialSet toOff, bool allowNishio, bool allowDynamic)
 	{
-		var tempGrid = grid;
+		var originalGrid = grid;
 
 		var pendingOn = new PotentialList(toOn);
 		var pendingOff = new PotentialList(toOff);
@@ -218,7 +218,7 @@ internal abstract class ChainingStepSearcher
 			else
 			{
 				var p = pendingOff.RemoveFirst();
-				var makeOn = GetOffToOn(grid, p, tempGrid, toOff, true, !allowNishio, allowDynamic);
+				var makeOn = GetOffToOn(grid, p, originalGrid, toOff, true, !allowNishio, allowDynamic);
 
 				if (allowDynamic)
 				{
@@ -243,22 +243,22 @@ internal abstract class ChainingStepSearcher
 				}
 			}
 
-#if ALLOW_ADVANCED_CHAINING
-			if (pendingOn.Count == 0 && pendingOff.Count == 0 && DynamicNestingLevel > 0)
-			{
-				foreach (var pOff in GetAdvancedPotentials(grid, _savedGrid, toOff))
-				{
-					if (!toOff.Contains(pOff))
-					{
-						// Not processed yet.
-						toOff.Add(pOff);
-						pendingOff.Add(pOff);
-					}
-				}
-			}
-#endif
+			OnAdvanced(pendingOn, pendingOff, toOff, grid, originalGrid);
 		}
 
 		return null;
+	}
+
+	/// <summary>
+	/// Handles on advanced chaining cases.
+	/// </summary>
+	/// <param name="pendingOn">The pending potentials that are assumed to be "on".</param>
+	/// <param name="pendingOff">The pending potentials that are assumed to be "off".</param>
+	/// <param name="toOff">The original potentials that are assumed to be "off".</param>
+	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="original">Indicates the original grid.</param>
+	protected virtual void OnAdvanced(PotentialList pendingOn, PotentialList pendingOff, PotentialSet toOff, scoped in Grid grid, scoped in Grid original)
+	{
+		return;
 	}
 }

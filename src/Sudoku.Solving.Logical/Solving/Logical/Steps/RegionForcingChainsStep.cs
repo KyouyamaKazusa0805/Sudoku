@@ -15,7 +15,7 @@ internal sealed record RegionForcingChainsStep(
 	byte Digit,
 	MultipleForcingChains Chains,
 	bool IsDynamic,
-	int DynamicNestingLevel
+	int DynamicNestingLevel = 0
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
 	[ResourceTextFormatter]

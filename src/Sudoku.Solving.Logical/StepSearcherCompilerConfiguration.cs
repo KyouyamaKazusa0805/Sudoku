@@ -38,10 +38,11 @@
 [assembly: SearcherConfiguration<     AlternatingInferenceChainStepSearcher>(SearcherDisplayingLevel.C)]
 #endif
 [assembly: SearcherConfiguration<                   BowmanBingoStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                LastResort)]
-[assembly: SearcherConfiguration<                PatternOverlayStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.Gathering, DisabledReason = SearcherDisabledReason.                LastResort)]
 [assembly: SearcherConfiguration<                      TemplateStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                LastResort)]
+[assembly: SearcherConfiguration<                PatternOverlayStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.Gathering, DisabledReason = SearcherDisabledReason.                LastResort)]
 [assembly: SearcherConfiguration<                  JuniorExocetStepSearcher>(SearcherDisplayingLevel.D)]
 [assembly: SearcherConfiguration<                  SeniorExocetStepSearcher>(SearcherDisplayingLevel.D, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.DeprecatedOrNotImplemented)]
 [assembly: SearcherConfiguration<                    DominoLoopStepSearcher>(SearcherDisplayingLevel.D)]
 [assembly: SearcherConfiguration<         MultisectorLockedSetsStepSearcher>(SearcherDisplayingLevel.D)]
+[assembly: SearcherConfiguration<      AdvancedMultipleChainingStepSearcher>(SearcherDisplayingLevel.D, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.DeprecatedOrNotImplemented)]
 [assembly: SearcherConfiguration<                    BruteForceStepSearcher>(SearcherDisplayingLevel.E, EnabledArea = SearcherEnabledArea.  Default, DisabledReason = SearcherDisabledReason.                LastResort)]

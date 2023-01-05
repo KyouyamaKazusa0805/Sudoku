@@ -18,8 +18,8 @@
 /// <inheritdoc cref="MultipleChainingStepSearcher.AllowNishio" path="/summary"/>
 /// </param>
 /// <param name="DynamicNestingLevel">
-/// <para><inheritdoc cref="MultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
-/// <para><inheritdoc cref="MultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+/// <para><inheritdoc cref="AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+/// <para><inheritdoc cref="AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
 /// </param>
 internal abstract record ChainingStep(
 	ConclusionList Conclusions,

@@ -2986,6 +2986,90 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.Search(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher">
+            <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IChainingStepSearcher"/>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher._otherStepSearchers">
+            <summary>
+            Indicates the advanced step searchers.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel">
+            <summary>
+            Indicates the level of dynamic recursion. The value can be 1, 2, 3, 4 and 5.
+            </summary>
+            <remarks>
+            All possible values corresponds to their own cases respectively:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Supported nesting rule</description>
+            </listheader>
+            <item>
+            <term>0</term>
+            <description>Non-dynamic forcing chains</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>Dynamic forcing chains (+ Structural techniques, e.g. <see cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>)</description>
+            </item>
+            <item>
+            <term>2</term>
+            <description>Dynamic forcing chains (+ AIC)</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>Dynamic forcing chains (+ Multiple forcing chains)</description>
+            </item>
+            <item>
+            <term>4</term>
+            <description>Dynamic forcing chains (+ Dynamic forcing chains)</description>
+            </item>
+            <item>
+            <term>5</term>
+            <description>Dynamic forcing chains (+ Dynamic forcing chains (+))</description>
+            </item>
+            </list>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.OnAdvanced(Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.GetAdvancedPotentials(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.PotentialSet)">
+            <summary>
+            Get all non-trivial implications (involving fished, naked/hidden sets, etc).
+            </summary>
+            <param name="grid">Indicates the current grid state.</param>
+            <param name="original">Indicates the original grid state.</param>
+            <param name="offPotentials">
+            <inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.OnAdvanced(Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)" path="/param[@name='toOff']"/>
+            </param>
+            <returns>Found <see cref="T:Sudoku.Solving.Logical.PatternData.Potential"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateChainingOnStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
+            <summary>
+            Try to create a binary forcing chain hint on "on" state.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateChainingOffStep(Sudoku.Concepts.Grid@,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,Sudoku.Solving.Logical.PatternData.Potential,System.Boolean)">
+            <summary>
+            Try to create a binary forcing chain hint on "off" state.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet})">
+            <summary>
+            Try to create a cell forcing chain hint.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.PatternData.Potential,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Solving.Logical.PatternData.PotentialSet})">
+            <summary>
+            Try to create a region (house) forcing chain hint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.AlmostLockedCandidatesStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IAlmostLockedCandidatesStepSearcher"/>
         </member>
@@ -3225,6 +3309,16 @@ if (student is (name: var name, age: >= 18))
             <param name="allowNishio"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowNishio" path="/summary"/></param>
             <param name="allowDynamic"><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
             <returns>If success, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.ChainingStepSearcher.OnAdvanced(Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.PotentialList,Sudoku.Solving.Logical.PatternData.PotentialSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Handles on advanced chaining cases.
+            </summary>
+            <param name="pendingOn">The pending potentials that are assumed to be "on".</param>
+            <param name="pendingOff">The pending potentials that are assumed to be "off".</param>
+            <param name="toOff">The original potentials that are assumed to be "off".</param>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Solving.Logical.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="original">Indicates the original grid.</param>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.ChromaticPatternStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IChromaticPatternStepSearcher"/>
@@ -4825,45 +4919,6 @@ if (student is (name: var name, age: >= 18))
             If step searcher enables for dynamic forcing chains, forcing chains will contain branches,
             or even branches over branches (recursively). It will be very useful on complex inferences.
             </remarks>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel">
-            <summary>
-            Indicates the level of dynamic recursion. The value can be 0, 1, 2, 3, 4 and 5.
-            </summary>
-            <remarks>
-            All possible values corresponds to their own cases respectively:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Supported nesting rule</description>
-            </listheader>
-            <item>
-            <term>0</term>
-            <description>Non-dynamic forcing chains</description>
-            </item>
-            <item>
-            <term>1</term>
-            <description>Dynamic forcing chains (+ Structural techniques, e.g. <see cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>)</description>
-            </item>
-            <item>
-            <term>2</term>
-            <description>Dynamic forcing chains (+ AIC)</description>
-            </item>
-            <item>
-            <term>3</term>
-            <description>Dynamic forcing chains (+ Multiple forcing chains)</description>
-            </item>
-            <item>
-            <term>4</term>
-            <description>Dynamic forcing chains (+ Dynamic forcing chains)</description>
-            </item>
-            <item>
-            <term>5</term>
-            <description>Dynamic forcing chains (+ Dynamic forcing chains (+))</description>
-            </item>
-            </list>
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Logical.StepSearchers.ILockedCandidatesStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
             <inheritdoc/>
@@ -7387,8 +7442,8 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowNishio" path="/summary"/>
             </param>
             <param name="DynamicNestingLevel">
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
             </param>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
@@ -7410,8 +7465,8 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.AllowNishio" path="/summary"/>
             </param>
             <param name="DynamicNestingLevel">
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
             </param>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.IsX">
@@ -7439,8 +7494,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.DynamicNestingLevel">
             <summary>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
-            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/summary"/></para>
+            <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Logical.Steps.ChainingStep.TargetTypeNotSupportedMessage">

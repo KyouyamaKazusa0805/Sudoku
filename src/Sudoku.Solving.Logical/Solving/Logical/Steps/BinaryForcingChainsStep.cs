@@ -22,7 +22,7 @@ internal sealed record BinaryForcingChainsStep(
 	Potential FromOffPotential,
 	bool IsAbsurd,
 	bool IsNishio,
-	int DynamicNestingLevel
+	int DynamicNestingLevel = 0
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: true, IsNishio: IsNishio, DynamicNestingLevel: DynamicNestingLevel)
 {
 	/// <inheritdoc/>

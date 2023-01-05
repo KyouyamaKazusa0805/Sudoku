@@ -4,14 +4,7 @@
 [SeparatedStepSearcher(0, nameof(AllowNishio), true, nameof(AllowDynamic), true)]
 [SeparatedStepSearcher(1, nameof(AllowMultiple), true)]
 [SeparatedStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true)]
-#if false
-[SeparatedStepSearcher(3, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 1)]
-[SeparatedStepSearcher(4, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 2)]
-[SeparatedStepSearcher(5, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 3)]
-[SeparatedStepSearcher(6, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 4)]
-[SeparatedStepSearcher(7, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 5)]
-#endif
-internal sealed partial class MultipleChainingStepSearcher : ChainingStepSearcher, IChainingStepSearcher
+internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, IChainingStepSearcher
 {
 	/// <summary>
 	/// Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
@@ -52,45 +45,6 @@ internal sealed partial class MultipleChainingStepSearcher : ChainingStepSearche
 	/// or even branches over branches (recursively). It will be very useful on complex inferences.
 	/// </remarks>
 	public bool AllowDynamic { get; init; }
-
-	/// <summary>
-	/// Indicates the level of dynamic recursion. The value can be 0, 1, 2, 3, 4 and 5.
-	/// </summary>
-	/// <remarks>
-	/// All possible values corresponds to their own cases respectively:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Value</term>
-	/// <description>Supported nesting rule</description>
-	/// </listheader>
-	/// <item>
-	/// <term>0</term>
-	/// <description>Non-dynamic forcing chains</description>
-	/// </item>
-	/// <item>
-	/// <term>1</term>
-	/// <description>Dynamic forcing chains (+ Structural techniques, e.g. <see cref="ILockedCandidatesStepSearcher"/>)</description>
-	/// </item>
-	/// <item>
-	/// <term>2</term>
-	/// <description>Dynamic forcing chains (+ AIC)</description>
-	/// </item>
-	/// <item>
-	/// <term>3</term>
-	/// <description>Dynamic forcing chains (+ Multiple forcing chains)</description>
-	/// </item>
-	/// <item>
-	/// <term>4</term>
-	/// <description>Dynamic forcing chains (+ Dynamic forcing chains)</description>
-	/// </item>
-	/// <item>
-	/// <term>5</term>
-	/// <description>Dynamic forcing chains (+ Dynamic forcing chains (+))</description>
-	/// </item>
-	/// </list>
-	/// </remarks>
-	/// <seealso cref="ILockedCandidatesStepSearcher"/>
-	public int DynamicNestingLevel { get; init; }
 
 
 	/// <inheritdoc/>
@@ -406,7 +360,7 @@ internal sealed partial class MultipleChainingStepSearcher : ChainingStepSearche
 	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, Potential dstOn, Potential dstOff, Potential src, Potential target, bool isAbsurd)
 	{
 		var conclusion = ImmutableArray.Create(new Conclusion(Assignment, target.Candidate));
-		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
+		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio);
 		return result with { Views = result.CreateViews(grid) };
 	}
 
@@ -416,7 +370,7 @@ internal sealed partial class MultipleChainingStepSearcher : ChainingStepSearche
 	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, Potential dstOn, Potential dstOff, Potential src, Potential target, bool isAbsurd)
 	{
 		var conclusion = ImmutableArray.Create(new Conclusion(Elimination, target.Candidate));
-		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
+		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio);
 		return result with { Views = result.CreateViews(grid) };
 	}
 
@@ -439,7 +393,7 @@ internal sealed partial class MultipleChainingStepSearcher : ChainingStepSearche
 			}
 		}
 
-		var result = new CellForcingChainsStep(conclusion, srcCell, chains, AllowDynamic, DynamicNestingLevel);
+		var result = new CellForcingChainsStep(conclusion, srcCell, chains, AllowDynamic);
 		return result with { Views = result.CreateViews(grid) };
 	}
 
@@ -459,7 +413,7 @@ internal sealed partial class MultipleChainingStepSearcher : ChainingStepSearche
 			chains.Add(tempCell, outcomes[tempCell].GetNullable(target) ?? default);
 		}
 
-		var result = new RegionForcingChainsStep(conclusions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
+		var result = new RegionForcingChainsStep(conclusions, houseIndex, digit, chains, AllowDynamic);
 		return result with { Views = result.CreateViews(grid) };
 	}
 }

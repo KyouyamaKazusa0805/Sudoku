@@ -13,7 +13,7 @@ internal sealed record CellForcingChainsStep(
 	byte SourceCell,
 	MultipleForcingChains Chains,
 	bool IsDynamic,
-	int DynamicNestingLevel
+	int DynamicNestingLevel = 0
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
 	[ResourceTextFormatter]
