@@ -8,11 +8,7 @@
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
-public sealed partial class AlmostLockedSet :
-	IEquatable<AlmostLockedSet>,
-	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>,
-	ITechniquePattern<AlmostLockedSet>,
-	ITechniquePatternGatherable<AlmostLockedSet>
+public sealed partial class AlmostLockedSet : IEquatable<AlmostLockedSet>, IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -166,7 +162,11 @@ public sealed partial class AlmostLockedSet :
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Gathers all possible <see cref="AlmostLockedSet"/>s in the specified grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <returns>All possible found <see cref="AlmostLockedSet"/>.</returns>
 	public static AlmostLockedSet[] Gather(scoped in Grid grid)
 	{
 		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap };

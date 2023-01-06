@@ -14,7 +14,7 @@
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record JuniorExocetStep(
 	ViewList Views,
-	scoped in ExocetPattern Exocet,
+	scoped in Exocet Exocet,
 	short DigitsMask,
 #if false
 	short LockedMemberQ,
@@ -54,13 +54,11 @@ internal sealed record JuniorExocetStep(
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.JuniorExocet;
 
+
 	/// <summary>
 	/// Indicates the locked member Q string.
 	/// </summary>
 	[ResourceTextFormatter]
-#if false
-	[NotNullIfNotNull(nameof(LockedMemberQ))]
-#endif
 	internal string LockedMemberQStr()
 	{
 #if false
@@ -75,9 +73,6 @@ internal sealed record JuniorExocetStep(
 	/// Indicates the locked member R string.
 	/// </summary>
 	[ResourceTextFormatter]
-#if false
-	[NotNullIfNotNull(nameof(LockedMemberR))]
-#endif
 	internal string LockedMemberRStr()
 	{
 #if false

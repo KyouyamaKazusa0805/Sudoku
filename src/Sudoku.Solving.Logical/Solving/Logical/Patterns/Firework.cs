@@ -20,4 +20,4 @@
 /// </summary>
 /// <param name="Map"><inheritdoc/></param>
 /// <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
-public readonly record struct FireworkPattern(scoped in CellMap Map, int? Pivot) : ITechniquePattern<FireworkPattern>;
+public readonly record struct Firework(scoped in CellMap Map, int? Pivot);

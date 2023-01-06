@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.ConceptGatherables;
+﻿namespace Sudoku.Gathering;
 
 /// <summary>
 /// Represents a type that can gather <see cref="Conjugate"/> instances that exists in a grid.

@@ -176,8 +176,6 @@ internal sealed record ComplexFishStep(
 	/// <inheritdoc/>
 	public static bool Equals(ComplexFishStep left, ComplexFishStep right)
 		=> left.Digit == right.Digit
-		&& left.BaseSetsMask == right.BaseSetsMask
-		&& left.CoverSetsMask == right.CoverSetsMask
-		&& left.Exofins == right.Exofins
-		&& left.Endofins == right.Endofins;
+		&& left.BaseSetsMask == right.BaseSetsMask && left.CoverSetsMask == right.CoverSetsMask
+		&& left.Exofins == right.Exofins && left.Endofins == right.Endofins;
 }

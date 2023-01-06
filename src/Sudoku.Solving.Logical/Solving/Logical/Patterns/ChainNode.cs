@@ -1,12 +1,15 @@
-﻿namespace Sudoku.Solving.Logical.PatternData;
+﻿namespace Sudoku.Solving.Logical.Patterns;
 
 /// <summary>
 /// Defines a node used in chaining.
 /// </summary>
+/// <remarks>
+/// This type corresponds to the concept of Sudoku Explainer's logic "<b>Potential</b>".
+/// </remarks>
 #if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
 #endif
-internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOperators<Potential, Potential, bool>
+internal readonly partial struct ChainNode : IEquatable<ChainNode>, IEqualityOperators<ChainNode, ChainNode, bool>
 {
 	/// <summary>
 	/// The internal mask.
@@ -15,31 +18,31 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 
 
 	/// <summary>
-	/// Initializes a <see cref="Potential"/> instance via the specified data.
+	/// Initializes a <see cref="ChainNode"/> instance via the specified data.
 	/// </summary>
 	/// <param name="candidate">The candidate.</param>
 	/// <param name="isOn">Indicates whether the node is on.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Potential(int candidate, bool isOn) : this((byte)(candidate / 9), (byte)(candidate % 9), isOn)
+	public ChainNode(int candidate, bool isOn) : this((byte)(candidate / 9), (byte)(candidate % 9), isOn)
 	{
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="Potential(int, bool)" path="/summary"/>
+	/// <inheritdoc cref="ChainNode(int, bool)" path="/summary"/>
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
-	/// <param name="isOn"><inheritdoc cref="Potential(int, bool)" path="/param[@name='isOn']"/></param>
+	/// <param name="isOn"><inheritdoc cref="ChainNode(int, bool)" path="/param[@name='isOn']"/></param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Potential(byte cell, byte digit, bool isOn) => _mask = (short)((isOn ? 1 : 0) << 10 | (cell * 9 + digit));
+	public ChainNode(byte cell, byte digit, bool isOn) => _mask = (short)((isOn ? 1 : 0) << 10 | cell * 9 + digit);
 
 	/// <summary>
-	/// <inheritdoc cref="Potential(int, bool)" path="/summary"/>
+	/// <inheritdoc cref="ChainNode(int, bool)" path="/summary"/>
 	/// </summary>
 	/// <param name="base">The base potential instance.</param>
-	/// <param name="isOn"><inheritdoc cref="Potential(int, bool)" path="/param[@name='isOn']"/></param>
+	/// <param name="isOn"><inheritdoc cref="ChainNode(int, bool)" path="/param[@name='isOn']"/></param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Potential(Potential @base, bool isOn) : this(@base.Cell, @base.Digit, isOn)
+	public ChainNode(ChainNode @base, bool isOn) : this(@base.Cell, @base.Digit, isOn)
 	{
 	}
 
@@ -67,20 +70,20 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 	/// <summary>
 	/// Defines an accessor that allows user assigning a singleton parent node into the current data structure on instantiation phase.
 	/// </summary>
-	public Potential SingletonParent
+	public ChainNode SingletonParent
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		init => Parents.Add(value);
 	}
 
 	/// <summary>
-	/// Indicates all <see cref="Potential"/>s in a single chain. This property should only be used in normal AICs.
+	/// Indicates all <see cref="ChainNode"/>s in a single chain. This property should only be used in normal AICs.
 	/// </summary>
-	public Potential[] ChainPotentials
+	public ChainNode[] ChainPotentials
 	{
 		get
 		{
-			var result = new List<Potential>();
+			var result = new List<ChainNode>();
 			for (var p = this; p.Parents is [var parent]; p = parent)
 			{
 				result.Add(p);
@@ -91,18 +94,18 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 	}
 
 	/// <summary>
-	/// Gets the chain of all <see cref="Potential"/>s from the current <see cref="Potential"/> as the target node.
+	/// Gets the chain of all <see cref="ChainNode"/>s from the current <see cref="ChainNode"/> as the target node.
 	/// </summary>
-	public Potential[] FullChainPotentials
+	public ChainNode[] FullChainPotentials
 	{
 		get
 		{
-			var result = new List<Potential>();
-			var done = new PotentialSet();
-			var todo = new List<Potential> { this };
+			var result = new List<ChainNode>();
+			var done = new NodeSet();
+			var todo = new List<ChainNode> { this };
 			while (todo.Count > 0)
 			{
-				var next = new List<Potential>();
+				var next = new List<ChainNode>();
 				foreach (var p in todo)
 				{
 					if (!done.Contains(p))
@@ -129,15 +132,15 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 	/// <para>Indicates the parents of the current instance.</para>
 	/// <para>
 	/// The result always returns a list of length 1 if the chain is not dynamic.
-	/// In addition, if a <see cref="Potential"/> instance has no available parent (i.e. the return collection is empty),
+	/// In addition, if a <see cref="ChainNode"/> instance has no available parent (i.e. the return collection is empty),
 	/// it must the head of a chain.
 	/// </para>
 	/// <para>
-	/// If you want to append more parent nodes into the current <see cref="Potential"/> instance,
+	/// If you want to append more parent nodes into the current <see cref="ChainNode"/> instance,
 	/// just call <see cref="List{T}.Add(T)"/> to add it using this property: <c>p.Parents.Add(parent);</c>.
 	/// </para>
 	/// </summary>
-	public List<Potential> Parents { get; } = new(1);
+	public List<ChainNode> Parents { get; } = new(1);
 
 	/// <summary>
 	/// Indicates the candidate string representation.
@@ -174,7 +177,7 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Potential other) => _mask == other._mask;
+	public bool Equals(ChainNode other) => _mask == other._mask;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
 	public override partial int GetHashCode();
@@ -185,9 +188,9 @@ internal readonly partial struct Potential : IEquatable<Potential>, IEqualityOpe
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Potential left, Potential right) => left.Equals(right);
+	public static bool operator ==(ChainNode left, ChainNode right) => left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Potential left, Potential right) => !(left == right);
+	public static bool operator !=(ChainNode left, ChainNode right) => !(left == right);
 }

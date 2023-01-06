@@ -1,8 +1,7 @@
-﻿namespace Sudoku.Solving.Logical.PatternData;
+﻿namespace Sudoku.Solving.Logical.Meta;
 
 /// <summary>
-/// Represents a data structure that describes the eliminations that are created and proved
-/// by the exocet technique.
+/// Represents a data structure that describes the eliminations that are created and proved by the exocet technique.
 /// </summary>
 /// <param name="Conclusions">Indicates the conclusions.</param>
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>

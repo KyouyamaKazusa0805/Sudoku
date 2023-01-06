@@ -55,7 +55,7 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 
 
 	/// <inheritdoc/>
-	protected override void OnAdvanced(PotentialList pendingOn, PotentialList pendingOff, PotentialSet toOff, scoped in Grid grid, scoped in Grid original)
+	protected override void OnAdvanced(NodeList pendingOn, NodeList pendingOff, NodeSet toOff, scoped in Grid grid, scoped in Grid original)
 	{
 		if (pendingOn.Count == 0 && pendingOff.Count == 0 && DynamicNestingLevel > 0)
 		{
@@ -77,12 +77,12 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 	/// <param name="grid">Indicates the current grid state.</param>
 	/// <param name="original">Indicates the original grid state.</param>
 	/// <param name="offPotentials">
-	/// <inheritdoc cref="OnAdvanced(PotentialList, PotentialList, PotentialSet, in Grid, in Grid)" path="/param[@name='toOff']"/>
+	/// <inheritdoc cref="OnAdvanced(NodeList, NodeList, NodeSet, in Grid, in Grid)" path="/param[@name='toOff']"/>
 	/// </param>
-	/// <returns>Found <see cref="Potential"/> instances.</returns>
+	/// <returns>Found <see cref="ChainNode"/> instances.</returns>
 	[MemberNotNull(nameof(_otherStepSearchers))]
 	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	private PotentialList GetAdvancedPotentials(scoped in Grid grid, scoped in Grid original, PotentialSet offPotentials)
+	private NodeList GetAdvancedPotentials(scoped in Grid grid, scoped in Grid original, NodeSet offPotentials)
 	{
 		_otherStepSearchers ??= new()
 		{
@@ -93,7 +93,7 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 			{ 5, new IStepSearcher[] { new AdvancedMultipleChainingStepSearcher { DynamicNestingLevel = DynamicNestingLevel - 3 } } }
 		};
 
-		var result = new PotentialList();
+		var result = new NodeList();
 		return result;
 	}
 
@@ -101,7 +101,7 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 	/// Try to create a binary forcing chain hint on "on" state.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, Potential dstOn, Potential dstOff, Potential src, Potential target, bool isAbsurd)
+	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
 		var conclusion = ImmutableArray.Create(new Conclusion(Assignment, target.Candidate));
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
@@ -112,7 +112,7 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 	/// Try to create a binary forcing chain hint on "off" state.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, Potential dstOn, Potential dstOff, Potential src, Potential target, bool isAbsurd)
+	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
 		var conclusion = ImmutableArray.Create(new Conclusion(Elimination, target.Candidate));
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
@@ -123,7 +123,7 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 	/// Try to create a cell forcing chain hint.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, Potential target, ChainBranch outcomes)
+	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusion = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
@@ -147,7 +147,7 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 	/// Try to create a region (house) forcing chain hint.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, int houseIndex, byte digit, Potential target, ChainBranch outcomes)
+	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, int houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusions = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));

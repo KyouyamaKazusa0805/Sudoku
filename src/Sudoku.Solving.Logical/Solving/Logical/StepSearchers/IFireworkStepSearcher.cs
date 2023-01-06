@@ -22,7 +22,7 @@ public interface IFireworkStepSearcher : IIntersectionStepSearcher
 	/// <summary>
 	/// Indicates the patterns used.
 	/// </summary>
-	protected static readonly FireworkPattern[] Patterns = new FireworkPattern[FireworkSubsetCount];
+	protected static readonly Firework[] Patterns = new Firework[FireworkSubsetCount];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />

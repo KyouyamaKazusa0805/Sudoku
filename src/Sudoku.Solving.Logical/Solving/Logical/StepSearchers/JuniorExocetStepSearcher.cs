@@ -13,7 +13,7 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var exocetPatterns = IExocetStepSearcher.Patterns;
-		foreach (/*scoped*/ ref readonly var currentJe in exocetPatterns.EnumerateRef())
+		foreach (ref readonly var currentJe in exocetPatterns.EnumerateRef())
 		{
 			if (!EmptyCells.Contains(currentJe.Base1) || !EmptyCells.Contains(currentJe.Base2))
 			{
@@ -35,15 +35,12 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 				continue;
 			}
 
-			if (!CheckTargetCells(
-					currentJe.TargetQ1, currentJe.TargetQ2, baseCellsDigitsMask,
-					grid, out var otherDigitsMaskQArea))
+			if (!CheckTargetCells(currentJe.TargetQ1, currentJe.TargetQ2, baseCellsDigitsMask, grid, out var otherDigitsMaskQArea))
 			{
 				continue;
 			}
-			if (!CheckTargetCells(
-					currentJe.TargetR1, currentJe.TargetR2, baseCellsDigitsMask,
-					grid, out var otherDigitsMaskRArea))
+
+			if (!CheckTargetCells(currentJe.TargetR1, currentJe.TargetR2, baseCellsDigitsMask, grid, out var otherDigitsMaskRArea))
 			{
 				continue;
 			}
@@ -149,9 +146,7 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 	/// as the base digits.
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private bool CheckTargetCells(
-		int targetCell1, int targetCell2, short baseCellsDigitsMask, scoped in Grid grid,
-		out short resultOtherDigitsMask)
+	private bool CheckTargetCells(int targetCell1, int targetCell2, short baseCellsDigitsMask, scoped in Grid grid, out short resultOtherDigitsMask)
 	{
 		resultOtherDigitsMask = 0;
 
@@ -237,13 +232,12 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 	/// <param name="currentJe">The current JE pattern.</param>
 	/// <param name="digitsNeedChecking">The digits need checking.</param>
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
-	private bool CheckCrossLineCells(scoped in ExocetPattern currentJe, short digitsNeedChecking)
+	private bool CheckCrossLineCells(scoped in Exocet currentJe, short digitsNeedChecking)
 	{
 		foreach (var digitNeedChecking in digitsNeedChecking)
 		{
 			var currentDigitSegment = currentJe.CrossLine & DigitsMap[digitNeedChecking];
-			if (PopCount((uint)currentDigitSegment.RowMask) <= 2
-				|| PopCount((uint)currentDigitSegment.ColumnMask) <= 2)
+			if (PopCount((uint)currentDigitSegment.RowMask) <= 2 || PopCount((uint)currentDigitSegment.ColumnMask) <= 2)
 			{
 				continue;
 			}

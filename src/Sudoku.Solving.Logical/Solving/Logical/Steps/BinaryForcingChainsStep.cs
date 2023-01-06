@@ -17,9 +17,9 @@
 /// <param name="DynamicNestingLevel"><inheritdoc/></param>
 internal sealed record BinaryForcingChainsStep(
 	ConclusionList Conclusions,
-	Potential SourcePotential,
-	Potential FromOnPotential,
-	Potential FromOffPotential,
+	ChainNode SourcePotential,
+	ChainNode FromOnPotential,
+	ChainNode FromOffPotential,
 	bool IsAbsurd,
 	bool IsNishio,
 	int DynamicNestingLevel = 0

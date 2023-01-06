@@ -49,72 +49,45 @@
 /// Due to the rendering engine, you have to check this file rather than the tip window.
 /// </para>
 /// </remarks>
-public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniquePattern<UniquePolygonPattern>
+public readonly partial record struct UniquePolygon(long Mask)
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.
 	/// </summary>
-	public bool IsHeptagon
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Mask >> 28 & 127) == 127;
-	}
+	public bool IsHeptagon => (Mask >> 28 & 127) == 127;
 
 	/// <summary>
 	/// Indicates the map of pair 1 cells.
 	/// </summary>
-	public CellMap Pair1Map
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellsMap[Pair1.A] + Pair1.B;
-	}
+	public CellMap Pair1Map => CellsMap[Pair1.A] + Pair1.B;
 
 	/// <summary>
 	/// Indicates the map of pair 2 cells.
 	/// </summary>
-	public CellMap Pair2Map
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellsMap[Pair2.A] + Pair2.B;
-	}
+	public CellMap Pair2Map => CellsMap[Pair2.A] + Pair2.B;
 
 	/// <summary>
 	/// The map of other three (or four) cells.
 	/// </summary>
 	public CellMap CenterCellsMap
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
+		=> this switch
 		{
-			var (a, b, c, d) = CenterCells;
-			return IsHeptagon ? CellsMap[a] + b + c : CellsMap[a] + b + c + d;
-		}
-	}
+			{ CenterCells: var (a, b, c, _), IsHeptagon: true } => CellsMap[a] + b + c,
+			{ CenterCells: var (a, b, c, d), IsHeptagon: false } => CellsMap[a] + b + c + d
+		};
 
 	/// <inheritdoc/>
-	public CellMap Map
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Pair1Map | Pair2Map | CenterCellsMap;
-	}
+	public CellMap Map => Pair1Map | Pair2Map | CenterCellsMap;
 
 	/// <summary>
 	/// Indicates the pair 1.
 	/// </summary>
-	private (int A, int B) Pair1
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ((int)(Mask >> 7 & 127), (int)(Mask & 127));
-	}
+	private (int A, int B) Pair1 => ((int)(Mask >> 7 & 127), (int)(Mask & 127));
 
 	/// <summary>
 	/// Indicates the pair 2.
 	/// </summary>
-	private (int A, int B) Pair2
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ((int)(Mask >> 21 & 127), (int)(Mask >> 14 & 127));
-	}
+	private (int A, int B) Pair2 => ((int)(Mask >> 21 & 127), (int)(Mask >> 14 & 127));
 
 	/// <summary>
 	/// Indicates the other three (or four) cells.
@@ -123,10 +96,7 @@ public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniq
 	/// <b>If and only if</b> the fourth value in the returned quadruple is available.
 	/// </remarks>
 	private (int A, int B, int C, int D) CenterCells
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ((int)(Mask >> 49 & 127), (int)(Mask >> 42 & 127), (int)(Mask >> 35 & 127), (int)(Mask >> 28 & 127));
-	}
+		=> ((int)(Mask >> 49 & 127), (int)(Mask >> 42 & 127), (int)(Mask >> 35 & 127), (int)(Mask >> 28 & 127));
 
 
 	[GeneratedDeconstruction]

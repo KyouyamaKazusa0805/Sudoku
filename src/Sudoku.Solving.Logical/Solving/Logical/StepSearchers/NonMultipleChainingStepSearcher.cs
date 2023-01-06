@@ -42,7 +42,7 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 	/// <param name="child">The child node to be checked.</param>
 	/// <param name="parent">The parent node to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	internal bool IsParent(Potential child, Potential parent)
+	internal bool IsParent(ChainNode child, ChainNode parent)
 	{
 		var pTest = child;
 		while (pTest.Parents is [var first, ..])
@@ -73,7 +73,7 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 			{
 				if (CandidatesMap[digit].Contains(cell))
 				{
-					var pOn = new Potential(cell, digit, true);
+					var pOn = new ChainNode(cell, digit, true);
 					DoUnaryChaining(grid, pOn, result, isX, isY);
 				}
 			}
@@ -90,7 +90,7 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 	/// <param name="result">The result steps found.</param>
 	/// <param name="isX"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
 	/// <param name="isY"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
-	private void DoUnaryChaining(scoped in Grid grid, Potential pOn, List<ChainingStep> result, bool isX, bool isY)
+	private void DoUnaryChaining(scoped in Grid grid, ChainNode pOn, List<ChainingStep> result, bool isX, bool isY)
 	{
 		if (BivalueCells.Contains(pOn.Cell) && !isX)
 		{
@@ -98,10 +98,10 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 			return;
 		}
 
-		var cycles = new PotentialList();
-		var chains = new PotentialList();
-		var onToOn = new PotentialSet { pOn };
-		var onToOff = new PotentialSet();
+		var cycles = new NodeList();
+		var chains = new NodeList();
+		var onToOn = new NodeSet { pOn };
+		var onToOff = new NodeSet();
 
 		DoCycles(grid, onToOn, onToOff, isX, isY, cycles, pOn);
 
@@ -115,7 +115,7 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 			DoForcingChains(grid, onToOn, onToOff, isY, chains, pOn);
 
 			// Forcing chain with "on" implication.
-			var pOff = new Potential(pOn, false);
+			var pOff = new ChainNode(pOn, false);
 			onToOn = new();
 			onToOff = new() { pOff };
 			DoForcingChains(grid, onToOn, onToOff, isY, chains, pOff);
@@ -145,14 +145,14 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 	/// <param name="isX"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
 	/// <param name="isY"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <param name="cycles">
-	/// <para>All found cycles, represented as their final <see cref="Potential"/> node.</para>
-	/// <para>By using <see cref="Potential.ChainPotentials"/>, we can get the whole chain.</para>
+	/// <para>All found cycles, represented as their final <see cref="ChainNode"/> node.</para>
+	/// <para>By using <see cref="ChainNode.ChainPotentials"/>, we can get the whole chain.</para>
 	/// </param>
 	/// <param name="source">The source node.</param>
-	private void DoCycles(scoped in Grid grid, PotentialSet toOn, PotentialSet toOff, bool isX, bool isY, PotentialList cycles, Potential source)
+	private void DoCycles(scoped in Grid grid, NodeSet toOn, NodeSet toOff, bool isX, bool isY, NodeList cycles, ChainNode source)
 	{
-		var pendingOn = new PotentialList(toOn);
-		var pendingOff = new PotentialList(toOff);
+		var pendingOn = new NodeList(toOn);
+		var pendingOff = new NodeList(toOff);
 
 		// Mind why this is a BFS and works. I learned that cycles are only found by DFS
 		// Maybe we are missing loops.
@@ -208,27 +208,27 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 	/// </summary>
 	/// <param name="grid"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="toOn">
-	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='toOn']"/>
+	/// <inheritdoc cref="DoCycles(in Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='toOn']"/>
 	/// </param>
 	/// <param name="toOff">
-	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='toOff']"/>
+	/// <inheritdoc cref="DoCycles(in Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='toOff']"/>
 	/// </param>
 	/// <param name="isY"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <param name="chains">
-	/// <para>All found chains, represented as their final <see cref="Potential"/> node.</para>
+	/// <para>All found chains, represented as their final <see cref="ChainNode"/> node.</para>
 	/// <para>
 	/// <inheritdoc
-	///     cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)"
+	///     cref="DoCycles(in Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)"
 	///     path="//param[@name='cycles']/para[2]"/>
 	/// </para>
 	/// </param>
 	/// <param name="source">
-	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='source']"/>
+	/// <inheritdoc cref="DoCycles(in Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='source']"/>
 	/// </param>
-	private void DoForcingChains(scoped in Grid grid, PotentialSet toOn, PotentialSet toOff, bool isY, PotentialList chains, Potential source)
+	private void DoForcingChains(scoped in Grid grid, NodeSet toOn, NodeSet toOff, bool isY, NodeList chains, ChainNode source)
 	{
-		var pendingOn = new PotentialList(toOn);
-		var pendingOff = new PotentialList(toOff);
+		var pendingOn = new NodeList(toOn);
+		var pendingOff = new NodeList(toOff);
 		while (pendingOn.Count > 0 || pendingOff.Count > 0)
 		{
 			while (pendingOn.Count > 0)
@@ -237,7 +237,7 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 				var makeOff = GetOnToOff(grid, p, isY);
 				foreach (var pOff in makeOff)
 				{
-					var pOn = new Potential(pOff, true); // Conjugate.
+					var pOn = new ChainNode(pOff, true); // Conjugate.
 					if (source == pOn)
 					{
 						// Cyclic contradiction (forcing chain) found.
@@ -266,7 +266,7 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 				var makeOn = GetOffToOn(grid, p, null, toOff, true, isY, false);
 				foreach (var pOn in makeOn)
 				{
-					var pOff = new Potential(pOn, false); // Conjugate.
+					var pOff = new ChainNode(pOn, false); // Conjugate.
 					if (source == pOff)
 					{
 						// Cyclic contradiction (forcing chain) found.
@@ -296,15 +296,15 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 	/// </param>
 	/// <param name="dstOn">Indicates the destination node that is at the state "on".</param>
 	/// <param name="isX">
-	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='isX']"/>
+	/// <inheritdoc cref="DoCycles(in Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='isX']"/>
 	/// </param>
 	/// <param name="isY">
-	/// <inheritdoc cref="DoCycles(in Grid, PotentialSet, PotentialSet, bool, bool, PotentialList, Potential)" path="/param[@name='isY']"/>
+	/// <inheritdoc cref="DoCycles(in Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='isY']"/>
 	/// </param>
 	/// <returns>
 	/// A valid <see cref="BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
 	/// </returns>
-	private BidirectionalCycleStep? CreateCycleStep(scoped in Grid grid, Potential dstOn, bool isX, bool isY)
+	private BidirectionalCycleStep? CreateCycleStep(scoped in Grid grid, ChainNode dstOn, bool isX, bool isY)
 	{
 		var nodes = dstOn.ChainPotentials;
 
@@ -346,7 +346,7 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 	/// <summary>
 	/// Try to create an AIC hint.
 	/// </summary>
-	private ForcingChainStep CreateAicStep(scoped in Grid grid, Potential target, bool isX, bool isY)
+	private ForcingChainStep CreateAicStep(scoped in Grid grid, ChainNode target, bool isX, bool isY)
 	{
 		var (candidate, isOn) = target;
 		var conclusion = ImmutableArray.Create(new Conclusion(isOn ? Assignment : Elimination, candidate));

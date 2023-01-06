@@ -166,13 +166,13 @@ internal abstract record ChainingStep(
 	/// <summary>
 	/// Indicates all possible targets that is used for checking the whole branches of the chain.
 	/// </summary>
-	protected internal Potential[] ChainsTargets
+	protected internal ChainNode[] ChainsTargets
 		=> this switch
 		{
 			ForcingChainStep { Target: var target } => new[] { target },
 			BidirectionalCycleStep { DestinationOn: var target } => new[] { target },
-			CellForcingChainsStep { Chains.Potentials: var targets } => ((List<Potential>)targets).ToArray(),
-			RegionForcingChainsStep { Chains.Potentials: var targets } => ((List<Potential>)targets).ToArray(),
+			CellForcingChainsStep { Chains.Potentials: var targets } => ((List<ChainNode>)targets).ToArray(),
+			RegionForcingChainsStep { Chains.Potentials: var targets } => ((List<ChainNode>)targets).ToArray(),
 			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => new[] { on, off },
 			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
 		};
@@ -193,7 +193,7 @@ internal abstract record ChainingStep(
 	/// <summary>
 	/// Indicates the result node.
 	/// </summary>
-	protected Potential? Result
+	protected ChainNode? Result
 		=> this switch
 		{
 			ForcingChainStep { Target: var target } => target,
@@ -309,9 +309,9 @@ internal abstract record ChainingStep(
 	/// <param name="initialGrid">The initial grid.</param>
 	/// <param name="currentGrid">The current grid.</param>
 	/// <returns>All found potentials.</returns>
-	internal List<Potential> GetRuleParents(scoped in Grid initialGrid, scoped in Grid currentGrid)
+	internal List<ChainNode> GetRuleParents(scoped in Grid initialGrid, scoped in Grid currentGrid)
 	{
-		var result = new List<Potential>();
+		var result = new List<ChainNode>();
 
 		// Warning: Iterate on each chain target separately.
 		// Reason: they may be equal according to equals() (same candidate), but they may have different parents !
@@ -363,7 +363,7 @@ internal abstract record ChainingStep(
 	/// This method will be implemented later.
 	/// </i></b></summary>
 	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	protected void CollectRuleParents(scoped in Grid initialGrid, scoped in Grid currentGrid, List<Potential> result, Potential target)
+	protected void CollectRuleParents(scoped in Grid initialGrid, scoped in Grid currentGrid, List<ChainNode> result, ChainNode target)
 	{
 		return;
 	}
@@ -373,13 +373,13 @@ internal abstract record ChainingStep(
 	/// </summary>
 	/// <param name="child">The specified node.</param>
 	/// <returns>The total number of all found ancestors.</returns>
-	protected int AncestorsCountOf(Potential child)
+	protected int AncestorsCountOf(ChainNode child)
 	{
-		var ancestors = new PotentialSet();
-		var todo = new List<Potential> { child };
+		var ancestors = new NodeSet();
+		var todo = new List<ChainNode> { child };
 		while (todo.Count > 0)
 		{
-			var next = new List<Potential>();
+			var next = new List<ChainNode>();
 			foreach (var p in todo)
 			{
 				if (!ancestors.Contains(p))
@@ -400,7 +400,7 @@ internal abstract record ChainingStep(
 	/// </summary>
 	/// <param name="target">The target node.</param>
 	/// <returns>The source potential.</returns>
-	protected Potential SourcePotentialOf(Potential target)
+	protected ChainNode SourcePotentialOf(ChainNode target)
 	{
 		var result = target;
 		while (result.Parents.Count > 0)
@@ -418,7 +418,7 @@ internal abstract record ChainingStep(
 	/// <param name="state">The state of the node to be colored.</param>
 	/// <param name="skipTarget">Indicates whether we should skip the target node.</param>
 	/// <returns>All found candidates.</returns>
-	protected Candidates GetColorCandidates(Potential target, bool state, bool skipTarget)
+	protected Candidates GetColorCandidates(ChainNode target, bool state, bool skipTarget)
 	{
 		var result = Candidates.Empty;
 		foreach (var p in target.FullChainPotentials)
@@ -502,7 +502,7 @@ internal abstract record ChainingStep(
 			}
 
 			// Use the rule's parent collector.
-			var blues = new List<Potential>();
+			var blues = new List<ChainNode>();
 			var nestedTarget = step.GetChainTargetAt(nestedViewNum);
 			step.CollectRuleParents(grid, nestedGrid, blues, nestedTarget);
 
@@ -523,11 +523,11 @@ internal abstract record ChainingStep(
 	protected abstract List<LinkViewNode> GetLinks(int viewIndex);
 
 	/// <summary>
-	/// Try to fetch all <see cref="LinkViewNode"/> instances of the branch from the specified target, specified as a <see cref="Potential"/> instance.
+	/// Try to fetch all <see cref="LinkViewNode"/> instances of the branch from the specified target, specified as a <see cref="ChainNode"/> instance.
 	/// </summary>
 	/// <param name="target">The target node.</param>
 	/// <returns>All <see cref="LinkViewNode"/> displayed in this branch.</returns>
-	protected List<LinkViewNode> GetLinks(Potential target)
+	protected List<LinkViewNode> GetLinks(ChainNode target)
 	{
 		var result = new List<LinkViewNode>();
 		foreach (var p in target.FullChainPotentials)
@@ -576,8 +576,8 @@ internal abstract record ChainingStep(
 	/// Try to get the target node of a chain, displayed in the view at the specified index.
 	/// </summary>
 	/// <param name="viewIndex">The view index.</param>
-	/// <returns>The <see cref="Potential"/> result.</returns>
-	private Potential GetChainTargetAt(int viewIndex)
+	/// <returns>The <see cref="ChainNode"/> result.</returns>
+	private ChainNode GetChainTargetAt(int viewIndex)
 		=> this switch
 		{
 			ForcingChainStep { Target: var target } => target,
@@ -593,7 +593,7 @@ internal abstract record ChainingStep(
 	/// </summary>
 	/// <param name="step">The step instance.</param>
 	/// <returns>The container target.</returns>
-	private Potential GetContainerTarget(ChainingStep step)
+	private ChainNode GetContainerTarget(ChainingStep step)
 	{
 		foreach (var target in ChainsTargets)
 		{
@@ -728,9 +728,9 @@ file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
 		};
 
 
-		static bool potentialComparison(Potential a, Potential b) => a == b;
+		static bool potentialComparison(ChainNode a, ChainNode b) => a == b;
 
-		static bool branchEquals(Potential[] a, Potential[] b)
+		static bool branchEquals(ChainNode[] a, ChainNode[] b)
 		{
 			scoped var i1 = a.EnumerateImmutable();
 			scoped var i2 = b.EnumerateImmutable();

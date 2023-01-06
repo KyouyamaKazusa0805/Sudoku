@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.DataRepresentations;
+﻿namespace Sudoku.Solving.Logical.Meta;
 
 /// <summary>
 /// Provides with the kinds of the phased difficulty rating that is used

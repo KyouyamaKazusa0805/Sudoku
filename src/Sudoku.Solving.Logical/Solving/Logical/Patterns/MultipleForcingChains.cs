@@ -4,16 +4,16 @@
 /// Defines a multiple forcing chains.
 /// </summary>
 internal sealed partial class MultipleForcingChains :
-	IEnumerable<(byte CellOrDigit, Potential Potential)>,
+	IEnumerable<(byte CellOrDigit, ChainNode Potential)>,
 	IEquatable<MultipleForcingChains>,
 	IEqualityOperators<MultipleForcingChains, MultipleForcingChains, bool>,
-	IReadOnlyCollection<(byte CellOrDigit, Potential Potential)>,
-	IReadOnlyList<(byte CellOrDigit, Potential Potential)>
+	IReadOnlyCollection<(byte CellOrDigit, ChainNode Potential)>,
+	IReadOnlyList<(byte CellOrDigit, ChainNode Potential)>
 {
 	/// <summary>
 	/// Indicates the internal dictionary.
 	/// </summary>
-	private readonly SortedDictionary<byte, Potential> _internalDictionary = new(CellOrDigitComparer.Instance);
+	private readonly SortedDictionary<byte, ChainNode> _internalDictionary = new(CellOrDigitComparer.Instance);
 
 	/// <summary>
 	/// Indicates the keys.
@@ -23,7 +23,7 @@ internal sealed partial class MultipleForcingChains :
 	/// <summary>
 	/// Indicates the values.
 	/// </summary>
-	private readonly List<Potential> _values = new(7);
+	private readonly List<ChainNode> _values = new(7);
 
 
 	/// <summary>
@@ -39,7 +39,7 @@ internal sealed partial class MultipleForcingChains :
 	/// <summary>
 	/// Indicates the potentials.
 	/// </summary>
-	public IReadOnlyList<Potential> Potentials => _values;
+	public IReadOnlyList<ChainNode> Potentials => _values;
 
 
 	/// <summary>
@@ -48,7 +48,7 @@ internal sealed partial class MultipleForcingChains :
 	/// <param name="index">The desired index.</param>
 	/// <returns>The pair of data.</returns>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
-	public (byte CellOrDigit, Potential Potential) this[int index]
+	public (byte CellOrDigit, ChainNode Potential) this[int index]
 	{
 		get
 		{
@@ -74,7 +74,7 @@ internal sealed partial class MultipleForcingChains :
 	/// <param name="cellOrDigit">The cell or digit.</param>
 	/// <param name="potential">The potential.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Add(byte cellOrDigit, Potential potential)
+	public void Add(byte cellOrDigit, ChainNode potential)
 	{
 		_internalDictionary.Add(cellOrDigit, potential);
 		_keys.Add(cellOrDigit);
@@ -121,7 +121,7 @@ internal sealed partial class MultipleForcingChains :
 	}
 
 	/// <inheritdoc/>
-	public IEnumerator<(byte CellOrDigit, Potential Potential)> GetEnumerator()
+	public IEnumerator<(byte CellOrDigit, ChainNode Potential)> GetEnumerator()
 	{
 		foreach (var (a, b) in this)
 		{
@@ -148,7 +148,7 @@ internal sealed partial class MultipleForcingChains :
 	/// Implicit cast from <see cref="Dictionary{TKey, TValue}"/> to <see cref="MultipleForcingChains"/>.
 	/// </summary>
 	/// <param name="dictionary">The dictionary.</param>
-	public static implicit operator MultipleForcingChains(Dictionary<byte, Potential> dictionary)
+	public static implicit operator MultipleForcingChains(Dictionary<byte, ChainNode> dictionary)
 	{
 		var result = new MultipleForcingChains();
 		foreach (var (key, value) in dictionary)

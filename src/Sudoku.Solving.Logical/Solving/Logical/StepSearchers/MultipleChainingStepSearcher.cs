@@ -90,17 +90,17 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 				// Prepare storage and accumulator for "Cell Reduction".
 				var digitToOn = new ChainBranch();
 				var digitToOff = new ChainBranch();
-				var cellToOn = default(PotentialSet?);
-				var cellToOff = default(PotentialSet?);
+				var cellToOn = default(NodeSet?);
+				var cellToOff = default(NodeSet?);
 
 				// Iterate on all potential values that are not alone.
 				foreach (byte digit in mask)
 				{
 					// Do Binary chaining (same potential either on or off).
-					var pOn = new Potential(cell, digit, true);
-					var pOff = new Potential(cell, digit, false);
-					var onToOn = new PotentialSet();
-					var onToOff = new PotentialSet();
+					var pOn = new ChainNode(cell, digit, true);
+					var pOff = new ChainNode(cell, digit, false);
+					var onToOn = new NodeSet();
+					var onToOff = new NodeSet();
 					var doDouble = count >= 3 && !AllowNishio && AllowDynamic;
 					var doContradiction = AllowDynamic || AllowNishio;
 					DoBinaryChaining(grid, pOn, pOff, result, onToOn, onToOff, doDouble, doContradiction);
@@ -207,7 +207,7 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	/// <param name="pOff"></param>
 	/// <param name="result">
 	/// <inheritdoc
-	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(in Grid, Potential, List{ChainingStep}, bool, bool)"
+	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(in Grid, ChainNode, List{ChainingStep}, bool, bool)"
 	///     path="/param[@name='result']"/>
 	/// </param>
 	/// <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
@@ -216,17 +216,17 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	/// <param name="doContradiction"></param>
 	private void DoBinaryChaining(
 		scoped in Grid grid,
-		Potential pOn,
-		Potential pOff,
+		ChainNode pOn,
+		ChainNode pOff,
 		List<ChainingStep> result,
-		PotentialSet onToOn,
-		PotentialSet onToOff,
+		NodeSet onToOn,
+		NodeSet onToOff,
 		bool doReduction,
 		bool doContradiction
 	)
 	{
-		var offToOn = new PotentialSet();
-		var offToOff = new PotentialSet();
+		var offToOn = new NodeSet();
+		var offToOff = new NodeSet();
 
 		// Circular Forcing Chains (hypothesis implying its negation) are already covered by Cell Forcing Chains,
 		// and are therefore not checked for.
@@ -277,19 +277,19 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="result">
 	/// <inheritdoc
-	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(in Grid, Potential, List{ChainingStep}, bool, bool)"
+	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(in Grid, ChainNode, List{ChainingStep}, bool, bool)"
 	///     path="/param[@name='result']"/>
 	/// </param>
 	/// <param name="cell"></param>
 	/// <param name="digit"></param>
 	/// <param name="onToOn">
 	/// <inheritdoc
-	///     cref="DoBinaryChaining(in Grid, Potential, Potential, List{ChainingStep}, PotentialSet, PotentialSet, bool, bool)"
+	///     cref="DoBinaryChaining(in Grid, ChainNode, ChainNode, List{ChainingStep}, NodeSet, NodeSet, bool, bool)"
 	///     path="/param[@name='onToOn']"/>
 	/// </param>
 	/// <param name="onToOff">
 	/// <inheritdoc
-	///     cref="DoBinaryChaining(in Grid, Potential, Potential, List{ChainingStep}, PotentialSet, PotentialSet, bool, bool)"
+	///     cref="DoBinaryChaining(in Grid, ChainNode, ChainNode, List{ChainingStep}, NodeSet, NodeSet, bool, bool)"
 	///     path="/param[@name='onToOff']"/>
 	/// </param>
 	private void DoHouseChaining(
@@ -297,8 +297,8 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 		List<ChainingStep> result,
 		byte cell,
 		byte digit,
-		PotentialSet onToOn,
-		PotentialSet onToOff
+		NodeSet onToOn,
+		NodeSet onToOff
 	)
 	{
 		foreach (var houseType in HouseTypes)
@@ -312,8 +312,8 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 				{
 					var posToOn = new ChainBranch();
 					var posToOff = new ChainBranch();
-					var houseToOn = new PotentialSet();
-					var houseToOff = new PotentialSet();
+					var houseToOn = new NodeSet();
+					var houseToOff = new NodeSet();
 
 					// Iterate on potential positions within the region.
 					foreach (byte otherCell in potentialPositions)
@@ -327,9 +327,9 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 						}
 						else
 						{
-							var other = new Potential(otherCell, digit, true);
-							var otherToOn = new PotentialSet { other };
-							var otherToOff = new PotentialSet();
+							var other = new ChainNode(otherCell, digit, true);
+							var otherToOn = new NodeSet { other };
+							var otherToOff = new NodeSet();
 
 							DoChaining(grid, otherToOn, otherToOff, AllowNishio, AllowDynamic);
 
@@ -357,7 +357,7 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	/// <summary>
 	/// Try to create a binary forcing chain hint on "on" state.
 	/// </summary>
-	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, Potential dstOn, Potential dstOff, Potential src, Potential target, bool isAbsurd)
+	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
 		var conclusion = ImmutableArray.Create(new Conclusion(Assignment, target.Candidate));
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio);
@@ -367,7 +367,7 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	/// <summary>
 	/// Try to create a binary forcing chain hint on "off" state.
 	/// </summary>
-	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, Potential dstOn, Potential dstOff, Potential src, Potential target, bool isAbsurd)
+	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
 		var conclusion = ImmutableArray.Create(new Conclusion(Elimination, target.Candidate));
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio);
@@ -377,7 +377,7 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	/// <summary>
 	/// Try to create a cell forcing chain hint.
 	/// </summary>
-	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, Potential target, ChainBranch outcomes)
+	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusion = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
@@ -400,7 +400,7 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	/// <summary>
 	/// Try to create a region (house) forcing chain hint.
 	/// </summary>
-	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, int houseIndex, byte digit, Potential target, ChainBranch outcomes)
+	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, int houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusions = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));

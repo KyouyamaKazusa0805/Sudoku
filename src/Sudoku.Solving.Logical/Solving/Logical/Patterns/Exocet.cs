@@ -44,7 +44,8 @@
 /// <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
 /// <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
 /// <param name="CrossLine">Indicates the cross-line cells.</param>
-public readonly partial record struct ExocetPattern(
+[IsLargeStruct]
+public readonly partial record struct Exocet(
 	int Base1,
 	int Base2,
 	int TargetQ1,
@@ -56,55 +57,35 @@ public readonly partial record struct ExocetPattern(
 	scoped in CellMap MirrorQ2,
 	scoped in CellMap MirrorR1,
 	scoped in CellMap MirrorR2
-) : IEquatable<ExocetPattern>, IEqualityOperators<ExocetPattern, ExocetPattern, bool>, ITechniquePattern<ExocetPattern>
+)
 {
 	/// <inheritdoc/>
-	public CellMap Map
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CrossLine + TargetQ1 + TargetQ2 + TargetR1 + TargetR2 + Base1 + Base2;
-	}
+	public CellMap Map => CrossLine | TargetCellsMap | BaseCellsMap;
 
 	/// <summary>
 	/// Indicates the mirror cells.
 	/// </summary>
-	public CellMap MirrorCellsMap
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => MirrorQ1 | MirrorQ2 | MirrorR1 | MirrorR2;
-	}
+	public CellMap MirrorCellsMap => MirrorQ1 | MirrorQ2 | MirrorR1 | MirrorR2;
 
 	/// <summary>
 	/// Indicates the full map, with mirror cells.
 	/// </summary>
-	public CellMap MapWithMirrors
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Map | MirrorCellsMap;
-	}
+	public CellMap MapWithMirrors => Map | MirrorCellsMap;
 
 	/// <summary>
 	/// Indicates the base cells.
 	/// </summary>
-	public CellMap BaseCellsMap
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellsMap[Base1] + Base2;
-	}
+	public CellMap BaseCellsMap => CellsMap[Base1] + Base2;
 
 	/// <summary>
 	/// Indicates the target cells.
 	/// </summary>
-	public CellMap TargetCellsMap
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellsMap[TargetQ1] + TargetQ2 + TargetR1 + TargetR2;
-	}
+	public CellMap TargetCellsMap => CellsMap[TargetQ1] + TargetQ2 + TargetR1 + TargetR2;
 
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(scoped in ExocetPattern other)
+	public bool Equals(scoped in Exocet other)
 		=> Base1 == other.Base1 && Base2 == other.Base2 && TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
 		&& TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2 && MirrorQ1 == other.MirrorQ1
 		&& MirrorQ2 == other.MirrorQ2 && MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
@@ -116,10 +97,5 @@ public readonly partial record struct ExocetPattern(
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-	{
-		var baseCellsStr = (CellsMap[Base1] + Base2).ToString();
-		var targetCellsStr = (CellsMap[TargetQ1] + TargetQ2 + TargetR1 + TargetR2).ToString();
-		return $"Exocet: base {baseCellsStr}, target {targetCellsStr}";
-	}
+	public override string ToString() => $"Exocet: base {BaseCellsMap}, target {TargetCellsMap}";
 }

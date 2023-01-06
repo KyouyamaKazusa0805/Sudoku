@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.PatternData;
+﻿namespace Sudoku.Solving.Logical.Meta;
 
 /// <summary>
 /// Encapsulates a type that represents the reason why the exocet eliminations can be removed.

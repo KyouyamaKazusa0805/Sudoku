@@ -13,8 +13,8 @@ internal sealed record FireworkPairType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,
 	short DigitsMask,
-	scoped in FireworkPattern Pattern1,
-	scoped in FireworkPattern Pattern2,
+	scoped in Firework Pattern1,
+	scoped in Firework Pattern2,
 	int ExtraCell
 ) : FireworkStep(Conclusions, Views)
 {

@@ -18,7 +18,7 @@ public interface IUniquePolygonStepSearcher : IDeadlyPatternStepSearcher
 	/// <remarks>
 	/// Please note that all possible heptagons and octagons are in here.
 	/// </remarks>
-	protected static readonly UniquePolygonPattern[] Patterns = new UniquePolygonPattern[BdpTemplatesSize3Count];
+	protected static readonly UniquePolygon[] Patterns = new UniquePolygon[BdpTemplatesSize3Count];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />

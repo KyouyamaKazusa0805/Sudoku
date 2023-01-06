@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.PatternData;
+﻿namespace Sudoku.Solving.Logical.Patterns;
 
 /// <summary>
 /// Indicates a fin modifier that is used for a complex fish structure.

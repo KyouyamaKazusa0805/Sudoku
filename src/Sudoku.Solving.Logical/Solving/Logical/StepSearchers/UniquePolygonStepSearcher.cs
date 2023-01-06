@@ -57,7 +57,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 
 
 	private static IStep? CheckType1(
-		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygon pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
 		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -127,7 +127,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 	}
 
 	private static IStep? CheckType2(
-		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygon pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
 		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -193,7 +193,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 	}
 
 	private static IStep? CheckType3(
-		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygon pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
 		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
@@ -306,7 +306,7 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 	}
 
 	private static IStep? CheckType4(
-		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygonPattern pattern,
+		ICollection<IStep> accumulator, scoped in Grid grid, UniquePolygon pattern,
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, scoped in CellMap map)
 	{
 		// The type 4 may be complex and terrible to process.

@@ -9,7 +9,7 @@
 /// <param name="Eliminations">Indicates all possible eliminations.</param>
 internal abstract record ExocetStep(
 	ViewList Views,
-	scoped in ExocetPattern Exocet,
+	scoped in Exocet Exocet,
 	short DigitsMask,
 	ImmutableArray<ExocetElimination> Eliminations
 ) : Step(GatherConclusions(Eliminations), Views), IStepWithRank

@@ -37,5 +37,5 @@ internal sealed record CellForcingChainsStep(
 	/// <param name="viewIndex">The view index.</param>
 	/// <returns>The view index.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Potential GetPotentialAt(int viewIndex) => Chains[viewIndex].Potential;
+	private ChainNode GetPotentialAt(int viewIndex) => Chains[viewIndex].Potential;
 }

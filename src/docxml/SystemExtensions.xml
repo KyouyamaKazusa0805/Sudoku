@@ -1761,6 +1761,11 @@
             Indicates the suggested member name.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.RequiresCompoundUsagesAttribute">
+            <summary>
+            Defines an attribute that requires an operator usage can only be a compound one.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.SelfAttribute">
             <summary>
             Indicates the generic argument is a self type.

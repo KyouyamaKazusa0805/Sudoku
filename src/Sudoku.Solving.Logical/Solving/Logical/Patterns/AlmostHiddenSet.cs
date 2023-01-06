@@ -7,11 +7,7 @@
 /// An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
 /// only <c>n</c> digits can be filled into <c>n + 1</c> cells in a house.
 /// </remarks>
-public sealed partial class AlmostHiddenSet :
-	IEquatable<AlmostHiddenSet>,
-	IEqualityOperators<AlmostHiddenSet, AlmostHiddenSet, bool>,
-	ITechniquePattern<AlmostHiddenSet>,
-	ITechniquePatternGatherable<AlmostHiddenSet>
+public sealed partial class AlmostHiddenSet : IEquatable<AlmostHiddenSet>, IEqualityOperators<AlmostHiddenSet, AlmostHiddenSet, bool>
 {
 	/// <summary>
 	/// Initializes an <see cref="AlmostHiddenSet"/> instance
@@ -142,7 +138,11 @@ public sealed partial class AlmostHiddenSet :
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Gathers all possible <see cref="AlmostHiddenSet"/>s in the specified grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <returns>All possible found <see cref="AlmostHiddenSet"/>.</returns>
 	public static AlmostHiddenSet[] Gather(scoped in Grid grid)
 	{
 		_ = grid is { EmptyCells: var emptyMap, CandidatesMap: var candidatesMap };

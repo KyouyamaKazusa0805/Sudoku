@@ -12,7 +12,7 @@
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record SeniorExocetStep(
 	ViewList Views,
-	scoped in ExocetPattern Exocet,
+	scoped in Exocet Exocet,
 	short DigitsMask,
 	int EndoTargetCell,
 	int[]? ExtraHousesMask,
@@ -36,8 +36,8 @@ internal sealed record SeniorExocetStep(
 		=> new[] { (PhasedDifficultyRatingKinds.ExtraHouse, ContainsExtraHouses ? 0 : .2M) };
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode
-		=> ContainsExtraHouses ? Technique.ComplexSeniorExocet : Technique.SeniorExocet;
+	public override Technique TechniqueCode => ContainsExtraHouses ? Technique.ComplexSeniorExocet : Technique.SeniorExocet;
+
 
 	[ResourceTextFormatter]
 	internal string AdditionalFormat()

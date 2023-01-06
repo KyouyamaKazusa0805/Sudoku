@@ -7,11 +7,11 @@ partial class MultipleForcingChains
 		/// <summary>
 		/// The internal enumerator.
 		/// </summary>
-		private SortedDictionary<byte, Potential>.Enumerator _enumerator;
+		private SortedDictionary<byte, ChainNode>.Enumerator _enumerator;
 
 
 		/// <inheritdoc cref="IEnumerator.Current"/>
-		public (byte CellOrDigit, Potential Potential) Current { get; private set; }
+		public (byte CellOrDigit, ChainNode Potential) Current { get; private set; }
 
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>

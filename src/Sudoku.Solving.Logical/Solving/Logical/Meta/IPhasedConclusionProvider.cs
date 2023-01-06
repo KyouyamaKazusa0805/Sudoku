@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.DataRepresentations;
+﻿namespace Sudoku.Solving.Logical.Meta;
 
 /// <summary>
 /// Defines a data structure that describes for a phased conclusion list.
@@ -48,12 +48,8 @@ public interface IPhasedConclusionProvider<[Self] TSelf, TReasonEnum> : IEquatab
 	{
 		return other switch
 		{
-			not null => Conclusions.SequenceEqual(other.Conclusions) && sizeof(TReasonEnum) switch
-			{
-				1 or 2 or 4 => asInt(Reason) == asInt(other.Reason),
-				8 => asLong(Reason) == asLong(other.Reason),
-				_ => false
-			},
+			{ Conclusions: var conc, Reason: var r } when Conclusions.CollectionElementEquals(conc, &conclusionEqualityComparer)
+				=> sizeof(TReasonEnum) switch { 1 or 2 or 4 => asInt(Reason) == asInt(r), 8 => asLong(Reason) == asLong(r), _ => false },
 			_ => false
 		};
 
@@ -63,5 +59,7 @@ public interface IPhasedConclusionProvider<[Self] TSelf, TReasonEnum> : IEquatab
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static long asLong(TReasonEnum e) => As<TReasonEnum, long>(ref e);
+
+		static bool conclusionEqualityComparer(Conclusion a, Conclusion b) => a == b;
 	}
 }

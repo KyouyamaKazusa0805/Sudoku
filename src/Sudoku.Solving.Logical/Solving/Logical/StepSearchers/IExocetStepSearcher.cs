@@ -8,7 +8,7 @@ public interface IExocetStepSearcher : IStepSearcher
 	/// <summary>
 	/// Indicates all patterns.
 	/// </summary>
-	protected static readonly ExocetPattern[] Patterns = new ExocetPattern[ExocetTemplatesCount];
+	protected static readonly Exocet[] Patterns = new Exocet[ExocetTemplatesCount];
 
 
 	/// <summary>
@@ -20,18 +20,18 @@ public interface IExocetStepSearcher : IStepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor'/>
 	static IExocetStepSearcher()
 	{
-		int[,] s = { { 3, 4, 5, 6, 7, 8 }, { 0, 1, 2, 6, 7, 8 }, { 0, 1, 2, 3, 4, 5 } };
-		int[,] b =
+		var s = new[,] { { 3, 4, 5, 6, 7, 8 }, { 0, 1, 2, 6, 7, 8 }, { 0, 1, 2, 3, 4, 5 } };
+		var b = new[,]
 		{
 			{ 0, 1 }, { 0, 2 }, { 1, 2 }, { 9, 10 }, { 9, 11 }, { 10, 11 }, { 18, 19 }, { 18, 20 }, { 19, 20 },
 			{ 0, 9 }, { 0, 18 }, { 9, 18 }, { 1, 10 }, { 1, 19 }, { 10, 19 }, { 2, 11 }, { 2, 20 }, { 11, 20 }
 		};
-		int[,] rq =
+		var rq = new[,]
 		{
 			{ 9, 18 }, { 10, 19 }, { 11, 20 }, { 0, 18 }, { 1, 19 }, { 2, 20 }, { 0, 9 }, { 1, 10 }, { 2, 11 },
 			{ 1, 2 }, { 10, 11 }, { 19, 20 }, { 0, 2 }, { 9, 11 }, { 18, 20 }, { 0, 1 }, { 9, 10 }, { 18, 19 }
 		};
-		int[,] m =
+		var m = new[,]
 		{
 			{ 10, 11, 19, 20 }, { 9, 11, 18, 20 }, { 9, 10, 18, 19 },
 			{ 1, 2, 19, 20 }, { 0, 2, 18, 20 }, { 0, 1, 18, 19 },
@@ -40,8 +40,8 @@ public interface IExocetStepSearcher : IStepSearcher
 			{ 9, 18, 11, 20 }, { 0, 18, 2, 20 }, { 0, 9, 2, 11 },
 			{ 9, 18, 10, 19 }, { 0, 18, 1, 19 }, { 0, 9, 1, 10 }
 		};
-		int[] bb = { 0, 3, 6, 27, 30, 33, 54, 57, 60, 0, 27, 54, 3, 30, 57, 6, 33, 60 };
-		int[,] bc =
+		var bb = new[] { 0, 3, 6, 27, 30, 33, 54, 57, 60, 0, 27, 54, 3, 30, 57, 6, 33, 60 };
+		var bc = new[,]
 		{
 			{ 1, 2 }, { 0, 2 }, { 0, 1 }, { 4, 5 }, { 3, 5 }, { 3, 4 }, { 7, 8 }, { 6, 8 }, { 6, 7 },
 			{ 3, 6 }, { 0, 6 }, { 0, 3 }, { 4, 7 }, { 1, 7 }, { 1, 4 }, { 5, 8 }, { 2, 8 }, { 2, 5 }
