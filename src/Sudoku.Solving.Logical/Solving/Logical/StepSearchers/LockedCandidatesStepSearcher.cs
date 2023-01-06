@@ -38,7 +38,7 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 	/// </remarks>
 	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
-		var r = stackalloc int[2];
+		var housesMask = (short)0;
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 		{
@@ -66,9 +66,9 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 			foreach (var digit in m)
 			{
 				// Check whether the digit contains any eliminations.
-				(r[0], r[1], var elimMap) = a & CandidatesMap[digit]
-					? (coverSet, baseSet, a & CandidatesMap[digit])
-					: (baseSet, coverSet, b & CandidatesMap[digit]);
+				(housesMask, var elimMap) = a & CandidatesMap[digit]
+					? ((short)(coverSet << 8 | baseSet), a & CandidatesMap[digit])
+					: ((short)(baseSet << 8 | coverSet), b & CandidatesMap[digit]);
 				if (!elimMap)
 				{
 					continue;
@@ -82,20 +82,18 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 				}
 
 				// Okay, now accumulate into the collection.
+				var bs = housesMask >> 8 & 127;
+				var cs = housesMask & 127;
 				var step = new LockedCandidatesStep(
 					from cell in elimMap select new Conclusion(Elimination, cell, digit),
 					ImmutableArray.Create(
 						View.Empty
 							| candidateOffsets
-							| new HouseViewNode[]
-							{
-								new(DisplayColorKind.Normal, r[0]),
-								new(DisplayColorKind.Auxiliary1, r[1])
-							}
+							| new HouseViewNode[] { new(DisplayColorKind.Normal, bs), new(DisplayColorKind.Auxiliary1, cs) }
 					),
 					digit,
-					r[0],
-					r[1]
+					bs,
+					cs
 				);
 
 				if (context.OnlyFindOne)
