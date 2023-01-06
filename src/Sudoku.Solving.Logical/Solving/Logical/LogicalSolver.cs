@@ -53,14 +53,11 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 	/// Indicates the target step searcher collection.
 	/// </summary>
 	private StepSearcherCollection TargetSearcherCollection
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (
+		=> (
 			from searcher in CustomSearcherCollection ?? StepSearcherPool.Collection
 			where searcher.Options.EnabledArea.Flags(SearcherEnabledArea.Default)
 			select searcher
 		).ToArray();
-	}
 
 
 	/// <inheritdoc/>
