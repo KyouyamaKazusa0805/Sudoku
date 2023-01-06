@@ -864,6 +864,11 @@
             Indicates a <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> instance that is created by default instantiation behavior.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Logical.CommonLogicalSolvers.SstsOnly">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> instance that only provides steps for simple-sudoku techinques.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Logical.CommonLogicalSolvers.Suitable">
             <summary>
             Indicates a <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> instance that has configured some basic options that is suitable

@@ -15,6 +15,25 @@ public static class CommonLogicalSolvers
 	public static readonly LogicalSolver Default = new();
 
 	/// <summary>
+	/// Indicates a <see cref="LogicalSolver"/> instance that only provides steps for simple-sudoku techinques.
+	/// </summary>
+	public static readonly LogicalSolver SstsOnly = new()
+	{
+		SingleStepSearcher_EnableFullHouse = false,
+		SingleStepSearcher_EnableLastDigit = false,
+		SingleStepSearcher_HiddenSinglesInBlockFirst = false,
+		IsFullApplying = true,
+		IgnoreSlowAlgorithms = false,
+		CustomSearcherCollection = new IStepSearcher[]
+		{
+			new SingleStepSearcher(),
+			new LockedCandidatesStepSearcher(),
+			new SubsetStepSearcher(),
+			new BruteForceStepSearcher()
+		}
+	};
+
+	/// <summary>
 	/// Indicates a <see cref="LogicalSolver"/> instance that has configured some basic options that is suitable
 	/// for human to control sudoku puzzles.
 	/// </summary>

@@ -2,7 +2,7 @@
 
 [StepSearcher]
 [StepSearcherMetadata(IsOptionsFixed = true, IsDirect = true)]
-internal sealed unsafe partial class BruteForceStepSearcher : IBruteForceStepSearcher
+internal sealed partial class BruteForceStepSearcher : IBruteForceStepSearcher
 {
 	/// <inheritdoc/>
 	public Grid Solution { get; set; }
