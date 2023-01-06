@@ -39,7 +39,7 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherData">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
             <summary>
             Simply encapsulates a data tuple describing the information of a found attribute.
             </summary>
@@ -52,7 +52,7 @@
             </param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherData.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
             <summary>
             Simply encapsulates a data tuple describing the information of a found attribute.
             </summary>
@@ -65,24 +65,24 @@
             </param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherData.Namespace">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Namespace">
             <summary>Indicates the namespace symbol of that step searcher.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherData.PriorityValue">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PriorityValue">
             <summary>The priority value of the step searcher.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherData.DifficultyLevel">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.DifficultyLevel">
             <summary>The difficulty level of the step searcher.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherData.TypeName">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.TypeName">
             <summary>The name of the step searcher type.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherData.DocCommentInterfaceTypeName">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.DocCommentInterfaceTypeName">
             <summary>
             The name of the interface type that is used for displaying for the doc comment.
             </summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherData.NamedArguments">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.NamedArguments">
             <summary>The named arguments of that attribute.</summary>
         </member>
         <member name="F:CodeGen.Constants.VersionValue">
