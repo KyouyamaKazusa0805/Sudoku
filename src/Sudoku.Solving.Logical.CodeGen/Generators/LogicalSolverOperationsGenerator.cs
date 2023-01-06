@@ -40,14 +40,12 @@ public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 
 				// Iterates on all possible types derived from this interface.
 				var allTypes = @namespace.GetAllNestedTypes();
-				var foundResultInfos = new List<FoundResultInfo>();
+				var foundResultInfos = new List<Data>();
 				foreach (var searcherType in
 					from typeSymbol in allTypes
-					where typeSymbol is
-					{
-						TypeKind: Kind.Class,
-						AllInterfaces: var implementedInterfaces and not []
-					} && implementedInterfaces.Contains(stepSearcherType, SymbolEqualityComparer.Default)
+					where typeSymbol is { TypeKind: Kind.Class, AllInterfaces: not [] }
+					let implementedInterfaces = typeSymbol.AllInterfaces
+					where implementedInterfaces.Contains(stepSearcherType, SymbolEqualityComparer.Default)
 					select typeSymbol)
 				{
 					foreach (var property in searcherType.GetMembers().OfType<IPropertySymbol>())
@@ -135,4 +133,4 @@ public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 		);
 }
 
-file readonly record struct FoundResultInfo(IPropertySymbol Property, INamedTypeSymbol DerivedInterfaceType, INamedTypeSymbol PropertyContainedInterfaceType);
+file readonly record struct Data(IPropertySymbol Property, INamedTypeSymbol DerivedInterfaceType, INamedTypeSymbol PropertyContainedInterfaceType);

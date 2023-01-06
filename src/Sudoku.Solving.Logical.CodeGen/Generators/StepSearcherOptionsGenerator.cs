@@ -47,7 +47,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				}
 
 				// Gather the valid attributes data.
-				var foundAttributesData = new List<StepSearcherData>();
+				var foundAttributesData = new List<Data>();
 				const string comma = ", ";
 				const string attributeTypeName = $"global::Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute<>";
 				var priorityValue = 0;
@@ -180,14 +180,10 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 					T field,
 					string typeName,
 					IDictionary<byte, string> enabledAreasFields,
-					IDictionary<short, string> disabledReasonFields)
-					where T : unmanaged
+					IDictionary<short, string> disabledReasonFields
+				) where T : unmanaged
 				{
-					var l = sizeof(T) switch
-					{
-						1 or 2 or 4 => As<T, int>(ref field),
-						8 => As<T, long>(ref field)
-					};
+					var l = sizeof(T) switch { 1 or 2 or 4 => As<T, int>(ref field), 8 => As<T, long>(ref field) };
 
 					// Special case: If the value is zero, just get the default field in the enumeration field
 					// or just get the expression '(T)0' as the emitted code.
@@ -246,7 +242,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 /// The name of the interface type that is used for displaying for the doc comment.
 /// </param>
 /// <param name="NamedArguments">The named arguments of that attribute.</param>
-file readonly record struct StepSearcherData(
+file readonly record struct Data(
 	INamespaceSymbol Namespace,
 	int PriorityValue,
 	byte DifficultyLevel,
