@@ -1,7 +1,4 @@
-﻿// Full customization:
-// https://learn.microsoft.com/en-us/windows/apps/develop/title-bar
-
-namespace SudokuStudio.Views.Windows;
+﻿namespace SudokuStudio.Views.Windows;
 
 partial class MainWindow
 {
@@ -11,6 +8,11 @@ partial class MainWindow
 	/// <summary>
 	/// Initializes for field <see cref="_appWindow"/>.
 	/// </summary>
+	/// <remarks>
+	/// For more information please visit
+	/// <see href="https://learn.microsoft.com/en-us/windows/apps/develop/title-bar">this link</see>.
+	/// This passage is for full customization of application title bar.
+	/// </remarks>
 	[MemberNotNull(nameof(_appWindow))]
 	private void InitializeAppWindow()
 	{
