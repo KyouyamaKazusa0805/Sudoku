@@ -15,7 +15,12 @@ public static class CommonLogicalSolvers
 	public static readonly LogicalSolver Default = new();
 
 	/// <summary>
-	/// Indicates a <see cref="LogicalSolver"/> instance that only provides steps for simple-sudoku techinques.
+	/// Indicates a <see cref="LogicalSolver"/> instance that only provides steps for simple-sudoku techinques:
+	/// <list type="bullet">
+	/// <item>Hidden/Naked Singles</item>
+	/// <item>Locked Candidates</item>
+	/// <item>Hidden/Naked/Locked Subsets &amp; Naked Subsets (+)</item>
+	/// </list>
 	/// </summary>
 	public static readonly LogicalSolver SstsOnly = new()
 	{
@@ -24,13 +29,7 @@ public static class CommonLogicalSolvers
 		SingleStepSearcher_HiddenSinglesInBlockFirst = false,
 		IsFullApplying = true,
 		IgnoreSlowAlgorithms = false,
-		CustomSearcherCollection = new IStepSearcher[]
-		{
-			new SingleStepSearcher(),
-			new LockedCandidatesStepSearcher(),
-			new SubsetStepSearcher(),
-			new BruteForceStepSearcher()
-		}
+		CustomSearcherCollection = new IStepSearcher[] { new SingleStepSearcher(), new LockedCandidatesStepSearcher(), new SubsetStepSearcher() }
 	};
 
 	/// <summary>

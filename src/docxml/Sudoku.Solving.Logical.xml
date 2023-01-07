@@ -186,11 +186,6 @@
             Defines a backdoor searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Checking.BackdoorSearcher.SstsSolver">
-            <summary>
-            Indicates the inner solver.
-            </summary>
-        </member>
         <member name="F:Sudoku.Checking.BackdoorSearcher.BitwiseSolver">
             <summary>
             Indicates the bitwise solver.
@@ -910,7 +905,12 @@
         </member>
         <member name="F:Sudoku.Solving.Logical.CommonLogicalSolvers.SstsOnly">
             <summary>
-            Indicates a <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> instance that only provides steps for simple-sudoku techinques.
+            Indicates a <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> instance that only provides steps for simple-sudoku techinques:
+            <list type="bullet">
+            <item>Hidden/Naked Singles</item>
+            <item>Locked Candidates</item>
+            <item>Hidden/Naked/Locked Subsets &amp; Naked Subsets (+)</item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Logical.CommonLogicalSolvers.Suitable">
