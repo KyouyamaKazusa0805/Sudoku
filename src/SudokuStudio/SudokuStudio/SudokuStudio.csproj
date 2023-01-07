@@ -11,7 +11,7 @@
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="Views\Pages\AnalyzePage.xaml" />
+		<None Remove="Views\Pages\AnalyzePage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -30,16 +30,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Views\Pages\AnalyzePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
+		<Compile Update="Resources\TextResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>TextResources.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="Resources\StringResources.zh-CN.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Page Update="Resources\StringResources.xaml">
+		<EmbeddedResource Update="Resources\TextResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>TextResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Views\Pages\AnalyzePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

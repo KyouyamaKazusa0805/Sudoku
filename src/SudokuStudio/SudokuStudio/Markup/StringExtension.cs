@@ -14,8 +14,5 @@ public sealed class StringExtension : MarkupExtension
 
 
 	/// <inheritdoc/>
-	protected override object ProvideValue()
-		=> Application.Current.Resources.TryGetValue(Key, out var r) && r is string result
-			? result
-			: throw new KeyNotFoundException($"The specified key '{Key}' is not found.");
+	protected override object ProvideValue() => GetString(Key);
 }

@@ -1,9 +1,0 @@
-<ResourceDictionary
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<!--MainWindow-->
-	<x:String x:Key="_ProgramName">Sudoku Studio</x:String>
-	<x:String x:Key="MainWindow_MainMenu">Main Menu</x:String>
-	<x:String x:Key="MainWindow_Analyze">Analyze</x:String>
-	<x:String x:Key="MainWindow_AnalyzePageTitle">Analyze</x:String>
-</ResourceDictionary>

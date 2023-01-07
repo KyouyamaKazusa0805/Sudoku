@@ -9,8 +9,6 @@
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
 
 				<!-- Other merged dictionaries here -->
-				<ResourceDictionary Source="Resources/StringResources.xaml" />
-				<ResourceDictionary Source="Resources/StringResources.zh-CN.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
 			<!-- Other app resources here -->

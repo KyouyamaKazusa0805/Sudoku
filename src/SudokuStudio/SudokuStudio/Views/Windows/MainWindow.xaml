@@ -5,8 +5,7 @@
 	xmlns:m="using:SudokuStudio.Markup" mc:Ignorable="d" Activated="Window_Activated" Closed="Window_Closed">
 
 	<NavigationView
-		x:Name="MainNavigationView" PaneTitle="{m:String Key=_ProgramName}"
-		SelectionFollowsFocus="Enabled" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsTabStop="False"
+		x:Name="MainNavigationView" SelectionFollowsFocus="Enabled" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsTabStop="False"
 		IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="True"
 		Loaded="NavigationView_Loaded" ItemInvoked="NavigationView_ItemInvoked">
 		<NavigationView.MenuItems>
