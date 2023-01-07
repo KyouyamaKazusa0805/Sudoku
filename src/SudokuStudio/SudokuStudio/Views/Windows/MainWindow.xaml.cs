@@ -18,21 +18,10 @@ public sealed partial class MainWindow : Window
 	public MainWindow()
 	{
 		InitializeComponent();
-		InitializeWindowTitle();
 		TrySetMicaBackdrop();
+		InitializeAppWindow();
 	}
 
-
-	/// <summary>
-	/// Initializes for property <see cref="Window.Title"/>.
-	/// </summary>
-	/// <seealso cref="Window.Title"/>
-	private void InitializeWindowTitle()
-	{
-		var version = ((App)Application.Current).RunningContext.AssemblyVersion.ToString(2);
-
-		Title = $"{GetString("_ProgramName")} v{version}";
-	}
 
 	/// <summary>
 	/// Try to navigate to the target page.

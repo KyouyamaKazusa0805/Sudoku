@@ -6,7 +6,8 @@
     "add": {
       "fileToFile": {
         "add": {
-          "MainWindow.Mica.cs": [ "MainWindow.xaml" ]
+          "MainWindow.Mica.cs": [ "MainWindow.xaml" ],
+          "MainWindow.TitleBar.cs": [ "MainWindow.xaml" ]
         }
       }
     }

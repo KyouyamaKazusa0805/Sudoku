@@ -4,14 +4,43 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup" mc:Ignorable="d" Activated="Window_Activated" Closed="Window_Closed">
 
-	<NavigationView
-		x:Name="MainNavigationView" SelectionFollowsFocus="Enabled" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsTabStop="False"
-		IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="True"
-		Loaded="NavigationView_Loaded" ItemInvoked="NavigationView_ItemInvoked">
-		<NavigationView.MenuItems>
-			<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:String Key=MainWindow_Analyze}" Icon="ShowResults" />
-		</NavigationView.MenuItems>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
 
-		<Frame x:Name="NavigationViewFrame" />
-	</NavigationView>
+		<!--Title bar-->
+		<Grid x:Name="AppTitleBar" Height="48">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
+				<ColumnDefinition x:Name="IconColumn" Width="Auto" />
+				<ColumnDefinition x:Name="TitleColumn" Width="Auto" />
+				<ColumnDefinition x:Name="LeftDragColumn" Width="*" />
+				<ColumnDefinition x:Name="SearchColumn" Width="Auto" />
+				<ColumnDefinition x:Name="RightDragColumn" Width="*" />
+				<ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
+			</Grid.ColumnDefinitions>
+
+			<Image x:Name="TitleBarIcon" Source="/Resources/images/icon.png" Grid.Column="1" Width="32" Height="32" Margin="12,0" />
+			<TextBlock
+				x:Name="TitleTextBlock" Text="{m:String Key=_ProgramName}" Style="{StaticResource CaptionTextBlockStyle}" Grid.Column="2"
+				VerticalAlignment="Center" Margin="4,0,0,0" />
+			<AutoSuggestBox
+				Grid.Column="4" QueryIcon="Find" PlaceholderText="{m:String Key=MainWindow_Search}"
+				VerticalAlignment="Center" Width="400" Margin="4,0" />
+		</Grid>
+
+		<!--Navigation view-->
+		<NavigationView
+			x:Name="MainNavigationView" Grid.Row="1" SelectionFollowsFocus="Enabled" IsBackButtonVisible="Collapsed"
+			IsSettingsVisible="False" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="True"
+			Loaded="NavigationView_Loaded" ItemInvoked="NavigationView_ItemInvoked">
+			<NavigationView.MenuItems>
+				<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:String Key=MainWindow_Analyze}" Icon="ShowResults" />
+			</NavigationView.MenuItems>
+
+			<Frame x:Name="NavigationViewFrame" />
+		</NavigationView>
+	</Grid>
 </Window>
