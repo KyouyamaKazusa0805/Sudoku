@@ -1,4 +1,4 @@
-﻿namespace Sudoku.AutoFiller;
+﻿namespace Sudoku.Preprocessing.AutoFiller;
 
 /// <summary>
 /// Defines an auto filler instance that can automatically fill some empty cells via the specified rule.

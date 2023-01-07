@@ -4,31 +4,6 @@
         <name>Sudoku.Solving.Logical</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.AutoFiller.DefaultAutoFiller">
-            <summary>
-            Defines a default auto filler instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.AutoFiller.DefaultAutoFiller.Solver">
-            <summary>
-            Indicates the default solver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.AutoFiller.DefaultAutoFiller.Fill(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.AutoFiller.IAutoFiller">
-            <summary>
-            Defines an auto filler instance that can automatically fill some empty cells via the specified rule.
-            </summary>
-        </member>
-        <member name="M:Sudoku.AutoFiller.IAutoFiller.Fill(Sudoku.Concepts.Grid@)">
-            <summary>
-            To fill the current grid automatically with some digits input.
-            </summary>
-            <param name="grid">The target grid.</param>
-            <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="grid"/> is not unique.</exception>
-        </member>
         <member name="T:Sudoku.Buffers.FastProperties">
             <summary>
             Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
@@ -145,43 +120,6 @@
             <summary>
             The step searchers to find steps to apply to a certain puzzle.
             </summary>
-        </member>
-        <member name="T:Sudoku.Checking.BackdoorSearcher">
-            <summary>
-            Defines a backdoor searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Checking.BackdoorSearcher.BitwiseSolver">
-            <summary>
-            Indicates the bitwise solver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Checking.BackdoorSearcher.GetBackdoors(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get all possible backdoors.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A list of backdoors.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the grid is not unique, or the puzzle is too easy.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Checking.IttouryuPuzzleChecker">
-            <summary>
-            Provides with a checker that determines whether the puzzle is an
-            <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">ittouryu puzzle</see>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Checking.IttouryuPuzzleChecker.IsIttouryu(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Checking.IttouryuPuzzleChecker.IsIttouryu(Sudoku.Concepts.Grid@,System.ValueTuple{System.Int32,System.Boolean}[]@)"/>
-        </member>
-        <member name="M:Sudoku.Checking.IttouryuPuzzleChecker.IsIttouryu(Sudoku.Concepts.Grid@,System.ValueTuple{System.Int32,System.Boolean}[]@)">
-            <summary>
-            Determines whether the puzzle is an ittouryu puzzle, which means we can fill the puzzle digit by digit.
-            </summary>
-            <param name="grid">The grid to be determined.</param>
-            <param name="solvingPath">The solving path.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Collections.Logical.NodeList">
             <summary>
@@ -545,36 +483,6 @@
             <param name="context">The inner handling context.</param>
         </member>
         <member name="M:Sudoku.Filtering.NameLikeExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Gathering.IConjugatesGatherable">
-            <summary>
-            Represents a type that can gather <see cref="T:Sudoku.Concepts.Conjugate"/> instances that exists in a grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Gathering.IConjugatesGatherable.Gather(System.Int32)">
-            <summary>
-            Gathers possible conjugate pairs of the specified digit.
-            </summary>
-            <returns>The conjugate pairs found.</returns>
-            <remarks><i>
-            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
-            by calling the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
-            </i></remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-        </member>
-        <member name="M:Sudoku.Gathering.IConjugatesGatherable.Gather">
-            <summary>
-            Gathers possible conjugate pairs grouped by digit.
-            </summary>
-            <returns>The conjugate pairs found, grouped by digit.</returns>
-            <remarks><i>
-            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
-            by calling the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
-            </i></remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-        </member>
-        <member name="M:Sudoku.Gathering.IConjugatesGatherable.Sudoku#Concepts#IConceptGatherable{Sudoku#Concepts#Conjugate}#Gather(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Linq.CellEnumerable">
@@ -14781,6 +14689,114 @@ if (student is (name: var name, age: >= 18))
             the method will return the first found instance.
             </returns>
             <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>
+        </member>
+        <member name="T:Sudoku.Preprocessing.AutoFiller.DefaultAutoFiller">
+            <summary>
+            Defines a default auto filler instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Preprocessing.AutoFiller.DefaultAutoFiller.Solver">
+            <summary>
+            Indicates the default solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Preprocessing.AutoFiller.DefaultAutoFiller.Fill(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Preprocessing.AutoFiller.IAutoFiller">
+            <summary>
+            Defines an auto filler instance that can automatically fill some empty cells via the specified rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Preprocessing.AutoFiller.IAutoFiller.Fill(Sudoku.Concepts.Grid@)">
+            <summary>
+            To fill the current grid automatically with some digits input.
+            </summary>
+            <param name="grid">The target grid.</param>
+            <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="grid"/> is not unique.</exception>
+        </member>
+        <member name="T:Sudoku.Preprocessing.Checking.BackdoorSearcher">
+            <summary>
+            Defines a backdoor searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Preprocessing.Checking.BackdoorSearcher.BitwiseSolver">
+            <summary>
+            Indicates the bitwise solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Preprocessing.Checking.BackdoorSearcher.GetBackdoors(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get all possible backdoors.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of backdoors.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the grid is not unique, or the puzzle is too easy.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Preprocessing.Checking.IttouryuPuzzleChecker">
+            <summary>
+            Provides with a checker that determines whether the puzzle is an
+            <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">ittouryu puzzle</see>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Preprocessing.Checking.IttouryuPuzzleChecker.IsIttouryu(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Preprocessing.Checking.IttouryuPuzzleChecker.IsIttouryu(Sudoku.Concepts.Grid@,System.ValueTuple{System.Int32,System.Boolean}[]@)"/>
+        </member>
+        <member name="M:Sudoku.Preprocessing.Checking.IttouryuPuzzleChecker.IsIttouryu(Sudoku.Concepts.Grid@,System.ValueTuple{System.Int32,System.Boolean}[]@)">
+            <summary>
+            Determines whether the puzzle is an ittouryu puzzle, which means we can fill the puzzle digit by digit.
+            </summary>
+            <param name="grid">The grid to be determined.</param>
+            <param name="solvingPath">The solving path.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Preprocessing.Gathering.ConjugateGatherer">
+            <summary>
+            Represents a type that can gather <see cref="T:Sudoku.Concepts.Conjugate"/> instances that exists in a grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Preprocessing.Gathering.ConjugateGatherer.Gather(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Preprocessing.Gathering.ConjugateGatherer.Gather(System.Int32)">
+            <summary>
+            Gathers possible conjugate pairs of the specified digit.
+            </summary>
+            <returns>The conjugate pairs found.</returns>
+            <remarks><i>
+            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
+            by calling the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
+            </i></remarks>
+            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+        </member>
+        <member name="M:Sudoku.Preprocessing.Gathering.ConjugateGatherer.Gather">
+            <summary>
+            Gathers possible conjugate pairs grouped by digit.
+            </summary>
+            <returns>The conjugate pairs found, grouped by digit.</returns>
+            <remarks><i>
+            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
+            by calling the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
+            </i></remarks>
+            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+        </member>
+        <member name="T:Sudoku.Preprocessing.Gathering.IConceptGatherable`1">
+            <summary>
+            Provides with a gatherer that gathers all possible structures of a concept existing in a grid.
+            </summary>
+            <typeparam name="TResult">
+            The type of the concept. For example, if you want to find all possible <see cref="T:Sudoku.Concepts.Conjugate"/> instances
+            in a grid, the type argument will be <see cref="T:Sudoku.Concepts.Conjugate"/>.
+            </typeparam>
+        </member>
+        <member name="M:Sudoku.Preprocessing.Gathering.IConceptGatherable`1.Gather(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gathers all possible structures from a sudoku grid.
+            </summary>
+            <param name="grid">The grid used.</param>
+            <returns>The results found.</returns>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies">
             <summary>

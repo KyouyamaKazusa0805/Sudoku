@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts;
+﻿namespace Sudoku.Preprocessing.Gathering;
 
 /// <summary>
 /// Provides with a gatherer that gathers all possible structures of a concept existing in a grid.

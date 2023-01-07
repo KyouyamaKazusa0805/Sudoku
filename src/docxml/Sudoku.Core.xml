@@ -2850,22 +2850,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </returns>
         </member>
-        <member name="T:Sudoku.Concepts.IConceptGatherable`1">
-            <summary>
-            Provides with a gatherer that gathers all possible structures of a concept existing in a grid.
-            </summary>
-            <typeparam name="TResult">
-            The type of the concept. For example, if you want to find all possible <see cref="T:Sudoku.Concepts.Conjugate"/> instances
-            in a grid, the type argument will be <see cref="T:Sudoku.Concepts.Conjugate"/>.
-            </typeparam>
-        </member>
-        <member name="M:Sudoku.Concepts.IConceptGatherable`1.Gather(Sudoku.Concepts.Grid@)">
-            <summary>
-            Gathers all possible structures from a sudoku grid.
-            </summary>
-            <param name="grid">The grid used.</param>
-            <returns>The results found.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
             Defines an inference.

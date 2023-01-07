@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Checking;
+﻿namespace Sudoku.Preprocessing.Checking;
 
 /// <summary>
 /// Provides with a checker that determines whether the puzzle is an

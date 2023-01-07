@@ -1,4 +1,4 @@
-﻿namespace Sudoku.AutoFiller;
+﻿namespace Sudoku.Preprocessing.AutoFiller;
 
 /// <summary>
 /// Defines a default auto filler instance.
