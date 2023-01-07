@@ -1,4 +1,8 @@
-﻿global using System;
+﻿#pragma warning disable CS8981
+
+// This file stores for assembly-scoped import directives.
+
+global using System;
 global using System.Collections.Generic;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;

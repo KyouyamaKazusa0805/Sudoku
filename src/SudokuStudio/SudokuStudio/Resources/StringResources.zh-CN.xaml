@@ -1,6 +1,7 @@
 <ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!--MainWindow-->
 	<x:String x:Key="MainWindow_MainMenu">主菜单</x:String>
 	<x:String x:Key="MainWindow_Analyze">分析</x:String>
 </ResourceDictionary>
