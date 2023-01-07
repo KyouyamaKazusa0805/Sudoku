@@ -919,45 +919,6 @@
             for human to control sudoku puzzles.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Logical.ILogicalSolverOptions">
-            <summary>
-            Defines an instance that stores the options that bound with a <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.ILogicalSolverOptions.IsFullApplying">
-            <summary>
-            Indicates whether the solver will apply all found steps in a step searcher,
-            in order to solve a puzzle faster. If the value is <see langword="true"/>,
-            the third argument of <see cref="M:Sudoku.Solving.Logical.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>
-            will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
-            and all steps will be applied at the same time.
-            </summary>
-            <seealso cref="M:Sudoku.Solving.Logical.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.ILogicalSolverOptions.IgnoreSlowAlgorithms">
-            <summary>
-            Indicates whether the solver will ignore slow step searchers being configured
-            <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.ILogicalSolverOptions.CustomSearcherCollection">
-            <summary>
-            <para>
-            Indicates the custom searcher collection you defined to solve a puzzle. By default,
-            the solver will use <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/> to solve a puzzle.
-            If you assign a new array of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s into this property
-            the step searchers will use this property instead of <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/> to solve a puzzle.
-            </para>
-            <para>
-            Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
-            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/>
-            array into it.
-            </para>
-            </summary>
-            <seealso cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/>
-        </member>
         <member name="T:Sudoku.Solving.Logical.LogicalSolver">
             <summary>
             Provides a solver that solves a sudoku puzzle using the human-friendly logics.
@@ -992,19 +953,43 @@
             <completionlist cref="T:Sudoku.Solving.Logical.CommonLogicalSolvers"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolver.IsFullApplying">
-            <inheritdoc/>
+            <summary>
+            Indicates whether the solver will apply all found steps in a step searcher,
+            in order to solve a puzzle faster. If the value is <see langword="true"/>,
+            the third argument of <see cref="M:Sudoku.Solving.Logical.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>
+            will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
+            and all steps will be applied at the same time.
+            </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
+            <seealso cref="M:Sudoku.Solving.Logical.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreSlowAlgorithms">
-            <inheritdoc/>
+            <summary>
+            Indicates whether the solver will ignore slow step searchers being configured
+            <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>.
+            </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
+            <seealso cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolver.CustomSearcherCollection">
-            <inheritdoc/>
+            <summary>
+            <para>
+            Indicates the custom searcher collection you defined to solve a puzzle. By default,
+            the solver will use <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/> to solve a puzzle.
+            If you assign a new array of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s into this property
+            the step searchers will use this property instead of <see cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/> to solve a puzzle.
+            </para>
+            <para>
+            Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
+            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/>
+            array into it.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Buffers.StepSearcherPool.Collection"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolver.TargetSearcherCollection">
             <summary>
