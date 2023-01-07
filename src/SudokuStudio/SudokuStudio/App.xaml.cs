@@ -26,7 +26,7 @@ public partial class App : Application
 	{
 		var assembly = typeof(App).Assembly;
 		R.RegisterAssembly(assembly);
-		R.AddExternalResourceFetecher(assembly, static key => (string)Current.Resources[key]);
+		R.AddExternalResourceFetecher(assembly, static key => Current.Resources.TryGetValue(key, out var r) && r is string target ? target : null);
 
 		(RunningContext.MainWindow = new MainWindow()).Activate();
 	}
