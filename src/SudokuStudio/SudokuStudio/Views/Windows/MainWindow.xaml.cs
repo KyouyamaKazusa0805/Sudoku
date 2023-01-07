@@ -7,6 +7,12 @@ namespace SudokuStudio.Views.Windows;
 public sealed partial class MainWindow : Window
 {
 	/// <summary>
+	/// The default navigation options.
+	/// </summary>
+	private static readonly FrameNavigationOptions NavigationOptions = new() { TransitionInfoOverride = new EntranceNavigationTransitionInfo() };
+
+
+	/// <summary>
 	/// Initializes a <see cref="MainWindow"/> instance.
 	/// </summary>
 	public MainWindow()
@@ -23,8 +29,32 @@ public sealed partial class MainWindow : Window
 	/// <seealso cref="Window.Title"/>
 	private void InitializeWindowTitle()
 	{
-		var version = ((App)Application.Current).RunningContext.AssemblyVersion.ToString(3);
+		var version = ((App)Application.Current).RunningContext.AssemblyVersion.ToString(2);
 
 		Title = $"{GetString("_ProgramName")} v{version}";
 	}
+
+	/// <summary>
+	/// Try to navigate to the target page.
+	/// </summary>
+	/// <param name="pageType">The target page type.</param>
+	private void NavigateToPage(Type? pageType)
+	{
+		if (pageType is not null)
+		{
+			NavigationViewFrame.NavigateToType(pageType, null, NavigationOptions);
+		}
+	}
+
+
+	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => NavigateToPage(typeof(AnalyzePage));
+
+	private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+		=> NavigateToPage(
+			args switch
+			{
+				{ InvokedItemContainer: var container } when container == AnalyzePageItem => typeof(AnalyzePage),
+				_ => null
+			}
+		);
 }

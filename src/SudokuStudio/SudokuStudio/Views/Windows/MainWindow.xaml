@@ -5,10 +5,14 @@
 	xmlns:m="using:SudokuStudio.Markup" mc:Ignorable="d" Activated="Window_Activated" Closed="Window_Closed">
 
 	<NavigationView
-		PaneTitle="{m:String Key=MainWindow_MainMenu}"
-		IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False">
+		x:Name="MainNavigationView" PaneTitle="{m:String Key=_ProgramName}"
+		SelectionFollowsFocus="Enabled" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsTabStop="False"
+		IsPaneOpen="True" IsPaneToggleButtonVisible="False"
+		Loaded="NavigationView_Loaded" ItemInvoked="NavigationView_ItemInvoked">
 		<NavigationView.MenuItems>
-			<NavigationViewItem Content="{m:String Key=MainWindow_Analyze}" Icon="ShowResults" />
+			<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:String Key=MainWindow_Analyze}" Icon="ShowResults" />
 		</NavigationView.MenuItems>
+
+		<Frame x:Name="NavigationViewFrame" />
 	</NavigationView>
 </Window>
