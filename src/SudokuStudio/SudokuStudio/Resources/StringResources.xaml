@@ -5,4 +5,5 @@
 	<x:String x:Key="_ProgramName">Sudoku Studio</x:String>
 	<x:String x:Key="MainWindow_MainMenu">Main Menu</x:String>
 	<x:String x:Key="MainWindow_Analyze">Analyze</x:String>
+	<x:String x:Key="MainWindow_AnalyzePageTitle">Analyze</x:String>
 </ResourceDictionary>

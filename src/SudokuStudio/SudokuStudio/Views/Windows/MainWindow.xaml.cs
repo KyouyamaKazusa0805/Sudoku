@@ -43,6 +43,7 @@ public sealed partial class MainWindow : Window
 		if (pageType is not null)
 		{
 			NavigationViewFrame.NavigateToType(pageType, null, NavigationOptions);
+			MainNavigationView.Header = GetStringNullable($"{nameof(MainWindow)}_{pageType.Name}{nameof(Title)}") ?? string.Empty;
 		}
 	}
 

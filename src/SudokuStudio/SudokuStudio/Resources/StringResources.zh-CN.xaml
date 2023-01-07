@@ -5,4 +5,5 @@
 	<x:String x:Key="_ProgramName">数独工作室</x:String>
 	<x:String x:Key="MainWindow_MainMenu">主菜单</x:String>
 	<x:String x:Key="MainWindow_Analyze">分析</x:String>
+	<x:String x:Key="MainWindow_AnalyzePageTitle">解题与分析</x:String>
 </ResourceDictionary>

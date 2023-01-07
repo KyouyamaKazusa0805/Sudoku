@@ -7,7 +7,7 @@
 	<NavigationView
 		x:Name="MainNavigationView" PaneTitle="{m:String Key=_ProgramName}"
 		SelectionFollowsFocus="Enabled" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsTabStop="False"
-		IsPaneOpen="True" IsPaneToggleButtonVisible="False"
+		IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="True"
 		Loaded="NavigationView_Loaded" ItemInvoked="NavigationView_ItemInvoked">
 		<NavigationView.MenuItems>
 			<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:String Key=MainWindow_Analyze}" Icon="ShowResults" />
