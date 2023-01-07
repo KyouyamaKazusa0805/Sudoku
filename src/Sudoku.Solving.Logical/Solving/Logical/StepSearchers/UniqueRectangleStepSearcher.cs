@@ -22,7 +22,20 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 
 		// Iterate on mode (whether use AR or UR mode to search).
 		GetAll(list, grid, false);
+#if false
+		if (grid.GivensCount != 0)
+		{
+			// This is a little bug fix: If a grid only contains modifiable values,
+			// we cannot use ARs because we cannot judge whether a cell is filled with a given digit or not.
+			// In this way, we should disable on this case.
+			GetAll(list, grid, true);
+		}
+#else
+		/// In fact, type <see cref="LogicalSolver"/> has already limit on this case.
+		/// If we configure attribute <see cref="StepSearcherRunningOptionsAttribute"/> onto the type,
+		/// step searchers will be skipped if they are only applied to standard sudokus.
 		GetAll(list, grid, true);
+#endif
 
 		if (list.Count == 0)
 		{
