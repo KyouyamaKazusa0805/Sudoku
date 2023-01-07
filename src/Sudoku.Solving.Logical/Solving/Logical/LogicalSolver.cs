@@ -1,5 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical;
 
+using static SearcherFailedReason;
+
 /// <summary>
 /// Provides a solver that solves a sudoku puzzle using the human-friendly logics.
 /// </summary>
@@ -100,23 +102,22 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 			}
 			catch (Exception ex)
 			{
-				result = result with { IsSolved = false };
 				return ex switch
 				{
 					NotImplementedException or NotSupportedException
-						=> result with { FailedReason = SearcherFailedReason.NotImplemented },
-					WrongStepException { WrongStep: var ws }
-						=> result with { FailedReason = SearcherFailedReason.WrongStep, WrongStep = ws, UnhandledException = ex },
+						=> result with { IsSolved = false, FailedReason = NotImplemented },
+					WrongStepException { WrongStep: var s }
+						=> result with { IsSolved = false, FailedReason = WrongStep, WrongStep = s, UnhandledException = ex },
 					OperationCanceledException
-						=> result with { FailedReason = SearcherFailedReason.UserCancelled },
+						=> result with { IsSolved = false, FailedReason = UserCancelled },
 					_
-						=> result with { FailedReason = SearcherFailedReason.ExceptionThrown, UnhandledException = ex }
+						=> result with { IsSolved = false, FailedReason = ExceptionThrown, UnhandledException = ex }
 				};
 			}
 		}
 		else
 		{
-			return result with { IsSolved = false, FailedReason = SearcherFailedReason.PuzzleIsInvalid };
+			return result with { IsSolved = false, FailedReason = PuzzleIsInvalid };
 		}
 	}
 
@@ -254,7 +255,7 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 		return resultBase with
 		{
 			IsSolved = false,
-			FailedReason = SearcherFailedReason.PuzzleIsTooHard,
+			FailedReason = PuzzleIsTooHard,
 			ElapsedTime = stopwatch.GetElapsedTime(),
 			Steps = ImmutableArray.CreateRange(recordedSteps),
 			StepGrids = ImmutableArray.CreateRange(stepGrids)
