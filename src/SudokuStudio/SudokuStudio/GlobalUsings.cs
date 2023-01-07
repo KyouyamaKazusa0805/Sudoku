@@ -18,4 +18,5 @@ global using SudokuStudio.Interop;
 global using SudokuStudio.Views.Windows;
 global using WinRT;
 global using static Sudoku.Resources.MergedResources;
+global using static SudokuStudio.Resources.ResourceDictionary;
 global using winsys = Windows.System;

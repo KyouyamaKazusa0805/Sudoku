@@ -10,10 +10,6 @@
 		<UseWinUI>true</UseWinUI>
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	</PropertyGroup>
-	<ItemGroup>
-	  <None Remove="Resources\StringResources.xaml" />
-	  <None Remove="Resources\StringResources.zh-CN.xaml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
@@ -31,14 +27,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Resources\StringResources.zh-CN.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Page Update="Resources\StringResources.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
+		<Page Update="Resources\StringResources.zh-CN.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Resources\StringResources.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 </Project>

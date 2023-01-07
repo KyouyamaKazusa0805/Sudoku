@@ -24,9 +24,8 @@ public partial class App : Application
 	/// <inheritdoc/>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-		var assembly = typeof(App).Assembly;
+		var assembly = GetType().Assembly;
 		R.RegisterAssembly(assembly);
-		R.AddExternalResourceFetecher(assembly, static key => Current.Resources.TryGetValue(key, out var r) && r is string target ? target : null);
 
 		(RunningContext.MainWindow = new MainWindow()).Activate();
 	}

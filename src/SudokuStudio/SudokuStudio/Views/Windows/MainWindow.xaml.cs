@@ -25,6 +25,6 @@ public sealed partial class MainWindow : Window
 	{
 		var version = ((App)Application.Current).RunningContext.AssemblyVersion.ToString(3);
 
-		Title = $"{R["_ProgramName"]!} V{version}";
+		Title = $"{GetString("_ProgramName")} v{version}";
 	}
 }

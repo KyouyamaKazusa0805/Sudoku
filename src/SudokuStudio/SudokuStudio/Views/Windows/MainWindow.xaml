@@ -5,8 +5,8 @@
 	xmlns:m="using:SudokuStudio.Markup" mc:Ignorable="d" Activated="Window_Activated" Closed="Window_Closed">
 
 	<NavigationView
-		PaneTitle="{m:String Key=MainWindow_MainMenu}" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsTabStop="False"
-		IsPaneOpen="True" IsPaneToggleButtonVisible="False">
+		PaneTitle="{m:String Key=MainWindow_MainMenu}"
+		IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False">
 		<NavigationView.MenuItems>
 			<NavigationViewItem Content="{m:String Key=MainWindow_Analyze}" Icon="ShowResults" />
 		</NavigationView.MenuItems>
