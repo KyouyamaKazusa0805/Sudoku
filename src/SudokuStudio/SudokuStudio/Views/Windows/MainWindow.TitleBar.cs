@@ -15,10 +15,9 @@ partial class MainWindow
 	private void InitializeAppWindow()
 	{
 		_appWindow = GetAppWindowForCurrentWindow();
-		_appWindow.Changed += AppWindow_Changed;
+		_appWindow.Changed += onChanged;
 
-		// Check to see if customization is supported.
-		// Currently only supported on Windows 11.
+		// Check to see if customization is supported. Currently only supported on Windows 11.
 		if (AppWindowTitleBar.IsCustomizationSupported())
 		{
 			var titleBar = _appWindow.TitleBar;
@@ -34,8 +33,8 @@ partial class MainWindow
 			titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 			titleBar.ButtonInactiveForegroundColor = Colors.Gray;
 
-			AppTitleBar.Loaded += AppTitleBar_Loaded;
-			AppTitleBar.SizeChanged += AppTitleBar_SizeChanged;
+			AppTitleBar.Loaded += onLoaded;
+			AppTitleBar.SizeChanged += onSizeChanged;
 		}
 		else
 		{
@@ -44,6 +43,65 @@ partial class MainWindow
 			AppTitleBar.Visibility = Visibility.Collapsed;
 
 			// Show alternative UI for any functionality in the title bar, such as search.
+		}
+
+
+		void onLoaded(object sender, RoutedEventArgs e)
+		{
+			if (AppWindowTitleBar.IsCustomizationSupported())
+			{
+				SetDragRegionForCustomTitleBar(_appWindow);
+			}
+		}
+
+		void onSizeChanged(object sender, SizeChangedEventArgs e)
+		{
+			if (AppWindowTitleBar.IsCustomizationSupported() && _appWindow.TitleBar.ExtendsContentIntoTitleBar)
+			{
+				// Update drag region if the size of the title bar changes.
+				SetDragRegionForCustomTitleBar(_appWindow);
+			}
+		}
+
+		void onChanged(AppWindow sender, AppWindowChangedEventArgs args)
+		{
+			if (args.DidPresenterChange && AppWindowTitleBar.IsCustomizationSupported())
+			{
+				switch (sender.Presenter.Kind)
+				{
+					case AppWindowPresenterKind.CompactOverlay:
+					{
+						// Compact overlay - hide custom title bar
+						// and use the default system title bar instead.
+						AppTitleBar.Visibility = Visibility.Collapsed;
+						sender.TitleBar.ResetToDefault();
+						break;
+					}
+					case AppWindowPresenterKind.FullScreen:
+					{
+						// Full screen - hide the custom title bar
+						// and the default system title bar.
+						AppTitleBar.Visibility = Visibility.Collapsed;
+						sender.TitleBar.ExtendsContentIntoTitleBar = true;
+						break;
+					}
+					case AppWindowPresenterKind.Overlapped:
+					{
+						// Normal - hide the system title bar
+						// and use the custom title bar instead.
+						AppTitleBar.Visibility = Visibility.Visible;
+						sender.TitleBar.ExtendsContentIntoTitleBar = true;
+						SetDragRegionForCustomTitleBar(sender);
+						break;
+					}
+					default:
+					{
+						// Use the default system title bar.
+						sender.TitleBar.ResetToDefault();
+						break;
+					}
+				}
+			}
 		}
 	}
 
@@ -119,63 +177,4 @@ partial class MainWindow
 
 	[LibraryImport("Shcore", SetLastError = true)]
 	private static partial int GetDpiForMonitor(IntPtr hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
-
-
-	private void AppTitleBar_Loaded(object sender, RoutedEventArgs e)
-	{
-		if (AppWindowTitleBar.IsCustomizationSupported())
-		{
-			SetDragRegionForCustomTitleBar(_appWindow);
-		}
-	}
-
-	private void AppTitleBar_SizeChanged(object sender, SizeChangedEventArgs e)
-	{
-		if (AppWindowTitleBar.IsCustomizationSupported() && _appWindow.TitleBar.ExtendsContentIntoTitleBar)
-		{
-			// Update drag region if the size of the title bar changes.
-			SetDragRegionForCustomTitleBar(_appWindow);
-		}
-	}
-
-	private void AppWindow_Changed(AppWindow sender, AppWindowChangedEventArgs args)
-	{
-		if (args.DidPresenterChange && AppWindowTitleBar.IsCustomizationSupported())
-		{
-			switch (sender.Presenter.Kind)
-			{
-				case AppWindowPresenterKind.CompactOverlay:
-				{
-					// Compact overlay - hide custom title bar
-					// and use the default system title bar instead.
-					AppTitleBar.Visibility = Visibility.Collapsed;
-					sender.TitleBar.ResetToDefault();
-					break;
-				}
-				case AppWindowPresenterKind.FullScreen:
-				{
-					// Full screen - hide the custom title bar
-					// and the default system title bar.
-					AppTitleBar.Visibility = Visibility.Collapsed;
-					sender.TitleBar.ExtendsContentIntoTitleBar = true;
-					break;
-				}
-				case AppWindowPresenterKind.Overlapped:
-				{
-					// Normal - hide the system title bar
-					// and use the custom title bar instead.
-					AppTitleBar.Visibility = Visibility.Visible;
-					sender.TitleBar.ExtendsContentIntoTitleBar = true;
-					SetDragRegionForCustomTitleBar(sender);
-					break;
-				}
-				default:
-				{
-					// Use the default system title bar.
-					sender.TitleBar.ResetToDefault();
-					break;
-				}
-			}
-		}
-	}
 }
