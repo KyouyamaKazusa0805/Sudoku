@@ -146,41 +146,6 @@
             The step searchers to find steps to apply to a certain puzzle.
             </summary>
         </member>
-        <member name="T:Sudoku.Buffers.StepSearcherPoolingExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection)">
-            <summary>
-            Try to fetch a valid <typeparamref name="T"/> instance via the specified pool.
-            </summary>
-            <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
-            <param name="this">The pool where all possible step searchers are stored.</param>
-            <returns>
-            The found step searcher instance. If the type is marked <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>,
-            the method will return the first found instance.
-            </returns>
-            <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>
-        </member>
-        <member name="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection,System.Boolean)">
-            <summary>
-            Try to fetch a valid <typeparamref name="T"/> instances via the specified pool.
-            </summary>
-            <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
-            <param name="this">The pool where all possible step searchers are stored.</param>
-            <param name="getAll">
-            Indicates whether you want to fetch all possible instances at the same time.
-            </param>
-            <returns>
-            The found step searcher instances. If the type is marked <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>,
-            the method will return all possible instances, whose behavior is different with the other method
-            <see cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection)"/>.
-            </returns>
-            <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>
-            <seealso cref="M:Sudoku.Buffers.StepSearcherPoolingExtensions.GetOfType``1(Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection)"/>
-        </member>
         <member name="T:Sudoku.Checking.BackdoorSearcher">
             <summary>
             Defines a backdoor searcher.
@@ -5342,7 +5307,7 @@ if (student is (name: var name, age: >= 18))
             Defines a collection that only stores for <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
-            <completionlist cref="T:Sudoku.Solving.Logical.StepSearchers.WellKnownStepSearcherCollections"/>
+            <completionlist cref="T:Sudoku.Solving.Logical.WellKnownStepSearcherCollections"/>
         </member>
         <member name="F:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection._stepSearchers">
             <summary>
@@ -6264,22 +6229,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.UniqueRectangleStepSearcher.Options">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.StepSearchers.WellKnownStepSearcherCollections">
-            <summary>
-            Represents a list of <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/>s.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.StepSearchers.WellKnownStepSearcherCollections.SimpleSudokuTechniqueSet">
-            <summary>
-            Indicates a <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/> instance that only contains SSTS step searchers.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.StepSearchers.WellKnownStepSearcherCollections.AdvancedTechniqueSet">
-            <summary>
-            Indicates a <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/> instance that contains advanced techniques.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.WWingStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IWWingStepSearcher"/>
@@ -14797,6 +14746,41 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the last resort technique.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.WellKnownStepSearcherCollections">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.WellKnownStepSearcherCollections.SimpleSudokuTechniqueSet">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/> instance that only contains SSTS step searchers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.WellKnownStepSearcherCollections.AdvancedTechniqueSet">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection"/> instance that contains advanced techniques.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Extensions.GetOfType``1(Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection)">
+            <summary>
+            Try to fetch a valid <typeparamref name="T"/> instance via the specified pool.
+            </summary>
+            <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
+            <param name="this">The pool where all possible step searchers are stored.</param>
+            <returns>
+            The found step searcher instance. If the type is marked <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>,
+            the method will return the first found instance.
+            </returns>
+            <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies">
             <summary>

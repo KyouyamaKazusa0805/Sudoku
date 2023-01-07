@@ -127,6 +127,26 @@ public sealed class LogicalSolverOperationsGenerator : IIncrementalGenerator
 					{
 						{{targetPropertiesCode}}
 					}
+
+					/// <include
+					///     file='../../global-doc-comments.xml'
+					///     path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+					file static class Extensions
+					{
+						/// <summary>
+						/// Try to fetch a valid <typeparamref name="T"/> instance via the specified pool.
+						/// </summary>
+						/// <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
+						/// <param name="this">The pool where all possible step searchers are stored.</param>
+						/// <returns>
+						/// The found step searcher instance. If the type is marked <see cref="SeparatedStepSearcherAttribute"/>,
+						/// the method will return the first found instance.
+						/// </returns>
+						/// <seealso cref="SeparatedStepSearcherAttribute"/>
+						[MethodImpl(MethodImplOptions.AggressiveInlining)]
+						public static T? GetOfType<T>(this StepSearcherCollection @this) where T : class, IStepSearcher
+							=> @this.OfType<T>().FirstOrDefault();
+					}
 					"""
 				);
 			}

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.StepSearchers;
+﻿namespace Sudoku.Solving.Logical;
 
 /// <summary>
 /// Represents a list of <see cref="StepSearcherCollection"/>s.
