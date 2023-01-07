@@ -37,5 +37,6 @@
 
 属于该类型的项目有：
 
-* [`Sudoku.CommandLine`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine)（控制台）：提供一个关于数独基本运算和操作的控制台实现，偶尔也被用来调试代码。
+* [`Sudoku.CommandLine`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine)（控制台）：提供一个关于数独基本运算和操作的控制台实现。
+* [`SudokuStudio`](https://github.com/SunnieShine/Sudoku/tree/main/src/SudokuStudio)（UI）：提供一个关于数独基本运算和操作的 UI 级别实现。
 
