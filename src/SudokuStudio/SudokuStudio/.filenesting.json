@@ -1,0 +1,14 @@
+// This file stores all file nesting rules based on this whole solution.
+// Visual Studio version 16.9+ supports custom file nesting.
+
+{
+  "dependentFileProviders": {
+    "add": {
+      "fileToFile": {
+        "add": {
+          "MainWindow.Mica.cs": [ "MainWindow.xaml" ]
+        }
+      }
+    }
+  }
+}
