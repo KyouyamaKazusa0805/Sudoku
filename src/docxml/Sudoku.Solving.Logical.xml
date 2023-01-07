@@ -1855,7 +1855,8 @@ if (student is (name: var name, age: >= 18))
             Defines a node used in chaining.
             </summary>
             <remarks>
-            This type corresponds to the concept of Sudoku Explainer's logic "<b>Potential</b>".
+            This type corresponds to the concept of Sudoku Explainer's logic
+            "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
             </remarks>
         </member>
         <member name="F:Sudoku.Solving.Logical.Patterns.ChainNode._mask">

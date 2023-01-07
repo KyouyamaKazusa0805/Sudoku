@@ -4,7 +4,8 @@
 /// Defines a node used in chaining.
 /// </summary>
 /// <remarks>
-/// This type corresponds to the concept of Sudoku Explainer's logic "<b>Potential</b>".
+/// This type corresponds to the concept of Sudoku Explainer's logic
+/// "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
 /// </remarks>
 #if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
