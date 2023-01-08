@@ -24,10 +24,10 @@
 
 			<Image x:Name="TitleBarIcon" Source="/Resources/images/icon.png" Grid.Column="1" Width="32" Height="32" Margin="12,0" />
 			<TextBlock
-				x:Name="TitleTextBlock" Text="{m:String Key=_ProgramName}" Style="{StaticResource CaptionTextBlockStyle}" Grid.Column="2"
+				x:Name="TitleTextBlock" Text="{m:R Key=_ProgramName}" Style="{StaticResource CaptionTextBlockStyle}" Grid.Column="2"
 				VerticalAlignment="Center" Margin="4,0,0,0" />
 			<AutoSuggestBox
-				Grid.Column="4" QueryIcon="Find" PlaceholderText="{m:String Key=MainWindow_Search}"
+				Grid.Column="4" QueryIcon="Find" PlaceholderText="{m:R Key=MainWindow_Search}"
 				VerticalAlignment="Center" Width="400" Margin="4,0" />
 		</Grid>
 
@@ -37,7 +37,7 @@
 			IsSettingsVisible="True" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="True"
 			Loaded="NavigationView_Loaded" ItemInvoked="NavigationView_ItemInvoked">
 			<NavigationView.MenuItems>
-				<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:String Key=MainWindow_Analyze}" Icon="ShowResults" />
+				<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:R Key=MainWindow_Analyze}" Icon="ShowResults" />
 			</NavigationView.MenuItems>
 
 			<Frame x:Name="NavigationViewFrame" />

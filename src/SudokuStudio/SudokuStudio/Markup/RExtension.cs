@@ -5,7 +5,7 @@
 /// </summary>
 [ContentProperty(Name = nameof(Key))]
 [MarkupExtensionReturnType(ReturnType = typeof(string))]
-public sealed class StringExtension : MarkupExtension
+public sealed class RExtension : MarkupExtension
 {
 	/// <summary>
 	/// Indicates the key of the resource.
