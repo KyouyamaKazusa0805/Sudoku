@@ -4,6 +4,7 @@
 
 global using System;
 global using System.Collections.Generic;
+global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Reflection;
@@ -20,6 +21,7 @@ global using Microsoft.UI.Xaml.Media.Animation;
 global using Microsoft.UI.Xaml.Navigation;
 global using SudokuStudio.AppLifecycle;
 global using SudokuStudio.Interop;
+global using SudokuStudio.Views.Controls;
 global using SudokuStudio.Views.Pages;
 global using SudokuStudio.Views.Windows;
 global using Windows.Graphics;

@@ -14,6 +14,7 @@
 		<Content Remove="Resources\images\icon.png" />
 	</ItemGroup>
 	<ItemGroup>
+		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Pages\AnalyzePage.xaml" />
 		<None Remove="Views\Pages\SettingsPage.xaml" />
 	</ItemGroup>
@@ -56,12 +57,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Controls\SudokuPane.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\SettingsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-	</ItemGroup>
-
-	<ItemGroup>
 		<Page Update="Views\Pages\AnalyzePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

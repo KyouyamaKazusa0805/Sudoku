@@ -4,7 +4,6 @@
 /// Defines a binding context that is used by <see cref="SettingsPage"/>.
 /// </summary>
 /// <seealso cref="SettingsPage"/>
-internal sealed class SettingsPageBindingContext
+internal sealed class SettingsPageBindingContext : BindingContext
 {
-
 }
