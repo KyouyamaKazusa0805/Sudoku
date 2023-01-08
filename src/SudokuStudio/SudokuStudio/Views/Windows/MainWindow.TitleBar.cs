@@ -16,7 +16,7 @@ partial class MainWindow
 	[MemberNotNull(nameof(_appWindow))]
 	private void InitializeAppWindow()
 	{
-		_appWindow = GetAppWindowForCurrentWindow();
+		_appWindow = this.GetAppWindow(out _, out _);
 		_appWindow.Changed += onChanged;
 
 		// Check to see if customization is supported. Currently only supported on Windows 11.
@@ -163,17 +163,6 @@ partial class MainWindow
 
 		var scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
 		return scaleFactorPercent / 100.0;
-	}
-
-	/// <summary>
-	/// Gets <see cref="AppWindow"/> instance for the current window.
-	/// </summary>
-	/// <returns>A valid <see cref="AppWindow"/> instance.</returns>
-	private AppWindow GetAppWindowForCurrentWindow()
-	{
-		var hWnd = WindowNative.GetWindowHandle(this);
-		var wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
-		return AppWindow.GetFromWindowId(wndId);
 	}
 
 

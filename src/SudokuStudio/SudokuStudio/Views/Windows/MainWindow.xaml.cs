@@ -20,6 +20,8 @@ public sealed partial class MainWindow : Window
 		InitializeComponent();
 		TrySetMicaBackdrop();
 		InitializeAppWindow();
+		SetAppIcon();
+		SetAppTitle();
 	}
 
 
@@ -35,6 +37,16 @@ public sealed partial class MainWindow : Window
 			MainNavigationView.Header = GetStringNullable($"{nameof(MainWindow)}_{pageType.Name}{nameof(Title)}") ?? string.Empty;
 		}
 	}
+
+	/// <summary>
+	/// Try to set icon of the program.
+	/// </summary>
+	private void SetAppIcon() => _appWindow.SetIcon(@"Resources\images\Logo.ico");
+
+	/// <summary>
+	/// Try to set program name onto the title.
+	/// </summary>
+	private void SetAppTitle() => _appWindow.Title = GetString("_ProgramName");
 
 
 	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => NavigateToPage(typeof(AnalyzePage));
