@@ -72,7 +72,7 @@ file sealed class ViewPuzzleLogicalStepCommand : Command
 					Grid.Parse(lines[index - 1]),
 					(pair, _) => pair.Step.Name.Contains(techniqueName),
 					async () => await e.SendMessageAsync(string.Format(R.MessageFormat("SpecifiedStepNameIsNotFound")!, techniqueName)),
-					stepIndex => $"@{libName} #{index + 1} [{stepIndex + 1}]"
+					stepIndex => $"@{libName} #{index} [{stepIndex + 1}]"
 				);
 
 				break;

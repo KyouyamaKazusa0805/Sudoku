@@ -36,7 +36,6 @@ global using Sudoku.Generating.Puzzlers;
 global using Sudoku.Platforms.QQ.Commands;
 global using Sudoku.Platforms.QQ.Models;
 global using Sudoku.Platforms.QQ.Operation;
-global using Sudoku.Resources;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Algorithms.Backtracking;
 global using Sudoku.Solving.Algorithms.Bitwise;
