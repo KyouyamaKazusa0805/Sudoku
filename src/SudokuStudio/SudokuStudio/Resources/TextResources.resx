@@ -123,6 +123,9 @@
   <data name="MainWindow_AnalyzePageTitle" xml:space="preserve">
     <value>Solving &amp; Analysis</value>
   </data>
+  <data name="MainWindow_Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
   <data name="MainWindow_Search" xml:space="preserve">
     <value>Search...</value>
   </data>

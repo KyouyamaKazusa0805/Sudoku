@@ -123,6 +123,9 @@
   <data name="MainWindow_AnalyzePageTitle" xml:space="preserve">
     <value>解题与分析</value>
   </data>
+  <data name="MainWindow_Menu" xml:space="preserve">
+    <value>菜单</value>
+  </data>
   <data name="MainWindow_Search" xml:space="preserve">
     <value>搜索……</value>
   </data>

@@ -88,6 +88,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        internal static string MainWindow_Menu {
+            get {
+                return ResourceManager.GetString("MainWindow_Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search....
         /// </summary>
         internal static string MainWindow_Search {
