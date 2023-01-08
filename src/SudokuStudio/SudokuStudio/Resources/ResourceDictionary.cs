@@ -6,7 +6,8 @@
 internal static class ResourceDictionary
 {
 	/// <inheritdoc cref="GetString(string)"/>
-	public static string? GetStringNullable(string key) => TextResources.ResourceManager.GetString(key);
+	[return: NotNullIfNotNull(nameof(key))]
+	public static string? GetStringNullable(string? key) => key is null ? null : TextResources.ResourceManager.GetString(key);
 
 	/// <summary>
 	/// Try to fetch the target resource via the specified key.
