@@ -2,6 +2,11 @@
 
 partial class MainWindow
 {
+	/// <summary>
+	/// Defines an <see cref="AppWindow"/> instance that is used by interaction with core application behaviors,
+	/// such as icon, title bars and so on.
+	/// </summary>
+	/// <seealso cref="AppWindow"/>
 	private AppWindow _appWindow;
 
 

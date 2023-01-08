@@ -2,10 +2,21 @@
 
 partial class MainWindow
 {
+	/// <summary>
+	/// Defines a <see cref="WindowsSystemDispatcherQueueHelper"/> instance that is used for interaction
+	/// with <see cref="winsys::DispatcherQueue"/>.
+	/// </summary>
+	/// <seealso cref="winsys::DispatcherQueue"/>
 	private WindowsSystemDispatcherQueueHelper? _wsdqHelper;
 
+	/// <summary>
+	/// Indicates the Mica controler instance. This instance is used as core implementation of Mica material of applications.
+	/// </summary>
 	private MicaController? _micaController;
 
+	/// <summary>
+	/// Indicates the material configuration instance. This field controls displaying with a customized material such as Mica and acrylic.
+	/// </summary>
 	private SystemBackdropConfiguration? _configurationSource;
 
 
