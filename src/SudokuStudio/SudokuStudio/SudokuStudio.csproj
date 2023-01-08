@@ -15,6 +15,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Remove="Views\Controls\SudokuPane.xaml" />
+		<None Remove="Views\Controls\SudokuPaneCell.xaml" />
 		<None Remove="Views\Pages\AnalyzePage.xaml" />
 		<None Remove="Views\Pages\SettingsPage.xaml" />
 	</ItemGroup>
@@ -35,10 +36,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Sudoku.Solving.Logical\Sudoku.Solving.Logical.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Models\" />
+		<ProjectReference Include="..\..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -54,6 +52,12 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>TextResources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Views\Controls\SudokuPaneCell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 
 	<ItemGroup>

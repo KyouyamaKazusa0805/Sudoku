@@ -2183,6 +2183,14 @@
             </summary>
             <seealso cref="T:System.Array"/>
         </member>
+        <member name="M:System.ArrayExtensions.ForEach``1(``0[],System.Action{``0,System.Int32})">
+            <summary>
+            Iterates on each element with iterated index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array.</param>
+            <param name="action">Action to traverse each element.</param>
+        </member>
         <member name="M:System.ArrayExtensions.CollectionElementEquals``1(``0[],``0[],)">
             <inheritdoc cref="!:Collections.Immutable.ImmutableArrayExtensions.CollectionElementEquals&lt;T&gt;(ImmutableArray&lt;T&gt;, ImmutableArray&lt;T&gt;, delegate*&lt;T, T, bool&gt;)"/>
         </member>

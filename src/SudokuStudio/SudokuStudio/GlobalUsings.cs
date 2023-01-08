@@ -1,12 +1,13 @@
 ﻿#pragma warning disable CS8981
 
-// This file stores for assembly-scoped import directives.
-
 global using System;
 global using System.Collections.Generic;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
+global using System.Diagnostics.CodeGen;
+global using System.Linq;
+global using System.Numerics;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
@@ -19,14 +20,21 @@ global using Microsoft.UI.Xaml.Controls;
 global using Microsoft.UI.Xaml.Markup;
 global using Microsoft.UI.Xaml.Media.Animation;
 global using Microsoft.UI.Xaml.Navigation;
+global using Sudoku.Concepts;
+global using Sudoku.Text.Notations;
 global using SudokuStudio.AppLifecycle;
 global using SudokuStudio.Interop;
+global using SudokuStudio.Models;
+global using SudokuStudio.ViewModels;
 global using SudokuStudio.Views.Controls;
 global using SudokuStudio.Views.Pages;
 global using SudokuStudio.Views.Windows;
+global using Windows.Foundation;
 global using Windows.Graphics;
 global using WinRT;
 global using WinRT.Interop;
 global using static Sudoku.Resources.MergedResources;
 global using static SudokuStudio.Resources.ResourceDictionary;
+global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
+global using Grid = Sudoku.Concepts.Grid;
 global using winsys = Windows.System;

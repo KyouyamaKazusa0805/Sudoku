@@ -1,0 +1,67 @@
+<UserControl
+	x:Class="SudokuStudio.Views.Controls.SudokuPaneCell"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:cvt="using:SudokuStudio.Views.Conversions"
+	xmlns:vm="using:SudokuStudio.ViewModels"
+	mc:Ignorable="d">
+	<UserControl.DataContext>
+		<vm:SudokuPaneCellBindingContext x:Name="Context" />
+	</UserControl.DataContext>
+
+	<Grid x:Name="MainGrid">
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<TextBlock
+			Grid.RowSpan="3" Grid.ColumnSpan="3" FontSize="{x:Bind ValueFontSize,Mode=TwoWay}"
+			HorizontalAlignment="Center" VerticalAlignment="Center"
+			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToValueTextBlockVisibility(Context.CellData.CellStatus),Mode=OneWay}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="0" Text="1" FontSize="{x:Bind CandidateFontSize,Mode=TwoWay}"
+			HorizontalAlignment="Center" VerticalAlignment="Center"
+			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(Context.CellData.CellStatus,Context.CellData.CandidatesMask,0),Mode=OneWay}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="1" Text="2" FontSize="{x:Bind CandidateFontSize,Mode=TwoWay}"
+			HorizontalAlignment="Center" VerticalAlignment="Center"
+			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(Context.CellData.CellStatus,Context.CellData.CandidatesMask,1),Mode=OneWay}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="2" Text="3" FontSize="{x:Bind CandidateFontSize,Mode=TwoWay}"
+			HorizontalAlignment="Center" VerticalAlignment="Center"
+			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(Context.CellData.CellStatus,Context.CellData.CandidatesMask,2),Mode=OneWay}" />
+		<TextBlock
+			Grid.Row="1" Grid.Column="0" Text="4" FontSize="{x:Bind CandidateFontSize,Mode=TwoWay}"
+			HorizontalAlignment="Center" VerticalAlignment="Center"
+			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(Context.CellData.CellStatus,Context.CellData.CandidatesMask,3),Mode=OneWay}" />
+		<TextBlock
+			Grid.Row="1" Grid.Column="1" Text="5" FontSize="{x:Bind CandidateFontSize,Mode=TwoWay}"
+			HorizontalAlignment="Center" VerticalAlignment="Center"
+			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(Context.CellData.CellStatus,Context.CellData.CandidatesMask,4),Mode=OneWay}" />
+		<TextBlock
+			Grid.Row="1" Grid.Column="2" Text="6" FontSize="{x:Bind CandidateFontSize,Mode=TwoWay}"
+			HorizontalAlignment="Center" VerticalAlignment="Center"
+			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(Context.CellData.CellStatus,Context.CellData.CandidatesMask,5),Mode=OneWay}" />
+		<TextBlock
+			Grid.Row="2" Grid.Column="0" Text="7" FontSize="{x:Bind CandidateFontSize,Mode=TwoWay}"
+			HorizontalAlignment="Center" VerticalAlignment="Center"
+			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(Context.CellData.CellStatus,Context.CellData.CandidatesMask,6),Mode=OneWay}" />
+		<TextBlock
+			Grid.Row="2" Grid.Column="1" Text="8" FontSize="{x:Bind CandidateFontSize,Mode=TwoWay}"
+			HorizontalAlignment="Center" VerticalAlignment="Center"
+			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(Context.CellData.CellStatus,Context.CellData.CandidatesMask,7),Mode=OneWay}" />
+		<TextBlock
+			Grid.Row="2" Grid.Column="2" Text="9" FontSize="{x:Bind CandidateFontSize,Mode=TwoWay}"
+			HorizontalAlignment="Center" VerticalAlignment="Center"
+			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(Context.CellData.CellStatus,Context.CellData.CandidatesMask,8),Mode=OneWay}" />
+	</Grid>
+</UserControl>

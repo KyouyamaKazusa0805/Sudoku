@@ -5,12 +5,71 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="using:SudokuStudio.ViewModels"
-	mc:Ignorable="d">
+	mc:Ignorable="d" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged">
 	<UserControl.DataContext>
-		<vm:SudokuPaneBindingContext />
+		<vm:SudokuPaneBindingContext x:Name="Context" />
 	</UserControl.DataContext>
+	<UserControl.Resources>
+		<GridLength x:Key="FixedSize">5</GridLength>
+		<SolidColorBrush x:Key="LineColor">Black</SolidColorBrush>
+		<Thickness x:Key="RowLinesBorderThickness">0,0,0,1</Thickness>
+		<Thickness x:Key="ColumnLinesBorderThickness">0,0,1,0</Thickness>
+	</UserControl.Resources>
 
-	<Grid>
+	<Grid x:Name="MainGrid">
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="{StaticResource FixedSize}" />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition Height="{StaticResource FixedSize}" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition Width="{StaticResource FixedSize}" />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition Width="{StaticResource FixedSize}" />
+		</Grid.ColumnDefinitions>
 
+		<Border Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="5" />
+		<Border Grid.Row="2" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,5,5,5" />
+		<Border Grid.Row="2" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,5,5,5" />
+		<Border Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="5,0,5,5" />
+		<Border Grid.Row="5" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,0,5,5" />
+		<Border Grid.Row="5" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,0,5,5" />
+		<Border Grid.Row="8" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="5,0,5,5" />
+		<Border Grid.Row="8" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,0,5,5" />
+		<Border Grid.Row="8" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,0,5,5" />
+		<Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />
+		<Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />
+		<Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />
+		<Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />
+		<Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />
+		<Border Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />
+		<Border Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />
+		<Border Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />
+		<Border Grid.Row="2" Grid.Column="2" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+		<Border Grid.Row="2" Grid.Column="3" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+		<Border Grid.Row="2" Grid.Column="4" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+		<Border Grid.Row="2" Grid.Column="5" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+		<Border Grid.Row="2" Grid.Column="6" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+		<Border Grid.Row="2" Grid.Column="7" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+		<Border Grid.Row="2" Grid.Column="8" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+		<Border Grid.Row="2" Grid.Column="9" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
 	</Grid>
 </UserControl>
