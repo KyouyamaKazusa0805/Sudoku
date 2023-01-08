@@ -172,5 +172,5 @@ partial class MainWindow
 
 
 	[LibraryImport("Shcore", SetLastError = true)]
-	private static partial int GetDpiForMonitor(IntPtr hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
+	private static partial int GetDpiForMonitor(nint hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
 }
