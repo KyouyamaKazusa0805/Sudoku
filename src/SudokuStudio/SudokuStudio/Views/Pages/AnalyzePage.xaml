@@ -5,6 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:vm="using:SudokuStudio.ViewModels"
 	mc:Ignorable="d">
 	<Page.DataContext>
@@ -13,7 +14,9 @@
 
 	<ScrollViewer>
 		<Grid>
-			<c:SudokuPane Width="610" Height="610" HorizontalAlignment="Left" VerticalAlignment="Top" />
+			<c:SudokuPane
+				Width="610" Height="610" HorizontalAlignment="Left" VerticalAlignment="Top"
+				Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10}" />
 		</Grid>
 	</ScrollViewer>
 </Page>

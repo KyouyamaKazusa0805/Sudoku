@@ -6,11 +6,20 @@
 /// <seealso cref="SudokuPane"/>
 internal sealed class SudokuPaneBindingContext : BindingContext
 {
-	/// <summary>
-	/// Indicates the cells.
-	/// </summary>
+	private bool _showCoordinateLines;
+
 	private GridCellData[] _cells = null!;
 
+
+	/// <summary>
+	/// Indicates whether the pane displays for coordinate lines.
+	/// </summary>
+	public bool ShowCoordinateLines
+	{
+		get => _showCoordinateLines;
+
+		set => SetBackingField(ref _showCoordinateLines, value, static (f, v) => f == v);
+	}
 
 	/// <summary>
 	/// Indicates the internal cells used.

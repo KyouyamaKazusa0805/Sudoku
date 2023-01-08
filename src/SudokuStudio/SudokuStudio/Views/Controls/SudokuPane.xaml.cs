@@ -77,10 +77,24 @@ public sealed partial class SudokuPane : UserControl
 
 		var valueFontSizeUnified = (height - (5 << 1)) / 10;
 
-		foreach (var control in MainGrid.Children.OfType<SudokuPaneCell>())
+		foreach (var control in MainGrid.Children)
 		{
-			control.ValueFontSize = valueFontSizeUnified;
-			control.CandidateFontSize = valueFontSizeUnified / 3;
+			switch (control)
+			{
+				case TextBlock c:
+				{
+					c.FontSize = valueFontSizeUnified / 3;
+
+					break;
+				}
+				case SudokuPaneCell c:
+				{
+					c.ValueFontSize = valueFontSizeUnified / 2;
+					c.CandidateFontSize = valueFontSizeUnified / 3;
+
+					break;
+				}
+			}
 		}
 	}
 }

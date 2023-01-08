@@ -14,11 +14,23 @@
 		<SolidColorBrush x:Key="LineColor">Black</SolidColorBrush>
 		<Thickness x:Key="RowLinesBorderThickness">0,0,0,1</Thickness>
 		<Thickness x:Key="ColumnLinesBorderThickness">0,0,1,0</Thickness>
+		<Style x:Key="CoordinateTextHorizontalStyle" TargetType="TextBlock">
+			<Setter Property="Foreground" Value="Gray" />
+			<Setter Property="Margin" Value="0,5,0,0" />
+			<Setter Property="HorizontalAlignment" Value="Center" />
+			<Setter Property="VerticalAlignment" Value="Bottom" />
+		</Style>
+		<Style x:Key="CoordinateTextVerticalStyle" TargetType="TextBlock">
+			<Setter Property="Foreground" Value="Gray" />
+			<Setter Property="Margin" Value="5,0,0,0" />
+			<Setter Property="HorizontalAlignment" Value="Right" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
 	</UserControl.Resources>
 
-	<Grid x:Name="MainGrid">
+	<Grid x:Name="MainGrid" Background="White">
 		<Grid.RowDefinitions>
-			<RowDefinition />
+			<RowDefinition Height="Auto" />
 			<RowDefinition Height="{StaticResource FixedSize}" />
 			<RowDefinition />
 			<RowDefinition />
@@ -32,7 +44,7 @@
 			<RowDefinition Height="{StaticResource FixedSize}" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
+			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition Width="{StaticResource FixedSize}" />
 			<ColumnDefinition />
 			<ColumnDefinition />
@@ -46,15 +58,33 @@
 			<ColumnDefinition Width="{StaticResource FixedSize}" />
 		</Grid.ColumnDefinitions>
 
-		<Border Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="5" />
-		<Border Grid.Row="2" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,5,5,5" />
-		<Border Grid.Row="2" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,5,5,5" />
-		<Border Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="5,0,5,5" />
-		<Border Grid.Row="5" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,0,5,5" />
-		<Border Grid.Row="5" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,0,5,5" />
-		<Border Grid.Row="8" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="5,0,5,5" />
-		<Border Grid.Row="8" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,0,5,5" />
-		<Border Grid.Row="8" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="0,0,5,5" />
+		<TextBlock Grid.Row="0" Grid.Column="2" Text="c1" Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock Grid.Row="0" Grid.Column="3" Text="c2" Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock Grid.Row="0" Grid.Column="4" Text="c3" Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock Grid.Row="0" Grid.Column="5" Text="c4" Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock Grid.Row="0" Grid.Column="6" Text="c5" Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock Grid.Row="0" Grid.Column="7" Text="c6" Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock Grid.Row="0" Grid.Column="8" Text="c7" Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock Grid.Row="0" Grid.Column="9" Text="c8" Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock Grid.Row="0" Grid.Column="10" Text="c9" Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock Grid.Row="2" Grid.Column="0" Text="r1" Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock Grid.Row="3" Grid.Column="0" Text="r2" Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock Grid.Row="4" Grid.Column="0" Text="r3" Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock Grid.Row="5" Grid.Column="0" Text="r4" Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock Grid.Row="6" Grid.Column="0" Text="r5" Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock Grid.Row="7" Grid.Column="0" Text="r6" Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock Grid.Row="8" Grid.Column="0" Text="r7" Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock Grid.Row="9" Grid.Column="0" Text="r8" Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock Grid.Row="10" Grid.Column="0" Text="r9" Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<Border Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="3,3,1.5,1.5" />
+		<Border Grid.Row="2" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="1.5,3,1.5,1.5" />
+		<Border Grid.Row="2" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="1.5,3,3,1.5" />
+		<Border Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="3,1.5,1.5,1.5" />
+		<Border Grid.Row="5" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="1.5" />
+		<Border Grid.Row="5" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="1.5,1.5,3,1.5" />
+		<Border Grid.Row="8" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="3,1.5,1.5,3" />
+		<Border Grid.Row="8" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="1.5,1.5,1.5,3" />
+		<Border Grid.Row="8" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}" BorderThickness="1.5,1.5,3,3" />
 		<Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />
 		<Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />
 		<Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}" BorderThickness="{StaticResource RowLinesBorderThickness}" />

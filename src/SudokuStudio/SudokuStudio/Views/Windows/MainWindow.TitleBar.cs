@@ -118,7 +118,14 @@ partial class MainWindow
 	/// <param name="appWindow">The <see cref="AppWindow"/> instance.</param>
 	private void SetDragRegionForCustomTitleBar(AppWindow appWindow)
 	{
-		if (AppWindowTitleBar.IsCustomizationSupported() && appWindow.TitleBar.ExtendsContentIntoTitleBar)
+		if (AppWindowTitleBar.IsCustomizationSupported() && appWindow.TitleBar.ExtendsContentIntoTitleBar
+#if DEBUG
+			/// This is a bug fix. This bug can be reproduced by Windows Application SDK v1.2.
+			/// If you minimize and maximize the window via task bar icon, the expression value <c>appWindow.TitleBar.RightInset</c>
+			/// will be -24.
+			&& appWindow.TitleBar.RightInset >= 0
+#endif
+			)
 		{
 			var scaleAdjustment = GetScaleAdjustment();
 
