@@ -45,21 +45,12 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>TextResources.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Views\Windows\Resource1.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Resource1.resx</DependentUpon>
-		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Update="Resources\TextResources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>TextResources.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Views\Windows\Resource1.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resource1.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 
