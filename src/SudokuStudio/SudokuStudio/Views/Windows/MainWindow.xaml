@@ -34,7 +34,7 @@
 		<!--Navigation view-->
 		<NavigationView
 			x:Name="MainNavigationView" Grid.Row="1" SelectionFollowsFocus="Enabled" IsBackButtonVisible="Collapsed"
-			IsSettingsVisible="False" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="True"
+			IsSettingsVisible="True" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="True"
 			Loaded="NavigationView_Loaded" ItemInvoked="NavigationView_ItemInvoked">
 			<NavigationView.MenuItems>
 				<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:String Key=MainWindow_Analyze}" Icon="ShowResults" />

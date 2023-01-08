@@ -79,7 +79,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Analyze.
+        ///   Looks up a localized string similar to Solving &amp; Analysis.
         /// </summary>
         internal static string MainWindow_AnalyzePageTitle {
             get {
@@ -93,6 +93,15 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_Search {
             get {
                 return ResourceManager.GetString("MainWindow_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings &amp; Preferences.
+        /// </summary>
+        internal static string MainWindow_SettingsPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_SettingsPageTitle", resourceCulture);
             }
         }
     }

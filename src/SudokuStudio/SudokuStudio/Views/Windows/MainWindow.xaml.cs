@@ -55,6 +55,7 @@ public sealed partial class MainWindow : Window
 		=> NavigateToPage(
 			args switch
 			{
+				{ IsSettingsInvoked: true } => typeof(SettingsPage),
 				{ InvokedItemContainer: var container } when container == AnalyzePageItem => typeof(AnalyzePage),
 				_ => null
 			}

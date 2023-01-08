@@ -126,4 +126,7 @@
   <data name="MainWindow_Search" xml:space="preserve">
     <value>搜索……</value>
   </data>
+  <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
+    <value>偏好项设置</value>
+  </data>
 </root>

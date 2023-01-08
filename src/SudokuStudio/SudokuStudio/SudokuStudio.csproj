@@ -15,6 +15,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Remove="Views\Pages\AnalyzePage.xaml" />
+		<None Remove="Views\Pages\SettingsPage.xaml" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\images\icon.png">
@@ -52,6 +53,12 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>TextResources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Views\Pages\SettingsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<ItemGroup>

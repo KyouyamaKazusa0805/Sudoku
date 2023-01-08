@@ -121,10 +121,13 @@
     <value>Analyze</value>
   </data>
   <data name="MainWindow_AnalyzePageTitle" xml:space="preserve">
-    <value>Analyze</value>
+    <value>Solving &amp; Analysis</value>
   </data>
   <data name="MainWindow_Search" xml:space="preserve">
     <value>Search...</value>
+  </data>
+  <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
+    <value>Settings &amp; Preferences</value>
   </data>
   <data name="_ProgramName" xml:space="preserve">
     <value>Sudoku Studio</value>
