@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
-	mc:Ignorable="d" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged">
+	mc:Ignorable="d" Loaded="UserControl_Loaded">
 
 	<UserControl.Resources>
 		<GridLength x:Key="FixedSize">5</GridLength>

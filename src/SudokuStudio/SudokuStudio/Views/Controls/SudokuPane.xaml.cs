@@ -106,7 +106,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		for (var i = 0; i < 81; i++)
 		{
-			var cellControl = new SudokuPaneCell { CellIndex = i };
+			var valueFontSizeUnified = ((Width + Height) / 2 - (5 << 1)) / 10;
+			var cellControl = new SudokuPaneCell
+			{
+				CellIndex = i,
+				ValueFontSize = valueFontSizeUnified,
+				CandidateFontSize = valueFontSizeUnified / 3
+			};
 
 			GridLayout.SetRow(cellControl, i / 9 + 2);
 			GridLayout.SetColumn(cellControl, i % 9 + 2);
@@ -131,37 +137,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 						SelectedCell = i;
 						return;
 					}
-				}
-			}
-		}
-	}
-
-	private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
-	{
-		var (_, height) = e.NewSize;
-		if (height.NearlyEquals(0, 1E-3F))
-		{
-			return;
-		}
-
-		var valueFontSizeUnified = (height - (5 << 1)) / 10;
-
-		foreach (var control in MainGrid.Children)
-		{
-			switch (control)
-			{
-				case TextBlock c:
-				{
-					c.FontSize = valueFontSizeUnified / 3;
-
-					break;
-				}
-				case SudokuPaneCell c:
-				{
-					c.ValueFontSize = valueFontSizeUnified / 2;
-					c.CandidateFontSize = valueFontSizeUnified / 3;
-
-					break;
 				}
 			}
 		}
