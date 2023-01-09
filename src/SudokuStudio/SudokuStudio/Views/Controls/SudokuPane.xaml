@@ -5,11 +5,8 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
-	xmlns:vm="using:SudokuStudio.ViewModels"
-	mc:Ignorable="d" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged" PointerMoved="UserControl_PointerMoved">
-	<UserControl.DataContext>
-		<vm:SudokuPaneBindingContext x:Name="Context" />
-	</UserControl.DataContext>
+	mc:Ignorable="d" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged">
+
 	<UserControl.Resources>
 		<GridLength x:Key="FixedSize">5</GridLength>
 		<SolidColorBrush x:Key="LineColor">Black</SolidColorBrush>
@@ -28,8 +25,8 @@
 			<Setter Property="VerticalAlignment" Value="Center" />
 		</Style>
 		<Style x:Key="CursorBorderStyle" TargetType="Border">
-			<Setter Property="BorderBrush" Value="#800000FF" />
-			<Setter Property="Background" Value="#400000FF" />
+			<Setter Property="BorderBrush" Value="#600000FF" />
+			<Setter Property="Background" Value="#200000FF" />
 			<Setter Property="BorderThickness" Value="3" />
 		</Style>
 	</UserControl.Resources>
@@ -65,24 +62,60 @@
 		</Grid.ColumnDefinitions>
 
 		<!--Coordinates-->
-		<TextBlock Grid.Row="0" Grid.Column="2" Text="c1" Style="{StaticResource CoordinateTextHorizontalStyle}" />
-		<TextBlock Grid.Row="0" Grid.Column="3" Text="c2" Style="{StaticResource CoordinateTextHorizontalStyle}" />
-		<TextBlock Grid.Row="0" Grid.Column="4" Text="c3" Style="{StaticResource CoordinateTextHorizontalStyle}" />
-		<TextBlock Grid.Row="0" Grid.Column="5" Text="c4" Style="{StaticResource CoordinateTextHorizontalStyle}" />
-		<TextBlock Grid.Row="0" Grid.Column="6" Text="c5" Style="{StaticResource CoordinateTextHorizontalStyle}" />
-		<TextBlock Grid.Row="0" Grid.Column="7" Text="c6" Style="{StaticResource CoordinateTextHorizontalStyle}" />
-		<TextBlock Grid.Row="0" Grid.Column="8" Text="c7" Style="{StaticResource CoordinateTextHorizontalStyle}" />
-		<TextBlock Grid.Row="0" Grid.Column="9" Text="c8" Style="{StaticResource CoordinateTextHorizontalStyle}" />
-		<TextBlock Grid.Row="0" Grid.Column="10" Text="c9" Style="{StaticResource CoordinateTextHorizontalStyle}" />
-		<TextBlock Grid.Row="2" Grid.Column="0" Text="r1" Style="{StaticResource CoordinateTextVerticalStyle}" />
-		<TextBlock Grid.Row="3" Grid.Column="0" Text="r2" Style="{StaticResource CoordinateTextVerticalStyle}" />
-		<TextBlock Grid.Row="4" Grid.Column="0" Text="r3" Style="{StaticResource CoordinateTextVerticalStyle}" />
-		<TextBlock Grid.Row="5" Grid.Column="0" Text="r4" Style="{StaticResource CoordinateTextVerticalStyle}" />
-		<TextBlock Grid.Row="6" Grid.Column="0" Text="r5" Style="{StaticResource CoordinateTextVerticalStyle}" />
-		<TextBlock Grid.Row="7" Grid.Column="0" Text="r6" Style="{StaticResource CoordinateTextVerticalStyle}" />
-		<TextBlock Grid.Row="8" Grid.Column="0" Text="r7" Style="{StaticResource CoordinateTextVerticalStyle}" />
-		<TextBlock Grid.Row="9" Grid.Column="0" Text="r8" Style="{StaticResource CoordinateTextVerticalStyle}" />
-		<TextBlock Grid.Row="10" Grid.Column="0" Text="r9" Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="2" Text="c1" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="3" Text="c2" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="4" Text="c3" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="5" Text="c4" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="6" Text="c5" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="7" Text="c6" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="8" Text="c7" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="9" Text="c8" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock
+			Grid.Row="0" Grid.Column="10" Text="c9" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+		<TextBlock
+			Grid.Row="2" Grid.Column="0" Text="r1" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock
+			Grid.Row="3" Grid.Column="0" Text="r2" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock
+			Grid.Row="4" Grid.Column="0" Text="r3" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock
+			Grid.Row="5" Grid.Column="0" Text="r4" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock
+			Grid.Row="6" Grid.Column="0" Text="r5" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock
+			Grid.Row="7" Grid.Column="0" Text="r6" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock
+			Grid.Row="8" Grid.Column="0" Text="r7" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock
+			Grid.Row="9" Grid.Column="0" Text="r8" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextVerticalStyle}" />
+		<TextBlock
+			Grid.Row="10" Grid.Column="0" Text="r9" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Style="{StaticResource CoordinateTextVerticalStyle}" />
 
 		<!--Grid and cell borders-->
 		<Border
@@ -164,18 +197,16 @@
 		<!--Cursors-->
 		<Border
 			Style="{StaticResource CursorBorderStyle}" Grid.RowSpan="3" Grid.ColumnSpan="3"
-			Visibility="{x:Bind cvt:SelectedCellConversion.SelectedCellToVisibility(Context.SelectedCell),Mode=OneWay}"
-			Grid.Row="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridRow_Block(Context.SelectedCell),Mode=OneWay}"
-			Grid.Column="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridColumn_Block(Context.SelectedCell),Mode=OneWay}" />
+			Visibility="{x:Bind cvt:SelectedCellConversion.SelectedCellToVisibility(SelectedCell),Mode=OneWay}"
+			Grid.Row="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridRow_Block(SelectedCell),Mode=OneWay}"
+			Grid.Column="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridColumn_Block(SelectedCell),Mode=OneWay}" />
 		<Border
-			Style="{StaticResource CursorBorderStyle}" Grid.RowSpan="1" Grid.ColumnSpan="9"
-			Visibility="{x:Bind cvt:SelectedCellConversion.SelectedCellToVisibility(Context.SelectedCell),Mode=OneWay}"
-			Grid.Row="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridRow_Row(Context.SelectedCell),Mode=OneWay}"
-			Grid.Column="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridColumn_Row(Context.SelectedCell),Mode=OneWay}" />
+			Style="{StaticResource CursorBorderStyle}" Grid.RowSpan="1" Grid.ColumnSpan="9" Grid.Column="2"
+			Visibility="{x:Bind cvt:SelectedCellConversion.SelectedCellToVisibility(SelectedCell),Mode=OneWay}"
+			Grid.Row="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridRow_Row(SelectedCell),Mode=OneWay}" />
 		<Border
-			Style="{StaticResource CursorBorderStyle}" Grid.RowSpan="9" Grid.ColumnSpan="1"
-			Visibility="{x:Bind cvt:SelectedCellConversion.SelectedCellToVisibility(Context.SelectedCell),Mode=OneWay}"
-			Grid.Row="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridRow_Column(Context.SelectedCell),Mode=OneWay}"
-			Grid.Column="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridColumn_Column(Context.SelectedCell),Mode=OneWay}" />
+			Style="{StaticResource CursorBorderStyle}" Grid.RowSpan="9" Grid.ColumnSpan="1" Grid.Row="2"
+			Visibility="{x:Bind cvt:SelectedCellConversion.SelectedCellToVisibility(SelectedCell),Mode=OneWay}"
+			Grid.Column="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridColumn_Column(SelectedCell),Mode=OneWay}" />
 	</Grid>
 </UserControl>

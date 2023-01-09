@@ -6,20 +6,6 @@
 /// <seealso cref="Array"/>
 public static class ArrayExtensions
 {
-	/// <summary>
-	/// Iterates on each element with iterated index.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The array.</param>
-	/// <param name="action">Action to traverse each element.</param>
-	public static void ForEach<T>(this T[] @this, Action<T, int> action)
-	{
-		for (var i = 0; i < @this.Length; i++)
-		{
-			action(@this[i], i);
-		}
-	}
-
 #pragma warning disable CS1584, CS1658, IDE0001
 	/// <inheritdoc cref="Collections.Immutable.ImmutableArrayExtensions.CollectionElementEquals{T}(ImmutableArray{T}, ImmutableArray{T}, delegate*{T, T, bool})"/>
 #pragma warning restore CS1584, CS1658, IDE0001

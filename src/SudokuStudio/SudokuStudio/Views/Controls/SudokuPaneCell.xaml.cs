@@ -4,13 +4,18 @@ namespace SudokuStudio.Views.Controls;
 /// Defines a cell displayed in a <see cref="SudokuPane"/>.
 /// </summary>
 /// <seealso cref="SudokuPane"/>
-public sealed partial class SudokuPaneCell : UserControl
+public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 {
 	public static readonly DependencyProperty ValueFontSizeProperty =
 		DependencyProperty.Register(nameof(ValueFontSize), typeof(double), typeof(SudokuPaneCell), new(42.0));
 
 	public static readonly DependencyProperty CandidateFontSizeProperty =
 		DependencyProperty.Register(nameof(CandidateFontSize), typeof(double), typeof(SudokuPaneCell), new(14.0));
+
+
+	private short _candidatesMask = 511;
+
+	private CellStatus _status = CellStatus.Empty;
 
 
 	/// <summary>
@@ -40,17 +45,61 @@ public sealed partial class SudokuPaneCell : UserControl
 	}
 
 	/// <summary>
-	/// Indicates the cell index.
+	/// Indicates the candidates mask.
 	/// </summary>
-	internal int CellIndex
+	public short CandidatesMask
 	{
-		get => Context.CellData.CellIndex;
+		get => _candidatesMask;
 
-		init => Context.CellData.CellIndex = value;
+		set
+		{
+			if (_candidatesMask == value)
+			{
+				return;
+			}
+
+			_candidatesMask = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(CandidatesMask)));
+		}
 	}
 
+	/// <summary>
+	/// Indicates the cell status.
+	/// </summary>
+	public CellStatus CellStatus
+	{
+		get => _status;
 
-	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => Context.CellData.IsMouseHovered = true;
+		set
+		{
+			if (_status == value)
+			{
+				return;
+			}
 
-	private void UserControl_PointerExited(object sender, PointerRoutedEventArgs e) => Context.CellData.IsMouseHovered = false;
+			_status = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(CellStatus)));
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether the pointer is entered into this control.
+	/// </summary>
+	internal bool IsPointerEntered { get; private set; }
+
+	/// <summary>
+	/// Indicates the cell index.
+	/// </summary>
+	internal int CellIndex { get; init; }
+
+
+	/// <inheritdoc/>
+	public event PropertyChangedEventHandler? PropertyChanged;
+
+
+	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => IsPointerEntered = true;
+
+	private void UserControl_PointerExited(object sender, PointerRoutedEventArgs e) => IsPointerEntered = false;
 }
