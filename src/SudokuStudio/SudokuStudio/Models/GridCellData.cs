@@ -5,10 +5,22 @@
 /// </summary>
 internal sealed partial class GridCellData : Model, IEquatable<GridCellData>, IEqualityOperators<GridCellData, GridCellData, bool>
 {
+	private bool _isMouseHovered = false;
+
 	private short _candidatesMask = Grid.MaxCandidatesMask;
 
 	private CellStatus _cellStatus = CellStatus.Empty;
 
+
+	/// <summary>
+	/// Indicates whether the mouse pointer is hovered onto the current cell.
+	/// </summary>
+	public bool IsMouseHovered
+	{
+		get => _isMouseHovered;
+
+		set => SetBackingField(ref _isMouseHovered, value, static (f, v) => f == v);
+	}
 
 	/// <summary>
 	/// Indicates the cell index. The value can be between 0 and 80.

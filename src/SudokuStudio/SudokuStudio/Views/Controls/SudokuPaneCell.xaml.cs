@@ -38,4 +38,19 @@ public sealed partial class SudokuPaneCell : UserControl
 
 		set => SetValue(CandidateFontSizeProperty, value);
 	}
+
+	/// <summary>
+	/// Indicates the cell index.
+	/// </summary>
+	internal int CellIndex
+	{
+		get => Context.CellData.CellIndex;
+
+		init => Context.CellData.CellIndex = value;
+	}
+
+
+	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => Context.CellData.IsMouseHovered = true;
+
+	private void UserControl_PointerExited(object sender, PointerRoutedEventArgs e) => Context.CellData.IsMouseHovered = false;
 }

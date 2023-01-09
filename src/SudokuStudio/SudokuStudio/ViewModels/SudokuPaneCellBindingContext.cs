@@ -6,7 +6,13 @@
 /// <seealso cref="SudokuPaneCell"/>
 internal sealed class SudokuPaneCellBindingContext : BindingContext
 {
-	private GridCellData _cellData = null!;
+	private GridCellData _cellData;
+
+
+	/// <summary>
+	/// Initializes a <see cref="SudokuPaneCellBindingContext"/> instance.
+	/// </summary>
+	public SudokuPaneCellBindingContext() => _cellData = new() { CellIndex = -1 };
 
 
 	/// <summary>

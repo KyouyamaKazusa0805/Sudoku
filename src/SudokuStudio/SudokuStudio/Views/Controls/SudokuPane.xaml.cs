@@ -42,7 +42,8 @@ public sealed partial class SudokuPane : UserControl
 	{
 		for (var i = 0; i < 81; i++)
 		{
-			var cellControl = new SudokuPaneCell { DataContext = new SudokuPaneCellBindingContext { CellData = new() { CellIndex = i } } };
+			var cellControl = new SudokuPaneCell { CellIndex = i };
+
 			GridLayout.SetRow(cellControl, i / 9 + 2);
 			GridLayout.SetColumn(cellControl, i % 9 + 2);
 
@@ -97,4 +98,7 @@ public sealed partial class SudokuPane : UserControl
 			}
 		}
 	}
+
+	private void UserControl_PointerMoved(object sender, PointerRoutedEventArgs e)
+		=> Context.SelectedCell = Context.Cells.FirstOrDefault(static data => data.IsMouseHovered)?.CellIndex ?? -1;
 }
