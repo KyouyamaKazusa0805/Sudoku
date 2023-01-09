@@ -106,7 +106,7 @@ internal abstract record ChainingStep(
 		{
 			(ForcingChainStep, true, true, _, _) => Technique.AlternatingInferenceChain,
 			(ForcingChainStep, false, true, _, _) => Technique.YChain,
-			(ForcingChainStep, false, false, _, _) => Technique.XChain,
+			(ForcingChainStep, true, false, _, _) => Technique.XChain,
 			(BidirectionalCycleStep, true, true, _, _) => Technique.ContinuousNiceLoop,
 			(BidirectionalCycleStep, false, true, _, _) => Technique.XyChain,
 			(BidirectionalCycleStep, false, false, _, _) => Technique.FishyCycle,

@@ -30,6 +30,7 @@ internal sealed record GroupedWWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
+
 	[ResourceTextFormatter]
 	internal string StartCellStr() => RxCyNotation.ToCellString(StartCell);
 

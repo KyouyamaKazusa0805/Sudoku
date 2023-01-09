@@ -30,6 +30,11 @@ public sealed partial class GridLibrary : IAsyncEnumerable<Grid>, IEquatable<Gri
 
 
 	/// <summary>
+	/// Indicates the number of puzzles stored in this library.
+	/// </summary>
+	public int PuzzlesCount => File.ReadAllLines(FilePath).Count(static line => Grid.TryParse(line, out _));
+
+	/// <summary>
 	/// Indicates the file path.
 	/// </summary>
 	public string FilePath { get; }
@@ -78,19 +83,24 @@ public sealed partial class GridLibrary : IAsyncEnumerable<Grid>, IEquatable<Gri
 	/// <see cref="Grid"/> instances when puzzles don't pass the verification.
 	/// </summary>
 	/// <param name="gridFilter">The grid filter.</param>
+	/// <param name="failedCallback">Indicates the failed action.</param>
 	/// <param name="cancellationToken">The cancellation token that is used for cancelling the asynchronous operation.</param>
 	/// <returns>An <see cref="IAsyncEnumerable{T}"/> instance that iterates on filtered <see cref="Grid"/> instances.</returns>
 	public async IAsyncEnumerable<Grid> FilterAsync(
-		Func<Grid, CancellationToken, Task<bool>> gridFilter,
+		Func<Grid, CancellationToken, bool> gridFilter,
+		Action? failedCallback = null,
 		[EnumeratorCancellation] CancellationToken cancellationToken = default
 	)
 	{
 		await foreach (var grid in this)
 		{
-			if (await gridFilter(grid, cancellationToken))
+			if (gridFilter(grid, cancellationToken))
 			{
 				yield return grid;
+				continue;
 			}
+
+			failedCallback?.Invoke();
 		}
 	}
 

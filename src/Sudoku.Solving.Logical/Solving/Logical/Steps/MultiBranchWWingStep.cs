@@ -26,8 +26,7 @@ internal sealed record MultiBranchWWingStep(
 	public decimal BaseDifficulty => 3.7M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Size, Size * .3M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { (PhasedDifficultyRatingKinds.Size, Size * .3M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.MultiBranchWWing;
@@ -37,6 +36,7 @@ internal sealed record MultiBranchWWingStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
+
 
 	[ResourceTextFormatter]
 	internal string LeavesStr() => RxCyNotation.ToCellsString(Leaves);

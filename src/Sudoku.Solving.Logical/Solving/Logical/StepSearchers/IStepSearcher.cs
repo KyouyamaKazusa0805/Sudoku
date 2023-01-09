@@ -77,6 +77,17 @@ public interface IStepSearcher
 	}
 
 	/// <summary>
+	/// Determines whether the current step searcher is disabled
+	/// by option <see cref="StepSearcherRunningOptions.HighMemoryAllocation"/> being configured.
+	/// </summary>
+	/// <seealso cref="StepSearcherRunningOptions.HighMemoryAllocation"/>
+	sealed bool IsConfiguredHighAllocation
+	{
+		get => GetType().GetCustomAttribute<StepSearcherRunningOptionsAttribute>() is { Options: var options }
+			&& options.Flags(StepSearcherRunningOptions.HighMemoryAllocation);
+	}
+
+	/// <summary>
 	/// Indicates the step searching options.
 	/// </summary>
 	SearcherInitializationOptions Options { get; set; }

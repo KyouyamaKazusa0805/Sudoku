@@ -29,6 +29,7 @@ public static class CommonLogicalSolvers
 		SingleStepSearcher_HiddenSinglesInBlockFirst = false,
 		IsFullApplying = true,
 		IgnoreSlowAlgorithms = false,
+		IgnoreHighAllocationAlgorithms = true,
 		CustomSearcherCollection = new IStepSearcher[] { new SingleStepSearcher(), new LockedCandidatesStepSearcher(), new SubsetStepSearcher() }
 	};
 
@@ -52,6 +53,7 @@ public static class CommonLogicalSolvers
 		ComplexFishStepSearcher_MaxSize = 5,
 		BowmanBingoStepSearcher_MaxLength = 64,
 		AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple = false,
-		IgnoreSlowAlgorithms = false
+		IgnoreSlowAlgorithms = false,
+		IgnoreHighAllocationAlgorithms = true
 	};
 }

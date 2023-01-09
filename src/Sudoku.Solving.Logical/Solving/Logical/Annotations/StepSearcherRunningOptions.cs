@@ -35,4 +35,11 @@ public enum StepSearcherRunningOptions : byte
 	/// </summary>
 	/// <seealso cref="LogicalSolver.IgnoreSlowAlgorithms"/>
 	SlowAlgorithm = 4,
+
+	/// <summary>
+	/// Indicates the step searcher chooses for an algorithm that will raise high memory allocation.
+	/// If <see cref="LogicalSolver.IgnoreHighAllocationAlgorithms"/> is configured, the step searcher will be ignored.
+	/// </summary>
+	/// <seealso cref="LogicalSolver.IgnoreHighAllocationAlgorithms"/>
+	HighMemoryAllocation = 8
 }

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
-[StepSearcherRunningOptions(StepSearcherRunningOptions.OnlyForStandardSudoku)]
+[StepSearcherRunningOptions(StepSearcherRunningOptions.OnlyForStandardSudoku | StepSearcherRunningOptions.HighMemoryAllocation)]
 internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSearcher
 {
 	/// <inheritdoc/>

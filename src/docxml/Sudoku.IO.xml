@@ -26,6 +26,11 @@
             Throws when the argument <paramref name="ignoreOption"/> is not defined in enumeration type.
             </exception>
         </member>
+        <member name="P:Sudoku.IO.GridLibrary.PuzzlesCount">
+            <summary>
+            Indicates the number of puzzles stored in this library.
+            </summary>
+        </member>
         <member name="P:Sudoku.IO.GridLibrary.FilePath">
             <summary>
             Indicates the file path.
@@ -51,12 +56,13 @@
         <member name="M:Sudoku.IO.GridLibrary.GetAsyncEnumerator(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.IO.GridLibrary.FilterAsync(System.Func{Sudoku.Concepts.Grid,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.IO.GridLibrary.FilterAsync(System.Func{Sudoku.Concepts.Grid,System.Threading.CancellationToken,System.Boolean},System.Action,System.Threading.CancellationToken)">
             <summary>
             Reads the library file, and then parses puzzles into <see cref="T:Sudoku.Concepts.Grid"/> instances, and finally filters
             <see cref="T:Sudoku.Concepts.Grid"/> instances when puzzles don't pass the verification.
             </summary>
             <param name="gridFilter">The grid filter.</param>
+            <param name="failedCallback">Indicates the failed action.</param>
             <param name="cancellationToken">The cancellation token that is used for cancelling the asynchronous operation.</param>
             <returns>An <see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/> instance that iterates on filtered <see cref="T:Sudoku.Concepts.Grid"/> instances.</returns>
         </member>

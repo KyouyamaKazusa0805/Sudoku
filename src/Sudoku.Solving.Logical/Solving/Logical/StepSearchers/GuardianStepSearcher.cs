@@ -1,6 +1,7 @@
 ﻿namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
+[StepSearcherRunningOptions(StepSearcherRunningOptions.HighMemoryAllocation)]
 internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 {
 	private static readonly PatternOverlayStepSearcher ElimsSearcher = new();

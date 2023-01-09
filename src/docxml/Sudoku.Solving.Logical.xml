@@ -737,6 +737,13 @@
             </summary>
             <seealso cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreSlowAlgorithms"/>
         </member>
+        <member name="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.HighMemoryAllocation">
+            <summary>
+            Indicates the step searcher chooses for an algorithm that will raise high memory allocation.
+            If <see cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreHighAllocationAlgorithms"/> is configured, the step searcher will be ignored.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreHighAllocationAlgorithms"/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptionsAttribute">
             <summary>
             Defines an attribute that is used for <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> derived types,
@@ -840,13 +847,22 @@
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreSlowAlgorithms">
             <summary>
-            Indicates whether the solver will ignore slow step searchers being configured
-            <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>.
+            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
             <seealso cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreHighAllocationAlgorithms">
+            <summary>
+            Indicates whether the solver will ignore slow step searchers being configured
+            <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.HighMemoryAllocation"/>.
+            </summary>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+            <seealso cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.HighMemoryAllocation"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolver.CustomSearcherCollection">
             <summary>
@@ -6195,6 +6211,13 @@ if (student is (name: var name, age: >= 18))
             by option <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/> being configured.
             </summary>
             <seealso cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.SlowAlgorithm"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.IStepSearcher.IsConfiguredHighAllocation">
+            <summary>
+            Determines whether the current step searcher is disabled
+            by option <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.HighMemoryAllocation"/> being configured.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.HighMemoryAllocation"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.IStepSearcher.Options">
             <summary>

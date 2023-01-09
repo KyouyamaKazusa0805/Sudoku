@@ -49,14 +49,23 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver will ignore slow step searchers being configured
-	/// <see cref="StepSearcherRunningOptions.SlowAlgorithm"/>.
+	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="StepSearcherRunningOptions.SlowAlgorithm"/>.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="StepSearcherRunningOptions.SlowAlgorithm"/>
 	public bool IgnoreSlowAlgorithms { get; set; }
+
+	/// <summary>
+	/// Indicates whether the solver will ignore slow step searchers being configured
+	/// <see cref="StepSearcherRunningOptions.HighMemoryAllocation"/>.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="false"/>.
+	/// </remarks>
+	/// <seealso cref="StepSearcherRunningOptions.HighMemoryAllocation"/>
+	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <summary>
 	/// <para>
@@ -173,11 +182,13 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 				case (true, { IsNotSupportedForSukaku: true }, _):
 				case (_, { Options.EnabledArea: SearcherEnabledArea.None }, _):
 				case (_, { IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
+				case (_, { IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
 				{
 					// Skips on those two cases:
 					// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
 					// 2. If the searcher is currently disabled, just skip it.
 					// 3. If the searcher is configured as slow.
+					// 4. If the searcher is configured as high-allocation.
 					continue;
 				}
 				case (_, not IBruteForceStepSearcher, { IsFullApplying: true }):
