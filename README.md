@@ -96,10 +96,10 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Reverse Unique Rectangle
     * Uniqueness Clue Cover (Only for type 2[^3])
     * RW's Deadly Pattern
-  * Alternating Inference Chains
-    * Single-Digit AICs
-    * Multi-Digit AICs
-    * Grouped AICs **(Waiting for bugs fixed)**
+  * Chains
+    * Forcing Chains / Bidirectional Cycles
+    * Multiple Forcing Chains
+    * Dynamic Forcing Chains
   * Almost Locked Sets
     * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
     * Empty Rectangle Intersection Pair
