@@ -31,3 +31,50 @@ var analysisResult = solver.Solve(grid);
 Console.WriteLine(analysisResult);
 ```
 
+如果你要复杂一点的解题过程，可以这么写：
+
+```csharp
+var grid = (Grid)"..38......8..16...5....29..9.....23..2..3..4..46.....7..72....1...46..8......15..";
+
+var solver = CommonLogicalSolvers.Suitable;
+
+const char finishedChar = '■', unfinishedChar = '□';
+var width = Console.WindowWidth - 2;
+var progress = new Progress<double>(printProgress);
+
+var result = solver.Solve(grid, progress);
+
+Console.Clear();
+lock (SyncRoot)
+{
+    switch (result)
+    {
+        case { UnhandledException: { } ex }:
+        {
+            Terminal.WriteLine(ex, ConsoleColor.Red);
+            break;
+        }
+        case { IsSolved: true }:
+        {
+            Terminal.WriteLine(result);
+            break;
+        }
+    }
+}
+
+void printProgress(double percent)
+{
+    lock (SyncRoot)
+    {
+        Console.Clear();
+        Console.WriteLine($"系统正在解题……进度：{percent:P}");
+        Console.WriteLine($"{new string(finishedChar, (int)(percent * width))}{new string(unfinishedChar, (int)((1 - percent) * width))}");
+    }
+}
+
+file static partial class Program
+{
+    private static readonly object SyncRoot = new();
+}
+```
+
