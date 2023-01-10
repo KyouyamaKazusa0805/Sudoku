@@ -5,13 +5,13 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
+	private readonly SudokuPaneCell[] _children = new SudokuPaneCell[81];
+
 	private int _selectedCell;
 
 	private Visibility _coordinateLabelsVisibility;
 
 	private Grid _puzzle;
-
-	private readonly SudokuPaneCell[] _children = new SudokuPaneCell[81];
 
 
 	/// <summary>
