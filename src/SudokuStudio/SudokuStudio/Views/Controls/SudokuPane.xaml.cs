@@ -230,7 +230,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
-	internal double ApproximateCellWidth => ((Width + Height) / 2 - 100 - (5 << 1)) / 10;
+	internal double ApproximateCellWidth => ((Width + Height) / 2 - 100 - (4 << 1)) / 10;
 
 
 	/// <inheritdoc/>
