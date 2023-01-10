@@ -8,7 +8,7 @@
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	d:DataContext="{d:DesignInstance Type=c:SudokuPane}"
 	mc:Ignorable="d"
-	Loaded="UserControl_Loaded">
+	Loaded="UserControl_Loaded" PointerEntered="UserControl_PointerEntered" PointerExited="UserControl_PointerExited">
 
 	<UserControl.Resources>
 		<GridLength x:Key="FixedSize">5</GridLength>
@@ -34,90 +34,97 @@
 		</Style>
 	</UserControl.Resources>
 
-	<Grid x:Name="MainGrid" Background="White">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="{StaticResource FixedSize}" />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition Height="{StaticResource FixedSize}" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="{StaticResource FixedSize}" />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition Width="{StaticResource FixedSize}" />
-		</Grid.ColumnDefinitions>
-
-		<!--Coordinates-->
+	<Grid x:Name="MainGrid" Background="White" RowDefinitions="Auto,5,*,*,*,*,*,*,*,*,*,5" ColumnDefinitions="Auto,5,*,*,*,*,*,*,*,*,*,5">
+		<!--Coordinate labels-->
 		<TextBlock
-			Grid.Row="0" Grid.Column="2" Text="c1" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="0" Grid.Column="2"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,0,x:True),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextHorizontalStyle}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="3" Text="c2" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="0" Grid.Column="3"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,1,x:True),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextHorizontalStyle}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="4" Text="c3" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="0" Grid.Column="4"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,2,x:True),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextHorizontalStyle}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="5" Text="c4" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="0" Grid.Column="5"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,3,x:True),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextHorizontalStyle}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="6" Text="c5" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="0" Grid.Column="6"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,4,x:True),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextHorizontalStyle}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="7" Text="c6" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="0" Grid.Column="7"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,5,x:True),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextHorizontalStyle}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="8" Text="c7" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="0" Grid.Column="8"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,6,x:True),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextHorizontalStyle}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="9" Text="c8" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="0" Grid.Column="9"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,7,x:True),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextHorizontalStyle}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="10" Text="c9" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="0" Grid.Column="10"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,8,x:True),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextHorizontalStyle}" />
 		<TextBlock
-			Grid.Row="2" Grid.Column="0" Text="r1" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="2" Grid.Column="0"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,0,x:False),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextVerticalStyle}" />
 		<TextBlock
-			Grid.Row="3" Grid.Column="0" Text="r2" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="3" Grid.Column="0"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,1,x:False),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextVerticalStyle}" />
 		<TextBlock
-			Grid.Row="4" Grid.Column="0" Text="r3" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="4" Grid.Column="0"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,2,x:False),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextVerticalStyle}" />
 		<TextBlock
-			Grid.Row="5" Grid.Column="0" Text="r4" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="5" Grid.Column="0"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,3,x:False),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextVerticalStyle}" />
 		<TextBlock
-			Grid.Row="6" Grid.Column="0" Text="r5" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="6" Grid.Column="0"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,4,x:False),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextVerticalStyle}" />
 		<TextBlock
-			Grid.Row="7" Grid.Column="0" Text="r6" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="7" Grid.Column="0"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,5,x:False),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextVerticalStyle}" />
 		<TextBlock
-			Grid.Row="8" Grid.Column="0" Text="r7" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="8" Grid.Column="0"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,6,x:False),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextVerticalStyle}" />
 		<TextBlock
-			Grid.Row="9" Grid.Column="0" Text="r8" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="9" Grid.Column="0"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,7,x:False),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextVerticalStyle}" />
 		<TextBlock
-			Grid.Row="10" Grid.Column="0" Text="r9" Visibility="{x:Bind CoordinateLabelsVisibility,Mode=OneWay}"
+			Grid.Row="10" Grid.Column="0"
+			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,8,x:False),Mode=OneWay}"
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
 			Style="{StaticResource CoordinateTextVerticalStyle}" />
 
 		<!--Grid and cell borders-->

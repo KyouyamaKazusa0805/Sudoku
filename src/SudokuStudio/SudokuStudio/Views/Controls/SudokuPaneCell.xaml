@@ -7,26 +7,16 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	d:DataContext="{d:DesignInstance Type=c:SudokuPaneCell}"
-	mc:Ignorable="d"
-	PointerEntered="UserControl_PointerEntered" PointerExited="UserControl_PointerExited">
+	mc:Ignorable="d">
 
-	<Grid x:Name="MainGrid">
-		<Grid.RowDefinitions>
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-		</Grid.ColumnDefinitions>
-
-		<!--Candidates-->
+	<Grid x:Name="MainGrid" RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
+		<!--Values-->
 		<TextBlock
 			Grid.RowSpan="3" Grid.ColumnSpan="3" FontSize="{x:Bind ValueFontSize,Mode=TwoWay}"
 			HorizontalAlignment="Center" VerticalAlignment="Center"
 			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToValueTextBlockVisibility(CellStatus),Mode=OneWay}" />
+
+		<!--Candidates-->
 		<TextBlock
 			Grid.Row="0" Grid.Column="0" Text="1" FontSize="{x:Bind CandidateFontSize,Mode=TwoWay}"
 			HorizontalAlignment="Center" VerticalAlignment="Center"

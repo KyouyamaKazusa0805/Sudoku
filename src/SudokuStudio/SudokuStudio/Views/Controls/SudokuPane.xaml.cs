@@ -9,7 +9,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	private int _selectedCell;
 
-	private Visibility _coordinateLabelsVisibility;
+	private CoordinateLabelDisplayKind _coordinateLabelDisplayKind;
 
 	private Grid _puzzle;
 
@@ -41,22 +41,22 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Indicates the visibility of coordinate labels.
+	/// Indicates the coordinate label displaying kind.
 	/// </summary>
-	public Visibility CoordinateLabelsVisibility
+	public CoordinateLabelDisplayKind CoordinateLabelDisplayKind
 	{
-		get => _coordinateLabelsVisibility;
+		get => _coordinateLabelDisplayKind;
 
 		set
 		{
-			if (_coordinateLabelsVisibility == value)
+			if (_coordinateLabelDisplayKind == value)
 			{
 				return;
 			}
 
-			_coordinateLabelsVisibility = value;
+			_coordinateLabelDisplayKind = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelsVisibility)));
+			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelDisplayKind)));
 		}
 	}
 
@@ -104,9 +104,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	private void UserControl_Loaded(object sender, RoutedEventArgs e)
 	{
+		var valueFontSizeUnified = ((Width + Height) / 2 - (5 << 1)) / 10;
+
 		for (var i = 0; i < 81; i++)
 		{
-			var valueFontSizeUnified = ((Width + Height) / 2 - (5 << 1)) / 10;
 			var cellControl = new SudokuPaneCell
 			{
 				CellIndex = i,
@@ -121,24 +122,31 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			_children[i] = cellControl;
 		}
 
-		for (var i = 0; i < 81; i++)
-		{
-			var cellControl = _children[i];
-			cellControl.PointerEntered += pointerEnteredOrExitedEventHandler;
-			cellControl.PointerExited += pointerEnteredOrExitedEventHandler;
-
-
-			void pointerEnteredOrExitedEventHandler(object sender, PointerRoutedEventArgs e)
-			{
-				for (var i = 0; i < 81; i++)
-				{
-					if (_children[i].IsPointerEntered)
-					{
-						SelectedCell = i;
-						return;
-					}
-				}
-			}
-		}
+		//for (var i = 0; i < 81; i++)
+		//{
+		//	var cellControl = _children[i];
+		//	cellControl.PointerEntered += pointerEnteredOrExitedEventHandler;
+		//	cellControl.PointerExited += pointerEnteredOrExitedEventHandler;
+		//
+		//
+		//	void pointerEnteredOrExitedEventHandler(object sender, PointerRoutedEventArgs e)
+		//	{
+		//		for (var i = 0; i < 81; i++)
+		//		{
+		//			if (_children[i].IsPointerEntered)
+		//			{
+		//				SelectedCell = i;
+		//				return;
+		//			}
+		//		}
+		//	}
+		//}
 	}
+
+	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e)
+	{
+
+	}
+
+	private void UserControl_PointerExited(object sender, PointerRoutedEventArgs e) => SelectedCell = -1;
 }

@@ -12,7 +12,7 @@
 		<Grid>
 			<c:SudokuPane
 				Width="610" Height="610" HorizontalAlignment="Left" VerticalAlignment="Top"
-				SelectedCell="-1" CoordinateLabelsVisibility="Visible"
+				SelectedCell="-1" CoordinateLabelDisplayKind="RxCy"
 				Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10}" />
 		</Grid>
 	</ScrollViewer>

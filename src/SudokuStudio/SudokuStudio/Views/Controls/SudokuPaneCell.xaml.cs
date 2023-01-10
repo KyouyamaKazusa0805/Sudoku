@@ -85,11 +85,6 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Indicates whether the pointer is entered into this control.
-	/// </summary>
-	internal bool IsPointerEntered { get; private set; }
-
-	/// <summary>
 	/// Indicates the cell index.
 	/// </summary>
 	internal int CellIndex { get; init; }
@@ -97,9 +92,4 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 
 	/// <inheritdoc/>
 	public event PropertyChangedEventHandler? PropertyChanged;
-
-
-	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => IsPointerEntered = true;
-
-	private void UserControl_PointerExited(object sender, PointerRoutedEventArgs e) => IsPointerEntered = false;
 }
