@@ -17,6 +17,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <inheritdoc cref="PencilmarkFontScale"/>	
 	private double _pencilmarkFontScale = 0.33;
 
+	/// <inheritdoc cref="CoordinateLabelFontScale"/>
+	private double _coordinateLabelFontScale = 0.4;
+
 	/// <inheritdoc cref="SelectedCell"/>
 	private int _selectedCell;
 
@@ -46,6 +49,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	/// <inheritdoc cref="PencilmarkFont"/>
 	private FontFamily _pencilmarkFont = new("Tahoma");
+
+	/// <inheritdoc cref="CoordinateLabelFont"/>
+	private FontFamily _coordinateLabelFont = new("Tahoma");
 
 
 	/// <summary>
@@ -91,6 +97,26 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			_pencilmarkFontScale = value;
 
 			PropertyChanged?.Invoke(this, new(nameof(PencilmarkFontScale)));
+		}
+	}
+
+	/// <summary>
+	/// Indicates the coordinate label font scale.
+	/// </summary>
+	public double CoordinateLabelFontScale
+	{
+		get => _coordinateLabelFontScale;
+
+		set
+		{
+			if (_coordinateLabelFontScale.NearlyEquals(value, 1E-2))
+			{
+				return;
+			}
+
+			_coordinateLabelFontScale = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelFontScale)));
 		}
 	}
 
@@ -297,6 +323,26 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			_pencilmarkFont = value;
 
 			PropertyChanged?.Invoke(this, new(nameof(PencilmarkFont)));
+		}
+	}
+
+	/// <summary>
+	/// Indicates the coordinate label font.
+	/// </summary>
+	public FontFamily CoordinateLabelFont
+	{
+		get => _coordinateLabelFont;
+
+		set
+		{
+			if (_coordinateLabelFont == value)
+			{
+				return;
+			}
+
+			_coordinateLabelFont = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelFont)));
 		}
 	}
 

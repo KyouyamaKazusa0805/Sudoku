@@ -5,6 +5,8 @@
 /// </summary>
 internal static class CoordinateLabelConversion
 {
+	public static double GetFontSize(double globalFontSize, double scale) => globalFontSize * scale;
+
 	public static string ToCoordinateLabelText(CoordinateLabelDisplayKind coordinateKind, int index, bool isRow)
 		=> coordinateKind switch
 		{
