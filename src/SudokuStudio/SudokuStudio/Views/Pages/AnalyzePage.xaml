@@ -13,6 +13,7 @@
 			<c:SudokuPane
 				Width="610" Height="610" HorizontalAlignment="Left" VerticalAlignment="Top"
 				SelectedCell="-1" CoordinateLabelDisplayKind="RxCy"
+				Puzzle="{m:Grid GridCode='..38......8..16...5....29..9.....23..2..3..4..46.....7..72....1...46..8......15..'}"
 				Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10}" />
 		</Grid>
 	</ScrollViewer>

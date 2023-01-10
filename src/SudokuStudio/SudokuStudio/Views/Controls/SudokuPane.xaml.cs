@@ -30,7 +30,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private Color _givenColor = Colors.Black;
 
 	/// <inheritdoc cref="ModifiableColor"/>
-	private Color _modifiableColor = new() { A = 255, R = 0, G = 0, B = 255 };
+	private Color _modifiableColor = Colors.Blue;
 
 	/// <inheritdoc cref="PencilmarkColor"/>
 	private Color _pencilmarkColor = new() { A = 255, R = 100, G = 100, B = 100 };
@@ -42,7 +42,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private Color _borderColor = Colors.Black;
 
 	/// <inheritdoc cref="Puzzle"/>
-	private Grid _puzzle;
+	private Grid _puzzle = Grid.Empty;
 
 	/// <inheritdoc cref="ValueFont"/>
 	private FontFamily _valueFont = new("Tahoma");
@@ -57,7 +57,23 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.
 	/// </summary>
-	public SudokuPane() => InitializeComponent();
+	public SudokuPane()
+	{
+		InitializeComponent();
+
+		for (var i = 0; i < 81; i++)
+		{
+			var cellControl = new SudokuPaneCell { CellIndex = i, BasePane = this };
+
+			GridLayout.SetRow(cellControl, i / 9 + 2);
+			GridLayout.SetColumn(cellControl, i % 9 + 2);
+
+			MainGrid.Children.Add(cellControl);
+			_children[i] = cellControl;
+		}
+
+		UpdateCellData(_puzzle);
+	}
 
 
 	/// <summary>
@@ -365,23 +381,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		for (var i = 0; i < 81; i++)
 		{
 			var cellControl = _children[i];
-			cellControl.CandidatesMask = grid.GetCandidates(i);
 			cellControl.CellStatus = grid.GetStatus(i);
-		}
-	}
-
-
-	private void UserControl_Loaded(object sender, RoutedEventArgs e)
-	{
-		for (var i = 0; i < 81; i++)
-		{
-			var cellControl = new SudokuPaneCell { CellIndex = i, BasePane = this };
-
-			GridLayout.SetRow(cellControl, i / 9 + 2);
-			GridLayout.SetColumn(cellControl, i % 9 + 2);
-
-			MainGrid.Children.Add(cellControl);
-			_children[i] = cellControl;
+			cellControl.CandidatesMask = grid.GetCandidates(i);
 		}
 	}
 }

@@ -32,6 +32,7 @@ global using Windows.UI;
 global using WinRT;
 global using WinRT.Interop;
 global using static System.Math;
+global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
 global using static SudokuStudio.Resources.ResourceDictionary;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
