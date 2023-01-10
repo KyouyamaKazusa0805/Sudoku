@@ -9,7 +9,7 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// The default navigation options.
 	/// </summary>
-	private static readonly FrameNavigationOptions NavigationOptions = new() { TransitionInfoOverride = new EntranceNavigationTransitionInfo() };
+	private static readonly NavigationTransitionInfo NavigationTransitionInfo = new EntranceNavigationTransitionInfo();
 
 
 	/// <summary>
@@ -31,9 +31,9 @@ public sealed partial class MainWindow : Window
 	/// <param name="pageType">The target page type.</param>
 	private void NavigateToPage(Type? pageType)
 	{
-		if (pageType is not null)
+		if (pageType is not null && NavigationViewFrame.SourcePageType != pageType)
 		{
-			NavigationViewFrame.NavigateToType(pageType, null, NavigationOptions);
+			NavigationViewFrame.Navigate(pageType, null, NavigationTransitionInfo);
 			MainNavigationView.Header = GetStringNullable($"{nameof(MainWindow)}_{pageType.Name}{nameof(Title)}") ?? string.Empty;
 		}
 	}
