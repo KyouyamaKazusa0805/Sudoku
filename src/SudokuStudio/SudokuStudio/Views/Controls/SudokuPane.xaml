@@ -16,13 +16,13 @@
 		<Thickness x:Key="ColumnLinesBorderThickness">0,0,1,0</Thickness>
 		<Style x:Key="CoordinateTextHorizontalStyle" TargetType="TextBlock">
 			<Setter Property="Foreground" Value="Gray" />
-			<Setter Property="Margin" Value="0,5,0,0" />
+			<Setter Property="Margin" Value="0,4,0,0" />
 			<Setter Property="HorizontalAlignment" Value="Center" />
 			<Setter Property="VerticalAlignment" Value="Bottom" />
 		</Style>
 		<Style x:Key="CoordinateTextVerticalStyle" TargetType="TextBlock">
 			<Setter Property="Foreground" Value="Gray" />
-			<Setter Property="Margin" Value="5,0,0,0" />
+			<Setter Property="Margin" Value="4,0,0,0" />
 			<Setter Property="HorizontalAlignment" Value="Right" />
 			<Setter Property="VerticalAlignment" Value="Center" />
 		</Style>
@@ -33,7 +33,12 @@
 		</Style>
 	</UserControl.Resources>
 
-	<Grid x:Name="MainGrid" Background="White" RowDefinitions="Auto,5,*,*,*,*,*,*,*,*,*,5" ColumnDefinitions="Auto,5,*,*,*,*,*,*,*,*,*,5">
+	<Grid x:Name="MainGrid" Background="White" RowDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4" ColumnDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4">
+		<!--Outside border-->
+		<Border
+			Grid.Row="1" Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="11"
+			BorderThickness="4" BorderBrush="Black" />
+
 		<!--Coordinate labels-->
 		<TextBlock
 			Grid.Row="0" Grid.Column="2"
