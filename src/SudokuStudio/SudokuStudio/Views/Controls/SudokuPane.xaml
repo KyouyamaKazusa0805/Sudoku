@@ -11,7 +11,6 @@
 	Loaded="UserControl_Loaded">
 
 	<UserControl.Resources>
-		<GridLength x:Key="FixedSize">5</GridLength>
 		<SolidColorBrush x:Key="LineColor">Black</SolidColorBrush>
 		<Thickness x:Key="RowLinesBorderThickness">0,0,0,1</Thickness>
 		<Thickness x:Key="ColumnLinesBorderThickness">0,0,1,0</Thickness>
@@ -130,31 +129,31 @@
 		<!--Grid and cell borders-->
 		<Border
 			Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="3,3,1.5,1.5" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="0,0,2,2" />
 		<Border
 			Grid.Row="2" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="1.5,3,1.5,1.5" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="2,0,2,2" />
 		<Border
 			Grid.Row="2" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="1.5,3,3,1.5" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="2,0,0,2" />
 		<Border
 			Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="3,1.5,1.5,1.5" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="0,2,2,2" />
 		<Border
 			Grid.Row="5" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="1.5" />
+			BorderThickness="2" />
 		<Border
 			Grid.Row="5" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="1.5,1.5,3,1.5" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,0,2" />
 		<Border
 			Grid.Row="8" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="3,1.5,1.5,3" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="0,2,2,0" />
 		<Border
 			Grid.Row="8" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="1.5,1.5,1.5,3" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,2,0" />
 		<Border
 			Grid.Row="8" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="1.5,1.5,3,3" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,0,0" />
 		<Border
 			Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}"
 			BorderThickness="{StaticResource RowLinesBorderThickness}" />

@@ -76,8 +76,6 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 
 	private void UserControl_PointerExited(object sender, PointerRoutedEventArgs e) => BasePane.SelectedCell = -1;
 
-	private void UserControl_Loaded(object sender, RoutedEventArgs e) => BasePane ??= (SudokuPane)((GridLayout)Parent).Parent;
-
 	private void TextBlock_PointerEntered(object sender, PointerRoutedEventArgs e) => BasePane.SelectedCell = CellIndex;
 
 	private void TextBlock_PointerExited(object sender, PointerRoutedEventArgs e) => BasePane.SelectedCell = CellIndex;

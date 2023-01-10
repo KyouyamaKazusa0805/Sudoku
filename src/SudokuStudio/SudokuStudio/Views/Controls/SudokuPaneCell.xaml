@@ -7,7 +7,7 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	d:DataContext="{d:DesignInstance Type=c:SudokuPaneCell}"
-	mc:Ignorable="d" Loaded="UserControl_Loaded" PointerEntered="UserControl_PointerEntered" PointerExited="UserControl_PointerExited">
+	mc:Ignorable="d" PointerEntered="UserControl_PointerEntered" PointerExited="UserControl_PointerExited">
 	<UserControl.Resources>
 		<Style x:Key="TextBlockStyle" TargetType="TextBlock">
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
