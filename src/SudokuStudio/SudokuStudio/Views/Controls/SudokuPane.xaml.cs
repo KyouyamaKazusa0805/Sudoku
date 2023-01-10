@@ -230,6 +230,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
+	/// <summary>
+	/// Indicates the approximately-measured width and height value of a cell.
+	/// </summary>
 	internal double ApproximateCellWidth => ((Width + Height) / 2 - 100 - (4 << 1)) / 10;
 
 
