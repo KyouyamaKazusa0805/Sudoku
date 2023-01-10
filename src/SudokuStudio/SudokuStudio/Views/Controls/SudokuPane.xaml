@@ -6,7 +6,6 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
-	xmlns:m="using:SudokuStudio.Markup"
 	d:DataContext="{d:DesignInstance Type=c:SudokuPane}"
 	mc:Ignorable="d"
 	Loaded="UserControl_Loaded">

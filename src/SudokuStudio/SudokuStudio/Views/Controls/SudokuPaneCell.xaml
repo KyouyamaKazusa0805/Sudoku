@@ -6,7 +6,6 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
-	xmlns:m="using:SudokuStudio.Markup"
 	d:DataContext="{d:DesignInstance Type=c:SudokuPaneCell}"
 	mc:Ignorable="d" PointerEntered="UserControl_PointerEntered" PointerExited="UserControl_PointerExited">
 	<UserControl.Resources>
