@@ -1,5 +1,8 @@
 ﻿namespace SudokuStudio.Views.Conversions;
 
+/// <summary>
+/// Provides with conversion methods used by XAML designer, about selected cells.
+/// </summary>
 internal static class SelectedCellConversion
 {
 	public static int SelectedCellToGridRow_Block(int selectedCell)

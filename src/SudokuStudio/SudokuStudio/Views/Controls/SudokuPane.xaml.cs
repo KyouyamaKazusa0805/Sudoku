@@ -5,26 +5,46 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
+	/// <summary>
+	/// The easy entry to visit children <see cref="SudokuPaneCell"/> instances. This field contains 81 elements,
+	/// indicating controls being displayed as 81 cells in a sudoku grid respectively.
+	/// </summary>
 	private readonly SudokuPaneCell[] _children = new SudokuPaneCell[81];
 
+	/// <inheritdoc cref="ValueFontScale"/>
 	private double _valueFontScale = 1.0;
 
+	/// <inheritdoc cref="PencilmarkFontScale"/>	
 	private double _pencilmarkFontScale = 0.33;
 
+	/// <inheritdoc cref="SelectedCell"/>
 	private int _selectedCell;
 
+	/// <inheritdoc cref="CoordinateLabelDisplayKind"/>
 	private CoordinateLabelDisplayKind _coordinateLabelDisplayKind;
 
+	/// <inheritdoc cref="GivenColor"/>
 	private Color _givenColor = Colors.Black;
 
+	/// <inheritdoc cref="ModifiableColor"/>
 	private Color _modifiableColor = new() { A = 255, R = 0, G = 0, B = 255 };
 
+	/// <inheritdoc cref="PencilmarkColor"/>
 	private Color _pencilmarkColor = new() { A = 255, R = 100, G = 100, B = 100 };
 
+	/// <inheritdoc cref="CoordinateLabelColor"/>
+	private Color _coordinateLabelColor = new() { A = 255, R = 100, G = 100, B = 100 };
+
+	/// <inheritdoc cref="BorderColor"/>
+	private Color _borderColor = Colors.Black;
+
+	/// <inheritdoc cref="Puzzle"/>
 	private Grid _puzzle;
 
+	/// <inheritdoc cref="ValueFont"/>
 	private FontFamily _valueFont = new("Tahoma");
 
+	/// <inheritdoc cref="PencilmarkFont"/>
 	private FontFamily _pencilmarkFont = new("Tahoma");
 
 
@@ -34,6 +54,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public SudokuPane() => InitializeComponent();
 
 
+	/// <summary>
+	/// Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.
+	/// </summary>
 	public double ValueFontScale
 	{
 		get => _valueFontScale;
@@ -51,6 +74,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
+	/// <summary>
+	/// Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
+	/// </summary>
 	public double PencilmarkFontScale
 	{
 		get => _pencilmarkFontScale;
@@ -69,7 +95,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Indicates the selected cell.
+	/// Indicates the currently selected cell.
 	/// </summary>
 	public int SelectedCell
 	{
@@ -89,8 +115,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Indicates the coordinate label displaying kind.
+	/// Indicates the displaying kind of coordinate labels.
 	/// </summary>
+	/// <remarks>
+	/// For more information please visit <see cref="Controls.CoordinateLabelDisplayKind"/>.
+	/// </remarks>
+	/// <seealso cref="Controls.CoordinateLabelDisplayKind"/>
 	public CoordinateLabelDisplayKind CoordinateLabelDisplayKind
 	{
 		get => _coordinateLabelDisplayKind;
@@ -165,6 +195,46 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			_pencilmarkColor = value;
 
 			PropertyChanged?.Invoke(this, new(nameof(PencilmarkColor)));
+		}
+	}
+
+	/// <summary>
+	/// Indicates the coordinate label color.
+	/// </summary>
+	public Color CoordinateLabelColor
+	{
+		get => _coordinateLabelColor;
+
+		set
+		{
+			if (_coordinateLabelColor == value)
+			{
+				return;
+			}
+
+			_coordinateLabelColor = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelColor)));
+		}
+	}
+
+	/// <summary>
+	/// Indicates the border color.
+	/// </summary>
+	public Color BorderColor
+	{
+		get => _borderColor;
+
+		set
+		{
+			if (_borderColor == value)
+			{
+				return;
+			}
+
+			_borderColor = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(BorderColor)));
 		}
 	}
 

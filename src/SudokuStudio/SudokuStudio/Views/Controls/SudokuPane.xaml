@@ -6,26 +6,26 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
 	d:DataContext="{d:DesignInstance Type=c:SudokuPane}"
 	mc:Ignorable="d"
 	Loaded="UserControl_Loaded">
 
 	<UserControl.Resources>
-		<SolidColorBrush x:Key="LineColor">Black</SolidColorBrush>
 		<Thickness x:Key="RowLinesBorderThickness">0,0,0,1</Thickness>
 		<Thickness x:Key="ColumnLinesBorderThickness">0,0,1,0</Thickness>
-		<Style x:Key="CoordinateTextHorizontalStyle" TargetType="TextBlock">
-			<Setter Property="Foreground" Value="Gray" />
+		<!--
+		<Style x:Key="CoordinateLabelHorizontalStyle" TargetType="TextBlock">
 			<Setter Property="Margin" Value="0,4,0,0" />
 			<Setter Property="HorizontalAlignment" Value="Center" />
 			<Setter Property="VerticalAlignment" Value="Bottom" />
 		</Style>
-		<Style x:Key="CoordinateTextVerticalStyle" TargetType="TextBlock">
-			<Setter Property="Foreground" Value="Gray" />
+		<Style x:Key="CoordinateLabelVerticalStyle" TargetType="TextBlock">
 			<Setter Property="Margin" Value="4,0,0,0" />
 			<Setter Property="HorizontalAlignment" Value="Right" />
 			<Setter Property="VerticalAlignment" Value="Center" />
 		</Style>
+		-->
 		<Style x:Key="CursorBorderStyle" TargetType="Border">
 			<!--<Setter Property="BorderBrush" Value="#600000FF" />-->
 			<Setter Property="Background" Value="#200000FF" />
@@ -36,177 +36,159 @@
 	<Grid x:Name="MainGrid" Background="White" RowDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4" ColumnDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4">
 		<!--Outside border-->
 		<Border
-			Grid.Row="1" Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="11"
-			BorderThickness="4" BorderBrush="Black" />
+			Grid.Row="1" Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="11" BorderThickness="4"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 
 		<!--Coordinate labels-->
 		<TextBlock
-			Grid.Row="0" Grid.Column="2"
+			Grid.Row="0" Grid.Column="2" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,0,x:True),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="3"
+			Grid.Row="0" Grid.Column="3" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,1,x:True),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="4"
+			Grid.Row="0" Grid.Column="4" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,2,x:True),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="5"
+			Grid.Row="0" Grid.Column="5" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,3,x:True),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="6"
+			Grid.Row="0" Grid.Column="6" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,4,x:True),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="7"
+			Grid.Row="0" Grid.Column="7" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,5,x:True),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="8"
+			Grid.Row="0" Grid.Column="8" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,6,x:True),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="9"
+			Grid.Row="0" Grid.Column="9" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,7,x:True),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="0" Grid.Column="10"
+			Grid.Row="0" Grid.Column="10" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,8,x:True),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextHorizontalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="2" Grid.Column="0"
+			Grid.Row="2" Grid.Column="0" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,0,x:False),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextVerticalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="3" Grid.Column="0"
+			Grid.Row="3" Grid.Column="0" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,1,x:False),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextVerticalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="4" Grid.Column="0"
+			Grid.Row="4" Grid.Column="0" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,2,x:False),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextVerticalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="5" Grid.Column="0"
+			Grid.Row="5" Grid.Column="0" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,3,x:False),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextVerticalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="6" Grid.Column="0"
+			Grid.Row="6" Grid.Column="0" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,4,x:False),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextVerticalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="7" Grid.Column="0"
+			Grid.Row="7" Grid.Column="0" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,5,x:False),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextVerticalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="8" Grid.Column="0"
+			Grid.Row="8" Grid.Column="0" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,6,x:False),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextVerticalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="9" Grid.Column="0"
+			Grid.Row="9" Grid.Column="0" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,7,x:False),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextVerticalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 		<TextBlock
-			Grid.Row="10" Grid.Column="0"
+			Grid.Row="10" Grid.Column="0" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,8,x:False),Mode=OneWay}"
-			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}"
-			Style="{StaticResource CoordinateTextVerticalStyle}" />
+			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibility(CoordinateLabelDisplayKind),Mode=OneWay}" />
 
 		<!--Grid and cell borders-->
 		<Border
-			Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="0,0,2,2" />
+			Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="0,0,2,2"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="2,0,2,2" />
+			Grid.Row="2" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="2,0,2,2"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="2,0,0,2" />
+			Grid.Row="2" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="2,0,0,2"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="0,2,2,2" />
+			Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="0,2,2,2"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="5" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="2" />
+			Grid.Row="5" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="5" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,0,2" />
+			Grid.Row="5" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,0,2"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="8" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="0,2,2,0" />
+			Grid.Row="8" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="0,2,2,0"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="8" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,2,0" />
+			Grid.Row="8" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,2,0"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="8" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,0,0" />
+			Grid.Row="8" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,0,0"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource RowLinesBorderThickness}" />
+			Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource RowLinesBorderThickness}" />
+			Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource RowLinesBorderThickness}" />
+			Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource RowLinesBorderThickness}" />
+			Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource RowLinesBorderThickness}" />
+			Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource RowLinesBorderThickness}" />
+			Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource RowLinesBorderThickness}" />
+			Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource RowLinesBorderThickness}" />
+			Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="2" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+			Grid.Row="2" Grid.Column="2" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="3" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+			Grid.Row="2" Grid.Column="3" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="4" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+			Grid.Row="2" Grid.Column="4" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="5" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+			Grid.Row="2" Grid.Column="5" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="6" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+			Grid.Row="2" Grid.Column="6" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="7" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+			Grid.Row="2" Grid.Column="7" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="8" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+			Grid.Row="2" Grid.Column="8" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 		<Border
-			Grid.Row="2" Grid.Column="9" Grid.RowSpan="9" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="{StaticResource ColumnLinesBorderThickness}" />
+			Grid.Row="2" Grid.Column="9" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 
 		<!--Cursors-->
 		<Border

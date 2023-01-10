@@ -6,6 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
 	d:DataContext="{d:DesignInstance Type=c:SudokuPaneCell}"
 	mc:Ignorable="d" PointerEntered="UserControl_PointerEntered" PointerExited="UserControl_PointerExited">
 	<UserControl.Resources>
@@ -29,63 +30,63 @@
 		<TextBlock
 			Grid.Row="0" Grid.Column="0" Text="1" Tag="0" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
-			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetColor(BasePane.PencilmarkColor),Mode=OneWay}"
+			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
 			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(CellStatus,CandidatesMask,0),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
 		<TextBlock
 			Grid.Row="0" Grid.Column="1" Text="2" Tag="1" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
-			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetColor(BasePane.PencilmarkColor),Mode=OneWay}"
+			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
 			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(CellStatus,CandidatesMask,1),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
 		<TextBlock
 			Grid.Row="0" Grid.Column="2" Text="3" Tag="2" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
-			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetColor(BasePane.PencilmarkColor),Mode=OneWay}"
+			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
 			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(CellStatus,CandidatesMask,2),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
 		<TextBlock
 			Grid.Row="1" Grid.Column="0" Text="4" Tag="3" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
-			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetColor(BasePane.PencilmarkColor),Mode=OneWay}"
+			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
 			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(CellStatus,CandidatesMask,3),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
 		<TextBlock
 			Grid.Row="1" Grid.Column="1" Text="5" Tag="4" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
-			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetColor(BasePane.PencilmarkColor),Mode=OneWay}"
+			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
 			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(CellStatus,CandidatesMask,4),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
 		<TextBlock
 			Grid.Row="1" Grid.Column="2" Text="6" Tag="5" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
-			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetColor(BasePane.PencilmarkColor),Mode=OneWay}"
+			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
 			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(CellStatus,CandidatesMask,5),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
 		<TextBlock
 			Grid.Row="2" Grid.Column="0" Text="7" Tag="6" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
-			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetColor(BasePane.PencilmarkColor),Mode=OneWay}"
+			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
 			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(CellStatus,CandidatesMask,6),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
 		<TextBlock
 			Grid.Row="2" Grid.Column="1" Text="8" Tag="7" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
-			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetColor(BasePane.PencilmarkColor),Mode=OneWay}"
+			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
 			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(CellStatus,CandidatesMask,7),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
 		<TextBlock
 			Grid.Row="2" Grid.Column="2" Text="9" Tag="8" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
-			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetColor(BasePane.PencilmarkColor),Mode=OneWay}"
+			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
 			Visibility="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockVisibility(CellStatus,CandidatesMask,8),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />

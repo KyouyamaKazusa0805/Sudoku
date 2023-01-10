@@ -1,5 +1,8 @@
 ﻿namespace SudokuStudio.Views.Conversions;
 
+/// <summary>
+/// Provides with conversion methods used by XAML designer, about coordinate labels.
+/// </summary>
 internal static class CoordinateLabelConversion
 {
 	public static string ToCoordinateLabelText(CoordinateLabelDisplayKind coordinateKind, int index, bool isRow)
@@ -12,4 +15,6 @@ internal static class CoordinateLabelConversion
 
 	public static Visibility ToCoordinateLabelVisibility(CoordinateLabelDisplayKind coordinateKind)
 		=> coordinateKind == CoordinateLabelDisplayKind.None ? Visibility.Collapsed : Visibility.Visible;
+
+	public static Brush GetBrush(Color color) => new SolidColorBrush(color);
 }

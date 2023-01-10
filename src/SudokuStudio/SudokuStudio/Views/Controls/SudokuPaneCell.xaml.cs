@@ -6,8 +6,10 @@ namespace SudokuStudio.Views.Controls;
 /// <seealso cref="SudokuPane"/>
 public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 {
+	/// <inheritdoc cref="CandidatesMask"/>
 	private short _candidatesMask = 511;
 
+	/// <inheritdoc cref="CellStatus"/>
 	private CellStatus _status = CellStatus.Empty;
 
 

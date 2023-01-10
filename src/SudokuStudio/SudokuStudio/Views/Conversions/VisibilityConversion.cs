@@ -1,5 +1,8 @@
 ﻿namespace SudokuStudio.Views.Conversions;
 
+/// <summary>
+/// Provides with conversion methods used by XAML designer, about visibility.
+/// </summary>
 internal static class VisibilityConversion
 {
 	public static Visibility CellStatusToValueTextBlockVisibility(CellStatus cellStatus)

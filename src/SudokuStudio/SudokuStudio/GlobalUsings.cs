@@ -9,6 +9,7 @@ global using System.Diagnostics.CodeGen;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
+global using System.Runtime.Versioning;
 global using Microsoft.UI;
 global using Microsoft.UI.Composition;
 global using Microsoft.UI.Composition.SystemBackdrops;
