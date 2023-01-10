@@ -8,7 +8,7 @@
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	d:DataContext="{d:DesignInstance Type=c:SudokuPane}"
 	mc:Ignorable="d"
-	Loaded="UserControl_Loaded" PointerEntered="UserControl_PointerEntered" PointerExited="UserControl_PointerExited">
+	Loaded="UserControl_Loaded">
 
 	<UserControl.Resources>
 		<GridLength x:Key="FixedSize">5</GridLength>
@@ -28,9 +28,9 @@
 			<Setter Property="VerticalAlignment" Value="Center" />
 		</Style>
 		<Style x:Key="CursorBorderStyle" TargetType="Border">
-			<Setter Property="BorderBrush" Value="#600000FF" />
+			<!--<Setter Property="BorderBrush" Value="#600000FF" />-->
 			<Setter Property="Background" Value="#200000FF" />
-			<Setter Property="BorderThickness" Value="3" />
+			<Setter Property="BorderThickness" Value="0" />
 		</Style>
 	</UserControl.Resources>
 
@@ -130,31 +130,31 @@
 		<!--Grid and cell borders-->
 		<Border
 			Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="3,3,1.5,1.5" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="3,3,1.5,1.5" />
 		<Border
 			Grid.Row="2" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="1.5,3,1.5,1.5" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="1.5,3,1.5,1.5" />
 		<Border
 			Grid.Row="2" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="1.5,3,3,1.5" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="1.5,3,3,1.5" />
 		<Border
 			Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="3,1.5,1.5,1.5" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="3,1.5,1.5,1.5" />
 		<Border
 			Grid.Row="5" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
 			BorderThickness="1.5" />
 		<Border
 			Grid.Row="5" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="1.5,1.5,3,1.5" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="1.5,1.5,3,1.5" />
 		<Border
 			Grid.Row="8" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="3,1.5,1.5,3" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="3,1.5,1.5,3" />
 		<Border
 			Grid.Row="8" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="1.5,1.5,1.5,3" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="1.5,1.5,1.5,3" />
 		<Border
 			Grid.Row="8" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="{StaticResource LineColor}"
-			BorderThickness="1.5,1.5,3,3" />
+			BackgroundSizing="OuterBorderEdge" BorderThickness="1.5,1.5,3,3" />
 		<Border
 			Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="9" BorderBrush="{StaticResource LineColor}"
 			BorderThickness="{StaticResource RowLinesBorderThickness}" />
