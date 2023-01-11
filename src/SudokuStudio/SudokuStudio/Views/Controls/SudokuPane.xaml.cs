@@ -401,36 +401,66 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		/// Please note that the parent control may use globalized hotkeys to control some behaviors.
 		/// If <c>e.Handled</c> is not set <see langword="false"/> value before exited parent <c>KeyDown</c> method,
 		/// this method will not be triggered and executed.
-
-		if ((this, e) is not ({ SelectedCell: var cell and >= 0 and < 81 }, { Key: var key }))
+		switch (Keyboard.GetModifierStatusForCurrentThread(), SelectedCell, Keyboard.GetInputDigit(e.Key))
 		{
-			return;
-		}
+			case (_, not (>= 0 and < 81), _):
+			case (_, var cell, _) when Puzzle.GetStatus(cell) == CellStatus.Given:
+			case (_, _, -2):
+			{
+				return;
+			}
+			case ((false, false, false, _), var cell, -1):
+			{
+				var modified = Puzzle;
+				modified[cell] = -1;
 
-		if (Puzzle.GetStatus(cell) == CellStatus.Given)
-		{
-			return;
-		}
+				Puzzle = modified;
 
-		if (Keyboard.GetInputDigit(key) is not (var digit and not -2))
-		{
-			return;
-		}
+				break;
+			}
+			case ((false, true, false, _), var cell, var digit) when Puzzle.Exists(cell, digit) is true:
+			{
+				var modified = Puzzle;
+				modified[cell, digit] = false;
 
-		var (_, shiftIsDown, _, _) = Keyboard.GetModifierStatusForCurrentThread();
-		if (shiftIsDown && Puzzle.Exists(cell, digit) is true && digit != -1)
-		{
-			var modified = Puzzle;
-			modified[cell, digit] = false;
+				Puzzle = modified;
 
-			Puzzle = modified;
-		}
-		else if (!shiftIsDown)
-		{
-			var modified = Puzzle;
-			modified[cell] = digit;
+				break;
+			}
+			case ((false, false, false, _), var cell, var digit):
+			{
+				var mayDuplicated = false;
+				foreach (var tempCell in PeersMap[cell])
+				{
+					if (Puzzle[tempCell] == digit)
+					{
+						mayDuplicated = true;
+						break;
+					}
+				}
+				if (mayDuplicated)
+				{
+					return;
+				}
 
-			Puzzle = modified;
+				if (Puzzle.GetStatus(cell) == CellStatus.Modifiable)
+				{
+					var modified = Puzzle;
+					modified[cell] = -1;
+					modified[cell] = digit;
+
+					Puzzle = modified;
+				}
+				else
+				{
+					var modified = Puzzle;
+					modified[cell] = digit;
+
+					Puzzle = modified;
+				}
+
+				break;
+			}
 		}
 	}
 }
