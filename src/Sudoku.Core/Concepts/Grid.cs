@@ -663,6 +663,26 @@ public unsafe partial struct Grid :
 		=> SequenceEqual(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(short) * 81);
 
 	/// <summary>
+	/// Determine whether the digit in the target cell may be dupliated with a certain cell in the peers of the current cell,
+	/// if the digit is filled into the cell.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public readonly bool DupliateWith(int cell, int digit)
+	{
+		foreach (var tempCell in PeersMap[cell])
+		{
+			if (this[tempCell] == digit)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
 	/// Indicates whether the current grid contains the specified candidate offset.
 	/// </summary>
 	/// <param name="candidate">The candidate offset.</param>

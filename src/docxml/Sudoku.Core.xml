@@ -1843,6 +1843,15 @@ if (student is (name: var name, age: >= 18))
             <param name="other">The instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.DupliateWith(System.Int32,System.Int32)">
+            <summary>
+            Determine whether the digit in the target cell may be dupliated with a certain cell in the peers of the current cell,
+            if the digit is filled into the cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.Exists(System.Int32)">
             <summary>
             Indicates whether the current grid contains the specified candidate offset.

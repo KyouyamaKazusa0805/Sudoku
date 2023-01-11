@@ -427,37 +427,17 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
-			case ((false, false, false, _), var cell, var digit):
+			case ((false, false, false, _), var cell, var digit) when !Puzzle.DupliateWith(cell, digit):
 			{
-				var mayDuplicated = false;
-				foreach (var tempCell in PeersMap[cell])
-				{
-					if (Puzzle[tempCell] == digit)
-					{
-						mayDuplicated = true;
-						break;
-					}
-				}
-				if (mayDuplicated)
-				{
-					return;
-				}
-
+				var modified = Puzzle;
 				if (Puzzle.GetStatus(cell) == CellStatus.Modifiable)
 				{
-					var modified = Puzzle;
+					// Temporarily re-compute candidates.
 					modified[cell] = -1;
-					modified[cell] = digit;
-
-					Puzzle = modified;
 				}
-				else
-				{
-					var modified = Puzzle;
-					modified[cell] = digit;
 
-					Puzzle = modified;
-				}
+				modified[cell] = digit;
+				Puzzle = modified;
 
 				break;
 			}
