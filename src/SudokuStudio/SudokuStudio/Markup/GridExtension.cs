@@ -4,7 +4,7 @@
 /// Defines a markup extension that can parse a <see cref="string"/> value, converting it into a valid <see cref="Grid"/>
 /// or throwing exceptions when the code is invalid.
 /// </summary>
-[ContentProperty(Name = nameof(GridCode))]
+[ContentProperty(Name = nameof(Text))]
 [MarkupExtensionReturnType(ReturnType = typeof(Grid))]
 public sealed class GridExtension : MarkupExtension
 {
@@ -14,9 +14,10 @@ public sealed class GridExtension : MarkupExtension
 	public bool IgnoreCasing { get; set; } = false;
 
 	/// <summary>
-	/// Indicates the grid code.
+	/// Indicates the grid text that can be parsed as a valid <see cref="Grid"/> using <see cref="Grid.Parse(string)"/>.
 	/// </summary>
-	public string GridCode { get; set; } = string.Empty;
+	/// <seealso cref="Grid.Parse(string)"/>
+	public string Text { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Indicates the exact format string.
@@ -27,18 +28,18 @@ public sealed class GridExtension : MarkupExtension
 	/// <inheritdoc/>
 	protected override object ProvideValue()
 	{
-		if (GridCode.Equals(nameof(Grid.Empty), IgnoreCasing ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
+		if (Text.Equals(nameof(Grid.Empty), IgnoreCasing ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
 		{
 			return Grid.Empty;
 		}
 
-		if (GridCode.Equals(nameof(Grid.Undefined), IgnoreCasing ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
+		if (Text.Equals(nameof(Grid.Undefined), IgnoreCasing ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
 		{
 			return Grid.Undefined;
 		}
 
-		var targetGrid = Grid.Parse(GridCode);
-		return !string.IsNullOrEmpty(ExactFormatString) && targetGrid.ToString(ExactFormatString) != GridCode
+		var targetGrid = Grid.Parse(Text);
+		return !string.IsNullOrEmpty(ExactFormatString) && targetGrid.ToString(ExactFormatString) != Text
 			? throw new FormatException("The specified grid code cannot be converted into a valid grid, using specified format.")
 			: targetGrid;
 	}
