@@ -8,7 +8,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <inheritdoc cref="ValueFontScale"/>
 	private double _valueFontScale = 1.0;
 
-	/// <inheritdoc cref="PencilmarkFontScale"/>	
+	/// <inheritdoc cref="PencilmarkFontScale"/>
 	private double _pencilmarkFontScale = 0.33;
 
 	/// <inheritdoc cref="CoordinateLabelFontScale"/>
