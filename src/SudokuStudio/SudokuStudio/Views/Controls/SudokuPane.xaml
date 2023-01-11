@@ -7,7 +7,9 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	d:DataContext="{d:DesignInstance Type=c:SudokuPane}"
-	mc:Ignorable="d">
+	mc:Ignorable="d"
+	IsTabStop="True"
+	Loaded="UserControl_Loaded" KeyDown="UserControl_KeyDown">
 
 	<UserControl.Resources>
 		<Thickness x:Key="RowLinesBorderThickness">0,0,0,1</Thickness>

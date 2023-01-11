@@ -677,10 +677,14 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell offset.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>
-	/// The method will return a <see cref="bool"/>? value (contains three possible cases:
-	/// <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+	/// The method will return a <see cref="bool"/>? value
+	/// (containing three possible cases: <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
 	/// All values corresponding to the cases are below:
 	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Case description on this value</description>
+	/// </listheader>
 	/// <item>
 	/// <term><see langword="true"/></term>
 	/// <description>

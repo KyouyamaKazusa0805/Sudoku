@@ -393,4 +393,44 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			cellControl.CandidatesMask = grid.GetCandidates(i);
 		}
 	}
+
+	private void UserControl_Loaded(object sender, RoutedEventArgs e) => Focus(FocusState.Programmatic);
+
+	private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
+	{
+		/// Please note that the parent control may use globalized hotkeys to control some behaviors.
+		/// If <c>e.Handled</c> is not set <see langword="false"/> value before exited parent <c>KeyDown</c> method,
+		/// this method will not be triggered and executed.
+
+		if ((this, e) is not ({ SelectedCell: var cell and >= 0 and < 81 }, { Key: var key }))
+		{
+			return;
+		}
+
+		if (Puzzle.GetStatus(cell) == CellStatus.Given)
+		{
+			return;
+		}
+
+		if (Keyboard.GetInputDigit(key) is not (var digit and not -2))
+		{
+			return;
+		}
+
+		var (_, shiftIsDown, _, _) = Keyboard.GetModifierStatusForCurrentThread();
+		if (shiftIsDown && Puzzle.Exists(cell, digit) is true && digit != -1)
+		{
+			var modified = Puzzle;
+			modified[cell, digit] = false;
+
+			Puzzle = modified;
+		}
+		else if (!shiftIsDown)
+		{
+			var modified = Puzzle;
+			modified[cell] = digit;
+
+			Puzzle = modified;
+		}
+	}
 }

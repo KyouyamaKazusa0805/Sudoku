@@ -75,7 +75,7 @@ partial class MainWindow
 	}
 
 
-	private void Window_Activated(object sender, WindowActivatedEventArgs args)
+	private void Window_Activated(object sender, mxaml::WindowActivatedEventArgs args)
 	{
 		Debug.Assert(_configurationSource is not null);
 

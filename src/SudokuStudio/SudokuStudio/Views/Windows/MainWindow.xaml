@@ -33,7 +33,7 @@
 
 		<!--Navigation view-->
 		<NavigationView
-			x:Name="MainNavigationView" Grid.Row="1" SelectionFollowsFocus="Enabled" IsBackButtonVisible="Collapsed"
+			x:Name="MainNavigationView" Grid.Row="1" SelectionFollowsFocus="Disabled" IsBackButtonVisible="Collapsed"
 			IsSettingsVisible="True" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="True"
 			PaneTitle="{m:R Key=MainWindow_Menu}" Loaded="NavigationView_Loaded" ItemInvoked="NavigationView_ItemInvoked">
 			<NavigationView.MenuItems>
