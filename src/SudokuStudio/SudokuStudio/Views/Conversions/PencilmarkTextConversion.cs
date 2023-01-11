@@ -7,5 +7,12 @@ internal static class PencilmarkTextConversion
 {
 	public static double GetFontSize(double globalFontSize, double scale) => globalFontSize * scale;
 
-	public static Brush GetBrush(Color pencilmarkColor) => new SolidColorBrush(pencilmarkColor);
+	public static Brush GetBrush(Color pencilmarkColor, CellStatus cellStatus, short candidatesMask, int digit)
+		=> cellStatus switch
+		{
+			CellStatus.Given or CellStatus.Modifiable => new SolidColorBrush(),
+			CellStatus.Empty when (candidatesMask >> digit & 1) != 0 => new SolidColorBrush(pencilmarkColor),
+			CellStatus.Empty => new SolidColorBrush(),
+			_ => throw new ArgumentOutOfRangeException(nameof(cellStatus))
+		};
 }
