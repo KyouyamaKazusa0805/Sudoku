@@ -5,12 +5,6 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
-	/// <summary>
-	/// The easy entry to visit children <see cref="SudokuPaneCell"/> instances. This field contains 81 elements,
-	/// indicating controls being displayed as 81 cells in a sudoku grid respectively.
-	/// </summary>
-	private readonly SudokuPaneCell[] _children = new SudokuPaneCell[81];
-
 	/// <inheritdoc cref="ValueFontScale"/>
 	private double _valueFontScale = 1.0;
 
@@ -53,6 +47,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <inheritdoc cref="CoordinateLabelFont"/>
 	private FontFamily _coordinateLabelFont = new("Tahoma");
 
+	/// <summary>
+	/// The easy entry to visit children <see cref="SudokuPaneCell"/> instances. This field contains 81 elements,
+	/// indicating controls being displayed as 81 cells in a sudoku grid respectively.
+	/// </summary>
+	private SudokuPaneCell[] _children;
+
 
 	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.
@@ -60,18 +60,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public SudokuPane()
 	{
 		InitializeComponent();
-
-		for (var i = 0; i < 81; i++)
-		{
-			var cellControl = new SudokuPaneCell { CellIndex = i, BasePane = this };
-
-			GridLayout.SetRow(cellControl, i / 9 + 2);
-			GridLayout.SetColumn(cellControl, i % 9 + 2);
-
-			MainGrid.Children.Add(cellControl);
-			_children[i] = cellControl;
-		}
-
+		InitializeChildrenControls();
 		UpdateCellData(_puzzle);
 	}
 
@@ -371,6 +360,25 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <inheritdoc/>
 	public event PropertyChangedEventHandler? PropertyChanged;
 
+
+	/// <summary>
+	/// To initialize children controls for <see cref="_children"/>.
+	/// </summary>
+	[MemberNotNull(nameof(_children))]
+	private void InitializeChildrenControls()
+	{
+		_children = new SudokuPaneCell[81];
+		for (var i = 0; i < 81; i++)
+		{
+			var cellControl = new SudokuPaneCell { CellIndex = i, BasePane = this };
+
+			GridLayout.SetRow(cellControl, i / 9 + 2);
+			GridLayout.SetColumn(cellControl, i % 9 + 2);
+
+			MainGrid.Children.Add(cellControl);
+			_children[i] = cellControl;
+		}
+	}
 
 	/// <summary>
 	/// To initialize <see cref="GridCellData"/> values via the specified grid.
