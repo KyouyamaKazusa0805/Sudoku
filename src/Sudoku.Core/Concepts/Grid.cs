@@ -533,7 +533,10 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="cell">The cell you want to get or set a value.</param>
 	/// <value>
-	/// <para>The value you want to set. The value should be between 0 and 8. If assigning -1, that means to re-compute all candidates.</para>
+	/// <para>
+	/// The value you want to set. The value should be between 0 and 8.
+	/// If assigning -1, the grid will execute an implicit behavior that candidates in <b>all</b> empty cells will be re-computed.
+	/// </para>
 	/// <para>
 	/// The values set into the grid will be regarded as the modifiable values.
 	/// If the cell contains a digit, it will be covered when it is a modifiable value.
