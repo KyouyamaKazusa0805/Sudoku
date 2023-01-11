@@ -71,7 +71,7 @@ partial class MainWindow
 			return true; // Succeeded.
 		}
 
-		return false; // Acrylic is not supported on this system.
+		return false; // Mica is not supported on this system.
 	}
 
 
