@@ -34,54 +34,54 @@
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,CellStatus,CandidatesMask,0),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
+			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" DoubleTapped="TextBlock_DoubleTapped" />
 		<TextBlock
 			Grid.Row="0" Grid.Column="1" Text="2" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,CellStatus,CandidatesMask,1),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
+			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" DoubleTapped="TextBlock_DoubleTapped" />
 		<TextBlock
 			Grid.Row="0" Grid.Column="2" Text="3" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,CellStatus,CandidatesMask,2),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
+			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" DoubleTapped="TextBlock_DoubleTapped" />
 		<TextBlock
 			Grid.Row="1" Grid.Column="0" Text="4" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,CellStatus,CandidatesMask,3),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
+			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" DoubleTapped="TextBlock_DoubleTapped" />
 		<TextBlock
 			Grid.Row="1" Grid.Column="1" Text="5" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,CellStatus,CandidatesMask,4),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
+			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" DoubleTapped="TextBlock_DoubleTapped" />
 		<TextBlock
 			Grid.Row="1" Grid.Column="2" Text="6" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,CellStatus,CandidatesMask,5),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
+			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" DoubleTapped="TextBlock_DoubleTapped" />
 		<TextBlock
 			Grid.Row="2" Grid.Column="0" Text="7" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,CellStatus,CandidatesMask,6),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
+			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" DoubleTapped="TextBlock_DoubleTapped" />
 		<TextBlock
 			Grid.Row="2" Grid.Column="1" Text="8" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,CellStatus,CandidatesMask,7),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
+			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" DoubleTapped="TextBlock_DoubleTapped" />
 		<TextBlock
 			Grid.Row="2" Grid.Column="2" Text="9" Style="{StaticResource TextBlockStyle}"
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,CellStatus,CandidatesMask,8),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSize(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" />
+			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" DoubleTapped="TextBlock_DoubleTapped" />
 	</Grid>
 </UserControl>

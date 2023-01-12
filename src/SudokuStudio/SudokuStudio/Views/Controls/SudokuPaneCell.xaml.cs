@@ -81,4 +81,32 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 	private void TextBlock_PointerEntered(object sender, PointerRoutedEventArgs e) => BasePane.SelectedCell = CellIndex;
 
 	private void TextBlock_PointerExited(object sender, PointerRoutedEventArgs e) => BasePane.SelectedCell = CellIndex;
+
+	private void TextBlock_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+	{
+		if (sender is not TextBlock { Text: var text } || !int.TryParse(text, out var originalDigit) || originalDigit is not (>= 1 and <= 9))
+		{
+			return;
+		}
+
+		if (BasePane is not { Puzzle: var modified, SelectedCell: var cell and not -1 })
+		{
+			return;
+		}
+
+		var digit = originalDigit - 1;
+		if ((modified.GetCandidates(cell) >> digit & 1) == 0)
+		{
+			return;
+		}
+
+		if (modified.GetStatus(cell) != CellStatus.Empty)
+		{
+			return;
+		}
+
+		modified[cell] = digit;
+
+		BasePane.Puzzle = modified;
+	}
 }
