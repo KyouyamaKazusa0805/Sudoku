@@ -12,7 +12,15 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the selected cell. The value is temporarily assigned into here, from <see cref="BasePane"/> property.
 	/// </summary>
+	/// <remarks>
+	/// This field is represented as a rescue to get the selected cell from parent control (<see cref="BasePane"/> property).
+	/// If the context flyout is opened, the parent control will return -1 of its property <see cref="SudokuPane.SelectedCell"/>.
+	/// here we should get that value before the flyout is opened.
+	/// Therefore, this field will be used and assigned by method <see cref="Flyout_Opening(object, object)"/>,
+	/// and the method is an only one to modify the field.
+	/// </remarks>
 	/// <seealso cref="BasePane"/>
+	/// <seealso cref="Flyout_Opening(object, object)"/>
 	private int _temporarySelectedCell = -1;
 
 	/// <inheritdoc cref="CellStatus"/>
@@ -160,10 +168,6 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 			return;
 		}
 
-		/// This method is a rescue to get the selected cell.
-		/// If the context flyout is opened, the parent control (<see cref="BasePane"/> property)
-		/// will return -1 of its property <see cref="SudokuPane.SelectedCell"/>.
-		/// here we should get that value before the flyout is opened.
 		_temporarySelectedCell = cell;
 	}
 }

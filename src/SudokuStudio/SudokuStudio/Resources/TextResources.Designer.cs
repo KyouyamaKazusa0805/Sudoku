@@ -124,7 +124,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to e.g. ~1234.
+        ///   Looks up a localized string similar to Usage: !1-4、!567、!8、9.
         /// </summary>
         internal static string SudokuPane_RightClickMenu_InputSetterPlaceholder {
             get {

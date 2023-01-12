@@ -136,7 +136,7 @@
     <value>Input sets or eliminations:</value>
   </data>
   <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
-    <value>e.g. ~1234</value>
+    <value>Usage: !1-4、!567、!8、9</value>
   </data>
   <data name="_ProgramName" xml:space="preserve">
     <value>Sudoku Studio</value>

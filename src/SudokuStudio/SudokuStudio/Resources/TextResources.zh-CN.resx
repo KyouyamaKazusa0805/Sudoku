@@ -136,6 +136,6 @@
     <value>输入出数或删数结论：</value>
   </data>
   <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
-    <value>举例：~1234</value>
+    <value>举例：!1-4、!567、!8、9</value>
   </data>
 </root>
