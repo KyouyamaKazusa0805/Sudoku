@@ -13,7 +13,7 @@ public static class SolutionWideReadOnlyFields
 	/// </summary>
 	/// <remarks>
 	/// For more details you want to learn about, please visit
-	/// <see href="https://github.com/dotnet/runtime/blob/fb5f07f9c580bdcd5d0726d1391c2a52a01030f8/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L555">this link</see>
+	/// <see href="https://github.com/dotnet/runtime/blob/d4a59b36c679712b74eccf98deb1a362cdbaa6b1/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L586">this link</see>
 	/// to get the inner code.
 	/// </remarks>
 	/// <seealso cref="TrailingZeroCount(int)"/>
@@ -28,7 +28,7 @@ public static class SolutionWideReadOnlyFields
 	/// </summary>
 	/// <remarks>
 	/// For more details you want to learn about, please visit
-	/// <see href="https://github.com/dotnet/runtime/blob/fb5f07f9c580bdcd5d0726d1391c2a52a01030f8/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L610">this link</see>
+	/// <see href="https://github.com/dotnet/runtime/blob/d4a59b36c679712b74eccf98deb1a362cdbaa6b1/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L647">this link</see>
 	/// to get the inner code.
 	/// </remarks>
 	/// <seealso cref="TrailingZeroCount(long)"/>

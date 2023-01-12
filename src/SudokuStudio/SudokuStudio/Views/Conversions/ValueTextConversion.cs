@@ -10,6 +10,17 @@ internal static class ValueTextConversion
 			? string.Empty
 			: (TrailingZeroCount((uint)candidatesMask) + 1).ToString();
 
-	public static Brush GetValueFontColor(Grid grid, int cellIndex, Color modifiableColor, Color givenColor)
-		=> new SolidColorBrush(grid.GetStatus(cellIndex) == CellStatus.Modifiable ? modifiableColor : givenColor);
+	public static Brush GetValueFontColor(
+		Grid grid,
+		Grid solution,
+		int cell,
+		short candidatesMask,
+		Color modifiableColor,
+		Color givenColor,
+		Color deltaColor
+	) => new SolidColorBrush(
+		solution[cell] != (TrailingZeroCount(candidatesMask) is var digit and not InvalidValidOfTrailingZeroCountMethodFallback ? digit : -1)
+			? deltaColor
+			: grid.GetStatus(cell) == CellStatus.Modifiable ? modifiableColor : givenColor
+	);
 }

@@ -32,6 +32,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <inheritdoc cref="CoordinateLabelColor"/>
 	private Color _coordinateLabelColor = new() { A = 255, R = 100, G = 100, B = 100 };
 
+	/// <inheritdoc cref="DeltaCandidateColor"/>
+	private Color _deltaCandidateColor = new() { A = 255, R = 255, G = 185, B = 185 };
+
+	/// <inheritdoc cref="DeltaCellColor"/>
+	private Color _deltaCellColor = new() { A = 255, R = 255 };
+
 	/// <inheritdoc cref="BorderColor"/>
 	private Color _borderColor = Colors.Black;
 
@@ -250,6 +256,46 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
+	/// Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
+	/// </summary>
+	public Color DeltaCandidateColor
+	{
+		get => _deltaCandidateColor;
+
+		set
+		{
+			if (_deltaCandidateColor == value)
+			{
+				return;
+			}
+
+			_deltaCandidateColor = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(DeltaCandidateColor)));
+		}
+	}
+
+	/// <summary>
+	/// Indicates the color that is used for displaying cell digits that are wrongly filled.
+	/// </summary>
+	public Color DeltaCellColor
+	{
+		get => _deltaCellColor;
+
+		set
+		{
+			if (_deltaCellColor == value)
+			{
+				return;
+			}
+
+			_deltaCellColor = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(DeltaCellColor)));
+		}
+	}
+
+	/// <summary>
 	/// Indicates the border color.
 	/// </summary>
 	public Color BorderColor
@@ -355,6 +401,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates the approximately-measured width and height value of a cell.
 	/// </summary>
 	internal double ApproximateCellWidth => ((Width + Height) / 2 - 100 - (4 << 1)) / 10;
+
+	/// <summary>
+	/// Indicates the solution of property <see cref="Puzzle"/>.
+	/// </summary>
+	/// <seealso cref="Puzzle"/>
+	internal Grid Solution => _puzzle.GetSolution();
 
 
 	/// <inheritdoc/>

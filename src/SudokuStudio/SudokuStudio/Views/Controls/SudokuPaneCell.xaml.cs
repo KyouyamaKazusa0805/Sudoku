@@ -117,15 +117,13 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 
 	private void InputSetter_KeyDown(object sender, KeyRoutedEventArgs e)
 	{
-		switch (this, sender, e)
+		switch (@this: this, sender, e)
 		{
-#pragma warning disable format
 			case (
-				{ BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
-				TextBox { Text: var text, Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup p } } },
-				{ Key: winsys::VirtualKey.Enter }
+				@this: { BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
+				sender: TextBox { Text: var text, Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup p } } },
+				e: { Key: winsys::VirtualKey.Enter }
 			)
-#pragma warning restore format
 			when modified.GetStatus(cell) is var cellStatus and not CellStatus.Given
 				&& DigitRange.TryParse(text, out var digitRange)
 				&& digitRange is { DigitsMask: var digits, ConclusionType: var type }:

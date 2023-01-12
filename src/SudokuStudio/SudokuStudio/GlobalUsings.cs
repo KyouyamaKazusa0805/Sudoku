@@ -40,6 +40,7 @@ global using WinRT.Interop;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
+global using static Sudoku.SolutionWideReadOnlyFields;
 global using static Sudoku.Solving.ConclusionType;
 global using static SudokuStudio.Resources.ResourceDictionary;
 global using mxaml = Microsoft.UI.Xaml;
