@@ -48,7 +48,10 @@ public static class Keyboard
 	/// </item>
 	/// <item>
 	/// <term>-1</term>
-	/// <description>Inputting <see cref="winsys::VirtualKey.Number0"/> or <see cref="winsys::VirtualKey.NumberPad0"/></description>
+	/// <description>
+	/// Inputting <see cref="winsys::VirtualKey.Number0"/>, <see cref="winsys::VirtualKey.NumberPad0"/>,
+	/// <see cref="winsys::VirtualKey.Back"/> or <see cref="winsys::VirtualKey.Delete"/>
+	/// </description>
 	/// </item>
 	/// <item>
 	/// <term>-2</term>
@@ -60,6 +63,7 @@ public static class Keyboard
 		=> virtualKey switch
 		{
 			winsys::VirtualKey.Number0 or winsys::VirtualKey.NumberPad0 => -1,
+			winsys::VirtualKey.Back or winsys::VirtualKey.Delete => -1,
 			>= winsys::VirtualKey.Number1 and <= winsys::VirtualKey.Number9 => virtualKey - winsys::VirtualKey.Number1,
 			>= winsys::VirtualKey.NumberPad1 and <= winsys::VirtualKey.NumberPad9 => virtualKey - winsys::VirtualKey.NumberPad1,
 			_ => -2
