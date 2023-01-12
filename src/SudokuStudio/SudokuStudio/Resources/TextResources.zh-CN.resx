@@ -132,4 +132,10 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>偏好项设置</value>
   </data>
+  <data name="SudokuPane_RightClickMenu_InputSetter" xml:space="preserve">
+    <value>输入出数或删数结论：</value>
+  </data>
+  <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
+    <value>举例：~1234</value>
+  </data>
 </root>

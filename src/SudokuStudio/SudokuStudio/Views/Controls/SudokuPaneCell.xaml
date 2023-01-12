@@ -6,6 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
 	d:DataContext="{d:DesignInstance Type=c:SudokuPaneCell}"
 	mc:Ignorable="d"
 	PointerEntered="UserControl_PointerEntered" PointerExited="UserControl_PointerExited">
@@ -19,6 +20,18 @@
 	</UserControl.Resources>
 
 	<Grid x:Name="MainGrid" RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
+		<Grid.ContextFlyout>
+			<!--Right-click menu-->
+			<Flyout Opening="Flyout_Opening">
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="{m:R Key=SudokuPane_RightClickMenu_InputSetter}" Margin="0,10,0,0" />
+					<TextBox
+						x:Name="InputSetter" PlaceholderText="{m:R Key=SudokuPane_RightClickMenu_InputSetterPlaceholder}" Margin="0,10"
+						KeyDown="InputSetter_KeyDown" />
+				</StackPanel>
+			</Flyout>
+		</Grid.ContextFlyout>
+
 		<!--Values-->
 		<TextBlock
 			Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" Style="{StaticResource TextBlockStyle}"

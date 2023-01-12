@@ -132,6 +132,12 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>Settings &amp; Preferences</value>
   </data>
+  <data name="SudokuPane_RightClickMenu_InputSetter" xml:space="preserve">
+    <value>Input sets or eliminations:</value>
+  </data>
+  <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
+    <value>e.g. ~1234</value>
+  </data>
   <data name="_ProgramName" xml:space="preserve">
     <value>Sudoku Studio</value>
   </data>

@@ -9,6 +9,12 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 	/// <inheritdoc cref="CandidatesMask"/>
 	private short _candidatesMask = 511;
 
+	/// <summary>
+	/// Indicates the selected cell. The value is temporarily assigned into here, from <see cref="BasePane"/> property.
+	/// </summary>
+	/// <seealso cref="BasePane"/>
+	private int _temporarySelectedCell = -1;
+
 	/// <inheritdoc cref="CellStatus"/>
 	private CellStatus _status = CellStatus.Empty;
 
@@ -99,5 +105,65 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 				break;
 			}
 		}
+	}
+
+	private void InputSetter_KeyDown(object sender, KeyRoutedEventArgs e)
+	{
+		switch (this, sender, e)
+		{
+#pragma warning disable format
+			case (
+				{ BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
+				TextBox { Text: var text, Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup p } } },
+				{ Key: winsys::VirtualKey.Enter }
+			)
+#pragma warning restore format
+			when modified.GetStatus(cell) is var cellStatus and not CellStatus.Given
+				&& DigitRange.TryParse(text, out var digitRange)
+				&& digitRange is { DigitsMask: var digits, ConclusionType: var type }:
+			{
+				if (type == Assignment)
+				{
+					if (cellStatus == CellStatus.Modifiable)
+					{
+						// A rescue.
+						modified[cell] = -1;
+					}
+
+					modified[cell] = TrailingZeroCount(digits);
+				}
+				else if (type == Elimination && cellStatus == CellStatus.Empty)
+				{
+					foreach (var digit in digits)
+					{
+						if (modified.Exists(cell, digit) is true)
+						{
+							modified[cell, digit] = false;
+						}
+					}
+				}
+
+				BasePane.Puzzle = modified;
+
+				// Closes the flyout manually.
+				p.IsOpen = false;
+
+				break;
+			}
+		}
+	}
+
+	private void Flyout_Opening(object sender, object e)
+	{
+		if (BasePane is not { SelectedCell: var cell and not -1 })
+		{
+			return;
+		}
+
+		/// This method is a rescue to get the selected cell.
+		/// If the context flyout is opened, the parent control (<see cref="BasePane"/> property)
+		/// will return -1 of its property <see cref="SudokuPane.SelectedCell"/>.
+		/// here we should get that value before the flyout is opened.
+		_temporarySelectedCell = cell;
 	}
 }

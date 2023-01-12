@@ -113,5 +113,23 @@ namespace SudokuStudio.Resources {
                 return ResourceManager.GetString("MainWindow_SettingsPageTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input sets or eliminations:.
+        /// </summary>
+        internal static string SudokuPane_RightClickMenu_InputSetter {
+            get {
+                return ResourceManager.GetString("SudokuPane_RightClickMenu_InputSetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to e.g. ~1234.
+        /// </summary>
+        internal static string SudokuPane_RightClickMenu_InputSetterPlaceholder {
+            get {
+                return ResourceManager.GetString("SudokuPane_RightClickMenu_InputSetterPlaceholder", resourceCulture);
+            }
+        }
     }
 }
