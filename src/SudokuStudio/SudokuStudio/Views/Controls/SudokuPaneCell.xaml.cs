@@ -108,7 +108,7 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 			{
 				modified[cell] = digit;
 
-				BasePane.Puzzle = modified;
+				BasePane.SetPuzzle(modified);
 
 				break;
 			}
@@ -149,7 +149,7 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 					}
 				}
 
-				BasePane.Puzzle = modified;
+				BasePane.SetPuzzle(modified);
 
 				// Closes the flyout manually.
 				p.IsOpen = false;

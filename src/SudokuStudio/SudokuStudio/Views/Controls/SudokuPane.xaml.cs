@@ -5,6 +5,11 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
+	/// <summary>
+	/// Defines a pair of stacks that stores undo and redo steps.
+	/// </summary>
+	private readonly Stack<Grid> _undoStack = new(), _redoStack = new();
+
 	/// <inheritdoc cref="ValueFontScale"/>
 	private double _valueFontScale = 1.0;
 
@@ -322,19 +327,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		get => _puzzle;
 
-		set
-		{
-			if (_puzzle == value)
-			{
-				return;
-			}
-
-			_puzzle = value;
-
-			UpdateCellData(value);
-
-			PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
-		}
+		set => SetPuzzle(value, true);
 	}
 
 	/// <summary>
@@ -424,6 +417,40 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 
 	/// <summary>
+	/// Undo a step.
+	/// </summary>
+	public void UndoStep()
+	{
+		if (_undoStack.Count == 0)
+		{
+			// No more steps can be undone.
+			return;
+		}
+
+		_redoStack.Push(_puzzle);
+
+		var target = _undoStack.Pop();
+		SetPuzzle(target, isOndoOrRedo: true);
+	}
+
+	/// <summary>
+	/// Redo a step.
+	/// </summary>
+	public void RedoStep()
+	{
+		if (_redoStack.Count == 0)
+		{
+			// No more steps can be redone.
+			return;
+		}
+
+		_undoStack.Push(_puzzle);
+
+		var target = _redoStack.Pop();
+		SetPuzzle(target, isOndoOrRedo: true);
+	}
+
+	/// <summary>
 	/// To initialize children controls for <see cref="_children"/>.
 	/// </summary>
 	[MemberNotNull(nameof(_children))]
@@ -443,6 +470,53 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
+	/// Try to set puzzle, with a <see cref="bool"/> value indicating whether the stack fields <see cref="_undoStack"/>
+	/// and <see cref="_redoStack"/> will be cleared.
+	/// </summary>
+	/// <param name="value">The newer grid.</param>
+	/// <param name="clearStack">
+	/// <para>Indicates whether the stack fields <see cref="_undoStack"/> and <see cref="_redoStack"/> will be cleared.</para>
+	/// <para>The default value is <see langword="false"/>.</para>
+	/// </param>
+	/// <param name="isOndoOrRedo">Indicates whether the current operation occurred while undoing and redoing a grid step.</param>
+	/// <remarks>
+	/// <para>
+	/// This method is nearly equal to <see cref="set_Puzzle(Grid)"/>, but this method can also control undoing and redoing stacks.
+	/// </para>
+	/// <para>Generally, we use this method more times than covering with property <see cref="Puzzle"/>.</para>
+	/// </remarks>
+	/// <seealso cref="_undoStack"/>
+	/// <seealso cref="_redoStack"/>
+	/// <seealso cref="set_Puzzle(Grid)"/>
+	/// <seealso cref="Puzzle"/>
+	internal void SetPuzzle(scoped in Grid value, bool clearStack = false, bool isOndoOrRedo = false)
+	{
+		if (_puzzle == value)
+		{
+			return;
+		}
+
+		if (!isOndoOrRedo && !clearStack)
+		{
+			_undoStack.Push(_puzzle);
+		}
+
+		_puzzle = value;
+
+		UpdateCellData(value);
+		if (clearStack)
+		{
+			ClearStacks();
+		}
+		else
+		{
+			_redoStack.Clear();
+		}
+
+		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
+	}
+
+	/// <summary>
 	/// To initialize <see cref="GridCellData"/> values via the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
@@ -454,6 +528,15 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			cellControl.CellStatus = grid.GetStatus(i);
 			cellControl.CandidatesMask = grid.GetCandidates(i);
 		}
+	}
+
+	/// <summary>
+	/// Try to clear stacks <see cref="_undoStack"/> and <see cref="_redoStack"/>.
+	/// </summary>
+	private void ClearStacks()
+	{
+		_undoStack.Clear();
+		_redoStack.Clear();
 	}
 
 
@@ -472,25 +555,25 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			{
 				return;
 			}
-			case ((false, false, false, _), var cell, -1):
+			case ((false, false, false, false), var cell, -1):
 			{
 				var modified = Puzzle;
 				modified[cell] = -1;
 
-				Puzzle = modified;
+				SetPuzzle(modified);
 
 				break;
 			}
-			case ((false, true, false, _), var cell, var digit) when Puzzle.Exists(cell, digit) is true:
+			case ((false, true, false, false), var cell, var digit) when Puzzle.Exists(cell, digit) is true:
 			{
 				var modified = Puzzle;
 				modified[cell, digit] = false;
 
-				Puzzle = modified;
+				SetPuzzle(modified);
 
 				break;
 			}
-			case ((false, false, false, _), var cell, var digit) when !Puzzle.DupliateWith(cell, digit):
+			case ((false, false, false, false), var cell, var digit) when !Puzzle.DupliateWith(cell, digit):
 			{
 				var modified = Puzzle;
 				if (Puzzle.GetStatus(cell) == CellStatus.Modifiable)
@@ -500,7 +583,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 
 				modified[cell] = digit;
-				Puzzle = modified;
+				SetPuzzle(modified);
 
 				break;
 			}
