@@ -115,6 +115,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please drop the file here.
+        /// </summary>
+        internal static string SudokuPane_DropSudokuFileHere {
+            get {
+                return ResourceManager.GetString("SudokuPane_DropSudokuFileHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input sets or eliminations:.
         /// </summary>
         internal static string SudokuPane_RightClickMenu_InputSetter {

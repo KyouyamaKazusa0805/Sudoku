@@ -412,6 +412,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <inheritdoc/>
 	public event PropertyChangedEventHandler? PropertyChanged;
 
+	/// <summary>
+	/// Indicates the event that is triggered when a file is successfully received via dropped file.
+	/// </summary>
+	public event SuccessfullyReceivedDroppedFileEventHandler? SuccessfullyReceivedDroppedFile;
+
+	/// <summary>
+	/// Indicates the event that is triggered when a file is failed to be received via dropped file.
+	/// </summary>
+	public event FailedReceivedDroppedFileEventHandler? FailedReceivedDroppedFile;
+
 
 	/// <summary>
 	/// To initialize children controls for <see cref="_children"/>.
@@ -445,6 +455,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			cellControl.CandidatesMask = grid.GetCandidates(i);
 		}
 	}
+
 
 	private void UserControl_Loaded(object sender, RoutedEventArgs e) => Focus(FocusState.Programmatic);
 
@@ -492,6 +503,89 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				Puzzle = modified;
 
 				break;
+			}
+		}
+	}
+
+	private void UserControl_DragOver(object sender, DragEventArgs e)
+	{
+		e.AcceptedOperation = DataPackageOperation.Copy;
+		e.DragUIOverride.Caption = GetString("SudokuPane_DropSudokuFileHere");
+		e.DragUIOverride.IsCaptionVisible = true;
+		e.DragUIOverride.IsContentVisible = true;
+	}
+
+	private async void UserControl_DropAsync(object sender, DragEventArgs e)
+	{
+		if (e.DataView is not { } dataView)
+		{
+			return;
+		}
+
+		if (!dataView.Contains(StandardDataFormats.StorageItems))
+		{
+			return;
+		}
+
+		switch (await dataView.GetStorageItemsAsync())
+		{
+			case [StorageFolder folder]
+#pragma warning disable format
+			when await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, 0, 2) is
+			[
+				StorageFile
+				{
+					FileType: CommonFileExtensions.Text or CommonFileExtensions.PlainText,
+					Path: var path
+				}
+			]:
+#pragma warning restore format
+			{
+				await handleSudokuFile(path);
+
+				break;
+			}
+			case [StorageFile { FileType: CommonFileExtensions.Text or CommonFileExtensions.PlainText, Path: var path }]:
+			{
+				await handleSudokuFile(path);
+
+				break;
+			}
+
+
+			async Task handleSudokuFile(string path)
+			{
+				switch (new FileInfo(path).Length)
+				{
+					case 0:
+					{
+						FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
+						break;
+					}
+					case > 1024:
+					{
+						FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsTooLarge));
+						break;
+					}
+					default:
+					{
+						var content = await File.ReadAllTextAsync(path);
+						if (string.IsNullOrWhiteSpace(content))
+						{
+							return;
+						}
+
+						if (!Grid.TryParse(content, out var grid))
+						{
+							return;
+						}
+
+						Puzzle = grid;
+
+						SuccessfullyReceivedDroppedFile?.Invoke(this, new());
+						break;
+					}
+				}
 			}
 		}
 	}

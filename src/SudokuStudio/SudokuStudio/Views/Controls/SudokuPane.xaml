@@ -3,8 +3,8 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions" d:DataContext="{d:DesignInstance Type=c:SudokuPane}" mc:Ignorable="d"
-	IsTabStop="True"
-	Loaded="UserControl_Loaded" KeyDown="UserControl_KeyDown">
+	IsTabStop="True" AllowDrop="True"
+	Loaded="UserControl_Loaded" KeyDown="UserControl_KeyDown" DragOver="UserControl_DragOver" Drop="UserControl_DropAsync">
 
 	<UserControl.Resources>
 		<Thickness x:Key="RowLinesBorderThickness">0,0,0,1</Thickness>
