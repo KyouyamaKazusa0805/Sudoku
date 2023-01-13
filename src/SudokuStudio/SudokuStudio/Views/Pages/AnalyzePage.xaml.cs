@@ -6,9 +6,19 @@ namespace SudokuStudio.Views.Pages;
 public sealed partial class AnalyzePage : Page
 {
 	/// <summary>
+	/// Defines a key-value pair of functions that is used for routing hotkeys.
+	/// </summary>
+	private (Hotkey Hotkey, Action Action)[] _hotkeyFunctions;
+
+
+	/// <summary>
 	/// Initializes an <see cref="AnalyzePage"/> instance.
 	/// </summary>
-	public AnalyzePage() => InitializeComponent();
+	public AnalyzePage()
+	{
+		InitializeComponent();
+		InitializeField();
+	}
 
 
 	/// <inheritdoc/>
@@ -18,11 +28,7 @@ public sealed partial class AnalyzePage : Page
 
 		// This method routes the hotkeys.
 		var modifierStatus = Keyboard.GetModifierStatusForCurrentThread();
-		foreach (var ((modifiers, key), action) in new (Hotkey, Action)[]
-		{
-			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Z), SudokuPane.UndoStep),
-			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Y), SudokuPane.RedoStep)
-		})
+		foreach (var ((modifiers, key), action) in _hotkeyFunctions)
 		{
 			if (modifierStatus == modifiers && e.Key == key)
 			{
@@ -33,4 +39,16 @@ public sealed partial class AnalyzePage : Page
 
 		e.Handled = false;
 	}
+
+	/// <summary>
+	/// Try to initialize field <see cref="_hotkeyFunctions"/>.
+	/// </summary>
+	/// <seealso cref="_hotkeyFunctions"/>
+	[MemberNotNull(nameof(_hotkeyFunctions))]
+	private void InitializeField()
+		=> _hotkeyFunctions = new (Hotkey, Action)[]
+		{
+			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Z), SudokuPane.UndoStep),
+			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Y), SudokuPane.RedoStep)
+		};
 }
