@@ -504,13 +504,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		_puzzle = value;
 
 		UpdateCellData(value);
-		if (clearStack)
+		switch (clearStack, whileOndoingOrRedoing)
 		{
-			ClearStacks();
-		}
-		else
-		{
-			_redoStack.Clear();
+			case (true, _):
+			{
+				ClearStacks();
+				break;
+			}
+			case (false, false):
+			{
+				_redoStack.Clear();
+				break;
+			}
 		}
 
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
