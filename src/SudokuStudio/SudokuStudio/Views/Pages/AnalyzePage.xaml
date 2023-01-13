@@ -10,7 +10,8 @@
 		<Grid>
 			<c:SudokuPane
 				x:Name="SudokuPane" Width="610" Height="610" HorizontalAlignment="Left" VerticalAlignment="Top"
-				SelectedCell="-1" CoordinateLabelDisplayKind="RxCy"
+				SelectedCell="-1" CoordinateLabelDisplayKind="RxCy" ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code"
+				CoordinateLabelFont="Cascadia Code" ValueFontScale=".85" PencilmarkFontScale=".3"
 				Puzzle="{m:Grid Text='..38......8..16...5....29..9.....23..2..3..4..46.....7..72....1...46..8......15..'}"
 				Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10}" />
 		</Grid>
