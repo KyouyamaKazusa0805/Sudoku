@@ -14,4 +14,9 @@ internal static class CommonFileExtensions
 	/// Indicates the sudoku text file format (SST - Sudoku Studio Text format).
 	/// </summary>
 	public const string Text = ".sst";
+
+	/// <summary>
+	/// Indicates the user preference file format (SSP - Sudoku Studio Preference format).
+	/// </summary>
+	public const string UserPreference = ".ssp";
 }
