@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Views.Controls;
+﻿namespace SudokuStudio.Views.Interaction;
 
 /// <summary>
 /// Defines a kind of coordinate label to be displayed.

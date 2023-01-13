@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Views.Controls;
+﻿namespace SudokuStudio.Views.Interaction;
 
 /// <summary>
 /// Provides an event handler that is used by <see cref="SudokuPane.FailedReceivedDroppedFile"/>.

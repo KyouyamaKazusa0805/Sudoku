@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Views.Controls;
+﻿namespace SudokuStudio.Views.Interaction;
 
 /// <summary>
 /// Defines an enumeration type that describes reasons why failed to drag a file.

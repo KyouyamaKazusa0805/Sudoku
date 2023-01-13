@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Views.Controls;
+﻿namespace SudokuStudio.Views.Interaction;
 
 /// <summary>
 /// Provides event data used by delegate type <see cref="SuccessfullyReceivedDroppedFileEventHandler"/>.
