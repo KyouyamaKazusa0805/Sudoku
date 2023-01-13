@@ -18,13 +18,6 @@ public sealed partial class AnalyzePage : Page
 
 		// This method routes the hotkeys.
 		var modifierStatus = Keyboard.GetModifierStatusForCurrentThread();
-#if DEBUG
-		if (Array.Exists(Enum.GetValues<winsys::VirtualKeyModifiers>(), element => Array.IndexOf(toKeys(element), e.Key) != -1))
-		{
-			goto RouteToInnerControls;
-		}
-#endif
-
 		foreach (var ((modifiers, key), action) in new (Hotkey, Action)[]
 		{
 			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Z), SudokuPane.UndoStep),
@@ -38,22 +31,6 @@ public sealed partial class AnalyzePage : Page
 			}
 		}
 
-#if DEBUG
-	RouteToInnerControls:
-#endif
 		e.Handled = false;
-
-
-#if DEBUG
-		static winsys::VirtualKey[] toKeys(winsys::VirtualKeyModifiers modifier)
-			=> modifier switch
-			{
-				winsys::VirtualKeyModifiers.Control => new[] { winsys::VirtualKey.Control },
-				winsys::VirtualKeyModifiers.Shift => new[] { winsys::VirtualKey.Shift },
-				winsys::VirtualKeyModifiers.Menu => new[] { winsys::VirtualKey.Menu },
-				winsys::VirtualKeyModifiers.Windows => new[] { winsys::VirtualKey.LeftWindows, winsys::VirtualKey.RightWindows },
-				_ => Array.Empty<winsys::VirtualKey>()
-			};
-#endif
 	}
 }
