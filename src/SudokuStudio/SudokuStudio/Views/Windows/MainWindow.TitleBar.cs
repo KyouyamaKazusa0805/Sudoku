@@ -1,4 +1,5 @@
-﻿namespace SudokuStudio.Views.Windows;
+﻿#if CUSTOMIZED_TITLE_BAR
+namespace SudokuStudio.Views.Windows;
 
 partial class MainWindow
 {
@@ -181,3 +182,4 @@ partial class MainWindow
 	[LibraryImport("Shcore", SetLastError = true)]
 	private static partial int GetDpiForMonitor(nint hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
 }
+#endif

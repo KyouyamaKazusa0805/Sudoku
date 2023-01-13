@@ -1,4 +1,5 @@
-﻿namespace SudokuStudio.Views.Windows;
+﻿#if MICA_BACKDROP
+namespace SudokuStudio.Views.Windows;
 
 partial class MainWindow
 {
@@ -103,3 +104,4 @@ partial class MainWindow
 		}
 	}
 }
+#endif
