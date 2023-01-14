@@ -161,11 +161,20 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 
 	private void Flyout_Opening(object sender, object e)
 	{
-		if (BasePane is not { SelectedCell: var cell and not -1 })
+		if (BasePane is not { SelectedCell: var cell and not -1, Puzzle: var puzzle })
 		{
-			return;
+			goto HideContextFlyout;
+		}
+
+		if (puzzle.GetStatus(cell) != CellStatus.Empty)
+		{
+			goto HideContextFlyout;
 		}
 
 		_temporarySelectedCell = cell;
+		return;
+
+	HideContextFlyout:
+		MainGridContextFlyout.Hide();
 	}
 }
