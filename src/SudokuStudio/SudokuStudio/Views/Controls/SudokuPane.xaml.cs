@@ -10,6 +10,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	private readonly Stack<Grid> _undoStack = new(), _redoStack = new();
 
+	/// <inheritdoc cref="DisplayCandidates"/>
+	private bool _displayCandidates = true;
+
+	/// <inheritdoc cref="UseDifferentColorToDisplayDeltaDigits"/>
+	private bool _useDifferentColorToDisplayDeltaDigits = true;
+
 	/// <inheritdoc cref="ValueFontScale"/>
 	private double _valueFontScale = 1.0;
 
@@ -75,6 +81,46 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		UpdateCellData(_puzzle);
 	}
 
+
+	/// <summary>
+	/// Indicates whether the pane displays for candidates.
+	/// </summary>
+	public bool DisplayCandidates
+	{
+		get => _displayCandidates;
+
+		set
+		{
+			if (_displayCandidates == value)
+			{
+				return;
+			}
+
+			_displayCandidates = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(DisplayCandidates)));
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether the pane displays for delta digits using different colors.
+	/// </summary>
+	public bool UseDifferentColorToDisplayDeltaDigits
+	{
+		get => _useDifferentColorToDisplayDeltaDigits;
+
+		set
+		{
+			if (_useDifferentColorToDisplayDeltaDigits == value)
+			{
+				return;
+			}
+
+			_useDifferentColorToDisplayDeltaDigits = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(UseDifferentColorToDisplayDeltaDigits)));
+		}
+	}
 
 	/// <summary>
 	/// Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.

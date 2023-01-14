@@ -14,13 +14,23 @@ internal static class PencilmarkTextConversion
 		Grid solution,
 		int cell,
 		short candidatesMask,
-		int digit
-	) => cellStatus switch
+		int digit,
+		bool displayCandidates,
+		bool useDifferentColorToDisplayDeltaDigits
+	)
 	{
-		CellStatus.Given or CellStatus.Modifiable => new SolidColorBrush(),
-		CellStatus.Empty when solution[cell] == digit && (candidatesMask >> digit & 1) == 0 => new SolidColorBrush(deltaColor),
-		CellStatus.Empty when (candidatesMask >> digit & 1) != 0 => new SolidColorBrush(pencilmarkColor),
-		CellStatus.Empty => new SolidColorBrush(),
-		_ => throw new ArgumentOutOfRangeException(nameof(cellStatus))
-	};
+		var defaultBrush = new SolidColorBrush();
+		return (displayCandidates, cellStatus) switch
+		{
+			(false, _) => defaultBrush,
+			(_, CellStatus.Given or CellStatus.Modifiable) => defaultBrush,
+			(_, CellStatus.Empty) => (solution[cell] == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
+			{
+				(true, 0, true) => new SolidColorBrush(deltaColor),
+				(_, not 0, _) => new SolidColorBrush(pencilmarkColor),
+				_ => defaultBrush
+			},
+			_ => throw new ArgumentOutOfRangeException(nameof(cellStatus))
+		};
+	}
 }

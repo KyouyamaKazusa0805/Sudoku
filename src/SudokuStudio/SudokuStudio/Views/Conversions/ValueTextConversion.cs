@@ -17,10 +17,15 @@ internal static class ValueTextConversion
 		short candidatesMask,
 		Color modifiableColor,
 		Color givenColor,
-		Color deltaColor
-	) => new SolidColorBrush(
-		solution[cell] != (TrailingZeroCount(candidatesMask) is var digit and not InvalidValidOfTrailingZeroCountMethodFallback ? digit : -1)
-			? deltaColor
-			: grid.GetStatus(cell) == CellStatus.Modifiable ? modifiableColor : givenColor
-	);
+		Color deltaColor,
+		bool useDifferentColorToDisplayDeltaDigits
+	)
+	{
+		var digit = TrailingZeroCount(candidatesMask) is var d and not InvalidValidOfTrailingZeroCountMethodFallback ? d : -1;
+		return new SolidColorBrush(
+			solution[cell] != digit && useDifferentColorToDisplayDeltaDigits
+				? deltaColor
+				: grid.GetStatus(cell) == CellStatus.Modifiable ? modifiableColor : givenColor
+		);
+	}
 }
