@@ -29,7 +29,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private int _selectedCell;
 
 	/// <inheritdoc cref="CoordinateLabelDisplayKind"/>
-	private CoordinateLabelDisplayKind _coordinateLabelDisplayKind;
+	private CoordinateLabelDisplayKind _coordinateLabelDisplayKind = CoordinateLabelDisplayKind.RxCy;
+
+	/// <inheritdoc cref="CoordinateLabelDisplayMode"/>
+	private CoordinateLabelDisplayMode _coordinateLabelDisplayMode = CoordinateLabelDisplayMode.UpperAndLeft;
 
 	/// <inheritdoc cref="GivenColor"/>
 	private Color _givenColor = Colors.Black;
@@ -206,9 +209,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates the displaying kind of coordinate labels.
 	/// </summary>
 	/// <remarks>
-	/// For more information please visit <see cref="Controls.CoordinateLabelDisplayKind"/>.
+	/// For more information please visit <see cref="Interaction.CoordinateLabelDisplayKind"/>.
 	/// </remarks>
-	/// <seealso cref="Controls.CoordinateLabelDisplayKind"/>
+	/// <seealso cref="Interaction.CoordinateLabelDisplayKind"/>
 	public CoordinateLabelDisplayKind CoordinateLabelDisplayKind
 	{
 		get => _coordinateLabelDisplayKind;
@@ -223,6 +226,30 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			_coordinateLabelDisplayKind = value;
 
 			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelDisplayKind)));
+		}
+	}
+
+	/// <summary>
+	/// Indicates the displaying mode of coordinate labels.
+	/// </summary>
+	/// <remarks>
+	/// For more information please visit <see cref="Interaction.CoordinateLabelDisplayMode"/>.
+	/// </remarks>
+	/// <seealso cref="Interaction.CoordinateLabelDisplayMode"/>
+	public CoordinateLabelDisplayMode CoordinateLabelDisplayMode
+	{
+		get => _coordinateLabelDisplayMode;
+
+		set
+		{
+			if (_coordinateLabelDisplayMode == value)
+			{
+				return;
+			}
+
+			_coordinateLabelDisplayMode = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelDisplayMode)));
 		}
 	}
 

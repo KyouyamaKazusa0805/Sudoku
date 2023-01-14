@@ -15,8 +15,11 @@ internal static class CoordinateLabelConversion
 			CoordinateLabelDisplayKind.K9 => $"{(isRow ? (char)(index + '1') : (char)(index + 'A'))}"
 		};
 
-	public static Visibility ToCoordinateLabelVisibility(CoordinateLabelDisplayKind coordinateKind)
-		=> coordinateKind == CoordinateLabelDisplayKind.None ? Visibility.Collapsed : Visibility.Visible;
+	public static Visibility ToCoordinateLabelVisibility(CoordinateLabelDisplayMode mode)
+		=> mode == CoordinateLabelDisplayMode.None ? Visibility.Collapsed : Visibility.Visible;
+
+	public static Visibility ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode mode)
+		=> mode == CoordinateLabelDisplayMode.FourDirection ? Visibility.Visible : Visibility.Collapsed;
 
 	public static Brush GetBrush(Color color) => new SolidColorBrush(color);
 }
