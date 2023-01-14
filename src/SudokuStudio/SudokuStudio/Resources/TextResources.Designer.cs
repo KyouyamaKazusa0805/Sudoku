@@ -70,6 +70,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New puzzle.
+        /// </summary>
+        internal static string AnalyzePage_NewPuzzle {
+            get {
+                return ResourceManager.GetString("AnalyzePage_NewPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analyze.
         /// </summary>
         internal static string MainWindow_Analyze {

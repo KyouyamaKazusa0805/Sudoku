@@ -20,7 +20,7 @@
 /// </item>
 /// </list>
 /// </remarks>
-public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
+public sealed class PatternBasedPuzzleGenerator : IPuzzler
 {
 	/// <summary>
 	/// Indicates the times that can retry a new pattern without updating sudoku solution template.
@@ -105,13 +105,15 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// Creates a sudoku puzzle via the specified trial times.
 	/// </summary>
 	/// <param name="times">The trial times.</param>
-	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+	/// <param name="cancellationToken">
+	/// <inheritdoc cref="Generate(CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// </param>
 	/// <returns>
 	/// If user has canceled the operation or the maximum trial times has been reached, <see cref="Grid.Undefined"/>;
 	/// otherwise, the valid grid.
 	/// </returns>
 	/// <exception cref="InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
-	public Grid Generate(int times, CancellationToken cancellationToken = default)
+	public unsafe Grid Generate(int times, CancellationToken cancellationToken = default)
 	{
 		for (var trialTimeIndex = 0; trialTimeIndex < times; trialTimeIndex++)
 		{
@@ -149,8 +151,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 					{
 						if (_baseCandidates is not null)
 						{
-							throw new InvalidOperationException(
-								$"The field {nameof(_baseCandidates)} is invalid to be set as the initial case.");
+							throw new InvalidOperationException($"The field {nameof(_baseCandidates)} is invalid to be set as the initial case.");
 						}
 
 						continue;
@@ -199,6 +200,16 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	ReturnDefault:
 		return Grid.Undefined;
 	}
+
+	/// <summary>
+	/// Creates a sudoku puzzle asynchoronously.
+	/// </summary>
+	/// <param name="cancellationToken">
+	/// <inheritdoc cref="Generate(CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// </param>
+	/// <returns>A <see cref="Task{TResult}"/> instance that returns a <see cref="Grid"/> value.</returns>
+	public async Task<Grid> GenerateAsync(CancellationToken cancellationToken = default)
+		=> await Task.Run(() => Generate(cancellationToken), cancellationToken);
 
 	/// <summary>
 	/// To shuffle the grid.
@@ -254,6 +265,7 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 		{
 			var cell = _random.Next(81);
 			result |= GetCells(cell / 9, cell % 9);
+
 			if (result.Count - resultCellsCount is 1 or 0 or -1)
 			{
 				return result;
@@ -264,8 +276,8 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <summary>
 	/// Randomize to generate three candidates at different places.
 	/// </summary>
-	/// <returns></returns>
-	private (int, int, int) RandomizeThreeDigits()
+	/// <returns>A triplet of cells.</returns>
+	private unsafe (int, int, int) RandomizeThreeDigits()
 	{
 		using scoped var list = new ValueList<int>(3);
 		while (true)

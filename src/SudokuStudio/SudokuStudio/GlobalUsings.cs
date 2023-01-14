@@ -26,6 +26,7 @@ global using Microsoft.UI.Xaml.Markup;
 global using Microsoft.UI.Xaml.Media;
 global using Microsoft.UI.Xaml.Media.Animation;
 global using Sudoku.Concepts;
+global using Sudoku.Generating.Puzzlers;
 global using Sudoku.Text;
 global using Sudoku.Text.Notations;
 global using SudokuStudio.AppLifecycle;

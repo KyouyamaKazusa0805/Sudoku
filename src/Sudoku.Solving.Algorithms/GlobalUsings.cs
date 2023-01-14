@@ -11,6 +11,7 @@ global using System.Numerics;
 global using System.Runtime.CompilerServices;
 global using System.Text.RegularExpressions;
 global using System.Threading;
+global using System.Threading.Tasks;
 global using Sudoku.Concepts;
 global using Sudoku.Linq;
 global using Sudoku.Solving.Algorithms.Backtracking;

@@ -494,12 +494,23 @@ if (student is (name: var name, age: >= 18))
             Creates a sudoku puzzle via the specified trial times.
             </summary>
             <param name="times">The trial times.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <param name="cancellationToken">
+            <inheritdoc cref="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            </param>
             <returns>
             If user has canceled the operation or the maximum trial times has been reached, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>;
             otherwise, the valid grid.
             </returns>
             <exception cref="T:System.InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.GenerateAsync(System.Threading.CancellationToken)">
+            <summary>
+            Creates a sudoku puzzle asynchoronously.
+            </summary>
+            <param name="cancellationToken">
+            <inheritdoc cref="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            </param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> instance that returns a <see cref="T:Sudoku.Concepts.Grid"/> value.</returns>
         </member>
         <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Shuffle(Sudoku.Concepts.Grid@)">
             <summary>
@@ -523,7 +534,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Randomize to generate three candidates at different places.
             </summary>
-            <returns></returns>
+            <returns>A triplet of cells.</returns>
         </member>
         <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.GetCells(System.Int32,System.Int32)">
             <summary>

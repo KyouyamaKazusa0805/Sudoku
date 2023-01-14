@@ -3,8 +3,17 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Defines a new page that stores a set of controls to analyze a sudoku grid.
 /// </summary>
-public sealed partial class AnalyzePage : Page
+public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 {
+	/// <summary>
+	/// Defines a default puzzle generator.
+	/// </summary>
+	private static readonly PatternBasedPuzzleGenerator Generator = new();
+
+
+	/// <inheritdoc cref="GeneratorIsNotRunning"/>
+	private bool _generatorIsNotRunning = true;
+
 	/// <summary>
 	/// Defines a key-value pair of functions that is used for routing hotkeys.
 	/// </summary>
@@ -19,6 +28,31 @@ public sealed partial class AnalyzePage : Page
 		InitializeComponent();
 		InitializeField();
 	}
+
+
+	/// <summary>
+	/// Indicates whether the generator is not running currently.
+	/// </summary>
+	private bool GeneratorIsNotRunning
+	{
+		get => _generatorIsNotRunning;
+
+		set
+		{
+			if (_generatorIsNotRunning == value)
+			{
+				return;
+			}
+
+			_generatorIsNotRunning = value;
+
+			PropertyChanged?.Invoke(this, new(nameof(GeneratorIsNotRunning)));
+		}
+	}
+
+
+	/// <inheritdoc/>
+	public event PropertyChangedEventHandler? PropertyChanged;
 
 
 	/// <inheritdoc/>
@@ -51,4 +85,16 @@ public sealed partial class AnalyzePage : Page
 			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Z), SudokuPane.UndoStep),
 			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Y), SudokuPane.RedoStep)
 		};
+
+
+	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		GeneratorIsNotRunning = false;
+
+		var grid = await Generator.GenerateAsync();
+
+		GeneratorIsNotRunning = true;
+
+		SudokuPane.Puzzle = grid;
+	}
 }
