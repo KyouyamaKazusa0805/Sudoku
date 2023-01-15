@@ -3,6 +3,7 @@
 /// <summary>
 /// Defines a multiple forcing chains.
 /// </summary>
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 internal sealed partial class MultipleForcingChains :
 	IEnumerable<(byte CellOrDigit, ChainNode Potential)>,
 	IEquatable<MultipleForcingChains>,
@@ -132,16 +133,6 @@ internal sealed partial class MultipleForcingChains :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(MultipleForcingChains? left, MultipleForcingChains? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(MultipleForcingChains? left, MultipleForcingChains? right) => !(left == right);
 
 
 	/// <summary>

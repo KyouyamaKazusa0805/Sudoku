@@ -4,6 +4,7 @@
 /// Defines a <see cref="Grid"/> library that stores in a file, using lines to describe puzzles.
 /// </summary>
 /// <seealso cref="Grid"/>
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public sealed partial class GridLibrary : IAsyncEnumerable<Grid>, IEquatable<GridLibrary>, IEqualityOperators<GridLibrary, GridLibrary, bool>
 {
 	/// <summary>
@@ -103,14 +104,4 @@ public sealed partial class GridLibrary : IAsyncEnumerable<Grid>, IEquatable<Gri
 			failedCallback?.Invoke();
 		}
 	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(GridLibrary? left, GridLibrary? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(GridLibrary? left, GridLibrary? right) => !(left == right);
 }

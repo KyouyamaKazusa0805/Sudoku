@@ -3,6 +3,7 @@
 /// <summary>
 /// Indicates a puzzle library.
 /// </summary>
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 internal sealed partial class PuzzleLibraryData : IEquatable<PuzzleLibraryData>, IEqualityOperators<PuzzleLibraryData, PuzzleLibraryData, bool>
 {
 	/// <summary>
@@ -55,14 +56,4 @@ internal sealed partial class PuzzleLibraryData : IEquatable<PuzzleLibraryData>,
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(GroupId), nameof(Name))]
 	public override partial int GetHashCode();
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(PuzzleLibraryData? left, PuzzleLibraryData? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(PuzzleLibraryData? left, PuzzleLibraryData? right) => !(left == right);
 }

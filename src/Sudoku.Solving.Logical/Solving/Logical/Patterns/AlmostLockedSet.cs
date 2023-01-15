@@ -8,6 +8,7 @@
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public sealed partial class AlmostLockedSet : IEquatable<AlmostLockedSet>, IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>
 {
 	/// <summary>
@@ -221,14 +222,4 @@ public sealed partial class AlmostLockedSet : IEquatable<AlmostLockedSet>, IEqua
 
 		return result.ToArray();
 	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(AlmostLockedSet? left, AlmostLockedSet? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(AlmostLockedSet? left, AlmostLockedSet? right) => !(left == right);
 }

@@ -2280,12 +2280,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.op_Equality(Sudoku.Solving.Logical.Patterns.MultipleForcingChains,Sudoku.Solving.Logical.Patterns.MultipleForcingChains)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.op_Inequality(Sudoku.Solving.Logical.Patterns.MultipleForcingChains,Sudoku.Solving.Logical.Patterns.MultipleForcingChains)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.op_Implicit(System.Collections.Generic.Dictionary{System.Byte,Sudoku.Solving.Logical.Patterns.ChainNode})~Sudoku.Solving.Logical.Patterns.MultipleForcingChains">
             <summary>
             Implicit cast from <see cref="T:System.Collections.Generic.Dictionary`2"/> to <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains"/>.
@@ -2313,6 +2307,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.op_Equality(Sudoku.Solving.Logical.Patterns.MultipleForcingChains,Sudoku.Solving.Logical.Patterns.MultipleForcingChains)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.op_Inequality(Sudoku.Solving.Logical.Patterns.MultipleForcingChains,Sudoku.Solving.Logical.Patterns.MultipleForcingChains)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Patterns.CellOrDigitComparer">
             <summary>
