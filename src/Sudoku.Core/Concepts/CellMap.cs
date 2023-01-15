@@ -22,6 +22,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [IsLargeStruct]
 [JsonConverter(typeof(Converter))]
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
@@ -1160,14 +1161,6 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) <= 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(scoped in CellMap left, scoped in CellMap right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(scoped in CellMap left, scoped in CellMap right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

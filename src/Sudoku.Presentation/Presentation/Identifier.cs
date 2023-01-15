@@ -4,6 +4,7 @@
 /// Defines an identifier that can differ colors.
 /// </summary>
 [JsonConverter(typeof(JsonConverter))]
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier, bool>
 {
 #pragma warning disable CS0618
@@ -167,15 +168,6 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// <returns>The result <see cref="Identifier"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Identifier FromNamedKind(DisplayColorKind namedKind) => new(namedKind);
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Identifier left, Identifier right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Identifier left, Identifier right) => !(left == right);
 
 
 	/// <summary>

@@ -6,9 +6,4 @@
 [AttributeUsage(AttributeTargets.Struct, Inherited = false)]
 public sealed class IsLargeStructAttribute : Attribute
 {
-	/// <summary>
-	/// Indicates the suggested member name.
-	/// </summary>
-	[DisallowNull]
-	public string? SuggestedMemberName { get; init; }
 }

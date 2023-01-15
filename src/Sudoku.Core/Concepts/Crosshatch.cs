@@ -5,6 +5,7 @@
 /// (or some cells), and eliminates candidates in some cells. The concept is commonly used
 /// by logical technique "Hidden Single".
 /// </summary>
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<Crosshatch, Crosshatch, bool>
 {
 	/// <summary>
@@ -302,13 +303,4 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 			return result;
 		}
 	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Crosshatch left, Crosshatch right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Crosshatch left, Crosshatch right) => !(left == right);
 }

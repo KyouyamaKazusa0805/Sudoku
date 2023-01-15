@@ -8,6 +8,7 @@
 /// In the future, I'll re-consider about the design of this type.
 /// </i></remarks>
 [IsLargeStruct]
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public unsafe partial struct Candidates :
 	IEnumerable<int>,
 	IEquatable<Candidates>,
@@ -931,14 +932,6 @@ public unsafe partial struct Candidates :
 	/// <seealso cref="Reduce(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator /(scoped in Candidates candidates, int digit) => candidates.Reduce(digit);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(scoped in Candidates left, scoped in Candidates right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(scoped in Candidates left, scoped in Candidates right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

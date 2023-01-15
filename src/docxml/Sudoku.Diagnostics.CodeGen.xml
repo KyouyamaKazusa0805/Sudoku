@@ -4,6 +4,69 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoOverloadingOperatorGenerator">
+            <summary>
+            Defines a source generator that generates source code as operator overloading statements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverloadingOperatorGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Operator">
+            <summary>
+            Defines a kind of an operator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Operator.Equality">
+            <summary>
+            Indicates <c><see langword="operator"/> ==</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Operator.Inequality">
+            <summary>
+            Indicates <c><see langword="operator"/> !=</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
+            <summary>
+            Defines a gathered data tuple.
+            </summary>
+            <param name="OperatorKinds">The operator kinds.</param>
+            <param name="TypeSymbol">The type symbol.</param>
+            <param name="Compilation">Indicates the compilation.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Sudoku.Diagnostics.CodeGen.Generators.Operator,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.Compilation)">
+            <summary>
+            Defines a gathered data tuple.
+            </summary>
+            <param name="OperatorKinds">The operator kinds.</param>
+            <param name="TypeSymbol">The type symbol.</param>
+            <param name="Compilation">Indicates the compilation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.OperatorKinds">
+            <summary>The operator kinds.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.TypeSymbol">
+            <summary>The type symbol.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Compilation">
+            <summary>Indicates the compilation.</summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.GetEnumerator``1(``0)">
+            <summary>
+            Get an enumerator instance that is used by <see langword="foreach"/> loop.
+            </summary>
+            <typeparam name="T">The type of an enumeration.</typeparam>
+            <param name="this">The current field to be iterated.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerator`1"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DefaultOverriddenMembersGenerator">
             <summary>
             Defines a source generator that generates the source code for default-overridden members

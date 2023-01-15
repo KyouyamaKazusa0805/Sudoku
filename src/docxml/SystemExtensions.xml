@@ -1756,11 +1756,6 @@
             Indicates the type is a large structure.
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.IsLargeStructAttribute.SuggestedMemberName">
-            <summary>
-            Indicates the suggested member name.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.RequiresCompoundUsagesAttribute">
             <summary>
             Defines an attribute that requires an operator usage can only be a compound one.
@@ -2048,6 +2043,49 @@
             </remarks>
             <seealso cref="M:System.HashCode.Combine``1(``0)"/>
             <seealso cref="P:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.ExtraArguments"/>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.GeneratedOperator">
+            <summary>
+            Indicates the generated operator.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.None">
+            <summary>
+            Indicates the generated operator is none.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.Equality">
+            <summary>
+            Indicates the equality operator <c>==</c>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.Inequality">
+            <summary>
+            Indicates the inequality operator <c>!=</c>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.EqualityOperators">
+            <summary>
+            Indicates the equality operators (containing <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Equality"/> and <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Inequality"/>).
+            </summary>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Equality"/>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Inequality"/>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.GeneratedOverloadingOperatorAttribute">
+            <summary>
+            Defines an attribute that is applied to a type, specifying overloading operator information details.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.GeneratedOverloadingOperatorAttribute.#ctor(System.Diagnostics.CodeGen.GeneratedOperator)">
+            <summary>
+            Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedOverloadingOperatorAttribute"/> instance via the specified operator name.
+            </summary>
+            <param name="operator">The operator name.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.GeneratedOverloadingOperatorAttribute.Operator">
+            <summary>
+            Indicates the generated operator name.
+            </summary>
         </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute">
             <summary>
@@ -3732,12 +3770,6 @@
             <seealso cref="!:AppendRangeWithSeparatorUnsafe&lt;T&gt;(in T, int, delegate*&lt;in T, string?&gt;, string)"/>
             <seealso cref="M:System.Text.StringHandler.AppendRangeWithSeparatorRef``1(``0@,System.Int32,System.Text.StringHandlerRefAppender{``0},System.String)"/>
         </member>
-        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler,System.Text.StringHandler)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler,System.Text.StringHandler)">
-            <inheritdoc/>
-        </member>
         <member name="T:System.Text.StringHandler.Enumerator">
             <summary>
             Encapsulates the enumerator of this collection.
@@ -3778,6 +3810,12 @@
         </member>
         <member name="M:System.Text.StringHandler.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler,System.Text.StringHandler)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler,System.Text.StringHandler)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:System.Text.StringHandlerRefAppender`1">
             <summary>
@@ -4813,22 +4851,6 @@ fixed (short* ptr = instance)
         <member name="M:System.Utf8Char.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:System.Utf8Char.op_Equality(System.Utf8Char,System.Utf8Char)">
-            <summary>
-            Determines whether two characters with UTF-8 format are considered equal.
-            </summary>
-            <param name="left">The first <see cref="T:System.Utf8Char"/> instance to be compared.</param>
-            <param name="right">The second <see cref="T:System.Utf8Char"/> instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Utf8Char.op_Inequality(System.Utf8Char,System.Utf8Char)">
-            <summary>
-            Determines whether two characters with UTF-8 format are not considered equal.
-            </summary>
-            <param name="left">The first <see cref="T:System.Utf8Char"/> instance to be compared.</param>
-            <param name="right">The second <see cref="T:System.Utf8Char"/> instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="M:System.Utf8Char.op_GreaterThan(System.Utf8Char,System.Utf8Char)">
             <inheritdoc/>
         </member>
@@ -4895,6 +4917,12 @@ fixed (short* ptr = instance)
             Implicitly cast from <see cref="T:System.Byte"/> instance to <see cref="T:System.Utf8Char"/> instance.
             </summary>
             <param name="byteValue">The <see cref="T:System.Byte"/> instance.</param>
+        </member>
+        <member name="M:System.Utf8Char.op_Equality(System.Utf8Char,System.Utf8Char)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_Inequality(System.Utf8Char,System.Utf8Char)">
+            <inheritdoc/>
         </member>
         <member name="T:System.Utf8String">
             <summary>
@@ -5035,12 +5063,6 @@ fixed (short* ptr = instance)
             <param name="right">The right-side instance to be catenated.</param>
             <returns>The final string.</returns>
         </member>
-        <member name="M:System.Utf8String.op_Equality(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.op_Inequality(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Utf8String.op_GreaterThan(System.Utf8String,System.Utf8String)">
             <inheritdoc/>
         </member>
@@ -5098,6 +5120,12 @@ fixed (short* ptr = instance)
             Implicitly cast from <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Byte"/> to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
+        </member>
+        <member name="M:System.Utf8String.op_Equality(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_Inequality(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
         </member>
         <member name="T:System.Numerics.BitOperationsExensions">
             <summary>

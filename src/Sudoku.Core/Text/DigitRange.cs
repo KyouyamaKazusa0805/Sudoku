@@ -3,6 +3,7 @@
 /// <summary>
 /// Defines a digit range.
 /// </summary>
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public readonly partial struct DigitRange : IEquatable<DigitRange>, IEqualityOperators<DigitRange, DigitRange, bool>, ISimpleParsable<DigitRange>
 {
 	/// <summary>
@@ -160,15 +161,6 @@ public readonly partial struct DigitRange : IEquatable<DigitRange>, IEqualityOpe
 			return result;
 		}
 	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(DigitRange left, DigitRange right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(DigitRange left, DigitRange right) => !(left == right);
 
 
 	/// <summary>

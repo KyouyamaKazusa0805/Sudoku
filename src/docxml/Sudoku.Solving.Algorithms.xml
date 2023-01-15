@@ -286,12 +286,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Equality(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Inequality(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_GreaterThan(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
             <inheritdoc/>
         </member>
@@ -309,6 +303,12 @@ if (student is (name: var name, age: >= 18))
             Converts the current <see cref="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk"/> instance into a <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
             <param name="chunk">The <see cref="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Equality(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Inequality(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.ExercisePuzzlers.IExerciseGenerator">
             <summary>

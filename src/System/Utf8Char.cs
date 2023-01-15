@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents a character as a UTF-8 code unit.
 /// </summary>
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
@@ -127,24 +128,6 @@ public readonly partial struct Utf8Char :
 			? CompareTo(comparer)
 			: throw new ArgumentException("Cannot operate because the argument is not a UTF-8 formatted character.", nameof(obj));
 
-
-	/// <summary>
-	/// Determines whether two characters with UTF-8 format are considered equal.
-	/// </summary>
-	/// <param name="left">The first <see cref="Utf8Char"/> instance to be compared.</param>
-	/// <param name="right">The second <see cref="Utf8Char"/> instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Utf8Char left, Utf8Char right) => left.Equals(right);
-
-	/// <summary>
-	/// Determines whether two characters with UTF-8 format are not considered equal.
-	/// </summary>
-	/// <param name="left">The first <see cref="Utf8Char"/> instance to be compared.</param>
-	/// <param name="right">The second <see cref="Utf8Char"/> instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Utf8Char left, Utf8Char right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

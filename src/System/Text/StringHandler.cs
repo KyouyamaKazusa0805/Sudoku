@@ -39,6 +39,7 @@ namespace System.Text;
 /// <seealso cref="DefaultInterpolatedStringHandler"/>
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public unsafe ref partial struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
@@ -1488,15 +1489,6 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ElementToStringConverter<T>(scoped in T @this) where T : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(scoped StringHandler left, scoped StringHandler right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(scoped StringHandler left, scoped StringHandler right) => !(left == right);
 
 
 	/// <summary>

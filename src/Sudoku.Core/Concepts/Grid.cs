@@ -11,6 +11,7 @@ using static Helper;
 [IsLargeStruct]
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public unsafe partial struct Grid :
 	IEnumerable<int>,
 	IEqualityOperators<Grid, Grid, bool>,
@@ -1415,14 +1416,6 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IParsable<Grid>.TryParse(string? s, IFormatProvider? provider, out Grid result) => s is not null && TryParse(s, out result);
 
-
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(scoped in Grid left, scoped in Grid right) => left.Equals(right);
-
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(scoped in Grid left, scoped in Grid right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
