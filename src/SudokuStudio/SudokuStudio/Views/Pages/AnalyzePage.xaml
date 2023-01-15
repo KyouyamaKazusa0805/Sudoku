@@ -17,9 +17,9 @@
 			</AppBar>
 			<c:SudokuPane
 				x:Name="SudokuPane" Width="610" Height="610" HorizontalAlignment="Left" VerticalAlignment="Top"
-				SelectedCell="-1" ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code"
+				SelectedCell="-1" ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code" CoordinateLabelFont="Cascadia Code"
 				CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection"
-				CoordinateLabelFont="Cascadia Code" ValueFontScale=".85" PencilmarkFontScale=".3"
+				ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4"
 				UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True"
 				Puzzle="{m:Grid Text='..38......8..16...5....29..9.....23..2..3..4..46.....7..72....1...46..8......15..'}" />
 		</StackPanel>
