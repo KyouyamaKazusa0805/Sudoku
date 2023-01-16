@@ -2215,7 +2215,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="T:System.Diagnostics.CodeGen.NotifyPropertyChangedBackingFieldAttribute">
+        <member name="T:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute">
             <summary>
             Defines an attribute that is used for source generation on properties.
             </summary>

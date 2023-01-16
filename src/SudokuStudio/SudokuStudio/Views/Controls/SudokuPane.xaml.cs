@@ -13,37 +13,37 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates whether the pane displays for candidates.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private bool _displayCandidates = true;
 
 	/// <summary>
 	/// Indicates whether the pane displays for delta digits using different colors.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private bool _useDifferentColorToDisplayDeltaDigits = true;
 
 	/// <summary>
 	/// Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private double _valueFontScale = 1.0;
 
 	/// <summary>
 	/// Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private double _pencilmarkFontScale = 0.33;
 
 	/// <summary>
 	/// Indicates the coordinate label font scale.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private double _coordinateLabelFontScale = 0.4;
 
 	/// <summary>
 	/// Indicates the currently selected cell.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private int _selectedCell;
 
 	/// <summary>
@@ -53,7 +53,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// For more information please visit <see cref="Interaction.CoordinateLabelDisplayKind"/>.
 	/// </remarks>
 	/// <seealso cref="Interaction.CoordinateLabelDisplayKind"/>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private CoordinateLabelDisplayKind _coordinateLabelDisplayKind = CoordinateLabelDisplayKind.RxCy;
 
 	/// <summary>
@@ -63,49 +63,49 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// For more information please visit <see cref="Interaction.CoordinateLabelDisplayMode"/>.
 	/// </remarks>
 	/// <seealso cref="Interaction.CoordinateLabelDisplayMode"/>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private CoordinateLabelDisplayMode _coordinateLabelDisplayMode = CoordinateLabelDisplayMode.UpperAndLeft;
 
 	/// <summary>
 	/// Indicates the given color.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private Color _givenColor = Colors.Black;
 
 	/// <summary>
 	/// Indicates the modifiable color.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private Color _modifiableColor = Colors.Blue;
 
 	/// <summary>
 	/// Indicates the pencilmark color.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private Color _pencilmarkColor = new() { A = 255, R = 100, G = 100, B = 100 };
 
 	/// <summary>
 	/// Indicates the coordinate label color.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private Color _coordinateLabelColor = new() { A = 255, R = 100, G = 100, B = 100 };
 
 	/// <summary>
 	/// Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private Color _deltaCandidateColor = new() { A = 255, R = 255, G = 185, B = 185 };
 
 	/// <summary>
 	/// Indicates the color that is used for displaying cell digits that are wrongly filled.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private Color _deltaCellColor = new() { A = 255, R = 255 };
 
 	/// <summary>
 	/// Indicates the border color.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private Color _borderColor = Colors.Black;
 
 	/// <inheritdoc cref="Puzzle"/>
@@ -114,19 +114,19 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the value font.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private FontFamily _valueFont = new("Tahoma");
 
 	/// <summary>
 	/// Indicates the candidate font.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private FontFamily _pencilmarkFont = new("Tahoma");
 
 	/// <summary>
 	/// Indicates the coordinate label font.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private FontFamily _coordinateLabelFont = new("Tahoma");
 
 	/// <summary>

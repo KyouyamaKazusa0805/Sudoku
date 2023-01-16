@@ -11,7 +11,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					"System.Diagnostics.CodeGen.NotifyPropertyChangedBackingFieldAttribute",
+					"System.Diagnostics.CodeGen.NotifyBackingFieldAttribute",
 					static (node, _)
 						=> node is VariableDeclaratorSyntax
 						{
@@ -91,7 +91,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 									: EqualityComparisonMode.EqualityComparerDefaultInstance;
 
 
-						return new(fieldName, propertyName, fieldSymbol, type, mode);
+						return new(propertyName, fieldSymbol, type, mode);
 
 
 						bool containsPropertyChangedEvent(IEventSymbol e)
@@ -122,9 +122,13 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					var type = group.Key;
 
 					var propertyDeclarations = new List<string>();
-					foreach (var (field, property, fieldSymbol, _, mode) in group)
+					foreach (var (property, fieldSymbol, _, mode) in group)
 					{
-						var fieldType = fieldSymbol.Type;
+						if (fieldSymbol is not { Name: var field, Type: var fieldType })
+						{
+							continue;
+						}
+
 						var fieldTypeStr = fieldType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 						var valueComparisonCode = mode switch
 						{
@@ -221,12 +225,11 @@ file enum EqualityComparisonMode
 /// <summary>
 /// Defines a gathered data tuple.
 /// </summary>
-/// <param name="OriginalFieldName">Indicates the original field name.</param>
 /// <param name="PropertyName">The property name.</param>
 /// <param name="FieldSymbol">Indicates the field symbol.</param>
 /// <param name="Type">Indicates the containing type symbol.</param>
-/// <param name="EqualityComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
-file readonly record struct Data(string OriginalFieldName, string PropertyName, IFieldSymbol FieldSymbol, INamedTypeSymbol Type, EqualityComparisonMode EqualityComparisonMode);
+/// <param name="ComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
+file readonly record struct Data(string PropertyName, IFieldSymbol FieldSymbol, INamedTypeSymbol Type, EqualityComparisonMode ComparisonMode);
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions

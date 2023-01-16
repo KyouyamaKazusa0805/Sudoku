@@ -23,13 +23,13 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the candidates mask.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private short _candidatesMask = 511;
 
 	/// <summary>
 	/// Indicates the cell status.
 	/// </summary>
-	[NotifyPropertyChangedBackingField]
+	[NotifyBackingField]
 	private CellStatus _status = CellStatus.Empty;
 
 
