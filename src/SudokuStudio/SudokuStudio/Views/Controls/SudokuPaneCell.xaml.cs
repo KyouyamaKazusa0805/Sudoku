@@ -6,9 +6,6 @@ namespace SudokuStudio.Views.Controls;
 /// <seealso cref="SudokuPane"/>
 public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 {
-	/// <inheritdoc cref="CandidatesMask"/>
-	private short _candidatesMask = 511;
-
 	/// <summary>
 	/// Indicates the selected cell. The value is temporarily assigned into here, from <see cref="BasePane"/> property.
 	/// </summary>
@@ -23,7 +20,16 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 	/// <seealso cref="Flyout_Opening(object, object)"/>
 	private int _temporarySelectedCell = -1;
 
-	/// <inheritdoc cref="CellStatus"/>
+	/// <summary>
+	/// Indicates the candidates mask.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
+	private short _candidatesMask = 511;
+
+	/// <summary>
+	/// Indicates the cell status.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private CellStatus _status = CellStatus.Empty;
 
 
@@ -32,46 +38,6 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public SudokuPaneCell() => InitializeComponent();
 
-
-	/// <summary>
-	/// Indicates the candidates mask.
-	/// </summary>
-	public short CandidatesMask
-	{
-		get => _candidatesMask;
-
-		set
-		{
-			if (_candidatesMask == value)
-			{
-				return;
-			}
-
-			_candidatesMask = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(CandidatesMask)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the cell status.
-	/// </summary>
-	public CellStatus CellStatus
-	{
-		get => _status;
-
-		set
-		{
-			if (_status == value)
-			{
-				return;
-			}
-
-			_status = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(CellStatus)));
-		}
-	}
 
 	/// <summary>
 	/// Indicates the base pane.

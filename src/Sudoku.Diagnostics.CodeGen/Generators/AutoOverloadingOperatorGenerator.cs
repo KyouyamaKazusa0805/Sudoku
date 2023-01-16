@@ -9,22 +9,29 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(
-			context.SyntaxProvider.ForAttributeWithMetadataName(
-				"System.Diagnostics.CodeGen.GeneratedOverloadingOperatorAttribute",
-				static (node, _)
-					=> node is TypeDeclarationSyntax { Modifiers: var m and not [] } and (StructDeclarationSyntax or ClassDeclarationSyntax)
-					&& m.Any(SyntaxKind.PartialKeyword),
-				static (gasc, ct)
-					=> gasc switch
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					"System.Diagnostics.CodeGen.GeneratedOverloadingOperatorAttribute",
+					static (node, _)
+						=> node is TypeDeclarationSyntax { Modifiers: var m and not [] } and (StructDeclarationSyntax or ClassDeclarationSyntax)
+						&& m.Any(SyntaxKind.PartialKeyword),
+					static (gasc, ct) =>
 					{
+						if (gasc is not
+							{
+								Attributes: [{ ConstructorArguments: [{ Value: int rawValue and not 0 }] }],
+								TargetSymbol: INamedTypeSymbol typeSymbol,
+								SemanticModel.Compilation: var compilation
+							})
 						{
-							Attributes: [{ ConstructorArguments: [{ Value: int rawValue and not 0 }] }],
-							TargetSymbol: INamedTypeSymbol typeSymbol,
-							SemanticModel.Compilation: var compilation
-						} => new Data((Operator)rawValue, typeSymbol, compilation),
-						_ => (Data?)null
+							return (Data?)null;
+						}
+
+						return new((Operator)rawValue, typeSymbol, compilation);
 					}
-			).Collect(),
+				)
+				.Where(static data => data is not null)
+				.Collect(),
 			(spc, data) =>
 			{
 				var codeSnippet = new List<string>();

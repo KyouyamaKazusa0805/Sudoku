@@ -10,61 +10,123 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	private readonly Stack<Grid> _undoStack = new(), _redoStack = new();
 
-	/// <inheritdoc cref="DisplayCandidates"/>
+	/// <summary>
+	/// Indicates whether the pane displays for candidates.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private bool _displayCandidates = true;
 
-	/// <inheritdoc cref="UseDifferentColorToDisplayDeltaDigits"/>
+	/// <summary>
+	/// Indicates whether the pane displays for delta digits using different colors.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private bool _useDifferentColorToDisplayDeltaDigits = true;
 
-	/// <inheritdoc cref="ValueFontScale"/>
+	/// <summary>
+	/// Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private double _valueFontScale = 1.0;
 
-	/// <inheritdoc cref="PencilmarkFontScale"/>
+	/// <summary>
+	/// Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private double _pencilmarkFontScale = 0.33;
 
-	/// <inheritdoc cref="CoordinateLabelFontScale"/>
+	/// <summary>
+	/// Indicates the coordinate label font scale.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private double _coordinateLabelFontScale = 0.4;
 
-	/// <inheritdoc cref="SelectedCell"/>
+	/// <summary>
+	/// Indicates the currently selected cell.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private int _selectedCell;
 
-	/// <inheritdoc cref="CoordinateLabelDisplayKind"/>
+	/// <summary>
+	/// Indicates the displaying kind of coordinate labels.
+	/// </summary>
+	/// <remarks>
+	/// For more information please visit <see cref="Interaction.CoordinateLabelDisplayKind"/>.
+	/// </remarks>
+	/// <seealso cref="Interaction.CoordinateLabelDisplayKind"/>
+	[NotifyPropertyChangedBackingField]
 	private CoordinateLabelDisplayKind _coordinateLabelDisplayKind = CoordinateLabelDisplayKind.RxCy;
 
-	/// <inheritdoc cref="CoordinateLabelDisplayMode"/>
+	/// <summary>
+	/// Indicates the displaying mode of coordinate labels.
+	/// </summary>
+	/// <remarks>
+	/// For more information please visit <see cref="Interaction.CoordinateLabelDisplayMode"/>.
+	/// </remarks>
+	/// <seealso cref="Interaction.CoordinateLabelDisplayMode"/>
+	[NotifyPropertyChangedBackingField]
 	private CoordinateLabelDisplayMode _coordinateLabelDisplayMode = CoordinateLabelDisplayMode.UpperAndLeft;
 
-	/// <inheritdoc cref="GivenColor"/>
+	/// <summary>
+	/// Indicates the given color.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private Color _givenColor = Colors.Black;
 
-	/// <inheritdoc cref="ModifiableColor"/>
+	/// <summary>
+	/// Indicates the modifiable color.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private Color _modifiableColor = Colors.Blue;
 
-	/// <inheritdoc cref="PencilmarkColor"/>
+	/// <summary>
+	/// Indicates the pencilmark color.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private Color _pencilmarkColor = new() { A = 255, R = 100, G = 100, B = 100 };
 
-	/// <inheritdoc cref="CoordinateLabelColor"/>
+	/// <summary>
+	/// Indicates the coordinate label color.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private Color _coordinateLabelColor = new() { A = 255, R = 100, G = 100, B = 100 };
 
-	/// <inheritdoc cref="DeltaCandidateColor"/>
+	/// <summary>
+	/// Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private Color _deltaCandidateColor = new() { A = 255, R = 255, G = 185, B = 185 };
 
-	/// <inheritdoc cref="DeltaCellColor"/>
+	/// <summary>
+	/// Indicates the color that is used for displaying cell digits that are wrongly filled.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private Color _deltaCellColor = new() { A = 255, R = 255 };
 
-	/// <inheritdoc cref="BorderColor"/>
+	/// <summary>
+	/// Indicates the border color.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private Color _borderColor = Colors.Black;
 
 	/// <inheritdoc cref="Puzzle"/>
 	private Grid _puzzle = Grid.Empty;
 
-	/// <inheritdoc cref="ValueFont"/>
+	/// <summary>
+	/// Indicates the value font.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private FontFamily _valueFont = new("Tahoma");
 
-	/// <inheritdoc cref="PencilmarkFont"/>
+	/// <summary>
+	/// Indicates the candidate font.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private FontFamily _pencilmarkFont = new("Tahoma");
 
-	/// <inheritdoc cref="CoordinateLabelFont"/>
+	/// <summary>
+	/// Indicates the coordinate label font.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private FontFamily _coordinateLabelFont = new("Tahoma");
 
 	/// <summary>
@@ -86,314 +148,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 
 	/// <summary>
-	/// Indicates whether the pane displays for candidates.
-	/// </summary>
-	public bool DisplayCandidates
-	{
-		get => _displayCandidates;
-
-		set
-		{
-			if (_displayCandidates == value)
-			{
-				return;
-			}
-
-			_displayCandidates = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(DisplayCandidates)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates whether the pane displays for delta digits using different colors.
-	/// </summary>
-	public bool UseDifferentColorToDisplayDeltaDigits
-	{
-		get => _useDifferentColorToDisplayDeltaDigits;
-
-		set
-		{
-			if (_useDifferentColorToDisplayDeltaDigits == value)
-			{
-				return;
-			}
-
-			_useDifferentColorToDisplayDeltaDigits = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(UseDifferentColorToDisplayDeltaDigits)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.
-	/// </summary>
-	public double ValueFontScale
-	{
-		get => _valueFontScale;
-
-		set
-		{
-			if (_valueFontScale.NearlyEquals(value, 1E-2))
-			{
-				return;
-			}
-
-			_valueFontScale = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(ValueFontScale)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
-	/// </summary>
-	public double PencilmarkFontScale
-	{
-		get => _pencilmarkFontScale;
-
-		set
-		{
-			if (_pencilmarkFontScale.NearlyEquals(value, 1E-2))
-			{
-				return;
-			}
-
-			_pencilmarkFontScale = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(PencilmarkFontScale)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the coordinate label font scale.
-	/// </summary>
-	public double CoordinateLabelFontScale
-	{
-		get => _coordinateLabelFontScale;
-
-		set
-		{
-			if (_coordinateLabelFontScale.NearlyEquals(value, 1E-2))
-			{
-				return;
-			}
-
-			_coordinateLabelFontScale = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelFontScale)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the currently selected cell.
-	/// </summary>
-	public int SelectedCell
-	{
-		get => _selectedCell;
-
-		set
-		{
-			if (_selectedCell == value)
-			{
-				return;
-			}
-
-			_selectedCell = Clamp(value, -1, 80);
-
-			PropertyChanged?.Invoke(this, new(nameof(SelectedCell)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the displaying kind of coordinate labels.
-	/// </summary>
-	/// <remarks>
-	/// For more information please visit <see cref="Interaction.CoordinateLabelDisplayKind"/>.
-	/// </remarks>
-	/// <seealso cref="Interaction.CoordinateLabelDisplayKind"/>
-	public CoordinateLabelDisplayKind CoordinateLabelDisplayKind
-	{
-		get => _coordinateLabelDisplayKind;
-
-		set
-		{
-			if (_coordinateLabelDisplayKind == value)
-			{
-				return;
-			}
-
-			_coordinateLabelDisplayKind = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelDisplayKind)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the displaying mode of coordinate labels.
-	/// </summary>
-	/// <remarks>
-	/// For more information please visit <see cref="Interaction.CoordinateLabelDisplayMode"/>.
-	/// </remarks>
-	/// <seealso cref="Interaction.CoordinateLabelDisplayMode"/>
-	public CoordinateLabelDisplayMode CoordinateLabelDisplayMode
-	{
-		get => _coordinateLabelDisplayMode;
-
-		set
-		{
-			if (_coordinateLabelDisplayMode == value)
-			{
-				return;
-			}
-
-			_coordinateLabelDisplayMode = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelDisplayMode)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the given color.
-	/// </summary>
-	public Color GivenColor
-	{
-		get => _givenColor;
-
-		set
-		{
-			if (_givenColor == value)
-			{
-				return;
-			}
-
-			_givenColor = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(GivenColor)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the modifiable color.
-	/// </summary>
-	public Color ModifiableColor
-	{
-		get => _modifiableColor;
-
-		set
-		{
-			if (_modifiableColor == value)
-			{
-				return;
-			}
-
-			_modifiableColor = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(ModifiableColor)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the pencilmark color.
-	/// </summary>
-	public Color PencilmarkColor
-	{
-		get => _pencilmarkColor;
-
-		set
-		{
-			if (_pencilmarkColor == value)
-			{
-				return;
-			}
-
-			_pencilmarkColor = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(PencilmarkColor)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the coordinate label color.
-	/// </summary>
-	public Color CoordinateLabelColor
-	{
-		get => _coordinateLabelColor;
-
-		set
-		{
-			if (_coordinateLabelColor == value)
-			{
-				return;
-			}
-
-			_coordinateLabelColor = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelColor)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
-	/// </summary>
-	public Color DeltaCandidateColor
-	{
-		get => _deltaCandidateColor;
-
-		set
-		{
-			if (_deltaCandidateColor == value)
-			{
-				return;
-			}
-
-			_deltaCandidateColor = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(DeltaCandidateColor)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the color that is used for displaying cell digits that are wrongly filled.
-	/// </summary>
-	public Color DeltaCellColor
-	{
-		get => _deltaCellColor;
-
-		set
-		{
-			if (_deltaCellColor == value)
-			{
-				return;
-			}
-
-			_deltaCellColor = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(DeltaCellColor)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the border color.
-	/// </summary>
-	public Color BorderColor
-	{
-		get => _borderColor;
-
-		set
-		{
-			if (_borderColor == value)
-			{
-				return;
-			}
-
-			_borderColor = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(BorderColor)));
-		}
-	}
-
-	/// <summary>
 	/// Indicates the target grid puzzle.
 	/// </summary>
 	public Grid Puzzle
@@ -403,66 +157,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		set => SetPuzzle(value, true);
 	}
 
-	/// <summary>
-	/// Indicates the value font.
-	/// </summary>
-	public FontFamily ValueFont
-	{
-		get => _valueFont;
-
-		set
-		{
-			if (_valueFont == value)
-			{
-				return;
-			}
-
-			_valueFont = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(ValueFont)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the candidate font.
-	/// </summary>
-	public FontFamily PencilmarkFont
-	{
-		get => _pencilmarkFont;
-
-		set
-		{
-			if (_pencilmarkFont == value)
-			{
-				return;
-			}
-
-			_pencilmarkFont = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(PencilmarkFont)));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the coordinate label font.
-	/// </summary>
-	public FontFamily CoordinateLabelFont
-	{
-		get => _coordinateLabelFont;
-
-		set
-		{
-			if (_coordinateLabelFont == value)
-			{
-				return;
-			}
-
-			_coordinateLabelFont = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(CoordinateLabelFont)));
-		}
-	}
-
+	
 	/// <summary>
 	/// Indicates the approximately-measured width and height value of a cell.
 	/// </summary>
@@ -603,7 +298,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		for (var i = 0; i < 81; i++)
 		{
 			var cellControl = _children[i];
-			cellControl.CellStatus = grid.GetStatus(i);
+			cellControl.Status = grid.GetStatus(i);
 			cellControl.CandidatesMask = grid.GetCandidates(i);
 		}
 	}

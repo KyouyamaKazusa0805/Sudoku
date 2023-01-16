@@ -2215,6 +2215,11 @@
             ]]></code>
             </remarks>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.NotifyPropertyChangedBackingFieldAttribute">
+            <summary>
+            Defines an attribute that is used for source generation on properties.
+            </summary>
+        </member>
         <member name="T:System.ArrayExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Array"/>.

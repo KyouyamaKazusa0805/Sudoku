@@ -22,4 +22,5 @@ internal static class Shortcuts
 	public const string GeneratedOverriddenMemberGetHashCode = "gom.ghc";
 	public const string GeneratedOverriddenMemberToString = "gom.ts";
 	public const string GeneratedOverloadingOperator = "goo";
+	public const string PropertyBinding = "pb";
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SudokuStudio.CodeGen</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyBindingGenerator">
+            <summary>
+            Defines a source generator that is used for binding properties.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyBindingGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
+            <summary>
+            Defines a gathered data tuple.
+            </summary>
+            <param name="OriginalFieldName">Indicates the original field name.</param>
+            <param name="PropertyName">The property name.</param>
+            <param name="FieldSymbol">Indicates the field symbol.</param>
+            <param name="Type">Indicates the containing type symbol.</param>
+            <param name="Compilation">Indicates the compilation.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(System.String,System.String,Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.Compilation)">
+            <summary>
+            Defines a gathered data tuple.
+            </summary>
+            <param name="OriginalFieldName">Indicates the original field name.</param>
+            <param name="PropertyName">The property name.</param>
+            <param name="FieldSymbol">Indicates the field symbol.</param>
+            <param name="Type">Indicates the containing type symbol.</param>
+            <param name="Compilation">Indicates the compilation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.OriginalFieldName">
+            <summary>Indicates the original field name.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PropertyName">
+            <summary>The property name.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.FieldSymbol">
+            <summary>Indicates the field symbol.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Type">
+            <summary>Indicates the containing type symbol.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Compilation">
+            <summary>Indicates the compilation.</summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.ToPascalCasing(System.String)">
+            <summary>
+            Converts the specified string in camel-casing into pascal-casing.
+            </summary>
+            <param name="this">The string.</param>
+            <returns>The converted result.</returns>
+        </member>
+        <member name="F:CodeGen.Constants.VersionValue">
+            <summary>
+            Indicates the version of this project.
+            </summary>
+        </member>
+    </members>
+</doc>

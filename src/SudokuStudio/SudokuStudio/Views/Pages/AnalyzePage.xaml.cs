@@ -11,7 +11,10 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	private static readonly PatternBasedPuzzleGenerator Generator = new();
 
 
-	/// <inheritdoc cref="GeneratorIsNotRunning"/>
+	/// <summary>
+	/// Indicates whether the generator is not running currently.
+	/// </summary>
+	[NotifyPropertyChangedBackingField]
 	private bool _generatorIsNotRunning = true;
 
 	/// <summary>
@@ -27,27 +30,6 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	{
 		InitializeComponent();
 		InitializeField();
-	}
-
-
-	/// <summary>
-	/// Indicates whether the generator is not running currently.
-	/// </summary>
-	private bool GeneratorIsNotRunning
-	{
-		get => _generatorIsNotRunning;
-
-		set
-		{
-			if (_generatorIsNotRunning == value)
-			{
-				return;
-			}
-
-			_generatorIsNotRunning = value;
-
-			PropertyChanged?.Invoke(this, new(nameof(GeneratorIsNotRunning)));
-		}
 	}
 
 
