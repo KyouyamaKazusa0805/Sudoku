@@ -12,6 +12,39 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyBindingGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode">
+            <summary>
+            Defines a mode to limit value's equality comparison.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.None">
+            <summary>
+            Indicates the mode is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.EqualityOperator">
+            <summary>
+            Indicates the comparison mode is to call <c><see langword="operator"/> ==</c> to check whether two instances are considered equal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.InstanceEqualsMethod">
+            <summary>
+            Indicates the comparison mode is to call <c><see cref="M:System.IEquatable`1.Equals(`0)"/></c>
+            to check whether two instances are considered equal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.InstanceCompareToMethod">
+            <summary>
+            Indicates the comparison mode is to call <c><see cref="M:System.IComparable`1.CompareTo(`0)"/></c>
+            to check whether two instances are considered equal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.EqualityComparerDefaultInstance">
+            <summary>
+            Indicates the comparison mode is to call <c><see cref="M:System.Collections.Generic.EqualityComparer`1.Equals(`0,`0)"/></c>
+            via instance <see cref="P:System.Collections.Generic.EqualityComparer`1.Default"/> to check whether two instances are considered equal.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
             <summary>
             Defines a gathered data tuple.
@@ -20,9 +53,9 @@
             <param name="PropertyName">The property name.</param>
             <param name="FieldSymbol">Indicates the field symbol.</param>
             <param name="Type">Indicates the containing type symbol.</param>
-            <param name="Compilation">Indicates the compilation.</param>
+            <param name="EqualityComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(System.String,System.String,Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.Compilation)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(System.String,System.String,Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode)">
             <summary>
             Defines a gathered data tuple.
             </summary>
@@ -30,7 +63,7 @@
             <param name="PropertyName">The property name.</param>
             <param name="FieldSymbol">Indicates the field symbol.</param>
             <param name="Type">Indicates the containing type symbol.</param>
-            <param name="Compilation">Indicates the compilation.</param>
+            <param name="EqualityComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.OriginalFieldName">
             <summary>Indicates the original field name.</summary>
@@ -44,8 +77,8 @@
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Type">
             <summary>Indicates the containing type symbol.</summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Compilation">
-            <summary>Indicates the compilation.</summary>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.EqualityComparisonMode">
+            <summary>Indicates a mode to compare two instances, used by property setter.</summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Extensions">
             <target name="class" when="extension">

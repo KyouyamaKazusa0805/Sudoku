@@ -36,6 +36,12 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 								TargetSymbol: IFieldSymbol
 								{
 									ContainingType: { MemberNames: var memberNames, Interfaces: var impledInterfaces } type,
+									Type:
+									{
+										AllInterfaces: var allInterfaces,
+										SpecialType: var fieldSpecialType,
+										TypeKind: var fieldTypeKind
+									} fieldType,
 									Name: var fieldName
 								} fieldSymbol,
 								SemanticModel.Compilation: var compilation
@@ -73,7 +79,19 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 							return null;
 						}
 
-						return new(fieldName, propertyName, fieldSymbol, type, compilation);
+						var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IEqualityOperators`3")!;
+						var equatableType = compilation.GetTypeByMetadataName(typeof(IEquatable<>).FullName)!;
+						var comparableType = compilation.GetTypeByMetadataName(typeof(IComparable<>).FullName)!;
+						var mode = containsEqualityOperators()
+							? EqualityComparisonMode.EqualityOperator
+							: containsEqualsMethod()
+								? EqualityComparisonMode.InstanceEqualsMethod
+								: containsCompareToMethod()
+									? EqualityComparisonMode.InstanceCompareToMethod
+									: EqualityComparisonMode.EqualityComparerDefaultInstance;
+
+
+						return new(fieldName, propertyName, fieldSymbol, type, mode);
 
 
 						bool containsPropertyChangedEvent(IEventSymbol e)
@@ -83,6 +101,16 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 								ExplicitInterfaceImplementations: [],
 								Type: var eventType
 							} && SymbolEqualityComparer.Default.Equals(propertyChangedEventHandlerType, eventType);
+
+						bool containsEqualityOperators()
+							=> allInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default)
+							|| fieldSpecialType is >= SpecialType.System_Object and <= SpecialType.System_UIntPtr and not (SpecialType.System_ValueType or SpecialType.System_Void)
+							|| fieldTypeKind == TypeKind.Enum
+							|| fieldType.GetMembers().OfType<IMethodSymbol>().Any(static m => m.Name == "op_Equality");
+
+						bool containsEqualsMethod() => allInterfaces.Contains(equatableType, SymbolEqualityComparer.Default);
+
+						bool containsCompareToMethod() => allInterfaces.Contains(comparableType, SymbolEqualityComparer.Default);
 					}
 				)
 				.Where(static data => data is not null)
@@ -94,32 +122,18 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					var type = group.Key;
 
 					var propertyDeclarations = new List<string>();
-					foreach (var (field, property, fieldSymbol, _, compilation) in group)
+					foreach (var (field, property, fieldSymbol, _, mode) in group)
 					{
-						if (fieldSymbol is not
-							{
-								Type:
-								{
-									AllInterfaces: var allInterfaces,
-									SpecialType: var fieldSpecialType,
-									TypeKind: var fieldTypeKind
-								} fieldType
-							})
-						{
-							continue;
-						}
-
+						var fieldType = fieldSymbol.Type;
 						var fieldTypeStr = fieldType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-						var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IEqualityOperators`3")!;
-						var equatableType = compilation.GetTypeByMetadataName(typeof(IEquatable<>).FullName)!;
-						var comparableType = compilation.GetTypeByMetadataName(typeof(IComparable<>).FullName)!;
-						var valueComparisonCode = containsEqualityOperators()
-							? $$"""{{field}} == value"""
-							: containsEqualsMethod()
-								? $$"""{{field}}.Equals(value)"""
-								: containsCompareToMethod()
-									? $$"""{{field}}.CompareTo(value) == 0"""
-									: $$"""global::System.Collections.Generic.EqualityComparer<{{fieldTypeStr}}>.Default.Equals({{field}}, value)""";
+						var valueComparisonCode = mode switch
+						{
+							EqualityComparisonMode.EqualityOperator => $$"""{{field}} == value""",
+							EqualityComparisonMode.InstanceEqualsMethod => $$"""{{field}}.Equals(value)""",
+							EqualityComparisonMode.InstanceCompareToMethod => $$"""{{field}}.CompareTo(value) == 0""",
+							EqualityComparisonMode.EqualityComparerDefaultInstance => $$"""global::System.Collections.Generic.EqualityComparer<{{fieldTypeStr}}>.Default.Equals({{field}}, value)""",
+							_ => "true"
+						};
 
 						propertyDeclarations.Add(
 							$$"""
@@ -144,17 +158,6 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 								}
 							"""
 						);
-
-
-						bool containsEqualityOperators()
-							=> allInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default)
-							|| fieldSpecialType is >= SpecialType.System_Object and <= SpecialType.System_UIntPtr and not (SpecialType.System_ValueType or SpecialType.System_Void)
-							|| fieldTypeKind == TypeKind.Enum
-							|| fieldType.GetMembers().OfType<IMethodSymbol>().Any(static m => m.Name == "op_Equality");
-
-						bool containsEqualsMethod() => allInterfaces.Contains(equatableType, SymbolEqualityComparer.Default);
-
-						bool containsCompareToMethod() => allInterfaces.Contains(comparableType, SymbolEqualityComparer.Default);
 					}
 
 					var @namespace = type.ContainingNamespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
@@ -182,14 +185,48 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 }
 
 /// <summary>
+/// Defines a mode to limit value's equality comparison.
+/// </summary>
+file enum EqualityComparisonMode
+{
+	/// <summary>
+	/// Indicates the mode is none.
+	/// </summary>
+	None,
+
+	/// <summary>
+	/// Indicates the comparison mode is to call <c><see langword="operator"/> ==</c> to check whether two instances are considered equal.
+	/// </summary>
+	EqualityOperator,
+
+	/// <summary>
+	/// Indicates the comparison mode is to call <c><see cref="IEquatable{T}.Equals(T)"/></c>
+	/// to check whether two instances are considered equal.
+	/// </summary>
+	InstanceEqualsMethod,
+
+	/// <summary>
+	/// Indicates the comparison mode is to call <c><see cref="IComparable{T}.CompareTo(T)"/></c>
+	/// to check whether two instances are considered equal.
+	/// </summary>
+	InstanceCompareToMethod,
+
+	/// <summary>
+	/// Indicates the comparison mode is to call <c><see cref="EqualityComparer{T}.Equals(T, T)"/></c>
+	/// via instance <see cref="EqualityComparer{T}.Default"/> to check whether two instances are considered equal.
+	/// </summary>
+	EqualityComparerDefaultInstance
+}
+
+/// <summary>
 /// Defines a gathered data tuple.
 /// </summary>
 /// <param name="OriginalFieldName">Indicates the original field name.</param>
 /// <param name="PropertyName">The property name.</param>
 /// <param name="FieldSymbol">Indicates the field symbol.</param>
 /// <param name="Type">Indicates the containing type symbol.</param>
-/// <param name="Compilation">Indicates the compilation.</param>
-file readonly record struct Data(string OriginalFieldName, string PropertyName, IFieldSymbol FieldSymbol, INamedTypeSymbol Type, Compilation Compilation);
+/// <param name="EqualityComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
+file readonly record struct Data(string OriginalFieldName, string PropertyName, IFieldSymbol FieldSymbol, INamedTypeSymbol Type, EqualityComparisonMode EqualityComparisonMode);
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
