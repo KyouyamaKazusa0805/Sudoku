@@ -35,7 +35,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 								Attributes.Length: 1,
 								TargetSymbol: IFieldSymbol
 								{
-									ContainingType: { MemberNames: var memberNames } type,
+									ContainingType: { MemberNames: var memberNames, Interfaces: var impledInterfaces } type,
 									Name: var fieldName
 								} fieldSymbol,
 								SemanticModel.Compilation: var compilation
@@ -51,6 +51,12 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 						}
 
 						if (!type.IsDerivedFrom(controlType))
+						{
+							return null;
+						}
+
+						var notifyPropertyChangedType = compilation.GetTypeByMetadataName(typeof(INotifyPropertyChanged).FullName)!;
+						if (!impledInterfaces.Contains(notifyPropertyChangedType, SymbolEqualityComparer.Default))
 						{
 							return null;
 						}
