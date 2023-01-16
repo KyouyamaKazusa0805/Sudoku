@@ -1,0 +1,18 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Operation.BasicOperation"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:o="using:SudokuStudio.Views.Pages.Operation"
+	mc:Ignorable="d"
+	d:DataContext="{d:DesignInstance Type=o:BasicOperation}"
+	NavigationCacheMode="Required">
+
+	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Collapsed">
+		<AppBarButton
+			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind BasePage.GeneratorIsNotRunning,Mode=OneWay}"
+			Click="NewPuzzleButton_ClickAsync" />
+	</CommandBar>
+</Page>

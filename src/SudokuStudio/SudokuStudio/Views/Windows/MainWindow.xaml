@@ -36,7 +36,7 @@
 			x:Name="MainNavigationView" Grid.Row="1" SelectionFollowsFocus="Disabled" IsBackButtonVisible="Collapsed"
 			IsSettingsVisible="True" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False"
 			AlwaysShowHeader="True" PaneTitle="{m:R Key=MainWindow_Menu}" CacheMode="BitmapCache"
-			Loaded="NavigationView_Loaded" ItemInvoked="NavigationView_ItemInvoked">
+			Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked">
 			<NavigationView.MenuItems>
 				<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:R Key=MainWindow_Analyze}" Icon="ShowResults" />
 			</NavigationView.MenuItems>

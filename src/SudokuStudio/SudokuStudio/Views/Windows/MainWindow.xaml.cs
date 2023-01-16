@@ -34,9 +34,9 @@ public sealed partial class MainWindow : Window
 	/// Try to navigate to the target page.
 	/// </summary>
 	/// <param name="pageType">The target page type.</param>
-	private void NavigateToPage(Type? pageType)
+	private void NavigateToPage(Type pageType)
 	{
-		if (pageType is not null && NavigationViewFrame.SourcePageType != pageType)
+		if (NavigationViewFrame.SourcePageType != pageType)
 		{
 			NavigationViewFrame.Navigate(pageType, null, NavigationTransitionInfo);
 			MainNavigationView.Header = GetStringNullable($"{nameof(MainWindow)}_{pageType.Name}{nameof(Title)}") ?? string.Empty;
@@ -53,16 +53,31 @@ public sealed partial class MainWindow : Window
 	/// </summary>
 	private void SetAppTitle() => _appWindow.Title = GetString("_ProgramName");
 
+	/// <summary>
+	/// An outer-layered method to switching pages. This method can be used by both
+	/// <see cref="NavigationView_ItemInvoked"/> and <see cref="MainNavigationView_SelectionChanged"/>.
+	/// </summary>
+	/// <param name="container">The container.</param>
+	/// <seealso cref="NavigationView_ItemInvoked"/>
+	/// <seealso cref="MainNavigationView_SelectionChanged"/>
+	private void SwitchingPage(bool isSettingInvokedOrSelected, NavigationViewItemBase container)
+	{
+		if (isSettingInvokedOrSelected)
+		{
+			NavigateToPage(typeof(SettingsPage));
+		}
+		else if (container == AnalyzePageItem)
+		{
+			NavigateToPage(typeof(AnalyzePage));
+		}
+	}
 
-	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => NavigateToPage(typeof(AnalyzePage));
+
+	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => AnalyzePageItem.IsSelected = true;
 
 	private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-		=> NavigateToPage(
-			args switch
-			{
-				{ IsSettingsInvoked: true } => typeof(SettingsPage),
-				{ InvokedItemContainer: var container } when container == AnalyzePageItem => typeof(AnalyzePage),
-				_ => null
-			}
-		);
+		=> SwitchingPage(args.IsSettingsInvoked, args.InvokedItemContainer);
+
+	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+		=> SwitchingPage(args.IsSettingsSelected, args.SelectedItemContainer);
 }

@@ -10,13 +10,27 @@
 
 	<ScrollViewer>
 		<StackPanel Orientation="Vertical" Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10}" Spacing="10">
-			<AppBar IsSticky="True" IsOpen="False" ClosedDisplayMode="Minimal" LightDismissOverlayMode="Off" Margin="0,10">
-				<AppBarButton
-					Icon="NewFolder" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind GeneratorIsNotRunning,Mode=OneWay}"
-					Click="NewPuzzleButton_ClickAsync" />
-			</AppBar>
+			<Border CornerRadius="5" BorderBrush="#EAEAEA" BorderThickness="2" Margin="0,10,20,10">
+				<NavigationView
+					x:Name="CommandBarView" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
+					IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="False" CacheMode="BitmapCache"
+					Loaded="CommandBarView_Loaded" SelectionChanged="CommandBarView_SelectionChanged" ItemInvoked="CommandBarView_ItemInvoked">
+					<!--
+					<NavigationView.MenuItemTemplate>
+						<DataTemplate x:DataType="NavigationViewItem">
+							<TextBlock Text="{x:Bind Content}" FontWeight="Bold" />
+						</DataTemplate>
+					</NavigationView.MenuItemTemplate>
+					-->
+					<NavigationView.MenuItems>
+						<NavigationViewItem x:Name="BasicOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_BasicOperations}" />
+					</NavigationView.MenuItems>
+
+					<Frame x:Name="CommandBarFrame" Navigated="CommandBarFrame_Navigated" BorderBrush="Transparent" />
+				</NavigationView>
+			</Border>
 			<c:SudokuPane
-				x:Name="SudokuPane" Width="610" Height="610" HorizontalAlignment="Left" VerticalAlignment="Top"
+				x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" HorizontalAlignment="Left" VerticalAlignment="Top"
 				SelectedCell="-1" ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code" CoordinateLabelFont="Cascadia Code"
 				CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection"
 				ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4"

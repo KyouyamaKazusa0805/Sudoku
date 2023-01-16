@@ -120,6 +120,9 @@
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>New puzzle</value>
   </data>
+  <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
+    <value>Basics</value>
+  </data>
   <data name="MainWindow_Analyze" xml:space="preserve">
     <value>Analyze</value>
   </data>

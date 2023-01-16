@@ -79,6 +79,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basics.
+        /// </summary>
+        internal static string AnalyzePage_PivotItem_BasicOperations {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PivotItem_BasicOperations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analyze.
         /// </summary>
         internal static string MainWindow_Analyze {

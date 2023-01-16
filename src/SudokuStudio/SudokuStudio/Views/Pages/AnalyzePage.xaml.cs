@@ -6,9 +6,9 @@ namespace SudokuStudio.Views.Pages;
 public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 {
 	/// <summary>
-	/// Defines a default puzzle generator.
+	/// The default navigation transition instance that will create animation fallback while switching pages.
 	/// </summary>
-	private static readonly PatternBasedPuzzleGenerator Generator = new();
+	private static readonly NavigationTransitionInfo NavigationTransitionInfo = new EntranceNavigationTransitionInfo();
 
 
 	/// <summary>
@@ -68,15 +68,51 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Y), SudokuPane.RedoStep)
 		};
 
-
-	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
+	/// <summary>
+	/// An outer-layered method to switching pages. This method can be used by both
+	/// <see cref="CommandBarView_ItemInvoked"/> and <see cref="CommandBarView_SelectionChanged"/>.
+	/// </summary>
+	/// <param name="container">The container.</param>
+	/// <seealso cref="CommandBarView_ItemInvoked"/>
+	/// <seealso cref="CommandBarView_SelectionChanged"/>
+	private void SwitchingPage(NavigationViewItemBase container)
 	{
-		GeneratorIsNotRunning = false;
+		if (container == BasicOperationBar)
+		{
+			NavigateToPage(typeof(BasicOperation));
+		}
+	}
 
-		var grid = await Generator.GenerateAsync();
+	/// <summary>
+	/// Try to navigate to the target page.
+	/// </summary>
+	/// <param name="pageType">The target page type.</param>
+	private void NavigateToPage(Type pageType)
+	{
+		if (CommandBarFrame.SourcePageType != pageType)
+		{
+			CommandBarFrame.Navigate(pageType, this, NavigationTransitionInfo);
+		}
+	}
 
-		GeneratorIsNotRunning = true;
 
-		SudokuPane.Puzzle = grid;
+	private void CommandBarView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+		=> SwitchingPage(args.InvokedItemContainer);
+
+	private void CommandBarView_Loaded(object sender, RoutedEventArgs e) => BasicOperationBar.IsSelected = true;
+
+	private void CommandBarView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+		=> SwitchingPage(args.SelectedItemContainer);
+
+	private void CommandBarFrame_Navigated(object sender, NavigationEventArgs e)
+	{
+		switch (e)
+		{
+			case { Content: BasicOperation basicOperation, Parameter: AnalyzePage @this }:
+			{
+				basicOperation.BasePage = @this;
+				break;
+			}
+		}
 	}
 }
