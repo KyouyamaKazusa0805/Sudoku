@@ -61,6 +61,12 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 							return null;
 						}
 
+						var propertyChangedEventHandlerType = compilation.GetTypeByMetadataName(typeof(PropertyChangedEventHandler).FullName)!;
+						if (!type.GetMembers().OfType<IEventSymbol>().Any(containsPropertyChangedEvent))
+						{
+							return null;
+						}
+
 						var propertyName = fieldName.ToPascalCasing();
 						if (memberNames.Contains(propertyName))
 						{
@@ -68,6 +74,15 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 						}
 
 						return new(fieldName, propertyName, fieldSymbol, type, compilation);
+
+
+						bool containsPropertyChangedEvent(IEventSymbol e)
+							=> e is
+							{
+								Name: nameof(INotifyPropertyChanged.PropertyChanged),
+								ExplicitInterfaceImplementations: [],
+								Type: var eventType
+							} && SymbolEqualityComparer.Default.Equals(propertyChangedEventHandlerType, eventType);
 					}
 				)
 				.Where(static data => data is not null)
