@@ -26,7 +26,6 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 	/// </summary>
 	private static EqualsData? TransformEqualsData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
 	{
-#pragma warning disable format
 		if (gasc is not
 			{
 				Attributes: [{ ConstructorArguments: [{ Value: int rawMode }] }],
@@ -49,7 +48,6 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 					]
 				} method
 			})
-#pragma warning restore format
 		{
 			return null;
 		}
@@ -63,15 +61,13 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 			return null;
 		}
 
-#pragma warning disable format
 		if ((rawMode, type) switch
-			{
-				(0, { TypeKind: TypeKind.Struct, IsRefLikeType: true }) => false,
-				(1, _) => false,
-				(2, { TypeKind: TypeKind.Class }) => false,
-				_ => true
-			})
-#pragma warning restore format
+		{
+			(0, { TypeKind: TypeKind.Struct, IsRefLikeType: true }) => false,
+			(1, _) => false,
+			(2, { TypeKind: TypeKind.Class }) => false,
+			_ => true
+		})
 		{
 			return null;
 		}
@@ -326,17 +322,9 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 	{
 		var codeSnippets = new List<string>();
 
-		foreach (var tuple in data.CastToNotNull())
+		foreach (var (mode, modifiers, type, attributeType, rawMemberNames) in data.CastToNotNull())
 		{
-#pragma warning disable format
-			if (tuple is not (
-				var mode,
-				var modifiers,
-				{ Name: var typeName, ContainingNamespace: var @namespace } type,
-				var attributeType,
-				var rawMemberNames
-			))
-#pragma warning restore format
+			if (type is not { Name: var typeName, ContainingNamespace: var @namespace })
 			{
 				continue;
 			}

@@ -117,13 +117,14 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 
 	private void InputSetter_KeyDown(object sender, KeyRoutedEventArgs e)
 	{
-		switch (@this: this, sender, e)
+		switch (This: this, Sender: sender, EventData: e)
 		{
-			case (
-				@this: { BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
-				sender: TextBox { Text: var text, Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup p } } },
-				e: { Key: winsys::VirtualKey.Enter }
-			)
+			case
+			{
+				This: { BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
+				Sender: TextBox { Text: var text, Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup p } } },
+				EventData.Key: winsys::VirtualKey.Enter
+			}
 			when modified.GetStatus(cell) is var cellStatus and not CellStatus.Given
 				&& DigitRange.TryParse(text, out var digitRange)
 				&& digitRange is { DigitsMask: var digits, ConclusionType: var type }:

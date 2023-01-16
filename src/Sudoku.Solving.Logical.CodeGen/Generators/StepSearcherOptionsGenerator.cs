@@ -53,8 +53,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				var priorityValue = 0;
 				foreach (var attributeData in attributesData)
 				{
-#pragma warning disable format
 					// Check validity.
+#pragma warning disable format
 					if (attributeData is not
 						{
 							AttributeClass:

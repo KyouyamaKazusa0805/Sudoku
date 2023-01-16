@@ -67,26 +67,23 @@ public sealed class GeneratedExtensionDeconstructionGenerator : IIncrementalGene
 		{
 			_ = spc is { CancellationToken: var ct };
 
-			foreach (var tuple in data.CastToNotNull())
+			foreach (var (containingType, method, thisParameterModifiers, parameters, typeParameters, modifiers, attributeType) in data.CastToNotNull())
 			{
-#pragma warning disable format
-				if (tuple is not (
-					{ ContainingNamespace: var @namespace, Name: var typeName } containingType,
-					{
-						Parameters: [{ Type: INamedTypeSymbol thisParameterType, Name: var thisParameterName }, ..],
-						DeclaredAccessibility: var methodAccessibility
-					} method,
-					var thisParameterModifiers,
-					{ Length: var parameterLength } parameters,
-					var typeParameters,
-					var modifiers,
-					var attributeType
-				))
-#pragma warning restore format
+				if (containingType is not { ContainingNamespace: var @namespace, Name: var typeName })
 				{
 					continue;
 				}
 
+				if (method is not
+					{
+						Parameters: [{ Type: INamedTypeSymbol thisParameterType, Name: var thisParameterName }, ..],
+						DeclaredAccessibility: var methodAccessibility
+					})
+				{
+					continue;
+				}
+
+				var parameterLength = parameters.Length;
 				if (thisParameterName.IsKeyword())
 				{
 					thisParameterName = $"@{thisParameterName}";

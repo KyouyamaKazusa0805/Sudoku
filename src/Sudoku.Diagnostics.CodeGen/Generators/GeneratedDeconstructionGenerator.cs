@@ -62,21 +62,15 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 		{
 			_ = spc is { CancellationToken: var ct };
 
-			foreach (var tuple in data.CastToNotNull())
+			foreach (var (containingType, method, parameters, modifiers, attributeType) in data.CastToNotNull())
 			{
-#pragma warning disable format
-				if (tuple is not (
-					{ ContainingNamespace: var @namespace, Name: var typeName, TypeParameters: var typeParameters } containingType,
-					{ DeclaredAccessibility: var methodAccessibility } method,
-					{ Length: var parameterLength } parameters,
-					var modifiers,
-					var attributeType
-				))
-#pragma warning restore format
+				if (containingType is not { ContainingNamespace: var @namespace, Name: var typeName, TypeParameters: var typeParameters })
 				{
 					continue;
 				}
 
+				var methodAccessibility = method.DeclaredAccessibility;
+				var parameterLength = parameters.Length;
 				var membersData = (
 					from m in containingType.GetAllMembers()
 					where m switch

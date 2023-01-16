@@ -52,14 +52,12 @@ public abstract class Command
 			return false;
 		}
 
-#pragma warning disable format
 		if (ComparisonMode switch
-			{
-				CommandComparison.Strict => CommandName != a,
-				CommandComparison.Prefix => !a.StartsWith(CommandName),
-				_ => throw new ArgumentOutOfRangeException(nameof(ComparisonMode))
-			})
-#pragma warning restore format
+		{
+			CommandComparison.Strict => CommandName != a,
+			CommandComparison.Prefix => !a.StartsWith(CommandName),
+			_ => throw new ArgumentOutOfRangeException(nameof(ComparisonMode))
+		})
 		{
 			return false;
 		}

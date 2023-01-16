@@ -1,8 +1,6 @@
 ﻿namespace Sudoku.Compatibility.SudokuExplainer;
 
-using DifficultyRange = ValueTuple<
-	/*Original*/ SudokuExplainerDifficultyRatingRange?,
-	/*Advanced*/ SudokuExplainerDifficultyRatingRange?>;
+using DifficultyRange = ValueTuple</*Original*/ SudokuExplainerDifficultyRatingRange?, /*Advanced*/ SudokuExplainerDifficultyRatingRange?>;
 
 /// <summary>
 /// Represents some methods that are used for get the details supported and defined
@@ -61,53 +59,28 @@ public static class SudokuExplainerLibraryCompatiblity// : ICompatibilityProvide
 	/// <seealso cref="Technique"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DifficultyRange? GetDifficultyRatingRange(this Technique @this)
-	{
-		if (@this == Technique.None || !Enum.IsDefined(@this))
+		=> @this switch
 		{
-			throw new ArgumentOutOfRangeException(nameof(@this));
-		}
-
-		var attributes = typeof(Technique)
-			.GetField(@this.ToString())!
-			.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>()
-			.ToArray();
-		return attributes switch
-		{
-			[] => null,
-			[
-				{
-					DifficultyRating: var min,
-					DifficultyRatingMaximumThreshold: var max,
-					IsAdvancedDefined: false
-				}
-			] => (new(min, max ?? min), null),
-#pragma warning disable format
-			[
-				{
-					DifficultyRating: var min1,
-					DifficultyRatingMaximumThreshold: var max1,
-					IsAdvancedDefined: false
-				},
-				{
-					DifficultyRating: var min2,
-					DifficultyRatingMaximumThreshold: var max2,
-					IsAdvancedDefined: true
-				}
-			] => (new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
-			[
-				{
-					DifficultyRating: var min1,
-					DifficultyRatingMaximumThreshold: var max1,
-					IsAdvancedDefined: true
-				},
-				{
-					DifficultyRating: var min2,
-					DifficultyRatingMaximumThreshold: var max2,
-					IsAdvancedDefined: false
-				}
-			] => (new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
+			Technique.None => throw new ArgumentOutOfRangeException(nameof(@this)),
+			_ when !Enum.IsDefined(@this) => throw new ArgumentOutOfRangeException(nameof(@this)),
+#pragma warning disable foramt
+			_ => typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>().ToArray() switch
+			{
+				[] => null,
+				[{ DifficultyRating: var min, DifficultyRatingMaximumThreshold: var max, IsAdvancedDefined: false }]
+					=> (new(min, max ?? min), null),
+				[
+					{ DifficultyRating: var min1, DifficultyRatingMaximumThreshold: var max1, IsAdvancedDefined: false },
+					{ DifficultyRating: var min2, DifficultyRatingMaximumThreshold: var max2, IsAdvancedDefined: true }
+				]
+					=> (new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
+				[
+					{ DifficultyRating: var min1, DifficultyRatingMaximumThreshold: var max1, IsAdvancedDefined: true },
+					{ DifficultyRating: var min2, DifficultyRatingMaximumThreshold: var max2, IsAdvancedDefined: false }
+				]
+					=> (new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
+				_ => throw new InvalidOperationException("The field has marked too much attributes.")
+			}
 #pragma warning restore format
-			_ => throw new InvalidOperationException("The field has marked too much attributes.")
 		};
-	}
 }
