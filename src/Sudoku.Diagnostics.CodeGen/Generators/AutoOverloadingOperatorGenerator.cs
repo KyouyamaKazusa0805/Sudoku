@@ -38,7 +38,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 				foreach (var (operatorKinds, typeSymbol, compilation) in data.CastToNotNull())
 				{
 					var largeStructAttribute = compilation.GetTypeByMetadataName("System.Diagnostics.CodeAnalysis.IsLargeStructAttribute")!;
-					var @namespace = typeSymbol.ContainingNamespace.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
+					var @namespace = typeSymbol.ContainingNamespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 					var typeName = typeSymbol.Name;
 					var typeKind = typeSymbol.GetTypeKindModifier();
 
@@ -135,8 +135,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 				);
 
 
-				static string f(INamedTypeSymbol typeSymbol)
-					=> typeSymbol.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
+				static string f(INamedTypeSymbol typeSymbol) => typeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 			}
 		);
 }
