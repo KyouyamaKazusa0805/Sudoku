@@ -1133,11 +1133,6 @@
             Defines a default puzzle generator.
             </summary>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.Operation.DailyPuzzleOperation.Solver">
-            <summary>
-            Defines a default puzzle solver.
-            </summary>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Operation.DailyPuzzleOperation.ExecuteAsync">
             <inheritdoc/>
         </member>

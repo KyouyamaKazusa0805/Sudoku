@@ -11,15 +11,12 @@ file sealed record DailyPuzzleOperation() : PeriodicOperation(new TimeOnly(12, 0
 	/// </summary>
 	private static readonly PatternBasedPuzzleGenerator Generator = new();
 
-	/// <summary>
-	/// Defines a default puzzle solver.
-	/// </summary>
-	private static readonly LogicalSolver Solver = new();
-
 
 	/// <inheritdoc/>
 	public override async Task ExecuteAsync()
 	{
+		var solver = Solver with { IgnoreSlowAlgorithms = true };
+
 		var groupId = R["SudokuGroupQQ"]!;
 		for (var trial = 0; trial < 100; trial++)
 		{
@@ -28,14 +25,34 @@ file sealed record DailyPuzzleOperation() : PeriodicOperation(new TimeOnly(12, 0
 				{
 					IsSolved: true,
 					DifficultyLevel: var diffLevel and (DifficultyLevel.Easy or DifficultyLevel.Moderate or DifficultyLevel.Hard),
-					MaxDifficulty: var diff and <= 4.5M
+					MaxDifficulty: var diff and >= 2.3M and <= 4.5M,
+					Steps: var steps
 				})
 			{
 				continue;
 			}
 
+			switch (diffLevel)
+			{
+				case DifficultyLevel.Easy when steps.Count(easyPredicate) <= 2:
+				case DifficultyLevel.Moderate:
+				case DifficultyLevel.Hard when steps.Count(hardPredicate) > 2:
+				{
+					continue;
+				}
+
+
+				static bool easyPredicate(IStep step) => step.Difficulty == 2.3M;
+
+				static bool hardPredicate(IStep step)
+					=> step is
+					{
+						DifficultyLevel: DifficultyLevel.Hard,
+						TechniqueGroup: not (TechniqueGroup.Wing or TechniqueGroup.UniqueRectangle or TechniqueGroup.EmptyRectangle)
+					};
+			}
+
 			await MessageManager.SendGroupMessageAsync(groupId, R.MessageFormat("DailyPuzzle")!);
-			await Task.Delay(10.Seconds());
 
 			// Create picture and send message.
 			await SendPictureAsync(

@@ -44,6 +44,7 @@ global using Sudoku.Presentation.Nodes;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving.Logical;
+global using Sudoku.Solving.Logical.Techniques;
 global using Sudoku.Text.Notations;
 global using static System.Algorithm.Sequences;
 global using static System.Math;
