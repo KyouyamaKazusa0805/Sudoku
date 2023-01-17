@@ -14,7 +14,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates whether the generator is not running currently.
 	/// </summary>
-	[NotifyBackingField]
+	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
 	private bool _generatorIsNotRunning = true;
 
 	/// <summary>

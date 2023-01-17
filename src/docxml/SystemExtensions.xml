@@ -1845,6 +1845,51 @@
             Indicates the default behavior for default cases.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.GeneralizedAccessibility">
+            <summary>
+            Defines a kind of accessibility that is defined in C#.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.None">
+            <summary>
+            Indicates the accessibility is invalid and not defined in this type.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.File">
+            <summary>
+            Indicates the accessibility is <see langword="file"/>-scoped.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Private">
+            <summary>
+            Indicates the accessibility is <see langword="private"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Protected">
+            <summary>
+            Indicates the accessibility is <see langword="protected"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.PrivateProtected">
+            <summary>
+            Indicates the accessibility is <see langword="private protected"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Internal">
+            <summary>
+            Indicates the accessibility is <see langword="internal"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.ProtectedInternal">
+            <summary>
+            Indicates the accessibility is <see langword="protected internal"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public">
+            <summary>
+            Indicates the accessibility is <see langword="public"/>.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute">
             <summary>
             Defines an attribute that is used as a parameter mark that tells source generators to route to the specified target expression.
@@ -2219,6 +2264,12 @@
             <summary>
             Defines an attribute that is used for source generation on properties.
             </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.Accessibility">
+            <summary>
+            Indicates the accessibility of the generated property. The default value is <see cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>.
+            </summary>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>
         </member>
         <member name="T:System.ArrayExtensions">
             <summary>

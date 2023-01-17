@@ -45,6 +45,46 @@
             via instance <see cref="P:System.Collections.Generic.EqualityComparer`1.Default"/> to check whether two instances are considered equal.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Accessibility">
+            <summary>
+            Defines an accessibility kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.File">
+            <summary>
+            Indicates the accessibility is <see langword="file"/>-scoped.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Private">
+            <summary>
+            Indicates the accessibility is <see langword="private"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Protected">
+            <summary>
+            Indicates the accessibility is <see langword="protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.PrivateProtected">
+            <summary>
+            Indicates the accessibility is <see langword="private protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Internal">
+            <summary>
+            Indicates the accessibility is <see langword="internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.ProtectedInternal">
+            <summary>
+            Indicates the accessibility is <see langword="protected internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Public">
+            <summary>
+            Indicates the accessibility is <see langword="public"/>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
             <summary>
             Defines a gathered data tuple.
@@ -53,8 +93,9 @@
             <param name="FieldSymbol">Indicates the field symbol.</param>
             <param name="Type">Indicates the containing type symbol.</param>
             <param name="ComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
+            <param name="Accessibility">Indicates the accessibility.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(System.String,Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(System.String,Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode,Sudoku.Diagnostics.CodeGen.Generators.Accessibility)">
             <summary>
             Defines a gathered data tuple.
             </summary>
@@ -62,6 +103,7 @@
             <param name="FieldSymbol">Indicates the field symbol.</param>
             <param name="Type">Indicates the containing type symbol.</param>
             <param name="ComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
+            <param name="Accessibility">Indicates the accessibility.</param>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PropertyName">
             <summary>The property name.</summary>
@@ -74,6 +116,9 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.ComparisonMode">
             <summary>Indicates a mode to compare two instances, used by property setter.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Accessibility">
+            <summary>Indicates the accessibility.</summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Extensions">
             <target name="class" when="extension">

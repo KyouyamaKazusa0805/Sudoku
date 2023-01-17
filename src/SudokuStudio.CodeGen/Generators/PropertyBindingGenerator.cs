@@ -32,7 +32,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					{
 						if (gasc is not
 							{
-								Attributes.Length: 1,
+								Attributes: [{ NamedArguments: var namedArguments }],
 								TargetSymbol: IFieldSymbol
 								{
 									ContainingType: { MemberNames: var memberNames, Interfaces: var impledInterfaces } type,
@@ -90,8 +90,16 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 									? EqualityComparisonMode.InstanceCompareToMethod
 									: EqualityComparisonMode.EqualityComparerDefaultInstance;
 
+						var accessibility = (Accessibility?)null;
+						foreach (var (name, value) in namedArguments)
+						{
+							if (name == nameof(Accessibility))
+							{
+								accessibility = (Accessibility)(int)value.Value!;
+							}
+						}
 
-						return new(propertyName, fieldSymbol, type, mode);
+						return new(propertyName, fieldSymbol, type, mode, accessibility ?? Accessibility.Public);
 
 
 						bool containsPropertyChangedEvent(IEventSymbol e)
@@ -122,7 +130,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					var type = group.Key;
 
 					var propertyDeclarations = new List<string>();
-					foreach (var (property, fieldSymbol, _, mode) in group)
+					foreach (var (property, fieldSymbol, _, mode, accessibility) in group)
 					{
 						if (fieldSymbol is not { Name: var field, Type: var fieldType })
 						{
@@ -139,12 +147,24 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 							_ => "true"
 						};
 
+						var accessibilityStr = accessibility switch
+						{
+							Accessibility.File => "file",
+							Accessibility.Private => "private",
+							Accessibility.Protected => "protected",
+							Accessibility.PrivateProtected => "private protected",
+							Accessibility.Internal => "internal",
+							Accessibility.ProtectedInternal => "protected internal",
+							Accessibility.Public => "public",
+							_ => throw new NotSupportedException("The value is not defined.")
+						};
+
 						propertyDeclarations.Add(
 							$$"""
 							/// <inheritdoc cref="{{field}}"/>
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
-								public {{fieldTypeStr}} {{property}}
+								{{accessibilityStr}} {{fieldTypeStr}} {{property}}
 								{
 									get => {{field}};
 
@@ -223,13 +243,63 @@ file enum EqualityComparisonMode
 }
 
 /// <summary>
+/// Defines an accessibility kind.
+/// </summary>
+file enum Accessibility
+{
+	None,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="file"/>-scoped.
+	/// </summary>
+	File,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="private"/>.
+	/// </summary>
+	Private,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="protected"/>.
+	/// </summary>
+	Protected,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="private protected"/>.
+	/// </summary>
+	PrivateProtected,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="internal"/>.
+	/// </summary>
+	Internal,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="protected internal"/>.
+	/// </summary>
+	ProtectedInternal,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="public"/>.
+	/// </summary>
+	Public
+}
+
+/// <summary>
 /// Defines a gathered data tuple.
 /// </summary>
 /// <param name="PropertyName">The property name.</param>
 /// <param name="FieldSymbol">Indicates the field symbol.</param>
 /// <param name="Type">Indicates the containing type symbol.</param>
 /// <param name="ComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
-file readonly record struct Data(string PropertyName, IFieldSymbol FieldSymbol, INamedTypeSymbol Type, EqualityComparisonMode ComparisonMode);
+/// <param name="Accessibility">Indicates the accessibility.</param>
+file readonly record struct Data(
+	string PropertyName,
+	IFieldSymbol FieldSymbol,
+	INamedTypeSymbol Type,
+	EqualityComparisonMode ComparisonMode,
+	Accessibility Accessibility
+);
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
