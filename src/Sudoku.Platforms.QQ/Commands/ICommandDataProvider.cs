@@ -89,7 +89,7 @@ internal interface ICommandDataProvider
 		}
 
 		if (Patterns.ChineseHouseIndexPattern().Match(rawCoordinate) is { Success: true, Value: var parts }
-			&& parts.Split(' ', splitOptions) is [[var houseNotation], [var label]])
+			&& parts.Split(' ', splitOptions) is [ [var houseNotation], [var label]])
 		{
 			return houseNotation switch { '\u884c' => 9, '\u5217' => 18, _ => 0 } + (label - '1');
 		}
@@ -121,32 +121,17 @@ internal interface ICommandDataProvider
 	/// <summary>
 	/// Gets the time limit for a single gaming.
 	/// </summary>
-	/// <param name="targetCells">
-	/// The target cells. The valid length must be 2, 3, 5 or 7; otherwise, a <see cref="NotSupportedException"/> instance will be thrown.
-	/// </param>
 	/// <param name="difficultyLevel">The difficulty level of the puzzle.</param>
 	/// <returns>The time limit.</returns>
 	/// <exception cref="NotSupportedException">Throws when the specified argument value is not supported.</exception>
-	internal static TimeSpan GetGamingTimeLimit(int[] targetCells, DifficultyLevel difficultyLevel)
-	{
-		var @base = targetCells.Length switch
+	internal static TimeSpan GetGamingTimeLimit(DifficultyLevel difficultyLevel)
+		=> difficultyLevel switch
 		{
-			2 => 3.Minutes(),
-			3 => 5.Minutes(),
-			5 => 7.Minutes(),
-			7 => 10.Minutes(),
-			_ => throw new NotSupportedException("The specified length of the target solution data is not supported.")
-		};
-
-		var difficultyExtra = difficultyLevel switch
-		{
-			DifficultyLevel.Easy => TimeSpan.Zero,
-			DifficultyLevel.Moderate => 30.Seconds(),
+			DifficultyLevel.Easy => 3.Minutes(),
+			DifficultyLevel.Moderate => 5.Minutes(),
+			DifficultyLevel.Hard => 7.Minutes(),
 			_ => throw new NotSupportedException("The specified difficulty is not supported.")
 		};
-
-		return @base + difficultyExtra;
-	}
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>

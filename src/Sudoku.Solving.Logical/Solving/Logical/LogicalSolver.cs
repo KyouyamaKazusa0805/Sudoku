@@ -314,6 +314,7 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 					result = resultBase with
 					{
 						IsSolved = true,
+						Solution = playground,
 						ElapsedTime = stopwatch.GetElapsedTime(),
 						Steps = ImmutableArray.CreateRange(steps),
 						StepGrids = ImmutableArray.CreateRange(stepGrids)

@@ -51,6 +51,7 @@ global using static System.Math;
 global using static System.Text.Json.JsonSerializer;
 global using static Sudoku.Platforms.QQ.AppLifecycle.EnvironmentData;
 global using static Sudoku.Resources.MergedResources;
+global using static Sudoku.SolutionWideReadOnlyFields;
 global using Group = Mirai.Net.Data.Shared.Group;
 global using TextResources = Sudoku.Platforms.QQ.Strings.Resources;
 global using SpecialFolder = System.Environment.SpecialFolder;

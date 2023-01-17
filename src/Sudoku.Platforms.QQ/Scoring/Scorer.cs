@@ -112,32 +112,23 @@ public static class Scorer
 	/// <summary>
 	/// Gets the experience point that can be earned by a player in a single gaming.
 	/// </summary>
-	/// <param name="targetCells">The target cells.</param>
 	/// <param name="difficultyLevel">The difficulty level of the puzzle.</param>
 	/// <returns>The experience point.</returns>
 	/// <exception cref="NotSupportedException">Throws when the specified difficulty level or target cells count is not supported.</exception>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the specified difficulty level is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetScoreEarnedInEachGaming(int[] targetCells, DifficultyLevel difficultyLevel)
+	public static int GetScoreEarnedInEachGaming(DifficultyLevel difficultyLevel)
 	{
 		var @base = difficultyLevel switch
 		{
-			DifficultyLevel.Easy => 12,
-			DifficultyLevel.Moderate => 18,
+			DifficultyLevel.Easy => 16,
+			DifficultyLevel.Moderate => 20,
+			DifficultyLevel.Hard => 28,
 			_ when Enum.IsDefined(difficultyLevel) => throw new NotSupportedException("Other kinds of difficulty levels are not supported."),
 			_ => throw new ArgumentOutOfRangeException(nameof(difficultyLevel))
 		};
 
-		var answeredValuesExtra = targetCells.Length switch
-		{
-			2 => 0,
-			3 => 1,
-			5 => 2,
-			7 => 4,
-			_ => throw new NotSupportedException("The specified number of target cells is not supported.")
-		};
-
-		return (@base + answeredValuesExtra) * GetWeekendFactor();
+		return @base * GetWeekendFactor();
 	}
 
 	/// <summary>
@@ -151,10 +142,9 @@ public static class Scorer
 		=> times switch
 		{
 			0 => 0,
-			1 => 2,
-			2 => 3,
-			3 => 4,
-			> 3 => 6,
+			1 => 3,
+			2 => 6,
+			>= 3 => 12,
 			_ => throw new ArgumentOutOfRangeException(nameof(times))
 		} * GetWeekendFactor();
 

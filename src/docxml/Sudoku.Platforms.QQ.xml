@@ -419,13 +419,10 @@
             <param name="rawCoordinate">The coordinate string value.</param>
             <returns>The cell index parsed. If failed to be parsed, <see langword="null"/> will be returned.</returns>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetGamingTimeLimit(System.Int32[],Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetGamingTimeLimit(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
             <summary>
             Gets the time limit for a single gaming.
             </summary>
-            <param name="targetCells">
-            The target cells. The valid length must be 2, 3, 5 or 7; otherwise, a <see cref="T:System.NotSupportedException"/> instance will be thrown.
-            </param>
             <param name="difficultyLevel">The difficulty level of the puzzle.</param>
             <returns>The time limit.</returns>
             <exception cref="T:System.NotSupportedException">Throws when the specified argument value is not supported.</exception>
@@ -556,57 +553,35 @@
             The generated grid data.
             </summary>
             <param name="Puzzle">Indicates the puzzle.</param>
-            <param name="SolutionData">Indicates all solution data that you should answer.</param>
+            <param name="ChosenCells">Indicates the chosen 9 cells.</param>
+            <param name="FinalIndex">Indicates the final index.</param>
             <param name="TimeLimit">The whole time limit of a single gaming.</param>
             <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.ValueTuple{System.Int32,System.Int32}[],System.TimeSpan,System.Int32)">
+        <member name="M:Sudoku.Platforms.QQ.Commands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.TimeSpan,System.Int32)">
             <summary>
             The generated grid data.
             </summary>
             <param name="Puzzle">Indicates the puzzle.</param>
-            <param name="SolutionData">Indicates all solution data that you should answer.</param>
+            <param name="ChosenCells">Indicates the chosen 9 cells.</param>
+            <param name="FinalIndex">Indicates the final index.</param>
             <param name="TimeLimit">The whole time limit of a single gaming.</param>
             <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.Puzzle">
             <summary>Indicates the puzzle.</summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.SolutionData">
-            <summary>Indicates all solution data that you should answer.</summary>
+        <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.ChosenCells">
+            <summary>Indicates the chosen 9 cells.</summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.FinalIndex">
+            <summary>Indicates the final index.</summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.TimeLimit">
             <summary>The whole time limit of a single gaming.</summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.ExperiencePoint">
             <summary>Indicates how many experience point you can earn in the current round if answered correctly.</summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.Constants">
-            <target name="class" when="constant">
-				<summary>
-					Provides with constants and read-only values used by code in the current file.
-				</summary>
-			</target>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Commands.Constants.TwoCells">
-            <summary>
-            Indicates the cell indices that the puzzle will be extracted.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Commands.Constants.ThreeCells">
-            <summary>
-            Indicates the cell indices that the puzzle will be extracted.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Commands.Constants.FiveCells">
-            <summary>
-            Indicates the cell indices that the puzzle will be extracted.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Commands.Constants.SevenCells">
-            <summary>
-            Indicates the cell indices that the puzzle will be extracted.
-            </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.Extensions">
             <target name="class" when="extension">
@@ -1103,20 +1078,20 @@
             Defines a user answer data.
             </summary>
             <param name="User">The user who gives the conclusion.</param>
-            <param name="Conclusions">The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</param>
+            <param name="Conclusion">The answer conclusion index.</param>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Models.UserPuzzleAnswerData.#ctor(Mirai.Net.Data.Shared.Member,System.Int32[])">
+        <member name="M:Sudoku.Platforms.QQ.Models.UserPuzzleAnswerData.#ctor(Mirai.Net.Data.Shared.Member,System.Int32)">
             <summary>
             Defines a user answer data.
             </summary>
             <param name="User">The user who gives the conclusion.</param>
-            <param name="Conclusions">The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</param>
+            <param name="Conclusion">The answer conclusion index.</param>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Models.UserPuzzleAnswerData.User">
             <summary>The user who gives the conclusion.</summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Models.UserPuzzleAnswerData.Conclusions">
-            <summary>The answer conclusion digit value (-1 is for unknown value, 1 to 9 is for the target digit filled).</summary>
+        <member name="P:Sudoku.Platforms.QQ.Models.UserPuzzleAnswerData.Conclusion">
+            <summary>The answer conclusion index.</summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Operation.DailyPuzzleOperation">
             <summary>
@@ -1379,11 +1354,10 @@
             <param name="distribution">The distribution.</param>
             <returns>The value.</returns>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetScoreEarnedInEachGaming(System.Int32[],Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetScoreEarnedInEachGaming(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
             <summary>
             Gets the experience point that can be earned by a player in a single gaming.
             </summary>
-            <param name="targetCells">The target cells.</param>
             <param name="difficultyLevel">The difficulty level of the puzzle.</param>
             <returns>The experience point.</returns>
             <exception cref="T:System.NotSupportedException">Throws when the specified difficulty level or target cells count is not supported.</exception>

@@ -1,7 +1,5 @@
 ﻿namespace Sudoku.Platforms.QQ.Commands;
 
-using static Constants;
-
 /// <summary>
 /// Define a start gaming command.
 /// </summary>
@@ -25,32 +23,22 @@ file sealed class StartGamingCommand : Command
 		context.ExecutingCommand = CommandName;
 		context.AnsweringContext = new();
 
-		var targetCells = DateTime.Today switch
-		{
-			{ DayOfWeek: DayOfWeek.Saturday or DayOfWeek.Sunday } => Rng.Next(1, 100) switch
-			{
-				<= 25 => TwoCells,
-				> 25 and <= 50 => ThreeCells,
-				> 50 and <= 75 => FiveCells,
-				_ => SevenCells
-			},
-			_ => Rng.Next(1, 99) switch { <= 33 => TwoCells, > 33 and <= 66 => ThreeCells, _ => FiveCells }
-		};
-
-		var (puzzle, solutionData, timeLimit, baseExp) = generatePuzzle(targetCells);
+		var (puzzle, chosenCells, finalCellIndex, timeLimit, baseExp) = generatePuzzle();
 
 		await e.SendMessageAsync(string.Format(R.MessageFormat("MatchReady")!, timeLimit.ToChineseTimeSpanString()));
-		await Task.Delay(10.Seconds());
+		await Task.Delay(5.Seconds());
 
 		// Create picture and send message.
 		await e.SendPictureThenDeleteAsync(
 			() => ISudokuPainter.Create(1000)
 				.WithGrid(puzzle)
 				.WithRenderingCandidates(false)
-				.WithNodes(solutionData.Select(markerNodeSelector))
+				.WithNodes(chosenCells.Select(markerNodeSelector))
 		);
 
 		var answeringContext = context.AnsweringContext;
+
+		answeringContext.CurrentRoundAnsweredValues.Clear();
 
 		// Start gaming.
 		for (int timeLastSeconds = (int)timeLimit.TotalSeconds, elapsedTime = 0; timeLastSeconds > 0; timeLastSeconds--, elapsedTime++)
@@ -69,12 +57,12 @@ file sealed class StartGamingCommand : Command
 
 				foreach (var data in answeringContext.CurrentRoundAnsweredValues)
 				{
-					if (data is not { Conclusions: var answeredDigits, User: { Id: var userId, Name: var userName } })
+					if (data is not { Conclusion: var answeredCellIndex, User: { Id: var userId, Name: var userName } })
 					{
 						continue;
 					}
 
-					switch (resultCorrector(answeredDigits, solutionData), answeringContext.AnsweredUsers.ContainsKey(userId))
+					switch (answeredCellIndex == finalCellIndex, answeringContext.AnsweredUsers.ContainsKey(userId))
 					{
 						case (false, false):
 						{
@@ -177,58 +165,70 @@ file sealed class StartGamingCommand : Command
 			}
 		}
 
-		static bool resultCorrector(int[]? answeredDigits, (int, int Digit)[] data)
-		{
-			if (answeredDigits is null || answeredDigits.Length != data.Length)
-			{
-				return false;
-			}
-
-			for (var i = 0; i < data.Length; i++)
-			{
-				if (answeredDigits[i] != data[i].Digit)
-				{
-					return false;
-				}
-			}
-
-			return true;
-		}
-
-		static GeneratedGridData generatePuzzle(params int[] targetCells)
+		static GeneratedGridData generatePuzzle()
 		{
 			while (true)
 			{
 				var grid = Generator.Generate();
 				switch (Solver.Solve(grid))
 				{
-					case { DifficultyLevel: var l and (DifficultyLevel.Easy or DifficultyLevel.Moderate), Steps: { Length: var length } s }
-					when length > targetCells.Max() && new List<(int Cell, int Digit)>() is var collection:
+					case { IsSolved: true, Solution: var solution, DifficultyLevel: var l and <= DifficultyLevel.Hard }:
 					{
-						foreach (var targetCell in targetCells)
+						var expEarned = Scorer.GetScoreEarnedInEachGaming(l);
+						var timeLimit = ICommandDataProvider.GetGamingTimeLimit(l);
+
+						var finalCellsChosen = new int[9];
+						var chosenCells = CellMap.Empty;
+						var emptyCells = grid.EmptyCells;
+						var puzzleIsInvalid = false;
+						for (var digit = 0; digit < 9; digit++)
 						{
-							if (s[targetCell].Conclusions is [{ Cell: var c, Digit: var d }])
+							while (true)
 							{
-								collection.Add((c, d));
+								var tempMap = emptyCells & grid.CandidatesMap[digit];
+								if (!tempMap)
+								{
+									puzzleIsInvalid = true;
+									goto CheckPuzzleValidity;
+								}
+
+								var cell = tempMap[Rng.Next(0, tempMap.Count)];
+								if (solution[cell] != digit && !chosenCells.Contains(cell))
+								{
+									chosenCells.Add(cell);
+									finalCellsChosen[digit] = cell;
+									break;
+								}
 							}
 						}
 
-						if (collection.Count != targetCells.Length)
+					CheckPuzzleValidity:
+						if (puzzleIsInvalid)
 						{
-							// Invalid case - This is a potential bug :P
 							continue;
 						}
 
-						var expEarned = Scorer.GetScoreEarnedInEachGaming(targetCells, l);
-						var timeLimit = ICommandDataProvider.GetGamingTimeLimit(targetCells, l);
-						return new(grid, collection.ToArray(), timeLimit, expEarned);
+						var digitChosen = Rng.Next(0, 9);
+						if (Rng.Next(0, 1000) < 500)
+						{
+							foreach (var cell in emptyCells)
+							{
+								if (solution[cell] == digitChosen && !chosenCells.Contains(cell))
+								{
+									finalCellsChosen[digitChosen] = cell;
+									break;
+								}
+							}
+						}
+
+						return new(grid, finalCellsChosen, digitChosen, timeLimit, expEarned);
 					}
 				}
 			}
 		}
 
-		static ViewNode markerNodeSelector((int Cell, int Digit) element, int i)
-			=> new BabaGroupViewNode(DisplayColorKind.Normal, element.Cell, (Utf8Char)(char)(i + '1'), (short)(1 << element.Digit));
+		static ViewNode markerNodeSelector(int element, int i)
+			=> new BabaGroupViewNode(DisplayColorKind.Normal, element, (Utf8Char)(char)(i + '1'), 511);
 	}
 }
 
@@ -236,23 +236,11 @@ file sealed class StartGamingCommand : Command
 /// The generated grid data.
 /// </summary>
 /// <param name="Puzzle">Indicates the puzzle.</param>
-/// <param name="SolutionData">Indicates all solution data that you should answer.</param>
+/// <param name="ChosenCells">Indicates the chosen 9 cells.</param>
+/// <param name="FinalIndex">Indicates the final index.</param>
 /// <param name="TimeLimit">The whole time limit of a single gaming.</param>
 /// <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
-file readonly record struct GeneratedGridData(scoped in Grid Puzzle, (int Cell, int Digit)[] SolutionData, TimeSpan TimeLimit, int ExperiencePoint);
-
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
-file static class Constants
-{
-	/// <summary>
-	/// Indicates the cell indices that the puzzle will be extracted.
-	/// </summary>
-	public static readonly int[]
-		TwoCells = { 10, 20 },
-		ThreeCells = { 10, 15, 20 },
-		FiveCells = { 10, 15, 20, 25, 30 },
-		SevenCells = { 1, 3, 6, 10, 15, 21, 28 };
-}
+file readonly record struct GeneratedGridData(scoped in Grid Puzzle, int[] ChosenCells, int FinalIndex, TimeSpan TimeLimit, int ExperiencePoint);
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions

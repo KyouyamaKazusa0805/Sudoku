@@ -137,11 +137,7 @@ file sealed class Bot : IExecutable
 				var trimmed = message.Trim();
 				if (int.TryParse(trimmed, out var validInteger))
 				{
-					tryParseDigits(validInteger, sender, answeredValues);
-				}
-				else if (trimmed.Reserve(@"\d") is var extraCharactersRemoved && int.TryParse(extraCharactersRemoved, out validInteger))
-				{
-					tryParseDigits(validInteger, sender, answeredValues);
+					answeredValues.Add(new(sender, validInteger));
 				}
 
 				break;
@@ -161,28 +157,6 @@ file sealed class Bot : IExecutable
 				}
 
 				break;
-			}
-
-
-			static bool tryParseDigits(int validInteger, Member sender, ConcurrentBag<UserPuzzleAnswerData> answeredValues)
-			{
-				if (validInteger < 0)
-				{
-					return false;
-				}
-
-				// Split by digit bits.
-				List<int> numberList;
-				for (numberList = new(); validInteger != 0; validInteger /= 10)
-				{
-					numberList.Add(validInteger % 10 - 1);
-				}
-
-				// Reverse the collection.
-				numberList.Reverse();
-
-				answeredValues.Add(new(sender, numberList.ToArray()));
-				return true;
 			}
 		}
 	}
