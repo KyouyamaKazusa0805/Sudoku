@@ -117,8 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnalyzePage_CannotOpenFile_FileIsEmpty" xml:space="preserve">
+    <value>文件为空。</value>
+  </data>
+  <data name="AnalyzePage_CannotOpenFile_FileIsTooLarge" xml:space="preserve">
+    <value>文件超过了程序兼容和判断的有效大小。</value>
+  </data>
+  <data name="AnalyzePage_CannotOpenFile_GridIsInvalidToParse" xml:space="preserve">
+    <value>文件里存储的题目无法正确解析。</value>
+  </data>
+  <data name="AnalyzePage_CannotOpenFile_GridIsNotUnique" xml:space="preserve">
+    <value>文件里存储的题目不是唯一解。</value>
+  </data>
+  <data name="AnalyzePage_CannotOpenFile_ProgramIsSnapped" xml:space="preserve">
+    <value>无法打开文件选取器，因为程序的文件系统被占用期间。请稍后重试。</value>
+  </data>
+  <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
+    <value>失败</value>
+  </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>新题目</value>
+  </data>
+  <data name="AnalyzePage_Okay" xml:space="preserve">
+    <value>好嘞！</value>
+  </data>
+  <data name="AnalyzePage_OpenFile" xml:space="preserve">
+    <value>打开文件</value>
   </data>
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>基本功能</value>

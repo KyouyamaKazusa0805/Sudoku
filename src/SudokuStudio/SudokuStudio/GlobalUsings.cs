@@ -45,6 +45,7 @@ global using Windows.Storage;
 global using Windows.Storage.Search;
 global using Windows.UI;
 global using Windows.UI.Core;
+global using Windows.UI.ViewManagement;
 global using WinRT;
 global using WinRT.Interop;
 global using static System.Numerics.BitOperations;

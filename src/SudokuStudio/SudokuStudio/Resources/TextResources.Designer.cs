@@ -70,11 +70,83 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The currently chosen file is empty..
+        /// </summary>
+        internal static string AnalyzePage_CannotOpenFile_FileIsEmpty {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CannotOpenFile_FileIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The currently chosen file is too large - it is oversized..
+        /// </summary>
+        internal static string AnalyzePage_CannotOpenFile_FileIsTooLarge {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CannotOpenFile_FileIsTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The puzzle in the file is invalid to be parsed..
+        /// </summary>
+        internal static string AnalyzePage_CannotOpenFile_GridIsInvalidToParse {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CannotOpenFile_GridIsInvalidToParse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The puzzle in the file does not contain a unique solution - it contains multiple solutions, or the puzzle is invalid..
+        /// </summary>
+        internal static string AnalyzePage_CannotOpenFile_GridIsNotUnique {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CannotOpenFile_GridIsNotUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot open the file picker because the current program is snapped, which is disallowed..
+        /// </summary>
+        internal static string AnalyzePage_CannotOpenFile_ProgramIsSnapped {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CannotOpenFile_ProgramIsSnapped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed.
+        /// </summary>
+        internal static string AnalyzePage_FailedToOpenFilePicker {
+            get {
+                return ResourceManager.GetString("AnalyzePage_FailedToOpenFilePicker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New puzzle.
         /// </summary>
         internal static string AnalyzePage_NewPuzzle {
             get {
                 return ResourceManager.GetString("AnalyzePage_NewPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string AnalyzePage_Okay {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Okay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open file.
+        /// </summary>
+        internal static string AnalyzePage_OpenFile {
+            get {
+                return ResourceManager.GetString("AnalyzePage_OpenFile", resourceCulture);
             }
         }
         

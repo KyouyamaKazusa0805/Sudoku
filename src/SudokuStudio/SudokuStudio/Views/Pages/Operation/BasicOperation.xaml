@@ -9,8 +9,32 @@
 	mc:Ignorable="d"
 	d:DataContext="{d:DesignInstance Type=o:BasicOperation}"
 	NavigationCacheMode="Required">
+	<Page.Resources>
+		<TeachingTip
+			x:Name="ErrorDialog_ProgramIsSnapped" Target="{x:Bind OpenFileButton}" IsLightDismissEnabled="True"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_FailedToOpenFilePicker}"
+			Subtitle="{m:R Key=AnalyzePage_CannotOpenFile_ProgramIsSnapped}" />
+		<TeachingTip
+			x:Name="ErrorDialog_FileIsEmpty" Target="{x:Bind OpenFileButton}" IsLightDismissEnabled="True"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_FailedToOpenFilePicker}"
+			Subtitle="{m:R Key=AnalyzePage_CannotOpenFile_FileIsEmpty}" />
+		<TeachingTip
+			x:Name="ErrorDialog_FileIsOversized" Target="{x:Bind OpenFileButton}" IsLightDismissEnabled="True"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_FailedToOpenFilePicker}"
+			Subtitle="{m:R Key=AnalyzePage_CannotOpenFile_FileIsTooLarge}" />
+		<TeachingTip
+			x:Name="ErrorDialog_FileCannotBeParsed" Target="{x:Bind OpenFileButton}" IsLightDismissEnabled="True"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_FailedToOpenFilePicker}"
+			Subtitle="{m:R Key=AnalyzePage_CannotOpenFile_GridIsInvalidToParse}" />
+		<TeachingTip
+			x:Name="ErrorDialog_FileGridIsNotUnique" Target="{x:Bind OpenFileButton}" IsLightDismissEnabled="True"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_FailedToOpenFilePicker}"
+			Subtitle="{m:R Key=AnalyzePage_CannotOpenFile_GridIsNotUnique}" />
+	</Page.Resources>
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Collapsed">
+		<AppBarButton x:Name="OpenFileButton" Icon="OpenFile" Label="{m:R Key=AnalyzePage_OpenFile}" Click="OpenFileButton_ClickAsync" />
+		<AppBarSeparator />
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind BasePage.GeneratorIsNotRunning,Mode=OneWay}"
 			Click="NewPuzzleButton_ClickAsync" />
