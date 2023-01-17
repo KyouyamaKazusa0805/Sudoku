@@ -42,6 +42,7 @@ global using SudokuStudio.Views.Windows;
 global using Windows.ApplicationModel.DataTransfer;
 global using Windows.Graphics;
 global using Windows.Storage;
+global using Windows.Storage.Pickers;
 global using Windows.Storage.Search;
 global using Windows.UI;
 global using Windows.UI.Core;

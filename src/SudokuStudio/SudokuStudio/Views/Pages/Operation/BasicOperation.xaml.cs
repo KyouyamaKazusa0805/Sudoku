@@ -1,5 +1,3 @@
-using Windows.Storage.Pickers;
-
 namespace SudokuStudio.Views.Pages.Operation;
 
 /// <summary>
@@ -45,6 +43,11 @@ public sealed partial class BasicOperation : Page
 
 	private async void OpenFileButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
+		if (!EnsureUnsnapped())
+		{
+			return;
+		}
+
 		var fop = new FileOpenPicker()
 			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
 			.AddFileTypeFilter(CommonFileExtensions.Text)
