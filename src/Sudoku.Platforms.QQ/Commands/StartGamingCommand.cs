@@ -62,7 +62,7 @@ file sealed class StartGamingCommand : Command
 						continue;
 					}
 
-					switch (answeredCellIndex == finalCellIndex, answeringContext.AnsweredUsers.ContainsKey(userId))
+					switch (answeredCellIndex - 1 == finalCellIndex, answeringContext.AnsweredUsers.ContainsKey(userId))
 					{
 						case (false, false):
 						{
@@ -208,10 +208,10 @@ file sealed class StartGamingCommand : Command
 							continue;
 						}
 
-						var digitChosen = Rng.Next(0, 9);
 						if (Rng.Next(0, 1000) < 500)
 						{
-							foreach (var cell in emptyCells)
+							var digitChosen = Rng.Next(0, 9);
+							foreach (var cell in emptyCells & grid.CandidatesMap[digitChosen])
 							{
 								if (solution[cell] == digitChosen && !chosenCells.Contains(cell))
 								{
@@ -219,9 +219,11 @@ file sealed class StartGamingCommand : Command
 									break;
 								}
 							}
+
+							return new(grid, finalCellsChosen, digitChosen, timeLimit, expEarned);
 						}
 
-						return new(grid, finalCellsChosen, digitChosen, timeLimit, expEarned);
+						return new(grid, finalCellsChosen, -1, timeLimit, expEarned);
 					}
 				}
 			}
