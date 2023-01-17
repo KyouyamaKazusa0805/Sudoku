@@ -31,8 +31,8 @@
 			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_FailedToOpenFilePicker}"
 			Subtitle="{m:R Key=AnalyzePage_CannotOpenFile_GridIsNotUnique}" />
 		<TeachingTip
-			x:Name="SuccessDialog_FileSavedSuccessfully" Target="{x:Bind SaveFileButton}" IsLightDismissEnabled="False"
-			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_SucceedToSaveFile}"
+			x:Name="SuccessDialog_FileSavedSuccessfully" x:FieldModifier="internal" Target="{x:Bind SaveFileButton}"
+			IsLightDismissEnabled="False" CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_SucceedToSaveFile}"
 			Subtitle="{x:Bind SucceedFilePath,Mode=OneWay}" />
 	</Page.Resources>
 

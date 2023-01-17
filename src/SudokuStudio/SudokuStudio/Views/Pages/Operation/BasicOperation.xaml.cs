@@ -172,6 +172,8 @@ file static class Helper
 		var b = GetString("AnalyzePage_FileSaveSucceed_Segment2");
 		page.SucceedFilePath = $"{a}{fileName}{b}";
 
+		page.SuccessDialog_FileSavedSuccessfully.IsOpen = true;
+
 		return true;
 	}
 
@@ -196,6 +198,8 @@ file static class Helper
 		var a = GetString("AnalyzePage_FileSaveSucceed_Segment1");
 		var b = GetString("AnalyzePage_FileSaveSucceed_Segment2");
 		page.SucceedFilePath = $"{a}{fileName}{b}";
+
+		page.SuccessDialog_FileSavedSuccessfully.IsOpen = true;
 
 		return true;
 	}
