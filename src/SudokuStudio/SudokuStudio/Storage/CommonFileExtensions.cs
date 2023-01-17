@@ -11,6 +11,11 @@ internal static class CommonFileExtensions
 	public const string PlainText = ".txt";
 
 	/// <summary>
+	/// Indicates the portable picture format.
+	/// </summary>
+	public const string PortablePicture = ".png";
+
+	/// <summary>
 	/// Indicates the sudoku text file format (SST - Sudoku Studio Text format).
 	/// </summary>
 	public const string Text = ".sst";

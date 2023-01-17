@@ -3,12 +3,19 @@ namespace SudokuStudio.Views.Pages.Operation;
 /// <summary>
 /// Indicates the basic operation command bar.
 /// </summary>
-public sealed partial class BasicOperation : Page
+public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 {
 	/// <summary>
 	/// Defines a default puzzle generator.
 	/// </summary>
 	private static readonly PatternBasedPuzzleGenerator Generator = new();
+
+
+	/// <summary>
+	/// Indicates the path of the saved file.
+	/// </summary>
+	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
+	private string? _succeedFilePath;
 
 
 	/// <summary>
@@ -21,6 +28,10 @@ public sealed partial class BasicOperation : Page
 	/// Indicates the base page.
 	/// </summary>
 	public AnalyzePage BasePage { get; set; } = null!;
+
+
+	/// <inheritdoc/>
+	public event PropertyChangedEventHandler? PropertyChanged;
 
 
 	/// <summary>
@@ -93,6 +104,33 @@ public sealed partial class BasicOperation : Page
 		}
 	}
 
+	private async void SaveFileButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (!EnsureUnsnapped())
+		{
+			return;
+		}
+
+		var fsp = new FileSavePicker()
+			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
+			.WithSuggestedFileName(R["Sudoku"]!)
+			.AddFileTypeChoice(GetString("FileExtension_TextDescription"), CommonFileExtensions.Text)
+			.AddFileTypeChoice(GetString("FileExtension_PlainTextDescription"), CommonFileExtensions.PlainText)
+			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture)
+			.WithAwareHandleOnWin32();
+
+		_ = await fsp.PickSaveFileAsync() switch
+		{
+			{ Path: var filePath } file => Path.GetExtension(filePath) switch
+			{
+				CommonFileExtensions.Text or CommonFileExtensions.PlainText => await Helper.PlainTextSaveAsync(file, this),
+				CommonFileExtensions.PortablePicture => await Helper.PictureSaveAsync(file, this),
+				_ => false
+			},
+			_ => false
+		};
+	}
+
 	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		BasePage.GeneratorIsNotRunning = false;
@@ -102,5 +140,117 @@ public sealed partial class BasicOperation : Page
 		BasePage.GeneratorIsNotRunning = true;
 
 		BasePage.SudokuPane.Puzzle = grid;
+	}
+}
+
+/// <summary>
+/// Represents a list of methods that handles and saves the files with supported sudoku formats.
+/// </summary>
+file static class Helper
+{
+	/// <summary>
+	/// Saves with plain text format.
+	/// </summary>
+	/// <param name="file">The file.</param>
+	/// <param name="page">The page control.</param>
+	/// <returns>
+	/// The asynchronous task that can return the <see cref="bool"/> result
+	/// indicating whether the operation is succeeded.
+	/// </returns>
+	public static async Task<bool> PlainTextSaveAsync(StorageFile file, BasicOperation page)
+	{
+		if ((file, page) is not ({ Name: var fileName, Path: var filePath }, { BasePage.SudokuPane.Puzzle: var grid }))
+		{
+			return false;
+		}
+
+		var code = grid.ToString("#");
+
+		await File.WriteAllTextAsync(filePath, code);
+
+		var a = GetString("AnalyzePage_FileSaveSucceed_Segment1");
+		var b = GetString("AnalyzePage_FileSaveSucceed_Segment2");
+		page.SucceedFilePath = $"{a}{fileName}{b}";
+
+		return true;
+	}
+
+	/// <summary>
+	/// Saves with picture format.
+	/// </summary>
+	/// <param name="file">The file.</param>
+	/// <param name="page">The page control.</param>
+	/// <returns>
+	/// The asynchronous task that can return the <see cref="bool"/> result
+	/// indicating whether the operation is succeeded.
+	/// </returns>
+	public static async Task<bool> PictureSaveAsync(StorageFile file, BasicOperation page)
+	{
+		if ((file, page) is not ({ Name: var fileName }, { BasePage.SudokuPane: var pane }))
+		{
+			return false;
+		}
+
+		await pane.RenderToAsync(file);
+
+		var a = GetString("AnalyzePage_FileSaveSucceed_Segment1");
+		var b = GetString("AnalyzePage_FileSaveSucceed_Segment2");
+		page.SucceedFilePath = $"{a}{fileName}{b}";
+
+		return true;
+	}
+}
+
+/// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Renders the specified UI control to the target file as a picture.
+	/// </summary>
+	/// <typeparam name="TUIElement">The type of the UI control.</typeparam>
+	/// <param name="this">The control.</param>
+	/// <param name="file">The target file.</param>
+	public static async Task RenderToAsync<TUIElement>(this TUIElement @this, StorageFile file) where TUIElement : UIElement
+	{
+		// Render.
+		var rtb = new RenderTargetBitmap();
+		await rtb.RenderAsync(@this);
+
+		// Creates the pixel buffer.
+		var pixelBuffer = await rtb.GetPixelsAsync();
+
+		// Gets the DPI value.
+		var dpi = TryGetLogicalDpi();
+
+		// Encodes the image to the selected file on disk.
+		using var pictureFileStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+		var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, pictureFileStream);
+		encoder.SetPixelData(
+			BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, (uint)rtb.PixelWidth, (uint)rtb.PixelHeight,
+			dpi, dpi, pixelBuffer.ToArray());
+
+		// Flushes the encoder.
+		await encoder.FlushAsync();
+	}
+
+	/// <summary>
+	/// Try to get the logical DPI value.
+	/// </summary>
+	/// <param name="default">The default DPI value. The default value is 96.</param>
+	/// <returns>The DPI value to get.</returns>
+	private static float TryGetLogicalDpi(float @default = 96)
+	{
+		float dpi;
+		try
+		{
+			dpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+		}
+		catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80070490))
+		{
+			// Cannot find the element.
+			dpi = @default;
+		}
+
+		return dpi;
 	}
 }

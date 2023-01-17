@@ -30,10 +30,15 @@
 			x:Name="ErrorDialog_FileGridIsNotUnique" Target="{x:Bind OpenFileButton}" IsLightDismissEnabled="True"
 			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_FailedToOpenFilePicker}"
 			Subtitle="{m:R Key=AnalyzePage_CannotOpenFile_GridIsNotUnique}" />
+		<TeachingTip
+			x:Name="SuccessDialog_FileSavedSuccessfully" Target="{x:Bind SaveFileButton}" IsLightDismissEnabled="False"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_SucceedToSaveFile}"
+			Subtitle="{x:Bind SucceedFilePath,Mode=OneWay}" />
 	</Page.Resources>
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Collapsed">
 		<AppBarButton x:Name="OpenFileButton" Icon="OpenFile" Label="{m:R Key=AnalyzePage_OpenFile}" Click="OpenFileButton_ClickAsync" />
+		<AppBarButton x:Name="SaveFileButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFile}" Click="SaveFileButton_ClickAsync" />
 		<AppBarSeparator />
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind BasePage.GeneratorIsNotRunning,Mode=OneWay}"

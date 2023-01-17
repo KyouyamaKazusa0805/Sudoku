@@ -135,6 +135,12 @@
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>Failed</value>
   </data>
+  <data name="AnalyzePage_FileSaveSucceed_Segment1" xml:space="preserve">
+    <value>File '</value>
+  </data>
+  <data name="AnalyzePage_FileSaveSucceed_Segment2" xml:space="preserve">
+    <value>' has been saved successfully.</value>
+  </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>New puzzle</value>
   </data>
@@ -142,10 +148,25 @@
     <value>OK</value>
   </data>
   <data name="AnalyzePage_OpenFile" xml:space="preserve">
-    <value>Open file</value>
+    <value>Open</value>
   </data>
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>Basics</value>
+  </data>
+  <data name="AnalyzePage_SaveFile" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AnalyzePage_SucceedToSaveFile" xml:space="preserve">
+    <value>Successful</value>
+  </data>
+  <data name="FileExtension_Picture" xml:space="preserve">
+    <value>Portable picture format</value>
+  </data>
+  <data name="FileExtension_PlainTextDescription" xml:space="preserve">
+    <value>Plain text format</value>
+  </data>
+  <data name="FileExtension_TextDescription" xml:space="preserve">
+    <value>Sudoku puzzle format</value>
   </data>
   <data name="MainWindow_Analyze" xml:space="preserve">
     <value>Analyze</value>

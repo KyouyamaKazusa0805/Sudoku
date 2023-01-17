@@ -124,6 +124,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File &apos;.
+        /// </summary>
+        internal static string AnalyzePage_FileSaveSucceed_Segment1 {
+            get {
+                return ResourceManager.GetString("AnalyzePage_FileSaveSucceed_Segment1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos; has been saved successfully..
+        /// </summary>
+        internal static string AnalyzePage_FileSaveSucceed_Segment2 {
+            get {
+                return ResourceManager.GetString("AnalyzePage_FileSaveSucceed_Segment2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New puzzle.
         /// </summary>
         internal static string AnalyzePage_NewPuzzle {
@@ -142,7 +160,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open file.
+        ///   Looks up a localized string similar to Open.
         /// </summary>
         internal static string AnalyzePage_OpenFile {
             get {
@@ -156,6 +174,51 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_PivotItem_BasicOperations {
             get {
                 return ResourceManager.GetString("AnalyzePage_PivotItem_BasicOperations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string AnalyzePage_SaveFile {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successful.
+        /// </summary>
+        internal static string AnalyzePage_SucceedToSaveFile {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SucceedToSaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portable picture format.
+        /// </summary>
+        internal static string FileExtension_Picture {
+            get {
+                return ResourceManager.GetString("FileExtension_Picture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plain text format.
+        /// </summary>
+        internal static string FileExtension_PlainTextDescription {
+            get {
+                return ResourceManager.GetString("FileExtension_PlainTextDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sudoku puzzle format.
+        /// </summary>
+        internal static string FileExtension_TextDescription {
+            get {
+                return ResourceManager.GetString("FileExtension_TextDescription", resourceCulture);
             }
         }
         
