@@ -48,7 +48,11 @@ file sealed record DailyPuzzleOperation() : PeriodicOperation(new TimeOnly(12, 0
 					=> step is
 					{
 						DifficultyLevel: DifficultyLevel.Hard,
-						TechniqueGroup: not (TechniqueGroup.Wing or TechniqueGroup.UniqueRectangle or TechniqueGroup.EmptyRectangle)
+						TechniqueGroup: not (
+							TechniqueGroup.Wing or TechniqueGroup.SingleDigitPattern
+							or TechniqueGroup.UniqueRectangle
+							or TechniqueGroup.AlmostLockedCandidates
+						)
 					};
 			}
 
