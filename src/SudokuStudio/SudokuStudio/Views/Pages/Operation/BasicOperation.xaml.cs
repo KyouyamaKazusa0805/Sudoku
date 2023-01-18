@@ -229,13 +229,7 @@ file enum FormatFlags : int
 	/// <summary>
 	/// Indicates the current grid format.
 	/// </summary>
-	CurrentFormat = 1 << 1,
-
-	/// <summary>
-	/// Indicates the full formats. All format flags are included.
-	/// </summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	Full = InitialFormat | CurrentFormat
+	CurrentFormat = 1 << 1
 }
 
 /// <summary>
