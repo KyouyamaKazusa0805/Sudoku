@@ -169,24 +169,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File &apos;.
-        /// </summary>
-        internal static string AnalyzePage_FileSaveSucceed_Segment1 {
-            get {
-                return ResourceManager.GetString("AnalyzePage_FileSaveSucceed_Segment1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &apos; has been saved successfully..
-        /// </summary>
-        internal static string AnalyzePage_FileSaveSucceed_Segment2 {
-            get {
-                return ResourceManager.GetString("AnalyzePage_FileSaveSucceed_Segment2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Hodoku library compatible format.
         /// </summary>
         internal static string AnalyzePage_HodokuFormat {

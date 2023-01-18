@@ -36,6 +36,220 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// <inheritdoc/>
 	public event PropertyChangedEventHandler? PropertyChanged;
 
+	/// <summary>
+	/// Provides with an event that is triggered when failed to open a file.
+	/// </summary>
+	public event OpenFileFailedEventHandler? OpenFileFailed;
+
+	/// <summary>
+	/// Provides with an event that is triggered when failed to save a file.
+	/// </summary>
+	public event SaveFileFailedEventHandler? SaveFileFailed;
+
+
+	/// <summary>
+	/// Open a file.
+	/// </summary>
+	/// <returns>A task that handles the operation.</returns>
+	internal async Task OpenFileInternalAsync()
+	{
+		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
+		if (!unsnapped)
+		{
+			OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.UnsnappingFailed));
+			return;
+		}
+
+		var fop = new FileOpenPicker()
+			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
+			.AddFileTypeFilter(CommonFileExtensions.Text)
+			.AddFileTypeFilter(CommonFileExtensions.PlainText)
+			.WithAwareHandleOnWin32();
+
+		await LoadPuzzleCoreAsync(await fop.PickSingleFileAsync());
+	}
+
+	/// <summary>
+	/// Save a file.
+	/// </summary>
+	/// <returns>A task that handles the operation.</returns>
+	internal async Task SaveFileInternalAsync()
+	{
+		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
+		if (!unsnapped)
+		{
+			SaveFileFailed?.Invoke(this, new(SaveFileFailedReason.UnsnappingFailed));
+			return;
+		}
+
+		var fsp = new FileSavePicker()
+			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
+			.WithSuggestedFileName(R["Sudoku"]!)
+			.AddFileTypeChoice(GetString("FileExtension_TextDescription"), CommonFileExtensions.Text)
+			.AddFileTypeChoice(GetString("FileExtension_PlainTextDescription"), CommonFileExtensions.PlainText)
+			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture)
+			.WithAwareHandleOnWin32();
+
+		if (await fsp.PickSaveFileAsync() is not { Path: var filePath } file)
+		{
+			return;
+		}
+
+		switch (Path.GetExtension(filePath))
+		{
+			case CommonFileExtensions.PlainText:
+			{
+				await File.WriteAllTextAsync(filePath, SudokuPane.Puzzle.ToString("#"));
+				break;
+			}
+			case CommonFileExtensions.Text:
+			{
+				var data = new[] { new GridSerializationData { GridString = SusserFormat.Full.ToString(SudokuPane.Puzzle) } };
+				await File.WriteAllTextAsync(filePath, Serialize(data, CommonSerializerOptions.CamelCasing));
+				break;
+			}
+			case CommonFileExtensions.PortablePicture:
+			{
+				await SudokuPane.RenderToAsync(file);
+				break;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Save a file via grid formatters.
+	/// </summary>
+	/// <param name="gridFormatters">The grid formatters.</param>
+	/// <returns>A task that handles the operation.</returns>
+	internal async Task<bool> SaveFileInternalAsync(ArrayList gridFormatters)
+	{
+		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
+		if (!unsnapped)
+		{
+			SaveFileFailed?.Invoke(this, new(SaveFileFailedReason.UnsnappingFailed));
+			return false;
+		}
+
+		var fsp = new FileSavePicker()
+			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
+			.WithSuggestedFileName(R["Sudoku"]!)
+			.AddFileTypeChoice(GetString("FileExtension_TextDescription"), CommonFileExtensions.Text)
+			.AddFileTypeChoice(GetString("FileExtension_PlainTextDescription"), CommonFileExtensions.PlainText)
+			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture)
+			.WithAwareHandleOnWin32();
+
+		if (await fsp.PickSaveFileAsync() is not { Path: var filePath } file)
+		{
+			return false;
+		}
+
+		var grid = SudokuPane.Puzzle;
+		switch (Path.GetExtension(filePath))
+		{
+			case CommonFileExtensions.PlainText:
+			{
+				await File.WriteAllTextAsync(
+					filePath,
+					string.Join("\r\n\r\n", from object gridFormatter in gridFormatters select ((IGridFormatter)gridFormatter).ToString(grid))
+				);
+				break;
+			}
+			case CommonFileExtensions.Text:
+			{
+				var data = (
+					from object gridFormatter in gridFormatters
+					select ((IGridFormatter)gridFormatter).ToString(grid) into gridString
+					select new GridSerializationData { GridString = gridString }
+				).ToArray();
+
+				await File.WriteAllTextAsync(filePath, Serialize(data, CommonSerializerOptions.CamelCasing));
+				break;
+			}
+			case CommonFileExtensions.PortablePicture:
+			{
+				await SudokuPane.RenderToAsync(file);
+				break;
+			}
+		}
+
+		return true;
+	}
+
+	/// <summary>
+	/// The internal logic to load a puzzle. This operation can be called after dropping files
+	/// or picking files from <see cref="FileOpenPicker"/>.
+	/// </summary>
+	/// <param name="file">The <see cref="StorageFile"/> instance.</param>
+	/// <returns>The task instance that handles this operation.</returns>
+	/// <seealso cref="FileOpenPicker"/>
+	internal async Task LoadPuzzleCoreAsync(StorageFile file)
+	{
+		var filePath = file.Path;
+		var fileInfo = new FileInfo(filePath);
+		switch (fileInfo.Length)
+		{
+			case 0:
+			{
+				OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.FileIsEmpty));
+				return;
+			}
+			case > 1024:
+			{
+				OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.FileIsTooLarge));
+				return;
+			}
+			default:
+			{
+				var content = await FileIO.ReadTextAsync(file);
+				switch (Path.GetExtension(filePath))
+				{
+					case CommonFileExtensions.PlainText:
+					{
+						if (string.IsNullOrWhiteSpace(content))
+						{
+							OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.FileIsEmpty));
+							return;
+						}
+
+						if (!Grid.TryParse(content, out var g))
+						{
+							OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.FileCannotBeParsed));
+							return;
+						}
+
+						SudokuPane.Puzzle = g;
+						break;
+					}
+					case CommonFileExtensions.Text:
+					{
+						switch (Deserialize<GridSerializationData[]>(content, CommonSerializerOptions.CamelCasing))
+						{
+							case [{ GridString: var str }]:
+							{
+								if (!Grid.TryParse(str, out var g))
+								{
+									OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.FileCannotBeParsed));
+									return;
+								}
+
+								SudokuPane.Puzzle = g;
+								break;
+							}
+							default:
+							{
+								OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.FileCannotBeParsed));
+								return;
+							}
+						}
+
+						break;
+					}
+				}
+
+				break;
+			}
+		}
+	}
 
 	/// <inheritdoc/>
 	protected override void OnKeyDown(KeyRoutedEventArgs e)
@@ -71,7 +285,9 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 				new(winsys::VirtualKeyModifiers.Control | winsys::VirtualKeyModifiers.Shift, winsys::VirtualKey.C),
 				async () => await SudokuPane.CopySnapshotAsync()
 			),
-			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.V), async () => await SudokuPane.PasteAsync())
+			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.V), async () => await SudokuPane.PasteAsync()),
+			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.O), async () => await OpenFileInternalAsync()),
+			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.S), async () => await SaveFileInternalAsync())
 		};
 
 	/// <summary>

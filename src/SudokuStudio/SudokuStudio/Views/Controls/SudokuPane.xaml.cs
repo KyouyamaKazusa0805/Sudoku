@@ -174,11 +174,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	/// <summary>
-	/// Indicates the event that is triggered when a file is successfully received via dropped file.
-	/// </summary>
-	public event SuccessfullyReceivedDroppedFileEventHandler? SuccessfullyReceivedDroppedFile;
-
-	/// <summary>
 	/// Indicates the event that is triggered when a file is failed to be received via dropped file.
 	/// </summary>
 	public event FailedReceivedDroppedFileEventHandler? FailedReceivedDroppedFile;
@@ -453,60 +448,90 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		switch (await dataView.GetStorageItemsAsync())
 		{
-			case [StorageFolder folder]
-#pragma warning disable format
-			when await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, 0, 2) is
-			[
-				StorageFile
+			case [StorageFolder folder]:
+			{
+				var files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, 0, 2);
+				if (files is not [StorageFile { FileType: CommonFileExtensions.Text or CommonFileExtensions.PlainText } file])
 				{
-					FileType: CommonFileExtensions.Text or CommonFileExtensions.PlainText,
-					Path: var path
+					return;
 				}
-			]:
-#pragma warning restore format
-			{
-				await handleSudokuFile(path);
+
+				await handleSudokuFileAsync(file);
 
 				break;
 			}
-			case [StorageFile { FileType: CommonFileExtensions.Text or CommonFileExtensions.PlainText, Path: var path }]:
+			case [StorageFile { FileType: CommonFileExtensions.Text or CommonFileExtensions.PlainText } file]:
 			{
-				await handleSudokuFile(path);
+				await handleSudokuFileAsync(file);
 
 				break;
 			}
 
 
-			async Task handleSudokuFile(string path)
+			async Task handleSudokuFileAsync(StorageFile file)
 			{
-				switch (new FileInfo(path).Length)
+				var filePath = file.Path;
+				var fileInfo = new FileInfo(filePath);
+				switch (fileInfo.Length)
 				{
 					case 0:
 					{
 						FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
-						break;
+						return;
 					}
 					case > 1024:
 					{
 						FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsTooLarge));
-						break;
+						return;
 					}
 					default:
 					{
-						var content = await File.ReadAllTextAsync(path);
-						if (string.IsNullOrWhiteSpace(content))
+						var content = await FileIO.ReadTextAsync(file);
+						switch (Path.GetExtension(filePath))
 						{
-							return;
+							case CommonFileExtensions.PlainText:
+							{
+								if (string.IsNullOrWhiteSpace(content))
+								{
+									FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
+									return;
+								}
+
+								if (!Grid.TryParse(content, out var g))
+								{
+									FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
+									return;
+								}
+
+								Puzzle = g;
+								break;
+							}
+							case CommonFileExtensions.Text:
+							{
+								switch (Deserialize<GridSerializationData[]>(content, CommonSerializerOptions.CamelCasing))
+								{
+									case [{ GridString: var str }]:
+									{
+										if (!Grid.TryParse(str, out var g))
+										{
+											FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
+											return;
+										}
+
+										Puzzle = g;
+										break;
+									}
+									default:
+									{
+										FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
+										return;
+									}
+								}
+
+								break;
+							}
 						}
 
-						if (!Grid.TryParse(content, out var grid))
-						{
-							return;
-						}
-
-						Puzzle = grid;
-
-						SuccessfullyReceivedDroppedFile?.Invoke(this, new());
 						break;
 					}
 				}

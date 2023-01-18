@@ -150,12 +150,6 @@
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>Failed</value>
   </data>
-  <data name="AnalyzePage_FileSaveSucceed_Segment1" xml:space="preserve">
-    <value>File '</value>
-  </data>
-  <data name="AnalyzePage_FileSaveSucceed_Segment2" xml:space="preserve">
-    <value>' has been saved successfully.</value>
-  </data>
   <data name="AnalyzePage_HodokuFormat" xml:space="preserve">
     <value>Hodoku library compatible format</value>
   </data>

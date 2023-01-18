@@ -1,14 +1,14 @@
 ﻿namespace SudokuStudio.Models;
 
 /// <summary>
-/// Defines a sudoku grid data.
+/// Defines a sudoku grid serialization data.
 /// </summary>
-internal sealed class SudokuGridData
+internal sealed class GridSerializationData
 {
 	/// <summary>
 	/// Indicates the format description.
 	/// </summary>
-	public required string FormatDescription { get; set; }
+	public string FormatDescription { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Indicates the grid string.

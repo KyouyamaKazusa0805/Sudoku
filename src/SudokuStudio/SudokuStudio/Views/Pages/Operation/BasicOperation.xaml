@@ -6,9 +6,9 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:o="using:SudokuStudio.Views.Pages.Operation"
-	mc:Ignorable="d"
-	d:DataContext="{d:DesignInstance Type=o:BasicOperation}"
-	NavigationCacheMode="Required">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=o:BasicOperation}"
+	NavigationCacheMode="Required"
+	Loaded="Page_Loaded">
 	<Page.Resources>
 		<TeachingTip
 			x:Name="ErrorDialog_ProgramIsSnapped" Target="{x:Bind OpenFileButton}" IsLightDismissEnabled="True"
@@ -30,10 +30,6 @@
 			x:Name="ErrorDialog_FileGridIsNotUnique" Target="{x:Bind OpenFileButton}" IsLightDismissEnabled="True"
 			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_FailedToOpenFilePicker}"
 			Subtitle="{m:R Key=AnalyzePage_CannotOpenFile_GridIsNotUnique}" />
-		<TeachingTip
-			x:Name="SuccessDialog_FileSavedSuccessfully" x:FieldModifier="internal" Target="{x:Bind SaveFileButton}"
-			IsLightDismissEnabled="False" CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_SucceedToSaveFile}"
-			Subtitle="{x:Bind SucceedFilePath,Mode=OneWay}" />
 		<TeachingTip
 			x:Name="Dialog_FormatChoosing" IsLightDismissEnabled="False" Target="{x:Bind SaveAsButton}"
 			ActionButtonContent="{m:R Key=AnalyzePage_SaveAsButtonContent}" CloseButtonContent="{m:R Key=AnalyzePage_Cancel}"
