@@ -70,6 +70,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string AnalyzePage_Cancel {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The currently chosen file is empty..
         /// </summary>
         internal static string AnalyzePage_CannotOpenFile_FileIsEmpty {
@@ -115,6 +124,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please choose the format that you want to save:.
+        /// </summary>
+        internal static string AnalyzePage_ChooseFormats {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ChooseFormats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current grid format (&apos;#&apos; or &apos;#0&apos;).
+        /// </summary>
+        internal static string AnalyzePage_CurrentGridFormat {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CurrentGridFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed.
         /// </summary>
         internal static string AnalyzePage_FailedToOpenFilePicker {
@@ -138,6 +165,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_FileSaveSucceed_Segment2 {
             get {
                 return ResourceManager.GetString("AnalyzePage_FileSaveSucceed_Segment2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initial grid format (&apos;.&apos; or &apos;0&apos;).
+        /// </summary>
+        internal static string AnalyzePage_InitialGridFormat {
+            get {
+                return ResourceManager.GetString("AnalyzePage_InitialGridFormat", resourceCulture);
             }
         }
         
@@ -178,11 +214,38 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save!.
+        /// </summary>
+        internal static string AnalyzePage_SaveAsButtonContent {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SaveAsButtonContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string AnalyzePage_SaveFile {
             get {
                 return ResourceManager.GetString("AnalyzePage_SaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save as.
+        /// </summary>
+        internal static string AnalyzePage_SaveFileAnother {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SaveFileAnother", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        internal static string AnalyzePage_SelectAll {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SelectAll", resourceCulture);
             }
         }
         

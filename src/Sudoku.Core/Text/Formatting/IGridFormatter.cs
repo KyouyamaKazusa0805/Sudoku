@@ -134,7 +134,7 @@ public interface IGridFormatter : IFormatProvider, ICustomFormatter
 	/// Indicates the singleton instance.
 	/// </summary>
 	/// <remarks>
-	/// The main idea of this property is to tell you the impelmentation type should disallow
+	/// The main idea of this property is to tell you the implementation type should disallow
 	/// users calling parameterless constructors. Although C# does not restrict with it, you should disallow it,
 	/// in order to provide users with better utility experience.
 	/// </remarks>

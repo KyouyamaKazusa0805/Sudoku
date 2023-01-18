@@ -141,6 +141,101 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 
 		BasePage.SudokuPane.Puzzle = grid;
 	}
+
+	private void SaveAsButton_Click(object sender, RoutedEventArgs e) => Dialog_FormatChoosing.IsOpen = true;
+
+	private async void Dialog_FormatChoosing_ActionButtonClickAsync(TeachingTip sender, object args)
+	{
+		if (!EnsureUnsnapped())
+		{
+			return;
+		}
+
+		var flags = (
+			from children in FormatGroupPanel.Children
+			where children is CheckBox { Tag: int and not 0, IsChecked: true }
+			select (FormatFlags)(int)((CheckBox)children).Tag!
+		).Aggregate(FormatFlags.None, static (interim, next) => interim | next);
+		if (flags == FormatFlags.None)
+		{
+			return;
+		}
+
+		var puzzle = BasePage.SudokuPane.Puzzle;
+		var newline = Environment.NewLine;
+		var outputString = string.Join(
+			$"{newline}{newline}",
+			from object formatter in createFormatHandlers(flags)
+			select ((IGridFormatter)formatter).ToString(puzzle)
+		);
+
+		var fsp = new FileSavePicker()
+			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
+			.WithSuggestedFileName(R["Sudoku"]!)
+			.AddFileTypeChoice(GetString("FileExtension_TextDescription"), CommonFileExtensions.Text)
+			.AddFileTypeChoice(GetString("FileExtension_PlainTextDescription"), CommonFileExtensions.PlainText)
+			.WithAwareHandleOnWin32();
+
+		if (await fsp.PickSaveFileAsync() switch
+		{
+			{ Path: var filePath } file => Path.GetExtension(filePath) switch
+			{
+				CommonFileExtensions.Text or CommonFileExtensions.PlainText => await Helper.PlainTextSaveAsync(file, this, outputString),
+				_ => false
+			},
+			_ => false
+		})
+		{
+			Dialog_FormatChoosing.IsOpen = false;
+		}
+
+
+		static ArrayList createFormatHandlers(FormatFlags flags)
+		{
+			var formats = new ArrayList();
+			foreach (var flag in flags.GetAllFlagsDistinct()!)
+			{
+				formats.Add(
+					flag switch
+					{
+						FormatFlags.InitialFormat => SusserFormat.Default,
+						FormatFlags.CurrentFormat => SusserFormat.Full
+					}
+				);
+			}
+
+			return formats;
+		}
+	}
+}
+
+/// <summary>
+/// Represents a format flag.
+/// </summary>
+[Flags]
+file enum FormatFlags : int
+{
+	/// <summary>
+	/// Indicates the default format.
+	/// </summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	None = 0,
+
+	/// <summary>
+	/// Indicates the initial grid format.
+	/// </summary>
+	InitialFormat = 1,
+
+	/// <summary>
+	/// Indicates the current grid format.
+	/// </summary>
+	CurrentFormat = 1 << 1,
+
+	/// <summary>
+	/// Indicates the full formats. All format flags are included.
+	/// </summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	Full = InitialFormat | CurrentFormat
 }
 
 /// <summary>
@@ -167,6 +262,34 @@ file static class Helper
 		var code = grid.ToString("#");
 
 		await File.WriteAllTextAsync(filePath, code);
+
+		var a = GetString("AnalyzePage_FileSaveSucceed_Segment1");
+		var b = GetString("AnalyzePage_FileSaveSucceed_Segment2");
+		page.SucceedFilePath = $"{a}{fileName}{b}";
+
+		page.SuccessDialog_FileSavedSuccessfully.IsOpen = true;
+
+		return true;
+	}
+
+	/// <summary>
+	/// Saves with plain text format.
+	/// </summary>
+	/// <param name="file">The file.</param>
+	/// <param name="page">The page control.</param>
+	/// <param name="outputValue">The output value.</param>
+	/// <returns>
+	/// The asynchronous task that can return the <see cref="bool"/> result
+	/// indicating whether the operation is succeeded.
+	/// </returns>
+	public static async Task<bool> PlainTextSaveAsync(StorageFile file, BasicOperation page, string outputValue)
+	{
+		if (file is not { Name: var fileName, Path: var filePath })
+		{
+			return false;
+		}
+
+		await File.WriteAllTextAsync(filePath, outputValue);
 
 		var a = GetString("AnalyzePage_FileSaveSucceed_Segment1");
 		var b = GetString("AnalyzePage_FileSaveSucceed_Segment2");

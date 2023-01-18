@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnalyzePage_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
   <data name="AnalyzePage_CannotOpenFile_FileIsEmpty" xml:space="preserve">
     <value>文件为空。</value>
   </data>
@@ -132,6 +135,12 @@
   <data name="AnalyzePage_CannotOpenFile_ProgramIsSnapped" xml:space="preserve">
     <value>无法打开文件选取器，因为程序的文件系统被占用期间。请稍后重试。</value>
   </data>
+  <data name="AnalyzePage_ChooseFormats" xml:space="preserve">
+    <value>请在如下的选择项目里选择你要保存的格式项：</value>
+  </data>
+  <data name="AnalyzePage_CurrentGridFormat" xml:space="preserve">
+    <value>当前盘面格式（“#”或“#0”）</value>
+  </data>
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>失败</value>
   </data>
@@ -140,6 +149,9 @@
   </data>
   <data name="AnalyzePage_FileSaveSucceed_Segment2" xml:space="preserve">
     <value>”保存成功。</value>
+  </data>
+  <data name="AnalyzePage_InitialGridFormat" xml:space="preserve">
+    <value>初盘格式（“.”或“0”）</value>
   </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>新题目</value>
@@ -153,8 +165,17 @@
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>基本功能</value>
   </data>
+  <data name="AnalyzePage_SaveAsButtonContent" xml:space="preserve">
+    <value>选择保存路径！</value>
+  </data>
   <data name="AnalyzePage_SaveFile" xml:space="preserve">
     <value>保存</value>
+  </data>
+  <data name="AnalyzePage_SaveFileAnother" xml:space="preserve">
+    <value>另存格式</value>
+  </data>
+  <data name="AnalyzePage_SelectAll" xml:space="preserve">
+    <value>全部选择</value>
   </data>
   <data name="AnalyzePage_SucceedToSaveFile" xml:space="preserve">
     <value>成功</value>

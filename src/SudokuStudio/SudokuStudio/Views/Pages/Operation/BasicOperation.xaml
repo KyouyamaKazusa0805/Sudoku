@@ -34,11 +34,30 @@
 			x:Name="SuccessDialog_FileSavedSuccessfully" x:FieldModifier="internal" Target="{x:Bind SaveFileButton}"
 			IsLightDismissEnabled="False" CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_SucceedToSaveFile}"
 			Subtitle="{x:Bind SucceedFilePath,Mode=OneWay}" />
+		<TeachingTip
+			x:Name="Dialog_FormatChoosing" IsLightDismissEnabled="False" Target="{x:Bind SaveAsButton}"
+			ActionButtonContent="{m:R Key=AnalyzePage_SaveAsButtonContent}" CloseButtonContent="{m:R Key=AnalyzePage_Cancel}"
+			Title="{m:R Key=AnalyzePage_SaveFileAnother}" Subtitle="{m:R Key=AnalyzePage_ChooseFormats}"
+			ActionButtonClick="Dialog_FormatChoosing_ActionButtonClickAsync">
+			<StackPanel x:Name="FormatGroupPanel" Margin="0,16,0,0">
+				<CheckBox x:Name="InitialGridFormat" Content="{m:R Key=AnalyzePage_InitialGridFormat}">
+					<CheckBox.Tag>
+						<x:Int32>1</x:Int32>
+					</CheckBox.Tag>
+				</CheckBox>
+				<CheckBox x:Name="CurrentGridFormat" Content="{m:R Key=AnalyzePage_CurrentGridFormat}">
+					<CheckBox.Tag>
+						<x:Int32>2</x:Int32>
+					</CheckBox.Tag>
+				</CheckBox>
+			</StackPanel>
+		</TeachingTip>
 	</Page.Resources>
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Collapsed">
 		<AppBarButton x:Name="OpenFileButton" Icon="OpenFile" Label="{m:R Key=AnalyzePage_OpenFile}" Click="OpenFileButton_ClickAsync" />
 		<AppBarButton x:Name="SaveFileButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFile}" Click="SaveFileButton_ClickAsync" />
+		<AppBarButton x:Name="SaveAsButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFileAnother}" Click="SaveAsButton_Click" />
 		<AppBarSeparator />
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind BasePage.GeneratorIsNotRunning,Mode=OneWay}"

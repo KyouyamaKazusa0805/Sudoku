@@ -198,7 +198,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		_redoStack.Push(_puzzle);
 
 		var target = _undoStack.Pop();
-		SetPuzzle(target, whileOndoingOrRedoing: true);
+		SetPuzzle(target, whileUndoingOrRedoing: true);
 	}
 
 	/// <summary>
@@ -215,7 +215,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		_undoStack.Push(_puzzle);
 
 		var target = _redoStack.Pop();
-		SetPuzzle(target, whileOndoingOrRedoing: true);
+		SetPuzzle(target, whileUndoingOrRedoing: true);
 	}
 
 	/// <summary>
@@ -246,7 +246,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <para>Indicates whether the stack fields <see cref="_undoStack"/> and <see cref="_redoStack"/> will be cleared.</para>
 	/// <para>The default value is <see langword="false"/>.</para>
 	/// </param>
-	/// <param name="whileOndoingOrRedoing">Indicates whether the current operation occurred while undoing and redoing a grid step.</param>
+	/// <param name="whileUndoingOrRedoing">Indicates whether the current operation occurred while undoing and redoing a grid step.</param>
 	/// <remarks>
 	/// <para>
 	/// This method is nearly equal to <see cref="set_Puzzle(Grid)"/>, but this method can also control undoing and redoing stacks.
@@ -257,14 +257,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <seealso cref="_redoStack"/>
 	/// <seealso cref="set_Puzzle(Grid)"/>
 	/// <seealso cref="Puzzle"/>
-	internal void SetPuzzle(scoped in Grid value, bool clearStack = false, bool whileOndoingOrRedoing = false)
+	internal void SetPuzzle(scoped in Grid value, bool clearStack = false, bool whileUndoingOrRedoing = false)
 	{
 		if (_puzzle == value)
 		{
 			return;
 		}
 
-		if (!whileOndoingOrRedoing && !clearStack)
+		if (!whileUndoingOrRedoing && !clearStack)
 		{
 			_undoStack.Push(_puzzle);
 		}
@@ -272,7 +272,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		_puzzle = value;
 
 		UpdateCellData(value);
-		switch (clearStack, whileOndoingOrRedoing)
+		switch (clearStack, whileUndoingOrRedoing)
 		{
 			case (true, _):
 			{

@@ -1,12 +1,14 @@
 ﻿#pragma warning disable CS8981
 
 global using System;
+global using System.Collections;
 global using System.Collections.Generic;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Diagnostics.CodeGen;
 global using System.IO;
+global using System.Linq;
 global using System.Numerics;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
@@ -31,6 +33,7 @@ global using Microsoft.UI.Xaml.Navigation;
 global using Sudoku.Concepts;
 global using Sudoku.Generating.Puzzlers;
 global using Sudoku.Text;
+global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;
 global using SudokuStudio.AppLifecycle;
 global using SudokuStudio.Input;
