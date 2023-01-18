@@ -142,9 +142,9 @@ public static class Scorer
 		=> times switch
 		{
 			0 => 0,
-			1 => 3,
-			2 => 6,
-			>= 3 => 12,
+			1 => 6,
+			2 => 12,
+			>= 3 => 18,
 			_ => throw new ArgumentOutOfRangeException(nameof(times))
 		} * GetWeekendFactor();
 

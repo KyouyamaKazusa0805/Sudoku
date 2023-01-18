@@ -34,6 +34,7 @@ file sealed class StartGamingCommand : Command
 				.WithGrid(puzzle)
 				.WithRenderingCandidates(false)
 				.WithNodes(chosenCells.Select(markerNodeSelector))
+				.WithPreferenceSettings(static pref => pref.UnknownIdentifierColor = Color.FromArgb(96, Color.Red))
 		);
 
 		var answeringContext = context.AnsweringContext;

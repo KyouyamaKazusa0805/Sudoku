@@ -398,8 +398,8 @@ partial class GridImageGenerator
 			var character = unknownNode.UnknownValueChar;
 
 			// Draw values.
-			var orginalPoint = calc.GetMousePointInCenter(cell);
-			var point = orginalPoint with { Y = orginalPoint.Y + vOffsetValue };
+			var originalPoint = calc.GetMousePointInCenter(cell);
+			var point = originalPoint with { Y = originalPoint.Y + vOffsetValue };
 			g.DrawValue(character, font, brush, point, StringLocating);
 		}
 	}

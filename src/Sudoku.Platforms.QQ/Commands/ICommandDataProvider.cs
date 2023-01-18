@@ -127,9 +127,9 @@ internal interface ICommandDataProvider
 	internal static TimeSpan GetGamingTimeLimit(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			DifficultyLevel.Easy => 3.Minutes(),
-			DifficultyLevel.Moderate => 5.Minutes(),
-			DifficultyLevel.Hard => 7.Minutes(),
+			DifficultyLevel.Easy => 5.Minutes(),
+			DifficultyLevel.Moderate => new TimeSpan(0, 5, 30),
+			DifficultyLevel.Hard => 6.Minutes(),
 			_ => throw new NotSupportedException("The specified difficulty is not supported.")
 		};
 }
