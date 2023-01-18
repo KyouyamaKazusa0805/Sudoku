@@ -132,12 +132,13 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					var propertyDeclarations = new List<string>();
 					foreach (var (property, fieldSymbol, _, mode, accessibility) in group)
 					{
-						if (fieldSymbol is not { Name: var field, Type: var fieldType })
+						if (fieldSymbol is not { Name: var field, Type: { NullableAnnotation: var nullability } fieldType })
 						{
 							continue;
 						}
 
-						var fieldTypeStr = fieldType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+						var nullableAnnotation = nullability == NullableAnnotation.Annotated ? "?" : string.Empty;
+						var fieldTypeStr = $"{fieldType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}{nullableAnnotation}";
 						var valueComparisonCode = mode switch
 						{
 							EqualityComparisonMode.EqualityOperator => $$"""{{field}} == value""",
