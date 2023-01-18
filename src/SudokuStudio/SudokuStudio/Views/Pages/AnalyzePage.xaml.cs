@@ -65,7 +65,13 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		=> _hotkeyFunctions = new (Hotkey, Action)[]
 		{
 			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Z), SudokuPane.UndoStep),
-			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Y), SudokuPane.RedoStep)
+			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Y), SudokuPane.RedoStep),
+			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.C), SudokuPane.Copy),
+			(
+				new(winsys::VirtualKeyModifiers.Control | winsys::VirtualKeyModifiers.Shift, winsys::VirtualKey.C),
+				async () => await SudokuPane.CopySnapshotAsync()
+			),
+			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.V), async () => await SudokuPane.PasteAsync())
 		};
 
 	/// <summary>

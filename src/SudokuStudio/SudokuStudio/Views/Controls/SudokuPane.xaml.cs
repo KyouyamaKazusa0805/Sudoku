@@ -219,6 +219,74 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
+	/// Copies the current grid as text into the clipboard.
+	/// </summary>
+	public void Copy()
+	{
+		if (Puzzle is var puzzle and ({ IsUndefined: true } or { IsEmpty: true }))
+		{
+			return;
+		}
+
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		dataPackage.SetText(SusserFormat.Full.ToString(puzzle));
+
+		Clipboard.SetContent(dataPackage);
+	}
+
+	/// <summary>
+	/// Copy the snapshot of the sudoku grid control, to the clipboard.
+	/// </summary>
+	/// <returns>
+	/// The typical awaitable instance that holds the task to copy the snapshot.
+	/// </returns>
+	/// <remarks>
+	/// The code is referenced from
+	/// <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L120">here</see>
+	/// and
+	/// <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L182">here</see>.
+	/// </remarks>
+	public async Task CopySnapshotAsync()
+	{
+		// Creates the stream to store the output image data.
+		var stream = new InMemoryRandomAccessStream();
+
+		// Gets the snapshot of the control.
+		await this.RenderToAsync(stream);
+
+		// Copies the data to the data package.
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		var streamRef = RandomAccessStreamReference.CreateFromStream(stream);
+		dataPackage.SetBitmap(streamRef);
+
+		// Copies to the clipboard.
+		Clipboard.SetContent(dataPackage);
+	}
+
+	/// <summary>
+	/// Pastes the text, to the clipboard.
+	/// </summary>
+	/// <returns>
+	/// The typical awaitable instance that holds the task to paste the text.
+	/// </returns>
+	public async Task PasteAsync()
+	{
+		var dataPackageView = Clipboard.GetContent();
+		if (!dataPackageView.Contains(StandardDataFormats.Text))
+		{
+			return;
+		}
+
+		var gridStr = await dataPackageView.GetTextAsync();
+		if (!Grid.TryParse(gridStr, out var grid))
+		{
+			return;
+		}
+
+		Puzzle = grid;
+	}
+
+	/// <summary>
 	/// To initialize children controls for <see cref="_children"/>.
 	/// </summary>
 	[MemberNotNull(nameof(_children))]

@@ -53,6 +53,7 @@ global using Windows.Graphics.Imaging;
 global using Windows.Storage;
 global using Windows.Storage.Pickers;
 global using Windows.Storage.Search;
+global using Windows.Storage.Streams;
 global using Windows.UI;
 global using Windows.UI.Core;
 global using Windows.UI.ViewManagement;
