@@ -133,11 +133,29 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current grid format (&apos;#&apos; or &apos;#0&apos;).
+        ///   Looks up a localized string similar to Current grid format.
         /// </summary>
         internal static string AnalyzePage_CurrentGridFormat {
             get {
                 return ResourceManager.GetString("AnalyzePage_CurrentGridFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current grid format, but all values will be treated as givens.
+        /// </summary>
+        internal static string AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excel compatible format.
+        /// </summary>
+        internal static string AnalyzePage_ExcelFormat {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ExcelFormat", resourceCulture);
             }
         }
         
@@ -169,11 +187,29 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Initial grid format (&apos;.&apos; or &apos;0&apos;).
+        ///   Looks up a localized string similar to Hodoku library compatible format.
+        /// </summary>
+        internal static string AnalyzePage_HodokuFormat {
+            get {
+                return ResourceManager.GetString("AnalyzePage_HodokuFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initial grid format.
         /// </summary>
         internal static string AnalyzePage_InitialGridFormat {
             get {
                 return ResourceManager.GetString("AnalyzePage_InitialGridFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple-line simple grid format.
+        /// </summary>
+        internal static string AnalyzePage_MultipleLineGridFormat {
+            get {
+                return ResourceManager.GetString("AnalyzePage_MultipleLineGridFormat", resourceCulture);
             }
         }
         
@@ -201,6 +237,24 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_OpenFile {
             get {
                 return ResourceManager.GetString("AnalyzePage_OpenFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OpenSudoku compatible format.
+        /// </summary>
+        internal static string AnalyzePage_OpenSudokuFormat {
+            get {
+                return ResourceManager.GetString("AnalyzePage_OpenSudokuFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pencilmarked format.
+        /// </summary>
+        internal static string AnalyzePage_PencilmarkFormat {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PencilmarkFormat", resourceCulture);
             }
         }
         
@@ -255,6 +309,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_SucceedToSaveFile {
             get {
                 return ResourceManager.GetString("AnalyzePage_SucceedToSaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sukaku format.
+        /// </summary>
+        internal static string AnalyzePage_SukakuFormat {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SukakuFormat", resourceCulture);
             }
         }
         

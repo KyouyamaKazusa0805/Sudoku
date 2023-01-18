@@ -139,7 +139,13 @@
     <value>请在如下的选择项目里选择你要保存的格式项：</value>
   </data>
   <data name="AnalyzePage_CurrentGridFormat" xml:space="preserve">
-    <value>当前盘面格式（“#”或“#0”）</value>
+    <value>当前盘面格式</value>
+  </data>
+  <data name="AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven" xml:space="preserve">
+    <value>当前盘面格式，只不过全部确定值都视为提示数</value>
+  </data>
+  <data name="AnalyzePage_ExcelFormat" xml:space="preserve">
+    <value>Excel 软件兼容的文本格式</value>
   </data>
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>失败</value>
@@ -150,8 +156,14 @@
   <data name="AnalyzePage_FileSaveSucceed_Segment2" xml:space="preserve">
     <value>”保存成功。</value>
   </data>
+  <data name="AnalyzePage_HodokuFormat" xml:space="preserve">
+    <value>Hodoku 软件兼容的文本格式</value>
+  </data>
   <data name="AnalyzePage_InitialGridFormat" xml:space="preserve">
-    <value>初盘格式（“.”或“0”）</value>
+    <value>初盘格式</value>
+  </data>
+  <data name="AnalyzePage_MultipleLineGridFormat" xml:space="preserve">
+    <value>多行文本盘面格式</value>
   </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>新题目</value>
@@ -161,6 +173,12 @@
   </data>
   <data name="AnalyzePage_OpenFile" xml:space="preserve">
     <value>打开</value>
+  </data>
+  <data name="AnalyzePage_OpenSudokuFormat" xml:space="preserve">
+    <value>OpenSudoku 软件兼容的文本格式</value>
+  </data>
+  <data name="AnalyzePage_PencilmarkFormat" xml:space="preserve">
+    <value>候选数盘面（铅笔盘）格式</value>
   </data>
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>基本功能</value>
@@ -179,6 +197,9 @@
   </data>
   <data name="AnalyzePage_SucceedToSaveFile" xml:space="preserve">
     <value>成功</value>
+  </data>
+  <data name="AnalyzePage_SukakuFormat" xml:space="preserve">
+    <value>候选数数独格式</value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>图片文件</value>
