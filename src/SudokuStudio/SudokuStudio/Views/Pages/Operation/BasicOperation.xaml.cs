@@ -71,21 +71,38 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 		}
 
 		var fileInfo = new FileInfo(filePath);
+		var fileExtension = Path.GetExtension(filePath);
 		var (errorDialog, targetGrid) = fileInfo.Length switch
 		{
 			0 => (ErrorDialog_FileIsEmpty, null),
 			> 1024 => (ErrorDialog_FileIsOversized, null),
-			_ when await FileIO.ReadTextAsync(file) is var content => string.IsNullOrWhiteSpace(content) switch
+			_ when await FileIO.ReadTextAsync(file) is var content => fileExtension switch
 			{
-				true => (ErrorDialog_FileIsEmpty, null),
-				false => Grid.TryParse(content, out var g) switch
+				CommonFileExtensions.PlainText => string.IsNullOrWhiteSpace(content) switch
 				{
-					false => (ErrorDialog_FileCannotBeParsed, null),
-					true => g.IsValid() switch
+					true => (ErrorDialog_FileIsEmpty, null),
+					false => Grid.TryParse(content, out var g) switch
 					{
-						false => (ErrorDialog_FileGridIsNotUnique, null),
-						true => (null, g)
+						false => (ErrorDialog_FileCannotBeParsed, null),
+						true => g.IsValid() switch
+						{
+							false => (ErrorDialog_FileGridIsNotUnique, null),
+							true => (null, g)
+						}
 					}
+				},
+				CommonFileExtensions.Text => Deserialize<SudokuGridData[]>(content, CommonSerializerOptions.CamelCasing) switch
+				{
+					[{ GridString: var str }] => Grid.TryParse(str, out var g) switch
+					{
+						false => (ErrorDialog_FileCannotBeParsed, null),
+						true => g.IsValid() switch
+						{
+							false => (ErrorDialog_FileGridIsNotUnique, null),
+							true => (null, g)
+						}
+					},
+					_ => (ErrorDialog_FileCannotBeParsed, null)
 				}
 			},
 			_ => default((TeachingTip?, Grid?))
@@ -123,7 +140,8 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 		{
 			{ Path: var filePath } file => Path.GetExtension(filePath) switch
 			{
-				CommonFileExtensions.Text or CommonFileExtensions.PlainText => await Helper.PlainTextSaveAsync(file, this),
+				CommonFileExtensions.PlainText => await Helper.PlainTextSaveAsync(file, this),
+				CommonFileExtensions.Text => await Helper.TextSaveAsync(file, this, FormatFlags.CurrentFormat),
 				CommonFileExtensions.PortablePicture => await Helper.PictureSaveAsync(file, this),
 				_ => false
 			},
@@ -180,7 +198,8 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 		{
 			{ Path: var filePath } file => Path.GetExtension(filePath) switch
 			{
-				CommonFileExtensions.Text or CommonFileExtensions.PlainText => await Helper.PlainTextSaveAsync(file, this, outputString),
+				CommonFileExtensions.Text => await Helper.TextSaveAsync(file, this, flags),
+				CommonFileExtensions.PlainText => await Helper.PlainTextSaveAsync(file, this, outputString),
 				_ => false
 			},
 			_ => false
@@ -280,71 +299,83 @@ file enum FormatFlags : int
 file static class Helper
 {
 	/// <summary>
-	/// Saves with plain text format.
+	/// Saves with sudoku text format <see cref="CommonFileExtensions.Text"/>.
+	/// </summary>
+	/// <param name="file"><inheritdoc cref="PlainTextSaveAsync(StorageFile, BasicOperation)" path="/param[@name='file']"/></param>
+	/// <param name="page"><inheritdoc cref="PlainTextSaveAsync(StorageFile, BasicOperation)" path="/param[@name='page']"/></param>
+	/// <param name="formatFlags">Indicates the format flags.</param>
+	/// <returns>
+	/// <inheritdoc cref="PlainTextSaveAsync(StorageFile, BasicOperation)" path="/returns"/>
+	/// </returns>
+	/// <seealso cref="CommonFileExtensions.Text"/>
+	public static async Task<bool> TextSaveAsync(StorageFile file, BasicOperation page, FormatFlags formatFlags)
+	{
+		var puzzle = page.BasePage.SudokuPane.Puzzle;
+		var data = (
+			from object rawFormatter in createFormatHandlers(formatFlags)
+			let formatter = (IGridFormatter)rawFormatter
+			select new SudokuGridData { FormatDescription = string.Empty, GridString = formatter.ToString(puzzle) }
+		).ToArray();
+
+		return await TextSaveCoreAsync(file, page, () => Serialize(data, CommonSerializerOptions.CamelCasing));
+
+
+		static ArrayList createFormatHandlers(FormatFlags flags)
+		{
+			var formats = new ArrayList();
+			foreach (var flag in flags.GetAllFlagsDistinct()!)
+			{
+				formats.Add(
+					flag switch
+					{
+						FormatFlags.InitialFormat => SusserFormat.Default,
+						FormatFlags.CurrentFormat => SusserFormat.Full,
+						FormatFlags.CurrentFormatIgnoringValueKind => SusserFormatTreatingValuesAsGivens.Default,
+						FormatFlags.HodokuCompatibleFormat => HodokuLibraryFormat.Default,
+						FormatFlags.MultipleGridFormat => MultipleLineFormat.Default,
+						FormatFlags.PencilMarkFormat => PencilMarkFormat.Default,
+						FormatFlags.SukakuFormat => SukakuFormat.Default,
+						FormatFlags.ExcelFormat => ExcelFormat.Default,
+						FormatFlags.OpenSudokuFormat => OpenSudokuFormat.Default
+					}
+				);
+			}
+
+			return formats;
+		}
+	}
+
+	/// <summary>
+	/// Saves with sudoku text format <see cref="CommonFileExtensions.PlainText"/>.
 	/// </summary>
 	/// <param name="file">The file.</param>
 	/// <param name="page">The page control.</param>
 	/// <returns>
-	/// The asynchronous task that can return the <see cref="bool"/> result
-	/// indicating whether the operation is succeeded.
+	/// The asynchronous task that can return the <see cref="bool"/> result indicating whether the operation is succeeded.
 	/// </returns>
-	public static async Task<bool> PlainTextSaveAsync(StorageFile file, BasicOperation page)
-	{
-		if ((file, page) is not ({ Name: var fileName, Path: var filePath }, { BasePage.SudokuPane.Puzzle: var grid }))
-		{
-			return false;
-		}
-
-		var code = grid.ToString("#");
-
-		await File.WriteAllTextAsync(filePath, code);
-
-		var a = GetString("AnalyzePage_FileSaveSucceed_Segment1");
-		var b = GetString("AnalyzePage_FileSaveSucceed_Segment2");
-		page.SucceedFilePath = $"{a}{fileName}{b}";
-
-		page.SuccessDialog_FileSavedSuccessfully.IsOpen = true;
-
-		return true;
-	}
+	public static async Task<bool> PlainTextSaveAsync(StorageFile file, BasicOperation page) => await TextSaveCoreAsync(file, page, null);
 
 	/// <summary>
-	/// Saves with plain text format.
+	/// <inheritdoc cref="PlainTextSaveAsync(StorageFile, BasicOperation)" path="/summary"/>
 	/// </summary>
-	/// <param name="file">The file.</param>
-	/// <param name="page">The page control.</param>
+	/// <param name="file"><inheritdoc cref="PlainTextSaveAsync(StorageFile, BasicOperation)" path="/param[@name='file']"/></param>
+	/// <param name="page"><inheritdoc cref="PlainTextSaveAsync(StorageFile, BasicOperation)" path="/param[@name='page']"/></param>
 	/// <param name="outputValue">The output value.</param>
 	/// <returns>
-	/// The asynchronous task that can return the <see cref="bool"/> result
-	/// indicating whether the operation is succeeded.
+	/// <inheritdoc cref="PlainTextSaveAsync(StorageFile, BasicOperation)" path="/returns"/>
 	/// </returns>
 	public static async Task<bool> PlainTextSaveAsync(StorageFile file, BasicOperation page, string outputValue)
-	{
-		if (file is not { Name: var fileName, Path: var filePath })
-		{
-			return false;
-		}
-
-		await File.WriteAllTextAsync(filePath, outputValue);
-
-		var a = GetString("AnalyzePage_FileSaveSucceed_Segment1");
-		var b = GetString("AnalyzePage_FileSaveSucceed_Segment2");
-		page.SucceedFilePath = $"{a}{fileName}{b}";
-
-		page.SuccessDialog_FileSavedSuccessfully.IsOpen = true;
-
-		return true;
-	}
+		=> await TextSaveCoreAsync(file, page, () => outputValue);
 
 	/// <summary>
-	/// Saves with picture format.
+	/// Saves with sudoku text format <see cref="CommonFileExtensions.PortablePicture"/>.
 	/// </summary>
-	/// <param name="file">The file.</param>
-	/// <param name="page">The page control.</param>
+	/// <param name="file"><inheritdoc cref="PlainTextSaveAsync(StorageFile, BasicOperation)" path="/param[@name='file']"/></param>
+	/// <param name="page"><inheritdoc cref="PlainTextSaveAsync(StorageFile, BasicOperation)" path="/param[@name='page']"/></param>
 	/// <returns>
-	/// The asynchronous task that can return the <see cref="bool"/> result
-	/// indicating whether the operation is succeeded.
+	/// The asynchronous task that can return the <see cref="bool"/> result indicating whether the operation is succeeded.
 	/// </returns>
+	/// <seealso cref="CommonFileExtensions.PortablePicture"/>
 	public static async Task<bool> PictureSaveAsync(StorageFile file, BasicOperation page)
 	{
 		if ((file, page) is not ({ Name: var fileName }, { BasePage.SudokuPane: var pane }))
@@ -353,6 +384,24 @@ file static class Helper
 		}
 
 		await pane.RenderToAsync(file);
+
+		var a = GetString("AnalyzePage_FileSaveSucceed_Segment1");
+		var b = GetString("AnalyzePage_FileSaveSucceed_Segment2");
+		page.SucceedFilePath = $"{a}{fileName}{b}";
+
+		page.SuccessDialog_FileSavedSuccessfully.IsOpen = true;
+
+		return true;
+	}
+
+	private static async Task<bool> TextSaveCoreAsync(StorageFile file, BasicOperation page, Func<string>? textCreator)
+	{
+		if ((file, page) is not ({ Name: var fileName, Path: var filePath }, { BasePage.SudokuPane.Puzzle: var grid }))
+		{
+			return false;
+		}
+
+		await File.WriteAllTextAsync(filePath, (textCreator ?? (() => grid.ToString("#")))());
 
 		var a = GetString("AnalyzePage_FileSaveSucceed_Segment1");
 		var b = GetString("AnalyzePage_FileSaveSucceed_Segment2");
