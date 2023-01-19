@@ -233,7 +233,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Copy the snapshot of the sudoku grid control, to the clipboard.
 	/// </summary>
 	/// <returns>
-	/// The typical awaitable instance that holds the task to copy the snapshot.
+	/// The typical <see langword="await"/>able instance that holds the task to copy the snapshot.
 	/// </returns>
 	/// <remarks>
 	/// The code is referenced from
@@ -262,7 +262,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Pastes the text, to the clipboard.
 	/// </summary>
 	/// <returns>
-	/// The typical awaitable instance that holds the task to paste the text.
+	/// The typical <see langword="await"/>able instance that holds the task to paste the text.
 	/// </returns>
 	public async Task PasteAsync()
 	{
@@ -409,7 +409,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
-			case ((false, false, false, false), var cell, var digit) when !Puzzle.DupliateWith(cell, digit):
+			case ((false, false, false, false), var cell, var digit) when !Puzzle.DuplicateWith(cell, digit):
 			{
 				var modified = Puzzle;
 				if (Puzzle.GetStatus(cell) == CellStatus.Modifiable)

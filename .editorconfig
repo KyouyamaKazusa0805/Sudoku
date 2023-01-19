@@ -22,6 +22,15 @@ insert_final_newline = false
 
 
 #
+# Spell checking
+#
+spelling_languages = en-us
+spelling_checkable_types = identifiers,comments
+spelling_error_severity = warning
+spelling_exclusion_path = .\misspelling-exclusion.dic
+
+
+#
 # .NET Coding Conventions
 #
 

@@ -667,13 +667,13 @@ public unsafe partial struct Grid :
 		=> SequenceEqual(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(short) * 81);
 
 	/// <summary>
-	/// Determine whether the digit in the target cell may be dupliated with a certain cell in the peers of the current cell,
+	/// Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
 	/// if the digit is filled into the cell.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public readonly bool DupliateWith(int cell, int digit)
+	public readonly bool DuplicateWith(int cell, int digit)
 	{
 		foreach (var tempCell in PeersMap[cell])
 		{
@@ -1099,7 +1099,7 @@ public unsafe partial struct Grid :
 	/// <returns>The reference to the mask that you want to get.</returns>
 	/// <remarks>
 	/// <para>
-	/// This method returns the reference, which means you can use this method as an lvalue.
+	/// This method returns the reference, which means you can use this method as an l-value.
 	/// For example, if you want to use bitwise-or operator to update the value, you can use:
 	/// <code><![CDATA[
 	/// // Update the mask.
@@ -1115,7 +1115,7 @@ public unsafe partial struct Grid :
 	/// This method is a little bit different with <see cref="GetPinnableReference"/>.
 	/// This method returns an modifiable reference, therefore the return value is
 	/// <see langword="ref"/> <see cref="short"/> instead of <see langword="ref readonly"/> <see cref="short"/>
-	/// being used by that method, which means you cannot use it as an lvalue to update the mask.
+	/// being used by that method, which means you cannot use it as an l-value to update the mask.
 	/// In addition, that method always returns the reference to the <b>first</b> element.
 	/// </para>
 	/// </remarks>

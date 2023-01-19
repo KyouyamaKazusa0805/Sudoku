@@ -114,7 +114,7 @@ partial class MainWindow
 	}
 
 	/// <summary>
-	/// Sets the dragable region that is used for the whole window.
+	/// Sets the draggable region that is used for the whole window.
 	/// </summary>
 	/// <param name="appWindow">The <see cref="AppWindow"/> instance.</param>
 	private void SetDragRegionForCustomTitleBar(AppWindow appWindow)

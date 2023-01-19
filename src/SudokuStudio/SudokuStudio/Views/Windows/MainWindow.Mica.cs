@@ -11,7 +11,7 @@ partial class MainWindow
 	private WindowsSystemDispatcherQueueHelper? _wsdqHelper;
 
 	/// <summary>
-	/// Indicates the Mica controler instance. This instance is used as core implementation of Mica material of applications.
+	/// Indicates the Mica controller instance. This instance is used as core implementation of Mica material of applications.
 	/// </summary>
 	private MicaController? _micaController;
 
