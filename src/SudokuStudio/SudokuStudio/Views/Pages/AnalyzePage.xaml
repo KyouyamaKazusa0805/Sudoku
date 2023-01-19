@@ -55,6 +55,13 @@
 							</Bold>
 							<LineBreak />
 							<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleUniqueness(SudokuPane.Puzzle),Mode=OneWay}" />
+							<LineBreak />
+							<LineBreak />
+							<Bold>
+								<Run Text="{m:R Key=AnalyzePage_IsMinimal}" />
+							</Bold>
+							<LineBreak />
+							<Run Text="{x:Bind cvt:SudokuGridConversion.GetIsMinimal(SudokuPane.Puzzle),Mode=OneWay}" />
 						</TextBlock.Inlines>
 					</TextBlock>
 					<TextBlock Text="{m:R Key=AnalyzePage_CommonCommands}" Style="{StaticResource SubtitleTextBlockStyle}" />

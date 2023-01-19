@@ -168,6 +168,24 @@
   <data name="AnalyzePage_InitialGridFormat" xml:space="preserve">
     <value>Initial grid format</value>
   </data>
+  <data name="AnalyzePage_IsMinimal" xml:space="preserve">
+    <value>Is Minimal puzzle: </value>
+  </data>
+  <data name="AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved" xml:space="preserve">
+    <value>No (at least one hint can be removed, e.g. {0})</value>
+  </data>
+  <data name="AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved2" xml:space="preserve">
+    <value>No (at least one hint can be removed even if puzzle is fixed, e.g. {0})</value>
+  </data>
+  <data name="AnalyzePage_MinimalResult_NotUniquePuzzle" xml:space="preserve">
+    <value>No (puzzle is not unique)</value>
+  </data>
+  <data name="AnalyzePage_MinimalResult_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="AnalyzePage_MinimalResult_Yes2" xml:space="preserve">
+    <value>Yes, but after fixed</value>
+  </data>
   <data name="AnalyzePage_MultipleLineGridFormat" xml:space="preserve">
     <value>Multiple-line simple grid format</value>
   </data>

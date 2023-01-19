@@ -168,6 +168,24 @@
   <data name="AnalyzePage_InitialGridFormat" xml:space="preserve">
     <value>初盘格式</value>
   </data>
+  <data name="AnalyzePage_IsMinimal" xml:space="preserve">
+    <value>是否为最小题：</value>
+  </data>
+  <data name="AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved" xml:space="preserve">
+    <value>否（至少有一个数可以移除，如 {0}）</value>
+  </data>
+  <data name="AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved2" xml:space="preserve">
+    <value>否（即使题目固定，也至少有一个数可以移除，如 {0}）</value>
+  </data>
+  <data name="AnalyzePage_MinimalResult_NotUniquePuzzle" xml:space="preserve">
+    <value>否（题目非唯一解）</value>
+  </data>
+  <data name="AnalyzePage_MinimalResult_Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="AnalyzePage_MinimalResult_Yes2" xml:space="preserve">
+    <value>是（但是没有提示数）</value>
+  </data>
   <data name="AnalyzePage_MultipleLineGridFormat" xml:space="preserve">
     <value>多行文本盘面格式</value>
   </data>
@@ -205,7 +223,7 @@
     <value>唯一解</value>
   </data>
   <data name="AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" xml:space="preserve">
-    <value>唯一解，但是没有提示数</value>
+    <value>唯一解（但是没有提示数）</value>
   </data>
   <data name="AnalyzePage_SaveAsButtonContent" xml:space="preserve">
     <value>选择保存路径！</value>
