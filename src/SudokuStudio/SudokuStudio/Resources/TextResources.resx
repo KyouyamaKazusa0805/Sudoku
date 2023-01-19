@@ -139,13 +139,16 @@
     <value>Please choose the format that you want to save:</value>
   </data>
   <data name="AnalyzePage_CommonCommands" xml:space="preserve">
-    <value>Common commands</value>
+    <value>Common Commands</value>
   </data>
   <data name="AnalyzePage_CurrentGridFormat" xml:space="preserve">
     <value>Current grid format</value>
   </data>
   <data name="AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven" xml:space="preserve">
     <value>Current grid format, but all values will be treated as givens</value>
+  </data>
+  <data name="AnalyzePage_EmptyGrid" xml:space="preserve">
+    <value>&lt;Empty&gt;</value>
   </data>
   <data name="AnalyzePage_ExcelFormat" xml:space="preserve">
     <value>Excel compatible format</value>
@@ -155,6 +158,9 @@
   </data>
   <data name="AnalyzePage_FixGrid" xml:space="preserve">
     <value>Fix grid</value>
+  </data>
+  <data name="AnalyzePage_GivensCount" xml:space="preserve">
+    <value>Givens count: </value>
   </data>
   <data name="AnalyzePage_HodokuFormat" xml:space="preserve">
     <value>Hodoku library compatible format</value>
@@ -183,6 +189,24 @@
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>Basics</value>
   </data>
+  <data name="AnalyzePage_PuzzleCode" xml:space="preserve">
+    <value>Text code: </value>
+  </data>
+  <data name="AnalyzePage_PuzzleData" xml:space="preserve">
+    <value>Puzzle Data</value>
+  </data>
+  <data name="AnalyzePage_PuzzleHasMultipleSolutions" xml:space="preserve">
+    <value>Multiple solutions</value>
+  </data>
+  <data name="AnalyzePage_PuzzleHasNoSolution" xml:space="preserve">
+    <value>No solution</value>
+  </data>
+  <data name="AnalyzePage_PuzzleHasUniqueSolution" xml:space="preserve">
+    <value>Unique solution</value>
+  </data>
+  <data name="AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" xml:space="preserve">
+    <value>Unique solution, but with grid being unfixed</value>
+  </data>
   <data name="AnalyzePage_SaveAsButtonContent" xml:space="preserve">
     <value>Save!</value>
   </data>
@@ -204,8 +228,14 @@
   <data name="AnalyzePage_ToggleDisplayingCandidates" xml:space="preserve">
     <value>Show/Hide candidates</value>
   </data>
+  <data name="AnalyzePage_UndefinedGrid" xml:space="preserve">
+    <value>&lt;Undefined&gt;</value>
+  </data>
   <data name="AnalyzePage_UnfixGrid" xml:space="preserve">
     <value>Unfix grid</value>
+  </data>
+  <data name="AnalyzePage_Uniqueness" xml:space="preserve">
+    <value>Solution Uniqueness: </value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>Portable picture format</value>
@@ -235,7 +265,7 @@
     <value>Please drop the file here</value>
   </data>
   <data name="SudokuPane_RightClickMenu_InputSetter" xml:space="preserve">
-    <value>Input sets or eliminations:</value>
+    <value>Input sets or eliminations: </value>
   </data>
   <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
     <value>Usage: !1-4、!567、!8、9</value>

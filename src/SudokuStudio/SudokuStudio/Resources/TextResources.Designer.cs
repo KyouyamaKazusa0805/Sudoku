@@ -133,7 +133,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Common commands.
+        ///   Looks up a localized string similar to Common Commands.
         /// </summary>
         internal static string AnalyzePage_CommonCommands {
             get {
@@ -156,6 +156,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven {
             get {
                 return ResourceManager.GetString("AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Empty&gt;.
+        /// </summary>
+        internal static string AnalyzePage_EmptyGrid {
+            get {
+                return ResourceManager.GetString("AnalyzePage_EmptyGrid", resourceCulture);
             }
         }
         
@@ -183,6 +192,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_FixGrid {
             get {
                 return ResourceManager.GetString("AnalyzePage_FixGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Givens count: .
+        /// </summary>
+        internal static string AnalyzePage_GivensCount {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GivensCount", resourceCulture);
             }
         }
         
@@ -268,6 +286,60 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text code: .
+        /// </summary>
+        internal static string AnalyzePage_PuzzleCode {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle Data.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleData {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple solutions.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleHasMultipleSolutions {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleHasMultipleSolutions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No solution.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleHasNoSolution {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleHasNoSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique solution.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleHasUniqueSolution {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleHasUniqueSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique solution, but with grid being unfixed.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleHasUniqueSolutionButUnfixed {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleHasUniqueSolutionButUnfixed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save!.
         /// </summary>
         internal static string AnalyzePage_SaveAsButtonContent {
@@ -331,11 +403,29 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;Undefined&gt;.
+        /// </summary>
+        internal static string AnalyzePage_UndefinedGrid {
+            get {
+                return ResourceManager.GetString("AnalyzePage_UndefinedGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unfix grid.
         /// </summary>
         internal static string AnalyzePage_UnfixGrid {
             get {
                 return ResourceManager.GetString("AnalyzePage_UnfixGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solution Uniqueness: .
+        /// </summary>
+        internal static string AnalyzePage_Uniqueness {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Uniqueness", resourceCulture);
             }
         }
         
@@ -421,7 +511,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input sets or eliminations:.
+        ///   Looks up a localized string similar to Input sets or eliminations: .
         /// </summary>
         internal static string SudokuPane_RightClickMenu_InputSetter {
             get {
