@@ -42,7 +42,7 @@ public static class MinimalPuzzleChecker
 			default:
 			{
 				var gridCanBeModified = grid;
-				gridCanBeModified.UnfixSolution();
+				gridCanBeModified.Unfix();
 
 				foreach (var cell in gridCanBeModified.ModifiableCells)
 				{

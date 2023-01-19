@@ -84,7 +84,7 @@ public static class GridSolvingExtensions
 	public static Grid GetSolution(this scoped in Grid @this)
 		=> Solver.Solve(@this) switch
 		{
-			{ IsUndefined: false } solution => solution.UnfixSolution(@this.GivenCells),
+			{ IsUndefined: false } solution => solution.Unfix(@this.GivenCells),
 			_ => Grid.Undefined
 		};
 }

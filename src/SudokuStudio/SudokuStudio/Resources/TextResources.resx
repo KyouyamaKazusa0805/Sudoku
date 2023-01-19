@@ -138,6 +138,9 @@
   <data name="AnalyzePage_ChooseFormats" xml:space="preserve">
     <value>Please choose the format that you want to save:</value>
   </data>
+  <data name="AnalyzePage_CommonCommands" xml:space="preserve">
+    <value>Common commands</value>
+  </data>
   <data name="AnalyzePage_CurrentGridFormat" xml:space="preserve">
     <value>Current grid format</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>Failed</value>
+  </data>
+  <data name="AnalyzePage_FixGrid" xml:space="preserve">
+    <value>Fix grid</value>
   </data>
   <data name="AnalyzePage_HodokuFormat" xml:space="preserve">
     <value>Hodoku library compatible format</value>
@@ -194,6 +200,12 @@
   </data>
   <data name="AnalyzePage_SukakuFormat" xml:space="preserve">
     <value>Sukaku format</value>
+  </data>
+  <data name="AnalyzePage_ToggleDisplayingCandidates" xml:space="preserve">
+    <value>Show/Hide candidates</value>
+  </data>
+  <data name="AnalyzePage_UnfixGrid" xml:space="preserve">
+    <value>Unfix grid</value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>Portable picture format</value>

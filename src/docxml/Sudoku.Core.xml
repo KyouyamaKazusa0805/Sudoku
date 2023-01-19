@@ -2116,7 +2116,7 @@ if (student is (name: var name, age: >= 18))
             To fix the current grid (all modifiable values will be changed to given ones).
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.UnfixSolution">
+        <member name="M:Sudoku.Concepts.Grid.Unfix">
             <summary>
             To unfix the current grid (all given values will be changed to modifiable ones).
             </summary>
@@ -2165,7 +2165,7 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="M:Sudoku.Concepts.Grid.GetPinnableReference"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.UnfixSolution(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.Grid.Unfix(Sudoku.Concepts.CellMap@)">
             <summary>
             Gets a sudoku grid, replacing all digits with modifiable
             if it doesn't appear in the specified <paramref name="pattern"/> from the solution of the current grid.

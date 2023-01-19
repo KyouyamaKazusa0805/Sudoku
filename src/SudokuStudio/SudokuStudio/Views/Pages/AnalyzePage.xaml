@@ -3,6 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
 	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:pages="using:SudokuStudio.Views.Pages"
 	d:DataContext="{d:DesignInstance Type=pages:AnalyzePage}"
@@ -15,13 +16,6 @@
 					x:Name="CommandBarView" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
 					IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="False" CacheMode="BitmapCache"
 					Loaded="CommandBarView_Loaded" SelectionChanged="CommandBarView_SelectionChanged" ItemInvoked="CommandBarView_ItemInvoked">
-					<!--
-					<NavigationView.MenuItemTemplate>
-						<DataTemplate x:DataType="NavigationViewItem">
-							<TextBlock Text="{x:Bind Content}" FontWeight="Bold" />
-						</DataTemplate>
-					</NavigationView.MenuItemTemplate>
-					-->
 					<NavigationView.MenuItems>
 						<NavigationViewItem x:Name="BasicOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_BasicOperations}" />
 					</NavigationView.MenuItems>
@@ -29,13 +23,43 @@
 					<Frame x:Name="CommandBarFrame" Navigated="CommandBarFrame_Navigated" BorderBrush="Transparent" />
 				</NavigationView>
 			</Border>
-			<c:SudokuPane
-				x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" HorizontalAlignment="Left" VerticalAlignment="Top"
-				SelectedCell="-1" ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code" CoordinateLabelFont="Cascadia Code"
-				CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection"
-				ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4"
-				UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True"
-				Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}" />
+			<StackPanel Orientation="Horizontal">
+				<c:SudokuPane
+					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0"
+					HorizontalAlignment="Left" VerticalAlignment="Top"
+					SelectedCell="-1" ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code" CoordinateLabelFont="Cascadia Code"
+					CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection"
+					ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4"
+					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True"
+					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}" />
+				<StackPanel Orientation="Vertical" Spacing="10">
+					<TextBlock Text="{m:R Key=AnalyzePage_CommonCommands}" Style="{StaticResource SubtitleTextBlockStyle}" />
+					<StackPanel Orientation="Vertical" Spacing="20">
+						<Button Width="160" Click="ToggleCandidateVisibility_Click">
+							<RelativePanel>
+								<SymbolIcon
+									x:Name="ToggleCandidateSymbol"
+									Symbol="{x:Bind cvt:SymbolIconConversion.GetSymbolViaCandidateVisibility(SudokuPane.DisplayCandidates),Mode=OneWay}" />
+								<TextBlock
+									Text="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}"
+									RelativePanel.RightOf="ToggleCandidateSymbol" Margin="8,0,0,0" />
+							</RelativePanel>
+						</Button>
+						<Button Width="160" Click="FixGrid_Click">
+							<RelativePanel>
+								<SymbolIcon x:Name="FixGridSymbol" Symbol="Pin" />
+								<TextBlock Text="{m:R Key=AnalyzePage_FixGrid}" RelativePanel.RightOf="FixGridSymbol" Margin="8,0,0,0" />
+							</RelativePanel>
+						</Button>
+						<Button Width="160" Click="UnfixGrid_Click">
+							<RelativePanel>
+								<SymbolIcon x:Name="UnfixGridSymbol" Symbol="UnPin" />
+								<TextBlock Text="{m:R Key=AnalyzePage_UnfixGrid}" RelativePanel.RightOf="UnfixGridSymbol" Margin="8,0,0,0" />
+							</RelativePanel>
+						</Button>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

@@ -1041,7 +1041,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// To unfix the current grid (all given values will be changed to modifiable ones).
 	/// </summary>
-	public void UnfixSolution()
+	public void Unfix()
 	{
 		for (var i = 0; i < 81; i++)
 		{
@@ -1129,7 +1129,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The result grid.</returns>
-	internal readonly Grid UnfixSolution(scoped in CellMap pattern)
+	internal readonly Grid Unfix(scoped in CellMap pattern)
 	{
 		Argument.ThrowIfFalse(IsSolved, "The current grid must be solved.");
 

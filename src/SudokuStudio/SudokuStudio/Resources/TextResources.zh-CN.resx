@@ -138,6 +138,9 @@
   <data name="AnalyzePage_ChooseFormats" xml:space="preserve">
     <value>请在如下的选择项目里选择你要保存的格式项：</value>
   </data>
+  <data name="AnalyzePage_CommonCommands" xml:space="preserve">
+    <value>常用功能</value>
+  </data>
   <data name="AnalyzePage_CurrentGridFormat" xml:space="preserve">
     <value>当前盘面格式</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>失败</value>
+  </data>
+  <data name="AnalyzePage_FixGrid" xml:space="preserve">
+    <value>固定盘面</value>
   </data>
   <data name="AnalyzePage_HodokuFormat" xml:space="preserve">
     <value>Hodoku 软件兼容的文本格式</value>
@@ -194,6 +200,12 @@
   </data>
   <data name="AnalyzePage_SukakuFormat" xml:space="preserve">
     <value>候选数数独格式</value>
+  </data>
+  <data name="AnalyzePage_ToggleDisplayingCandidates" xml:space="preserve">
+    <value>隐藏/显示候选数</value>
+  </data>
+  <data name="AnalyzePage_UnfixGrid" xml:space="preserve">
+    <value>解除固定盘面</value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>图片文件</value>

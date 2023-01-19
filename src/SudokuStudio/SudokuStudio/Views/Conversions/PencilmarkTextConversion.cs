@@ -24,7 +24,7 @@ internal static class PencilmarkTextConversion
 		{
 			(false, _) => defaultBrush,
 			(_, CellStatus.Given or CellStatus.Modifiable) => defaultBrush,
-			(_, CellStatus.Empty) => (solution[cell] == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
+			(_, CellStatus.Empty) => (!solution.IsUndefined && solution[cell] == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
 			{
 				(true, 0, true) => new SolidColorBrush(deltaColor),
 				(_, not 0, _) => new SolidColorBrush(pencilmarkColor),

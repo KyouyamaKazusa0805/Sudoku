@@ -133,6 +133,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Common commands.
+        /// </summary>
+        internal static string AnalyzePage_CommonCommands {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CommonCommands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current grid format.
         /// </summary>
         internal static string AnalyzePage_CurrentGridFormat {
@@ -165,6 +174,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_FailedToOpenFilePicker {
             get {
                 return ResourceManager.GetString("AnalyzePage_FailedToOpenFilePicker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix grid.
+        /// </summary>
+        internal static string AnalyzePage_FixGrid {
+            get {
+                return ResourceManager.GetString("AnalyzePage_FixGrid", resourceCulture);
             }
         }
         
@@ -300,6 +318,24 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_SukakuFormat {
             get {
                 return ResourceManager.GetString("AnalyzePage_SukakuFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show/Hide candidates.
+        /// </summary>
+        internal static string AnalyzePage_ToggleDisplayingCandidates {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ToggleDisplayingCandidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unfix grid.
+        /// </summary>
+        internal static string AnalyzePage_UnfixGrid {
+            get {
+                return ResourceManager.GetString("AnalyzePage_UnfixGrid", resourceCulture);
             }
         }
         
