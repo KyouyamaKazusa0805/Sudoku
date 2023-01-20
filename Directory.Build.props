@@ -16,6 +16,7 @@
 
 		<!--Compilation Features-->
 		<Features>strict</Features>
+		<WarningsAsErrors>nullable</WarningsAsErrors>
 	</PropertyGroup>
 
 	<!--Enables the preview features if the project is not the source generators.-->
