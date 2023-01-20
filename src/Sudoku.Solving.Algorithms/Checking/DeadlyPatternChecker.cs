@@ -126,9 +126,7 @@ public static class DeadlyPatternChecker
 						var bit2 = (byte)(tempBitArray[(cell << 2) + 1] ? 1 : 0);
 						var bit3 = (byte)(tempBitArray[(cell << 2) + 2] ? 1 : 0);
 						var bit4 = (byte)(tempBitArray[(cell << 2) + 3] ? 1 : 0);
-						tempSolution[cell] = (bit1 | bit2 << 1 | bit3 << 2 | bit4 << 3) is var final and not 15
-							? final
-							: -1;
+						tempSolution[cell] = (bit1 | bit2 << 1 | bit3 << 2 | bit4 << 3) is var final and not 15 ? final : -1;
 					}
 
 					if (compareGrids(tempSolution, g, u))

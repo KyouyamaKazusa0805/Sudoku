@@ -46,13 +46,13 @@ public sealed class TrueCandidatesSearcher
 		// Get the number of multi-value cells.
 		// If the number of that is greater than the specified number,
 		// here will return the default list directly.
-		var multivalueCellsCount = 0;
+		var multivaluedCellsCount = 0;
 		foreach (var value in Puzzle.EmptyCells)
 		{
 			switch (PopCount((uint)Puzzle.GetCandidates(value)))
 			{
 				case 1:
-				case > 2 when ++multivalueCellsCount > maximumEmptyCells:
+				case > 2 when ++multivaluedCellsCount > maximumEmptyCells:
 				{
 					return Array.Empty<int>();
 				}
@@ -61,7 +61,7 @@ public sealed class TrueCandidatesSearcher
 
 		// Store all bi-value cells and construct the relations.
 		var peerHouses = stackalloc int[3];
-		var stack = new CellMap[multivalueCellsCount + 1, 9];
+		var stack = new CellMap[multivaluedCellsCount + 1, 9];
 		foreach (var cell in Puzzle.BivalueCells)
 		{
 			foreach (var digit in Puzzle.GetCandidates(cell))
@@ -86,12 +86,12 @@ public sealed class TrueCandidatesSearcher
 		// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
 		// The comments will help you to understand the processing.
 		SkipInit(out short mask);
-		var pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
-		var multivalueCells = (Puzzle.EmptyCells - Puzzle.BivalueCells).ToArray();
-		for (var i = 0; i < multivalueCells.Length; i++)
+		var pairs = new short[multivaluedCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
+		var multivaluedCells = (Puzzle.EmptyCells - Puzzle.BivalueCells).ToArray();
+		for (var i = 0; i < multivaluedCells.Length; i++)
 		{
 			// e.g. { 2, 4, 6 } (42)
-			mask = Puzzle.GetCandidates(multivalueCells[i]);
+			mask = Puzzle.GetCandidates(multivaluedCells[i]);
 
 			// e.g. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
 			var pairList = GetMaskSubsets(mask, 2);
@@ -109,13 +109,13 @@ public sealed class TrueCandidatesSearcher
 		// combinations; otherwise, none will be found.
 		scoped var playground = (stackalloc int[3]);
 		var currentIndex = 1;
-		var chosen = new int[multivalueCellsCount + 1];
+		var chosen = new int[multivaluedCellsCount + 1];
 		var resultMap = new CellMap[9];
 		var result = Candidates.Empty;
 		do
 		{
 			int i;
-			var currentCell = multivalueCells[currentIndex - 1];
+			var currentCell = multivaluedCells[currentIndex - 1];
 			var @continue = false;
 			for (i = chosen[currentIndex] + 1; i <= pairs[currentIndex - 1, 0]; i++)
 			{
@@ -157,7 +157,7 @@ public sealed class TrueCandidatesSearcher
 
 				stack[currentIndex, pos1].Add(currentCell);
 				stack[currentIndex, mask.GetNextSet(pos1)].Add(currentCell);
-				if (currentIndex == multivalueCellsCount)
+				if (currentIndex == multivaluedCellsCount)
 				{
 					// Iterate on each digit.
 					for (var digit = 0; digit < 9; digit++)

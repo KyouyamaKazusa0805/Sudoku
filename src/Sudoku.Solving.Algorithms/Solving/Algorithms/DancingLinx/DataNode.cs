@@ -18,8 +18,7 @@ internal class DataNode
 	/// <param name="id">The ID value.</param>
 	/// <param name="column">The column node.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected internal DataNode(int id, ColumnNode? column)
-		=> (Id, Column, Left, Right, Up, Down) = (id, column, this, this, this, this);
+	protected internal DataNode(int id, ColumnNode? column) => (Id, Column, Left, Right, Up, Down) = (id, column, this, this, this, this);
 
 
 	/// <summary>
