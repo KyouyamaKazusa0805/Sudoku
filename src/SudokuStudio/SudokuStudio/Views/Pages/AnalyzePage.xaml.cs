@@ -335,20 +335,4 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 		basicOperation.BasePage = @this;
 	}
-
-	private void FixGrid_Click(object sender, RoutedEventArgs e)
-	{
-		var puzzle = SudokuPane.Puzzle;
-		puzzle.Fix();
-
-		SudokuPane.Puzzle = puzzle;
-	}
-
-	private void UnfixGrid_Click(object sender, RoutedEventArgs e)
-	{
-		var puzzle = SudokuPane.Puzzle;
-		puzzle.Unfix();
-
-		SudokuPane.Puzzle = puzzle;
-	}
 }

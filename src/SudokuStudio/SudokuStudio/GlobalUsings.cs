@@ -17,6 +17,7 @@ global using System.Runtime.InteropServices.WindowsRuntime;
 global using System.Runtime.Versioning;
 global using System.Text.Json;
 global using System.Threading.Tasks;
+global using System.Windows.Input;
 global using Microsoft.UI;
 global using Microsoft.UI.Composition;
 global using Microsoft.UI.Composition.SystemBackdrops;

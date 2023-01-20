@@ -5,7 +5,7 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
-	xmlns:pages="using:SudokuStudio.Views.Pages"
+	xmlns:pages="using:SudokuStudio.Views.Pages" xmlns:commands="using:SudokuStudio.Views.Commands"
 	d:DataContext="{d:DesignInstance Type=pages:AnalyzePage}"
 	NavigationCacheMode="Required">
 
@@ -106,16 +106,24 @@
 								</RelativePanel>
 							</ToggleButton>
 							<Button
-								Width="160" IsEnabled="{x:Bind cvt:SudokuGridConversion.GetFixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
-								Click="FixGrid_Click">
+								Width="160" CommandParameter="{x:Bind SudokuPane}"
+								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetFixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}">
+								<Button.Command>
+									<commands:FixGridCommand />
+								</Button.Command>
+
 								<RelativePanel>
 									<SymbolIcon x:Name="FixGridSymbol" Symbol="Pin" />
 									<TextBlock Text="{m:R Key=AnalyzePage_FixGrid}" RelativePanel.RightOf="FixGridSymbol" Margin="8,0,0,0" />
 								</RelativePanel>
 							</Button>
 							<Button
-								Width="160" IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
-								Click="UnfixGrid_Click">
+								Width="160" CommandParameter="{x:Bind SudokuPane}"
+								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}">
+								<Button.Command>
+									<commands:UnfixGridCommand />
+								</Button.Command>
+
 								<RelativePanel>
 									<SymbolIcon x:Name="UnfixGridSymbol" Symbol="UnPin" />
 									<TextBlock Text="{m:R Key=AnalyzePage_UnfixGrid}" RelativePanel.RightOf="UnfixGridSymbol" Margin="8,0,0,0" />
