@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
+    <value>All Available Steps</value>
+  </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="AnalyzePage_IsMinimal" xml:space="preserve">
     <value>Is Minimal puzzle: </value>
+  </data>
+  <data name="AnalyzePage_LiveCharts" xml:space="preserve">
+    <value>Data Charts</value>
   </data>
   <data name="AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved" xml:space="preserve">
     <value>No (at least one hint can be removed, e.g. {0})</value>
@@ -237,11 +243,20 @@
   <data name="AnalyzePage_SelectAll" xml:space="preserve">
     <value>Select all</value>
   </data>
+  <data name="AnalyzePage_StepDetail" xml:space="preserve">
+    <value>Solving Path</value>
+  </data>
   <data name="AnalyzePage_SucceedToSaveFile" xml:space="preserve">
     <value>Successful</value>
   </data>
   <data name="AnalyzePage_SukakuFormat" xml:space="preserve">
     <value>Sukaku format</value>
+  </data>
+  <data name="AnalyzePage_TechniquesTable" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="AnalyzePage_ToggleAnalyzePaneView" xml:space="preserve">
+    <value>Open/Close analyze pane</value>
   </data>
   <data name="AnalyzePage_ToggleDisplayingCandidates" xml:space="preserve">
     <value>Show/Hide candidates</value>
@@ -254,6 +269,9 @@
   </data>
   <data name="AnalyzePage_Uniqueness" xml:space="preserve">
     <value>Solution Uniqueness: </value>
+  </data>
+  <data name="AnalyzerPage_AnalyzeButton" xml:space="preserve">
+    <value>Analyze</value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>Portable picture format</value>

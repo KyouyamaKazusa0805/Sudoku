@@ -70,6 +70,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Available Steps.
+        /// </summary>
+        internal static string AnalyzePage_AllStepsInCurrentGrid {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AllStepsInCurrentGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string AnalyzePage_Cancel {
@@ -228,6 +237,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_IsMinimal {
             get {
                 return ResourceManager.GetString("AnalyzePage_IsMinimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Charts.
+        /// </summary>
+        internal static string AnalyzePage_LiveCharts {
+            get {
+                return ResourceManager.GetString("AnalyzePage_LiveCharts", resourceCulture);
             }
         }
         
@@ -430,6 +448,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Solving Path.
+        /// </summary>
+        internal static string AnalyzePage_StepDetail {
+            get {
+                return ResourceManager.GetString("AnalyzePage_StepDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Successful.
         /// </summary>
         internal static string AnalyzePage_SucceedToSaveFile {
@@ -444,6 +471,24 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_SukakuFormat {
             get {
                 return ResourceManager.GetString("AnalyzePage_SukakuFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        internal static string AnalyzePage_TechniquesTable {
+            get {
+                return ResourceManager.GetString("AnalyzePage_TechniquesTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open/Close analyze pane.
+        /// </summary>
+        internal static string AnalyzePage_ToggleAnalyzePaneView {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ToggleAnalyzePaneView", resourceCulture);
             }
         }
         
@@ -480,6 +525,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_Uniqueness {
             get {
                 return ResourceManager.GetString("AnalyzePage_Uniqueness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Analyze.
+        /// </summary>
+        internal static string AnalyzerPage_AnalyzeButton {
+            get {
+                return ResourceManager.GetString("AnalyzerPage_AnalyzeButton", resourceCulture);
             }
         }
         

@@ -11,6 +11,7 @@
 
 	<ScrollViewer>
 		<StackPanel Orientation="Vertical" Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10}" Spacing="10">
+			<!--Main menu-->
 			<Border CornerRadius="5" BorderBrush="#EAEAEA" BorderThickness="2" Margin="0,10,20,10">
 				<NavigationView
 					x:Name="CommandBarView" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
@@ -23,7 +24,10 @@
 					<Frame x:Name="CommandBarFrame" Navigated="CommandBarFrame_Navigated" BorderBrush="Transparent" />
 				</NavigationView>
 			</Border>
-			<StackPanel Orientation="Horizontal">
+
+			<!--Sudoku grid and common commands-->
+			<Grid ColumnDefinitions="Auto,*">
+				<!--Main sudoku grid control-->
 				<c:SudokuPane
 					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0"
 					HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -32,65 +36,99 @@
 					ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4"
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True"
 					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}" />
-				<StackPanel Orientation="Vertical" Spacing="40">
-					<TextBlock Text="{m:R Key=AnalyzePage_PuzzleData}" Style="{StaticResource SubtitleTextBlockStyle}" />
-					<TextBlock TextWrapping="Wrap" IsTextSelectionEnabled="True">
-						<TextBlock.Inlines>
-							<Bold>
-								<Run Text="{m:R Key=AnalyzePage_GivensCount}" />
-							</Bold>
-							<LineBreak />
-							<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleHintsCount(SudokuPane.Puzzle),Mode=OneWay}" />
-							<LineBreak />
-							<LineBreak />
-							<Bold>
-								<Run Text="{m:R Key=AnalyzePage_PuzzleCode}" />
-							</Bold>
-							<LineBreak />
-							<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleCode(SudokuPane.Puzzle),Mode=OneWay}" />
-							<LineBreak />
-							<LineBreak />
-							<Bold>
-								<Run Text="{m:R Key=AnalyzePage_Uniqueness}" />
-							</Bold>
-							<LineBreak />
-							<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleUniqueness(SudokuPane.Puzzle),Mode=OneWay}" />
-							<LineBreak />
-							<LineBreak />
-							<Bold>
-								<Run Text="{m:R Key=AnalyzePage_IsMinimal}" />
-							</Bold>
-							<LineBreak />
-							<Run Text="{x:Bind cvt:SudokuGridConversion.GetIsMinimal(SudokuPane.Puzzle),Mode=OneWay}" />
-						</TextBlock.Inlines>
-					</TextBlock>
-					<TextBlock Text="{m:R Key=AnalyzePage_CommonCommands}" Style="{StaticResource SubtitleTextBlockStyle}" />
-					<StackPanel Orientation="Vertical" Spacing="20">
-						<Button Width="160" Click="ToggleCandidateVisibility_Click">
-							<RelativePanel>
-								<SymbolIcon
-									x:Name="ToggleCandidateSymbol"
-									Symbol="{x:Bind cvt:SymbolIconConversion.GetSymbolViaCandidateVisibility(SudokuPane.DisplayCandidates),Mode=OneWay}" />
-								<TextBlock
-									Text="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}"
-									RelativePanel.RightOf="ToggleCandidateSymbol" Margin="8,0,0,0" />
-							</RelativePanel>
-						</Button>
-						<Button Width="160" Click="FixGrid_Click">
-							<RelativePanel>
-								<SymbolIcon x:Name="FixGridSymbol" Symbol="Pin" />
-								<TextBlock Text="{m:R Key=AnalyzePage_FixGrid}" RelativePanel.RightOf="FixGridSymbol" Margin="8,0,0,0" />
-							</RelativePanel>
-						</Button>
-						<Button Width="160" Click="UnfixGrid_Click">
-							<RelativePanel>
-								<SymbolIcon x:Name="UnfixGridSymbol" Symbol="UnPin" />
-								<TextBlock Text="{m:R Key=AnalyzePage_UnfixGrid}" RelativePanel.RightOf="UnfixGridSymbol" Margin="8,0,0,0" />
-							</RelativePanel>
-						</Button>
+
+				<!--Common commands-->
+				<SplitView
+					x:Name="AnalyzePane" Grid.Column="1" IsPaneOpen="False" PanePlacement="Right"
+					PaneBackground="#F9F9F9" OpenPaneLength="700">
+					<SplitView.Pane>
+						<Border
+							BorderBrush="#EAEAEA" BorderThickness="2,2,0,2" CornerRadius="5,0,0,5"
+							HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+							<TabView IsAddTabButtonVisible="False" TabWidthMode="Equal">
+								<TabView.TabItems>
+									<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
+										<Button Content="{m:R Key=AnalyzerPage_AnalyzeButton}" Margin="10" />
+									</TabViewItem>
+									<TabViewItem Header="{m:R Key=AnalyzePage_StepDetail}" IsClosable="False">
+									</TabViewItem>
+									<TabViewItem Header="{m:R Key=AnalyzePage_AllStepsInCurrentGrid}" IsClosable="False">
+									</TabViewItem>
+									<TabViewItem Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
+									</TabViewItem>
+								</TabView.TabItems>
+							</TabView>
+						</Border>
+					</SplitView.Pane>
+
+					<StackPanel Orientation="Vertical" Spacing="40">
+						<TextBlock Text="{m:R Key=AnalyzePage_PuzzleData}" Style="{StaticResource SubtitleTextBlockStyle}" />
+						<TextBlock TextWrapping="Wrap" IsTextSelectionEnabled="True">
+							<TextBlock.Inlines>
+								<Bold>
+									<Run Text="{m:R Key=AnalyzePage_GivensCount}" />
+								</Bold>
+								<LineBreak />
+								<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleHintsCount(SudokuPane.Puzzle),Mode=OneWay}" />
+								<LineBreak />
+								<LineBreak />
+								<Bold>
+									<Run Text="{m:R Key=AnalyzePage_PuzzleCode}" />
+								</Bold>
+								<LineBreak />
+								<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleCode(SudokuPane.Puzzle),Mode=OneWay}" />
+								<LineBreak />
+								<LineBreak />
+								<Bold>
+									<Run Text="{m:R Key=AnalyzePage_Uniqueness}" />
+								</Bold>
+								<LineBreak />
+								<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleUniqueness(SudokuPane.Puzzle),Mode=OneWay}" />
+								<LineBreak />
+								<LineBreak />
+								<Bold>
+									<Run Text="{m:R Key=AnalyzePage_IsMinimal}" />
+								</Bold>
+								<LineBreak />
+								<Run Text="{x:Bind cvt:SudokuGridConversion.GetIsMinimal(SudokuPane.Puzzle),Mode=OneWay}" />
+							</TextBlock.Inlines>
+						</TextBlock>
+						<TextBlock Text="{m:R Key=AnalyzePage_CommonCommands}" Style="{StaticResource SubtitleTextBlockStyle}" />
+						<StackPanel Orientation="Vertical" Spacing="20">
+							<Button Width="160" Click="ToggleCandidateVisibility_Click">
+								<RelativePanel>
+									<SymbolIcon
+										x:Name="ToggleCandidateSymbol"
+										Symbol="{x:Bind cvt:SymbolIconConversion.GetSymbolViaCandidateVisibility(SudokuPane.DisplayCandidates),Mode=OneWay}" />
+									<TextBlock
+										Text="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}"
+										RelativePanel.RightOf="ToggleCandidateSymbol" Margin="8,0,0,0" />
+								</RelativePanel>
+							</Button>
+							<Button Width="160" Click="FixGrid_Click">
+								<RelativePanel>
+									<SymbolIcon x:Name="FixGridSymbol" Symbol="Pin" />
+									<TextBlock Text="{m:R Key=AnalyzePage_FixGrid}" RelativePanel.RightOf="FixGridSymbol" Margin="8,0,0,0" />
+								</RelativePanel>
+							</Button>
+							<Button Width="160" Click="UnfixGrid_Click">
+								<RelativePanel>
+									<SymbolIcon x:Name="UnfixGridSymbol" Symbol="UnPin" />
+									<TextBlock Text="{m:R Key=AnalyzePage_UnfixGrid}" RelativePanel.RightOf="UnfixGridSymbol" Margin="8,0,0,0" />
+								</RelativePanel>
+							</Button>
+							<ToggleButton IsChecked="{x:Bind AnalyzePane.IsPaneOpen,Mode=TwoWay}">
+								<RelativePanel>
+									<SymbolIcon x:Name="ToggleAnalyzePane" Symbol="Remote" />
+									<TextBlock
+										Text="{m:R Key=AnalyzePage_ToggleAnalyzePaneView}"
+										RelativePanel.RightOf="ToggleAnalyzePane" Margin="8,0,0,0" />
+								</RelativePanel>
+							</ToggleButton>
+						</StackPanel>
 					</StackPanel>
-				</StackPanel>
-			</StackPanel>
+				</SplitView>
+			</Grid>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

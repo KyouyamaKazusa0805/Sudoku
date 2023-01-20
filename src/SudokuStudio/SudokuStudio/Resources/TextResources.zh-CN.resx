@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
+    <value>所有可用步骤</value>
+  </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="AnalyzePage_IsMinimal" xml:space="preserve">
     <value>是否为最小题：</value>
+  </data>
+  <data name="AnalyzePage_LiveCharts" xml:space="preserve">
+    <value>数据图表</value>
   </data>
   <data name="AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved" xml:space="preserve">
     <value>否（至少有一个数可以移除，如 {0}）</value>
@@ -237,11 +243,20 @@
   <data name="AnalyzePage_SelectAll" xml:space="preserve">
     <value>全部选择</value>
   </data>
+  <data name="AnalyzePage_StepDetail" xml:space="preserve">
+    <value>解题步骤</value>
+  </data>
   <data name="AnalyzePage_SucceedToSaveFile" xml:space="preserve">
     <value>成功</value>
   </data>
   <data name="AnalyzePage_SukakuFormat" xml:space="preserve">
     <value>候选数数独格式</value>
+  </data>
+  <data name="AnalyzePage_TechniquesTable" xml:space="preserve">
+    <value>总体信息</value>
+  </data>
+  <data name="AnalyzePage_ToggleAnalyzePaneView" xml:space="preserve">
+    <value>弹出/关闭分析页面</value>
   </data>
   <data name="AnalyzePage_ToggleDisplayingCandidates" xml:space="preserve">
     <value>隐藏/显示候选数</value>
@@ -254,6 +269,9 @@
   </data>
   <data name="AnalyzePage_Uniqueness" xml:space="preserve">
     <value>盘面唯一性：</value>
+  </data>
+  <data name="AnalyzerPage_AnalyzeButton" xml:space="preserve">
+    <value>分析</value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>图片文件</value>
