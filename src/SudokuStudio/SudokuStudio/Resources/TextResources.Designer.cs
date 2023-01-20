@@ -259,16 +259,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No (at least one hint can be removed even if puzzle is fixed, e.g. {0}).
-        /// </summary>
-        internal static string AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved2 {
-            get {
-                return ResourceManager.GetString("AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No (puzzle is not unique).
+        ///   Looks up a localized string similar to No (puzzle is not unique, or unfixed).
         /// </summary>
         internal static string AnalyzePage_MinimalResult_NotUniquePuzzle {
             get {
@@ -282,15 +273,6 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_MinimalResult_Yes {
             get {
                 return ResourceManager.GetString("AnalyzePage_MinimalResult_Yes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes, but after fixed.
-        /// </summary>
-        internal static string AnalyzePage_MinimalResult_Yes2 {
-            get {
-                return ResourceManager.GetString("AnalyzePage_MinimalResult_Yes2", resourceCulture);
             }
         }
         

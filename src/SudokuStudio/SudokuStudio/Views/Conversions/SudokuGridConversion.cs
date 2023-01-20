@@ -11,6 +11,10 @@ internal static class SudokuGridConversion
 	private static readonly BitwiseSolver Solver = new();
 
 
+	public static bool GetFixedButtonAvailability(Grid grid) => grid.ModifiablesCount != 0;
+
+	public static bool GetUnfixedButtonAvailability(Grid grid) => grid.GivensCount != 0;
+
 	public static string GetPuzzleHintsCount(Grid grid)
 		=> grid switch
 		{
@@ -58,10 +62,7 @@ internal static class SudokuGridConversion
 			return GetString("AnalyzePage_MinimalResult_NotUniquePuzzle");
 		}
 
-		var hasNoGivenCells = grid.GivensCount == 0;
-		var str = hasNoGivenCells ? grid.ToString("!") : grid.ToString();
-		var solutions = Solver.Solve(str, null, 2);
-		if (solutions != 1)
+		if (!Solver.CheckValidity(grid.ToString()))
 		{
 			return GetString("AnalyzePage_MinimalResult_NotUniquePuzzle");
 		}
@@ -69,15 +70,11 @@ internal static class SudokuGridConversion
 		if (!MinimalPuzzleChecker.IsMinimal(grid, out var firstCandidateMakePuzzleNotMinimal))
 		{
 			return string.Format(
-				GetString(
-					hasNoGivenCells
-						? "AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved2"
-						: "AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved"
-				),
+				GetString("AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved"),
 				RxCyNotation.ToCandidateString(firstCandidateMakePuzzleNotMinimal)
 			);
 		}
 
-		return GetString(GetString(hasNoGivenCells ? "AnalyzePage_MinimalResult_Yes2" : "AnalyzePage_MinimalResult_Yes"));
+		return GetString("AnalyzePage_MinimalResult_Yes");
 	}
 }

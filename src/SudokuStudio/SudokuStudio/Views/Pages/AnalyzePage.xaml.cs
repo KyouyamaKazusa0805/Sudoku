@@ -328,18 +328,13 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 	private void CommandBarFrame_Navigated(object sender, NavigationEventArgs e)
 	{
-		switch (e)
+		if (e is not { Content: BasicOperation basicOperation, Parameter: AnalyzePage @this })
 		{
-			case { Content: BasicOperation basicOperation, Parameter: AnalyzePage @this }:
-			{
-				basicOperation.BasePage = @this;
-				break;
-			}
+			return;
 		}
-	}
 
-	private void ToggleCandidateVisibility_Click(object sender, RoutedEventArgs e)
-		=> SudokuPane.DisplayCandidates = !SudokuPane.DisplayCandidates;
+		basicOperation.BasePage = @this;
+	}
 
 	private void FixGrid_Click(object sender, RoutedEventArgs e)
 	{

@@ -95,7 +95,7 @@
 						</TextBlock>
 						<TextBlock Text="{m:R Key=AnalyzePage_CommonCommands}" Style="{StaticResource SubtitleTextBlockStyle}" />
 						<StackPanel Orientation="Vertical" Spacing="20">
-							<Button Width="160" Click="ToggleCandidateVisibility_Click">
+							<ToggleButton IsChecked="{x:Bind SudokuPane.DisplayCandidates,Mode=TwoWay}" Width="160">
 								<RelativePanel>
 									<SymbolIcon
 										x:Name="ToggleCandidateSymbol"
@@ -104,14 +104,18 @@
 										Text="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}"
 										RelativePanel.RightOf="ToggleCandidateSymbol" Margin="8,0,0,0" />
 								</RelativePanel>
-							</Button>
-							<Button Width="160" Click="FixGrid_Click">
+							</ToggleButton>
+							<Button
+								Width="160" IsEnabled="{x:Bind cvt:SudokuGridConversion.GetFixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
+								Click="FixGrid_Click">
 								<RelativePanel>
 									<SymbolIcon x:Name="FixGridSymbol" Symbol="Pin" />
 									<TextBlock Text="{m:R Key=AnalyzePage_FixGrid}" RelativePanel.RightOf="FixGridSymbol" Margin="8,0,0,0" />
 								</RelativePanel>
 							</Button>
-							<Button Width="160" Click="UnfixGrid_Click">
+							<Button
+								Width="160" IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
+								Click="UnfixGrid_Click">
 								<RelativePanel>
 									<SymbolIcon x:Name="UnfixGridSymbol" Symbol="UnPin" />
 									<TextBlock Text="{m:R Key=AnalyzePage_UnfixGrid}" RelativePanel.RightOf="UnfixGridSymbol" Margin="8,0,0,0" />

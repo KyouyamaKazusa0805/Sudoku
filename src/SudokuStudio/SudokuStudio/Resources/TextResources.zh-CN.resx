@@ -180,17 +180,11 @@
   <data name="AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved" xml:space="preserve">
     <value>否（至少有一个数可以移除，如 {0}）</value>
   </data>
-  <data name="AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved2" xml:space="preserve">
-    <value>否（即使题目固定，也至少有一个数可以移除，如 {0}）</value>
-  </data>
   <data name="AnalyzePage_MinimalResult_NotUniquePuzzle" xml:space="preserve">
-    <value>否（题目非唯一解）</value>
+    <value>否（题目非唯一解，或是题目没有提示数）</value>
   </data>
   <data name="AnalyzePage_MinimalResult_Yes" xml:space="preserve">
     <value>是</value>
-  </data>
-  <data name="AnalyzePage_MinimalResult_Yes2" xml:space="preserve">
-    <value>是（但是没有提示数）</value>
   </data>
   <data name="AnalyzePage_MultipleLineGridFormat" xml:space="preserve">
     <value>多行文本盘面格式</value>
