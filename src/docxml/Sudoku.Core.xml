@@ -248,7 +248,7 @@
             <summary>
             Get the sub-view mask of this map.
             </summary>
-            <param name="hosue">The house index.</param>
+            <param name="house">The house index.</param>
             <param name="digit">The digit.</param>
             <returns>The mask.</returns>
         </member>

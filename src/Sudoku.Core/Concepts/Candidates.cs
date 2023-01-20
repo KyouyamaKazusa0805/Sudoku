@@ -411,15 +411,15 @@ public unsafe partial struct Candidates :
 	/// <summary>
 	/// Get the sub-view mask of this map.
 	/// </summary>
-	/// <param name="hosue">The house index.</param>
+	/// <param name="house">The house index.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The mask.</returns>
-	public readonly short GetSubviewMask(int hosue, int digit)
+	public readonly short GetSubviewMask(int house, int digit)
 	{
 		short p = 0;
-		for (int i = 0, length = HouseCells[hosue].Length; i < length; i++)
+		for (int i = 0, length = HouseCells[house].Length; i < length; i++)
 		{
-			if (Contains(HouseCells[hosue][i] * 9 + digit))
+			if (Contains(HouseCells[house][i] * 9 + digit))
 			{
 				p |= (short)(1 << i);
 			}
