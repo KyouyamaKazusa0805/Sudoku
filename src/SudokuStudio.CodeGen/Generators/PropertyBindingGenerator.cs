@@ -167,8 +167,12 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 								{{accessibilityStr}} {{fieldTypeStr}} {{property}}
 								{
+									[global::System.Diagnostics.DebuggerStepThrough]
+									[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 									get => {{field}};
 
+									[global::System.Diagnostics.DebuggerStepThrough]
+									[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 									set
 									{
 										if ({{valueComparisonCode}})
