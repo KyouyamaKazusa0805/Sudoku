@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Views.Commands;
+﻿#pragma warning disable CS0067
+
+namespace SudokuStudio.Views.Commands;
 
 /// <summary>
 /// Defines a button command.
