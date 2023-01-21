@@ -487,6 +487,9 @@ dotnet_diagnostic.CA1720.severity = none
 # CA1725: Parameter names should match base declaration
 dotnet_diagnostic.CA1725.severity = warning
 
+# CA1806: Do not ignore method results
+dotnet_diagnostic.CA1806.severity = warning
+
 # CA1810: Initialize reference type static fields inline
 dotnet_diagnostic.CA1810.severity = none
 
