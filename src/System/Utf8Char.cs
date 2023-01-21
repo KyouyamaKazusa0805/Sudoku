@@ -4,6 +4,7 @@
 /// Represents a character as a UTF-8 code unit.
 /// </summary>
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
+[GeneratedOverloadingOperator(GeneratedOperator.ComparisonOperators)]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
@@ -128,22 +129,6 @@ public readonly partial struct Utf8Char :
 			? CompareTo(comparer)
 			: throw new ArgumentException("Cannot operate because the argument is not a UTF-8 formatted character.", nameof(obj));
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(Utf8Char left, Utf8Char right) => left.CompareTo(right) > 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(Utf8Char left, Utf8Char right) => left.CompareTo(right) >= 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(Utf8Char left, Utf8Char right) => left.CompareTo(right) < 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(Utf8Char left, Utf8Char right) => left.CompareTo(right) <= 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

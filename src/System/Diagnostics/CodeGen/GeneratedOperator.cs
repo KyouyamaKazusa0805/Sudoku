@@ -22,9 +22,39 @@ public enum GeneratedOperator
 	Inequality = 2,
 
 	/// <summary>
+	/// Indicates the greater-than operator <c><![CDATA[>]]></c>.
+	/// </summary>
+	GreaterThan = 4,
+
+	/// <summary>
+	/// Indicates the greater-than operator <c><![CDATA[>=]]></c>.
+	/// </summary>
+	GreaterThanOrEqual = 8,
+
+	/// <summary>
+	/// Indicates the greater-than operator <c><![CDATA[<]]></c>.
+	/// </summary>
+	LessThan = 16,
+
+	/// <summary>
+	/// Indicates the greater-than operator <c><![CDATA[<=]]></c>.
+	/// </summary>
+	LessThanOrEqual = 32,
+
+	/// <summary>
 	/// Indicates the equality operators (containing <see cref="Equality"/> and <see cref="Inequality"/>).
 	/// </summary>
 	/// <seealso cref="Equality"/>
 	/// <seealso cref="Inequality"/>
-	EqualityOperators = Equality | Inequality
+	EqualityOperators = Equality | Inequality,
+
+	/// <summary>
+	/// Indicates the equality operators (containing <see cref="GreaterThan"/>, <see cref="GreaterThanOrEqual"/>,
+	/// <see cref="LessThan"/> or <see cref="LessThanOrEqual"/>).
+	/// </summary>
+	/// <seealso cref="Equality"/>
+	/// <seealso cref="Inequality"/>
+	/// <seealso cref="LessThan"/>
+	/// <seealso cref="LessThanOrEqual"/>
+	ComparisonOperators = GreaterThan | GreaterThanOrEqual | LessThan | LessThanOrEqual
 }

@@ -2109,12 +2109,42 @@
             Indicates the inequality operator <c>!=</c>.
             </summary>
         </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.GreaterThan">
+            <summary>
+            Indicates the greater-than operator <c><![CDATA[>]]></c>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.GreaterThanOrEqual">
+            <summary>
+            Indicates the greater-than operator <c><![CDATA[>=]]></c>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.LessThan">
+            <summary>
+            Indicates the greater-than operator <c><![CDATA[<]]></c>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.LessThanOrEqual">
+            <summary>
+            Indicates the greater-than operator <c><![CDATA[<=]]></c>.
+            </summary>
+        </member>
         <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.EqualityOperators">
             <summary>
             Indicates the equality operators (containing <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Equality"/> and <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Inequality"/>).
             </summary>
             <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Equality"/>
             <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Inequality"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.ComparisonOperators">
+            <summary>
+            Indicates the equality operators (containing <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.GreaterThan"/>, <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.GreaterThanOrEqual"/>,
+            <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.LessThan"/> or <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.LessThanOrEqual"/>).
+            </summary>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Equality"/>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Inequality"/>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.LessThan"/>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.LessThanOrEqual"/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedOverloadingOperatorAttribute">
             <summary>
@@ -4907,18 +4937,6 @@ fixed (short* ptr = instance)
         <member name="M:System.Utf8Char.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:System.Utf8Char.op_GreaterThan(System.Utf8Char,System.Utf8Char)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8Char.op_GreaterThanOrEqual(System.Utf8Char,System.Utf8Char)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8Char.op_LessThan(System.Utf8Char,System.Utf8Char)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8Char.op_LessThanOrEqual(System.Utf8Char,System.Utf8Char)">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Utf8Char.op_Addition(System.Utf8Char,System.Byte)">
             <inheritdoc/>
         </member>
@@ -4978,6 +4996,18 @@ fixed (short* ptr = instance)
             <inheritdoc/>
         </member>
         <member name="M:System.Utf8Char.op_Inequality(System.Utf8Char,System.Utf8Char)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_GreaterThan(System.Utf8Char,System.Utf8Char)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_GreaterThanOrEqual(System.Utf8Char,System.Utf8Char)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_LessThan(System.Utf8Char,System.Utf8Char)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8Char.op_LessThanOrEqual(System.Utf8Char,System.Utf8Char)">
             <inheritdoc/>
         </member>
         <member name="T:System.Utf8String">
@@ -5119,18 +5149,6 @@ fixed (short* ptr = instance)
             <param name="right">The right-side instance to be catenated.</param>
             <returns>The final string.</returns>
         </member>
-        <member name="M:System.Utf8String.op_GreaterThan(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.op_GreaterThanOrEqual(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.op_LessThan(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.op_LessThanOrEqual(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Utf8String.op_Explicit(System.Utf8String)~System.Utf8Char[]">
             <summary>
             Explicitly cast from <see cref="T:System.Utf8String"/> to <see cref="T:System.Utf8Char"/>[].
@@ -5181,6 +5199,18 @@ fixed (short* ptr = instance)
             <inheritdoc/>
         </member>
         <member name="M:System.Utf8String.op_Inequality(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_GreaterThan(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_GreaterThanOrEqual(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_LessThan(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_LessThanOrEqual(System.Utf8String,System.Utf8String)">
             <inheritdoc/>
         </member>
         <member name="T:System.Numerics.BitOperationsExensions">

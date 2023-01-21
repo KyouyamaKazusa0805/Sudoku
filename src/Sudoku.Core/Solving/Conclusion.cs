@@ -10,6 +10,7 @@
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
+[GeneratedOverloadingOperator(GeneratedOperator.ComparisonOperators)]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion, bool>,
@@ -144,25 +145,4 @@ public readonly partial struct Conclusion :
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $"{CellsMap[Cell]}{ConclusionType.GetNotation()}{Digit + 1}";
-
-
-	/// <inheritdoc/>
-	/// <remarks><inheritdoc cref="Conclusion" path="/remarks"/></remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(Conclusion left, Conclusion right) => left.CompareTo(right) > 0;
-
-	/// <inheritdoc/>
-	/// <remarks><inheritdoc cref="Conclusion" path="/remarks"/></remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(Conclusion left, Conclusion right) => left.CompareTo(right) >= 0;
-
-	/// <inheritdoc/>
-	/// <remarks><inheritdoc cref="Conclusion" path="/remarks"/></remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(Conclusion left, Conclusion right) => left.CompareTo(right) < 0;
-
-	/// <inheritdoc/>
-	/// <remarks><inheritdoc cref="Conclusion" path="/remarks"/></remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(Conclusion left, Conclusion right) => left.CompareTo(right) <= 0;
 }

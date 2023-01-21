@@ -4,6 +4,7 @@
 /// Defines a chunk that stores the cells in a house.
 /// </summary>
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
+[GeneratedOverloadingOperator(GeneratedOperator.ComparisonOperators)]
 public readonly partial struct HouseCellChunk :
 	IComparable<HouseCellChunk>,
 	IComparisonOperators<HouseCellChunk, HouseCellChunk, bool>,
@@ -145,23 +146,6 @@ public readonly partial struct HouseCellChunk :
 		var digitStr = (digit + 1).ToString();
 		return $$"""{{nameof(HouseCellChunk)}} { {{nameof(House)}} = {{houseStr}}, {{nameof(ResultCandidate)}} = {{cellStr}}({{digitStr}}) }""";
 	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(HouseCellChunk left, HouseCellChunk right) => left.CompareTo(right) > 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(HouseCellChunk left, HouseCellChunk right) => left.CompareTo(right) >= 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(HouseCellChunk left, HouseCellChunk right) => left.CompareTo(right) < 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(HouseCellChunk left, HouseCellChunk right) => left.CompareTo(right) <= 0;
 
 
 	/// <summary>

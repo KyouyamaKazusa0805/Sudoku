@@ -23,6 +23,7 @@ namespace Sudoku.Concepts;
 [IsLargeStruct]
 [JsonConverter(typeof(Converter))]
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
+[GeneratedOverloadingOperator(GeneratedOperator.ComparisonOperators)]
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
@@ -612,7 +613,7 @@ public unsafe partial struct CellMap :
 	/// indicating <paramref name="other"/> is greater.
 	/// </item>
 	/// <item>
-	/// If They are same length, then checks for indices held:
+	/// If they two hold same cells, then checks for indices held:
 	/// <list type="bullet">
 	/// <item>
 	/// If <see langword="this"/> holds a cell whose index is greater than all cells appeared in <paramref name="other"/>,
@@ -1145,22 +1146,6 @@ public unsafe partial struct CellMap :
 
 		return map / houseIndex;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) > 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) >= 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) < 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) <= 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

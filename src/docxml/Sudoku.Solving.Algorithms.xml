@@ -286,18 +286,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_GreaterThan(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_GreaterThanOrEqual(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_LessThan(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_LessThanOrEqual(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Implicit(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)~Sudoku.Concepts.Grid">
             <summary>
             Converts the current <see cref="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk"/> instance into a <see cref="T:Sudoku.Concepts.Grid"/>.
@@ -308,6 +296,18 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Inequality(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_GreaterThan(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_GreaterThanOrEqual(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_LessThan(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_LessThanOrEqual(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.ExercisePuzzlers.IExerciseGenerator">

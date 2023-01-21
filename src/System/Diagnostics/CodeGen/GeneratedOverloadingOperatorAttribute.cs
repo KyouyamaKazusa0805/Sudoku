@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines an attribute that is applied to a type, specifying overloading operator information details.
 /// </summary>
-[AttributeUsage(AttributeTargets.Struct | AttributeTargets.Class, Inherited = false)]
+[AttributeUsage(AttributeTargets.Struct | AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
 public sealed class GeneratedOverloadingOperatorAttribute : Attribute
 {
 	/// <summary>
