@@ -52,12 +52,7 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 			).IsOpen = true;
 
 		void onSaveFileFailed(AnalyzePage _, SaveFileFailedEventArgs e)
-			=> (
-				e.Reason switch
-				{
-					SaveFileFailedReason.UnsnappingFailed => ErrorDialog_ProgramIsSnapped
-				}
-			).IsOpen = true;
+			=> (e.Reason switch { SaveFileFailedReason.UnsnappingFailed => ErrorDialog_ProgramIsSnapped }).IsOpen = true;
 	}
 
 	private async void OpenFileButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.OpenFileInternalAsync();
