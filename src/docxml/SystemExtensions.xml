@@ -2129,6 +2129,16 @@
             Indicates the greater-than operator <c><![CDATA[<=]]></c>.
             </summary>
         </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.True">
+            <summary>
+            Indicates the Boolean true operator <c><see langword="true"/></c>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.False">
+            <summary>
+            Indicates the Boolean false operator <c><see langword="false"/></c>.
+            </summary>
+        </member>
         <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.EqualityOperators">
             <summary>
             Indicates the equality operators (containing <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Equality"/> and <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Inequality"/>).
@@ -2145,6 +2155,13 @@
             <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.Inequality"/>
             <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.LessThan"/>
             <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.LessThanOrEqual"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.GeneratedOperator.Boolean">
+            <summary>
+            Indicates the equality operators (containing <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.True"/> and <see cref="F:System.Diagnostics.CodeGen.GeneratedOperator.False"/>).
+            </summary>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.True"/>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneratedOperator.False"/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedOverloadingOperatorAttribute">
             <summary>
@@ -3901,7 +3918,7 @@
             <inheritdoc/>
         </member>
         <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler,System.Text.StringHandler)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc cref="!:global::IEqualityOperators&lt;TSelf, TOther, TResult&gt;.op_Inequality(TSelf, TOther)"/>
         </member>
         <member name="T:System.Text.StringHandlerRefAppender`1">
             <summary>

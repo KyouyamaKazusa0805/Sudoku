@@ -69,6 +69,8 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						Operator.GreaterThanOrEqual => op_GreaterThanOrEqual,
 						Operator.LessThan => op_LessThan,
 						Operator.LessThanOrEqual => op_LessThanOrEqual,
+						Operator.True => op_True,
+						Operator.False => op_False,
 						_ => default(Func<INamedTypeSymbol, string>?)
 					};
 
@@ -100,7 +102,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 							? $"scoped {f(typeSymbol)}"
 							: typeSymbol.TypeKind == TypeKind.Class ? $"{f(typeSymbol)}?" : f(typeSymbol);
 					var crefText = isLargeStruct
-						? $@" cref=""IEqualityOperators{{TSelf, TOther, TResult}}.{nameof(op_Equality)}(TSelf, TOther)"""
+						? $@" cref=""global::IEqualityOperators{{TSelf, TOther, TResult}}.{nameof(op_Equality)}(TSelf, TOther)"""
 						: string.Empty;
 					var executingCode = typeSymbol.TypeKind == TypeKind.Class
 						? "(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false }"
@@ -126,7 +128,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 							? $"scoped {f(typeSymbol)}"
 							: typeSymbol.TypeKind == TypeKind.Class ? $"{f(typeSymbol)}?" : f(typeSymbol);
 					var crefText = isLargeStruct || typeSymbol.IsRefLikeType
-						? $@" cref=""IEqualityOperators{{TSelf, TOther, TResult}}.{nameof(op_Inequality)}(TSelf, TOther)"""
+						? $@" cref=""global::IEqualityOperators{{TSelf, TOther, TResult}}.{nameof(op_Inequality)}(TSelf, TOther)"""
 						: string.Empty;
 
 					return
@@ -147,7 +149,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						? $"scoped in {f(typeSymbol)}"
 						: typeSymbol.IsRefLikeType ? $"scoped {f(typeSymbol)}" : f(typeSymbol);
 					var crefText = isLargeStruct
-						? $@" cref=""IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_GreaterThan)}(TSelf, TOther)"""
+						? $@" cref=""global::IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_GreaterThan)}(TSelf, TOther)"""
 						: string.Empty;
 
 					return
@@ -168,7 +170,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						? $"scoped in {f(typeSymbol)}"
 						: typeSymbol.IsRefLikeType ? $"scoped {f(typeSymbol)}" : f(typeSymbol);
 					var crefText = isLargeStruct
-						? $@" cref=""IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_GreaterThanOrEqual)}(TSelf, TOther)"""
+						? $@" cref=""global::IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_GreaterThanOrEqual)}(TSelf, TOther)"""
 						: string.Empty;
 
 					return
@@ -189,7 +191,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						? $"scoped in {f(typeSymbol)}"
 						: typeSymbol.IsRefLikeType ? $"scoped {f(typeSymbol)}" : f(typeSymbol);
 					var crefText = isLargeStruct
-						? $@" cref=""IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_LessThan)}(TSelf, TOther)"""
+						? $@" cref=""global::IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_LessThan)}(TSelf, TOther)"""
 						: string.Empty;
 
 					return
@@ -210,9 +212,9 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						? $"scoped in {f(typeSymbol)}"
 						: typeSymbol.IsRefLikeType ? $"scoped {f(typeSymbol)}" : f(typeSymbol);
 					var crefText = isLargeStruct
-						? $@" cref=""IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_LessThanOrEqual)}(TSelf, TOther)"""
+						? $@" cref=""global::IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_LessThanOrEqual)}(TSelf, TOther)"""
 						: string.Empty;
-
+					
 					return
 						$"""
 							/// <inheritdoc{crefText}/>
@@ -221,6 +223,64 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 								public static bool operator <=({fullName} left, {fullName} right)
 									=> left.CompareTo(right) <= 0;
+						""";
+				}
+
+				string op_True(INamedTypeSymbol typeSymbol)
+				{
+					var isLargeStruct = typeIsLargeStruct(typeSymbol, largeStructAttribute);
+					var fullName = isLargeStruct
+						? $"scoped in {f(typeSymbol)}"
+						: typeSymbol.IsRefLikeType ? $"scoped {f(typeSymbol)}" : f(typeSymbol);
+					var crefText = isLargeStruct ? $@" cref=""IBooleanOperators{{TSelf}}.{nameof(op_True)}(TSelf)""" : string.Empty;
+					var executingCode = typeSymbol.MemberNames.Contains("_count")
+						? "value._count != 0"
+						: typeSymbol.MemberNames.Contains("_length")
+							? "value._length != 0"
+							: typeSymbol.GetAllMembers().OfType<IPropertySymbol>().ToArray() is var properties
+								&& properties.Any(static e => e.Name == "Count")
+								? "value.Count != 0"
+								: properties.Any(static e => e.Name == "Length")
+									? "value.Length != 0"
+									: "throw new global::System.NotSupportedException()";
+
+					return
+						$"""
+							/// <inheritdoc{crefText}/>
+								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
+								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+								public static bool operator true({fullName} value)
+									=> {executingCode};
+						""";
+				}
+
+				string op_False(INamedTypeSymbol typeSymbol)
+				{
+					var isLargeStruct = typeIsLargeStruct(typeSymbol, largeStructAttribute);
+					var fullName = isLargeStruct
+						? $"scoped in {f(typeSymbol)}"
+						: typeSymbol.IsRefLikeType ? $"scoped {f(typeSymbol)}" : f(typeSymbol);
+					var crefText = isLargeStruct ? $@" cref=""IBooleanOperators{{TSelf}}.{nameof(op_False)}(TSelf)""" : string.Empty;
+					var executingCode = typeSymbol.MemberNames.Contains("_count")
+						? "value._count == 0"
+						: typeSymbol.MemberNames.Contains("_length")
+							? "value._length == 0"
+							: typeSymbol.GetAllMembers().OfType<IPropertySymbol>().ToArray() is var properties
+								&& properties.Any(static e => e.Name == "Count")
+								? "value.Count == 0"
+								: properties.Any(static e => e.Name == "Length")
+									? "value.Length == 0"
+									: "throw new global::System.NotSupportedException()";
+
+					return
+						$"""
+							/// <inheritdoc{crefText}/>
+								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
+								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+								public static bool operator false({fullName} value)
+									=> {executingCode};
 						""";
 				}
 			}
@@ -274,6 +334,16 @@ file enum Operator : int
 	/// Indicates <c><see langword="operator"/> <![CDATA[<=]]></c>.
 	/// </summary>
 	LessThanOrEqual = 1 << 5,
+
+	/// <summary>
+	/// Indicates <c><see langword="operator true"/></c>.
+	/// </summary>
+	True = 1 << 6,
+
+	/// <summary>
+	/// Indicates <c><see langword="operator false"/></c>.
+	/// </summary>
+	False = 1 << 7
 }
 
 /// <summary>

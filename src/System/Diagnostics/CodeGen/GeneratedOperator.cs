@@ -42,6 +42,16 @@ public enum GeneratedOperator
 	LessThanOrEqual = 32,
 
 	/// <summary>
+	/// Indicates the Boolean true operator <c><see langword="true"/></c>.
+	/// </summary>
+	True = 64,
+
+	/// <summary>
+	/// Indicates the Boolean false operator <c><see langword="false"/></c>.
+	/// </summary>
+	False = 128,
+
+	/// <summary>
 	/// Indicates the equality operators (containing <see cref="Equality"/> and <see cref="Inequality"/>).
 	/// </summary>
 	/// <seealso cref="Equality"/>
@@ -56,5 +66,12 @@ public enum GeneratedOperator
 	/// <seealso cref="Inequality"/>
 	/// <seealso cref="LessThan"/>
 	/// <seealso cref="LessThanOrEqual"/>
-	ComparisonOperators = GreaterThan | GreaterThanOrEqual | LessThan | LessThanOrEqual
+	ComparisonOperators = GreaterThan | GreaterThanOrEqual | LessThan | LessThanOrEqual,
+
+	/// <summary>
+	/// Indicates the equality operators (containing <see cref="True"/> and <see cref="False"/>).
+	/// </summary>
+	/// <seealso cref="True"/>
+	/// <seealso cref="False"/>
+	Boolean = True | False,
 }
