@@ -19,7 +19,7 @@ internal static class Program
 		Application.Start(startCallback);
 
 
-		static void startCallback(ApplicationInitializationCallbackParams p)
+		static void startCallback(ApplicationInitializationCallbackParams __)
 		{
 			var context = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
 			SynchronizationContext.SetSynchronizationContext(context);

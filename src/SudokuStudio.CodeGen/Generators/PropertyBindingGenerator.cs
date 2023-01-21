@@ -8,160 +8,165 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
-		=> context.RegisterSourceOutput(
+	{
+		context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"System.Diagnostics.CodeGen.NotifyBackingFieldAttribute",
-					static (node, _)
-						=> node is VariableDeclaratorSyntax
-						{
-							Parent: VariableDeclarationSyntax
-							{
-								Variables.Count: 1,
-								Parent: FieldDeclarationSyntax
-								{
-									Modifiers: var fieldModifiers,
-									Parent: ClassDeclarationSyntax { Modifiers: var typeModifiers and not [] }
-								}
-							},
-						}
-						&& !fieldModifiers.Any(SyntaxKind.StaticKeyword)
-						&& !fieldModifiers.Any(SyntaxKind.ReadOnlyKeyword)
-						&& typeModifiers.Any(SyntaxKind.PartialKeyword),
-					static (gasc, ct) =>
-					{
-						if (gasc is not
-							{
-								Attributes: [{ NamedArguments: var namedArguments }],
-								TargetSymbol: IFieldSymbol
-								{
-									ContainingType: { MemberNames: var memberNames, Interfaces: var impledInterfaces } type,
-									Type:
-									{
-										AllInterfaces: var allInterfaces,
-										SpecialType: var fieldSpecialType,
-										TypeKind: var fieldTypeKind
-									} fieldType,
-									Name: var fieldName
-								} fieldSymbol,
-								SemanticModel.Compilation: var compilation
-							})
-						{
-							return (Data?)null;
-						}
-
-						var controlType = compilation.GetTypeByMetadataName("Microsoft.UI.Xaml.Controls.Control");
-						if (controlType is null)
-						{
-							return null;
-						}
-
-						if (!type.IsDerivedFrom(controlType))
-						{
-							return null;
-						}
-
-						var notifyPropertyChangedType = compilation.GetTypeByMetadataName(typeof(INotifyPropertyChanged).FullName)!;
-						if (!impledInterfaces.Contains(notifyPropertyChangedType, SymbolEqualityComparer.Default))
-						{
-							return null;
-						}
-
-						var propertyChangedEventHandlerType = compilation.GetTypeByMetadataName(typeof(PropertyChangedEventHandler).FullName)!;
-						if (!type.GetMembers().OfType<IEventSymbol>().Any(containsPropertyChangedEvent))
-						{
-							return null;
-						}
-
-						var propertyName = fieldName.ToPascalCasing();
-						if (memberNames.Contains(propertyName))
-						{
-							return null;
-						}
-
-						var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IEqualityOperators`3")!;
-						var equatableType = compilation.GetTypeByMetadataName(typeof(IEquatable<>).FullName)!;
-						var comparableType = compilation.GetTypeByMetadataName(typeof(IComparable<>).FullName)!;
-						var mode = containsEqualityOperators()
-							? EqualityComparisonMode.EqualityOperator
-							: containsEqualsMethod()
-								? EqualityComparisonMode.InstanceEqualsMethod
-								: containsCompareToMethod()
-									? EqualityComparisonMode.InstanceCompareToMethod
-									: EqualityComparisonMode.EqualityComparerDefaultInstance;
-
-						var accessibility = (Accessibility?)null;
-						foreach (var (name, value) in namedArguments)
-						{
-							if (name == nameof(Accessibility))
-							{
-								accessibility = (Accessibility)(int)value.Value!;
-							}
-						}
-
-						return new(propertyName, fieldSymbol, type, mode, accessibility ?? Accessibility.Public);
-
-
-						bool containsPropertyChangedEvent(IEventSymbol e)
-							=> e is
-							{
-								Name: nameof(INotifyPropertyChanged.PropertyChanged),
-								ExplicitInterfaceImplementations: [],
-								Type: var eventType
-							} && SymbolEqualityComparer.Default.Equals(propertyChangedEventHandlerType, eventType);
-
-						bool containsEqualityOperators()
-							=> allInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default)
-							|| fieldSpecialType is >= SpecialType.System_Object and <= SpecialType.System_UIntPtr and not (SpecialType.System_ValueType or SpecialType.System_Void)
-							|| fieldTypeKind == TypeKind.Enum
-							|| fieldType.GetMembers().OfType<IMethodSymbol>().Any(static m => m.Name == "op_Equality");
-
-						bool containsEqualsMethod() => allInterfaces.Contains(equatableType, SymbolEqualityComparer.Default);
-
-						bool containsCompareToMethod() => allInterfaces.Contains(comparableType, SymbolEqualityComparer.Default);
-					}
-				)
+				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.NotifyBackingFieldAttribute", nodePredicate, transform)
 				.Where(static data => data is not null)
 				.Collect(),
-			(spc, data) =>
+			output
+		);
+
+
+		static bool nodePredicate(SyntaxNode node, CancellationToken _)
+			=> node is VariableDeclaratorSyntax
 			{
-				foreach (var group in data.CastToNotNull().GroupBy<Data, INamedTypeSymbol>(keySelector, SymbolEqualityComparer.Default))
+				Parent: VariableDeclarationSyntax
 				{
-					var type = group.Key;
-
-					var propertyDeclarations = new List<string>();
-					foreach (var (property, fieldSymbol, _, mode, accessibility) in group)
+					Variables.Count: 1,
+					Parent: FieldDeclarationSyntax
 					{
-						if (fieldSymbol is not { Name: var field, Type: { NullableAnnotation: var nullability } fieldType })
-						{
-							continue;
-						}
+						Modifiers: var fieldModifiers,
+						Parent: ClassDeclarationSyntax { Modifiers: var typeModifiers and not [] }
+					}
+				},
+			}
+			&& !fieldModifiers.Any(SyntaxKind.StaticKeyword)
+			&& !fieldModifiers.Any(SyntaxKind.ReadOnlyKeyword)
+			&& typeModifiers.Any(SyntaxKind.PartialKeyword);
 
-						var nullableAnnotation = nullability == NullableAnnotation.Annotated ? "?" : string.Empty;
-						var fieldTypeStr = $"{fieldType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}{nullableAnnotation}";
-						var valueComparisonCode = mode switch
+		static Data? transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
+		{
+			if (gasc is not
+				{
+					Attributes: [{ NamedArguments: var namedArguments }],
+					TargetSymbol: IFieldSymbol
+					{
+						ContainingType: { MemberNames: var memberNames, Interfaces: var impledInterfaces } type,
+						Type:
 						{
-							EqualityComparisonMode.EqualityOperator => $$"""{{field}} == value""",
-							EqualityComparisonMode.InstanceEqualsMethod => $$"""{{field}}.Equals(value)""",
-							EqualityComparisonMode.InstanceCompareToMethod => $$"""{{field}}.CompareTo(value) == 0""",
-							EqualityComparisonMode.EqualityComparerDefaultInstance => $$"""global::System.Collections.Generic.EqualityComparer<{{fieldTypeStr}}>.Default.Equals({{field}}, value)""",
-							_ => "true"
-						};
+							AllInterfaces: var allInterfaces,
+							SpecialType: var fieldSpecialType,
+							TypeKind: var fieldTypeKind
+						} fieldType,
+						Name: var fieldName
+					} fieldSymbol,
+					SemanticModel.Compilation: var compilation
+				})
+			{
+				return null;
+			}
 
-						var accessibilityStr = accessibility switch
-						{
-							Accessibility.File => "file",
-							Accessibility.Private => "private",
-							Accessibility.Protected => "protected",
-							Accessibility.PrivateProtected => "private protected",
-							Accessibility.Internal => "internal",
-							Accessibility.ProtectedInternal => "protected internal",
-							Accessibility.Public => "public",
-							_ => throw new NotSupportedException("The value is not defined.")
-						};
+			var controlType = compilation.GetTypeByMetadataName("Microsoft.UI.Xaml.Controls.Control");
+			if (controlType is null)
+			{
+				return null;
+			}
 
-						propertyDeclarations.Add(
-							$$"""
+			if (!type.IsDerivedFrom(controlType))
+			{
+				return null;
+			}
+
+			var notifyPropertyChangedType = compilation.GetTypeByMetadataName(typeof(INotifyPropertyChanged).FullName)!;
+			if (!impledInterfaces.Contains(notifyPropertyChangedType, SymbolEqualityComparer.Default))
+			{
+				return null;
+			}
+
+			var propertyChangedEventHandlerType = compilation.GetTypeByMetadataName(typeof(PropertyChangedEventHandler).FullName)!;
+			if (!type.GetMembers().OfType<IEventSymbol>().Any(containsPropertyChangedEvent))
+			{
+				return null;
+			}
+
+			var propertyName = fieldName.ToPascalCasing();
+			if (memberNames.Contains(propertyName))
+			{
+				return null;
+			}
+
+			var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IEqualityOperators`3")!;
+			var equatableType = compilation.GetTypeByMetadataName(typeof(IEquatable<>).FullName)!;
+			var comparableType = compilation.GetTypeByMetadataName(typeof(IComparable<>).FullName)!;
+			var mode = containsEqualityOperators()
+				? EqualityComparisonMode.EqualityOperator
+				: containsEqualsMethod()
+					? EqualityComparisonMode.InstanceEqualsMethod
+					: containsCompareToMethod()
+						? EqualityComparisonMode.InstanceCompareToMethod
+						: EqualityComparisonMode.EqualityComparerDefaultInstance;
+
+			var accessibility = (Accessibility?)null;
+			foreach (var (name, value) in namedArguments)
+			{
+				if (name == nameof(Accessibility))
+				{
+					accessibility = (Accessibility)(int)value.Value!;
+				}
+			}
+
+			return new(propertyName, fieldSymbol, type, mode, accessibility ?? Accessibility.Public);
+
+
+			bool containsPropertyChangedEvent(IEventSymbol e)
+				=> e is
+				{
+					Name: nameof(INotifyPropertyChanged.PropertyChanged),
+					ExplicitInterfaceImplementations: [],
+					Type: var eventType
+				} && SymbolEqualityComparer.Default.Equals(propertyChangedEventHandlerType, eventType);
+
+			bool containsEqualityOperators()
+				=> allInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default)
+				|| fieldSpecialType is >= SpecialType.System_Object and <= SpecialType.System_UIntPtr and not (SpecialType.System_ValueType or SpecialType.System_Void)
+				|| fieldTypeKind == TypeKind.Enum
+				|| fieldType.GetMembers().OfType<IMethodSymbol>().Any(static m => m.Name == "op_Equality");
+
+			bool containsEqualsMethod() => allInterfaces.Contains(equatableType, SymbolEqualityComparer.Default);
+
+			bool containsCompareToMethod() => allInterfaces.Contains(comparableType, SymbolEqualityComparer.Default);
+		}
+
+		void output(SourceProductionContext spc, ImmutableArray<Data?> data)
+		{
+			foreach (var group in data.CastToNotNull().GroupBy<Data, INamedTypeSymbol>(keySelector, SymbolEqualityComparer.Default))
+			{
+				var type = group.Key;
+
+				var propertyDeclarations = new List<string>();
+				foreach (var (property, fieldSymbol, _, mode, accessibility) in group)
+				{
+					if (fieldSymbol is not { Name: var field, Type: { NullableAnnotation: var nullability } fieldType })
+					{
+						continue;
+					}
+
+					var nullableAnnotation = nullability == NullableAnnotation.Annotated ? "?" : string.Empty;
+					var fieldTypeStr = $"{fieldType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}{nullableAnnotation}";
+					var valueComparisonCode = mode switch
+					{
+						EqualityComparisonMode.EqualityOperator => $$"""{{field}} == value""",
+						EqualityComparisonMode.InstanceEqualsMethod => $$"""{{field}}.Equals(value)""",
+						EqualityComparisonMode.InstanceCompareToMethod => $$"""{{field}}.CompareTo(value) == 0""",
+						EqualityComparisonMode.EqualityComparerDefaultInstance => $$"""global::System.Collections.Generic.EqualityComparer<{{fieldTypeStr}}>.Default.Equals({{field}}, value)""",
+						_ => "true"
+					};
+
+					var accessibilityStr = accessibility switch
+					{
+						Accessibility.File => "file",
+						Accessibility.Private => "private",
+						Accessibility.Protected => "protected",
+						Accessibility.PrivateProtected => "private protected",
+						Accessibility.Internal => "internal",
+						Accessibility.ProtectedInternal => "protected internal",
+						Accessibility.Public => "public",
+						_ => throw new NotSupportedException("The value is not defined.")
+					};
+
+					propertyDeclarations.Add(
+						$$"""
 							/// <inheritdoc cref="{{field}}"/>
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
@@ -186,13 +191,13 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 									}
 								}
 							"""
-						);
-					}
+					);
+				}
 
-					var @namespace = type.ContainingNamespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-					spc.AddSource(
-						$"{type.ToFileName()}.g.{Shortcuts.PropertyBinding}.cs",
-						$$"""
+				var @namespace = type.ContainingNamespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+				spc.AddSource(
+					$"{type.ToFileName()}.g.{Shortcuts.PropertyBinding}.cs",
+					$$"""
 						// <auto-generated />
 
 						#nullable enable
@@ -204,13 +209,13 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 							{{string.Join("\r\n\r\n\t", propertyDeclarations)}}
 						}
 						"""
-					);
-				}
-
-
-				static INamedTypeSymbol keySelector(Data data) => data.Type;
+				);
 			}
-		);
+
+
+			static INamedTypeSymbol keySelector(Data data) => data.Type;
+		}
+	}
 }
 
 /// <summary>
