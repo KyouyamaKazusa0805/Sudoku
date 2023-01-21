@@ -224,7 +224,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		dataPackage.SetText(SusserFormat.Full.ToString(puzzle));
+		dataPackage.SetText(puzzle.ToString(SusserFormat.Full));
 
 		Clipboard.SetContent(dataPackage);
 	}
