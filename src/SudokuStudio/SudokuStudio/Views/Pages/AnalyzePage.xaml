@@ -6,8 +6,9 @@
 	xmlns:cmd="using:SudokuStudio.Views.Commands"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
-	xmlns:pages="using:SudokuStudio.Views.Pages"
-	d:DataContext="{d:DesignInstance Type=pages:AnalyzePage}"
+	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
+	d:DataContext="{d:DesignInstance Type=p:AnalyzePage}"
 	NavigationCacheMode="Required">
 
 	<ScrollViewer>
@@ -49,7 +50,7 @@
 							<TabView IsAddTabButtonVisible="False" TabWidthMode="Equal">
 								<TabView.TabItems>
 									<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
-										<Button Content="{m:R Key=AnalyzerPage_AnalyzeButton}" Margin="10" />
+										<pa:Summary Margin="10" />
 									</TabViewItem>
 									<TabViewItem Header="{m:R Key=AnalyzePage_StepDetail}" IsClosable="False">
 									</TabViewItem>

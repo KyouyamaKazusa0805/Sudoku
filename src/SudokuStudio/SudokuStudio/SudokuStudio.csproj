@@ -18,6 +18,7 @@
 		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Controls\SudokuPaneCell.xaml" />
 		<None Remove="Views\Pages\AnalyzePage.xaml" />
+		<None Remove="Views\Pages\Analyze\Summary.xaml" />
 		<None Remove="Views\Pages\Operation\BasicOperation.xaml" />
 		<None Remove="Views\Pages\SettingsPage.xaml" />
 	</ItemGroup>
@@ -58,12 +59,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Views\Controls\SudokuPaneCell.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
+		<Page Update="Views\Controls\SudokuPaneCell.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Controls\SudokuPane.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
@@ -73,11 +71,11 @@
 		<Page Update="Views\Pages\AnalyzePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Page Update="Views\Pages\Operation\BasicOperation.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
+		<Page Update="Views\Pages\Operation\BasicOperation.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Analyze\Summary.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 </Project>
