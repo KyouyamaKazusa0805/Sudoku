@@ -150,14 +150,18 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			{
 				await File.WriteAllTextAsync(
 					filePath,
-					string.Join("\r\n\r\n", from object gridFormatter in gridFormatters select ((IGridFormatter)gridFormatter).ToString(grid))
+					string.Join(
+						"\r\n\r\n",
+						from gridFormatter in gridFormatters
+						select ((IGridFormatter)gridFormatter).ToString(grid)
+					)
 				);
 				break;
 			}
 			case CommonFileExtensions.Text:
 			{
 				var data = (
-					from object gridFormatter in gridFormatters
+					from gridFormatter in gridFormatters
 					select ((IGridFormatter)gridFormatter).ToString(grid) into gridString
 					select new GridSerializationData { GridString = gridString }
 				).ToArray();
