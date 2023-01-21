@@ -285,7 +285,7 @@ public static class SolutionWideReadOnlyFields
 	/// <summary>
 	/// Indicates the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
 	/// </summary>
-	internal static readonly int[,] Combinatorials =
+	internal static readonly int[,] Combinatorial =
 	{
 		{  1,  -1,   -1,    -1,     -1,     -1,      -1,      -1,       -1,       -1,       -1,       -1,        -1,        -1,        -1,        -1,        -1,       -1,       -1,       -1,       -1,      -1,      -1,     -1,     -1,    -1,   -1,  -1, -1, -1 },
 		{  2,   1,   -1,    -1,     -1,     -1,      -1,      -1,       -1,       -1,       -1,       -1,        -1,        -1,        -1,        -1,        -1,       -1,       -1,       -1,       -1,      -1,      -1,     -1,     -1,    -1,   -1,  -1, -1, -1 },

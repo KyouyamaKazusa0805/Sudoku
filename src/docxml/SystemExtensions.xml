@@ -3918,7 +3918,7 @@
             <inheritdoc/>
         </member>
         <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler,System.Text.StringHandler)">
-            <inheritdoc cref="!:global::System.IEqualityOperators&lt;TSelf, TOther, TResult&gt;.op_Inequality(TSelf, TOther)"/>
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:System.Text.StringHandlerRefAppender`1">
             <summary>

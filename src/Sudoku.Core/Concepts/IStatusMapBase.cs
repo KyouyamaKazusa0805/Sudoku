@@ -684,7 +684,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 		var length = Min(n, subsetSize);
 		for (var i = 1; i <= length; i++)
 		{
-			var target = Combinatorials[n - 1, i - 1];
+			var target = Combinatorial[n - 1, i - 1];
 			desiredSize += target;
 		}
 

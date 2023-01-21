@@ -102,7 +102,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 							? $"scoped {f(typeSymbol)}"
 							: typeSymbol.TypeKind == TypeKind.Class ? $"{f(typeSymbol)}?" : f(typeSymbol);
 					var crefText = isLargeStruct
-						? $@" cref=""global::System.IEqualityOperators{{TSelf, TOther, TResult}}.{nameof(op_Equality)}(TSelf, TOther)"""
+						? $@" cref=""global::System.Numerics.IEqualityOperators{{TSelf, TOther, TResult}}.{nameof(op_Equality)}(TSelf, TOther)"""
 						: string.Empty;
 					var executingCode = typeSymbol.TypeKind == TypeKind.Class
 						? "(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false }"
@@ -128,7 +128,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 							? $"scoped {f(typeSymbol)}"
 							: typeSymbol.TypeKind == TypeKind.Class ? $"{f(typeSymbol)}?" : f(typeSymbol);
 					var crefText = isLargeStruct || typeSymbol.IsRefLikeType
-						? $@" cref=""global::System.IEqualityOperators{{TSelf, TOther, TResult}}.{nameof(op_Inequality)}(TSelf, TOther)"""
+						? $@" cref=""global::System.Numerics.IEqualityOperators{{TSelf, TOther, TResult}}.{nameof(op_Inequality)}(TSelf, TOther)"""
 						: string.Empty;
 
 					return
@@ -149,7 +149,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						? $"scoped in {f(typeSymbol)}"
 						: typeSymbol.IsRefLikeType ? $"scoped {f(typeSymbol)}" : f(typeSymbol);
 					var crefText = isLargeStruct
-						? $@" cref=""global::System.IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_GreaterThan)}(TSelf, TOther)"""
+						? $@" cref=""global::System.Numerics.IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_GreaterThan)}(TSelf, TOther)"""
 						: string.Empty;
 
 					return
@@ -170,7 +170,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						? $"scoped in {f(typeSymbol)}"
 						: typeSymbol.IsRefLikeType ? $"scoped {f(typeSymbol)}" : f(typeSymbol);
 					var crefText = isLargeStruct
-						? $@" cref=""global::System.IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_GreaterThanOrEqual)}(TSelf, TOther)"""
+						? $@" cref=""global::System.Numerics.IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_GreaterThanOrEqual)}(TSelf, TOther)"""
 						: string.Empty;
 
 					return
@@ -191,7 +191,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						? $"scoped in {f(typeSymbol)}"
 						: typeSymbol.IsRefLikeType ? $"scoped {f(typeSymbol)}" : f(typeSymbol);
 					var crefText = isLargeStruct
-						? $@" cref=""global::System.IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_LessThan)}(TSelf, TOther)"""
+						? $@" cref=""global::System.Numerics.IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_LessThan)}(TSelf, TOther)"""
 						: string.Empty;
 
 					return
@@ -212,7 +212,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						? $"scoped in {f(typeSymbol)}"
 						: typeSymbol.IsRefLikeType ? $"scoped {f(typeSymbol)}" : f(typeSymbol);
 					var crefText = isLargeStruct
-						? $@" cref=""global::System.IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_LessThanOrEqual)}(TSelf, TOther)"""
+						? $@" cref=""global::System.Numerics.IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_LessThanOrEqual)}(TSelf, TOther)"""
 						: string.Empty;
 					
 					return

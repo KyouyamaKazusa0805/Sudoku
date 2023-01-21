@@ -946,7 +946,7 @@ public unsafe partial struct CellMap :
 		{
 			// Optimization: Use table to get the total number of result elements.
 			var totalIndex = 0;
-			var result = new CellMap[Combinatorials[n - 1, subsetSize - 1]];
+			var result = new CellMap[Combinatorial[n - 1, subsetSize - 1]];
 			f(subsetSize, n, subsetSize, cells.Offsets);
 			return result;
 
@@ -1032,7 +1032,7 @@ public unsafe partial struct CellMap :
 		var length = Min(n, subsetSize);
 		for (var i = 1; i <= length; i++)
 		{
-			var target = Combinatorials[n - 1, i - 1];
+			var target = Combinatorial[n - 1, i - 1];
 			desiredSize += target;
 		}
 
