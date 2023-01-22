@@ -637,15 +637,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open/Close analyze pane.
-        /// </summary>
-        internal static string AnalyzePage_ToggleAnalyzePaneView {
-            get {
-                return ResourceManager.GetString("AnalyzePage_ToggleAnalyzePaneView", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show/Hide candidates.
         /// </summary>
         internal static string AnalyzePage_ToggleDisplayingCandidates {

@@ -53,6 +53,20 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 
 	/// <summary>
+	/// To clear all possible data from the analyze tabs.
+	/// </summary>
+	internal void ClearAnalyzeTabsData()
+	{
+		foreach (var children in AnalyzeTabs.TabItems.OfType<TabViewItem>())
+		{
+			if (children.Content is IAnalyzeTabPage page)
+			{
+				page.ClearTabPageData();
+			}
+		}
+	}
+
+	/// <summary>
 	/// Open a file.
 	/// </summary>
 	/// <returns>A task that handles the operation.</returns>

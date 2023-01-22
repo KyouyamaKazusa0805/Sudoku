@@ -18,11 +18,14 @@
 			VerticalScrollBarVisibility="Visible" SelectionMode="Single" CanUserSortColumns="False"
 			CanUserReorderColumns="False" CanUserResizeColumns="False" AreRowDetailsFrozen="True"
 			AreRowGroupHeadersFrozen="True" HeadersVisibility="Column" AutoGenerateColumns="False"
-			RowBackground="White" GridLinesVisibility="Horizontal" Margin="12">
+			HorizontalAlignment="Left" VerticalAlignment="Top"
+			RowBackground="White" GridLinesVisibility="All" Margin="12">
 			<c:DataGrid.Resources>
 				<Style x:Key="LabelStyle" TargetType="TextBlock">
 					<Setter Property="HorizontalAlignment" Value="Center" />
 					<Setter Property="VerticalAlignment" Value="Center" />
+					<Setter Property="HorizontalAlignment" Value="Right" />
+					<Setter Property="Margin" Value="10,0" />
 				</Style>
 			</c:DataGrid.Resources>
 			<c:DataGrid.Columns>

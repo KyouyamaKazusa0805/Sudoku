@@ -157,7 +157,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		set => SetPuzzle(value, true);
 	}
 
-	
+	/// <summary>
+	/// Indicates the base page.
+	/// </summary>
+	public AnalyzePage BasePage { get; set; } = null!;
+
 	/// <summary>
 	/// Indicates the approximately-measured width and height value of a cell.
 	/// </summary>
@@ -348,6 +352,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				break;
 			}
 		}
+
+		BasePage?.ClearAnalyzeTabsData();
 
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
 	}

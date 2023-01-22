@@ -288,9 +288,6 @@
   <data name="AnalyzePage_TechniquesTable" xml:space="preserve">
     <value>Summary</value>
   </data>
-  <data name="AnalyzePage_ToggleAnalyzePaneView" xml:space="preserve">
-    <value>Open/Close analyze pane</value>
-  </data>
   <data name="AnalyzePage_ToggleDisplayingCandidates" xml:space="preserve">
     <value>Show/Hide candidates</value>
   </data>

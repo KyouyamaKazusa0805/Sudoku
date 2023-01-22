@@ -288,9 +288,6 @@
   <data name="AnalyzePage_TechniquesTable" xml:space="preserve">
     <value>总体信息</value>
   </data>
-  <data name="AnalyzePage_ToggleAnalyzePaneView" xml:space="preserve">
-    <value>弹出/关闭分析页面</value>
-  </data>
   <data name="AnalyzePage_ToggleDisplayingCandidates" xml:space="preserve">
     <value>隐藏/显示候选数</value>
   </data>

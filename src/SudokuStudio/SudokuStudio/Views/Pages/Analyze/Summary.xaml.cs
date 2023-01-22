@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines a summary page.
 /// </summary>
-public sealed partial class Summary : Page
+public sealed partial class Summary : Page, IAnalyzeTabPage
 {
 	/// <summary>
 	/// Initializes a <see cref="Summary"/> instance.
@@ -17,6 +17,10 @@ public sealed partial class Summary : Page
 	public AnalyzePage BasePage { get; set; } = null!;
 
 
+	/// <inheritdoc/>
+	public void ClearTabPageData() => SummaryTable.ItemsSource = null;
+
+
 	private async void AnalyzeButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var puzzle = BasePage.SudokuPane.Puzzle;
@@ -27,7 +31,7 @@ public sealed partial class Summary : Page
 
 		AnalyzeButton.IsEnabled = false;
 
-		SummaryTable.ItemsSource = null;
+		ClearTabPageData();
 
 		var solver = ((App)Application.Current).RunningContext.Solver;
 		var analysisResult = await Task.Run(() => { lock (BasePage.AnalyzeSyncRoot) { return solver.Solve(puzzle); } });
