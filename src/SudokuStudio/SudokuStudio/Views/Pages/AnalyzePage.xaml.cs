@@ -208,8 +208,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	internal async Task LoadPuzzleCoreAsync(StorageFile file)
 	{
 		var filePath = file.Path;
-		var fileInfo = new FileInfo(filePath);
-		switch (fileInfo.Length)
+		switch (new FileInfo(filePath).Length)
 		{
 			case 0:
 			{
