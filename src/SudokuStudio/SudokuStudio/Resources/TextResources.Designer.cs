@@ -772,6 +772,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sudoku.
+        /// </summary>
+        internal static string Sudoku {
+            get {
+                return ResourceManager.GetString("Sudoku", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please drop the file here.
         /// </summary>
         internal static string SudokuPane_DropSudokuFileHere {

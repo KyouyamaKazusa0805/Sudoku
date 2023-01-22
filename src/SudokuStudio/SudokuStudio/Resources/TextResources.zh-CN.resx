@@ -333,6 +333,9 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>偏好项设置</value>
   </data>
+  <data name="Sudoku" xml:space="preserve">
+    <value>数独</value>
+  </data>
   <data name="SudokuPane_DropSudokuFileHere" xml:space="preserve">
     <value>请将文件拖到这里</value>
   </data>

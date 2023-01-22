@@ -333,6 +333,9 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>Settings &amp; Preferences</value>
   </data>
+  <data name="Sudoku" xml:space="preserve">
+    <value>Sudoku</value>
+  </data>
   <data name="SudokuPane_DropSudokuFileHere" xml:space="preserve">
     <value>Please drop the file here</value>
   </data>

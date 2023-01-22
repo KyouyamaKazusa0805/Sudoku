@@ -103,7 +103,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 		var fsp = new FileSavePicker()
 			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
-			.WithSuggestedFileName(R["Sudoku"]!)
+			.WithSuggestedFileName(GetString("Sudoku"))
 			.AddFileTypeChoice(GetString("FileExtension_TextDescription"), CommonFileExtensions.Text)
 			.AddFileTypeChoice(GetString("FileExtension_PlainTextDescription"), CommonFileExtensions.PlainText)
 			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture)
@@ -151,7 +151,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 		var fsp = new FileSavePicker()
 			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
-			.WithSuggestedFileName(R["Sudoku"]!)
+			.WithSuggestedFileName(GetString("Sudoku"))
 			.AddFileTypeChoice(GetString("FileExtension_TextDescription"), CommonFileExtensions.Text)
 			.AddFileTypeChoice(GetString("FileExtension_PlainTextDescription"), CommonFileExtensions.PlainText)
 			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture)
