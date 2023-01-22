@@ -440,6 +440,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		e.DragUIOverride.IsContentVisible = true;
 	}
 
+	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => Focus(FocusState.Programmatic);
+
 	private async void UserControl_DropAsync(object sender, DragEventArgs e)
 	{
 		if (e.DataView is not { } dataView)
