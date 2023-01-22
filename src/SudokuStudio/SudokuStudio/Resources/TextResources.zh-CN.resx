@@ -252,6 +252,9 @@
   <data name="AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" xml:space="preserve">
     <value>唯一解（但是没有提示数）</value>
   </data>
+  <data name="AnalyzePage_Redo" xml:space="preserve">
+    <value>恢复撤销步骤一步</value>
+  </data>
   <data name="AnalyzePage_ResetCommandName" xml:space="preserve">
     <value>初盘复盘</value>
   </data>
@@ -293,6 +296,9 @@
   </data>
   <data name="AnalyzePage_UndefinedGrid" xml:space="preserve">
     <value>&lt;初始盘面&gt;</value>
+  </data>
+  <data name="AnalyzePage_Undo" xml:space="preserve">
+    <value>撤销一步</value>
   </data>
   <data name="AnalyzePage_UnfixGrid" xml:space="preserve">
     <value>解除固定盘面</value>

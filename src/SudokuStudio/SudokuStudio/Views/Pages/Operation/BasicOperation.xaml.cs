@@ -88,6 +88,10 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 
 	private void ClearButton_Click(object sender, RoutedEventArgs e) => Dialog_AreYouSureToReturnToEmpty.IsOpen = true;
 
+	private void UndoButton_Click(object sender, RoutedEventArgs e) => BasePage.SudokuPane.UndoStep();
+
+	private void RedoButton_Click(object sender, RoutedEventArgs e) => BasePage.SudokuPane.RedoStep();
+
 	private async void Dialog_FormatChoosing_ActionButtonClickAsync(TeachingTip sender, object args)
 	{
 		var flags = (

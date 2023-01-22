@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:o="using:SudokuStudio.Views.Pages.Operation"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=o:BasicOperation}"
@@ -97,12 +98,16 @@
 		<AppBarButton x:Name="SaveAsButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFileAnother}" Click="SaveAsButton_Click" />
 		<AppBarSeparator />
 		<AppBarButton x:Name="CopyButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyCommandName}" Click="CopyButton_Click" />
-		<AppBarButton x:Name="CopyPictureButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyPictureCommandName}" Click="CopyPictureButton_ClickAsync" />
+		<AppBarButton
+			x:Name="CopyPictureButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyPictureCommandName}"
+			Click="CopyPictureButton_ClickAsync" />
 		<AppBarButton x:Name="PasteButton" Icon="Paste" Label="{m:R Key=AnalyzePage_PasteCommandName}" Click="PasteButton_ClickAsync" />
 		<AppBarSeparator />
 		<AppBarButton x:Name="ResetButton" Icon="Refresh" Label="{m:R Key=AnalyzePage_ResetCommandName}" Click="ResetButton_Click" />
 		<AppBarButton x:Name="ClearButton" Icon="Clear" Label="{m:R Key=AnalyzePage_Clear}" Click="ClearButton_Click" />
 		<AppBarSeparator />
+		<AppBarButton x:Name="UndoButton" Icon="Undo" Label="{m:R Key=AnalyzePage_Undo}" Click="UndoButton_Click" />
+		<AppBarButton x:Name="RedoButton" Icon="Redo" Label="{m:R Key=AnalyzePage_Redo}" Click="RedoButton_Click" />
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind BasePage.GeneratorIsNotRunning,Mode=OneWay}"
 			Click="NewPuzzleButton_ClickAsync" />

@@ -252,6 +252,9 @@
   <data name="AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" xml:space="preserve">
     <value>Unique solution, but with grid being unfixed</value>
   </data>
+  <data name="AnalyzePage_Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
   <data name="AnalyzePage_ResetCommandName" xml:space="preserve">
     <value>Reset</value>
   </data>
@@ -293,6 +296,9 @@
   </data>
   <data name="AnalyzePage_UndefinedGrid" xml:space="preserve">
     <value>&lt;Undefined&gt;</value>
+  </data>
+  <data name="AnalyzePage_Undo" xml:space="preserve">
+    <value>Undo</value>
   </data>
   <data name="AnalyzePage_UnfixGrid" xml:space="preserve">
     <value>Unfix grid</value>

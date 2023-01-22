@@ -529,6 +529,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        internal static string AnalyzePage_Redo {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         internal static string AnalyzePage_ResetCommandName {
@@ -651,6 +660,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_UndefinedGrid {
             get {
                 return ResourceManager.GetString("AnalyzePage_UndefinedGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        internal static string AnalyzePage_Undo {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Undo", resourceCulture);
             }
         }
         
