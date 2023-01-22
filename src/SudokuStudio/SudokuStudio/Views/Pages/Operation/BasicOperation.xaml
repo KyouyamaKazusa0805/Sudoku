@@ -83,6 +83,12 @@
 				</CheckBox>
 			</StackPanel>
 		</TeachingTip>
+		<TeachingTip
+			x:Name="Dialog_AreYouSureToReturnToEmpty" IsLightDismissEnabled="True" Target="{x:Bind ClearButton}"
+			ActionButtonContent="{m:R Key=AnalyzePage_Sure}" CloseButtonContent="{m:R Key=AnalyzePage_Cancel}"
+			Title="{m:R Key=AnalyzePage_Ensure}" Subtitle="{m:R Key=AnalyzePage_AreYouSureToReturnToEmpty}"
+			ActionButtonClick="Dialog_AreYouSureToReturnToEmpty_ActionButtonClick">
+		</TeachingTip>
 	</Page.Resources>
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Collapsed">
@@ -93,6 +99,9 @@
 		<AppBarButton x:Name="CopyButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyCommandName}" Click="CopyButton_Click" />
 		<AppBarButton x:Name="CopyPictureButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyPictureCommandName}" Click="CopyPictureButton_ClickAsync" />
 		<AppBarButton x:Name="PasteButton" Icon="Paste" Label="{m:R Key=AnalyzePage_PasteCommandName}" Click="PasteButton_ClickAsync" />
+		<AppBarSeparator />
+		<AppBarButton x:Name="ResetButton" Icon="Refresh" Label="{m:R Key=AnalyzePage_ResetCommandName}" Click="ResetButton_Click" />
+		<AppBarButton x:Name="ClearButton" Icon="Clear" Label="{m:R Key=AnalyzePage_Clear}" Click="ClearButton_Click" />
 		<AppBarSeparator />
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind BasePage.GeneratorIsNotRunning,Mode=OneWay}"

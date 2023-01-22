@@ -120,6 +120,9 @@
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>所有可用步骤</value>
   </data>
+  <data name="AnalyzePage_AreYouSureToReturnToEmpty" xml:space="preserve">
+    <value>该操作会将盘面置空（恢复为空盘状态）。确定要这么做？</value>
+  </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="AnalyzePage_ChooseFormats" xml:space="preserve">
     <value>请在如下的选择项目里选择你要保存的格式项：</value>
+  </data>
+  <data name="AnalyzePage_Clear" xml:space="preserve">
+    <value>空盘复盘</value>
   </data>
   <data name="AnalyzePage_CommonCommands" xml:space="preserve">
     <value>常用功能</value>
@@ -167,6 +173,9 @@
   </data>
   <data name="AnalyzePage_EmptyGrid" xml:space="preserve">
     <value>&lt;空盘&gt;</value>
+  </data>
+  <data name="AnalyzePage_Ensure" xml:space="preserve">
+    <value>请确认……</value>
   </data>
   <data name="AnalyzePage_ExcelFormat" xml:space="preserve">
     <value>Excel 软件兼容的文本格式</value>
@@ -243,6 +252,9 @@
   <data name="AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" xml:space="preserve">
     <value>唯一解（但是没有提示数）</value>
   </data>
+  <data name="AnalyzePage_ResetCommandName" xml:space="preserve">
+    <value>初盘复盘</value>
+  </data>
   <data name="AnalyzePage_SaveAsButtonContent" xml:space="preserve">
     <value>选择保存路径！</value>
   </data>
@@ -263,6 +275,9 @@
   </data>
   <data name="AnalyzePage_SukakuFormat" xml:space="preserve">
     <value>候选数数独格式</value>
+  </data>
+  <data name="AnalyzePage_Sure" xml:space="preserve">
+    <value>确定以及肯定！</value>
   </data>
   <data name="AnalyzePage_TechniqueCount" xml:space="preserve">
     <value>数量</value>

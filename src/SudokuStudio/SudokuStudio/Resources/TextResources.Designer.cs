@@ -133,6 +133,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty status. Are you sure?.
+        /// </summary>
+        internal static string AnalyzePage_AreYouSureToReturnToEmpty {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AreYouSureToReturnToEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string AnalyzePage_Cancel {
@@ -192,6 +201,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_ChooseFormats {
             get {
                 return ResourceManager.GetString("AnalyzePage_ChooseFormats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        internal static string AnalyzePage_Clear {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Clear", resourceCulture);
             }
         }
         
@@ -273,6 +291,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_EmptyGrid {
             get {
                 return ResourceManager.GetString("AnalyzePage_EmptyGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure....
+        /// </summary>
+        internal static string AnalyzePage_Ensure {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Ensure", resourceCulture);
             }
         }
         
@@ -502,6 +529,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        internal static string AnalyzePage_ResetCommandName {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ResetCommandName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save!.
         /// </summary>
         internal static string AnalyzePage_SaveAsButtonContent {
@@ -561,6 +597,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_SukakuFormat {
             get {
                 return ResourceManager.GetString("AnalyzePage_SukakuFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure!.
+        /// </summary>
+        internal static string AnalyzePage_Sure {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Sure", resourceCulture);
             }
         }
         

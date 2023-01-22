@@ -120,6 +120,9 @@
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>All Available Steps</value>
   </data>
+  <data name="AnalyzePage_AreYouSureToReturnToEmpty" xml:space="preserve">
+    <value>This will clear the puzzle, returning the puzzle to empty status. Are you sure?</value>
+  </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="AnalyzePage_ChooseFormats" xml:space="preserve">
     <value>Please choose the format that you want to save:</value>
+  </data>
+  <data name="AnalyzePage_Clear" xml:space="preserve">
+    <value>Clear</value>
   </data>
   <data name="AnalyzePage_CommonCommands" xml:space="preserve">
     <value>Common Commands</value>
@@ -167,6 +173,9 @@
   </data>
   <data name="AnalyzePage_EmptyGrid" xml:space="preserve">
     <value>&lt;Empty&gt;</value>
+  </data>
+  <data name="AnalyzePage_Ensure" xml:space="preserve">
+    <value>Ensure...</value>
   </data>
   <data name="AnalyzePage_ExcelFormat" xml:space="preserve">
     <value>Excel compatible format</value>
@@ -243,6 +252,9 @@
   <data name="AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" xml:space="preserve">
     <value>Unique solution, but with grid being unfixed</value>
   </data>
+  <data name="AnalyzePage_ResetCommandName" xml:space="preserve">
+    <value>Reset</value>
+  </data>
   <data name="AnalyzePage_SaveAsButtonContent" xml:space="preserve">
     <value>Save!</value>
   </data>
@@ -263,6 +275,9 @@
   </data>
   <data name="AnalyzePage_SukakuFormat" xml:space="preserve">
     <value>Sukaku format</value>
+  </data>
+  <data name="AnalyzePage_Sure" xml:space="preserve">
+    <value>Sure!</value>
   </data>
   <data name="AnalyzePage_TechniqueCount" xml:space="preserve">
     <value>Count</value>

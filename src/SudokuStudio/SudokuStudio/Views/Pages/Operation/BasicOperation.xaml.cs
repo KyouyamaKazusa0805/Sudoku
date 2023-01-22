@@ -78,6 +78,16 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 
 	private async void PasteButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.SudokuPane.PasteAsync();
 
+	private void ResetButton_Click(object sender, RoutedEventArgs e)
+	{
+		var puzzle = BasePage.SudokuPane.Puzzle;
+		puzzle.Reset();
+
+		BasePage.SudokuPane.Puzzle = puzzle;
+	}
+
+	private void ClearButton_Click(object sender, RoutedEventArgs e) => Dialog_AreYouSureToReturnToEmpty.IsOpen = true;
+
 	private async void Dialog_FormatChoosing_ActionButtonClickAsync(TeachingTip sender, object args)
 	{
 		var flags = (
@@ -119,6 +129,13 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 
 			return formats;
 		}
+	}
+
+	private void Dialog_AreYouSureToReturnToEmpty_ActionButtonClick(TeachingTip sender, object args)
+	{
+		BasePage.SudokuPane.Puzzle = Grid.Empty;
+
+		Dialog_AreYouSureToReturnToEmpty.IsOpen = false;
 	}
 }
 
