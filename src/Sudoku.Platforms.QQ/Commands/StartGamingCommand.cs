@@ -28,12 +28,14 @@ file sealed class StartGamingCommand : Command
 		await e.SendMessageAsync(string.Format(R.MessageFormat("MatchReady")!, timeLimit.ToChineseTimeSpanString()));
 		await Task.Delay(5.Seconds());
 
+		var selectedNodes = chosenCells.Select(markerNodeSelector).ToArray();
+
 		// Create picture and send message.
 		await e.SendPictureThenDeleteAsync(
 			() => ISudokuPainter.Create(1000)
 				.WithGrid(puzzle)
 				.WithRenderingCandidates(false)
-				.WithNodes(chosenCells.Select(markerNodeSelector))
+				.WithNodes(selectedNodes)
 				.WithPreferenceSettings(static pref => pref.UnknownIdentifierColor = Color.FromArgb(96, Color.Red))
 		);
 
@@ -148,6 +150,19 @@ file sealed class StartGamingCommand : Command
 					)
 					: R["None"]!
 			)
+		);
+
+		// Create picture and send message.
+		await e.SendPictureThenDeleteAsync(
+			() => ISudokuPainter.Create(1000)
+				.WithGrid(puzzle.GetSolution())
+				.WithRenderingCandidates(false)
+				.WithNodes(
+					finalCellIndex == -1
+						? selectedNodes
+						: selectedNodes.Prepend(new CellViewNode(DisplayColorKind.Normal, chosenCells[finalCellIndex]))
+				)
+				.WithPreferenceSettings(static pref => pref.UnknownIdentifierColor = Color.FromArgb(96, Color.Red))
 		);
 
 	ReturnTrueAndInitializeContext:
