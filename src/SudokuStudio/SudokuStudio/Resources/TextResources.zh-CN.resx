@@ -156,6 +156,15 @@
   <data name="AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven" xml:space="preserve">
     <value>当前盘面格式，只不过全部确定值都视为提示数</value>
   </data>
+  <data name="AnalyzePage_DifficultyLevel" xml:space="preserve">
+    <value>难度级别</value>
+  </data>
+  <data name="AnalyzePage_DifficultyMax" xml:space="preserve">
+    <value>最大难度</value>
+  </data>
+  <data name="AnalyzePage_DifficultyTotal" xml:space="preserve">
+    <value>总难度分</value>
+  </data>
   <data name="AnalyzePage_EmptyGrid" xml:space="preserve">
     <value>&lt;空盘&gt;</value>
   </data>
@@ -255,6 +264,12 @@
   <data name="AnalyzePage_SukakuFormat" xml:space="preserve">
     <value>候选数数独格式</value>
   </data>
+  <data name="AnalyzePage_TechniqueCount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="AnalyzePage_TechniqueOrTechniqueGroupName" xml:space="preserve">
+    <value>技巧名</value>
+  </data>
   <data name="AnalyzePage_TechniquesTable" xml:space="preserve">
     <value>总体信息</value>
   </data>
@@ -308,5 +323,23 @@
   </data>
   <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
     <value>举例：!1-4、!567、!8、9</value>
+  </data>
+  <data name="_DifficultyLevel_Easy" xml:space="preserve">
+    <value>容易</value>
+  </data>
+  <data name="_DifficultyLevel_Fiendish" xml:space="preserve">
+    <value>极难</value>
+  </data>
+  <data name="_DifficultyLevel_Hard" xml:space="preserve">
+    <value>困难</value>
+  </data>
+  <data name="_DifficultyLevel_Moderate" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="_DifficultyLevel_Nightmare" xml:space="preserve">
+    <value>地狱</value>
+  </data>
+  <data name="_DifficultyLevel_Unknown" xml:space="preserve">
+    <value>未知</value>
   </data>
 </root>

@@ -61,6 +61,60 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Easy.
+        /// </summary>
+        internal static string _DifficultyLevel_Easy {
+            get {
+                return ResourceManager.GetString("_DifficultyLevel_Easy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fiendish.
+        /// </summary>
+        internal static string _DifficultyLevel_Fiendish {
+            get {
+                return ResourceManager.GetString("_DifficultyLevel_Fiendish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hard.
+        /// </summary>
+        internal static string _DifficultyLevel_Hard {
+            get {
+                return ResourceManager.GetString("_DifficultyLevel_Hard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moderate.
+        /// </summary>
+        internal static string _DifficultyLevel_Moderate {
+            get {
+                return ResourceManager.GetString("_DifficultyLevel_Moderate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nightmare.
+        /// </summary>
+        internal static string _DifficultyLevel_Nightmare {
+            get {
+                return ResourceManager.GetString("_DifficultyLevel_Nightmare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        internal static string _DifficultyLevel_Unknown {
+            get {
+                return ResourceManager.GetString("_DifficultyLevel_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sudoku Studio.
         /// </summary>
         internal static string _ProgramName {
@@ -183,6 +237,33 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven {
             get {
                 return ResourceManager.GetString("AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        internal static string AnalyzePage_DifficultyLevel {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max.
+        /// </summary>
+        internal static string AnalyzePage_DifficultyMax {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DifficultyMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        internal static string AnalyzePage_DifficultyTotal {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DifficultyTotal", resourceCulture);
             }
         }
         
@@ -480,6 +561,24 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_SukakuFormat {
             get {
                 return ResourceManager.GetString("AnalyzePage_SukakuFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count.
+        /// </summary>
+        internal static string AnalyzePage_TechniqueCount {
+            get {
+                return ResourceManager.GetString("AnalyzePage_TechniqueCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique.
+        /// </summary>
+        internal static string AnalyzePage_TechniqueOrTechniqueGroupName {
+            get {
+                return ResourceManager.GetString("AnalyzePage_TechniqueOrTechniqueGroupName", resourceCulture);
             }
         }
         

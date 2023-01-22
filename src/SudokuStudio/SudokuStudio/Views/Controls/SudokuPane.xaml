@@ -9,7 +9,6 @@
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:SudokuPane}"
 	IsTabStop="True" AllowDrop="True"
 	Loaded="UserControl_Loaded" KeyDown="UserControl_KeyDown" DragOver="UserControl_DragOver" Drop="UserControl_DropAsync">
-
 	<UserControl.Resources>
 		<Thickness x:Key="RowLinesBorderThickness">0,0,0,1</Thickness>
 		<Thickness x:Key="ColumnLinesBorderThickness">0,0,1,0</Thickness>

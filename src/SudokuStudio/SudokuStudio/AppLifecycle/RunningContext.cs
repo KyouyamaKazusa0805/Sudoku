@@ -11,6 +11,11 @@ public sealed class RunningContext
 	public Assembly Assembly { get; } = typeof(RunningContext).Assembly;
 
 	/// <summary>
+	/// Defines a logical solver.
+	/// </summary>
+	public LogicalSolver Solver { get; } = CommonLogicalSolvers.Suitable;
+
+	/// <summary>
 	/// Indicates the version of the current assembly.
 	/// </summary>
 	public Version AssemblyVersion => Assembly.GetName().Version!;

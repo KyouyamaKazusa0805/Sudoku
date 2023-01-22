@@ -12,7 +12,6 @@
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	NavigationCacheMode="Required">
-
 	<ScrollViewer>
 		<StackPanel Orientation="Vertical" Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10}" Spacing="10">
 			<!--Main menu-->
@@ -43,26 +42,28 @@
 
 				<SplitView
 					x:Name="AnalyzePane" Grid.Column="1" IsPaneOpen="False" PanePlacement="Right"
-					PaneBackground="#F9F9F9" OpenPaneLength="700">
+					PaneBackground="#F9F9F9">
 					<SplitView.Pane>
 						<!--Expandable pane-->
-						<Border
-							BorderBrush="#EAEAEA" BorderThickness="2,2,0,2" CornerRadius="5,0,0,5"
-							HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-							<TabView IsAddTabButtonVisible="False" TabWidthMode="Equal">
-								<TabView.TabItems>
-									<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
-										<pa:Summary Margin="10" />
-									</TabViewItem>
-									<TabViewItem Header="{m:R Key=AnalyzePage_StepDetail}" IsClosable="False">
-									</TabViewItem>
-									<TabViewItem Header="{m:R Key=AnalyzePage_AllStepsInCurrentGrid}" IsClosable="False">
-									</TabViewItem>
-									<TabViewItem Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
-									</TabViewItem>
-								</TabView.TabItems>
-							</TabView>
-						</Border>
+						<ScrollViewer>
+							<Border
+								BorderBrush="#EAEAEA" BorderThickness="2,2,0,2" CornerRadius="5,0,0,5"
+								HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+								<TabView IsAddTabButtonVisible="False" TabWidthMode="Equal">
+									<TabView.TabItems>
+										<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
+											<pa:Summary Margin="10" BasePage="{x:Bind}" />
+										</TabViewItem>
+										<TabViewItem Header="{m:R Key=AnalyzePage_StepDetail}" IsClosable="False">
+										</TabViewItem>
+										<TabViewItem Header="{m:R Key=AnalyzePage_AllStepsInCurrentGrid}" IsClosable="False">
+										</TabViewItem>
+										<TabViewItem Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
+										</TabViewItem>
+									</TabView.TabItems>
+								</TabView>
+							</Border>
+						</ScrollViewer>
 					</SplitView.Pane>
 
 					<StackPanel Orientation="Vertical" Spacing="40">

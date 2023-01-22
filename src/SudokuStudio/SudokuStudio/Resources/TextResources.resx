@@ -156,6 +156,15 @@
   <data name="AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven" xml:space="preserve">
     <value>Current grid format, but all values will be treated as givens</value>
   </data>
+  <data name="AnalyzePage_DifficultyLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="AnalyzePage_DifficultyMax" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="AnalyzePage_DifficultyTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
   <data name="AnalyzePage_EmptyGrid" xml:space="preserve">
     <value>&lt;Empty&gt;</value>
   </data>
@@ -255,6 +264,12 @@
   <data name="AnalyzePage_SukakuFormat" xml:space="preserve">
     <value>Sukaku format</value>
   </data>
+  <data name="AnalyzePage_TechniqueCount" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="AnalyzePage_TechniqueOrTechniqueGroupName" xml:space="preserve">
+    <value>Technique</value>
+  </data>
   <data name="AnalyzePage_TechniquesTable" xml:space="preserve">
     <value>Summary</value>
   </data>
@@ -308,6 +323,24 @@
   </data>
   <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
     <value>Usage: !1-4、!567、!8、9</value>
+  </data>
+  <data name="_DifficultyLevel_Easy" xml:space="preserve">
+    <value>Easy</value>
+  </data>
+  <data name="_DifficultyLevel_Fiendish" xml:space="preserve">
+    <value>Fiendish</value>
+  </data>
+  <data name="_DifficultyLevel_Hard" xml:space="preserve">
+    <value>Hard</value>
+  </data>
+  <data name="_DifficultyLevel_Moderate" xml:space="preserve">
+    <value>Moderate</value>
+  </data>
+  <data name="_DifficultyLevel_Nightmare" xml:space="preserve">
+    <value>Nightmare</value>
+  </data>
+  <data name="_DifficultyLevel_Unknown" xml:space="preserve">
+    <value>Unknown</value>
   </data>
   <data name="_ProgramName" xml:space="preserve">
     <value>Sudoku Studio</value>

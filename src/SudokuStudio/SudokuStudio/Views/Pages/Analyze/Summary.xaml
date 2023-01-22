@@ -4,12 +4,73 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:CommunityToolkit.WinUI.UI.Controls"
+	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
-	xmlns:pages="using:SudokuStudio.Views.Pages.Analyze"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pages:Summary}"
+	xmlns:model="using:SudokuStudio.Models"
+	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:Summary}"
 	CacheMode="BitmapCache" NavigationCacheMode="Required">
-
-	<Grid>
-		<Button Content="{m:R Key=AnalyzerPage_AnalyzeButton}" />
-	</Grid>
+	<StackPanel Orientation="Vertical" Spacing="6">
+		<c:DataGrid
+			x:Name="SummaryTable" HorizontalScrollBarVisibility="Visible"
+			VerticalScrollBarVisibility="Visible" SelectionMode="Single" CanUserSortColumns="False"
+			CanUserReorderColumns="False" CanUserResizeColumns="False" AreRowDetailsFrozen="True"
+			AreRowGroupHeadersFrozen="True" HeadersVisibility="Column" AutoGenerateColumns="False"
+			RowBackground="White" GridLinesVisibility="Horizontal" Margin="12">
+			<c:DataGrid.Resources>
+				<Style x:Key="LabelStyle" TargetType="TextBlock">
+					<Setter Property="HorizontalAlignment" Value="Center" />
+					<Setter Property="VerticalAlignment" Value="Center" />
+				</Style>
+			</c:DataGrid.Resources>
+			<c:DataGrid.Columns>
+				<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_TechniqueOrTechniqueGroupName}">
+					<c:DataGridTemplateColumn.CellTemplate>
+						<DataTemplate x:DataType="model:AnalysisResultTableRow">
+							<TextBlock Text="{x:Bind TechniqueName}" Style="{StaticResource LabelStyle}" />
+						</DataTemplate>
+					</c:DataGridTemplateColumn.CellTemplate>
+				</c:DataGridTemplateColumn>
+				<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_TechniqueCount}">
+					<c:DataGridTemplateColumn.CellTemplate>
+						<DataTemplate x:DataType="model:AnalysisResultTableRow">
+							<TextBlock Text="{x:Bind CountOfSteps}" Style="{StaticResource LabelStyle}" />
+						</DataTemplate>
+					</c:DataGridTemplateColumn.CellTemplate>
+				</c:DataGridTemplateColumn>
+				<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_DifficultyLevel}">
+					<c:DataGridTemplateColumn.CellTemplate>
+						<DataTemplate x:DataType="model:AnalysisResultTableRow">
+							<Border
+								Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}"
+								CornerRadius="5" Margin="24,3">
+								<TextBlock
+									Text="{x:Bind cvt:DifficultyLevelConversion.GetName(DifficultyLevel)}" Style="{StaticResource LabelStyle}"
+									Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}" />
+							</Border>
+						</DataTemplate>
+					</c:DataGridTemplateColumn.CellTemplate>
+				</c:DataGridTemplateColumn>
+				<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_DifficultyTotal}">
+					<c:DataGridTemplateColumn.CellTemplate>
+						<DataTemplate x:DataType="model:AnalysisResultTableRow">
+							<TextBlock Text="{x:Bind TotalDifficulty}" Style="{StaticResource LabelStyle}" />
+						</DataTemplate>
+					</c:DataGridTemplateColumn.CellTemplate>
+				</c:DataGridTemplateColumn>
+				<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_DifficultyMax}">
+					<c:DataGridTemplateColumn.CellTemplate>
+						<DataTemplate x:DataType="model:AnalysisResultTableRow">
+							<TextBlock Text="{x:Bind MaximumDifficulty}" Style="{StaticResource LabelStyle}" />
+						</DataTemplate>
+					</c:DataGridTemplateColumn.CellTemplate>
+				</c:DataGridTemplateColumn>
+			</c:DataGrid.Columns>
+		</c:DataGrid>
+		<Button
+			x:Name="AnalyzeButton" Content="{m:R Key=AnalyzerPage_AnalyzeButton}"
+			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(BasePage.SudokuPane.Puzzle),Mode=OneWay}"
+			Click="AnalyzeButton_ClickAsync" />
+	</StackPanel>
 </Page>
