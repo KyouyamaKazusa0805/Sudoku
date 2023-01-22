@@ -37,7 +37,9 @@
 		</Style>
 	</UserControl.Resources>
 
-	<Grid x:Name="MainGrid" Background="White" RowDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto" ColumnDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto">
+	<Grid
+		x:Name="MainGrid" Background="White" CornerRadius="20"
+		RowDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto" ColumnDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto">
 		<!--Outside border-->
 		<Border
 			Grid.Row="1" Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="11" BorderThickness="4"
