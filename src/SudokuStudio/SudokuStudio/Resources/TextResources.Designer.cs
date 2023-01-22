@@ -151,6 +151,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        internal static string AnalyzePage_CopyCommandName {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CopyCommandName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy image.
+        /// </summary>
+        internal static string AnalyzePage_CopyPictureCommandName {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CopyPictureCommandName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current grid format.
         /// </summary>
         internal static string AnalyzePage_CurrentGridFormat {
@@ -318,6 +336,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_OpenSudokuFormat {
             get {
                 return ResourceManager.GetString("AnalyzePage_OpenSudokuFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        internal static string AnalyzePage_PasteCommandName {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PasteCommandName", resourceCulture);
             }
         }
         

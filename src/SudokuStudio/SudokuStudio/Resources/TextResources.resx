@@ -144,6 +144,12 @@
   <data name="AnalyzePage_CommonCommands" xml:space="preserve">
     <value>Common Commands</value>
   </data>
+  <data name="AnalyzePage_CopyCommandName" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="AnalyzePage_CopyPictureCommandName" xml:space="preserve">
+    <value>Copy image</value>
+  </data>
   <data name="AnalyzePage_CurrentGridFormat" xml:space="preserve">
     <value>Current grid format</value>
   </data>
@@ -200,6 +206,9 @@
   </data>
   <data name="AnalyzePage_OpenSudokuFormat" xml:space="preserve">
     <value>OpenSudoku compatible format</value>
+  </data>
+  <data name="AnalyzePage_PasteCommandName" xml:space="preserve">
+    <value>Paste</value>
   </data>
   <data name="AnalyzePage_PencilmarkFormat" xml:space="preserve">
     <value>Pencilmarked format</value>

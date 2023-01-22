@@ -18,10 +18,18 @@
 			<Setter Property="HorizontalAlignment" Value="Center" />
 			<Setter Property="VerticalAlignment" Value="Bottom" />
 		</Style>
+		<Style x:Key="CoordinateLabelHorizontalStyle2" TargetType="TextBlock" BasedOn="{StaticResource CoordinateLabelHorizontalStyle}">
+			<Setter Property="Margin" Value="0,5,0,10" />
+			<Setter Property="VerticalAlignment" Value="Top" />
+		</Style>
 		<Style x:Key="CoordinateLabelVerticalStyle" TargetType="TextBlock">
 			<Setter Property="Margin" Value="10,0,5,0" />
 			<Setter Property="HorizontalAlignment" Value="Right" />
 			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+		<Style x:Key="CoordinateLabelVerticalStyle2" TargetType="TextBlock" BasedOn="{StaticResource CoordinateLabelVerticalStyle}">
+			<Setter Property="Margin" Value="5,0,10,0" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
 		<Style x:Key="CursorBorderStyle" TargetType="Border">
 			<Setter Property="Background" Value="#200000FF" />
@@ -98,55 +106,55 @@
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,0,x:True),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle2}" />
 		<TextBlock
 			Grid.Row="12" Grid.Column="3" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,1,x:True),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle2}" />
 		<TextBlock
 			Grid.Row="12" Grid.Column="4" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,2,x:True),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle2}" />
 		<TextBlock
 			Grid.Row="12" Grid.Column="5" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,3,x:True),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle2}" />
 		<TextBlock
 			Grid.Row="12" Grid.Column="6" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,4,x:True),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle2}" />
 		<TextBlock
 			Grid.Row="12" Grid.Column="7" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,5,x:True),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle2}" />
 		<TextBlock
 			Grid.Row="12" Grid.Column="8" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,6,x:True),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle2}" />
 		<TextBlock
 			Grid.Row="12" Grid.Column="9" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,7,x:True),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle2}" />
 		<TextBlock
 			Grid.Row="12" Grid.Column="10" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,8,x:True),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle2}" />
 
 		<!--Left-side-->
 		<TextBlock
@@ -210,55 +218,55 @@
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,0,x:False),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle2}" />
 		<TextBlock
 			Grid.Row="3" Grid.Column="12" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,1,x:False),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle2}" />
 		<TextBlock
 			Grid.Row="4" Grid.Column="12" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,2,x:False),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle2}" />
 		<TextBlock
 			Grid.Row="5" Grid.Column="12" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,3,x:False),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle2}" />
 		<TextBlock
 			Grid.Row="6" Grid.Column="12" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,4,x:False),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle2}" />
 		<TextBlock
 			Grid.Row="7" Grid.Column="12" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,5,x:False),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle2}" />
 		<TextBlock
 			Grid.Row="8" Grid.Column="12" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,6,x:False),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle2}" />
 		<TextBlock
 			Grid.Row="9" Grid.Column="12" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,7,x:False),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle2}" />
 		<TextBlock
 			Grid.Row="10" Grid.Column="12" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,8,x:False),Mode=OneWay}"
 			Visibility="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode),Mode=OneWay}"
 			FontSize="{x:Bind cvt:CoordinateLabelConversion.GetFontSize(ApproximateCellWidth,CoordinateLabelFontScale),Mode=OneWay}"
-			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle}" />
+			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle2}" />
 
 		<!--Grid and cell borders-->
 		<Border

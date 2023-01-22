@@ -72,6 +72,12 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 
 	private void SaveAsButton_Click(object sender, RoutedEventArgs e) => Dialog_FormatChoosing.IsOpen = true;
 
+	private void CopyButton_Click(object sender, RoutedEventArgs e) => BasePage.SudokuPane.Copy();
+
+	private async void CopyPictureButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.SudokuPane.CopySnapshotAsync();
+
+	private async void PasteButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.SudokuPane.PasteAsync();
+
 	private async void Dialog_FormatChoosing_ActionButtonClickAsync(TeachingTip sender, object args)
 	{
 		var flags = (

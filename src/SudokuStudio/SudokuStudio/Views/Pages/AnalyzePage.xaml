@@ -41,11 +41,11 @@
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True"
 					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}" />
 
-				<!--Common commands-->
 				<SplitView
 					x:Name="AnalyzePane" Grid.Column="1" IsPaneOpen="False" PanePlacement="Right"
 					PaneBackground="#F9F9F9" OpenPaneLength="700">
 					<SplitView.Pane>
+						<!--Expandable pane-->
 						<Border
 							BorderBrush="#EAEAEA" BorderThickness="2,2,0,2" CornerRadius="5,0,0,5"
 							HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -66,6 +66,7 @@
 					</SplitView.Pane>
 
 					<StackPanel Orientation="Vertical" Spacing="40">
+						<!--Basic information of the puzzle-->
 						<TextBlock Text="{m:R Key=AnalyzePage_PuzzleData}" Style="{StaticResource SubtitleTextBlockStyle}" />
 						<TextBlock TextWrapping="Wrap" IsTextSelectionEnabled="True">
 							<TextBlock.Inlines>
@@ -97,6 +98,8 @@
 								<Run Text="{x:Bind cvt:SudokuGridConversion.GetIsMinimal(SudokuPane.Puzzle),Mode=OneWay}" />
 							</TextBlock.Inlines>
 						</TextBlock>
+
+						<!--Common commands-->
 						<TextBlock Text="{m:R Key=AnalyzePage_CommonCommands}" Style="{StaticResource SubtitleTextBlockStyle}" />
 						<StackPanel Orientation="Vertical" Spacing="20">
 							<ToggleButton IsChecked="{x:Bind SudokuPane.DisplayCandidates,Mode=TwoWay}" Width="160">

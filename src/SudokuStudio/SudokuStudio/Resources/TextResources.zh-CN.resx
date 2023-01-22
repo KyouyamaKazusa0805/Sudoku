@@ -144,6 +144,12 @@
   <data name="AnalyzePage_CommonCommands" xml:space="preserve">
     <value>常用功能</value>
   </data>
+  <data name="AnalyzePage_CopyCommandName" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="AnalyzePage_CopyPictureCommandName" xml:space="preserve">
+    <value>复制图片</value>
+  </data>
   <data name="AnalyzePage_CurrentGridFormat" xml:space="preserve">
     <value>当前盘面格式</value>
   </data>
@@ -200,6 +206,9 @@
   </data>
   <data name="AnalyzePage_OpenSudokuFormat" xml:space="preserve">
     <value>OpenSudoku 软件兼容的文本格式</value>
+  </data>
+  <data name="AnalyzePage_PasteCommandName" xml:space="preserve">
+    <value>粘贴</value>
   </data>
   <data name="AnalyzePage_PencilmarkFormat" xml:space="preserve">
     <value>候选数盘面（铅笔盘）格式</value>

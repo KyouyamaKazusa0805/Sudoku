@@ -90,6 +90,10 @@
 		<AppBarButton x:Name="SaveFileButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFile}" Click="SaveFileButton_ClickAsync" />
 		<AppBarButton x:Name="SaveAsButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFileAnother}" Click="SaveAsButton_Click" />
 		<AppBarSeparator />
+		<AppBarButton x:Name="CopyButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyCommandName}" Click="CopyButton_Click" />
+		<AppBarButton x:Name="CopyPictureButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyPictureCommandName}" Click="CopyPictureButton_ClickAsync" />
+		<AppBarButton x:Name="PasteButton" Icon="Paste" Label="{m:R Key=AnalyzePage_PasteCommandName}" Click="PasteButton_ClickAsync" />
+		<AppBarSeparator />
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind BasePage.GeneratorIsNotRunning,Mode=OneWay}"
 			Click="NewPuzzleButton_ClickAsync" />
