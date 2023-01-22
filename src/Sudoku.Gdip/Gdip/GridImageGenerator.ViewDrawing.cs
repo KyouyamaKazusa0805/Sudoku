@@ -273,7 +273,7 @@ partial class GridImageGenerator
 				{
 					This.Preferences: { LeverBarPadding: var padding, LeverBarWidth: var barWidth, LeverPivotWidth: var pivotWidth },
 					Node: LeverViewNode { Identifier: var identifier, HeadCell: var headCell, TailCell: var tailCell, CenterCell: var centerCell }
-				} => DrawLever(gw, gh, cw, ch, padding, identifier, headCell, tailCell, centerCell, barWidth, pivotWidth, g)
+				} => DrawLever(cw, ch, padding, identifier, headCell, tailCell, centerCell, barWidth, pivotWidth, g)
 			};
 		}
 	}

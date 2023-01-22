@@ -1,7 +1,5 @@
 ﻿namespace Sudoku.Gdip;
 
-using static Constants;
-
 partial class GridImageGenerator
 {
 	private bool DrawDiagonalLines(
@@ -113,7 +111,7 @@ partial class GridImageGenerator
 		{
 			for (var column = 0; column < 9; column++)
 			{
-				if (PyramidStatusTable[row, column])
+				if (Constants.PyramidStatusTable[row, column])
 				{
 					var center = calc.GetMousePointInCenter(row * 9 + column);
 					var topLeft = center - cs / 2;
@@ -129,8 +127,6 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawLever(
-		float gw,
-		float gh,
 		float cw,
 		float ch,
 		float padding,

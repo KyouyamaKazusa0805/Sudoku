@@ -2,9 +2,6 @@
 
 namespace Sudoku.Concepts;
 
-using static EventHandlers;
-using static Helper;
-
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
@@ -192,8 +189,8 @@ public unsafe partial struct Grid :
 		}
 
 		// Initializes events.
-		ValueChanged = &EventHandlerOnValueChanged;
-		RefreshingCandidates = &EventHandlerOnRefreshingCandidates;
+		ValueChanged = &EventHandlers.EventHandlerOnValueChanged;
+		RefreshingCandidates = &EventHandlers.EventHandlerOnRefreshingCandidates;
 
 		// Initializes special fields.
 		Undefined = default; // This field must be initialized after parsing the following two special fields.
@@ -664,7 +661,7 @@ public unsafe partial struct Grid :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped in Grid other)
-		=> SequenceEqual(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(short) * 81);
+		=> Helper.SequenceEqual(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(short) * 81);
 
 	/// <summary>
 	/// Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
@@ -1254,7 +1251,8 @@ public unsafe partial struct Grid :
 	/// <param name="gridValues">The array of grid values.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None) => new(gridValues[0], creatingOption);
+	public static Grid Create(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+		=> new(gridValues[0], creatingOption);
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance with the specified mask array.
@@ -1414,7 +1412,8 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IParsable<Grid>.TryParse(string? s, IFormatProvider? provider, out Grid result) => s is not null && TryParse(s, out result);
+	static bool IParsable<Grid>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Grid result)
+		=> s is not null && TryParse(s, out result);
 
 
 	/// <inheritdoc/>

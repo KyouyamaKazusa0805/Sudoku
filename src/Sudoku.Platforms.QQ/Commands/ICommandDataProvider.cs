@@ -1,7 +1,5 @@
 ﻿namespace Sudoku.Platforms.QQ.Commands;
 
-using static Constants;
-
 /// <summary>
 /// Extracts a type that creates data used by commands.
 /// </summary>
@@ -20,12 +18,12 @@ internal interface ICommandDataProvider
 			return f(Color.FromKnownColor(knownColor));
 		}
 
-		if (KnownColors.TryGetValue(name, out var dicColor))
+		if (Constants.KnownColors.TryGetValue(name, out var dicColor))
 		{
 			return f(dicColor);
 		}
 
-		if (name is ['%', .. var rawColorKind] && KnownKinds.TryGetValue(rawColorKind, out var colorKind))
+		if (name is ['%', .. var rawColorKind] && Constants.KnownKinds.TryGetValue(rawColorKind, out var colorKind))
 		{
 			return Identifier.FromNamedKind(colorKind);
 		}

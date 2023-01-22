@@ -1,7 +1,5 @@
 ﻿namespace System.Algorithm;
 
-using static Table;
-
 /// <summary>
 /// Encapsulates a list of methods to handle with bits, using SIMD.
 /// </summary>
@@ -46,7 +44,7 @@ public static unsafe class SimdOperations
 						continue;
 					}
 
-					fixed (int* pByteA = BitPosTable[byteA], pByteB = BitPosTable[byteB])
+					fixed (int* pByteA = Constants.BitPosTable[byteA], pByteB = Constants.BitPosTable[byteB])
 					{
 						var vectorA = Vector256.Load(pByteA); // _mm256_load_si256
 						var vectorB = Vector256.Load(pByteB); // _mm256_load_si256
@@ -55,8 +53,8 @@ public static unsafe class SimdOperations
 						vectorB = baseVector + vectorB; // _mm256_add_epi32
 						baseVector += add8; // _mm256_add_epi32
 
-						var advanceA = LengthTable[byteA];
-						var advanceB = LengthTable[byteB];
+						var advanceA = Constants.LengthTable[byteA];
+						var advanceB = Constants.LengthTable[byteB];
 						vectorA.Store(outBuffer); // _mm256_storeu_si256
 						outBuffer += advanceA; // _mm256_add_epi32
 
@@ -76,10 +74,8 @@ public static unsafe class SimdOperations
 	}
 }
 
-/// <summary>
-/// Encapsulates a table.
-/// </summary>
-file static class Table
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
+file static class Constants
 {
 	/// <summary>
 	/// The length table. Indicates how many bits are set in the specified integer.
