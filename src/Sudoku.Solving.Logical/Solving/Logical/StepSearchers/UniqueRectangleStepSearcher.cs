@@ -31,9 +31,11 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 			GetAll(list, grid, true);
 		}
 #else
-		/// In fact, type <see cref="LogicalSolver"/> has already limit on this case.
-		/// If we configure attribute <see cref="StepSearcherRunningOptionsAttribute"/> onto the type,
-		/// step searchers will be skipped if they are only applied to standard sudokus.
+		/**
+			In fact, type <see cref="LogicalSolver"/> has already limit on this case.
+			If we configure attribute <see cref="StepSearcherRunningOptionsAttribute"/> onto the type,
+			step searchers will be skipped if they are only applied to standard sudokus.
+		*/
 		GetAll(list, grid, true);
 #endif
 
