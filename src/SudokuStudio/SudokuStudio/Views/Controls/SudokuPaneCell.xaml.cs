@@ -90,11 +90,19 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 				This: { BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
 				Sender: TextBox { Text: var text, Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup p } } },
 				EventData.Key: winsys::VirtualKey.Enter
-			}
-			when modified.GetStatus(cell) is var cellStatus and not CellStatus.Given
-				&& DigitRange.TryParse(text, out var digitRange)
-				&& digitRange is { DigitsMask: var digits, ConclusionType: var type }:
+			}:
 			{
+				if (modified.GetStatus(cell) is not (var cellStatus and not CellStatus.Given))
+				{
+					break;
+				}
+
+				if (!DigitRange.TryParse(text, out var digitRange))
+				{
+					break;
+				}
+
+				_ = digitRange is { DigitsMask: var digits, ConclusionType: var type };
 				if (type == Assignment)
 				{
 					if (cellStatus == CellStatus.Modifiable)
