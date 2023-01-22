@@ -8,7 +8,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Defines a pair of stacks that stores undo and redo steps.
 	/// </summary>
-	private readonly Stack<Grid> _undoStack = new(), _redoStack = new();
+	internal readonly NotifyElementChangedStack<Grid> _undoStack = new(), _redoStack = new();
 
 	/// <summary>
 	/// Indicates whether the pane displays for candidates.
@@ -144,6 +144,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		InitializeComponent();
 		InitializeChildrenControls();
 		UpdateCellData(_puzzle);
+		InitializeEvents();
 	}
 
 
@@ -302,6 +303,15 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			MainGrid.Children.Add(cellControl);
 			_children[i] = cellControl;
 		}
+	}
+
+	/// <summary>
+	/// To initializes for stack events.
+	/// </summary>
+	private void InitializeEvents()
+	{
+		_undoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
+		_redoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
 	}
 
 	/// <summary>

@@ -106,8 +106,14 @@
 		<AppBarButton x:Name="ResetButton" Icon="Refresh" Label="{m:R Key=AnalyzePage_ResetCommandName}" Click="ResetButton_Click" />
 		<AppBarButton x:Name="ClearButton" Icon="Clear" Label="{m:R Key=AnalyzePage_Clear}" Click="ClearButton_Click" />
 		<AppBarSeparator />
-		<AppBarButton x:Name="UndoButton" Icon="Undo" Label="{m:R Key=AnalyzePage_Undo}" Click="UndoButton_Click" />
-		<AppBarButton x:Name="RedoButton" Icon="Redo" Label="{m:R Key=AnalyzePage_Redo}" Click="RedoButton_Click" />
+		<AppBarButton
+			x:Name="UndoButton" Icon="Undo" Label="{m:R Key=AnalyzePage_Undo}"
+			IsEnabled="{x:Bind cvt:UndoRedoButtonConversion.GetButtonIsEnabled(BasePage.SudokuPane._undoStack),Mode=OneWay}"
+			Click="UndoButton_Click" />
+		<AppBarButton
+			x:Name="RedoButton" Icon="Redo" Label="{m:R Key=AnalyzePage_Redo}"
+			IsEnabled="{x:Bind cvt:UndoRedoButtonConversion.GetButtonIsEnabled(BasePage.SudokuPane._redoStack),Mode=OneWay}"
+			Click="RedoButton_Click" />
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind BasePage.GeneratorIsNotRunning,Mode=OneWay}"
 			Click="NewPuzzleButton_ClickAsync" />
