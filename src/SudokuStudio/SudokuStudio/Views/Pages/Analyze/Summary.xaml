@@ -14,6 +14,7 @@
 	<StackPanel Orientation="Vertical" Spacing="6">
 		<c:DataGrid
 			x:Name="SummaryTable" HorizontalScrollBarVisibility="Visible"
+			Visibility="{x:Bind cvt:AnalyzeConversion.GetSummaryTableVisibility(SummaryTable.ItemsSource),Mode=OneWay}"
 			VerticalScrollBarVisibility="Visible" SelectionMode="Single" CanUserSortColumns="False"
 			CanUserReorderColumns="False" CanUserResizeColumns="False" AreRowDetailsFrozen="True"
 			AreRowGroupHeadersFrozen="True" HeadersVisibility="Column" AutoGenerateColumns="False"
