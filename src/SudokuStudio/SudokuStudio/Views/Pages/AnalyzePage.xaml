@@ -143,6 +143,7 @@
 							<SymbolIconSource Symbol="ShowResults" />
 						</TabViewItem.IconSource>
 
+						<pa:SolvingPath Margin="10" />
 					</TabViewItem>
 					<TabViewItem Header="{m:R Key=AnalyzePage_AllStepsInCurrentGrid}" IsClosable="False">
 						<TabViewItem.IconSource>

@@ -20,6 +20,7 @@ public sealed class AnalyzeCommand : ButtonCommand
 		}
 
 		self.AnalyzeButton.IsEnabled = false;
+		self.ClearAnalyzeTabsData();
 
 		var solver = ((App)Application.Current).RunningContext.Solver;
 		var analysisResult = await Task.Run(() => { lock (self.AnalyzeSyncRoot) { return solver.Solve(puzzle); } });
