@@ -183,6 +183,7 @@ file sealed class StartGamingCommand : Command
 
 		static GeneratedGridData generatePuzzle()
 		{
+			var finalCellsChosen = (stackalloc int[9]);
 			while (true)
 			{
 				var grid = Generator.Generate();
@@ -193,29 +194,38 @@ file sealed class StartGamingCommand : Command
 						var expEarned = Scorer.GetScoreEarnedInEachGaming(l);
 						var timeLimit = ICommandDataProvider.GetGamingTimeLimit(l);
 
-						var finalCellsChosen = new int[9];
+						finalCellsChosen.Clear();
 						var chosenCells = CellMap.Empty;
 						var emptyCells = grid.EmptyCells;
 						var puzzleIsInvalid = false;
 						for (var digit = 0; digit < 9; digit++)
 						{
-							while (true)
+							var tempMap = emptyCells & grid.CandidatesMap[digit];
+							if (!tempMap)
 							{
-								var tempMap = emptyCells & grid.CandidatesMap[digit];
-								if (!tempMap)
-								{
-									puzzleIsInvalid = true;
-									goto CheckPuzzleValidity;
-								}
+								// The current grid does not contain any possible empty cells holding this candidate.
+								puzzleIsInvalid = true;
+								goto CheckPuzzleValidity;
+							}
 
-								var cell = tempMap[Rng.Next(0, tempMap.Count)];
-								if (solution[cell] != digit && !chosenCells.Contains(cell))
+							var copiedMap = tempMap;
+							foreach (var tempCell in tempMap - chosenCells)
+							{
+								if (solution[tempCell] == digit)
 								{
-									chosenCells.Add(cell);
-									finalCellsChosen[digit] = cell;
-									break;
+									copiedMap.Remove(tempCell);
 								}
 							}
+							if (!copiedMap)
+							{
+								// The current grid does not contain any possible empty cells that can be chosen.
+								puzzleIsInvalid = true;
+								goto CheckPuzzleValidity;
+							}
+
+							var cell = copiedMap[Rng.Next(0, copiedMap.Count)];
+							chosenCells.Add(cell);
+							finalCellsChosen[digit] = cell;
 						}
 
 					CheckPuzzleValidity:
@@ -224,7 +234,7 @@ file sealed class StartGamingCommand : Command
 							continue;
 						}
 
-						if (Rng.Next(0, 1000) < 500)
+						if (Rng.Next(0, 1000) < 666)
 						{
 							var digitChosen = Rng.Next(0, 9);
 							foreach (var cell in emptyCells & grid.CandidatesMap[digitChosen])
@@ -236,10 +246,10 @@ file sealed class StartGamingCommand : Command
 								}
 							}
 
-							return new(grid, finalCellsChosen, digitChosen, timeLimit, expEarned);
+							return new(grid, finalCellsChosen.ToArray(), digitChosen, timeLimit, expEarned);
 						}
 
-						return new(grid, finalCellsChosen, -1, timeLimit, expEarned);
+						return new(grid, finalCellsChosen.ToArray(), -1, timeLimit, expEarned);
 					}
 				}
 			}
