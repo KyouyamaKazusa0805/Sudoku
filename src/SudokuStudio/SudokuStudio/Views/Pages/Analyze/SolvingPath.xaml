@@ -11,8 +11,8 @@
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}">
 	<StackPanel Orientation="Vertical" Spacing="6">
 		<ListView
-			x:Name="SolvingPathList" Width="500" MaxHeight="600" HorizontalAlignment="Left" SelectionMode="Single"
-			BorderThickness="1" BorderBrush="Gray"
+			x:Name="SolvingPathList" HorizontalAlignment="Stretch" SelectionMode="Single" MaxHeight="520"
+			BorderBrush="LightGray" BorderThickness="1" CornerRadius="5"
 			Visibility="{x:Bind cvt:AnalyzeConversion.GetSolvingPathListVisibility(SolvingPathList.ItemsSource),Mode=OneWay}">
 			<ListView.ItemTemplateSelector>
 				<dts:SolvingPathTextBlockTemplateSelector>

@@ -5,5 +5,6 @@
 /// </summary>
 internal static class SymbolIconConversion
 {
-	public static Symbol GetSymbolViaCandidateVisibility(bool displayCandidates) => displayCandidates ? Symbol.ZoomIn : Symbol.ZoomOut;
+	public static IconElement GetSymbolViaCandidateVisibility(bool displayCandidates)
+		=> new SymbolIcon(displayCandidates ? Symbol.ZoomIn : Symbol.ZoomOut);
 }

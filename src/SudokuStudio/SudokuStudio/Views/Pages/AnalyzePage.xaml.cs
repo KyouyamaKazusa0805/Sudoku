@@ -221,8 +221,13 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// <param name="file">The <see cref="StorageFile"/> instance.</param>
 	/// <returns>The task instance that handles this operation.</returns>
 	/// <seealso cref="FileOpenPicker"/>
-	internal async Task LoadPuzzleCoreAsync(StorageFile file)
+	internal async Task LoadPuzzleCoreAsync(StorageFile? file)
 	{
+		if (file is null)
+		{
+			return;
+		}
+
 		var filePath = file.Path;
 		switch (new FileInfo(filePath).Length)
 		{

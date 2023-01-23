@@ -4,28 +4,69 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AnalyzePage}"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cmd="using:SudokuStudio.Views.Commands"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AnalyzePage}"
 	NavigationCacheMode="Required">
-	<ScrollViewer>
+	<Page.Resources>
+		<Style x:Key="MenuBarBorderStyle" TargetType="Border">
+			<Setter Property="CornerRadius" Value="5" />
+			<Setter Property="BorderBrush" Value="#EAEAEA" />
+			<Setter Property="BorderThickness" Value="2" />
+			<Setter Property="Margin" Value="0,10,20,10" />
+		</Style>
+	</Page.Resources>
+
+	<ScrollViewer VerticalScrollBarVisibility="Hidden">
 		<StackPanel Orientation="Vertical" Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10}" Spacing="10">
 			<!--Main menu-->
-			<Border CornerRadius="5" BorderBrush="#EAEAEA" BorderThickness="2" Margin="0,10,20,10">
-				<NavigationView
-					x:Name="CommandBarView" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
-					IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="False" CacheMode="BitmapCache"
-					Loaded="CommandBarView_Loaded" SelectionChanged="CommandBarView_SelectionChanged" ItemInvoked="CommandBarView_ItemInvoked">
-					<NavigationView.MenuItems>
-						<NavigationViewItem x:Name="BasicOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_BasicOperations}" />
-					</NavigationView.MenuItems>
+			<Border Style="{StaticResource MenuBarBorderStyle}">
+				<Grid RowDefinitions="*,*">
+					<NavigationView
+						x:Name="CommandBarView" Grid.Row="0" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
+						IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="False" CacheMode="BitmapCache"
+						Loaded="CommandBarView_Loaded" SelectionChanged="CommandBarView_SelectionChanged" ItemInvoked="CommandBarView_ItemInvoked">
+						<NavigationView.MenuItems>
+							<NavigationViewItem x:Name="BasicOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_BasicOperations}" />
+						</NavigationView.MenuItems>
 
-					<Frame x:Name="CommandBarFrame" Navigated="CommandBarFrame_Navigated" BorderBrush="Transparent" />
-				</NavigationView>
+						<Frame x:Name="CommandBarFrame" Navigated="CommandBarFrame_Navigated" BorderBrush="Transparent" />
+					</NavigationView>
+					<Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#EAEAEA">
+						<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Collapsed">
+							<AppBarToggleButton
+								Label="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}"
+								Icon="{x:Bind cvt:SymbolIconConversion.GetSymbolViaCandidateVisibility(SudokuPane.DisplayCandidates),Mode=OneWay}"
+								IsChecked="{x:Bind SudokuPane.DisplayCandidates,Mode=TwoWay}" />
+							<AppBarButton
+								CommandParameter="{x:Bind SudokuPane}" Label="{m:R Key=AnalyzePage_FixGrid}" Icon="Pin"
+								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetFixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}">
+								<AppBarButton.Command>
+									<cmd:FixGridCommand />
+								</AppBarButton.Command>
+							</AppBarButton>
+							<AppBarButton
+								CommandParameter="{x:Bind SudokuPane}" Label="{m:R Key=AnalyzePage_UnfixGrid}" Icon="UnPin"
+								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}">
+								<AppBarButton.Command>
+									<cmd:UnfixGridCommand />
+								</AppBarButton.Command>
+							</AppBarButton>
+							<AppBarButton
+								x:Name="AnalyzeButton" x:FieldModifier="internal" CommandParameter="{x:Bind}" Icon="Find"
+								Label="{m:R Key=AnalyzerPage_AnalyzeButton}"
+								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}">
+								<AppBarButton.Command>
+									<cmd:AnalyzeCommand />
+								</AppBarButton.Command>
+							</AppBarButton>
+						</CommandBar>
+					</Border>
+				</Grid>
 			</Border>
 
 			<!--Sudoku grid and common commands-->
@@ -40,125 +81,76 @@
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True"
 					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}" />
 
-				<StackPanel Grid.Column="1" Orientation="Vertical" Spacing="40">
-					<!--Basic information of the puzzle-->
-					<TextBlock Text="{m:R Key=AnalyzePage_PuzzleData}" Style="{StaticResource SubtitleTextBlockStyle}" />
-					<TextBlock TextWrapping="Wrap" IsTextSelectionEnabled="True">
-						<TextBlock.Inlines>
-							<Bold>
-								<Run Text="{m:R Key=AnalyzePage_GivensCount}" />
-							</Bold>
-							<LineBreak />
-							<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleHintsCount(SudokuPane.Puzzle),Mode=OneWay}" />
-							<LineBreak />
-							<LineBreak />
-							<Bold>
-								<Run Text="{m:R Key=AnalyzePage_PuzzleCode}" />
-							</Bold>
-							<LineBreak />
-							<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleCode(SudokuPane.Puzzle),Mode=OneWay}" />
-							<LineBreak />
-							<LineBreak />
-							<Bold>
-								<Run Text="{m:R Key=AnalyzePage_Uniqueness}" />
-							</Bold>
-							<LineBreak />
-							<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleUniqueness(SudokuPane.Puzzle),Mode=OneWay}" />
-							<LineBreak />
-							<LineBreak />
-							<Bold>
-								<Run Text="{m:R Key=AnalyzePage_IsMinimal}" />
-							</Bold>
-							<LineBreak />
-							<Run Text="{x:Bind cvt:SudokuGridConversion.GetIsMinimal(SudokuPane.Puzzle),Mode=OneWay}" />
-						</TextBlock.Inlines>
-					</TextBlock>
+				<!--Analyze data-->
+				<StackPanel Grid.Column="1">
+					<TextBlock Text="{m:R Key=AnalyzePage_AnalyzeResultPages}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,24,0,12" />
+					<TabView x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Left">
+						<TabView.TabItems>
+							<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
+								<TabViewItem.IconSource>
+									<SymbolIconSource Symbol="Flag" />
+								</TabViewItem.IconSource>
 
-					<!--Common commands-->
-					<TextBlock Text="{m:R Key=AnalyzePage_CommonCommands}" Style="{StaticResource SubtitleTextBlockStyle}" />
-					<StackPanel Orientation="Vertical" Spacing="20">
-						<ToggleButton IsChecked="{x:Bind SudokuPane.DisplayCandidates,Mode=TwoWay}" Width="160">
-							<RelativePanel>
-								<SymbolIcon
-									x:Name="ToggleCandidateSymbol"
-									Symbol="{x:Bind cvt:SymbolIconConversion.GetSymbolViaCandidateVisibility(SudokuPane.DisplayCandidates),Mode=OneWay}" />
-								<TextBlock
-									Text="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}"
-									RelativePanel.RightOf="ToggleCandidateSymbol" Margin="8,0,0,0" />
-							</RelativePanel>
-						</ToggleButton>
-						<Button
-							Width="160" CommandParameter="{x:Bind SudokuPane}"
-							IsEnabled="{x:Bind cvt:SudokuGridConversion.GetFixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}">
-							<Button.Command>
-								<cmd:FixGridCommand />
-							</Button.Command>
+								<pa:Summary x:Name="SummaryTabPage" Margin="10" BasePage="{x:Bind}" />
+							</TabViewItem>
+							<TabViewItem Header="{m:R Key=AnalyzePage_StepDetail}" IsClosable="False">
+								<TabViewItem.IconSource>
+									<SymbolIconSource Symbol="ShowResults" />
+								</TabViewItem.IconSource>
 
-							<RelativePanel>
-								<SymbolIcon x:Name="FixGridSymbol" Symbol="Pin" />
-								<TextBlock Text="{m:R Key=AnalyzePage_FixGrid}" RelativePanel.RightOf="FixGridSymbol" Margin="8,0,0,0" />
-							</RelativePanel>
-						</Button>
-						<Button
-							Width="160" CommandParameter="{x:Bind SudokuPane}"
-							IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}">
-							<Button.Command>
-								<cmd:UnfixGridCommand />
-							</Button.Command>
+								<pa:SolvingPath Margin="10" />
+							</TabViewItem>
+							<TabViewItem Header="{m:R Key=AnalyzePage_AllStepsInCurrentGrid}" IsClosable="False">
+								<TabViewItem.IconSource>
+									<SymbolIconSource Symbol="Shuffle" />
+								</TabViewItem.IconSource>
 
-							<RelativePanel>
-								<SymbolIcon x:Name="UnfixGridSymbol" Symbol="UnPin" />
-								<TextBlock Text="{m:R Key=AnalyzePage_UnfixGrid}" RelativePanel.RightOf="UnfixGridSymbol" Margin="8,0,0,0" />
-							</RelativePanel>
-						</Button>
-						<Button
-							x:Name="AnalyzeButton" x:FieldModifier="internal" Width="160" CommandParameter="{x:Bind}"
-							IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}">
-							<Button.Command>
-								<cmd:AnalyzeCommand />
-							</Button.Command>
+							</TabViewItem>
+							<TabViewItem Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
+								<TabViewItem.IconSource>
+									<SymbolIconSource Symbol="ZeroBars" />
+								</TabViewItem.IconSource>
 
-							<RelativePanel>
-								<SymbolIcon x:Name="AnalyzeSymbol" Symbol="Find" />
-								<TextBlock Text="{m:R Key=AnalyzerPage_AnalyzeButton}" RelativePanel.RightOf="AnalyzeSymbol" Margin="8,0,0,0" />
-							</RelativePanel>
-						</Button>
-					</StackPanel>
+							</TabViewItem>
+						</TabView.TabItems>
+					</TabView>
 				</StackPanel>
 			</Grid>
 
-			<!--Analyze data-->
-			<TextBlock Text="{m:R Key=AnalyzePage_AnalyzeResultPages}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,24,0,12" />
-			<TabView x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Left">
-				<TabView.TabItems>
-					<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
-						<TabViewItem.IconSource>
-							<SymbolIconSource Symbol="Flag" />
-						</TabViewItem.IconSource>
-
-						<pa:Summary x:Name="SummaryTabPage" Margin="10" BasePage="{x:Bind}" />
-					</TabViewItem>
-					<TabViewItem Header="{m:R Key=AnalyzePage_StepDetail}" IsClosable="False">
-						<TabViewItem.IconSource>
-							<SymbolIconSource Symbol="ShowResults" />
-						</TabViewItem.IconSource>
-
-						<pa:SolvingPath Margin="10" />
-					</TabViewItem>
-					<TabViewItem Header="{m:R Key=AnalyzePage_AllStepsInCurrentGrid}" IsClosable="False">
-						<TabViewItem.IconSource>
-							<SymbolIconSource Symbol="Shuffle" />
-						</TabViewItem.IconSource>
-
-					</TabViewItem>
-					<TabViewItem Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
-						<TabViewItem.IconSource>
-							<SymbolIconSource Symbol="ZeroBars" />
-						</TabViewItem.IconSource>
-
-					</TabViewItem>
-				</TabView.TabItems>
-			</TabView>
+			<StackPanel Orientation="Vertical" Spacing="40" Margin="0,120,20,60">
+				<!--Basic information of the puzzle-->
+				<TextBlock Text="{m:R Key=AnalyzePage_PuzzleData}" Style="{StaticResource SubtitleTextBlockStyle}" />
+				<TextBlock TextWrapping="Wrap" IsTextSelectionEnabled="True">
+					<TextBlock.Inlines>
+						<Bold>
+							<Run Text="{m:R Key=AnalyzePage_GivensCount}" />
+						</Bold>
+						<LineBreak />
+						<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleHintsCount(SudokuPane.Puzzle),Mode=OneWay}" />
+						<LineBreak />
+						<LineBreak />
+						<Bold>
+							<Run Text="{m:R Key=AnalyzePage_PuzzleCode}" />
+						</Bold>
+						<LineBreak />
+						<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleCode(SudokuPane.Puzzle),Mode=OneWay}" />
+						<LineBreak />
+						<LineBreak />
+						<Bold>
+							<Run Text="{m:R Key=AnalyzePage_Uniqueness}" />
+						</Bold>
+						<LineBreak />
+						<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleUniqueness(SudokuPane.Puzzle),Mode=OneWay}" />
+						<LineBreak />
+						<LineBreak />
+						<Bold>
+							<Run Text="{m:R Key=AnalyzePage_IsMinimal}" />
+						</Bold>
+						<LineBreak />
+						<Run Text="{x:Bind cvt:SudokuGridConversion.GetIsMinimal(SudokuPane.Puzzle),Mode=OneWay}" />
+					</TextBlock.Inlines>
+				</TextBlock>
+			</StackPanel>
 		</StackPanel>
 	</ScrollViewer>
 </Page>
