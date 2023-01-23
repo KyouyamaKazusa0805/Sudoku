@@ -209,9 +209,9 @@ file sealed class StartGamingCommand : Command
 							}
 
 							var copiedMap = tempMap;
-							foreach (var tempCell in tempMap - chosenCells)
+							foreach (var tempCell in tempMap)
 							{
-								if (solution[tempCell] == digit)
+								if (solution[tempCell] == digit || chosenCells.Contains(tempCell))
 								{
 									copiedMap.Remove(tempCell);
 								}
