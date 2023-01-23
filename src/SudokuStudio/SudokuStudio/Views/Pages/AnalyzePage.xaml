@@ -119,7 +119,7 @@
 							</Button.Command>
 
 							<RelativePanel>
-								<SymbolIcon x:Name="AnalyzeSymbol" Symbol="Manage" />
+								<SymbolIcon x:Name="AnalyzeSymbol" Symbol="Find" />
 								<TextBlock Text="{m:R Key=AnalyzerPage_AnalyzeButton}" RelativePanel.RightOf="AnalyzeSymbol" Margin="8,0,0,0" />
 							</RelativePanel>
 						</Button>
@@ -128,17 +128,33 @@
 			</Grid>
 
 			<!--Analyze data-->
-			<TextBlock Text="{m:R Key=AnalyzePage_AnalyzeResultPages}" Style="{StaticResource SubtitleTextBlockStyle}" />
+			<TextBlock Text="{m:R Key=AnalyzePage_AnalyzeResultPages}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,24,0,12" />
 			<TabView x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Left">
 				<TabView.TabItems>
 					<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
+						<TabViewItem.IconSource>
+							<SymbolIconSource Symbol="Flag" />
+						</TabViewItem.IconSource>
+
 						<pa:Summary x:Name="SummaryTabPage" Margin="10" BasePage="{x:Bind}" />
 					</TabViewItem>
 					<TabViewItem Header="{m:R Key=AnalyzePage_StepDetail}" IsClosable="False">
+						<TabViewItem.IconSource>
+							<SymbolIconSource Symbol="ShowResults" />
+						</TabViewItem.IconSource>
+
 					</TabViewItem>
 					<TabViewItem Header="{m:R Key=AnalyzePage_AllStepsInCurrentGrid}" IsClosable="False">
+						<TabViewItem.IconSource>
+							<SymbolIconSource Symbol="Shuffle" />
+						</TabViewItem.IconSource>
+
 					</TabViewItem>
 					<TabViewItem Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
+						<TabViewItem.IconSource>
+							<SymbolIconSource Symbol="ZeroBars" />
+						</TabViewItem.IconSource>
+
 					</TabViewItem>
 				</TabView.TabItems>
 			</TabView>
