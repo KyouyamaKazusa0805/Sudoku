@@ -120,9 +120,6 @@
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>All Available Steps</value>
   </data>
-  <data name="AnalyzePage_AnalyzeResultPages" xml:space="preserve">
-    <value>Analyis result</value>
-  </data>
   <data name="AnalyzePage_AreYouSureToReturnToEmpty" xml:space="preserve">
     <value>This will clear the puzzle, returning the puzzle to empty status. Are you sure?</value>
   </data>

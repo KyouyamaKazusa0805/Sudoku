@@ -9,38 +9,40 @@
 	xmlns:dts="using:SudokuStudio.Views.DataTemplateSelectors"
 	xmlns:s="using:Sudoku.Solving.Logical"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}">
-	<StackPanel Orientation="Vertical" Spacing="6">
-		<ListView
-			x:Name="SolvingPathList" HorizontalAlignment="Stretch" SelectionMode="Single" MaxHeight="520"
-			BorderBrush="LightGray" BorderThickness="1" CornerRadius="5"
-			Visibility="{x:Bind cvt:AnalyzeConversion.GetSolvingPathListVisibility(SolvingPathList.ItemsSource),Mode=OneWay}">
-			<ListView.ItemTemplateSelector>
-				<dts:SolvingPathTextBlockTemplateSelector>
-					<dts:SolvingPathTextBlockTemplateSelector.StepTemplate>
-						<DataTemplate x:DataType="s:IStep">
-							<ListViewItem>
-								<Grid RowDefinitions="*,*" ColumnDefinitions="Auto,*">
-									<Ellipse
-										Grid.RowSpan="2" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"
-										Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
-										Fill="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}" />
-									<TextBlock
-										Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
-										Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
-										Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText((s:IStep))}"
-										Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}" />
-									<TextBlock
-										Grid.Row="0" Grid.Column="1" Style="{StaticResource BaseTextBlockStyle}" Margin="12,6,0,0"
-										Text="{x:Bind Name}" />
-									<TextBlock
-										Grid.Row="1" Grid.Column="1" Style="{StaticResource BodyTextBlockStyle}" Margin="12,0,0,6"
-										Text="{x:Bind cvt:AnalyzeConversion.GetEliminationString((s:IStep))}" />
-								</Grid>
-							</ListViewItem>
-						</DataTemplate>
-					</dts:SolvingPathTextBlockTemplateSelector.StepTemplate>
-				</dts:SolvingPathTextBlockTemplateSelector>
-			</ListView.ItemTemplateSelector>
-		</ListView>
-	</StackPanel>
+	<ScrollViewer>
+		<StackPanel Orientation="Vertical" Spacing="6">
+			<ListView
+				x:Name="SolvingPathList" HorizontalAlignment="Stretch" SelectionMode="Single"
+				BorderBrush="LightGray" BorderThickness="1" CornerRadius="5"
+				Visibility="{x:Bind cvt:AnalyzeConversion.GetSolvingPathListVisibility(SolvingPathList.ItemsSource),Mode=OneWay}">
+				<ListView.ItemTemplateSelector>
+					<dts:SolvingPathTextBlockTemplateSelector>
+						<dts:SolvingPathTextBlockTemplateSelector.StepTemplate>
+							<DataTemplate x:DataType="s:IStep">
+								<ListViewItem>
+									<Grid RowDefinitions="*,*" ColumnDefinitions="Auto,*">
+										<Ellipse
+											Grid.RowSpan="2" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"
+											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
+											Fill="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}" />
+										<TextBlock
+											Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
+											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText((s:IStep))}"
+											Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}" />
+										<TextBlock
+											Grid.Row="0" Grid.Column="1" Style="{StaticResource BaseTextBlockStyle}" Margin="12,6,0,0"
+											Text="{x:Bind Name}" />
+										<TextBlock
+											Grid.Row="1" Grid.Column="1" Style="{StaticResource BodyTextBlockStyle}" Margin="12,0,0,6"
+											Text="{x:Bind cvt:AnalyzeConversion.GetEliminationString((s:IStep))}" />
+									</Grid>
+								</ListViewItem>
+							</DataTemplate>
+						</dts:SolvingPathTextBlockTemplateSelector.StepTemplate>
+					</dts:SolvingPathTextBlockTemplateSelector>
+				</ListView.ItemTemplateSelector>
+			</ListView>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

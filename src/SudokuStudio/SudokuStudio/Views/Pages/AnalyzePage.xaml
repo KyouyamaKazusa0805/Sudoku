@@ -83,8 +83,7 @@
 
 				<!--Analyze data-->
 				<StackPanel Grid.Column="1">
-					<TextBlock Text="{m:R Key=AnalyzePage_AnalyzeResultPages}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,24,0,12" />
-					<TabView x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Left">
+					<TabView x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Left" Height="600">
 						<TabView.TabItems>
 							<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
 								<TabViewItem.IconSource>
