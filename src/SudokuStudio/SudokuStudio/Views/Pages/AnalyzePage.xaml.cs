@@ -67,6 +67,22 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	}
 
 	/// <summary>
+	/// To update values via the specified <see cref="LogicalSolverResult"/> instance.
+	/// </summary>
+	/// <param name="analysisResult">The analysis result instance.</param>
+	/// <seealso cref="LogicalSolverResult"/>
+	internal void UpdateAnalysisResult(LogicalSolverResult analysisResult)
+	{
+		foreach (var children in AnalyzeTabs.TabItems.OfType<TabViewItem>())
+		{
+			if (children.Content is IAnalyzeTabPage page)
+			{
+				page.UpdateTabPageData(analysisResult);
+			}
+		}
+	}
+
+	/// <summary>
 	/// Open a file.
 	/// </summary>
 	/// <returns>A task that handles the operation.</returns>

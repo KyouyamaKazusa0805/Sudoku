@@ -20,47 +20,7 @@ public sealed partial class Summary : Page, IAnalyzeTabPage
 	/// <inheritdoc/>
 	public void ClearTabPageData() => SummaryTable.ItemsSource = null;
 
-
-	private async void AnalyzeButton_ClickAsync(object sender, RoutedEventArgs e)
-	{
-		var puzzle = BasePage.SudokuPane.Puzzle;
-		if (!puzzle.IsValid())
-		{
-			return;
-		}
-
-		AnalyzeButton.IsEnabled = false;
-
-		ClearTabPageData();
-
-		var solver = ((App)Application.Current).RunningContext.Solver;
-		var analysisResult = await Task.Run(() => { lock (BasePage.AnalyzeSyncRoot) { return solver.Solve(puzzle); } });
-
-		AnalyzeButton.IsEnabled = true;
-
-		switch (analysisResult)
-		{
-			case { IsSolved: true }:
-			{
-				SummaryTable.ItemsSource = AnalysisResultTableRow.CreateListFrom(analysisResult);
-
-				break;
-			}
-#if false
-			case
-			{
-				WrongStep: _,
-				FailedReason: _,
-				UnhandledException: WrongStepException { CurrentInvalidGrid: _ }
-			}:
-			{
-				break;
-			}
-			case { FailedReason: _, UnhandledException: _ }:
-			{
-				break;
-			}
-#endif
-		}
-	}
+	/// <inheritdoc/>
+	public void UpdateTabPageData(LogicalSolverResult analysisResult)
+		=> SummaryTable.ItemsSource = AnalysisResultTableRow.CreateListFrom(analysisResult);
 }

@@ -133,6 +133,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analyis result.
+        /// </summary>
+        internal static string AnalyzePage_AnalyzeResultPages {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AnalyzeResultPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty status. Are you sure?.
         /// </summary>
         internal static string AnalyzePage_AreYouSureToReturnToEmpty {

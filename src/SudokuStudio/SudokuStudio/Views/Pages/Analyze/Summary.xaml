@@ -18,8 +18,7 @@
 			VerticalScrollBarVisibility="Visible" SelectionMode="Single" CanUserSortColumns="False"
 			CanUserReorderColumns="False" CanUserResizeColumns="False" AreRowDetailsFrozen="True"
 			AreRowGroupHeadersFrozen="True" HeadersVisibility="Column" AutoGenerateColumns="False"
-			HorizontalAlignment="Left" VerticalAlignment="Top"
-			RowBackground="White" GridLinesVisibility="All" Margin="12">
+			HorizontalAlignment="Center" VerticalAlignment="Top" RowBackground="White" GridLinesVisibility="All" Margin="12">
 			<c:DataGrid.Resources>
 				<Style x:Key="LabelStyle" TargetType="TextBlock">
 					<Setter Property="HorizontalAlignment" Value="Center" />
@@ -72,9 +71,5 @@
 				</c:DataGridTemplateColumn>
 			</c:DataGrid.Columns>
 		</c:DataGrid>
-		<Button
-			x:Name="AnalyzeButton" Content="{m:R Key=AnalyzerPage_AnalyzeButton}"
-			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(BasePage.SudokuPane.Puzzle),Mode=OneWay}"
-			Click="AnalyzeButton_ClickAsync" />
 	</StackPanel>
 </Page>

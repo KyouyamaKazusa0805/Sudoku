@@ -6,7 +6,13 @@
 public interface IAnalyzeTabPage
 {
 	/// <summary>
-	/// To clear the tab page data.
+	/// To clear tab page data.
 	/// </summary>
 	void ClearTabPageData();
+
+	/// <summary>
+	/// To update tab page data via the specified <see cref="LogicalSolverResult"/> instance.
+	/// </summary>
+	/// <param name="analysisResult">The instance to be displayed.</param>
+	void UpdateTabPageData(LogicalSolverResult analysisResult);
 }

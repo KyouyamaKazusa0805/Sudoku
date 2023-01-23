@@ -111,12 +111,25 @@
 								<TextBlock Text="{m:R Key=AnalyzePage_UnfixGrid}" RelativePanel.RightOf="UnfixGridSymbol" Margin="8,0,0,0" />
 							</RelativePanel>
 						</Button>
+						<Button
+							x:Name="AnalyzeButton" x:FieldModifier="internal" Width="160" CommandParameter="{x:Bind}"
+							IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}">
+							<Button.Command>
+								<cmd:AnalyzeCommand />
+							</Button.Command>
+
+							<RelativePanel>
+								<SymbolIcon x:Name="AnalyzeSymbol" Symbol="Manage" />
+								<TextBlock Text="{m:R Key=AnalyzerPage_AnalyzeButton}" RelativePanel.RightOf="AnalyzeSymbol" Margin="8,0,0,0" />
+							</RelativePanel>
+						</Button>
 					</StackPanel>
 				</StackPanel>
 			</Grid>
 
 			<!--Analyze data-->
-			<TabView x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal">
+			<TextBlock Text="{m:R Key=AnalyzePage_AnalyzeResultPages}" Style="{StaticResource SubtitleTextBlockStyle}" />
+			<TabView x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Left">
 				<TabView.TabItems>
 					<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
 						<pa:Summary x:Name="SummaryTabPage" Margin="10" BasePage="{x:Bind}" />
