@@ -55,10 +55,6 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 			=> (e.Reason switch { SaveFileFailedReason.UnsnappingFailed => ErrorDialog_ProgramIsSnapped }).IsOpen = true;
 	}
 
-	private async void OpenFileButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.OpenFileInternalAsync();
-
-	private async void SaveFileButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.SaveFileInternalAsync();
-
 	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		BasePage.GeneratorIsNotRunning = false;

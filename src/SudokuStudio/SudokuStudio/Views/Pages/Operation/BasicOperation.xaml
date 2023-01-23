@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:cmd="using:SudokuStudio.Views.Commands"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:o="using:SudokuStudio.Views.Pages.Operation"
@@ -93,9 +94,17 @@
 	</Page.Resources>
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Collapsed">
-		<AppBarButton x:Name="OpenFileButton" Icon="OpenFile" Label="{m:R Key=AnalyzePage_OpenFile}" Click="OpenFileButton_ClickAsync" />
-		<AppBarButton x:Name="SaveFileButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFile}" Click="SaveFileButton_ClickAsync" />
-		<AppBarButton x:Name="SaveAsButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFileAnother}" Click="SaveAsButton_Click" />
+		<AppBarButton x:Name="OpenFileButton" Icon="OpenFile" Label="{m:R Key=AnalyzePage_OpenFile}" CommandParameter="{x:Bind BasePage}">
+			<AppBarButton.Command>
+				<cmd:OpenFileCommand />
+			</AppBarButton.Command>
+		</AppBarButton>
+		<AppBarButton x:Name="SaveFileButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFile}" CommandParameter="{x:Bind BasePage}">
+			<AppBarButton.Command>
+				<cmd:SaveFileCommand />
+			</AppBarButton.Command>
+		</AppBarButton>
+		<AppBarButton x:Name="SaveAsButton" Icon="SaveLocal" Label="{m:R Key=AnalyzePage_SaveFileAnother}" Click="SaveAsButton_Click" />
 		<AppBarSeparator />
 		<AppBarButton x:Name="CopyButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyCommandName}" Click="CopyButton_Click" />
 		<AppBarButton
