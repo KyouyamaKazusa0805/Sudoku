@@ -57,11 +57,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	internal void ClearAnalyzeTabsData()
 	{
-		foreach (var children in AnalyzeTabs.TabItems.OfType<TabViewItem>())
+		foreach (var tabPage in AnalyzeTabs.TabItems.OfType<TabViewItem>())
 		{
-			if (children.Content is IAnalyzeTabPage page)
+			if (tabPage is { Content: IAnalyzeTabPage subTabPage })
 			{
-				page.ClearTabPageData();
+				subTabPage.AnalysisResult = null;
 			}
 		}
 	}
@@ -73,11 +73,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// <seealso cref="LogicalSolverResult"/>
 	internal void UpdateAnalysisResult(LogicalSolverResult analysisResult)
 	{
-		foreach (var children in AnalyzeTabs.TabItems.OfType<TabViewItem>())
+		foreach (var tabPage in AnalyzeTabs.TabItems.OfType<TabViewItem>())
 		{
-			if (children.Content is IAnalyzeTabPage page)
+			if (tabPage is { Content: IAnalyzeTabPage subTabPage })
 			{
-				page.UpdateTabPageData(analysisResult);
+				subTabPage.AnalysisResult = analysisResult;
 			}
 		}
 	}

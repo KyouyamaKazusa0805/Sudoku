@@ -6,13 +6,8 @@
 public interface IAnalyzeTabPage
 {
 	/// <summary>
-	/// To clear tab page data.
+	/// Gets or sets the analysis result, updating the current tab page using this property.
 	/// </summary>
-	void ClearTabPageData();
-
-	/// <summary>
-	/// To update tab page data via the specified <see cref="LogicalSolverResult"/> instance.
-	/// </summary>
-	/// <param name="analysisResult">The instance to be displayed.</param>
-	void UpdateTabPageData(LogicalSolverResult analysisResult);
+	/// <value>The value you want to update. If <see langword="null"/>, clears the page data.</value>
+	LogicalSolverResult? AnalysisResult { get; set; }
 }
