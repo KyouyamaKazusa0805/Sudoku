@@ -7,6 +7,7 @@
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:dts="using:SudokuStudio.Views.DataTemplateSelectors"
+	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:s="using:Sudoku.Solving.Logical"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}">
 	<ScrollViewer>
@@ -21,6 +22,32 @@
 							<DataTemplate x:DataType="s:IStep">
 								<ListViewItem>
 									<Grid RowDefinitions="*,*" ColumnDefinitions="Auto,*">
+										<ToolTipService.ToolTip>
+											<TextBlock TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True">
+												<TextBlock.Inlines>
+													<Bold>
+														<Run Text="{m:R Key=AnalyzePage_TechniqueName}" />
+													</Bold>
+													<LineBreak />
+													<Run Text="{x:Bind Name}" />
+													<LineBreak />
+													<LineBreak />
+													<Bold>
+														<Run Text="{m:R Key=AnalyzePage_TechniqueDifficultyRating}" />
+													</Bold>
+													<LineBreak />
+													<Run Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText((s:IStep))}" />
+													<LineBreak />
+													<LineBreak />
+													<Bold>
+														<Run Text="{m:R Key=AnalyzePage_SimpleDescription}" />
+													</Bold>
+													<LineBreak />
+													<Run Text="{x:Bind cvt:AnalyzeConversion.GetStepTooltip((s:IStep))}" />
+												</TextBlock.Inlines>
+											</TextBlock>
+										</ToolTipService.ToolTip>
+
 										<Ellipse
 											Grid.RowSpan="2" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"
 											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"

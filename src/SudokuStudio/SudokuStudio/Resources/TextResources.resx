@@ -270,6 +270,9 @@
   <data name="AnalyzePage_SelectAll" xml:space="preserve">
     <value>Select all</value>
   </data>
+  <data name="AnalyzePage_SimpleDescription" xml:space="preserve">
+    <value>Step Description:</value>
+  </data>
   <data name="AnalyzePage_StepDetail" xml:space="preserve">
     <value>Solving Path</value>
   </data>
@@ -284,6 +287,12 @@
   </data>
   <data name="AnalyzePage_TechniqueCount" xml:space="preserve">
     <value>Count</value>
+  </data>
+  <data name="AnalyzePage_TechniqueDifficultyRating" xml:space="preserve">
+    <value>Difficulty Rating (≥ 1.0 and ≤ 12.0):</value>
+  </data>
+  <data name="AnalyzePage_TechniqueName" xml:space="preserve">
+    <value>Technique Name:</value>
   </data>
   <data name="AnalyzePage_TechniqueOrTechniqueGroupName" xml:space="preserve">
     <value>Technique</value>

@@ -583,6 +583,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Step Description:.
+        /// </summary>
+        internal static string AnalyzePage_SimpleDescription {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SimpleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Solving Path.
         /// </summary>
         internal static string AnalyzePage_StepDetail {
@@ -624,6 +633,24 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_TechniqueCount {
             get {
                 return ResourceManager.GetString("AnalyzePage_TechniqueCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty Rating (≥ 1.0 and ≤ 12.0):.
+        /// </summary>
+        internal static string AnalyzePage_TechniqueDifficultyRating {
+            get {
+                return ResourceManager.GetString("AnalyzePage_TechniqueDifficultyRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique Name:.
+        /// </summary>
+        internal static string AnalyzePage_TechniqueName {
+            get {
+                return ResourceManager.GetString("AnalyzePage_TechniqueName", resourceCulture);
             }
         }
         

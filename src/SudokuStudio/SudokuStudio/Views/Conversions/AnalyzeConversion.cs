@@ -11,6 +11,8 @@ internal static class AnalyzeConversion
 
 	public static string GetDifficultyRatingText(IStep step) => step.Difficulty.ToString("0.0");
 
+	public static string GetStepTooltip(IStep step) => step.ToString()!;
+
 	public static Visibility GetDifficultyRatingVisibility(bool showDifficultyRating)
 		=> showDifficultyRating ? Visibility.Visible : Visibility.Collapsed;
 
