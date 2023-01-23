@@ -396,9 +396,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
 	{
-		/// Please note that the parent control may use globalized hotkeys to control some behaviors.
-		/// If <c>e.Handled</c> is not set <see langword="false"/> value before exited parent <c>KeyDown</c> method,
-		/// this method will not be triggered and executed.
+		/**
+			Please note that the parent control may use globalized hotkeys to control some behaviors.
+			If <c>e.Handled</c> is not set <see langword="false"/> value before exited parent <c>KeyDown</c> method,
+			this method will not be triggered and executed.
+		*/
 		switch (Keyboard.GetModifierStatusForCurrentThread(), SelectedCell, Keyboard.GetInputDigit(e.Key))
 		{
 			case (_, not (>= 0 and < 81), _):
