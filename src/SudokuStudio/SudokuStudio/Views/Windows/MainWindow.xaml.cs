@@ -1,3 +1,5 @@
+#define WARNING_WHEN_BOTH_BACKDROP_SET
+
 namespace SudokuStudio.Views.Windows;
 
 /// <summary>
@@ -19,12 +21,22 @@ public sealed partial class MainWindow : Window
 	{
 		InitializeComponent();
 
-#if MICA_BACKDROP
-		TrySetMicaBackdrop();
+#if MICA_BACKDROP && ACRYLIC_BACKDROP
+#if WARNING_WHEN_BOTH_BACKDROP_SET
+#warning You should not set both 'MICA_BACKDROP' and 'ACRYLIC_BACKDROP'; acrylic material will be ignored.
+#else
+#error Cannot set both 'MICA_BACKDROP' and 'ACRYLIC_BACKDROP' at same time.
 #endif
+#elif MICA_BACKDROP
+		TrySetMicaBackdrop();
+#elif ACRYLIC_BACKDROP
+		TrySetAcrylicBackdrop();
+#endif
+
 #if CUSTOMIZED_TITLE_BAR
 		InitializeAppWindow();
 #endif
+
 		SetAppIcon();
 		SetAppTitle();
 	}

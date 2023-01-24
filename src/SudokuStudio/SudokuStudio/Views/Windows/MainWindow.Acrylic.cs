@@ -1,4 +1,4 @@
-﻿#if MICA_BACKDROP
+﻿#if ACRYLIC_BACKDROP
 
 namespace SudokuStudio.Views.Windows;
 
@@ -12,9 +12,9 @@ partial class MainWindow
 	private WindowsSystemDispatcherQueueHelper? _wsdqHelper;
 
 	/// <summary>
-	/// Indicates the Mica controller instance. This instance is used as core implementation of Mica material of applications.
+	/// Indicates the acrylic controller instance. This instance is used as core implementation of Mica material of applications.
 	/// </summary>
-	private MicaController? _micaController;
+	private DesktopAcrylicController? _acrylicController;
 
 	/// <summary>
 	/// Indicates the material configuration instance. This field controls displaying with a customized material such as Mica and acrylic.
@@ -44,13 +44,13 @@ partial class MainWindow
 	}
 
 	/// <summary>
-	/// Try to set Mica backdrop.
+	/// Try to set acrylic backdrop.
 	/// </summary>
 	/// <returns>A <see cref="bool"/> result indicating whether the operation is succeeded.</returns>
 	[MemberNotNullWhen(true, nameof(_wsdqHelper))]
-	private bool TrySetMicaBackdrop()
+	private bool TrySetAcrylicBackdrop()
 	{
-		if (MicaController.IsSupported())
+		if (DesktopAcrylicController.IsSupported())
 		{
 			(_wsdqHelper = new()).EnsureWindowsSystemDispatcherQueueController();
 
@@ -65,11 +65,11 @@ partial class MainWindow
 			_configurationSource.IsInputActive = true;
 			SetConfigurationSourceTheme();
 
-			_micaController = new();
+			_acrylicController = new();
 
 			// Enable the system backdrop.
-			_micaController.AddSystemBackdropTarget(this.As<ICompositionSupportsSystemBackdrop>());
-			_micaController.SetSystemBackdropConfiguration(_configurationSource);
+			_acrylicController.AddSystemBackdropTarget(this.As<ICompositionSupportsSystemBackdrop>());
+			_acrylicController.SetSystemBackdropConfiguration(_configurationSource);
 			return true; // Succeeded.
 		}
 
@@ -87,10 +87,10 @@ partial class MainWindow
 	private void Window_Closed(object sender, WindowEventArgs args)
 	{
 		// Make sure any Mica/Acrylic controller is disposed so it doesn't try to use this closed window.
-		if (_micaController is not null)
+		if (_acrylicController is not null)
 		{
-			_micaController.Dispose();
-			_micaController = null;
+			_acrylicController.Dispose();
+			_acrylicController = null;
 		}
 
 		Activated -= Window_Activated;
@@ -105,4 +105,5 @@ partial class MainWindow
 		}
 	}
 }
+
 #endif
