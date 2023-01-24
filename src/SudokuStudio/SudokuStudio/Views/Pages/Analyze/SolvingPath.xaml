@@ -24,27 +24,25 @@
 									<Grid RowDefinitions="*,*" ColumnDefinitions="Auto,*">
 										<ToolTipService.ToolTip>
 											<TextBlock TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True">
-												<TextBlock.Inlines>
-													<Bold>
-														<Run Text="{m:R Key=AnalyzePage_TechniqueName}" />
-													</Bold>
-													<LineBreak />
-													<Run Text="{x:Bind Name}" />
-													<LineBreak />
-													<LineBreak />
-													<Bold>
-														<Run Text="{m:R Key=AnalyzePage_TechniqueDifficultyRating}" />
-													</Bold>
-													<LineBreak />
-													<Run Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText((s:IStep))}" />
-													<LineBreak />
-													<LineBreak />
-													<Bold>
-														<Run Text="{m:R Key=AnalyzePage_SimpleDescription}" />
-													</Bold>
-													<LineBreak />
-													<Run Text="{x:Bind cvt:AnalyzeConversion.GetStepTooltip((s:IStep))}" />
-												</TextBlock.Inlines>
+												<Bold>
+													<Run Text="{m:R Key=AnalyzePage_TechniqueName}" />
+												</Bold>
+												<LineBreak />
+												<Run Text="{x:Bind Name}" />
+												<LineBreak />
+												<LineBreak />
+												<Bold>
+													<Run Text="{m:R Key=AnalyzePage_TechniqueDifficultyRating}" />
+												</Bold>
+												<LineBreak />
+												<Run Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText((s:IStep))}" />
+												<LineBreak />
+												<LineBreak />
+												<Bold>
+													<Run Text="{m:R Key=AnalyzePage_SimpleDescription}" />
+												</Bold>
+												<LineBreak />
+												<Run Text="{x:Bind cvt:AnalyzeConversion.GetStepTooltip((s:IStep))}" />
 											</TextBlock>
 										</ToolTipService.ToolTip>
 
