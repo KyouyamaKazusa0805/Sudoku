@@ -1043,6 +1043,32 @@
             Indicates the user preference file format (SSP - Sudoku Studio Preference format).
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Attached.TextBlockBindable">
+            <summary>
+            Defines a bind behaviors on <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> instances for property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Inlines"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>
+            <seealso cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Inlines"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.TextBlockBindable.InlinesProperty">
+            <summary>
+            Defines a dependency property instance that is bindable inline collection.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.TextBlockBindable.GetInlines(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets a <see cref="T:Microsoft.UI.Xaml.Documents.Inline"/> list.
+            </summary>
+            <param name="obj">The dependency object.</param>
+            <returns>A list of <see cref="T:Microsoft.UI.Xaml.Documents.Inline"/>s.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.TextBlockBindable.SetInlines(Microsoft.UI.Xaml.DependencyObject,System.Collections.Generic.IEnumerable{Microsoft.UI.Xaml.Documents.Inline})">
+            <summary>
+            Sets a <see cref="T:Microsoft.UI.Xaml.Documents.Inline"/> list. This will trigger the event to append inlines into the target <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>.
+            </summary>
+            <param name="obj">The dependency object.</param>
+            <param name="value">The inlines to be added.</param>
+        </member>
         <member name="T:SudokuStudio.Views.Commands.AnalyzeCommand">
             <summary>
             Defines a command to analyze a puzzle.
@@ -1754,6 +1780,31 @@
             Indicates the failed reason is the program cannot unsnap.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Interaction.StepTooltipDisplayKind">
+            <summary>
+            Defines a display kind that displays for a step on tooltip.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.StepTooltipDisplayKind.None">
+            <summary>
+            Indicates none of all elements mentioned below will be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.StepTooltipDisplayKind.TechniqueName">
+            <summary>
+            Indicates the technique name will be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.StepTooltipDisplayKind.DifficultyRating">
+            <summary>
+            Indicates the difficulty rating.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.StepTooltipDisplayKind.SimpleDescription">
+            <summary>
+            Indicates the simple description.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
             <summary>
             Defines a new page that stores a set of controls to analyze a sudoku grid.
@@ -1889,10 +1940,18 @@
             Indicates the analysis result.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._stepTooltipDisplayKind">
+            <summary>
+            Indicates the tooltip display kind.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.SolvingPath"/> instance.
             </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Pages.Analyze.SolvingPath.PropertyChanged">
+            <inheritdoc/>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <inheritdoc/>
@@ -1911,6 +1970,23 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKind">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._stepTooltipDisplayKind"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Analyze.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Extensions.SingletonSpan``1(Microsoft.UI.Xaml.Documents.Run)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> ionstance with a singleton value of <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Documents.Run"/> instance.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance.</returns>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.Summary">
             <summary>

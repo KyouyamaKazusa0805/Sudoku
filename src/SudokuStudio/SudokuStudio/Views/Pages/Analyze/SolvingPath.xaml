@@ -4,12 +4,20 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:dts="using:SudokuStudio.Views.DataTemplateSelectors"
-	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	xmlns:s="using:Sudoku.Solving.Logical"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}"
+	NavigationCacheMode="Required" CacheMode="BitmapCache">
+	<Page.Resources>
+		<TeachingTip x:Name="Dialog_StepInfo" IsLightDismissEnabled="False" HeroContentPlacement="Top">
+			<TeachingTip.HeroContent>
+				<TextBlock x:Name="StepInfoLabel" TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True" Margin="10" />
+			</TeachingTip.HeroContent>
+		</TeachingTip>
+	</Page.Resources>
+
 	<ScrollViewer>
 		<StackPanel Orientation="Vertical" Spacing="6">
 			<ListView
@@ -20,32 +28,8 @@
 					<dts:SolvingPathTextBlockTemplateSelector>
 						<dts:SolvingPathTextBlockTemplateSelector.StepTemplate>
 							<DataTemplate x:DataType="s:IStep">
-								<ListViewItem>
+								<ListViewItem Tag="{x:Bind}" IsRightTapEnabled="True" RightTapped="ListViewItem_RightTapped">
 									<Grid RowDefinitions="*,*" ColumnDefinitions="Auto,*">
-										<ToolTipService.ToolTip>
-											<TextBlock TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True">
-												<Bold>
-													<Run Text="{m:R Key=AnalyzePage_TechniqueName}" />
-												</Bold>
-												<LineBreak />
-												<Run Text="{x:Bind Name}" />
-												<LineBreak />
-												<LineBreak />
-												<Bold>
-													<Run Text="{m:R Key=AnalyzePage_TechniqueDifficultyRating}" />
-												</Bold>
-												<LineBreak />
-												<Run Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText((s:IStep))}" />
-												<LineBreak />
-												<LineBreak />
-												<Bold>
-													<Run Text="{m:R Key=AnalyzePage_SimpleDescription}" />
-												</Bold>
-												<LineBreak />
-												<Run Text="{x:Bind cvt:AnalyzeConversion.GetStepTooltip((s:IStep))}" />
-											</TextBlock>
-										</ToolTipService.ToolTip>
-
 										<Ellipse
 											Grid.RowSpan="2" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"
 											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
