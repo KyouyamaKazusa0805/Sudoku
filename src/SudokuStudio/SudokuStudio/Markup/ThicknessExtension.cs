@@ -12,12 +12,16 @@ public sealed class ThicknessExtension : MarkupExtension
 	/// </summary>
 	public Thickness Base { get; set; }
 
+	/// <inheritdoc cref="Thickness.Top"/>
 	public double Top { get; set; } = -1;
 
+	/// <inheritdoc cref="Thickness.Bottom"/>
 	public double Bottom { get; set; } = -1;
 
+	/// <inheritdoc cref="Thickness.Left"/>
 	public double Left { get; set; } = -1;
 
+	/// <inheritdoc cref="Thickness.Right"/>
 	public double Right { get; set; } = -1;
 
 

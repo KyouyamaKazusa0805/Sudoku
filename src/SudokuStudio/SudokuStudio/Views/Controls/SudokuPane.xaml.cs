@@ -369,9 +369,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// To initialize <see cref="GridCellData"/> values via the specified grid.
+	/// To initialize <see cref="_children"/> values via the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <seealso cref="_children"/>
 	private void UpdateCellData(scoped in Grid grid)
 	{
 		for (var i = 0; i < 81; i++)

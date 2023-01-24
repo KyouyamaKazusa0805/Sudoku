@@ -32,13 +32,13 @@ internal sealed class AnalysisResultTableRow
 
 
 	/// <summary>
-	/// Creates the list of <see cref="AnalysisResultRow"/> as the result value,
+	/// Creates the list of <see cref="AnalysisResultTableRow"/> as the result value,
 	/// via the specified <paramref name="analysisResult"/> instance of <see cref="LogicalSolverResult"/> type.
 	/// </summary>
 	/// <param name="analysisResult">
 	/// The <see cref="LogicalSolverResult"/> instance that is used for creating the result value.
 	/// </param>
-	/// <returns>The result list of <see cref="AnalysisResultRow"/>-typed elements.</returns>
+	/// <returns>The result list of <see cref="AnalysisResultTableRow"/>-typed elements.</returns>
 	public static IEnumerable<AnalysisResultTableRow> CreateListFrom(LogicalSolverResult analysisResult)
 	{
 		return

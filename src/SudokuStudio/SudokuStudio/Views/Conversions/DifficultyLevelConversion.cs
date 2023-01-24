@@ -32,7 +32,7 @@ internal static class DifficultyLevelConversion
 		};
 }
 
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
+/// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
 file static class Constants
 {
 	public static readonly SolidColorBrush[] Foregrounds =

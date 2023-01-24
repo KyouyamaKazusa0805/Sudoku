@@ -11,16 +11,20 @@ public sealed class GeneratedExtensionDeconstructionGenerator : IIncrementalGene
 	{
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute",
-					static (node, _) => node is MethodDeclarationSyntax,
-					transform
-				)
-				.Where(static d => d is not null)
+				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute", nodePredicate, transform)
+				.Where(notNullPredicate)
+				.Combine(context.CompilationProvider)
+				.Select(selector)
 				.Collect(),
 			action
 		);
 
+
+		static bool nodePredicate(SyntaxNode node, CancellationToken _) => node is MethodDeclarationSyntax;
+
+		static bool notNullPredicate<T>(T? nullableStructure) where T : struct => nullableStructure is not null;
+
+		static (Data?, string?) selector((Data? Left, Compilation Right) pair, CancellationToken _) => (pair.Left, pair.Right.AssemblyName);
 
 		static Data? transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 		{
@@ -63,27 +67,34 @@ public sealed class GeneratedExtensionDeconstructionGenerator : IIncrementalGene
 			}
 		}
 
-		void action(SourceProductionContext spc, ImmutableArray<Data?> data)
+		void action(SourceProductionContext spc, ImmutableArray<(Data? GatheredData, string? AssemblyName)> data)
 		{
 			_ = spc is { CancellationToken: var ct };
 
-			foreach (var (containingType, method, thisParameterModifiers, parameters, typeParameters, modifiers, attributeType) in data.CastToNotNull())
+			foreach (var pair in data)
 			{
-				if (containingType is not { ContainingNamespace: var @namespace, Name: var typeName })
-				{
-					continue;
-				}
-
-				if (method is not
+				if (pair is not
 					{
-						Parameters: [{ Type: INamedTypeSymbol thisParameterType, Name: var thisParameterName }, ..],
-						DeclaredAccessibility: var methodAccessibility
+						GatheredData:
+						{
+							StaticClassType: { ContainingNamespace: var @namespace, Name: var typeName } containingType,
+							Method:
+							{
+								Parameters: [{ Type: INamedTypeSymbol thisParameterType, Name: var thisParameterName }, ..],
+								DeclaredAccessibility: var methodAccessibility
+							} method,
+							ThisParameterModifiers: var thisParameterModifiers,
+							Parameters: { Length: var parameterLength } parameters,
+							TypeParameters: var typeParameters,
+							Modifiers: var modifiers,
+							AttributeType: var attributeType
+						},
+						AssemblyName: var assemblyName
 					})
 				{
 					continue;
 				}
 
-				var parameterLength = parameters.Length;
 				if (thisParameterName.IsKeyword())
 				{
 					thisParameterName = $"@{thisParameterName}";
@@ -145,6 +156,7 @@ public sealed class GeneratedExtensionDeconstructionGenerator : IIncrementalGene
 
 				var thisParameterTypeStr = thisParameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 				var thisParameterStr = $"{thisParameterModifiers} {thisParameterTypeStr} {thisParameterName}";
+				var includeBasePathLevel = assemblyName?.StartsWith("SudokuStudio") ?? false ? "../../../" : "../../";
 
 				spc.AddSource(
 					$"{containingType.ToFileName()}_p{parameters.Length}.g.{Shortcuts.GeneratedExtensionDeconstruction}.cs",
@@ -155,7 +167,7 @@ public sealed class GeneratedExtensionDeconstructionGenerator : IIncrementalGene
 
 					{{namespaceStr}}partial {{containingType.GetTypeKindModifier()}} {{typeName}}
 					{
-						/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+						/// <include file="{{includeBasePathLevel}}global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 						[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]

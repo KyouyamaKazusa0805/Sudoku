@@ -57,6 +57,7 @@ public sealed partial class MainWindow : Window
 	/// An outer-layered method to switching pages. This method can be used by both
 	/// <see cref="NavigationView_ItemInvoked"/> and <see cref="MainNavigationView_SelectionChanged"/>.
 	/// </summary>
+	/// <param name="isSettingInvokedOrSelected">Indicates whether the setting menu item is invoked or selected.</param>
 	/// <param name="container">The container.</param>
 	/// <seealso cref="NavigationView_ItemInvoked"/>
 	/// <seealso cref="MainNavigationView_SelectionChanged"/>

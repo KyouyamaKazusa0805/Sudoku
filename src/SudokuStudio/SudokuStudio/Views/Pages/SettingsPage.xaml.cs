@@ -5,5 +5,8 @@ namespace SudokuStudio.Views.Pages;
 /// </summary>
 public sealed partial class SettingsPage : Page
 {
+	/// <summary>
+	/// Initializes a <see cref="SettingsPage"/> instance.
+	/// </summary>
 	public SettingsPage() => InitializeComponent();
 }

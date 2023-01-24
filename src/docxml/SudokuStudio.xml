@@ -1,0 +1,2409 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SudokuStudio</name>
+    </assembly>
+    <members>
+        <member name="T:SudokuStudio.App">
+            <summary>
+            Provides application-specific behavior to supplement the default <see cref="T:Microsoft.UI.Xaml.Application"/> class.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Application"/>
+        </member>
+        <member name="M:SudokuStudio.App.#ctor">
+            <summary>
+            <para>Initializes the singleton application object.</para>
+            <para>
+            This is the first line of authored code executed, and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.App.RunningContext">
+            <summary>
+            Indicates the running context.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.App.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.AppLifecycle.RunningContext">
+            <summary>
+            Defines a context type that stores the basic information of project running.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.AppLifecycle.RunningContext.Assembly">
+            <summary>
+            Indicates the current running assembly.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.AppLifecycle.RunningContext.Solver">
+            <summary>
+            Defines a logical solver.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.AppLifecycle.RunningContext.AssemblyVersion">
+            <summary>
+            Indicates the version of the current assembly.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.AppLifecycle.RunningContext.MainWindow">
+            <summary>
+            Indicates the main window that the program is running.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Collection.NotifyElementChangedStack`1">
+            <summary>
+            <para><inheritdoc cref="T:System.Collections.Generic.Stack`1" path="/summary"/></para>
+            <para>Different with type <see cref="T:System.Collections.Generic.Stack`1"/>, this type provides mechanism to trigger events on collection changed.</para>
+            </summary>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.Stack`1" path="/typeparam[@name='T']"/></typeparam>
+        </member>
+        <member name="M:SudokuStudio.Collection.NotifyElementChangedStack`1.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Collection.NotifyElementChangedStack`1"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Collection.NotifyElementChangedStack`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Collection.NotifyElementChangedStack`1"/> instance via the specified list of elements.
+            </summary>
+            <param name="collection">The list of elements.</param>
+        </member>
+        <member name="E:SudokuStudio.Collection.NotifyElementChangedStack`1.Changed">
+            <summary>
+            Defines an event that is triggered when the current collection is changed.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Collection.NotifyElementChangedStack`1.Push(`0)">
+            <inheritdoc cref="M:System.Collections.Generic.Stack`1.Push(`0)"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.NotifyElementChangedStack`1.Pop">
+            <inheritdoc cref="M:System.Collections.Generic.Stack`1.Pop"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.NotifyElementChangedStack`1.Clear">
+            <inheritdoc cref="M:System.Collections.Generic.Stack`1.Clear"/>
+        </member>
+        <member name="T:SudokuStudio.Collection.ObservableStackChangedEventHandler`1">
+            <summary>
+            Provides with an event handler delegate type triggered when the target collection is changed.
+            </summary>
+            <typeparam name="T">The type of each element stored in the collection.</typeparam>
+            <param name="sender">The collection.</param>
+        </member>
+        <member name="T:SudokuStudio.Input.Hotkey">
+            <summary>
+            Defines a hotkey.
+            </summary>
+            <param name="Modifiers">
+            Indicates the modifier keys. If you want to enable multiple modifiers of this hotkey, just use <see langword="operator"/> |
+            to combine flags.
+            </param>
+            <param name="Key">Indicates the key.</param>
+        </member>
+        <member name="M:SudokuStudio.Input.Hotkey.#ctor(Windows.System.VirtualKeyModifiers,Windows.System.VirtualKey)">
+            <summary>
+            Defines a hotkey.
+            </summary>
+            <param name="Modifiers">
+            Indicates the modifier keys. If you want to enable multiple modifiers of this hotkey, just use <see langword="operator"/> |
+            to combine flags.
+            </param>
+            <param name="Key">Indicates the key.</param>
+        </member>
+        <member name="P:SudokuStudio.Input.Hotkey.Modifiers">
+            <summary>
+            Indicates the modifier keys. If you want to enable multiple modifiers of this hotkey, just use <see langword="operator"/> |
+            to combine flags.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.Hotkey.Key">
+            <summary>Indicates the key.</summary>
+        </member>
+        <member name="T:SudokuStudio.Input.Keyboard">
+            <summary>
+            Provides with a easier way to visit key-down status.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.Keyboard.IsControlKeyDown">
+            <summary>
+            Checks whether the key <see cref="F:Windows.System.VirtualKey.Control"/> is input.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.Keyboard.IsShiftKeyDown">
+            <summary>
+            Checks whether the key <see cref="F:Windows.System.VirtualKey.Shift"/> is input.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.Keyboard.IsAltKeyDown">
+            <summary>
+            Checks whether the key <see cref="F:Windows.System.VirtualKey.Menu"/> is input.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.Keyboard.IsWindowsKeyDown">
+            <summary>
+            Checks whether the key <see cref="F:Windows.System.VirtualKey.LeftWindows"/> or <see cref="F:Windows.System.VirtualKey.RightWindows"/> is input.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Input.Keyboard.GetInputDigit(Windows.System.VirtualKey)">
+            <summary>
+            Determines which digit is input.
+            </summary>
+            <param name="virtualKey">The number input key.</param>
+            <returns>
+            An <see cref="T:System.Int32"/> value corresponding to the key. Cases:
+            <list type="table">
+            <listheader>
+            <term>Return value</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><![CDATA[>= 0 and <= 9]]></term>
+            <description>Valid digit inputs</description>
+            </item>
+            <item>
+            <term>-1</term>
+            <description>
+            Inputting <see cref="F:Windows.System.VirtualKey.Number0"/>, <see cref="F:Windows.System.VirtualKey.NumberPad0"/>,
+            <see cref="F:Windows.System.VirtualKey.Back"/> or <see cref="F:Windows.System.VirtualKey.Delete"/>
+            </description>
+            </item>
+            <item>
+            <term>-2</term>
+            <description>Other invalid inputs</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:SudokuStudio.Input.Keyboard.GetModifierStatusForCurrentThread">
+            <summary>
+            Try to create a <see cref="T:SudokuStudio.Input.VirtualKeyModifierStatus"/> instance to determine key-down status.
+            </summary>
+            <returns>A <see cref="T:SudokuStudio.Input.VirtualKeyModifierStatus"/> instance.</returns>
+            <remarks>
+            Please note that type <see cref="T:SudokuStudio.Input.VirtualKeyModifierStatus"/> is a <see langword="readonly record struct"/>,
+            which means you can use deconstruction syntax to check what key you want to check:
+            <code><![CDATA[
+            var (_, shiftIsDown, _, _) = Keyboard.GetModifierStatusForCurrentThread();
+            ]]></code>
+            For more information, please visit that type to learn more details.
+            </remarks>
+        </member>
+        <member name="T:SudokuStudio.Input.VirtualKeyModifierStatus">
+            <summary>
+            Defines a quadruple <see cref="T:System.Boolean"/>s indicating the key-down status of virtual key modifiers
+            defined by type <see cref="T:Windows.System.VirtualKeyModifiers"/>.
+            </summary>
+            <param name="IsControlKeyDown">Indicates whether the control key is input.</param>
+            <param name="IsShiftKeyDown">Indicates whether the shift key is input.</param>
+            <param name="IsAltKeyDown">Indicates whether the alt key is input.</param>
+            <param name="IsWindowsKeyDown">Indicates whether the windows key is input.</param>
+            <seealso cref="T:Windows.System.VirtualKeyModifiers"/>
+        </member>
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Defines a quadruple <see cref="T:System.Boolean"/>s indicating the key-down status of virtual key modifiers
+            defined by type <see cref="T:Windows.System.VirtualKeyModifiers"/>.
+            </summary>
+            <param name="IsControlKeyDown">Indicates whether the control key is input.</param>
+            <param name="IsShiftKeyDown">Indicates whether the shift key is input.</param>
+            <param name="IsAltKeyDown">Indicates whether the alt key is input.</param>
+            <param name="IsWindowsKeyDown">Indicates whether the windows key is input.</param>
+            <seealso cref="T:Windows.System.VirtualKeyModifiers"/>
+        </member>
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.IsControlKeyDown">
+            <summary>Indicates whether the control key is input.</summary>
+        </member>
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.IsShiftKeyDown">
+            <summary>Indicates whether the shift key is input.</summary>
+        </member>
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.IsAltKeyDown">
+            <summary>Indicates whether the alt key is input.</summary>
+        </member>
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.IsWindowsKeyDown">
+            <summary>Indicates whether the windows key is input.</summary>
+        </member>
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.AsKeyModifiers">
+            <summary>
+            Creates a <see cref="T:Windows.System.VirtualKeyModifiers"/> instance using the current data.
+            </summary>
+            <returns>A <see cref="T:Windows.System.VirtualKeyModifiers"/> instance.</returns>
+        </member>
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.HasModifier(Windows.System.VirtualKeyModifiers)">
+            <summary>
+            Determines whether the current instance contains the specified virtual key modifier.
+            </summary>
+            <param name="modifier">The key modifier.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Equality(SudokuStudio.Input.VirtualKeyModifierStatus,Windows.System.VirtualKeyModifiers)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Equality(Windows.System.VirtualKeyModifiers,SudokuStudio.Input.VirtualKeyModifierStatus)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Inequality(SudokuStudio.Input.VirtualKeyModifierStatus,Windows.System.VirtualKeyModifiers)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Inequality(Windows.System.VirtualKeyModifiers,SudokuStudio.Input.VirtualKeyModifierStatus)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:SudokuStudio.Interop.DispatcherQueueOptions">
+            <summary>
+            Specifies the threading and apartment type for a new
+            <see href="https://learn.microsoft.com/en-us/uwp/api/windows.system.dispatcherqueuecontroller"><c>DispatcherQueueController</c></see>.
+            </summary>
+            <remarks>
+            <para>Introduced in Windows 10, version 1709.</para>
+            <para><b>Requirements</b></para>
+            <para>
+            <list type="table">
+            <item>
+            <term>Header</term>
+            <description><c>dispatcherqueue.h</c></description>
+            </item>
+            </list>
+            </para>
+            <para>
+            Source: <see href="https://learn.microsoft.com/en-us/windows/win32/api/dispatcherqueue/ns-dispatcherqueue-dispatcherqueueoptions">DispatcherQueueOptions structure (dispatcherqueue.h)</see>.
+            </para>
+            </remarks>
+            <seealso href="https://learn.microsoft.com/en-us/windows/win32/api/dispatcherqueue/nf-dispatcherqueue-createdispatcherqueuecontroller">
+            <c>CreateDispatcherQueueController</c>
+            </seealso>
+        </member>
+        <member name="F:SudokuStudio.Interop.DispatcherQueueOptions.dwSize">
+            <summary>
+            Size of this <c><b>DispatcherQueueOptions</b></c> structure.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interop.DispatcherQueueOptions.threadType">
+            <summary>
+            Thread affinity for the created <c><b>DispatcherQueueController</b></c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interop.DispatcherQueueOptions.apartmentType">
+            <summary>
+            Specifies whether to initialize COM apartment on the new thread as an application single-threaded apartment (ASTA)
+            or single-threaded apartment (STA). This field is only relevant if <see cref="F:SudokuStudio.Interop.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_DEDICATED</c>.
+            Use <c>DQTAT_COM_NONE</c> when <see cref="F:SudokuStudio.Interop.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_CURRENT</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interop.IInitializeWithWindow">
+            <summary>
+            Exposes a method through which a client can provide an owner window
+            to a Windows Runtime (WinRT) object used in a desktop application.
+            </summary>
+            <remarks>
+            <para>
+            <b>When to initialize:</b><br/>
+            Implement this interface if your object needs to be provided with an owner window,
+            generally to display UI. Most third-party applications will not need to implement this interface.
+            </para>
+            <para>
+            <b>When to use:</b><br/>
+            Use this interface if you will provide an owner window to a WinRT object in a desktop application.
+            For more information about this scenario, see
+            <see href="https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp#classes-that-use-iinitializewithwindow">
+            Classes that use <c>IInitializeWithWindow</c>
+            </see>.
+            </para>
+            <para>
+            This interface is implemented by the following objects. Note that this is necessarily an incomplete list;
+            refer to an individual object's documentation to determine whether that object implements this interface.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Interop.IInitializeWithWindow.Initialize(System.IntPtr)">
+            <summary>
+            Specifies an owner window to be used by a Windows Runtime (WinRT) object that is used in a desktop app.
+            </summary>
+            <param name="hwnd">The handle of the window to be used as the owner window.</param>
+            <remarks>
+            The method doesn't return anything, but the method returns an HResult value
+            in the Win32 API. For more information, please visit
+            <see href="https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-iinitializewithwindow-initialize">
+            this link
+            </see>.
+            </remarks>
+        </member>
+        <member name="T:SudokuStudio.Interop.Monitor_DPI_Type">
+            <summary>
+            Identifies the dots per inch (dpi) setting for a monitor.
+            </summary>
+            <remarks>
+            <para>
+            All of these settings are affected by the
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/ne-shellscalingapi-process_dpi_awareness">PROCESS_DPI_AWARENESS</see>
+            of your application.
+            </para>
+            <para><b>Requirements</b></para>
+            <para>
+            <list type="table">
+            <item>
+            <term>Minimum supported client</term>
+            <description>Windows 8.1 [desktop apps only]</description>
+            </item>
+            <item>
+            <term>Minimum supported server</term>
+            <description>Windows Server 2012 R2 [desktop apps only]</description>
+            </item>
+            <item>
+            <term>Header</term>
+            <description><c>shellscalingapi.h</c></description>
+            </item>
+            </list>
+            </para>
+            <para>
+            Source: <see href="https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type">MONITOR_DPI_TYPE enumeration (shellscalingapi.h)</see>.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Effective_DPI">
+            <summary>
+            <para>Value: <i>0</i></para>
+            <para>
+            The effective DPI. This value should be used when determining the correct scale factor for scaling UI elements.
+            This incorporates the scale factor set by the user for this specific display.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Angular_DPI">
+            <summary>
+            <para>Value: <i>1</i></para>
+            <para>
+            The angular DPI. This DPI ensures rendering at a compliant angular resolution on the screen.
+            This does not include the scale factor set by the user for this specific display.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Raw_DPI">
+            <summary>
+            <para>Value: <i>2</i></para>
+            <para>
+            The raw DPI. This value is the linear DPI of the screen as measured on the screen itself.
+            Use this value when you want to read the pixel density and not the recommended scaling setting.
+            This does not include the scale factor set by the user for this specific display and is not guaranteed to be a supported DPI value.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Default">
+            <summary>
+            The default DPI setting for a monitor is <see cref="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Effective_DPI"/>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interop.WindowsSystemDispatcherQueueHelper">
+            <summary>
+            Defines a helper instance that is applied to type <see cref="T:Windows.System.DispatcherQueue"/>.
+            </summary>
+            <seealso cref="T:Windows.System.DispatcherQueue"/>
+        </member>
+        <member name="F:SudokuStudio.Interop.WindowsSystemDispatcherQueueHelper._dispatcherQueueController">
+            <summary>
+            The internal field that is used for exchanging.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interop.WindowsSystemDispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController">
+            <summary>
+            Try to create a <see cref="T:Windows.System.DispatcherQueueController"/> instance.
+            </summary>
+            <seealso cref="T:Windows.System.DispatcherQueueController"/>
+        </member>
+        <member name="T:SudokuStudio.Markup.GridExtension">
+            <summary>
+            Defines a markup extension that can parse a <see cref="T:System.String"/> value, converting it into a valid <see cref="T:Sudoku.Concepts.Grid"/>
+            or throwing exceptions when the code is invalid.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.GridExtension.IgnoreCasing">
+            <summary>
+            Indicates whether the conversion ignores casing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.GridExtension.Text">
+            <summary>
+            Indicates the grid text that can be parsed as a valid <see cref="T:Sudoku.Concepts.Grid"/> using <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>.
+            </summary>
+            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
+        </member>
+        <member name="P:SudokuStudio.Markup.GridExtension.ExactFormatString">
+            <summary>
+            Indicates the exact format string.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.GridExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Markup.RExtension">
+            <summary>
+            Defines a markup extension that only fetches for string resources defined by folder <c>Resources</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.RExtension.Key">
+            <summary>
+            Indicates the key of the resource.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.RExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Markup.ThicknessExtension">
+            <summary>
+            Defines a markup extension that can create a new <see cref="T:Microsoft.UI.Xaml.Thickness"/> instance via base one.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.ThicknessExtension.Base">
+            <summary>
+            Indicates the base <see cref="T:Microsoft.UI.Xaml.Thickness"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.ThicknessExtension.Top">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Thickness.Top"/>
+        </member>
+        <member name="P:SudokuStudio.Markup.ThicknessExtension.Bottom">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Thickness.Bottom"/>
+        </member>
+        <member name="P:SudokuStudio.Markup.ThicknessExtension.Left">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Thickness.Left"/>
+        </member>
+        <member name="P:SudokuStudio.Markup.ThicknessExtension.Right">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Thickness.Right"/>
+        </member>
+        <member name="M:SudokuStudio.Markup.ThicknessExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Models.AnalysisResultTableRow">
+            <summary>
+            Defines a row of analysis result table.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.AnalysisResultTableRow.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty of all steps.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.AnalysisResultTableRow.MaximumDifficulty">
+            <summary>
+            Indicates the maximum difficulty in the steps.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.AnalysisResultTableRow.CountOfSteps">
+            <summary>
+            Indicates the number of steps that uses logic of the current technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.AnalysisResultTableRow.TechniqueName">
+            <summary>
+            Indicates the technique name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.AnalysisResultTableRow.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the technique belonging to.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Models.AnalysisResultTableRow.CreateListFrom(Sudoku.Solving.Logical.LogicalSolverResult)">
+            <summary>
+            Creates the list of <see cref="T:SudokuStudio.Models.AnalysisResultTableRow"/> as the result value,
+            via the specified <paramref name="analysisResult"/> instance of <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> type.
+            </summary>
+            <param name="analysisResult">
+            The <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance that is used for creating the result value.
+            </param>
+            <returns>The result list of <see cref="T:SudokuStudio.Models.AnalysisResultTableRow"/>-typed elements.</returns>
+        </member>
+        <member name="T:SudokuStudio.Models.GridSerializationData">
+            <summary>
+            Defines a sudoku grid serialization data.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.GridSerializationData.FormatDescription">
+            <summary>
+            Indicates the format description.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.GridSerializationData.GridString">
+            <summary>
+            Indicates the grid string.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Program">
+            <summary>
+            Represents a type that is only used for surrounding with main method <c>Main</c>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Program.Main(System.String[])">
+            <summary>
+            Provides with the program entry point.
+            </summary>
+            <param name="args">The command-line arguments.</param>
+        </member>
+        <member name="T:SudokuStudio.Resources.ResourceDictionary">
+            <summary>
+            Defines an easy entry to get <see cref="T:System.String"/> resources.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Resources.ResourceDictionary.GetStringNullable(System.String)">
+            <inheritdoc cref="M:SudokuStudio.Resources.ResourceDictionary.GetString(System.String)"/>
+        </member>
+        <member name="M:SudokuStudio.Resources.ResourceDictionary.GetString(System.String)">
+            <summary>
+            Try to fetch the target resource via the specified key.
+            </summary>
+            <param name="key">The resource key.</param>
+            <returns>The target resource.</returns>
+        </member>
+        <member name="T:SudokuStudio.Resources.TextResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DifficultyLevel_Easy">
+            <summary>
+              Looks up a localized string similar to Easy.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DifficultyLevel_Fiendish">
+            <summary>
+              Looks up a localized string similar to Fiendish.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DifficultyLevel_Hard">
+            <summary>
+              Looks up a localized string similar to Hard.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DifficultyLevel_Moderate">
+            <summary>
+              Looks up a localized string similar to Moderate.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DifficultyLevel_Nightmare">
+            <summary>
+              Looks up a localized string similar to Nightmare.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DifficultyLevel_Unknown">
+            <summary>
+              Looks up a localized string similar to Unknown.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._ProgramName">
+            <summary>
+              Looks up a localized string similar to Sudoku Studio.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AllStepsInCurrentGrid">
+            <summary>
+              Looks up a localized string similar to All Available Steps.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AreYouSureToReturnToEmpty">
+            <summary>
+              Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty status. Are you sure?.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Cancel">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CannotOpenFile_FileIsEmpty">
+            <summary>
+              Looks up a localized string similar to The currently chosen file is empty..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CannotOpenFile_FileIsTooLarge">
+            <summary>
+              Looks up a localized string similar to The currently chosen file is too large - it is oversized..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CannotOpenFile_GridIsInvalidToParse">
+            <summary>
+              Looks up a localized string similar to The puzzle in the file is invalid to be parsed..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CannotOpenFile_GridIsNotUnique">
+            <summary>
+              Looks up a localized string similar to The puzzle in the file does not contain a unique solution - it contains multiple solutions, or the puzzle is invalid..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CannotOpenFile_ProgramIsSnapped">
+            <summary>
+              Looks up a localized string similar to Cannot open the file picker because the current program is snapped, which is disallowed..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ChooseFormats">
+            <summary>
+              Looks up a localized string similar to Please choose the format that you want to save:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Clear">
+            <summary>
+              Looks up a localized string similar to Clear.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CommonCommands">
+            <summary>
+              Looks up a localized string similar to Common Commands.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CopyCommandName">
+            <summary>
+              Looks up a localized string similar to Copy.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CopyPictureCommandName">
+            <summary>
+              Looks up a localized string similar to Copy image.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CurrentGridFormat">
+            <summary>
+              Looks up a localized string similar to Current grid format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven">
+            <summary>
+              Looks up a localized string similar to Current grid format, but all values will be treated as givens.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyLevel">
+            <summary>
+              Looks up a localized string similar to Level.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyMax">
+            <summary>
+              Looks up a localized string similar to Max.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyTotal">
+            <summary>
+              Looks up a localized string similar to Total.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_EmptyGrid">
+            <summary>
+              Looks up a localized string similar to &lt;Empty&gt;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Ensure">
+            <summary>
+              Looks up a localized string similar to Ensure....
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ExcelFormat">
+            <summary>
+              Looks up a localized string similar to Excel compatible format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_FailedToOpenFilePicker">
+            <summary>
+              Looks up a localized string similar to Failed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_FixGrid">
+            <summary>
+              Looks up a localized string similar to Fix grid.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_GivensCount">
+            <summary>
+              Looks up a localized string similar to Givens count: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_HodokuFormat">
+            <summary>
+              Looks up a localized string similar to Hodoku library compatible format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_InitialGridFormat">
+            <summary>
+              Looks up a localized string similar to Initial grid format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_IsMinimal">
+            <summary>
+              Looks up a localized string similar to Is Minimal puzzle: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_LiveCharts">
+            <summary>
+              Looks up a localized string similar to Data Charts.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved">
+            <summary>
+              Looks up a localized string similar to No (at least one hint can be removed, e.g. {0}).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_MinimalResult_NotUniquePuzzle">
+            <summary>
+              Looks up a localized string similar to No (puzzle is not unique, or unfixed).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_MinimalResult_Yes">
+            <summary>
+              Looks up a localized string similar to Yes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_MultipleLineGridFormat">
+            <summary>
+              Looks up a localized string similar to Multiple-line simple grid format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_NewPuzzle">
+            <summary>
+              Looks up a localized string similar to New puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Okay">
+            <summary>
+              Looks up a localized string similar to OK.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_OpenFile">
+            <summary>
+              Looks up a localized string similar to Open.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_OpenSudokuFormat">
+            <summary>
+              Looks up a localized string similar to OpenSudoku compatible format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PasteCommandName">
+            <summary>
+              Looks up a localized string similar to Paste.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PencilmarkFormat">
+            <summary>
+              Looks up a localized string similar to Pencilmarked format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PivotItem_BasicOperations">
+            <summary>
+              Looks up a localized string similar to Basics.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleCode">
+            <summary>
+              Looks up a localized string similar to Text code: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleData">
+            <summary>
+              Looks up a localized string similar to Puzzle Data.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleHasMultipleSolutions">
+            <summary>
+              Looks up a localized string similar to Multiple solutions.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleHasNoSolution">
+            <summary>
+              Looks up a localized string similar to No solution.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleHasUniqueSolution">
+            <summary>
+              Looks up a localized string similar to Unique solution.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleHasUniqueSolutionButUnfixed">
+            <summary>
+              Looks up a localized string similar to Unique solution, but with grid being unfixed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Redo">
+            <summary>
+              Looks up a localized string similar to Redo.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ResetCommandName">
+            <summary>
+              Looks up a localized string similar to Reset.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SaveAsButtonContent">
+            <summary>
+              Looks up a localized string similar to Save!.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SaveFile">
+            <summary>
+              Looks up a localized string similar to Save.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SaveFileAnother">
+            <summary>
+              Looks up a localized string similar to Save as.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SelectAll">
+            <summary>
+              Looks up a localized string similar to Select all.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SimpleDescription">
+            <summary>
+              Looks up a localized string similar to Step Description:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_StepDetail">
+            <summary>
+              Looks up a localized string similar to Solving Path.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SucceedToSaveFile">
+            <summary>
+              Looks up a localized string similar to Successful.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SukakuFormat">
+            <summary>
+              Looks up a localized string similar to Sukaku format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Sure">
+            <summary>
+              Looks up a localized string similar to Sure!.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_TechniqueCount">
+            <summary>
+              Looks up a localized string similar to Count.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_TechniqueDifficultyRating">
+            <summary>
+              Looks up a localized string similar to Difficulty Rating (≥ 1.0 and ≤ 12.0):.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_TechniqueName">
+            <summary>
+              Looks up a localized string similar to Technique Name:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_TechniqueOrTechniqueGroupName">
+            <summary>
+              Looks up a localized string similar to Technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_TechniquesTable">
+            <summary>
+              Looks up a localized string similar to Summary.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ToggleDisplayingCandidates">
+            <summary>
+              Looks up a localized string similar to Show/Hide candidates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_UndefinedGrid">
+            <summary>
+              Looks up a localized string similar to &lt;Undefined&gt;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Undo">
+            <summary>
+              Looks up a localized string similar to Undo.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_UnfixGrid">
+            <summary>
+              Looks up a localized string similar to Unfix grid.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Uniqueness">
+            <summary>
+              Looks up a localized string similar to Solution Uniqueness: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzerPage_AnalyzeButton">
+            <summary>
+              Looks up a localized string similar to Analyze.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FileExtension_Picture">
+            <summary>
+              Looks up a localized string similar to Portable picture format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FileExtension_PlainTextDescription">
+            <summary>
+              Looks up a localized string similar to Plain text format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FileExtension_TextDescription">
+            <summary>
+              Looks up a localized string similar to Sudoku puzzle format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Analyze">
+            <summary>
+              Looks up a localized string similar to Analyze.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_AnalyzePageTitle">
+            <summary>
+              Looks up a localized string similar to Solving &amp; Analysis.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Menu">
+            <summary>
+              Looks up a localized string similar to Menu.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Search">
+            <summary>
+              Looks up a localized string similar to Search....
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_SettingsPageTitle">
+            <summary>
+              Looks up a localized string similar to Settings &amp; Preferences.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.Sudoku">
+            <summary>
+              Looks up a localized string similar to Sudoku.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SudokuPane_DropSudokuFileHere">
+            <summary>
+              Looks up a localized string similar to Please drop the file here.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SudokuPane_RightClickMenu_InputSetter">
+            <summary>
+              Looks up a localized string similar to Input sets or eliminations: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SudokuPane_RightClickMenu_InputSetterPlaceholder">
+            <summary>
+              Looks up a localized string similar to Usage: !1-4、!567、!8、9.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Storage.CommonFileExtensions">
+            <summary>
+            Provides a list of file extension names of bound file types used by this project.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.CommonFileExtensions.PlainText">
+            <summary>
+            Indicates the plain text format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.CommonFileExtensions.PortablePicture">
+            <summary>
+            Indicates the portable picture format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.CommonFileExtensions.Text">
+            <summary>
+            Indicates the sudoku text file format (SST - Sudoku Studio Text format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.CommonFileExtensions.UserPreference">
+            <summary>
+            Indicates the user preference file format (SSP - Sudoku Studio Preference format).
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Commands.AnalyzeCommand">
+            <summary>
+            Defines a command to analyze a puzzle.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Commands.AnalyzeCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Views.Commands.ButtonCommand">
+            <summary>
+            Defines a button command.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Commands.ButtonCommand.CanExecuteChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Commands.ButtonCommand.CanExecute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Commands.ButtonCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Views.Commands.FixGridCommand">
+            <summary>
+            Defines a command to fix a grid.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Commands.FixGridCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Views.Commands.OpenFileCommand">
+            <summary>
+            Defines an open-file command.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Commands.OpenFileCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Views.Commands.SaveFileCommand">
+            <summary>
+            Defines a save-file command.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Commands.SaveFileCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Views.Commands.UnfixGridCommand">
+            <summary>
+            Defines a command to unfix a grid.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Commands.UnfixGridCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.SudokuPane">
+            <summary>
+            Defines a sudoku pane control.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._undoStack">
+            <summary>
+            Defines a pair of stacks that stores undo and redo steps.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._redoStack">
+            <summary>
+            Defines a pair of stacks that stores undo and redo steps.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates">
+            <summary>
+            Indicates whether the pane displays for candidates.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._useDifferentColorToDisplayDeltaDigits">
+            <summary>
+            Indicates whether the pane displays for delta digits using different colors.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._valueFontScale">
+            <summary>
+            Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFontScale">
+            <summary>
+            Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFontScale">
+            <summary>
+            Indicates the coordinate label font scale.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._selectedCell">
+            <summary>
+            Indicates the currently selected cell.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelDisplayKind">
+            <summary>
+            Indicates the displaying kind of coordinate labels.
+            </summary>
+            <remarks>
+            For more information please visit <see cref="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind"/>.
+            </remarks>
+            <seealso cref="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelDisplayMode">
+            <summary>
+            Indicates the displaying mode of coordinate labels.
+            </summary>
+            <remarks>
+            For more information please visit <see cref="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode"/>.
+            </remarks>
+            <seealso cref="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._givenColor">
+            <summary>
+            Indicates the given color.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._modifiableColor">
+            <summary>
+            Indicates the modifiable color.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkColor">
+            <summary>
+            Indicates the pencilmark color.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelColor">
+            <summary>
+            Indicates the coordinate label color.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._deltaCandidateColor">
+            <summary>
+            Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._deltaCellColor">
+            <summary>
+            Indicates the color that is used for displaying cell digits that are wrongly filled.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._borderColor">
+            <summary>
+            Indicates the border color.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._puzzle">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._valueFont">
+            <summary>
+            Indicates the value font.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFont">
+            <summary>
+            Indicates the candidate font.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFont">
+            <summary>
+            Indicates the coordinate label font.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._children">
+            <summary>
+            The easy entry to visit children <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/> instances. This field contains 81 elements,
+            indicating controls being displayed as 81 cells in a sudoku grid respectively.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle">
+            <summary>
+            Indicates the target grid puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BasePage">
+            <summary>
+            Indicates the base page.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ApproximateCellWidth">
+            <summary>
+            Indicates the approximately-measured width and height value of a cell.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.Solution">
+            <summary>
+            Indicates the solution of property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile">
+            <summary>
+            Indicates the event that is triggered when a file is failed to be received via dropped file.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.UndoStep">
+            <summary>
+            Undo a step.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.RedoStep">
+            <summary>
+            Redo a step.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Copy">
+            <summary>
+            Copies the current grid as text into the clipboard.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.CopySnapshotAsync">
+            <summary>
+            Copy the snapshot of the sudoku grid control, to the clipboard.
+            </summary>
+            <returns>
+            The typical <see langword="await"/>able instance that holds the task to copy the snapshot.
+            </returns>
+            <remarks>
+            The code is referenced from
+            <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L120">here</see>
+            and
+            <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L182">here</see>.
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.PasteAsync">
+            <summary>
+            Pastes the text, to the clipboard.
+            </summary>
+            <returns>
+            The typical <see langword="await"/>able instance that holds the task to paste the text.
+            </returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeChildrenControls">
+            <summary>
+            To initialize children controls for <see cref="F:SudokuStudio.Views.Controls.SudokuPane._children"/>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeEvents">
+            <summary>
+            To initializes for stack events.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+            <summary>
+            Try to set puzzle, with a <see cref="T:System.Boolean"/> value indicating whether the stack fields <see cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/>
+            and <see cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/> will be cleared.
+            </summary>
+            <param name="value">The newer grid.</param>
+            <param name="clearStack">
+            <para>Indicates whether the stack fields <see cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/> and <see cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/> will be cleared.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="whileUndoingOrRedoing">Indicates whether the current operation occurred while undoing and redoing a grid step.</param>
+            <remarks>
+            <para>
+            This method is nearly equal to <see cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>, but this method can also control undoing and redoing stacks.
+            </para>
+            <para>Generally, we use this method more times than covering with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>.</para>
+            </remarks>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/>
+            <seealso cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateCellData(Sudoku.Concepts.Grid@)">
+            <summary>
+            To initialize <see cref="F:SudokuStudio.Views.Controls.SudokuPane._children"/> values via the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._children"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.ClearStacks">
+            <summary>
+            Try to clear stacks <see cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/> and <see cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._useDifferentColorToDisplayDeltaDigits"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ValueFontScale">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._valueFontScale"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFontScale"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFontScale"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._selectedCell"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelDisplayKind"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelDisplayMode"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._givenColor"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._modifiableColor"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkColor"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelColor"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._deltaCandidateColor"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._deltaCellColor"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._borderColor"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ValueFont">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._valueFont"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFont">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFont"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFont"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.SudokuPaneCell">
+            <summary>
+            Defines a cell displayed in a <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell._temporarySelectedCell">
+            <summary>
+            Indicates the selected cell. The value is temporarily assigned into here, from <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.BasePane"/> property.
+            </summary>
+            <remarks>
+            This field is represented as a rescue to get the selected cell from parent control (<see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.BasePane"/> property).
+            If the context flyout is opened, the parent control will return -1 of its property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>.
+            here we should get that value before the flyout is opened.
+            Therefore, this field will be used and assigned by method <see cref="M:SudokuStudio.Views.Controls.SudokuPaneCell.Flyout_Opening(System.Object,System.Object)"/>,
+            and the method is an only one to modify the field.
+            </remarks>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.BasePane"/>
+            <seealso cref="M:SudokuStudio.Views.Controls.SudokuPaneCell.Flyout_Opening(System.Object,System.Object)"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell._candidatesMask">
+            <summary>
+            Indicates the candidates mask.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell._status">
+            <summary>
+            Indicates the cell status.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.BasePane">
+            <summary>
+            Indicates the base pane.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CellIndex">
+            <summary>
+            Indicates the cell index.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPaneCell.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPaneCell._candidatesMask"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPaneCell._status"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.AnalyzeConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about analyze tab pages.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Views.Conversions.Extensions.None(System.Collections.IEnumerable)">
+            <summary>
+            Determines whether an <see cref="T:System.Collections.IEnumerable"/> collection has no elements in it.
+            </summary>
+            <param name="this">The element.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.CoordinateLabelConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about coordinate labels.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.DifficultyLevelConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about difficulty level title label.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.Constants">
+            <target name="class" when="constant">
+				<summary>
+					Provides with constants and read-only values used by code in the current file.
+				</summary>
+			</target>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.PencilmarkTextConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about pencilmark text.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.SelectedCellConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about selected cells.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.SudokuGridConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about puzzle details displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Conversions.SudokuGridConversion.Solver">
+            <summary>
+            Defines a solver.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.SudokuGridLineConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about grid lines in <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> control.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.SymbolIconConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about symbol icon used by side bar buttons.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.UndoRedoButtonConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about undo and redo buttons.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.ValueTextConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about value text.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.VisibilityConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about visibility.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector">
+            <summary>
+            Defines a template selector that is applied to a solving path element.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.DefaultTemplate">
+            <summary>
+            Indicates the default template.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.StepTemplate">
+            <summary>
+            Indicates the step template.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.SelectTemplateCore(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind">
+            <summary>
+            Defines a kind of coordinate label to be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind.None">
+            <summary>
+            Indicates the coordinate labels will not be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind.RxCy">
+            <summary>
+            Indicates the coordinate labels will be displayed as <see cref="T:Sudoku.Text.Notations.RxCyNotation">RxCy Notation</see>.
+            </summary>
+            <seealso cref="T:Sudoku.Text.Notations.RxCyNotation"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind.K9">
+            <summary>
+            Indicates the coordinate labels will be displayed as <see cref="T:Sudoku.Text.Notations.K9Notation">K9 Notation</see>.
+            </summary>
+            <seealso cref="T:Sudoku.Text.Notations.K9Notation"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode">
+            <summary>
+            Defines a mode that is used for describing a kind of displaying case on coordinate labels.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode.None">
+            <summary>
+            Indicates the mode that never displays coordinate labels.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode.UpperAndLeft">
+            <summary>
+            Indicates the mode that displays for coordinate labels only at upper and left-side.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode.FourDirection">
+            <summary>
+            Indicates the mode that displays for coordinate labels at four directions.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventArgs.#ctor(SudokuStudio.Views.Interaction.FailedReceivedDroppedFileReason)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventArgs"/> instance via the specified reason.
+            </summary>
+            <param name="reason">The failed reason.</param>
+        </member>
+        <member name="P:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventArgs.Reason">
+            <summary>
+            Indicates the failed reason.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileReason">
+            <summary>
+            Defines an enumeration type that describes reasons why failed to drag a file.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileReason.FileIsEmpty">
+            <summary>
+            Indicates the failed reason is that the file is empty.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileReason.FileIsTooLarge">
+            <summary>
+            Indicates the failed reason is that the file is too large (more than 1MB).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileReason.FileCannotBeParsed">
+            <summary>
+            Indicates the failed reason is that the file cannot be parsed.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.IAnalyzeTabPage">
+            <summary>
+            Defines a page that is used for displaying analysis result for a puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Interaction.IAnalyzeTabPage.AnalysisResult">
+            <summary>
+            Gets or sets the analysis result, updating the current tab page using this property.
+            </summary>
+            <value>The value you want to update. If <see langword="null"/>, clears the page data.</value>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.OpenFileFailedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Views.Interaction.OpenFileFailedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Interaction.OpenFileFailedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.OpenFileFailedEventArgs.#ctor(SudokuStudio.Views.Interaction.OpenFileFailedReason)">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Interaction.OpenFileFailedEventArgs"/> instance via the specified reason.
+            </summary>
+            <param name="reason">The failed reason.</param>
+        </member>
+        <member name="P:SudokuStudio.Views.Interaction.OpenFileFailedEventArgs.Reason">
+            <summary>
+            Indicates the reason.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.OpenFileFailedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Pages.AnalyzePage.OpenFileFailed"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Pages.AnalyzePage.OpenFileFailed"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.OpenFileFailedReason">
+            <summary>
+            Defines a kind of failed reason that describes why failed to load a file.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.OpenFileFailedReason.UnsnappingFailed">
+            <summary>
+            Indicates the failed reason is the program cannot unsnap.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.OpenFileFailedReason.FileIsEmpty">
+            <summary>
+            Indicates the failed reason is the target file is empty.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.OpenFileFailedReason.FileIsTooLarge">
+            <summary>
+            Indicates the failed reason is the target file is oversized.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.OpenFileFailedReason.FileCannotBeParsed">
+            <summary>
+            Indicates the failed reason is the file cannot be parsed and converted into a valid sudoku grid.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.SaveFileFailedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Views.Interaction.SaveFileFailedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Interaction.SaveFileFailedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.SaveFileFailedEventArgs.#ctor(SudokuStudio.Views.Interaction.SaveFileFailedReason)">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Interaction.SaveFileFailedEventArgs"/> instance via the specified reason.
+            </summary>
+            <param name="reason">The failed reason.</param>
+        </member>
+        <member name="P:SudokuStudio.Views.Interaction.SaveFileFailedEventArgs.Reason">
+            <summary>
+            Indicates the reason.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.SaveFileFailedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Pages.AnalyzePage.SaveFileFailed"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Pages.AnalyzePage.SaveFileFailed"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.SaveFileFailedReason">
+            <summary>
+            Defines a kind of failed reason that describes why failed to save a file.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.SaveFileFailedReason.UnsnappingFailed">
+            <summary>
+            Indicates the failed reason is the program cannot unsnap.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
+            <summary>
+            Defines a new page that stores a set of controls to analyze a sudoku grid.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.NavigationTransitionInfo">
+            <summary>
+            The default navigation transition instance that will create animation fallback while switching pages.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.AnalyzeSyncRoot">
+            <summary>
+            Defines an instance that is used for synchronizing analysis operation.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._generatorIsNotRunning">
+            <summary>
+            Indicates whether the generator is not running currently.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions">
+            <summary>
+            Defines a key-value pair of functions that is used for routing hotkeys.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.AnalyzePage"/> instance.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Pages.AnalyzePage.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="E:SudokuStudio.Views.Pages.AnalyzePage.OpenFileFailed">
+            <summary>
+            Provides with an event that is triggered when failed to open a file.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Pages.AnalyzePage.SaveFileFailed">
+            <summary>
+            Provides with an event that is triggered when failed to save a file.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.ClearAnalyzeTabsData">
+            <summary>
+            To clear all possible data from the analyze tabs.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.UpdateAnalysisResult(Sudoku.Solving.Logical.LogicalSolverResult)">
+            <summary>
+            To update values via the specified <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.
+            </summary>
+            <param name="analysisResult">The analysis result instance.</param>
+            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.OpenFileInternalAsync">
+            <summary>
+            Open a file.
+            </summary>
+            <returns>A task that handles the operation.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SaveFileInternalAsync">
+            <summary>
+            Save a file.
+            </summary>
+            <returns>A task that handles the operation.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SaveFileInternalAsync(System.Collections.ArrayList)">
+            <summary>
+            Save a file via grid formatters.
+            </summary>
+            <param name="gridFormatters">The grid formatters.</param>
+            <returns>A task that handles the operation.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.LoadPuzzleCoreAsync(Windows.Storage.StorageFile)">
+            <summary>
+            The internal logic to load a puzzle. This operation can be called after dropping files
+            or picking files from <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
+            </summary>
+            <param name="file">The <see cref="T:Windows.Storage.StorageFile"/> instance.</param>
+            <returns>The task instance that handles this operation.</returns>
+            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeField">
+            <summary>
+            Try to initialize field <see cref="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions"/>.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
+            <summary>
+            An outer-layered method to switching pages. This method can be used by both
+            <see cref="M:SudokuStudio.Views.Pages.AnalyzePage.CommandBarView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.AnalyzePage.CommandBarView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
+            </summary>
+            <param name="container">The container.</param>
+            <seealso cref="M:SudokuStudio.Views.Pages.AnalyzePage.CommandBarView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/>
+            <seealso cref="M:SudokuStudio.Views.Pages.AnalyzePage.CommandBarView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.NavigateToPage(System.Type)">
+            <summary>
+            Try to navigate to the target page.
+            </summary>
+            <param name="pageType">The target page type.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._generatorIsNotRunning"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
+            <summary>
+            Defines the solving path page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._analysisResult">
+            <summary>
+            Indicates the analysis result.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.SolvingPath"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Analyze.Summary">
+            <summary>
+            Defines a summary page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.Summary._analysisResult">
+            <summary>
+            Indicates the analysis result.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.Summary"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.BasePage">
+            <summary>
+            Indicates the base page.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.BasicOperation">
+            <summary>
+            Indicates the basic operation command bar.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation.Generator">
+            <summary>
+            Defines a default puzzle generator.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation._succeedFilePath">
+            <summary>
+            Indicates the path of the saved file.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.BasicOperation"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.BasePage">
+            <summary>
+            Indicates the base page.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Pages.Operation.BasicOperation.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.Operation.BasicOperation._succeedFilePath"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.FormatFlags">
+            <summary>
+            Represents a format flag.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.None">
+            <summary>
+            Indicates the default format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.InitialFormat">
+            <summary>
+            Indicates the initial grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.CurrentFormat">
+            <summary>
+            Indicates the current grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.CurrentFormatIgnoringValueKind">
+            <summary>
+            Indicates the current grid format , treating all modifiable values as given ones.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.HodokuCompatibleFormat">
+            <summary>
+            Indicates the Hodoku grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.MultipleGridFormat">
+            <summary>
+            Indicates the multiple-line grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.PencilMarkFormat">
+            <summary>
+            Indicates the pencilmark format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.SukakuFormat">
+            <summary>
+            Indicates the sukaku format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.ExcelFormat">
+            <summary>
+            Indicates the excel format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.OpenSudokuFormat">
+            <summary>
+            Indicates the open-sudoku format.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.SettingsPage">
+            <summary>
+            Defines the settings page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.SettingsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Windows.MainWindow">
+            <summary>
+            Provides with a <see cref="T:Microsoft.UI.Xaml.Window"/> instance that is running as main instance of the program.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Windows.MainWindow._wsdqHelper">
+            <summary>
+            Defines a <see cref="T:SudokuStudio.Interop.WindowsSystemDispatcherQueueHelper"/> instance that is used for interaction
+            with <see cref="T:Windows.System.DispatcherQueue"/>.
+            </summary>
+            <seealso cref="T:Windows.System.DispatcherQueue"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Windows.MainWindow._micaController">
+            <summary>
+            Indicates the Mica controller instance. This instance is used as core implementation of Mica material of applications.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Windows.MainWindow._configurationSource">
+            <summary>
+            Indicates the material configuration instance. This field controls displaying with a customized material such as Mica and acrylic.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetConfigurationSourceTheme">
+            <summary>
+            Sets <see cref="P:Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration.Theme"/> to the target value.
+            </summary>
+            <exception cref="T:System.NotSupportedException">Throws when the actual theme is not defined.</exception>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.TrySetMicaBackdrop">
+            <summary>
+            Try to set Mica backdrop.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is succeeded.</returns>
+        </member>
+        <member name="F:SudokuStudio.Views.Windows.MainWindow._appWindow">
+            <summary>
+            Defines an <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance that is used by interaction with core application behaviors,
+            such as icon, title bars and so on.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Windowing.AppWindow"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeAppWindow">
+            <summary>
+            Initializes for field <see cref="F:SudokuStudio.Views.Windows.MainWindow._appWindow"/>.
+            </summary>
+            <remarks>
+            For more information please visit
+            <see href="https://learn.microsoft.com/en-us/windows/apps/develop/title-bar">this link</see>.
+            This passage is for full customization of application title bar.
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetDragRegionForCustomTitleBar(Microsoft.UI.Windowing.AppWindow)">
+            <summary>
+            Sets the draggable region that is used for the whole window.
+            </summary>
+            <param name="appWindow">The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetScaleAdjustment">
+            <summary>
+            Try to adjust the scaling.
+            </summary>
+            <returns>The scaling result value.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the computer cannot handle scaling correctly.</exception>
+        </member>
+        <member name="F:SudokuStudio.Views.Windows.MainWindow.NavigationTransitionInfo">
+            <summary>
+            The default navigation transition instance that will create animation fallback while switching pages.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type)">
+            <summary>
+            Try to navigate to the target page.
+            </summary>
+            <param name="pageType">The target page type.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetAppIcon">
+            <summary>
+            Try to set icon of the program.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetAppTitle">
+            <summary>
+            Try to set program name onto the title.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(System.Boolean,Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
+            <summary>
+            An outer-layered method to switching pages. This method can be used by both
+            <see cref="M:SudokuStudio.Views.Windows.MainWindow.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Windows.MainWindow.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
+            </summary>
+            <param name="isSettingInvokedOrSelected">Indicates whether the setting menu item is invoked or selected.</param>
+            <param name="container">The container.</param>
+            <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/>
+            <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.WithAwareHandleOnWin32(Windows.Storage.Pickers.FileOpenPicker)">
+            <summary>
+            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
+            </summary>
+            <param name="this">The instance.</param>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.WithSuggestedStartLocation(Windows.Storage.Pickers.FileOpenPicker,Windows.Storage.Pickers.PickerLocationId)">
+            <summary>
+            Sets the property <see cref="P:Windows.Storage.Pickers.FileOpenPicker.SuggestedStartLocation"/> with the specified value.
+            </summary>
+            <seealso cref="P:Windows.Storage.Pickers.FileOpenPicker.SuggestedStartLocation"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.AddFileTypeFilter(Windows.Storage.Pickers.FileOpenPicker,System.String)">
+            <summary>
+            Adds the file type filter into the <see cref="P:Windows.Storage.Pickers.FileOpenPicker.FileTypeFilter"/> property.
+            </summary>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.GetActiveWindow">
+            <summary>
+            Retrieves the window handle to the active window attached to the calling thread's message queue.
+            </summary>
+            <returns>
+            The return value is the handle to the active window attached to the calling thread's message queue.
+            Otherwise, the return value is <see langword="null"/>.
+            </returns>
+            <remarks>
+            <para>
+            To get the handle to the foreground window, you can use
+            <see href="https://learn.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-getforegroundwindow">GetForegroundWindow</see>.
+            </para>
+            <para>
+            To get the window handle to the active window in the message queue for another thread, use
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo</see>.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Windows.Storage.Pickers.FileSavePickerExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithAwareHandleOnWin32(Windows.Storage.Pickers.FileSavePicker)">
+            <summary>
+            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
+            </summary>
+            <param name="this">The instance.</param>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithSuggestedFileName(Windows.Storage.Pickers.FileSavePicker,System.String)">
+            <summary>
+            Sets the property <see cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedFileName"/> with the specified value.
+            </summary>
+            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedFileName"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithSuggestedStartLocation(Windows.Storage.Pickers.FileSavePicker,Windows.Storage.Pickers.PickerLocationId)">
+            <summary>
+            Sets the property <see cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedStartLocation"/> with the specified value.
+            </summary>
+            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedStartLocation"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithDefaultFileExtension(Windows.Storage.Pickers.FileSavePicker,System.String)">
+            <summary>
+            Sets the property <see cref="P:Windows.Storage.Pickers.FileSavePicker.DefaultFileExtension"/> with the specified value.
+            </summary>
+            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.DefaultFileExtension"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.AddFileTypeChoice(Windows.Storage.Pickers.FileSavePicker,System.String,System.String[])">
+            <summary>
+            Adds the file type choices into the <see cref="P:Windows.Storage.Pickers.FileSavePicker.FileTypeChoices"/> property.
+            </summary>
+            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.FileTypeChoices"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.GetActiveWindow">
+            <summary>
+            Retrieves the window handle to the active window attached to the calling thread's message queue.
+            </summary>
+            <returns>
+            The return value is the handle to the active window attached to the calling thread's message queue.
+            Otherwise, the return value is <see langword="null"/>.
+            </returns>
+            <remarks>
+            <para>
+            To get the handle to the foreground window, you can use
+            <see href="https://learn.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-getforegroundwindow">GetForegroundWindow</see>.
+            </para>
+            <para>
+            To get the window handle to the active window in the message queue for another thread, use
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo</see>.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Windows.Foundation.SizeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Windows.Foundation.Size"/>.
+            </summary>
+            <seealso cref="T:Windows.Foundation.Size"/>
+        </member>
+        <member name="M:Windows.Foundation.SizeExtensions.Deconstruct(Windows.Foundation.Size,System.Single@,System.Single@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.UIElementExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.UIElement"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.UIElement"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``1(``0,Windows.Storage.StorageFile)">
+            <summary>
+            Renders the specified UI control to the target file as a picture.
+            </summary>
+            <typeparam name="TUIElement">The type of the UI control.</typeparam>
+            <param name="this">The control.</param>
+            <param name="file">The target file.</param>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``1(``0,Windows.Storage.Streams.IRandomAccessStream)">
+            <summary>
+            Renders the specified UI control to the target stream as a picture.
+            </summary>
+            <typeparam name="TUIElement">The type of the UI control.</typeparam>
+            <param name="this">The control.</param>
+            <param name="stream">The target stream.</param>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.TryGetLogicalDpi(System.Single)">
+            <summary>
+            Try to get the logical DPI value.
+            </summary>
+            <param name="default">The default DPI value. The default value is 96.</param>
+            <returns>The DPI value to get.</returns>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.WindowExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Window"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.WindowExtensions.GetAppWindow(Microsoft.UI.Xaml.Window,System.IntPtr@,Microsoft.UI.WindowId@)">
+            <summary>
+            Gets <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance for the current <see cref="T:Microsoft.UI.Xaml.Window"/> instance.
+            </summary>
+            <param name="this">The current <see cref="T:Microsoft.UI.Xaml.Window"/> instance.</param>
+            <param name="hWnd">Indicates the handle of the window. The value is an <see cref="T:System.IntPtr"/> integer value.</param>
+            <param name="wndId">Indicates the handle of the window. The value is a <see cref="T:Microsoft.UI.WindowId"/> sturcture instance.</param>
+            <returns>A valid <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
+        </member>
+    </members>
+</doc>
