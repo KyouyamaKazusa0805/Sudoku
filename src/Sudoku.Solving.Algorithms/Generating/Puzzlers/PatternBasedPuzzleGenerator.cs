@@ -14,7 +14,10 @@
 /// <item>Try to solve this as the multiple solution puzzle. Our aim in this step is to get a valid solution.</item>
 /// <item>Remove digits not filled in the pattern.</item>
 /// <item>
-/// Check validity of the removed puzzle. If the puzzle is unique, generated successfully, and return this puzzle;
+/// Check validity of the removed puzzle.
+/// <br/>
+/// If the puzzle is unique, generated successfully, and return this puzzle;
+/// <br/>
 /// otherwise, adjust pattern slightly and try again. If failed after having tried 10000 times, we will re-generate
 /// a sudoku puzzle.
 /// </item>
