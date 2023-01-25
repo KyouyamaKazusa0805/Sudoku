@@ -21,7 +21,7 @@
 * **`GeneratedExtensionDeconstructionGenerator`**：生成扩展解构函数的代码。
 * **`DefaultOverriddenMembersGenerator`**：生成对 `object` 自带的虚成员的重写默认实现。
 * **`AutoOverloadingOperatorGenerator`**：生成对运算符重载的默认实现。
-* **`PropertyBindingGenerator`**：为 UI 项目生成字段绑定属性的 `PropertyChanged` 事件触发和赋值判断代码。
+* [自动属性绑定](property-binding)：为 UI 项目生成字段绑定属性的 `PropertyChanged` 事件触发和赋值判断代码。
 * **[自动生成枚举类型相关的执行和路由操作](enum-switch-expr)**：生成为枚举类型的所有字段进行路由和处理，构造操作的代码。
 * **`VersionValueGenerator`**：只给源代码生成器提供服务。用于给源代码生成器的项目提供版本号。
 * **`StepSearcherOptionsGenerator`**：对实现了 `IStepSearcher` 接口的类型生成默认的 `Options` 属性信息的相关代码。
