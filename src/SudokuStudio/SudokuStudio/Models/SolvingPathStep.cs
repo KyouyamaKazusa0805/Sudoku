@@ -8,19 +8,24 @@ public sealed partial class SolvingPathStep
 	/// <summary>
 	/// Indicates the index of the step.
 	/// </summary>
-	public int Index { get; set; }
+	public required int Index { get; set; }
 
 	/// <summary>
 	/// Indicates the step grid used.
 	/// </summary>
-	public Grid StepGrid { get; set; }
+	public required Grid StepGrid { get; set; }
+
+	/// <summary>
+	/// Indicates the kinds of items that the step tooltip will be displayed.
+	/// </summary>
+	public required StepTooltipDisplayKind DisplayKinds { get; set; }
 
 	/// <summary>
 	/// Indicates the step details.
 	/// </summary>
-	public IStep Step { get; set; } = null!;
+	public required IStep Step { get; set; }
 
 
 	[GeneratedDeconstruction]
-	public partial void Deconstruct(out int index, out Grid stepGrid, out IStep step);
+	public partial void Deconstruct(out int index, out Grid stepGrid, out StepTooltipDisplayKind displayKinds, out IStep step);
 }

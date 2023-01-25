@@ -20,7 +20,63 @@ internal static class AnalyzeConversion
 		=> itemsSource is null || itemsSource.None() ? Visibility.Collapsed : Visibility.Visible;
 
 	public static Visibility GetSolvingPathListVisibility(object itemsSource)
-		=> itemsSource switch { List<SolvingPathStep> and not [] => Visibility.Visible, _ => Visibility.Collapsed };
+		=> itemsSource switch { SolvingPathStepCollection and not [] => Visibility.Visible, _ => Visibility.Collapsed };
+
+	public static IEnumerable<Inline> GetInlinesOfTooltip(SolvingPathStep s)
+	{
+		if (s is not (var index, _, var displayKind, { Name: var name, ShowDifficulty: var showDifficulty, Difficulty: var difficulty } step))
+		{
+			throw new ArgumentException($"The argument '{nameof(s)}' is invalid.", nameof(s));
+		}
+
+		var result = new List<Inline>();
+
+		if (displayKind.Flags(StepTooltipDisplayKind.TechniqueName))
+		{
+			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueName") }.SingletonSpan<Bold>());
+			result.Add(new LineBreak());
+			result.Add(new Run { Text = name });
+		}
+
+		if (displayKind.Flags(StepTooltipDisplayKind.TechniqueIndex))
+		{
+			f();
+
+			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueIndex") }.SingletonSpan<Bold>());
+			result.Add(new LineBreak());
+			result.Add(new Run { Text = (index + 1).ToString() });
+		}
+
+		if (displayKind.Flags(StepTooltipDisplayKind.DifficultyRating))
+		{
+			f();
+
+			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueDifficultyRating") }.SingletonSpan<Bold>());
+			result.Add(new LineBreak());
+			result.Add(new Run { Text = showDifficulty ? difficulty.ToString("0.0") : "?" });
+		}
+
+		if (displayKind.Flags(StepTooltipDisplayKind.SimpleDescription))
+		{
+			f();
+
+			result.Add(new Run { Text = GetString("AnalyzePage_SimpleDescription") }.SingletonSpan<Bold>());
+			result.Add(new LineBreak());
+			result.Add(new Run { Text = step.ToString()! });
+		}
+
+		return result;
+
+
+		void f()
+		{
+			if (result.Count != 0)
+			{
+				result.Add(new LineBreak());
+				result.Add(new LineBreak());
+			}
+		}
+	}
 }
 
 /// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
@@ -33,4 +89,17 @@ file static class Extensions
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool None(this IEnumerable @this) => !@this.GetEnumerator().MoveNext();
+
+	/// <summary>
+	/// Creates a <see cref="Bold"/> ionstance with a singleton value of <see cref="Run"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="Run"/> instance.</param>
+	/// <returns>A <see cref="Bold"/> instance.</returns>
+	public static T SingletonSpan<T>(this Run @this) where T : Span, new()
+	{
+		var result = new T();
+		result.Inlines.Add(@this);
+
+		return result;
+	}
 }

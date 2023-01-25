@@ -4,20 +4,13 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:a="using:SudokuStudio.Views.Attached"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:dts="using:SudokuStudio.Views.DataTemplateSelectors"
 	xmlns:model="using:SudokuStudio.Models"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}"
 	NavigationCacheMode="Required" CacheMode="BitmapCache">
-	<Page.Resources>
-		<TeachingTip x:Name="Dialog_StepInfo" IsLightDismissEnabled="False" HeroContentPlacement="Top">
-			<TeachingTip.HeroContent>
-				<TextBlock x:Name="StepInfoLabel" TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True" Margin="10" />
-			</TeachingTip.HeroContent>
-		</TeachingTip>
-	</Page.Resources>
-
 	<ScrollViewer>
 		<StackPanel Orientation="Vertical" Spacing="6">
 			<ListView
@@ -28,21 +21,25 @@
 					<dts:SolvingPathTextBlockTemplateSelector>
 						<dts:SolvingPathTextBlockTemplateSelector.StepTemplate>
 							<DataTemplate x:DataType="model:SolvingPathStep">
-								<ListViewItem
-									Tag="{x:Bind}" IsRightTapEnabled="True"
-									Tapped="ListViewItem_Tapped" RightTapped="ListViewItem_RightTapped">
-									<Grid RowDefinitions="*,*" ColumnDefinitions="32,Auto,*">
+								<ListViewItem Tag="{x:Bind}" IsRightTapEnabled="True" Tapped="ListViewItem_Tapped">
+									<ToolTipService.ToolTip>
 										<TextBlock
-											Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+											TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True"
+											a:TextBlockBindable.Inlines="{x:Bind cvt:AnalyzeConversion.GetInlinesOfTooltip((model:SolvingPathStep))}" />
+									</ToolTipService.ToolTip>
+
+									<Grid RowDefinitions="*,*" ColumnDefinitions="20,Auto,*">
+										<TextBlock
+											Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"
 											Text="{x:Bind cvt:AnalyzeConversion.GetIndexText((model:SolvingPathStep))}" />
 										<Ellipse
-											Grid.Column="1" Grid.RowSpan="2" Width="32" Height="32"
+											Grid.Column="1" Grid.RowSpan="2" Width="32" Height="32" Margin="12,0,0,0"
 											HorizontalAlignment="Center" VerticalAlignment="Center"
 											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
 											Fill="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(Step.DifficultyLevel)}" />
 										<TextBlock
 											Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
-											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
+											Margin="12,0,0,0" Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
 											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText(Step)}"
 											Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(Step.DifficultyLevel)}" />
 										<TextBlock
