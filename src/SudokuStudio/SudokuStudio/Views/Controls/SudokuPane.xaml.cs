@@ -135,6 +135,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	private SudokuPaneCell[] _children;
 
+	/// <summary>
+	/// Indicates the visual views to be displayed.
+	/// </summary>
+	[NotifyBackingField]
+	private VisualViews? _visualViews = null;
+
 
 	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.

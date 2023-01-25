@@ -1346,6 +1346,11 @@ if (student is (name: var name, age: >= 18))
             indicating controls being displayed as 81 cells in a sudoku grid respectively.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._visualViews">
+            <summary>
+            Indicates the visual views to be displayed.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instance.
@@ -1536,6 +1541,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFont"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.VisualViews">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._visualViews"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPaneCell">
             <summary>

@@ -77,4 +77,5 @@ global using static SudokuStudio.Resources.ResourceDictionary;
 global using mxaml = Microsoft.UI.Xaml;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
 global using Grid = Sudoku.Concepts.Grid;
+global using VisualViews = Sudoku.Presentation.IVisual;
 global using winsys = Windows.System;
