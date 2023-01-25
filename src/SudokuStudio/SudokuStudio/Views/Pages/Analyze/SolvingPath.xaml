@@ -6,8 +6,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:dts="using:SudokuStudio.Views.DataTemplateSelectors"
+	xmlns:model="using:SudokuStudio.Models"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
-	xmlns:s="using:Sudoku.Solving.Logical"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}"
 	NavigationCacheMode="Required" CacheMode="BitmapCache">
 	<Page.Resources>
@@ -27,24 +27,28 @@
 				<ListView.ItemTemplateSelector>
 					<dts:SolvingPathTextBlockTemplateSelector>
 						<dts:SolvingPathTextBlockTemplateSelector.StepTemplate>
-							<DataTemplate x:DataType="s:IStep">
+							<DataTemplate x:DataType="model:SolvingPathStep">
 								<ListViewItem Tag="{x:Bind}" IsRightTapEnabled="True" RightTapped="ListViewItem_RightTapped">
-									<Grid RowDefinitions="*,*" ColumnDefinitions="Auto,*">
-										<Ellipse
-											Grid.RowSpan="2" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"
-											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
-											Fill="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}" />
+									<Grid RowDefinitions="*,*" ColumnDefinitions="32,Auto,*">
 										<TextBlock
 											Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+											Text="{x:Bind cvt:AnalyzeConversion.GetIndexText((model:SolvingPathStep))}" />
+										<Ellipse
+											Grid.Column="1" Grid.RowSpan="2" Width="32" Height="32"
+											HorizontalAlignment="Center" VerticalAlignment="Center"
 											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
-											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText((s:IStep))}"
-											Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}" />
+											Fill="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(Step.DifficultyLevel)}" />
 										<TextBlock
-											Grid.Row="0" Grid.Column="1" Style="{StaticResource BaseTextBlockStyle}" Margin="12,6,0,0"
-											Text="{x:Bind Name}" />
+											Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
+											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText(Step)}"
+											Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(Step.DifficultyLevel)}" />
 										<TextBlock
-											Grid.Row="1" Grid.Column="1" Style="{StaticResource BodyTextBlockStyle}" Margin="12,0,0,6"
-											Text="{x:Bind cvt:AnalyzeConversion.GetEliminationString((s:IStep))}" />
+											Grid.Row="0" Grid.Column="2" Style="{StaticResource BaseTextBlockStyle}" Margin="12,6,0,0"
+											Text="{x:Bind Step.Name}" />
+										<TextBlock
+											Grid.Row="1" Grid.Column="2" Style="{StaticResource BodyTextBlockStyle}" Margin="12,0,0,6"
+											Text="{x:Bind cvt:AnalyzeConversion.GetEliminationString(Step)}" />
 									</Grid>
 								</ListViewItem>
 							</DataTemplate>

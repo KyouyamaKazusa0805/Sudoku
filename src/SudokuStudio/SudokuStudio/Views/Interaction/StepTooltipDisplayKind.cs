@@ -17,12 +17,17 @@ public enum StepTooltipDisplayKind : int
 	TechniqueName = 1,
 
 	/// <summary>
+	/// Indicates the position of the step in the whole solving path.
+	/// </summary>
+	TechniqueIndex = 1 << 1,
+
+	/// <summary>
 	/// Indicates the difficulty rating.
 	/// </summary>
-	DifficultyRating = 1 << 1,
+	DifficultyRating = 1 << 2,
 
 	/// <summary>
 	/// Indicates the simple description.
 	/// </summary>
-	SimpleDescription = 1 << 2
+	SimpleDescription = 1 << 3
 }

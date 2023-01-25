@@ -646,6 +646,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Index of Path:.
+        /// </summary>
+        internal static string AnalyzePage_TechniqueIndex {
+            get {
+                return ResourceManager.GetString("AnalyzePage_TechniqueIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Technique Name:.
         /// </summary>
         internal static string AnalyzePage_TechniqueName {

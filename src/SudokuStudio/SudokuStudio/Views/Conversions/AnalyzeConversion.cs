@@ -11,7 +11,7 @@ internal static class AnalyzeConversion
 
 	public static string GetDifficultyRatingText(IStep step) => step.Difficulty.ToString("0.0");
 
-	public static string GetStepTooltip(IStep step) => step.ToString()!;
+	public static string GetIndexText(SolvingPathStep step) => (step.Index + 1).ToString();
 
 	public static Visibility GetDifficultyRatingVisibility(bool showDifficultyRating)
 		=> showDifficultyRating ? Visibility.Visible : Visibility.Collapsed;
@@ -20,7 +20,7 @@ internal static class AnalyzeConversion
 		=> itemsSource is null || itemsSource.None() ? Visibility.Collapsed : Visibility.Visible;
 
 	public static Visibility GetSolvingPathListVisibility(object itemsSource)
-		=> itemsSource switch { List<IStep> and not [] => Visibility.Visible, _ => Visibility.Collapsed };
+		=> itemsSource switch { List<SolvingPathStep> and not [] => Visibility.Visible, _ => Visibility.Collapsed };
 }
 
 /// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

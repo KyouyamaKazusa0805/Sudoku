@@ -13,9 +13,11 @@ public sealed class SolvingPathTextBlockTemplateSelector : DataTemplateSelector
 	/// <summary>
 	/// Indicates the step template.
 	/// </summary>
+	[DisallowNull]
 	public DataTemplate? StepTemplate { get; set; }
 
 
 	/// <inheritdoc/>
-	protected override DataTemplate SelectTemplateCore(object item) => item switch { IStep => StepTemplate, _ => DefaultTemplate } ?? DefaultTemplate;
+	protected override DataTemplate SelectTemplateCore(object item)
+		=> item switch { SolvingPathStep => StepTemplate, _ => DefaultTemplate } ?? DefaultTemplate;
 }

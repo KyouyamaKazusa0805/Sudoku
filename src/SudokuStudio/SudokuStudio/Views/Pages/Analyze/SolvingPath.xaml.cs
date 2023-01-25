@@ -18,6 +18,7 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 	[NotifyBackingField]
 	private StepTooltipDisplayKind _stepTooltipDisplayKind = StepTooltipDisplayKind.TechniqueName
 		| StepTooltipDisplayKind.DifficultyRating
+		| StepTooltipDisplayKind.TechniqueIndex
 		| StepTooltipDisplayKind.SimpleDescription;
 
 
@@ -31,12 +32,13 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 
-	private void AnalysisResultSetterAfter(LogicalSolverResult? value) => SolvingPathList.ItemsSource = value?.Steps.ToList();
+	private void AnalysisResultSetterAfter(LogicalSolverResult? value)
+		=> SolvingPathList.ItemsSource = value is null ? null : SolvingPathStepCollection.Create(value);
 
 
 	private void ListViewItem_RightTapped(object sender, RightTappedRoutedEventArgs e)
 	{
-		if (sender is not ListViewItem { Tag: IStep step } item)
+		if (sender is not ListViewItem { Tag: SolvingPathStep step } item)
 		{
 			return;
 		}
@@ -47,8 +49,9 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 		Dialog_StepInfo.IsOpen = true;
 
 
-		static IEnumerable<Inline> createInlines(IStep step, StepTooltipDisplayKind displayKind)
+		static IEnumerable<Inline> createInlines(SolvingPathStep s, StepTooltipDisplayKind displayKind)
 		{
+			var (index, _, step) = s;
 			var result = new List<Inline>();
 
 			if (displayKind.Flags(StepTooltipDisplayKind.TechniqueName))
@@ -56,6 +59,15 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 				result.Add(new Run { Text = GetString("AnalyzePage_TechniqueName") }.SingletonSpan<Bold>());
 				result.Add(new LineBreak());
 				result.Add(new Run { Text = step.Name });
+			}
+
+			if (displayKind.Flags(StepTooltipDisplayKind.TechniqueIndex))
+			{
+				f();
+
+				result.Add(new Run { Text = GetString("AnalyzePage_TechniqueIndex") }.SingletonSpan<Bold>());
+				result.Add(new LineBreak());
+				result.Add(new Run { Text = (index + 1).ToString() });
 			}
 
 			if (displayKind.Flags(StepTooltipDisplayKind.DifficultyRating))
