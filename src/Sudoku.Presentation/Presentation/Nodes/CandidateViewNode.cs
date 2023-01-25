@@ -25,8 +25,11 @@ public sealed partial class CandidateViewNode : BasicViewNode
 	/// </summary>
 	[DebuggerHidden]
 	[GeneratedDisplayName(nameof(Candidate))]
-	private string CandidateString => (Candidates.Empty + Candidate).ToString();
+	private string CandidateString => RxCyNotation.ToCandidateString(Candidate);
 
+
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out Identifier identifier, out int candidate);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

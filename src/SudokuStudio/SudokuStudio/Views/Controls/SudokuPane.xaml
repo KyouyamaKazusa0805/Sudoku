@@ -34,7 +34,7 @@
 	</UserControl.Resources>
 
 	<Grid
-		x:Name="MainGrid" Background="White" CornerRadius="30"
+		x:Name="MainGrid" x:FieldModifier="internal" Background="White" CornerRadius="30"
 		RowDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto" ColumnDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto">
 		<!--Outside border-->
 		<Border

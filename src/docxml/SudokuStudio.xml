@@ -31,6 +31,21 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:SudokuStudio.AppLifecycle.RunningContext">
             <summary>
             Defines a context type that stores the basic information of project running.
@@ -626,6 +641,87 @@ if (student is (name: var name, age: >= 18))
             <param name="analysisResult">A <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.</param>
             <param name="displayKind">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
+        </member>
+        <member name="T:SudokuStudio.Models.ViewUnit">
+            <summary>
+            Defines a view unit.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.ViewUnit.Conclusions">
+            <summary>
+            Indicates the candidates as conclusions in a single <see cref="T:Sudoku.Solving.Logical.IStep"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.IStep"/>
+        </member>
+        <member name="P:SudokuStudio.Models.ViewUnit.View">
+            <summary>
+            Indicates a view of highlight elements.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Models.ViewUnit.Deconstruct(Sudoku.Presentation.View@,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="T:SudokuStudio.Models.ViewUnitUIElementCollection">
+            <summary>
+            Represents a collection that only stores a list of <see cref="T:Microsoft.UI.Xaml.UIElement"/> instances that describes for a <see cref="T:SudokuStudio.Models.ViewUnit"/> instance.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.UIElement"/>
+            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+        </member>
+        <member name="M:SudokuStudio.Models.ViewUnitUIElementCollection.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Models.ViewUnitUIElementCollection"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Models.ViewUnitUIElementCollection.#ctor(System.Collections.Generic.IEnumerable{Microsoft.UI.Xaml.UIElement})">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Models.ViewUnitUIElementCollection"/> instance via the specified collection of <see cref="T:Microsoft.UI.Xaml.UIElement"/>s.
+            </summary>
+            <param name="controls">A list of <see cref="T:Microsoft.UI.Xaml.UIElement"/>s.</param>
         </member>
         <member name="T:SudokuStudio.Program">
             <summary>
@@ -1229,6 +1325,16 @@ if (student is (name: var name, age: >= 18))
             Defines a pair of stacks that stores undo and redo steps.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._children">
+            <summary>
+            The easy entry to visit children <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/> instances. This field contains 81 elements,
+            indicating controls being displayed as 81 cells in a sudoku grid respectively.
+            </summary>
+            <remarks>
+            Although this field is not marked as <see langword="readonly"/>, it will only be initialized during initialization.
+            <b>Please do not modify any elements in this array.</b>
+            </remarks>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates">
             <summary>
             Indicates whether the pane displays for candidates.
@@ -1339,17 +1445,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFont">
             <summary>
             Indicates the coordinate label font.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._children">
-            <summary>
-            The easy entry to visit children <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/> instances. This field contains 81 elements,
-            indicating controls being displayed as 81 cells in a sudoku grid respectively.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._visualViews">
-            <summary>
-            Indicates the visual views to be displayed.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.#ctor">
@@ -1479,6 +1574,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates"/>
         </member>
@@ -1539,9 +1644,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFont"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.VisualViews">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._visualViews"/>
-        </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPaneCell">
             <summary>
             Defines a cell displayed in a <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/>.
@@ -1595,6 +1697,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPaneCell._candidatesMask"/>
         </member>
@@ -1643,6 +1755,39 @@ if (student is (name: var name, age: >= 18))
 					Provides with constants and read-only values used by code in the current file.
 				</summary>
 			</target>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.IdentifierConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about <see cref="T:Sudoku.Presentation.Identifier"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Conversions.Constants">
+            <target name="class" when="constant">
+				<summary>
+					Provides with constants and read-only values used by code in the current file.
+				</summary>
+			</target>
+        </member>
+        <member name="F:SudokuStudio.Views.Conversions.Constants.ColorPalette">
+            <summary>
+            The color palette. This property stores a list of customized colors to be used as user-defined colors.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Conversions.Constants.EliminationColor">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Conversions.Constants.CannibalismColor">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Conversions.Constants.ChainColor">
+            <summary>
+            Indicates the chain color.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Conversions.PencilmarkTextConversion">
             <summary>
@@ -1925,6 +2070,70 @@ if (student is (name: var name, age: >= 18))
             Indicates the simple description.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory">
+            <summary>
+            Defines a factory type that is used for creating a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+            to display for highlighted cells, candidates and so on.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ViewUnitUIElementControlTag">
+            <summary>
+            Indicates the tag that is used to describe the control is only used for displaying highlighted elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.GetViewUnitTargetParentControls(SudokuStudio.Views.Pages.AnalyzePage)">
+            <summary>
+            Try to get all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are candidate controls
+            storing <see cref="T:SudokuStudio.Models.ViewUnit"/>-displaying <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s.
+            </summary>
+            <param name="targetPage">The target page.</param>
+            <returns>
+            A list of controls, whose <c>Chilren</c> property can be used for removing <see cref="T:SudokuStudio.Models.ViewUnit"/>-displaying controls.
+            </returns>
+            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.RemoveViewUnitControls(SudokuStudio.Views.Pages.AnalyzePage)">
+            <summary>
+            Removes all possible controls that are used for displaying elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            </summary>
+            <param name="targetPage">The target page.</param>
+            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.AddViewUnitControls(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Models.ViewUnit)">
+            <summary>
+            Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            </summary>
+            <param name="targetPage">The target page.</param>
+            <param name="viewUnit">The view unit that you want to display.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
+            <summary>
+            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            </summary>
+            <param name="this">The collection.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.Extensions.ConflictWith(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Int32,System.Nullable{Sudoku.Solving.Conclusion}@)">
+            <summary>
+            <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
+            <para>This method is used for checking cannibalisms.</para>
+            </summary>
+            <param name="conclusions">The conclusion collection.</param>
+            <param name="candidate">The candidate to be determined.</param>
+            <param name="conclusion">The overlapped result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
             <summary>
             Defines a new page that stores a set of controls to analyze a sudoku grid.
@@ -2047,6 +2256,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched"/>
         </member>
@@ -2087,6 +2306,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._analysisResult"/>
         </member>
@@ -2114,6 +2343,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
@@ -2150,6 +2389,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
@@ -2223,6 +2472,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
@@ -2329,6 +2588,36 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
@@ -2523,6 +2812,59 @@ if (student is (name: var name, age: >= 18))
             <param name="hWnd">Indicates the handle of the window. The value is an <see cref="T:System.IntPtr"/> integer value.</param>
             <param name="wndId">Indicates the handle of the window. The value is a <see cref="T:Microsoft.UI.WindowId"/> sturcture instance.</param>
             <returns>A valid <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
+        </member>
+        <member name="T:System.Numerics.Vector2Extensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Numerics.Vector2"/>.
+            </summary>
+            <seealso cref="T:System.Numerics.Vector2"/>
+        </member>
+        <member name="M:System.Numerics.Vector2Extensions.Deconstruct(System.Numerics.Vector2,System.Single@,System.Single@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
         </member>
     </members>
 </doc>

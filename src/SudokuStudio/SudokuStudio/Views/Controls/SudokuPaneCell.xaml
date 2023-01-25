@@ -19,7 +19,7 @@
 		</Style>
 	</UserControl.Resources>
 
-	<Grid x:Name="MainGrid" RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
+	<Grid x:Name="MainGrid" x:FieldModifier="internal" RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
 		<Grid.ContextFlyout>
 			<!--Right-click menu-->
 			<Flyout x:Name="MainGridContextFlyout" Opening="Flyout_Opening">

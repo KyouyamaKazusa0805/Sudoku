@@ -1,5 +1,4 @@
 ﻿global using System;
-global using System.Buffers;
 global using System.Collections;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
@@ -16,6 +15,7 @@ global using Sudoku.Presentation.Nodes;
 global using Sudoku.Presentation.Nodes.Grouped;
 global using Sudoku.Presentation.Nodes.Shapes;
 global using Sudoku.Solving;
+global using Sudoku.Text.Notations;
 global using Sudoku.Text.Serialization;
 global using static System.Numerics.BitOperations;
 global using static System.Text.Json.JsonSerializer;

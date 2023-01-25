@@ -11,6 +11,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	internal readonly NotifyElementChangedStack<Grid> _undoStack = new(), _redoStack = new();
 
 	/// <summary>
+	/// The easy entry to visit children <see cref="SudokuPaneCell"/> instances. This field contains 81 elements,
+	/// indicating controls being displayed as 81 cells in a sudoku grid respectively.
+	/// </summary>
+	/// <remarks>
+	/// Although this field is not marked as <see langword="readonly"/>, it will only be initialized during initialization.
+	/// <b>Please do not modify any elements in this array.</b>
+	/// </remarks>
+	internal SudokuPaneCell[] _children;
+
+	/// <summary>
 	/// Indicates whether the pane displays for candidates.
 	/// </summary>
 	[NotifyBackingField]
@@ -141,18 +151,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	[NotifyBackingField]
 	private FontFamily _coordinateLabelFont = new("Tahoma");
-
-	/// <summary>
-	/// The easy entry to visit children <see cref="SudokuPaneCell"/> instances. This field contains 81 elements,
-	/// indicating controls being displayed as 81 cells in a sudoku grid respectively.
-	/// </summary>
-	private SudokuPaneCell[] _children;
-
-	/// <summary>
-	/// Indicates the visual views to be displayed.
-	/// </summary>
-	[NotifyBackingField]
-	private VisualViews? _visualViews = null;
 
 
 	/// <summary>
@@ -537,7 +535,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 					default:
 					{
 						var content = await FileIO.ReadTextAsync(file);
-						switch (Path.GetExtension(filePath))
+						switch (io::Path.GetExtension(filePath))
 						{
 							case CommonFileExtensions.PlainText:
 							{

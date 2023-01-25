@@ -142,7 +142,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			return;
 		}
 
-		switch (Path.GetExtension(filePath))
+		switch (io::Path.GetExtension(filePath))
 		{
 			case CommonFileExtensions.PlainText:
 			{
@@ -191,7 +191,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		}
 
 		var grid = SudokuPane.Puzzle;
-		switch (Path.GetExtension(filePath))
+		switch (io::Path.GetExtension(filePath))
 		{
 			case CommonFileExtensions.PlainText:
 			{
@@ -256,7 +256,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			default:
 			{
 				var content = await FileIO.ReadTextAsync(file);
-				switch (Path.GetExtension(filePath))
+				switch (io::Path.GetExtension(filePath))
 				{
 					case CommonFileExtensions.PlainText:
 					{
