@@ -86,6 +86,12 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 				return null;
 			}
 
+			var callbackAttributeType = compilation.GetTypeByMetadataName("System.Diagnostics.CodeGen.NotifyCallbackAttribute")!;
+			if (callbackAttributeType is null)
+			{
+				return null;
+			}
+
 			var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IEqualityOperators`3")!;
 			var equatableType = compilation.GetTypeByMetadataName(typeof(IEquatable<>).FullName)!;
 			var comparableType = compilation.GetTypeByMetadataName(typeof(IComparable<>).FullName)!;
@@ -97,16 +103,26 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 						? EqualityComparisonMode.InstanceCompareToMethod
 						: EqualityComparisonMode.EqualityComparerDefaultInstance;
 
+			var doNotEmitPropertyChangedEventTrigger = false;
 			var accessibility = (Accessibility?)null;
 			foreach (var (name, value) in namedArguments)
 			{
-				if (name == nameof(Accessibility))
+				switch (name)
 				{
-					accessibility = (Accessibility)(int)value.Value!;
+					case nameof(Accessibility):
+					{
+						accessibility = (Accessibility)(int)value.Value!;
+						break;
+					}
+					case "DoNotEmitPropertyChangedEventTrigger":
+					{
+						doNotEmitPropertyChangedEventTrigger = (bool)value.Value!;
+						break;
+					}
 				}
 			}
 
-			return new(propertyName, fieldSymbol, type, mode, accessibility ?? Accessibility.Public);
+			return new(propertyName, fieldSymbol, type, mode, accessibility ?? Accessibility.Public, doNotEmitPropertyChangedEventTrigger, callbackAttributeType);
 
 
 			bool containsPropertyChangedEvent(IEventSymbol e)
@@ -133,9 +149,10 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 			foreach (var group in data.CastToNotNull().GroupBy<Data, INamedTypeSymbol>(keySelector, SymbolEqualityComparer.Default))
 			{
 				var type = group.Key;
+				var methodsInType = type.GetMembers().OfType<IMethodSymbol>();
 
 				var propertyDeclarations = new List<string>();
-				foreach (var (property, fieldSymbol, _, mode, accessibility) in group)
+				foreach (var (property, fieldSymbol, _, mode, accessibility, doNotEmitPropertyChangedEventTrigger, callbackAttributeType) in group)
 				{
 					if (fieldSymbol is not { Name: var field, Type: { NullableAnnotation: var nullability } fieldType })
 					{
@@ -165,50 +182,78 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 						_ => throw new NotSupportedException("The value is not defined.")
 					};
 
+					var eventTrigger = doNotEmitPropertyChangedEventTrigger
+						? string.Empty
+						:
+						$$"""
+
+
+									PropertyChanged?.Invoke(this, new(nameof({{property}})));
+						""";
+
+					var customizedCallback = fieldSymbol.GetAttributes().FirstOrDefault(callbackAttributeTypeExists) switch
+					{
+						{ ConstructorArguments: [{ Value: string methodName }] }
+							=> methodsInType.FirstOrDefault(methodSymbol => methodSymbol.Name == methodName) switch
+							{
+								{ Parameters: [{ Type: var parameterType }] } when SymbolEqualityComparer.Default.Equals(parameterType, fieldType)
+									=>
+									$$"""
+
+
+												{{methodName}}(value);
+									""",
+								_ => string.Empty
+							},
+						_ => string.Empty
+					};
+
 					propertyDeclarations.Add(
 						$$"""
-							/// <inheritdoc cref="{{field}}"/>
-								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
-								{{accessibilityStr}} {{fieldTypeStr}} {{property}}
+						/// <inheritdoc cref="{{field}}"/>
+							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+							{{accessibilityStr}} {{fieldTypeStr}} {{property}}
+							{
+								[global::System.Diagnostics.DebuggerStepThrough]
+								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+								get => {{field}};
+
+								[global::System.Diagnostics.DebuggerStepThrough]
+								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+								set
 								{
-									[global::System.Diagnostics.DebuggerStepThrough]
-									[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-									get => {{field}};
-
-									[global::System.Diagnostics.DebuggerStepThrough]
-									[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-									set
+									if ({{valueComparisonCode}})
 									{
-										if ({{valueComparisonCode}})
-										{
-											return;
-										}
-
-										{{field}} = value;
-
-										PropertyChanged?.Invoke(this, new(nameof({{property}})));
+										return;
 									}
+
+									{{field}} = value;{{eventTrigger}}{{customizedCallback}}
 								}
-							"""
+							}
+						"""
 					);
+
+
+					bool callbackAttributeTypeExists(AttributeData a)
+						=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, callbackAttributeType);
 				}
 
 				var @namespace = type.ContainingNamespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 				spc.AddSource(
 					$"{type.ToFileName()}.g.{Shortcuts.PropertyBinding}.cs",
 					$$"""
-						// <auto-generated />
+					// <auto-generated />
 
-						#nullable enable
+					#nullable enable
 
-						namespace {{@namespace["global::".Length..]}};
+					namespace {{@namespace["global::".Length..]}};
 
-						partial {{type.GetTypeKindModifier()}} {{type.Name}}
-						{
-							{{string.Join("\r\n\r\n\t", propertyDeclarations)}}
-						}
-						"""
+					partial {{type.GetTypeKindModifier()}} {{type.Name}}
+					{
+						{{string.Join("\r\n\r\n\t", propertyDeclarations)}}
+					}
+					"""
 				);
 			}
 
@@ -303,12 +348,18 @@ file enum Accessibility
 /// <param name="Type">Indicates the containing type symbol.</param>
 /// <param name="ComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
 /// <param name="Accessibility">Indicates the accessibility.</param>
+/// <param name="DoNotEmitPropertyChangedEventTrigger">
+/// Indicates whether the source generator does not emit source code to trigger property changed event.
+/// </param>
+/// <param name="CallbackAttributeType">Indicates the callback attribute type.</param>
 file readonly record struct Data(
 	string PropertyName,
 	IFieldSymbol FieldSymbol,
 	INamedTypeSymbol Type,
 	EqualityComparisonMode ComparisonMode,
-	Accessibility Accessibility
+	Accessibility Accessibility,
+	bool DoNotEmitPropertyChangedEventTrigger,
+	INamedTypeSymbol CallbackAttributeType
 );
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

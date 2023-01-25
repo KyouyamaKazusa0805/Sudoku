@@ -7,6 +7,13 @@
 public sealed class NotifyBackingFieldAttribute : Attribute
 {
 	/// <summary>
+	/// Indicates whether the source generator doesn't emit the source code to trigger changed event
+	/// <see cref="INotifyPropertyChanged.PropertyChanged"/>.
+	/// </summary>
+	/// <seealso cref="INotifyPropertyChanged.PropertyChanged"/>
+	public bool DoNotEmitPropertyChangedEventTrigger { get; init; } = false;
+
+	/// <summary>
 	/// Indicates the accessibility of the generated property. The default value is <see cref="GeneralizedAccessibility.Public"/>.
 	/// </summary>
 	/// <seealso cref="GeneralizedAccessibility.Public"/>

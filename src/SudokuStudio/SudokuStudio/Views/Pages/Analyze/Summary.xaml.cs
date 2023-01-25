@@ -3,11 +3,13 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines a summary page.
 /// </summary>
-public sealed partial class Summary : Page, IAnalyzeTabPage
+public sealed partial class Summary : Page, IAnalyzeTabPage, INotifyPropertyChanged
 {
 	/// <summary>
 	/// Indicates the analysis result.
 	/// </summary>
+	[NotifyBackingField(DoNotEmitPropertyChangedEventTrigger = true)]
+	[NotifyCallback(nameof(AnalysisResultSetterAfter))]
 	private LogicalSolverResult? _analysisResult;
 
 
@@ -22,21 +24,11 @@ public sealed partial class Summary : Page, IAnalyzeTabPage
 	/// </summary>
 	public AnalyzePage BasePage { get; set; } = null!;
 
+
 	/// <inheritdoc/>
-	public LogicalSolverResult? AnalysisResult
-	{
-		get => _analysisResult;
+	public event PropertyChangedEventHandler? PropertyChanged;
 
-		set
-		{
-			if (_analysisResult == value)
-			{
-				return;
-			}
 
-			_analysisResult = value;
-
-			SummaryTable.ItemsSource = value is null ? null : AnalysisResultTableRow.CreateListFrom(value);
-		}
-	}
+	private void AnalysisResultSetterAfter(LogicalSolverResult? value)
+		=> SummaryTable.ItemsSource = value is null ? null : AnalysisResultTableRow.CreateListFrom(value);
 }

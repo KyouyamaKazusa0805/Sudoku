@@ -8,6 +8,8 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 	/// <summary>
 	/// Indicates the analysis result.
 	/// </summary>
+	[NotifyBackingField(DoNotEmitPropertyChangedEventTrigger = true)]
+	[NotifyCallback(nameof(AnalysisResultSetterAfter))]
 	private LogicalSolverResult? _analysisResult;
 
 	/// <summary>
@@ -29,23 +31,7 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 
-	/// <inheritdoc/>
-	public LogicalSolverResult? AnalysisResult
-	{
-		get => _analysisResult;
-
-		set
-		{
-			if (_analysisResult == value)
-			{
-				return;
-			}
-
-			_analysisResult = value;
-
-			SolvingPathList.ItemsSource = value?.Steps.ToList();
-		}
-	}
+	private void AnalysisResultSetterAfter(LogicalSolverResult? value) => SolvingPathList.ItemsSource = value?.Steps.ToList();
 
 
 	private void ListViewItem_RightTapped(object sender, RightTappedRoutedEventArgs e)

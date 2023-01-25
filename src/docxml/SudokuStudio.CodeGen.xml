@@ -94,8 +94,12 @@
             <param name="Type">Indicates the containing type symbol.</param>
             <param name="ComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
             <param name="Accessibility">Indicates the accessibility.</param>
+            <param name="DoNotEmitPropertyChangedEventTrigger">
+            Indicates whether the source generator does not emit source code to trigger property changed event.
+            </param>
+            <param name="CallbackAttributeType">Indicates the callback attribute type.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(System.String,Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode,Sudoku.Diagnostics.CodeGen.Generators.Accessibility)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(System.String,Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode,Sudoku.Diagnostics.CodeGen.Generators.Accessibility,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol)">
             <summary>
             Defines a gathered data tuple.
             </summary>
@@ -104,6 +108,10 @@
             <param name="Type">Indicates the containing type symbol.</param>
             <param name="ComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
             <param name="Accessibility">Indicates the accessibility.</param>
+            <param name="DoNotEmitPropertyChangedEventTrigger">
+            Indicates whether the source generator does not emit source code to trigger property changed event.
+            </param>
+            <param name="CallbackAttributeType">Indicates the callback attribute type.</param>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PropertyName">
             <summary>The property name.</summary>
@@ -119,6 +127,14 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Accessibility">
             <summary>Indicates the accessibility.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.DoNotEmitPropertyChangedEventTrigger">
+            <summary>
+            Indicates whether the source generator does not emit source code to trigger property changed event.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.CallbackAttributeType">
+            <summary>Indicates the callback attribute type.</summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Extensions">
             <target name="class" when="extension">

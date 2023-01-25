@@ -2314,11 +2314,34 @@
             Defines an attribute that is used for source generation on properties.
             </summary>
         </member>
+        <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.DoNotEmitPropertyChangedEventTrigger">
+            <summary>
+            Indicates whether the source generator doesn't emit the source code to trigger changed event
+            <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>.
+            </summary>
+            <seealso cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+        </member>
         <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.Accessibility">
             <summary>
             Indicates the accessibility of the generated property. The default value is <see cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>.
             </summary>
             <seealso cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.NotifyCallbackAttribute">
+            <summary>
+            Defines an attribute that is used for an auto-notifying field, to define the customized callback method name.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.NotifyCallbackAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:System.Diagnostics.CodeGen.NotifyCallbackAttribute"/> instance via the specified path whose corresponding member will be referenced.
+            </summary>
+            <param name="callbackMemberReferencePath">The referenced member path.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.NotifyCallbackAttribute.CallbackMemberReferencePath">
+            <summary>
+            Indicates the path of referenced member.
+            </summary>
         </member>
         <member name="T:System.ArrayExtensions">
             <summary>

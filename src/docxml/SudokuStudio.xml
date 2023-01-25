@@ -1953,9 +1953,6 @@
         <member name="E:SudokuStudio.Views.Pages.Analyze.SolvingPath.PropertyChanged">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
-            <inheritdoc/>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -1970,6 +1967,9 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._analysisResult"/>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKind">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._stepTooltipDisplayKind"/>
@@ -2008,7 +2008,7 @@
             Indicates the base page.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
+        <member name="E:SudokuStudio.Views.Pages.Analyze.Summary.PropertyChanged">
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
@@ -2025,6 +2025,9 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.Summary._analysisResult"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.BasicOperation">
             <summary>
