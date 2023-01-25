@@ -133,6 +133,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Progress: {0:P}.
+        /// </summary>
+        internal static string AnalyzePage_AnalyzerProgress {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AnalyzerProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty status. Are you sure?.
         /// </summary>
         internal static string AnalyzePage_AreYouSureToReturnToEmpty {

@@ -82,8 +82,18 @@
 					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}" />
 
 				<!--Analyze data-->
-				<StackPanel Grid.Column="1">
-					<TabView x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Left" Height="600">
+				<Grid Grid.Column="1">
+					<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+						<ProgressRing
+							x:Name="AnalyzeProgress" Width="100" Height="100" IsIndeterminate="False" Value="{x:Bind ProgressPercent,Mode=OneWay}"
+							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched),Mode=OneWay}" />
+						<TextBlock
+							x:Name="AnalyzeProgressLabel" x:FieldModifier="internal"
+							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched),Mode=OneWay}" />
+					</StackPanel>
+					<TabView
+						x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Left" Height="600"
+						Visibility="{x:Bind cvt:AnalyzeConversion.GetAnalyzeTabsVisibility(IsAnalyzerLaunched),Mode=OneWay}">
 						<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
 							<TabViewItem.IconSource>
 								<SymbolIconSource Symbol="Flag" />
@@ -111,7 +121,7 @@
 
 						</TabViewItem>
 					</TabView>
-				</StackPanel>
+				</Grid>
 			</Grid>
 
 			<StackPanel Orientation="Vertical" Spacing="40" Margin="0,120,20,60">

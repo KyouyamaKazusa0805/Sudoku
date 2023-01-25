@@ -120,6 +120,9 @@
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>所有可用步骤</value>
   </data>
+  <data name="AnalyzePage_AnalyzerProgress" xml:space="preserve">
+    <value>进度：{0:P}</value>
+  </data>
   <data name="AnalyzePage_AreYouSureToReturnToEmpty" xml:space="preserve">
     <value>该操作会将盘面置空（恢复为空盘状态）。确定要这么做？</value>
   </data>

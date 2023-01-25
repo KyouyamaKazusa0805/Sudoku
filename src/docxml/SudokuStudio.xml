@@ -724,6 +724,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to All Available Steps.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AnalyzerProgress">
+            <summary>
+              Looks up a localized string similar to Progress: {0:P}.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AreYouSureToReturnToEmpty">
             <summary>
               Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty status. Are you sure?.
@@ -1953,9 +1958,19 @@ if (student is (name: var name, age: >= 18))
             Defines an instance that is used for synchronizing analysis operation.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched">
+            <summary>
+            Indicates whether the analyzer is launched.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._generatorIsNotRunning">
             <summary>
             Indicates whether the generator is not running currently.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._progressPercent">
+            <summary>
+            Indicates the progress percent value.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions">
@@ -2060,8 +2075,14 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched"/>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._generatorIsNotRunning"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._progressPercent"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>

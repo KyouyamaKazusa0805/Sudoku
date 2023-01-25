@@ -21,11 +21,15 @@ public sealed class AnalyzeCommand : ButtonCommand
 
 		self.AnalyzeButton.IsEnabled = false;
 		self.ClearAnalyzeTabsData();
+		self.IsAnalyzerLaunched = true;
+
+		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 
 		var solver = ((App)Application.Current).RunningContext.Solver;
-		var analysisResult = await Task.Run(() => { lock (self.AnalyzeSyncRoot) { return solver.Solve(puzzle); } });
+		var analysisResult = await Task.Run(analyze);
 
 		self.AnalyzeButton.IsEnabled = true;
+		self.IsAnalyzerLaunched = false;
 
 		switch (analysisResult)
 		{
@@ -50,6 +54,27 @@ public sealed class AnalyzeCommand : ButtonCommand
 				break;
 			}
 #endif
+		}
+
+
+		void progressReportHandler(double percent)
+		{
+			self.DispatcherQueue.TryEnqueue(updatePercentValueCallback);
+
+
+			void updatePercentValueCallback()
+			{
+				self.ProgressPercent = percent * 100;
+				self.AnalyzeProgressLabel.Text = string.Format(textFormat!, percent);
+			}
+		}
+
+		LogicalSolverResult analyze()
+		{
+			lock (self.AnalyzeSyncRoot)
+			{
+				return solver.Solve(puzzle, new Progress<double>(progressReportHandler));
+			}
 		}
 	}
 }

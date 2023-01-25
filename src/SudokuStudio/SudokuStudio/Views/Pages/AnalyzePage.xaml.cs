@@ -17,10 +17,22 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	internal readonly object AnalyzeSyncRoot = new();
 
 	/// <summary>
+	/// Indicates whether the analyzer is launched.
+	/// </summary>
+	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
+	private bool _isAnalyzerLaunched;
+
+	/// <summary>
 	/// Indicates whether the generator is not running currently.
 	/// </summary>
 	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
 	private bool _generatorIsNotRunning = true;
+
+	/// <summary>
+	/// Indicates the progress percent value.
+	/// </summary>
+	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
+	private double _progressPercent;
 
 	/// <summary>
 	/// Defines a key-value pair of functions that is used for routing hotkeys.
