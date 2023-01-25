@@ -29,6 +29,10 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 
 
 	/// <inheritdoc/>
+	public AnalyzePage BasePage { get; set; } = null!;
+
+
+	/// <inheritdoc/>
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 
@@ -100,6 +104,16 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 				}
 			}
 		}
+	}
+
+	private void ListViewItem_Tapped(object sender, TappedRoutedEventArgs e)
+	{
+		if ((this, sender) is not ({ BasePage.SudokuPane: var pane }, ListViewItem { Tag: SolvingPathStep(_, var stepGrid, _) }))
+		{
+			return;
+		}
+
+		pane.SetPuzzle(stepGrid, clearStack: true, clearAnalyzeTabData: false);
 	}
 }
 

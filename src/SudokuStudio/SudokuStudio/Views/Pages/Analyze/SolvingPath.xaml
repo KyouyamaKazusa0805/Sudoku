@@ -28,7 +28,9 @@
 					<dts:SolvingPathTextBlockTemplateSelector>
 						<dts:SolvingPathTextBlockTemplateSelector.StepTemplate>
 							<DataTemplate x:DataType="model:SolvingPathStep">
-								<ListViewItem Tag="{x:Bind}" IsRightTapEnabled="True" RightTapped="ListViewItem_RightTapped">
+								<ListViewItem
+									Tag="{x:Bind}" IsRightTapEnabled="True"
+									Tapped="ListViewItem_Tapped" RightTapped="ListViewItem_RightTapped">
 									<Grid RowDefinitions="*,*" ColumnDefinitions="32,Auto,*">
 										<TextBlock
 											Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"

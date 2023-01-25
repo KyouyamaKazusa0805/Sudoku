@@ -19,9 +19,7 @@ public sealed partial class Summary : Page, IAnalyzeTabPage
 	public Summary() => InitializeComponent();
 
 
-	/// <summary>
-	/// Indicates the base page.
-	/// </summary>
+	/// <inheritdoc/>
 	public AnalyzePage BasePage { get; set; } = null!;
 
 
