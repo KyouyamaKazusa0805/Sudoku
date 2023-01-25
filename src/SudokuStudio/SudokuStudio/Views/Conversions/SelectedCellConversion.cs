@@ -35,5 +35,13 @@ internal static class SelectedCellConversion
 	public static int SelectedCellToGridColumn_Column(int selectedCell)
 		=> selectedCell == -1 ? 2 : selectedCell.ToHouseIndex(HouseType.Column) - 18 + 2;
 
-	public static Visibility SelectedCellToVisibility(int selectedCell) => selectedCell == -1 ? Visibility.Collapsed : Visibility.Visible;
+	public static Visibility SelectedCellToVisibility(int selectedCell, bool displayCursors)
+		=> (displayCursors, selectedCell) switch
+		{
+			(true, _) => Visibility.Collapsed,
+			(_, >= 0 and < 81) => Visibility.Visible,
+			_ => Visibility.Collapsed
+		};
+
+	public static Brush GetCursorColor(Color color) => new SolidColorBrush(color);
 }

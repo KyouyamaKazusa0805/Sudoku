@@ -78,7 +78,9 @@
 					SelectedCell="-1" ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code" CoordinateLabelFont="Cascadia Code"
 					CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection"
 					ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4"
-					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True"
+					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True" DisplayCursors="True"
+					CursorBackgroundColor="#200000FF" GivenColor="Black" ModifiableColor="Blue" PencilmarkColor="#646464"
+					CoordinateLabelColor="#646464" DeltaCandidateColor="#FFB9B9" DeltaCellColor="#F00" BorderColor="Black"
 					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}" />
 
 				<!--Analyze data-->

@@ -17,6 +17,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private bool _displayCandidates = true;
 
 	/// <summary>
+	/// Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers of the target cell
+	/// that is the one your mouse points to.
+	/// </summary>
+	[NotifyBackingField]
+	private bool _displayCursors = true;
+
+	/// <summary>
 	/// Indicates whether the pane displays for delta digits using different colors.
 	/// </summary>
 	[NotifyBackingField]
@@ -107,6 +114,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	[NotifyBackingField]
 	private Color _borderColor = Colors.Black;
+
+	/// <summary>
+	/// Indicates the cursor background color.
+	/// </summary>
+	[NotifyBackingField]
+	private Color _cursorBackgroundColor = new() { A = 32, B = 255 };
 
 	/// <inheritdoc cref="Puzzle"/>
 	private Grid _puzzle = Grid.Empty;
