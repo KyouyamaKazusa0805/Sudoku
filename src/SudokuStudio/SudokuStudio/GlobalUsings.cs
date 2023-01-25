@@ -50,7 +50,6 @@ global using SudokuStudio.Input;
 global using SudokuStudio.Interop;
 global using SudokuStudio.Models;
 global using SudokuStudio.Storage;
-global using SudokuStudio.Views.Attached;
 global using SudokuStudio.Views.Controls;
 global using SudokuStudio.Views.Interaction;
 global using SudokuStudio.Views.Pages;
