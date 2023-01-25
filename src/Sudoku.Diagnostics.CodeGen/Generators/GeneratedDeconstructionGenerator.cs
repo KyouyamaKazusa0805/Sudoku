@@ -11,16 +11,16 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 	{
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute",
-					static (node, _) => node is MethodDeclarationSyntax,
-					transform
-				)
-				.Where(static d => d is not null)
+				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute", nodePredicate, transform)
+				.Where(notNullPredicate)
 				.Collect(),
 			action
 		);
 
+
+		static bool nodePredicate(SyntaxNode node, CancellationToken _) => node is MethodDeclarationSyntax;
+
+		static bool notNullPredicate(Data? d) => d is not null;
 
 		static Data? transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 		{
@@ -39,7 +39,7 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 						ReturnsVoid: true,
 						ContainingType: { ContainingType: null, IsFileLocal: false } type
 					} symbol,
-					SemanticModel.Compilation: var compilation
+					SemanticModel.Compilation: { AssemblyName: { } assemblyName } compilation
 				}
 				when parameters.All(static p => p.RefKind == RefKind.Out):
 				{
@@ -49,7 +49,7 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 						goto default;
 					}
 
-					return new(type, symbol, parameters, modifiers, attributeType);
+					return new(type, symbol, parameters, modifiers, attributeType, assemblyName);
 				}
 				default:
 				{
@@ -62,7 +62,7 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 		{
 			_ = spc is { CancellationToken: var ct };
 
-			foreach (var (containingType, method, parameters, modifiers, attributeType) in data.CastToNotNull())
+			foreach (var (containingType, method, parameters, modifiers, attributeType, assemblyName) in data.CastToNotNull())
 			{
 				if (containingType is not { ContainingNamespace: var @namespace, Name: var typeName, TypeParameters: var typeParameters })
 				{
@@ -124,6 +124,8 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 					_ => $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>"
 				};
 
+				var includingReferenceLevel = assemblyName.StartsWith("SudokuStudio") ? "../../../" : "../../";
+
 				spc.AddSource(
 					$"{containingType.ToFileName()}_p{parameters.Length}.g.{Shortcuts.GeneratedDeconstruction}.cs",
 					$$"""
@@ -133,7 +135,7 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 
 					{{namespaceStr}}partial {{containingType.GetTypeKindModifier()}} {{typeName}}{{typeParametersStr}}
 					{
-						/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+						/// <include file="{{includingReferenceLevel}}global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 						[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
@@ -241,10 +243,12 @@ public sealed class GeneratedDeconstructionGenerator : IIncrementalGenerator
 /// <param name="Parameters">The parameters.</param>
 /// <param name="Modifiers">The modifiers of the deconstruction method.</param>
 /// <param name="AttributeType">The attribute type used for fetching the arguments' extra data.</param>
+/// <param name="AssemblyName">Indicates the assembly name.</param>
 file readonly record struct Data(
 	INamedTypeSymbol ContainingType,
 	IMethodSymbol Method,
 	ImmutableArray<IParameterSymbol> Parameters,
 	SyntaxTokenList Modifiers,
-	INamedTypeSymbol AttributeType
+	INamedTypeSymbol AttributeType,
+	string AssemblyName
 );

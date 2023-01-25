@@ -166,8 +166,9 @@
             <param name="Parameters">The parameters.</param>
             <param name="Modifiers">The modifiers of the deconstruction method.</param>
             <param name="AttributeType">The attribute type used for fetching the arguments' extra data.</param>
+            <param name="AssemblyName">Indicates the assembly name.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol,System.String)">
             <summary>
             The internal output data.
             </summary>
@@ -176,6 +177,7 @@
             <param name="Parameters">The parameters.</param>
             <param name="Modifiers">The modifiers of the deconstruction method.</param>
             <param name="AttributeType">The attribute type used for fetching the arguments' extra data.</param>
+            <param name="AssemblyName">Indicates the assembly name.</param>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.ContainingType">
             <summary>The containing type.</summary>
@@ -191,6 +193,9 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.AttributeType">
             <summary>The attribute type used for fetching the arguments' extra data.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.AssemblyName">
+            <summary>Indicates the assembly name.</summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GeneratedExtensionDeconstructionGenerator">
             <summary>
