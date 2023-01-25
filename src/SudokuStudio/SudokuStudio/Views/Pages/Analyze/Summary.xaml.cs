@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines a summary page.
 /// </summary>
-public sealed partial class Summary : Page, IAnalyzeTabPage, INotifyPropertyChanged
+public sealed partial class Summary : Page, IAnalyzeTabPage
 {
 	/// <summary>
 	/// Indicates the analysis result.
@@ -23,10 +23,6 @@ public sealed partial class Summary : Page, IAnalyzeTabPage, INotifyPropertyChan
 	/// Indicates the base page.
 	/// </summary>
 	public AnalyzePage BasePage { get; set; } = null!;
-
-
-	/// <inheritdoc/>
-	public event PropertyChangedEventHandler? PropertyChanged;
 
 
 	private void AnalysisResultSetterAfter(LogicalSolverResult? value)

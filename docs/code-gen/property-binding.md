@@ -155,3 +155,5 @@ public LogicalSolverResult? AnalysisResult
 ## 备注
 
 另外一个需要注意的地方是，该源代码生成器要求对象是可以使用 `PropertyChanged` 的事件触发的，因此对象必须要实现 `INotifyPropertyChanged` 接口。换言之，如果对象没有该接口的实现的话，那么就找不到该事件，那么就无法正确触发 `PropertyChanged` 事件，因此源代码生成器会优先去判断对象是否实现了该接口。如果没有，即使代码和特性用法正确也不会生成代码，编译期间会直接出错。
+
+不过，如果你设置了 `DoNotEmitPropertyChangedEventTrigger` 可选属性为 `true` 的话，这也就意味着不会发出触发事件的代码，所以有没有就无所谓了。因此，如果设置了该可选属性为 `true`，那么该控件类型不论是否从 `INotifyPropertyChanged` 接口类型派生都不会影响编译。

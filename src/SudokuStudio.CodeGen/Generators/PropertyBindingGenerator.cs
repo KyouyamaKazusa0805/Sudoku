@@ -68,18 +68,6 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 				return null;
 			}
 
-			var notifyPropertyChangedType = compilation.GetTypeByMetadataName(typeof(INotifyPropertyChanged).FullName)!;
-			if (!impledInterfaces.Contains(notifyPropertyChangedType, SymbolEqualityComparer.Default))
-			{
-				return null;
-			}
-
-			var propertyChangedEventHandlerType = compilation.GetTypeByMetadataName(typeof(PropertyChangedEventHandler).FullName)!;
-			if (!type.GetMembers().OfType<IEventSymbol>().Any(containsPropertyChangedEvent))
-			{
-				return null;
-			}
-
 			var propertyName = fieldName.ToPascalCasing();
 			if (memberNames.Contains(propertyName))
 			{
@@ -122,16 +110,32 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 				}
 			}
 
+			if (!doNotEmitPropertyChangedEventTrigger)
+			{
+				var notifyPropertyChangedType = compilation.GetTypeByMetadataName(typeof(INotifyPropertyChanged).FullName)!;
+				if (!impledInterfaces.Contains(notifyPropertyChangedType, SymbolEqualityComparer.Default))
+				{
+					return null;
+				}
+
+				var propertyChangedEventHandlerType = compilation.GetTypeByMetadataName(typeof(PropertyChangedEventHandler).FullName)!;
+				if (!type.GetMembers().OfType<IEventSymbol>().Any(containsPropertyChangedEvent))
+				{
+					return null;
+				}
+
+
+				bool containsPropertyChangedEvent(IEventSymbol e)
+					=> e is
+					{
+						Name: nameof(INotifyPropertyChanged.PropertyChanged),
+						ExplicitInterfaceImplementations: [],
+						Type: var eventType
+					} && SymbolEqualityComparer.Default.Equals(propertyChangedEventHandlerType, eventType);
+			}
+
 			return new(propertyName, fieldSymbol, type, mode, accessibility ?? Accessibility.Public, doNotEmitPropertyChangedEventTrigger, callbackAttributeType);
 
-
-			bool containsPropertyChangedEvent(IEventSymbol e)
-				=> e is
-				{
-					Name: nameof(INotifyPropertyChanged.PropertyChanged),
-					ExplicitInterfaceImplementations: [],
-					Type: var eventType
-				} && SymbolEqualityComparer.Default.Equals(propertyChangedEventHandlerType, eventType);
 
 			bool containsEqualityOperators()
 				=> allInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default)

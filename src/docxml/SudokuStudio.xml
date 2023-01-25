@@ -2108,9 +2108,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the base page.
             </summary>
         </member>
-        <member name="E:SudokuStudio.Views.Pages.Analyze.Summary.PropertyChanged">
-            <inheritdoc/>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
             <summary>
             InitializeComponent()
