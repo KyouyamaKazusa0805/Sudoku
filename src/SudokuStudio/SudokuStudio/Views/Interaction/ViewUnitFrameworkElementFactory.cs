@@ -173,7 +173,7 @@ internal static class ViewUnitFrameworkElementFactory
 
 	private static void CreateForCandidateViewNodeCore(Color color, int candidate, SudokuPaneCell paneCellControl)
 	{
-		var (width, height) = paneCellControl.ActualSize / 3F * .9F;
+		var (width, height) = paneCellControl.ActualSize / 3F * (float)paneCellControl.BasePane.HighlightCandidateCircleScale;
 		var control = new Ellipse
 		{
 			Width = width,

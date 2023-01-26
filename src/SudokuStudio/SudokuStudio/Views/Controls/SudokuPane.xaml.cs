@@ -49,13 +49,19 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
 	/// </summary>
 	[NotifyBackingField]
-	private double _pencilmarkFontScale = 0.33;
+	private double _pencilmarkFontScale = .33;
 
 	/// <summary>
 	/// Indicates the coordinate label font scale.
 	/// </summary>
 	[NotifyBackingField]
-	private double _coordinateLabelFontScale = 0.4;
+	private double _coordinateLabelFontScale = .4;
+
+	/// <summary>
+	/// Indicates the scale of highlighted candidate circles.
+	/// </summary>
+	[NotifyBackingField]
+	private double _highlightCandidateCircleScale = .9;
 
 	/// <summary>
 	/// Indicates the currently selected cell.
