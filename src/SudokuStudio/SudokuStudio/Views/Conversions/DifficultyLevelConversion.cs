@@ -27,7 +27,7 @@ internal static class DifficultyLevelConversion
 	public static SolidColorBrush GetForegroundColor(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			0 or > DifficultyLevel.LastResort => new(Colors.Transparent),
+			0 or > DifficultyLevel.LastResort => Constants.Foregrounds[^1],
 			_ => Constants.Foregrounds[Log2((byte)difficultyLevel)]
 		};
 }

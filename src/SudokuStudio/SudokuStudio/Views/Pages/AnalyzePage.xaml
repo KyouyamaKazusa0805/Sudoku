@@ -73,16 +73,16 @@
 			<Grid x:Name="SudokuGridAndAnalyzePagesContainer" ColumnDefinitions="Auto,*" Margin="0,0,20,0">
 				<!--Main sudoku grid control-->
 				<c:SudokuPane
-					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0"
-					HorizontalAlignment="Left" VerticalAlignment="Top" BasePage="{x:Bind}"
-					SelectedCell="-1" ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code" CoordinateLabelFont="Cascadia Code"
+					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" BasePage="{x:Bind}"
+					HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1"
+					ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code" CoordinateLabelFont="Cascadia Code"
 					BabaGroupLabelFont="Times New Roman" CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection"
 					BabaGroupLabelFontScale=".6" ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4"
 					HighlightCandidateCircleScale=".9" HighlightBackgroundOpacity=".15"
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True" DisplayCursors="True"
 					CursorBackgroundColor="#200000FF" GivenColor="Black" ModifiableColor="Blue" PencilmarkColor="#646464"
 					BabaGroupLabelColor="Red" BorderColor="Black" CoordinateLabelColor="#646464"
-					DeltaCandidateColor="#FFB9B9" DeltaCellColor="#F00"
+					DeltaCandidateColor="#FFB9B9" DeltaCellColor="Red"
 					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}" />
 
 				<!--Analyze data-->
