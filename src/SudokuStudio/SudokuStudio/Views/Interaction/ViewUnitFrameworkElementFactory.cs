@@ -139,6 +139,7 @@ internal static class ViewUnitFrameworkElementFactory
 
 		GridLayout.SetRowSpan(control, 3);
 		GridLayout.SetColumnSpan(control, 3);
+		Canvas.SetZIndex(control, -1);
 
 		paneCellControl.MainGrid.Children.Add(control);
 	}
@@ -172,7 +173,7 @@ internal static class ViewUnitFrameworkElementFactory
 
 	private static void CreateForCandidateViewNodeCore(Color color, int candidate, SudokuPaneCell paneCellControl)
 	{
-		var (width, height) = paneCellControl.ActualSize / 3;
+		var (width, height) = paneCellControl.ActualSize / 3F * .9F;
 		var control = new Ellipse
 		{
 			Width = width,
@@ -186,6 +187,7 @@ internal static class ViewUnitFrameworkElementFactory
 		var digit = candidate % 9;
 		GridLayout.SetRow(control, digit / 3);
 		GridLayout.SetColumn(control, digit % 3);
+		Canvas.SetZIndex(control, -1);
 
 		paneCellControl.MainGrid.Children.Add(control);
 	}

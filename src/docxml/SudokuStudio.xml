@@ -1430,7 +1430,9 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._puzzle">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
+            <summary>
+            Indicates the target puzzle.
+            </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._valueFont">
             <summary>
@@ -1447,15 +1449,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the coordinate label font.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._viewUnit">
+            <summary>
+            Indicates the view unit used.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instance.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle">
-            <summary>
-            Indicates the target grid puzzle.
-            </summary>
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._puzzle"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.BasePage">
             <summary>
@@ -1518,16 +1523,6 @@ if (student is (name: var name, age: >= 18))
             The typical <see langword="await"/>able instance that holds the task to paste the text.
             </returns>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeChildrenControls">
-            <summary>
-            To initialize children controls for <see cref="F:SudokuStudio.Views.Controls.SudokuPane._children"/>.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeEvents">
-            <summary>
-            To initializes for stack events.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Try to set puzzle, with a <see cref="T:System.Boolean"/> value indicating whether the stack fields <see cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/>
@@ -1556,6 +1551,16 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/>
             <seealso cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeChildrenControls">
+            <summary>
+            To initialize children controls for <see cref="F:SudokuStudio.Views.Controls.SudokuPane._children"/>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeEvents">
+            <summary>
+            To initializes for stack events.
+            </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateCellData(Sudoku.Concepts.Grid@)">
             <summary>
@@ -1643,6 +1648,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFont"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnit">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._viewUnit"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPaneCell">
             <summary>

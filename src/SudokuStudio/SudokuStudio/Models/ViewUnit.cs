@@ -9,12 +9,12 @@ public sealed partial class ViewUnit
 	/// Indicates the candidates as conclusions in a single <see cref="IStep"/>.
 	/// </summary>
 	/// <seealso cref="IStep"/>
-	public required ImmutableArray<Conclusion> Conclusions { get; set; }
+	public ImmutableArray<Conclusion> Conclusions { get; set; }
 
 	/// <summary>
 	/// Indicates a view of highlight elements.
 	/// </summary>
-	public required View View { get; set; }
+	public View View { get; set; } = null!;
 
 
 	[GeneratedDeconstruction]

@@ -2321,6 +2321,11 @@
             </summary>
             <seealso cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
         </member>
+        <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.DisableComparisonInferring">
+            <summary>
+            Indicates whether the source generator use comparison inferring to generate source code for comparing two objects.
+            </summary>
+        </member>
         <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.Accessibility">
             <summary>
             Indicates the accessibility of the generated property. The default value is <see cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>.

@@ -89,7 +89,9 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					? EqualityComparisonMode.InstanceEqualsMethod
 					: containsCompareToMethod()
 						? EqualityComparisonMode.InstanceCompareToMethod
-						: EqualityComparisonMode.EqualityComparerDefaultInstance;
+						: namedArguments.Any(disabledComparisonChecker) && (bool)namedArguments.First(disabledComparisonChecker).Value.Value!
+							? EqualityComparisonMode.None
+							: EqualityComparisonMode.EqualityComparerDefaultInstance;
 
 			var doNotEmitPropertyChangedEventTrigger = false;
 			var accessibility = (Accessibility?)null;
@@ -137,6 +139,8 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 			return new(propertyName, fieldSymbol, type, mode, accessibility ?? Accessibility.Public, doNotEmitPropertyChangedEventTrigger, callbackAttributeType);
 
 
+			bool disabledComparisonChecker(KeyValuePair<string, TypedConstant> pair) => pair.Key == "DisableComparisonInferring";
+
 			bool containsEqualityOperators()
 				=> allInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default)
 				|| fieldSpecialType is >= SpecialType.System_Object and <= SpecialType.System_UIntPtr and not (SpecialType.System_ValueType or SpecialType.System_Void)
@@ -167,6 +171,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					var fieldTypeStr = $"{fieldType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}{nullableAnnotation}";
 					var valueComparisonCode = mode switch
 					{
+						EqualityComparisonMode.None => $$"""object.ReferenceEquals({{field}}, value)""",
 						EqualityComparisonMode.EqualityOperator => $$"""{{field}} == value""",
 						EqualityComparisonMode.InstanceEqualsMethod => $$"""{{field}}.Equals(value)""",
 						EqualityComparisonMode.InstanceCompareToMethod => $$"""{{field}}.CompareTo(value) == 0""",

@@ -131,7 +131,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[NotifyBackingField]
 	private Color _cursorBackgroundColor = new() { A = 32, B = 255 };
 
-	/// <inheritdoc cref="Puzzle"/>
+	/// <summary>
+	/// Indicates the target puzzle.
+	/// </summary>
 	private Grid _puzzle = Grid.Empty;
 
 	/// <summary>
@@ -152,6 +154,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[NotifyBackingField]
 	private FontFamily _coordinateLabelFont = new("Tahoma");
 
+	/// <summary>
+	/// Indicates the view unit used.
+	/// </summary>
+	[NotifyBackingField(DisableComparisonInferring = true)]
+	[NotifyCallback(nameof(ViewUnitSetterAfter))]
+	private ViewUnit? _viewUnit;
+
 
 	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.
@@ -165,14 +174,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 
-	/// <summary>
-	/// Indicates the target grid puzzle.
-	/// </summary>
+	/// <inheritdoc cref="_puzzle"/>
 	public Grid Puzzle
 	{
 		get => _puzzle;
 
-		set => SetPuzzle(value, true);
+		set => SetPuzzle(value, clearStack: true);
 	}
 
 	/// <summary>
@@ -304,34 +311,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// To initialize children controls for <see cref="_children"/>.
-	/// </summary>
-	[MemberNotNull(nameof(_children))]
-	private void InitializeChildrenControls()
-	{
-		_children = new SudokuPaneCell[81];
-		for (var i = 0; i < 81; i++)
-		{
-			var cellControl = new SudokuPaneCell { CellIndex = i, BasePane = this };
-
-			GridLayout.SetRow(cellControl, i / 9 + 2);
-			GridLayout.SetColumn(cellControl, i % 9 + 2);
-
-			MainGrid.Children.Add(cellControl);
-			_children[i] = cellControl;
-		}
-	}
-
-	/// <summary>
-	/// To initializes for stack events.
-	/// </summary>
-	private void InitializeEvents()
-	{
-		_undoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
-		_redoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
-	}
-
-	/// <summary>
 	/// Try to set puzzle, with a <see cref="bool"/> value indicating whether the stack fields <see cref="_undoStack"/>
 	/// and <see cref="_redoStack"/> will be cleared.
 	/// </summary>
@@ -365,6 +344,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
+		// Pushes the grid into the stack if worth.
 		if (!whileUndoingOrRedoing && !clearStack)
 		{
 			_undoStack.Push(_puzzle);
@@ -387,12 +367,44 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			}
 		}
 
+		// Clears the analyze tab pages is worth.
 		if (clearAnalyzeTabData)
 		{
 			BasePage?.ClearAnalyzeTabsData();
 		}
 
+		// Clears the view unit.
+		ViewUnit = null;
+
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
+	}
+
+	/// <summary>
+	/// To initialize children controls for <see cref="_children"/>.
+	/// </summary>
+	[MemberNotNull(nameof(_children))]
+	private void InitializeChildrenControls()
+	{
+		_children = new SudokuPaneCell[81];
+		for (var i = 0; i < 81; i++)
+		{
+			var cellControl = new SudokuPaneCell { CellIndex = i, BasePane = this };
+
+			GridLayout.SetRow(cellControl, i / 9 + 2);
+			GridLayout.SetColumn(cellControl, i % 9 + 2);
+
+			MainGrid.Children.Add(cellControl);
+			_children[i] = cellControl;
+		}
+	}
+
+	/// <summary>
+	/// To initializes for stack events.
+	/// </summary>
+	private void InitializeEvents()
+	{
+		_undoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
+		_redoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
 	}
 
 	/// <summary>
@@ -417,6 +429,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		_undoStack.Clear();
 		_redoStack.Clear();
+	}
+
+	private void ViewUnitSetterAfter(ViewUnit? value)
+	{
+		if (value is null)
+		{
+			ViewUnitFrameworkElementFactory.RemoveViewUnitControls(BasePage);
+		}
+		else
+		{
+			ViewUnitFrameworkElementFactory.AddViewUnitControls(BasePage, value);
+		}
 	}
 
 
