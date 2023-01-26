@@ -2294,11 +2294,27 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Gets the customized arrow cap geometry instances that can be used as property <see cref="P:Microsoft.UI.Xaml.Media.GeometryGroup.Children"/>.
             </summary>
+            <param name="this">The geometry instance.</param>
+            <param name="point1">The start point.</param>
+            <param name="point2">The end point.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Media.GeometryCollection"/> result.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Interaction.Extensions.WithCustomizedArrowCap(Microsoft.UI.Xaml.Media.LineGeometry)">
             <summary>
             Gets the customized arrow cap geometry instances that can be used as property <see cref="P:Microsoft.UI.Xaml.Media.GeometryGroup.Children"/>.
             </summary>
+            <param name="this">The geometry instance.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Media.GeometryCollection"/> result.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.Extensions.WithCustomizedArrowCap``1(``0,System.Func{System.ValueTuple{Windows.Foundation.Point,Windows.Foundation.Point}})">
+            <summary>
+            Internal implementation of methods <see cref="M:SudokuStudio.Views.Interaction.Extensions.WithCustomizedArrowCap(Microsoft.UI.Xaml.Media.LineGeometry)"/>
+            and <see cref="M:SudokuStudio.Views.Interaction.Extensions.WithCustomizedArrowCap(Microsoft.UI.Xaml.Media.PathGeometry,Windows.Foundation.Point,Windows.Foundation.Point)"/>.
+            </summary>
+            <typeparam name="T">The type of the geometry.</typeparam>
+            <param name="this">The geometry instance.</param>
+            <param name="pointsCreator">The point creator method.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Media.GeometryCollection"/> result.</returns>
         </member>
         <member name="T:SudokuStudio.Views.Interaction.PathCreator">
             <summary>

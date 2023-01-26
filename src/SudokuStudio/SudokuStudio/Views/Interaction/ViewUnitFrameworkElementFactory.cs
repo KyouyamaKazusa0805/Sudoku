@@ -372,38 +372,32 @@ file static class Extensions
 	/// <summary>
 	/// Gets the customized arrow cap geometry instances that can be used as property <see cref="GeometryGroup.Children"/>.
 	/// </summary>
+	/// <param name="this">The geometry instance.</param>
+	/// <param name="point1">The start point.</param>
+	/// <param name="point2">The end point.</param>
+	/// <returns>A <see cref="GeometryCollection"/> result.</returns>
 	public static GeometryCollection WithCustomizedArrowCap(this PathGeometry @this, Point point1, Point point2)
-	{
-		var pt1 = point1;
-		var pt2 = point2;
-		var arrowLength = 10.0;
-		var theta = 30.0;
-		var angle = Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / PI;
-		var angle1 = (angle + theta + 22.5) * PI / 180;
-		var angle2 = (angle - theta + 22.5) * PI / 180;
-		var topX = arrowLength * Cos(angle1);
-		var topY = arrowLength * Sin(angle1);
-		var bottomX = arrowLength * Cos(angle2);
-		var bottomY = arrowLength * Sin(angle2);
-
-		var arrowX = pt2.X + topX;
-		var arrowY = pt2.Y + topY;
-		var a = new LineGeometry { StartPoint = new(arrowX, arrowY), EndPoint = pt2 };
-
-		arrowX = pt2.X + bottomX;
-		arrowY = pt2.Y + bottomY;
-		var b = new LineGeometry { StartPoint = new(arrowX, arrowY), EndPoint = pt2 };
-
-		return new() { @this, a, b };
-	}
+		=> @this.WithCustomizedArrowCap(() => (point1, point2));
 
 	/// <summary>
 	/// Gets the customized arrow cap geometry instances that can be used as property <see cref="GeometryGroup.Children"/>.
 	/// </summary>
+	/// <param name="this">The geometry instance.</param>
+	/// <returns>A <see cref="GeometryCollection"/> result.</returns>
 	public static GeometryCollection WithCustomizedArrowCap(this LineGeometry @this)
+		=> @this.WithCustomizedArrowCap(() => (@this.StartPoint, @this.EndPoint));
+
+	/// <summary>
+	/// Internal implementation of methods <see cref="WithCustomizedArrowCap(LineGeometry)"/>
+	/// and <see cref="WithCustomizedArrowCap(PathGeometry, Point, Point)"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of the geometry.</typeparam>
+	/// <param name="this">The geometry instance.</param>
+	/// <param name="pointsCreator">The point creator method.</param>
+	/// <returns>A <see cref="GeometryCollection"/> result.</returns>
+	private static GeometryCollection WithCustomizedArrowCap<T>(this T @this, Func<(Point Start, Point End)> pointsCreator) where T : Geometry
 	{
-		var pt1 = @this.StartPoint;
-		var pt2 = @this.EndPoint;
+		var (pt1, pt2) = pointsCreator();
 		var arrowLength = 10.0;
 		var theta = 30.0;
 		var angle = Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / PI;
