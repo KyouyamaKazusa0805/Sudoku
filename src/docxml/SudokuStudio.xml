@@ -1371,6 +1371,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the scale of highlighted candidate circles.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._highlightBackgroundOpacity">
+            <summary>
+            Indicates the opacity of the background highlighted elements.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._selectedCell">
             <summary>
             Indicates the currently selected cell.
@@ -1617,6 +1622,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._highlightCandidateCircleScale"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._highlightBackgroundOpacity"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._selectedCell"/>

@@ -76,7 +76,7 @@
 					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0"
 					HorizontalAlignment="Left" VerticalAlignment="Top" BasePage="{x:Bind}"
 					SelectedCell="-1" ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code" CoordinateLabelFont="Cascadia Code"
-					CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection"
+					CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection" HighlightBackgroundOpacity=".15"
 					ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4" HighlightCandidateCircleScale=".9"
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True" DisplayCursors="True"
 					CursorBackgroundColor="#200000FF" GivenColor="Black" ModifiableColor="Blue" PencilmarkColor="#646464"

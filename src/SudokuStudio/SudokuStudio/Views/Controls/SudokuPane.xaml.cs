@@ -64,6 +64,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private double _highlightCandidateCircleScale = .9;
 
 	/// <summary>
+	/// Indicates the opacity of the background highlighted elements.
+	/// </summary>
+	[NotifyBackingField]
+	private double _highlightBackgroundOpacity = .15;
+
+	/// <summary>
 	/// Indicates the currently selected cell.
 	/// </summary>
 	[NotifyBackingField]

@@ -142,7 +142,7 @@ internal static class ViewUnitFrameworkElementFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = ViewUnitUIElementControlTag,
-			Opacity = .15
+			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity
 		};
 
 		GridLayout.SetRowSpan(control, 3);
@@ -209,7 +209,7 @@ internal static class ViewUnitFrameworkElementFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = ViewUnitUIElementControlTag,
-			Opacity = .15
+			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity
 		};
 
 		var (row, column, rowSpan, columnSpan) = house switch
