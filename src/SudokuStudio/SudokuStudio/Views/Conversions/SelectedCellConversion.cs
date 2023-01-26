@@ -38,7 +38,7 @@ internal static class SelectedCellConversion
 	public static Visibility SelectedCellToVisibility(int selectedCell, bool displayCursors)
 		=> (displayCursors, selectedCell) switch
 		{
-			(true, _) => Visibility.Collapsed,
+			(false, _) => Visibility.Collapsed,
 			(_, >= 0 and < 81) => Visibility.Visible,
 			_ => Visibility.Collapsed
 		};
