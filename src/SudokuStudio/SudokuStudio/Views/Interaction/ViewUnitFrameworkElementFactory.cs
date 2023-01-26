@@ -93,6 +93,16 @@ internal static class ViewUnitFrameworkElementFactory
 					CreateForHouseViewNode(targetPage, h);
 					break;
 				}
+				case ChuteViewNode c:
+				{
+					CreateForChuteViewNode(targetPage, c);
+					break;
+				}
+				case BabaGroupViewNode b:
+				{
+					CreateBabaGroupViewNode(targetPage, b);
+					break;
+				}
 			}
 		}
 
@@ -226,6 +236,78 @@ internal static class ViewUnitFrameworkElementFactory
 		GridLayout.SetColumnSpan(control, columnSpan);
 
 		gridControl.Children.Add(control);
+	}
+
+	private static void CreateForChuteViewNode(AnalyzePage targetPage, ChuteViewNode chuteNode)
+	{
+		var (id, chute) = chuteNode;
+		var gridControl = targetPage.SudokuPane.MainGrid;
+		if (gridControl is null)
+		{
+			return;
+		}
+
+		var control = new Border
+		{
+			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
+			BorderThickness = new(0),
+			Tag = ViewUnitUIElementControlTag,
+			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity
+		};
+
+		var (row, column, rowSpan, columnSpan) = chute switch
+		{
+			>= 0 and < 3 => (chute * 3 + 2, 2, 3, 9),
+			>= 3 and < 6 => (2, (chute - 3) * 3 + 2, 9, 3),
+			_ => throw new InvalidOperationException(nameof(chute))
+		};
+
+		GridLayout.SetRow(control, row);
+		GridLayout.SetColumn(control, column);
+		GridLayout.SetRowSpan(control, rowSpan);
+		GridLayout.SetColumnSpan(control, columnSpan);
+
+		gridControl.Children.Add(control);
+	}
+
+	private static void CreateBabaGroupViewNode(AnalyzePage targetPage, BabaGroupViewNode babaGroupNode)
+	{
+		var (id, cell, @char) = babaGroupNode;
+		var paneCellControl = targetPage.SudokuPane._children[cell];
+		if (paneCellControl is null)
+		{
+			return;
+		}
+
+		var control = new Border
+		{
+			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
+			BorderThickness = new(0),
+			Tag = ViewUnitUIElementControlTag,
+			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity,
+			Child = new TextBlock
+			{
+				Text = @char.ToString(),
+				FontSize = PencilmarkTextConversion.GetFontSize(
+					targetPage.SudokuPane.ApproximateCellWidth,
+					targetPage.SudokuPane.BabaGroupLabelFontScale
+				),
+				FontFamily = targetPage.SudokuPane.BabaGroupLabelFont,
+				Foreground = new SolidColorBrush(targetPage.SudokuPane.BabaGroupLabelColor),
+				FontWeight = FontWeights.Bold,
+				FontStyle = FontStyle.Italic,
+				HorizontalAlignment = HorizontalAlignment.Stretch,
+				VerticalAlignment = VerticalAlignment.Stretch,
+				HorizontalTextAlignment = TextAlignment.Center,
+				TextAlignment = TextAlignment.Center
+			}
+		};
+
+		GridLayout.SetRowSpan(control, 3);
+		GridLayout.SetColumnSpan(control, 3);
+		Canvas.SetZIndex(control, -1);
+
+		paneCellControl.MainGrid.Children.Add(control);
 	}
 }
 

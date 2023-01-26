@@ -52,19 +52,25 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private double _pencilmarkFontScale = .33;
 
 	/// <summary>
-	/// Indicates the coordinate label font scale.
+	/// Indicates the font scale of baba group characters. The value should generally be below 1.0.
+	/// </summary>
+	[NotifyBackingField]
+	private double _babaGroupLabelFontScale = .6;
+
+	/// <summary>
+	/// Indicates the coordinate label font scale. The value should generally be below 1.0.
 	/// </summary>
 	[NotifyBackingField]
 	private double _coordinateLabelFontScale = .4;
 
 	/// <summary>
-	/// Indicates the scale of highlighted candidate circles.
+	/// Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
 	/// </summary>
 	[NotifyBackingField]
 	private double _highlightCandidateCircleScale = .9;
 
 	/// <summary>
-	/// Indicates the opacity of the background highlighted elements.
+	/// Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
 	/// </summary>
 	[NotifyBackingField]
 	private double _highlightBackgroundOpacity = .15;
@@ -120,6 +126,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private Color _coordinateLabelColor = new() { A = 255, R = 100, G = 100, B = 100 };
 
 	/// <summary>
+	/// Indicates the baba group label color.
+	/// </summary>
+	[NotifyBackingField]
+	private Color _babaGroupLabelColor = Colors.Red;
+
+	/// <summary>
 	/// Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
 	/// </summary>
 	[NotifyBackingField]
@@ -165,6 +177,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	[NotifyBackingField]
 	private FontFamily _coordinateLabelFont = new("Tahoma");
+
+	/// <summary>
+	/// Indicates the baba group label font.
+	/// </summary>
+	[NotifyBackingField]
+	private FontFamily _babaGroupLabelFont = new("Times New Roman");
 
 	/// <summary>
 	/// Indicates the view unit used.

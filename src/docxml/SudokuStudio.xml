@@ -31,21 +31,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:SudokuStudio.AppLifecycle.RunningContext">
             <summary>
             Defines a context type that stores the basic information of project running.
@@ -1361,19 +1346,24 @@ if (student is (name: var name, age: >= 18))
             Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelFontScale">
+            <summary>
+            Indicates the font scale of baba group characters. The value should generally be below 1.0.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFontScale">
             <summary>
-            Indicates the coordinate label font scale.
+            Indicates the coordinate label font scale. The value should generally be below 1.0.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._highlightCandidateCircleScale">
             <summary>
-            Indicates the scale of highlighted candidate circles.
+            Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._highlightBackgroundOpacity">
             <summary>
-            Indicates the opacity of the background highlighted elements.
+            Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._selectedCell">
@@ -1419,6 +1409,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the coordinate label color.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelColor">
+            <summary>
+            Indicates the baba group label color.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._deltaCandidateColor">
             <summary>
             Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
@@ -1457,6 +1452,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFont">
             <summary>
             Indicates the coordinate label font.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelFont">
+            <summary>
+            Indicates the baba group label font.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._viewUnit">
@@ -1592,16 +1592,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates"/>
         </member>
@@ -1616,6 +1606,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFontScale"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScale">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelFontScale"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFontScale"/>
@@ -1647,6 +1640,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelColor"/>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelColor"/>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._deltaCandidateColor"/>
         </member>
@@ -1667,6 +1663,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFont"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelFont"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPaneCell">
             <summary>
@@ -1719,16 +1718,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
@@ -2280,16 +2269,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched"/>
         </member>
@@ -2330,16 +2309,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._analysisResult"/>
         </member>
@@ -2367,16 +2336,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
@@ -2413,16 +2372,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
@@ -2496,16 +2445,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
@@ -2612,36 +2551,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">

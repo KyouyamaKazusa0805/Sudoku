@@ -48,6 +48,12 @@ public sealed partial class BabaGroupViewNode : BasicViewNode
 	private string DigitsMaskString => Convert.ToString(DigitsMask, 2).ToString();
 
 
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out Identifier identifier, out int cell, out Utf8Char unknownValueChar);
+
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out Identifier identifier, out int cell, out short digitsMask, out Utf8Char unknownValueChar);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)

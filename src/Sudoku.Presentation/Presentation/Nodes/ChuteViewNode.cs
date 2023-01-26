@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
 /// </summary>
-public sealed partial class ChuteViewNode : ViewNode
+public sealed partial class ChuteViewNode : BasicViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="ChuteViewNode"/> instance via the identifier and the highlight chute.
@@ -36,15 +36,14 @@ public sealed partial class ChuteViewNode : ViewNode
 	/// </summary>
 	public int HousesMask => Chutes[ChuteIndex] switch { (_, var isRow, var rawMask) => rawMask << (isRow ? 9 : 18) };
 
-	/// <inheritdoc/>
-	protected override string TypeIdentifier => nameof(ChuteViewNode);
 
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out Identifier identifier, [GeneratedDeconstructionArgument(nameof(ChuteIndex))] out int chute);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is ChuteViewNode comparer
-		&& Identifier == comparer.Identifier && ChuteIndex == comparer.ChuteIndex;
+		=> other is ChuteViewNode comparer && Identifier == comparer.Identifier && ChuteIndex == comparer.ChuteIndex;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(ChuteIndex))]
 	public override partial int GetHashCode();
