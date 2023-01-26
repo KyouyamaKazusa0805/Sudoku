@@ -156,6 +156,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private Color _cursorBackgroundColor = new() { A = 32, B = 255 };
 
 	/// <summary>
+	/// Indicates the link color.
+	/// </summary>
+	[NotifyBackingField]
+	private Color _linkColor = Colors.Red;
+
+	/// <summary>
 	/// Indicates the target puzzle.
 	/// </summary>
 	private Grid _puzzle = Grid.Empty;

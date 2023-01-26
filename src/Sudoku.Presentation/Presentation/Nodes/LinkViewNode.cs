@@ -35,7 +35,7 @@ public sealed partial class LinkViewNode : BasicViewNode
 
 
 	[GeneratedDeconstruction]
-	public partial void Deconstruct(out LockedTarget start, out LockedTarget end, out Inference inference);
+	public partial void Deconstruct(out Identifier identifier, out LockedTarget start, out LockedTarget end, out Inference inference);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

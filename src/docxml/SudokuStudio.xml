@@ -208,6 +208,106 @@
             For more information, please visit that type to learn more details.
             </remarks>
         </member>
+        <member name="T:SudokuStudio.Input.Position">
+            <summary>
+            Defines a kind of position.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Input.Position.Center">
+            <summary>
+            Indicates the center position.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Input.Position.TopLeft">
+            <summary>
+            Indicates the top-left position.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Input.Position.TopRight">
+            <summary>
+            Indicates the top-right position.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Input.Position.BottomLeft">
+            <summary>
+            Indicates the bottom-left position.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Input.Position.BottomRight">
+            <summary>
+            Indicates the bottom-right position.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Input.SudokuPanePositionConverter">
+            <summary>
+            Defines a converter instance that calculates for cursor pointers.
+            </summary>
+            <param name="Grid">Indicates the grid layout.</param>
+        </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.#ctor(Microsoft.UI.Xaml.Controls.Grid)">
+            <summary>
+            Defines a converter instance that calculates for cursor pointers.
+            </summary>
+            <param name="Grid">Indicates the grid layout.</param>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Grid">
+            <summary>Indicates the grid layout.</summary>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.FirstCellTopLeftPosition">
+            <summary>
+            Indicates the first cell top-left position.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.CandidateSize">
+            <summary>
+            Indicates the candidate size.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.CellSize">
+            <summary>
+            Indicates the cell size.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.BlockSize">
+            <summary>
+            Indicates the block size.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.GridSize">
+            <summary>
+            Indicates the grid size.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.GridPoints">
+            <summary>
+            Indicates the grid points.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.Equals(SudokuStudio.Input.SudokuPanePositionConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetPosition(System.Int32,SudokuStudio.Input.Position)">
+            <summary>
+            Try to get the position <see cref="T:Windows.Foundation.Point"/> of the target candidate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="position">
+            <para>Indicates the position that output <see cref="T:Windows.Foundation.Point"/> value describes for.</para>
+            <para>The default value is <see cref="F:SudokuStudio.Input.Position.Center"/>.</para>
+            </param>
+            <returns>The target position transformed.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="position"/> value is not defined in its base type.
+            </exception>
+            <seealso cref="T:Windows.Foundation.Point"/>
+            <seealso cref="T:SudokuStudio.Input.Position"/>
+        </member>
         <member name="T:SudokuStudio.Input.VirtualKeyModifierStatus">
             <summary>
             Defines a quadruple <see cref="T:System.Boolean"/>s indicating the key-down status of virtual key modifiers
@@ -1449,6 +1549,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the cursor background color.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._linkColor">
+            <summary>
+            Indicates the link color.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._puzzle">
             <summary>
             Indicates the target puzzle.
@@ -1679,6 +1784,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._cursorBackgroundColor"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._linkColor"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ValueFont">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._valueFont"/>
@@ -2181,6 +2289,60 @@ if (student is (name: var name, age: >= 18))
             <param name="candidate">The candidate to be determined.</param>
             <param name="conclusion">The overlapped result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.Extensions.WithCustomizedArrowCap(Microsoft.UI.Xaml.Media.PathGeometry,Windows.Foundation.Point,Windows.Foundation.Point)">
+            <summary>
+            Gets the customized arrow cap geometry instances that can be used as property <see cref="P:Microsoft.UI.Xaml.Media.GeometryGroup.Children"/>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.Extensions.WithCustomizedArrowCap(Microsoft.UI.Xaml.Media.LineGeometry)">
+            <summary>
+            Gets the customized arrow cap geometry instances that can be used as property <see cref="P:Microsoft.UI.Xaml.Media.GeometryGroup.Children"/>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.PathCreator">
+            <summary>
+            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
+            </summary>
+            <param name="Page">Indicates the page data.</param>
+            <param name="PositionConverter">Indicates the position converter.</param>
+            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.PathCreator.#ctor(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Input.SudokuPanePositionConverter,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
+            <summary>
+            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
+            </summary>
+            <param name="Page">Indicates the page data.</param>
+            <param name="PositionConverter">Indicates the position converter.</param>
+            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Interaction.PathCreator.Page">
+            <summary>Indicates the page data.</summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Interaction.PathCreator.PositionConverter">
+            <summary>Indicates the position converter.</summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Interaction.PathCreator.Conclusions">
+            <summary>Indicates the conclusions of the whole chain.</summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.PathCreator.RotateAngle">
+            <summary>
+            Indicates the rotate angle (45 degrees).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Interaction.PathCreator.SqrtOf2">
+            <summary>
+            Indicates the square root of 2.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.PathCreator.CreateLinks(Sudoku.Presentation.Nodes.LinkViewNode[])">
+            <summary>
+            Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
+            </summary>
+            <param name="nodes">The link view nodes.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
             <summary>
@@ -2764,6 +2926,67 @@ if (student is (name: var name, age: >= 18))
             <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo</see>.
             </para>
             </remarks>
+        </member>
+        <member name="T:Windows.Foundation.PointExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Windows.Foundation.Point"/>.
+            </summary>
+            <seealso cref="T:Windows.Foundation.Point"/>
+        </member>
+        <member name="M:Windows.Foundation.PointExtensions.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Windows.Foundation.PointExtensions.DistanceTo(Windows.Foundation.Point,Windows.Foundation.Point)">
+            <summary>
+            Gets the distance between the two points, starting with the current point, and ending with the specified point.
+            </summary>
+            <param name="this">The current point.</param>
+            <param name="other">The other point.</param>
+            <returns>The distance of the two points.</returns>
         </member>
         <member name="T:Windows.Foundation.SizeExtensions">
             <summary>
