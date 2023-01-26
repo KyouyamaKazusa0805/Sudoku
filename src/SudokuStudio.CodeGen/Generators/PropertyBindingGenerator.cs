@@ -89,9 +89,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					? EqualityComparisonMode.InstanceEqualsMethod
 					: containsCompareToMethod()
 						? EqualityComparisonMode.InstanceCompareToMethod
-						: namedArguments.Any(disabledComparisonChecker) && (bool)namedArguments.First(disabledComparisonChecker).Value.Value!
-							? EqualityComparisonMode.None
-							: EqualityComparisonMode.EqualityComparerDefaultInstance;
+						: EqualityComparisonMode.EqualityComparerDefaultInstance;
 
 			var doNotEmitPropertyChangedEventTrigger = false;
 			var accessibility = (Accessibility?)null;
@@ -107,6 +105,11 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					case "DoNotEmitPropertyChangedEventTrigger":
 					{
 						doNotEmitPropertyChangedEventTrigger = (bool)value.Value!;
+						break;
+					}
+					case "DisableComparison":
+					{
+						mode = EqualityComparisonMode.None;
 						break;
 					}
 				}
@@ -138,8 +141,6 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 
 			return new(propertyName, fieldSymbol, type, mode, accessibility ?? Accessibility.Public, doNotEmitPropertyChangedEventTrigger, callbackAttributeType);
 
-
-			bool disabledComparisonChecker(KeyValuePair<string, TypedConstant> pair) => pair.Key == "DisableComparisonInferring";
 
 			bool containsEqualityOperators()
 				=> allInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default)
@@ -176,7 +177,21 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 						EqualityComparisonMode.InstanceEqualsMethod => $$"""{{field}}.Equals(value)""",
 						EqualityComparisonMode.InstanceCompareToMethod => $$"""{{field}}.CompareTo(value) == 0""",
 						EqualityComparisonMode.EqualityComparerDefaultInstance => $$"""global::System.Collections.Generic.EqualityComparer<{{fieldTypeStr}}>.Default.Equals({{field}}, value)""",
-						_ => "true"
+						_ => throw new InvalidOperationException($"The value '{nameof(mode)}' is invalid.")
+					};
+
+					var ifStatement = mode switch
+					{
+						not EqualityComparisonMode.None
+							=> $$"""
+							if ({{valueComparisonCode}})
+										{
+											return;
+										}
+
+										
+							""",
+						_ => string.Empty
 					};
 
 					var accessibilityStr = accessibility switch
@@ -241,12 +256,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 								set
 								{
-									if ({{valueComparisonCode}})
-									{
-										return;
-									}
-
-									{{field}} = value;{{eventTrigger}}{{customizedCallback}}
+									{{ifStatement}}{{field}} = value;{{eventTrigger}}{{customizedCallback}}
 								}
 							}
 						"""

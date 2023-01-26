@@ -16,7 +16,7 @@ public sealed class NotifyBackingFieldAttribute : Attribute
 	/// <summary>
 	/// Indicates whether the source generator use comparison inferring to generate source code for comparing two objects.
 	/// </summary>
-	public bool DisableComparisonInferring { get; init; } = false;
+	public bool DisableComparison { get; init; } = false;
 
 	/// <summary>
 	/// Indicates the accessibility of the generated property. The default value is <see cref="GeneralizedAccessibility.Public"/>.

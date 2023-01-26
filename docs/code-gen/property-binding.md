@@ -98,7 +98,7 @@ public int Width
 
 不过，如果你要调整生成的属性的访问级别，可以往该可选属性赋值，修改级别。如果不赋值该可选属性，那么默认生成的属性的访问级别则是 `public` 修饰的。
 
-#### `DisableComparisonInferring` 可选属性
+#### `DisableComparison` 可选属性
 
 有些时候我们并不希望比较器自动生成。该源代码生成器会自动识别类型，并且找出比较方法。比较规则如下：
 
@@ -107,7 +107,7 @@ public int Width
 * 如果对象实现了 `CompareTo` 方法，那么会调用 `CompareTo` 方法，并当且仅当该方法返回 0 的时候认为是相等的；
 * 如果上述提及的成员都不包含，那么则使用默认办法：`EqualityComparer<T>.Default` 对象的 `Equals` 方法进行比较。
 
-如果你并不想要去参与比较，或者是比较没有意义的时候，可以将该可选属性设置为 `true`，那么编译器将会生成 `object.ReferenceEquals` 方法来比较引用。
+如果你并不想要去参与比较，或者是比较没有意义的时候，可以将该可选属性设置为 `true`，那么编译器将直接删除 `if` 比较。
 
 ### `NotifyCallbackAttribute` 特性
 

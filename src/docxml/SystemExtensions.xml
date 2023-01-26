@@ -2321,7 +2321,7 @@
             </summary>
             <seealso cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.DisableComparisonInferring">
+        <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.DisableComparison">
             <summary>
             Indicates whether the source generator use comparison inferring to generate source code for comparing two objects.
             </summary>
