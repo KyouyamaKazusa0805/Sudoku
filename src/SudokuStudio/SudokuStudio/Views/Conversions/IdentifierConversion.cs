@@ -11,7 +11,7 @@ internal static class IdentifierConversion
 		return id switch
 		{
 			{ Mode: IdentifierColorMode.Raw, A: var a, R: var r, G: var g, B: var b } => Color.FromArgb(a, r, g, b),
-			{ Mode: IdentifierColorMode.Id } when getValueById(id, out var color) => color with { A = 64 },
+			{ Mode: IdentifierColorMode.Id } when getValueById(id, out var color) => color,
 			{ Mode: IdentifierColorMode.Named, NamedKind: var namedKind } => namedKind switch
 			{
 				DisplayColorKind.Normal => Constants.ColorPalette[0],

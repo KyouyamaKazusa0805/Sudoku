@@ -28,8 +28,12 @@ internal static class ViewUnitFrameworkElementFactory
 	{
 		foreach (var children in targetPage.SudokuPane._children)
 		{
+			// Stores cell/candidate view nodes.
 			yield return children.MainGrid;
 		}
+
+		// Stores house view nodes.
+		yield return targetPage.SudokuPane.MainGrid;
 
 		// TODO: Other controls.
 	}
@@ -84,6 +88,11 @@ internal static class ViewUnitFrameworkElementFactory
 
 					break;
 				}
+				case HouseViewNode h:
+				{
+					CreateForHouseViewNode(targetPage, h);
+					break;
+				}
 			}
 		}
 
@@ -132,9 +141,8 @@ internal static class ViewUnitFrameworkElementFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			HorizontalAlignment = HorizontalAlignment.Center,
-			VerticalAlignment = VerticalAlignment.Center,
-			Tag = ViewUnitUIElementControlTag
+			Tag = ViewUnitUIElementControlTag,
+			Opacity = .15
 		};
 
 		GridLayout.SetRowSpan(control, 3);
@@ -144,12 +152,7 @@ internal static class ViewUnitFrameworkElementFactory
 		paneCellControl.MainGrid.Children.Add(control);
 	}
 
-	private static void CreateForCandidateViewNode(
-		AnalyzePage targetPage,
-		CandidateViewNode candidateNode,
-		ImmutableArray<Conclusion> conclusions,
-		out Conclusion? overlapped
-	)
+	private static void CreateForCandidateViewNode(AnalyzePage targetPage, CandidateViewNode candidateNode, ImmutableArray<Conclusion> conclusions, out Conclusion? overlapped)
 	{
 		overlapped = null;
 
@@ -191,6 +194,39 @@ internal static class ViewUnitFrameworkElementFactory
 
 		paneCellControl.MainGrid.Children.Add(control);
 	}
+
+	private static void CreateForHouseViewNode(AnalyzePage targetPage, HouseViewNode houseNode)
+	{
+		var (id, house) = houseNode;
+		var gridControl = targetPage.SudokuPane.MainGrid;
+		if (gridControl is null)
+		{
+			return;
+		}
+
+		var control = new Border
+		{
+			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
+			BorderThickness = new(0),
+			Tag = ViewUnitUIElementControlTag,
+			Opacity = .15
+		};
+
+		var (row, column, rowSpan, columnSpan) = house switch
+		{
+			>= 0 and < 9 => (house / 3 * 3 + 2, house % 3 * 3 + 2, 3, 3),
+			>= 9 and < 18 => (house - 9 + 2, 2, 1, 9),
+			>= 18 and < 27 => (2, house - 18 + 2, 9, 1),
+			_ => throw new InvalidOperationException(nameof(house))
+		};
+
+		GridLayout.SetRow(control, row);
+		GridLayout.SetColumn(control, column);
+		GridLayout.SetRowSpan(control, rowSpan);
+		GridLayout.SetColumnSpan(control, columnSpan);
+
+		gridControl.Children.Add(control);
+	}
 }
 
 /// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
@@ -225,11 +261,7 @@ file static class Extensions
 	/// <param name="candidate">The candidate to be determined.</param>
 	/// <param name="conclusion">The overlapped result.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool ConflictWith(
-		this ImmutableArray<Conclusion> conclusions,
-		int candidate,
-		[NotNullWhen(true)] out Conclusion? conclusion
-	)
+	public static bool ConflictWith(this ImmutableArray<Conclusion> conclusions, int candidate, [NotNullWhen(true)] out Conclusion? conclusion)
 	{
 		foreach (var current in conclusions)
 		{

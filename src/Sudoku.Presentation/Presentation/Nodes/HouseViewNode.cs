@@ -20,6 +20,9 @@ public sealed partial class HouseViewNode : BasicViewNode
 	public int House { get; }
 
 
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out Identifier identifier, out int house);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)

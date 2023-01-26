@@ -163,8 +163,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the view unit used.
 	/// </summary>
-	[NotifyBackingField(DisableComparison = true)]
-	[NotifyCallback(nameof(ViewUnitSetterAfter))]
 	private ViewUnit? _viewUnit;
 
 
@@ -192,6 +190,24 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates the base page.
 	/// </summary>
 	public AnalyzePage BasePage { get; set; } = null!;
+
+	/// <inheritdoc cref="_viewUnit"/>
+	public ViewUnit? ViewUnit
+	{
+		get => _viewUnit;
+
+		set
+		{
+			if (ReferenceEquals(_viewUnit, value))
+			{
+				return;
+			}
+
+			_viewUnit = value;
+
+			ViewUnitSetterAfter(value);
+		}
+	}
 
 	/// <summary>
 	/// Indicates the approximately-measured width and height value of a cell.
