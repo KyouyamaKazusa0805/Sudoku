@@ -79,11 +79,19 @@
 					BabaGroupLabelFont="Times New Roman" CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection"
 					ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4" HighlightCandidateCircleScale=".9"
 					HighlightBackgroundOpacity=".15" BabaGroupLabelFontScale=".6" ChainStrokeThickness="2"
+					WeakLinkDashStyle="4.5,1.5" OtherLinkDashStyle="3,3"
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True" DisplayCursors="True"
 					CursorBackgroundColor="#200000FF" GivenColor="Black" ModifiableColor="Blue" PencilmarkColor="#646464"
 					BabaGroupLabelColor="Red" BorderColor="Black" CoordinateLabelColor="#646464" LinkColor="Red"
 					DeltaCandidateColor="#FFB9B9" DeltaCellColor="Red"
-					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}" />
+					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}">
+					<c:SudokuPane.StrongLinkDashStyle>
+						<DoubleCollection />
+					</c:SudokuPane.StrongLinkDashStyle>
+					<c:SudokuPane.CyclcLikeTechniqueLinkDashStyle>
+						<DoubleCollection />
+					</c:SudokuPane.CyclcLikeTechniqueLinkDashStyle>
+				</c:SudokuPane>
 
 				<!--Analyze data-->
 				<Grid Grid.Column="1">

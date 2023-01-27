@@ -459,14 +459,6 @@ file static class Extensions
 	}
 
 	/// <summary>
-	/// Creates a <see cref="DoubleCollection"/> that corresponds to the <see cref="Inference"/> instance.
-	/// </summary>
-	/// <param name="this">The <see cref="Inference"/> instance.</param>
-	/// <returns>A <see cref="DoubleCollection"/> result.</returns>
-	public static DoubleCollection GetDashArray(this Inference @this)
-		=> @this switch { Inference.Strong or Inference.Default => new(), Inference.Weak => new() { 3, 1.5 }, _ => new() { 3, 3 } };
-
-	/// <summary>
 	/// Gets the customized arrow cap geometry instances that can be used as property <see cref="GeometryGroup.Children"/>.
 	/// </summary>
 	/// <param name="this">The geometry instance.</param>
@@ -559,7 +551,13 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 			_ = Converter.GetPosition(startCell * 9 + startDigit) is (var pt1x, var pt1y) pt1;
 			_ = Converter.GetPosition(endCell * 9 + endDigit) is (var pt2x, var pt2y) pt2;
 
-			var dashArray = inference.GetDashArray();
+			var dashArray = inference switch
+			{
+				Inference.Strong => Page.SudokuPane.StrongLinkDashStyle,
+				Inference.Weak => Page.SudokuPane.WeakLinkDashStyle,
+				Inference.Default => Page.SudokuPane.CyclcLikeTechniqueLinkDashStyle,
+				_ => Page.SudokuPane.OtherLinkDashStyle
+			};
 			if (inference == Inference.Default)
 			{
 				// Draw the link.

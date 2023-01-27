@@ -1678,6 +1678,30 @@ if (student is (name: var name, age: >= 18))
             Indicates the baba group label font.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._strongLinkDashStyle">
+            <summary>
+            Indicates the strong link dash style.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._weakLinkDashStyle">
+            <summary>
+            Indicates the weak link dash style.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._cyclcLikeTechniqueLinkDashStyle">
+            <summary>
+            Indicates the cycle-like technique link dash style.
+            </summary>
+            <remarks>
+            Cycle-like techniques are techniques that will use loops to describe structures, e.g. Unique Loop, Broken Wing, etc..
+            Different with Continuous Nice Loop, cycle-like techniques describes structures using cells.
+            </remarks>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._otherLinkDashStyle">
+            <summary>
+            Indicates the other link dash style.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._viewUnit">
             <summary>
             Indicates the view unit used.
@@ -1901,6 +1925,18 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelFont"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._strongLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._weakLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CyclcLikeTechniqueLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._cyclcLikeTechniqueLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._otherLinkDashStyle"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPaneCell">
             <summary>
@@ -2495,13 +2531,6 @@ if (student is (name: var name, age: >= 18))
             <param name="candidate">The candidate to be determined.</param>
             <param name="conclusion">The overlapped result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.Extensions.GetDashArray(Sudoku.Concepts.Inference)">
-            <summary>
-            Creates a <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/> that corresponds to the <see cref="T:Sudoku.Concepts.Inference"/> instance.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Concepts.Inference"/> instance.</param>
-            <returns>A <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/> result.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Interaction.Extensions.WithCustomizedArrowCap(Microsoft.UI.Xaml.Media.PathGeometry,Windows.Foundation.Point,Windows.Foundation.Point)">
             <summary>

@@ -197,6 +197,34 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private FontFamily _babaGroupLabelFont = new("Times New Roman");
 
 	/// <summary>
+	/// Indicates the strong link dash style.
+	/// </summary>
+	[NotifyBackingField]
+	private DoubleCollection _strongLinkDashStyle = new();
+
+	/// <summary>
+	/// Indicates the weak link dash style.
+	/// </summary>
+	[NotifyBackingField]
+	private DoubleCollection _weakLinkDashStyle = new() { 4.5, 1.5 };
+
+	/// <summary>
+	/// Indicates the cycle-like technique link dash style.
+	/// </summary>
+	/// <remarks>
+	/// Cycle-like techniques are techniques that will use loops to describe structures, e.g. Unique Loop, Broken Wing, etc..
+	/// Different with Continuous Nice Loop, cycle-like techniques describes structures using cells.
+	/// </remarks>
+	[NotifyBackingField]
+	private DoubleCollection _cyclcLikeTechniqueLinkDashStyle = new();
+
+	/// <summary>
+	/// Indicates the other link dash style.
+	/// </summary>
+	[NotifyBackingField]
+	private DoubleCollection _otherLinkDashStyle = new() { 3, 3 };
+
+	/// <summary>
 	/// Indicates the view unit used.
 	/// </summary>
 	private ViewUnit? _viewUnit;
