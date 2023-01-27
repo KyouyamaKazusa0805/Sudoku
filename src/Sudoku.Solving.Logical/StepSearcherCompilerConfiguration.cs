@@ -34,9 +34,6 @@
 [assembly: SearcherConfiguration<              ChromaticPatternStepSearcher>(SearcherDisplayingLevel.C)]
 [assembly: SearcherConfiguration<                  DeathBlossomStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                   HasBugs)]
 [assembly: SearcherConfiguration<              MultipleChainingStepSearcher>(SearcherDisplayingLevel.C)]
-#if ALLOW_DEPRECATED_LOGICAL_STEP_OR_STEP_SEARCHER
-[assembly: SearcherConfiguration<     AlternatingInferenceChainStepSearcher>(SearcherDisplayingLevel.C)]
-#endif
 [assembly: SearcherConfiguration<                   BowmanBingoStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                LastResort)]
 [assembly: SearcherConfiguration<                      TemplateStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.     None, DisabledReason = SearcherDisabledReason.                LastResort)]
 [assembly: SearcherConfiguration<                PatternOverlayStepSearcher>(SearcherDisplayingLevel.C, EnabledArea = SearcherEnabledArea.Gathering, DisabledReason = SearcherDisabledReason.                LastResort)]
