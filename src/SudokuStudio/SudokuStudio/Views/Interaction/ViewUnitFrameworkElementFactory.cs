@@ -11,7 +11,7 @@ internal static class ViewUnitFrameworkElementFactory
 	/// Indicates the tag that is used to describe the control is only used for displaying highlighted elements in a <see cref="ViewUnit"/>.
 	/// </summary>
 	/// <seealso cref="ViewUnit"/>
-	internal const string ViewUnitUIElementControlTag = $"{nameof(ViewUnitFrameworkElementFactory)}.{nameof(FrameworkElement)}";
+	internal const string InternalTag = $"{nameof(ViewUnitFrameworkElementFactory)}.{nameof(FrameworkElement)}";
 
 
 	/// <summary>
@@ -151,7 +151,7 @@ internal static class ViewUnitFrameworkElementFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = ViewUnitUIElementControlTag,
+			Tag = InternalTag,
 			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity
 		};
 
@@ -216,7 +216,7 @@ internal static class ViewUnitFrameworkElementFactory
 			HorizontalAlignment = HorizontalAlignment.Center,
 			VerticalAlignment = VerticalAlignment.Center,
 			Fill = new SolidColorBrush(color),
-			Tag = ViewUnitUIElementControlTag
+			Tag = InternalTag
 		};
 
 		var digit = candidate % 9;
@@ -253,7 +253,7 @@ internal static class ViewUnitFrameworkElementFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = ViewUnitUIElementControlTag,
+			Tag = InternalTag,
 			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity
 		};
 
@@ -303,7 +303,7 @@ internal static class ViewUnitFrameworkElementFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = ViewUnitUIElementControlTag,
+			Tag = InternalTag,
 			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity
 		};
 
@@ -349,7 +349,7 @@ internal static class ViewUnitFrameworkElementFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = ViewUnitUIElementControlTag,
+			Tag = InternalTag,
 			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
@@ -423,7 +423,7 @@ file static class Extensions
 		var gathered = new List<FrameworkElement>();
 		foreach (var element in @this.OfType<FrameworkElement>())
 		{
-			if (element.Tag is ViewUnitFrameworkElementFactory.ViewUnitUIElementControlTag)
+			if (element.Tag is ViewUnitFrameworkElementFactory.InternalTag)
 			{
 				gathered.Add(element);
 			}
@@ -566,7 +566,7 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 					StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
 					StrokeDashArray = dashArray,
 					Data = new GeometryGroup { Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
-					Tag = ViewUnitFrameworkElementFactory.ViewUnitUIElementControlTag
+					Tag = ViewUnitFrameworkElementFactory.InternalTag
 				};
 			}
 			else
@@ -655,7 +655,7 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 								}
 							}.WithCustomizedArrowCap(pt1, pt2)
 						},
-						Tag = ViewUnitFrameworkElementFactory.ViewUnitUIElementControlTag
+						Tag = ViewUnitFrameworkElementFactory.InternalTag
 					};
 				}
 				else
@@ -670,7 +670,7 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 						StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = new LineGeometry { StartPoint = pt1, EndPoint = pt2 }.WithCustomizedArrowCap() },
-						Tag = ViewUnitFrameworkElementFactory.ViewUnitUIElementControlTag
+						Tag = ViewUnitFrameworkElementFactory.InternalTag
 					};
 				}
 			}
