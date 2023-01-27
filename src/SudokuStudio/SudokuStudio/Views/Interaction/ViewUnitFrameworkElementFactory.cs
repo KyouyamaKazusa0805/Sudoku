@@ -496,16 +496,12 @@ file static class Extensions
 		var topY = arrowLength * Sin(angle1);
 		var bottomX = arrowLength * Cos(angle2);
 		var bottomY = arrowLength * Sin(angle2);
-
-		var arrowX = pt2.X + topX;
-		var arrowY = pt2.Y + topY;
-		var a = new LineGeometry { StartPoint = new(arrowX, arrowY), EndPoint = pt2 };
-
-		arrowX = pt2.X + bottomX;
-		arrowY = pt2.Y + bottomY;
-		var b = new LineGeometry { StartPoint = new(arrowX, arrowY), EndPoint = pt2 };
-
-		return new() { @this, a, b };
+		return new()
+		{
+			@this,
+			new LineGeometry { StartPoint = new(pt2.X + topX, pt2.Y + topY), EndPoint = pt2 },
+			new LineGeometry { StartPoint = new(pt2.X + bottomX, pt2.Y + bottomY), EndPoint = pt2 }
+		};
 	}
 }
 
