@@ -31,21 +31,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:SudokuStudio.AppLifecycle.RunningContext">
             <summary>
             Defines a context type that stores the basic information of project running.
@@ -605,18 +590,18 @@ if (student is (name: var name, age: >= 18))
             The default DPI setting for a monitor is <see cref="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Effective_DPI"/>.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Interop.WindowsSystemDispatcherQueueHelper">
+        <member name="T:SudokuStudio.Interop.WinSysDispatcherQueueHelper">
             <summary>
             Defines a helper instance that is applied to type <see cref="T:Windows.System.DispatcherQueue"/>.
             </summary>
             <seealso cref="T:Windows.System.DispatcherQueue"/>
         </member>
-        <member name="F:SudokuStudio.Interop.WindowsSystemDispatcherQueueHelper._dispatcherQueueController">
+        <member name="F:SudokuStudio.Interop.WinSysDispatcherQueueHelper._dispatcherQueueController">
             <summary>
             The internal field that is used for exchanging.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Interop.WindowsSystemDispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController">
+        <member name="M:SudokuStudio.Interop.WinSysDispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController">
             <summary>
             Try to create a <see cref="T:Windows.System.DispatcherQueueController"/> instance.
             </summary>
@@ -1678,30 +1663,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the baba group label font.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._strongLinkDashStyle">
-            <summary>
-            Indicates the strong link dash style.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._weakLinkDashStyle">
-            <summary>
-            Indicates the weak link dash style.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._cyclcLikeTechniqueLinkDashStyle">
-            <summary>
-            Indicates the cycle-like technique link dash style.
-            </summary>
-            <remarks>
-            Cycle-like techniques are techniques that will use loops to describe structures, e.g. Unique Loop, Broken Wing, etc..
-            Different with Continuous Nice Loop, cycle-like techniques describes structures using cells.
-            </remarks>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._otherLinkDashStyle">
-            <summary>
-            Indicates the other link dash style.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._viewUnit">
             <summary>
             Indicates the view unit used.
@@ -1835,16 +1796,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates"/>
         </member>
@@ -1926,18 +1877,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelFont"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._strongLinkDashStyle"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._weakLinkDashStyle"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CyclcLikeTechniqueLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._cyclcLikeTechniqueLinkDashStyle"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._otherLinkDashStyle"/>
-        </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPaneCell">
             <summary>
             Defines a cell displayed in a <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/>.
@@ -1989,16 +1928,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
@@ -2724,16 +2653,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched"/>
         </member>
@@ -2774,16 +2693,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._analysisResult"/>
         </member>
@@ -2811,16 +2720,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
@@ -2857,16 +2756,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
@@ -2942,50 +2831,33 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
             <summary>
             Provides with a <see cref="T:Microsoft.UI.Xaml.Window"/> instance that is running as main instance of the program.
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Window"/>
         </member>
+        <member name="F:SudokuStudio.Views.Windows.MainWindow.NavigationTransitionInfo">
+            <summary>
+            The default navigation transition instance that will create animation fallback while switching pages.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Windows.MainWindow._wsdqHelper">
             <summary>
-            Defines a <see cref="T:SudokuStudio.Interop.WindowsSystemDispatcherQueueHelper"/> instance that is used for interaction
-            with <see cref="T:Windows.System.DispatcherQueue"/>.
+            Defines a <see cref="T:SudokuStudio.Interop.WinSysDispatcherQueueHelper"/> instance used for interaction with <see cref="T:Windows.System.DispatcherQueue"/>.
             </summary>
+            <seealso cref="T:SudokuStudio.Interop.WinSysDispatcherQueueHelper"/>
             <seealso cref="T:Windows.System.DispatcherQueue"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Windows.MainWindow._micaController">
-            <summary>
-            Indicates the Mica controller instance. This instance is used as core implementation of Mica material of applications.
-            </summary>
         </member>
         <member name="F:SudokuStudio.Views.Windows.MainWindow._configurationSource">
             <summary>
             Indicates the material configuration instance. This field controls displaying with a customized material such as Mica and acrylic.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetConfigurationSourceTheme">
+        <member name="F:SudokuStudio.Views.Windows.MainWindow._micaController">
             <summary>
-            Sets <see cref="P:Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration.Theme"/> to the target value.
+            Indicates the Mica controller instance. This instance is used as core implementation of Mica material of applications.
             </summary>
-            <exception cref="T:System.NotSupportedException">Throws when the actual theme is not defined.</exception>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.TrySetMicaBackdrop">
-            <summary>
-            Try to set Mica backdrop.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is succeeded.</returns>
         </member>
         <member name="F:SudokuStudio.Views.Windows.MainWindow._appWindow">
             <summary>
@@ -2993,6 +2865,11 @@ if (student is (name: var name, age: >= 18))
             such as icon, title bars and so on.
             </summary>
             <seealso cref="T:Microsoft.UI.Windowing.AppWindow"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
+            </summary>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeAppWindow">
             <summary>
@@ -3010,22 +2887,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="appWindow">The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetScaleAdjustment">
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetConfigurationSourceTheme">
             <summary>
-            Try to adjust the scaling.
+            Sets <see cref="P:Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration.Theme"/> to the target value.
             </summary>
-            <returns>The scaling result value.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the computer cannot handle scaling correctly.</exception>
-        </member>
-        <member name="F:SudokuStudio.Views.Windows.MainWindow.NavigationTransitionInfo">
-            <summary>
-            The default navigation transition instance that will create animation fallback while switching pages.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
-            </summary>
+            <remarks>
+            This method requires the member <see cref="F:SudokuStudio.Views.Windows.MainWindow._configurationSource"/> be not <see langword="null"/>.
+            </remarks>
+            <exception cref="T:System.NotSupportedException">Throws when the actual theme is not defined.</exception>
+            <seealso cref="P:Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration.Theme"/>
+            <seealso cref="F:SudokuStudio.Views.Windows.MainWindow._configurationSource"/>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type)">
             <summary>
@@ -3053,39 +2924,22 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/>
             <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>
         </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.TrySetMicaBackdrop">
+            <summary>
+            Try to set Mica backdrop.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is succeeded.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetScaleAdjustment">
+            <summary>
+            Try to adjust the scaling.
+            </summary>
+            <returns>The scaling result value.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the computer cannot handle scaling correctly.</exception>
+        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">

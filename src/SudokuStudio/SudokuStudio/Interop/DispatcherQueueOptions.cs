@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Interop;
+﻿#if MICA_BACKDROP || ACRYLIC_BACKDROP
+
+namespace SudokuStudio.Interop;
 
 /// <summary>
 /// Specifies the threading and apartment type for a new
@@ -42,3 +44,4 @@ internal struct DispatcherQueueOptions
 	/// </summary>
 	internal int apartmentType;
 }
+#endif

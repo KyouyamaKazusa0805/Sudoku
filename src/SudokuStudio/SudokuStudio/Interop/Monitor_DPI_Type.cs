@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Interop;
+﻿#if CUSTOMIZED_TITLE_BAR
+
+namespace SudokuStudio.Interop;
 
 /// <summary>
 /// Identifies the dots per inch (dpi) setting for a monitor.
@@ -65,3 +67,4 @@ internal enum Monitor_DPI_Type : int
 	/// </summary>
 	MDT_Default = MDT_Effective_DPI
 }
+#endif

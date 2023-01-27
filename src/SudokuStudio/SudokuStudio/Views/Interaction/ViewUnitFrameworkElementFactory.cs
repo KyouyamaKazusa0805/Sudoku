@@ -549,10 +549,10 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 
 			var dashArray = inference switch
 			{
-				Inference.Strong => Page.SudokuPane.StrongLinkDashStyle,
-				Inference.Weak => Page.SudokuPane.WeakLinkDashStyle,
-				Inference.Default => Page.SudokuPane.CyclcLikeTechniqueLinkDashStyle,
-				_ => Page.SudokuPane.OtherLinkDashStyle
+				Inference.Strong => new(),
+				Inference.Weak => new() { 3, 1.5 },
+				Inference.Default => new(),
+				_ => new DoubleCollection { 3, 3 }
 			};
 			if (inference == Inference.Default)
 			{
@@ -648,6 +648,7 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 									new PathFigure
 									{
 										StartPoint = pt1,
+										IsClosed = false,
 										IsFilled = false,
 										Segments = new() { new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 } }
 									}

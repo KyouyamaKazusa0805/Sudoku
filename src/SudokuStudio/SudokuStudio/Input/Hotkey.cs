@@ -8,4 +8,4 @@
 /// to combine flags.
 /// </param>
 /// <param name="Key">Indicates the key.</param>
-public readonly record struct Hotkey(winsys::VirtualKeyModifiers Modifiers, winsys::VirtualKey Key);
+public readonly record struct Hotkey(VirtualKeyModifiers Modifiers, VirtualKey Key);

@@ -89,7 +89,7 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 			{
 				This: { BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
 				Sender: TextBox { Text: var text, Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup p } } },
-				EventData.Key: winsys::VirtualKey.Enter
+				EventData.Key: VirtualKey.Enter
 			}:
 			{
 				if (modified.GetStatus(cell) is not (var cellStatus and not CellStatus.Given))

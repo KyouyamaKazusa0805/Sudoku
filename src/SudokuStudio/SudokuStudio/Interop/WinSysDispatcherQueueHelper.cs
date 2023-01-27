@@ -1,10 +1,12 @@
-﻿namespace SudokuStudio.Interop;
+﻿#if MICA_BACKDROP || ACRYLIC_BACKDROP
+
+namespace SudokuStudio.Interop;
 
 /// <summary>
-/// Defines a helper instance that is applied to type <see cref="winsys::DispatcherQueue"/>.
+/// Defines a helper instance that is applied to type <see cref="WinSysDispatcherQueue"/>.
 /// </summary>
-/// <seealso cref="winsys::DispatcherQueue"/>
-internal sealed class WindowsSystemDispatcherQueueHelper
+/// <seealso cref="WinSysDispatcherQueue"/>
+internal sealed partial class WinSysDispatcherQueueHelper
 {
 	/// <summary>
 	/// The internal field that is used for exchanging.
@@ -13,12 +15,12 @@ internal sealed class WindowsSystemDispatcherQueueHelper
 
 
 	/// <summary>
-	/// Try to create a <see cref="winsys::DispatcherQueueController"/> instance.
+	/// Try to create a <see cref="WinSysDispatcherQueueController"/> instance.
 	/// </summary>
-	/// <seealso cref="winsys::DispatcherQueueController"/>
+	/// <seealso cref="WinSysDispatcherQueueController"/>
 	public void EnsureWindowsSystemDispatcherQueueController()
 	{
-		if (winsys::DispatcherQueue.GetForCurrentThread() is not null)
+		if (WinSysDispatcherQueue.GetForCurrentThread() is not null)
 		{
 			// One already exists, so we'll just use it.
 			return;
@@ -39,3 +41,4 @@ internal sealed class WindowsSystemDispatcherQueueHelper
 		static extern int createController([In] DispatcherQueueOptions options, [In, Out, MarshalAs(UnmanagedType.IUnknown)] ref object? dispatcherQueueController);
 	}
 }
+#endif

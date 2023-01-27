@@ -6,29 +6,29 @@
 public static class Keyboard
 {
 	/// <summary>
-	/// Checks whether the key <see cref="winsys::VirtualKey.Control"/> is input.
+	/// Checks whether the key <see cref="VirtualKey.Control"/> is input.
 	/// </summary>
 	public static bool IsControlKeyDown
-		=> InputKeyboardSource.GetKeyStateForCurrentThread(winsys::VirtualKey.Control).Flags(CoreVirtualKeyStates.Down);
+		=> InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Control).Flags(CoreVirtualKeyStates.Down);
 
 	/// <summary>
-	/// Checks whether the key <see cref="winsys::VirtualKey.Shift"/> is input.
+	/// Checks whether the key <see cref="VirtualKey.Shift"/> is input.
 	/// </summary>
 	public static bool IsShiftKeyDown
-		=> InputKeyboardSource.GetKeyStateForCurrentThread(winsys::VirtualKey.Shift).Flags(CoreVirtualKeyStates.Down);
+		=> InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Shift).Flags(CoreVirtualKeyStates.Down);
 
 	/// <summary>
-	/// Checks whether the key <see cref="winsys::VirtualKey.Menu"/> is input.
+	/// Checks whether the key <see cref="VirtualKey.Menu"/> is input.
 	/// </summary>
 	public static bool IsAltKeyDown
-		=> InputKeyboardSource.GetKeyStateForCurrentThread(winsys::VirtualKey.Menu).Flags(CoreVirtualKeyStates.Down);
+		=> InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Menu).Flags(CoreVirtualKeyStates.Down);
 
 	/// <summary>
-	/// Checks whether the key <see cref="winsys::VirtualKey.LeftWindows"/> or <see cref="winsys::VirtualKey.RightWindows"/> is input.
+	/// Checks whether the key <see cref="VirtualKey.LeftWindows"/> or <see cref="VirtualKey.RightWindows"/> is input.
 	/// </summary>
 	public static bool IsWindowsKeyDown
-		=> InputKeyboardSource.GetKeyStateForCurrentThread(winsys::VirtualKey.LeftWindows).Flags(CoreVirtualKeyStates.Down)
-		|| InputKeyboardSource.GetKeyStateForCurrentThread(winsys::VirtualKey.RightWindows).Flags(CoreVirtualKeyStates.Down);
+		=> InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.LeftWindows).Flags(CoreVirtualKeyStates.Down)
+		|| InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.RightWindows).Flags(CoreVirtualKeyStates.Down);
 
 
 	/// <summary>
@@ -49,8 +49,8 @@ public static class Keyboard
 	/// <item>
 	/// <term>-1</term>
 	/// <description>
-	/// Inputting <see cref="winsys::VirtualKey.Number0"/>, <see cref="winsys::VirtualKey.NumberPad0"/>,
-	/// <see cref="winsys::VirtualKey.Back"/> or <see cref="winsys::VirtualKey.Delete"/>
+	/// Inputting <see cref="VirtualKey.Number0"/>, <see cref="VirtualKey.NumberPad0"/>,
+	/// <see cref="VirtualKey.Back"/> or <see cref="VirtualKey.Delete"/>
 	/// </description>
 	/// </item>
 	/// <item>
@@ -59,13 +59,13 @@ public static class Keyboard
 	/// </item>
 	/// </list>
 	/// </returns>
-	public static int GetInputDigit(winsys::VirtualKey virtualKey)
+	public static int GetInputDigit(VirtualKey virtualKey)
 		=> virtualKey switch
 		{
-			winsys::VirtualKey.Number0 or winsys::VirtualKey.NumberPad0 => -1,
-			winsys::VirtualKey.Back or winsys::VirtualKey.Delete => -1,
-			>= winsys::VirtualKey.Number1 and <= winsys::VirtualKey.Number9 => virtualKey - winsys::VirtualKey.Number1,
-			>= winsys::VirtualKey.NumberPad1 and <= winsys::VirtualKey.NumberPad9 => virtualKey - winsys::VirtualKey.NumberPad1,
+			VirtualKey.Number0 or VirtualKey.NumberPad0 => -1,
+			VirtualKey.Back or VirtualKey.Delete => -1,
+			>= VirtualKey.Number1 and <= VirtualKey.Number9 => virtualKey - VirtualKey.Number1,
+			>= VirtualKey.NumberPad1 and <= VirtualKey.NumberPad9 => virtualKey - VirtualKey.NumberPad1,
 			_ => -2
 		};
 

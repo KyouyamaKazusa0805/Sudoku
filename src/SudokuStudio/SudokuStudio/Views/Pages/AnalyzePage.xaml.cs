@@ -142,7 +142,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			return;
 		}
 
-		switch (io::Path.GetExtension(filePath))
+		switch (SystemPath.GetExtension(filePath))
 		{
 			case CommonFileExtensions.PlainText:
 			{
@@ -191,7 +191,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		}
 
 		var grid = SudokuPane.Puzzle;
-		switch (io::Path.GetExtension(filePath))
+		switch (SystemPath.GetExtension(filePath))
 		{
 			case CommonFileExtensions.PlainText:
 			{
@@ -256,7 +256,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			default:
 			{
 				var content = await FileIO.ReadTextAsync(file);
-				switch (io::Path.GetExtension(filePath))
+				switch (SystemPath.GetExtension(filePath))
 				{
 					case CommonFileExtensions.PlainText:
 					{
@@ -333,16 +333,16 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	private void InitializeField()
 		=> _hotkeyFunctions = new (Hotkey, Action)[]
 		{
-			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Z), SudokuPane.UndoStep),
-			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.Y), SudokuPane.RedoStep),
-			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.C), SudokuPane.Copy),
+			(new(VirtualKeyModifiers.Control, VirtualKey.Z), SudokuPane.UndoStep),
+			(new(VirtualKeyModifiers.Control, VirtualKey.Y), SudokuPane.RedoStep),
+			(new(VirtualKeyModifiers.Control, VirtualKey.C), SudokuPane.Copy),
 			(
-				new(winsys::VirtualKeyModifiers.Control | winsys::VirtualKeyModifiers.Shift, winsys::VirtualKey.C),
+				new(VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift, VirtualKey.C),
 				async () => await SudokuPane.CopySnapshotAsync()
 			),
-			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.V), async () => await SudokuPane.PasteAsync()),
-			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.O), async () => await OpenFileInternalAsync()),
-			(new(winsys::VirtualKeyModifiers.Control, winsys::VirtualKey.S), async () => await SaveFileInternalAsync())
+			(new(VirtualKeyModifiers.Control, VirtualKey.V), async () => await SudokuPane.PasteAsync()),
+			(new(VirtualKeyModifiers.Control, VirtualKey.O), async () => await OpenFileInternalAsync()),
+			(new(VirtualKeyModifiers.Control, VirtualKey.S), async () => await SaveFileInternalAsync())
 		};
 
 	/// <summary>
