@@ -79,6 +79,12 @@ internal readonly partial record struct SudokuPanePositionConverter(GridLayout G
 	private string GridHeightString => ((int)GridSize.Height).ToString();
 
 
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out Point firstCellTopLeftPosition, out Point[,] gridPoints);
+
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(out Size candidateSize, out Size cellSize, out Size blockSize, out Size gridSize);
+
 	/// <inheritdoc/>
 	public bool Equals(SudokuPanePositionConverter other) => GridSize == other.GridSize;
 
@@ -105,17 +111,15 @@ internal readonly partial record struct SudokuPanePositionConverter(GridLayout G
 	public Point GetPosition(int candidate, Position position = Position.Center)
 	{
 		var (cw, ch) = CandidateSize;
-		var cell = candidate / 9;
-		var digit = candidate % 9;
-		var (topLeftX, topLeftY) = GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
-		var @base = new Point(topLeftX + cw / 2, topLeftY + ch / 2);
+		var (cell, digit) = (candidate / 9, candidate % 9);
+		var @base = GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
 		return position switch
 		{
 			Position.TopLeft => @base,
 			Position.TopRight => @base with { X = @base.X + cw },
 			Position.BottomLeft => @base with { Y = @base.Y + ch },
-			Position.BottomRight => @base with { X = @base.X + cw, Y = @base.Y + ch },
-			Position.Center => @base with { X = @base.X + cw / 2, Y = @base.Y + ch / 2 },
+			Position.BottomRight => new(@base.X + cw, @base.Y + ch),
+			Position.Center => new(@base.X + cw / 2, @base.Y + ch / 2),
 			_ => throw new ArgumentOutOfRangeException(nameof(position))
 		};
 	}

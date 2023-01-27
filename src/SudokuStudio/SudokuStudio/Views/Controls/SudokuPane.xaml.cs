@@ -76,6 +76,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private double _highlightBackgroundOpacity = .15;
 
 	/// <summary>
+	/// Indicates the chain stroke thickness.
+	/// </summary>
+	[NotifyBackingField]
+	private double _chainStrokeThickness = 2;
+
+	/// <summary>
 	/// Indicates the currently selected cell.
 	/// </summary>
 	[NotifyBackingField]

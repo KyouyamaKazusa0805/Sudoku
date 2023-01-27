@@ -283,6 +283,100 @@
             Indicates the grid points.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.Deconstruct(Windows.Foundation.Point@,Windows.Foundation.Point[0:,0:]@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.Deconstruct(Windows.Foundation.Size@,Windows.Foundation.Size@,Windows.Foundation.Size@,Windows.Foundation.Size@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.Equals(SudokuStudio.Input.SudokuPanePositionConverter)">
             <inheritdoc/>
         </member>
@@ -1481,6 +1575,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._chainStrokeThickness">
+            <summary>
+            Indicates the chain stroke thickness.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._selectedCell">
             <summary>
             Indicates the currently selected cell.
@@ -1748,6 +1847,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._highlightBackgroundOpacity"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._chainStrokeThickness"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._selectedCell"/>
@@ -2267,6 +2369,110 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
             <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
         </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for conclusions.
+            </summary>
+            <param name="targetPage">
+            The target page instance. This instance provides with user-defined customized properties used for displaying elements.
+            e.g. background color.
+            </param>
+            <param name="conclusion">The conclusion to be displayed.</param>
+            <param name="overlapped">A collection that stores for overlapped candidates.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="cellNode">The node to be displayed.</param>
+            <seealso cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="candidateNode">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
+            </param>
+            <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalisms.</param>
+            <param name="overlapped">
+            Indicates the collection that returns a possible <see cref="T:Sudoku.Solving.Conclusion"/> value indicating
+            what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
+            </param>
+            <seealso cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNodeCore(Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell)">
+            <summary>
+            The core method called by <see cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)"/>.
+            </summary>
+            <param name="color">The color to be used on rendering.</param>
+            <param name="candidate">The candidate to be rendered.</param>
+            <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
+            <seealso cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForHouseNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.HouseViewNode)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="houseNode">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="P:Sudoku.Presentation.Nodes.HouseViewNode.House"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForChuteNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.ChuteViewNode)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/>.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="chuteNode">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="P:Sudoku.Presentation.Nodes.ChuteViewNode.ChuteIndex"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.BabaGroupNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.BabaGroupViewNode)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="babaGroupNode">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
+            </param>
+            <seealso cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForLinkNodes(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.LinkViewNode[],System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>s.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="linkNodes">
+            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
+            </param>
+            <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
+            <remarks>
+            This method is special: We should handle all <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>s together.
+            </remarks>
+        </member>
         <member name="T:SudokuStudio.Views.Interaction.Extensions">
             <target name="class" when="extension">
 				<summary>
@@ -2289,6 +2495,13 @@ if (student is (name: var name, age: >= 18))
             <param name="candidate">The candidate to be determined.</param>
             <param name="conclusion">The overlapped result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.Extensions.GetDashArray(Sudoku.Concepts.Inference)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/> that corresponds to the <see cref="T:Sudoku.Concepts.Inference"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Concepts.Inference"/> instance.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/> result.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Interaction.Extensions.WithCustomizedArrowCap(Microsoft.UI.Xaml.Media.PathGeometry,Windows.Foundation.Point,Windows.Foundation.Point)">
             <summary>
@@ -2321,7 +2534,7 @@ if (student is (name: var name, age: >= 18))
             Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
             </summary>
             <param name="Page">Indicates the page data.</param>
-            <param name="PositionConverter">Indicates the position converter.</param>
+            <param name="Converter">Indicates the position converter.</param>
             <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
         </member>
@@ -2330,14 +2543,14 @@ if (student is (name: var name, age: >= 18))
             Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
             </summary>
             <param name="Page">Indicates the page data.</param>
-            <param name="PositionConverter">Indicates the position converter.</param>
+            <param name="Converter">Indicates the position converter.</param>
             <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
         </member>
         <member name="P:SudokuStudio.Views.Interaction.PathCreator.Page">
             <summary>Indicates the page data.</summary>
         </member>
-        <member name="P:SudokuStudio.Views.Interaction.PathCreator.PositionConverter">
+        <member name="P:SudokuStudio.Views.Interaction.PathCreator.Converter">
             <summary>Indicates the position converter.</summary>
         </member>
         <member name="P:SudokuStudio.Views.Interaction.PathCreator.Conclusions">
