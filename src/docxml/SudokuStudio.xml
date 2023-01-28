@@ -31,21 +31,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:SudokuStudio.AppLifecycle.RunningContext">
             <summary>
             Defines a context type that stores the basic information of project running.
@@ -70,6 +55,94 @@
             <summary>
             Indicates the main window that the program is running.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Collection.DashArray">
+            <summary>
+            Defines a dash array of <see cref="T:System.Double"/> values used by <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/>-typed properties in controls,
+            for example, <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/>.
+            </summary>
+            <seealso cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/>
+        </member>
+        <member name="F:SudokuStudio.Collection.DashArray._doubles">
+            <summary>
+            The double values.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Collection.DashArray"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.#ctor(System.Double[])">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Collection.DashArray"/> instance via the specified list of values.
+            </summary>
+            <param name="doubles">A list of values.</param>
+        </member>
+        <member name="P:SudokuStudio.Collection.DashArray.Count">
+            <summary>
+            Indicates the number of values.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.Equals(SudokuStudio.Collection.DashArray)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.ToDoubleCollection">
+            <summary>
+            Converts the current collection into a <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/> instance.
+            </summary>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/> result.</returns>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.System#Collections#Generic#IEnumerable{System#Double}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Collection.DashArray.Enumerator">
+            <summary>
+            Defines an enumerator of this type.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.#ctor(System.Double[])">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Collection.DashArray.Enumerator"/> instance.
+            </summary>
+            <param name="doubles">The double values.</param>
+        </member>
+        <member name="F:SudokuStudio.Collection.DashArray.Enumerator._doubles">
+            <summary>
+            The internal array to be iterated.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Collection.DashArray.Enumerator._index">
+            <summary>
+            Indicates the index of the current position.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Collection.DashArray.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.op_Equality(SudokuStudio.Collection.DashArray,SudokuStudio.Collection.DashArray)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.op_Inequality(SudokuStudio.Collection.DashArray,SudokuStudio.Collection.DashArray)">
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Collection.NotifyElementChangedStack`1">
             <summary>
@@ -621,6 +694,19 @@ if (student is (name: var name, age: >= 18))
             Try to create a <see cref="T:Windows.System.DispatcherQueueController"/> instance.
             </summary>
             <seealso cref="T:Windows.System.DispatcherQueueController"/>
+        </member>
+        <member name="T:SudokuStudio.Markup.DashArrayExtension">
+            <summary>
+            Defines a <see cref="T:SudokuStudio.Collection.DashArray"/> markup extension.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.DashArrayExtension.Expression">
+            <summary>
+            The text.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.DashArrayExtension.ProvideValue">
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Markup.GridExtension">
             <summary>
@@ -1658,6 +1744,26 @@ if (student is (name: var name, age: >= 18))
             Indicates the target puzzle.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._strongLinkDashStyle">
+            <summary>
+            Indicates the dash style of the strong links.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._weakLinkDashStyle">
+            <summary>
+            Indicates the dash style of the weak links.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._cycleLikeLinkDashStyle">
+            <summary>
+            Indicates the dash style of the cycle-like technique links.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._otherLinkDashStyle">
+            <summary>
+            Indicates the dash style of the other links.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._valueFont">
             <summary>
             Indicates the value font.
@@ -1811,16 +1917,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates"/>
         </member>
@@ -1890,6 +1986,18 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._linkColor"/>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._strongLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._weakLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._cycleLikeLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._otherLinkDashStyle"/>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ValueFont">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._valueFont"/>
         </member>
@@ -1953,16 +2061,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
@@ -2473,29 +2571,6 @@ if (student is (name: var name, age: >= 18))
             This method is special: We should handle all <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>s together.
             </remarks>
         </member>
-        <member name="T:SudokuStudio.Views.Interaction.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
-            <summary>
-            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
-            </summary>
-            <param name="this">The collection.</param>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.Extensions.ConflictWith(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Int32,System.Nullable{Sudoku.Solving.Conclusion}@)">
-            <summary>
-            <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
-            <para>This method is used for checking cannibalisms.</para>
-            </summary>
-            <param name="conclusions">The conclusion collection.</param>
-            <param name="candidate">The candidate to be determined.</param>
-            <param name="conclusion">The overlapped result.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="T:SudokuStudio.Views.Interaction.PathCreator">
             <summary>
             Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
@@ -2554,6 +2629,29 @@ if (student is (name: var name, age: >= 18))
             <param name="pt1">The start point.</param>
             <param name="pt2">The end point.</param>
             <returns>An instance of type <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/>.</returns>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
+            <summary>
+            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            </summary>
+            <param name="this">The collection.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.Extensions.ConflictWith(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Int32,System.Nullable{Sudoku.Solving.Conclusion}@)">
+            <summary>
+            <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
+            <para>This method is used for checking cannibalisms.</para>
+            </summary>
+            <param name="conclusions">The conclusion collection.</param>
+            <param name="candidate">The candidate to be determined.</param>
+            <param name="conclusion">The overlapped result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
             <summary>
@@ -2677,16 +2775,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched"/>
         </member>
@@ -2727,16 +2815,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._analysisResult"/>
         </member>
@@ -2764,16 +2842,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
@@ -2810,16 +2878,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
@@ -2893,16 +2951,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
@@ -3014,36 +3062,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">

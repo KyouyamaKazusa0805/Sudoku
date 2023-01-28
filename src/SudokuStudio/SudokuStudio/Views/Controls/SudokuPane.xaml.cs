@@ -173,6 +173,30 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private Grid _puzzle = Grid.Empty;
 
 	/// <summary>
+	/// Indicates the dash style of the strong links.
+	/// </summary>
+	[NotifyBackingField]
+	private DashArray _strongLinkDashStyle = new();
+
+	/// <summary>
+	/// Indicates the dash style of the weak links.
+	/// </summary>
+	[NotifyBackingField]
+	private DashArray _weakLinkDashStyle = new(3, 1.5);
+
+	/// <summary>
+	/// Indicates the dash style of the cycle-like technique links.
+	/// </summary>
+	[NotifyBackingField]
+	private DashArray _cycleLikeLinkDashStyle = new();
+
+	/// <summary>
+	/// Indicates the dash style of the other links.
+	/// </summary>
+	[NotifyBackingField]
+	private DashArray _otherLinkDashStyle = new(3, 3);
+
+	/// <summary>
 	/// Indicates the value font.
 	/// </summary>
 	[NotifyBackingField]

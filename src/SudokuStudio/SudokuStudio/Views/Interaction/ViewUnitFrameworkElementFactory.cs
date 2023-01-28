@@ -411,54 +411,6 @@ internal static class ViewUnitFrameworkElementFactory
 	}
 }
 
-/// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
-	/// <summary>
-	/// Removes all possible <see cref="FrameworkElement"/>s that is used for displaying elements in a <see cref="ViewUnit"/>.
-	/// </summary>
-	/// <param name="this">The collection.</param>
-	public static void RemoveAllViewUnitControls(this UIElementCollection @this)
-	{
-		var gathered = new List<FrameworkElement>();
-		foreach (var element in @this.OfType<FrameworkElement>())
-		{
-			if (element.Tag is ViewUnitFrameworkElementFactory.InternalTag)
-			{
-				gathered.Add(element);
-			}
-		}
-
-		foreach (var element in gathered)
-		{
-			@this.Remove(element);
-		}
-	}
-
-	/// <summary>
-	/// <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
-	/// <para>This method is used for checking cannibalisms.</para>
-	/// </summary>
-	/// <param name="conclusions">The conclusion collection.</param>
-	/// <param name="candidate">The candidate to be determined.</param>
-	/// <param name="conclusion">The overlapped result.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool ConflictWith(this ImmutableArray<Conclusion> conclusions, int candidate, [NotNullWhen(true)] out Conclusion? conclusion)
-	{
-		foreach (var current in conclusions)
-		{
-			if (current.Candidate == candidate)
-			{
-				conclusion = current;
-				return true;
-			}
-		}
-
-		conclusion = null;
-		return false;
-	}
-}
-
 /// <summary>
 /// Extracted type that creates the <see cref="Path"/> instances.
 /// </summary>
@@ -501,101 +453,106 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 			_ = Converter.GetPosition(startCell * 9 + startDigit) is (var pt1x, var pt1y) pt1;
 			_ = Converter.GetPosition(endCell * 9 + endDigit) is (var pt2x, var pt2y) pt2;
 
-			var dashArray = inference switch
-			{
-				Inference.Strong => new(),
-				Inference.Weak => new() { 3, 1.5 },
-				Inference.Default => new(),
-				_ => new DoubleCollection { 3, 3 }
-			};
-			if (inference == Inference.Default)
-			{
-				// Draw the link.
-				correctOffsetOfPoint(ref pt1, ow, oh);
-				correctOffsetOfPoint(ref pt2, ow, oh);
-
-				yield return new()
+			var dashArray = (
+				inference switch
 				{
-					Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
-					StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
-					StrokeDashArray = dashArray,
-					Data = new GeometryGroup { Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
-					Tag = ViewUnitFrameworkElementFactory.InternalTag
-				};
-			}
-			else
-			{
-				// If the distance of two points is lower than the one of two adjacent candidates,
-				// the link will be ignored to be drawn because of too narrow.
-				var distance = pt1.DistanceTo(pt2);
-				if (distance <= cs * SqrtOf2 || distance <= cs * SqrtOf2)
-				{
-					continue;
+					Inference.Strong => Page.SudokuPane.StrongLinkDashStyle,
+					Inference.Weak => Page.SudokuPane.WeakLinkDashStyle,
+					Inference.Default => Page.SudokuPane.CycleLikeLinkDashStyle,
+					_ => Page.SudokuPane.OtherLinkDashStyle
 				}
-
-				var deltaX = pt2.X - pt1.X;
-				var deltaY = pt2.Y - pt1.Y;
-				var alpha = Atan2(deltaY, deltaX);
-				adjust(pt1, pt2, out var p1, out _, alpha, cs);
-
-				// Check if another candidate lies in the direct line.
-				var through = false;
-				var dx1 = deltaX;
-				var dy1 = deltaY;
-				foreach (var point in points)
+			).ToDoubleCollection();
+			switch (inference)
+			{
+				case Inference.Default:
 				{
-					if (point == pt1 || point == pt2)
-					{
-						// The point is itself.
-						continue;
-					}
-
-					var dx2 = point.X - p1.X;
-					var dy2 = point.Y - p1.Y;
-					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
-						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
-					{
-						through = true;
-						break;
-					}
-				}
-
-				// Now cut the link.
-				cut(ref pt1, ref pt2, cs);
-
-				if (through)
-				{
-					var bezierLength = 20.0;
-
-					// The end points are rotated 45 degrees (counterclockwise for the start point, clockwise for the end point).
-					var oldPt1 = new Point(pt1x, pt1y);
-					var oldPt2 = new Point(pt2x, pt2y);
-					rotate(oldPt1, ref pt1, -RotateAngle);
-					rotate(oldPt2, ref pt2, RotateAngle);
-
-					var interim1Alpha = alpha - RotateAngle;
-					var bx1 = pt1.X + bezierLength * Cos(interim1Alpha);
-					var by1 = pt1.Y + bezierLength * Sin(interim1Alpha);
-					var interim2Alpha = alpha + RotateAngle;
-					var bx2 = pt2.X - bezierLength * Cos(interim2Alpha);
-					var by2 = pt2.Y - bezierLength * Sin(interim2Alpha);
-
 					correctOffsetOfPoint(ref pt1, ow, oh);
 					correctOffsetOfPoint(ref pt2, ow, oh);
-					correctOffsetOfDouble(ref bx1, ow);
-					correctOffsetOfDouble(ref bx2, oh);
-					correctOffsetOfDouble(ref by1, ow);
-					correctOffsetOfDouble(ref by2, oh);
 
 					yield return new()
 					{
 						Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
 						StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
-						Data = new GeometryGroup
+						Data = new GeometryGroup { Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
+						Tag = ViewUnitFrameworkElementFactory.InternalTag
+					};
+
+					break;
+				}
+				default:
+				{
+					// If the distance of two points is lower than the one of two adjacent candidates,
+					// the link will be ignored to be drawn because of too narrow.
+					var distance = pt1.DistanceTo(pt2);
+					if (distance <= cs * SqrtOf2 || distance <= cs * SqrtOf2)
+					{
+						continue;
+					}
+
+					var deltaX = pt2.X - pt1.X;
+					var deltaY = pt2.Y - pt1.Y;
+					var alpha = Atan2(deltaY, deltaX);
+					adjust(pt1, pt2, out var p1, out _, alpha, cs);
+
+					// Check if another candidate lies in the direct line.
+					var through = false;
+					var dx1 = deltaX;
+					var dy1 = deltaY;
+					foreach (var point in points)
+					{
+						if (point == pt1 || point == pt2)
 						{
-							Children = new GeometryCollection
+							// The point is itself.
+							continue;
+						}
+
+						var dx2 = point.X - p1.X;
+						var dy2 = point.Y - p1.Y;
+						if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
+							&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
+							&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
+						{
+							through = true;
+							break;
+						}
+					}
+
+					// Now cut the link.
+					cut(ref pt1, ref pt2, cs);
+
+					if (through)
+					{
+						var bezierLength = 20.0;
+
+						// The end points are rotated 45 degrees (counterclockwise for the start point, clockwise for the end point).
+						var oldPt1 = new Point(pt1x, pt1y);
+						var oldPt2 = new Point(pt2x, pt2y);
+						rotate(oldPt1, ref pt1, -RotateAngle);
+						rotate(oldPt2, ref pt2, RotateAngle);
+
+						var interim1Alpha = alpha - RotateAngle;
+						var bx1 = pt1.X + bezierLength * Cos(interim1Alpha);
+						var by1 = pt1.Y + bezierLength * Sin(interim1Alpha);
+						var interim2Alpha = alpha + RotateAngle;
+						var bx2 = pt2.X - bezierLength * Cos(interim2Alpha);
+						var by2 = pt2.Y - bezierLength * Sin(interim2Alpha);
+
+						correctOffsetOfPoint(ref pt1, ow, oh);
+						correctOffsetOfPoint(ref pt2, ow, oh);
+						correctOffsetOfDouble(ref bx1, ow);
+						correctOffsetOfDouble(ref bx2, oh);
+						correctOffsetOfDouble(ref by1, ow);
+						correctOffsetOfDouble(ref by2, oh);
+
+						yield return new()
+						{
+							Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
+							StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+							StrokeDashArray = dashArray,
+							Data = new GeometryGroup
+							{
+								Children = new GeometryCollection
 							{
 								new PathGeometry
 								{
@@ -611,38 +568,41 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 									}
 								}
 							}
-						},
-						Tag = ViewUnitFrameworkElementFactory.InternalTag
-					};
-					yield return new()
+							},
+							Tag = ViewUnitFrameworkElementFactory.InternalTag
+						};
+						yield return new()
+						{
+							Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
+							StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+							Data = new GeometryGroup { Children = GeometryCollectionFactory.ArrowCap(pt1, pt2) },
+							Tag = ViewUnitFrameworkElementFactory.InternalTag
+						};
+					}
+					else
 					{
-						Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
-						StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
-						Data = new GeometryGroup { Children = GeometryCollectionFactory.ArrowCap(pt1, pt2) },
-						Tag = ViewUnitFrameworkElementFactory.InternalTag
-					};
-				}
-				else
-				{
-					// Draw the link.
-					correctOffsetOfPoint(ref pt1, ow, oh);
-					correctOffsetOfPoint(ref pt2, ow, oh);
+						// Draw the link.
+						correctOffsetOfPoint(ref pt1, ow, oh);
+						correctOffsetOfPoint(ref pt2, ow, oh);
 
-					yield return new()
-					{
-						Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
-						StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
-						StrokeDashArray = dashArray,
-						Data = new GeometryGroup { Children = new GeometryCollection { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
-						Tag = ViewUnitFrameworkElementFactory.InternalTag
-					};
-					yield return new()
-					{
-						Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
-						StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
-						Data = new GeometryGroup { Children = GeometryCollectionFactory.ArrowCap(pt1, pt2) },
-						Tag = ViewUnitFrameworkElementFactory.InternalTag
-					};
+						yield return new()
+						{
+							Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
+							StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+							StrokeDashArray = dashArray,
+							Data = new GeometryGroup { Children = new GeometryCollection { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
+							Tag = ViewUnitFrameworkElementFactory.InternalTag
+						};
+						yield return new()
+						{
+							Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
+							StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+							Data = new GeometryGroup { Children = GeometryCollectionFactory.ArrowCap(pt1, pt2) },
+							Tag = ViewUnitFrameworkElementFactory.InternalTag
+						};
+					}
+
+					break;
 				}
 			}
 		}
@@ -798,5 +758,53 @@ file static class GeometryCollectionFactory
 			new LineGeometry { StartPoint = new(pt2.X + topX, pt2.Y + topY), EndPoint = pt2 },
 			new LineGeometry { StartPoint = new(pt2.X + bottomX, pt2.Y + bottomY), EndPoint = pt2 }
 		};
+	}
+}
+
+/// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Removes all possible <see cref="FrameworkElement"/>s that is used for displaying elements in a <see cref="ViewUnit"/>.
+	/// </summary>
+	/// <param name="this">The collection.</param>
+	public static void RemoveAllViewUnitControls(this UIElementCollection @this)
+	{
+		var gathered = new List<FrameworkElement>();
+		foreach (var element in @this.OfType<FrameworkElement>())
+		{
+			if (element.Tag is ViewUnitFrameworkElementFactory.InternalTag)
+			{
+				gathered.Add(element);
+			}
+		}
+
+		foreach (var element in gathered)
+		{
+			@this.Remove(element);
+		}
+	}
+
+	/// <summary>
+	/// <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
+	/// <para>This method is used for checking cannibalisms.</para>
+	/// </summary>
+	/// <param name="conclusions">The conclusion collection.</param>
+	/// <param name="candidate">The candidate to be determined.</param>
+	/// <param name="conclusion">The overlapped result.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool ConflictWith(this ImmutableArray<Conclusion> conclusions, int candidate, [NotNullWhen(true)] out Conclusion? conclusion)
+	{
+		foreach (var current in conclusions)
+		{
+			if (current.Candidate == candidate)
+			{
+				conclusion = current;
+				return true;
+			}
+		}
+
+		conclusion = null;
+		return false;
 	}
 }

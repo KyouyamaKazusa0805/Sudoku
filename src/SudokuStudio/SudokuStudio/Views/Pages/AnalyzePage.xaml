@@ -79,6 +79,8 @@
 					BabaGroupLabelFont="Times New Roman" CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection"
 					ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4" HighlightCandidateCircleScale=".9"
 					HighlightBackgroundOpacity=".15" BabaGroupLabelFontScale=".6" ChainStrokeThickness="1.5"
+					StrongLinkDashStyle="{m:DashArray Expression=''}" WeakLinkDashStyle="{m:DashArray Expression='3,1.5'}"
+					CycleLikeLinkDashStyle="{m:DashArray Expression=''}" OtherLinkDashStyle="{m:DashArray Expression='3,3'}"
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True" DisplayCursors="True"
 					CursorBackgroundColor="#200000FF" GivenColor="Black" ModifiableColor="Blue" PencilmarkColor="#646464"
 					BabaGroupLabelColor="Red" BorderColor="Black" CoordinateLabelColor="#646464" LinkColor="Red"
