@@ -595,7 +595,7 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup
 						{
-							Children = new TemporaryGeometryCollection
+							Children = new GeometryCollection
 							{
 								new PathGeometry
 								{
@@ -609,10 +609,16 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 											Segments = new() { new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 } }
 										}
 									}
-								},
-								TemporaryGeometryCollection.ArrowCap(pt1, pt2)
+								}
 							}
 						},
+						Tag = ViewUnitFrameworkElementFactory.InternalTag
+					};
+					yield return new()
+					{
+						Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
+						StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+						Data = new GeometryGroup { Children = GeometryCollectionFactory.ArrowCap(pt1, pt2) },
 						Tag = ViewUnitFrameworkElementFactory.InternalTag
 					};
 				}
@@ -627,14 +633,14 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 						Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
 						StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
-						Data = new GeometryGroup
-						{
-							Children = new TemporaryGeometryCollection
-							{
-								new LineGeometry { StartPoint = pt1, EndPoint = pt2 },
-								TemporaryGeometryCollection.ArrowCap(pt1, pt2)
-							}
-						},
+						Data = new GeometryGroup { Children = new GeometryCollection { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
+						Tag = ViewUnitFrameworkElementFactory.InternalTag
+					};
+					yield return new()
+					{
+						Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
+						StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+						Data = new GeometryGroup { Children = GeometryCollectionFactory.ArrowCap(pt1, pt2) },
 						Tag = ViewUnitFrameworkElementFactory.InternalTag
 					};
 				}
@@ -764,42 +770,11 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 }
 
 /// <summary>
-/// Defines a temporary collection of <see cref="Geometry"/> instances.
+/// Represents a factory type that can creates a collection of <see cref="Geometry"/> instances via the specified rule.
 /// </summary>
 /// <seealso cref="Geometry"/>
-file readonly struct TemporaryGeometryCollection : IEnumerable<Geometry>
+file static class GeometryCollectionFactory
 {
-	/// <summary>
-	/// The internal collection.
-	/// </summary>
-	private readonly GeometryCollection _collection = new();
-
-
-	/// <summary>
-	/// Initializes a <see cref="TemporaryGeometryCollection"/> instance.
-	/// </summary>
-	public TemporaryGeometryCollection()
-	{
-	}
-
-
-	/// <inheritdoc/>
-	public int Count => _collection.Count;
-
-
-	/// <inheritdoc cref="ICollection{T}.Add(T)"/>
-	public void Add(Geometry element) => _collection.Add(element);
-
-	/// <inheritdoc cref="ICollection{T}.Add(T)"/>
-	public void Add(IEnumerable<Geometry> elements) => _collection.AddRange(elements);
-
-	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Geometry>)this).GetEnumerator();
-
-	/// <inheritdoc/>
-	IEnumerator<Geometry> IEnumerable<Geometry>.GetEnumerator() => _collection.GetEnumerator();
-
-
 	/// <summary>
 	/// Creates a list of <see cref="Geometry"/> instances via two <see cref="Point"/>s indicating start and end point respectively,
 	/// meaning the arrow cap lines besides the line.
@@ -807,7 +782,7 @@ file readonly struct TemporaryGeometryCollection : IEnumerable<Geometry>
 	/// <param name="pt1">The start point.</param>
 	/// <param name="pt2">The end point.</param>
 	/// <returns>An instance of type <see cref="IEnumerable{T}"/> of <see cref="Geometry"/>.</returns>
-	public static IEnumerable<Geometry> ArrowCap(Point pt1, Point pt2)
+	public static GeometryCollection ArrowCap(Point pt1, Point pt2)
 	{
 		var arrowLength = 10.0;
 		var theta = 30.0;
@@ -818,14 +793,10 @@ file readonly struct TemporaryGeometryCollection : IEnumerable<Geometry>
 		var topY = arrowLength * Sin(angle1);
 		var bottomX = arrowLength * Cos(angle2);
 		var bottomY = arrowLength * Sin(angle2);
-		yield return new LineGeometry { StartPoint = new(pt2.X + topX, pt2.Y + topY), EndPoint = pt2 };
-		yield return new LineGeometry { StartPoint = new(pt2.X + bottomX, pt2.Y + bottomY), EndPoint = pt2 };
+		return new()
+		{
+			new LineGeometry { StartPoint = new(pt2.X + topX, pt2.Y + topY), EndPoint = pt2 },
+			new LineGeometry { StartPoint = new(pt2.X + bottomX, pt2.Y + bottomY), EndPoint = pt2 }
+		};
 	}
-
-
-	/// <summary>
-	/// Implicit cast from <see cref="TemporaryGeometryCollection"/> to <see cref="GeometryCollection"/>.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	public static implicit operator GeometryCollection(TemporaryGeometryCollection collection) => collection._collection;
 }

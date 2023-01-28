@@ -31,6 +31,21 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:SudokuStudio.AppLifecycle.RunningContext">
             <summary>
             Defines a context type that stores the basic information of project running.
@@ -1796,6 +1811,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates"/>
         </member>
@@ -1928,6 +1953,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
@@ -2505,38 +2540,13 @@ if (student is (name: var name, age: >= 18))
             <param name="nodes">The link view nodes.</param>
             <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
         </member>
-        <member name="T:SudokuStudio.Views.Interaction.TemporaryGeometryCollection">
+        <member name="T:SudokuStudio.Views.Interaction.GeometryCollectionFactory">
             <summary>
-            Defines a temporary collection of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances.
+            Represents a factory type that can creates a collection of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via the specified rule.
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Media.Geometry"/>
         </member>
-        <member name="F:SudokuStudio.Views.Interaction.TemporaryGeometryCollection._collection">
-            <summary>
-            The internal collection.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.TemporaryGeometryCollection.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Interaction.TemporaryGeometryCollection"/> instance.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Interaction.TemporaryGeometryCollection.Count">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.TemporaryGeometryCollection.Add(Microsoft.UI.Xaml.Media.Geometry)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.TemporaryGeometryCollection.Add(System.Collections.Generic.IEnumerable{Microsoft.UI.Xaml.Media.Geometry})">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.TemporaryGeometryCollection.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.TemporaryGeometryCollection.System#Collections#Generic#IEnumerable{Microsoft#UI#Xaml#Media#Geometry}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.TemporaryGeometryCollection.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
+        <member name="M:SudokuStudio.Views.Interaction.GeometryCollectionFactory.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
             <summary>
             Creates a list of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via two <see cref="T:Windows.Foundation.Point"/>s indicating start and end point respectively,
             meaning the arrow cap lines besides the line.
@@ -2544,12 +2554,6 @@ if (student is (name: var name, age: >= 18))
             <param name="pt1">The start point.</param>
             <param name="pt2">The end point.</param>
             <returns>An instance of type <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/>.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.TemporaryGeometryCollection.op_Implicit(SudokuStudio.Views.Interaction.TemporaryGeometryCollection)~Microsoft.UI.Xaml.Media.GeometryCollection">
-            <summary>
-            Implicit cast from <see cref="T:SudokuStudio.Views.Interaction.TemporaryGeometryCollection"/> to <see cref="T:Microsoft.UI.Xaml.Media.GeometryCollection"/>.
-            </summary>
-            <param name="collection">The collection.</param>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
             <summary>
@@ -2673,6 +2677,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched"/>
         </member>
@@ -2713,6 +2727,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._analysisResult"/>
         </member>
@@ -2740,6 +2764,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
@@ -2776,6 +2810,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
@@ -2849,6 +2893,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
@@ -2960,6 +3014,36 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
