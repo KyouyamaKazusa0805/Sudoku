@@ -19,10 +19,7 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 
 
 	/// <inheritdoc/>
-	public IEnumerable<IStep> Search(
-		scoped in Grid puzzle,
-		IProgress<double>? progress = null,
-		CancellationToken cancellationToken = default)
+	public IEnumerable<IStep> Search(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var sukaku))
 		{
@@ -84,7 +81,7 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 				}
 			}
 
-			// Report the progress if worth.
+		// Report the progress if worth.
 		ReportProgress:
 			progress?.Report(++currentSearcherIndex * 100D / totalSearchersCount);
 		}
