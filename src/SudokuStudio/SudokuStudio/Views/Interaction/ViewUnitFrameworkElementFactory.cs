@@ -457,52 +457,6 @@ file static class Extensions
 		conclusion = null;
 		return false;
 	}
-
-	/// <summary>
-	/// Gets the customized arrow cap geometry instances that can be used as property <see cref="GeometryGroup.Children"/>.
-	/// </summary>
-	/// <param name="this">The geometry instance.</param>
-	/// <param name="point1">The start point.</param>
-	/// <param name="point2">The end point.</param>
-	/// <returns>A <see cref="GeometryCollection"/> result.</returns>
-	public static GeometryCollection WithCustomizedArrowCap(this PathGeometry @this, Point point1, Point point2)
-		=> @this.WithCustomizedArrowCap(() => (point1, point2));
-
-	/// <summary>
-	/// Gets the customized arrow cap geometry instances that can be used as property <see cref="GeometryGroup.Children"/>.
-	/// </summary>
-	/// <param name="this">The geometry instance.</param>
-	/// <returns>A <see cref="GeometryCollection"/> result.</returns>
-	public static GeometryCollection WithCustomizedArrowCap(this LineGeometry @this)
-		=> @this.WithCustomizedArrowCap(() => (@this.StartPoint, @this.EndPoint));
-
-	/// <summary>
-	/// Internal implementation of methods <see cref="WithCustomizedArrowCap(LineGeometry)"/>
-	/// and <see cref="WithCustomizedArrowCap(PathGeometry, Point, Point)"/>.
-	/// </summary>
-	/// <typeparam name="T">The type of the geometry.</typeparam>
-	/// <param name="this">The geometry instance.</param>
-	/// <param name="pointsCreator">The point creator method.</param>
-	/// <returns>A <see cref="GeometryCollection"/> result.</returns>
-	private static GeometryCollection WithCustomizedArrowCap<T>(this T @this, Func<(Point Start, Point End)> pointsCreator) where T : Geometry
-	{
-		var (pt1, pt2) = pointsCreator();
-		var arrowLength = 10.0;
-		var theta = 30.0;
-		var angle = Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / PI;
-		var angle1 = (angle + theta) * PI / 180;
-		var angle2 = (angle - theta) * PI / 180;
-		var topX = arrowLength * Cos(angle1);
-		var topY = arrowLength * Sin(angle1);
-		var bottomX = arrowLength * Cos(angle2);
-		var bottomY = arrowLength * Sin(angle2);
-		return new()
-		{
-			@this,
-			new LineGeometry { StartPoint = new(pt2.X + topX, pt2.Y + topY), EndPoint = pt2 },
-			new LineGeometry { StartPoint = new(pt2.X + bottomX, pt2.Y + bottomY), EndPoint = pt2 }
-		};
-	}
 }
 
 /// <summary>
@@ -641,19 +595,23 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup
 						{
-							Children = new PathGeometry
+							Children = new TemporaryGeometryCollection
 							{
-								Figures = new()
+								new PathGeometry
 								{
-									new PathFigure
+									Figures = new()
 									{
-										StartPoint = pt1,
-										IsClosed = false,
-										IsFilled = false,
-										Segments = new() { new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 } }
+										new PathFigure
+										{
+											StartPoint = pt1,
+											IsClosed = false,
+											IsFilled = false,
+											Segments = new() { new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 } }
+										}
 									}
-								}
-							}.WithCustomizedArrowCap(pt1, pt2)
+								},
+								TemporaryGeometryCollection.ArrowCap(pt1, pt2)
+							}
 						},
 						Tag = ViewUnitFrameworkElementFactory.InternalTag
 					};
@@ -669,7 +627,14 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 						Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
 						StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
-						Data = new GeometryGroup { Children = new LineGeometry { StartPoint = pt1, EndPoint = pt2 }.WithCustomizedArrowCap() },
+						Data = new GeometryGroup
+						{
+							Children = new TemporaryGeometryCollection
+							{
+								new LineGeometry { StartPoint = pt1, EndPoint = pt2 },
+								TemporaryGeometryCollection.ArrowCap(pt1, pt2)
+							}
+						},
 						Tag = ViewUnitFrameworkElementFactory.InternalTag
 					};
 				}
@@ -796,4 +761,71 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 			return points;
 		}
 	}
+}
+
+/// <summary>
+/// Defines a temporary collection of <see cref="Geometry"/> instances.
+/// </summary>
+/// <seealso cref="Geometry"/>
+file readonly struct TemporaryGeometryCollection : IEnumerable<Geometry>
+{
+	/// <summary>
+	/// The internal collection.
+	/// </summary>
+	private readonly GeometryCollection _collection = new();
+
+
+	/// <summary>
+	/// Initializes a <see cref="TemporaryGeometryCollection"/> instance.
+	/// </summary>
+	public TemporaryGeometryCollection()
+	{
+	}
+
+
+	/// <inheritdoc/>
+	public int Count => _collection.Count;
+
+
+	/// <inheritdoc cref="ICollection{T}.Add(T)"/>
+	public void Add(Geometry element) => _collection.Add(element);
+
+	/// <inheritdoc cref="ICollection{T}.Add(T)"/>
+	public void Add(IEnumerable<Geometry> elements) => _collection.AddRange(elements);
+
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Geometry>)this).GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator<Geometry> IEnumerable<Geometry>.GetEnumerator() => _collection.GetEnumerator();
+
+
+	/// <summary>
+	/// Creates a list of <see cref="Geometry"/> instances via two <see cref="Point"/>s indicating start and end point respectively,
+	/// meaning the arrow cap lines besides the line.
+	/// </summary>
+	/// <param name="pt1">The start point.</param>
+	/// <param name="pt2">The end point.</param>
+	/// <returns>An instance of type <see cref="IEnumerable{T}"/> of <see cref="Geometry"/>.</returns>
+	public static IEnumerable<Geometry> ArrowCap(Point pt1, Point pt2)
+	{
+		var arrowLength = 10.0;
+		var theta = 30.0;
+		var angle = Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / PI;
+		var angle1 = (angle + theta) * PI / 180;
+		var angle2 = (angle - theta) * PI / 180;
+		var topX = arrowLength * Cos(angle1);
+		var topY = arrowLength * Sin(angle1);
+		var bottomX = arrowLength * Cos(angle2);
+		var bottomY = arrowLength * Sin(angle2);
+		yield return new LineGeometry { StartPoint = new(pt2.X + topX, pt2.Y + topY), EndPoint = pt2 };
+		yield return new LineGeometry { StartPoint = new(pt2.X + bottomX, pt2.Y + bottomY), EndPoint = pt2 };
+	}
+
+
+	/// <summary>
+	/// Implicit cast from <see cref="TemporaryGeometryCollection"/> to <see cref="GeometryCollection"/>.
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	public static implicit operator GeometryCollection(TemporaryGeometryCollection collection) => collection._collection;
 }
