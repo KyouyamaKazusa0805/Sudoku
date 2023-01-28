@@ -1,6 +1,4 @@
-﻿#pragma warning disable CS8981
-
-global using System;
+﻿global using System;
 global using System.Collections;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
