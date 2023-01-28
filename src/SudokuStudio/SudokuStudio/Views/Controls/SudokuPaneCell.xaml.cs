@@ -64,92 +64,83 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 
 	private void TextBlock_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
 	{
-		switch (this, sender)
+		if ((this, sender) is not ({ BasePane: { Puzzle: var modified, SelectedCell: var cell and not -1 } }, TextBlock { Text: var text }))
 		{
-			case ({ BasePane: { Puzzle: var modified, SelectedCell: var cell and not -1 } }, TextBlock { Text: var text })
-			when int.TryParse(text, out var originalDigit)
-				&& originalDigit - 1 is var digit and >= 0 and < 9
-				&& (modified.GetCandidates(cell) >> digit & 1) != 0
-				&& modified.GetStatus(cell) == CellStatus.Empty:
-			{
-				modified[cell] = digit;
-
-				BasePane.SetPuzzle(modified);
-
-				break;
-			}
+			return;
 		}
+
+		if (!int.TryParse(text, out var originalDigit)
+			|| originalDigit - 1 is not (var digit and >= 0 and < 9)
+			|| (modified.GetCandidates(cell) >> digit & 1) == 0
+			|| modified.GetStatus(cell) != CellStatus.Empty)
+		{
+			return;
+		}
+
+		modified[cell] = digit;
+		BasePane.SetPuzzle(modified);
 	}
 
 	private void InputSetter_KeyDown(object sender, KeyRoutedEventArgs e)
 	{
-		switch (This: this, Sender: sender, EventData: e)
+		if (
+			(this, sender, e) is not (
+				Item1: { BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
+				TextBox { Text: var text, Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup p } } },
+				e: { Key: VirtualKey.Enter }
+			)
+		)
 		{
-			case
+			return;
+		}
+
+		if (modified.GetStatus(cell) is not (var cellStatus and not CellStatus.Given))
+		{
+			return;
+		}
+
+		if (!DigitRange.TryParse(text, out var digitRange))
+		{
+			return;
+		}
+
+		_ = digitRange is { DigitsMask: var digits, ConclusionType: var type };
+		if (type == Assignment)
+		{
+			if (cellStatus == CellStatus.Modifiable)
 			{
-				This: { BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
-				Sender: TextBox { Text: var text, Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup p } } },
-				EventData.Key: VirtualKey.Enter
-			}:
+				// A rescue.
+				modified[cell] = -1;
+			}
+
+			modified[cell] = TrailingZeroCount(digits);
+		}
+		else if (type == Elimination && cellStatus == CellStatus.Empty)
+		{
+			foreach (var digit in digits)
 			{
-				if (modified.GetStatus(cell) is not (var cellStatus and not CellStatus.Given))
+				if (modified.Exists(cell, digit) is true)
 				{
-					break;
+					modified[cell, digit] = false;
 				}
-
-				if (!DigitRange.TryParse(text, out var digitRange))
-				{
-					break;
-				}
-
-				_ = digitRange is { DigitsMask: var digits, ConclusionType: var type };
-				if (type == Assignment)
-				{
-					if (cellStatus == CellStatus.Modifiable)
-					{
-						// A rescue.
-						modified[cell] = -1;
-					}
-
-					modified[cell] = TrailingZeroCount(digits);
-				}
-				else if (type == Elimination && cellStatus == CellStatus.Empty)
-				{
-					foreach (var digit in digits)
-					{
-						if (modified.Exists(cell, digit) is true)
-						{
-							modified[cell, digit] = false;
-						}
-					}
-				}
-
-				BasePane.SetPuzzle(modified);
-
-				// Closes the flyout manually.
-				p.IsOpen = false;
-
-				break;
 			}
 		}
+
+		BasePane.SetPuzzle(modified);
+
+		// Closes the flyout manually.
+		p.IsOpen = false;
 	}
 
 	private void Flyout_Opening(object sender, object e)
 	{
-		if (BasePane is not { SelectedCell: var cell and not -1, Puzzle: var puzzle })
+		if (BasePane is not { SelectedCell: var cell and not -1, Puzzle: var puzzle }
+			|| puzzle.GetStatus(cell) != CellStatus.Empty)
 		{
-			goto HideContextFlyout;
-		}
-
-		if (puzzle.GetStatus(cell) != CellStatus.Empty)
-		{
-			goto HideContextFlyout;
+			MainGridContextFlyout.Hide();
+			return;
 		}
 
 		_temporarySelectedCell = cell;
-		return;
-
-	HideContextFlyout:
-		MainGridContextFlyout.Hide();
 	}
 }
