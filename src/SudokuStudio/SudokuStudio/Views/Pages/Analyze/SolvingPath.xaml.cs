@@ -41,12 +41,12 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 
 	private void ListViewItem_Tapped(object sender, TappedRoutedEventArgs e)
 	{
-		if (sender is not ListViewItem { Tag: SolvingPathStep(_, var stepGrid, _, { Conclusions: var conclusions, Views: [var view, ..] }) })
+		if (sender is not ListViewItem { Tag: SolvingPathStep(_, var stepGrid, _, var step) })
 		{
 			return;
 		}
 
 		BasePage.SudokuPane.SetPuzzle(stepGrid, clearStack: true, clearAnalyzeTabData: false);
-		BasePage.SudokuPane.ViewUnit = new() { Conclusions = conclusions, View = view };
+		BasePage.VisualUnit = step;
 	}
 }

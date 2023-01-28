@@ -2370,6 +2370,12 @@
             </summary>
             <seealso cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
         </member>
+        <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.DoNotEmitDebuggerStepThroughAttribute">
+            <summary>
+            Indicates whether the source generator doesn't emit the source code to apply <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>.
+            </summary>
+            <seealso cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>
+        </member>
         <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.ComparisonMode">
             <summary>
             Indicates the customized comparison rule to be used to compare two objects.

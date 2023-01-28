@@ -91,6 +91,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 						? EqualityComparisonMode.InstanceCompareToMethod
 						: EqualityComparisonMode.EqualityComparerDefaultInstance;
 
+			var doNotEmitDebuggerStepThroughAttribute = false;
 			var doNotEmitPropertyChangedEventTrigger = false;
 			var accessibility = (Accessibility?)null;
 			foreach (var (name, value) in namedArguments)
@@ -105,6 +106,11 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					case ("DoNotEmitPropertyChangedEventTrigger", { Value: bool v }):
 					{
 						doNotEmitPropertyChangedEventTrigger = v;
+						break;
+					}
+					case ("DoNotEmitDebuggerStepThroughAttribute", { Value: bool v }):
+					{
+						doNotEmitDebuggerStepThroughAttribute = v;
 						break;
 					}
 					case ("ComparisonMode", { Value: int v and >= 0 and <= 6 and not 1 }):
@@ -147,7 +153,10 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					} && SymbolEqualityComparer.Default.Equals(propertyChangedEventHandlerType, eventType);
 			}
 
-			return new(propertyName, fieldSymbol, type, mode, accessibility ?? Accessibility.Public, doNotEmitPropertyChangedEventTrigger, callbackAttributeType);
+			return new(
+				propertyName, fieldSymbol, type, mode, accessibility ?? Accessibility.Public,
+				doNotEmitPropertyChangedEventTrigger, doNotEmitDebuggerStepThroughAttribute, callbackAttributeType
+			);
 
 
 			bool containsEqualityOperators()
@@ -169,7 +178,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 				var methodsInType = type.GetMembers().OfType<IMethodSymbol>();
 
 				var propertyDeclarations = new List<string>();
-				foreach (var (property, fieldSymbol, _, mode, accessibility, doNotEmitPropertyChangedEventTrigger, callbackAttributeType) in group)
+				foreach (var (property, fieldSymbol, _, mode, accessibility, doNotEmitPropertyChangedEventTrigger, doNotEmitDebuggerStepThroughAttribute, callbackAttributeType) in group)
 				{
 					if (fieldSymbol is not { Name: var field, Type: { NullableAnnotation: var nullability } fieldType })
 					{
@@ -250,6 +259,13 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 						_ => string.Empty
 					};
 
+					var debuggerStepThrough = doNotEmitDebuggerStepThroughAttribute
+						? string.Empty
+						: $$"""
+								[global::System.Diagnostics.DebuggerStepThrough]
+								
+						""";
+
 					propertyDeclarations.Add(
 						$$"""
 						/// <inheritdoc cref="{{field}}"/>
@@ -257,12 +273,10 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 							{{accessibilityStr}} {{fieldTypeStr}} {{property}}
 							{
-								[global::System.Diagnostics.DebuggerStepThrough]
-								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+								{{debuggerStepThrough}}[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 								get => {{field}};
 
-								[global::System.Diagnostics.DebuggerStepThrough]
-								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+								{{debuggerStepThrough}}[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 								set
 								{
 									{{ifStatement}}{{field}} = value;{{eventTrigger}}{{customizedCallback}}
@@ -397,6 +411,9 @@ file enum Accessibility
 /// <param name="DoNotEmitPropertyChangedEventTrigger">
 /// Indicates whether the source generator does not emit source code to trigger property changed event.
 /// </param>
+/// <param name="DoNotEmitDebuggerStepThroughAttribute">
+/// Indicates whether the source generator does not emit source code of <see cref="DebuggerStepThroughAttribute"/>.
+/// </param>
 /// <param name="CallbackAttributeType">Indicates the callback attribute type.</param>
 file readonly record struct Data(
 	string PropertyName,
@@ -405,6 +422,7 @@ file readonly record struct Data(
 	EqualityComparisonMode ComparisonMode,
 	Accessibility Accessibility,
 	bool DoNotEmitPropertyChangedEventTrigger,
+	bool DoNotEmitDebuggerStepThroughAttribute,
 	INamedTypeSymbol CallbackAttributeType
 );
 

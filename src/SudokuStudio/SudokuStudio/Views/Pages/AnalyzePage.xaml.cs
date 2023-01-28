@@ -29,10 +29,25 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	private bool _generatorIsNotRunning = true;
 
 	/// <summary>
+	/// Indicates the current index of the view of property <see cref="VisualUnit.Views"/> displayed.
+	/// </summary>
+	/// <seealso cref="VisualUnit.Views"/>
+	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal, ComparisonMode = EqualityComparisonMode.Disable)]
+	[NotifyCallback(nameof(CurrentViewIndexSetterAfter))]
+	private int _currentViewIndex = -1;
+
+	/// <summary>
 	/// Indicates the progress percent value.
 	/// </summary>
 	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
 	private double _progressPercent;
+
+	/// <summary>
+	/// Indicates the visual unit.
+	/// </summary>
+	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal, ComparisonMode = EqualityComparisonMode.ObjectReference)]
+	[NotifyCallback(nameof(VisualUnitSetterAfter))]
+	private VisualUnit? _visualUnit;
 
 	/// <summary>
 	/// Defines a key-value pair of functions that is used for routing hotkeys.
@@ -342,7 +357,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			),
 			(new(VirtualKeyModifiers.Control, VirtualKey.V), async () => await SudokuPane.PasteAsync()),
 			(new(VirtualKeyModifiers.Control, VirtualKey.O), async () => await OpenFileInternalAsync()),
-			(new(VirtualKeyModifiers.Control, VirtualKey.S), async () => await SaveFileInternalAsync())
+			(new(VirtualKeyModifiers.Control, VirtualKey.S), async () => await SaveFileInternalAsync()),
+			(new((VirtualKey)189), SetPreviousView), // Minus sign
+			(new((VirtualKey)187), SetNextView), // Equals sign
+			(new(VirtualKey.Home), SetHomeView),
+			(new(VirtualKey.End), SetEndView)
 		};
 
 	/// <summary>
@@ -370,6 +389,78 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		{
 			CommandBarFrame.Navigate(pageType, this, NavigationTransitionInfo);
 		}
+	}
+
+	private void VisualUnitSetterAfter(VisualUnit? value) => CurrentViewIndex = value is null ? -1 : 0;
+
+	private void CurrentViewIndexSetterAfter(int value)
+		=> SudokuPane.ViewUnit = VisualUnit switch
+		{
+			{ Conclusions: var conclusions, Views: [] } => new() { Conclusions = conclusions, View = View.Empty },
+			{ Conclusions: var conclusions, Views: var views } => new() { Conclusions = conclusions, View = views[value] },
+			_ => null
+		};
+
+	/// <summary>
+	/// Sets the previous view.
+	/// </summary>
+	private void SetPreviousView()
+	{
+		if (VisualUnit is not { Views.Length: not 0 })
+		{
+			return;
+		}
+
+		if (CurrentViewIndex - 1 < 0)
+		{
+			return;
+		}
+
+		CurrentViewIndex--;
+	}
+
+	/// <summary>
+	/// Sets the next view.
+	/// </summary>
+	private void SetNextView()
+	{
+		if (VisualUnit is not { Views.Length: var length and not 0 })
+		{
+			return;
+		}
+
+		if (CurrentViewIndex + 1 >= length)
+		{
+			return;
+		}
+
+		CurrentViewIndex++;
+	}
+
+	/// <summary>
+	/// Sets the home view.
+	/// </summary>
+	private void SetHomeView()
+	{
+		if (VisualUnit is not { Views.Length: not 0 })
+		{
+			return;
+		}
+
+		CurrentViewIndex = 0;
+	}
+
+	/// <summary>
+	/// Sets the end view.
+	/// </summary>
+	private void SetEndView()
+	{
+		if (VisualUnit is not { Views.Length: var length and not 0 })
+		{
+			return;
+		}
+
+		CurrentViewIndex = length - 1;
 	}
 
 

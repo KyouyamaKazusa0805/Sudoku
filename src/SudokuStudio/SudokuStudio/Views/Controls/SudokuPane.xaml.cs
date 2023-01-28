@@ -499,11 +499,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	private void ViewUnitSetterAfter(ViewUnit? value)
 	{
-		if (value is null)
-		{
-			ViewUnitFrameworkElementFactory.RemoveViewUnitControls(BasePage);
-		}
-		else
+		ViewUnitFrameworkElementFactory.RemoveViewUnitControls(BasePage);
+
+		if (value is not null)
 		{
 			ViewUnitFrameworkElementFactory.AddViewUnitControls(BasePage, value);
 		}

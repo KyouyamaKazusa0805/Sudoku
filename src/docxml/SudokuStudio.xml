@@ -227,6 +227,12 @@
         <member name="P:SudokuStudio.Input.Hotkey.Key">
             <summary>Indicates the key.</summary>
         </member>
+        <member name="M:SudokuStudio.Input.Hotkey.#ctor(Windows.System.VirtualKey)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Input.Hotkey"/> instance via the specified key.
+            </summary>
+            <param name="key">The virtual key.</param>
+        </member>
         <member name="T:SudokuStudio.Input.Keyboard">
             <summary>
             Provides with a easier way to visit key-down status.
@@ -2713,9 +2719,20 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the generator is not running currently.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._currentViewIndex">
+            <summary>
+            Indicates the current index of the view of property <see cref="P:Sudoku.Presentation.IVisual.Views"/> displayed.
+            </summary>
+            <seealso cref="P:Sudoku.Presentation.IVisual.Views"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._progressPercent">
             <summary>
             Indicates the progress percent value.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._visualUnit">
+            <summary>
+            Indicates the visual unit.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions">
@@ -2805,6 +2822,26 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="pageType">The target page type.</param>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SetPreviousView">
+            <summary>
+            Sets the previous view.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SetNextView">
+            <summary>
+            Sets the next view.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SetHomeView">
+            <summary>
+            Sets the home view.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SetEndView">
+            <summary>
+            Sets the end view.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -2826,8 +2863,14 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._generatorIsNotRunning"/>
         </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._currentViewIndex"/>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._progressPercent"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._visualUnit"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>

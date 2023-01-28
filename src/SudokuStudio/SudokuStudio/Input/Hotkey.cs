@@ -8,4 +8,13 @@
 /// to combine flags.
 /// </param>
 /// <param name="Key">Indicates the key.</param>
-public readonly record struct Hotkey(VirtualKeyModifiers Modifiers, VirtualKey Key);
+public readonly record struct Hotkey(VirtualKeyModifiers Modifiers, VirtualKey Key)
+{
+	/// <summary>
+	/// Initializes a <see cref="Hotkey"/> instance via the specified key.
+	/// </summary>
+	/// <param name="key">The virtual key.</param>
+	public Hotkey(VirtualKey key) : this(VirtualKeyModifiers.None, key)
+	{
+	}
+}

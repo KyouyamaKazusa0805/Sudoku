@@ -88,6 +88,7 @@ global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
 global using Path = Microsoft.UI.Xaml.Shapes.Path;
 global using MicrosoftXamlWindowActivatedEventArgs = Microsoft.UI.Xaml.WindowActivatedEventArgs;
 global using Grid = Sudoku.Concepts.Grid;
+global using VisualUnit = Sudoku.Presentation.IVisual;
 global using SystemPath = System.IO.Path;
 global using WinSysDispatcherQueue = Windows.System.DispatcherQueue;
 global using WinSysDispatcherQueueController = Windows.System.DispatcherQueueController;

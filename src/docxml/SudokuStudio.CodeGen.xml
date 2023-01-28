@@ -102,9 +102,12 @@
             <param name="DoNotEmitPropertyChangedEventTrigger">
             Indicates whether the source generator does not emit source code to trigger property changed event.
             </param>
+            <param name="DoNotEmitDebuggerStepThroughAttribute">
+            Indicates whether the source generator does not emit source code of <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>.
+            </param>
             <param name="CallbackAttributeType">Indicates the callback attribute type.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(System.String,Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode,Sudoku.Diagnostics.CodeGen.Generators.Accessibility,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(System.String,Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode,Sudoku.Diagnostics.CodeGen.Generators.Accessibility,System.Boolean,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol)">
             <summary>
             Defines a gathered data tuple.
             </summary>
@@ -115,6 +118,9 @@
             <param name="Accessibility">Indicates the accessibility.</param>
             <param name="DoNotEmitPropertyChangedEventTrigger">
             Indicates whether the source generator does not emit source code to trigger property changed event.
+            </param>
+            <param name="DoNotEmitDebuggerStepThroughAttribute">
+            Indicates whether the source generator does not emit source code of <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>.
             </param>
             <param name="CallbackAttributeType">Indicates the callback attribute type.</param>
         </member>
@@ -136,6 +142,11 @@
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.DoNotEmitPropertyChangedEventTrigger">
             <summary>
             Indicates whether the source generator does not emit source code to trigger property changed event.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.DoNotEmitDebuggerStepThroughAttribute">
+            <summary>
+            Indicates whether the source generator does not emit source code of <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.CallbackAttributeType">

@@ -14,9 +14,15 @@ public sealed class NotifyBackingFieldAttribute : Attribute
 	public bool DoNotEmitPropertyChangedEventTrigger { get; init; } = false;
 
 	/// <summary>
+	/// Indicates whether the source generator doesn't emit the source code to apply <see cref="DebuggerStepThroughAttribute"/>.
+	/// </summary>
+	/// <seealso cref="DebuggerStepThroughAttribute"/>
+	public bool DoNotEmitDebuggerStepThroughAttribute { get; init; } = false;
+
+	/// <summary>
 	/// Indicates the customized comparison rule to be used to compare two objects.
 	/// </summary>
-	public EqualityComparisonMode ComparisonMode { get; set; } = EqualityComparisonMode.Intelligent;
+	public EqualityComparisonMode ComparisonMode { get; init; } = EqualityComparisonMode.Intelligent;
 
 	/// <summary>
 	/// Indicates the accessibility of the generated property. The default value is <see cref="GeneralizedAccessibility.Public"/>.
