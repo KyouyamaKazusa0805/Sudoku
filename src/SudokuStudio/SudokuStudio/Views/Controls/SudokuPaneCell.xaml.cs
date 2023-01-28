@@ -134,8 +134,7 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 
 	private void Flyout_Opening(object sender, object e)
 	{
-		if (BasePane is not { SelectedCell: var cell and not -1, Puzzle: var puzzle }
-			|| puzzle.GetStatus(cell) != CellStatus.Empty)
+		if (BasePane is not { SelectedCell: var cell and not -1, Puzzle: var puzzle } || puzzle.GetStatus(cell) != CellStatus.Empty)
 		{
 			MainGridContextFlyout.Hide();
 			return;
