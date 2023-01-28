@@ -553,21 +553,21 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 							Data = new GeometryGroup
 							{
 								Children = new GeometryCollection
-							{
-								new PathGeometry
 								{
-									Figures = new()
+									new PathGeometry
 									{
-										new PathFigure
+										Figures = new()
 										{
-											StartPoint = pt1,
-											IsClosed = false,
-											IsFilled = false,
-											Segments = new() { new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 } }
+											new PathFigure
+											{
+												StartPoint = pt1,
+												IsClosed = false,
+												IsFilled = false,
+												Segments = new() { new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 } }
+											}
 										}
 									}
 								}
-							}
 							},
 							Tag = ViewUnitFrameworkElementFactory.InternalTag
 						};
