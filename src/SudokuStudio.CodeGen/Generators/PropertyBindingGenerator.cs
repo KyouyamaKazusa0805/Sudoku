@@ -95,21 +95,29 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 			var accessibility = (Accessibility?)null;
 			foreach (var (name, value) in namedArguments)
 			{
-				switch (name)
+				switch (name, value)
 				{
-					case nameof(Accessibility):
+					case (nameof(Accessibility), { Value: int v }):
 					{
-						accessibility = (Accessibility)(int)value.Value!;
+						accessibility = (Accessibility)v;
 						break;
 					}
-					case "DoNotEmitPropertyChangedEventTrigger":
+					case ("DoNotEmitPropertyChangedEventTrigger", { Value: bool v }):
 					{
-						doNotEmitPropertyChangedEventTrigger = (bool)value.Value!;
+						doNotEmitPropertyChangedEventTrigger = v;
 						break;
 					}
-					case "DisableComparison":
+					case ("ComparisonMode", { Value: int v and >= 0 and <= 6 and not 1 }):
 					{
-						mode = EqualityComparisonMode.None;
+						mode = v switch
+						{
+							0 => EqualityComparisonMode.None,
+							2 => EqualityComparisonMode.EqualityOperator,
+							3 => EqualityComparisonMode.InstanceEqualsMethod,
+							4 => EqualityComparisonMode.InstanceCompareToMethod,
+							5 => EqualityComparisonMode.EqualityComparerDefaultInstance,
+							6 => EqualityComparisonMode.ObjectReference
+						};
 						break;
 					}
 				}
@@ -177,6 +185,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 						EqualityComparisonMode.InstanceEqualsMethod => $$"""{{field}}.Equals(value)""",
 						EqualityComparisonMode.InstanceCompareToMethod => $$"""{{field}}.CompareTo(value) == 0""",
 						EqualityComparisonMode.EqualityComparerDefaultInstance => $$"""global::System.Collections.Generic.EqualityComparer<{{fieldTypeStr}}>.Default.Equals({{field}}, value)""",
+						EqualityComparisonMode.ObjectReference => $$"""object.ReferenceEquals({{field}}, value)""",
 						_ => throw new InvalidOperationException($"The value '{nameof(mode)}' is invalid.")
 					};
 
@@ -326,7 +335,12 @@ file enum EqualityComparisonMode
 	/// Indicates the comparison mode is to call <c><see cref="EqualityComparer{T}.Equals(T, T)"/></c>
 	/// via instance <see cref="EqualityComparer{T}.Default"/> to check whether two instances are considered equal.
 	/// </summary>
-	EqualityComparerDefaultInstance
+	EqualityComparerDefaultInstance,
+
+	/// <summary>
+	/// 
+	/// </summary>
+	ObjectReference
 }
 
 /// <summary>

@@ -45,6 +45,11 @@
             via instance <see cref="P:System.Collections.Generic.EqualityComparer`1.Default"/> to check whether two instances are considered equal.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.ObjectReference">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Accessibility">
             <summary>
             Defines an accessibility kind.
