@@ -106,6 +106,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        internal static string _DifficultyLevel_Other {
+            get {
+                return ResourceManager.GetString("_DifficultyLevel_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown.
         /// </summary>
         internal static string _DifficultyLevel_Unknown {
@@ -120,6 +129,15 @@ namespace SudokuStudio.Resources {
         internal static string _ProgramName {
             get {
                 return ResourceManager.GetString("_ProgramName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to : .
+        /// </summary>
+        internal static string _Token_Colon {
+            get {
+                return ResourceManager.GetString("_Token_Colon", resourceCulture);
             }
         }
         

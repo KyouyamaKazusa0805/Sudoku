@@ -393,10 +393,16 @@
   <data name="_DifficultyLevel_Nightmare" xml:space="preserve">
     <value>Nightmare</value>
   </data>
+  <data name="_DifficultyLevel_Other" xml:space="preserve">
+    <value>Others</value>
+  </data>
   <data name="_DifficultyLevel_Unknown" xml:space="preserve">
     <value>Unknown</value>
   </data>
   <data name="_ProgramName" xml:space="preserve">
     <value>Sudoku Studio</value>
+  </data>
+  <data name="_Token_Colon" xml:space="preserve">
+    <value>: </value>
   </data>
 </root>

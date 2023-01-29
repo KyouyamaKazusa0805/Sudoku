@@ -32,48 +32,12 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference)]
 	private ObservableCollection<ISeries> _difficultyLevelProportion = new()
 	{
-		new PieSeries<double>
-		{
-			Values = new ObservableCollection<double> { 100 },
-			Name = GetString("_DifficultyLevel_Easy"),
-			DataLabelsFormatter = DataLabelFormatter,
-			IsHoverable = false
-		},
-		new PieSeries<double>
-		{
-			Values = new ObservableCollection<double> { 0 },
-			Name = GetString("_DifficultyLevel_Moderate"),
-			DataLabelsFormatter = DataLabelFormatter,
-			IsHoverable = false
-		},
-		new PieSeries<double>
-		{
-			Values = new ObservableCollection<double> { 0 },
-			Name = GetString("_DifficultyLevel_Hard"),
-			DataLabelsFormatter = DataLabelFormatter,
-			IsHoverable = false
-		},
-		new PieSeries<double>
-		{
-			Values = new ObservableCollection<double> { 0 },
-			Name = GetString("_DifficultyLevel_Fiendish"),
-			DataLabelsFormatter = DataLabelFormatter,
-			IsHoverable = false
-		},
-		new PieSeries<double>
-		{
-			Values = new ObservableCollection<double> { 0 },
-			Name = GetString("_DifficultyLevel_Nightmare"),
-			DataLabelsFormatter = DataLabelFormatter,
-			IsHoverable = false
-		},
-		new PieSeries<double>
-		{
-			Values = new ObservableCollection<double> { 0 },
-			Name = GetString("_DifficultyLevel_Unknown"),
-			DataLabelsFormatter = DataLabelFormatter,
-			IsHoverable = false
-		}
+		new PieSeries<double>(),
+		new PieSeries<double>(),
+		new PieSeries<double>(),
+		new PieSeries<double>(),
+		new PieSeries<double>(),
+		new PieSeries<double>()
 	};
 
 
@@ -103,7 +67,30 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 	{
 		for (var i = 0; i < _difficultyLevelProportion.Count; i++)
 		{
+			var iterationVariableCopied = i; // Lambda should not directly capture iteration variables.
+
 			var element = (PieSeries<double>)_difficultyLevelProportion[i];
+			element.Values = new ObservableCollection<double> { i == 0 ? 100 : 0 };
+			element.DataLabelsSize = 12;
+			element.DataLabelsFormatter =
+				chartPoint => dataLabelFormatter(
+					chartPoint,
+					iterationVariableCopied switch // Here we cannot use 'i switch' because here is inside a lambda; 'i' always be 6.
+					{
+						0 => GetString("_DifficultyLevel_Easy"),
+						1 => GetString("_DifficultyLevel_Moderate"),
+						2 => GetString("_DifficultyLevel_Hard"),
+						3 => GetString("_DifficultyLevel_Fiendish"),
+						4 => GetString("_DifficultyLevel_Nightmare"),
+						5 => GetString("_DifficultyLevel_Other")
+					}
+				);
+			element.DataLabelsPosition = PolarLabelsPosition.Outer;
+			element.DataLabelsPaint = new SolidColorPaint
+			{
+				Color = SKColors.Black,
+				SKTypeface = SKFontManager.Default.MatchCharacter('\u6c49') // '\u6c49': Chinese character "Han" (e.g. "Han Yu" - Chinese)
+			};
 			element.Fill = new SolidColorPaint(
 				i switch
 				{
@@ -117,6 +104,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			);
 		}
 
+		static string dataLabelFormatter(ChartPoint<double, DoughnutGeometry, LabelGeometry> p, string difficultyLevelName)
+			=> $"{difficultyLevelName}{GetString("_Token_Colon")}{(int)p.PrimaryValue}/{(int)p.StackedValue!.Total} ({p.StackedValue.Share:P2})";
 
 		static Color getColor(DifficultyLevel difficultyLevel) => DifficultyLevelConversion.GetBackgroundRawColor(difficultyLevel);
 
@@ -196,8 +185,4 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 				_ => step.DifficultyLevel == key
 			};
 	}
-
-
-	private static string DataLabelFormatter(ChartPoint<double, DoughnutGeometry, LabelGeometry> p)
-		=> $"{(int)p.PrimaryValue}/{(int)p.StackedValue!.Total} ({p.StackedValue.Share:P2})";
 }

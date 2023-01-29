@@ -15,8 +15,7 @@
 			<TextBlock Text="{m:R Key=AnalyzePage_DifficultyChartTitle}" Style="{StaticResource BaseTextBlockStyle}" />
 			<lvc:CartesianChart Height="300" AutoUpdateEnabled="True" Series="{x:Bind DifficultyDistribution,Mode=OneWay}" />
 			<TextBlock Text="{m:R Key=AnalyzePage_DifficultyLevelProportion}" Style="{StaticResource BaseTextBlockStyle}" />
-			<lvc:PieChart
-				Height="300" AutoUpdateEnabled="True" LegendPosition="Right" Series="{x:Bind DifficultyLevelProportion,Mode=OneWay}" />
+			<lvc:PieChart Height="300" AutoUpdateEnabled="True" Series="{x:Bind DifficultyLevelProportion,Mode=OneWay}" Tooltip="{x:Null}" />
 		</StackPanel>
 	</ScrollViewer>
 </Page>

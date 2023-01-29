@@ -1112,6 +1112,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Nightmare.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DifficultyLevel_Other">
+            <summary>
+              Looks up a localized string similar to Others.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources._DifficultyLevel_Unknown">
             <summary>
               Looks up a localized string similar to Unknown.
@@ -1120,6 +1125,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources._ProgramName">
             <summary>
               Looks up a localized string similar to Sudoku Studio.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._Token_Colon">
+            <summary>
+              Looks up a localized string similar to : .
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AllStepsInCurrentGrid">

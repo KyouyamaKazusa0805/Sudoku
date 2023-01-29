@@ -393,7 +393,13 @@
   <data name="_DifficultyLevel_Nightmare" xml:space="preserve">
     <value>地狱</value>
   </data>
+  <data name="_DifficultyLevel_Other" xml:space="preserve">
+    <value>其他</value>
+  </data>
   <data name="_DifficultyLevel_Unknown" xml:space="preserve">
     <value>未知</value>
+  </data>
+  <data name="_Token_Colon" xml:space="preserve">
+    <value>：</value>
   </data>
 </root>
