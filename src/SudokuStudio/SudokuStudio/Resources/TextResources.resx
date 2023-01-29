@@ -289,7 +289,7 @@
     <value>Save as</value>
   </data>
   <data name="AnalyzePage_SearchAllSteps" xml:space="preserve">
-    <value>Input search expression, e.g. name like "[Uu]nique\sRectangle.*"</value>
+    <value>Input search expression, e.g. name like '[Uu]nique\sRectangle.*'</value>
   </data>
   <data name="AnalyzePage_SelectAll" xml:space="preserve">
     <value>Select all</value>

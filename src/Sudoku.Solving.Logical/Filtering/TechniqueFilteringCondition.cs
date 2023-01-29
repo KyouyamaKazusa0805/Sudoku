@@ -3,6 +3,16 @@
 /// <summary>
 /// Defines a way that is used for filtering the gathered step.
 /// </summary>
+/// <remarks>
+/// Supported expressions:
+/// <list type="bullet">
+/// <item><c><see langword="rating"/> (<![CDATA[>]]>,<![CDATA[>=]]>,<![CDATA[<]]>,<![CDATA[<=]]>,<![CDATA[==]]>,<![CDATA[!=]]>) (value)</c></item>
+/// <item><c><see langword="name"/> (<![CDATA[==]]>,<![CDATA[!=]]>) (technique-name)</c></item>
+/// <item><c><see langword="name"/> <see langword="like"/> (pattern)</c></item>
+/// <item><c><see langword="conclusion"/> <![CDATA[==]]> (conclusion)</c></item>
+/// <item><c><see langword="conclusion"/> <see langword="has"/> (coordinate)</c></item>
+/// </list>
+/// </remarks>
 public static partial class TechniqueFiltering
 {
 	/// <summary>
@@ -14,6 +24,11 @@ public static partial class TechniqueFiltering
 	/// Indicates the name keyword.
 	/// </summary>
 	private const string NameKeyword = "name";
+
+	/// <summary>
+	/// Indicates the conclusion keyword.
+	/// </summary>
+	private const string ConclusionKeyword = "conclusion";
 
 
 	/// <summary>
@@ -43,6 +58,7 @@ public static partial class TechniqueFiltering
 					{
 						RatingKeyword => $"{step.Difficulty}",
 						NameKeyword => $"'{step.Name}'",
+						ConclusionKeyword => $"'{ConclusionFormatter.Format(step.Conclusions.ToArray(), ", ", true)}'",
 						_ => throw new NotSupportedException("The specified match is not supported to be replaced.")
 					}
 				),
@@ -50,11 +66,12 @@ public static partial class TechniqueFiltering
 		);
 
 		result.RegisterOperator(NameLikeOperator.Instance);
+		result.RegisterOperator(ConclusionHasOperator.Instance);
 
 		return result;
 	}
 
-	[GeneratedRegex("""(rating|name)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	[GeneratedRegex("""(rating|name|conclusion)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex KeywordPattern();
 }
 
@@ -91,7 +108,39 @@ file sealed class NameLikeOperator : OperatorBase
 }
 
 /// <summary>
-/// Defines the backing implementation of <c>like</c> operator.
+/// Indicates the conclusion matching operator <c>has</c>.
+/// The expected usage is like <c>conclusion has 'r3c4'</c>.
+/// </summary>
+file sealed class ConclusionHasOperator : OperatorBase
+{
+	/// <summary>
+	/// Indicates the singleton instance.
+	/// </summary>
+	public static readonly ConclusionHasOperator Instance = new();
+
+
+	/// <summary>
+	/// Initializes a <see cref="ConclusionHasOperator"/> instance.
+	/// </summary>
+	private ConclusionHasOperator()
+	{
+	}
+
+
+	/// <inheritdoc/>
+	public override IEnumerable<string> Tags => new[] { "has" };
+
+
+	/// <inheritdoc/>
+	public override IExpression BuildExpression(Token previousToken, IExpression[] expressions, Context context)
+		=> new ConclusionHasExpression(expressions[0], expressions[1], context);
+
+	/// <inheritdoc/>
+	public override OperatorPrecedence GetPrecedence(Token previousToken) => OperatorPrecedence.Equal;
+}
+
+/// <summary>
+/// Defines the backing implementation of <c><see langword="like"/></c> operator.
 /// </summary>
 file sealed class NameLikeExpression : BinaryExpressionBase
 {
@@ -112,5 +161,30 @@ file sealed class NameLikeExpression : BinaryExpressionBase
 		var left = (string)lhsResult;
 		var right = (string)rightHandSide.Evaluate(variables);
 		return right.IsRegexPattern() && Regex.IsMatch(left, right, RegexOptions.IgnoreCase);
+	}
+}
+
+/// <summary>
+/// Defines the backing implementation of <c><see langword="has"/></c> operator.
+/// </summary>
+file sealed class ConclusionHasExpression : BinaryExpressionBase
+{
+	/// <summary>
+	/// Initializes a <see cref="ConclusionHasExpression"/> instance via two expressions, and the inner handling context.
+	/// </summary>
+	/// <param name="left">The left-side expression.</param>
+	/// <param name="right">The right-side expression.</param>
+	/// <param name="context">The inner handling context.</param>
+	internal ConclusionHasExpression(IExpression left, IExpression right, Context context) : base(left, right, context)
+	{
+	}
+
+
+	/// <inheritdoc/>
+	protected override object EvaluateImpl(object lhsResult, IExpression rightHandSide, IDictionary<string, object> variables)
+	{
+		var left = ((string)lhsResult).Split(", ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+		var right = (string)rightHandSide.Evaluate(variables);
+		return left.Any(s => s.Contains(right));
 	}
 }

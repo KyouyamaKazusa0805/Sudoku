@@ -289,7 +289,7 @@
     <value>另存格式</value>
   </data>
   <data name="AnalyzePage_SearchAllSteps" xml:space="preserve">
-    <value>查询表达式，如 name like "唯一矩形.*"</value>
+    <value>查询表达式，如 name like '唯一矩形.*'</value>
   </data>
   <data name="AnalyzePage_SelectAll" xml:space="preserve">
     <value>全部选择</value>

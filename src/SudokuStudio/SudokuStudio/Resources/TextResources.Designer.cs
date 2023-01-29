@@ -637,7 +637,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input search expression, e.g. name like &quot;[Uu]nique\sRectangle.*&quot;.
+        ///   Looks up a localized string similar to Input search expression, e.g. name like &apos;[Uu]nique\sRectangle.*&apos;.
         /// </summary>
         internal static string AnalyzePage_SearchAllSteps {
             get {

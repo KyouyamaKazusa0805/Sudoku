@@ -393,6 +393,16 @@
             <summary>
             Defines a way that is used for filtering the gathered step.
             </summary>
+            <remarks>
+            Supported expressions:
+            <list type="bullet">
+            <item><c><see langword="rating"/> (<![CDATA[>]]>,<![CDATA[>=]]>,<![CDATA[<]]>,<![CDATA[<=]]>,<![CDATA[==]]>,<![CDATA[!=]]>) (value)</c></item>
+            <item><c><see langword="name"/> (<![CDATA[==]]>,<![CDATA[!=]]>) (technique-name)</c></item>
+            <item><c><see langword="name"/> <see langword="like"/> (pattern)</c></item>
+            <item><c><see langword="conclusion"/> <![CDATA[==]]> (conclusion)</c></item>
+            <item><c><see langword="conclusion"/> <see langword="has"/> (coordinate)</c></item>
+            </list>
+            </remarks>
         </member>
         <member name="F:Sudoku.Filtering.TechniqueFiltering.RatingKeyword">
             <summary>
@@ -402,6 +412,11 @@
         <member name="F:Sudoku.Filtering.TechniqueFiltering.NameKeyword">
             <summary>
             Indicates the name keyword.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Filtering.TechniqueFiltering.ConclusionKeyword">
+            <summary>
+            Indicates the conclusion keyword.
             </summary>
         </member>
         <member name="M:Sudoku.Filtering.TechniqueFiltering.Filter(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logical.IStep},System.String)">
@@ -425,7 +440,7 @@
             Pattern explanation:<br/>
             <code>
             ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions, atomically.<br/>
+                ○ Match with 3 alternative expressions, atomically.<br/>
                     ○ Match a sequence of expressions.<br/>
                         ○ Match a character in the set [Rr].<br/>
                         ○ Match a character in the set [Aa].<br/>
@@ -438,6 +453,17 @@
                         ○ Match a character in the set [Aa].<br/>
                         ○ Match a character in the set [Mm].<br/>
                         ○ Match a character in the set [Ee].<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [Cc].<br/>
+                        ○ Match a character in the set [Oo].<br/>
+                        ○ Match a character in the set [Nn].<br/>
+                        ○ Match a character in the set [Cc].<br/>
+                        ○ Match a character in the set [Ll].<br/>
+                        ○ Match a character in the set [Uu].<br/>
+                        ○ Match a character in the set [Ss].<br/>
+                        ○ Match a character in the set [Ii].<br/>
+                        ○ Match a character in the set [Oo].<br/>
+                        ○ Match a character in the set [Nn].<br/>
             </code>
             </remarks>
         </member>
@@ -466,9 +492,34 @@
         <member name="M:Sudoku.Filtering.NameLikeOperator.GetPrecedence(Expressive.Token)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Filtering.ConclusionHasOperator">
+            <summary>
+            Indicates the conclusion matching operator <c>has</c>.
+            The expected usage is like <c>conclusion has 'r3c4'</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Filtering.ConclusionHasOperator.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.ConclusionHasOperator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.ConclusionHasOperator"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Filtering.ConclusionHasOperator.Tags">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.ConclusionHasOperator.BuildExpression(Expressive.Token,Expressive.Expressions.IExpression[],Expressive.Context)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.ConclusionHasOperator.GetPrecedence(Expressive.Token)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Filtering.NameLikeExpression">
             <summary>
-            Defines the backing implementation of <c>like</c> operator.
+            Defines the backing implementation of <c><see langword="like"/></c> operator.
             </summary>
         </member>
         <member name="M:Sudoku.Filtering.NameLikeExpression.#ctor(Expressive.Expressions.IExpression,Expressive.Expressions.IExpression,Expressive.Context)">
@@ -480,6 +531,22 @@
             <param name="context">The inner handling context.</param>
         </member>
         <member name="M:Sudoku.Filtering.NameLikeExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Filtering.ConclusionHasExpression">
+            <summary>
+            Defines the backing implementation of <c><see langword="has"/></c> operator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.ConclusionHasExpression.#ctor(Expressive.Expressions.IExpression,Expressive.Expressions.IExpression,Expressive.Context)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.ConclusionHasExpression"/> instance via two expressions, and the inner handling context.
+            </summary>
+            <param name="left">The left-side expression.</param>
+            <param name="right">The right-side expression.</param>
+            <param name="context">The inner handling context.</param>
+        </member>
+        <member name="M:Sudoku.Filtering.ConclusionHasExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Linq.CellEnumerable">
