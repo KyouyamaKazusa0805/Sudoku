@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Resources;
+﻿using System.Text;
+
+namespace SudokuStudio.Resources;
 
 /// <summary>
 /// Defines an easy entry to get <see cref="string"/> resources.

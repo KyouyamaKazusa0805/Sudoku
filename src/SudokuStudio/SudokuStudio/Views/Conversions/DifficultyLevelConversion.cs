@@ -17,41 +17,45 @@ internal static class DifficultyLevelConversion
 			_ => string.Empty
 		};
 
-	public static SolidColorBrush GetBackgroundColor(DifficultyLevel difficultyLevel)
+	public static Color GetBackgroundRawColor(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
 			0 or > DifficultyLevel.LastResort => Constants.Backgrounds[^1],
 			_ => Constants.Backgrounds[Log2((byte)difficultyLevel)]
 		};
 
-	public static SolidColorBrush GetForegroundColor(DifficultyLevel difficultyLevel)
+	public static Color GetForegroundRawColor(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
 			0 or > DifficultyLevel.LastResort => Constants.Foregrounds[^1],
 			_ => Constants.Foregrounds[Log2((byte)difficultyLevel)]
 		};
+
+	public static SolidColorBrush GetBackgroundColor(DifficultyLevel difficultyLevel) => new(GetBackgroundRawColor(difficultyLevel));
+
+	public static SolidColorBrush GetForegroundColor(DifficultyLevel difficultyLevel) => new(GetForegroundRawColor(difficultyLevel));
 }
 
 /// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
 file static class Constants
 {
-	public static readonly SolidColorBrush[] Foregrounds =
+	public static readonly Color[] Foregrounds =
 	{
-		new(Color.FromArgb(255,   0,  51, 204)),
-		new(Color.FromArgb(255,   0, 102,   0)),
-		new(Color.FromArgb(255, 102,  51,   0)),
-		new(Color.FromArgb(255, 102,  51,   0)),
-		new(Color.FromArgb(255, 102,   0,   0)),
-		new(Colors.Black)
+		Color.FromArgb(255,   0,  51, 204),
+		Color.FromArgb(255,   0, 102,   0),
+		Color.FromArgb(255, 102,  51,   0),
+		Color.FromArgb(255, 102,  51,   0),
+		Color.FromArgb(255, 102,   0,   0),
+		Colors.Black
 	};
 
-	public static readonly SolidColorBrush[] Backgrounds =
+	public static readonly Color[] Backgrounds =
 	{
-		new(Color.FromArgb(255, 204, 204, 255)),
-		new(Color.FromArgb(255, 100, 255, 100)),
-		new(Color.FromArgb(255, 255, 255, 100)),
-		new(Color.FromArgb(255, 255, 150,  80)),
-		new(Color.FromArgb(255, 255, 100, 100)),
-		new(Color.FromArgb(255, 220, 220, 220))
+		Color.FromArgb(255, 204, 204, 255),
+		Color.FromArgb(255, 100, 255, 100),
+		Color.FromArgb(255, 255, 255, 100),
+		Color.FromArgb(255, 255, 150,  80),
+		Color.FromArgb(255, 255, 100, 100),
+		Color.FromArgb(255, 220, 220, 220)
 	};
 }

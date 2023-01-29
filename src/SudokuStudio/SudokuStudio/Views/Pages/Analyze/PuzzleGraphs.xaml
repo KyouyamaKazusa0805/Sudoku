@@ -10,10 +10,13 @@
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:PuzzleGraphs}"
 	NavigationCacheMode="Required" CacheMode="BitmapCache">
 
-	<StackPanel Orientation="Vertical" Spacing="6">
-		<TextBlock Text="{m:R Key=AnalyzePage_DifficultyChartTitle}" FontSize="16" FontWeight="Bold" />
-		<lvc:CartesianChart
-			x:Name="DifficultyDistributionChart" Height="300" AutoUpdateEnabled="True"
-			Series="{x:Bind DifficultyDistribution,Mode=OneWay}" />
-	</StackPanel>
+	<ScrollViewer>
+		<StackPanel Orientation="Vertical" Spacing="6">
+			<TextBlock Text="{m:R Key=AnalyzePage_DifficultyChartTitle}" Style="{StaticResource BaseTextBlockStyle}" />
+			<lvc:CartesianChart Height="300" AutoUpdateEnabled="True" Series="{x:Bind DifficultyDistribution,Mode=OneWay}" />
+			<TextBlock Text="{m:R Key=AnalyzePage_DifficultyLevelProportion}" Style="{StaticResource BaseTextBlockStyle}" />
+			<lvc:PieChart
+				Height="300" AutoUpdateEnabled="True" LegendPosition="Right" Series="{x:Bind DifficultyLevelProportion,Mode=OneWay}" />
+		</StackPanel>
+	</ScrollViewer>
 </Page>

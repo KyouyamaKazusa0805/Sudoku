@@ -1217,6 +1217,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Level.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyLevelProportion">
+            <summary>
+              Looks up a localized string similar to Difficulty level proportion.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyMax">
             <summary>
               Looks up a localized string similar to Max.
@@ -3057,6 +3062,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the difficulty distribution values.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyLevelProportion">
+            <summary>
+            Indicates the difficulty level proportion values.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs"/> instance.
@@ -3067,6 +3077,25 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="E:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PropertyChanged">
             <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.InitializeFields">
+            <summary>
+            Initializes for fields.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.UpdateForDifficultyDistribution(Sudoku.Solving.Logical.LogicalSolverResult)">
+            <summary>
+            Update data for property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistribution"/>.
+            </summary>
+            <param name="value">The value.</param>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistribution"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.UpdateForDifficultyLevelProportion(Sudoku.Solving.Logical.LogicalSolverResult)">
+            <summary>
+            Update data for property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion"/>.
+            </summary>
+            <param name="value">The value.</param>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.InitializeComponent">
             <summary>
@@ -3088,6 +3117,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistribution">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyDistribution"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyLevelProportion"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>

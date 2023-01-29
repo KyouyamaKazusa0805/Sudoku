@@ -295,6 +295,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Difficulty level proportion.
+        /// </summary>
+        internal static string AnalyzePage_DifficultyLevelProportion {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DifficultyLevelProportion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max.
         /// </summary>
         internal static string AnalyzePage_DifficultyMax {
