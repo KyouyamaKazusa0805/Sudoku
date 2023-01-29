@@ -1,0 +1,19 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Analyze.PuzzleGraphs"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:PuzzleGraphs}"
+	NavigationCacheMode="Required" CacheMode="BitmapCache">
+
+	<StackPanel Orientation="Vertical" Spacing="6">
+		<TextBlock Text="{m:R Key=AnalyzePage_DifficultyChartTitle}" FontSize="16" FontWeight="Bold" />
+		<lvc:CartesianChart
+			x:Name="DifficultyDistributionChart" Height="300" AutoUpdateEnabled="True"
+			Series="{x:Bind DifficultyDistribution,Mode=OneWay}" />
+	</StackPanel>
+</Page>

@@ -6,9 +6,9 @@
 public static partial class TechniqueFiltering
 {
 	/// <summary>
-	/// Indicates the difficulty keyword.
+	/// Indicates the rating keyword.
 	/// </summary>
-	private const string DifficultyKeyword = "rating";
+	private const string RatingKeyword = "rating";
 
 	/// <summary>
 	/// Indicates the name keyword.
@@ -24,8 +24,7 @@ public static partial class TechniqueFiltering
 	/// <exception cref="ExpressiveException">Throws when the expression being evaluated is invalid.</exception>
 	public static IEnumerable<IStep> Filter(IEnumerable<IStep> steps, string conditionString)
 		=> string.IsNullOrWhiteSpace(conditionString)
-			// Special case: If the condition string is empty, just return.
-			? steps
+			? steps // Special case: If the condition string is empty, just return.
 			: from step in steps where Parse(conditionString, step).Evaluate<bool>() select step;
 
 	/// <summary>
@@ -42,7 +41,7 @@ public static partial class TechniqueFiltering
 					conditionString,
 					match => match.Value.ToLower() switch
 					{
-						DifficultyKeyword => $"{step.Difficulty}",
+						RatingKeyword => $"{step.Difficulty}",
 						NameKeyword => $"'{step.Name}'",
 						_ => throw new NotSupportedException("The specified match is not supported to be replaced.")
 					}

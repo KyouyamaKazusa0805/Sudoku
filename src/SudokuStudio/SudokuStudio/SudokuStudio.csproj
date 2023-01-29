@@ -41,6 +41,7 @@
 		<None Remove="Views\Controls\TechniqueGroupView.xaml" />
 		<None Remove="Views\Pages\AnalyzePage.xaml" />
 		<None Remove="Views\Pages\Analyze\GridGathering.xaml" />
+		<None Remove="Views\Pages\Analyze\PuzzleGraphs.xaml" />
 		<None Remove="Views\Pages\Analyze\SolvingPath.xaml" />
 		<None Remove="Views\Pages\Analyze\Summary.xaml" />
 		<None Remove="Views\Pages\Operation\BasicOperation.xaml" />
@@ -69,12 +70,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Views\Controls\TechniqueGroupView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
+		<Page Update="Views\Pages\Analyze\PuzzleGraphs.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Controls\TechniqueGroupView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Analyze\GridGathering.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

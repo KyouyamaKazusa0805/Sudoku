@@ -114,18 +114,19 @@
 
 							<pa:SolvingPath Margin="10" BasePage="{x:Bind}" />
 						</TabViewItem>
+						<TabViewItem Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
+							<TabViewItem.IconSource>
+								<SymbolIconSource Symbol="ZeroBars" />
+							</TabViewItem.IconSource>
+
+							<pa:PuzzleGraphs Margin="10" BasePage="{x:Bind}" />
+						</TabViewItem>
 						<TabViewItem Header="{m:R Key=AnalyzePage_AllStepsInCurrentGrid}" IsClosable="False">
 							<TabViewItem.IconSource>
 								<SymbolIconSource Symbol="Shuffle" />
 							</TabViewItem.IconSource>
 
 							<pa:GridGathering x:Name="GatherTabPage" x:FieldModifier="internal" Margin="10" BasePage="{x:Bind}" />
-						</TabViewItem>
-						<TabViewItem Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
-							<TabViewItem.IconSource>
-								<SymbolIconSource Symbol="ZeroBars" />
-							</TabViewItem.IconSource>
-
 						</TabViewItem>
 					</TabView>
 				</Grid>

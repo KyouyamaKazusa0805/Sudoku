@@ -268,6 +268,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Difficulty distribution.
+        /// </summary>
+        internal static string AnalyzePage_DifficultyChartTitle {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DifficultyChartTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level.
         /// </summary>
         internal static string AnalyzePage_DifficultyLevel {

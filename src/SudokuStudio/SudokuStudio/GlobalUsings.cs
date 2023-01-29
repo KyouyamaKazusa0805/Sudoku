@@ -20,6 +20,8 @@ global using System.Threading;
 global using System.Threading.Tasks;
 global using System.Windows.Input;
 global using Expressive.Exceptions;
+global using LiveChartsCore;
+global using LiveChartsCore.SkiaSharpView;
 global using Microsoft.UI;
 global using Microsoft.UI.Composition;
 global using Microsoft.UI.Composition.SystemBackdrops;

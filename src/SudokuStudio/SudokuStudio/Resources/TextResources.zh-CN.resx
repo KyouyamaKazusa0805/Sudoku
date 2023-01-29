@@ -165,6 +165,9 @@
   <data name="AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven" xml:space="preserve">
     <value>当前盘面格式，只不过全部确定值都视为提示数</value>
   </data>
+  <data name="AnalyzePage_DifficultyChartTitle" xml:space="preserve">
+    <value>难度分布</value>
+  </data>
   <data name="AnalyzePage_DifficultyLevel" xml:space="preserve">
     <value>难度级别</value>
   </data>

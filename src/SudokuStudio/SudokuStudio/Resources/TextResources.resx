@@ -165,6 +165,9 @@
   <data name="AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven" xml:space="preserve">
     <value>Current grid format, but all values will be treated as givens</value>
   </data>
+  <data name="AnalyzePage_DifficultyChartTitle" xml:space="preserve">
+    <value>Difficulty distribution</value>
+  </data>
   <data name="AnalyzePage_DifficultyLevel" xml:space="preserve">
     <value>Level</value>
   </data>

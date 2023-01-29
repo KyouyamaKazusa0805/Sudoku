@@ -394,9 +394,9 @@
             Defines a way that is used for filtering the gathered step.
             </summary>
         </member>
-        <member name="F:Sudoku.Filtering.TechniqueFiltering.DifficultyKeyword">
+        <member name="F:Sudoku.Filtering.TechniqueFiltering.RatingKeyword">
             <summary>
-            Indicates the difficulty keyword.
+            Indicates the rating keyword.
             </summary>
         </member>
         <member name="F:Sudoku.Filtering.TechniqueFiltering.NameKeyword">

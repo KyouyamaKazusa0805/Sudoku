@@ -8,7 +8,8 @@
 	xmlns:cmd="using:SudokuStudio.Views.Commands"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:GridGathering}">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:GridGathering}"
+	NavigationCacheMode="Required" CacheMode="BitmapCache">
 
 	<ScrollViewer>
 		<StackPanel Spacing="6">
