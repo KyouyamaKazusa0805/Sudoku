@@ -186,6 +186,12 @@
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>失败</value>
   </data>
+  <data name="AnalyzePage_FilterGatheredSteps" xml:space="preserve">
+    <value>过滤</value>
+  </data>
+  <data name="AnalyzePage_FilteringFailedDueToInvalidExpression" xml:space="preserve">
+    <value>查询表达式无法正确被程序解析。请检查。</value>
+  </data>
   <data name="AnalyzePage_FixGrid" xml:space="preserve">
     <value>固定盘面</value>
   </data>
@@ -272,6 +278,9 @@
   </data>
   <data name="AnalyzePage_SaveFileAnother" xml:space="preserve">
     <value>另存格式</value>
+  </data>
+  <data name="AnalyzePage_SearchAllSteps" xml:space="preserve">
+    <value>查询表达式，如 name like "唯一矩形.*"</value>
   </data>
   <data name="AnalyzePage_SelectAll" xml:space="preserve">
     <value>全部选择</value>

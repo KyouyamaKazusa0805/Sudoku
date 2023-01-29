@@ -12,12 +12,27 @@
 
 	<ScrollViewer>
 		<StackPanel Spacing="6">
-			<Button x:Name="GatherButton" x:FieldModifier="internal" CommandParameter="{x:Bind BasePage}" Content="{m:R Key=AnalyzePage_GatherStepsInCurrentGrid}">
+			<Button
+				x:Name="GatherButton" x:FieldModifier="internal"
+				CommandParameter="{x:Bind BasePage}" Content="{m:R Key=AnalyzePage_GatherStepsInCurrentGrid}">
 				<Button.Command>
 					<cmd:GatherCommand />
 				</Button.Command>
 			</Button>
-			<c:TechniqueGroupView x:Name="TechniqueGroupView" x:FieldModifier="internal" StepChosen="TechniqueGroupView_StepChosen" />
+			<StackPanel Orientation="Horizontal" Spacing="4">
+				<TextBox
+					x:Name="StepGatheringTextBox" Width="300" PlaceholderText="{m:R Key=AnalyzePage_SearchAllSteps}"
+					TextChanged="StepGatheringTextBox_TextChanged" />
+				<Button
+					Content="{m:R Key=AnalyzePage_FilterGatheredSteps}"
+					Click="FilterGatheredStepsButton_Click" />
+				<TextBlock
+					x:Name="FilteringExpressionInvalidHint" Foreground="Red" VerticalAlignment="Center" Visibility="Collapsed"
+					Text="{m:R Key=AnalyzePage_FilteringFailedDueToInvalidExpression}" />
+			</StackPanel>
+			<c:TechniqueGroupView
+				x:Name="TechniqueGroupView" x:FieldModifier="internal"
+				StepChosen="TechniqueGroupView_StepChosen" />
 		</StackPanel>
 	</ScrollViewer>
 </Page>

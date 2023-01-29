@@ -28,7 +28,8 @@ public sealed class GatherCommand : ButtonCommand
 		var gatherer = ((App)Application.Current).RunningContext.Gatherer;
 		var result = await Task.Run(gather);
 
-		self.GatherTabPage.TechniqueGroupView.TechniqueGroups.Source = getTechniqueGroups(result);
+		self.GatherTabPage._currentFountSteps = result;
+		self.GatherTabPage.TechniqueGroupView.TechniqueGroups.Source = GridGathering.GetTechniqueGroups(result);
 		self.GatherTabPage.GatherButton.IsEnabled = true;
 		self.IsGathererLaunched = false;
 
@@ -52,24 +53,6 @@ public sealed class GatherCommand : ButtonCommand
 					self.AnalyzeProgressLabel.Text = string.Format(textFormat!, percent);
 				}
 			}
-		}
-
-		ObservableCollection<TechniqueGroup> getTechniqueGroups(IEnumerable<IStep> collection)
-		{
-			return new(
-				from step in collection
-				group step by step.Name into stepGroupGroupedByName
-				let showDifficultySteps = from step in stepGroupGroupedByName where step.ShowDifficulty select step
-				let stepsDifficultyLevelIntegerGroup = from step in stepGroupGroupedByName select (decimal)step.DifficultyLevel
-				orderby
-					showDifficultySteps.Average(difficultySelector),
-					stepsDifficultyLevelIntegerGroup.Average(),
-					stepGroupGroupedByName.Key
-				select new TechniqueGroup(stepGroupGroupedByName) { Key = stepGroupGroupedByName.Key }
-			);
-
-
-			static decimal difficultySelector(IStep step) => step.Difficulty;
 		}
 	}
 }

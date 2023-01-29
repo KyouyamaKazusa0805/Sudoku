@@ -331,6 +331,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter gathered steps.
+        /// </summary>
+        internal static string AnalyzePage_FilterGatheredSteps {
+            get {
+                return ResourceManager.GetString("AnalyzePage_FilterGatheredSteps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filtering expression is invalid. Please check..
+        /// </summary>
+        internal static string AnalyzePage_FilteringFailedDueToInvalidExpression {
+            get {
+                return ResourceManager.GetString("AnalyzePage_FilteringFailedDueToInvalidExpression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fix grid.
         /// </summary>
         internal static string AnalyzePage_FixGrid {
@@ -588,6 +606,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_SaveFileAnother {
             get {
                 return ResourceManager.GetString("AnalyzePage_SaveFileAnother", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input search expression, e.g. name like &quot;[Uu]nique\sRectangle.*&quot;.
+        /// </summary>
+        internal static string AnalyzePage_SearchAllSteps {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SearchAllSteps", resourceCulture);
             }
         }
         
