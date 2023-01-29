@@ -22,7 +22,6 @@ global using System.Windows.Input;
 global using Expressive.Exceptions;
 global using LiveChartsCore;
 global using LiveChartsCore.Kernel;
-global using LiveChartsCore.Measure;
 global using LiveChartsCore.SkiaSharpView;
 global using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
 global using LiveChartsCore.SkiaSharpView.Painting;
