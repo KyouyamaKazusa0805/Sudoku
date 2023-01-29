@@ -29,6 +29,7 @@ global using Sudoku.Collections.Logical;
 global using Sudoku.Compatibility.Hodoku;
 global using Sudoku.Compatibility.SudokuExplainer;
 global using Sudoku.Concepts;
+global using Sudoku.Filtering.Expressions;
 global using Sudoku.Linq;
 global using Sudoku.Preprocessing.Gathering;
 global using Sudoku.Presentation;

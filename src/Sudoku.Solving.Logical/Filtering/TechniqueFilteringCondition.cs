@@ -9,8 +9,9 @@
 /// <item><c><see langword="rating"/> (<![CDATA[>]]>,<![CDATA[>=]]>,<![CDATA[<]]>,<![CDATA[<=]]>,<![CDATA[==]]>,<![CDATA[!=]]>) (value)</c></item>
 /// <item><c><see langword="name"/> (<![CDATA[==]]>,<![CDATA[!=]]>) (technique-name)</c></item>
 /// <item><c><see langword="name"/> <see langword="like"/> (pattern)</c></item>
-/// <item><c><see langword="conclusion"/> <![CDATA[==]]> (conclusion)</c></item>
+/// <item><c><see langword="conclusion"/> (<![CDATA[==]]>,<![CDATA[!=]]>) (conclusion)</c></item>
 /// <item><c><see langword="conclusion"/> <see langword="has"/> (coordinate)</c></item>
+/// <item><c><see langword="count"/> <see langword="conclusion"/> (<![CDATA[>]]>,<![CDATA[>=]]>,<![CDATA[<]]>,<![CDATA[<=]]>,<![CDATA[==]]>,<![CDATA[!=]]>) (count)</c></item>
 /// </list>
 /// </remarks>
 public static partial class TechniqueFiltering
@@ -67,6 +68,7 @@ public static partial class TechniqueFiltering
 
 		result.RegisterOperator(NameLikeOperator.Instance);
 		result.RegisterOperator(ConclusionHasOperator.Instance);
+		result.RegisterOperator(CountOperator.Instance);
 
 		return result;
 	}
@@ -140,6 +142,38 @@ file sealed class ConclusionHasOperator : OperatorBase
 }
 
 /// <summary>
+/// Indicates the counter operator <c>count</c> to total up the number of conclusions in a single technique step.
+/// The expected usage is like <c>count conclusion</c>.
+/// </summary>
+file sealed class CountOperator : OperatorBase
+{
+	/// <summary>
+	/// Indicates the singleton instance.
+	/// </summary>
+	public static readonly CountOperator Instance = new();
+
+
+	/// <summary>
+	/// Initializes a <see cref="CountOperator"/> instance.
+	/// </summary>
+	private CountOperator()
+	{
+	}
+
+
+	/// <inheritdoc/>
+	public override IEnumerable<string> Tags => new[] { "count" };
+
+
+	/// <inheritdoc/>
+	public override IExpression BuildExpression(Token previousToken, IExpression[] expressions, Context context)
+		=> new CountExpression(expressions[0] ?? expressions[1]);
+
+	/// <inheritdoc/>
+	public override OperatorPrecedence GetPrecedence(Token previousToken) => OperatorPrecedence.Not;
+}
+
+/// <summary>
 /// Defines the backing implementation of <c><see langword="like"/></c> operator.
 /// </summary>
 file sealed class NameLikeExpression : BinaryExpressionBase
@@ -183,8 +217,42 @@ file sealed class ConclusionHasExpression : BinaryExpressionBase
 	/// <inheritdoc/>
 	protected override object EvaluateImpl(object lhsResult, IExpression rightHandSide, IDictionary<string, object> variables)
 	{
-		var left = ((string)lhsResult).Split(", ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+		var left = ((string)lhsResult).SplitRemovingEmpty(", ");
 		var right = (string)rightHandSide.Evaluate(variables);
 		return left.Any(s => s.Contains(right));
 	}
+}
+
+/// <summary>
+/// Defines the backing implementation of <c><see langword="count"/></c> operator.
+/// </summary>
+file sealed class CountExpression : UnaryExpressionBase
+{
+	/// <summary>
+	/// Initializes a <see cref="ConclusionHasExpression"/> instance via an expression.
+	/// </summary>
+	/// <param name="expression">The operated expression.</param>
+	internal CountExpression(IExpression expression) : base(expression)
+	{
+	}
+
+
+	/// <inheritdoc/>
+	public override object Evaluate(IDictionary<string, object> variables)
+	{
+		var value = ((string)_expression.Evaluate(variables)).SplitRemovingEmpty(", ");
+		return value.Length;
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Simply calls <see cref="string.Split(string?, StringSplitOptions)"/>.
+	/// </summary>
+	/// <seealso cref="string.Split(string?, StringSplitOptions)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string[] SplitRemovingEmpty(this string @this, string separator)
+		=> @this.Split(separator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 }
