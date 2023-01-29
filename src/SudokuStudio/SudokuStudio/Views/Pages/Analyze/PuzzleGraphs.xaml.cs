@@ -75,7 +75,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			element.DataLabelsFormatter =
 				chartPoint => dataLabelFormatter(
 					chartPoint,
-					iterationVariableCopied switch // Here we cannot use 'i switch' because here is inside a lambda; 'i' always be 6.
+					iterationVariableCopied switch // Here we cannot use 'i switch' because here is inside a lambda; otherwise 'i' always be 6.
 					{
 						0 => GetString("_DifficultyLevel_Easy"),
 						1 => GetString("_DifficultyLevel_Moderate"),
