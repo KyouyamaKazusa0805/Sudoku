@@ -58,7 +58,7 @@
 							</AppBarButton>
 							<AppBarButton
 								x:Name="AnalyzeButton" x:FieldModifier="internal" CommandParameter="{x:Bind}" Icon="Find"
-								Label="{m:R Key=AnalyzerPage_AnalyzeButton}"
+								Label="{m:R Key=AnalyzePage_AnalyzeButton}"
 								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}">
 								<AppBarButton.Command>
 									<cmd:AnalyzeCommand />

@@ -120,6 +120,9 @@
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>所有可用步骤</value>
   </data>
+  <data name="AnalyzePage_AnalyzeButton" xml:space="preserve">
+    <value>分析</value>
+  </data>
   <data name="AnalyzePage_AnalyzerProgress" xml:space="preserve">
     <value>进度：{0:P}</value>
   </data>
@@ -335,9 +338,6 @@
   </data>
   <data name="AnalyzePage_Uniqueness" xml:space="preserve">
     <value>盘面唯一性：</value>
-  </data>
-  <data name="AnalyzerPage_AnalyzeButton" xml:space="preserve">
-    <value>分析</value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>图片文件</value>

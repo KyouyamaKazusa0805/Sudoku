@@ -133,6 +133,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analyze.
+        /// </summary>
+        internal static string AnalyzePage_AnalyzeButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AnalyzeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progress: {0:P}.
         /// </summary>
         internal static string AnalyzePage_AnalyzerProgress {
@@ -777,15 +786,6 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_Uniqueness {
             get {
                 return ResourceManager.GetString("AnalyzePage_Uniqueness", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Analyze.
-        /// </summary>
-        internal static string AnalyzerPage_AnalyzeButton {
-            get {
-                return ResourceManager.GetString("AnalyzerPage_AnalyzeButton", resourceCulture);
             }
         }
         
