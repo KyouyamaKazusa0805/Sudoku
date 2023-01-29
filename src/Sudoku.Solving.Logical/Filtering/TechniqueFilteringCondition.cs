@@ -8,7 +8,7 @@ public static partial class TechniqueFiltering
 	/// <summary>
 	/// Indicates the difficulty keyword.
 	/// </summary>
-	private const string DifficultyKeyword = "difficulty";
+	private const string DifficultyKeyword = "rating";
 
 	/// <summary>
 	/// Indicates the name keyword.
@@ -55,7 +55,7 @@ public static partial class TechniqueFiltering
 		return result;
 	}
 
-	[GeneratedRegex("""(dif{2}iculty|name)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	[GeneratedRegex("""(rating|name)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex KeywordPattern();
 }
 

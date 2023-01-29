@@ -427,15 +427,12 @@
             ○ 1st capture group.<br/>
                 ○ Match with 2 alternative expressions, atomically.<br/>
                     ○ Match a sequence of expressions.<br/>
-                        ○ Match a character in the set [Dd].<br/>
-                        ○ Match a character in the set [Ii].<br/>
-                        ○ Match a character in the set [Ff] exactly 2 times.<br/>
-                        ○ Match a character in the set [Ii].<br/>
-                        ○ Match a character in the set [Cc].<br/>
-                        ○ Match a character in the set [Uu].<br/>
-                        ○ Match a character in the set [Ll].<br/>
+                        ○ Match a character in the set [Rr].<br/>
+                        ○ Match a character in the set [Aa].<br/>
                         ○ Match a character in the set [Tt].<br/>
-                        ○ Match a character in the set [Yy].<br/>
+                        ○ Match a character in the set [Ii].<br/>
+                        ○ Match a character in the set [Nn].<br/>
+                        ○ Match a character in the set [Gg].<br/>
                     ○ Match a sequence of expressions.<br/>
                         ○ Match a character in the set [Nn].<br/>
                         ○ Match a character in the set [Aa].<br/>
