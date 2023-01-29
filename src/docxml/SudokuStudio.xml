@@ -61,6 +61,11 @@
             Defines a logical solver.
             </summary>
         </member>
+        <member name="P:SudokuStudio.AppLifecycle.RunningContext.Gatherer">
+            <summary>
+            Defines a step gatherer.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.AppLifecycle.RunningContext.AssemblyVersion">
             <summary>
             Indicates the version of the current assembly.
@@ -943,6 +948,22 @@ if (student is (name: var name, age: >= 18))
             <param name="displayKind">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
         </member>
+        <member name="T:SudokuStudio.Models.TechniqueGroup">
+            <summary>
+            Indicates a group of technique steps.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Models.TechniqueGroup.#ctor(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Models.TechniqueGroup"/> instance via the specified list of elements.
+            </summary>
+            <param name="elements">The elements.</param>
+        </member>
+        <member name="P:SudokuStudio.Models.TechniqueGroup.Key">
+            <summary>
+            Indicates the key of the group.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Models.ViewUnit">
             <summary>
             Defines a view unit.
@@ -1219,6 +1240,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_FixGrid">
             <summary>
               Looks up a localized string similar to Fix grid.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_GatherStepsInCurrentGrid">
+            <summary>
+              Looks up a localized string similar to Gather steps.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_GivensCount">
@@ -1585,6 +1611,14 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Commands.FixGridCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Views.Commands.GatherCommand">
+            <summary>
+            Defines a gather command.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Commands.GatherCommand.Execute(System.Object)">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Views.Commands.OpenFileCommand">
@@ -2110,6 +2144,48 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPaneCell._status"/>
         </member>
+        <member name="T:SudokuStudio.Views.Controls.TechniqueGroupView">
+            <summary>
+            Defines a technique group view control.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueGroupView"/> instance.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepChosen">
+            <summary>
+            Indicates the event that a step is chosen.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.ClearViewSource">
+            <summary>
+            Clears the view source.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.ListView_ItemClick(System.Object,Microsoft.UI.Xaml.Controls.ItemClickEventArgs)">
+            <summary>
+            Triggers when an item is clicked.
+            </summary>
+            <param name="sender">The object that triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Conversions.AnalyzeConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about analyze tab pages.
@@ -2467,6 +2543,31 @@ if (student is (name: var name, age: >= 18))
             Indicates the simple description.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventArgs.#ctor(Sudoku.Solving.Logical.IStep)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventArgs"/> instance via the specified step.
+            </summary>
+            <param name="step">The step.</param>
+        </member>
+        <member name="P:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventArgs.ChosenStep">
+            <summary>
+            Indicates the chosen step.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepChosen"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepChosen"/>
+        </member>
         <member name="T:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory">
             <summary>
             Defines a factory type that is used for creating a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
@@ -2714,6 +2815,11 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the analyzer is launched.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._isGathererLaunched">
+            <summary>
+            Indicates whether the gatherer is launched.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._generatorIsNotRunning">
             <summary>
             Indicates whether the generator is not running currently.
@@ -2860,6 +2966,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched"/>
         </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunched">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._isGathererLaunched"/>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._generatorIsNotRunning"/>
         </member>
@@ -2871,6 +2980,37 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._visualUnit"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Analyze.GridGathering">
+            <summary>
+            Defines the gathering page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.GridGathering"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.BasePage">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.SudokuStudio#Views#Interaction#IAnalyzeTabPage#AnalysisResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>

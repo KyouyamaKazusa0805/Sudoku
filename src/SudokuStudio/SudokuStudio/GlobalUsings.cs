@@ -2,6 +2,7 @@
 global using System.Collections;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
+global using System.Collections.ObjectModel;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
@@ -45,6 +46,7 @@ global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Algorithms.Bitwise;
 global using Sudoku.Solving.Logical;
+global using Sudoku.Solving.Logical.StepGatherers;
 global using Sudoku.Text;
 global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;

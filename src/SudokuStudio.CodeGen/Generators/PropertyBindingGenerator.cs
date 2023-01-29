@@ -262,7 +262,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 					var debuggerStepThrough = doNotEmitDebuggerStepThroughAttribute
 						? string.Empty
 						: $$"""
-								[global::System.Diagnostics.DebuggerStepThrough]
+						[global::System.Diagnostics.DebuggerStepThrough]
 								
 						""";
 

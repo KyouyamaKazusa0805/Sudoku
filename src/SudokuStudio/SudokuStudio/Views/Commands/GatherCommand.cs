@@ -1,0 +1,75 @@
+﻿namespace SudokuStudio.Views.Commands;
+
+/// <summary>
+/// Defines a gather command.
+/// </summary>
+public sealed class GatherCommand : ButtonCommand
+{
+	/// <inheritdoc/>
+	public override async void Execute(object? parameter)
+	{
+		if (parameter is not AnalyzePage self)
+		{
+			return;
+		}
+
+		var grid = self.SudokuPane.Puzzle;
+		if (!grid.IsValid())
+		{
+			return;
+		}
+
+		self.GatherTabPage.GatherButton.IsEnabled = false;
+		self.IsGathererLaunched = true;
+		self.GatherTabPage.TechniqueGroupView.ClearViewSource();
+
+		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
+
+		var gatherer = ((App)Application.Current).RunningContext.Gatherer;
+		var result = await Task.Run(gather);
+
+		self.GatherTabPage.TechniqueGroupView.TechniqueGroups.Source = getTechniqueGroups(result);
+		self.GatherTabPage.GatherButton.IsEnabled = true;
+		self.IsGathererLaunched = false;
+
+
+		IEnumerable<IStep> gather()
+		{
+			lock (self.AnalyzeSyncRoot)
+			{
+				return gatherer.Search(grid, new Progress<double>(progressReportHandler));
+			}
+
+
+			void progressReportHandler(double percent)
+			{
+				self.DispatcherQueue.TryEnqueue(updatePercentValueCallback);
+
+
+				void updatePercentValueCallback()
+				{
+					self.ProgressPercent = percent * 100;
+					self.AnalyzeProgressLabel.Text = string.Format(textFormat!, percent);
+				}
+			}
+		}
+
+		ObservableCollection<TechniqueGroup> getTechniqueGroups(IEnumerable<IStep> collection)
+		{
+			return new(
+				from step in collection
+				group step by step.Name into stepGroupGroupedByName
+				let showDifficultySteps = from step in stepGroupGroupedByName where step.ShowDifficulty select step
+				let stepsDifficultyLevelIntegerGroup = from step in stepGroupGroupedByName select (decimal)step.DifficultyLevel
+				orderby
+					showDifficultySteps.Average(difficultySelector),
+					stepsDifficultyLevelIntegerGroup.Average(),
+					stepGroupGroupedByName.Key
+				select new TechniqueGroup(stepGroupGroupedByName) { Key = stepGroupGroupedByName.Key }
+			);
+
+
+			static decimal difficultySelector(IStep step) => step.Difficulty;
+		}
+	}
+}

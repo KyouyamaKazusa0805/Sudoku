@@ -13,11 +13,11 @@ internal static class AnalyzeConversion
 
 	public static string GetIndexText(SolvingPathStep step) => (step.Index + 1).ToString();
 
-	public static Visibility GetProgressRingVisibility(bool isAnalyzerLaunched)
-		=> isAnalyzerLaunched ? Visibility.Visible : Visibility.Collapsed;
+	public static Visibility GetProgressRingVisibility(bool isAnalyzerLaunched, bool isGathererLaunched)
+		=> isAnalyzerLaunched || isGathererLaunched ? Visibility.Visible : Visibility.Collapsed;
 
-	public static Visibility GetAnalyzeTabsVisibility(bool isAnalyzerLaunched)
-		=> isAnalyzerLaunched ? Visibility.Collapsed : Visibility.Visible;
+	public static Visibility GetAnalyzeTabsVisibility(bool isAnalyzerLaunched, bool isGathererLaunched)
+		=> isAnalyzerLaunched || isGathererLaunched ? Visibility.Collapsed : Visibility.Visible;
 
 	public static Visibility GetDifficultyRatingVisibility(bool showDifficultyRating)
 		=> showDifficultyRating ? Visibility.Visible : Visibility.Collapsed;

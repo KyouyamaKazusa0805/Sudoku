@@ -16,6 +16,11 @@ public sealed class RunningContext
 	public LogicalSolver Solver { get; } = CommonLogicalSolvers.Suitable;
 
 	/// <summary>
+	/// Defines a step gatherer.
+	/// </summary>
+	public StepsGatherer Gatherer { get; } = new();
+
+	/// <summary>
 	/// Indicates the version of the current assembly.
 	/// </summary>
 	public Version AssemblyVersion => Assembly.GetName().Version!;

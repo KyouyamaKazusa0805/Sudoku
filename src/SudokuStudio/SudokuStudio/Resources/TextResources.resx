@@ -189,6 +189,9 @@
   <data name="AnalyzePage_FixGrid" xml:space="preserve">
     <value>Fix grid</value>
   </data>
+  <data name="AnalyzePage_GatherStepsInCurrentGrid" xml:space="preserve">
+    <value>Gather steps</value>
+  </data>
   <data name="AnalyzePage_GivensCount" xml:space="preserve">
     <value>Givens count: </value>
   </data>

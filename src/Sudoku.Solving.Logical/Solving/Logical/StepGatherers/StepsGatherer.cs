@@ -31,9 +31,8 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 		var totalSearchersCount = StepSearcherPool.Collection.Count;
 
 		InitializeMaps(puzzle);
-		var i = defaultLevelValue;
-		var bag = new List<IStep>();
-		var currentSearcherIndex = 0;
+
+		var (i, bag, currentSearcherIndex) = (defaultLevelValue, new List<IStep>(), 0);
 		foreach (var searcher in StepSearcherPool.Collection)
 		{
 			switch (searcher)
@@ -83,7 +82,7 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 
 		// Report the progress if worth.
 		ReportProgress:
-			progress?.Report(++currentSearcherIndex * 100D / totalSearchersCount);
+			progress?.Report(++currentSearcherIndex / totalSearchersCount);
 		}
 
 		// Return the result.

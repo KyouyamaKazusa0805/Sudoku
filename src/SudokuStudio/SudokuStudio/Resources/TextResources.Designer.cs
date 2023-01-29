@@ -340,6 +340,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gather steps.
+        /// </summary>
+        internal static string AnalyzePage_GatherStepsInCurrentGrid {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GatherStepsInCurrentGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Givens count: .
         /// </summary>
         internal static string AnalyzePage_GivensCount {

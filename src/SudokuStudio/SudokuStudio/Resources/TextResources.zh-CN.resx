@@ -189,6 +189,9 @@
   <data name="AnalyzePage_FixGrid" xml:space="preserve">
     <value>固定盘面</value>
   </data>
+  <data name="AnalyzePage_GatherStepsInCurrentGrid" xml:space="preserve">
+    <value>搜索全部步骤</value>
+  </data>
   <data name="AnalyzePage_GivensCount" xml:space="preserve">
     <value>已知数数量：</value>
   </data>

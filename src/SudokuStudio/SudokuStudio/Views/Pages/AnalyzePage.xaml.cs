@@ -23,6 +23,12 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	private bool _isAnalyzerLaunched;
 
 	/// <summary>
+	/// Indicates whether the gatherer is launched.
+	/// </summary>
+	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
+	private bool _isGathererLaunched;
+
+	/// <summary>
 	/// Indicates whether the generator is not running currently.
 	/// </summary>
 	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]

@@ -13,18 +13,40 @@
 		<DocumentationFile>..\..\docxml\SudokuStudio.xml</DocumentationFile>
 		<Description>The project represents with user interfaces that operates with sudoku puzzles.</Description>
 	</PropertyGroup>
+
 	<ItemGroup>
-		<Content Remove="Resources\images\icon.png" />
+		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
+		<PackageReference Include="CommunityToolkit.WinUI.UI" Version="7.1.2" />
+		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
+		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" Version="7.1.2" />
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" Version="2.0.0-beta.700" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+		<PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Sudoku.Solving.Logical\Sudoku.Solving.Logical.csproj" />
+		<ProjectReference Include="..\..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\..\SudokuStudio.CodeGen\SudokuStudio.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Controls\SudokuPaneCell.xaml" />
+		<None Remove="Views\Controls\TechniqueGroupView.xaml" />
 		<None Remove="Views\Pages\AnalyzePage.xaml" />
+		<None Remove="Views\Pages\Analyze\GridGathering.xaml" />
 		<None Remove="Views\Pages\Analyze\SolvingPath.xaml" />
 		<None Remove="Views\Pages\Analyze\Summary.xaml" />
 		<None Remove="Views\Pages\Operation\BasicOperation.xaml" />
 		<None Remove="Views\Pages\SettingsPage.xaml" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\images\icon.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -47,30 +69,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
-		<PackageReference Include="CommunityToolkit.WinUI.UI" Version="7.1.2" />
-		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
-		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" Version="7.1.2" />
-		<PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" Version="2.0.0-beta.700" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
-		<Manifest Include="$(ApplicationManifest)" />
+	  <Page Update="Views\Controls\TechniqueGroupView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Sudoku.Solving.Logical\Sudoku.Solving.Logical.csproj" />
-		<ProjectReference Include="..\..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-		<ProjectReference Include="..\..\SudokuStudio.CodeGen\SudokuStudio.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
+		<Page Update="Views\Pages\Analyze\GridGathering.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Analyze\SolvingPath.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
