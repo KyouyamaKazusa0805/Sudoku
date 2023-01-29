@@ -389,6 +389,52 @@
             </exception>
             <seealso cref="T:Sudoku.Solving.Logical.Techniques.Technique"/>
         </member>
+        <member name="T:Sudoku.Filtering.Expressions.ConclusionHasExpression">
+            <summary>
+            Defines the backing implementation of <c><see langword="has"/></c> operator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.Expressions.ConclusionHasExpression.#ctor(Expressive.Expressions.IExpression,Expressive.Expressions.IExpression,Expressive.Context)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.Expressions.ConclusionHasExpression"/> instance via two expressions, and the inner handling context.
+            </summary>
+            <param name="left">The left-side expression.</param>
+            <param name="right">The right-side expression.</param>
+            <param name="context">The inner handling context.</param>
+        </member>
+        <member name="M:Sudoku.Filtering.Expressions.ConclusionHasExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Filtering.Expressions.CountConclusionExpression">
+            <summary>
+            Defines the backing implementation of <c><see langword="count"/></c> operator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.Expressions.CountConclusionExpression.#ctor(Expressive.Expressions.IExpression)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.Expressions.ConclusionHasExpression"/> instance via an expression.
+            </summary>
+            <param name="expression">The operated expression.</param>
+        </member>
+        <member name="M:Sudoku.Filtering.Expressions.CountConclusionExpression.Evaluate(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Filtering.Expressions.NameLikeExpression">
+            <summary>
+            Defines the backing implementation of <c><see langword="like"/></c> operator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.Expressions.NameLikeExpression.#ctor(Expressive.Expressions.IExpression,Expressive.Expressions.IExpression,Expressive.Context)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.Expressions.NameLikeExpression"/> instance via two expressions, and the inner handling context.
+            </summary>
+            <param name="left">The left-side expression.</param>
+            <param name="right">The right-side expression.</param>
+            <param name="context">The inner handling context.</param>
+        </member>
+        <member name="M:Sudoku.Filtering.Expressions.NameLikeExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Filtering.Expressions.UnaryExpressionBase">
             <summary>
             Base class implementation of <see cref="T:Expressive.Expressions.IExpression"/>.
@@ -407,6 +453,81 @@
             <param name="expression">The expression.</param>
         </member>
         <member name="M:Sudoku.Filtering.Expressions.UnaryExpressionBase.Evaluate(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Filtering.Operators.ConclusionHasOperator">
+            <summary>
+            Indicates the conclusion matching operator <c>has</c>.
+            The expected usage is like <c>conclusion has 'r3c4'</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Filtering.Operators.ConclusionHasOperator.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.Operators.ConclusionHasOperator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.Operators.ConclusionHasOperator"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Filtering.Operators.ConclusionHasOperator.Tags">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.Operators.ConclusionHasOperator.BuildExpression(Expressive.Token,Expressive.Expressions.IExpression[],Expressive.Context)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.Operators.ConclusionHasOperator.GetPrecedence(Expressive.Token)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Filtering.Operators.CountConclusionOperator">
+            <summary>
+            Indicates the counter operator <c>count</c> to total up the number of conclusions in a single technique step.
+            The expected usage is like <c>count conclusion</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Filtering.Operators.CountConclusionOperator.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.Operators.CountConclusionOperator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.Operators.CountConclusionOperator"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Filtering.Operators.CountConclusionOperator.Tags">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.Operators.CountConclusionOperator.BuildExpression(Expressive.Token,Expressive.Expressions.IExpression[],Expressive.Context)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.Operators.CountConclusionOperator.GetPrecedence(Expressive.Token)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Filtering.Operators.NameLikeOperator">
+            <summary>
+            Indicates the name matching operator <c>like</c>.
+            The expected usage is like <c>name like 'Unique\s+Rectangle.*'</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Filtering.Operators.NameLikeOperator.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Filtering.Operators.NameLikeOperator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Filtering.Operators.NameLikeOperator"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Filtering.Operators.NameLikeOperator.Tags">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.Operators.NameLikeOperator.BuildExpression(Expressive.Token,Expressive.Expressions.IExpression[],Expressive.Context)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Filtering.Operators.NameLikeOperator.GetPrecedence(Expressive.Token)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Filtering.TechniqueFiltering">
@@ -487,140 +608,6 @@
                         ○ Match a character in the set [Nn].<br/>
             </code>
             </remarks>
-        </member>
-        <member name="T:Sudoku.Filtering.NameLikeOperator">
-            <summary>
-            Indicates the name matching operator <c>like</c>.
-            The expected usage is like <c>name like 'Unique\s+Rectangle.*'</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Filtering.NameLikeOperator.Instance">
-            <summary>
-            Indicates the singleton instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Filtering.NameLikeOperator.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Filtering.NameLikeOperator"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Filtering.NameLikeOperator.Tags">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Filtering.NameLikeOperator.BuildExpression(Expressive.Token,Expressive.Expressions.IExpression[],Expressive.Context)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Filtering.NameLikeOperator.GetPrecedence(Expressive.Token)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Filtering.ConclusionHasOperator">
-            <summary>
-            Indicates the conclusion matching operator <c>has</c>.
-            The expected usage is like <c>conclusion has 'r3c4'</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Filtering.ConclusionHasOperator.Instance">
-            <summary>
-            Indicates the singleton instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Filtering.ConclusionHasOperator.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Filtering.ConclusionHasOperator"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Filtering.ConclusionHasOperator.Tags">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Filtering.ConclusionHasOperator.BuildExpression(Expressive.Token,Expressive.Expressions.IExpression[],Expressive.Context)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Filtering.ConclusionHasOperator.GetPrecedence(Expressive.Token)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Filtering.CountOperator">
-            <summary>
-            Indicates the counter operator <c>count</c> to total up the number of conclusions in a single technique step.
-            The expected usage is like <c>count conclusion</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Filtering.CountOperator.Instance">
-            <summary>
-            Indicates the singleton instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Filtering.CountOperator.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Filtering.CountOperator"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Filtering.CountOperator.Tags">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Filtering.CountOperator.BuildExpression(Expressive.Token,Expressive.Expressions.IExpression[],Expressive.Context)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Filtering.CountOperator.GetPrecedence(Expressive.Token)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Filtering.NameLikeExpression">
-            <summary>
-            Defines the backing implementation of <c><see langword="like"/></c> operator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Filtering.NameLikeExpression.#ctor(Expressive.Expressions.IExpression,Expressive.Expressions.IExpression,Expressive.Context)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Filtering.NameLikeExpression"/> instance via two expressions, and the inner handling context.
-            </summary>
-            <param name="left">The left-side expression.</param>
-            <param name="right">The right-side expression.</param>
-            <param name="context">The inner handling context.</param>
-        </member>
-        <member name="M:Sudoku.Filtering.NameLikeExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Filtering.ConclusionHasExpression">
-            <summary>
-            Defines the backing implementation of <c><see langword="has"/></c> operator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Filtering.ConclusionHasExpression.#ctor(Expressive.Expressions.IExpression,Expressive.Expressions.IExpression,Expressive.Context)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Filtering.ConclusionHasExpression"/> instance via two expressions, and the inner handling context.
-            </summary>
-            <param name="left">The left-side expression.</param>
-            <param name="right">The right-side expression.</param>
-            <param name="context">The inner handling context.</param>
-        </member>
-        <member name="M:Sudoku.Filtering.ConclusionHasExpression.EvaluateImpl(System.Object,Expressive.Expressions.IExpression,System.Collections.Generic.IDictionary{System.String,System.Object})">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Filtering.CountExpression">
-            <summary>
-            Defines the backing implementation of <c><see langword="count"/></c> operator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Filtering.CountExpression.#ctor(Expressive.Expressions.IExpression)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Filtering.ConclusionHasExpression"/> instance via an expression.
-            </summary>
-            <param name="expression">The operated expression.</param>
-        </member>
-        <member name="M:Sudoku.Filtering.CountExpression.Evaluate(System.Collections.Generic.IDictionary{System.String,System.Object})">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Filtering.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Filtering.Extensions.SplitRemovingEmpty(System.String,System.String)">
-            <summary>
-            Simply calls <see cref="M:System.String.Split(System.String,System.StringSplitOptions)"/>.
-            </summary>
-            <seealso cref="M:System.String.Split(System.String,System.StringSplitOptions)"/>
         </member>
         <member name="T:Sudoku.Linq.CellEnumerable">
             <summary>
