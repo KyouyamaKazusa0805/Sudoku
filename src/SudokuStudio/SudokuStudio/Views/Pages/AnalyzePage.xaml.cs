@@ -406,17 +406,10 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetPreviousView()
 	{
-		if (VisualUnit is not { Views.Length: not 0 })
+		if (VisualUnit is { Views.Length: not 0 } && CurrentViewIndex - 1 >= 0)
 		{
-			return;
+			CurrentViewIndex--;
 		}
-
-		if (CurrentViewIndex - 1 < 0)
-		{
-			return;
-		}
-
-		CurrentViewIndex--;
 	}
 
 	/// <summary>
@@ -424,17 +417,10 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetNextView()
 	{
-		if (VisualUnit is not { Views.Length: var length and not 0 })
+		if (VisualUnit is { Views.Length: var length and not 0 } && CurrentViewIndex + 1 < length)
 		{
-			return;
+			CurrentViewIndex++;
 		}
-
-		if (CurrentViewIndex + 1 >= length)
-		{
-			return;
-		}
-
-		CurrentViewIndex++;
 	}
 
 	/// <summary>
@@ -442,12 +428,10 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetHomeView()
 	{
-		if (VisualUnit is not { Views.Length: not 0 })
+		if (VisualUnit is { Views.Length: not 0 })
 		{
-			return;
+			CurrentViewIndex = 0;
 		}
-
-		CurrentViewIndex = 0;
 	}
 
 	/// <summary>
@@ -455,12 +439,10 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetEndView()
 	{
-		if (VisualUnit is not { Views.Length: var length and not 0 })
+		if (VisualUnit is { Views.Length: var length and not 0 })
 		{
-			return;
+			CurrentViewIndex = length - 1;
 		}
-
-		CurrentViewIndex = length - 1;
 	}
 
 
