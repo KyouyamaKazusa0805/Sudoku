@@ -1,3 +1,5 @@
+using LiveChartsCore.SkiaSharpView.Drawing;
+
 namespace SudokuStudio.Views.Pages.Analyze;
 
 /// <summary>
@@ -28,7 +30,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			GeometrySize = 0,
 			Fill = null,
 			GeometryStroke = null,
-			IsHoverable = false
+			Stroke = new SolidColorPaint { Color = SKColors.SkyBlue, StrokeThickness = 1 }
 		}
 	};
 
@@ -58,9 +60,11 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			LineSmoothness = 0,
 			GeometrySize = 0,
 			Fill = new SolidColorPaint { Color = SKColors.SkyBlue.WithAlpha(96) },
-			IsClosed = true,
 			GeometryStroke = null,
-			Stroke = new SolidColorPaint { Color = SKColors.SkyBlue, StrokeThickness = 1 }
+			Stroke = new SolidColorPaint { Color = SKColors.SkyBlue, StrokeThickness = 1 },
+			DataLabelsSize = 12,
+			DataLabelsPosition = PolarLabelsPosition.End,
+			DataLabelsPaint = new SolidColorPaint { Color = SKColors.Black },
 		}
 	};
 
@@ -79,28 +83,109 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 	public AnalyzePage BasePage { get; set; } = null!;
 
 	/// <summary>
+	/// Difficulty distribution sections.
+	/// </summary>
+	internal Section<SkiaSharpDrawingContext>[] DifficultyDistributionSections { get; set; } = new RectangularSection[]
+	{
+		new RectangularSection
+		{
+			Yi = 3.4,
+			Yj = 3.4,
+			Stroke = new SolidColorPaint
+			{
+				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Moderate).AsSKColor(),
+				StrokeThickness = 1
+			}
+		},
+		new RectangularSection
+		{
+			Yi = 4.8,
+			Yj = 4.8,
+			Stroke = new SolidColorPaint
+			{
+				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Hard).AsSKColor(),
+				StrokeThickness = 1
+			}
+		},
+		new RectangularSection
+		{
+			Yi = 5.9,
+			Yj = 5.9,
+			Stroke = new SolidColorPaint
+			{
+				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Fiendish).AsSKColor(),
+				StrokeThickness = 1
+			}
+		},
+		new RectangularSection
+		{
+			Yi = 8.7,
+			Yj = 8.7,
+			Stroke = new SolidColorPaint
+			{
+				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Nightmare).AsSKColor(),
+				StrokeThickness = 1
+			}
+		},
+		new RectangularSection
+		{
+			Yi = 12.0,
+			Yj = 12.0,
+			Stroke = new SolidColorPaint
+			{
+				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Unknown).AsSKColor(),
+				StrokeThickness = 1
+			}
+		}
+	};
+
+	/// <summary>
+	/// Difficulty distribution axes X.
+	/// </summary>
+	internal ICartesianAxis[] DifficultyDistributionAxesX { get; set; } = new ICartesianAxis[]
+	{
+		new Axis { Name = GetString("AnalyzePage_DifficultyDistributionXLabel"), LabelsPaint = null, NamePaint = DefaultNameLabelPaint }
+	};
+
+	/// <summary>
+	/// Difficulty distribution axes Y.
+	/// </summary>
+	internal ICartesianAxis[] DifficultyDistributionAxesY { get; set; } = new ICartesianAxis[]
+	{
+		new Axis { Name = GetString("AnalyzePage_DifficultyDistributionYLabel"), LabelsPaint = null, NamePaint = DefaultNameLabelPaint }
+	};
+
+	/// <summary>
 	/// Polar axes.
 	/// </summary>
 	internal IPolarAxis[] PolarAxes { get; set; } = new IPolarAxis[]
 	{
 		new PolarAxis
 		{
+			Name = GetString("AnalyzePage_ArgumentsPolarScoreName"),
+			NamePaint = DefaultNameLabelPaint,
 			LabelsRotation = LiveCharts.TangentAngle,
+			LabelsPaint = DefaultNameLabelPaint,
 			Labels = new[]
 			{
 				GetString("AnalyzePage_PuzzleExerciziability"),
 				GetString("AnalyzePage_PuzzleRarity"),
 				GetString("AnalyzePage_PuzzleDirectability"),
 				GetString("AnalyzePage_MaxValueLegend")
-			},
-			LabelsPaint = new SolidColorPaint { Color = SKColors.Black, SKTypeface = SKFontManager.Default.MatchCharacter(HanCharacter) }
+			}
 		}
 	};
 
 
+	/// <summary>
+	/// Default name or label <see cref="Paint"/> instance.
+	/// </summary>
+	private static Paint DefaultNameLabelPaint
+		=> new SolidColorPaint { Color = SKColors.Black, SKTypeface = SKFontManager.Default.MatchCharacter(HanCharacter) };
+
+
 	/// <inheritdoc/>
 	public event PropertyChangedEventHandler? PropertyChanged;
-
 
 
 	/// <summary>
@@ -117,7 +202,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			element.DataLabelsFormatter =
 				chartPoint => dataLabelFormatter(
 					chartPoint,
-					i2 switch // Here we cannot use 'i switch' because here is inside a lambda; otherwise 'i' always be 6.
+					i2 switch // Here we cannot use variable 'i' because here is inside a lambda; otherwise 'i' always be 6.
 					{
 						0 => GetString("_DifficultyLevel_Easy"),
 						1 => GetString("_DifficultyLevel_Moderate"),
@@ -128,19 +213,20 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 					}
 				);
 			element.DataLabelsPosition = PolarLabelsPosition.Outer;
-			element.DataLabelsPaint = new SolidColorPaint { Color = SKColors.Black, SKTypeface = SKFontManager.Default.MatchCharacter(HanCharacter) };
+			element.DataLabelsPaint = DefaultNameLabelPaint;
 			element.Fill = new SolidColorPaint(
 				i switch
 				{
-					0 => c(getColor(DifficultyLevel.Easy)),
-					1 => c(getColor(DifficultyLevel.Moderate)),
-					2 => c(getColor(DifficultyLevel.Hard)),
-					3 => c(getColor(DifficultyLevel.Fiendish)),
-					4 => c(getColor(DifficultyLevel.Nightmare)),
-					5 => c(getColor(DifficultyLevel.Unknown))
+					0 => getColor(DifficultyLevel.Easy),
+					1 => getColor(DifficultyLevel.Moderate),
+					2 => getColor(DifficultyLevel.Hard),
+					3 => getColor(DifficultyLevel.Fiendish),
+					4 => getColor(DifficultyLevel.Nightmare),
+					5 => getColor(DifficultyLevel.Unknown)
 				}
 			);
 		}
+
 
 		static string dataLabelFormatter(ChartPoint<double, DoughnutGeometry, LabelGeometry> p, string difficultyLevelName)
 			=> p switch
@@ -151,13 +237,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 				_ => string.Empty
 			};
 
-		static Color getColor(DifficultyLevel difficultyLevel) => DifficultyLevelConversion.GetBackgroundRawColor(difficultyLevel);
-
-		static SKColor c(Color color)
-		{
-			_ = color is var (a, r, g, b);
-			return new(r, g, b, a);
-		}
+		static SKColor getColor(DifficultyLevel difficultyLevel) => DifficultyLevelConversion.GetBackgroundRawColor(difficultyLevel).AsSKColor();
 	}
 
 	private void AnalysisResultSetterAfter(LogicalSolverResult? value)
@@ -246,13 +326,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 
 		if (value is not null)
 		{
-			// Exerciziability.
 			coll[0] = getExerciziability(value);
-
-			// Rarity.
 			coll[1] = getRarity(value);
-
-			// Directablity.
 			coll[2] = getDirectability(value);
 		}
 
@@ -273,7 +348,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 
 			if (techniqueUsedDic.Count == 1 && techniqueUsedDic.First().Value.Count == 1)
 			{
-				return 300;
+				return 100;
 			}
 
 			var total = 300;

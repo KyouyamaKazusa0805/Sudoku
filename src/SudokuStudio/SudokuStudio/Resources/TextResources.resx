@@ -129,6 +129,9 @@
   <data name="AnalyzePage_AreYouSureToReturnToEmpty" xml:space="preserve">
     <value>This will clear the puzzle, returning the puzzle to empty status. Are you sure?</value>
   </data>
+  <data name="AnalyzePage_ArgumentsPolarScoreName" xml:space="preserve">
+    <value>Score</value>
+  </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -170,6 +173,12 @@
   </data>
   <data name="AnalyzePage_DifficultyChartTitle" xml:space="preserve">
     <value>Difficulty distribution</value>
+  </data>
+  <data name="AnalyzePage_DifficultyDistributionXLabel" xml:space="preserve">
+    <value>Step Index</value>
+  </data>
+  <data name="AnalyzePage_DifficultyDistributionYLabel" xml:space="preserve">
+    <value>Difficulty Rating</value>
   </data>
   <data name="AnalyzePage_DifficultyLevel" xml:space="preserve">
     <value>Level</value>

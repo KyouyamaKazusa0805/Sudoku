@@ -13,11 +13,13 @@
 	<ScrollViewer>
 		<StackPanel Orientation="Vertical" Spacing="6">
 			<TextBlock Text="{m:R Key=AnalyzePage_DifficultyChartTitle}" Style="{StaticResource BaseTextBlockStyle}" />
-			<lvc:CartesianChart Height="300" AutoUpdateEnabled="True" Series="{x:Bind DifficultyDistribution,Mode=OneWay}" />
+			<lvc:CartesianChart
+				Height="300" XAxes="{x:Bind DifficultyDistributionAxesX}" YAxes="{x:Bind DifficultyDistributionAxesY}"
+				Sections="{x:Bind DifficultyDistributionSections}" Series="{x:Bind DifficultyDistribution,Mode=OneWay}" Tooltip="{x:Null}" />
 			<TextBlock Text="{m:R Key=AnalyzePage_DifficultyLevelProportion}" Style="{StaticResource BaseTextBlockStyle}" />
-			<lvc:PieChart Height="300" AutoUpdateEnabled="True" Series="{x:Bind DifficultyLevelProportion,Mode=OneWay}" Tooltip="{x:Null}" />
+			<lvc:PieChart Height="300" Series="{x:Bind DifficultyLevelProportion,Mode=OneWay}" Tooltip="{x:Null}" />
 			<TextBlock Text="{m:R Key=AnalyzePage_PuzzleArgumentsPolar}" Style="{StaticResource BaseTextBlockStyle}" />
-			<lvc:PolarChart Height="300" AngleAxes="{x:Bind PolarAxes}" Series="{x:Bind PuzzleArgumentsPolar,Mode=OneWay}" InitialRotation="-90" />
+			<lvc:PolarChart Height="300" AngleAxes="{x:Bind PolarAxes}" Series="{x:Bind PuzzleArgumentsPolar,Mode=OneWay}" Tooltip="{x:Null}" />
 		</StackPanel>
 	</ScrollViewer>
 </Page>

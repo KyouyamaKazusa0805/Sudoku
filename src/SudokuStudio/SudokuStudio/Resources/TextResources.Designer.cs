@@ -178,6 +178,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Score.
+        /// </summary>
+        internal static string AnalyzePage_ArgumentsPolarScoreName {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ArgumentsPolarScoreName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string AnalyzePage_Cancel {
@@ -300,6 +309,24 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_DifficultyChartTitle {
             get {
                 return ResourceManager.GetString("AnalyzePage_DifficultyChartTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step Index.
+        /// </summary>
+        internal static string AnalyzePage_DifficultyDistributionXLabel {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DifficultyDistributionXLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty Rating.
+        /// </summary>
+        internal static string AnalyzePage_DifficultyDistributionYLabel {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DifficultyDistributionYLabel", resourceCulture);
             }
         }
         

@@ -1152,6 +1152,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty status. Are you sure?.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ArgumentsPolarScoreName">
+            <summary>
+              Looks up a localized string similar to Score.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Cancel">
             <summary>
               Looks up a localized string similar to Cancel.
@@ -1220,6 +1225,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyChartTitle">
             <summary>
               Looks up a localized string similar to Difficulty distribution.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyDistributionXLabel">
+            <summary>
+              Looks up a localized string similar to Step Index.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyDistributionYLabel">
+            <summary>
+              Looks up a localized string similar to Difficulty Rating.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyLevel">
@@ -3120,9 +3135,29 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.BasePage">
             <inheritdoc/>
         </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionSections">
+            <summary>
+            Difficulty distribution sections.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesX">
+            <summary>
+            Difficulty distribution axes X.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesY">
+            <summary>
+            Difficulty distribution axes Y.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxes">
             <summary>
             Polar axes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DefaultNameLabelPaint">
+            <summary>
+            Default name or label <see cref="T:LiveChartsCore.SkiaSharpView.Painting.Paint"/> instance.
             </summary>
         </member>
         <member name="E:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PropertyChanged">
@@ -3630,6 +3665,13 @@ if (student is (name: var name, age: >= 18))
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="M:Windows.UI.ColorExtensions.AsSKColor(Windows.UI.Color)">
+            <summary>
+            Converts the specified color into equivalent <see cref="T:SkiaSharp.SKColor"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Windows.UI.Color"/> instance.</param>
+            <returns>Final <see cref="T:SkiaSharp.SKColor"/> instance.</returns>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
             <summary>

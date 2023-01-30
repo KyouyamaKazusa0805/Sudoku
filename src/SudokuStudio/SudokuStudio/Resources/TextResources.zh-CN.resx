@@ -129,6 +129,9 @@
   <data name="AnalyzePage_AreYouSureToReturnToEmpty" xml:space="preserve">
     <value>该操作会将盘面置空（恢复为空盘状态）。确定要这么做？</value>
   </data>
+  <data name="AnalyzePage_ArgumentsPolarScoreName" xml:space="preserve">
+    <value>分值</value>
+  </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -170,6 +173,12 @@
   </data>
   <data name="AnalyzePage_DifficultyChartTitle" xml:space="preserve">
     <value>难度分布</value>
+  </data>
+  <data name="AnalyzePage_DifficultyDistributionXLabel" xml:space="preserve">
+    <value>步骤编号</value>
+  </data>
+  <data name="AnalyzePage_DifficultyDistributionYLabel" xml:space="preserve">
+    <value>难度系数</value>
   </data>
   <data name="AnalyzePage_DifficultyLevel" xml:space="preserve">
     <value>难度级别</value>
