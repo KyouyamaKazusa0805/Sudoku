@@ -9,7 +9,6 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:o="using:SudokuStudio.Views.Pages.Operation"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=o:BasicOperation}"
-	NavigationCacheMode="Required"
 	Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 	<Page.Resources>
 		<TeachingTip

@@ -9,8 +9,7 @@
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:models="using:SudokuStudio.Models"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AboutPage}"
-	NavigationCacheMode="Required">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AboutPage}">
 	<ScrollViewer Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
 		<StackPanel Spacing="4">
 			<TextBlock Text="{m:R Key=AboutPage_DetailDescription}" Margin="0,0,0,12" />

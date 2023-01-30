@@ -9,8 +9,7 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:model="using:SudokuStudio.Models"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:Summary}"
-	CacheMode="BitmapCache" NavigationCacheMode="Required">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:Summary}">
 	<ScrollViewer>
 		<StackPanel Orientation="Vertical" Spacing="6">
 			<c:DataGrid

@@ -9,8 +9,7 @@
 	xmlns:dts="using:SudokuStudio.Views.DataTemplateSelectors"
 	xmlns:model="using:SudokuStudio.Models"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}"
-	NavigationCacheMode="Required" CacheMode="BitmapCache">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}">
 	<ScrollViewer>
 		<StackPanel Orientation="Vertical" Spacing="6">
 			<ListView

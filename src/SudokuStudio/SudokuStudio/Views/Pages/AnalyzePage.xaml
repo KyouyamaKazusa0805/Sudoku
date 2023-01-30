@@ -10,8 +10,7 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AnalyzePage}"
-	NavigationCacheMode="Required">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AnalyzePage}">
 	<Page.Resources>
 		<Style x:Key="MenuBarBorderStyle" TargetType="Border">
 			<Setter Property="CornerRadius" Value="5" />
@@ -28,7 +27,7 @@
 				<Grid RowDefinitions="*,*">
 					<NavigationView
 						x:Name="CommandBarView" Grid.Row="0" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
-						IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="False" CacheMode="BitmapCache"
+						IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="False"
 						Loaded="CommandBarView_Loaded" SelectionChanged="CommandBarView_SelectionChanged" ItemInvoked="CommandBarView_ItemInvoked">
 						<NavigationView.MenuItems>
 							<NavigationViewItem x:Name="BasicOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_BasicOperations}" />
