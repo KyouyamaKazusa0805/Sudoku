@@ -222,6 +222,9 @@
   <data name="AnalyzePage_LiveCharts" xml:space="preserve">
     <value>Data Charts</value>
   </data>
+  <data name="AnalyzePage_MaxValueLegend" xml:space="preserve">
+    <value>Max Value</value>
+  </data>
   <data name="AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved" xml:space="preserve">
     <value>No (at least one hint can be removed, e.g. {0})</value>
   </data>

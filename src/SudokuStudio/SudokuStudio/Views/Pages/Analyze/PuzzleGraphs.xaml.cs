@@ -54,12 +54,13 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 	{
 		new PolarLineSeries<double>
 		{
-			Values = new ObservableCollection<double> { 0, 0, 0 },
-			LineSmoothness = .38,
+			Values = new ObservableCollection<double> { 0, 0, 0, 100 },
+			LineSmoothness = 0,
 			GeometrySize = 0,
 			Fill = new SolidColorPaint { Color = SKColors.SkyBlue.WithAlpha(96) },
 			IsClosed = true,
-			GeometryStroke = null
+			GeometryStroke = null,
+			Stroke = new SolidColorPaint { Color = SKColors.SkyBlue, StrokeThickness = 1 }
 		}
 	};
 
@@ -89,7 +90,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			{
 				GetString("AnalyzePage_PuzzleExerciziability"),
 				GetString("AnalyzePage_PuzzleRarity"),
-				GetString("AnalyzePage_PuzzleDirectability")
+				GetString("AnalyzePage_PuzzleDirectability"),
+				GetString("AnalyzePage_MaxValueLegend")
 			},
 			LabelsPaint = new SolidColorPaint { Color = SKColors.Black, SKTypeface = SKFontManager.Default.MatchCharacter(HanCharacter) }
 		}
@@ -142,11 +144,21 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		}
 
 		static string dataLabelFormatter(ChartPoint<double, DoughnutGeometry, LabelGeometry> p, string difficultyLevelName)
-			=> $"{difficultyLevelName}{GetString("_Token_Colon")}{(int)p.PrimaryValue}/{(int)p.StackedValue!.Total} ({p.StackedValue.Share:P2})";
+			=> p switch
+			{
+				{ StackedValue.Share: 0 } => string.Empty,
+				{ StackedValue.Share: var percent, PrimaryValue: var a, StackedValue.Total: var b } when !percent.NearlyEquals(0, 1E-2)
+					=> $"{difficultyLevelName}{GetString("_Token_Colon")}{(int)a}/{(int)b} ({percent:P2})",
+				_ => string.Empty
+			};
 
 		static Color getColor(DifficultyLevel difficultyLevel) => DifficultyLevelConversion.GetBackgroundRawColor(difficultyLevel);
 
-		static SKColor c(Color color) => new(color.R, color.G, color.B, color.A);
+		static SKColor c(Color color)
+		{
+			_ = color is var (a, r, g, b);
+			return new(r, g, b, a);
+		}
 	}
 
 	private void AnalysisResultSetterAfter(LogicalSolverResult? value)
@@ -282,7 +294,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 				}
 			}
 
-			return Clamp(total, 0, 300);
+			return (int)(Clamp(total, 0, 300) / 3D);
 		}
 
 		static double getRarity(LogicalSolverResult value)
@@ -301,7 +313,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 				};
 			}
 
-			return Clamp(total, 0, 300);
+			return (int)(Clamp(total, 0, 300) / 3D);
 		}
 
 		static double getDirectability(LogicalSolverResult value)
@@ -323,7 +335,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 				};
 			}
 
-			return (int)Round(Clamp(total, 0, 300));
+			return (int)(Clamp(total, 0, 300) / 3);
 		}
 	}
 }

@@ -457,6 +457,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max Value.
+        /// </summary>
+        internal static string AnalyzePage_MaxValueLegend {
+            get {
+                return ResourceManager.GetString("AnalyzePage_MaxValueLegend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No (at least one hint can be removed, e.g. {0}).
         /// </summary>
         internal static string AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved {

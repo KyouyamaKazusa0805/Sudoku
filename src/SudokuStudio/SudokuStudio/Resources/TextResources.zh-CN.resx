@@ -222,6 +222,9 @@
   <data name="AnalyzePage_LiveCharts" xml:space="preserve">
     <value>数据图表</value>
   </data>
+  <data name="AnalyzePage_MaxValueLegend" xml:space="preserve">
+    <value>满分</value>
+  </data>
   <data name="AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved" xml:space="preserve">
     <value>否（至少有一个数可以移除，如 {0}）</value>
   </data>
