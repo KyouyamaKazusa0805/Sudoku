@@ -438,6 +438,10 @@
   <data name="_MessageFormat_GamingIsCancelled" xml:space="preserve">
     <value>游戏已中止。</value>
   </data>
+  <data name="_MessageFormat_GridText" xml:space="preserve">
+    <value>题目文本代码：
+{0}</value>
+  </data>
   <data name="_MessageFormat_LookupNameOrIdAmbiguous" xml:space="preserve">
     <value>待搜索用户名称或 QQ 号码匹配到多个用户。请修改搜索条件或提醒用户更换名称并重试。</value>
   </data>

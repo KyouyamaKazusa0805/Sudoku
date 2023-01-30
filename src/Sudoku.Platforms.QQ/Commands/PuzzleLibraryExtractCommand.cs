@@ -172,6 +172,8 @@ file sealed class PuzzleLibraryExtractCommand : Command
 
 			File.Delete(picturePath);
 
+			await e.SendMessageAsync(string.Format(R.MessageFormat("GridText")!, grid.ToString()));
+
 			if (specifiedNumber is null)
 			{
 				lib.FinishedPuzzlesCount++;
