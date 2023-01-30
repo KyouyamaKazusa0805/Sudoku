@@ -508,57 +508,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 
-	private void UserControl_Loaded(object sender, RoutedEventArgs e) => Focus(FocusState.Programmatic);
-
-	private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
-	{
-		/**
-			Please note that the parent control may use globalized hotkeys to control some behaviors.
-			If <c>e.Handled</c> is not set <see langword="false"/> value before exited parent <c>KeyDown</c> method,
-			this method will not be triggered and executed.
-		*/
-		switch (Keyboard.GetModifierStatusForCurrentThread(), SelectedCell, Keyboard.GetInputDigit(e.Key))
-		{
-			case (_, not (>= 0 and < 81), _):
-			case (_, var cell, _) when Puzzle.GetStatus(cell) == CellStatus.Given:
-			case (_, _, -2):
-			{
-				return;
-			}
-			case ((false, false, false, false), var cell, -1):
-			{
-				var modified = Puzzle;
-				modified[cell] = -1;
-
-				SetPuzzle(modified);
-
-				break;
-			}
-			case ((false, true, false, false), var cell, var digit) when Puzzle.Exists(cell, digit) is true:
-			{
-				var modified = Puzzle;
-				modified[cell, digit] = false;
-
-				SetPuzzle(modified);
-
-				break;
-			}
-			case ((false, false, false, false), var cell, var digit) when !Puzzle.DuplicateWith(cell, digit):
-			{
-				var modified = Puzzle;
-				if (Puzzle.GetStatus(cell) == CellStatus.Modifiable)
-				{
-					// Temporarily re-compute candidates.
-					modified[cell] = -1;
-				}
-
-				modified[cell] = digit;
-				SetPuzzle(modified);
-
-				break;
-			}
-		}
-	}
+	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => Focus(FocusState.Programmatic);
 
 	private void UserControl_DragOver(object sender, DragEventArgs e)
 	{
@@ -567,8 +517,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		e.DragUIOverride.IsCaptionVisible = true;
 		e.DragUIOverride.IsContentVisible = true;
 	}
-
-	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => Focus(FocusState.Programmatic);
 
 	private async void UserControl_DropAsync(object sender, DragEventArgs e)
 	{
@@ -671,6 +619,56 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 						break;
 					}
 				}
+			}
+		}
+	}
+
+	private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
+	{
+		/**
+			Please note that the parent control may use globalized hotkeys to control some behaviors.
+			If <c>e.Handled</c> is not set <see langword="false"/> value before exited parent <c>KeyDown</c> method,
+			this method will not be triggered and executed.
+		*/
+		switch (Keyboard.GetModifierStatusForCurrentThread(), SelectedCell, Keyboard.GetInputDigit(e.Key))
+		{
+			case (_, not (>= 0 and < 81), _):
+			case (_, var cell, _) when Puzzle.GetStatus(cell) == CellStatus.Given:
+			case (_, _, -2):
+			{
+				return;
+			}
+			case ((false, false, false, false), var cell, -1):
+			{
+				var modified = Puzzle;
+				modified[cell] = -1;
+
+				SetPuzzle(modified);
+
+				break;
+			}
+			case ((false, true, false, false), var cell, var digit) when Puzzle.Exists(cell, digit) is true:
+			{
+				var modified = Puzzle;
+				modified[cell, digit] = false;
+
+				SetPuzzle(modified);
+
+				break;
+			}
+			case ((false, false, false, false), var cell, var digit) when !Puzzle.DuplicateWith(cell, digit):
+			{
+				var modified = Puzzle;
+				if (Puzzle.GetStatus(cell) == CellStatus.Modifiable)
+				{
+					// Temporarily re-compute candidates.
+					modified[cell] = -1;
+				}
+
+				modified[cell] = digit;
+				SetPuzzle(modified);
+
+				break;
 			}
 		}
 	}

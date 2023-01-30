@@ -299,6 +299,10 @@ public sealed partial class MainWindow : Window
 		{
 			NavigateToPage(typeof(AnalyzePage));
 		}
+		else if (container == AboutPagetItem)
+		{
+			NavigateToPage(typeof(AboutPage));
+		}
 	}
 
 #if MICA_BACKDROP || ACRYLIC_BACKDROP

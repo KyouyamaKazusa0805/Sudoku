@@ -852,6 +852,46 @@ if (student is (name: var name, age: >= 18))
             Indicates the grid string.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Models.RepositoryInfo">
+            <summary>
+            Defines a set of properties to describe an image.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.RepositoryInfo.IsForReference">
+            <summary>
+            Indicates whether the repository code is for reference.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.RepositoryInfo.OpenSourceLicense">
+            <summary>
+            Indicates the open-source license being used for this repository.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.RepositoryInfo.Initials">
+            <summary>
+            Indicates the initials displaying on the <see cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/> control.
+            This property can be <see langword="null"/> if you have set the property <see cref="P:SudokuStudio.Models.RepositoryInfo.IconPath"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/>
+            <seealso cref="P:SudokuStudio.Models.RepositoryInfo.IconPath"/>
+        </member>
+        <member name="P:SudokuStudio.Models.RepositoryInfo.Name">
+            <summary>
+            Indicates the name of the image.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.RepositoryInfo.IconPath">
+            <summary>
+            Indicates the path of the image to show.
+            This property can be <see langword="null"/> if you have set the property <see cref="P:SudokuStudio.Models.RepositoryInfo.Initials"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Models.RepositoryInfo.Initials"/>
+        </member>
+        <member name="P:SudokuStudio.Models.RepositoryInfo.Site">
+            <summary>
+            Indicates the website which name is corresponding to.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Models.SolvingPathStep">
             <summary>
             Defines a path step in a whole solving path.
@@ -1130,6 +1170,111 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources._Token_Colon">
             <summary>
               Looks up a localized string similar to : .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._Version">
+            <summary>
+              Looks up a localized string similar to V3.0.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_Author">
+            <summary>
+              Looks up a localized string similar to Author.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_AuthorMoreInfo">
+            <summary>
+              Looks up a localized string similar to Contact.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_AuthorName">
+            <summary>
+              Looks up a localized string similar to SunnieShine (Qitian Zhang).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_Bilibili">
+            <summary>
+              Looks up a localized string similar to Bilibili.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_CompilationInfo">
+            <summary>
+              Looks up a localized string similar to Compilation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_DetailDescription">
+            <summary>
+              Looks up a localized string similar to Here displays the details about the application,.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_ForReference">
+            <summary>
+              Looks up a localized string similar to For source referenced.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_Framework">
+            <summary>
+              Looks up a localized string similar to Program Framework Used.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_FrameworkDescription">
+            <summary>
+              Looks up a localized string similar to This application is supported by .NET 7 runtime, with Windows App SDK..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_License">
+            <summary>
+              Looks up a localized string similar to open-source license.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks">
+            <summary>
+              Looks up a localized string similar to Special Thanks.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_DevToys">
+            <summary>
+              Looks up a localized string similar to DevToys.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_DotnetRuntime">
+            <summary>
+              Looks up a localized string similar to .NET Runtime.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_LearnWinUI3">
+            <summary>
+              Looks up a localized string similar to Learn WinUI 3.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_LiveCharts2">
+            <summary>
+              Looks up a localized string similar to LiveCharts2.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_UWPSamples">
+            <summary>
+              Looks up a localized string similar to UWP Samples.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_WindowsCommunityToolkit">
+            <summary>
+              Looks up a localized string similar to Windows Community Toolkit.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_WinUI3Gallary">
+            <summary>
+              Looks up a localized string similar to WinUI 3 Gallery.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_WpfSamples">
+            <summary>
+              Looks up a localized string similar to WPF Samples.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanksDescription">
+            <summary>
+              Looks up a localized string similar to This project uses the following open-source code for references:.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AllStepsInCurrentGrid">
@@ -1560,6 +1705,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.FileExtension_TextDescription">
             <summary>
               Looks up a localized string similar to Sudoku puzzle format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_About">
+            <summary>
+              Looks up a localized string similar to About.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_AboutPageTitle">
+            <summary>
+              Looks up a localized string similar to About....
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Analyze">
@@ -2463,6 +2618,11 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The <see cref="T:Microsoft.UI.Xaml.Documents.Run"/> instance.</param>
             <returns>A <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance.</returns>
         </member>
+        <member name="T:SudokuStudio.Views.Conversions.CompilationConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about compilation information.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Conversions.CoordinateLabelConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about coordinate labels.
@@ -3046,6 +3206,31 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusion">The overlapped result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="T:SudokuStudio.Views.Pages.AboutPage">
+            <summary>
+            Represents about page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AboutPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.AboutPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AboutPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
             <summary>
             Defines a new page that stores a set of controls to analyze a sudoku grid.
@@ -3507,6 +3692,16 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="E:SudokuStudio.Views.Pages.Operation.BasicOperation.PropertyChanged">
             <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.OnSaveFileFailed(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Views.Interaction.SaveFileFailedEventArgs)">
+            <summary>
+            The method called by <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.OnOpenFileFailed(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Views.Interaction.OpenFileFailedEventArgs)">
+            <summary>
+            The method called by <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/>.
+            </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
             <summary>

@@ -142,6 +142,195 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to V3.0.
+        /// </summary>
+        internal static string _Version {
+            get {
+                return ResourceManager.GetString("_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author.
+        /// </summary>
+        internal static string AboutPage_Author {
+            get {
+                return ResourceManager.GetString("AboutPage_Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        internal static string AboutPage_AuthorMoreInfo {
+            get {
+                return ResourceManager.GetString("AboutPage_AuthorMoreInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SunnieShine (Qitian Zhang).
+        /// </summary>
+        internal static string AboutPage_AuthorName {
+            get {
+                return ResourceManager.GetString("AboutPage_AuthorName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bilibili.
+        /// </summary>
+        internal static string AboutPage_Bilibili {
+            get {
+                return ResourceManager.GetString("AboutPage_Bilibili", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compilation.
+        /// </summary>
+        internal static string AboutPage_CompilationInfo {
+            get {
+                return ResourceManager.GetString("AboutPage_CompilationInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here displays the details about the application,.
+        /// </summary>
+        internal static string AboutPage_DetailDescription {
+            get {
+                return ResourceManager.GetString("AboutPage_DetailDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For source referenced.
+        /// </summary>
+        internal static string AboutPage_ForReference {
+            get {
+                return ResourceManager.GetString("AboutPage_ForReference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program Framework Used.
+        /// </summary>
+        internal static string AboutPage_Framework {
+            get {
+                return ResourceManager.GetString("AboutPage_Framework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This application is supported by .NET 7 runtime, with Windows App SDK..
+        /// </summary>
+        internal static string AboutPage_FrameworkDescription {
+            get {
+                return ResourceManager.GetString("AboutPage_FrameworkDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to open-source license.
+        /// </summary>
+        internal static string AboutPage_License {
+            get {
+                return ResourceManager.GetString("AboutPage_License", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special Thanks.
+        /// </summary>
+        internal static string AboutPage_SpecialThanks {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DevToys.
+        /// </summary>
+        internal static string AboutPage_SpecialThanks_DevToys {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanks_DevToys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .NET Runtime.
+        /// </summary>
+        internal static string AboutPage_SpecialThanks_DotnetRuntime {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanks_DotnetRuntime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn WinUI 3.
+        /// </summary>
+        internal static string AboutPage_SpecialThanks_LearnWinUI3 {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanks_LearnWinUI3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LiveCharts2.
+        /// </summary>
+        internal static string AboutPage_SpecialThanks_LiveCharts2 {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanks_LiveCharts2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UWP Samples.
+        /// </summary>
+        internal static string AboutPage_SpecialThanks_UWPSamples {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanks_UWPSamples", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Community Toolkit.
+        /// </summary>
+        internal static string AboutPage_SpecialThanks_WindowsCommunityToolkit {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanks_WindowsCommunityToolkit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WinUI 3 Gallery.
+        /// </summary>
+        internal static string AboutPage_SpecialThanks_WinUI3Gallary {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanks_WinUI3Gallary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WPF Samples.
+        /// </summary>
+        internal static string AboutPage_SpecialThanks_WpfSamples {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanks_WpfSamples", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This project uses the following open-source code for references:.
+        /// </summary>
+        internal static string AboutPage_SpecialThanksDescription {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanksDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Available Steps.
         /// </summary>
         internal static string AnalyzePage_AllStepsInCurrentGrid {
@@ -912,6 +1101,24 @@ namespace SudokuStudio.Resources {
         internal static string FileExtension_TextDescription {
             get {
                 return ResourceManager.GetString("FileExtension_TextDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string MainWindow_About {
+            get {
+                return ResourceManager.GetString("MainWindow_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About....
+        /// </summary>
+        internal static string MainWindow_AboutPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_AboutPageTitle", resourceCulture);
             }
         }
         

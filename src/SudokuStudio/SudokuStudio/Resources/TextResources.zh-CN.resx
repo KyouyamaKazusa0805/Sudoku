@@ -117,6 +117,66 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutPage_Author" xml:space="preserve">
+    <value>作者</value>
+  </data>
+  <data name="AboutPage_AuthorMoreInfo" xml:space="preserve">
+    <value>联系方式</value>
+  </data>
+  <data name="AboutPage_AuthorName" xml:space="preserve">
+    <value>小向（Sunnie-Shine）</value>
+  </data>
+  <data name="AboutPage_Bilibili" xml:space="preserve">
+    <value>哔哩哔哩</value>
+  </data>
+  <data name="AboutPage_CompilationInfo" xml:space="preserve">
+    <value>编译信息</value>
+  </data>
+  <data name="AboutPage_DetailDescription" xml:space="preserve">
+    <value>本页面列举一些关于整个程序有关的作者或项目信息。</value>
+  </data>
+  <data name="AboutPage_ForReference" xml:space="preserve">
+    <value>有代码参考</value>
+  </data>
+  <data name="AboutPage_Framework" xml:space="preserve">
+    <value>程序框架</value>
+  </data>
+  <data name="AboutPage_FrameworkDescription" xml:space="preserve">
+    <value>本应用程序使用 .NET 7 运行时和 Windows 应用 SDK 搭建。</value>
+  </data>
+  <data name="AboutPage_License" xml:space="preserve">
+    <value>开源代码协议</value>
+  </data>
+  <data name="AboutPage_SpecialThanks" xml:space="preserve">
+    <value>特别鸣谢</value>
+  </data>
+  <data name="AboutPage_SpecialThanksDescription" xml:space="preserve">
+    <value>这个项目使用了如下给出的仓库的开源代码作为参考：</value>
+  </data>
+  <data name="AboutPage_SpecialThanks_DevToys" xml:space="preserve">
+    <value>开发人员工具（DevToys）</value>
+  </data>
+  <data name="AboutPage_SpecialThanks_DotnetRuntime" xml:space="preserve">
+    <value>.NET 运行时</value>
+  </data>
+  <data name="AboutPage_SpecialThanks_LearnWinUI3" xml:space="preserve">
+    <value>WinUI 3 学习（Learn WinUI 3）</value>
+  </data>
+  <data name="AboutPage_SpecialThanks_LiveCharts2" xml:space="preserve">
+    <value>跃动图表Ⅱ（LiveCharts2）</value>
+  </data>
+  <data name="AboutPage_SpecialThanks_UWPSamples" xml:space="preserve">
+    <value>UWP 实例（UWP Samples）</value>
+  </data>
+  <data name="AboutPage_SpecialThanks_WindowsCommunityToolkit" xml:space="preserve">
+    <value>Windows 社区开发包（Windows Community Toolkit）</value>
+  </data>
+  <data name="AboutPage_SpecialThanks_WinUI3Gallary" xml:space="preserve">
+    <value>WinUI 3 展览馆（WinUI 3 Gallery）</value>
+  </data>
+  <data name="AboutPage_SpecialThanks_WpfSamples" xml:space="preserve">
+    <value>WPF 实例（WPF Samples）</value>
+  </data>
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>所有可用步骤</value>
   </data>
@@ -375,6 +435,12 @@
   <data name="FileExtension_TextDescription" xml:space="preserve">
     <value>数独题目格式</value>
   </data>
+  <data name="MainWindow_About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="MainWindow_AboutPageTitle" xml:space="preserve">
+    <value>关于……</value>
+  </data>
   <data name="MainWindow_Analyze" xml:space="preserve">
     <value>分析</value>
   </data>
@@ -425,5 +491,8 @@
   </data>
   <data name="_Token_Colon" xml:space="preserve">
     <value>：</value>
+  </data>
+  <data name="_Version" xml:space="preserve">
+    <value>版本 3.0</value>
   </data>
 </root>

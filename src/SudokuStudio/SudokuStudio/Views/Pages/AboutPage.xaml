@@ -1,0 +1,117 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.AboutPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:cvt="using:SudokuStudio.Views.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:models="using:SudokuStudio.Models"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AboutPage}"
+	NavigationCacheMode="Required">
+	<ScrollViewer Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
+		<StackPanel Spacing="4">
+			<TextBlock Text="{m:R Key=AboutPage_DetailDescription}" Margin="0,0,0,12" />
+
+			<!--Author info-->
+			<c:ExtendedExpander Title="{m:R Key=AboutPage_Author}">
+				<c:ExtendedExpander.Icon>
+					<SymbolIcon Symbol="People" />
+				</c:ExtendedExpander.Icon>
+				<TextBlock Text="{m:R Key=AboutPage_AuthorName}" />
+			</c:ExtendedExpander>
+			<c:ExtendedExpander Title="{m:R Key=AboutPage_AuthorMoreInfo}">
+				<c:ExtendedExpander.Icon>
+					<SymbolIcon Symbol="Contact" />
+				</c:ExtendedExpander.Icon>
+				<StackPanel Orientation="Horizontal">
+					<HyperlinkButton NavigateUri="https://github.com/SunnieShine" Content="GitHub" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton NavigateUri="https://space.bilibili.com/23736703" Content="{m:R Key=AboutPage_Bilibili}" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton NavigateUri="https://gitee.com/SunnieShine" Content="Gitee" />
+				</StackPanel>
+			</c:ExtendedExpander>
+
+			<!--Framework info-->
+			<c:ExtendedExpander Title="{m:R Key=AboutPage_Framework}" Description="{m:R Key=AboutPage_FrameworkDescription}">
+				<c:ExtendedExpander.Icon>
+					<SymbolIcon Symbol="Library" />
+				</c:ExtendedExpander.Icon>
+				<StackPanel Orientation="Horizontal">
+					<HyperlinkButton NavigateUri="https://github.com/microsoft/microsoft-ui-xaml" Content="WinUI 3" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton NavigateUri="https://github.com/microsoft/WindowsAppSDK" Content="Windows App SDK" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton NavigateUri="https://github.com/dotnet/runtime" Content=".NET Runtime" />
+				</StackPanel>
+			</c:ExtendedExpander>
+			<c:ExtendedExpander Title="{m:R Key=AboutPage_CompilationInfo}" Description="{x:Bind cvt:CompilationConversion.GetCompilationInfo()}">
+				<c:ExtendedExpander.Icon>
+					<ImageIcon Source="/Resources/images/logo.png" Height="24" />
+				</c:ExtendedExpander.Icon>
+			</c:ExtendedExpander>
+
+			<!--Special thanks-->
+			<c:ExtendedExpander Title="{m:R Key=AboutPage_SpecialThanks}" Description="{m:R Key=AboutPage_SpecialThanksDescription}">
+				<c:ExtendedExpander.Icon>
+					<SymbolIcon Symbol="Link" />
+				</c:ExtendedExpander.Icon>
+				<c:ExtendedExpander.ExpandableContent>
+					<ListView SelectionMode="None" Margin="40,20,10,30">
+						<ListView.ItemTemplate>
+							<DataTemplate x:DataType="models:RepositoryInfo">
+								<Grid RowDefinitions="*,*,*" ColumnDefinitions="Auto,Auto,*">
+									<PersonPicture
+										Grid.RowSpan="3" Width="48" Height="48" Margin="6"
+										HorizontalAlignment="Center" Initials="{x:Bind Initials}"
+										VerticalAlignment="Center" ProfilePicture="{x:Bind IconPath}" />
+									<TextBlock
+										Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
+										Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
+									<TextBlock
+										Grid.Row="1" Grid.Column="1" Margin="12,6,0,0" Style="{StaticResource BodyTextBlockStyle}"
+										Text="{x:Bind cvt:CompilationConversion.License(OpenSourceLicense)}" />
+									<TextBlock
+										Grid.Row="1" Grid.Column="2" Margin="12,6,0,0" Style="{StaticResource BaseTextBlockStyle}"
+										Text="{x:Bind cvt:CompilationConversion.ForReference(IsForReference)}" />
+									<HyperlinkButton
+										Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6" NavigateUri="{x:Bind Site}">
+										<FontIcon Glyph="&#xE8A7;" />
+									</HyperlinkButton>
+								</Grid>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+
+						<models:RepositoryInfo
+							Name="{m:R Key=AboutPage_SpecialThanks_DotnetRuntime}" OpenSourceLicense="MIT"
+							IconPath="/Resources/images/repo-dotnet.png" Site="https://github.com/dotnet/runtime" />
+						<models:RepositoryInfo
+							Name="{m:R Key=AboutPage_SpecialThanks_LearnWinUI3}" OpenSourceLicense="MIT"
+							Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" Initials="LW" IsForReference="True" />
+						<models:RepositoryInfo
+							Name="{m:R Key=AboutPage_SpecialThanks_WpfSamples}" OpenSourceLicense="MIT"
+							Site="https://github.com/microsoft/WPF-Samples" Initials="WS" IsForReference="True" />
+						<models:RepositoryInfo
+							Name="{m:R Key=AboutPage_SpecialThanks_UWPSamples}" OpenSourceLicense="MIT"
+							Site="https://github.com/microsoft/Windows-universal-samples" Initials="US" IsForReference="True" />
+						<models:RepositoryInfo
+							Name="{m:R Key=AboutPage_SpecialThanks_WinUI3Gallary}" OpenSourceLicense="MIT"
+							Site="https://github.com/microsoft/WinUI-Gallery" Initials="WG" />
+						<models:RepositoryInfo
+							Name="{m:R Key=AboutPage_SpecialThanks_DevToys}" OpenSourceLicense="MIT"
+							Site="https://github.com/veler/DevToys" IconPath="/Resources/images/logo-devtoys.png" IsForReference="True" />
+						<models:RepositoryInfo
+							Name="{m:R Key=AboutPage_SpecialThanks_LiveCharts2}" OpenSourceLicense="MIT"
+							Site="https://github.com/beto-rodriguez/LiveCharts2" Initials="LC" />
+						<models:RepositoryInfo
+							Name="{m:R Key=AboutPage_SpecialThanks_WindowsCommunityToolkit}" OpenSourceLicense="MIT"
+							Site="https://github.com/CommunityToolkit/WindowsCommunityToolkit" Initials="CT" />
+					</ListView>
+				</c:ExtendedExpander.ExpandableContent>
+			</c:ExtendedExpander>
+		</StackPanel>
+	</ScrollViewer>
+</Page>

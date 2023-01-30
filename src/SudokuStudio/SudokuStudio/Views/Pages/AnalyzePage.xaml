@@ -17,12 +17,12 @@
 			<Setter Property="CornerRadius" Value="5" />
 			<Setter Property="BorderBrush" Value="#EAEAEA" />
 			<Setter Property="BorderThickness" Value="2" />
-			<Setter Property="Margin" Value="0,10,20,10" />
+			<Setter Property="Margin" Value="0,10" />
 		</Style>
 	</Page.Resources>
 
 	<ScrollViewer VerticalScrollBarVisibility="Hidden">
-		<StackPanel Orientation="Vertical" Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10}" Spacing="10">
+		<StackPanel Orientation="Vertical" Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}" Spacing="10">
 			<!--Main menu-->
 			<Border Style="{StaticResource MenuBarBorderStyle}">
 				<Grid RowDefinitions="*,*">

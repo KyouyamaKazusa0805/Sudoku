@@ -34,25 +34,37 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 
+	/// <summary>
+	/// The method called by <see cref="Page_Loaded(object, RoutedEventArgs)"/> and <see cref="Page_Unloaded(object, RoutedEventArgs)"/>.
+	/// </summary>
+	private void OnSaveFileFailed(AnalyzePage _, SaveFileFailedEventArgs e)
+		=> (e.Reason switch { SaveFileFailedReason.UnsnappingFailed => ErrorDialog_ProgramIsSnapped }).IsOpen = true;
+
+	/// <summary>
+	/// The method called by <see cref="Page_Loaded(object, RoutedEventArgs)"/> and <see cref="Page_Unloaded(object, RoutedEventArgs)"/>.
+	/// </summary>
+	private void OnOpenFileFailed(AnalyzePage _, OpenFileFailedEventArgs e)
+		=> (
+			e.Reason switch
+			{
+				OpenFileFailedReason.UnsnappingFailed => ErrorDialog_ProgramIsSnapped,
+				OpenFileFailedReason.FileIsEmpty => ErrorDialog_FileIsEmpty,
+				OpenFileFailedReason.FileIsTooLarge => ErrorDialog_FileIsOversized,
+				OpenFileFailedReason.FileCannotBeParsed => ErrorDialog_FileCannotBeParsed
+			}
+		).IsOpen = true;
+
+
 	private void Page_Loaded(object sender, RoutedEventArgs e)
 	{
-		BasePage.OpenFileFailed += onOpenFileFailed;
-		BasePage.SaveFileFailed += onSaveFileFailed;
+		BasePage.OpenFileFailed += OnOpenFileFailed;
+		BasePage.SaveFileFailed += OnSaveFileFailed;
+	}
 
-
-		void onOpenFileFailed(AnalyzePage _, OpenFileFailedEventArgs e)
-			=> (
-				e.Reason switch
-				{
-					OpenFileFailedReason.UnsnappingFailed => ErrorDialog_ProgramIsSnapped,
-					OpenFileFailedReason.FileIsEmpty => ErrorDialog_FileIsEmpty,
-					OpenFileFailedReason.FileIsTooLarge => ErrorDialog_FileIsOversized,
-					OpenFileFailedReason.FileCannotBeParsed => ErrorDialog_FileCannotBeParsed
-				}
-			).IsOpen = true;
-
-		void onSaveFileFailed(AnalyzePage _, SaveFileFailedEventArgs e)
-			=> (e.Reason switch { SaveFileFailedReason.UnsnappingFailed => ErrorDialog_ProgramIsSnapped }).IsOpen = true;
+	private void Page_Unloaded(object sender, RoutedEventArgs e)
+	{
+		BasePage.OpenFileFailed -= OnOpenFileFailed;
+		BasePage.SaveFileFailed -= OnSaveFileFailed;
 	}
 
 	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)

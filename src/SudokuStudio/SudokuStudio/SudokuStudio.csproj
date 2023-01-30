@@ -13,6 +13,11 @@
 		<DocumentationFile>..\..\docxml\SudokuStudio.xml</DocumentationFile>
 		<Description>The project represents with user interfaces that operates with sudoku puzzles.</Description>
 	</PropertyGroup>
+	<ItemGroup>
+		<Content Remove="Resources\images\logo-devtoys.png" />
+		<Content Remove="Resources\images\repo-dotnet.png" />
+		<Content Remove="Resources\images\repo-winuiex.png" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
@@ -41,6 +46,7 @@
 		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Controls\SudokuPaneCell.xaml" />
 		<None Remove="Views\Controls\TechniqueGroupView.xaml" />
+		<None Remove="Views\Pages\AboutPage.xaml" />
 		<None Remove="Views\Pages\AnalyzePage.xaml" />
 		<None Remove="Views\Pages\Analyze\GridGathering.xaml" />
 		<None Remove="Views\Pages\Analyze\PuzzleGraphs.xaml" />
@@ -54,7 +60,16 @@
 		<EmbeddedResource Include="Resources\images\icon.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\images\logo-devtoys.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\images\Logo.ico">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\images\repo-dotnet.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\images\repo-winuiex.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\TextResources.resx">
@@ -72,6 +87,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\AboutPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Controls\ExtendedExpanderHeader.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
