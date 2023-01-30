@@ -5,6 +5,12 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// </summary>
 public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropertyChanged
 {
+	/// <summary>
+	/// Indicates the "Han" character.
+	/// </summary>
+	private const char HanCharacter = '\u6c49';
+
+
 	/// <inheritdoc cref="IAnalyzeTabPage.AnalysisResult"/>
 	[NotifyBackingField(DoNotEmitPropertyChangedEventTrigger = true)]
 	[NotifyCallback(nameof(AnalysisResultSetterAfter))]
@@ -40,6 +46,23 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		new PieSeries<double>()
 	};
 
+	/// <summary>
+	/// Indicates the multiple arguments that describes the current puzzle.
+	/// </summary>
+	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference)]
+	private ObservableCollection<ISeries> _puzzleArgumentsPolar = new()
+	{
+		new PolarLineSeries<double>
+		{
+			Values = new ObservableCollection<double> { 0, 0, 0 },
+			LineSmoothness = .38,
+			GeometrySize = 0,
+			Fill = new SolidColorPaint { Color = SKColors.SkyBlue.WithAlpha(96) },
+			IsClosed = true,
+			GeometryStroke = null
+		}
+	};
+
 
 	/// <summary>
 	/// Initializes a <see cref="PuzzleGraphs"/> instance.
@@ -53,6 +76,24 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 
 	/// <inheritdoc/>
 	public AnalyzePage BasePage { get; set; } = null!;
+
+	/// <summary>
+	/// Polar axes.
+	/// </summary>
+	internal IPolarAxis[] PolarAxes { get; set; } = new IPolarAxis[]
+	{
+		new PolarAxis
+		{
+			LabelsRotation = LiveCharts.TangentAngle,
+			Labels = new[]
+			{
+				GetString("AnalyzePage_PuzzleExerciziability"),
+				GetString("AnalyzePage_PuzzleRarity"),
+				GetString("AnalyzePage_PuzzleDirectability")
+			},
+			LabelsPaint = new SolidColorPaint { Color = SKColors.Black, SKTypeface = SKFontManager.Default.MatchCharacter(HanCharacter) }
+		}
+	};
 
 
 	/// <inheritdoc/>
@@ -86,11 +127,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 					}
 				);
 			element.DataLabelsPosition = PolarLabelsPosition.Outer;
-			element.DataLabelsPaint = new SolidColorPaint
-			{
-				Color = SKColors.Black,
-				SKTypeface = SKFontManager.Default.MatchCharacter('\u6c49') // '\u6c49': Chinese character "Han" (e.g. "Han Yu" - Chinese)
-			};
+			element.DataLabelsPaint = new SolidColorPaint { Color = SKColors.Black, SKTypeface = SKFontManager.Default.MatchCharacter(HanCharacter) };
 			element.Fill = new SolidColorPaint(
 				i switch
 				{
@@ -116,6 +153,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 	{
 		UpdateForDifficultyDistribution(value);
 		UpdateForDifficultyLevelProportion(value);
+		UpdatePuzzleArgumentsPolar(value);
 	}
 
 	/// <summary>
@@ -184,5 +222,108 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 					=> step.DifficultyLevel is DifficultyLevel.Unknown or DifficultyLevel.LastResort,
 				_ => step.DifficultyLevel == key
 			};
+	}
+
+	/// <summary>
+	/// Update data for property <see cref="PuzzleArgumentsPolar"/>.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	/// <seealso cref="PuzzleArgumentsPolar"/>
+	private void UpdatePuzzleArgumentsPolar(LogicalSolverResult? value)
+	{
+		var coll = (ObservableCollection<double>)PuzzleArgumentsPolar[0].Values!;
+		coll[0] = coll[1] = coll[2] = 0;
+
+		if (value is not null)
+		{
+			// Exerciziability.
+			coll[0] = getExerciziability(value);
+
+			// Rarity.
+			coll[1] = getRarity(value);
+
+			// Directablity.
+			coll[2] = getDirectability(value);
+		}
+
+		PropertyChanged?.Invoke(this, new(nameof(PuzzleArgumentsPolar)));
+
+
+		static double getExerciziability(LogicalSolverResult value)
+		{
+			var techniqueUsedDic = new Dictionary<Technique, List<IStep>>();
+			foreach (var step in value)
+			{
+				if (step is { TechniqueCode: var technique, DifficultyLevel: not DifficultyLevel.Easy }
+					&& !techniqueUsedDic.TryAdd(technique, new()))
+				{
+					techniqueUsedDic[technique].Add(step);
+				}
+			}
+
+			if (techniqueUsedDic.Count == 1 && techniqueUsedDic.First().Value.Count == 1)
+			{
+				return 300;
+			}
+
+			var total = 300;
+			foreach (var (technique, steps) in techniqueUsedDic)
+			{
+				foreach (var step in steps)
+				{
+					total -= step.DifficultyLevel switch
+					{
+						DifficultyLevel.Moderate => 1,
+						DifficultyLevel.Hard => 2,
+						DifficultyLevel.Fiendish => 4,
+						DifficultyLevel.Nightmare => 8,
+						_ => 0
+					};
+				}
+			}
+
+			return Clamp(total, 0, 300);
+		}
+
+		static double getRarity(LogicalSolverResult value)
+		{
+			var total = 300;
+			foreach (var step in value)
+			{
+				total -= step.Rarity switch
+				{
+					Rarity.Always or Rarity.ReplacedByOtherTechniques or Rarity.OnlyForSpecialPuzzles => 0,
+					Rarity.HardlyEver => 1,
+					Rarity.Seldom => 2,
+					Rarity.Sometimes => 4,
+					Rarity.Often => 8,
+					_ => 0
+				};
+			}
+
+			return Clamp(total, 0, 300);
+		}
+
+		static double getDirectability(LogicalSolverResult value)
+		{
+			var total = 300D;
+
+			foreach (var step in value)
+			{
+				total -= step switch
+				{
+					{ TechniqueCode: Technique.NakedSingle } => .5,
+					{ TechniqueCode: Technique.HiddenSingleColumn or Technique.HiddenSingleRow } => .25,
+					{ DifficultyLevel: DifficultyLevel.Easy } => 0,
+					{ DifficultyLevel: DifficultyLevel.Moderate } => 1,
+					{ DifficultyLevel: DifficultyLevel.Hard } => 3,
+					{ DifficultyLevel: DifficultyLevel.Fiendish } => 6,
+					{ DifficultyLevel: DifficultyLevel.Nightmare } => 10,
+					_ => 10
+				};
+			}
+
+			return (int)Round(Clamp(total, 0, 300));
+		}
 	}
 }

@@ -556,6 +556,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Arguments.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleArgumentsPolar {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleArgumentsPolar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Text code: .
         /// </summary>
         internal static string AnalyzePage_PuzzleCode {
@@ -570,6 +579,24 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_PuzzleData {
             get {
                 return ResourceManager.GetString("AnalyzePage_PuzzleData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directability.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleDirectability {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleDirectability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exercizibility.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleExerciziability {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleExerciziability", resourceCulture);
             }
         }
         
@@ -606,6 +633,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_PuzzleHasUniqueSolutionButUnfixed {
             get {
                 return ResourceManager.GetString("AnalyzePage_PuzzleHasUniqueSolutionButUnfixed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rarity.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleRarity {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleRarity", resourceCulture);
             }
         }
         

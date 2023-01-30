@@ -255,11 +255,20 @@
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>基本功能</value>
   </data>
+  <data name="AnalyzePage_PuzzleArgumentsPolar" xml:space="preserve">
+    <value>题目难度参数</value>
+  </data>
   <data name="AnalyzePage_PuzzleCode" xml:space="preserve">
     <value>文本代码：</value>
   </data>
   <data name="AnalyzePage_PuzzleData" xml:space="preserve">
     <value>题目基本数据</value>
+  </data>
+  <data name="AnalyzePage_PuzzleDirectability" xml:space="preserve">
+    <value>可直观度</value>
+  </data>
+  <data name="AnalyzePage_PuzzleExerciziability" xml:space="preserve">
+    <value>可练习度</value>
   </data>
   <data name="AnalyzePage_PuzzleHasMultipleSolutions" xml:space="preserve">
     <value>多解</value>
@@ -272,6 +281,9 @@
   </data>
   <data name="AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" xml:space="preserve">
     <value>唯一解（但是没有提示数）</value>
+  </data>
+  <data name="AnalyzePage_PuzzleRarity" xml:space="preserve">
+    <value>罕见度</value>
   </data>
   <data name="AnalyzePage_Redo" xml:space="preserve">
     <value>恢复撤销步骤一步</value>

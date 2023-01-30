@@ -1362,6 +1362,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Basics.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleArgumentsPolar">
+            <summary>
+              Looks up a localized string similar to Arguments.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleCode">
             <summary>
               Looks up a localized string similar to Text code: .
@@ -1370,6 +1375,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleData">
             <summary>
               Looks up a localized string similar to Puzzle Data.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleDirectability">
+            <summary>
+              Looks up a localized string similar to Directability.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleExerciziability">
+            <summary>
+              Looks up a localized string similar to Exercizibility.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleHasMultipleSolutions">
@@ -1390,6 +1405,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleHasUniqueSolutionButUnfixed">
             <summary>
               Looks up a localized string similar to Unique solution, but with grid being unfixed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleRarity">
+            <summary>
+              Looks up a localized string similar to Rarity.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Redo">
@@ -3064,6 +3084,11 @@ if (student is (name: var name, age: >= 18))
             Defines a tab page that displays for graphs that describes the difficulty and analysis data of a puzzle.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.HanCharacter">
+            <summary>
+            Indicates the "Han" character.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._analysisResult">
             <inheritdoc cref="P:SudokuStudio.Views.Interaction.IAnalyzeTabPage.AnalysisResult"/>
         </member>
@@ -3077,6 +3102,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the difficulty level proportion values.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._puzzleArgumentsPolar">
+            <summary>
+            Indicates the multiple arguments that describes the current puzzle.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs"/> instance.
@@ -3084,6 +3114,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.BasePage">
             <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxes">
+            <summary>
+            Polar axes.
+            </summary>
         </member>
         <member name="E:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PropertyChanged">
             <inheritdoc/>
@@ -3106,6 +3141,13 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="value">The value.</param>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.UpdatePuzzleArgumentsPolar(Sudoku.Solving.Logical.LogicalSolverResult)">
+            <summary>
+            Update data for property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolar"/>.
+            </summary>
+            <param name="value">The value.</param>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolar"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.InitializeComponent">
             <summary>
@@ -3130,6 +3172,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyLevelProportion"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolar">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._puzzleArgumentsPolar"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>

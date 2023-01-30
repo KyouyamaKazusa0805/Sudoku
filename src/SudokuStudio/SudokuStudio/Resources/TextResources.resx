@@ -255,11 +255,20 @@
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>Basics</value>
   </data>
+  <data name="AnalyzePage_PuzzleArgumentsPolar" xml:space="preserve">
+    <value>Arguments</value>
+  </data>
   <data name="AnalyzePage_PuzzleCode" xml:space="preserve">
     <value>Text code: </value>
   </data>
   <data name="AnalyzePage_PuzzleData" xml:space="preserve">
     <value>Puzzle Data</value>
+  </data>
+  <data name="AnalyzePage_PuzzleDirectability" xml:space="preserve">
+    <value>Directability</value>
+  </data>
+  <data name="AnalyzePage_PuzzleExerciziability" xml:space="preserve">
+    <value>Exercizibility</value>
   </data>
   <data name="AnalyzePage_PuzzleHasMultipleSolutions" xml:space="preserve">
     <value>Multiple solutions</value>
@@ -272,6 +281,9 @@
   </data>
   <data name="AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" xml:space="preserve">
     <value>Unique solution, but with grid being unfixed</value>
+  </data>
+  <data name="AnalyzePage_PuzzleRarity" xml:space="preserve">
+    <value>Rarity</value>
   </data>
   <data name="AnalyzePage_Redo" xml:space="preserve">
     <value>Redo</value>
