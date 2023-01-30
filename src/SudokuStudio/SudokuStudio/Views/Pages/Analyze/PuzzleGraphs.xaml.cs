@@ -110,15 +110,14 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 	{
 		for (var i = 0; i < _difficultyLevelProportion.Count; i++)
 		{
-			var iterationVariableCopied = i; // Lambda should not directly capture iteration variables.
-
+			var i2 = i;
 			var element = (PieSeries<double>)_difficultyLevelProportion[i];
 			element.Values = new ObservableCollection<double> { i == 0 ? 100 : 0 };
 			element.DataLabelsSize = 12;
 			element.DataLabelsFormatter =
 				chartPoint => dataLabelFormatter(
 					chartPoint,
-					iterationVariableCopied switch // Here we cannot use 'i switch' because here is inside a lambda; otherwise 'i' always be 6.
+					i2 switch // Here we cannot use 'i switch' because here is inside a lambda; otherwise 'i' always be 6.
 					{
 						0 => GetString("_DifficultyLevel_Easy"),
 						1 => GetString("_DifficultyLevel_Moderate"),
@@ -195,8 +194,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 	{
 		for (var i = 0; i < DifficultyLevelProportion.Count; i++)
 		{
-			var element = DifficultyLevelProportion[i];
-			((ObservableCollection<double>)element.Values!)[0] = i == 0 ? 100 : 0;
+			((ObservableCollection<double>)DifficultyLevelProportion[i].Values!)[0] = i == 0 ? 100 : 0;
 		}
 
 		if (value is not null)
