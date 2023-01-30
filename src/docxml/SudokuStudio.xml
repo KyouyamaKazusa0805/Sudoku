@@ -1720,6 +1720,182 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Commands.UnfixGridCommand.Execute(System.Object)">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Views.Controls.ExtendedExpander">
+            <summary>
+            Defines an extended <see cref="F:SudokuStudio.Views.Controls.ExtendedExpander.Expander"/> control.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.ExtendedExpander.IsExpandedProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:SudokuStudio.Views.Controls.ExtendedExpander.IsExpanded"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ExtendedExpander.IsExpanded"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.ExtendedExpander.ExpandableContentProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:SudokuStudio.Views.Controls.ExtendedExpander.ExpandableContent"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ExtendedExpander.ExpandableContent"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.ExtendedExpander.IconProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:SudokuStudio.Views.Controls.ExtendedExpander.Icon"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ExtendedExpander.Icon"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.ExtendedExpander.DescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:SudokuStudio.Views.Controls.ExtendedExpander.Description"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ExtendedExpander.Description"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.ExtendedExpander.TitleProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:SudokuStudio.Views.Controls.ExtendedExpander.Title"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ExtendedExpander.Title"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Controls.ExtendedExpander"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ExtendedExpander.IsExpanded">
+            <summary>
+            Indicates whether the setting control is expanded.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ExtendedExpander.Title">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Title"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ExtendedExpander.Description">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Description"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ExtendedExpander.ExpandableContent">
+            <summary>
+            Indicates the expandable content.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ExtendedExpander.Icon">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Icon"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ExtendedExpander.SettingActionableElement">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.SettingActionableElement"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.Expander_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the expander is loaded.
+            </summary>
+            <param name="sender">The object that triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.UnloadObject(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            UnloadObject(DependencyObject)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.DisconnectUnloadedObject(System.Int32)">
+            <summary>
+            DisconnectUnloadedObject(int connectionId)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.ExtendedExpanderHeader">
+            <summary>
+            Represents a header control that is used by <see cref="T:SudokuStudio.Views.Controls.ExtendedExpander"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Controls.ExtendedExpander"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.ExtendedExpanderHeader.TitleProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Title"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Title"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.ExtendedExpanderHeader.DescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Description"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Description"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.ExtendedExpanderHeader.IconProperty">
+            <summary>
+            Defines a dependency property that binds with the property <see cref="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Icon"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Icon"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Controls.ExtendedExpanderHeader"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Title">
+            <summary>
+            Indicates the title of the control.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Description">
+            <summary>
+            Indicates the description of the control.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Icon">
+            <summary>
+            Indicates the icon.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ExtendedExpanderHeader.SettingActionableElement">
+            <summary>
+            Indicates the control that is displayed at the right side,
+            representing a detail information displayer control.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.MainPanel_SizeChanged(System.Object,Microsoft.UI.Xaml.SizeChangedEventArgs)">
+            <summary>
+            Triggers when the size is changed of the main panel.
+            </summary>
+            <param name="sender">The object that triggers this event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.UnloadObject(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            UnloadObject(DependencyObject)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.DisconnectUnloadedObject(System.Int32)">
+            <summary>
+            DisconnectUnloadedObject(int connectionId)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPane">
             <summary>
             Defines a sudoku pane control.
@@ -3429,6 +3605,27 @@ if (student is (name: var name, age: >= 18))
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.ValueConverters.StringToPredicateConverter">
+            <summary>
+            Converts a <see cref="T:System.String"/> value into a predicate that can return a <see cref="T:System.Boolean"/> result.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.ValueConverters.StringToPredicateConverter.IsInverted">
+            <summary>
+            Indicates whether the value conversion is reverted.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.ValueConverters.StringToPredicateConverter.EnforceNonWhiteSpaceString">
+            <summary>
+            Indicates whether the converter will handle for whitespaces.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.ValueConverters.StringToPredicateConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.ValueConverters.StringToPredicateConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
             <summary>

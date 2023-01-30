@@ -36,6 +36,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Views\Controls\ExtendedExpander.xaml" />
+		<None Remove="Views\Controls\ExtendedExpanderHeader.xaml" />
 		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Controls\SudokuPaneCell.xaml" />
 		<None Remove="Views\Controls\TechniqueGroupView.xaml" />
@@ -70,6 +72,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Controls\ExtendedExpanderHeader.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Controls\ExtendedExpander.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Analyze\PuzzleGraphs.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
