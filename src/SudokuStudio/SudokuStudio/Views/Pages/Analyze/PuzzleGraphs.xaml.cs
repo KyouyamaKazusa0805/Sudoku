@@ -28,7 +28,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			GeometrySize = 0,
 			Fill = null,
 			GeometryStroke = null,
-			Stroke = new SolidColorPaint { Color = SKColors.SkyBlue, StrokeThickness = 1 }
+			Stroke = new SolidColorPaint { Color = SKColors.SkyBlue, StrokeThickness = 1.5F }
 		}
 	};
 
@@ -59,7 +59,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			GeometrySize = 0,
 			Fill = new SolidColorPaint { Color = SKColors.SkyBlue.WithAlpha(96) },
 			GeometryStroke = null,
-			Stroke = new SolidColorPaint { Color = SKColors.SkyBlue, StrokeThickness = 1 },
+			Stroke = null,
 			DataLabelsSize = 12,
 			DataLabelsPosition = PolarLabelsPosition.End,
 			DataLabelsPaint = new SolidColorPaint { Color = SKColors.Black },
@@ -87,8 +87,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 	{
 		new RectangularSection
 		{
-			Yi = 3.4,
-			Yj = 3.4,
+			Yi = 2.4,
+			Yj = 2.4,
 			Stroke = new SolidColorPaint
 			{
 				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Moderate).AsSKColor(),
@@ -97,8 +97,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		},
 		new RectangularSection
 		{
-			Yi = 4.8,
-			Yj = 4.8,
+			Yi = 3.8,
+			Yj = 3.8,
 			Stroke = new SolidColorPaint
 			{
 				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Hard).AsSKColor(),
@@ -107,8 +107,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		},
 		new RectangularSection
 		{
-			Yi = 5.9,
-			Yj = 5.9,
+			Yi = 4.9,
+			Yj = 4.9,
 			Stroke = new SolidColorPaint
 			{
 				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Fiendish).AsSKColor(),
@@ -117,8 +117,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		},
 		new RectangularSection
 		{
-			Yi = 8.7,
-			Yj = 8.7,
+			Yi = 7.7,
+			Yj = 7.7,
 			Stroke = new SolidColorPaint
 			{
 				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Nightmare).AsSKColor(),
@@ -127,8 +127,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		},
 		new RectangularSection
 		{
-			Yi = 12.0,
-			Yj = 12.0,
+			Yi = 11.0,
+			Yj = 11.0,
 			Stroke = new SolidColorPaint
 			{
 				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Unknown).AsSKColor(),
@@ -263,7 +263,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 
 		if (value is not null)
 		{
-			coll.AddRange(from step in value select (double)step.Difficulty);
+			coll.AddRange(from step in value select (double)(step.Difficulty - 1.0M));
 		}
 
 		PropertyChanged?.Invoke(this, new(nameof(DifficultyDistribution)));
