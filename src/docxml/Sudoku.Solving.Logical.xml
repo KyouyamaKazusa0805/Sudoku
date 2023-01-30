@@ -14945,6 +14945,37 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid used.</param>
             <returns>The results found.</returns>
         </member>
+        <member name="T:Sudoku.Rating.Rater">
+            <summary>
+            Represents a rater instance to get the score of a puzzle on logically solved result.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Rating.Rater.#ctor(Sudoku.Solving.Logical.LogicalSolverResult)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Rating.Rater"/> instance via the specified solver result.
+            </summary>
+            <param name="solverResult">The solver result.</param>
+        </member>
+        <member name="P:Sudoku.Rating.Rater.Exerciziability">
+            <summary>
+            Indicates the scoring of the exerciziability value. The value is in range [0, 100].
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rating.Rater.Rarity">
+            <summary>
+            Indicates the rarity of the puzzle. The value is in range [0, 100].
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rating.Rater.Directability">
+            <summary>
+            Indicates the directability of the puzzle. The value is in range [0, 100].
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rating.Rater.SolverResult">
+            <summary>
+            The solver result instance.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies">
             <summary>
             Represents a type holding some common read-only fields used by runtime or compiling-time.

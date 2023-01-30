@@ -1,5 +1,3 @@
-using LiveChartsCore.SkiaSharpView.Drawing;
-
 namespace SudokuStudio.Views.Pages.Analyze;
 
 /// <summary>
@@ -156,6 +154,11 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 	};
 
 	/// <summary>
+	/// Radius axes.
+	/// </summary>
+	internal IPolarAxis[] RadiusAxes { get; set; } = new IPolarAxis[] { new PolarAxis { LabelsPaint = null } };
+
+	/// <summary>
 	/// Polar axes.
 	/// </summary>
 	internal IPolarAxis[] PolarAxes { get; set; } = new IPolarAxis[]
@@ -166,6 +169,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			NamePaint = DefaultNameLabelPaint,
 			LabelsRotation = LiveCharts.TangentAngle,
 			LabelsPaint = DefaultNameLabelPaint,
+			LabelsBackground = LvcColor.Empty,
 			Labels = new[]
 			{
 				GetString("AnalyzePage_PuzzleExerciziability"),
@@ -326,89 +330,13 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 
 		if (value is not null)
 		{
-			coll[0] = getExerciziability(value);
-			coll[1] = getRarity(value);
-			coll[2] = getDirectability(value);
+			var rater = new Rater(value);
+
+			coll[0] = rater.Exerciziability;
+			coll[1] = rater.Rarity;
+			coll[2] = rater.Directability;
 		}
 
 		PropertyChanged?.Invoke(this, new(nameof(PuzzleArgumentsPolar)));
-
-
-		static double getExerciziability(LogicalSolverResult value)
-		{
-			var techniqueUsedDic = new Dictionary<Technique, List<IStep>>();
-			foreach (var step in value)
-			{
-				if (step is { TechniqueCode: var technique, DifficultyLevel: not DifficultyLevel.Easy }
-					&& !techniqueUsedDic.TryAdd(technique, new()))
-				{
-					techniqueUsedDic[technique].Add(step);
-				}
-			}
-
-			if (techniqueUsedDic.Count == 1 && techniqueUsedDic.First().Value.Count == 1)
-			{
-				return 100;
-			}
-
-			var total = 300;
-			foreach (var (technique, steps) in techniqueUsedDic)
-			{
-				foreach (var step in steps)
-				{
-					total -= step.DifficultyLevel switch
-					{
-						DifficultyLevel.Moderate => 1,
-						DifficultyLevel.Hard => 2,
-						DifficultyLevel.Fiendish => 4,
-						DifficultyLevel.Nightmare => 8,
-						_ => 0
-					};
-				}
-			}
-
-			return (int)(Clamp(total, 0, 300) / 3D);
-		}
-
-		static double getRarity(LogicalSolverResult value)
-		{
-			var total = 300;
-			foreach (var step in value)
-			{
-				total -= step.Rarity switch
-				{
-					Rarity.Always or Rarity.ReplacedByOtherTechniques or Rarity.OnlyForSpecialPuzzles => 0,
-					Rarity.HardlyEver => 1,
-					Rarity.Seldom => 2,
-					Rarity.Sometimes => 4,
-					Rarity.Often => 8,
-					_ => 0
-				};
-			}
-
-			return (int)(Clamp(total, 0, 300) / 3D);
-		}
-
-		static double getDirectability(LogicalSolverResult value)
-		{
-			var total = 300D;
-
-			foreach (var step in value)
-			{
-				total -= step switch
-				{
-					{ TechniqueCode: Technique.NakedSingle } => .5,
-					{ TechniqueCode: Technique.HiddenSingleColumn or Technique.HiddenSingleRow } => .25,
-					{ DifficultyLevel: DifficultyLevel.Easy } => 0,
-					{ DifficultyLevel: DifficultyLevel.Moderate } => 1,
-					{ DifficultyLevel: DifficultyLevel.Hard } => 3,
-					{ DifficultyLevel: DifficultyLevel.Fiendish } => 6,
-					{ DifficultyLevel: DifficultyLevel.Nightmare } => 10,
-					_ => 10
-				};
-			}
-
-			return (int)(Clamp(total, 0, 300) / 3);
-		}
 	}
 }

@@ -19,7 +19,9 @@
 			<TextBlock Text="{m:R Key=AnalyzePage_DifficultyLevelProportion}" Style="{StaticResource BaseTextBlockStyle}" />
 			<lvc:PieChart Height="300" Series="{x:Bind DifficultyLevelProportion,Mode=OneWay}" Tooltip="{x:Null}" />
 			<TextBlock Text="{m:R Key=AnalyzePage_PuzzleArgumentsPolar}" Style="{StaticResource BaseTextBlockStyle}" />
-			<lvc:PolarChart Height="300" AngleAxes="{x:Bind PolarAxes}" Series="{x:Bind PuzzleArgumentsPolar,Mode=OneWay}" Tooltip="{x:Null}" />
+			<lvc:PolarChart
+				Height="300" AngleAxes="{x:Bind PolarAxes}" RadiusAxes="{x:Bind RadiusAxes}"
+				Series="{x:Bind PuzzleArgumentsPolar,Mode=OneWay}" Tooltip="{x:Null}" />
 		</StackPanel>
 	</ScrollViewer>
 </Page>

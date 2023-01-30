@@ -3150,6 +3150,11 @@ if (student is (name: var name, age: >= 18))
             Difficulty distribution axes Y.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxes">
+            <summary>
+            Radius axes.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxes">
             <summary>
             Polar axes.
