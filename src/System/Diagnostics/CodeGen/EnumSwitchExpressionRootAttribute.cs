@@ -10,7 +10,10 @@ public sealed class EnumSwitchExpressionRootAttribute : Attribute
 	/// Initializes an <see cref="EnumSwitchExpressionRootAttribute"/> instance.
 	/// </summary>
 	/// <param name="key">The key.</param>
-	public EnumSwitchExpressionRootAttribute(string key) => Key = key;
+	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
+	public EnumSwitchExpressionRootAttribute(string key)
+	{
+	}
 
 
 	/// <summary>
@@ -27,11 +30,6 @@ public sealed class EnumSwitchExpressionRootAttribute : Attribute
 	/// Indicates the method description that is used to be put into <c>returns</c> part in doc comments.
 	/// </summary>
 	public string? ReturnValueDescription { get; init; }
-
-	/// <summary>
-	/// Indicates the key.
-	/// </summary>
-	public string Key { get; }
 
 	/// <summary>
 	/// Indicates the default behavior for default cases.

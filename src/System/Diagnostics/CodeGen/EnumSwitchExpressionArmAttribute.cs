@@ -11,16 +11,8 @@ public sealed class EnumSwitchExpressionArmAttribute : Attribute
 	/// </summary>
 	/// <param name="key">The key.</param>
 	/// <param name="value">The value.</param>
-	public EnumSwitchExpressionArmAttribute(string key, string value) => (Key, Value) = (key, value);
-
-
-	/// <summary>
-	/// Indicates the key.
-	/// </summary>
-	public string Key { get; }
-
-	/// <summary>
-	/// Indicates the value.
-	/// </summary>
-	public string Value { get; }
+	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
+	public EnumSwitchExpressionArmAttribute(string key, string value)
+	{
+	}
 }

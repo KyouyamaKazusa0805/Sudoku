@@ -1780,16 +1780,6 @@
             <param name="key">The key.</param>
             <param name="value">The value.</param>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute.Key">
-            <summary>
-            Indicates the key.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute.Value">
-            <summary>
-            Indicates the value.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior">
             <summary>
             Represents a default behavior of generated file for default cases in <see langword="switch"/> expressions.
@@ -1835,11 +1825,6 @@
         <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.ReturnValueDescription">
             <summary>
             Indicates the method description that is used to be put into <c>returns</c> part in doc comments.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.Key">
-            <summary>
-            Indicates the key.
             </summary>
         </member>
         <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.DefaultBehavior">
@@ -1950,13 +1935,10 @@
             <summary>
             Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute"/> instance via the specified target property.
             </summary>
-            <param name="targetPropertyExpression">The target property expression.</param>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute.TargetPropertyExpression">
-            <summary>
+            <param name="targetPropertyExpression">
             Indicates the target property expression used. This property specifies and controls the target behavior
             that output what final deconstruction assignment expression should be.
-            </summary>
+            </param>
         </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute">
             <summary>
@@ -1973,11 +1955,6 @@
             Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedDisplayNameAttribute"/> instance via the specified name to be displayed.
             </summary>
             <param name="displayMemberName">The display member name.</param>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.GeneratedDisplayNameAttribute.DisplayMemberName">
-            <summary>
-            Indicates the display member name.
-            </summary>
         </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedEqualsBehavior">
             <summary>
@@ -2107,10 +2084,8 @@
                 //private readonly int _mask;
             }
             ]]></code>
-            Where the extra field name <c>_mask</c> can be specified as the other argument
-            <see cref="P:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.ExtraArguments"/>.
+            Where the extra field name <c>_mask</c> can be specified as the other argument <c>extraArguments</c>.
             </remarks>
-            <seealso cref="P:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.ExtraArguments"/>
         </member>
         <member name="F:System.Diagnostics.CodeGen.GeneratedGetHashCodeBehavior.CallingHashCodeCombine">
             <summary>
@@ -2134,11 +2109,9 @@
                 //private readonly string _m2;
             }
             ]]></code>
-            Where the extra field name <c>_m1</c> and <c>_m2</c> can be specified as the other argument
-            <see cref="P:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.ExtraArguments"/>.
+            Where the extra field name <c>_m1</c> and <c>_m2</c> can be specified as the other argument <c>extraArguments</c>.
             </remarks>
             <seealso cref="M:System.HashCode.Combine``1(``0)"/>
-            <seealso cref="P:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.ExtraArguments"/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedOperator">
             <summary>
@@ -2225,11 +2198,6 @@
             </summary>
             <param name="operator">The operator name.</param>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.GeneratedOverloadingOperatorAttribute.Operator">
-            <summary>
-            Indicates the generated operator name.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute">
             <summary>
             Represents a marker attribute to tell source generators that the member derived from type <see cref="T:System.Object"/>
@@ -2268,26 +2236,6 @@
             </summary>
             <param name="overriddingToStringBehavior">The behavior.</param>
             <param name="arguments">Extra arguments.</param>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.ExtraArguments">
-            <summary>
-            The extra arguments.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.OverriddingEqualsBehavior">
-            <summary>
-            Indicates the behavior describing source generator's generated source code on overridding <see cref="M:System.Object.Equals(System.Object)"/>.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.OverriddingGetHashCodeBehavior">
-            <summary>
-            Indicates the behavior describing source generator's generated source code on overridding <see cref="M:System.Object.GetHashCode"/>.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.OverriddingToStringBehavior">
-            <summary>
-            Indicates the behavior describing source generator's generated source code on overridding <see cref="M:System.Object.ToString"/>.
-            </summary>
         </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedToStringBehavior">
             <summary>
@@ -2397,11 +2345,6 @@
             Initializes a <see cref="T:System.Diagnostics.CodeGen.NotifyCallbackAttribute"/> instance via the specified path whose corresponding member will be referenced.
             </summary>
             <param name="callbackMemberReferencePath">The referenced member path.</param>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.NotifyCallbackAttribute.CallbackMemberReferencePath">
-            <summary>
-            Indicates the path of referenced member.
-            </summary>
         </member>
         <member name="T:System.ArrayExtensions">
             <summary>

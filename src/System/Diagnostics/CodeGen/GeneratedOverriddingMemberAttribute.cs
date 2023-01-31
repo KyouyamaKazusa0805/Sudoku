@@ -22,8 +22,10 @@ public sealed class GeneratedOverriddingMemberAttribute : Attribute
 	/// <see cref="object.Equals(object?)"/>.
 	/// </summary>
 	/// <param name="overriddingEqualsBehavior">The behavior.</param>
+	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 	public GeneratedOverriddingMemberAttribute(GeneratedEqualsBehavior overriddingEqualsBehavior)
-		=> OverriddingEqualsBehavior = overriddingEqualsBehavior;
+	{
+	}
 
 	/// <summary>
 	/// Initializes a <see cref="GeneratedOverriddingMemberAttribute"/> instance via the specified behavior on generating
@@ -31,8 +33,10 @@ public sealed class GeneratedOverriddingMemberAttribute : Attribute
 	/// </summary>
 	/// <param name="overriddingGetHashCodeBehavior">The behavior.</param>
 	/// <param name="arguments">Extra arguments.</param>
+	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 	public GeneratedOverriddingMemberAttribute(GeneratedGetHashCodeBehavior overriddingGetHashCodeBehavior, params object?[]? arguments)
-		=> (OverriddingGetHashCodeBehavior, ExtraArguments) = (overriddingGetHashCodeBehavior, arguments);
+	{
+	}
 
 	/// <summary>
 	/// Initializes a <see cref="GeneratedOverriddingMemberAttribute"/> instance via the specified behavior on generating
@@ -40,27 +44,8 @@ public sealed class GeneratedOverriddingMemberAttribute : Attribute
 	/// </summary>
 	/// <param name="overriddingToStringBehavior">The behavior.</param>
 	/// <param name="arguments">Extra arguments.</param>
+	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 	public GeneratedOverriddingMemberAttribute(GeneratedToStringBehavior overriddingToStringBehavior, params object?[]? arguments)
-		=> (OverriddingToStringBehavior, ExtraArguments) = (overriddingToStringBehavior, arguments);
-
-
-	/// <summary>
-	/// The extra arguments.
-	/// </summary>
-	public object?[]? ExtraArguments { get; }
-
-	/// <summary>
-	/// Indicates the behavior describing source generator's generated source code on overridding <see cref="object.Equals(object?)"/>.
-	/// </summary>
-	public GeneratedEqualsBehavior? OverriddingEqualsBehavior { get; }
-
-	/// <summary>
-	/// Indicates the behavior describing source generator's generated source code on overridding <see cref="object.GetHashCode"/>.
-	/// </summary>
-	public GeneratedGetHashCodeBehavior? OverriddingGetHashCodeBehavior { get; }
-
-	/// <summary>
-	/// Indicates the behavior describing source generator's generated source code on overridding <see cref="object.ToString"/>.
-	/// </summary>
-	public GeneratedToStringBehavior? OverriddingToStringBehavior { get; }
+	{
+	}
 }

@@ -51,10 +51,8 @@ public enum GeneratedGetHashCodeBehavior
 	///     //private readonly int _mask;
 	/// }
 	/// ]]></code>
-	/// Where the extra field name <c>_mask</c> can be specified as the other argument
-	/// <see cref="GeneratedOverriddingMemberAttribute.ExtraArguments"/>.
+	/// Where the extra field name <c>_mask</c> can be specified as the other argument <c>extraArguments</c>.
 	/// </remarks>
-	/// <seealso cref="GeneratedOverriddingMemberAttribute.ExtraArguments"/>
 	SimpleField,
 
 	/// <summary>
@@ -78,10 +76,8 @@ public enum GeneratedGetHashCodeBehavior
 	///     //private readonly string _m2;
 	/// }
 	/// ]]></code>
-	/// Where the extra field name <c>_m1</c> and <c>_m2</c> can be specified as the other argument
-	/// <see cref="GeneratedOverriddingMemberAttribute.ExtraArguments"/>.
+	/// Where the extra field name <c>_m1</c> and <c>_m2</c> can be specified as the other argument <c>extraArguments</c>.
 	/// </remarks>
 	/// <seealso cref="HashCode.Combine{T1}(T1)"/>
-	/// <seealso cref="GeneratedOverriddingMemberAttribute.ExtraArguments"/>
 	CallingHashCodeCombine
 }

@@ -10,11 +10,8 @@ public sealed class GeneratedOverloadingOperatorAttribute : Attribute
 	/// Initializes a <see cref="GeneratedOverloadingOperatorAttribute"/> instance via the specified operator name.
 	/// </summary>
 	/// <param name="operator">The operator name.</param>
-	public GeneratedOverloadingOperatorAttribute(GeneratedOperator @operator) => Operator = @operator;
-
-
-	/// <summary>
-	/// Indicates the generated operator name.
-	/// </summary>
-	public GeneratedOperator Operator { get; }
+	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
+	public GeneratedOverloadingOperatorAttribute(GeneratedOperator @operator)
+	{
+	}
 }

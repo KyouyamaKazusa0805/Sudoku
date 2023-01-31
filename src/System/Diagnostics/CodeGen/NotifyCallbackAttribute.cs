@@ -10,11 +10,8 @@ public sealed class NotifyCallbackAttribute : Attribute
 	/// Initializes a <see cref="NotifyCallbackAttribute"/> instance via the specified path whose corresponding member will be referenced.
 	/// </summary>
 	/// <param name="callbackMemberReferencePath">The referenced member path.</param>
-	public NotifyCallbackAttribute(string callbackMemberReferencePath) => CallbackMemberReferencePath = callbackMemberReferencePath;
-
-
-	/// <summary>
-	/// Indicates the path of referenced member.
-	/// </summary>
-	public string CallbackMemberReferencePath { get; }
+	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
+	public NotifyCallbackAttribute(string callbackMemberReferencePath)
+	{
+	}
 }
