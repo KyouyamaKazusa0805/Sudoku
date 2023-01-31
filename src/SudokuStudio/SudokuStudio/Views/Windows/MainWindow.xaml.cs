@@ -16,22 +16,22 @@ public sealed partial class MainWindow : Window
 	private static readonly NavigationTransitionInfo NavigationTransitionInfo = new EntranceNavigationTransitionInfo();
 
 
-#if MICA_BACKDROP || ACRYLIC_BACKDROP
+#if CUSTOMIZED_TITLE_BAR
 	/// <summary>
-	/// Defines a <see cref="WinSysDispatcherQueueHelper"/> instance used for interaction with <see cref="WinSysDispatcherQueue"/>.
+	/// Defines an <see cref="AppWindow"/> instance that is used by interaction with core application behaviors,
+	/// such as icon, title bars and so on.
 	/// </summary>
-	/// <seealso cref="WinSysDispatcherQueueHelper"/>
-	/// <seealso cref="WinSysDispatcherQueue"/>
-	private WinSysDispatcherQueueHelper? _wsdqHelper;
+	/// <seealso cref="AppWindow"/>
+	private AppWindow _appWindow;
 #endif
 
-#if MICA_BACKDROP || ACRYLIC_BACKDROP
 	/// <summary>
-	/// Indicates the material configuration instance. This field controls displaying with a customized material such as Mica and acrylic.
+	/// The navigating data. This field is used by <see cref="SwitchingPage(bool, NavigationViewItemBase)"/>.
 	/// </summary>
-	private SystemBackdropConfiguration? _configurationSource;
-#endif
+	/// <seealso cref="SwitchingPage(bool, NavigationViewItemBase)"/>
+	private Dictionary<Func<bool, NavigationViewItemBase, bool>, Type> _navigatingData;
 
+#if MICA_BACKDROP || ACRYLIC_BACKDROP
 #if MICA_BACKDROP
 	/// <summary>
 	/// Indicates the Mica controller instance. This instance is used as core implementation of Mica material of applications.
@@ -44,13 +44,17 @@ public sealed partial class MainWindow : Window
 	private DesktopAcrylicController? _acrylicController;
 #endif
 
-#if CUSTOMIZED_TITLE_BAR
 	/// <summary>
-	/// Defines an <see cref="AppWindow"/> instance that is used by interaction with core application behaviors,
-	/// such as icon, title bars and so on.
+	/// Indicates the material configuration instance. This field controls displaying with a customized material such as Mica and acrylic.
 	/// </summary>
-	/// <seealso cref="AppWindow"/>
-	private AppWindow _appWindow;
+	private SystemBackdropConfiguration? _configurationSource;
+
+	/// <summary>
+	/// Defines a <see cref="WinSysDispatcherQueueHelper"/> instance used for interaction with <see cref="WinSysDispatcherQueue"/>.
+	/// </summary>
+	/// <seealso cref="WinSysDispatcherQueueHelper"/>
+	/// <seealso cref="WinSysDispatcherQueue"/>
+	private WinSysDispatcherQueueHelper? _wsdqHelper;
 #endif
 
 
@@ -60,6 +64,8 @@ public sealed partial class MainWindow : Window
 	public MainWindow()
 	{
 		InitializeComponent();
+
+		InitializeField();
 
 #if MICA_BACKDROP && ACRYLIC_BACKDROP
 #if WARNING_WHEN_BOTH_BACKDROP_SET
@@ -80,6 +86,18 @@ public sealed partial class MainWindow : Window
 		SetAppIcon();
 		SetAppTitle();
 	}
+
+	/// <summary>
+	/// Initializes fields.
+	/// </summary>
+	[MemberNotNull(nameof(_navigatingData))]
+	private void InitializeField()
+		=> _navigatingData = new()
+		{
+			{ static (isSettingInvokedOrSelected, _) => isSettingInvokedOrSelected, typeof(SettingsPage) },
+			{ (_, container) => container == AnalyzePageItem, typeof(AnalyzePage) },
+			{ (_, container) => container == AboutPagetItem, typeof(AboutPage) }
+		};
 
 #if CUSTOMIZED_TITLE_BAR
 	/// <summary>
@@ -156,13 +174,7 @@ public sealed partial class MainWindow : Window
 			titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 			titleBar.ButtonInactiveForegroundColor = Colors.Gray;
 
-			AppTitleBar.Loaded += (_, _) =>
-			{
-				if (AppWindowTitleBar.IsCustomizationSupported())
-				{
-					SetDragRegionForCustomTitleBar(_appWindow);
-				}
-			};
+			AppTitleBar.Loaded += (_, _) => { if (AppWindowTitleBar.IsCustomizationSupported()) { SetDragRegionForCustomTitleBar(_appWindow); } };
 
 			AppTitleBar.SizeChanged += (_, _) =>
 			{
@@ -189,9 +201,11 @@ public sealed partial class MainWindow : Window
 	{
 		if (AppWindowTitleBar.IsCustomizationSupported() && appWindow.TitleBar.ExtendsContentIntoTitleBar
 #if DEBUG
-			/// This is a bug fix. This bug can be reproduced by Windows Application SDK v1.2.
-			/// If you minimize and maximize the window via task bar icon, the expression value <c>appWindow.TitleBar.RightInset</c>
-			/// will be -24.
+			/**
+				This is a bug fix. This bug can be reproduced by Windows Application SDK v1.2.
+				If you minimize and maximize the window via task bar icon, the expression value <c>appWindow.TitleBar.RightInset</c>
+				will be -24.
+			*/
 			&& appWindow.TitleBar.RightInset >= 0
 #endif
 			)
@@ -285,17 +299,12 @@ public sealed partial class MainWindow : Window
 	/// <seealso cref="MainNavigationView_SelectionChanged"/>
 	private void SwitchingPage(bool isSettingInvokedOrSelected, NavigationViewItemBase container)
 	{
-		if (isSettingInvokedOrSelected)
+		foreach (var (condition, pageType) in _navigatingData)
 		{
-			NavigateToPage(typeof(SettingsPage));
-		}
-		else if (container == AnalyzePageItem)
-		{
-			NavigateToPage(typeof(AnalyzePage));
-		}
-		else if (container == AboutPagetItem)
-		{
-			NavigateToPage(typeof(AboutPage));
+			if (condition(isSettingInvokedOrSelected, container))
+			{
+				NavigateToPage(pageType);
+			}
 		}
 	}
 
