@@ -32,6 +32,12 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 					return;
 				}
 
+				var stepSearcherInterfaceType = compilation.GetTypeByMetadataName("Sudoku.Solving.Logical.IStepSearcher");
+				if (stepSearcherInterfaceType is null)
+				{
+					return;
+				}
+
 				var enabledAreaTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.SearcherEnabledArea")!;
 				var disabledReasonTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.SearcherDisabledReason")!;
 
@@ -49,7 +55,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				// Gather the valid attributes data.
 				var foundAttributesData = new List<Data>();
 				const string comma = ", ";
-				const string attributeTypeName = $"global::Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute<>";
+				const string attributeTypeName = "global::Sudoku.Solving.Logical.Annotations.SearcherConfigurationAttribute<>";
 				var priorityValue = 0;
 				foreach (var attributeData in attributesData)
 				{
@@ -67,7 +73,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 										IsRecord: false,
 										ContainingNamespace: var containingNamespace,
 										Name: var stepSearcherName,
-										Interfaces: var stepSearcherImplementedInterfaces
+										Interfaces: var stepSearcherImplementedInterfaces,
+										BaseType: var baseType
 									}
 								]
 							} attributeClassSymbol,
@@ -94,16 +101,34 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 							dl,
 							stepSearcherName,
 							stepSearcherImplementedInterfaces.First(namespaceChecker).Name,
-							namedArguments
+							namedArguments,
+							baseType switch { null or { SpecialType: SpecialType.System_Object } => false, _ => isNameConflict(baseType) }
 						)
 					);
+
+
+					bool isNameConflict(INamedTypeSymbol baseType)
+					{
+						for (var tempType = baseType; tempType is not null; tempType = tempType.BaseType)
+						{
+							foreach (var tempTypeImpledInterface in tempType.AllInterfaces)
+							{
+								if (SymbolEqualityComparer.Default.Equals(stepSearcherInterfaceType, tempTypeImpledInterface))
+								{
+									return true;
+								}
+							}
+						}
+
+						return false;
+					}
 				}
 
 				// Iterate on each valid attribute data, and checks the inner value to be used
 				// by the source generator to output.
 				var generatedCodeSnippets = new List<string>();
 				var namespaceUsed = foundAttributesData[0].Namespace;
-				foreach (var (_, priority, level, name, docCommentTypeName, namedArguments) in foundAttributesData)
+				foreach (var (_, priority, level, name, docCommentTypeName, namedArguments, nameConflict) in foundAttributesData)
 				{
 					// Checks whether the attribute has configured any extra options.
 					var enabledArea = (byte?)null;
@@ -147,6 +172,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 						sb.Remove(sb.Length - comma.Length, comma.Length);
 					}
 
+					var newKeyword = nameConflict ? "new " : string.Empty;
+
 					// Output the generated code.
 					generatedCodeSnippets.Add(
 						$$"""
@@ -156,7 +183,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 							/// <inheritdoc/>
 							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-							public global::Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions Options { get; set; } =
+							public {{newKeyword}}global::Sudoku.Runtime.AnalysisServices.SearcherInitializationOptions Options { get; set; } =
 								new({{priority}}, global::Sudoku.Runtime.AnalysisServices.SearcherDisplayingLevel.{{(char)(level + 'A' - 1)}}{{sb}});
 						}
 						"""
@@ -242,11 +269,13 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 /// The name of the interface type that is used for displaying for the doc comment.
 /// </param>
 /// <param name="NamedArguments">The named arguments of that attribute.</param>
+/// <param name="BaseTypeContainsSameNameProperty">Indicates whether the base types contains the same-name property.</param>
 file readonly record struct Data(
 	INamespaceSymbol Namespace,
 	int PriorityValue,
 	byte DifficultyLevel,
 	string TypeName,
 	string DocCommentInterfaceTypeName,
-	ImmutableArray<KeyValuePair<string, TypedConstant>> NamedArguments
+	ImmutableArray<KeyValuePair<string, TypedConstant>> NamedArguments,
+	bool BaseTypeContainsSameNameProperty
 );

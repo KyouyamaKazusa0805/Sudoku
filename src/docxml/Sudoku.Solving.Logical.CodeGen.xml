@@ -51,8 +51,9 @@
             The name of the interface type that is used for displaying for the doc comment.
             </param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
+            <param name="BaseTypeContainsSameNameProperty">Indicates whether the base types contains the same-name property.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.Boolean)">
             <summary>
             Simply encapsulates a data tuple describing the information of a found attribute.
             </summary>
@@ -64,6 +65,7 @@
             The name of the interface type that is used for displaying for the doc comment.
             </param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
+            <param name="BaseTypeContainsSameNameProperty">Indicates whether the base types contains the same-name property.</param>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Namespace">
             <summary>Indicates the namespace symbol of that step searcher.</summary>
@@ -84,6 +86,9 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.NamedArguments">
             <summary>The named arguments of that attribute.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.BaseTypeContainsSameNameProperty">
+            <summary>Indicates whether the base types contains the same-name property.</summary>
         </member>
         <member name="F:CodeGen.Constants.VersionValue">
             <summary>
