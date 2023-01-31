@@ -34,4 +34,9 @@ public sealed class RunningContext
 	/// Indicates the main window that the program is running.
 	/// </summary>
 	public Window MainWindow { get; internal set; } = null!;
+
+	/// <summary>
+	/// Indicates the pre-instantiation information.
+	/// </summary>
+	public ProgramPreinstantiationInfo PreinstantiationInfo { get; } = new();
 }

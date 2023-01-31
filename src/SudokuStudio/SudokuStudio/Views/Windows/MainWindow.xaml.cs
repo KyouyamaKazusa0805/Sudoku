@@ -64,7 +64,6 @@ public sealed partial class MainWindow : Window
 	public MainWindow()
 	{
 		InitializeComponent();
-
 		InitializeField();
 
 #if MICA_BACKDROP && ACRYLIC_BACKDROP
@@ -85,7 +84,17 @@ public sealed partial class MainWindow : Window
 
 		SetAppIcon();
 		SetAppTitle();
+
+		LoadPreinstantiationInfo();
+		LoadProgramPreferenceFromLocal();
 	}
+
+
+	/// <summary>
+	/// The initial grid.
+	/// </summary>
+	internal Grid? InitialGrid { get; set; }
+
 
 	/// <summary>
 	/// Initializes fields.
@@ -290,6 +299,54 @@ public sealed partial class MainWindow : Window
 	private void SetAppTitle() => _appWindow.Title = GetString("_ProgramName");
 
 	/// <summary>
+	/// Loads pre-instantiation information.
+	/// </summary>
+	private void LoadPreinstantiationInfo()
+	{
+		switch (((App)Application.Current).RunningContext.PreinstantiationInfo)
+		{
+			case { OpenedSudoku: [{ GridString: var gridString }, ..] } instance:
+			{
+				if (Grid.TryParse(gridString, out var r))
+				{
+					InitialGrid = r;
+				}
+
+				instance.OpenedSudoku = null;
+
+				break;
+			}
+#if false
+			case { OpenedProgramPreference: { } _ } instance:
+			{
+				instance.OpenedProgramPreference = null;
+
+				break;
+			}
+#endif
+		}
+	}
+
+	/// <summary>
+	/// Loads the program preference from local.
+	/// </summary>
+	private void LoadProgramPreferenceFromLocal()
+	{
+		var targetPath = CommonPaths.UserPreference;
+		if (!File.Exists(targetPath))
+		{
+			return;
+		}
+
+		if (ProgramPreferenceFileHandler.Read(targetPath) is not { } loadedConfig)
+		{
+			return;
+		}
+
+		((App)Application.Current).RunningContext.ProgramPreference.CoverBy(loadedConfig);
+	}
+
+	/// <summary>
 	/// An outer-layered method to switching pages. This method can be used by both
 	/// <see cref="NavigationView_ItemInvoked"/> and <see cref="MainNavigationView_SelectionChanged"/>.
 	/// </summary>
@@ -422,4 +479,7 @@ public sealed partial class MainWindow : Window
 
 	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
 		=> SwitchingPage(args.IsSettingsSelected, args.SelectedItemContainer);
+
+	private void Window_Closed(object sender, WindowEventArgs args)
+		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).RunningContext.ProgramPreference);
 }

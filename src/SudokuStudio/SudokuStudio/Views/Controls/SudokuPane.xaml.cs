@@ -585,11 +585,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 					}
 					default:
 					{
-						var content = await FileIO.ReadTextAsync(file);
 						switch (SystemPath.GetExtension(filePath))
 						{
 							case CommonFileExtensions.PlainText:
 							{
+								var content = await FileIO.ReadTextAsync(file);
 								if (string.IsNullOrWhiteSpace(content))
 								{
 									FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
@@ -607,7 +607,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 							}
 							case CommonFileExtensions.Text:
 							{
-								switch (Deserialize<GridSerializationData[]>(content, CommonSerializerOptions.CamelCasing))
+								switch (SudokuFileHandler.Read(filePath))
 								{
 									case [{ GridString: var str }]:
 									{

@@ -2,3 +2,4 @@
 [assembly: InternalsVisibleTo("Sudoku.CommandLine")]
 [assembly: InternalsVisibleTo("Sudoku.Solving.Logical")]
 [assembly: InternalsVisibleTo("Sudoku.Platforms.QQ")]
+[assembly: InternalsVisibleTo("SudokuStudio")]

@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides a list of file extension names of bound file types used by this project.
 /// </summary>
-internal static class CommonFileExtensions
+public static class CommonFileExtensions
 {
 	/// <summary>
 	/// Indicates the plain text format.

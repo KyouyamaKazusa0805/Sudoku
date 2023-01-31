@@ -68,6 +68,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	{
 		InitializeComponent();
 		InitializeField();
+		LoadInitialGrid();
 	}
 
 
@@ -167,13 +168,15 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		{
 			case CommonFileExtensions.PlainText:
 			{
-				await File.WriteAllTextAsync(filePath, SudokuPane.Puzzle.ToString("#"));
+				SudokuPlainTextFileHandler.Write(filePath, SudokuPane.Puzzle);
 				break;
 			}
 			case CommonFileExtensions.Text:
 			{
-				var data = new[] { new GridSerializationData { GridString = SusserFormat.Full.ToString(SudokuPane.Puzzle) } };
-				await File.WriteAllTextAsync(filePath, Serialize(data, CommonSerializerOptions.CamelCasing));
+				SudokuFileHandler.Write(
+					filePath,
+					new GridSerializationData[] { new() { GridString = SusserFormat.Full.ToString(SudokuPane.Puzzle) } }
+				);
 				break;
 			}
 			case CommonFileExtensions.PortablePicture:
@@ -218,23 +221,22 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			{
 				await File.WriteAllTextAsync(
 					filePath,
-					string.Join(
-						"\r\n\r\n",
-						from gridFormatter in gridFormatters
-						select ((IGridFormatter)gridFormatter).ToString(grid)
-					)
+					string.Join("\r\n\r\n", from gridFormatter in gridFormatters select ((IGridFormatter)gridFormatter).ToString(grid))
 				);
+
 				break;
 			}
 			case CommonFileExtensions.Text:
 			{
-				var data = (
-					from gridFormatter in gridFormatters
-					select ((IGridFormatter)gridFormatter).ToString(grid) into gridString
-					select new GridSerializationData { GridString = gridString }
-				).ToArray();
+				SudokuFileHandler.Write(
+					filePath,
+					(
+						from gridFormatter in gridFormatters
+						select ((IGridFormatter)gridFormatter).ToString(grid) into gridString
+						select new GridSerializationData { GridString = gridString }
+					).ToArray()
+				);
 
-				await File.WriteAllTextAsync(filePath, Serialize(data, CommonSerializerOptions.CamelCasing));
 				break;
 			}
 			case CommonFileExtensions.PortablePicture:
@@ -276,11 +278,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			}
 			default:
 			{
-				var content = await FileIO.ReadTextAsync(file);
 				switch (SystemPath.GetExtension(filePath))
 				{
 					case CommonFileExtensions.PlainText:
 					{
+						var content = await FileIO.ReadTextAsync(file);
 						if (string.IsNullOrWhiteSpace(content))
 						{
 							OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.FileIsEmpty));
@@ -298,7 +300,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 					}
 					case CommonFileExtensions.Text:
 					{
-						switch (Deserialize<GridSerializationData[]>(content, CommonSerializerOptions.CamelCasing))
+						switch (SudokuFileHandler.Read(filePath))
 						{
 							case [{ GridString: var str }]:
 							{
@@ -369,6 +371,17 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			(new(VirtualKey.Home), SetHomeView),
 			(new(VirtualKey.End), SetEndView)
 		};
+
+	/// <summary>
+	/// Load initial grid.
+	/// </summary>
+	private void LoadInitialGrid()
+	{
+		if (((MainWindow)((App)Application.Current).RunningContext.MainWindow).InitialGrid is { } grid)
+		{
+			SudokuPane.Puzzle = grid;
+		}
+	}
 
 	/// <summary>
 	/// An outer-layered method to switching pages. This method can be used by both

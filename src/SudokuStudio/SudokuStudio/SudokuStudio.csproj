@@ -16,7 +16,6 @@
 	<ItemGroup>
 		<Content Remove="Resources\images\logo-devtoys.png" />
 		<Content Remove="Resources\images\repo-dotnet.png" />
-		<Content Remove="Resources\images\repo-winuiex.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -67,9 +66,6 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\images\repo-dotnet.png">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</EmbeddedResource>
-		<EmbeddedResource Include="Resources\images\repo-winuiex.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\TextResources.resx">

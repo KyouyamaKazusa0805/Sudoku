@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a sudoku grid serialization data.
 /// </summary>
-internal sealed class GridSerializationData
+public sealed class GridSerializationData
 {
 	/// <summary>
 	/// Indicates the format description.

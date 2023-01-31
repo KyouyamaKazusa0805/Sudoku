@@ -26,24 +26,29 @@
         <member name="M:SudokuStudio.App.OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs)">
             <inheritdoc/>
         </member>
+        <member name="M:SudokuStudio.App.PreinstantiateProgram">
+            <summary>
+            Pre-instantiate program.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.App.InitializeComponent">
             <summary>
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
+        <member name="T:SudokuStudio.AppLifecycle.ProgramPreinstantiationInfo">
             <summary>
-            GetXamlType(Type)
+            Represents the pre-instantiation information.
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
+        <member name="P:SudokuStudio.AppLifecycle.ProgramPreinstantiationInfo.OpenedSudoku">
             <summary>
-            GetXamlType(String)
+            The opened sudoku file content.
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
+        <member name="P:SudokuStudio.AppLifecycle.ProgramPreinstantiationInfo.OpenedProgramPreference">
             <summary>
-            GetXmlnsDefinitions()
+            The program preference.
             </summary>
         </member>
         <member name="T:SudokuStudio.AppLifecycle.RunningContext">
@@ -79,6 +84,11 @@
         <member name="P:SudokuStudio.AppLifecycle.RunningContext.MainWindow">
             <summary>
             Indicates the main window that the program is running.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.AppLifecycle.RunningContext.PreinstantiationInfo">
+            <summary>
+            Indicates the pre-instantiation information.
             </summary>
         </member>
         <member name="T:SudokuStudio.Collection.DashArray">
@@ -237,20 +247,55 @@
             Defines a user-defined program preference.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.EnableFullHouse">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableFullHouse"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.EnableLastDigit">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableLastDigit"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.HiddenSinglesInBlockFirst">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.AllowIncompleteUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.SearchForExtendedUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.SearchExtendedBivalueUniversalGraveTypes">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.AllowCollisionOnAlmostLockedSetXzRule">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.AllowLoopedPatternsOnAlmostLockedSetXzRule">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.AllowCollisionOnAlmostLockedSetXyWing">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXyWingStepSearcher_AllowCollision"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.LogicalSolverIsFullApplying">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IsFullApplying"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.LogicalSolverIgnoresSlowAlgorithms">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreSlowAlgorithms"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.LogicalSolverIgnoresHighAllocationAlgorithms">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreHighAllocationAlgorithms"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.MaxSizeOfRegularWing">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.RegularWingStepSearcher_MaxSize"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ProgramPreference.MaxSizeOfComplexFish">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.ComplexFishStepSearcher_MaxSize"/>
+        </member>
         <member name="T:SudokuStudio.Configuration.ProgramPreferenceExtensions">
             <summary>
             Provides with extension methods on <see cref="T:SudokuStudio.Configuration.ProgramPreference"/>.
             </summary>
             <seealso cref="T:SudokuStudio.Configuration.ProgramPreference"/>
         </member>
-        <member name="M:SudokuStudio.Configuration.ProgramPreferenceExtensions.Clone(SudokuStudio.Configuration.ProgramPreference)">
-            <summary>
-            Try to create a new instance that contains same values with the current instance.
-            </summary>
-            <param name="this">The instance.</param>
-            <returns>The copied one.</returns>
-        </member>
-        <member name="M:SudokuStudio.Configuration.ProgramPreferenceExtensions.Cover(SudokuStudio.Configuration.ProgramPreference,SudokuStudio.Configuration.ProgramPreference)">
+        <member name="M:SudokuStudio.Configuration.ProgramPreferenceExtensions.CoverBy(SudokuStudio.Configuration.ProgramPreference,SudokuStudio.Configuration.ProgramPreference)">
             <summary>
             Try to cover the preference from the specified instance <paramref name="new"/>.
             </summary>
@@ -1799,6 +1844,100 @@ if (student is (name: var name, age: >= 18))
             Indicates the user preference file format (SSP - Sudoku Studio Preference format).
             </summary>
         </member>
+        <member name="T:SudokuStudio.Storage.CommonPaths">
+            <summary>
+            Provides with some paths that is used for the whole program.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.CommonPaths.UserPreference">
+            <summary>
+            Indicates the user preference path.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Storage.CommonPaths.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="T:SudokuStudio.Storage.IProgramSupportedFileHandler`1">
+            <summary>
+            Provides with a handler that can handle a file type defined in type <see cref="T:SudokuStudio.Storage.CommonFileExtensions"/>.
+            </summary>
+            <typeparam name="T">The type of the handled object.</typeparam>
+            <seealso cref="T:SudokuStudio.Storage.CommonFileExtensions"/>
+        </member>
+        <member name="P:SudokuStudio.Storage.IProgramSupportedFileHandler`1.SupportedFileExtension">
+            <summary>
+            Indicates the supported file extension.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Storage.IProgramSupportedFileHandler`1.Read(System.String)">
+            <summary>
+            Reads and handles the file via its path, and returns the target parsed instance.
+            </summary>
+            <param name="filePath">The fsile path.</param>
+            <returns>The parsed instance.</returns>
+        </member>
+        <member name="M:SudokuStudio.Storage.IProgramSupportedFileHandler`1.Write(System.String,`0)">
+            <summary>
+            Writes the specified instance, and output the content into the target file path.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="instance">The instance to be written.</param>
+        </member>
+        <member name="T:SudokuStudio.Storage.ProgramPreferenceFileHandler">
+            <summary>
+            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.Storage.CommonFileExtensions.UserPreference"/>.
+            </summary>
+            <seealso cref="F:SudokuStudio.Storage.CommonFileExtensions.UserPreference"/>
+        </member>
+        <member name="P:SudokuStudio.Storage.ProgramPreferenceFileHandler.SupportedFileExtension">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Storage.ProgramPreferenceFileHandler.Read(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Storage.ProgramPreferenceFileHandler.Write(System.String,SudokuStudio.Configuration.ProgramPreference)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Storage.SudokuFileHandler">
+            <summary>
+            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.Storage.CommonFileExtensions.Text"/>.
+            </summary>
+            <seealso cref="F:SudokuStudio.Storage.CommonFileExtensions.Text"/>
+        </member>
+        <member name="P:SudokuStudio.Storage.SudokuFileHandler.SupportedFileExtension">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Storage.SudokuFileHandler.Read(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Storage.SudokuFileHandler.Write(System.String,SudokuStudio.Models.GridSerializationData[])">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Storage.SudokuPlainTextFileHandler">
+            <summary>
+            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.Storage.CommonFileExtensions.PlainText"/>.
+            </summary>
+            <seealso cref="F:SudokuStudio.Storage.CommonFileExtensions.PlainText"/>
+        </member>
+        <member name="P:SudokuStudio.Storage.SudokuPlainTextFileHandler.SupportedFileExtension">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Storage.SudokuPlainTextFileHandler.Read(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Storage.SudokuPlainTextFileHandler.Write(System.String,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Views.Attached.TextBlockBindable">
             <summary>
             Defines a bind behaviors on <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> instances for property <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Inlines"/>.
@@ -1961,26 +2100,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.UnloadObject(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            UnloadObject(DependencyObject)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.DisconnectUnloadedObject(System.Int32)">
-            <summary>
-            DisconnectUnloadedObject(int connectionId)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Controls.ExtendedExpanderHeader">
             <summary>
             Represents a header control that is used by <see cref="T:SudokuStudio.Views.Controls.ExtendedExpander"/>.
@@ -2041,26 +2160,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.UnloadObject(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            UnloadObject(DependencyObject)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.DisconnectUnloadedObject(System.Int32)">
-            <summary>
-            DisconnectUnloadedObject(int connectionId)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPane">
@@ -2387,16 +2486,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates"/>
         </member>
@@ -2546,16 +2635,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPaneCell._candidatesMask"/>
         </member>
@@ -2592,16 +2671,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Conversions.AnalyzeConversion">
@@ -3233,16 +3302,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
             <summary>
             Defines a new page that stores a set of controls to analyze a sudoku grid.
@@ -3361,6 +3420,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions"/>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.LoadInitialGrid">
+            <summary>
+            Load initial grid.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
             <summary>
             An outer-layered method to switching pages. This method can be used by both
@@ -3399,16 +3463,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched">
@@ -3460,16 +3514,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs">
@@ -3572,16 +3616,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._analysisResult"/>
         </member>
@@ -3625,16 +3659,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._analysisResult"/>
         </member>
@@ -3662,16 +3686,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
@@ -3718,16 +3732,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
@@ -3803,16 +3807,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.ValueConverters.StringToPredicateConverter">
             <summary>
             Converts a <see cref="T:System.String"/> value into a predicate that can return a <see cref="T:System.Boolean"/> result.
@@ -3880,6 +3874,11 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Windows.MainWindow.InitialGrid">
+            <summary>
+            The initial grid.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeField">
             <summary>
             Initializes fields.
@@ -3928,6 +3927,16 @@ if (student is (name: var name, age: >= 18))
             Try to set program name onto the title.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.LoadPreinstantiationInfo">
+            <summary>
+            Loads pre-instantiation information.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.LoadProgramPreferenceFromLocal">
+            <summary>
+            Loads the program preference from local.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(System.Boolean,Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
             <summary>
             An outer-layered method to switching pages. This method can be used by both
@@ -3954,36 +3963,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.UI.ColorExtensions">
