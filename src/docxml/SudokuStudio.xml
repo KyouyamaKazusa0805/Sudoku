@@ -203,6 +203,30 @@
             <typeparam name="T">The type of each element stored in the collection.</typeparam>
             <param name="sender">The collection.</param>
         </member>
+        <member name="T:SudokuStudio.Collection.SolvingPathStepCollection">
+            <summary>
+            Defines a solving path.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.#ctor(System.Collections.Generic.IEnumerable{SudokuStudio.Models.SolvingPathStep})">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified collection of solving path steps.
+            </summary>
+            <param name="steps">The solving path steps.</param>
+        </member>
+        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.Create(Sudoku.Solving.Logical.LogicalSolverResult,SudokuStudio.Views.Interaction.StepTooltipDisplayKind)">
+            <summary>
+            Creates a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.
+            </summary>
+            <param name="analysisResult">A <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.</param>
+            <param name="displayKind">Indicates all displaying values.</param>
+            <returns>An instance of the current type.</returns>
+        </member>
         <member name="T:SudokuStudio.Input.Hotkey">
             <summary>
             Defines a hotkey.
@@ -964,30 +988,6 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="T:SudokuStudio.Models.SolvingPathStepCollection">
-            <summary>
-            Defines a solving path.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Models.SolvingPathStepCollection.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Models.SolvingPathStepCollection"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Models.SolvingPathStepCollection.#ctor(System.Collections.Generic.IEnumerable{SudokuStudio.Models.SolvingPathStep})">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Models.SolvingPathStepCollection"/> instance via the specified collection of solving path steps.
-            </summary>
-            <param name="steps">The solving path steps.</param>
-        </member>
-        <member name="M:SudokuStudio.Models.SolvingPathStepCollection.Create(Sudoku.Solving.Logical.LogicalSolverResult,SudokuStudio.Views.Interaction.StepTooltipDisplayKind)">
-            <summary>
-            Creates a <see cref="T:SudokuStudio.Models.SolvingPathStepCollection"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.
-            </summary>
-            <param name="analysisResult">A <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.</param>
-            <param name="displayKind">Indicates all displaying values.</param>
-            <returns>An instance of the current type.</returns>
-        </member>
         <member name="T:SudokuStudio.Models.TechniqueGroup">
             <summary>
             Indicates a group of technique steps.
@@ -1066,24 +1066,6 @@ if (student is (name: var name, age: >= 18))
 					</para>
 				</remarks>
 			</target>
-        </member>
-        <member name="T:SudokuStudio.Models.ViewUnitUIElementCollection">
-            <summary>
-            Represents a collection that only stores a list of <see cref="T:Microsoft.UI.Xaml.UIElement"/> instances that describes for a <see cref="T:SudokuStudio.Models.ViewUnit"/> instance.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.UIElement"/>
-            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
-        </member>
-        <member name="M:SudokuStudio.Models.ViewUnitUIElementCollection.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Models.ViewUnitUIElementCollection"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Models.ViewUnitUIElementCollection.#ctor(System.Collections.Generic.IEnumerable{Microsoft.UI.Xaml.UIElement})">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Models.ViewUnitUIElementCollection"/> instance via the specified collection of <see cref="T:Microsoft.UI.Xaml.UIElement"/>s.
-            </summary>
-            <param name="controls">A list of <see cref="T:Microsoft.UI.Xaml.UIElement"/>s.</param>
         </member>
         <member name="T:SudokuStudio.Program">
             <summary>

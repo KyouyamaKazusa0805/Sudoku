@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Models;
+﻿namespace SudokuStudio.Collection;
 
 /// <summary>
 /// Defines a solving path.
