@@ -5,7 +5,8 @@
 /// </summary>
 internal static class CompilationConversion
 {
-	public static string GetCompilationInfo() => $"{GetString("_Version")} | x64 | Release";
+	public static string GetCompilationInfo()
+		=> $"{GetString("AboutPage_Version")} {((App)Application.Current).RunningContext.AssemblyVersion.ToString(2)} | x64 | Release";
 
 	public static string License(string input) => $"{input} {GetString("AboutPage_License")}";
 

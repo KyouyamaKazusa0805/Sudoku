@@ -177,6 +177,9 @@
   <data name="AboutPage_SpecialThanks_WpfSamples" xml:space="preserve">
     <value>WPF 实例（WPF Samples）</value>
   </data>
+  <data name="AboutPage_Version" xml:space="preserve">
+    <value>版本</value>
+  </data>
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>所有可用步骤</value>
   </data>
@@ -491,8 +494,5 @@
   </data>
   <data name="_Token_Colon" xml:space="preserve">
     <value>：</value>
-  </data>
-  <data name="_Version" xml:space="preserve">
-    <value>版本 3.0</value>
   </data>
 </root>

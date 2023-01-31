@@ -21,6 +21,11 @@ public sealed class RunningContext
 	public StepsGatherer Gatherer { get; } = new();
 
 	/// <summary>
+	/// Indicates the program-reserved user preference.
+	/// </summary>
+	public ProgramPreference ProgramPreference { get; } = new();
+
+	/// <summary>
 	/// Indicates the version of the current assembly.
 	/// </summary>
 	public Version AssemblyVersion => Assembly.GetName().Version!;

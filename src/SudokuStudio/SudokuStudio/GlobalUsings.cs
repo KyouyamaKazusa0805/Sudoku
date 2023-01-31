@@ -67,6 +67,7 @@ global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;
 global using SudokuStudio.AppLifecycle;
 global using SudokuStudio.Collection;
+global using SudokuStudio.Configuration;
 global using SudokuStudio.Input;
 global using SudokuStudio.Interop;
 global using SudokuStudio.Models;

@@ -142,15 +142,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to V3.0.
-        /// </summary>
-        internal static string _Version {
-            get {
-                return ResourceManager.GetString("_Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Author.
         /// </summary>
         internal static string AboutPage_Author {
@@ -327,6 +318,15 @@ namespace SudokuStudio.Resources {
         internal static string AboutPage_SpecialThanksDescription {
             get {
                 return ResourceManager.GetString("AboutPage_SpecialThanksDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        internal static string AboutPage_Version {
+            get {
+                return ResourceManager.GetString("AboutPage_Version", resourceCulture);
             }
         }
         
