@@ -313,6 +313,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public void Copy()
 	{
+		if (FocusState == FocusState.Unfocused)
+		{
+			return;
+		}
+
 		if (Puzzle is var puzzle and ({ IsUndefined: true } or { IsEmpty: true }))
 		{
 			return;
@@ -338,6 +343,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </remarks>
 	public async Task CopySnapshotAsync()
 	{
+		if (FocusState == FocusState.Unfocused)
+		{
+			return;
+		}
+
 		// Creates the stream to store the output image data.
 		var stream = new InMemoryRandomAccessStream();
 
@@ -361,6 +371,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </returns>
 	public async Task PasteAsync()
 	{
+		if (FocusState == FocusState.Unfocused)
+		{
+			return;
+		}
+
 		var dataPackageView = Clipboard.GetContent();
 		if (!dataPackageView.Contains(StandardDataFormats.Text))
 		{

@@ -412,6 +412,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetPreviousView()
 	{
+		if (SudokuPane.FocusState == FocusState.Unfocused)
+		{
+			return;
+		}
+
 		if (VisualUnit is { Views.Length: not 0 } && CurrentViewIndex - 1 >= 0)
 		{
 			CurrentViewIndex--;
@@ -423,6 +428,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetNextView()
 	{
+		if (SudokuPane.FocusState == FocusState.Unfocused)
+		{
+			return;
+		}
+
 		if (VisualUnit is { Views.Length: var length and not 0 } && CurrentViewIndex + 1 < length)
 		{
 			CurrentViewIndex++;
@@ -434,6 +444,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetHomeView()
 	{
+		if (SudokuPane.FocusState == FocusState.Unfocused)
+		{
+			return;
+		}
+
 		if (VisualUnit is { Views.Length: not 0 })
 		{
 			CurrentViewIndex = 0;
@@ -445,6 +460,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetEndView()
 	{
+		if (SudokuPane.FocusState == FocusState.Unfocused)
+		{
+			return;
+		}
+
 		if (VisualUnit is { Views.Length: var length and not 0 })
 		{
 			CurrentViewIndex = length - 1;
