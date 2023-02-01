@@ -10,7 +10,12 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Application"/>
         </member>
-        <member name="M:SudokuStudio.App.#ctor">
+        <member name="F:SudokuStudio.App._commandLineArgs">
+            <summary>
+            Indicates the command-line arguments.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.#ctor(System.String[])">
             <summary>
             <para>Initializes the singleton application object.</para>
             <para>

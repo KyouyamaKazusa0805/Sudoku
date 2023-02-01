@@ -3,31 +3,29 @@
 /// <summary>
 /// Represents a type that is only used for surrounding with main method <c>Main</c>.
 /// </summary>
-internal static class Program
+internal static partial class Program
 {
 	/// <summary>
 	/// Provides with the program entry point.
 	/// </summary>
 	/// <param name="args">The command-line arguments.</param>
 	[STAThread]
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 	private static void Main(string[] args)
 	{
-		xamlCheckProcessRequirements();
+		XamlCheckProcessRequirements();
 
 		ComWrappersSupport.InitializeComWrappers();
-		Application.Start(startCallback);
+		Application.Start(
+			p =>
+			{
+				var context = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
+				SynchronizationContext.SetSynchronizationContext(context);
 
-
-		static void startCallback(ApplicationInitializationCallbackParams __)
-		{
-			var context = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
-			SynchronizationContext.SetSynchronizationContext(context);
-
-			_ = new App();
-		}
-
-		[DllImport("Microsoft.ui.xaml", EntryPoint = "XamlCheckProcessRequirements")]
-		static extern void xamlCheckProcessRequirements();
+				_ = new App(args);
+			}
+		);
 	}
+
+	[LibraryImport("Microsoft.ui.xaml")]
+	private static partial void XamlCheckProcessRequirements();
 }

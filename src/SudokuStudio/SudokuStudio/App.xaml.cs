@@ -7,12 +7,23 @@
 public partial class App : Application
 {
 	/// <summary>
+	/// Indicates the command-line arguments.
+	/// </summary>
+	private readonly string[] _commandLineArgs;
+
+
+	/// <summary>
 	/// <para>Initializes the singleton application object.</para>
 	/// <para>
 	/// This is the first line of authored code executed, and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
 	/// </para>
 	/// </summary>
-	public App() => InitializeComponent();
+	public App(string[] args)
+	{
+		InitializeComponent();
+
+		_commandLineArgs = args;
+	}
 
 
 	/// <summary>
@@ -39,28 +50,36 @@ public partial class App : Application
 	/// </summary>
 	private void PreinstantiateProgram()
 	{
-		switch (AppInstance.GetCurrent().GetActivatedEventArgs())
+		switch (_commandLineArgs)
 		{
-			case
+			case []:
 			{
-				Kind: ExtendedActivationKind.File,
-				Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: var fileType, Path: var filePath } file, ..] }
-			}:
-			{
-				switch (fileType)
+				switch (AppInstance.GetCurrent().GetActivatedEventArgs())
 				{
-					case CommonFileExtensions.Text:
+					case
 					{
-						RunningContext.PreinstantiationInfo.OpenedSudoku = SudokuFileHandler.Read(filePath);
-						break;
-					}
+						Kind: ExtendedActivationKind.File,
+						Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: var fileType, Path: var filePath } file, ..] }
+					}:
+					{
+						switch (fileType)
+						{
+							case CommonFileExtensions.Text:
+							{
+								RunningContext.PreinstantiationInfo.OpenedSudoku = SudokuFileHandler.Read(filePath);
+								break;
+							}
 #if false
-					case CommonFileExtensions.UserPreference:
-					{
-						RunningContext.PreinstantiationInfo.OpenedProgramPreference = ProgramPreferenceFileHandler.Read(filePath);
+				case CommonFileExtensions.UserPreference:
+				{
+					RunningContext.PreinstantiationInfo.OpenedProgramPreference = ProgramPreferenceFileHandler.Read(filePath);
+					break;
+				}
+#endif
+						}
+
 						break;
 					}
-#endif
 				}
 
 				break;
