@@ -19,23 +19,17 @@ public sealed class ProgramPreference
 	/// <exception cref="NotSupportedException">Throws when the property type is not supported to be serialized, or not found.</exception>
 	public void CoverBy(ProgramPreference @new)
 	{
-		const string error_NotFound = "One of two possible property values cannot be found in target property group type.";
-		const string error_NotSupported = "Target property is not supported to be directly cloned. See inner exception to learn more information.";
-
 		foreach (var propertyInfo in typeof(ProgramPreference).GetProperties())
 		{
-			try
-			{
-				f(this).CoverBy(f(@new));
-			}
-			catch (RuntimeBinderException ex)
-			{
-				throw new NotSupportedException(error_NotSupported, ex);
-			}
+			f(this, propertyInfo).CoverBy(f(@new, propertyInfo));
 
 
-			PreferenceGroup f(ProgramPreference p)
-				=> propertyInfo.GetValue(p) switch { PreferenceGroup t => t, _ => throw new NotSupportedException(error_NotFound) };
+			static PreferenceGroup f(ProgramPreference p, PropertyInfo propertyInfo)
+				=> propertyInfo.GetValue(p) switch
+				{
+					PreferenceGroup t => t,
+					_ => throw new NotSupportedException("One of two possible property values cannot be found in target property group type.")
+				};
 		}
 	}
 }
