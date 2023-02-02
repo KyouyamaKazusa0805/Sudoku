@@ -4,7 +4,7 @@
 /// Represents with preference items that is used by <see cref="LogicalSolver"/>.
 /// </summary>
 /// <seealso cref="LogicalSolver"/>
-public sealed class LogicalAnalysisPreference : PreferenceGroup
+public sealed class AnalysisPreferenceGroup : PreferenceGroup
 {
 	/// <inheritdoc cref="LogicalSolver.SingleStepSearcher_EnableFullHouse"/>
 	public bool EnableFullHouse

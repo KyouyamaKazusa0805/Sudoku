@@ -263,66 +263,66 @@
             <param name="displayKind">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
         </member>
-        <member name="T:SudokuStudio.Configuration.LogicalAnalysisPreference">
+        <member name="T:SudokuStudio.Configuration.AnalysisPreferenceGroup">
             <summary>
             Represents with preference items that is used by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>.
             </summary>
             <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.EnableFullHouse">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouse">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableFullHouse"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.EnableLastDigit">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableLastDigit">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableLastDigit"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.HiddenSinglesInBlockFirst">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.AllowIncompleteUniqueRectangles">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowIncompleteUniqueRectangles">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.SearchForExtendedUniqueRectangles">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForExtendedUniqueRectangles">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.SearchExtendedBivalueUniversalGraveTypes">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedBivalueUniversalGraveTypes">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.AllowCollisionOnAlmostLockedSetXzRule">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXzRule">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.AllowLoopedPatternsOnAlmostLockedSetXzRule">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLoopedPatternsOnAlmostLockedSetXzRule">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.AllowCollisionOnAlmostLockedSetXyWing">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXyWing">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXyWingStepSearcher_AllowCollision"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.LogicalSolverIsFullApplying">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIsFullApplying">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IsFullApplying"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.LogicalSolverIgnoresSlowAlgorithms">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresSlowAlgorithms">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreSlowAlgorithms"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.LogicalSolverIgnoresHighAllocationAlgorithms">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresHighAllocationAlgorithms">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreHighAllocationAlgorithms"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
             <inheritdoc cref="P:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.MaxSizeOfRegularWing">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.RegularWingStepSearcher_MaxSize"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.MaxSizeOfComplexFish">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfComplexFish">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.ComplexFishStepSearcher_MaxSize"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.StepGathererMaxStepsGathered">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered">
             <inheritdoc cref="P:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.MaxStepsGathered"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.Solver">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.Solver">
             <summary>
             The faster entry of project-scoped solver instance.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.Gatherer">
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.Gatherer">
             <summary>
             The faster entry of project-scoped step gatherer instance.
             </summary>
@@ -344,10 +344,10 @@
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.ProgramPreference.AnalysisPreferences">
-            <inheritdoc cref="T:SudokuStudio.Configuration.LogicalAnalysisPreference"/>
+            <inheritdoc cref="T:SudokuStudio.Configuration.AnalysisPreferenceGroup"/>
         </member>
         <member name="P:SudokuStudio.Configuration.ProgramPreference.UIPreferences">
-            <inheritdoc cref="T:SudokuStudio.Configuration.UISetting"/>
+            <inheritdoc cref="T:SudokuStudio.Configuration.UIPreferenceGroup"/>
         </member>
         <member name="M:SudokuStudio.Configuration.ProgramPreference.CoverBy(SudokuStudio.Configuration.ProgramPreference)">
             <summary>
@@ -356,89 +356,89 @@
             <param name="new">The newer instance that is used for covering the current instance.</param>
             <exception cref="T:System.NotSupportedException">Throws when the property type is not supported to be serialized, or not found.</exception>
         </member>
-        <member name="T:SudokuStudio.Configuration.UISetting">
+        <member name="T:SudokuStudio.Configuration.UIPreferenceGroup">
             <summary>
             Defines a list of UI-related preference items. Some items in this group may not be found in settings page
             because they are controlled by UI only, not by users.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.DisplayCandidates">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.DisplayCursors">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCursors">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.DistinctWithDeltaDigits">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DistinctWithDeltaDigits">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.HighlightedPencilmarkBackgroundEllipseScale">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.HighlightedBackgroundOpacity">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedBackgroundOpacity">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.ChainStrokeThickness">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainStrokeThickness">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.CoordinateLabelDisplayKind">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKind">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.CoordinateLabelDisplayMode">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.DeltaValueColor">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.DeltaPencilmarkColor">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.SudokuPaneBorderColor">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.CursorBackgroundColor">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.ChainColor">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.StrongLinkDashStyle">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyle">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.WeakLinkDashStyle">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.WeakLinkDashStyle">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.CyclingCellLinkDashStyle">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CyclingCellLinkDashStyle">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.OtherLinkDashStyle">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyle">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.GivenFontData">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontData">
             <summary>
             Indicates the font data of given digits.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.ModifiableFontData">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontData">
             <summary>
             Indicates the font data of modifiable digits.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.PencilmarkFontData">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontData">
             <summary>
             Indicates the font data of pencilmarked digits.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.BabaGroupingFontData">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontData">
             <summary>
             Indicates the font data of Baba-grouping characters.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.CoordinateLabelFontData">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontData">
             <summary>
             Indicates the font data of coordinate labels.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UISetting.Pane">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Pane">
             <summary>
             The faster entry for the sudoku pane.
             </summary>

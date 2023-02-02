@@ -5,11 +5,11 @@
 /// </summary>
 public sealed class ProgramPreference
 {
-	/// <inheritdoc cref="LogicalAnalysisPreference"/>
-	public LogicalAnalysisPreference AnalysisPreferences { get; set; } = new();
+	/// <inheritdoc cref="AnalysisPreferenceGroup"/>
+	public AnalysisPreferenceGroup AnalysisPreferences { get; set; } = new();
 
-	/// <inheritdoc cref="UISetting"/>
-	public UISetting UIPreferences { get; set; } = new();
+	/// <inheritdoc cref="UIPreferenceGroup"/>
+	public UIPreferenceGroup UIPreferences { get; set; } = new();
 
 
 	/// <summary>

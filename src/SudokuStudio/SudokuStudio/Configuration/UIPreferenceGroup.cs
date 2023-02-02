@@ -4,7 +4,7 @@
 /// Defines a list of UI-related preference items. Some items in this group may not be found in settings page
 /// because they are controlled by UI only, not by users.
 /// </summary>
-public sealed class UISetting : PreferenceGroup
+public sealed class UIPreferenceGroup : PreferenceGroup
 {
 	/// <inheritdoc cref="SudokuPane.DisplayCandidates"/>
 	public bool DisplayCandidates
