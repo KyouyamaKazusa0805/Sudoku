@@ -34,6 +34,11 @@
             Indicates the program-reserved user preference.
             </summary>
         </member>
+        <member name="P:SudokuStudio.App.FirstGrid">
+            <summary>
+            Indicates the first-opened grid.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.App.EnvironmentVariables">
             <summary>
             Defines a set of environment variables used.
@@ -80,11 +85,6 @@
         <member name="T:SudokuStudio.AppLifecycle.EnvironmentVariable">
             <summary>
             Provides with a set of properties or fields that is used by the program in its lifecycle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.AppLifecycle.EnvironmentVariable.FirstGrid">
-            <summary>
-            Indicates the first-opened grid.
             </summary>
         </member>
         <member name="P:SudokuStudio.AppLifecycle.EnvironmentVariable.Gatherer">

@@ -6,12 +6,6 @@
 internal sealed class EnvironmentVariable
 {
 	/// <summary>
-	/// Indicates the first-opened grid.
-	/// </summary>
-	[DisallowNull]
-	public Grid? FirstGrid { get; set; }
-
-	/// <summary>
 	/// Defines a step gatherer.
 	/// </summary>
 	public StepsGatherer Gatherer { get; } = new();

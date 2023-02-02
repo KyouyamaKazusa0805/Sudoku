@@ -38,6 +38,12 @@ public partial class App : Application
 	public ProgramPreference ProgramPreference { get; } = new();
 
 	/// <summary>
+	/// Indicates the first-opened grid.
+	/// </summary>
+	[DisallowNull]
+	internal Grid? FirstGrid { get; set; }
+
+	/// <summary>
 	/// Defines a set of environment variables used.
 	/// </summary>
 	internal EnvironmentVariable EnvironmentVariables { get; } = new();
@@ -93,6 +99,6 @@ public partial class App : Application
 			return;
 		}
 
-		EnvironmentVariables.FirstGrid = grid;
+		FirstGrid = grid;
 	}
 }
