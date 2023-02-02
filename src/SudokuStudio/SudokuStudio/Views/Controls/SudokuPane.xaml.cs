@@ -638,6 +638,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
+	private void UserControl_Loaded(object sender, RoutedEventArgs e) => ((App)Application.Current).SudokuPane = this;
+
+	private void UserControl_Unloaded(object sender, RoutedEventArgs e) => ((App)Application.Current).SudokuPane = null;
+
 	private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
 	{
 		/**

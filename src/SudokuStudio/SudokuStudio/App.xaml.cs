@@ -42,6 +42,11 @@ public partial class App : Application
 	/// </summary>
 	internal EnvironmentVariable EnvironmentVariables { get; } = new();
 
+	/// <summary>
+	/// Defines the sudoku pane used.
+	/// </summary>
+	internal SudokuPane? SudokuPane { get; set; }
+
 
 	/// <summary>
 	/// Indicates the assembly version.

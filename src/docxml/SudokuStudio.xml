@@ -39,6 +39,11 @@
             Defines a set of environment variables used.
             </summary>
         </member>
+        <member name="P:SudokuStudio.App.SudokuPane">
+            <summary>
+            Defines the sudoku pane used.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.App.AssemblyVersion">
             <summary>
             Indicates the assembly version.

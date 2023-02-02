@@ -8,7 +8,8 @@
 	xmlns:cvt="using:SudokuStudio.Views.Conversions"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:SudokuPane}"
 	IsTabStop="True" AllowDrop="True"
-	PointerEntered="UserControl_PointerEntered" DragOver="UserControl_DragOver" Drop="UserControl_DropAsync" KeyDown="UserControl_KeyDown">
+	PointerEntered="UserControl_PointerEntered" DragOver="UserControl_DragOver" Drop="UserControl_DropAsync" KeyDown="UserControl_KeyDown"
+	Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded">
 	<UserControl.Resources>
 		<Thickness x:Key="RowLinesBorderThickness">0,0,0,1</Thickness>
 		<Thickness x:Key="ColumnLinesBorderThickness">0,0,1,0</Thickness>
