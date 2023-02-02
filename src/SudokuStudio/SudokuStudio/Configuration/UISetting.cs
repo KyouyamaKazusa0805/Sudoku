@@ -11,15 +11,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.DisplayCandidates;
 
-		set
-		{
-			if (DisplayCandidates == value)
-			{
-				return;
-			}
-
-			Pane.DisplayCandidates = value;
-		}
+		set => Pane.DisplayCandidates = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.DisplayCursors"/>
@@ -27,15 +19,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.DisplayCursors;
 
-		set
-		{
-			if (DisplayCursors == value)
-			{
-				return;
-			}
-
-			Pane.DisplayCursors = value;
-		}
+		set => Pane.DisplayCursors = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>
@@ -43,15 +27,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.UseDifferentColorToDisplayDeltaDigits;
 
-		set
-		{
-			if (DistinctWithDeltaDigits == value)
-			{
-				return;
-			}
-
-			Pane.UseDifferentColorToDisplayDeltaDigits = value;
-		}
+		set => Pane.UseDifferentColorToDisplayDeltaDigits = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.HighlightCandidateCircleScale"/>
@@ -59,15 +35,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => (decimal)Pane.HighlightCandidateCircleScale;
 
-		set
-		{
-			if (HighlightedPencilmarkBackgroundEllipseScale == value)
-			{
-				return;
-			}
-
-			Pane.HighlightCandidateCircleScale = (double)value;
-		}
+		set => Pane.HighlightCandidateCircleScale = (double)value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.HighlightBackgroundOpacity"/>
@@ -75,15 +43,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => (decimal)Pane.HighlightBackgroundOpacity;
 
-		set
-		{
-			if (HighlightedBackgroundOpacity == value)
-			{
-				return;
-			}
-
-			Pane.HighlightBackgroundOpacity = (double)value;
-		}
+		set => Pane.HighlightBackgroundOpacity = (double)value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.ChainStrokeThickness"/>
@@ -91,15 +51,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => (decimal)Pane.ChainStrokeThickness;
 
-		set
-		{
-			if (ChainStrokeThickness == value)
-			{
-				return;
-			}
-
-			Pane.ChainStrokeThickness = (double)value;
-		}
+		set => Pane.ChainStrokeThickness = (double)value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.CoordinateLabelDisplayKind"/>
@@ -107,15 +59,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.CoordinateLabelDisplayKind;
 
-		set
-		{
-			if (CoordinateLabelDisplayKind == value)
-			{
-				return;
-			}
-
-			Pane.CoordinateLabelDisplayKind = value;
-		}
+		set => Pane.CoordinateLabelDisplayKind = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.CoordinateLabelDisplayMode"/>
@@ -123,15 +67,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.CoordinateLabelDisplayMode;
 
-		set
-		{
-			if (CoordinateLabelDisplayMode == value)
-			{
-				return;
-			}
-
-			Pane.CoordinateLabelDisplayMode = value;
-		}
+		set => Pane.CoordinateLabelDisplayMode = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.DeltaCellColor"/>
@@ -139,15 +75,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.DeltaCellColor;
 
-		set
-		{
-			if (DeltaValueColor == value)
-			{
-				return;
-			}
-
-			Pane.DeltaCellColor = value;
-		}
+		set => Pane.DeltaCellColor = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.DeltaCandidateColor"/>
@@ -155,15 +83,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.DeltaCandidateColor;
 
-		set
-		{
-			if (DeltaPencilmarkColor == value)
-			{
-				return;
-			}
-
-			Pane.DeltaCandidateColor = value;
-		}
+		set => Pane.DeltaCandidateColor = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.BorderColor"/>
@@ -171,15 +91,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.BorderColor;
 
-		set
-		{
-			if (SudokuPaneBorderColor == value)
-			{
-				return;
-			}
-
-			Pane.BorderColor = value;
-		}
+		set => Pane.BorderColor = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.CursorBackgroundColor"/>
@@ -187,15 +99,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.CursorBackgroundColor;
 
-		set
-		{
-			if (CursorBackgroundColor == value)
-			{
-				return;
-			}
-
-			Pane.CursorBackgroundColor = value;
-		}
+		set => Pane.CursorBackgroundColor = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.LinkColor"/>
@@ -203,15 +107,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.LinkColor;
 
-		set
-		{
-			if (ChainColor == value)
-			{
-				return;
-			}
-
-			Pane.LinkColor = value;
-		}
+		set => Pane.LinkColor = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.StrongLinkDashStyle"/>
@@ -219,15 +115,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.StrongLinkDashStyle;
 
-		set
-		{
-			if (StrongLinkDashStyle == value)
-			{
-				return;
-			}
-
-			Pane.StrongLinkDashStyle = value;
-		}
+		set => Pane.StrongLinkDashStyle = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.WeakLinkDashStyle"/>
@@ -235,15 +123,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.WeakLinkDashStyle;
 
-		set
-		{
-			if (WeakLinkDashStyle == value)
-			{
-				return;
-			}
-
-			Pane.WeakLinkDashStyle = value;
-		}
+		set => Pane.WeakLinkDashStyle = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.CycleLikeLinkDashStyle"/>
@@ -251,15 +131,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.CycleLikeLinkDashStyle;
 
-		set
-		{
-			if (CyclingCellLinkDashStyle == value)
-			{
-				return;
-			}
-
-			Pane.CycleLikeLinkDashStyle = value;
-		}
+		set => Pane.CycleLikeLinkDashStyle = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.OtherLinkDashStyle"/>
@@ -267,15 +139,7 @@ public sealed class UISetting : PreferenceGroup
 	{
 		get => Pane.OtherLinkDashStyle;
 
-		set
-		{
-			if (OtherLinkDashStyle == value)
-			{
-				return;
-			}
-
-			Pane.OtherLinkDashStyle = value;
-		}
+		set => Pane.OtherLinkDashStyle = value;
 	}
 
 	/// <summary>
