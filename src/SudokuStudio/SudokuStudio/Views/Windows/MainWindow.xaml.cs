@@ -307,7 +307,7 @@ public sealed partial class MainWindow : Window
 			return;
 		}
 
-		((App)Application.Current).RunningContext.ProgramPreference.CoverBy(loadedConfig);
+		((App)Application.Current).ProgramPreference.CoverBy(loadedConfig);
 	}
 
 	/// <summary>
@@ -445,5 +445,5 @@ public sealed partial class MainWindow : Window
 		=> SwitchingPage(args.IsSettingsSelected, args.SelectedItemContainer);
 
 	private void Window_Closed(object sender, WindowEventArgs args)
-		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).RunningContext.ProgramPreference);
+		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).ProgramPreference);
 }

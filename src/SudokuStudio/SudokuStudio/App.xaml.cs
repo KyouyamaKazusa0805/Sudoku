@@ -13,11 +13,12 @@ public partial class App : Application
 
 
 	/// <summary>
-	/// <para>Initializes the singleton application object.</para>
+	/// <para>Initializes the singleton application object via command-line arguments.</para>
 	/// <para>
 	/// This is the first line of authored code executed, and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
 	/// </para>
 	/// </summary>
+	/// <param name="args">The command-line arguments.</param>
 	public App(string[] args)
 	{
 		InitializeComponent();
@@ -27,12 +28,30 @@ public partial class App : Application
 
 
 	/// <summary>
-	/// Indicates the running context.
+	/// Indicates the main window that the program is running. If <see langword="null"/>, no window will be run.
 	/// </summary>
-	public RunningContext RunningContext { get; } = new();
+	public Window? RunningWindow { get; private set; }
+
+	/// <summary>
+	/// Indicates the program-reserved user preference.
+	/// </summary>
+	public ProgramPreference ProgramPreference { get; } = new();
+
+	/// <summary>
+	/// Defines a set of environment variables used.
+	/// </summary>
+	internal EnvironmentVariable EnvironmentVariables { get; } = new();
+
+
+	/// <summary>
+	/// Indicates the assembly version.
+	/// </summary>
+	[DebuggerHidden]
+	internal static Version AssemblyVersion => typeof(App).Assembly.GetName().Version!;
 
 
 	/// <inheritdoc/>
+	[MemberNotNull(nameof(RunningWindow))]
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
 		// Register resource-fetching service.
@@ -42,7 +61,7 @@ public partial class App : Application
 		PreinstantiateProgram();
 
 		// Activicate the main window.
-		(RunningContext.MainWindow = new MainWindow()).Activate();
+		(RunningWindow = new MainWindow()).Activate();
 	}
 
 	/// <summary>
@@ -69,6 +88,6 @@ public partial class App : Application
 			return;
 		}
 
-		RunningContext.FirstGrid = grid;
+		EnvironmentVariables.FirstGrid = grid;
 	}
 }
