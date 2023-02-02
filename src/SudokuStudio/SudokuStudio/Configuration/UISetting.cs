@@ -19,8 +19,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.DisplayCandidates = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -37,8 +35,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.DisplayCursors = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -55,8 +51,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.UseDifferentColorToDisplayDeltaDigits = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -73,8 +67,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.HighlightCandidateCircleScale = (double)value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -91,8 +83,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.HighlightBackgroundOpacity = (double)value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -109,8 +99,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.ChainStrokeThickness = (double)value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -127,8 +115,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.CoordinateLabelDisplayKind = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -145,8 +131,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.CoordinateLabelDisplayMode = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -163,8 +147,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.DeltaCellColor = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -181,8 +163,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.DeltaCandidateColor = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -199,8 +179,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.BorderColor = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -217,8 +195,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.CursorBackgroundColor = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -235,8 +211,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.LinkColor = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -253,8 +227,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.StrongLinkDashStyle = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -271,8 +243,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.WeakLinkDashStyle = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -289,8 +259,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.CycleLikeLinkDashStyle = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -307,8 +275,6 @@ public sealed class UISetting : PreferenceGroup
 			}
 
 			Pane.OtherLinkDashStyle = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -329,8 +295,6 @@ public sealed class UISetting : PreferenceGroup
 			Pane.ValueFont = new(value.FontName);
 			Pane.ValueFontScale = (double)value.FontScale;
 			Pane.GivenColor = value.FontColor;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -351,8 +315,6 @@ public sealed class UISetting : PreferenceGroup
 			Pane.ValueFont = new(value.FontName);
 			Pane.ValueFontScale = (double)value.FontScale;
 			Pane.ModifiableColor = value.FontColor;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -373,8 +335,6 @@ public sealed class UISetting : PreferenceGroup
 			Pane.PencilmarkFont = new(value.FontName);
 			Pane.PencilmarkFontScale = (double)value.FontScale;
 			Pane.PencilmarkColor = value.FontColor;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -400,8 +360,6 @@ public sealed class UISetting : PreferenceGroup
 			Pane.BabaGroupLabelFont = new(value.FontName);
 			Pane.BabaGroupLabelFontScale = (double)value.FontScale;
 			Pane.BabaGroupLabelColor = value.FontColor;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -427,8 +385,6 @@ public sealed class UISetting : PreferenceGroup
 			Pane.CoordinateLabelFont = new(value.FontName);
 			Pane.CoordinateLabelFontScale = (double)value.FontScale;
 			Pane.CoordinateLabelColor = value.FontColor;
-
-			TriggerPropertyChanged();
 		}
 	}
 

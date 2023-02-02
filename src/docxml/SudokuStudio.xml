@@ -332,23 +332,11 @@
             Defines a preference group.
             </summary>
         </member>
-        <member name="E:SudokuStudio.Configuration.PreferenceGroup.PropertyChanged">
-            <inheritdoc/>
-        </member>
         <member name="M:SudokuStudio.Configuration.PreferenceGroup.CoverBy(SudokuStudio.Configuration.PreferenceGroup)">
             <summary>
             Try to cover the preference from the specified instance <paramref name="other"/>.
             </summary>
             <param name="other">The newer instance that is used for covering the current instance.</param>
-        </member>
-        <member name="M:SudokuStudio.Configuration.PreferenceGroup.TriggerPropertyChanged(System.String)">
-            <summary>
-            To trigger the event <see cref="E:SudokuStudio.Configuration.PreferenceGroup.PropertyChanged"/>.
-            </summary>
-            <param name="propertyName">
-            The property name. You may not assign this property with the specified value;
-            the value will be replaced with suitable value by compiler.
-            </param>
         </member>
         <member name="T:SudokuStudio.Configuration.ProgramPreference">
             <summary>

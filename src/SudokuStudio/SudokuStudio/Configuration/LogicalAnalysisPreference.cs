@@ -19,8 +19,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.SingleStepSearcher_EnableFullHouse = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -37,8 +35,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.SingleStepSearcher_EnableLastDigit = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -55,8 +51,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.SingleStepSearcher_HiddenSinglesInBlockFirst = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -73,8 +67,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -91,8 +83,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -109,8 +99,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -127,8 +115,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.AlmostLockedSetsXzStepSearcher_AllowCollision = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -145,8 +131,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -163,8 +147,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.AlmostLockedSetsXyWingStepSearcher_AllowCollision = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -181,8 +163,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.IsFullApplying = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -199,8 +179,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.IgnoreSlowAlgorithms = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -217,8 +195,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.IgnoreHighAllocationAlgorithms = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -235,8 +211,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Gatherer.OnlyShowSameLevelTechniquesInFindAllSteps = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -253,8 +227,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.RegularWingStepSearcher_MaxSize = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -271,8 +243,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Solver.ComplexFishStepSearcher_MaxSize = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
@@ -289,8 +259,6 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 			}
 
 			Gatherer.MaxStepsGathered = value;
-
-			TriggerPropertyChanged();
 		}
 	}
 
