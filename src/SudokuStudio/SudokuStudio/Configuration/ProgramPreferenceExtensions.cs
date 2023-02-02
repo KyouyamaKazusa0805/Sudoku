@@ -11,29 +11,29 @@ public static class ProgramPreferenceExtensions
 	/// </summary>
 	/// <param name="this">The current instance to be covered.</param>
 	/// <param name="new">The newer instance that is used for covering the current instance.</param>
+	/// <exception cref="NotSupportedException">Throws when the property type is not supported to be serialized.</exception>
 	public static void CoverBy(this ProgramPreference @this, ProgramPreference @new)
 	{
-#if true
-		foreach (var fieldInfo in typeof(ProgramPreference).GetFields())
+		foreach (var propertyInfo in typeof(ProgramPreference).GetProperties())
 		{
-			fieldInfo.SetValue(@this, fieldInfo.GetValue(@new));
+			try
+			{
+				var a = (dynamic?)propertyInfo.GetValue(@this);
+				var b = (dynamic?)propertyInfo.GetValue(@new);
+				if (a is null || b is null)
+				{
+					continue;
+				}
+
+				a.CoverBy(b);
+			}
+			catch (RuntimeBinderException ex)
+			{
+				throw new NotSupportedException(
+					"Target property is not supported to be directly cloned. See inner exception to learn more information.",
+					ex
+				);
+			}
 		}
-#else
-		/**
-			<para>
-			This <see langword="foreach"/> loop uses a lost keyword <see langword="__makeref"/>,
-			which will return an instance of type <see cref="TypedReference"/>, indicating the referenced information of the target object,
-			which is helpful to assign values if the containing type is a <see langword="struct"/>.	
-			</para>
-			<para>
-			Please note that it may produce an implicit boxing behavior if we assign a value-typed instance
-			into a reference-typed object that is compatible with it.
-			</para>
-		*/
-		foreach (var fieldInfo in typeof(ProgramPreference).GetFields())
-		{
-			fieldInfo.SetValueDirect(__makeref(@this), fieldInfo.GetValueDirect(__makeref(@new))!);
-		}
-#endif
 	}
 }
