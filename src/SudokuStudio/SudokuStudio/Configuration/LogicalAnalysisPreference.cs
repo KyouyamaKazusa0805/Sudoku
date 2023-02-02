@@ -267,26 +267,4 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 	/// <inheritdoc/>
 	public override event PropertyChangedEventHandler? PropertyChanged;
-
-
-	/// <inheritdoc/>
-	public override LogicalAnalysisPreference Clone()
-	{
-		var result = new LogicalAnalysisPreference();
-		foreach (var propertyInfo in typeof(LogicalAnalysisPreference).GetProperties())
-		{
-			propertyInfo.SetValue(result, propertyInfo.GetValue(this));
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	public override void CoverBy(PreferenceGroup other)
-	{
-		foreach (var propertyInfo in typeof(LogicalAnalysisPreference).GetProperties())
-		{
-			propertyInfo.SetValue(this, propertyInfo.GetValue(other));
-		}
-	}
 }
