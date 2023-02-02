@@ -237,6 +237,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		InitializeChildrenControls();
 		UpdateCellData(_puzzle);
 		InitializeEvents();
+		LoadProgramPreferenceFromLocal();
 	}
 
 
@@ -486,6 +487,25 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		_undoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
 		_redoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
+	}
+
+	/// <summary>
+	/// Loads the program preference from local.
+	/// </summary>
+	private void LoadProgramPreferenceFromLocal()
+	{
+		var targetPath = CommonPaths.UserPreference;
+		if (!File.Exists(targetPath))
+		{
+			return;
+		}
+
+		if (ProgramPreferenceFileHandler.Read(targetPath) is not { } loadedConfig)
+		{
+			return;
+		}
+
+		((App)Application.Current).ProgramPreference.CoverBy(loadedConfig);
 	}
 
 	/// <summary>

@@ -306,7 +306,7 @@ public sealed class PointCalculator
 
 	/// <inheritdoc cref="GetSharedLinePosition(int, int)"/>
 	/// <summary>
-	/// <inheritdoc	path="/summary"/>
+	/// <inheritdoc path="/summary"/>
 	/// </summary>
 	/// <param name="cell1"><inheritdoc path="/param[@name='cell1']"/></param>
 	/// <param name="cell2"><inheritdoc path="/param[@name='cell2']"/></param>

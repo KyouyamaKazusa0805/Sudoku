@@ -499,6 +499,9 @@ dotnet_diagnostic.CA1819.severity = none
 # CA1822: Mark members as static
 dotnet_diagnostic.CA1822.severity = none
 
+# CA2011: Avoid infinite recursion
+dotnet_diagnostic.CA2011.severity = error
+
 # CA2200: Rethrow to preserve stack details
 dotnet_diagnostic.CA2200.severity = silent
 

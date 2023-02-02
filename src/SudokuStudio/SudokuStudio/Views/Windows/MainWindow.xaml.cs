@@ -84,8 +84,6 @@ public sealed partial class MainWindow : Window
 
 		SetAppIcon();
 		SetAppTitle();
-
-		LoadProgramPreferenceFromLocal();
 	}
 
 
@@ -290,25 +288,6 @@ public sealed partial class MainWindow : Window
 	/// Try to set program name onto the title.
 	/// </summary>
 	private void SetAppTitle() => _appWindow.Title = GetString("_ProgramName");
-
-	/// <summary>
-	/// Loads the program preference from local.
-	/// </summary>
-	private void LoadProgramPreferenceFromLocal()
-	{
-		var targetPath = CommonPaths.UserPreference;
-		if (!File.Exists(targetPath))
-		{
-			return;
-		}
-
-		if (ProgramPreferenceFileHandler.Read(targetPath) is not { } loadedConfig)
-		{
-			return;
-		}
-
-		((App)Application.Current).ProgramPreference.CoverBy(loadedConfig);
-	}
 
 	/// <summary>
 	/// An outer-layered method to switching pages. This method can be used by both

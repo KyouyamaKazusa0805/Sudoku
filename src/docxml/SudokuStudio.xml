@@ -263,11 +263,6 @@
             <param name="displayKind">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
         </member>
-        <member name="T:SudokuStudio.Configuration.ColorScheme">
-            <summary>
-            Defines a set of color-related preference items.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Configuration.LogicalAnalysisPreference">
             <summary>
             Represents with preference items that is used by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>.
@@ -360,11 +355,11 @@
             Defines a user-defined program preference.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.ProgramPreference.LogicalAnalysisPreferences">
+        <member name="P:SudokuStudio.Configuration.ProgramPreference.AnalysisPreferences">
             <inheritdoc cref="T:SudokuStudio.Configuration.LogicalAnalysisPreference"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.ProgramPreference.ColorScheme">
-            <inheritdoc cref="T:SudokuStudio.Configuration.ColorScheme"/>
+        <member name="P:SudokuStudio.Configuration.ProgramPreference.UIPreferences">
+            <inheritdoc cref="T:SudokuStudio.Configuration.UISetting"/>
         </member>
         <member name="M:SudokuStudio.Configuration.ProgramPreference.CoverBy(SudokuStudio.Configuration.ProgramPreference)">
             <summary>
@@ -372,6 +367,93 @@
             </summary>
             <param name="new">The newer instance that is used for covering the current instance.</param>
             <exception cref="T:System.NotSupportedException">Throws when the property type is not supported to be serialized, or not found.</exception>
+        </member>
+        <member name="T:SudokuStudio.Configuration.UISetting">
+            <summary>
+            Defines a list of UI-related preference items. Some items in this group may not be found in settings page
+            because they are controlled by UI only, not by users.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.DisplayCandidates">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.DisplayCursors">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.DistinctWithDeltaDigits">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.HighlightedPencilmarkBackgroundEllipseScale">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.HighlightedBackgroundOpacity">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.ChainStrokeThickness">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.CoordinateLabelDisplayKind">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.CoordinateLabelDisplayMode">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.DeltaValueColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.DeltaPencilmarkColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.SudokuPaneBorderColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.CursorBackgroundColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.ChainColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.StrongLinkDashStyle">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.WeakLinkDashStyle">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.CyclingCellLinkDashStyle">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.OtherLinkDashStyle">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.GivenFontData">
+            <summary>
+            Indicates the font data of given digits.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.ModifiableFontData">
+            <summary>
+            Indicates the font data of modifiable digits.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.PencilmarkFontData">
+            <summary>
+            Indicates the font data of pencilmarked digits.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.BabaGroupingFontData">
+            <summary>
+            Indicates the font data of Baba-grouping characters.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.CoordinateLabelFontData">
+            <summary>
+            Indicates the font data of coordinate labels.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UISetting.Pane">
+            <summary>
+            The faster entry for the sudoku pane.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Input.Hotkey">
             <summary>
@@ -1006,6 +1088,44 @@ if (student is (name: var name, age: >= 18))
             The <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance that is used for creating the result value.
             </param>
             <returns>The result list of <see cref="T:SudokuStudio.Models.AnalysisResultTableRow"/>-typed elements.</returns>
+        </member>
+        <member name="T:SudokuStudio.Models.FontSerializationData">
+            <summary>
+            Defines the font serialization data.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.FontSerializationData.FontName">
+            <summary>
+            Indicates the font name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.FontSerializationData.FontScale">
+            <summary>
+            Indicates the font scale.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.FontSerializationData.FontColor">
+            <summary>
+            Indicates the font color.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Models.FontSerializationData.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:SudokuStudio.Models.FontSerializationData.Equals(SudokuStudio.Models.FontSerializationData)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Models.FontSerializationData.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:SudokuStudio.Models.FontSerializationData.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:SudokuStudio.Models.FontSerializationData.op_Equality(SudokuStudio.Models.FontSerializationData,SudokuStudio.Models.FontSerializationData)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Models.FontSerializationData.op_Inequality(SudokuStudio.Models.FontSerializationData,SudokuStudio.Models.FontSerializationData)">
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Models.GridSerializationData">
             <summary>
@@ -2580,6 +2700,11 @@ if (student is (name: var name, age: >= 18))
             To initializes for stack events.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.LoadProgramPreferenceFromLocal">
+            <summary>
+            Loads the program preference from local.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateCellData(Sudoku.Concepts.Grid@)">
             <summary>
             To initialize <see cref="F:SudokuStudio.Views.Controls.SudokuPane._children"/> values via the specified grid.
@@ -4141,11 +4266,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SetAppTitle">
             <summary>
             Try to set program name onto the title.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.LoadProgramPreferenceFromLocal">
-            <summary>
-            Loads the program preference from local.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(System.Boolean,Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">

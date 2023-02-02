@@ -6,10 +6,10 @@
 public sealed class ProgramPreference
 {
 	/// <inheritdoc cref="LogicalAnalysisPreference"/>
-	public LogicalAnalysisPreference LogicalAnalysisPreferences { get; set; } = new();
+	public LogicalAnalysisPreference AnalysisPreferences { get; set; } = new();
 
-	/// <inheritdoc cref="Configuration.ColorScheme"/>
-	public ColorScheme ColorScheme { get; set; } = new();
+	/// <inheritdoc cref="UISetting"/>
+	public UISetting UIPreferences { get; set; } = new();
 
 
 	/// <summary>

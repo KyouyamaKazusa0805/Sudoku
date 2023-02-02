@@ -1154,7 +1154,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Gdip.PointCalculator.GetSharedLinePosition(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc cref="M:Sudoku.Gdip.PointCalculator.GetSharedLinePosition(System.Int32,System.Int32)"/>
             <summary>
-            <inheritdoc	path="/summary"/>
+            <inheritdoc path="/summary"/>
             </summary>
             <param name="cell1"><inheritdoc path="/param[@name='cell1']"/></param>
             <param name="cell2"><inheritdoc path="/param[@name='cell2']"/></param>
