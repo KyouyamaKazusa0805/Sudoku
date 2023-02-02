@@ -50,40 +50,25 @@ public partial class App : Application
 	/// </summary>
 	private void PreinstantiateProgram()
 	{
-		switch (_commandLineArgs)
+		if (_commandLineArgs is null or not [])
 		{
-			case []:
-			{
-				switch (AppInstance.GetCurrent().GetActivatedEventArgs())
-				{
-					case
-					{
-						Kind: ExtendedActivationKind.File,
-						Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: var fileType, Path: var filePath } file, ..] }
-					}:
-					{
-						switch (fileType)
-						{
-							case CommonFileExtensions.Text:
-							{
-								RunningContext.PreinstantiationInfo.OpenedSudoku = SudokuFileHandler.Read(filePath);
-								break;
-							}
-#if false
-				case CommonFileExtensions.UserPreference:
-				{
-					RunningContext.PreinstantiationInfo.OpenedProgramPreference = ProgramPreferenceFileHandler.Read(filePath);
-					break;
-				}
-#endif
-						}
-
-						break;
-					}
-				}
-
-				break;
-			}
+			return;
 		}
+
+		if (AppInstance.GetCurrent().GetActivatedEventArgs() is not
+			{
+				Kind: ExtendedActivationKind.File,
+				Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: CommonFileExtensions.Text, Path: var filePath } file, ..] }
+			})
+		{
+			return;
+		}
+
+		if (SudokuFileHandler.Read(filePath) is not [{ GridString: var gridStr }, ..] || !Grid.TryParse(gridStr, out var grid))
+		{
+			return;
+		}
+
+		RunningContext.FirstGrid = grid;
 	}
 }

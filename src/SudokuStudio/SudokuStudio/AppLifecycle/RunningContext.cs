@@ -6,6 +6,12 @@
 public sealed class RunningContext
 {
 	/// <summary>
+	/// Indicates the first-opened grid.
+	/// </summary>
+	[DisallowNull]
+	public Grid? FirstGrid { get; internal set; }
+
+	/// <summary>
 	/// Indicates the current running assembly.
 	/// </summary>
 	public Assembly Assembly { get; } = typeof(RunningContext).Assembly;
@@ -34,9 +40,4 @@ public sealed class RunningContext
 	/// Indicates the main window that the program is running.
 	/// </summary>
 	public Window MainWindow { get; internal set; } = null!;
-
-	/// <summary>
-	/// Indicates the pre-instantiation information.
-	/// </summary>
-	public ProgramPreinstantiationInfo PreinstantiationInfo { get; } = new();
 }

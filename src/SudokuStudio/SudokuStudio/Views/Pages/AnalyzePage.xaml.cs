@@ -377,9 +377,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void LoadInitialGrid()
 	{
-		if (((MainWindow)((App)Application.Current).RunningContext.MainWindow).InitialGrid is { } grid)
+		var runningContext = ((App)Application.Current).RunningContext;
+		if (runningContext.FirstGrid is { } grid)
 		{
 			SudokuPane.Puzzle = grid;
+			runningContext.FirstGrid = null!;
 		}
 	}
 

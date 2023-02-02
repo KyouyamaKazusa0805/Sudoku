@@ -85,15 +85,8 @@ public sealed partial class MainWindow : Window
 		SetAppIcon();
 		SetAppTitle();
 
-		LoadPreinstantiationInfo();
 		LoadProgramPreferenceFromLocal();
 	}
-
-
-	/// <summary>
-	/// The initial grid.
-	/// </summary>
-	internal Grid? InitialGrid { get; set; }
 
 
 	/// <summary>
@@ -297,35 +290,6 @@ public sealed partial class MainWindow : Window
 	/// Try to set program name onto the title.
 	/// </summary>
 	private void SetAppTitle() => _appWindow.Title = GetString("_ProgramName");
-
-	/// <summary>
-	/// Loads pre-instantiation information.
-	/// </summary>
-	private void LoadPreinstantiationInfo()
-	{
-		switch (((App)Application.Current).RunningContext.PreinstantiationInfo)
-		{
-			case { OpenedSudoku: [{ GridString: var gridString }, ..] } instance:
-			{
-				if (Grid.TryParse(gridString, out var r))
-				{
-					InitialGrid = r;
-				}
-
-				instance.OpenedSudoku = null;
-
-				break;
-			}
-#if false
-			case { OpenedProgramPreference: { } _ } instance:
-			{
-				instance.OpenedProgramPreference = null;
-
-				break;
-			}
-#endif
-		}
-	}
 
 	/// <summary>
 	/// Loads the program preference from local.
