@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:CommunityToolkit.WinUI.UI.Controls"
-	xmlns:cvt="using:SudokuStudio.Views.Conversions"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:model="using:SudokuStudio.Models"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"

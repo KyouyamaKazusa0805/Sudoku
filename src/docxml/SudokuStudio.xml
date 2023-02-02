@@ -67,21 +67,6 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
-            </summary>
-        </member>
         <member name="T:SudokuStudio.AppLifecycle.EnvironmentVariable">
             <summary>
             Provides with a set of properties or fields that is used by the program in its lifecycle.
@@ -255,7 +240,7 @@
             </summary>
             <param name="steps">The solving path steps.</param>
         </member>
-        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.Create(Sudoku.Solving.Logical.LogicalSolverResult,SudokuStudio.Views.Interaction.StepTooltipDisplayKind)">
+        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.Create(Sudoku.Solving.Logical.LogicalSolverResult,SudokuStudio.Interaction.StepTooltipDisplayKind)">
             <summary>
             Creates a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.
             </summary>
@@ -800,6 +785,703 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Inequality(Windows.System.VirtualKeyModifiers,SudokuStudio.Input.VirtualKeyModifierStatus)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.Commands.AnalyzeCommand">
+            <summary>
+            Defines a command to analyze a puzzle.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Commands.AnalyzeCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Commands.ButtonCommand">
+            <summary>
+            Defines a button command.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Interaction.Commands.ButtonCommand.CanExecuteChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Commands.ButtonCommand.CanExecute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Commands.ButtonCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Commands.FixGridCommand">
+            <summary>
+            Defines a command to fix a grid.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Commands.FixGridCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Commands.GatherCommand">
+            <summary>
+            Defines a gather command.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Commands.GatherCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Commands.OpenFileCommand">
+            <summary>
+            Defines an open-file command.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Commands.OpenFileCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Commands.SaveFileCommand">
+            <summary>
+            Defines a save-file command.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Commands.SaveFileCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Commands.UnfixGridCommand">
+            <summary>
+            Defines a command to unfix a grid.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Commands.UnfixGridCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.AnalyzeConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about analyze tab pages.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.None(System.Collections.IEnumerable)">
+            <summary>
+            Determines whether an <see cref="T:System.Collections.IEnumerable"/> collection has no elements in it.
+            </summary>
+            <param name="this">The element.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.SingletonSpan``1(Microsoft.UI.Xaml.Documents.Run)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> ionstance with a singleton value of <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Documents.Run"/> instance.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance.</returns>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.CompilationConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about compilation information.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.CoordinateLabelConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about coordinate labels.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.DifficultyLevelConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about difficulty level title label.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.Constants">
+            <target name="class" when="constant">
+				<summary>
+					Provides with constants and read-only values used by code in the current file.
+				</summary>
+			</target>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.IdentifierConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about <see cref="T:Sudoku.Presentation.Identifier"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.Constants">
+            <target name="class" when="constant">
+				<summary>
+					Provides with constants and read-only values used by code in the current file.
+				</summary>
+			</target>
+        </member>
+        <member name="F:SudokuStudio.Interaction.Conversions.Constants.ColorPalette">
+            <summary>
+            The color palette. This property stores a list of customized colors to be used as user-defined colors.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.Conversions.Constants.EliminationColor">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.Conversions.Constants.CannibalismColor">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.Conversions.Constants.ChainColor">
+            <summary>
+            Indicates the chain color.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.PencilmarkTextConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about pencilmark text.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.SelectedCellConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about selected cells.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.SudokuGridConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about puzzle details displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.Conversions.SudokuGridConversion.Solver">
+            <summary>
+            Defines a solver.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.SudokuGridLineConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about grid lines in <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> control.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.SymbolIconConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about symbol icon used by side bar buttons.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.UndoRedoButtonConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about undo and redo buttons.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.ValueTextConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about value text.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.VisibilityConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about visibility.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.CoordinateLabelDisplayKind">
+            <summary>
+            Defines a kind of coordinate label to be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.CoordinateLabelDisplayKind.None">
+            <summary>
+            Indicates the coordinate labels will not be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.CoordinateLabelDisplayKind.RxCy">
+            <summary>
+            Indicates the coordinate labels will be displayed as <see cref="T:Sudoku.Text.Notations.RxCyNotation">RxCy Notation</see>.
+            </summary>
+            <seealso cref="T:Sudoku.Text.Notations.RxCyNotation"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.CoordinateLabelDisplayKind.K9">
+            <summary>
+            Indicates the coordinate labels will be displayed as <see cref="T:Sudoku.Text.Notations.K9Notation">K9 Notation</see>.
+            </summary>
+            <seealso cref="T:Sudoku.Text.Notations.K9Notation"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.CoordinateLabelDisplayMode">
+            <summary>
+            Defines a mode that is used for describing a kind of displaying case on coordinate labels.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.CoordinateLabelDisplayMode.None">
+            <summary>
+            Indicates the mode that never displays coordinate labels.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.CoordinateLabelDisplayMode.UpperAndLeft">
+            <summary>
+            Indicates the mode that displays for coordinate labels only at upper and left-side.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.CoordinateLabelDisplayMode.FourDirection">
+            <summary>
+            Indicates the mode that displays for coordinate labels at four directions.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector">
+            <summary>
+            Defines a template selector that is applied to a solving path element.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.DefaultTemplate">
+            <summary>
+            Indicates the default template.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.StepTemplate">
+            <summary>
+            Indicates the step template.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.SelectTemplateCore(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs.#ctor(SudokuStudio.Interaction.FailedReceivedDroppedFileReason)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs"/> instance via the specified reason.
+            </summary>
+            <param name="reason">The failed reason.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs.Reason">
+            <summary>
+            Indicates the failed reason.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.FailedReceivedDroppedFileReason">
+            <summary>
+            Defines an enumeration type that describes reasons why failed to drag a file.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.FailedReceivedDroppedFileReason.FileIsEmpty">
+            <summary>
+            Indicates the failed reason is that the file is empty.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.FailedReceivedDroppedFileReason.FileIsTooLarge">
+            <summary>
+            Indicates the failed reason is that the file is too large (more than 1MB).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.FailedReceivedDroppedFileReason.FileCannotBeParsed">
+            <summary>
+            Indicates the failed reason is that the file cannot be parsed.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.IAnalyzeTabPage">
+            <summary>
+            Defines a page that is used for displaying analysis result for a puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.IAnalyzeTabPage.BasePage">
+            <summary>
+            Indicates the parent page of the current tab.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.IAnalyzeTabPage.AnalysisResult">
+            <summary>
+            Gets or sets the analysis result, updating the current tab page using this property.
+            </summary>
+            <value>The value you want to update. If <see langword="null"/>, clears the page data.</value>
+        </member>
+        <member name="T:SudokuStudio.Interaction.OpenFileFailedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.OpenFileFailedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.OpenFileFailedEventArgs.#ctor(SudokuStudio.Interaction.OpenFileFailedReason)">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventArgs"/> instance via the specified reason.
+            </summary>
+            <param name="reason">The failed reason.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.OpenFileFailedEventArgs.Reason">
+            <summary>
+            Indicates the reason.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.OpenFileFailedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Pages.AnalyzePage.OpenFileFailed"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Pages.AnalyzePage.OpenFileFailed"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.OpenFileFailedReason">
+            <summary>
+            Defines a kind of failed reason that describes why failed to load a file.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.OpenFileFailedReason.UnsnappingFailed">
+            <summary>
+            Indicates the failed reason is the program cannot unsnap.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.OpenFileFailedReason.FileIsEmpty">
+            <summary>
+            Indicates the failed reason is the target file is empty.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.OpenFileFailedReason.FileIsTooLarge">
+            <summary>
+            Indicates the failed reason is the target file is oversized.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.OpenFileFailedReason.FileCannotBeParsed">
+            <summary>
+            Indicates the failed reason is the file cannot be parsed and converted into a valid sudoku grid.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.SaveFileFailedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.SaveFileFailedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.SaveFileFailedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.SaveFileFailedEventArgs.#ctor(SudokuStudio.Interaction.SaveFileFailedReason)">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Interaction.SaveFileFailedEventArgs"/> instance via the specified reason.
+            </summary>
+            <param name="reason">The failed reason.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.SaveFileFailedEventArgs.Reason">
+            <summary>
+            Indicates the reason.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.SaveFileFailedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Pages.AnalyzePage.SaveFileFailed"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Pages.AnalyzePage.SaveFileFailed"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.SaveFileFailedReason">
+            <summary>
+            Defines a kind of failed reason that describes why failed to save a file.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SaveFileFailedReason.UnsnappingFailed">
+            <summary>
+            Indicates the failed reason is the program cannot unsnap.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.StepTooltipDisplayKind">
+            <summary>
+            Defines a display kind that displays for a step on tooltip.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.None">
+            <summary>
+            Indicates none of all elements mentioned below will be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.TechniqueName">
+            <summary>
+            Indicates the technique name will be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.TechniqueIndex">
+            <summary>
+            Indicates the position of the step in the whole solving path.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.DifficultyRating">
+            <summary>
+            Indicates the difficulty rating.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.SimpleDescription">
+            <summary>
+            Indicates the simple description.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs.#ctor(Sudoku.Solving.Logical.IStep)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs"/> instance via the specified step.
+            </summary>
+            <param name="step">The step.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs.ChosenStep">
+            <summary>
+            Indicates the chosen step.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepChosen"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepChosen"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.StringToPredicateConverter">
+            <summary>
+            Converts a <see cref="T:System.String"/> value into a predicate that can return a <see cref="T:System.Boolean"/> result.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.ValueConverters.StringToPredicateConverter.IsInverted">
+            <summary>
+            Indicates whether the value conversion is reverted.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.ValueConverters.StringToPredicateConverter.EnforceNonWhiteSpaceString">
+            <summary>
+            Indicates whether the converter will handle for whitespaces.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.StringToPredicateConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.StringToPredicateConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory">
+            <summary>
+            Defines a factory type that is used for creating a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+            to display for highlighted cells, candidates and so on.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.InternalTag">
+            <summary>
+            Indicates the tag that is used to describe the control is only used for displaying highlighted elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.GetViewUnitTargetParentControls(SudokuStudio.Views.Pages.AnalyzePage)">
+            <summary>
+            Try to get all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are candidate controls
+            storing <see cref="T:SudokuStudio.Models.ViewUnit"/>-displaying <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s.
+            </summary>
+            <param name="targetPage">The target page.</param>
+            <returns>
+            A list of controls, whose <c>Chilren</c> property can be used for removing <see cref="T:SudokuStudio.Models.ViewUnit"/>-displaying controls.
+            </returns>
+            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.RemoveViewUnitControls(SudokuStudio.Views.Pages.AnalyzePage)">
+            <summary>
+            Removes all possible controls that are used for displaying elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            </summary>
+            <param name="targetPage">The target page.</param>
+            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.AddViewUnitControls(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Models.ViewUnit)">
+            <summary>
+            Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            </summary>
+            <param name="targetPage">The target page.</param>
+            <param name="viewUnit">The view unit that you want to display.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for conclusions.
+            </summary>
+            <param name="targetPage">
+            The target page instance. This instance provides with user-defined customized properties used for displaying elements.
+            e.g. background color.
+            </param>
+            <param name="conclusion">The conclusion to be displayed.</param>
+            <param name="overlapped">A collection that stores for overlapped candidates.</param>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="cellNode">The node to be displayed.</param>
+            <seealso cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="candidateNode">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
+            </param>
+            <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalisms.</param>
+            <param name="overlapped">
+            Indicates the collection that returns a possible <see cref="T:Sudoku.Solving.Conclusion"/> value indicating
+            what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
+            </param>
+            <seealso cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNodeCore(Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell)">
+            <summary>
+            The core method called by <see cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)"/>.
+            </summary>
+            <param name="color">The color to be used on rendering.</param>
+            <param name="candidate">The candidate to be rendered.</param>
+            <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
+            <seealso cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForHouseNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.HouseViewNode)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="houseNode">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="P:Sudoku.Presentation.Nodes.HouseViewNode.House"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForChuteNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.ChuteViewNode)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/>.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="chuteNode">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="P:Sudoku.Presentation.Nodes.ChuteViewNode.ChuteIndex"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.BabaGroupNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.BabaGroupViewNode)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="babaGroupNode">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
+            </param>
+            <seealso cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForLinkNodes(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.LinkViewNode[],System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>s.
+            </summary>
+            <param name="targetPage">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
+            </param>
+            <param name="linkNodes">
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
+            </param>
+            <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
+            <remarks>
+            This method is special: We should handle all <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>s together.
+            </remarks>
+        </member>
+        <member name="T:SudokuStudio.Interaction.PathCreator">
+            <summary>
+            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
+            </summary>
+            <param name="Page">Indicates the page data.</param>
+            <param name="Converter">Indicates the position converter.</param>
+            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.PathCreator.#ctor(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Input.SudokuPanePositionConverter,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
+            <summary>
+            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
+            </summary>
+            <param name="Page">Indicates the page data.</param>
+            <param name="Converter">Indicates the position converter.</param>
+            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.PathCreator.Page">
+            <summary>Indicates the page data.</summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.PathCreator.Converter">
+            <summary>Indicates the position converter.</summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.PathCreator.Conclusions">
+            <summary>Indicates the conclusions of the whole chain.</summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.PathCreator.RotateAngle">
+            <summary>
+            Indicates the rotate angle (45 degrees).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.PathCreator.SqrtOf2">
+            <summary>
+            Indicates the square root of 2.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.PathCreator.CreateLinks(Sudoku.Presentation.Nodes.LinkViewNode[])">
+            <summary>
+            Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
+            </summary>
+            <param name="nodes">The link view nodes.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
+        </member>
+        <member name="T:SudokuStudio.Interaction.GeometryCollectionFactory">
+            <summary>
+            Represents a factory type that can creates a collection of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via the specified rule.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.Geometry"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.GeometryCollectionFactory.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
+            <summary>
+            Creates a list of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via two <see cref="T:Windows.Foundation.Point"/>s indicating start and end point respectively,
+            meaning the arrow cap lines besides the line.
+            </summary>
+            <param name="pt1">The start point.</param>
+            <param name="pt2">The end point.</param>
+            <returns>An instance of type <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/>.</returns>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
+            <summary>
+            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            </summary>
+            <param name="this">The collection.</param>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Extensions.ConflictWith(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Int32,System.Nullable{Sudoku.Solving.Conclusion}@)">
+            <summary>
+            <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
+            <para>This method is used for checking cannibalisms.</para>
+            </summary>
+            <param name="conclusions">The conclusion collection.</param>
+            <param name="candidate">The candidate to be determined.</param>
+            <param name="conclusion">The overlapped result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:SudokuStudio.Interop.DispatcherQueueOptions">
             <summary>
             Specifies the threading and apartment type for a new
@@ -1195,7 +1877,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the step details.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Models.SolvingPathStep.Deconstruct(System.Int32@,Sudoku.Concepts.Grid@,SudokuStudio.Views.Interaction.StepTooltipDisplayKind@,Sudoku.Solving.Logical.IStep@)">
+        <member name="M:SudokuStudio.Models.SolvingPathStep.Deconstruct(System.Int32@,Sudoku.Concepts.Grid@,SudokuStudio.Interaction.StepTooltipDisplayKind@,Sudoku.Solving.Logical.IStep@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -2143,68 +2825,6 @@ if (student is (name: var name, age: >= 18))
             <param name="obj">The dependency object.</param>
             <param name="value">The inlines to be added.</param>
         </member>
-        <member name="T:SudokuStudio.Views.Commands.AnalyzeCommand">
-            <summary>
-            Defines a command to analyze a puzzle.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Commands.AnalyzeCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Views.Commands.ButtonCommand">
-            <summary>
-            Defines a button command.
-            </summary>
-        </member>
-        <member name="E:SudokuStudio.Views.Commands.ButtonCommand.CanExecuteChanged">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Commands.ButtonCommand.CanExecute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Commands.ButtonCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Views.Commands.FixGridCommand">
-            <summary>
-            Defines a command to fix a grid.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Commands.FixGridCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Views.Commands.GatherCommand">
-            <summary>
-            Defines a gather command.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Commands.GatherCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Views.Commands.OpenFileCommand">
-            <summary>
-            Defines an open-file command.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Commands.OpenFileCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Views.Commands.SaveFileCommand">
-            <summary>
-            Defines a save-file command.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Commands.SaveFileCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Views.Commands.UnfixGridCommand">
-            <summary>
-            Defines a command to unfix a grid.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Commands.UnfixGridCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="T:SudokuStudio.Views.Controls.ExtendedExpander">
             <summary>
             Defines an extended <see cref="F:SudokuStudio.Views.Controls.ExtendedExpander.Expander"/> control.
@@ -2279,26 +2899,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.UnloadObject(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            UnloadObject(DependencyObject)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.DisconnectUnloadedObject(System.Int32)">
-            <summary>
-            DisconnectUnloadedObject(int connectionId)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Controls.ExtendedExpanderHeader">
             <summary>
             Represents a header control that is used by <see cref="T:SudokuStudio.Views.Controls.ExtendedExpander"/>.
@@ -2359,26 +2959,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.UnloadObject(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            UnloadObject(DependencyObject)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.DisconnectUnloadedObject(System.Int32)">
-            <summary>
-            DisconnectUnloadedObject(int connectionId)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPane">
@@ -2467,18 +3047,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the displaying kind of coordinate labels.
             </summary>
             <remarks>
-            For more information please visit <see cref="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind"/>.
+            For more information please visit <see cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayKind"/>.
             </remarks>
-            <seealso cref="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind"/>
+            <seealso cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayKind"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelDisplayMode">
             <summary>
             Indicates the displaying mode of coordinate labels.
             </summary>
             <remarks>
-            For more information please visit <see cref="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode"/>.
+            For more information please visit <see cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayMode"/>.
             </remarks>
-            <seealso cref="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode"/>
+            <seealso cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayMode"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._givenColor">
             <summary>
@@ -2710,16 +3290,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates"/>
         </member>
@@ -2869,16 +3439,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPaneCell._candidatesMask"/>
         </member>
@@ -2917,630 +3477,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.AnalyzeConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about analyze tab pages.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Views.Conversions.Extensions.None(System.Collections.IEnumerable)">
-            <summary>
-            Determines whether an <see cref="T:System.Collections.IEnumerable"/> collection has no elements in it.
-            </summary>
-            <param name="this">The element.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Conversions.Extensions.SingletonSpan``1(Microsoft.UI.Xaml.Documents.Run)">
-            <summary>
-            Creates a <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> ionstance with a singleton value of <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
-            </summary>
-            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Documents.Run"/> instance.</param>
-            <returns>A <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance.</returns>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.CompilationConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about compilation information.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.CoordinateLabelConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about coordinate labels.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.DifficultyLevelConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about difficulty level title label.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.Constants">
-            <target name="class" when="constant">
-				<summary>
-					Provides with constants and read-only values used by code in the current file.
-				</summary>
-			</target>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.IdentifierConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about <see cref="T:Sudoku.Presentation.Identifier"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Presentation.Identifier"/>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.Constants">
-            <target name="class" when="constant">
-				<summary>
-					Provides with constants and read-only values used by code in the current file.
-				</summary>
-			</target>
-        </member>
-        <member name="F:SudokuStudio.Views.Conversions.Constants.ColorPalette">
-            <summary>
-            The color palette. This property stores a list of customized colors to be used as user-defined colors.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Conversions.Constants.EliminationColor">
-            <summary>
-            Indicates the elimination color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Conversions.Constants.CannibalismColor">
-            <summary>
-            Indicates the cannibalism color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Conversions.Constants.ChainColor">
-            <summary>
-            Indicates the chain color.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.PencilmarkTextConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about pencilmark text.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.SelectedCellConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about selected cells.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.SudokuGridConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about puzzle details displayed.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Conversions.SudokuGridConversion.Solver">
-            <summary>
-            Defines a solver.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.SudokuGridLineConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about grid lines in <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> control.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.SymbolIconConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about symbol icon used by side bar buttons.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.UndoRedoButtonConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about undo and redo buttons.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.ValueTextConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about value text.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Conversions.VisibilityConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about visibility.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector">
-            <summary>
-            Defines a template selector that is applied to a solving path element.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.DefaultTemplate">
-            <summary>
-            Indicates the default template.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.StepTemplate">
-            <summary>
-            Indicates the step template.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.SelectTemplateCore(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind">
-            <summary>
-            Defines a kind of coordinate label to be displayed.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind.None">
-            <summary>
-            Indicates the coordinate labels will not be displayed.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind.RxCy">
-            <summary>
-            Indicates the coordinate labels will be displayed as <see cref="T:Sudoku.Text.Notations.RxCyNotation">RxCy Notation</see>.
-            </summary>
-            <seealso cref="T:Sudoku.Text.Notations.RxCyNotation"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayKind.K9">
-            <summary>
-            Indicates the coordinate labels will be displayed as <see cref="T:Sudoku.Text.Notations.K9Notation">K9 Notation</see>.
-            </summary>
-            <seealso cref="T:Sudoku.Text.Notations.K9Notation"/>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode">
-            <summary>
-            Defines a mode that is used for describing a kind of displaying case on coordinate labels.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode.None">
-            <summary>
-            Indicates the mode that never displays coordinate labels.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode.UpperAndLeft">
-            <summary>
-            Indicates the mode that displays for coordinate labels only at upper and left-side.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.CoordinateLabelDisplayMode.FourDirection">
-            <summary>
-            Indicates the mode that displays for coordinate labels at four directions.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventArgs">
-            <summary>
-            Provides event data used by delegate type <see cref="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventHandler"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventHandler"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventArgs.#ctor(SudokuStudio.Views.Interaction.FailedReceivedDroppedFileReason)">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventArgs"/> instance via the specified reason.
-            </summary>
-            <param name="reason">The failed reason.</param>
-        </member>
-        <member name="P:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventArgs.Reason">
-            <summary>
-            Indicates the failed reason.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileEventHandler">
-            <summary>
-            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile"/>.
-            </summary>
-            <param name="sender">An object which triggers the event.</param>
-            <param name="e">The event data provided.</param>
-            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile"/>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileReason">
-            <summary>
-            Defines an enumeration type that describes reasons why failed to drag a file.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileReason.FileIsEmpty">
-            <summary>
-            Indicates the failed reason is that the file is empty.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileReason.FileIsTooLarge">
-            <summary>
-            Indicates the failed reason is that the file is too large (more than 1MB).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.FailedReceivedDroppedFileReason.FileCannotBeParsed">
-            <summary>
-            Indicates the failed reason is that the file cannot be parsed.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.IAnalyzeTabPage">
-            <summary>
-            Defines a page that is used for displaying analysis result for a puzzle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Interaction.IAnalyzeTabPage.BasePage">
-            <summary>
-            Indicates the parent page of the current tab.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Interaction.IAnalyzeTabPage.AnalysisResult">
-            <summary>
-            Gets or sets the analysis result, updating the current tab page using this property.
-            </summary>
-            <value>The value you want to update. If <see langword="null"/>, clears the page data.</value>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.OpenFileFailedEventArgs">
-            <summary>
-            Provides event data used by delegate type <see cref="T:SudokuStudio.Views.Interaction.OpenFileFailedEventHandler"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Views.Interaction.OpenFileFailedEventHandler"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.OpenFileFailedEventArgs.#ctor(SudokuStudio.Views.Interaction.OpenFileFailedReason)">
-            <summary>
-            Initializes an <see cref="T:SudokuStudio.Views.Interaction.OpenFileFailedEventArgs"/> instance via the specified reason.
-            </summary>
-            <param name="reason">The failed reason.</param>
-        </member>
-        <member name="P:SudokuStudio.Views.Interaction.OpenFileFailedEventArgs.Reason">
-            <summary>
-            Indicates the reason.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.OpenFileFailedEventHandler">
-            <summary>
-            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Pages.AnalyzePage.OpenFileFailed"/>.
-            </summary>
-            <param name="sender">An object which triggers the event.</param>
-            <param name="e">The event data provided.</param>
-            <seealso cref="E:SudokuStudio.Views.Pages.AnalyzePage.OpenFileFailed"/>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.OpenFileFailedReason">
-            <summary>
-            Defines a kind of failed reason that describes why failed to load a file.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.OpenFileFailedReason.UnsnappingFailed">
-            <summary>
-            Indicates the failed reason is the program cannot unsnap.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.OpenFileFailedReason.FileIsEmpty">
-            <summary>
-            Indicates the failed reason is the target file is empty.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.OpenFileFailedReason.FileIsTooLarge">
-            <summary>
-            Indicates the failed reason is the target file is oversized.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.OpenFileFailedReason.FileCannotBeParsed">
-            <summary>
-            Indicates the failed reason is the file cannot be parsed and converted into a valid sudoku grid.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.SaveFileFailedEventArgs">
-            <summary>
-            Provides event data used by delegate type <see cref="T:SudokuStudio.Views.Interaction.SaveFileFailedEventHandler"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Views.Interaction.SaveFileFailedEventHandler"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.SaveFileFailedEventArgs.#ctor(SudokuStudio.Views.Interaction.SaveFileFailedReason)">
-            <summary>
-            Initializes an <see cref="T:SudokuStudio.Views.Interaction.SaveFileFailedEventArgs"/> instance via the specified reason.
-            </summary>
-            <param name="reason">The failed reason.</param>
-        </member>
-        <member name="P:SudokuStudio.Views.Interaction.SaveFileFailedEventArgs.Reason">
-            <summary>
-            Indicates the reason.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.SaveFileFailedEventHandler">
-            <summary>
-            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Pages.AnalyzePage.SaveFileFailed"/>.
-            </summary>
-            <param name="sender">An object which triggers the event.</param>
-            <param name="e">The event data provided.</param>
-            <seealso cref="E:SudokuStudio.Views.Pages.AnalyzePage.SaveFileFailed"/>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.SaveFileFailedReason">
-            <summary>
-            Defines a kind of failed reason that describes why failed to save a file.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.SaveFileFailedReason.UnsnappingFailed">
-            <summary>
-            Indicates the failed reason is the program cannot unsnap.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.StepTooltipDisplayKind">
-            <summary>
-            Defines a display kind that displays for a step on tooltip.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.StepTooltipDisplayKind.None">
-            <summary>
-            Indicates none of all elements mentioned below will be displayed.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.StepTooltipDisplayKind.TechniqueName">
-            <summary>
-            Indicates the technique name will be displayed.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.StepTooltipDisplayKind.TechniqueIndex">
-            <summary>
-            Indicates the position of the step in the whole solving path.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.StepTooltipDisplayKind.DifficultyRating">
-            <summary>
-            Indicates the difficulty rating.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.StepTooltipDisplayKind.SimpleDescription">
-            <summary>
-            Indicates the simple description.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventArgs">
-            <summary>
-            Provides event data used by delegate type <see cref="T:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventHandler"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventHandler"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventArgs.#ctor(Sudoku.Solving.Logical.IStep)">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventArgs"/> instance via the specified step.
-            </summary>
-            <param name="step">The step.</param>
-        </member>
-        <member name="P:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventArgs.ChosenStep">
-            <summary>
-            Indicates the chosen step.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.TechniqueGroupViewStepChosenEventHandler">
-            <summary>
-            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepChosen"/>.
-            </summary>
-            <param name="sender">An object which triggers the event.</param>
-            <param name="e">The event data provided.</param>
-            <seealso cref="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepChosen"/>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory">
-            <summary>
-            Defines a factory type that is used for creating a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
-            to display for highlighted cells, candidates and so on.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.InternalTag">
-            <summary>
-            Indicates the tag that is used to describe the control is only used for displaying highlighted elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.GetViewUnitTargetParentControls(SudokuStudio.Views.Pages.AnalyzePage)">
-            <summary>
-            Try to get all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are candidate controls
-            storing <see cref="T:SudokuStudio.Models.ViewUnit"/>-displaying <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s.
-            </summary>
-            <param name="targetPage">The target page.</param>
-            <returns>
-            A list of controls, whose <c>Chilren</c> property can be used for removing <see cref="T:SudokuStudio.Models.ViewUnit"/>-displaying controls.
-            </returns>
-            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
-            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.RemoveViewUnitControls(SudokuStudio.Views.Pages.AnalyzePage)">
-            <summary>
-            Removes all possible controls that are used for displaying elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
-            </summary>
-            <param name="targetPage">The target page.</param>
-            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.AddViewUnitControls(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Models.ViewUnit)">
-            <summary>
-            Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
-            </summary>
-            <param name="targetPage">The target page.</param>
-            <param name="viewUnit">The view unit that you want to display.</param>
-            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
-            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for conclusions.
-            </summary>
-            <param name="targetPage">
-            The target page instance. This instance provides with user-defined customized properties used for displaying elements.
-            e.g. background color.
-            </param>
-            <param name="conclusion">The conclusion to be displayed.</param>
-            <param name="overlapped">A collection that stores for overlapped candidates.</param>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>.
-            </summary>
-            <param name="targetPage">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
-            </param>
-            <param name="cellNode">The node to be displayed.</param>
-            <seealso cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
-            </summary>
-            <param name="targetPage">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
-            </param>
-            <param name="candidateNode">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
-            </param>
-            <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalisms.</param>
-            <param name="overlapped">
-            Indicates the collection that returns a possible <see cref="T:Sudoku.Solving.Conclusion"/> value indicating
-            what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
-            </param>
-            <seealso cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNodeCore(Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell)">
-            <summary>
-            The core method called by <see cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)"/>.
-            </summary>
-            <param name="color">The color to be used on rendering.</param>
-            <param name="candidate">The candidate to be rendered.</param>
-            <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
-            <seealso cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForHouseNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.HouseViewNode)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>.
-            </summary>
-            <param name="targetPage">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
-            </param>
-            <param name="houseNode">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="P:Sudoku.Presentation.Nodes.HouseViewNode.House"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForChuteNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.ChuteViewNode)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/>.
-            </summary>
-            <param name="targetPage">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
-            </param>
-            <param name="chuteNode">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="P:Sudoku.Presentation.Nodes.ChuteViewNode.ChuteIndex"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.BabaGroupNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.BabaGroupViewNode)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>.
-            </summary>
-            <param name="targetPage">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
-            </param>
-            <param name="babaGroupNode">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
-            </param>
-            <seealso cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForLinkNodes(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.LinkViewNode[],System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>s.
-            </summary>
-            <param name="targetPage">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='targetPage']"/>
-            </param>
-            <param name="linkNodes">
-            <inheritdoc cref="M:SudokuStudio.Views.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Pages.AnalyzePage,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
-            </param>
-            <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
-            <remarks>
-            This method is special: We should handle all <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>s together.
-            </remarks>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.PathCreator">
-            <summary>
-            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
-            </summary>
-            <param name="Page">Indicates the page data.</param>
-            <param name="Converter">Indicates the position converter.</param>
-            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
-            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.PathCreator.#ctor(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Input.SudokuPanePositionConverter,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
-            <summary>
-            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
-            </summary>
-            <param name="Page">Indicates the page data.</param>
-            <param name="Converter">Indicates the position converter.</param>
-            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
-            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Interaction.PathCreator.Page">
-            <summary>Indicates the page data.</summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Interaction.PathCreator.Converter">
-            <summary>Indicates the position converter.</summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Interaction.PathCreator.Conclusions">
-            <summary>Indicates the conclusions of the whole chain.</summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.PathCreator.RotateAngle">
-            <summary>
-            Indicates the rotate angle (45 degrees).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Interaction.PathCreator.SqrtOf2">
-            <summary>
-            Indicates the square root of 2.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.PathCreator.CreateLinks(Sudoku.Presentation.Nodes.LinkViewNode[])">
-            <summary>
-            Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
-            </summary>
-            <param name="nodes">The link view nodes.</param>
-            <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.GeometryCollectionFactory">
-            <summary>
-            Represents a factory type that can creates a collection of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via the specified rule.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Media.Geometry"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.GeometryCollectionFactory.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
-            <summary>
-            Creates a list of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via two <see cref="T:Windows.Foundation.Point"/>s indicating start and end point respectively,
-            meaning the arrow cap lines besides the line.
-            </summary>
-            <param name="pt1">The start point.</param>
-            <param name="pt2">The end point.</param>
-            <returns>An instance of type <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/>.</returns>
-        </member>
-        <member name="T:SudokuStudio.Views.Interaction.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
-            <summary>
-            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
-            </summary>
-            <param name="this">The collection.</param>
-        </member>
-        <member name="M:SudokuStudio.Views.Interaction.Extensions.ConflictWith(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Int32,System.Nullable{Sudoku.Solving.Conclusion}@)">
-            <summary>
-            <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
-            <para>This method is used for checking cannibalisms.</para>
-            </summary>
-            <param name="conclusions">The conclusion collection.</param>
-            <param name="candidate">The candidate to be determined.</param>
-            <param name="conclusion">The overlapped result.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.AboutPage">
             <summary>
             Represents about page.
@@ -3554,16 +3490,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.AboutPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
@@ -3729,16 +3655,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched"/>
         </member>
@@ -3775,7 +3691,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.BasePage">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.SudokuStudio#Views#Interaction#IAnalyzeTabPage#AnalysisResult">
+        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.SudokuStudio#Interaction#IAnalyzeTabPage#AnalysisResult">
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetTechniqueGroups(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logical.IStep})">
@@ -3790,16 +3706,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs">
             <summary>
             Defines a tab page that displays for graphs that describes the difficulty and analysis data of a puzzle.
@@ -3811,7 +3717,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._analysisResult">
-            <inheritdoc cref="P:SudokuStudio.Views.Interaction.IAnalyzeTabPage.AnalysisResult"/>
+            <inheritdoc cref="P:SudokuStudio.Interaction.IAnalyzeTabPage.AnalysisResult"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyDistribution">
             <summary>
@@ -3900,16 +3806,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._analysisResult"/>
         </member>
@@ -3953,16 +3849,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._analysisResult"/>
         </member>
@@ -3990,16 +3876,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
@@ -4033,12 +3909,12 @@ if (student is (name: var name, age: >= 18))
         <member name="E:SudokuStudio.Views.Pages.Operation.BasicOperation.PropertyChanged">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.OnSaveFileFailed(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Views.Interaction.SaveFileFailedEventArgs)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.OnSaveFileFailed(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Interaction.SaveFileFailedEventArgs)">
             <summary>
             The method called by <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/>.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.OnOpenFileFailed(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Views.Interaction.OpenFileFailedEventArgs)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.OnOpenFileFailed(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Interaction.OpenFileFailedEventArgs)">
             <summary>
             The method called by <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/>.
             </summary>
@@ -4046,16 +3922,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
@@ -4130,37 +3996,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             InitializeComponent()
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.ValueConverters.StringToPredicateConverter">
-            <summary>
-            Converts a <see cref="T:System.String"/> value into a predicate that can return a <see cref="T:System.Boolean"/> result.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.ValueConverters.StringToPredicateConverter.IsInverted">
-            <summary>
-            Indicates whether the value conversion is reverted.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.ValueConverters.StringToPredicateConverter.EnforceNonWhiteSpaceString">
-            <summary>
-            Indicates whether the converter will handle for whitespaces.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.ValueConverters.StringToPredicateConverter.Convert(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.ValueConverters.StringToPredicateConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
             <summary>
@@ -4282,36 +4117,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.UI.ColorExtensions">

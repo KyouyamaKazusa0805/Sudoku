@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
-	xmlns:cvt="using:SudokuStudio.Views.ValueConverters"
+	xmlns:cvt="using:SudokuStudio.Interaction.ValueConverters"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:ExtendedExpanderHeader}">
 	<UserControl.Resources>
 		<cvt:StringToPredicateConverter x:Key="NullToTrueConverter" />

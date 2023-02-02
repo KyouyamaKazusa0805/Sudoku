@@ -5,8 +5,8 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:a="using:SudokuStudio.Views.Attached"
-	xmlns:cvt="using:SudokuStudio.Views.Conversions"
-	xmlns:dts="using:SudokuStudio.Views.DataTemplateSelectors"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
+	xmlns:dts="using:SudokuStudio.Interaction.DataTemplateSelectors"
 	xmlns:model="using:SudokuStudio.Models"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}">
