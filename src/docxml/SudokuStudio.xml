@@ -263,6 +263,11 @@
             <param name="displayKind">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
         </member>
+        <member name="T:SudokuStudio.Configuration.ColorScheme">
+            <summary>
+            Defines a set of color-related preference items.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Configuration.LogicalAnalysisPreference">
             <summary>
             Represents with preference items that is used by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>.
@@ -305,19 +310,27 @@
         <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.LogicalSolverIgnoresHighAllocationAlgorithms">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreHighAllocationAlgorithms"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.MaxSizeOfRegularWing">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.RegularWingStepSearcher_MaxSize"/>
         </member>
         <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.MaxSizeOfComplexFish">
             <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.ComplexFishStepSearcher_MaxSize"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.StepGathererMaxStepsGathered">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.MaxStepsGathered"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.Solver">
             <summary>
             The faster entry of project-scoped solver instance.
             </summary>
         </member>
-        <member name="E:SudokuStudio.Configuration.LogicalAnalysisPreference.PropertyChanged">
-            <inheritdoc/>
+        <member name="P:SudokuStudio.Configuration.LogicalAnalysisPreference.Gatherer">
+            <summary>
+            The faster entry of project-scoped step gatherer instance.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Configuration.PreferenceGroup">
             <summary>
@@ -333,6 +346,15 @@
             </summary>
             <param name="other">The newer instance that is used for covering the current instance.</param>
         </member>
+        <member name="M:SudokuStudio.Configuration.PreferenceGroup.TriggerPropertyChanged(System.String)">
+            <summary>
+            To trigger the event <see cref="E:SudokuStudio.Configuration.PreferenceGroup.PropertyChanged"/>.
+            </summary>
+            <param name="propertyName">
+            The property name. You may not assign this property with the specified value;
+            the value will be replaced with suitable value by compiler.
+            </param>
+        </member>
         <member name="T:SudokuStudio.Configuration.ProgramPreference">
             <summary>
             Defines a user-defined program preference.
@@ -341,19 +363,15 @@
         <member name="P:SudokuStudio.Configuration.ProgramPreference.LogicalAnalysisPreferences">
             <inheritdoc cref="T:SudokuStudio.Configuration.LogicalAnalysisPreference"/>
         </member>
-        <member name="T:SudokuStudio.Configuration.ProgramPreferenceExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:SudokuStudio.Configuration.ProgramPreference"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Configuration.ProgramPreference"/>
+        <member name="P:SudokuStudio.Configuration.ProgramPreference.ColorScheme">
+            <inheritdoc cref="T:SudokuStudio.Configuration.ColorScheme"/>
         </member>
-        <member name="M:SudokuStudio.Configuration.ProgramPreferenceExtensions.CoverBy(SudokuStudio.Configuration.ProgramPreference,SudokuStudio.Configuration.ProgramPreference)">
+        <member name="M:SudokuStudio.Configuration.ProgramPreference.CoverBy(SudokuStudio.Configuration.ProgramPreference)">
             <summary>
             Try to cover the preference from the specified instance <paramref name="new"/>.
             </summary>
-            <param name="this">The current instance to be covered.</param>
             <param name="new">The newer instance that is used for covering the current instance.</param>
-            <exception cref="T:System.NotSupportedException">Throws when the property type is not supported to be serialized.</exception>
+            <exception cref="T:System.NotSupportedException">Throws when the property type is not supported to be serialized, or not found.</exception>
         </member>
         <member name="T:SudokuStudio.Input.Hotkey">
             <summary>

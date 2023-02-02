@@ -6,7 +6,7 @@
 public abstract class PreferenceGroup : INotifyPropertyChanged
 {
 	/// <inheritdoc/>
-	public abstract event PropertyChangedEventHandler? PropertyChanged;
+	public event PropertyChangedEventHandler? PropertyChanged;
 
 
 	/// <summary>
@@ -14,8 +14,6 @@ public abstract class PreferenceGroup : INotifyPropertyChanged
 	/// </summary>
 	/// <param name="other">The newer instance that is used for covering the current instance.</param>
 	[DebuggerStepThrough]
-	[RequiresUnreferencedCode(RequiresCompilerInvocationMessage.CompilerInvocationOnly)]
-	[Obsolete(RequiresCompilerInvocationMessage.CompilerInvocationOnly, false, DiagnosticId = "SCA0116")]
 	public void CoverBy(PreferenceGroup other)
 	{
 		foreach (var propertyInfo in GetType().GetProperties())
@@ -23,4 +21,14 @@ public abstract class PreferenceGroup : INotifyPropertyChanged
 			propertyInfo.SetValue(this, propertyInfo.GetValue(other));
 		}
 	}
+
+	/// <summary>
+	/// To trigger the event <see cref="PropertyChanged"/>.
+	/// </summary>
+	/// <param name="propertyName">
+	/// The property name. You may not assign this property with the specified value;
+	/// the value will be replaced with suitable value by compiler.
+	/// </param>
+	protected void TriggerPropertyChanged([CallerMemberName] string? propertyName = null)
+		=> PropertyChanged?.Invoke(this, new(propertyName));
 }

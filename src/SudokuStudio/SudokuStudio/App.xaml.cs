@@ -41,6 +41,7 @@ public partial class App : Application
 	/// Indicates the first-opened grid.
 	/// </summary>
 	[DisallowNull]
+	[DebuggerHidden]
 	internal Grid? FirstGrid { get; set; }
 
 	/// <summary>
@@ -51,6 +52,7 @@ public partial class App : Application
 	/// <summary>
 	/// Defines the sudoku pane used.
 	/// </summary>
+	[DebuggerHidden]
 	internal SudokuPane? SudokuPane { get; set; }
 
 

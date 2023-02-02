@@ -20,7 +20,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.SingleStepSearcher_EnableFullHouse = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(EnableFullHouse)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -38,7 +38,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.SingleStepSearcher_EnableLastDigit = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(EnableLastDigit)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -56,7 +56,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.SingleStepSearcher_HiddenSinglesInBlockFirst = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(HiddenSinglesInBlockFirst)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -74,7 +74,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(AllowIncompleteUniqueRectangles)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -92,7 +92,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(SearchForExtendedUniqueRectangles)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -110,7 +110,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(SearchExtendedBivalueUniversalGraveTypes)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -128,7 +128,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.AlmostLockedSetsXzStepSearcher_AllowCollision = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(AllowCollisionOnAlmostLockedSetXzRule)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -146,7 +146,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(AllowLoopedPatternsOnAlmostLockedSetXzRule)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -164,7 +164,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.AlmostLockedSetsXyWingStepSearcher_AllowCollision = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(AllowCollisionOnAlmostLockedSetXyWing)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -182,7 +182,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.IsFullApplying = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(LogicalSolverIsFullApplying)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -200,7 +200,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.IgnoreSlowAlgorithms = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(LogicalSolverIgnoresSlowAlgorithms)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -218,7 +218,25 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.IgnoreHighAllocationAlgorithms = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(LogicalSolverIgnoresHighAllocationAlgorithms)));
+			TriggerPropertyChanged();
+		}
+	}
+
+	/// <inheritdoc cref="StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps"/>
+	public bool StepGathererOnlySearchSameLevelTechniquesInFindAllSteps
+	{
+		get => Gatherer.OnlyShowSameLevelTechniquesInFindAllSteps;
+
+		set
+		{
+			if (StepGathererOnlySearchSameLevelTechniquesInFindAllSteps == value)
+			{
+				return;
+			}
+
+			Gatherer.OnlyShowSameLevelTechniquesInFindAllSteps = value;
+
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -236,7 +254,7 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.RegularWingStepSearcher_MaxSize = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(MaxSizeOfRegularWing)));
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -254,7 +272,25 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 
 			Solver.ComplexFishStepSearcher_MaxSize = value;
 
-			PropertyChanged?.Invoke(this, new(nameof(MaxSizeOfComplexFish)));
+			TriggerPropertyChanged();
+		}
+	}
+
+	/// <inheritdoc cref="StepsGatherer.MaxStepsGathered"/>
+	public int StepGathererMaxStepsGathered
+	{
+		get => Gatherer.MaxStepsGathered;
+
+		set
+		{
+			if (StepGathererMaxStepsGathered == value)
+			{
+				return;
+			}
+
+			Gatherer.MaxStepsGathered = value;
+
+			TriggerPropertyChanged();
 		}
 	}
 
@@ -264,7 +300,9 @@ public sealed class LogicalAnalysisPreference : PreferenceGroup
 	[JsonIgnore]
 	private LogicalSolver Solver => ((App)Application.Current).EnvironmentVariables.Solver;
 
-
-	/// <inheritdoc/>
-	public override event PropertyChangedEventHandler? PropertyChanged;
+	/// <summary>
+	/// The faster entry of project-scoped step gatherer instance.
+	/// </summary>
+	[JsonIgnore]
+	private StepsGatherer Gatherer => ((App)Application.Current).EnvironmentVariables.Gatherer;
 }
