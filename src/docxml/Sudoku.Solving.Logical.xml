@@ -14832,7 +14832,8 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="T">The type of the step searcher you want to fetch.</typeparam>
             <param name="this">The pool where all possible step searchers are stored.</param>
             <returns>
-            The found step searcher instance. If the type is marked <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>,
+            The found step searcher instance.
+            If the type is marked <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>,
             the method will return the first found instance.
             </returns>
             <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>

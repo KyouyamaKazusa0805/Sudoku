@@ -12,12 +12,12 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.InvalidStepGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.LogicalSolverOperationsGenerator">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.LogicalSolverPropertiesGenerator">
             <summary>
-            Defines a source generator that generates the source code that are options used in logical solver type.
+            Defines a source generator that generates the source code that are setting properties used in logical solver type.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.LogicalSolverOperationsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.LogicalSolverPropertiesGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator">
