@@ -120,12 +120,7 @@ file sealed class Converter : JsonConverter<DashArray>
 	/// <inheritdoc/>
 	public override DashArray Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
-		if (typeToConvert != typeof(DashArray))
-		{
-			throw new JsonException();
-		}
-
-		if (reader.TokenType != JsonTokenType.StartArray)
+		if (typeToConvert != typeof(DashArray) || reader.TokenType != JsonTokenType.StartArray)
 		{
 			throw new JsonException();
 		}
@@ -135,10 +130,34 @@ file sealed class Converter : JsonConverter<DashArray>
 		{
 			switch (reader.TokenType)
 			{
-				case JsonTokenType.Number:
+				case JsonTokenType.Number when options.NumberHandling == JsonNumberHandling.Strict:
 				{
 					targetCollection.Add(reader.GetDouble());
 					break;
+				}
+				case JsonTokenType.String when options.NumberHandling is var o && o.Flags(JsonNumberHandling.AllowReadingFromString):
+				{
+					if (reader.TryGetDouble(out var value))
+					{
+						targetCollection.Add(value);
+						break;
+					}
+
+					targetCollection.Add(
+						reader.GetString() switch
+						{
+							nameof(double.NaN) when optionPredicate() => double.NaN,
+							"Infinity" when optionPredicate() => double.PositiveInfinity,
+							"-Infinity" when optionPredicate() => double.NegativeInfinity,
+							{ } s => double.Parse(s),
+							_ => throw new JsonException()
+						}
+					);
+
+					break;
+
+
+					bool optionPredicate() => o.Flags(JsonNumberHandling.AllowNamedFloatingPointLiterals);
 				}
 				case JsonTokenType.EndArray:
 				{
@@ -157,5 +176,38 @@ file sealed class Converter : JsonConverter<DashArray>
 
 	/// <inheritdoc/>
 	public override void Write(Utf8JsonWriter writer, DashArray value, JsonSerializerOptions options)
-		=> writer.WriteArray(value._doubles, options);
+	{
+		writer.WriteStartArray();
+		foreach (var element in value._doubles)
+		{
+			switch (options)
+			{
+				case { NumberHandling: var o } when o.Flags(JsonNumberHandling.WriteAsString):
+				{
+					writer.WriteStringValue(element.ToString());
+					break;
+				}
+				case { NumberHandling: var o } when o.Flags(JsonNumberHandling.AllowNamedFloatingPointLiterals):
+				{
+					writer.WriteStringValue(
+						element switch
+						{
+							double.NaN => nameof(double.NaN),
+							double.NegativeInfinity => "-Infinity",
+							double.PositiveInfinity => "Infinity",
+							_ => element.ToString()
+						}
+					);
+					break;
+				}
+				default:
+				{
+					writer.WriteNumberValue(element);
+					break;
+				}
+			}
+		}
+
+		writer.WriteEndArray();
+	}
 }
