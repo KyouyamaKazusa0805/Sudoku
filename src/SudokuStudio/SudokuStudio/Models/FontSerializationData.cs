@@ -16,7 +16,7 @@ public sealed partial class FontSerializationData :
 	/// <summary>
 	/// Indicates the font scale.
 	/// </summary>
-	public decimal FontScale { get; set; } = .6M;
+	public double FontScale { get; set; } = .6;
 
 	/// <summary>
 	/// Indicates the font color.

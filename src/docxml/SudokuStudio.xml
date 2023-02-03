@@ -2704,6 +2704,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Settings &amp; Preferences.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ChainStrokeThicknessTitle">
+            <summary>
+              Looks up a localized string similar to Stroke thickness of chain links.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DisplayCursorsDescription">
             <summary>
               Looks up a localized string similar to Cursors are a group of highlighted cells that describes what cell your cursor point points to..
@@ -2724,9 +2729,19 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Distinct with delta digits.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_HighlightBackgroundOpacityTitle">
+            <summary>
+              Looks up a localized string similar to Opacity of background-styled highlighted items.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle">
+            <summary>
+              Looks up a localized string similar to Scale of highlighted candidate background circles.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Intro">
             <summary>
-              Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used..
+              Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OffContent">
@@ -2737,6 +2752,26 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OnContent">
             <summary>
               Looks up a localized string similar to Yes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OutsideCoordinateDisplayDirectionsTitle">
+            <summary>
+              Looks up a localized string similar to Coordinate display directions.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OutsideCoordinateFourDirection">
+            <summary>
+              Looks up a localized string similar to Four directions.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OutsideCoordinateNone">
+            <summary>
+              Looks up a localized string similar to None.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OutsideCoordinateUpperAndLeft">
+            <summary>
+              Looks up a localized string similar to Top &amp; left.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.Sudoku">
@@ -4158,6 +4193,11 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Views.Pages.SettingsPage">
             <summary>
             Defines the settings page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SettingsPage._coordinateLabelDisplayModes">
+            <summary>
+            The backing field of coordinate displaying modes.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.SettingsPage.#ctor">

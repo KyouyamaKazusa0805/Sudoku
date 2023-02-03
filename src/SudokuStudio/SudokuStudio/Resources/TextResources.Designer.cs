@@ -1168,6 +1168,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stroke thickness of chain links.
+        /// </summary>
+        internal static string SettingsPage_ChainStrokeThicknessTitle {
+            get {
+                return ResourceManager.GetString("SettingsPage_ChainStrokeThicknessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cursors are a group of highlighted cells that describes what cell your cursor point points to..
         /// </summary>
         internal static string SettingsPage_DisplayCursorsDescription {
@@ -1204,7 +1213,25 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used..
+        ///   Looks up a localized string similar to Opacity of background-styled highlighted items.
+        /// </summary>
+        internal static string SettingsPage_HighlightBackgroundOpacityTitle {
+            get {
+                return ResourceManager.GetString("SettingsPage_HighlightBackgroundOpacityTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scale of highlighted candidate background circles.
+        /// </summary>
+        internal static string SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle {
+            get {
+                return ResourceManager.GetString("SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
         /// </summary>
         internal static string SettingsPage_Intro {
             get {
@@ -1227,6 +1254,42 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_OnContent {
             get {
                 return ResourceManager.GetString("SettingsPage_OnContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coordinate display directions.
+        /// </summary>
+        internal static string SettingsPage_OutsideCoordinateDisplayDirectionsTitle {
+            get {
+                return ResourceManager.GetString("SettingsPage_OutsideCoordinateDisplayDirectionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Four directions.
+        /// </summary>
+        internal static string SettingsPage_OutsideCoordinateFourDirection {
+            get {
+                return ResourceManager.GetString("SettingsPage_OutsideCoordinateFourDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string SettingsPage_OutsideCoordinateNone {
+            get {
+                return ResourceManager.GetString("SettingsPage_OutsideCoordinateNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top &amp; left.
+        /// </summary>
+        internal static string SettingsPage_OutsideCoordinateUpperAndLeft {
+            get {
+                return ResourceManager.GetString("SettingsPage_OutsideCoordinateUpperAndLeft", resourceCulture);
             }
         }
         

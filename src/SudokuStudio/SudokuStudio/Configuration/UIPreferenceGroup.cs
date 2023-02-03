@@ -16,13 +16,13 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 	public bool DistinctWithDeltaDigits { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.HighlightCandidateCircleScale"/>
-	public decimal HighlightedPencilmarkBackgroundEllipseScale { get; set; }
+	public double HighlightedPencilmarkBackgroundEllipseScale { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.HighlightBackgroundOpacity"/>
-	public decimal HighlightedBackgroundOpacity { get; set; }
+	public double HighlightedBackgroundOpacity { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.ChainStrokeThickness"/>
-	public decimal ChainStrokeThickness { get; set; }
+	public double ChainStrokeThickness { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.CoordinateLabelDisplayKind"/>
 	public CoordinateLabelDisplayKind CoordinateLabelDisplayKind { get; set; }
@@ -126,9 +126,9 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		pane.DisplayCandidates = DisplayCandidates;
 		pane.DisplayCursors = DisplayCursors;
 		pane.UseDifferentColorToDisplayDeltaDigits = DistinctWithDeltaDigits;
-		pane.HighlightCandidateCircleScale = (double)HighlightedPencilmarkBackgroundEllipseScale;
-		pane.HighlightBackgroundOpacity = (double)HighlightedBackgroundOpacity;
-		pane.ChainStrokeThickness = (double)ChainStrokeThickness;
+		pane.HighlightCandidateCircleScale = HighlightedPencilmarkBackgroundEllipseScale;
+		pane.HighlightBackgroundOpacity = HighlightedBackgroundOpacity;
+		pane.ChainStrokeThickness = ChainStrokeThickness;
 		pane.CoordinateLabelDisplayKind = CoordinateLabelDisplayKind;
 		pane.CoordinateLabelDisplayMode = CoordinateLabelDisplayMode;
 		pane.DeltaCellColor = DeltaValueColor;
@@ -153,17 +153,17 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		pane.UserDefinedColorPalette = UserDefinedColorPalette;
 		pane.AlmostLockedSetsColors = AlmostLockedSetsColors;
 		pane.ValueFont = new(GivenFontData.FontName);
-		pane.ValueFontScale = (double)GivenFontData.FontScale;
+		pane.ValueFontScale = GivenFontData.FontScale;
 		pane.GivenColor = GivenFontData.FontColor;
 		pane.ModifiableColor = ModifiableFontData.FontColor;
 		pane.PencilmarkFont = new(PencilmarkFontData.FontName);
-		pane.PencilmarkFontScale = (double)PencilmarkFontData.FontScale;
+		pane.PencilmarkFontScale = PencilmarkFontData.FontScale;
 		pane.PencilmarkColor = PencilmarkFontData.FontColor;
 		pane.BabaGroupLabelFont = new(BabaGroupingFontData.FontName);
-		pane.BabaGroupLabelFontScale = (double)BabaGroupingFontData.FontScale;
+		pane.BabaGroupLabelFontScale = BabaGroupingFontData.FontScale;
 		pane.BabaGroupLabelColor = BabaGroupingFontData.FontColor;
 		pane.CoordinateLabelFont = new(CoordinateLabelFontData.FontName);
-		pane.CoordinateLabelFontScale = (double)CoordinateLabelFontData.FontScale;
+		pane.CoordinateLabelFontScale = CoordinateLabelFontData.FontScale;
 		pane.CoordinateLabelColor = CoordinateLabelFontData.FontColor;
 	}
 }

@@ -459,6 +459,9 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>Settings &amp; Preferences</value>
   </data>
+  <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
+    <value>Stroke thickness of chain links</value>
+  </data>
   <data name="SettingsPage_DisplayCursorsDescription" xml:space="preserve">
     <value>Cursors are a group of highlighted cells that describes what cell your cursor point points to.</value>
   </data>
@@ -471,14 +474,32 @@
   <data name="SettingsPage_DistinctWithDeltaDigitsTitle" xml:space="preserve">
     <value>Distinct with delta digits</value>
   </data>
+  <data name="SettingsPage_HighlightBackgroundOpacityTitle" xml:space="preserve">
+    <value>Opacity of background-styled highlighted items</value>
+  </data>
+  <data name="SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle" xml:space="preserve">
+    <value>Scale of highlighted candidate background circles</value>
+  </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
-    <value>Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used.</value>
+    <value>Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting.</value>
   </data>
   <data name="SettingsPage_OffContent" xml:space="preserve">
     <value>No</value>
   </data>
   <data name="SettingsPage_OnContent" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="SettingsPage_OutsideCoordinateDisplayDirectionsTitle" xml:space="preserve">
+    <value>Coordinate display directions</value>
+  </data>
+  <data name="SettingsPage_OutsideCoordinateFourDirection" xml:space="preserve">
+    <value>Four directions</value>
+  </data>
+  <data name="SettingsPage_OutsideCoordinateNone" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="SettingsPage_OutsideCoordinateUpperAndLeft" xml:space="preserve">
+    <value>Top &amp; left</value>
   </data>
   <data name="Sudoku" xml:space="preserve">
     <value>Sudoku</value>
