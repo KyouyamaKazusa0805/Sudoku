@@ -52,8 +52,11 @@
 			<StackPanel Spacing="6">
 				<TextBlock Text="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}" FontWeight="Bold" />
 				<ComboBox
-					Width="200" ItemsSource="{x:Bind _coordinateLabelDisplayModes}" SelectedValuePath="Item1" DisplayMemberPath="Item2"
-					SelectedValue="{x:Bind ((z:App)y:Application.Current).ProgramPreference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}" />
+					Width="200" SelectedIndex="{x:Bind ((z:App)y:Application.Current).ProgramPreference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
+					<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
+				</ComboBox>
 			</StackPanel>
 		</StackPanel>
 	</ScrollViewer>

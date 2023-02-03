@@ -25,10 +25,10 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 	public double ChainStrokeThickness { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.CoordinateLabelDisplayKind"/>
-	public CoordinateLabelDisplayKind CoordinateLabelDisplayKind { get; set; }
+	public int CoordinateLabelDisplayKind { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.CoordinateLabelDisplayMode"/>
-	public CoordinateLabelDisplayMode CoordinateLabelDisplayMode { get; set; }
+	public int CoordinateLabelDisplayMode { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.DeltaCellColor"/>
 	public Color DeltaValueColor { get; set; }
@@ -129,8 +129,8 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		pane.HighlightCandidateCircleScale = HighlightedPencilmarkBackgroundEllipseScale;
 		pane.HighlightBackgroundOpacity = HighlightedBackgroundOpacity;
 		pane.ChainStrokeThickness = ChainStrokeThickness;
-		pane.CoordinateLabelDisplayKind = CoordinateLabelDisplayKind;
-		pane.CoordinateLabelDisplayMode = CoordinateLabelDisplayMode;
+		pane.CoordinateLabelDisplayKind = (CoordinateLabelDisplayKind)CoordinateLabelDisplayKind;
+		pane.CoordinateLabelDisplayMode = (CoordinateLabelDisplayMode)CoordinateLabelDisplayMode;
 		pane.DeltaCellColor = DeltaValueColor;
 		pane.DeltaCandidateColor = DeltaPencilmarkColor;
 		pane.BorderColor = SudokuPaneBorderColor;
