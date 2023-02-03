@@ -83,8 +83,22 @@
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True" DisplayCursors="True"
 					CursorBackgroundColor="#200000FF" GivenColor="Black" ModifiableColor="Blue" PencilmarkColor="#646464"
 					BabaGroupLabelColor="Red" BorderColor="Black" CoordinateLabelColor="#646464" LinkColor="Red"
-					DeltaCandidateColor="#FFB9B9" DeltaCellColor="Red" EliminationColor="#FF7684" CannibalismColor="#EB0000"
+					DeltaCandidateColor="#FFB9B9" DeltaCellColor="Red" ExofinColor="#7FBBFF" EndofinColor="#D8B2FF"
+					NormalColor="#3FDA65"
+					AssignmentColor="#3FDA65" OverlappedAssignmentColor="#00FFCC" EliminationColor="#FF7684" CannibalismColor="#EB0000"
 					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}">
+					<c:SudokuPane.AuxiliaryColors>
+						<Color>#FFC059</Color>
+						<Color>#7FBBFF</Color>
+						<Color>#D8B2FF</Color>
+					</c:SudokuPane.AuxiliaryColors>
+					<c:SudokuPane.AlmostLockedSetsColors>
+						<Color>#ffcbcb</Color>
+						<Color>#b2dfdf</Color>
+						<Color>#fcdca5</Color>
+						<Color>#ffff96</Color>
+						<Color>#f7de8f</Color>
+					</c:SudokuPane.AlmostLockedSetsColors>
 					<c:SudokuPane.DifficultyLevelForegrounds>
 						<Color>#0033CC</Color>
 						<Color>#006600</Color>

@@ -380,7 +380,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		if (((App)Application.Current).FirstGrid is { } grid)
 		{
 			SudokuPane.Puzzle = grid;
-			((App)Application.Current).FirstGrid = null!;
+			((App)Application.Current).FirstGrid = null!; // Maybe not necessary...
 		}
 	}
 

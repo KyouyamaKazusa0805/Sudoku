@@ -2031,6 +2031,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the assignment color.
             </summary>
         </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.OverlappedAssignment">
+            <summary>
+            Indicates the overlapped assignment color.
+            </summary>
+        </member>
         <member name="F:Sudoku.Presentation.DisplayColorKind.Elimination">
             <summary>
             Indicates the elimination color.

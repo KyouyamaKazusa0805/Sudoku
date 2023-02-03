@@ -31,6 +31,11 @@ public enum DisplayColorKind : byte
 	Assignment,
 
 	/// <summary>
+	/// Indicates the overlapped assignment color.
+	/// </summary>
+	OverlappedAssignment,
+
+	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
 	Elimination,

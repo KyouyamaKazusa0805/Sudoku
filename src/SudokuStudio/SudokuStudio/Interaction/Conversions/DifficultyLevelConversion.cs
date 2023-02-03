@@ -20,15 +20,15 @@ internal static class DifficultyLevelConversion
 	public static Color GetBackgroundRawColor(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			0 or > DifficultyLevel.LastResort => ((App)Application.Current).ProgramPreference.UIPreferences.Backgrounds[^1],
-			_ => ((App)Application.Current).ProgramPreference.UIPreferences.Backgrounds[Log2((byte)difficultyLevel)]
+			0 or > DifficultyLevel.LastResort => ((App)Application.Current).ProgramPreference.UIPreferences.DifficultyLevelBackgrounds[^1],
+			_ => ((App)Application.Current).ProgramPreference.UIPreferences.DifficultyLevelBackgrounds[Log2((byte)difficultyLevel)]
 		};
 
 	public static Color GetForegroundRawColor(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			0 or > DifficultyLevel.LastResort => ((App)Application.Current).ProgramPreference.UIPreferences.Foregrounds[^1],
-			_ => ((App)Application.Current).ProgramPreference.UIPreferences.Foregrounds[Log2((byte)difficultyLevel)]
+			0 or > DifficultyLevel.LastResort => ((App)Application.Current).ProgramPreference.UIPreferences.DifficultyLevelForegrounds[^1],
+			_ => ((App)Application.Current).ProgramPreference.UIPreferences.DifficultyLevelForegrounds[Log2((byte)difficultyLevel)]
 		};
 
 	public static SolidColorBrush GetBackgroundColor(DifficultyLevel difficultyLevel) => new(GetBackgroundRawColor(difficultyLevel));

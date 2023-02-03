@@ -173,6 +173,24 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private Color _linkColor = Colors.Red;
 
 	/// <summary>
+	/// Indicates the normal color.
+	/// </summary>
+	[NotifyBackingField]
+	private Color _normalColor = Color.FromArgb(255, 63, 218, 101);
+
+	/// <summary>
+	/// Indicates the assignment color.
+	/// </summary>
+	[NotifyBackingField]
+	private Color _assignmentColor = Color.FromArgb(255, 63, 218, 101);
+
+	/// <summary>
+	/// Indicates the overlapped assignment color.
+	/// </summary>
+	[NotifyBackingField]
+	private Color _overlappedAssignmentColor = Color.FromArgb(255, 0, 255, 204);
+
+	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
 	[NotifyBackingField]
@@ -183,6 +201,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	[NotifyBackingField]
 	private Color _cannibalismColor = new() { A = 255, R = 235 };
+
+	/// <summary>
+	/// Indicates the exofin color.
+	/// </summary>
+	[NotifyBackingField]
+	private Color _exofinColor = Color.FromArgb(255, 127, 187, 255);
+
+	/// <summary>
+	/// Indicates the endofin color.
+	/// </summary>
+	[NotifyBackingField]
+	private Color _endofinColor = Color.FromArgb(255, 216, 178, 255);
 
 	/// <summary>
 	/// Indicates the target puzzle.
@@ -245,6 +275,17 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private ViewUnit? _viewUnit;
 
 	/// <summary>
+	/// Indicates the auxiliary colors.
+	/// </summary>
+	[NotifyBackingField]
+	private ColorPalette _auxiliaryColors = new()
+	{
+		Color.FromArgb(255, 255, 192,  89),
+		Color.FromArgb(255, 127, 187, 255),
+		Color.FromArgb(255, 216, 178, 255)
+	};
+
+	/// <summary>
 	/// Indicates the foreground colors of all 6 kinds of difficulty levels.
 	/// </summary>
 	[NotifyBackingField]
@@ -278,12 +319,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[NotifyBackingField]
 	private ColorPalette _userDefinedColorPalette = new()
 	{
-		Color.FromArgb(255,  63, 218, 101), // Green (normal)
-		Color.FromArgb(255, 255, 192,  89), // Orange (auxiliary)
-		Color.FromArgb(255, 127, 187, 255), // Skyblue (exo-fin)
-		Color.FromArgb(255, 216, 178, 255), // Purple (endo-fin)
+		Color.FromArgb(255,  63, 218, 101), // Green
+		Color.FromArgb(255, 255, 192,  89), // Orange
+		Color.FromArgb(255, 127, 187, 255), // Skyblue
+		Color.FromArgb(255, 216, 178, 255), // Purple
 		Color.FromArgb(255, 197, 232, 140), // Yellowgreen
-		Color.FromArgb(255, 255, 203, 203), // Light red (eliminations)
+		Color.FromArgb(255, 255, 203, 203), // Light red
 		Color.FromArgb(255, 178, 223, 223), // Blue green
 		Color.FromArgb(255, 252, 220, 165), // Light orange
 		Color.FromArgb(255, 255, 255, 150), // Yellow
@@ -293,6 +334,19 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 206, 251, 237), // Light skyblue
 		Color.FromArgb(255, 215, 255, 215), // Light green
 		Color.FromArgb(255, 192, 192, 192) // Gray
+	};
+
+	/// <summary>
+	/// Indicates the colors applied to technique structure Almost Locked Sets.
+	/// </summary>
+	[NotifyBackingField]
+	private ColorPalette _almostLockedSetsColors = new()
+	{
+		Color.FromArgb(255, 255, 203, 203),
+		Color.FromArgb(255, 178, 223, 223),
+		Color.FromArgb(255, 252, 220, 165),
+		Color.FromArgb(255, 255, 255, 150),
+		Color.FromArgb(255, 247, 222, 143)
 	};
 
 

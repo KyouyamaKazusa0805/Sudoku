@@ -110,6 +110,30 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		set => Pane.LinkColor = value;
 	}
 
+	/// <inheritdoc cref="SudokuPane.NormalColor"/>
+	public Color NormalColor
+	{
+		get => Pane.NormalColor;
+
+		set => Pane.NormalColor = value;
+	}
+
+	/// <inheritdoc cref="SudokuPane.AssignmentColor"/>
+	public Color AssignmentColor
+	{
+		get => Pane.AssignmentColor;
+
+		set => Pane.AssignmentColor = value;
+	}
+
+	/// <inheritdoc cref="SudokuPane.OverlappedAssignmentColor"/>
+	public Color OverlappedAssignmentColor
+	{
+		get => Pane.OverlappedAssignmentColor;
+
+		set => Pane.OverlappedAssignmentColor = value;
+	}
+
 	/// <inheritdoc cref="SudokuPane.EliminationColor"/>
 	public Color EliminationColor
 	{
@@ -124,6 +148,22 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		get => Pane.CannibalismColor;
 
 		set => Pane.CannibalismColor = value;
+	}
+
+	/// <inheritdoc cref="SudokuPane.ExofinColor"/>
+	public Color ExofinColor
+	{
+		get => Pane.ExofinColor;
+
+		set => Pane.ExofinColor = value;
+	}
+
+	/// <inheritdoc cref="SudokuPane.EndofinColor"/>
+	public Color EndofinColor
+	{
+		get => Pane.EndofinColor;
+
+		set => Pane.EndofinColor = value;
 	}
 
 	/// <inheritdoc cref="SudokuPane.StrongLinkDashStyle"/>
@@ -158,8 +198,16 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		set => Pane.OtherLinkDashStyle = value;
 	}
 
+	/// <inheritdoc cref="SudokuPane.AuxiliaryColors"/>
+	public ColorPalette AuxiliaryColors
+	{
+		get => Pane.AuxiliaryColors;
+
+		set => Pane.AuxiliaryColors = value;
+	}
+
 	/// <inheritdoc cref="SudokuPane.DifficultyLevelForegrounds"/>
-	public ColorPalette Foregrounds
+	public ColorPalette DifficultyLevelForegrounds
 	{
 		get => Pane.DifficultyLevelForegrounds;
 
@@ -167,21 +215,27 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 	}
 
 	/// <inheritdoc cref="SudokuPane.DifficultyLevelBackgrounds"/>
-	public ColorPalette Backgrounds
+	public ColorPalette DifficultyLevelBackgrounds
 	{
 		get => Pane.DifficultyLevelBackgrounds;
 
 		set => Pane.DifficultyLevelBackgrounds = value;
 	}
 
-	/// <summary>
-	/// The color palette. This property stores a list of customized colors to be used as user-defined colors.
-	/// </summary>
-	public ColorPalette ColorPalette
+	/// <inheritdoc cref="SudokuPane.UserDefinedColorPalette"/>
+	public ColorPalette UserDefinedColorPalette
 	{
 		get => Pane.UserDefinedColorPalette;
 
 		set => Pane.UserDefinedColorPalette = value;
+	}
+
+	/// <inheritdoc cref="SudokuPane.AlmostLockedSetsColors"/>
+	public ColorPalette AlmostLockedSetsColors
+	{
+		get => Pane.AlmostLockedSetsColors;
+
+		set => Pane.AlmostLockedSetsColors = value;
 	}
 
 	/// <summary>

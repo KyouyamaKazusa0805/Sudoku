@@ -117,17 +117,16 @@ internal static class ViewUnitFrameworkElementFactory
 			IdentifierConversion.GetColor(
 				type switch
 				{
-					Assignment => DisplayColorKind.Assignment,
-					Elimination => overlapped.Exists(conclusion => conclusion.Candidate == candidate) switch
-					{
-						true => DisplayColorKind.Cannibalism,
-						false => DisplayColorKind.Elimination
-					}
+					Assignment => predicate() ? DisplayColorKind.OverlappedAssignment : DisplayColorKind.Assignment,
+					Elimination => predicate() ? DisplayColorKind.Cannibalism : DisplayColorKind.Elimination
 				}
 			),
 			candidate,
 			paneCellControl
 		);
+
+
+		bool predicate() => overlapped.Exists(conclusion => conclusion.Candidate == candidate);
 	}
 
 	/// <summary>
