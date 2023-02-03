@@ -82,9 +82,8 @@
 					CycleLikeLinkDashStyle="{m:DashArray Expression=''}" OtherLinkDashStyle="{m:DashArray Expression='3,3'}"
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True" DisplayCursors="True"
 					CursorBackgroundColor="#200000FF" GivenColor="Black" ModifiableColor="Blue" PencilmarkColor="#646464"
-					BabaGroupLabelColor="Red" BorderColor="Black" CoordinateLabelColor="#646464" LinkColor="Red"
+					BabaGroupLabelColor="Red" BorderColor="Black" CoordinateLabelColor="#646464" LinkColor="Red" NormalColor="#3FDA65"
 					DeltaCandidateColor="#FFB9B9" DeltaCellColor="Red" ExofinColor="#7FBBFF" EndofinColor="#D8B2FF"
-					NormalColor="#3FDA65"
 					AssignmentColor="#3FDA65" OverlappedAssignmentColor="#00FFCC" EliminationColor="#FF7684" CannibalismColor="#EB0000"
 					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}">
 					<c:SudokuPane.AuxiliaryColors>
