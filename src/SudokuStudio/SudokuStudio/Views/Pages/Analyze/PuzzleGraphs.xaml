@@ -7,8 +7,8 @@
 	xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:PuzzleGraphs}">
-
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:PuzzleGraphs}"
+	Loaded="Page_Loaded">
 	<ScrollViewer>
 		<StackPanel Orientation="Vertical" Spacing="6">
 			<TextBlock Text="{m:R Key=AnalyzePage_DifficultyChartTitle}" Style="{StaticResource BaseTextBlockStyle}" />

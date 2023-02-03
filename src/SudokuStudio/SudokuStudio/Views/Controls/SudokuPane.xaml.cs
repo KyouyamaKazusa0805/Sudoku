@@ -141,7 +141,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
 	/// </summary>
 	[NotifyBackingField]
-	private Color _deltaCandidateColor = new() { A = 255, R = 255, G = 185, B = 185 };
+	private Color _deltaCandidateColor = Color.FromArgb(255, 255, 185, 185);
 
 	/// <summary>
 	/// Indicates the color that is used for displaying cell digits that are wrongly filled.
@@ -166,6 +166,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	[NotifyBackingField]
 	private Color _linkColor = Colors.Red;
+
+	/// <summary>
+	/// Indicates the elimination color.
+	/// </summary>
+	[NotifyBackingField]
+	private Color _eliminationColor = Color.FromArgb(255, 255, 118, 132);
+
+	/// <summary>
+	/// Indicates the cannibalism color.
+	/// </summary>
+	[NotifyBackingField]
+	private Color _cannibalismColor = new() { A = 255, R = 235 };
 
 	/// <summary>
 	/// Indicates the target puzzle.
@@ -226,6 +238,57 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference, DoNotEmitPropertyChangedEventTrigger = true)]
 	[NotifyCallback(nameof(ViewUnitSetterAfter))]
 	private ViewUnit? _viewUnit;
+
+	/// <summary>
+	/// Indicates the foreground colors of all 6 kinds of difficulty levels.
+	/// </summary>
+	[NotifyBackingField]
+	private ColorPalette _difficultyLevelForegrounds = new()
+	{
+		Color.FromArgb(255,   0,  51, 204),
+		Color.FromArgb(255,   0, 102,   0),
+		Color.FromArgb(255, 102,  51,   0),
+		Color.FromArgb(255, 102,  51,   0),
+		Color.FromArgb(255, 102,   0,   0),
+		Colors.Black
+	};
+
+	/// <summary>
+	/// Indicates the background colors of all 6 kinds of difficulty levels.
+	/// </summary>
+	[NotifyBackingField]
+	private ColorPalette _difficultyLevelBackgrounds = new()
+	{
+		Color.FromArgb(255, 204, 204, 255),
+		Color.FromArgb(255, 100, 255, 100),
+		Color.FromArgb(255, 255, 255, 100),
+		Color.FromArgb(255, 255, 150,  80),
+		Color.FromArgb(255, 255, 100, 100),
+		Color.FromArgb(255, 220, 220, 220)
+	};
+
+	/// <summary>
+	/// Indicates the user-defined colors used by customized views.
+	/// </summary>
+	[NotifyBackingField]
+	private ColorPalette _userDefinedColorPalette = new()
+	{
+		Color.FromArgb(255,  63, 218, 101), // Green (normal)
+		Color.FromArgb(255, 255, 192,  89), // Orange (auxiliary)
+		Color.FromArgb(255, 127, 187, 255), // Skyblue (exo-fin)
+		Color.FromArgb(255, 216, 178, 255), // Purple (endo-fin)
+		Color.FromArgb(255, 197, 232, 140), // Yellowgreen
+		Color.FromArgb(255, 255, 203, 203), // Light red (eliminations)
+		Color.FromArgb(255, 178, 223, 223), // Blue green
+		Color.FromArgb(255, 252, 220, 165), // Light orange
+		Color.FromArgb(255, 255, 255, 150), // Yellow
+		Color.FromArgb(255, 247, 222, 143), // Golden yellow
+		Color.FromArgb(255, 220, 212, 252), // Purple
+		Color.FromArgb(255, 255, 118, 132), // Red
+		Color.FromArgb(255, 206, 251, 237), // Light skyblue
+		Color.FromArgb(255, 215, 255, 215), // Light green
+		Color.FromArgb(255, 192, 192, 192) // Gray
+	};
 
 
 	/// <summary>

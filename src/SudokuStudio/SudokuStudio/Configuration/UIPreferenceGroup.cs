@@ -110,6 +110,22 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		set => Pane.LinkColor = value;
 	}
 
+	/// <inheritdoc cref="SudokuPane.EliminationColor"/>
+	public Color EliminationColor
+	{
+		get => Pane.EliminationColor;
+
+		set => Pane.EliminationColor = value;
+	}
+
+	/// <inheritdoc cref="SudokuPane.CannibalismColor"/>
+	public Color CannibalismColor
+	{
+		get => Pane.CannibalismColor;
+
+		set => Pane.CannibalismColor = value;
+	}
+
 	/// <inheritdoc cref="SudokuPane.StrongLinkDashStyle"/>
 	public DashArray StrongLinkDashStyle
 	{
@@ -140,6 +156,32 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		get => Pane.OtherLinkDashStyle;
 
 		set => Pane.OtherLinkDashStyle = value;
+	}
+
+	/// <inheritdoc cref="SudokuPane.DifficultyLevelForegrounds"/>
+	public ColorPalette Foregrounds
+	{
+		get => Pane.DifficultyLevelForegrounds;
+
+		set => Pane.DifficultyLevelForegrounds = value;
+	}
+
+	/// <inheritdoc cref="SudokuPane.DifficultyLevelBackgrounds"/>
+	public ColorPalette Backgrounds
+	{
+		get => Pane.DifficultyLevelBackgrounds;
+
+		set => Pane.DifficultyLevelBackgrounds = value;
+	}
+
+	/// <summary>
+	/// The color palette. This property stores a list of customized colors to be used as user-defined colors.
+	/// </summary>
+	public ColorPalette ColorPalette
+	{
+		get => Pane.UserDefinedColorPalette;
+
+		set => Pane.UserDefinedColorPalette = value;
 	}
 
 	/// <summary>

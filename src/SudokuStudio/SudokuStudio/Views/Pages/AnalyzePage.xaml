@@ -83,8 +83,42 @@
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True" DisplayCursors="True"
 					CursorBackgroundColor="#200000FF" GivenColor="Black" ModifiableColor="Blue" PencilmarkColor="#646464"
 					BabaGroupLabelColor="Red" BorderColor="Black" CoordinateLabelColor="#646464" LinkColor="Red"
-					DeltaCandidateColor="#FFB9B9" DeltaCellColor="Red"
-					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}" />
+					DeltaCandidateColor="#FFB9B9" DeltaCellColor="Red" EliminationColor="#FF7684" CannibalismColor="#EB0000"
+					Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}">
+					<c:SudokuPane.DifficultyLevelForegrounds>
+						<Color>#0033CC</Color>
+						<Color>#006600</Color>
+						<Color>#663300</Color>
+						<Color>#663300</Color>
+						<Color>#660000</Color>
+						<Color>Black</Color>
+					</c:SudokuPane.DifficultyLevelForegrounds>
+					<c:SudokuPane.DifficultyLevelBackgrounds>
+						<Color>#CCCCFF</Color>
+						<Color>#64FF64</Color>
+						<Color>#FFFF64</Color>
+						<Color>#FF9650</Color>
+						<Color>#FF6464</Color>
+						<Color>#DCDCDC</Color>
+					</c:SudokuPane.DifficultyLevelBackgrounds>
+					<c:SudokuPane.UserDefinedColorPalette>
+						<Color>#3fda65</Color>
+						<Color>#ffc059</Color>
+						<Color>#7fbbff</Color>
+						<Color>#d8b2ff</Color>
+						<Color>#c5e88c</Color>
+						<Color>#ffcbcb</Color>
+						<Color>#b2dfdf</Color>
+						<Color>#fcdca5</Color>
+						<Color>#ffff96</Color>
+						<Color>#f7de8f</Color>
+						<Color>#dcd4fc</Color>
+						<Color>#ff7684</Color>
+						<Color>#cefbed</Color>
+						<Color>#d7ffd7</Color>
+						<Color>#c0c0c0</Color>
+					</c:SudokuPane.UserDefinedColorPalette>
+				</c:SudokuPane>
 
 				<!--Analyze data-->
 				<Grid Grid.Column="1">

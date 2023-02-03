@@ -66,6 +66,19 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		}
 	};
 
+	/// <summary>
+	/// Difficulty distribution sections.
+	/// </summary>
+	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference)]
+	private ObservableCollection<Section<SkiaSharpDrawingContext>> _difficultyDistributionSections = new()
+	{
+		new RectangularSection { Yi = 2.4, Yj = 2.4 },
+		new RectangularSection { Yi = 3.8, Yj = 3.8 },
+		new RectangularSection { Yi = 4.9, Yj = 4.9 },
+		new RectangularSection { Yi = 7.7, Yj = 7.7 },
+		new RectangularSection { Yi = 11.0, Yj = 11.0 }
+	};
+
 
 	/// <summary>
 	/// Initializes a <see cref="PuzzleGraphs"/> instance.
@@ -79,63 +92,6 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 
 	/// <inheritdoc/>
 	public AnalyzePage BasePage { get; set; } = null!;
-
-	/// <summary>
-	/// Difficulty distribution sections.
-	/// </summary>
-	internal Section<SkiaSharpDrawingContext>[] DifficultyDistributionSections { get; set; } = new RectangularSection[]
-	{
-		new RectangularSection
-		{
-			Yi = 2.4,
-			Yj = 2.4,
-			Stroke = new SolidColorPaint
-			{
-				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Moderate).AsSKColor(),
-				StrokeThickness = 1
-			}
-		},
-		new RectangularSection
-		{
-			Yi = 3.8,
-			Yj = 3.8,
-			Stroke = new SolidColorPaint
-			{
-				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Hard).AsSKColor(),
-				StrokeThickness = 1
-			}
-		},
-		new RectangularSection
-		{
-			Yi = 4.9,
-			Yj = 4.9,
-			Stroke = new SolidColorPaint
-			{
-				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Fiendish).AsSKColor(),
-				StrokeThickness = 1
-			}
-		},
-		new RectangularSection
-		{
-			Yi = 7.7,
-			Yj = 7.7,
-			Stroke = new SolidColorPaint
-			{
-				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Nightmare).AsSKColor(),
-				StrokeThickness = 1
-			}
-		},
-		new RectangularSection
-		{
-			Yi = 11.0,
-			Yj = 11.0,
-			Stroke = new SolidColorPaint
-			{
-				Color = DifficultyLevelConversion.GetBackgroundRawColor(DifficultyLevel.Unknown).AsSKColor(),
-				StrokeThickness = 1
-			}
-		}
-	};
 
 	/// <summary>
 	/// Difficulty distribution axes X.
@@ -218,17 +174,6 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 				);
 			element.DataLabelsPosition = PolarLabelsPosition.Outer;
 			element.DataLabelsPaint = DefaultNameLabelPaint;
-			element.Fill = new SolidColorPaint(
-				i switch
-				{
-					0 => getColor(DifficultyLevel.Easy),
-					1 => getColor(DifficultyLevel.Moderate),
-					2 => getColor(DifficultyLevel.Hard),
-					3 => getColor(DifficultyLevel.Fiendish),
-					4 => getColor(DifficultyLevel.Nightmare),
-					5 => getColor(DifficultyLevel.Unknown)
-				}
-			);
 		}
 
 
@@ -240,8 +185,6 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 					=> $"{difficultyLevelName}{GetString("_Token_Colon")}{(int)a}/{(int)b} ({percent:P2})",
 				_ => string.Empty
 			};
-
-		static SKColor getColor(DifficultyLevel difficultyLevel) => DifficultyLevelConversion.GetBackgroundRawColor(difficultyLevel).AsSKColor();
 	}
 
 	private void AnalysisResultSetterAfter(LogicalSolverResult? value)
@@ -338,5 +281,37 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		}
 
 		PropertyChanged?.Invoke(this, new(nameof(PuzzleArgumentsPolar)));
+	}
+
+
+	private void Page_Loaded(object sender, RoutedEventArgs e)
+	{
+		var fields = Enum.GetValues<DifficultyLevel>()[2..];
+		for (var i = 0; i < DifficultyDistributionSections.Count; i++)
+		{
+			DifficultyDistributionSections[i].Stroke = new SolidColorPaint
+			{
+				Color = DifficultyLevelConversion.GetBackgroundRawColor(fields[i]).AsSKColor(),
+				StrokeThickness = 1
+			};
+		}
+
+		for (var i = 0; i < DifficultyLevelProportion.Count; i++)
+		{
+			((PieSeries<double>)DifficultyLevelProportion[i]).Fill = new SolidColorPaint(
+				i switch
+				{
+					0 => getColor(DifficultyLevel.Easy),
+					1 => getColor(DifficultyLevel.Moderate),
+					2 => getColor(DifficultyLevel.Hard),
+					3 => getColor(DifficultyLevel.Fiendish),
+					4 => getColor(DifficultyLevel.Nightmare),
+					5 => getColor(DifficultyLevel.Unknown)
+				}
+			);
+		}
+
+
+		static SKColor getColor(DifficultyLevel level) => DifficultyLevelConversion.GetBackgroundRawColor(level).AsSKColor();
 	}
 }

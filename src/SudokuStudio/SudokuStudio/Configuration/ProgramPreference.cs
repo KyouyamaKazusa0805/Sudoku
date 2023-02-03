@@ -6,15 +6,9 @@
 public sealed class ProgramPreference
 {
 	/// <inheritdoc cref="AnalysisPreferenceGroup"/>
-	[DebuggerHidden]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true, DiagnosticId = "SCA0103", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103")]
 	public AnalysisPreferenceGroup AnalysisPreferences { get; set; } = new();
 
 	/// <inheritdoc cref="UIPreferenceGroup"/>
-	[DebuggerHidden]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true, DiagnosticId = "SCA0103", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103")]
 	public UIPreferenceGroup UIPreferences { get; set; } = new();
 
 
