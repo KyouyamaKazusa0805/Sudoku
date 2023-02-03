@@ -286,29 +286,19 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 
 	private void Page_Loaded(object sender, RoutedEventArgs e)
 	{
-		var fields = Enum.GetValues<DifficultyLevel>()[2..];
+		var fields = Enum.GetValues<DifficultyLevel>();
 		for (var i = 0; i < DifficultyDistributionSections.Count; i++)
 		{
 			DifficultyDistributionSections[i].Stroke = new SolidColorPaint
 			{
-				Color = DifficultyLevelConversion.GetBackgroundRawColor(fields[i]).AsSKColor(),
+				Color = DifficultyLevelConversion.GetBackgroundRawColor(fields[2..][i]).AsSKColor(),
 				StrokeThickness = 1
 			};
 		}
 
 		for (var i = 0; i < DifficultyLevelProportion.Count; i++)
 		{
-			((PieSeries<double>)DifficultyLevelProportion[i]).Fill = new SolidColorPaint(
-				i switch
-				{
-					0 => getColor(DifficultyLevel.Easy),
-					1 => getColor(DifficultyLevel.Moderate),
-					2 => getColor(DifficultyLevel.Hard),
-					3 => getColor(DifficultyLevel.Fiendish),
-					4 => getColor(DifficultyLevel.Nightmare),
-					5 => getColor(DifficultyLevel.Unknown)
-				}
-			);
+			((PieSeries<double>)DifficultyLevelProportion[i]).Fill = new SolidColorPaint(getColor(fields[1..][i]));
 		}
 
 

@@ -234,6 +234,18 @@
         <member name="M:SudokuStudio.Collection.DashArray.op_Inequality(SudokuStudio.Collection.DashArray,SudokuStudio.Collection.DashArray)">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Collection.Converter">
+            <summary>
+            Defines JSON serialization converter on type <see cref="T:SudokuStudio.Collection.DashArray"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Collection.DashArray"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Collection.Converter.Write(System.Text.Json.Utf8JsonWriter,SudokuStudio.Collection.DashArray,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Collection.NotifyElementChangedStack`1">
             <summary>
             <para><inheritdoc cref="T:System.Collections.Generic.Stack`1" path="/summary"/></para>
@@ -3074,6 +3086,11 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the pane displays for delta digits using different colors.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._isLoaded">
+            <summary>
+            Indicates whether the pane is loaded.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._valueFontScale">
             <summary>
             Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.
@@ -3363,11 +3380,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeEvents">
             <summary>
             To initializes for stack events.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.LoadProgramPreferenceFromLocal">
-            <summary>
-            Loads the program preference from local.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateCellData(Sudoku.Concepts.Grid@)">

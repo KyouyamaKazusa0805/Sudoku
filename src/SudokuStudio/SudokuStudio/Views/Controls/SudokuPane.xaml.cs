@@ -40,6 +40,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private bool _useDifferentColorToDisplayDeltaDigits = true;
 
 	/// <summary>
+	/// Indicates whether the pane is loaded.
+	/// </summary>
+	private bool _isLoaded;
+
+	/// <summary>
 	/// Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.
 	/// </summary>
 	[NotifyBackingField]
@@ -300,7 +305,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		InitializeChildrenControls();
 		UpdateCellData(_puzzle);
 		InitializeEvents();
-		LoadProgramPreferenceFromLocal();
 	}
 
 
@@ -553,25 +557,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Loads the program preference from local.
-	/// </summary>
-	private void LoadProgramPreferenceFromLocal()
-	{
-		var targetPath = CommonPaths.UserPreference;
-		if (!File.Exists(targetPath))
-		{
-			return;
-		}
-
-		if (ProgramPreferenceFileHandler.Read(targetPath) is not { } loadedConfig)
-		{
-			return;
-		}
-
-		((App)Application.Current).ProgramPreference.CoverBy(loadedConfig);
-	}
-
-	/// <summary>
 	/// To initialize <see cref="_children"/> values via the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
@@ -721,7 +706,28 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
-	private void UserControl_Loaded(object sender, RoutedEventArgs e) => ((App)Application.Current).SudokuPane = this;
+	private void UserControl_Loaded(object sender, RoutedEventArgs e)
+	{
+		((App)Application.Current).SudokuPane = this;
+
+		if (!_isLoaded)
+		{
+			var targetPath = CommonPaths.UserPreference;
+			if (!File.Exists(targetPath))
+			{
+				return;
+			}
+
+			if (ProgramPreferenceFileHandler.Read(targetPath) is not { } loadedConfig)
+			{
+				return;
+			}
+
+			((App)Application.Current).ProgramPreference.CoverBy(loadedConfig);
+
+			_isLoaded = true;
+		}
+	}
 
 	private void UserControl_Unloaded(object sender, RoutedEventArgs e) => ((App)Application.Current).SudokuPane = null;
 

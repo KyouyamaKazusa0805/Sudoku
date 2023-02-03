@@ -6,12 +6,14 @@
 /// </summary>
 /// <seealso cref="Shape.StrokeDashArray"/>
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
+[JsonConverter(typeof(Converter))]
 public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>
 {
 	/// <summary>
 	/// The double values.
 	/// </summary>
-	private readonly double[] _doubles = Array.Empty<double>();
+	[FileAccessOnly]
+	internal readonly double[] _doubles = Array.Empty<double>();
 
 
 	/// <summary>
@@ -36,8 +38,11 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 	/// <summary>
 	/// Indicates the number of values.
 	/// </summary>
+	[JsonIgnore]
 	public int Count => _doubles.Length;
 
+	[JsonIgnore]
+	[DebuggerHidden]
 	private string ValuesString => $"[{string.Join(", ", _doubles)}]";
 
 
@@ -104,4 +109,53 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 		[FileAccessOnly]
 		internal Enumerator(double[] doubles) => _doubles = doubles;
 	}
+}
+
+/// <summary>
+/// Defines JSON serialization converter on type <see cref="DashArray"/>.
+/// </summary>
+/// <seealso cref="DashArray"/>
+file sealed class Converter : JsonConverter<DashArray>
+{
+	/// <inheritdoc/>
+	public override DashArray Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	{
+		if (typeToConvert != typeof(DashArray))
+		{
+			throw new JsonException();
+		}
+
+		if (reader.TokenType != JsonTokenType.StartArray)
+		{
+			throw new JsonException();
+		}
+
+		var targetCollection = new List<double>();
+		while (reader.Read())
+		{
+			switch (reader.TokenType)
+			{
+				case JsonTokenType.Number:
+				{
+					targetCollection.Add(reader.GetDouble());
+					break;
+				}
+				case JsonTokenType.EndArray:
+				{
+					goto ReturnValue;
+				}
+				default:
+				{
+					throw new JsonException();
+				}
+			}
+		}
+
+	ReturnValue:
+		return new(targetCollection.ToArray());
+	}
+
+	/// <inheritdoc/>
+	public override void Write(Utf8JsonWriter writer, DashArray value, JsonSerializerOptions options)
+		=> writer.WriteArray(value._doubles, options);
 }
