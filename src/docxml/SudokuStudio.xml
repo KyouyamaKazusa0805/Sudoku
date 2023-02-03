@@ -348,15 +348,8 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered">
             <inheritdoc cref="P:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.MaxStepsGathered"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.Solver">
-            <summary>
-            The faster entry of project-scoped solver instance.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.Gatherer">
-            <summary>
-            The faster entry of project-scoped step gatherer instance.
-            </summary>
+        <member name="M:SudokuStudio.Configuration.AnalysisPreferenceGroup.CoverProperties">
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Configuration.PreferenceGroup">
             <summary>
@@ -368,6 +361,11 @@
             Try to cover the preference from the specified instance <paramref name="other"/>.
             </summary>
             <param name="other">The newer instance that is used for covering the current instance.</param>
+        </member>
+        <member name="M:SudokuStudio.Configuration.PreferenceGroup.CoverProperties">
+            <summary>
+            Try to cover the corresponding object's properties.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Configuration.ProgramPreference">
             <summary>
@@ -505,10 +503,8 @@
             Indicates the font data of coordinate labels.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Pane">
-            <summary>
-            The faster entry for the sudoku pane.
-            </summary>
+        <member name="M:SudokuStudio.Configuration.UIPreferenceGroup.CoverProperties">
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Input.Hotkey">
             <summary>
@@ -2708,6 +2704,41 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Settings &amp; Preferences.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DisplayCursorsDescription">
+            <summary>
+              Looks up a localized string similar to Cursors are a group of highlighted cells that describes what cell your cursor point points to..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DisplayCursorsTitle">
+            <summary>
+              Looks up a localized string similar to Display for cursors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DistinctWithDeltaDigitsDescription">
+            <summary>
+              Looks up a localized string similar to In a puzzle with a unique solution, the program can check whether the digits input (deleted) is correct. If this option is on, the program will use another color to display wrong conclusions..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DistinctWithDeltaDigitsTitle">
+            <summary>
+              Looks up a localized string similar to Distinct with delta digits.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Intro">
+            <summary>
+              Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OffContent">
+            <summary>
+              Looks up a localized string similar to No.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OnContent">
+            <summary>
+              Looks up a localized string similar to Yes.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.Sudoku">
             <summary>
               Looks up a localized string similar to Sudoku.
@@ -3048,11 +3079,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._useDifferentColorToDisplayDeltaDigits">
             <summary>
             Indicates whether the pane displays for delta digits using different colors.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._isLoaded">
-            <summary>
-            Indicates whether the pane is loaded.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._valueFontScale">

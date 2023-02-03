@@ -40,11 +40,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private bool _useDifferentColorToDisplayDeltaDigits = true;
 
 	/// <summary>
-	/// Indicates whether the pane is loaded.
-	/// </summary>
-	private bool _isLoaded;
-
-	/// <summary>
 	/// Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.
 	/// </summary>
 	[NotifyBackingField]
@@ -762,28 +757,25 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	private void UserControl_Loaded(object sender, RoutedEventArgs e)
 	{
+		if (((App)Application.Current).SudokuPane is not null)
+		{
+			return;
+		}
+
+		// Sets the cached property.
 		((App)Application.Current).SudokuPane = this;
 
-		if (!_isLoaded)
+		// Loads the configuration file from local path.
+		var targetPath = CommonPaths.UserPreference;
+		var pref = ((App)Application.Current).ProgramPreference!;
+		if (File.Exists(targetPath) && ProgramPreferenceFileHandler.Read(targetPath) is { } loadedConfig)
 		{
-			var targetPath = CommonPaths.UserPreference;
-			if (!File.Exists(targetPath))
-			{
-				return;
-			}
-
-			if (ProgramPreferenceFileHandler.Read(targetPath) is not { } loadedConfig)
-			{
-				return;
-			}
-
-			((App)Application.Current).ProgramPreference.CoverBy(loadedConfig);
-
-			_isLoaded = true;
+			pref.CoverBy(loadedConfig);
 		}
-	}
 
-	private void UserControl_Unloaded(object sender, RoutedEventArgs e) => ((App)Application.Current).SudokuPane = null;
+		// Refresh UI.
+		Array.ForEach(typeof(ProgramPreference).GetProperties(), pi => ((PreferenceGroup)pi.GetValue(pref)!).CoverProperties());
+	}
 
 	private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
 	{

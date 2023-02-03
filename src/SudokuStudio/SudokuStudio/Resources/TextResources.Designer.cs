@@ -1168,6 +1168,69 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cursors are a group of highlighted cells that describes what cell your cursor point points to..
+        /// </summary>
+        internal static string SettingsPage_DisplayCursorsDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DisplayCursorsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display for cursors.
+        /// </summary>
+        internal static string SettingsPage_DisplayCursorsTitle {
+            get {
+                return ResourceManager.GetString("SettingsPage_DisplayCursorsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In a puzzle with a unique solution, the program can check whether the digits input (deleted) is correct. If this option is on, the program will use another color to display wrong conclusions..
+        /// </summary>
+        internal static string SettingsPage_DistinctWithDeltaDigitsDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DistinctWithDeltaDigitsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distinct with delta digits.
+        /// </summary>
+        internal static string SettingsPage_DistinctWithDeltaDigitsTitle {
+            get {
+                return ResourceManager.GetString("SettingsPage_DistinctWithDeltaDigitsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used..
+        /// </summary>
+        internal static string SettingsPage_Intro {
+            get {
+                return ResourceManager.GetString("SettingsPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string SettingsPage_OffContent {
+            get {
+                return ResourceManager.GetString("SettingsPage_OffContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string SettingsPage_OnContent {
+            get {
+                return ResourceManager.GetString("SettingsPage_OnContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sudoku.
         /// </summary>
         internal static string Sudoku {

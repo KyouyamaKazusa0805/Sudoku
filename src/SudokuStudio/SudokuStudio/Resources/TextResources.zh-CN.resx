@@ -459,6 +459,27 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>偏好项设置</value>
   </data>
+  <data name="SettingsPage_DisplayCursorsDescription" xml:space="preserve">
+    <value>光标指的是一组高亮单元格，它用来指示你鼠标指针指向的单元格。</value>
+  </data>
+  <data name="SettingsPage_DisplayCursorsTitle" xml:space="preserve">
+    <value>显示光标</value>
+  </data>
+  <data name="SettingsPage_DistinctWithDeltaDigitsDescription" xml:space="preserve">
+    <value>程序在唯一解题目的情况下可以确定某个数字填入进去（或删除掉）是否为正确结论。如果该设置项打开后，程序会使用另外的颜色来表示出错误结论，以区别于正确的填数。</value>
+  </data>
+  <data name="SettingsPage_DistinctWithDeltaDigitsTitle" xml:space="preserve">
+    <value>区分偏差数字</value>
+  </data>
+  <data name="SettingsPage_Intro" xml:space="preserve">
+    <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。</value>
+  </data>
+  <data name="SettingsPage_OffContent" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="SettingsPage_OnContent" xml:space="preserve">
+    <value>是</value>
+  </data>
   <data name="Sudoku" xml:space="preserve">
     <value>数独</value>
   </data>

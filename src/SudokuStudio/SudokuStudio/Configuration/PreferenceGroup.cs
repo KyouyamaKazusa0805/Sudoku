@@ -17,4 +17,9 @@ public abstract class PreferenceGroup
 			propertyInfo.SetValue(this, propertyInfo.GetValue(other));
 		}
 	}
+
+	/// <summary>
+	/// Try to cover the corresponding object's properties.
+	/// </summary>
+	public abstract void CoverProperties();
 }

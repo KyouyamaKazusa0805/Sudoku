@@ -7,270 +7,75 @@
 public sealed class AnalysisPreferenceGroup : PreferenceGroup
 {
 	/// <inheritdoc cref="LogicalSolver.SingleStepSearcher_EnableFullHouse"/>
-	public bool EnableFullHouse
-	{
-		get => Solver.SingleStepSearcher_EnableFullHouse;
-
-		set
-		{
-			if (EnableFullHouse == value)
-			{
-				return;
-			}
-
-			Solver.SingleStepSearcher_EnableFullHouse = value;
-		}
-	}
+	public bool EnableFullHouse { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.SingleStepSearcher_EnableLastDigit"/>
-	public bool EnableLastDigit
-	{
-		get => Solver.SingleStepSearcher_EnableLastDigit;
-
-		set
-		{
-			if (EnableLastDigit == value)
-			{
-				return;
-			}
-
-			Solver.SingleStepSearcher_EnableLastDigit = value;
-		}
-	}
+	public bool EnableLastDigit { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst"/>
-	public bool HiddenSinglesInBlockFirst
-	{
-		get => Solver.SingleStepSearcher_HiddenSinglesInBlockFirst;
-
-		set
-		{
-			if (HiddenSinglesInBlockFirst == value)
-			{
-				return;
-			}
-
-			Solver.SingleStepSearcher_HiddenSinglesInBlockFirst = value;
-		}
-	}
+	public bool HiddenSinglesInBlockFirst { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles"/>
-	public bool AllowIncompleteUniqueRectangles
-	{
-		get => Solver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles;
-
-		set
-		{
-			if (AllowIncompleteUniqueRectangles == value)
-			{
-				return;
-			}
-
-			Solver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles = value;
-		}
-	}
+	public bool AllowIncompleteUniqueRectangles { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles"/>
-	public bool SearchForExtendedUniqueRectangles
-	{
-		get => Solver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles;
-
-		set
-		{
-			if (SearchForExtendedUniqueRectangles == value)
-			{
-				return;
-			}
-
-			Solver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles = value;
-		}
-	}
+	public bool SearchForExtendedUniqueRectangles { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes"/>
-	public bool SearchExtendedBivalueUniversalGraveTypes
-	{
-		get => Solver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes;
-
-		set
-		{
-			if (SearchExtendedBivalueUniversalGraveTypes == value)
-			{
-				return;
-			}
-
-			Solver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes = value;
-		}
-	}
+	public bool SearchExtendedBivalueUniversalGraveTypes { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
-	public bool AllowCollisionOnAlmostLockedSetXzRule
-	{
-		get => Solver.AlmostLockedSetsXzStepSearcher_AllowCollision;
-
-		set
-		{
-			if (AllowCollisionOnAlmostLockedSetXzRule == value)
-			{
-				return;
-			}
-
-			Solver.AlmostLockedSetsXzStepSearcher_AllowCollision = value;
-		}
-	}
+	public bool AllowCollisionOnAlmostLockedSetXzRule { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns"/>
-	public bool AllowLoopedPatternsOnAlmostLockedSetXzRule
-	{
-		get => Solver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns;
-
-		set
-		{
-			if (AllowLoopedPatternsOnAlmostLockedSetXzRule == value)
-			{
-				return;
-			}
-
-			Solver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns = value;
-		}
-	}
+	public bool AllowLoopedPatternsOnAlmostLockedSetXzRule { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.AlmostLockedSetsXyWingStepSearcher_AllowCollision"/>
-	public bool AllowCollisionOnAlmostLockedSetXyWing
-	{
-		get => Solver.AlmostLockedSetsXyWingStepSearcher_AllowCollision;
-
-		set
-		{
-			if (AllowCollisionOnAlmostLockedSetXyWing == value)
-			{
-				return;
-			}
-
-			Solver.AlmostLockedSetsXyWingStepSearcher_AllowCollision = value;
-		}
-	}
+	public bool AllowCollisionOnAlmostLockedSetXyWing { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.IsFullApplying"/>
-	public bool LogicalSolverIsFullApplying
-	{
-		get => Solver.IsFullApplying;
-
-		set
-		{
-			if (LogicalSolverIsFullApplying == value)
-			{
-				return;
-			}
-
-			Solver.IsFullApplying = value;
-		}
-	}
+	public bool LogicalSolverIsFullApplying { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.IgnoreSlowAlgorithms"/>
-	public bool LogicalSolverIgnoresSlowAlgorithms
-	{
-		get => Solver.IgnoreSlowAlgorithms;
-
-		set
-		{
-			if (LogicalSolverIgnoresSlowAlgorithms == value)
-			{
-				return;
-			}
-
-			Solver.IgnoreSlowAlgorithms = value;
-		}
-	}
+	public bool LogicalSolverIgnoresSlowAlgorithms { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.IgnoreHighAllocationAlgorithms"/>
-	public bool LogicalSolverIgnoresHighAllocationAlgorithms
-	{
-		get => Solver.IgnoreHighAllocationAlgorithms;
-
-		set
-		{
-			if (LogicalSolverIgnoresHighAllocationAlgorithms == value)
-			{
-				return;
-			}
-
-			Solver.IgnoreHighAllocationAlgorithms = value;
-		}
-	}
+	public bool LogicalSolverIgnoresHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc cref="StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps"/>
-	public bool StepGathererOnlySearchSameLevelTechniquesInFindAllSteps
-	{
-		get => Gatherer.OnlyShowSameLevelTechniquesInFindAllSteps;
-
-		set
-		{
-			if (StepGathererOnlySearchSameLevelTechniquesInFindAllSteps == value)
-			{
-				return;
-			}
-
-			Gatherer.OnlyShowSameLevelTechniquesInFindAllSteps = value;
-		}
-	}
+	public bool StepGathererOnlySearchSameLevelTechniquesInFindAllSteps { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.RegularWingStepSearcher_MaxSize"/>
-	public int MaxSizeOfRegularWing
-	{
-		get => Solver.RegularWingStepSearcher_MaxSize;
-
-		set
-		{
-			if (MaxSizeOfRegularWing == value)
-			{
-				return;
-			}
-
-			Solver.RegularWingStepSearcher_MaxSize = value;
-		}
-	}
+	public int MaxSizeOfRegularWing { get; set; }
 
 	/// <inheritdoc cref="LogicalSolver.ComplexFishStepSearcher_MaxSize"/>
-	public int MaxSizeOfComplexFish
-	{
-		get => Solver.ComplexFishStepSearcher_MaxSize;
-
-		set
-		{
-			if (MaxSizeOfComplexFish == value)
-			{
-				return;
-			}
-
-			Solver.ComplexFishStepSearcher_MaxSize = value;
-		}
-	}
+	public int MaxSizeOfComplexFish { get; set; }
 
 	/// <inheritdoc cref="StepsGatherer.MaxStepsGathered"/>
-	public int StepGathererMaxStepsGathered
+	public int StepGathererMaxStepsGathered { get; set; }
+
+
+	/// <inheritdoc/>
+	public override void CoverProperties()
 	{
-		get => Gatherer.MaxStepsGathered;
+		var solver = ((App)Application.Current).EnvironmentVariables.Solver;
+		solver.SingleStepSearcher_EnableFullHouse = EnableFullHouse;
+		solver.SingleStepSearcher_EnableLastDigit = EnableLastDigit;
+		solver.SingleStepSearcher_HiddenSinglesInBlockFirst = HiddenSinglesInBlockFirst;
+		solver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles = AllowIncompleteUniqueRectangles;
+		solver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles = SearchForExtendedUniqueRectangles;
+		solver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes = SearchExtendedBivalueUniversalGraveTypes;
+		solver.AlmostLockedSetsXzStepSearcher_AllowCollision = AllowCollisionOnAlmostLockedSetXzRule;
+		solver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns = AllowLoopedPatternsOnAlmostLockedSetXzRule;
+		solver.AlmostLockedSetsXyWingStepSearcher_AllowCollision = AllowCollisionOnAlmostLockedSetXyWing;
+		solver.IsFullApplying = LogicalSolverIsFullApplying;
+		solver.IgnoreSlowAlgorithms = LogicalSolverIgnoresSlowAlgorithms;
+		solver.IgnoreHighAllocationAlgorithms = LogicalSolverIgnoresHighAllocationAlgorithms;
+		solver.RegularWingStepSearcher_MaxSize = MaxSizeOfRegularWing;
+		solver.ComplexFishStepSearcher_MaxSize = MaxSizeOfComplexFish;
 
-		set
-		{
-			if (StepGathererMaxStepsGathered == value)
-			{
-				return;
-			}
-
-			Gatherer.MaxStepsGathered = value;
-		}
+		var gatherer = ((App)Application.Current).EnvironmentVariables.Gatherer;
+		gatherer.OnlyShowSameLevelTechniquesInFindAllSteps = StepGathererOnlySearchSameLevelTechniquesInFindAllSteps;
+		gatherer.MaxStepsGathered = StepGathererMaxStepsGathered;
 	}
-
-	/// <summary>
-	/// The faster entry of project-scoped solver instance.
-	/// </summary>
-	[JsonIgnore]
-	private LogicalSolver Solver => ((App)Application.Current).EnvironmentVariables.Solver;
-
-	/// <summary>
-	/// The faster entry of project-scoped step gatherer instance.
-	/// </summary>
-	[JsonIgnore]
-	private StepsGatherer Gatherer => ((App)Application.Current).EnvironmentVariables.Gatherer;
 }

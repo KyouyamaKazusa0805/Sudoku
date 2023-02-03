@@ -459,6 +459,27 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>Settings &amp; Preferences</value>
   </data>
+  <data name="SettingsPage_DisplayCursorsDescription" xml:space="preserve">
+    <value>Cursors are a group of highlighted cells that describes what cell your cursor point points to.</value>
+  </data>
+  <data name="SettingsPage_DisplayCursorsTitle" xml:space="preserve">
+    <value>Display for cursors</value>
+  </data>
+  <data name="SettingsPage_DistinctWithDeltaDigitsDescription" xml:space="preserve">
+    <value>In a puzzle with a unique solution, the program can check whether the digits input (deleted) is correct. If this option is on, the program will use another color to display wrong conclusions.</value>
+  </data>
+  <data name="SettingsPage_DistinctWithDeltaDigitsTitle" xml:space="preserve">
+    <value>Distinct with delta digits</value>
+  </data>
+  <data name="SettingsPage_Intro" xml:space="preserve">
+    <value>Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used.</value>
+  </data>
+  <data name="SettingsPage_OffContent" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="SettingsPage_OnContent" xml:space="preserve">
+    <value>Yes</value>
+  </data>
   <data name="Sudoku" xml:space="preserve">
     <value>Sudoku</value>
   </data>

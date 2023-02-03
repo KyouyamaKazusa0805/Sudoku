@@ -4,9 +4,29 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	mc:Ignorable="d">
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
+	mc:Ignorable="d"
+	d:DataContext="{d:DesignInstance Type=p:SettingsPage}">
 
-	<Grid>
-
-	</Grid>
+	<ScrollViewer>
+		<StackPanel Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}" Spacing="10">
+			<TextBlock Text="{m:R Key=SettingsPage_Intro}" Margin="0,20,0,0" />
+			<c:ExtendedExpander Title="{m:R Key=SettingsPage_DisplayCursorsTitle}" Description="{m:R Key=SettingsPage_DisplayCursorsDescription}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).ProgramPreference.UIPreferences.DisplayCursors,Mode=TwoWay}"
+					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
+			</c:ExtendedExpander>
+			<c:ExtendedExpander
+				Title="{m:R Key=SettingsPage_DistinctWithDeltaDigitsTitle}"
+				Description="{m:R Key=SettingsPage_DistinctWithDeltaDigitsDescription}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).ProgramPreference.UIPreferences.DistinctWithDeltaDigits,Mode=TwoWay}"
+					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
+			</c:ExtendedExpander>
+		</StackPanel>
+	</ScrollViewer>
 </Page>
