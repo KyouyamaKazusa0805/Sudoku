@@ -103,12 +103,12 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 						accessibility = (Accessibility)v;
 						break;
 					}
-					case ("DoNotEmitPropertyChangedEventTrigger", { Value: bool v }):
+					case ("DisableEventTrigger", { Value: bool v }):
 					{
 						doNotEmitPropertyChangedEventTrigger = v;
 						break;
 					}
-					case ("DoNotEmitDebuggerStepThroughAttribute", { Value: bool v }):
+					case ("DisableDebuggerStepThrough", { Value: bool v }):
 					{
 						doNotEmitDebuggerStepThroughAttribute = v;
 						break;

@@ -8,7 +8,7 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 	/// <summary>
 	/// Indicates the analysis result.
 	/// </summary>
-	[NotifyBackingField(DoNotEmitPropertyChangedEventTrigger = true)]
+	[NotifyBackingField(DisableEventTrigger = true)]
 	[NotifyCallback]
 	private LogicalSolverResult? _analysisResult;
 

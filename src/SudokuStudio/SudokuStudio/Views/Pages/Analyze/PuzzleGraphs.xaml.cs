@@ -12,7 +12,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 
 
 	/// <inheritdoc cref="IAnalyzeTabPage.AnalysisResult"/>
-	[NotifyBackingField(DoNotEmitPropertyChangedEventTrigger = true)]
+	[NotifyBackingField(DisableEventTrigger = true)]
 	[NotifyCallback]
 	private LogicalSolverResult? _analysisResult;
 

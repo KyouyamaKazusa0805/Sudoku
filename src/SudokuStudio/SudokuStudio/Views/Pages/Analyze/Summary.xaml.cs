@@ -8,7 +8,7 @@ public sealed partial class Summary : Page, IAnalyzeTabPage
 	/// <summary>
 	/// Indicates the analysis result.
 	/// </summary>
-	[NotifyBackingField(DoNotEmitPropertyChangedEventTrigger = true)]
+	[NotifyBackingField(DisableEventTrigger = true)]
 	[NotifyCallback]
 	private LogicalSolverResult? _analysisResult;
 

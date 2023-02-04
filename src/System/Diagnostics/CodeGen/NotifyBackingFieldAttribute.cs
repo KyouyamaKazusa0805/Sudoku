@@ -11,13 +11,13 @@ public sealed class NotifyBackingFieldAttribute : Attribute
 	/// <see cref="INotifyPropertyChanged.PropertyChanged"/>.
 	/// </summary>
 	/// <seealso cref="INotifyPropertyChanged.PropertyChanged"/>
-	public bool DoNotEmitPropertyChangedEventTrigger { get; init; } = false;
+	public bool DisableEventTrigger { get; init; } = false;
 
 	/// <summary>
 	/// Indicates whether the source generator doesn't emit the source code to apply <see cref="DebuggerStepThroughAttribute"/>.
 	/// </summary>
 	/// <seealso cref="DebuggerStepThroughAttribute"/>
-	public bool DoNotEmitDebuggerStepThroughAttribute { get; init; } = false;
+	public bool DisableDebuggerStepThrough { get; init; } = false;
 
 	/// <summary>
 	/// Indicates the customized comparison rule to be used to compare two objects.

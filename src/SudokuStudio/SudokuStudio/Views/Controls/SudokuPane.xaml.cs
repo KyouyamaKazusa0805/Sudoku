@@ -265,7 +265,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the view unit used.
 	/// </summary>
-	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference, DoNotEmitPropertyChangedEventTrigger = true)]
+	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference, DisableEventTrigger = true)]
 	[NotifyCallback]
 	private ViewUnit? _viewUnit;
 

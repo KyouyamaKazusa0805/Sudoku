@@ -46,7 +46,7 @@ private int _width;
 
 首先要说的是 `NotifyBackingFieldAttribute` 特性。该特性类型用于标记字段，让该标记的字段生成属性对应的完整代码，用法就跟上面介绍的那样，标记一下即可。
 
-#### `DoNotEmitPropertyChangedEventTrigger` 可选属性
+#### `DisableEventTrigger` 可选属性
 
 在极少数时候，我们不需要或者不希望源代码生成器自动发出触发 `PropertyChanged` 事件的代码：
 
@@ -54,10 +54,10 @@ private int _width;
 PropertyChanged?.Invoke(this, new(nameof(Width)));
 ```
 
-这个时候，我们只需要在特性上配置可选属性 `DoNotEmitPropertyChangedEventTrigger` 为 `true` 值即可。
+这个时候，我们只需要在特性上配置可选属性 `DisableEventTrigger` 为 `true` 值即可。
 
 ```csharp
-[NotifyBackingField(DoNotEmitPropertyChangedEventTrigger = true)]
+[NotifyBackingField(DisableEventTrigger = true)]
 private int _width;
 ```
 
@@ -82,7 +82,7 @@ public int Width
 
 该属性一般没有单独使用的场景，它需要搭配另外一个特性一起用。该内容稍后说明。
 
-#### `DoNotEmitDebuggerStepThroughAttribute` 可选属性
+#### `DisableDebuggerStepThrough` 可选属性
 
 考虑到程序执行的一些不必要控制，源代码生成器会自动对生成的属性的 `get` 和 `set` 方法标记 `DebuggerStepThroughAttribute`，表示如果调试器执行到该方法的时候，会跳过该方法里的所有代码，继续执行后面的内容。如果此时该方法里包含其他的调用，那么它们全都会跳过去。
 

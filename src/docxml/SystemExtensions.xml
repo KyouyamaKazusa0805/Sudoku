@@ -2321,14 +2321,14 @@
             Defines an attribute that is used for source generation on properties.
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.DoNotEmitPropertyChangedEventTrigger">
+        <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.DisableEventTrigger">
             <summary>
             Indicates whether the source generator doesn't emit the source code to trigger changed event
             <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>.
             </summary>
             <seealso cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.DoNotEmitDebuggerStepThroughAttribute">
+        <member name="P:System.Diagnostics.CodeGen.NotifyBackingFieldAttribute.DisableDebuggerStepThrough">
             <summary>
             Indicates whether the source generator doesn't emit the source code to apply <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>.
             </summary>
