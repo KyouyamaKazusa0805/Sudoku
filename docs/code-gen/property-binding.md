@@ -165,6 +165,21 @@ public LogicalSolverResult? AnalysisResult
 
 当然，有时候也不需要该 `value` 变量的传入。只要你给出的方法不带参数，那么此时的赋值过程就不会传入 `value` 了。源代码生成器也支持识别这一点。
 
+#### 缺省构造器参数
+
+如果回调函数的名字是“属性名”+“`SetterAfter`”构成的的话，那么构造器参数可以省略不写，源代码生成器会自动识别该名字，与其回调函数绑定起来；但如果名字不是这么取的，那么就需要你手动给出该名称。例如前文的例子里，由于绑定的回调函数名为 `AnalysisResultSetterAfter`，刚好为该字段对应属性 `AnalysisResult` 和 `SetterAfter` 拼凑的结果，所以该参数可以缺省。
+
+```csharp
+[NotifyBackingField]
+[NotifyCallback]
+private LogicalSolverResult? _analysisResult;
+
+private void AnalysisResultSetterAfter(LogicalSolverResult? v)
+    => SolvingPathList.ItemsSource = v?.Steps.ToList();
+```
+
+这样就可以了。
+
 #### 注意事项
 
 一个需要注意的地方是，我们定义的自定义回调函数的参数如果存在的话，那么类型必须要和属性和字段的类型一致；但是，除了类型一致外，可空性也需要一致，否则会产生编译器错误——C# 不允许可空性不一致导致不兼容的赋值行为：例如本来属性可空，但回调函数的参数不可空，这个时候传入的 `value` 可能为 `null`，不兼容该回调函数的类型不可空的情况，所以会产生错误。

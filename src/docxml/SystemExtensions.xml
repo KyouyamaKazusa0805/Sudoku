@@ -1743,6 +1743,11 @@
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DiagnosticResults">
+            <summary>
+            Represents diagnostic results.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.DisallowFunctionPointerInvocationAttribute">
             <summary>
             Indicates a field of function pointer type that cannot be invokable outside the scope of the type declaring that field.
@@ -1756,6 +1761,11 @@
         <member name="T:System.Diagnostics.CodeAnalysis.IsLargeStructAttribute">
             <summary>
             Indicates the type is a large structure.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.Justification">
+            <summary>
+            Represents justification.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.RequiresCompoundUsagesAttribute">
@@ -2338,6 +2348,16 @@
         <member name="T:System.Diagnostics.CodeGen.NotifyCallbackAttribute">
             <summary>
             Defines an attribute that is used for an auto-notifying field, to define the customized callback method name.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.NotifyCallbackAttribute.#ctor">
+            <summary>
+            <para>Initializes a <see cref="T:System.Diagnostics.CodeGen.NotifyCallbackAttribute"/> instance.</para>
+            <para>
+            If the callback method ends with string <c>SetterAfter</c> and starts with the property name,
+            the method will be automatically referenced to the source generation if the method parameters are compatible with the basic rule
+            of source generation condition.
+            </para>
             </summary>
         </member>
         <member name="M:System.Diagnostics.CodeGen.NotifyCallbackAttribute.#ctor(System.String)">

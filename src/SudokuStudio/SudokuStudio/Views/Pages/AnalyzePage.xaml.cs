@@ -39,7 +39,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	/// <seealso cref="VisualUnit.Views"/>
 	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal, ComparisonMode = EqualityComparisonMode.Disable)]
-	[NotifyCallback(nameof(CurrentViewIndexSetterAfter))]
+	[NotifyCallback]
 	private int _currentViewIndex = -1;
 
 	/// <summary>
@@ -52,7 +52,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// Indicates the visual unit.
 	/// </summary>
 	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal, ComparisonMode = EqualityComparisonMode.ObjectReference)]
-	[NotifyCallback(nameof(VisualUnitSetterAfter))]
+	[NotifyCallback]
 	private VisualUnit? _visualUnit;
 
 	/// <summary>

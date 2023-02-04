@@ -10,8 +10,7 @@ public sealed class GeneratedDisplayNameAttribute : Attribute
 	/// Initializes a <see cref="GeneratedDisplayNameAttribute"/> instance via the specified name to be displayed.
 	/// </summary>
 	/// <param name="displayMemberName">The display member name.</param>
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	public GeneratedDisplayNameAttribute(string displayMemberName)
+	public GeneratedDisplayNameAttribute([SuppressMessage("Style", IDE0060, Justification = Pending)] string displayMemberName)
 	{
 	}
 }

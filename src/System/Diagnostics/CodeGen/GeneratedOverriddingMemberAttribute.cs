@@ -22,8 +22,9 @@ public sealed class GeneratedOverriddingMemberAttribute : Attribute
 	/// <see cref="object.Equals(object?)"/>.
 	/// </summary>
 	/// <param name="overriddingEqualsBehavior">The behavior.</param>
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	public GeneratedOverriddingMemberAttribute(GeneratedEqualsBehavior overriddingEqualsBehavior)
+	public GeneratedOverriddingMemberAttribute(
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedEqualsBehavior overriddingEqualsBehavior
+	)
 	{
 	}
 
@@ -33,8 +34,10 @@ public sealed class GeneratedOverriddingMemberAttribute : Attribute
 	/// </summary>
 	/// <param name="overriddingGetHashCodeBehavior">The behavior.</param>
 	/// <param name="arguments">Extra arguments.</param>
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	public GeneratedOverriddingMemberAttribute(GeneratedGetHashCodeBehavior overriddingGetHashCodeBehavior, params object?[]? arguments)
+	public GeneratedOverriddingMemberAttribute(
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedGetHashCodeBehavior overriddingGetHashCodeBehavior,
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] params object?[]? arguments
+	)
 	{
 	}
 
@@ -44,8 +47,10 @@ public sealed class GeneratedOverriddingMemberAttribute : Attribute
 	/// </summary>
 	/// <param name="overriddingToStringBehavior">The behavior.</param>
 	/// <param name="arguments">Extra arguments.</param>
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	public GeneratedOverriddingMemberAttribute(GeneratedToStringBehavior overriddingToStringBehavior, params object?[]? arguments)
+	public GeneratedOverriddingMemberAttribute(
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedToStringBehavior overriddingToStringBehavior,
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] params object?[]? arguments
+	)
 	{
 	}
 }

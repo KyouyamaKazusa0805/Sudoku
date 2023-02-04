@@ -11,8 +11,10 @@ public sealed class EnumSwitchExpressionArmAttribute : Attribute
 	/// </summary>
 	/// <param name="key">The key.</param>
 	/// <param name="value">The value.</param>
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	public EnumSwitchExpressionArmAttribute(string key, string value)
+	public EnumSwitchExpressionArmAttribute(
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] string key,
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] string value
+	)
 	{
 	}
 }

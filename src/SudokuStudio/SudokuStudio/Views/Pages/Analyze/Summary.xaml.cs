@@ -9,7 +9,7 @@ public sealed partial class Summary : Page, IAnalyzeTabPage
 	/// Indicates the analysis result.
 	/// </summary>
 	[NotifyBackingField(DoNotEmitPropertyChangedEventTrigger = true)]
-	[NotifyCallback(nameof(AnalysisResultSetterAfter))]
+	[NotifyCallback]
 	private LogicalSolverResult? _analysisResult;
 
 

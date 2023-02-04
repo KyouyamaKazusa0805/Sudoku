@@ -13,8 +13,9 @@ public sealed class GeneratedDeconstructionArgumentAttribute : Attribute
 	/// Indicates the target property expression used. This property specifies and controls the target behavior
 	/// that output what final deconstruction assignment expression should be.
 	/// </param>
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	public GeneratedDeconstructionArgumentAttribute(string targetPropertyExpression)
+	public GeneratedDeconstructionArgumentAttribute(
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] string targetPropertyExpression
+	)
 	{
 	}
 }

@@ -235,6 +235,27 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 
 					var customizedCallback = fieldSymbol.GetAttributes().FirstOrDefault(callbackAttributeTypeExists) switch
 					{
+						{ ConstructorArguments: [] } when $"{property}SetterAfter" is var methodName
+							=> methodsInType.FirstOrDefault(methodSymbol => methodSymbol.Name == methodName)?.Parameters switch
+							{
+								[]
+									=>
+									$$"""
+
+
+												{{methodName}}();
+									""",
+								[{ Type: { NullableAnnotation: var parameterNullability } parameterType }]
+								when SymbolEqualityComparer.Default.Equals(parameterType, fieldType)
+									&& nullabilityCompatibilityChecker(nullability, parameterNullability)
+									=>
+									$$"""
+
+
+												{{methodName}}(value);
+									""",
+								_ => string.Empty
+							},
 						{ ConstructorArguments: [{ Value: string methodName }] }
 							=> methodsInType.FirstOrDefault(methodSymbol => methodSymbol.Name == methodName)?.Parameters switch
 							{

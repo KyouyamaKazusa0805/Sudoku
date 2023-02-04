@@ -10,8 +10,7 @@ public sealed class EnumSwitchExpressionRootAttribute : Attribute
 	/// Initializes an <see cref="EnumSwitchExpressionRootAttribute"/> instance.
 	/// </summary>
 	/// <param name="key">The key.</param>
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	public EnumSwitchExpressionRootAttribute(string key)
+	public EnumSwitchExpressionRootAttribute([SuppressMessage("Style", IDE0060, Justification = Pending)] string key)
 	{
 	}
 
