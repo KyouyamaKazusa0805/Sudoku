@@ -73,10 +73,9 @@ public sealed partial class MainWindow : Window
 #if CUSTOMIZED_TITLE_BAR
 		InitializeAppWindow();
 		SetAppTitleBarStatus();
-#endif
-
 		SetAppIcon();
 		SetAppTitle();
+#endif
 	}
 
 
@@ -304,6 +303,7 @@ public sealed partial class MainWindow : Window
 		}
 	}
 
+#if CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Try to set icon of the program.
 	/// </summary>
@@ -313,6 +313,7 @@ public sealed partial class MainWindow : Window
 	/// Try to set program name onto the title.
 	/// </summary>
 	private void SetAppTitle() => _appWindow.Title = GetString("_ProgramName");
+#endif
 
 	/// <summary>
 	/// An outer-layered method to switching pages. This method can be used by both
