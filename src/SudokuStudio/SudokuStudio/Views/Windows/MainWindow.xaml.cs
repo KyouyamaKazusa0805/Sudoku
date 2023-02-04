@@ -1,7 +1,3 @@
-#if MICA_BACKDROP || ACRYLIC_BACKDROP
-#define WARNING_WHEN_BOTH_BACKDROP_SET
-#endif
-
 namespace SudokuStudio.Views.Windows;
 
 /// <summary>
@@ -67,11 +63,7 @@ public sealed partial class MainWindow : Window
 		InitializeField();
 
 #if MICA_BACKDROP && ACRYLIC_BACKDROP
-#if WARNING_WHEN_BOTH_BACKDROP_SET
 #warning You should not set both 'MICA_BACKDROP' and 'ACRYLIC_BACKDROP'; acrylic material will be ignored.
-#else
-#error Cannot set both 'MICA_BACKDROP' and 'ACRYLIC_BACKDROP' at same time.
-#endif
 #elif MICA_BACKDROP
 		TrySetMicaBackdrop();
 #elif ACRYLIC_BACKDROP
@@ -80,6 +72,7 @@ public sealed partial class MainWindow : Window
 
 #if CUSTOMIZED_TITLE_BAR
 		InitializeAppWindow();
+		SetAppTitleBarStatus();
 #endif
 
 		SetAppIcon();
@@ -98,6 +91,20 @@ public sealed partial class MainWindow : Window
 			{ (_, container) => container == AnalyzePageItem, typeof(AnalyzePage) },
 			{ (_, container) => container == AboutPagetItem, typeof(AboutPage) }
 		};
+
+	/// <summary>
+	/// Sets the status of app title bars conditionally.
+	/// </summary>
+	private void SetAppTitleBarStatus()
+	{
+#if SEARCH_AUTO_SUGGESTION_BOX
+		AppTitleBar.Visibility = Visibility.Visible;
+		AppTitleBarWithoutAutoSuggestBox.Visibility = Visibility.Collapsed;
+#else
+		AppTitleBar.Visibility = Visibility.Collapsed;
+		AppTitleBarWithoutAutoSuggestBox.Visibility = Visibility.Visible;
+#endif
+	}
 
 #if CUSTOMIZED_TITLE_BAR
 	/// <summary>
@@ -129,21 +136,33 @@ public sealed partial class MainWindow : Window
 					case AppWindowPresenterKind.CompactOverlay:
 					{
 						// Compact overlay - hide custom title bar and use the default system title bar instead.
+#if SEARCH_AUTO_SUGGESTION_BOX
 						AppTitleBar.Visibility = Visibility.Collapsed;
+#else
+						AppTitleBarWithoutAutoSuggestBox.Visibility = Visibility.Collapsed;
+#endif
 						titleBar.ResetToDefault();
 						break;
 					}
 					case AppWindowPresenterKind.FullScreen:
 					{
 						// Full screen - hide the custom title bar and the default system title bar.
+#if SEARCH_AUTO_SUGGESTION_BOX
 						AppTitleBar.Visibility = Visibility.Collapsed;
+#else
+						AppTitleBarWithoutAutoSuggestBox.Visibility = Visibility.Collapsed;
+#endif
 						titleBar.ExtendsContentIntoTitleBar = true;
 						break;
 					}
 					case AppWindowPresenterKind.Overlapped:
 					{
 						// Normal - hide the system title bar and use the custom title bar instead.
+#if SEARCH_AUTO_SUGGESTION_BOX
 						AppTitleBar.Visibility = Visibility.Visible;
+#else
+						AppTitleBarWithoutAutoSuggestBox.Visibility = Visibility.Visible;
+#endif
 						titleBar.ExtendsContentIntoTitleBar = true;
 						SetDragRegionForCustomTitleBar(sender);
 						break;
@@ -174,22 +193,23 @@ public sealed partial class MainWindow : Window
 			titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 			titleBar.ButtonInactiveForegroundColor = Colors.Gray;
 
-			AppTitleBar.Loaded += (_, _) => { if (AppWindowTitleBar.IsCustomizationSupported()) { SetDragRegionForCustomTitleBar(_appWindow); } };
-
-			AppTitleBar.SizeChanged += (_, _) =>
-			{
-				if (AppWindowTitleBar.IsCustomizationSupported() && _appWindow.TitleBar.ExtendsContentIntoTitleBar)
-				{
-					// Update drag region if the size of the title bar changes.
-					SetDragRegionForCustomTitleBar(_appWindow);
-				}
-			};
+#if SEARCH_AUTO_SUGGESTION_BOX
+			AppTitleBar.Loaded += (_, _) => SetDragRegionForCustomTitleBar(_appWindow);
+			AppTitleBar.SizeChanged += (_, _) => SetDragRegionForCustomTitleBar(_appWindow);
+#else
+			AppTitleBarWithoutAutoSuggestBox.Loaded += (_, _) => SetDragRegionForCustomTitleBar(_appWindow);
+			AppTitleBarWithoutAutoSuggestBox.SizeChanged += (_, _) => SetDragRegionForCustomTitleBar(_appWindow);
+#endif
 		}
 		else
 		{
 			// Title bar customization using these APIs is currently supported only on Windows 11.
 			// In other cases, hide the custom title bar element.
+#if SEARCH_AUTO_SUGGESTION_BOX
 			AppTitleBar.Visibility = Visibility.Collapsed;
+#else
+			AppTitleBarWithoutAutoSuggestBox.Visibility = Visibility.Collapsed;
+#endif
 		}
 	}
 
@@ -210,30 +230,35 @@ public sealed partial class MainWindow : Window
 #endif
 			)
 		{
+#if SEARCH_AUTO_SUGGESTION_BOX
 			var scaleAdjustment = GetScaleAdjustment();
 
 			RightPaddingColumn.Width = new(appWindow.TitleBar.RightInset / scaleAdjustment);
 			LeftPaddingColumn.Width = new(appWindow.TitleBar.LeftInset / scaleAdjustment);
-
-			var dragRectsList = new List<RectInt32>();
 
 			RectInt32 dragRectL;
 			dragRectL.X = (int)(LeftPaddingColumn.ActualWidth * scaleAdjustment);
 			dragRectL.Y = 0;
 			dragRectL.Height = (int)(AppTitleBar.ActualHeight * scaleAdjustment);
 			dragRectL.Width = (int)((IconColumn.ActualWidth + TitleColumn.ActualWidth + LeftDragColumn.ActualWidth) * scaleAdjustment);
-			dragRectsList.Add(dragRectL);
 
 			RectInt32 dragRectR;
 			dragRectR.X = (int)((LeftPaddingColumn.ActualWidth + IconColumn.ActualWidth + TitleTextBlock.ActualWidth + LeftDragColumn.ActualWidth + SearchColumn.ActualWidth) * scaleAdjustment);
 			dragRectR.Y = 0;
 			dragRectR.Height = (int)(AppTitleBar.ActualHeight * scaleAdjustment);
 			dragRectR.Width = (int)(RightDragColumn.ActualWidth * scaleAdjustment);
-			dragRectsList.Add(dragRectR);
 
-			var dragRects = dragRectsList.ToArray();
+			appWindow.TitleBar.SetDragRectangles(new[] { dragRectL, dragRectR });
+#else
+			var scaleAdjustment = GetScaleAdjustment();
 
-			appWindow.TitleBar.SetDragRectangles(dragRects);
+			RectInt32 rect;
+			rect.X = 0;
+			rect.Y = 0;
+			rect.Width = (int)(AppTitleBarWithoutAutoSuggestBox.ActualWidth * scaleAdjustment);
+			rect.Height = (int)(AppTitleBarWithoutAutoSuggestBox.ActualHeight * scaleAdjustment);
+			appWindow.TitleBar.SetDragRectangles(new[] { rect });
+#endif
 		}
 	}
 #endif

@@ -15,24 +15,35 @@
 		</Grid.RowDefinitions>
 
 		<!--Title bar-->
-		<Grid x:Name="AppTitleBar" Height="48">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
-				<ColumnDefinition x:Name="IconColumn" Width="Auto" />
-				<ColumnDefinition x:Name="TitleColumn" Width="Auto" />
-				<ColumnDefinition x:Name="LeftDragColumn" Width="*" />
-				<ColumnDefinition x:Name="SearchColumn" Width="Auto" />
-				<ColumnDefinition x:Name="RightDragColumn" Width="*" />
-				<ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
-			</Grid.ColumnDefinitions>
+		<Grid Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+			<Grid x:Name="AppTitleBar" Visibility="Collapsed">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
+					<ColumnDefinition x:Name="IconColumn" Width="Auto" />
+					<ColumnDefinition x:Name="TitleColumn" Width="Auto" />
+					<ColumnDefinition x:Name="LeftDragColumn" Width="*" />
+					<ColumnDefinition x:Name="SearchColumn" Width="Auto" />
+					<ColumnDefinition x:Name="RightDragColumn" Width="*" />
+					<ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
+				</Grid.ColumnDefinitions>
 
-			<Image x:Name="TitleBarIcon" Source="/Resources/images/icon.png" Grid.Column="1" Width="32" Height="32" Margin="12,0" />
-			<TextBlock
-				x:Name="TitleTextBlock" Text="{m:R Key=_ProgramName}" Style="{StaticResource CaptionTextBlockStyle}" Grid.Column="2"
-				VerticalAlignment="Center" Margin="4,0,0,0" />
-			<AutoSuggestBox
-				Grid.Column="4" QueryIcon="Find" PlaceholderText="{m:R Key=MainWindow_Search}"
-				VerticalAlignment="Center" Width="400" Margin="4,0" />
+				<Image x:Name="TitleBarIcon" Source="/Resources/images/icon.png" Grid.Column="1" Width="32" Height="32" Margin="12,0" />
+				<TextBlock
+					x:Name="TitleTextBlock" Text="{m:R Key=_ProgramName}" Style="{StaticResource CaptionTextBlockStyle}" Grid.Column="2"
+					HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" />
+				<AutoSuggestBox
+					Grid.Column="4" QueryIcon="Find" PlaceholderText="{m:R Key=MainWindow_Search}"
+					VerticalAlignment="Center" Width="400" Margin="4,0" />
+			</Grid>
+			<Grid x:Name="AppTitleBarWithoutAutoSuggestBox" Visibility="Collapsed" ColumnDefinitions="0,Auto,*,0">
+				<Image
+					x:Name="TitleBarIconWithoutAutoSuggestBox" Source="/Resources/images/icon.png"
+					Grid.Column="1" Width="32" Height="32" Margin="12,0" />
+				<TextBlock
+					x:Name="TitleTextBlockWithoutAutoSuggestBox" Text="{m:R Key=_ProgramName}"
+					Grid.Column="2" Style="{StaticResource CaptionTextBlockStyle}" HorizontalAlignment="Left"
+					VerticalAlignment="Center" Margin="4,0,0,0" />
+			</Grid>
 		</Grid>
 
 		<!--Navigation view-->
