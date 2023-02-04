@@ -43,6 +43,7 @@
 		<AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 		<EntryPointProjectUniqueName>..\SudokuStudio\SudokuStudio.csproj</EntryPointProjectUniqueName>
+		<NoWarn>NU1701</NoWarn>
 	</PropertyGroup>
 	<ItemGroup>
 		<AppxManifest Include="Package.appxmanifest">
