@@ -8,7 +8,7 @@ internal static class IdentifierConversion
 {
 	public static Color GetColor(Identifier id)
 	{
-		var uiPref = ((App)Application.Current).ProgramPreference.UIPreferences;
+		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		return id switch
 		{
 			{ Mode: IdentifierColorMode.Raw, A: var a, R: var r, G: var g, B: var b } => Color.FromArgb(a, r, g, b),

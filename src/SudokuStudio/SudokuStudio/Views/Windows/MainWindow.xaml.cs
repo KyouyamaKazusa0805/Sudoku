@@ -424,5 +424,5 @@ public sealed partial class MainWindow : Window
 		=> SwitchingPage(args.IsSettingsSelected, args.SelectedItemContainer);
 
 	private void Window_Closed(object sender, WindowEventArgs args)
-		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).ProgramPreference);
+		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).Preference);
 }

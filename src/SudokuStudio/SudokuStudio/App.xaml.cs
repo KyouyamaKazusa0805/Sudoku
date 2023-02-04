@@ -35,7 +35,7 @@ public partial class App : Application
 	/// <summary>
 	/// Indicates the program-reserved user preference.
 	/// </summary>
-	public ProgramPreference ProgramPreference { get; } = new();
+	public ProgramPreference Preference { get; } = new();
 
 	/// <summary>
 	/// Indicates the first-opened grid.

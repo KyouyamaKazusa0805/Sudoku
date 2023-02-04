@@ -767,7 +767,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		// Loads the configuration file from local path.
 		var targetPath = CommonPaths.UserPreference;
-		var pref = ((App)Application.Current).ProgramPreference!;
+		var pref = ((App)Application.Current).Preference!;
 		if (File.Exists(targetPath) && ProgramPreferenceFileHandler.Read(targetPath) is { } loadedConfig)
 		{
 			pref.CoverBy(loadedConfig);
