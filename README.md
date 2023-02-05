@@ -51,13 +51,13 @@ This repositoty is created for the following kinds of users:
 
 ![](docs/pic/command-line.png)
 
-### Original Windows UI
+### Original UI
 
 ![](docs/pic/winui-1.png)
 
 > Please visit branch [winui-reserved](https://github.com/SunnieShine/Sudoku/tree/winui-reserved). This project contains some bugs not being fixed, and the binding logic is too complex for me to re-visit and adjust. Therefore this project is deprecated now.
 
-### Windows UI Project
+### Today's UI Project
 
 ![](docs/pic/winui-2.png)
 
