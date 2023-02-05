@@ -24,6 +24,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates whether the pane displays for candidates.
 	/// </summary>
 	[NotifyBackingField]
+	[NotifyCallback]
 	private bool _displayCandidates = true;
 
 	/// <summary>
@@ -628,6 +629,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		_undoStack.Clear();
 		_redoStack.Clear();
 	}
+
+	private void DisplayCandidatesSetterAfter(bool value) => ((App)Application.Current).Preference.UIPreferences.DisplayCandidates = value;
 
 	private void ViewUnitSetterAfter(ViewUnit? value)
 	{
