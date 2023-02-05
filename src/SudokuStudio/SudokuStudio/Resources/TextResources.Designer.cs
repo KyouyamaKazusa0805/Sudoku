@@ -1249,15 +1249,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings.
-        /// </summary>
-        internal static string SettingsPage_MainPreferenceItemsPageHeader {
-            get {
-                return ResourceManager.GetString("SettingsPage_MainPreferenceItemsPageHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string SettingsPage_OffContent {

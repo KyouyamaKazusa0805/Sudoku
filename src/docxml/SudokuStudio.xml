@@ -2785,11 +2785,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_MainPreferenceItemsPageHeader">
-            <summary>
-              Looks up a localized string similar to Settings.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OffContent">
             <summary>
               Looks up a localized string similar to No.
