@@ -4,7 +4,6 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -25,56 +24,6 @@
 				<ToggleSwitch
 					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DistinctWithDeltaDigits,Mode=TwoWay}"
 					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel Spacing="6">
-				<TextBlock
-					Text="{m:R Key=SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle}"
-					Style="{StaticResource PreferenceItemTitleStyle}" />
-				<RelativePanel>
-					<Slider
-						x:Name="SliderEllipseScale" Width="500" HorizontalAlignment="Left" Minimum="0" Maximum="1"
-						TickPlacement="Outside" TickFrequency="0.1" StepFrequency="0.1"
-						Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Mode=TwoWay}" />
-					<TextBlock
-						RelativePanel.RightOf="SliderEllipseScale" Margin="24,0,0,0" VerticalAlignment="Center"
-						Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderEllipseScale.Value,'0.0'),Mode=OneWay}" />
-				</RelativePanel>
-			</StackPanel>
-			<StackPanel Spacing="6">
-				<TextBlock Text="{m:R Key=SettingsPage_HighlightBackgroundOpacityTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<RelativePanel>
-					<Slider
-						x:Name="SliderBackgroundOpacity" Width="500" HorizontalAlignment="Left" Minimum="0" Maximum="1"
-						TickPlacement="Outside" TickFrequency="0.05" StepFrequency="0.05"
-						Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Mode=TwoWay}" />
-					<TextBlock
-						RelativePanel.RightOf="SliderBackgroundOpacity" Margin="24,0,0,0" VerticalAlignment="Center"
-						Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderBackgroundOpacity.Value,'0.00'),Mode=OneWay}" />
-				</RelativePanel>
-			</StackPanel>
-			<StackPanel Spacing="6">
-				<TextBlock Text="{m:R Key=SettingsPage_ChainStrokeThicknessTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<RelativePanel>
-					<Slider
-						x:Name="SliderChainStrokeThickness" Width="500" HorizontalAlignment="Left" Minimum="0" Maximum="5"
-						TickPlacement="Outside" TickFrequency="0.1" StepFrequency="0.1"
-						Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=TwoWay}" />
-					<TextBlock
-						RelativePanel.RightOf="SliderChainStrokeThickness" Margin="24,0,0,0" VerticalAlignment="Center"
-						Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderChainStrokeThickness.Value,'0.0'),Mode=OneWay}" />
-				</RelativePanel>
-			</StackPanel>
-			<StackPanel Spacing="6">
-				<TextBlock
-					Text="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}"
-					Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ComboBox
-					Width="200"
-					SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
-					<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
-				</ComboBox>
 			</StackPanel>
 		</StackPanel>
 	</ScrollViewer>

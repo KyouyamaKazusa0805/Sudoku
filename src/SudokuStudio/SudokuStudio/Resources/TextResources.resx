@@ -477,6 +477,9 @@
   <data name="SettingsPage_DistinctWithDeltaDigitsTitle" xml:space="preserve">
     <value>Distinct with delta digits</value>
   </data>
+  <data name="SettingsPage_Drawing" xml:space="preserve">
+    <value>Drawing</value>
+  </data>
   <data name="SettingsPage_HighlightBackgroundOpacityTitle" xml:space="preserve">
     <value>Opacity of background-styled highlighted items</value>
   </data>

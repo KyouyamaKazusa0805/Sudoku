@@ -477,6 +477,9 @@
   <data name="SettingsPage_DistinctWithDeltaDigitsTitle" xml:space="preserve">
     <value>区分偏差数字</value>
   </data>
+  <data name="SettingsPage_Drawing" xml:space="preserve">
+    <value>绘图和渲染</value>
+  </data>
   <data name="SettingsPage_HighlightBackgroundOpacityTitle" xml:space="preserve">
     <value>背景视图节点的透明度</value>
   </data>

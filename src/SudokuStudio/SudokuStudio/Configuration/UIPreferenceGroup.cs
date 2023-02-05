@@ -124,13 +124,13 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 	{
 		var pane = ((App)Application.Current).SudokuPane!;
 		pane.DisplayCandidates = DisplayCandidates;
-		pane.DisplayCursors = DisplayCursors;
-		pane.UseDifferentColorToDisplayDeltaDigits = DistinctWithDeltaDigits;
-		pane.HighlightCandidateCircleScale = HighlightedPencilmarkBackgroundEllipseScale;
-		pane.HighlightBackgroundOpacity = HighlightedBackgroundOpacity;
-		pane.ChainStrokeThickness = ChainStrokeThickness;
+		pane.DisplayCursors = DisplayCursors;//
+		pane.UseDifferentColorToDisplayDeltaDigits = DistinctWithDeltaDigits;//
+		pane.HighlightCandidateCircleScale = HighlightedPencilmarkBackgroundEllipseScale;//
+		pane.HighlightBackgroundOpacity = HighlightedBackgroundOpacity;//
+		pane.ChainStrokeThickness = ChainStrokeThickness;//
 		pane.CoordinateLabelDisplayKind = (CoordinateLabelDisplayKind)CoordinateLabelDisplayKind;
-		pane.CoordinateLabelDisplayMode = (CoordinateLabelDisplayMode)CoordinateLabelDisplayMode;
+		pane.CoordinateLabelDisplayMode = (CoordinateLabelDisplayMode)CoordinateLabelDisplayMode;//
 		pane.DeltaCellColor = DeltaValueColor;
 		pane.DeltaCandidateColor = DeltaPencilmarkColor;
 		pane.BorderColor = SudokuPaneBorderColor;

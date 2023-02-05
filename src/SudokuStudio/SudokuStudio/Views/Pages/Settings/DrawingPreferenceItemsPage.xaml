@@ -1,0 +1,81 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:DrawingPreferenceItemsPage}">
+	<Grid ColumnDefinitions="*,Auto">
+		<!--Preference items-->
+		<ScrollViewer>
+			<StackPanel Spacing="20">
+				<StackPanel Spacing="6" Margin="0,0,60,0">
+					<TextBlock
+						Text="{m:R Key=SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle}"
+						Style="{StaticResource PreferenceItemTitleStyle}" />
+					<RelativePanel>
+						<Slider
+							x:Name="SliderEllipseScale" Width="400" HorizontalAlignment="Left" Minimum="0" Maximum="1"
+							TickPlacement="Outside" TickFrequency="0.1" StepFrequency="0.1"
+							Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Mode=TwoWay}" />
+						<TextBlock
+							RelativePanel.RightOf="SliderEllipseScale" Margin="24,0,0,0" VerticalAlignment="Center"
+							Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderEllipseScale.Value,'0.0'),Mode=OneWay}" />
+					</RelativePanel>
+				</StackPanel>
+				<StackPanel Spacing="6">
+					<TextBlock Text="{m:R Key=SettingsPage_HighlightBackgroundOpacityTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<RelativePanel>
+						<Slider
+							x:Name="SliderBackgroundOpacity" Width="400" HorizontalAlignment="Left" Minimum="0" Maximum="1"
+							TickPlacement="Outside" TickFrequency="0.05" StepFrequency="0.05"
+							Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Mode=TwoWay}" />
+						<TextBlock
+							RelativePanel.RightOf="SliderBackgroundOpacity" Margin="24,0,0,0" VerticalAlignment="Center"
+							Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderBackgroundOpacity.Value,'0.00'),Mode=OneWay}" />
+					</RelativePanel>
+				</StackPanel>
+				<StackPanel Spacing="6">
+					<TextBlock Text="{m:R Key=SettingsPage_ChainStrokeThicknessTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<RelativePanel>
+						<Slider
+							x:Name="SliderChainStrokeThickness" Width="400" HorizontalAlignment="Left" Minimum="0" Maximum="5"
+							TickPlacement="Outside" TickFrequency="0.1" StepFrequency="0.1"
+							Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=TwoWay}" />
+						<TextBlock
+							RelativePanel.RightOf="SliderChainStrokeThickness" Margin="24,0,0,0" VerticalAlignment="Center"
+							Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderChainStrokeThickness.Value,'0.0'),Mode=OneWay}" />
+					</RelativePanel>
+				</StackPanel>
+				<StackPanel Spacing="6">
+					<TextBlock
+						Text="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}"
+						Style="{StaticResource PreferenceItemTitleStyle}" />
+					<ComboBox
+						x:Name="ComboBoxCoordinateMode" Width="200"
+						SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
+						<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
+					</ComboBox>
+				</StackPanel>
+			</StackPanel>
+		</ScrollViewer>
+
+		<!--Sample grid-->
+		<c:SudokuPane
+			Grid.Column="1" Margin="60,0,0,0" Width="610" Height="610" HorizontalAlignment="Center" VerticalAlignment="Center"
+			DisplayCursors="False"
+			Puzzle="{m:Grid Text='000001230123004+5604+560078907890000000000000000000001230123004+5604+5600789078900000'}"
+			HighlightCandidateCircleScale="{x:Bind SliderEllipseScale.Value,Mode=OneWay}"
+			HighlightBackgroundOpacity="{x:Bind SliderBackgroundOpacity.Value,Mode=OneWay}"
+			ChainStrokeThickness="{x:Bind SliderChainStrokeThickness.Value,Mode=OneWay}"
+			CoordinateLabelDisplayMode="{x:Bind cvt:SettingsPageConversion.GetCoordinateLabelDisplayMode(ComboBoxCoordinateMode.SelectedIndex),Mode=OneWay}" />
+	</Grid>
+</Page>

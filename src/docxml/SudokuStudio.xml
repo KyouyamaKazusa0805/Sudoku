@@ -2770,6 +2770,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Distinct with delta digits.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Drawing">
+            <summary>
+              Looks up a localized string similar to Drawing.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_HighlightBackgroundOpacityTitle">
             <summary>
               Looks up a localized string similar to Opacity of background-styled highlighted items.
@@ -4417,6 +4422,31 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage">
+            <summary>
+            Represents drawing preferences page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

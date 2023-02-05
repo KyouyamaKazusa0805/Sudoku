@@ -1222,6 +1222,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drawing.
+        /// </summary>
+        internal static string SettingsPage_Drawing {
+            get {
+                return ResourceManager.GetString("SettingsPage_Drawing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opacity of background-styled highlighted items.
         /// </summary>
         internal static string SettingsPage_HighlightBackgroundOpacityTitle {
