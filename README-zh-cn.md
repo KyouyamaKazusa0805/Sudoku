@@ -38,18 +38,24 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 这个仓库的代码适用于下面这些人群：
 
 * **喜欢钻研数独算法的人**：如果你想要钻研数独有关的实现机制和背后运行机制的话，你可以在这个项目里找到对应的答案。
-* **尝试学习 C# 有关特性的人**：这个项目使用了一些较新的 C# 语言特性，并且你可以在这里学到一些 .NET 相关的技术，比如 WinUI（参见 [winui-reserved](https://github.com/SunnieShine/Sudoku/tree/winui-reserved) 分支）和 MAUI。
+* **尝试学习 C# 有关特性的人**：这个项目使用了一些较新的 C# 语言特性，并且你可以在这里学到一些 .NET 相关的技术，比如 Windows UI。
 * **我自己**：我自己会提前对之前想到的代码和算法进行一些实现，这样就防止我忘记它们的原理和处理规则。
 
 ## 界面
 
-控制台：
+### 控制台
 
 ![](docs/pic/command-line.png)
 
-UI：
+### 原来的 Windows UI 项目
 
-![](docs/pic/win-ui.png)
+![](docs/pic/winui-1.png)
+
+> 代码请参见 [winui-reserved](https://github.com/SunnieShine/Sudoku/tree/winui-reserved) 分支。由于原来的代码我不太满意，很多绑定的逻辑写得都不好，而且不便于重新调整，再加上有 bug 没有修复，因此停更了。
+
+### 现在的 Windows UI 项目
+
+![](docs/pic/winui-2.png)
 
 群机器人：
 

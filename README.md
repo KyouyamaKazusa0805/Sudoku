@@ -42,18 +42,24 @@ In addition, the framework and IDE version may update in the future; in other wo
 This repositoty is created for the following kinds of users:
 
 * **who likes sudoku algorithms**: If you like to study for sudoku techniques and its backing implementation and running mechanism, you can find answer in this repository.
-* **who wants to learn about C#-related features**: This repository uses some C# newer features and .NET-related features such as WinUI (Please visit branch [winui-reserved](https://github.com/SunnieShine/Sudoku/tree/winui-reserved)) and MAUI, which can help you learn more about it as practicing.
+* **who wants to learn about C#-related features**: This repository uses some C# newer features and .NET-related features such as Windows UI, which can help you learn more about it as practicing.
 * **myself**: The codes are very important for me to learn sudoku and algorithms.
 
 ## Prefaces
 
-Command line:
+### Command Line
 
 ![](docs/pic/command-line.png)
 
-UI:
+### Original Windows UI
 
-![](docs/pic/win-ui.png)
+![](docs/pic/winui-1.png)
+
+> Please visit branch [winui-reserved](https://github.com/SunnieShine/Sudoku/tree/winui-reserved). This project contains some bugs not being fixed, and the binding logic is too complex for me to re-visit and adjust. Therefore this project is deprecated now.
+
+### Windows UI Project
+
+![](docs/pic/winui-2.png)
 
 ## Technique Supports
 
