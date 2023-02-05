@@ -459,6 +459,9 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>Settings &amp; Preferences</value>
   </data>
+  <data name="SettingsPage_Basic" xml:space="preserve">
+    <value>Basic preferences</value>
+  </data>
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>Stroke thickness of chain links</value>
   </data>
@@ -482,6 +485,9 @@
   </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting.</value>
+  </data>
+  <data name="SettingsPage_MainPreferenceItemsPageHeader" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="SettingsPage_OffContent" xml:space="preserve">
     <value>No</value>

@@ -330,6 +330,7 @@ public sealed partial class MainWindow : Window
 			if (condition(isSettingInvokedOrSelected, container))
 			{
 				NavigateToPage(pageType);
+				return;
 			}
 		}
 	}

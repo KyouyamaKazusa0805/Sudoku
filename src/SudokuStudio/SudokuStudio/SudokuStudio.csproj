@@ -53,6 +53,7 @@
 		<None Remove="Views\Pages\Analyze\Summary.xaml" />
 		<None Remove="Views\Pages\Operation\BasicOperation.xaml" />
 		<None Remove="Views\Pages\SettingsPage.xaml" />
+		<None Remove="Views\Pages\Settings\BasicPreferenceItemsPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -120,6 +121,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\Analyze\Summary.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\BasicPreferenceItemsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

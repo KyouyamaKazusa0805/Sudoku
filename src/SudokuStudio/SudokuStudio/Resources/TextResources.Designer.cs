@@ -1168,6 +1168,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basic preferences.
+        /// </summary>
+        internal static string SettingsPage_Basic {
+            get {
+                return ResourceManager.GetString("SettingsPage_Basic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stroke thickness of chain links.
         /// </summary>
         internal static string SettingsPage_ChainStrokeThicknessTitle {
@@ -1236,6 +1245,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_Intro {
             get {
                 return ResourceManager.GetString("SettingsPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string SettingsPage_MainPreferenceItemsPageHeader {
+            get {
+                return ResourceManager.GetString("SettingsPage_MainPreferenceItemsPageHeader", resourceCulture);
             }
         }
         

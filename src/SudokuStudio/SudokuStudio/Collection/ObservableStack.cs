@@ -5,20 +5,20 @@
 /// <para>Different with type <see cref="Stack{T}"/>, this type provides mechanism to trigger events on collection changed.</para>
 /// </summary>
 /// <typeparam name="T"><inheritdoc cref="Stack{T}" path="/typeparam[@name='T']"/></typeparam>
-public sealed class NotifyElementChangedStack<T> : Stack<T>
+public sealed class ObservableStack<T> : Stack<T>, INotifyCollectionChanged
 {
 	/// <summary>
-	/// Initializes an <see cref="NotifyElementChangedStack{T}"/> instance.
+	/// Initializes an <see cref="ObservableStack{T}"/> instance.
 	/// </summary>
-	public NotifyElementChangedStack() : base()
+	public ObservableStack() : base()
 	{
 	}
 
 	/// <summary>
-	/// Initializes an <see cref="NotifyElementChangedStack{T}"/> instance via the specified list of elements.
+	/// Initializes an <see cref="ObservableStack{T}"/> instance via the specified list of elements.
 	/// </summary>
 	/// <param name="collection">The list of elements.</param>
-	public NotifyElementChangedStack(IEnumerable<T> collection) : base(collection)
+	public ObservableStack(IEnumerable<T> collection) : base(collection)
 	{
 	}
 
@@ -28,6 +28,9 @@ public sealed class NotifyElementChangedStack<T> : Stack<T>
 	/// </summary>
 	public event ObservableStackChangedEventHandler<T>? Changed;
 
+	/// <inheritdoc/>
+	public event NotifyCollectionChangedEventHandler? CollectionChanged;
+
 
 	/// <inheritdoc cref="Stack{T}.Push(T)"/>
 	public new void Push(T element)
@@ -35,6 +38,7 @@ public sealed class NotifyElementChangedStack<T> : Stack<T>
 		base.Push(element);
 
 		Changed?.Invoke(this);
+		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Add, element));
 	}
 
 	/// <inheritdoc cref="Stack{T}.Pop"/>
@@ -43,6 +47,7 @@ public sealed class NotifyElementChangedStack<T> : Stack<T>
 		var result = base.Pop();
 
 		Changed?.Invoke(this);
+		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Remove, result));
 
 		return result;
 	}
@@ -53,5 +58,6 @@ public sealed class NotifyElementChangedStack<T> : Stack<T>
 		base.Clear();
 
 		Changed?.Invoke(this);
+		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Reset));
 	}
 }

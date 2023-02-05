@@ -246,36 +246,39 @@
         <member name="M:SudokuStudio.Collection.Converter.Write(System.Text.Json.Utf8JsonWriter,SudokuStudio.Collection.DashArray,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:SudokuStudio.Collection.NotifyElementChangedStack`1">
+        <member name="T:SudokuStudio.Collection.ObservableStack`1">
             <summary>
             <para><inheritdoc cref="T:System.Collections.Generic.Stack`1" path="/summary"/></para>
             <para>Different with type <see cref="T:System.Collections.Generic.Stack`1"/>, this type provides mechanism to trigger events on collection changed.</para>
             </summary>
             <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.Stack`1" path="/typeparam[@name='T']"/></typeparam>
         </member>
-        <member name="M:SudokuStudio.Collection.NotifyElementChangedStack`1.#ctor">
+        <member name="M:SudokuStudio.Collection.ObservableStack`1.#ctor">
             <summary>
-            Initializes an <see cref="T:SudokuStudio.Collection.NotifyElementChangedStack`1"/> instance.
+            Initializes an <see cref="T:SudokuStudio.Collection.ObservableStack`1"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Collection.NotifyElementChangedStack`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:SudokuStudio.Collection.ObservableStack`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
-            Initializes an <see cref="T:SudokuStudio.Collection.NotifyElementChangedStack`1"/> instance via the specified list of elements.
+            Initializes an <see cref="T:SudokuStudio.Collection.ObservableStack`1"/> instance via the specified list of elements.
             </summary>
             <param name="collection">The list of elements.</param>
         </member>
-        <member name="E:SudokuStudio.Collection.NotifyElementChangedStack`1.Changed">
+        <member name="E:SudokuStudio.Collection.ObservableStack`1.Changed">
             <summary>
             Defines an event that is triggered when the current collection is changed.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Collection.NotifyElementChangedStack`1.Push(`0)">
+        <member name="E:SudokuStudio.Collection.ObservableStack`1.CollectionChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Collection.ObservableStack`1.Push(`0)">
             <inheritdoc cref="M:System.Collections.Generic.Stack`1.Push(`0)"/>
         </member>
-        <member name="M:SudokuStudio.Collection.NotifyElementChangedStack`1.Pop">
+        <member name="M:SudokuStudio.Collection.ObservableStack`1.Pop">
             <inheritdoc cref="M:System.Collections.Generic.Stack`1.Pop"/>
         </member>
-        <member name="M:SudokuStudio.Collection.NotifyElementChangedStack`1.Clear">
+        <member name="M:SudokuStudio.Collection.ObservableStack`1.Clear">
             <inheritdoc cref="M:System.Collections.Generic.Stack`1.Clear"/>
         </member>
         <member name="T:SudokuStudio.Collection.ObservableStackChangedEventHandler`1">
@@ -2737,6 +2740,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Settings &amp; Preferences.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Basic">
+            <summary>
+              Looks up a localized string similar to Basic preferences.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ChainStrokeThicknessTitle">
             <summary>
               Looks up a localized string similar to Stroke thickness of chain links.
@@ -2775,6 +2783,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Intro">
             <summary>
               Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_MainPreferenceItemsPageHeader">
+            <summary>
+              Looks up a localized string similar to Settings.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OffContent">
@@ -4384,6 +4397,31 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage">
+            <summary>
+            Represents a settings page that displays for basic preferences.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

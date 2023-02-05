@@ -5,5 +5,5 @@
 /// </summary>
 internal static class UndoRedoButtonConversion
 {
-	public static bool GetButtonIsEnabled(NotifyElementChangedStack<Grid> stack) => stack.Count != 0;
+	public static bool GetButtonIsEnabled(ObservableStack<Grid> stack) => stack.Count != 0;
 }

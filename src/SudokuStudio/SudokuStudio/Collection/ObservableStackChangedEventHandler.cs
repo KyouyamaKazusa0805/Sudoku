@@ -5,4 +5,4 @@
 /// </summary>
 /// <typeparam name="T">The type of each element stored in the collection.</typeparam>
 /// <param name="sender">The collection.</param>
-public delegate void ObservableStackChangedEventHandler<T>(NotifyElementChangedStack<T> sender);
+public delegate void ObservableStackChangedEventHandler<T>(ObservableStack<T> sender);

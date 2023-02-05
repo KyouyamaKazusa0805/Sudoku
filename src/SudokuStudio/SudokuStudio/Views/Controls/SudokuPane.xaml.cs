@@ -8,7 +8,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Defines a pair of stacks that stores undo and redo steps.
 	/// </summary>
-	internal readonly NotifyElementChangedStack<Grid> _undoStack = new(), _redoStack = new();
+	internal readonly ObservableStack<Grid> _undoStack = new(), _redoStack = new();
 
 	/// <summary>
 	/// The easy entry to visit children <see cref="SudokuPaneCell"/> instances. This field contains 81 elements,

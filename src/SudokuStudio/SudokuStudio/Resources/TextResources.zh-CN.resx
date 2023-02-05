@@ -459,6 +459,9 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>偏好项设置</value>
   </data>
+  <data name="SettingsPage_Basic" xml:space="preserve">
+    <value>基本设置</value>
+  </data>
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>链的粗细</value>
   </data>
@@ -482,6 +485,9 @@
   </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。所有配置项均为即时保存，但需要重启程序后才能生效。懒得写绑定了 :)</value>
+  </data>
+  <data name="SettingsPage_MainPreferenceItemsPageHeader" xml:space="preserve">
+    <value>偏好项</value>
   </data>
   <data name="SettingsPage_OffContent" xml:space="preserve">
     <value>否</value>
