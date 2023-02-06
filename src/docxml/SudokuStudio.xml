@@ -2760,6 +2760,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Border.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_CandidateFontData">
+            <summary>
+              Looks up a localized string similar to Candidate font.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ChainStrokeThicknessTitle">
             <summary>
               Looks up a localized string similar to Stroke thickness of chain links.
@@ -2815,6 +2820,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Drawing.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_GivenFontData">
+            <summary>
+              Looks up a localized string similar to Given font.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_HighlightBackgroundOpacityTitle">
             <summary>
               Looks up a localized string similar to Opacity of background-styled highlighted items.
@@ -2828,6 +2838,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Intro">
             <summary>
               Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ModifiableFontData">
+            <summary>
+              Looks up a localized string similar to Modifiable font.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_MoreColors">
@@ -3003,6 +3018,32 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Storage.SudokuPlainTextFileHandler.Write(System.String,Sudoku.Concepts.Grid)">
             <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Views.Attached.FontPickerBindable">
+            <summary>
+            Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.FontPicker"/> instances.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Controls.FontPicker"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.FontPickerBindable.SelectedFontDataProperty">
+            <summary>
+            Defines a dependency property instance that is bindable selected font data.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.FontPickerBindable.GetSelectedFontData(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets a <see cref="T:SudokuStudio.Models.FontSerializationData"/> instance.
+            </summary>
+            <param name="obj">The dependency object.</param>
+            <returns>A <see cref="T:SudokuStudio.Models.FontSerializationData"/> instance.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.FontPickerBindable.SetSelectedFontData(Microsoft.UI.Xaml.DependencyObject,SudokuStudio.Models.FontSerializationData)">
+            <summary>
+            Sets a <see cref="T:SudokuStudio.Models.FontSerializationData"/> instance.
+            This will trigger the event to append inlines into the target <see cref="T:SudokuStudio.Views.Controls.FontPicker"/>.
+            </summary>
+            <param name="obj">The dependency object.</param>
+            <param name="value">The inlines to be added.</param>
         </member>
         <member name="T:SudokuStudio.Views.Attached.TextBlockBindable">
             <summary>
@@ -3265,6 +3306,81 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.FontPicker">
+            <summary>
+            Represents a font picker.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontNameProperty">
+            <summary>
+            The dependency property that binds with <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleProperty">
+            <summary>
+            The dependency property that binds with <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedColorProperty">
+            <summary>
+            The dependency property that binds with <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.FontPicker.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.FontPicker"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.Header">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.ComboBox.Header"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale">
+            <summary>
+            Indicates the selected font scale.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.PlaceholderText">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.ComboBox.PlaceholderText"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName">
+            <summary>
+            Indicates the selected font name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor">
+            <summary>
+            Indicates the selected font name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontData">
+            <summary>
+            Indicates the selected font data.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.FontPicker.SetFontData(SudokuStudio.Models.FontSerializationData)">
+            <summary>
+            Sets the font data.
+            </summary>
+            <param name="fontData">The font data.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.FontPicker.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

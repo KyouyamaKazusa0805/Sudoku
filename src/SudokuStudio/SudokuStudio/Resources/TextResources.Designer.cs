@@ -1186,6 +1186,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Candidate font.
+        /// </summary>
+        internal static string SettingsPage_CandidateFontData {
+            get {
+                return ResourceManager.GetString("SettingsPage_CandidateFontData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stroke thickness of chain links.
         /// </summary>
         internal static string SettingsPage_ChainStrokeThicknessTitle {
@@ -1285,6 +1294,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given font.
+        /// </summary>
+        internal static string SettingsPage_GivenFontData {
+            get {
+                return ResourceManager.GetString("SettingsPage_GivenFontData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opacity of background-styled highlighted items.
         /// </summary>
         internal static string SettingsPage_HighlightBackgroundOpacityTitle {
@@ -1308,6 +1326,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_Intro {
             get {
                 return ResourceManager.GetString("SettingsPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifiable font.
+        /// </summary>
+        internal static string SettingsPage_ModifiableFontData {
+            get {
+                return ResourceManager.GetString("SettingsPage_ModifiableFontData", resourceCulture);
             }
         }
         

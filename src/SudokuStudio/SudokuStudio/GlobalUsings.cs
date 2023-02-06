@@ -32,6 +32,7 @@ global using LiveChartsCore.SkiaSharpView;
 global using LiveChartsCore.SkiaSharpView.Drawing;
 global using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
 global using LiveChartsCore.SkiaSharpView.Painting;
+global using Microsoft.Graphics.Canvas.Text;
 global using Microsoft.UI;
 global using Microsoft.UI.Composition;
 global using Microsoft.UI.Composition.SystemBackdrops;

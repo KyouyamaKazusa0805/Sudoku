@@ -465,6 +465,9 @@
   <data name="SettingsPage_BorderColor" xml:space="preserve">
     <value>盘面边框线</value>
   </data>
+  <data name="SettingsPage_CandidateFontData" xml:space="preserve">
+    <value>候选数字体</value>
+  </data>
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>链的粗细</value>
   </data>
@@ -498,6 +501,9 @@
   <data name="SettingsPage_Drawing" xml:space="preserve">
     <value>绘图和渲染</value>
   </data>
+  <data name="SettingsPage_GivenFontData" xml:space="preserve">
+    <value>提示数字体</value>
+  </data>
   <data name="SettingsPage_HighlightBackgroundOpacityTitle" xml:space="preserve">
     <value>背景视图节点的透明度</value>
   </data>
@@ -506,6 +512,9 @@
   </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。所有配置项均为即时保存，但需要重启程序后才能生效。懒得写绑定了 :)</value>
+  </data>
+  <data name="SettingsPage_ModifiableFontData" xml:space="preserve">
+    <value>填入数字体</value>
   </data>
   <data name="SettingsPage_MoreColors" xml:space="preserve">
     <value>&gt;&gt; 更多</value>
