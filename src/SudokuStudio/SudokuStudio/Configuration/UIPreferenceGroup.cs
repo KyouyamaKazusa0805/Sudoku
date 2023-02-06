@@ -131,8 +131,8 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		pane.ChainStrokeThickness = ChainStrokeThickness;//
 		pane.CoordinateLabelDisplayKind = (CoordinateLabelDisplayKind)CoordinateLabelDisplayKind;
 		pane.CoordinateLabelDisplayMode = (CoordinateLabelDisplayMode)CoordinateLabelDisplayMode;//
-		pane.DeltaCellColor = DeltaValueColor;
-		pane.DeltaCandidateColor = DeltaPencilmarkColor;
+		pane.DeltaCellColor = DeltaValueColor;//
+		pane.DeltaCandidateColor = DeltaPencilmarkColor;//
 		pane.BorderColor = SudokuPaneBorderColor;
 		pane.CursorBackgroundColor = CursorBackgroundColor;
 		pane.LinkColor = ChainColor;

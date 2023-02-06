@@ -354,6 +354,16 @@
         <member name="M:SudokuStudio.Configuration.AnalysisPreferenceGroup.CoverProperties">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Configuration.BuiltInColorPalette">
+            <summary>
+            Indicates a built-in color palette.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Configuration.BuiltInColorPalette.Value">
+            <summary>
+            Indicates the colors.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Configuration.PreferenceGroup">
             <summary>
             Defines a preference group.
@@ -2735,6 +2745,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Stroke thickness of chain links.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DeltaCandidateColor">
+            <summary>
+              Looks up a localized string similar to Delta candidates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DeltaCandidateColorDescription">
+            <summary>
+              Looks up a localized string similar to Delta candidates are ones that are incorrect eliminations.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DeltaCellColor">
+            <summary>
+              Looks up a localized string similar to Delta cells.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DeltaCellColorDescription">
+            <summary>
+              Looks up a localized string similar to Delta cells are digits that are confilct with its same house.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DisplayCursorsDescription">
             <summary>
               Looks up a localized string similar to Cursors are a group of highlighted cells that describes what cell your cursor point points to..
@@ -2773,6 +2803,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Intro">
             <summary>
               Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_MoreColors">
+            <summary>
+              Looks up a localized string similar to &gt;&gt; More.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OffContent">
@@ -2969,6 +3004,59 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="obj">The dependency object.</param>
             <param name="value">The inlines to be added.</param>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.ColorSelector">
+            <summary>
+            Represents a color selector.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.ColorSelector.SelectedColorProperty">
+            <summary>
+            Indicates the dependency property that binds with the property <see cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.ColorSelector._selectedColor">
+            <summary>
+            Indicates the inner color.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ColorSelector.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.ColorSelector"/> instance.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.ColorSelector.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ColorSelector.GridView_ItemClick(System.Object,Microsoft.UI.Xaml.Controls.ItemClickEventArgs)">
+            <summary>
+            Triggers when the item is being clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ColorSelector.ColorPicker_ColorChanged(Microsoft.UI.Xaml.Controls.ColorPicker,Microsoft.UI.Xaml.Controls.ColorChangedEventArgs)">
+            <summary>
+            Triggers when the color picker has changed its color.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ColorSelector.HyperlinkButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the "More" button is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ColorSelector.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.ColorSelector._selectedColor"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.ExtendedExpander">
             <summary>

@@ -14,8 +14,8 @@
 	<Grid ColumnDefinitions="*,Auto">
 		<!--Preference items-->
 		<ScrollViewer>
-			<StackPanel Spacing="20">
-				<StackPanel Spacing="6" Margin="0,0,60,0">
+			<StackPanel Spacing="26" Margin="0,0,60,0">
+				<StackPanel>
 					<TextBlock
 						Text="{m:R Key=SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle}"
 						Style="{StaticResource PreferenceItemTitleStyle}" />
@@ -29,7 +29,7 @@
 							Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderEllipseScale.Value,'0.0'),Mode=OneWay}" />
 					</RelativePanel>
 				</StackPanel>
-				<StackPanel Spacing="6">
+				<StackPanel>
 					<TextBlock Text="{m:R Key=SettingsPage_HighlightBackgroundOpacityTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
 					<RelativePanel>
 						<Slider
@@ -41,7 +41,7 @@
 							Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderBackgroundOpacity.Value,'0.00'),Mode=OneWay}" />
 					</RelativePanel>
 				</StackPanel>
-				<StackPanel Spacing="6">
+				<StackPanel>
 					<TextBlock Text="{m:R Key=SettingsPage_ChainStrokeThicknessTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
 					<RelativePanel>
 						<Slider
@@ -53,7 +53,7 @@
 							Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderChainStrokeThickness.Value,'0.0'),Mode=OneWay}" />
 					</RelativePanel>
 				</StackPanel>
-				<StackPanel Spacing="6">
+				<StackPanel>
 					<TextBlock
 						Text="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}"
 						Style="{StaticResource PreferenceItemTitleStyle}" />
@@ -65,6 +65,20 @@
 						<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
 					</ComboBox>
 				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_DeltaCellColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<TextBlock Text="{m:R Key=SettingsPage_DeltaCellColorDescription}" />
+					<c:ColorSelector
+						x:Name="DeltaCellColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaValueColor,Mode=TwoWay}" />
+				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_DeltaCandidateColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<TextBlock Text="{m:R Key=SettingsPage_DeltaCandidateColorDescription}" />
+					<c:ColorSelector
+						x:Name="DeltaCandidateColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor,Mode=TwoWay}" />
+				</StackPanel>
 			</StackPanel>
 		</ScrollViewer>
 
@@ -72,7 +86,9 @@
 		<c:SudokuPane
 			Grid.Column="1" Margin="60,0,0,0" Width="610" Height="610" HorizontalAlignment="Center" VerticalAlignment="Center"
 			DisplayCursors="False"
-			Puzzle="{m:Grid Text='000001230123004+5604+560078907890000000000000000000001230123004+5604+5600789078900000'}"
+			Puzzle="{m:Grid Text='000001230123004+5604+5600789078900+1000000000000000+9001230123004+5604+5600789078900000'}"
+			DeltaCellColor="{x:Bind DeltaCellColorSelector.SelectedColor,Mode=OneWay}"
+			DeltaCandidateColor="{x:Bind DeltaCandidateColorSelector.SelectedColor,Mode=OneWay}"
 			HighlightCandidateCircleScale="{x:Bind SliderEllipseScale.Value,Mode=OneWay}"
 			HighlightBackgroundOpacity="{x:Bind SliderBackgroundOpacity.Value,Mode=OneWay}"
 			ChainStrokeThickness="{x:Bind SliderChainStrokeThickness.Value,Mode=OneWay}"

@@ -465,6 +465,18 @@
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>链的粗细</value>
   </data>
+  <data name="SettingsPage_DeltaCandidateColor" xml:space="preserve">
+    <value>差分候选数</value>
+  </data>
+  <data name="SettingsPage_DeltaCandidateColorDescription" xml:space="preserve">
+    <value>差分候选数指的是错误的删数结论，它被删除掉了，但它实际上是正确结果</value>
+  </data>
+  <data name="SettingsPage_DeltaCellColor" xml:space="preserve">
+    <value>差分填数</value>
+  </data>
+  <data name="SettingsPage_DeltaCellColorDescription" xml:space="preserve">
+    <value>差分填数就是错误的填数，它会和它所在的行、列、宫里的数字冲突（相同）</value>
+  </data>
   <data name="SettingsPage_DisplayCursorsDescription" xml:space="preserve">
     <value>光标指的是一组高亮单元格，它用来指示你鼠标指针指向的单元格。</value>
   </data>
@@ -488,6 +500,9 @@
   </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。所有配置项均为即时保存，但需要重启程序后才能生效。懒得写绑定了 :)</value>
+  </data>
+  <data name="SettingsPage_MoreColors" xml:space="preserve">
+    <value>&gt;&gt; 更多</value>
   </data>
   <data name="SettingsPage_OffContent" xml:space="preserve">
     <value>否</value>

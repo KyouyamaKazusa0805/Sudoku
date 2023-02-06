@@ -40,6 +40,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Views\Controls\ColorSelector.xaml" />
 		<None Remove="Views\Controls\ExtendedExpander.xaml" />
 		<None Remove="Views\Controls\ExtendedExpanderHeader.xaml" />
 		<None Remove="Views\Controls\SudokuPane.xaml" />
@@ -85,6 +86,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Controls\ColorSelector.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Settings\DrawingPreferenceItemsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

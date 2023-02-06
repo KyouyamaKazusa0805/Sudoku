@@ -1186,6 +1186,42 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delta candidates.
+        /// </summary>
+        internal static string SettingsPage_DeltaCandidateColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_DeltaCandidateColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delta candidates are ones that are incorrect eliminations.
+        /// </summary>
+        internal static string SettingsPage_DeltaCandidateColorDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DeltaCandidateColorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delta cells.
+        /// </summary>
+        internal static string SettingsPage_DeltaCellColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_DeltaCellColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delta cells are digits that are confilct with its same house.
+        /// </summary>
+        internal static string SettingsPage_DeltaCellColorDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DeltaCellColorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cursors are a group of highlighted cells that describes what cell your cursor point points to..
         /// </summary>
         internal static string SettingsPage_DisplayCursorsDescription {
@@ -1254,6 +1290,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_Intro {
             get {
                 return ResourceManager.GetString("SettingsPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt;&gt; More.
+        /// </summary>
+        internal static string SettingsPage_MoreColors {
+            get {
+                return ResourceManager.GetString("SettingsPage_MoreColors", resourceCulture);
             }
         }
         
