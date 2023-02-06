@@ -28,6 +28,13 @@ public sealed partial class FontPicker : UserControl
 
 
 	/// <summary>
+	/// Indicates the fonts.
+	/// </summary>
+	private readonly IList<TextBlock> _fontsRange =
+		(from font in CanvasTextFormat.GetSystemFontFamilies() select new TextBlock { Text = font, FontFamily = new(font) }).ToList();
+
+
+	/// <summary>
 	/// Initializes a <see cref="FontPicker"/> instance.
 	/// </summary>
 	public FontPicker() => InitializeComponent();

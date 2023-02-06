@@ -15,11 +15,4 @@ internal static class SettingsPageConversion
 	public static Brush GetBrush(Color color) => new SolidColorBrush(color);
 
 	public static FontFamily GetFont(string fontName) => new(fontName);
-
-	public static IList<TextBlock> GetFontNames()
-		=> (
-			from fontName in CanvasTextFormat.GetSystemFontFamilies()
-			orderby fontName
-			select new TextBlock { Text = fontName, FontFamily = new(fontName) }
-		).ToList();
 }

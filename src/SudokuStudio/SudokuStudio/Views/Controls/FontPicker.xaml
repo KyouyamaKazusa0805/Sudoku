@@ -5,12 +5,11 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:FontPicker}">
 	<StackPanel Spacing="10">
 		<ComboBox
-			x:Name="ComboBox" ItemsSource="{x:Bind cvt:SettingsPageConversion.GetFontNames()}" Header="{x:Bind Header,Mode=TwoWay}"
-			SelectedValuePath="Text" SelectedValue="{x:Bind SelectedFontName,Mode=TwoWay}"
+			x:Name="ComboBox" ItemsSource="{x:Bind _fontsRange}" Header="{x:Bind Header,Mode=TwoWay}"
+			SelectedValue="{x:Bind SelectedFontName,Mode=TwoWay}" SelectedValuePath="Text"
 			PlaceholderText="{x:Bind PlaceholderText,Mode=TwoWay}" />
 		<Slider
 			x:Name="Slider" TickPlacement="Outside" Width="450" Minimum="0" Maximum="1"
