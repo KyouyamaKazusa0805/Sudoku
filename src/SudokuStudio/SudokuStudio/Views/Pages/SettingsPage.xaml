@@ -9,13 +9,19 @@
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:SettingsPage}">
 	<StackPanel Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}" Spacing="20">
+		<StackPanel.Resources>
+			<Style x:Key="EmbeddedPageStyle" TargetType="Page">
+				<Setter Property="Margin" Value="0,20" />
+			</Style>
+		</StackPanel.Resources>
+
 		<TextBlock Text="{m:R Key=SettingsPage_Intro}" Margin="0,10,0,0" />
 		<Pivot Margin="-10,0,20,20">
 			<PivotItem Header="{m:R Key=SettingsPage_Basic}">
-				<ps:BasicPreferenceItemsPage Margin="0,20" />
+				<ps:BasicPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}"/>
 			</PivotItem>
 			<PivotItem Header="{m:R Key=SettingsPage_Drawing}">
-				<ps:DrawingPreferenceItemsPage Margin="0,20" />
+				<ps:DrawingPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}" />
 			</PivotItem>
 		</Pivot>
 	</StackPanel>
