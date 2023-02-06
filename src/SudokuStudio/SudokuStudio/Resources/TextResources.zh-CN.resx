@@ -462,8 +462,14 @@
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>基本设置</value>
   </data>
+  <data name="SettingsPage_BorderColor" xml:space="preserve">
+    <value>盘面边框线</value>
+  </data>
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>链的粗细</value>
+  </data>
+  <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
+    <value>光标背景</value>
   </data>
   <data name="SettingsPage_DeltaCandidateColor" xml:space="preserve">
     <value>差分候选数</value>

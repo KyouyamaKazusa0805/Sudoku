@@ -1177,11 +1177,29 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Border.
+        /// </summary>
+        internal static string SettingsPage_BorderColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_BorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stroke thickness of chain links.
         /// </summary>
         internal static string SettingsPage_ChainStrokeThicknessTitle {
             get {
                 return ResourceManager.GetString("SettingsPage_ChainStrokeThicknessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cursor background.
+        /// </summary>
+        internal static string SettingsPage_CursorBackgroundColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_CursorBackgroundColor", resourceCulture);
             }
         }
         

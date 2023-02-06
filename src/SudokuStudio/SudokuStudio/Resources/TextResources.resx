@@ -462,8 +462,14 @@
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>Basic preferences</value>
   </data>
+  <data name="SettingsPage_BorderColor" xml:space="preserve">
+    <value>Border</value>
+  </data>
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>Stroke thickness of chain links</value>
+  </data>
+  <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
+    <value>Cursor background</value>
   </data>
   <data name="SettingsPage_DeltaCandidateColor" xml:space="preserve">
     <value>Delta candidates</value>
