@@ -67,6 +67,21 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:SudokuStudio.AppLifecycle.EnvironmentVariable">
             <summary>
             Provides with a set of properties or fields that is used by the program in its lifecycle.
@@ -2822,6 +2837,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Stroke thickness of chain links.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_CoordinateLabelFontData">
+            <summary>
+              Looks up a localized string similar to Coordinate label font.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_CursorBackgroundColor">
             <summary>
               Looks up a localized string similar to Cursor background.
@@ -3173,6 +3193,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.ColorSelector.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ColorSelector.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.ColorSelector._selectedColor"/>
         </member>
@@ -3250,6 +3280,26 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.UnloadObject(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            UnloadObject(DependencyObject)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.DisconnectUnloadedObject(System.Int32)">
+            <summary>
+            DisconnectUnloadedObject(int connectionId)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpander.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Controls.ExtendedExpanderHeader">
             <summary>
             Represents a header control that is used by <see cref="T:SudokuStudio.Views.Controls.ExtendedExpander"/>.
@@ -3312,6 +3362,26 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.UnloadObject(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            UnloadObject(DependencyObject)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.DisconnectUnloadedObject(System.Int32)">
+            <summary>
+            DisconnectUnloadedObject(int connectionId)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.ExtendedExpanderHeader.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Controls.FontPicker">
             <summary>
             Represents a font picker.
@@ -3368,6 +3438,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.FontPicker.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPane">
@@ -3764,6 +3844,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates"/>
         </member>
@@ -3955,6 +4045,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPaneCell._candidatesMask"/>
         </member>
@@ -3993,6 +4093,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.AboutPage">
             <summary>
             Represents about page.
@@ -4006,6 +4116,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.AboutPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
@@ -4171,6 +4291,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched"/>
         </member>
@@ -4220,6 +4350,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs">
@@ -4322,6 +4462,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._analysisResult"/>
         </member>
@@ -4368,6 +4518,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.SolvingPath._analysisResult"/>
         </member>
@@ -4395,6 +4555,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
@@ -4441,6 +4611,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
@@ -4516,6 +4696,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage">
             <summary>
             Represents a settings page that displays for basic preferences.
@@ -4531,6 +4721,16 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage">
             <summary>
             Represents drawing preferences page.
@@ -4544,6 +4744,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
@@ -4671,6 +4881,36 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.UI.ColorExtensions">

@@ -483,6 +483,9 @@
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>链的粗细</value>
   </data>
+  <data name="SettingsPage_CoordinateLabelFontData" xml:space="preserve">
+    <value>坐标字体</value>
+  </data>
   <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
     <value>光标背景</value>
   </data>

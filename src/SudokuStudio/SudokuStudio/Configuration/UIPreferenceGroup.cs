@@ -161,11 +161,11 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		pane.PencilmarkFont = new(PencilmarkFontData.FontName);//
 		pane.PencilmarkFontScale = PencilmarkFontData.FontScale;//
 		pane.PencilmarkColor = PencilmarkFontData.FontColor;//
+		pane.CoordinateLabelFont = new(CoordinateLabelFontData.FontName);//
+		pane.CoordinateLabelFontScale = CoordinateLabelFontData.FontScale;//
+		pane.CoordinateLabelColor = CoordinateLabelFontData.FontColor;//
 		pane.BabaGroupLabelFont = new(BabaGroupingFontData.FontName);
 		pane.BabaGroupLabelFontScale = BabaGroupingFontData.FontScale;
 		pane.BabaGroupLabelColor = BabaGroupingFontData.FontColor;
-		pane.CoordinateLabelFont = new(CoordinateLabelFontData.FontName);
-		pane.CoordinateLabelFontScale = CoordinateLabelFontData.FontScale;
-		pane.CoordinateLabelColor = CoordinateLabelFontData.FontColor;
 	}
 }

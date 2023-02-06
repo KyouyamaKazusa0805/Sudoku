@@ -110,6 +110,12 @@
 						x:Name="PencilmarkFontPicker"
 						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontData,Mode=TwoWay}" />
 				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_CoordinateLabelFontData}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:FontPicker
+						x:Name="CoordinateFontPicker"
+						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData,Mode=TwoWay}" />
+				</StackPanel>
 			</StackPanel>
 		</ScrollViewer>
 
@@ -134,6 +140,9 @@
 			ModifiableColor="{x:Bind ModifiableFontPicker.SelectedColor,Mode=OneWay}"
 			PencilmarkFont="{x:Bind cvt:SettingsPageConversion.GetFont(PencilmarkFontPicker.SelectedFontName),Mode=OneWay}"
 			PencilmarkFontScale="{x:Bind PencilmarkFontPicker.SelectedFontScale,Mode=OneWay}"
-			PencilmarkColor="{x:Bind PencilmarkFontPicker.SelectedColor,Mode=OneWay}" />
+			PencilmarkColor="{x:Bind PencilmarkFontPicker.SelectedColor,Mode=OneWay}"
+			CoordinateLabelFont="{x:Bind cvt:SettingsPageConversion.GetFont(CoordinateFontPicker.SelectedFontName),Mode=OneWay}"
+			CoordinateLabelFontScale="{x:Bind CoordinateFontPicker.SelectedFontScale,Mode=OneWay}"
+			CoordinateLabelColor="{x:Bind CoordinateFontPicker.SelectedColor,Mode=OneWay}" />
 	</Grid>
 </Page>

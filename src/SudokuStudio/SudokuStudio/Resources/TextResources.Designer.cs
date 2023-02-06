@@ -1240,6 +1240,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coordinate label font.
+        /// </summary>
+        internal static string SettingsPage_CoordinateLabelFontData {
+            get {
+                return ResourceManager.GetString("SettingsPage_CoordinateLabelFontData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cursor background.
         /// </summary>
         internal static string SettingsPage_CursorBackgroundColor {

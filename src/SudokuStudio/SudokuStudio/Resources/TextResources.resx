@@ -483,6 +483,9 @@
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>Stroke thickness of chain links</value>
   </data>
+  <data name="SettingsPage_CoordinateLabelFontData" xml:space="preserve">
+    <value>Coordinate label font</value>
+  </data>
   <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
     <value>Cursor background</value>
   </data>
