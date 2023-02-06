@@ -40,14 +40,6 @@ public sealed partial class FontPicker : UserControl
 	public FontPicker() => InitializeComponent();
 
 
-	/// <inheritdoc cref="ComboBox.Header"/>
-	public object Header
-	{
-		get => ComboBox.Header;
-
-		set => ComboBox.Header = value;
-	}
-
 	/// <summary>
 	/// Indicates the selected font scale.
 	/// </summary>
@@ -56,14 +48,6 @@ public sealed partial class FontPicker : UserControl
 		get => (double)GetValue(SelectedFontScaleProperty);
 
 		set => SetValue(SelectedFontScaleProperty, value);
-	}
-
-	/// <inheritdoc cref="ComboBox.PlaceholderText"/>
-	public string PlaceholderText
-	{
-		get => ComboBox.PlaceholderText;
-
-		set => ComboBox.PlaceholderText = value;
 	}
 
 	/// <summary>
@@ -91,16 +75,4 @@ public sealed partial class FontPicker : UserControl
 	/// </summary>
 	public FontSerializationData SelectedFontData
 		=> new() { FontName = SelectedFontName, FontScale = SelectedFontScale, FontColor = SelectedColor };
-
-
-	/// <summary>
-	/// Sets the font data.
-	/// </summary>
-	/// <param name="fontData">The font data.</param>
-	public void SetFontData(FontSerializationData fontData)
-	{
-		SelectedFontName = fontData.FontName;
-		SelectedFontScale = fontData.FontScale;
-		SelectedColor = fontData.FontColor;
-	}
 }

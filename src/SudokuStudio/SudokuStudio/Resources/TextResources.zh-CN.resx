@@ -438,6 +438,18 @@
   <data name="FileExtension_TextDescription" xml:space="preserve">
     <value>数独题目格式</value>
   </data>
+  <data name="FontPicker_AdjustFontScale" xml:space="preserve">
+    <value>调整字体缩放比例（范围 [0, 1]）：</value>
+  </data>
+  <data name="FontPicker_SelectFontColor" xml:space="preserve">
+    <value>选择颜色：</value>
+  </data>
+  <data name="FontPicker_SelectFontName" xml:space="preserve">
+    <value>选择字体：</value>
+  </data>
+  <data name="FontPicker_SelectFontPlaceholder" xml:space="preserve">
+    <value>选择一个字体</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>关于</value>
   </data>

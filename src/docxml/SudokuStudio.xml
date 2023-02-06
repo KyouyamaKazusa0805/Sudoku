@@ -1836,6 +1836,53 @@ if (student is (name: var name, age: >= 18))
             Indicates the font color.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Models.FontSerializationData.Deconstruct(System.String@,System.Double@,Windows.UI.Color@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="M:SudokuStudio.Models.FontSerializationData.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -2700,6 +2747,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Sudoku puzzle format.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FontPicker_AdjustFontScale">
+            <summary>
+              Looks up a localized string similar to Adjust font scale (range [0, 1]):.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FontPicker_SelectFontColor">
+            <summary>
+              Looks up a localized string similar to Select color:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FontPicker_SelectFontName">
+            <summary>
+              Looks up a localized string similar to Select font:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FontPicker_SelectFontPlaceholder">
+            <summary>
+              Looks up a localized string similar to Select a font.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_About">
             <summary>
               Looks up a localized string similar to About.
@@ -3278,16 +3345,10 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Controls.FontPicker"/> instance.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.FontPicker.Header">
-            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.ComboBox.Header"/>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale">
             <summary>
             Indicates the selected font scale.
             </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.FontPicker.PlaceholderText">
-            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.ComboBox.PlaceholderText"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName">
             <summary>
@@ -3303,12 +3364,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the selected font data.
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.FontPicker.SetFontData(SudokuStudio.Models.FontSerializationData)">
-            <summary>
-            Sets the font data.
-            </summary>
-            <param name="fontData">The font data.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.FontPicker.InitializeComponent">
             <summary>

@@ -24,6 +24,13 @@ public sealed partial class FontSerializationData :
 	public Color FontColor { get; set; } = Colors.Black;
 
 
+	[GeneratedDeconstruction]
+	public partial void Deconstruct(
+		[GeneratedDeconstructionArgument(nameof(FontName))] out string name,
+		[GeneratedDeconstructionArgument(nameof(FontScale))] out double scale,
+		[GeneratedDeconstructionArgument(nameof(FontColor))] out Color color
+	);
+
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 

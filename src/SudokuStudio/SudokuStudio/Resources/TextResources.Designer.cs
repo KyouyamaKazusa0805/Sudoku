@@ -1105,6 +1105,42 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adjust font scale (range [0, 1]):.
+        /// </summary>
+        internal static string FontPicker_AdjustFontScale {
+            get {
+                return ResourceManager.GetString("FontPicker_AdjustFontScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select color:.
+        /// </summary>
+        internal static string FontPicker_SelectFontColor {
+            get {
+                return ResourceManager.GetString("FontPicker_SelectFontColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select font:.
+        /// </summary>
+        internal static string FontPicker_SelectFontName {
+            get {
+                return ResourceManager.GetString("FontPicker_SelectFontName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a font.
+        /// </summary>
+        internal static string FontPicker_SelectFontPlaceholder {
+            get {
+                return ResourceManager.GetString("FontPicker_SelectFontPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         internal static string MainWindow_About {

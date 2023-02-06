@@ -18,12 +18,10 @@ public static class FontPickerBindable
 				null,
 				static (d, e) =>
 				{
-					if (d is not FontPicker target)
+					if ((d, e) is (FontPicker target, { NewValue: FontSerializationData n }))
 					{
-						return;
+						(target.SelectedFontName, target.SelectedFontScale, target.SelectedColor) = n;
 					}
-
-					target.SetFontData((FontSerializationData)e.NewValue);
 				}
 			)
 		);

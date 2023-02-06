@@ -438,6 +438,18 @@
   <data name="FileExtension_TextDescription" xml:space="preserve">
     <value>Sudoku puzzle format</value>
   </data>
+  <data name="FontPicker_AdjustFontScale" xml:space="preserve">
+    <value>Adjust font scale (range [0, 1]):</value>
+  </data>
+  <data name="FontPicker_SelectFontColor" xml:space="preserve">
+    <value>Select color:</value>
+  </data>
+  <data name="FontPicker_SelectFontName" xml:space="preserve">
+    <value>Select font:</value>
+  </data>
+  <data name="FontPicker_SelectFontPlaceholder" xml:space="preserve">
+    <value>Select a font</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>About</value>
   </data>

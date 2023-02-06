@@ -5,16 +5,18 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:m="using:SudokuStudio.Markup"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:FontPicker}">
 	<StackPanel Spacing="10">
 		<ComboBox
-			x:Name="ComboBox" ItemsSource="{x:Bind _fontsRange}" Header="{x:Bind Header,Mode=TwoWay}"
+			x:Name="ComboBox" ItemsSource="{x:Bind _fontsRange}" Header="{m:R Key=FontPicker_SelectFontName}"
 			SelectedValue="{x:Bind SelectedFontName,Mode=TwoWay}" SelectedValuePath="Text"
-			PlaceholderText="{x:Bind PlaceholderText,Mode=TwoWay}" />
+			PlaceholderText="{m:R Key=FontPicker_SelectFontPlaceholder}" />
 		<Slider
-			x:Name="Slider" TickPlacement="Outside" Width="450" Minimum="0" Maximum="1"
-			TickFrequency="0.05" StepFrequency="0.05" HorizontalAlignment="Left" VerticalAlignment="Center"
-			Value="{x:Bind SelectedFontScale,Mode=TwoWay}" />
+			x:Name="Slider" TickPlacement="Outside" Minimum="0" Maximum="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+			Style="{StaticResource PreferenceSliderStyle}" Value="{x:Bind SelectedFontScale,Mode=TwoWay}"
+			TickFrequency="0.05" StepFrequency="0.05" Header="{m:R Key=FontPicker_AdjustFontScale}" />
+		<TextBlock Text="{m:R Key=FontPicker_SelectFontColor}" />
 		<c:ColorSelector x:Name="ColorSelector" SelectedColor="{x:Bind SelectedColor,Mode=TwoWay}" />
 	</StackPanel>
 </UserControl>
