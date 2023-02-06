@@ -77,4 +77,7 @@ internal static class SudokuGridConversion
 
 		return GetString("AnalyzePage_MinimalResult_Yes");
 	}
+
+	public static FontFamily GetFont(FontFamily givenFont, FontFamily modifiable, CellStatus status)
+		=> status == CellStatus.Modifiable ? modifiable : givenFont;
 }

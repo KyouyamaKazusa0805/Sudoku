@@ -353,7 +353,7 @@ internal static class ViewUnitFrameworkElementFactory
 			Child = new TextBlock
 			{
 				Text = @char.ToString(),
-				FontSize = PencilmarkTextConversion.GetFontSize(
+				FontSize = PencilmarkTextConversion.GetFontSizeSimple(
 					targetPage.SudokuPane.ApproximateCellWidth,
 					targetPage.SudokuPane.BabaGroupLabelFontScale
 				),

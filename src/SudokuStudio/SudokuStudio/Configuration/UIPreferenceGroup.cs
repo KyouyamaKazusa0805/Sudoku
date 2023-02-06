@@ -152,9 +152,11 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		pane.DifficultyLevelBackgrounds = DifficultyLevelBackgrounds;
 		pane.UserDefinedColorPalette = UserDefinedColorPalette;
 		pane.AlmostLockedSetsColors = AlmostLockedSetsColors;
-		pane.ValueFont = new(GivenFontData.FontName);//
-		pane.ValueFontScale = GivenFontData.FontScale;//
+		pane.GivenFont = new(GivenFontData.FontName);//
+		pane.GivenFontScale = GivenFontData.FontScale;//
 		pane.GivenColor = GivenFontData.FontColor;//
+		pane.ModifiableFont = new(ModifiableFontData.FontName);//
+		pane.ModifiableFontScale = ModifiableFontData.FontScale;//
 		pane.ModifiableColor = ModifiableFontData.FontColor;//
 		pane.PencilmarkFont = new(PencilmarkFontData.FontName);//
 		pane.PencilmarkFontScale = PencilmarkFontData.FontScale;//

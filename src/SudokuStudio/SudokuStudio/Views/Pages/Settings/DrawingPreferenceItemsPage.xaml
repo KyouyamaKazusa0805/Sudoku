@@ -22,8 +22,8 @@
 						Style="{StaticResource PreferenceItemTitleStyle}" />
 					<RelativePanel>
 						<Slider
-							x:Name="SliderEllipseScale" Width="400" HorizontalAlignment="Left" Minimum="0" Maximum="1"
-							TickPlacement="Outside" TickFrequency="0.1" StepFrequency="0.1"
+							x:Name="SliderEllipseScale" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
+							Minimum="0" Maximum="1" TickFrequency="0.1" StepFrequency="0.1" HorizontalAlignment="Left"
 							Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Mode=TwoWay}" />
 						<TextBlock
 							RelativePanel.RightOf="SliderEllipseScale" Margin="24,0,0,0" VerticalAlignment="Center"
@@ -34,8 +34,8 @@
 					<TextBlock Text="{m:R Key=SettingsPage_HighlightBackgroundOpacityTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
 					<RelativePanel>
 						<Slider
-							x:Name="SliderBackgroundOpacity" Width="400" HorizontalAlignment="Left" Minimum="0" Maximum="1"
-							TickPlacement="Outside" TickFrequency="0.05" StepFrequency="0.05"
+							x:Name="SliderBackgroundOpacity" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
+							Minimum="0" Maximum="1" TickFrequency="0.05" StepFrequency="0.05" HorizontalAlignment="Left"
 							Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Mode=TwoWay}" />
 						<TextBlock
 							RelativePanel.RightOf="SliderBackgroundOpacity" Margin="24,0,0,0" VerticalAlignment="Center"
@@ -46,8 +46,8 @@
 					<TextBlock Text="{m:R Key=SettingsPage_ChainStrokeThicknessTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
 					<RelativePanel>
 						<Slider
-							x:Name="SliderChainStrokeThickness" Width="400" HorizontalAlignment="Left" Minimum="0" Maximum="5"
-							TickPlacement="Outside" TickFrequency="0.1" StepFrequency="0.1"
+							x:Name="SliderChainStrokeThickness" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
+							Minimum="0" Maximum="5" TickFrequency="0.1" StepFrequency="0.1" HorizontalAlignment="Left"
 							Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=TwoWay}" />
 						<TextBlock
 							RelativePanel.RightOf="SliderChainStrokeThickness" Margin="24,0,0,0" VerticalAlignment="Center"
@@ -126,10 +126,12 @@
 			HighlightBackgroundOpacity="{x:Bind SliderBackgroundOpacity.Value,Mode=OneWay}"
 			ChainStrokeThickness="{x:Bind SliderChainStrokeThickness.Value,Mode=OneWay}"
 			CoordinateLabelDisplayMode="{x:Bind cvt:SettingsPageConversion.GetCoordinateLabelDisplayMode(ComboBoxCoordinateMode.SelectedIndex),Mode=OneWay}"
+			GivenFont="{x:Bind cvt:SettingsPageConversion.GetFont(GivenFontPicker.SelectedFontName),Mode=OneWay}"
+			GivenFontScale="{x:Bind GivenFontPicker.SelectedFontScale,Mode=OneWay}"
 			GivenColor="{x:Bind GivenFontPicker.SelectedColor,Mode=OneWay}"
+			ModifiableFont="{x:Bind cvt:SettingsPageConversion.GetFont(ModifiableFontPicker.SelectedFontName),Mode=OneWay}"
+			ModifiableFontScale="{x:Bind ModifiableFontPicker.SelectedFontScale,Mode=OneWay}"
 			ModifiableColor="{x:Bind ModifiableFontPicker.SelectedColor,Mode=OneWay}"
-			ValueFont="{x:Bind cvt:SettingsPageConversion.GetFont(GivenFontPicker.SelectedFontName),Mode=OneWay}"
-			ValueFontScale="{x:Bind GivenFontPicker.SelectedFontScale,Mode=OneWay}"
 			PencilmarkFont="{x:Bind cvt:SettingsPageConversion.GetFont(PencilmarkFontPicker.SelectedFontName),Mode=OneWay}"
 			PencilmarkFontScale="{x:Bind PencilmarkFontPicker.SelectedFontScale,Mode=OneWay}"
 			PencilmarkColor="{x:Bind PencilmarkFontPicker.SelectedColor,Mode=OneWay}" />

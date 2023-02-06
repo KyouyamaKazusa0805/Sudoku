@@ -5,7 +5,10 @@
 /// </summary>
 internal static class PencilmarkTextConversion
 {
-	public static double GetFontSize(double globalFontSize, double scale) => globalFontSize * scale;
+	public static double GetFontSize(double globalFontSize, double givenFontScale, double modifiableFontScale, CellStatus status)
+		=> globalFontSize * (status == CellStatus.Modifiable ? modifiableFontScale : givenFontScale);
+
+	public static double GetFontSizeSimple(double globalFontSize, double scale) => globalFontSize * scale;
 
 	public static Brush GetBrush(
 		Color pencilmarkColor,

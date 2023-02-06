@@ -41,10 +41,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private bool _useDifferentColorToDisplayDeltaDigits = true;
 
 	/// <summary>
-	/// Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.
+	/// Indicates the font scale of given digits. The value should generally be below 1.0.
 	/// </summary>
 	[NotifyBackingField]
-	private double _valueFontScale = 1.0;
+	private double _givenFontScale = 1.0;
+
+	/// <summary>
+	/// Indicates the font scale of modifiable digits. The value should generally be below 1.0.
+	/// </summary>
+	[NotifyBackingField]
+	private double _modifiableFontScale = 1.0;
 
 	/// <summary>
 	/// Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
@@ -240,10 +246,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private DashArray _otherLinkDashStyle = new(3, 3);
 
 	/// <summary>
-	/// Indicates the value font.
+	/// Indicates the given font.
 	/// </summary>
 	[NotifyBackingField]
-	private FontFamily _valueFont = new("Tahoma");
+	private FontFamily _givenFont = new("Tahoma");
+
+	/// <summary>
+	/// Indicates the modifiable font.
+	/// </summary>
+	[NotifyBackingField]
+	private FontFamily _modifiableFont = new("Tahoma");
 
 	/// <summary>
 	/// Indicates the candidate font.

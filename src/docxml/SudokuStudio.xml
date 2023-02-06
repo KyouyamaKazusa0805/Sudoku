@@ -3411,9 +3411,14 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the pane displays for delta digits using different colors.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._valueFontScale">
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._givenFontScale">
             <summary>
-            Indicates the font scale of value digits (given or modifiable ones). The value should generally be below 1.0.
+            Indicates the font scale of given digits. The value should generally be below 1.0.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._modifiableFontScale">
+            <summary>
+            Indicates the font scale of modifiable digits. The value should generally be below 1.0.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFontScale">
@@ -3579,9 +3584,14 @@ if (student is (name: var name, age: >= 18))
             Indicates the dash style of the other links.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._valueFont">
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._givenFont">
             <summary>
-            Indicates the value font.
+            Indicates the given font.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._modifiableFont">
+            <summary>
+            Indicates the modifiable font.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFont">
@@ -3763,8 +3773,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._useDifferentColorToDisplayDeltaDigits"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ValueFontScale">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._valueFontScale"/>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._givenFontScale"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScale">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._modifiableFontScale"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFontScale"/>
@@ -3856,8 +3869,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._otherLinkDashStyle"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ValueFont">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._valueFont"/>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._givenFont"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFont">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._modifiableFont"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFont">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFont"/>

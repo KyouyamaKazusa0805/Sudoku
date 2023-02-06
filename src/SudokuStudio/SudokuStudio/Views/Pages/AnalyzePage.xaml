@@ -74,10 +74,10 @@
 				<c:SudokuPane
 					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" BasePage="{x:Bind}"
 					HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1"
-					ValueFont="Cascadia Code" PencilmarkFont="Cascadia Code" CoordinateLabelFont="Cascadia Code"
+					GivenFont="Cascadia Code" ModifiableFont="Cascadia Code" PencilmarkFont="Cascadia Code" CoordinateLabelFont="Cascadia Code"
 					BabaGroupLabelFont="Times New Roman" CoordinateLabelDisplayKind="RxCy" CoordinateLabelDisplayMode="FourDirection"
-					ValueFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4" HighlightCandidateCircleScale=".9"
-					HighlightBackgroundOpacity=".15" BabaGroupLabelFontScale=".6" ChainStrokeThickness="1.5"
+					GivenFontScale=".85" ModifiableFontScale=".85" PencilmarkFontScale=".3" CoordinateLabelFontScale=".4"
+					HighlightCandidateCircleScale=".9" HighlightBackgroundOpacity=".15" BabaGroupLabelFontScale=".6" ChainStrokeThickness="1.5"
 					StrongLinkDashStyle="{m:DashArray Expression=''}" WeakLinkDashStyle="{m:DashArray Expression='3,1.5'}"
 					CycleLikeLinkDashStyle="{m:DashArray Expression=''}" OtherLinkDashStyle="{m:DashArray Expression='3,3'}"
 					UseDifferentColorToDisplayDeltaDigits="True" DisplayCandidates="True" DisplayCursors="True"
