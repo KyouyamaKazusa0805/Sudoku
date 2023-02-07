@@ -143,11 +143,11 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		pane.CannibalismColor = CannibalismColor;//
 		pane.ExofinColor = ExofinColor;//
 		pane.EndofinColor = EndofinColor;//
-		pane.AuxiliaryColors = AuxiliaryColors;
-		pane.DifficultyLevelForegrounds = DifficultyLevelForegrounds;
-		pane.DifficultyLevelBackgrounds = DifficultyLevelBackgrounds;
-		pane.UserDefinedColorPalette = UserDefinedColorPalette;
-		pane.AlmostLockedSetsColors = AlmostLockedSetsColors;
+		pane.AuxiliaryColors = AuxiliaryColors;//
+		pane.DifficultyLevelForegrounds = DifficultyLevelForegrounds;//
+		pane.DifficultyLevelBackgrounds = DifficultyLevelBackgrounds;//
+		pane.AlmostLockedSetsColors = AlmostLockedSetsColors;//
+		pane.UserDefinedColorPalette = UserDefinedColorPalette;//?
 		pane.StrongLinkDashStyle = StrongLinkDashStyle;
 		pane.WeakLinkDashStyle = WeakLinkDashStyle;
 		pane.CycleLikeLinkDashStyle = CyclingCellLinkDashStyle;

@@ -1,7 +1,7 @@
 ﻿namespace SudokuStudio.Collection;
 
 /// <summary>
-/// Defines a color palette.
+/// Represents a color palette that contains a list of <see cref="Color"/> instances that can be used in UI binding.
 /// </summary>
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public sealed partial class ColorPalette :

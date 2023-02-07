@@ -471,8 +471,17 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>Settings &amp; Preferences</value>
   </data>
+  <data name="SettingsPage_AlmostLockedSetsColors" xml:space="preserve">
+    <value>Colors of Almost Locked Sets</value>
+  </data>
   <data name="SettingsPage_AssignmentColor" xml:space="preserve">
     <value>Assignments</value>
+  </data>
+  <data name="SettingsPage_AuxiliaryColors" xml:space="preserve">
+    <value>Auxiliary colors</value>
+  </data>
+  <data name="SettingsPage_AuxiliaryColorsDescription" xml:space="preserve">
+    <value>Auxiliary colors are used by views, for displaying highlighted elements in a technique step</value>
   </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>Basic preferences</value>
@@ -509,6 +518,12 @@
   </data>
   <data name="SettingsPage_DeltaCellColorDescription" xml:space="preserve">
     <value>Delta cells are digits that are confilct with its same house</value>
+  </data>
+  <data name="SettingsPage_DifficultyLevelBackgrounds" xml:space="preserve">
+    <value>Background colors of difficulty levels</value>
+  </data>
+  <data name="SettingsPage_DifficultyLevelForegrounds" xml:space="preserve">
+    <value>Foreground colors of difficulty levels</value>
   </data>
   <data name="SettingsPage_DisplayCursorsDescription" xml:space="preserve">
     <value>Cursors are a group of highlighted cells that describes what cell your cursor point points to.</value>

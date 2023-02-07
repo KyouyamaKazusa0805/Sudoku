@@ -67,10 +67,10 @@ public enum GeneratedEqualsBehavior
 	///     /// <inheritdoc cref="object.Equals(object?)"/>
 	///     [CompilerGenerated]
 	///     [GeneratedCode("SourceGeneratorName", "1.0.0.0")]
-	///     public override readonly bool Equals([NotNullWhen(false)] object? obj) => Equals(comparer as Type);
+	///     public override bool Equals([NotNullWhen(false)] object? obj) => Equals(comparer as Type);
 	///     
 	///     // Suppose the type 'Type' has already contained an overloading like this:
-	///     //public readonly partial bool Equals([NotNullWhen(true)] Type? other) { ... }
+	///     //public partial bool Equals([NotNullWhen(true)] Type? other) { ... }
 	/// }
 	/// ]]></code>
 	/// </remarks>

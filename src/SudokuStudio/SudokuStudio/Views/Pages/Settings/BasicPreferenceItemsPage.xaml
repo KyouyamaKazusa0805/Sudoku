@@ -4,26 +4,117 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:BasicPreferenceItemsPage}">
 	<ScrollViewer>
-		<StackPanel Spacing="20">
-			<StackPanel Spacing="6">
+		<StackPanel Spacing="26">
+			<StackPanel>
 				<TextBlock Text="{m:R Key=SettingsPage_DisplayCursorsTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
 				<TextBlock Text="{m:R Key=SettingsPage_DisplayCursorsDescription}" />
 				<ToggleSwitch
 					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=TwoWay}"
 					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
 			</StackPanel>
-			<StackPanel Spacing="6">
+			<StackPanel>
 				<TextBlock Text="{m:R Key=SettingsPage_DistinctWithDeltaDigitsTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
 				<TextBlock Text="{m:R Key=SettingsPage_DistinctWithDeltaDigitsDescription}" />
 				<ToggleSwitch
 					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DistinctWithDeltaDigits,Mode=TwoWay}"
 					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
+			</StackPanel>
+			<StackPanel>
+				<TextBlock Text="{m:R Key=SettingsPage_DifficultyLevelForegrounds}" Style="{StaticResource PreferenceItemTitleStyle}" />
+				<RelativePanel Margin="0,10,0,0">
+					<TextBlock x:Name="DifficultyLevelForegroundsEasySelectorTitle" Text="{m:R Key=_DifficultyLevel_Easy}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelForegroundsEasySelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsEasySelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
+				</RelativePanel>
+				<RelativePanel>
+					<TextBlock x:Name="DifficultyLevelForegroundsModerateSelectorTitle" Text="{m:R Key=_DifficultyLevel_Moderate}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelForegroundsModerateSelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsModerateSelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[1],Mode=TwoWay}" />
+				</RelativePanel>
+				<RelativePanel>
+					<TextBlock x:Name="DifficultyLevelForegroundsHardSelectorTitle" Text="{m:R Key=_DifficultyLevel_Hard}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelForegroundsHardSelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsHardSelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[2],Mode=TwoWay}" />
+				</RelativePanel>
+				<RelativePanel>
+					<TextBlock x:Name="DifficultyLevelForegroundsFiendishSelectorTitle" Text="{m:R Key=_DifficultyLevel_Fiendish}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelForegroundsFiendishSelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsFiendishSelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[3],Mode=TwoWay}" />
+				</RelativePanel>
+				<RelativePanel>
+					<TextBlock x:Name="DifficultyLevelForegroundsNightmareSelectorTitle" Text="{m:R Key=_DifficultyLevel_Nightmare}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelForegroundsNightmareSelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsNightmareSelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[4],Mode=TwoWay}" />
+				</RelativePanel>
+				<RelativePanel>
+					<TextBlock x:Name="DifficultyLevelForegroundsUnknownSelectorTitle" Text="{m:R Key=_DifficultyLevel_Unknown}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelForegroundsUnknownSelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsUnknownSelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[5],Mode=TwoWay}" />
+				</RelativePanel>
+			</StackPanel>
+			<StackPanel>
+				<TextBlock Text="{m:R Key=SettingsPage_DifficultyLevelBackgrounds}" Style="{StaticResource PreferenceItemTitleStyle}" />
+				<RelativePanel Margin="0,10,0,0">
+					<TextBlock x:Name="DifficultyLevelBackgroundsEasySelectorTitle" Text="{m:R Key=_DifficultyLevel_Easy}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelBackgroundsEasySelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsEasySelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[0],Mode=TwoWay}" />
+				</RelativePanel>
+				<RelativePanel>
+					<TextBlock x:Name="DifficultyLevelBackgroundsModerateSelectorTitle" Text="{m:R Key=_DifficultyLevel_Moderate}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelBackgroundsModerateSelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsModerateSelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[1],Mode=TwoWay}" />
+				</RelativePanel>
+				<RelativePanel>
+					<TextBlock x:Name="DifficultyLevelBackgroundsHardSelectorTitle" Text="{m:R Key=_DifficultyLevel_Hard}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelBackgroundsHardSelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsHardSelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[2],Mode=TwoWay}" />
+				</RelativePanel>
+				<RelativePanel>
+					<TextBlock x:Name="DifficultyLevelBackgroundsFiendishSelectorTitle" Text="{m:R Key=_DifficultyLevel_Fiendish}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelBackgroundsFiendishSelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsFiendishSelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[3],Mode=TwoWay}" />
+				</RelativePanel>
+				<RelativePanel>
+					<TextBlock x:Name="DifficultyLevelBackgroundsNightmareSelectorTitle" Text="{m:R Key=_DifficultyLevel_Nightmare}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelBackgroundsNightmareSelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsNightmareSelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[4],Mode=TwoWay}" />
+				</RelativePanel>
+				<RelativePanel>
+					<TextBlock x:Name="DifficultyLevelBackgroundsUnknownSelectorTitle" Text="{m:R Key=_DifficultyLevel_Unknown}" />
+					<c:ColorSelector
+						RelativePanel.RightOf="DifficultyLevelBackgroundsUnknownSelectorTitle"
+						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsUnknownSelectorTitle" Margin="10,10,0,0"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[5],Mode=TwoWay}" />
+				</RelativePanel>
 			</StackPanel>
 		</StackPanel>
 	</ScrollViewer>

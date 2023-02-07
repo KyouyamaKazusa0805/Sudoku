@@ -1204,11 +1204,38 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Colors of Almost Locked Sets.
+        /// </summary>
+        internal static string SettingsPage_AlmostLockedSetsColors {
+            get {
+                return ResourceManager.GetString("SettingsPage_AlmostLockedSetsColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assignments.
         /// </summary>
         internal static string SettingsPage_AssignmentColor {
             get {
                 return ResourceManager.GetString("SettingsPage_AssignmentColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auxiliary colors.
+        /// </summary>
+        internal static string SettingsPage_AuxiliaryColors {
+            get {
+                return ResourceManager.GetString("SettingsPage_AuxiliaryColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auxiliary colors are used by views, for displaying highlighted elements in a technique step.
+        /// </summary>
+        internal static string SettingsPage_AuxiliaryColorsDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_AuxiliaryColorsDescription", resourceCulture);
             }
         }
         
@@ -1317,6 +1344,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_DeltaCellColorDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_DeltaCellColorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background colors of difficulty levels.
+        /// </summary>
+        internal static string SettingsPage_DifficultyLevelBackgrounds {
+            get {
+                return ResourceManager.GetString("SettingsPage_DifficultyLevelBackgrounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foreground colors of difficulty levels.
+        /// </summary>
+        internal static string SettingsPage_DifficultyLevelForegrounds {
+            get {
+                return ResourceManager.GetString("SettingsPage_DifficultyLevelForegrounds", resourceCulture);
             }
         }
         

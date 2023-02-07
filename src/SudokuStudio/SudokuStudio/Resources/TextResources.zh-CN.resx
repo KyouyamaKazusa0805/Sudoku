@@ -471,8 +471,17 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>偏好项设置</value>
   </data>
+  <data name="SettingsPage_AlmostLockedSetsColors" xml:space="preserve">
+    <value>待定数组结构配色</value>
+  </data>
   <data name="SettingsPage_AssignmentColor" xml:space="preserve">
     <value>出数</value>
+  </data>
+  <data name="SettingsPage_AuxiliaryColors" xml:space="preserve">
+    <value>辅助配色</value>
+  </data>
+  <data name="SettingsPage_AuxiliaryColorsDescription" xml:space="preserve">
+    <value>辅助配色用于显示某个步骤里的高亮强调配色</value>
   </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>基本设置</value>
@@ -509,6 +518,12 @@
   </data>
   <data name="SettingsPage_DeltaCellColorDescription" xml:space="preserve">
     <value>差分填数就是错误的填数，它会和它所在的行、列、宫里的数字冲突（相同）</value>
+  </data>
+  <data name="SettingsPage_DifficultyLevelBackgrounds" xml:space="preserve">
+    <value>难度系数文字底色</value>
+  </data>
+  <data name="SettingsPage_DifficultyLevelForegrounds" xml:space="preserve">
+    <value>难度系数文字配色</value>
   </data>
   <data name="SettingsPage_DisplayCursorsDescription" xml:space="preserve">
     <value>光标指的是一组高亮单元格，它用来指示你鼠标指针指向的单元格。</value>
