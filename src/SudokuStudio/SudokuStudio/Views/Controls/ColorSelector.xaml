@@ -51,6 +51,11 @@
 			</Flyout>
 		</SplitButton.Flyout>
 
-		<Border x:Name="CurrentColorBorder" CornerRadius="6" Margin="0" Width="30" Height="30" />
+		<RelativePanel>
+			<Border x:Name="CurrentColorBorder" CornerRadius="6" Margin="0" Width="30" Height="30" />
+			<TextBlock
+				RelativePanel.RightOf="CurrentColorBorder" Margin="10,5,0,0" VerticalAlignment="Center"
+				Text="{x:Bind cvt:SettingsPageConversion.ToArgbString(SelectedColor),Mode=OneWay}" />
+		</RelativePanel>
 	</SplitButton>
 </UserControl>

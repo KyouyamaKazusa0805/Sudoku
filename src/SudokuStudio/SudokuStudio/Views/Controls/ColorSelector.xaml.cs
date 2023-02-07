@@ -10,7 +10,7 @@ public sealed partial class ColorSelector : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <seealso cref="SelectedColor"/>
 	public static readonly DependencyProperty SelectedColorProperty =
-		DependencyProperty.Register(nameof(SelectedColor), typeof(Color), typeof(ColorSelector), new(Colors.Transparent));
+		RegisterDependency<Color, ColorSelector>(nameof(SelectedColor), Colors.Transparent);
 
 
 	/// <summary>
