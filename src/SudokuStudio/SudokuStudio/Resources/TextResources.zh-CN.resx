@@ -483,6 +483,9 @@
   <data name="SettingsPage_AuxiliaryColorsDescription" xml:space="preserve">
     <value>辅助配色用于显示某个步骤里的高亮强调配色</value>
   </data>
+  <data name="SettingsPage_BabaGroupFontData" xml:space="preserve">
+    <value>代数字母字体</value>
+  </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>基本设置</value>
   </data>

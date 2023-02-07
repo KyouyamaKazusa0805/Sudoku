@@ -164,8 +164,8 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		pane.CoordinateLabelFont = new(CoordinateLabelFontData.FontName);//
 		pane.CoordinateLabelFontScale = CoordinateLabelFontData.FontScale;//
 		pane.CoordinateLabelColor = CoordinateLabelFontData.FontColor;//
-		pane.BabaGroupLabelFont = new(BabaGroupingFontData.FontName);
-		pane.BabaGroupLabelFontScale = BabaGroupingFontData.FontScale;
-		pane.BabaGroupLabelColor = BabaGroupingFontData.FontColor;
+		pane.BabaGroupLabelFont = new(BabaGroupingFontData.FontName);//
+		pane.BabaGroupLabelFontScale = BabaGroupingFontData.FontScale;//
+		pane.BabaGroupLabelColor = BabaGroupingFontData.FontColor;//
 	}
 }

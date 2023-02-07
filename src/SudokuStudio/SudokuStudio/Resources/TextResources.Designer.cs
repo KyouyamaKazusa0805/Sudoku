@@ -1240,6 +1240,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Baba Is Group.
+        /// </summary>
+        internal static string SettingsPage_BabaGroupFontData {
+            get {
+                return ResourceManager.GetString("SettingsPage_BabaGroupFontData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic preferences.
         /// </summary>
         internal static string SettingsPage_Basic {

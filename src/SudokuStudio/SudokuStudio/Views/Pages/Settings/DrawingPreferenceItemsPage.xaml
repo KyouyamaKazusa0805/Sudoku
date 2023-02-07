@@ -228,6 +228,29 @@
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[4],Mode=TwoWay}" />
 					</RelativePanel>
 				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_BabaGroupFontData}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+						<Image>
+							<Image.Source>
+								<BitmapImage AutoPlay="True" UriSource="/Resources/images/baba.gif" />
+							</Image.Source>
+						</Image>
+						<Image>
+							<Image.Source>
+								<BitmapImage AutoPlay="True" UriSource="/Resources/images/is.gif" />
+							</Image.Source>
+						</Image>
+						<Image>
+							<Image.Source>
+								<BitmapImage AutoPlay="True" UriSource="/Resources/images/group.gif" />
+							</Image.Source>
+						</Image>
+					</StackPanel>
+					<c:FontPicker
+						x:Name="BabaGroupingFontPicker"
+						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontData,Mode=TwoWay}" />
+				</StackPanel>
 			</StackPanel>
 		</ScrollViewer>
 
@@ -256,6 +279,9 @@
 			CoordinateLabelFont="{x:Bind cvt:SettingsPageConversion.GetFont(CoordinateFontPicker.SelectedFontName),Mode=OneWay}"
 			CoordinateLabelFontScale="{x:Bind CoordinateFontPicker.SelectedFontScale,Mode=OneWay}"
 			CoordinateLabelColor="{x:Bind CoordinateFontPicker.SelectedColor,Mode=OneWay}"
+			BabaGroupLabelFont="{x:Bind cvt:SettingsPageConversion.GetFont(BabaGroupingFontPicker.SelectedFontName),Mode=OneWay}"
+			BabaGroupLabelFontScale="{x:Bind BabaGroupingFontPicker.SelectedFontScale,Mode=OneWay}"
+			BabaGroupLabelColor="{x:Bind BabaGroupingFontPicker.SelectedColor,Mode=OneWay}"
 			LinkColor="{x:Bind ChainColorSelector.SelectedColor,Mode=OneWay}"
 			NormalColor="{x:Bind NormalColorSelector.SelectedColor,Mode=OneWay}"
 			AssignmentColor="{x:Bind AssignmentColorSelector.SelectedColor,Mode=OneWay}"

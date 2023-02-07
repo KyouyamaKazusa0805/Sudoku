@@ -2837,6 +2837,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Auxiliary colors are used by views, for displaying highlighted elements in a technique step.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_BabaGroupFontData">
+            <summary>
+              Looks up a localized string similar to Baba Is Group.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Basic">
             <summary>
               Looks up a localized string similar to Basic preferences.

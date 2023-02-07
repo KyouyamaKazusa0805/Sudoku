@@ -14,6 +14,9 @@
 		<Description>The project represents with user interfaces that operates with sudoku puzzles.</Description>
 	</PropertyGroup>
 	<ItemGroup>
+		<Content Remove="Resources\images\baba.gif" />
+		<Content Remove="Resources\images\group.gif" />
+		<Content Remove="Resources\images\is.gif" />
 		<Content Remove="Resources\images\logo-devtoys.png" />
 		<Content Remove="Resources\images\repo-dotnet.png" />
 	</ItemGroup>
@@ -61,7 +64,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="Resources\images\baba.gif">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\images\group.gif">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\images\icon.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\images\is.gif">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\images\logo-devtoys.png">

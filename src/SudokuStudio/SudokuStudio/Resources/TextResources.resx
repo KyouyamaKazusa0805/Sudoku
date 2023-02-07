@@ -483,6 +483,9 @@
   <data name="SettingsPage_AuxiliaryColorsDescription" xml:space="preserve">
     <value>Auxiliary colors are used by views, for displaying highlighted elements in a technique step</value>
   </data>
+  <data name="SettingsPage_BabaGroupFontData" xml:space="preserve">
+    <value>Baba Is Group</value>
+  </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>Basic preferences</value>
   </data>
