@@ -45,6 +45,7 @@
 
 	<ItemGroup>
 		<None Remove="Views\Controls\ColorSelector.xaml" />
+		<None Remove="Views\Controls\DashArrayTextBox.xaml" />
 		<None Remove="Views\Controls\ExtendedExpander.xaml" />
 		<None Remove="Views\Controls\ExtendedExpanderHeader.xaml" />
 		<None Remove="Views\Controls\FontPicker.xaml" />
@@ -100,6 +101,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Controls\DashArrayTextBox.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Controls\FontPicker.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

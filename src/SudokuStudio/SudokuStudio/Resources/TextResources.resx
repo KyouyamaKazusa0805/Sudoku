@@ -510,6 +510,9 @@
   <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
     <value>Cursor background</value>
   </data>
+  <data name="SettingsPage_CyclingCellLinkDashStyle" xml:space="preserve">
+    <value>Cycling cell-link dash style</value>
+  </data>
   <data name="SettingsPage_DeltaCandidateColor" xml:space="preserve">
     <value>Delta candidates</value>
   </data>
@@ -593,6 +596,15 @@
   </data>
   <data name="SettingsPage_OverlappedAssignmentColor" xml:space="preserve">
     <value>Assignments (Cannibalism-like)</value>
+  </data>
+  <data name="SettingsPage_StrongLinkDashStyle" xml:space="preserve">
+    <value>Strong link dash style</value>
+  </data>
+  <data name="SettingsPage_StrongLinkDashStyleDescription" xml:space="preserve">
+    <value>Please input a series of digits, indicating the dash style of a chain link. Digits are the length of all split sub-lines. For example, "3,2" means a dotted line with contain several periods of two sub-lines, with lengths 3 and 2. You can keep the text box be empty, which means the line will not use dotted rule to separate it with multiple parts.</value>
+  </data>
+  <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
+    <value>Weak link dash style</value>
   </data>
   <data name="Sudoku" xml:space="preserve">
     <value>Sudoku</value>

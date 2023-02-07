@@ -2,6 +2,8 @@
 
 internal static class SettingsPageConversion
 {
+	public static string GetDashArrayString(DashArray value) => value.ToString()[1..^1];
+
 	public static string GetSliderString(double value, string format) => value.ToString(format);
 
 	public static string ToRgbString(Color color)

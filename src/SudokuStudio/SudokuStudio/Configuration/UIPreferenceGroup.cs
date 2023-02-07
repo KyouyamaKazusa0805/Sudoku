@@ -148,10 +148,10 @@ public sealed class UIPreferenceGroup : PreferenceGroup
 		pane.DifficultyLevelBackgrounds = DifficultyLevelBackgrounds;//
 		pane.AlmostLockedSetsColors = AlmostLockedSetsColors;//
 		pane.UserDefinedColorPalette = UserDefinedColorPalette;//?
-		pane.StrongLinkDashStyle = StrongLinkDashStyle;
-		pane.WeakLinkDashStyle = WeakLinkDashStyle;
-		pane.CycleLikeLinkDashStyle = CyclingCellLinkDashStyle;
-		pane.OtherLinkDashStyle = OtherLinkDashStyle;
+		pane.StrongLinkDashStyle = StrongLinkDashStyle;//
+		pane.WeakLinkDashStyle = WeakLinkDashStyle;//
+		pane.CycleLikeLinkDashStyle = CyclingCellLinkDashStyle;//
+		pane.OtherLinkDashStyle = OtherLinkDashStyle;//!
 		pane.GivenFont = new(GivenFontData.FontName);//
 		pane.GivenFontScale = GivenFontData.FontScale;//
 		pane.GivenColor = GivenFontData.FontColor;//

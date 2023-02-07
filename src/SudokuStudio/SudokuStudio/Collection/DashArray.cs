@@ -10,6 +10,12 @@
 public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>
 {
 	/// <summary>
+	/// Indicates the invalid value.
+	/// </summary>
+	public static readonly DashArray InvalidValue = new(0);
+
+
+	/// <summary>
 	/// The double values.
 	/// </summary>
 	[FileAccessOnly]

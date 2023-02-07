@@ -510,6 +510,9 @@
   <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
     <value>光标背景</value>
   </data>
+  <data name="SettingsPage_CyclingCellLinkDashStyle" xml:space="preserve">
+    <value>以单元格为单位的链接的虚线周期</value>
+  </data>
   <data name="SettingsPage_DeltaCandidateColor" xml:space="preserve">
     <value>差分候选数</value>
   </data>
@@ -593,6 +596,15 @@
   </data>
   <data name="SettingsPage_OverlappedAssignmentColor" xml:space="preserve">
     <value>结构内出数（类似自噬形式的出数）</value>
+  </data>
+  <data name="SettingsPage_StrongLinkDashStyle" xml:space="preserve">
+    <value>强链的虚线周期</value>
+  </data>
+  <data name="SettingsPage_StrongLinkDashStyleDescription" xml:space="preserve">
+    <value>请往文本框里输入一系列数字，用逗号隔开。数字表示的是链的线条的虚线断点规则。这一组数字代表了虚线的断点周期，将整个线条分段为多个部分，每个部分的长度对应该数字序列的每一个数值。例如“3,2”表示一条虚线，虚线被若干断点断开，每一段虚线长度为 3 和 2 一组为一个周期。文本框可留空，留空则表示该线条为实线，没有断点。</value>
+  </data>
+  <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
+    <value>弱链的虚线周期</value>
   </data>
   <data name="Sudoku" xml:space="preserve">
     <value>数独</value>

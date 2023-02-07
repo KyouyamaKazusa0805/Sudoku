@@ -1321,6 +1321,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cycling cell-link dash style.
+        /// </summary>
+        internal static string SettingsPage_CyclingCellLinkDashStyle {
+            get {
+                return ResourceManager.GetString("SettingsPage_CyclingCellLinkDashStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delta candidates.
         /// </summary>
         internal static string SettingsPage_DeltaCandidateColor {
@@ -1569,6 +1578,33 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_OverlappedAssignmentColor {
             get {
                 return ResourceManager.GetString("SettingsPage_OverlappedAssignmentColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strong link dash style.
+        /// </summary>
+        internal static string SettingsPage_StrongLinkDashStyle {
+            get {
+                return ResourceManager.GetString("SettingsPage_StrongLinkDashStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please input a series of digits, indicating the dash style of a chain link. Digits are the length of all split sub-lines. For example, &quot;3,2&quot; means a dotted line with contain several periods of two sub-lines, with lengths 3 and 2. You can keep the text box be empty, which means the line will not use dotted rule to separate it with multiple parts..
+        /// </summary>
+        internal static string SettingsPage_StrongLinkDashStyleDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_StrongLinkDashStyleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weak link dash style.
+        /// </summary>
+        internal static string SettingsPage_WeakLinkDashStyle {
+            get {
+                return ResourceManager.GetString("SettingsPage_WeakLinkDashStyle", resourceCulture);
             }
         }
         

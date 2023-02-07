@@ -251,6 +251,25 @@
 						x:Name="BabaGroupingFontPicker"
 						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontData,Mode=TwoWay}" />
 				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_StrongLinkDashStyle}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<TextBlock Text="{m:R Key=SettingsPage_StrongLinkDashStyleDescription}" TextWrapping="WrapWholeWords" />
+					<c:DashArrayTextBox
+						x:Name="StrongLinkDashStyleBox" Width="200"
+						DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=TwoWay}" />
+				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_WeakLinkDashStyle}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:DashArrayTextBox
+						x:Name="WeakLinkDashStyleBox" Width="200"
+						DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=TwoWay}" />
+				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_CyclingCellLinkDashStyle}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:DashArrayTextBox
+						x:Name="CycleLikeCellLinkDashStyleBox" Width="200"
+						DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle,Mode=TwoWay}" />
+				</StackPanel>
 			</StackPanel>
 		</ScrollViewer>
 
@@ -292,6 +311,9 @@
 			EndofinColor="{x:Bind EndofinColorSelector.SelectedColor,Mode=OneWay}"
 			AuxiliaryColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors,Mode=OneWay}"
 			AlmostLockedSetsColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,Mode=OneWay}"
+			StrongLinkDashStyle="{x:Bind StrongLinkDashStyleBox.DashArray,Mode=OneWay}"
+			WeakLinkDashStyle="{x:Bind WeakLinkDashStyleBox.DashArray,Mode=OneWay}"
+			CycleLikeLinkDashStyle="{x:Bind CycleLikeCellLinkDashStyleBox.DashArray,Mode=OneWay}"
 		/>
 	</Grid>
 </Page>
