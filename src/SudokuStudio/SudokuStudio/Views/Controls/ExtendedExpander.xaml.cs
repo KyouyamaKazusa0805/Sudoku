@@ -10,41 +10,33 @@ public sealed partial class ExtendedExpander : UserControl
 	/// Defines a dependency property that binds with the property <see cref="IsExpanded"/>.
 	/// </summary>
 	/// <seealso cref="IsExpanded"/>
-	public static readonly DependencyProperty IsExpandedProperty =
-		DependencyProperty.Register(nameof(IsExpanded), typeof(bool), typeof(ExtendedExpander), new(false));
+	public static readonly DependencyProperty IsExpandedProperty = RegisterDependency<bool, ExtendedExpander>(nameof(IsExpanded));
 
 	/// <summary>
 	/// Defines a dependency property that binds with the property <see cref="ExpandableContent"/>.
 	/// </summary>
 	/// <seealso cref="ExpandableContent"/>
 	public static readonly DependencyProperty ExpandableContentProperty =
-		DependencyProperty.Register(
-			nameof(ExpandableContent),
-			typeof(FrameworkElement),
-			typeof(ExtendedExpander),
-			new(null)
-		);
+		RegisterDependency<FrameworkElement, ExtendedExpander>(nameof(ExpandableContent));
 
 	/// <summary>
 	/// Defines a dependency property that binds with the property <see cref="Icon"/>.
 	/// </summary>
 	/// <seealso cref="Icon"/>
-	public static readonly DependencyProperty IconProperty =
-		DependencyProperty.Register(nameof(Icon), typeof(IconElement), typeof(ExtendedExpander), new(null));
+	public static readonly DependencyProperty IconProperty = RegisterDependency<IconElement, ExtendedExpander>(nameof(Icon));
 
 	/// <summary>
 	/// Defines a dependency property that binds with the property <see cref="Description"/>.
 	/// </summary>
 	/// <seealso cref="Description"/>
 	public static readonly DependencyProperty DescriptionProperty =
-		DependencyProperty.Register(nameof(Description), typeof(string), typeof(ExtendedExpander), new(string.Empty));
+		RegisterDependency<string, ExtendedExpander>(nameof(Description), string.Empty);
 
 	/// <summary>
 	/// Defines a dependency property that binds with the property <see cref="Title"/>.
 	/// </summary>
 	/// <seealso cref="Title"/>
-	public static readonly DependencyProperty TitleProperty =
-		DependencyProperty.Register(nameof(Title), typeof(string), typeof(ExtendedExpander), new(string.Empty));
+	public static readonly DependencyProperty TitleProperty = RegisterDependency<string, ExtendedExpander>(nameof(Title), string.Empty);
 
 
 	/// <summary>

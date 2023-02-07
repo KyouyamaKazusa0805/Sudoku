@@ -12,36 +12,20 @@ public sealed partial class ExtendedExpanderHeader : UserControl
 	/// </summary>
 	/// <seealso cref="Title"/>
 	public static readonly DependencyProperty TitleProperty =
-		DependencyProperty.Register(
-			nameof(Title),
-			typeof(string),
-			typeof(ExtendedExpanderHeader),
-			new(string.Empty, static (d, e) => AutomationProperties.SetName(d, (string)e.NewValue))
-		);
+		RegisterDependency<string, ExtendedExpanderHeader>(nameof(Title), string.Empty, AutomationProperties.SetName);
 
 	/// <summary>
 	/// Defines a dependency property that binds with the property <see cref="Description"/>.
 	/// </summary>
 	/// <seealso cref="Description"/>
 	public static readonly DependencyProperty DescriptionProperty =
-		DependencyProperty.Register(
-			nameof(Description),
-			typeof(string),
-			typeof(ExtendedExpanderHeader),
-			new(string.Empty, static (d, e) => AutomationProperties.SetHelpText(d, (string)e.NewValue))
-		);
+		RegisterDependency<string, ExtendedExpanderHeader>(nameof(Description), string.Empty, AutomationProperties.SetHelpText);
 
 	/// <summary>
 	/// Defines a dependency property that binds with the property <see cref="Icon"/>.
 	/// </summary>
 	/// <seealso cref="Icon"/>
-	public static readonly DependencyProperty IconProperty =
-		DependencyProperty.Register(
-			nameof(Icon),
-			typeof(IconElement),
-			typeof(ExtendedExpanderHeader),
-			new(null)
-		);
+	public static readonly DependencyProperty IconProperty = RegisterDependency<IconElement, ExtendedExpander>(nameof(Icon));
 
 
 	/// <summary>

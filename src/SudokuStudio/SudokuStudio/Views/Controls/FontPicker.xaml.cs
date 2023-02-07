@@ -10,21 +10,20 @@ public sealed partial class FontPicker : UserControl
 	/// </summary>
 	/// <seealso cref="SelectedFontName"/>
 	public static readonly DependencyProperty SelectedFontNameProperty =
-		DependencyProperty.Register(nameof(SelectedFontName), typeof(string), typeof(FontPicker), new(FontFamily.XamlAutoFontFamily.Source));
+		RegisterDependency<string, FontPicker>(nameof(SelectedFontName), FontFamily.XamlAutoFontFamily.Source);
 
 	/// <summary>
 	/// The dependency property that binds with <see cref="SelectedFontScale"/>.
 	/// </summary>
 	/// <seealso cref="SelectedFontScale"/>
-	public static readonly DependencyProperty SelectedFontScaleProperty =
-		DependencyProperty.Register(nameof(SelectedFontScale), typeof(double), typeof(FontPicker), new(0D));
+	public static readonly DependencyProperty SelectedFontScaleProperty = RegisterDependency<double, FontPicker>(nameof(SelectedFontScale));
 
 	/// <summary>
 	/// The dependency property that binds with <see cref="SelectedColor"/>.
 	/// </summary>
 	/// <seealso cref="SelectedColor"/>
 	public static readonly DependencyProperty SelectedColorProperty =
-		DependencyProperty.Register(nameof(SelectedColor), typeof(Color), typeof(FontPicker), new(Colors.Transparent));
+		RegisterDependency<Color, FontPicker>(nameof(SelectedColor), Colors.Transparent);
 
 
 	/// <summary>

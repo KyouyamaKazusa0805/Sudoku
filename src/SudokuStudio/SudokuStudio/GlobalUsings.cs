@@ -123,3 +123,4 @@ global using SpecialFolder = System.Environment.SpecialFolder;
 global using SystemPath = System.IO.Path;
 global using WinSysDispatcherQueue = Windows.System.DispatcherQueue;
 global using WinSysDispatcherQueueController = Windows.System.DispatcherQueueController;
+global using static Microsoft.UI.Xaml.DependencyPropertyRegistering;
