@@ -471,6 +471,9 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>Settings &amp; Preferences</value>
   </data>
+  <data name="SettingsPage_AssignmentColor" xml:space="preserve">
+    <value>Assignments</value>
+  </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>Basic preferences</value>
   </data>
@@ -479,6 +482,12 @@
   </data>
   <data name="SettingsPage_CandidateFontData" xml:space="preserve">
     <value>Candidate font</value>
+  </data>
+  <data name="SettingsPage_CannibalismColor" xml:space="preserve">
+    <value>Cannibalism</value>
+  </data>
+  <data name="SettingsPage_ChainColor" xml:space="preserve">
+    <value>Chain links</value>
   </data>
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>Stroke thickness of chain links</value>
@@ -516,6 +525,15 @@
   <data name="SettingsPage_Drawing" xml:space="preserve">
     <value>Drawing</value>
   </data>
+  <data name="SettingsPage_EliminationColor" xml:space="preserve">
+    <value>Eliminations</value>
+  </data>
+  <data name="SettingsPage_EndofinColor" xml:space="preserve">
+    <value>Endo-fins</value>
+  </data>
+  <data name="SettingsPage_ExofinColor" xml:space="preserve">
+    <value>Exo-fins</value>
+  </data>
   <data name="SettingsPage_GivenFontData" xml:space="preserve">
     <value>Given font</value>
   </data>
@@ -534,6 +552,9 @@
   <data name="SettingsPage_MoreColors" xml:space="preserve">
     <value>&gt;&gt; More</value>
   </data>
+  <data name="SettingsPage_NormalColor" xml:space="preserve">
+    <value>Normal highlighted candidates</value>
+  </data>
   <data name="SettingsPage_OffContent" xml:space="preserve">
     <value>No</value>
   </data>
@@ -551,6 +572,9 @@
   </data>
   <data name="SettingsPage_OutsideCoordinateUpperAndLeft" xml:space="preserve">
     <value>Top &amp; left</value>
+  </data>
+  <data name="SettingsPage_OverlappedAssignmentColor" xml:space="preserve">
+    <value>Assignments (Cannibalism-like)</value>
   </data>
   <data name="Sudoku" xml:space="preserve">
     <value>Sudoku</value>

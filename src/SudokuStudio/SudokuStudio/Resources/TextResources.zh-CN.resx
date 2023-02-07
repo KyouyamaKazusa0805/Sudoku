@@ -471,6 +471,9 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>偏好项设置</value>
   </data>
+  <data name="SettingsPage_AssignmentColor" xml:space="preserve">
+    <value>出数</value>
+  </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>基本设置</value>
   </data>
@@ -479,6 +482,12 @@
   </data>
   <data name="SettingsPage_CandidateFontData" xml:space="preserve">
     <value>候选数字体</value>
+  </data>
+  <data name="SettingsPage_CannibalismColor" xml:space="preserve">
+    <value>结构内删数（自噬删数）</value>
+  </data>
+  <data name="SettingsPage_ChainColor" xml:space="preserve">
+    <value>链</value>
   </data>
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>链的粗细</value>
@@ -516,6 +525,15 @@
   <data name="SettingsPage_Drawing" xml:space="preserve">
     <value>绘图和渲染</value>
   </data>
+  <data name="SettingsPage_EliminationColor" xml:space="preserve">
+    <value>删数</value>
+  </data>
+  <data name="SettingsPage_EndofinColor" xml:space="preserve">
+    <value>内鱼鳍</value>
+  </data>
+  <data name="SettingsPage_ExofinColor" xml:space="preserve">
+    <value>外鱼鳍</value>
+  </data>
   <data name="SettingsPage_GivenFontData" xml:space="preserve">
     <value>提示数字体</value>
   </data>
@@ -534,6 +552,9 @@
   <data name="SettingsPage_MoreColors" xml:space="preserve">
     <value>&gt;&gt; 更多</value>
   </data>
+  <data name="SettingsPage_NormalColor" xml:space="preserve">
+    <value>普通的高亮候选数</value>
+  </data>
   <data name="SettingsPage_OffContent" xml:space="preserve">
     <value>否</value>
   </data>
@@ -551,6 +572,9 @@
   </data>
   <data name="SettingsPage_OutsideCoordinateUpperAndLeft" xml:space="preserve">
     <value>顶部和左侧</value>
+  </data>
+  <data name="SettingsPage_OverlappedAssignmentColor" xml:space="preserve">
+    <value>结构内出数（类似自噬形式的出数）</value>
   </data>
   <data name="Sudoku" xml:space="preserve">
     <value>数独</value>

@@ -1204,6 +1204,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assignments.
+        /// </summary>
+        internal static string SettingsPage_AssignmentColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_AssignmentColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic preferences.
         /// </summary>
         internal static string SettingsPage_Basic {
@@ -1227,6 +1236,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_CandidateFontData {
             get {
                 return ResourceManager.GetString("SettingsPage_CandidateFontData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannibalism.
+        /// </summary>
+        internal static string SettingsPage_CannibalismColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_CannibalismColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chain links.
+        /// </summary>
+        internal static string SettingsPage_ChainColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_ChainColor", resourceCulture);
             }
         }
         
@@ -1339,6 +1366,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eliminations.
+        /// </summary>
+        internal static string SettingsPage_EliminationColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_EliminationColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endo-fins.
+        /// </summary>
+        internal static string SettingsPage_EndofinColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_EndofinColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exo-fins.
+        /// </summary>
+        internal static string SettingsPage_ExofinColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_ExofinColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given font.
         /// </summary>
         internal static string SettingsPage_GivenFontData {
@@ -1393,6 +1447,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Normal highlighted candidates.
+        /// </summary>
+        internal static string SettingsPage_NormalColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_NormalColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string SettingsPage_OffContent {
@@ -1443,6 +1506,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_OutsideCoordinateUpperAndLeft {
             get {
                 return ResourceManager.GetString("SettingsPage_OutsideCoordinateUpperAndLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assignments (Cannibalism-like).
+        /// </summary>
+        internal static string SettingsPage_OverlappedAssignmentColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_OverlappedAssignmentColor", resourceCulture);
             }
         }
         

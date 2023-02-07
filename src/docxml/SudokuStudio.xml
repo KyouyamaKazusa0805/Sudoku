@@ -2817,6 +2817,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Settings &amp; Preferences.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AssignmentColor">
+            <summary>
+              Looks up a localized string similar to Assignments.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Basic">
             <summary>
               Looks up a localized string similar to Basic preferences.
@@ -2830,6 +2835,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_CandidateFontData">
             <summary>
               Looks up a localized string similar to Candidate font.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_CannibalismColor">
+            <summary>
+              Looks up a localized string similar to Cannibalism.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ChainColor">
+            <summary>
+              Looks up a localized string similar to Chain links.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ChainStrokeThicknessTitle">
@@ -2892,6 +2907,21 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Drawing.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EliminationColor">
+            <summary>
+              Looks up a localized string similar to Eliminations.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EndofinColor">
+            <summary>
+              Looks up a localized string similar to Endo-fins.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ExofinColor">
+            <summary>
+              Looks up a localized string similar to Exo-fins.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_GivenFontData">
             <summary>
               Looks up a localized string similar to Given font.
@@ -2922,6 +2952,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to &gt;&gt; More.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_NormalColor">
+            <summary>
+              Looks up a localized string similar to Normal highlighted candidates.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OffContent">
             <summary>
               Looks up a localized string similar to No.
@@ -2950,6 +2985,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OutsideCoordinateUpperAndLeft">
             <summary>
               Looks up a localized string similar to Top &amp; left.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OverlappedAssignmentColor">
+            <summary>
+              Looks up a localized string similar to Assignments (Cannibalism-like).
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.Sudoku">

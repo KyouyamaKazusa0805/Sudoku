@@ -116,6 +116,55 @@
 						x:Name="CoordinateFontPicker"
 						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData,Mode=TwoWay}" />
 				</StackPanel>
+				<Border BorderThickness="0,1,0,0" BorderBrush="DimGray" Padding="0,100,0,0" Height="5" />
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_ChainColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:ColorSelector
+						x:Name="ChainColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainColor,Mode=TwoWay}" />
+				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_NormalColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:ColorSelector
+						x:Name="NormalColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.NormalColor,Mode=TwoWay}" />
+				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_AssignmentColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:ColorSelector
+						x:Name="AssignmentColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentColor,Mode=TwoWay}" />
+				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_OverlappedAssignmentColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:ColorSelector
+						x:Name="OverlappedAssignmentColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,Mode=TwoWay}" />
+				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_EliminationColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:ColorSelector
+						x:Name="EliminationColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor,Mode=TwoWay}" />
+				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_CannibalismColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:ColorSelector
+						x:Name="CannibalismColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor,Mode=TwoWay}" />
+				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_ExofinColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:ColorSelector
+						x:Name="ExofinColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ExofinColor,Mode=TwoWay}" />
+				</StackPanel>
+				<StackPanel>
+					<TextBlock Text="{m:R Key=SettingsPage_EndofinColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
+					<c:ColorSelector
+						x:Name="EndofinColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EndofinColor,Mode=TwoWay}" />
+				</StackPanel>
 			</StackPanel>
 		</ScrollViewer>
 
@@ -143,6 +192,14 @@
 			PencilmarkColor="{x:Bind PencilmarkFontPicker.SelectedColor,Mode=OneWay}"
 			CoordinateLabelFont="{x:Bind cvt:SettingsPageConversion.GetFont(CoordinateFontPicker.SelectedFontName),Mode=OneWay}"
 			CoordinateLabelFontScale="{x:Bind CoordinateFontPicker.SelectedFontScale,Mode=OneWay}"
-			CoordinateLabelColor="{x:Bind CoordinateFontPicker.SelectedColor,Mode=OneWay}" />
+			CoordinateLabelColor="{x:Bind CoordinateFontPicker.SelectedColor,Mode=OneWay}"
+			LinkColor="{x:Bind ChainColorSelector.SelectedColor,Mode=OneWay}"
+			NormalColor="{x:Bind NormalColorSelector.SelectedColor,Mode=OneWay}"
+			AssignmentColor="{x:Bind AssignmentColorSelector.SelectedColor,Mode=OneWay}"
+			OverlappedAssignmentColor="{x:Bind OverlappedAssignmentColorSelector.SelectedColor,Mode=OneWay}"
+			EliminationColor="{x:Bind EliminationColorSelector.SelectedColor,Mode=OneWay}"
+			CannibalismColor="{x:Bind CannibalismColorSelector.SelectedColor,Mode=OneWay}"
+			ExofinColor="{x:Bind ExofinColorSelector.SelectedColor,Mode=OneWay}"
+			EndofinColor="{x:Bind EndofinColorSelector.SelectedColor,Mode=OneWay}" />
 	</Grid>
 </Page>
