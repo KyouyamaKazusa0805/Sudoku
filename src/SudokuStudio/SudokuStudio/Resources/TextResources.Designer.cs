@@ -673,6 +673,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ignore high-allocation techniques.
+        /// </summary>
+        internal static string AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms {
+            get {
+                return ResourceManager.GetString("AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore slow techniques.
+        /// </summary>
+        internal static string AnalyzePage_LogicalSolverIgnoresSlowAlgorithms {
+            get {
+                return ResourceManager.GetString("AnalyzePage_LogicalSolverIgnoresSlowAlgorithms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solver full applying.
+        /// </summary>
+        internal static string AnalyzePage_LogicalSolverIsFullyApplied {
+            get {
+                return ResourceManager.GetString("AnalyzePage_LogicalSolverIsFullyApplied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max Value.
         /// </summary>
         internal static string AnalyzePage_MaxValueLegend {
@@ -1204,11 +1231,56 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow collision on ALS-XY-Wing.
+        /// </summary>
+        internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXyWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow collision on ALS-XZ.
+        /// </summary>
+        internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXzRule {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow searching for Incomplete Unique Rectangle.
+        /// </summary>
+        internal static string SettingsPage_AllowIncompleteUniqueRectangles {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowIncompleteUniqueRectangles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow Doubly-Linked ALS-XZ.
+        /// </summary>
+        internal static string SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Colors of Almost Locked Sets.
         /// </summary>
         internal static string SettingsPage_AlmostLockedSetsColors {
             get {
                 return ResourceManager.GetString("SettingsPage_AlmostLockedSetsColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solving &amp; Analysis.
+        /// </summary>
+        internal static string SettingsPage_Analysis {
+            get {
+                return ResourceManager.GetString("SettingsPage_Analysis", resourceCulture);
             }
         }
         
@@ -1438,6 +1510,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable technique &quot;Full House&quot;.
+        /// </summary>
+        internal static string SettingsPage_EnableFullHouse {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableFullHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If disabled, the technique that uses only one house with only one cell being empty will be treated as naked single.
+        /// </summary>
+        internal static string SettingsPage_EnableFullHouseDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableFullHouseDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable technique &quot;Last Digit&quot;.
+        /// </summary>
+        internal static string SettingsPage_EnableLastDigit {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableLastDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endo-fins.
         /// </summary>
         internal static string SettingsPage_EndofinColor {
@@ -1465,6 +1564,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search for Hidden Single in Block first.
+        /// </summary>
+        internal static string SettingsPage_HiddenSinglesInBlockFirst {
+            get {
+                return ResourceManager.GetString("SettingsPage_HiddenSinglesInBlockFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opacity of background-styled highlighted items.
         /// </summary>
         internal static string SettingsPage_HighlightBackgroundOpacityTitle {
@@ -1488,6 +1596,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_Intro {
             get {
                 return ResourceManager.GetString("SettingsPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum size of Hobiwan Fish to be searched for.
+        /// </summary>
+        internal static string SettingsPage_MaxSizeOfComplexFish {
+            get {
+                return ResourceManager.GetString("SettingsPage_MaxSizeOfComplexFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum size of Regular Wing to be searched for.
+        /// </summary>
+        internal static string SettingsPage_MaxSizeOfRegularWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_MaxSizeOfRegularWing", resourceCulture);
             }
         }
         
@@ -1578,6 +1704,33 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_OverlappedAssignmentColor {
             get {
                 return ResourceManager.GetString("SettingsPage_OverlappedAssignmentColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow searching for extended types of Bi-value Universal Grave.
+        /// </summary>
+        internal static string SettingsPage_SearchExtendedBivalueUniversalGraveTypes {
+            get {
+                return ResourceManager.GetString("SettingsPage_SearchExtendedBivalueUniversalGraveTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow searching for extended types of Unique Rectangle.
+        /// </summary>
+        internal static string SettingsPage_SearchForExtendedUniqueRectangles {
+            get {
+                return ResourceManager.GetString("SettingsPage_SearchForExtendedUniqueRectangles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only search for steps in a same difficulty level for step searchers.
+        /// </summary>
+        internal static string SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps", resourceCulture);
             }
         }
         

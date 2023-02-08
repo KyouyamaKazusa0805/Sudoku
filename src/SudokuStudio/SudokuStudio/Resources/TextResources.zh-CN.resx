@@ -294,6 +294,15 @@
   <data name="AnalyzePage_LiveCharts" xml:space="preserve">
     <value>数据图表</value>
   </data>
+  <data name="AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms" xml:space="preserve">
+    <value>不搜索空间复杂度较大的技巧</value>
+  </data>
+  <data name="AnalyzePage_LogicalSolverIgnoresSlowAlgorithms" xml:space="preserve">
+    <value>不搜索时间复杂度较大的技巧</value>
+  </data>
+  <data name="AnalyzePage_LogicalSolverIsFullyApplied" xml:space="preserve">
+    <value>单步全部应用</value>
+  </data>
   <data name="AnalyzePage_MaxValueLegend" xml:space="preserve">
     <value>满分</value>
   </data>
@@ -471,8 +480,23 @@
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>偏好项设置</value>
   </data>
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
+    <value>允许 ALS-XY-Wing 技巧里的 ALS 结构重叠</value>
+  </data>
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXzRule" xml:space="preserve">
+    <value>允许 ALS-XZ 技巧里的 ALS 结构重叠</value>
+  </data>
+  <data name="SettingsPage_AllowIncompleteUniqueRectangles" xml:space="preserve">
+    <value>允许搜索残缺唯一矩形</value>
+  </data>
+  <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
+    <value>允许 ALS-XZ 成环</value>
+  </data>
   <data name="SettingsPage_AlmostLockedSetsColors" xml:space="preserve">
     <value>待定数组结构配色</value>
+  </data>
+  <data name="SettingsPage_Analysis" xml:space="preserve">
+    <value>解题与分析</value>
   </data>
   <data name="SettingsPage_AssignmentColor" xml:space="preserve">
     <value>出数</value>
@@ -549,6 +573,15 @@
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>删数</value>
   </data>
+  <data name="SettingsPage_EnableFullHouse" xml:space="preserve">
+    <value>启用“同区剩余”技巧</value>
+  </data>
+  <data name="SettingsPage_EnableFullHouseDescription" xml:space="preserve">
+    <value>如果禁用此选项，所有同一个区域里只有一个空格的技巧会被视为“唯一余数”</value>
+  </data>
+  <data name="SettingsPage_EnableLastDigit" xml:space="preserve">
+    <value>启用“同数剩余”技巧</value>
+  </data>
   <data name="SettingsPage_EndofinColor" xml:space="preserve">
     <value>内鱼鳍</value>
   </data>
@@ -558,6 +591,9 @@
   <data name="SettingsPage_GivenFontData" xml:space="preserve">
     <value>提示数字体</value>
   </data>
+  <data name="SettingsPage_HiddenSinglesInBlockFirst" xml:space="preserve">
+    <value>优先搜索宫排除</value>
+  </data>
   <data name="SettingsPage_HighlightBackgroundOpacityTitle" xml:space="preserve">
     <value>背景视图节点的透明度</value>
   </data>
@@ -566,6 +602,12 @@
   </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。所有配置项均为即时保存，但需要重启程序后才能生效。懒得写绑定了 :)</value>
+  </data>
+  <data name="SettingsPage_MaxSizeOfComplexFish" xml:space="preserve">
+    <value>复杂鱼结构的最大搜索规格</value>
+  </data>
+  <data name="SettingsPage_MaxSizeOfRegularWing" xml:space="preserve">
+    <value>规则 Wing 结构的最大搜索规格</value>
   </data>
   <data name="SettingsPage_ModifiableFontData" xml:space="preserve">
     <value>填入数字体</value>
@@ -596,6 +638,15 @@
   </data>
   <data name="SettingsPage_OverlappedAssignmentColor" xml:space="preserve">
     <value>结构内出数（类似自噬形式的出数）</value>
+  </data>
+  <data name="SettingsPage_SearchExtendedBivalueUniversalGraveTypes" xml:space="preserve">
+    <value>允许搜索全双值格致死解法的各种拓展构型</value>
+  </data>
+  <data name="SettingsPage_SearchForExtendedUniqueRectangles" xml:space="preserve">
+    <value>允许搜索唯一矩形的各种拓展构型</value>
+  </data>
+  <data name="SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps" xml:space="preserve">
+    <value>在单步所有步骤搜索功能中，只搜索同难度级别的技巧</value>
   </data>
   <data name="SettingsPage_StrongLinkDashStyle" xml:space="preserve">
     <value>强链的虚线周期</value>

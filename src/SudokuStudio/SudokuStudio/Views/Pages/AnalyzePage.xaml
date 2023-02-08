@@ -10,6 +10,8 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AnalyzePage}">
 	<Page.Resources>
 		<Style x:Key="MenuBarBorderStyle" TargetType="Border">
@@ -63,6 +65,15 @@
 									<cmd:AnalyzeCommand />
 								</AppBarButton.Command>
 							</AppBarButton>
+							<AppBarToggleButton
+								IsThreeState="False" Icon="List" Label="{m:R Key=AnalyzePage_LogicalSolverIsFullyApplied}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=TwoWay}" />
+							<AppBarToggleButton
+								IsThreeState="False" Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresSlowAlgorithms}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms,Mode=TwoWay}" />
+							<AppBarToggleButton
+								IsThreeState="False" Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=TwoWay}" />
 						</CommandBar>
 					</Border>
 				</Grid>

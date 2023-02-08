@@ -2512,6 +2512,21 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Data Charts.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms">
+            <summary>
+              Looks up a localized string similar to Ignore high-allocation techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_LogicalSolverIgnoresSlowAlgorithms">
+            <summary>
+              Looks up a localized string similar to Ignore slow techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_LogicalSolverIsFullyApplied">
+            <summary>
+              Looks up a localized string similar to Solver full applying.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_MaxValueLegend">
             <summary>
               Looks up a localized string similar to Max Value.
@@ -2807,9 +2822,34 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Settings &amp; Preferences.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
+            <summary>
+              Looks up a localized string similar to Allow collision on ALS-XY-Wing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AllowCollisionOnAlmostLockedSetXzRule">
+            <summary>
+              Looks up a localized string similar to Allow collision on ALS-XZ.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AllowIncompleteUniqueRectangles">
+            <summary>
+              Looks up a localized string similar to Allow searching for Incomplete Unique Rectangle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule">
+            <summary>
+              Looks up a localized string similar to Allow Doubly-Linked ALS-XZ.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AlmostLockedSetsColors">
             <summary>
               Looks up a localized string similar to Colors of Almost Locked Sets.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Analysis">
+            <summary>
+              Looks up a localized string similar to Solving &amp; Analysis.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AssignmentColor">
@@ -2937,6 +2977,21 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Eliminations.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EnableFullHouse">
+            <summary>
+              Looks up a localized string similar to Enable technique &quot;Full House&quot;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EnableFullHouseDescription">
+            <summary>
+              Looks up a localized string similar to If disabled, the technique that uses only one house with only one cell being empty will be treated as naked single.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EnableLastDigit">
+            <summary>
+              Looks up a localized string similar to Enable technique &quot;Last Digit&quot;.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EndofinColor">
             <summary>
               Looks up a localized string similar to Endo-fins.
@@ -2952,6 +3007,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Given font.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_HiddenSinglesInBlockFirst">
+            <summary>
+              Looks up a localized string similar to Search for Hidden Single in Block first.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_HighlightBackgroundOpacityTitle">
             <summary>
               Looks up a localized string similar to Opacity of background-styled highlighted items.
@@ -2965,6 +3025,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Intro">
             <summary>
               Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_MaxSizeOfComplexFish">
+            <summary>
+              Looks up a localized string similar to Maximum size of Hobiwan Fish to be searched for.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_MaxSizeOfRegularWing">
+            <summary>
+              Looks up a localized string similar to Maximum size of Regular Wing to be searched for.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ModifiableFontData">
@@ -3015,6 +3085,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OverlappedAssignmentColor">
             <summary>
               Looks up a localized string similar to Assignments (Cannibalism-like).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_SearchExtendedBivalueUniversalGraveTypes">
+            <summary>
+              Looks up a localized string similar to Allow searching for extended types of Bi-value Universal Grave.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_SearchForExtendedUniqueRectangles">
+            <summary>
+              Looks up a localized string similar to Allow searching for extended types of Unique Rectangle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
+            <summary>
+              Looks up a localized string similar to Only search for steps in a same difficulty level for step searchers.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StrongLinkDashStyle">
@@ -3501,6 +3586,31 @@ if (student is (name: var name, age: >= 18))
             <summary>
             InitializeComponent()
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.IntegerBox">
+            <summary>
+            Represents an integer box.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.IntegerBox.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Controls.IntegerBox"/>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.IntegerBox.Value">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.NumberBox.Value"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.IntegerBox.Minimum">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.NumberBox.Minimum"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.IntegerBox.Maximum">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.NumberBox.Maximum"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.IntegerBox.SmallChange">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.NumberBox.SmallChange"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.IntegerBox.LargeChange">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.NumberBox.LargeChange"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPane">
             <summary>
@@ -4644,6 +4754,21 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.SettingsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage">
+            <summary>
+            Represents an analysis preference items page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.InitializeComponent">
             <summary>
             InitializeComponent()
             </summary>

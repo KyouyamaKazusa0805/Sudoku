@@ -116,7 +116,6 @@
 						x:Name="CoordinateFontPicker"
 						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData,Mode=TwoWay}" />
 				</StackPanel>
-				<Border BorderThickness="0,1,0,0" BorderBrush="DimGray" Padding="0,100,0,0" Height="5" />
 				<StackPanel>
 					<TextBlock Text="{m:R Key=SettingsPage_ChainColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
 					<c:ColorSelector

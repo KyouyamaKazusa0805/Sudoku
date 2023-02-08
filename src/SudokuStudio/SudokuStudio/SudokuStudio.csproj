@@ -60,6 +60,7 @@
 		<None Remove="Views\Pages\Analyze\Summary.xaml" />
 		<None Remove="Views\Pages\Operation\BasicOperation.xaml" />
 		<None Remove="Views\Pages\SettingsPage.xaml" />
+		<None Remove="Views\Pages\Settings\AnalysisPreferenceItemsPage.xaml" />
 		<None Remove="Views\Pages\Settings\BasicPreferenceItemsPage.xaml" />
 		<None Remove="Views\Pages\Settings\DrawingPreferenceItemsPage.xaml" />
 	</ItemGroup>
@@ -101,6 +102,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\Settings\AnalysisPreferenceItemsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Controls\DashArrayTextBox.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

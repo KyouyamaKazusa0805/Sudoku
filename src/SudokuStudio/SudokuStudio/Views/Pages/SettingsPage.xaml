@@ -20,6 +20,9 @@
 			<PivotItem Header="{m:R Key=SettingsPage_Basic}" MaxHeight="720">
 				<ps:BasicPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}" />
 			</PivotItem>
+			<PivotItem Header="{m:R Key=SettingsPage_Analysis}" MaxHeight="720">
+				<ps:AnalysisPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}" />
+			</PivotItem>
 			<PivotItem Header="{m:R Key=SettingsPage_Drawing}" MaxHeight="720">
 				<ps:DrawingPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}" />
 			</PivotItem>
