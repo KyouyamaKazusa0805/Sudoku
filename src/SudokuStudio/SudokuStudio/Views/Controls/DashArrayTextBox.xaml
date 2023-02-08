@@ -6,7 +6,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:DashArrayTextBox}">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:DashArrayTextBox}"
+	HorizontalAlignment="Left">
 	<TextBox
 		x:Name="CoreBox" Text="{x:Bind cvt:SettingsPageConversion.GetDashArrayString(DashArray),Mode=OneWay}"
 		KeyDown="CoreBox_KeyDown" />
