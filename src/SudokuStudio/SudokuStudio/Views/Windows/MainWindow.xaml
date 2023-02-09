@@ -5,13 +5,42 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:g="using:Sudoku.Solving.Logical.StepGatherers"
+	xmlns:l="using:Sudoku.Solving.Logical"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d"
 	Closed="Window_Closed">
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition />
-		</Grid.RowDefinitions>
+	<Grid x:Name="MainWindowBaseGrid" x:FieldModifier="internal" RowDefinitions="Auto,*">
+		<Grid.Resources>
+			<l:LogicalSolver
+				x:Key="ProgramSolver"
+				x:DefaultBindMode="OneWay"
+				SingleStepSearcher_EnableFullHouse="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=OneWay}"
+				SingleStepSearcher_EnableLastDigit="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableLastDigit,Mode=OneWay}"
+				SingleStepSearcher_HiddenSinglesInBlockFirst="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=OneWay}"
+				UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowIncompleteUniqueRectangles,Mode=OneWay}"
+				UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForExtendedUniqueRectangles,Mode=OneWay}"
+				BivalueUniversalGraveStepSearcher_SearchExtendedTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedBivalueUniversalGraveTypes,Mode=OneWay}"
+				AlmostLockedSetsXzStepSearcher_AllowCollision="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXzRule,Mode=OneWay}"
+				AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLoopedPatternsOnAlmostLockedSetXzRule,Mode=OneWay}"
+				AlmostLockedSetsXyWingStepSearcher_AllowCollision="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXyWing,Mode=OneWay}"
+				RegularWingStepSearcher_MaxSize="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfRegularWing,Mode=OneWay}"
+				ComplexFishStepSearcher_MaxSize="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=OneWay}"
+				TemplateStepSearcher_TemplateDeleteOnly="False"
+				BowmanBingoStepSearcher_MaxLength="64"
+				AlmostLockedCandidatesStepSearcher_CheckAlmostLockedQuadruple="False"
+				JuniorExocetStepSearcher_CheckAdvanced="True"
+				SeniorExocetStepSearcher_CheckAdvanced="True"
+				IsFullApplying="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=OneWay}"
+				IgnoreSlowAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms,Mode=OneWay}"
+				IgnoreHighAllocationAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=OneWay}" />
+			<g:StepsGatherer
+				x:Key="ProgramGatherer"
+				x:DefaultBindMode="OneWay"
+				OnlyShowSameLevelTechniquesInFindAllSteps="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=OneWay}"
+				MaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}" />
+		</Grid.Resources>
 
 		<!--Title bar-->
 		<Grid Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

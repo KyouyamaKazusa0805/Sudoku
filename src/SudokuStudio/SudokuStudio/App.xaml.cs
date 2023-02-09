@@ -54,13 +54,13 @@ public partial class App : Application
 	/// Indicates the program solver.
 	/// </summary>
 	[DebuggerHidden]
-	internal LogicalSolver ProgramSolver => (LogicalSolver)SudokuPane!.Resources[nameof(ProgramSolver)];
+	internal LogicalSolver ProgramSolver => (LogicalSolver)((MainWindow)RunningWindow!).MainWindowBaseGrid.Resources[nameof(ProgramSolver)];
 
 	/// <summary>
 	/// Indicates the program step gatherer.
 	/// </summary>
 	[DebuggerHidden]
-	internal StepsGatherer ProgramGatherer => (StepsGatherer)SudokuPane!.Resources[nameof(ProgramGatherer)];
+	internal StepsGatherer ProgramGatherer => (StepsGatherer)((MainWindow)RunningWindow!).MainWindowBaseGrid.Resources[nameof(ProgramGatherer)];
 
 
 	/// <summary>
