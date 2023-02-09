@@ -427,6 +427,14 @@
             <returns>The time limit.</returns>
             <exception cref="T:System.NotSupportedException">Throws when the specified argument value is not supported.</exception>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Gets the ranking from the specified group.
+            </summary>
+            <param name="group">The group.</param>
+            <param name="rankingListIsEmptyCallback">Indicates the callback method that will be raised when the ranking list is empty.</param>
+            <returns>The list of ranking result.</returns>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Commands.Constants">
             <target name="class" when="constant">
 				<summary>

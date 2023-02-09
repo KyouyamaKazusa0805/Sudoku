@@ -558,7 +558,8 @@
     <value>用户 {0}（{2}）数据📦
 ---
 分数：{1}
-级别：{3}</value>
+级别：{3}
+排名：第 {4} 名</value>
   </data>
   <data name="_MessageFormat_UserScoreNotFound" xml:space="preserve">
     <value>用户 {0}（{1}）尚未使用过机器人。</value>

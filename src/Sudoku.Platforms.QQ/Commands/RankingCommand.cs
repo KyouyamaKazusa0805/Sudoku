@@ -29,33 +29,10 @@ file sealed class RankingCommand : Command
 			return true;
 		}
 
-		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
-		if (!Directory.Exists(botDataFolder))
-		{
-			await e.SendMessageAsync(R.MessageFormat("RankingListIsEmpty")!);
-			return true;
-		}
-
-		var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
-		if (!Directory.Exists(botUsersDataFolder))
-		{
-			await e.SendMessageAsync(R.MessageFormat("RankingListIsEmpty")!);
-			return true;
-		}
-
 		// If the number of members are too large, we should only iterate the specified number of elements from top.
 		var context = BotRunningContext.GetContext(group);
-		var usersData = (
-			from file in Directory.GetFiles(botUsersDataFolder, "*.json")
-			let ud = Deserialize<UserData>(File.ReadAllText(file))
-			where ud is not null
-			let qq = ud.QQ
-			let nickname = @group.GetMemberFromQQAsync(qq).Result?.Name
-			where nickname is not null
-			let numericQQ = int.TryParse(qq, out var result) ? result : 0
-			orderby ud.Score descending, numericQQ
-			select (Name: nickname, Data: ud)
-		).Take(context?.Configuration.RankingDisplayUsersCount ?? 10);
+		var usersData = (await ICommandDataProvider.GetUserRankingListAsync(group, rankingEmptyCallback))!
+			.Take(context?.Configuration.RankingDisplayUsersCount ?? 10);
 
 		var rankingStr = string.Join(Environment.NewLine, usersData.Select(selector));
 		await e.SendMessageAsync(
@@ -69,6 +46,8 @@ file sealed class RankingCommand : Command
 		);
 		return true;
 
+
+		async Task rankingEmptyCallback() => await e.SendMessageAsync(R.MessageFormat("RankingListIsEmpty")!);
 
 		static string selector((string Name, UserData Data) pair, int i)
 		{

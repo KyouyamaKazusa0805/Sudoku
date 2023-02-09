@@ -130,6 +130,49 @@ internal interface ICommandDataProvider
 			DifficultyLevel.Hard => 6.Minutes(),
 			_ => throw new NotSupportedException("The specified difficulty is not supported.")
 		};
+
+	/// <summary>
+	/// Gets the ranking from the specified group.
+	/// </summary>
+	/// <param name="group">The group.</param>
+	/// <param name="rankingListIsEmptyCallback">Indicates the callback method that will be raised when the ranking list is empty.</param>
+	/// <returns>The list of ranking result.</returns>
+	internal static async Task<(string Name, UserData Data)[]?> GetUserRankingListAsync(Group @group, Func<Task> rankingListIsEmptyCallback)
+	{
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			// Error. The computer does not contain "My Documents" folder.
+			// This folder is special; if the computer does not contain the folder, we should return directly.
+			return null;
+		}
+
+		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			await rankingListIsEmptyCallback();
+			return null;
+		}
+
+		var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
+		if (!Directory.Exists(botUsersDataFolder))
+		{
+			await rankingListIsEmptyCallback();
+			return null;
+		}
+
+		return (
+			from file in Directory.GetFiles(botUsersDataFolder, "*.json")
+			let ud = Deserialize<UserData>(File.ReadAllText(file))
+			where ud is not null
+			let qq = ud.QQ
+			let nickname = @group.GetMemberFromQQAsync(qq).Result?.Name
+			where nickname is not null
+			let numericQQ = int.TryParse(qq, out var result) ? result : 0
+			orderby ud.Score descending, numericQQ
+			select (Name: nickname, Data: ud)
+		).ToArray();
+	}
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>

@@ -27,7 +27,7 @@ file sealed class LookupScoreCommand : Command
 			{
 				{ Name: var nickname } => InternalReadWrite.Read(senderId) switch
 				{
-					{ Score: var score } userData => validMessage(senderName, score, nickname, Scorer.GetGrade(score)),
+					{ Score: var score } userData => await validMessage(senderName, score, nickname, Scorer.GetGrade(score)),
 					_ => notFoundMessage(senderName, nickname)
 				},
 				_ => null
@@ -39,7 +39,7 @@ file sealed class LookupScoreCommand : Command
 				{
 					{ Name: var nickname } => InternalReadWrite.Read(foundMemberId) switch
 					{
-						{ Score: var score } userData => validMessage(foundMemberName, score, nickname, Scorer.GetGrade(score)),
+						{ Score: var score } userData => await validMessage(foundMemberName, score, nickname, Scorer.GetGrade(score)),
 						_ => notFoundMessage(foundMemberName, nickname)
 					},
 					_ => null
@@ -58,8 +58,24 @@ file sealed class LookupScoreCommand : Command
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string validMessage(string name, int score, string nickname, int grade)
-			=> string.Format(R.MessageFormat("UserScoreIs")!, name, score, nickname, grade);
+		async Task<string> validMessage(string name, int score, string nickname, int grade)
+		{
+			var ranking = (await ICommandDataProvider.GetUserRankingListAsync(group, rankingEmptyCallback))!;
+			var rankingIndex = int.MaxValue;
+			for (var i = 0; i < ranking.Length; i++)
+			{
+				if (ranking[i].Data.QQ == senderId)
+				{
+					rankingIndex = i + 1;
+					break;
+				}
+			}
+
+			return string.Format(R.MessageFormat("UserScoreIs")!, name, score, nickname, grade, rankingIndex);
+
+
+			async Task rankingEmptyCallback() => await e.SendMessageAsync(R.MessageFormat("RankingListIsEmpty")!);
+		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static string notFoundMessage(string name, string nickname) => string.Format(R.MessageFormat("UserScoreNotFound")!, name, nickname);
