@@ -770,27 +770,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
-	private void UserControl_Loaded(object sender, RoutedEventArgs e)
-	{
-		if (((App)Application.Current).SudokuPane is not null)
-		{
-			return;
-		}
-
-		// Sets the cached property.
-		((App)Application.Current).SudokuPane = this;
-
-		// Loads the configuration file from local path.
-		var targetPath = CommonPaths.UserPreference;
-		var pref = ((App)Application.Current).Preference!;
-		if (File.Exists(targetPath) && ProgramPreferenceFileHandler.Read(targetPath) is { } loadedConfig)
-		{
-			pref.CoverBy(loadedConfig);
-		}
-
-		// Refresh UI.
-		Array.ForEach(typeof(ProgramPreference).GetProperties(), pi => ((PreferenceGroup)pi.GetValue(pref)!).CoverProperties());
-	}
+	private void UserControl_Loaded(object sender, RoutedEventArgs e) => ((App)Application.Current).SudokuPane ??= this;
 
 	private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
 	{

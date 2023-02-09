@@ -7,7 +7,6 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	mc:Ignorable="d"
 	Closed="Window_Closed">
-
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />

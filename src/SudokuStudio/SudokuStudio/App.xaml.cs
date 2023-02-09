@@ -45,15 +45,16 @@ public partial class App : Application
 	internal Grid? FirstGrid { get; set; }
 
 	/// <summary>
-	/// Defines a set of environment variables used.
-	/// </summary>
-	internal EnvironmentVariable EnvironmentVariables { get; } = new();
-
-	/// <summary>
 	/// Defines the sudoku pane used.
 	/// </summary>
 	[DebuggerHidden]
 	internal SudokuPane? SudokuPane { get; set; }
+
+	[DebuggerHidden]
+	internal LogicalSolver ProgramSolver => (LogicalSolver)SudokuPane!.Resources[nameof(ProgramSolver)];
+
+	[DebuggerHidden]
+	internal StepsGatherer ProgramGatherer => (StepsGatherer)SudokuPane!.Resources[nameof(ProgramGatherer)];
 
 
 	/// <summary>
@@ -67,20 +68,44 @@ public partial class App : Application
 	[MemberNotNull(nameof(RunningWindow))]
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-		// Register resource-fetching service.
-		R.RegisterAssembly(typeof(App).Assembly);
-
-		// Handles on opening event. This value will be used if not opening by program entry.
-		PreinstantiateProgram();
-
-		// Activicate the main window.
-		(RunningWindow = new MainWindow()).Activate();
+		RegisterResourceFetching();
+		HandleOnProgramOpeningEntryCase();
+		ActivicateMainWindow<MainWindow>();
+		LoadConfigurationFileFromLocal(CommonPaths.UserPreference);
 	}
 
 	/// <summary>
-	/// Pre-instantiate program.
+	/// Register resource-fetching service.
 	/// </summary>
-	private void PreinstantiateProgram()
+	private void RegisterResourceFetching() => MergedResources.R.RegisterAssembly(typeof(App).Assembly);
+
+	/// <summary>
+	/// Creates a window, and activicate it.
+	/// </summary>
+	/// <typeparam name="TWindow">The type of the window you should activicate.</typeparam>
+	[MemberNotNull(nameof(RunningWindow))]
+	private void ActivicateMainWindow<TWindow>() where TWindow : Window, new() => (RunningWindow = new TWindow()).Activate();
+
+	/// <summary>
+	/// Loads the configuration file from a local path.
+	/// </summary>
+	/// <param name="targetPath">The target path.</param>
+	private void LoadConfigurationFileFromLocal(string targetPath)
+	{
+		Debug.Assert(Preference is not null);
+
+		// Loads the configuration file from local path.
+		var pref = Preference;
+		if (File.Exists(targetPath) && ProgramPreferenceFileHandler.Read(targetPath) is { } loadedConfig)
+		{
+			pref.CoverBy(loadedConfig);
+		}
+	}
+
+	/// <summary>
+	/// Handle the cases how user opens this program.
+	/// </summary>
+	private void HandleOnProgramOpeningEntryCase()
 	{
 		if (_commandLineArgs is null or not [])
 		{

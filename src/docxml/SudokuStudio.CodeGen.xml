@@ -4,6 +4,101 @@
         <name>SudokuStudio.CodeGen</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DependencyPropertyGenerator">
+            <summary>
+            Defines a generator that generates the source code for dependency properties.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DependencyPropertyGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData">
+            <summary>
+            Indicates the property generating data.
+            </summary>
+            <param name="PropertyName">Indicates the property name.</param>
+            <param name="PropertyType">Indicates the property type.</param>
+            <param name="DocCref">Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.</param>
+            <param name="DocPath">Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.</param>
+            <param name="DefaultValueGeneratingMemberName">
+            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
+            </param>
+            <param name="DefaultValueGeneratingMemberKind">
+            Indicates the kind of the referenced member specified as the argument <see cref="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName"/>.
+            </param>
+            <param name="DefaultValue">Indicates the real default value.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,System.String,System.String,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.Generators.DefaultValueGeneratingMemberKind},System.Object)">
+            <summary>
+            Indicates the property generating data.
+            </summary>
+            <param name="PropertyName">Indicates the property name.</param>
+            <param name="PropertyType">Indicates the property type.</param>
+            <param name="DocCref">Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.</param>
+            <param name="DocPath">Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.</param>
+            <param name="DefaultValueGeneratingMemberName">
+            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
+            </param>
+            <param name="DefaultValueGeneratingMemberKind">
+            Indicates the kind of the referenced member specified as the argument <see cref="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName"/>.
+            </param>
+            <param name="DefaultValue">Indicates the real default value.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.PropertyName">
+            <summary>Indicates the property name.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.PropertyType">
+            <summary>Indicates the property type.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DocCref">
+            <summary>Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DocPath">
+            <summary>Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName">
+            <summary>
+            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberKind">
+            <summary>
+            Indicates the kind of the referenced member specified as the argument <see cref="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValue">
+            <summary>Indicates the real default value.</summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DefaultValueGeneratingMemberKind">
+            <summary>
+            Defines a kind of default value generating member.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.DefaultValueGeneratingMemberKind.Field">
+            <summary>
+            Indicates the member type is a field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.DefaultValueGeneratingMemberKind.Property">
+            <summary>
+            Indicates the member type is a property.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.DefaultValueGeneratingMemberKind.ParameterlessMethod">
+            <summary>
+            Indicates the member type is a parameterless method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.DefaultValueGeneratingMemberKind.CannotReference">
+            <summary>
+            Indicates the member cannot be referenced.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.DefaultValueGeneratingMemberKind.Otherwise">
+            <summary>
+            Otherwise.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyBindingGenerator">
             <summary>
             Defines a source generator that is used for binding properties.

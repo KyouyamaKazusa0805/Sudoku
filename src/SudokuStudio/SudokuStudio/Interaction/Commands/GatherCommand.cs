@@ -25,7 +25,7 @@ public sealed class GatherCommand : ButtonCommand
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 
-		var gatherer = ((App)Application.Current).EnvironmentVariables.Gatherer;
+		var gatherer = ((App)Application.Current).ProgramGatherer;
 		var result = await Task.Run(gather);
 
 		self.GatherTabPage._currentFountSteps = result;

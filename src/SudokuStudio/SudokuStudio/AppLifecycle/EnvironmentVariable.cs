@@ -1,4 +1,5 @@
-﻿namespace SudokuStudio.AppLifecycle;
+﻿#if false
+namespace SudokuStudio.AppLifecycle;
 
 /// <summary>
 /// Provides with a set of properties or fields that is used by the program in its lifecycle.
@@ -15,3 +16,4 @@ internal sealed class EnvironmentVariable
 	/// </summary>
 	public LogicalSolver Solver { get; } = CommonLogicalSolvers.Suitable with { };
 }
+#endif

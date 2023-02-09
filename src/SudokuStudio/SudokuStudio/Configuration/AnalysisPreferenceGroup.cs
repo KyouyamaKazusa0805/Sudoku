@@ -4,78 +4,22 @@
 /// Represents with preference items that is used by <see cref="LogicalSolver"/>.
 /// </summary>
 /// <seealso cref="LogicalSolver"/>
-public sealed class AnalysisPreferenceGroup : PreferenceGroup
+[DependencyProperty<bool>("EnableFullHouse", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableFullHouse")]
+[DependencyProperty<bool>("EnableLastDigit", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableLastDigit")]
+[DependencyProperty<bool>("HiddenSinglesInBlockFirst", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst")]
+[DependencyProperty<bool>("AllowIncompleteUniqueRectangles", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles")]
+[DependencyProperty<bool>("SearchForExtendedUniqueRectangles", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles")]
+[DependencyProperty<bool>("SearchExtendedBivalueUniversalGraveTypes", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes")]
+[DependencyProperty<bool>("AllowCollisionOnAlmostLockedSetXzRule", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision")]
+[DependencyProperty<bool>("AllowLoopedPatternsOnAlmostLockedSetXzRule", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns")]
+[DependencyProperty<bool>("AllowCollisionOnAlmostLockedSetXyWing", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXyWingStepSearcher_AllowCollision")]
+[DependencyProperty<bool>("LogicalSolverIsFullApplying", DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.IsFullApplying")]
+[DependencyProperty<bool>("LogicalSolverIgnoresSlowAlgorithms", DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.IgnoreSlowAlgorithms")]
+[DependencyProperty<bool>("LogicalSolverIgnoresHighAllocationAlgorithms", DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.IgnoreHighAllocationAlgorithms")]
+[DependencyProperty<bool>("StepGathererOnlySearchSameLevelTechniquesInFindAllSteps", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.StepGatherers.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps")]
+[DependencyProperty<int>("MaxSizeOfRegularWing", DefaultValue = 5, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.RegularWingStepSearcher_MaxSize")]
+[DependencyProperty<int>("MaxSizeOfComplexFish", DefaultValue = 5, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.ComplexFishStepSearcher_MaxSize")]
+[DependencyProperty<int>("StepGathererMaxStepsGathered", DefaultValue = 1000, DocReferencedMemberName = "global::Sudoku.Solving.Logical.StepGatherers.StepsGatherer.MaxStepsGathered")]
+public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 {
-	/// <inheritdoc cref="LogicalSolver.SingleStepSearcher_EnableFullHouse"/>
-	public bool EnableFullHouse { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.SingleStepSearcher_EnableLastDigit"/>
-	public bool EnableLastDigit { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst"/>
-	public bool HiddenSinglesInBlockFirst { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles"/>
-	public bool AllowIncompleteUniqueRectangles { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles"/>
-	public bool SearchForExtendedUniqueRectangles { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes"/>
-	public bool SearchExtendedBivalueUniversalGraveTypes { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
-	public bool AllowCollisionOnAlmostLockedSetXzRule { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns"/>
-	public bool AllowLoopedPatternsOnAlmostLockedSetXzRule { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.AlmostLockedSetsXyWingStepSearcher_AllowCollision"/>
-	public bool AllowCollisionOnAlmostLockedSetXyWing { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.IsFullApplying"/>
-	public bool LogicalSolverIsFullApplying { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.IgnoreSlowAlgorithms"/>
-	public bool LogicalSolverIgnoresSlowAlgorithms { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.IgnoreHighAllocationAlgorithms"/>
-	public bool LogicalSolverIgnoresHighAllocationAlgorithms { get; set; }
-
-	/// <inheritdoc cref="StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps"/>
-	public bool StepGathererOnlySearchSameLevelTechniquesInFindAllSteps { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.RegularWingStepSearcher_MaxSize"/>
-	public int MaxSizeOfRegularWing { get; set; }
-
-	/// <inheritdoc cref="LogicalSolver.ComplexFishStepSearcher_MaxSize"/>
-	public int MaxSizeOfComplexFish { get; set; }
-
-	/// <inheritdoc cref="StepsGatherer.MaxStepsGathered"/>
-	public int StepGathererMaxStepsGathered { get; set; }
-
-
-	/// <inheritdoc/>
-	public override void CoverProperties()
-	{
-		var solver = ((App)Application.Current).EnvironmentVariables.Solver;
-		solver.SingleStepSearcher_EnableFullHouse = EnableFullHouse;//
-		solver.SingleStepSearcher_EnableLastDigit = EnableLastDigit;//
-		solver.SingleStepSearcher_HiddenSinglesInBlockFirst = HiddenSinglesInBlockFirst;//
-		solver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles = AllowIncompleteUniqueRectangles;//
-		solver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles = SearchForExtendedUniqueRectangles;//
-		solver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes = SearchExtendedBivalueUniversalGraveTypes;//
-		solver.AlmostLockedSetsXzStepSearcher_AllowCollision = AllowCollisionOnAlmostLockedSetXzRule;//
-		solver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns = AllowLoopedPatternsOnAlmostLockedSetXzRule;//
-		solver.AlmostLockedSetsXyWingStepSearcher_AllowCollision = AllowCollisionOnAlmostLockedSetXyWing;//
-		solver.IsFullApplying = LogicalSolverIsFullApplying;//!
-		solver.IgnoreSlowAlgorithms = LogicalSolverIgnoresSlowAlgorithms;//!
-		solver.IgnoreHighAllocationAlgorithms = LogicalSolverIgnoresHighAllocationAlgorithms;//!
-		solver.RegularWingStepSearcher_MaxSize = MaxSizeOfRegularWing;//
-		solver.ComplexFishStepSearcher_MaxSize = MaxSizeOfComplexFish;//
-
-		var gatherer = ((App)Application.Current).EnvironmentVariables.Gatherer;
-		gatherer.OnlyShowSameLevelTechniquesInFindAllSteps = StepGathererOnlySearchSameLevelTechniquesInFindAllSteps;//
-		gatherer.MaxStepsGathered = StepGathererMaxStepsGathered;//
-	}
 }

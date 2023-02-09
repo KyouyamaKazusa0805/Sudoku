@@ -25,7 +25,7 @@ public sealed class AnalyzeCommand : ButtonCommand
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 
-		var solver = ((App)Application.Current).EnvironmentVariables.Solver;
+		var solver = ((App)Application.Current).ProgramSolver;
 		var analysisResult = await Task.Run(analyze);
 
 		self.AnalyzeButton.IsEnabled = true;

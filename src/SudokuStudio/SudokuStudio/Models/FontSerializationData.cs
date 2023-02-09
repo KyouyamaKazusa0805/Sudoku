@@ -4,32 +4,24 @@
 /// Defines the font serialization data.
 /// </summary>
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
+[DependencyProperty<string>("FontName", DefaultValue = "")]
+[DependencyProperty<double>("FontScale", DefaultValue = .6)]
+[DependencyProperty<Color>("FontColor", DefaultValueGeneratingMemberName = nameof(FontColorDefaultValue))]
 public sealed partial class FontSerializationData :
+	DependencyObject,
 	IEquatable<FontSerializationData>,
 	IEqualityOperators<FontSerializationData, FontSerializationData, bool>
 {
-	/// <summary>
-	/// Indicates the font name.
-	/// </summary>
-	public string FontName { get; set; } = string.Empty;
-
-	/// <summary>
-	/// Indicates the font scale.
-	/// </summary>
-	public double FontScale { get; set; } = .6;
-
-	/// <summary>
-	/// Indicates the font color.
-	/// </summary>
-	public Color FontColor { get; set; } = Colors.Black;
+	private static readonly Color FontColorDefaultValue = Colors.Black;
 
 
-	[GeneratedDeconstruction]
-	public partial void Deconstruct(
-		[GeneratedDeconstructionArgument(nameof(FontName))] out string name,
-		[GeneratedDeconstructionArgument(nameof(FontScale))] out double scale,
-		[GeneratedDeconstructionArgument(nameof(FontColor))] out Color color
-	);
+	/// <include file="../../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	public void Deconstruct(out string name, out double scale, out Color color)
+	{
+		name = FontName;
+		scale = FontScale;
+		color = FontColor;
+	}
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
@@ -38,9 +30,9 @@ public sealed partial class FontSerializationData :
 	public bool Equals([NotNullWhen(true)] FontSerializationData? other)
 		=> other is not null && FontName == other.FontName && FontScale == other.FontScale && FontColor == other.FontColor;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(FontName), nameof(FontScale), nameof(FontColor))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, "FontName", "FontScale", "FontColor")]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(FontName), nameof(FontScale), nameof(FontColor))]
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, "FontName", "FontScale", "FontColor")]
 	public override partial string ToString();
 }
