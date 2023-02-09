@@ -38,6 +38,16 @@ public partial class App : Application
 	public ProgramPreference Preference { get; } = new();
 
 	/// <summary>
+	/// Indicates the program solver.
+	/// </summary>
+	public LogicalSolver ProgramSolver { get; } = new();
+
+	/// <summary>
+	/// Indicates the program step gatherer.
+	/// </summary>
+	public StepsGatherer ProgramGatherer { get; } = new();
+
+	/// <summary>
 	/// Indicates the first-opened grid.
 	/// </summary>
 	[DisallowNull]
@@ -49,18 +59,6 @@ public partial class App : Application
 	/// </summary>
 	[DebuggerHidden]
 	internal SudokuPane? SudokuPane { get; set; }
-
-	/// <summary>
-	/// Indicates the program solver.
-	/// </summary>
-	[DebuggerHidden]
-	internal LogicalSolver ProgramSolver => (LogicalSolver)((MainWindow)RunningWindow!).MainWindowBaseGrid.Resources[nameof(ProgramSolver)];
-
-	/// <summary>
-	/// Indicates the program step gatherer.
-	/// </summary>
-	[DebuggerHidden]
-	internal StepsGatherer ProgramGatherer => (StepsGatherer)((MainWindow)RunningWindow!).MainWindowBaseGrid.Resources[nameof(ProgramGatherer)];
 
 
 	/// <summary>
@@ -77,6 +75,7 @@ public partial class App : Application
 		RegisterResourceFetching();
 		HandleOnProgramOpeningEntryCase();
 		ActivicateMainWindow<MainWindow>();
+		LoadConfigurationFileFromLocal();
 	}
 
 	/// <summary>
@@ -116,5 +115,18 @@ public partial class App : Application
 		}
 
 		FirstGrid = grid;
+	}
+
+	/// <summary>
+	/// Loads configuration file from local path.
+	/// </summary>
+	private void LoadConfigurationFileFromLocal()
+	{
+		var targetPath = CommonPaths.UserPreference;
+		var pref = Preference;
+		if (File.Exists(targetPath) && ProgramPreferenceFileHandler.Read(targetPath) is { } loadedConfig)
+		{
+			pref.CoverBy(loadedConfig);
+		}
 	}
 }
