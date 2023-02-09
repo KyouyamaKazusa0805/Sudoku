@@ -44,6 +44,16 @@
             Defines the sudoku pane used.
             </summary>
         </member>
+        <member name="P:SudokuStudio.App.ProgramSolver">
+            <summary>
+            Indicates the program solver.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.App.ProgramGatherer">
+            <summary>
+            Indicates the program step gatherer.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.App.AssemblyVersion">
             <summary>
             Indicates the assembly version.
@@ -62,12 +72,6 @@
             Creates a window, and activicate it.
             </summary>
             <typeparam name="TWindow">The type of the window you should activicate.</typeparam>
-        </member>
-        <member name="M:SudokuStudio.App.LoadConfigurationFileFromLocal(System.String)">
-            <summary>
-            Loads the configuration file from a local path.
-            </summary>
-            <param name="targetPath">The target path.</param>
         </member>
         <member name="M:SudokuStudio.App.HandleOnProgramOpeningEntryCase">
             <summary>

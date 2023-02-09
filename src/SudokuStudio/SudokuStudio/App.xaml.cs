@@ -50,9 +50,15 @@ public partial class App : Application
 	[DebuggerHidden]
 	internal SudokuPane? SudokuPane { get; set; }
 
+	/// <summary>
+	/// Indicates the program solver.
+	/// </summary>
 	[DebuggerHidden]
 	internal LogicalSolver ProgramSolver => (LogicalSolver)SudokuPane!.Resources[nameof(ProgramSolver)];
 
+	/// <summary>
+	/// Indicates the program step gatherer.
+	/// </summary>
 	[DebuggerHidden]
 	internal StepsGatherer ProgramGatherer => (StepsGatherer)SudokuPane!.Resources[nameof(ProgramGatherer)];
 
@@ -71,7 +77,6 @@ public partial class App : Application
 		RegisterResourceFetching();
 		HandleOnProgramOpeningEntryCase();
 		ActivicateMainWindow<MainWindow>();
-		LoadConfigurationFileFromLocal(CommonPaths.UserPreference);
 	}
 
 	/// <summary>
@@ -85,22 +90,6 @@ public partial class App : Application
 	/// <typeparam name="TWindow">The type of the window you should activicate.</typeparam>
 	[MemberNotNull(nameof(RunningWindow))]
 	private void ActivicateMainWindow<TWindow>() where TWindow : Window, new() => (RunningWindow = new TWindow()).Activate();
-
-	/// <summary>
-	/// Loads the configuration file from a local path.
-	/// </summary>
-	/// <param name="targetPath">The target path.</param>
-	private void LoadConfigurationFileFromLocal(string targetPath)
-	{
-		Debug.Assert(Preference is not null);
-
-		// Loads the configuration file from local path.
-		var pref = Preference;
-		if (File.Exists(targetPath) && ProgramPreferenceFileHandler.Read(targetPath) is { } loadedConfig)
-		{
-			pref.CoverBy(loadedConfig);
-		}
-	}
 
 	/// <summary>
 	/// Handle the cases how user opens this program.
