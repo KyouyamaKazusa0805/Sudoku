@@ -1,17 +1,17 @@
 ﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
-/// Defines a generator that generates the source code for dependency properties.
+/// Defines a generator that generates the source code for attached properties.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class DependencyPropertyGenerator : IIncrementalGenerator
+public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.DependencyPropertyAttribute`1", nodePredicate, transform)
+				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.AttachedPropertyAttribute`1", nodePredicate, transform)
 				.Where(static data => data is not null)
 				.Select(static (data, _) => data!.Value)
 				.Combine(context.CompilationProvider)
@@ -23,7 +23,8 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 
 
 		static bool nodePredicate(SyntaxNode n, CancellationToken _)
-			=> n is ClassDeclarationSyntax { TypeParameterList: null, Modifiers: var m and not [] } && m.Any(SyntaxKind.PartialKeyword);
+			=> n is ClassDeclarationSyntax { TypeParameterList: null, Modifiers: var m and not [] }
+			&& m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword);
 
 		static Data? transform(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
 		{
@@ -33,16 +34,6 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 					Attributes: var attributes,
 					SemanticModel.Compilation: var compilation
 				})
-			{
-				return null;
-			}
-
-			if (compilation.GetTypeByMetadataName("Microsoft.UI.Xaml.DependencyObject") is not { } dependencyObjectType)
-			{
-				return null;
-			}
-
-			if (!typeSymbol.IsDerivedFrom(dependencyObjectType))
 			{
 				return null;
 			}
@@ -64,6 +55,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 				var docPath = (string?)null;
 				var defaultValueGenerator = (string?)null;
 				var defaultValue = (object?)null;
+				var callbackMethodName = (string?)null;
 				foreach (var pair in namedArgs)
 				{
 					switch (pair)
@@ -86,6 +78,11 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						case ("DefaultValue", { Value: { } v }):
 						{
 							defaultValue = v;
+							break;
+						}
+						case ("CallbackMethodName", { Value: string v }):
+						{
+							callbackMethodName = v;
 							break;
 						}
 					}
@@ -118,7 +115,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 				propertiesData.Add(
 					new(
 						propertyName, propertyType, docCref, docPath,
-						defaultValueGenerator, defaultValueGeneratorKind, defaultValue
+						defaultValueGenerator, defaultValueGeneratorKind, defaultValue, callbackMethodName
 					)
 				);
 
@@ -137,11 +134,16 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 				var containingTypeStr = containingType.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
 				var namespaceStr = containingType.ContainingNamespace.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
 
-				var dependencyProperties = new List<string>();
-				var properties = new List<string>();
+				var attachedProperties = new List<string>();
+				var setterMethods = new List<string>();
 				foreach (var (_, propertiesData) in group)
 				{
-					foreach (var (propertyName, propertyType, docCref, docPath, generatorMemberName, generatorMemberKind, defaultValue) in propertiesData)
+					foreach (
+						var (
+							propertyName, propertyType, docCref, docPath, generatorMemberName,
+							generatorMemberKind, defaultValue, callbackMethodName
+						) in propertiesData
+					)
 					{
 						var propertyTypeStr = propertyType.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
 						var doc = (docCref, docPath) switch
@@ -150,7 +152,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 								=>
 								$"""
 								/// <summary>
-									/// Indicates the interactive property that uses dependency property <see cref="{propertyName}Property"/> to get or set value.
+									/// Indicates the interactive setter or getter methods that uses attached property <see cref="{propertyName}Property"/> to get or set value.
 									/// </summary>
 									/// <seealso cref="{propertyName}Property" />
 								""",
@@ -158,16 +160,30 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 							(not null, not null) => $"""/// <inheritdoc cref="{docCref}" path="{docPath}"/>"""
 						};
 
-						var defaultValueCreatorStr = (defaultValue, generatorMemberName, generatorMemberKind) switch
+						var defaultValueCreatorStr = (defaultValue, generatorMemberName, generatorMemberKind, callbackMethodName) switch
 						{
-							(char c, _, _) => $", '{c}'",
-							(string s, _, _) => $", \"{s}\"",
-							(not null, _, _) => $", {defaultValue.ToString().ToLower()}", // true -> "True"
-							(_, null, _) => string.Empty,
-							(_, not null, { } kind) => kind switch
+							(char c, _, _, null) => $", new('{c}')",
+							(char c, _, _, _) => $", new('{c}', {callbackMethodName})",
+							(string s, _, _, null) => $", new(\"{s}\")",
+							(string s, _, _, _) => $", new(\"{s}\", {callbackMethodName})",
+							(not null, _, _, null) => $", new({defaultValue.ToString().ToLower()})", // true -> "True"
+							(not null, _, _, _) => $", new({defaultValue.ToString().ToLower()}, {callbackMethodName})", // true -> "True"
+							(_, null, _, null) => string.Empty,
+							(_, null, _, _) => $", new(default({propertyTypeStr}), {callbackMethodName})",
+							(_, not null, { } kind, _) => kind switch
 							{
-								DefaultValueGeneratingMemberKind.Field or DefaultValueGeneratingMemberKind.Property => $", {generatorMemberName}",
-								DefaultValueGeneratingMemberKind.ParameterlessMethod => $", {generatorMemberName}()",
+								DefaultValueGeneratingMemberKind.Field or DefaultValueGeneratingMemberKind.Property
+									=> callbackMethodName switch
+									{
+										null => $", new({generatorMemberName})",
+										_ => $", new({generatorMemberName}, {callbackMethodName})"
+									},
+								DefaultValueGeneratingMemberKind.ParameterlessMethod
+									=> callbackMethodName switch
+									{
+										null => $", new({generatorMemberName}())",
+										_ => $", new({generatorMemberName}(), {callbackMethodName})"
+									},
 								_ => null
 							},
 							_ => null
@@ -178,41 +194,42 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 							continue;
 						}
 
-						dependencyProperties.Add(
+						attachedProperties.Add(
 							$"""
 							/// <summary>
-								/// Defines a denpendency property that binds with property <see cref="{propertyName}"/>.
+								/// Defines a attached property that binds with setter and getter methods <c>{propertyName}</c>.
 								/// </summary>
-								/// <seealso cref="{propertyName}"/>
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
 								public static readonly global::Microsoft.UI.Xaml.DependencyProperty {propertyName}Property =
-									RegisterDependency<{propertyTypeStr}, {containingTypeStr}>(nameof({propertyName}){defaultValueCreatorStr});
+									global::Microsoft.UI.Xaml.DependencyProperty.RegisterAttached("{propertyName}", typeof({propertyTypeStr}), typeof({containingTypeStr}){defaultValueCreatorStr});
 							"""
 						);
 
-						properties.Add(
+						setterMethods.Add(
 							$$"""
 							{{doc}}
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
-								public {{propertyTypeStr}} {{propertyName}}
-								{
-									[global::System.Diagnostics.DebuggerStepThroughAttribute]
-									[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-									get => ({{propertyTypeStr}})GetValue({{propertyName}}Property);
+								[global::System.Diagnostics.DebuggerStepThroughAttribute]
+								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+								public static void Set{{propertyName}}(global::Microsoft.UI.Xaml.DependencyObject obj, {{propertyTypeStr}} value)
+									=> obj.SetValue({{propertyName}}Property, value);
 
-									[global::System.Diagnostics.DebuggerStepThroughAttribute]
-									[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-									set => SetValue({{propertyName}}Property, value);
-								}
+								{{doc}}
+								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+								[global::System.Diagnostics.DebuggerStepThroughAttribute]
+								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+								public static {{propertyTypeStr}} Get{{propertyName}}(global::Microsoft.UI.Xaml.DependencyObject obj)
+									=> ({{propertyTypeStr}})obj.GetValue({{propertyName}}Property);
 							"""
 						);
 					}
 				}
 
 				spc.AddSource(
-					$"{containingType.ToFileName()}.g.{Shortcuts.DependencyProperty}.cs",
+					$"{containingType.ToFileName()}.g.{Shortcuts.AttachedProperty}.cs",
 					$$"""
 					// <auto-generated />
 
@@ -223,18 +240,18 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 					partial class {{containingType.Name}}
 					{
 						//
-						// Declaration of dependency properties
+						// Declaration of attached properties
 						//
-						#region Dependency properties
-						{{string.Join("\r\n\r\n\t", dependencyProperties)}}
+						#region Attached properties
+						{{string.Join("\r\n\r\n\t", attachedProperties)}}
 						#endregion
 
 
 						//
-						// Declaration of interative properties
+						// Declaration of interative methods
 						//
 						#region Interative properties
-						{{string.Join("\r\n\r\n\t", properties)}}
+						{{string.Join("\r\n\r\n\t", setterMethods)}}
 						#endregion
 					}
 					"""
@@ -260,6 +277,7 @@ file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> Prope
 /// Indicates the kind of the referenced member specified as the argument <see cref="DefaultValueGeneratingMemberName"/>.
 /// </param>
 /// <param name="DefaultValue">Indicates the real default value.</param>
+/// <param name="CallbackMethodName">The callback method name.</param>
 file readonly record struct PropertyData(
 	string PropertyName,
 	ITypeSymbol PropertyType,
@@ -267,7 +285,8 @@ file readonly record struct PropertyData(
 	string? DocPath,
 	string? DefaultValueGeneratingMemberName,
 	DefaultValueGeneratingMemberKind? DefaultValueGeneratingMemberKind,
-	object? DefaultValue
+	object? DefaultValue,
+	string? CallbackMethodName
 );
 
 /// <summary>

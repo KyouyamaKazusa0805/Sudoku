@@ -24,4 +24,5 @@ internal static class Shortcuts
 	public const string GeneratedOverloadingOperator = "goo";
 	public const string PropertyBinding = "pb";
 	public const string DependencyProperty = "dp";
+	public const string AttachedProperty = "ap";
 }

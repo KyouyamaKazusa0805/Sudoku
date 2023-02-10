@@ -1778,6 +1778,23 @@
             Indicates the generic argument is a self type.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.AttachedPropertyAttribute`1">
+            <summary>
+            Defines an attribute that defines an attached property.
+            </summary>
+            <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.AttachedPropertyAttribute`1.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:System.Diagnostics.CodeGen.AttachedPropertyAttribute`1"/> instance via the generated property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AttachedPropertyAttribute`1.CallbackMethodName">
+            <summary>
+            Indicates the callback method name.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.DeconstructionMethodArgumentAttribute">
             <summary>
             Defines an attribute that specifies a parameter used by a deconstruction method.
@@ -1805,30 +1822,6 @@
             Initializes a <see cref="T:System.Diagnostics.CodeGen.DependencyPropertyAttribute`1"/> instance via the generated property name.
             </summary>
             <param name="propertyName">The property name.</param>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.DependencyPropertyAttribute`1.DocReferencedMemberName">
-            <summary>
-            Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.DependencyPropertyAttribute`1.DocReferencedPath">
-            <summary>
-            Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.DependencyPropertyAttribute`1.DefaultValueGeneratingMemberName">
-            <summary>
-            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
-            </summary>
-            <remarks>
-            This property will be used if the property <see cref="P:System.Diagnostics.CodeGen.DependencyPropertyAttribute`1.DefaultValue"/> cannot be assigned due to not being a constant.
-            </remarks>
-            <seealso cref="P:System.Diagnostics.CodeGen.DependencyPropertyAttribute`1.DefaultValue"/>
-        </member>
-        <member name="P:System.Diagnostics.CodeGen.DependencyPropertyAttribute`1.DefaultValue">
-            <summary>
-            Indicates the default value.
-            </summary>
         </member>
         <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute">
             <summary>
@@ -2417,6 +2410,42 @@
             Initializes a <see cref="T:System.Diagnostics.CodeGen.NotifyCallbackAttribute"/> instance via the specified path whose corresponding member will be referenced.
             </summary>
             <param name="callbackMemberReferencePath">The referenced member path.</param>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.XamlBindingAttribute`1">
+            <summary>
+            Defines a binding base attribute type.
+            </summary>
+            <typeparam name="T">The type of the property.</typeparam>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.XamlBindingAttribute`1.#ctor(System.String)">
+            <summary>
+            Assigns the value <paramref name="propertyName"/>.
+            </summary>
+            <param name="propertyName">The property name.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.XamlBindingAttribute`1.DocReferencedMemberName">
+            <summary>
+            Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.XamlBindingAttribute`1.DocReferencedPath">
+            <summary>
+            Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.XamlBindingAttribute`1.DefaultValueGeneratingMemberName">
+            <summary>
+            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
+            </summary>
+            <remarks>
+            This property will be used if the property <see cref="P:System.Diagnostics.CodeGen.XamlBindingAttribute`1.DefaultValue"/> cannot be assigned due to not being a constant.
+            </remarks>
+            <seealso cref="P:System.Diagnostics.CodeGen.XamlBindingAttribute`1.DefaultValue"/>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.XamlBindingAttribute`1.DefaultValue">
+            <summary>
+            Indicates the default value.
+            </summary>
         </member>
         <member name="T:System.ArrayExtensions">
             <summary>
