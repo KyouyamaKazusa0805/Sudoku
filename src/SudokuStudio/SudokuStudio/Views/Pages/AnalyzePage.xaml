@@ -86,7 +86,7 @@
 			</Border>
 
 			<!--Sudoku grid and tab pages-->
-			<Grid x:Name="SudokuGridAndAnalyzePagesContainer" ColumnDefinitions="Auto,*" Margin="0,0,20,0">
+			<Grid ColumnDefinitions="Auto,*" Margin="0,0,20,0">
 				<!--Main sudoku grid control-->
 				<c:SudokuPane
 					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" BasePage="{x:Bind}"
