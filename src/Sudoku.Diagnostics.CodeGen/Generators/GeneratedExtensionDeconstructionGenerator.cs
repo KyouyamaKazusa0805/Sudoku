@@ -4,6 +4,7 @@
 /// Defines a source generator that generates the source code for extension deconstruction methods.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
+[Obsolete("This type is being deprecated because the future C# version will support the extension feature 'Roles & Extensions'. For more information, please visit Roslyn repo to learn more information.", false)]
 public sealed class GeneratedExtensionDeconstructionGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>

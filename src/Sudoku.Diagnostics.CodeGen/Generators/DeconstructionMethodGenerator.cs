@@ -11,16 +11,15 @@ public sealed class DeconstructionMethodGenerator : IIncrementalGenerator
 	{
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.DeconstructionMethodAttribute", nodePredicate, transform)
+				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.DeconstructionMethodAttribute", nodePredicate, transformInstance)
 				.Where(static data => data is not null)
 				.Select(static (data, _) => data!.Value)
 				.Collect(),
-			output
+			outputInstance
 		);
 
 
-		static bool nodePredicate(SyntaxNode n, CancellationToken _)
-			=> n is MethodDeclarationSyntax { Modifiers: var m and not [] } && m.Any(SyntaxKind.PartialKeyword);
+		static bool nodePredicate(SyntaxNode n, CancellationToken _) => n is MethodDeclarationSyntax { Modifiers: var m and not [] };
 
 		static string toPascalCase(string name)
 			=> name switch
@@ -31,7 +30,7 @@ public sealed class DeconstructionMethodGenerator : IIncrementalGenerator
 				_ => name
 			};
 
-		static Data? transform(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
+		static Data? transformInstance(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
 		{
 			if (gasc is not
 				{
@@ -66,7 +65,7 @@ public sealed class DeconstructionMethodGenerator : IIncrementalGenerator
 			return new(type, symbol, parameters, modifiers, argumentAttributeType, assemblyName);
 		}
 
-		void output(SourceProductionContext spc, ImmutableArray<Data> data)
+		void outputInstance(SourceProductionContext spc, ImmutableArray<Data> data)
 		{
 			_ = spc is { CancellationToken: var ct };
 
