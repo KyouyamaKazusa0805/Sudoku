@@ -38,6 +38,7 @@
 						Loaded="CommandBarView_Loaded" SelectionChanged="CommandBarView_SelectionChanged" ItemInvoked="CommandBarView_ItemInvoked">
 						<NavigationView.MenuItems>
 							<NavigationViewItem x:Name="BasicOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_BasicOperations}" />
+							<NavigationViewItem x:Name="PrintingOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_PrintingOperation}" />
 						</NavigationView.MenuItems>
 
 						<Frame x:Name="CommandBarFrame" Navigated="CommandBarFrame_Navigated" BorderBrush="Transparent" />

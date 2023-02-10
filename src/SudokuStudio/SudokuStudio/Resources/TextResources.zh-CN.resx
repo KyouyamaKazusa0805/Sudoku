@@ -339,6 +339,12 @@
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>基本功能</value>
   </data>
+  <data name="AnalyzePage_PivotItem_PrintingOperation" xml:space="preserve">
+    <value>打印</value>
+  </data>
+  <data name="AnalyzePage_PrintAnalysisResult" xml:space="preserve">
+    <value>打印分析结果</value>
+  </data>
   <data name="AnalyzePage_PuzzleArgumentsPolar" xml:space="preserve">
     <value>题目难度参数</value>
   </data>

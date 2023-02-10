@@ -49,6 +49,12 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	private double _progressPercent;
 
 	/// <summary>
+	/// Indicates the anlaysis result cache.
+	/// </summary>
+	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
+	private LogicalSolverResult? _analysisResultCache;
+
+	/// <summary>
 	/// Indicates the visual unit.
 	/// </summary>
 	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal, ComparisonMode = EqualityComparisonMode.ObjectReference)]
@@ -397,6 +403,10 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		{
 			NavigateToPage(typeof(BasicOperation));
 		}
+		else if (container == PrintingOperationBar)
+		{
+			NavigateToPage(typeof(PrintingOperation));
+		}
 	}
 
 	/// <summary>
@@ -496,11 +506,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 	private void CommandBarFrame_Navigated(object sender, NavigationEventArgs e)
 	{
-		if (e is not { Content: BasicOperation basicOperation, Parameter: AnalyzePage @this })
+		if (e is not { Content: IOperationProviderPage operationProvider, Parameter: AnalyzePage @this })
 		{
 			return;
 		}
 
-		basicOperation.BasePage = @this;
+		operationProvider.BasePage = @this;
 	}
 }

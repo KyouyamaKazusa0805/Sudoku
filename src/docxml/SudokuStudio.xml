@@ -1471,6 +1471,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <value>The value you want to update. If <see langword="null"/>, clears the page data.</value>
         </member>
+        <member name="T:SudokuStudio.Interaction.IOperationProviderPage">
+            <summary>
+            Provides with a app-bar operation provider page.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.IOperationProviderPage.BasePage">
+            <summary>
+            Indicates the base page.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.OpenFileFailedEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventHandler"/>.
@@ -2954,6 +2964,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PivotItem_BasicOperations">
             <summary>
               Looks up a localized string similar to Basics.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PivotItem_PrintingOperation">
+            <summary>
+              Looks up a localized string similar to Printing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PrintAnalysisResult">
+            <summary>
+              Looks up a localized string similar to Print analysis.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleArgumentsPolar">
@@ -5181,6 +5201,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the progress percent value.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._analysisResultCache">
+            <summary>
+            Indicates the anlaysis result cache.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._visualUnit">
             <summary>
             Indicates the visual unit.
@@ -5327,6 +5352,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._progressPercent"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._analysisResultCache"/>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.AnalyzePage._visualUnit"/>
@@ -5603,9 +5631,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.BasePage">
-            <summary>
-            Indicates the base page.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="E:SudokuStudio.Views.Pages.Operation.BasicOperation.PropertyChanged">
             <inheritdoc/>
@@ -5692,6 +5718,45 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the open-sudoku format.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
+            <summary>
+            Represents printing operation.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.PrintingOperation"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.PrintingOperation.BasePage">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.AnalysisResultDocument">
+            <summary>
+            Provdies with a PDF document creator that constructs analysis result of a puzzle.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.AnalysisResultDocument.Compose(QuestPDF.Infrastructure.IDocumentContainer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.AnalysisResultDocument.GetMetadata">
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.SettingsPage">
             <summary>

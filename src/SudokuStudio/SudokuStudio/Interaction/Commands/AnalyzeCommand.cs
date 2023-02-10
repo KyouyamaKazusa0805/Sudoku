@@ -36,6 +36,7 @@ public sealed class AnalyzeCommand : ButtonCommand
 			case { IsSolved: true }:
 			{
 				self.UpdateAnalysisResult(analysisResult);
+				self.AnalysisResultCache = analysisResult;
 
 				break;
 			}

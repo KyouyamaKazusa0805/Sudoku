@@ -92,7 +92,7 @@
 		</TeachingTip>
 	</Page.Resources>
 
-	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Collapsed">
+	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">
 		<AppBarButton x:Name="OpenFileButton" Icon="OpenFile" Label="{m:R Key=AnalyzePage_OpenFile}" CommandParameter="{x:Bind BasePage}">
 			<AppBarButton.Command>
 				<cmd:OpenFileCommand />

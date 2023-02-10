@@ -808,6 +808,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Printing.
+        /// </summary>
+        internal static string AnalyzePage_PivotItem_PrintingOperation {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PivotItem_PrintingOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print analysis.
+        /// </summary>
+        internal static string AnalyzePage_PrintAnalysisResult {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PrintAnalysisResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arguments.
         /// </summary>
         internal static string AnalyzePage_PuzzleArgumentsPolar {

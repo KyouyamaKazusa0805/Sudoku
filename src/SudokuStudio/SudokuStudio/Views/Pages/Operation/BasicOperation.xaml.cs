@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages.Operation;
 /// <summary>
 /// Indicates the basic operation command bar.
 /// </summary>
-public sealed partial class BasicOperation : Page, INotifyPropertyChanged
+public sealed partial class BasicOperation : Page, INotifyPropertyChanged, IOperationProviderPage
 {
 	/// <summary>
 	/// Defines a default puzzle generator.
@@ -24,9 +24,7 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged
 	public BasicOperation() => InitializeComponent();
 
 
-	/// <summary>
-	/// Indicates the base page.
-	/// </summary>
+	/// <inheritdoc/>
 	public AnalyzePage BasePage { get; set; } = null!;
 
 

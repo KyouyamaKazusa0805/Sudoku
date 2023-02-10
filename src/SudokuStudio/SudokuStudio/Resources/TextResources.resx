@@ -339,6 +339,12 @@
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>Basics</value>
   </data>
+  <data name="AnalyzePage_PivotItem_PrintingOperation" xml:space="preserve">
+    <value>Printing</value>
+  </data>
+  <data name="AnalyzePage_PrintAnalysisResult" xml:space="preserve">
+    <value>Print analysis</value>
+  </data>
   <data name="AnalyzePage_PuzzleArgumentsPolar" xml:space="preserve">
     <value>Arguments</value>
   </data>

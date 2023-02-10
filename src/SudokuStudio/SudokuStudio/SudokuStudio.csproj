@@ -30,6 +30,7 @@
 		<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.4" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+		<PackageReference Include="QuestPDF" Version="2022.12.1" />
 		<PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -59,6 +60,7 @@
 		<None Remove="Views\Pages\Analyze\SolvingPath.xaml" />
 		<None Remove="Views\Pages\Analyze\Summary.xaml" />
 		<None Remove="Views\Pages\Operation\BasicOperation.xaml" />
+		<None Remove="Views\Pages\Operation\PrintingOperation.xaml" />
 		<None Remove="Views\Pages\SettingsPage.xaml" />
 		<None Remove="Views\Pages\Settings\AnalysisPreferenceItemsPage.xaml" />
 		<None Remove="Views\Pages\Settings\BasicPreferenceItemsPage.xaml" />
@@ -102,6 +104,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\Operation\PrintingOperation.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Settings\AnalysisPreferenceItemsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
