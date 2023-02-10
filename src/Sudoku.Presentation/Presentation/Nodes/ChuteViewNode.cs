@@ -37,8 +37,8 @@ public sealed partial class ChuteViewNode : BasicViewNode
 	public int HousesMask => Chutes[ChuteIndex] switch { (_, var isRow, var rawMask) => rawMask << (isRow ? 9 : 18) };
 
 
-	[GeneratedDeconstruction]
-	public partial void Deconstruct(out Identifier identifier, [GeneratedDeconstructionArgument(nameof(ChuteIndex))] out int chute);
+	[DeconstructionMethod]
+	public partial void Deconstruct(out Identifier identifier, [DeconstructionMethodArgument(nameof(ChuteIndex))] out int chute);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

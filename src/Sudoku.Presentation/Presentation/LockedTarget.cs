@@ -51,7 +51,7 @@ public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualit
 	private int DigitString => Digit + 1;
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out CellMap cells, out int digit);
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]

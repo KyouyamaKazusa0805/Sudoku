@@ -26,6 +26,6 @@ public sealed partial class SolvingPathStep
 	public required IStep Step { get; set; }
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out int index, out Grid stepGrid, out StepTooltipDisplayKind displayKinds, out IStep step);
 }

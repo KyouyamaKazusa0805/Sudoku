@@ -48,10 +48,10 @@ public sealed partial class BabaGroupViewNode : BasicViewNode
 	private string DigitsMaskString => Convert.ToString(DigitsMask, 2).ToString();
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out Identifier identifier, out int cell, out Utf8Char unknownValueChar);
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out Identifier identifier, out int cell, out short digitsMask, out Utf8Char unknownValueChar);
 
 	/// <inheritdoc/>

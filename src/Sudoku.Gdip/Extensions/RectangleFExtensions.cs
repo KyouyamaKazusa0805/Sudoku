@@ -32,9 +32,9 @@ internal static partial class RectangleFExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Rectangle Truncate(this RectangleF @this) => new((int)@this.X, (int)@this.Y, (int)@this.Width, (int)@this.Height);
 
-	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this RectangleF @this, [GeneratedDeconstructionArgument(nameof(RectangleF.Location))] out PointF point, out SizeF size);
+	[DeconstructionMethod]
+	public static partial void Deconstruct(this RectangleF @this, [DeconstructionMethodArgument(nameof(RectangleF.Location))] out PointF point, out SizeF size);
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public static partial void Deconstruct(this RectangleF @this, out float x, out float y, out float width, out float height);
 }

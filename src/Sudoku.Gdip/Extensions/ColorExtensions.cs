@@ -14,6 +14,6 @@ internal static partial class ColorExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Color QuarterAlpha(this Color @this) => Color.FromArgb(@this.A >> 2, @this);
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public static partial void Deconstruct(this Color @this, out byte a, out byte r, out byte g, out byte b);
 }

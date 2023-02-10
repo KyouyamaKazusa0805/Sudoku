@@ -168,10 +168,10 @@ internal readonly partial struct ChainNode : IEquatable<ChainNode>, IEqualityOpe
 #endif
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out int candidate, out bool isOn);
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out byte cell, out byte digit, out bool isOn);
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]

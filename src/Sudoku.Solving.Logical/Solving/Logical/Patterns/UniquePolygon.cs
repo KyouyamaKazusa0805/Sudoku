@@ -99,7 +99,7 @@ public readonly partial record struct UniquePolygon(long Mask)
 		=> ((int)(Mask >> 49 & 127), (int)(Mask >> 42 & 127), (int)(Mask >> 35 & 127), (int)(Mask >> 28 & 127));
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out (int A, int B) pair1, out (int A, int B) pair2, out (int A, int B, int C, int D) centerCells);
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(Mask))]

@@ -1778,6 +1778,22 @@
             Indicates the generic argument is a self type.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.DeconstructionMethodArgumentAttribute">
+            <summary>
+            Defines an attribute that specifies a parameter used by a deconstruction method.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.DeconstructionMethodArgumentAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:System.Diagnostics.CodeGen.DeconstructionMethodArgumentAttribute"/> instance via the member name the parameter points to.
+            </summary>
+            <param name="referencedMemberName">The referenced member name.</param>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.DeconstructionMethodAttribute">
+            <summary>
+            Defines an attribute that specifies a deconstrution method.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.DependencyPropertyAttribute`1">
             <summary>
             Defines an attribute that defines a dependency property.

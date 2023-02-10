@@ -14,6 +14,6 @@ internal static partial class SizeFExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Size Truncate(this SizeF @this) => new((int)@this.Width, (int)@this.Height);
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public static partial void Deconstruct(this SizeF @this, out float width, out float height);
 }

@@ -79,10 +79,10 @@ internal readonly partial record struct SudokuPanePositionConverter(GridLayout G
 	private string GridHeightString => ((int)GridSize.Height).ToString();
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out Point firstCellTopLeftPosition, out Point[,] gridPoints);
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out Size candidateSize, out Size cellSize, out Size blockSize, out Size gridSize);
 
 	/// <inheritdoc/>

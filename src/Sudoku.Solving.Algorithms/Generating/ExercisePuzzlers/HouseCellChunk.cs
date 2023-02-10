@@ -108,7 +108,7 @@ public readonly partial struct HouseCellChunk :
 	}
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out CellMap cells, out int[] digits);
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]

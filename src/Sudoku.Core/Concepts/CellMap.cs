@@ -517,8 +517,11 @@ public unsafe partial struct CellMap :
 		}
 	}
 
-	[GeneratedDeconstruction]
-	public readonly partial void Deconstruct(out long low, out long high);
+	[DeconstructionMethod]
+	public readonly partial void Deconstruct(
+		[DeconstructionMethodArgument(nameof(_low))] out long low,
+		[DeconstructionMethodArgument(nameof(_high))] out long high
+	);
 
 	/// <inheritdoc/>
 	public readonly void ForEach(Action<int> action)

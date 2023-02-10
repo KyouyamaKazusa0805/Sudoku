@@ -17,6 +17,6 @@ public sealed partial class ViewUnit
 	public View View { get; set; } = null!;
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out View view, out ImmutableArray<Conclusion> conclusions);
 }

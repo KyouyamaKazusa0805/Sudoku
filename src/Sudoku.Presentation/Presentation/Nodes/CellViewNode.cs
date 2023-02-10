@@ -28,7 +28,7 @@ public sealed partial class CellViewNode : BasicViewNode
 	private string CellString => CellsMap[Cell].ToString();
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out Identifier identifier, out int cell);
 
 	/// <inheritdoc/>

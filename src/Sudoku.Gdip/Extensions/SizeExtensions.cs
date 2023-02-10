@@ -6,6 +6,6 @@
 /// <seealso cref="Size"/>
 internal static partial class SizeExtensions
 {
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public static partial void Deconstruct(this Size @this, out int width, out int height);
 }

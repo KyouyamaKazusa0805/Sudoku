@@ -20,7 +20,7 @@ public sealed partial class HouseViewNode : BasicViewNode
 	public int House { get; }
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out Identifier identifier, out int house);
 
 	/// <inheritdoc/>

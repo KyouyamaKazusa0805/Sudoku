@@ -28,7 +28,7 @@ public sealed partial class CandidateViewNode : BasicViewNode
 	private string CandidateString => RxCyNotation.ToCandidateString(Candidate);
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out Identifier identifier, out int candidate);
 
 	/// <inheritdoc/>

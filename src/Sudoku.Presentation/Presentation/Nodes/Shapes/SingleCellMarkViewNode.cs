@@ -41,7 +41,7 @@ public abstract partial class SingleCellMarkViewNode : ShapeViewNode
 	private string CellString => CellsMap[Cell].ToString();
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out int cell, out Direction directions);
 
 	/// <inheritdoc/>

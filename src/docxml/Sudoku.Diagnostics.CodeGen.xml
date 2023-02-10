@@ -97,6 +97,14 @@
             <param name="this">The current field to be iterated.</param>
             <returns>An <see cref="T:System.Collections.Generic.IEnumerator`1"/> instance.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DeconstructionMethodGenerator">
+            <summary>
+            Defines a source generator that generates the source code for deconstruction methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DeconstructionMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DefaultOverriddenMembersGenerator">
             <summary>
             Defines a source generator that generates the source code for default-overridden members
@@ -148,54 +156,6 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator">
-            <summary>
-            Defines a source generator that generates the source code for deconstruction methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GeneratedDeconstructionGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
-            <summary>
-            The internal output data.
-            </summary>
-            <param name="ContainingType">The containing type.</param>
-            <param name="Method">The deconstruction method.</param>
-            <param name="Parameters">The parameters.</param>
-            <param name="Modifiers">The modifiers of the deconstruction method.</param>
-            <param name="AttributeType">The attribute type used for fetching the arguments' extra data.</param>
-            <param name="AssemblyName">Indicates the assembly name.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol,System.String)">
-            <summary>
-            The internal output data.
-            </summary>
-            <param name="ContainingType">The containing type.</param>
-            <param name="Method">The deconstruction method.</param>
-            <param name="Parameters">The parameters.</param>
-            <param name="Modifiers">The modifiers of the deconstruction method.</param>
-            <param name="AttributeType">The attribute type used for fetching the arguments' extra data.</param>
-            <param name="AssemblyName">Indicates the assembly name.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.ContainingType">
-            <summary>The containing type.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Method">
-            <summary>The deconstruction method.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Parameters">
-            <summary>The parameters.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Modifiers">
-            <summary>The modifiers of the deconstruction method.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.AttributeType">
-            <summary>The attribute type used for fetching the arguments' extra data.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.AssemblyName">
-            <summary>Indicates the assembly name.</summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GeneratedExtensionDeconstructionGenerator">
             <summary>

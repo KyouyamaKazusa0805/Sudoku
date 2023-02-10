@@ -97,8 +97,8 @@ public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOpera
 	private int ToCandidate => To * 9 + Digit;
 
 
-	[GeneratedDeconstruction]
-	public partial void Deconstruct([GeneratedDeconstructionArgument(nameof(FromCandidate))] out int fromCand, [GeneratedDeconstructionArgument(nameof(ToCandidate))] out int toCand);
+	[DeconstructionMethod]
+	public partial void Deconstruct([DeconstructionMethodArgument(nameof(FromCandidate))] out int fromCand, [DeconstructionMethodArgument(nameof(ToCandidate))] out int toCand);
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);

@@ -32,7 +32,7 @@ public sealed partial class FontData : IEquatable<FontData>
 	public required FontStyle FontStyle { get; set; }
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out string fontName, out float fontSize, out FontStyle fontStyle);
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]

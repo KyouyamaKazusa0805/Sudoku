@@ -58,7 +58,7 @@ public readonly partial struct CellRange :
 	}
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out int minValue, out int maxValue);
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]

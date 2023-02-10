@@ -34,7 +34,7 @@ public sealed partial class LinkViewNode : BasicViewNode
 	public Inference Inference { get; }
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out Identifier identifier, out LockedTarget start, out LockedTarget end, out Inference inference);
 
 	/// <inheritdoc/>

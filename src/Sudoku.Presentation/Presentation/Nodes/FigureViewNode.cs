@@ -24,7 +24,7 @@ public abstract partial class FigureViewNode : ViewNode
 	protected sealed override string TypeIdentifier => GetType().Name;
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out int cell);
 
 	/// <inheritdoc/>

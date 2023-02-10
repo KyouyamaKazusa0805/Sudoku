@@ -31,8 +31,8 @@ public abstract partial class GroupedViewNode : ViewNode
 	protected sealed override string TypeIdentifier => GetType().Name;
 
 
-	[GeneratedDeconstruction]
-	public partial void Deconstruct([GeneratedDeconstructionArgument(nameof(HeadCell))] out int head, out ImmutableArray<int> cells);
+	[DeconstructionMethod]
+	public partial void Deconstruct([DeconstructionMethodArgument(nameof(HeadCell))] out int head, out ImmutableArray<int> cells);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

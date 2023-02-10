@@ -39,9 +39,9 @@ public abstract partial class AdjacentCellMarkViewNode : ShapeViewNode
 	/// </summary>
 	public int Cell2 { get; }
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out int cell1, out int cell2);
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out int cell1, out int cell2, out bool isRow);
 }

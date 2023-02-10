@@ -91,10 +91,10 @@ public sealed partial class AlmostLockedSet : IEquatable<AlmostLockedSet>, IEqua
 	public CellMap PossibleEliminationMap { get; }
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out int house, out short digitsMask);
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out int house, out short digitsMask, out CellMap map);
 
 	/// <summary>

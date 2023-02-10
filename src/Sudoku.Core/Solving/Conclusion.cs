@@ -100,10 +100,10 @@ public readonly partial struct Conclusion :
 	}
 
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out ConclusionType conclusionType, out int candidate);
 
-	[GeneratedDeconstruction]
+	[DeconstructionMethod]
 	public partial void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit);
 
 	/// <summary>
