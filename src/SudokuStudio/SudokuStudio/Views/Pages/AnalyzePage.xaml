@@ -62,14 +62,6 @@
 									<cmd:UnfixGridCommand />
 								</AppBarButton.Command>
 							</AppBarButton>
-							<AppBarButton
-								x:Name="AnalyzeButton" x:FieldModifier="internal" CommandParameter="{x:Bind}" Icon="Find"
-								Label="{m:R Key=AnalyzePage_AnalyzeButton}"
-								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}">
-								<AppBarButton.Command>
-									<cmd:AnalyzeCommand />
-								</AppBarButton.Command>
-							</AppBarButton>
 							<AppBarToggleButton
 								IsThreeState="False" Icon="List" Label="{m:R Key=AnalyzePage_LogicalSolverIsFullyApplied}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=TwoWay}" />
@@ -79,6 +71,15 @@
 							<AppBarToggleButton
 								IsThreeState="False" Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=TwoWay}" />
+							<AppBarSeparator />
+							<AppBarButton
+								x:Name="AnalyzeButton" x:FieldModifier="internal" CommandParameter="{x:Bind}" Icon="Find"
+								Label="{m:R Key=AnalyzePage_AnalyzeButton}"
+								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}">
+								<AppBarButton.Command>
+									<cmd:AnalyzeCommand />
+								</AppBarButton.Command>
+							</AppBarButton>
 						</CommandBar>
 					</Border>
 				</Grid>
