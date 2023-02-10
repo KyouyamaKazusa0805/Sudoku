@@ -15,18 +15,18 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 	public AnalyzePage BasePage { get; set; } = null!;
 
 
-	private void PrintAnalysisButton_Click(object sender, RoutedEventArgs e)
+	private async void PrintAnalysisButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		if (BasePage.AnalysisResultCache is not { } analysisResult)
 		{
 			return;
 		}
 
-		var document = new AnalysisResultDocumentCreator
+		var document = await new AnalysisResultDocumentCreator
 		{
 			Comment = GetString("AnalyzePage_GenerateComment"),
 			AnalysisResult = analysisResult
-		}.CreateDocument();
+		}.CreateDocumentAsync();
 
 		var desktopPath = Environment.GetFolderPath(SpecialFolder.Desktop);
 		document.GeneratePdf($@"{desktopPath}\output.pdf");
@@ -38,9 +38,15 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 /// </summary>
 file sealed class AnalysisResultDocumentCreator
 {
-	private static readonly TextStyle TitleStyle = TextStyle.Default.FontSize(16).SemiBold().SupportChineseCharacters();
+	/// <summary>
+	/// Indicates the title style.
+	/// </summary>
+	internal static readonly TextStyle TitleStyle = TextStyle.Default.FontSize(16).SemiBold().SupportChineseCharacters();
 
-	private static readonly TextStyle DefaultStyle = TextStyle.Default.SupportChineseCharacters();
+	/// <summary>
+	/// Indicates the default style.
+	/// </summary>
+	internal static readonly TextStyle DefaultStyle = TextStyle.Default.SupportChineseCharacters();
 
 
 	/// <summary>
@@ -57,10 +63,11 @@ file sealed class AnalysisResultDocumentCreator
 	/// <summary>
 	/// Creates a PDF document.
 	/// </summary>
-	/// <returns>A PDF document.</returns>
-	public Document CreateDocument()
-		=> Document.Create(
-			dc => dc.Page(
+	/// <returns>A task that handles the operation, and returns a PDF document.</returns>
+	public async Task<Document> CreateDocumentAsync()
+		=> await Task.Run(
+			() => Document.Create(
+				dc => dc.Page(
 				page =>
 				{
 					page.Margin(50);
@@ -159,32 +166,40 @@ file sealed class AnalysisResultDocumentCreator
 
 									if (!string.IsNullOrWhiteSpace(Comment))
 									{
-										column.Item()
-											.PaddingTop(25)
-											.Element(
-												c => c
-													.Background(PdfColors.Grey.Lighten3)
-													.Padding(10)
-													.Column(
-														column =>
-														{
-															column.Spacing(5);
-															column.Item().DefaultTextStyle(DefaultStyle).Text(GetString("AnalyzePage_GenerateCommentTitle")).FontSize(14);
-															column.Item().DefaultTextStyle(DefaultStyle).Text(Comment);
-														}
-													)
-											);
+										column.AddComment(Comment);
 									}
 								}
 							)
 					);
 				}
 			)
-		);
+		)
+	);
 }
 
 /// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
+	public static void AddComment(this ColumnDescriptor @this, string comment)
+		=> @this.Item()
+			.PaddingTop(25)
+			.Element(
+				c => c
+					.Background(PdfColors.Grey.Lighten3)
+					.Padding(10)
+					.Column(
+						column =>
+						{
+							column.Spacing(5);
+							column.Item()
+								.DefaultTextStyle(AnalysisResultDocumentCreator.TitleStyle)
+								.Text(GetString("AnalyzePage_GenerateCommentTitle"));
+							column.Item()
+								.DefaultTextStyle(AnalysisResultDocumentCreator.DefaultStyle)
+								.Text(comment);
+						}
+					)
+			);
+
 	public static TextStyle SupportChineseCharacters(this TextStyle @this) => @this.Fallback(static f => f.FontFamily("Microsoft Yahei UI"));
 }

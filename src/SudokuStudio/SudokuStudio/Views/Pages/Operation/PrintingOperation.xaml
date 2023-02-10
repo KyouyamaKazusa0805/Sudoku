@@ -10,6 +10,6 @@
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">
 		<AppBarButton
 			Icon="Print" Label="{m:R Key=AnalyzePage_PrintAnalysisResult}"
-			Click="PrintAnalysisButton_Click" />
+			Click="PrintAnalysisButton_ClickAsync" />
 	</CommandBar>
 </Page>
