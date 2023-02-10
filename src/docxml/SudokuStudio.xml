@@ -2706,6 +2706,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to All Available Steps.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AnalysisResultReportPdfTitle">
+            <summary>
+              Looks up a localized string similar to Analysis Result Report.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AnalyzeButton">
             <summary>
               Looks up a localized string similar to Analyze.
@@ -2866,6 +2871,21 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Gather steps.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_GenerateComment">
+            <summary>
+              Looks up a localized string similar to The program uses a simple way to solve a puzzle, so the result is only used for reference..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_GenerateCommentTitle">
+            <summary>
+              Looks up a localized string similar to Comments.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_GenerateDate">
+            <summary>
+              Looks up a localized string similar to Generate date:.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_GivensCount">
             <summary>
               Looks up a localized string similar to Givens count: .
@@ -3019,6 +3039,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleHasUniqueSolutionButUnfixed">
             <summary>
               Looks up a localized string similar to Unique solution, but with grid being unfixed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleIs">
+            <summary>
+              Looks up a localized string similar to Puzzle code: .
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleRarity">
@@ -5747,16 +5772,33 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.Operation.AnalysisResultDocument">
+        <member name="T:SudokuStudio.Views.Pages.Operation.AnalysisResultDocumentCreator">
             <summary>
             Provdies with a PDF document creator that constructs analysis result of a puzzle.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.AnalysisResultDocument.Compose(QuestPDF.Infrastructure.IDocumentContainer)">
-            <inheritdoc/>
+        <member name="P:SudokuStudio.Views.Pages.Operation.AnalysisResultDocumentCreator.Comment">
+            <summary>
+            Indicates the comment to be set.
+            </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.AnalysisResultDocument.GetMetadata">
-            <inheritdoc/>
+        <member name="P:SudokuStudio.Views.Pages.Operation.AnalysisResultDocumentCreator.AnalysisResult">
+            <summary>
+            Indicates the analysis result to be used.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.AnalysisResultDocumentCreator.CreateDocument">
+            <summary>
+            Creates a PDF document.
+            </summary>
+            <returns>A PDF document.</returns>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
         </member>
         <member name="T:SudokuStudio.Views.Pages.SettingsPage">
             <summary>

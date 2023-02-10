@@ -340,6 +340,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analysis Result Report.
+        /// </summary>
+        internal static string AnalyzePage_AnalysisResultReportPdfTitle {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AnalysisResultReportPdfTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analyze.
         /// </summary>
         internal static string AnalyzePage_AnalyzeButton {
@@ -628,6 +637,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The program uses a simple way to solve a puzzle, so the result is only used for reference..
+        /// </summary>
+        internal static string AnalyzePage_GenerateComment {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GenerateComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comments.
+        /// </summary>
+        internal static string AnalyzePage_GenerateCommentTitle {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GenerateCommentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate date:.
+        /// </summary>
+        internal static string AnalyzePage_GenerateDate {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GenerateDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Givens count: .
         /// </summary>
         internal static string AnalyzePage_GivensCount {
@@ -903,6 +939,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_PuzzleHasUniqueSolutionButUnfixed {
             get {
                 return ResourceManager.GetString("AnalyzePage_PuzzleHasUniqueSolutionButUnfixed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle code: .
+        /// </summary>
+        internal static string AnalyzePage_PuzzleIs {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleIs", resourceCulture);
             }
         }
         

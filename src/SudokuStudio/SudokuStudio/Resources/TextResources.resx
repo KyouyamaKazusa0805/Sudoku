@@ -183,6 +183,9 @@
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>All Available Steps</value>
   </data>
+  <data name="AnalyzePage_AnalysisResultReportPdfTitle" xml:space="preserve">
+    <value>Analysis Result Report</value>
+  </data>
   <data name="AnalyzePage_AnalyzeButton" xml:space="preserve">
     <value>Analyze</value>
   </data>
@@ -279,6 +282,15 @@
   <data name="AnalyzePage_GatherStepsInCurrentGrid" xml:space="preserve">
     <value>Gather steps</value>
   </data>
+  <data name="AnalyzePage_GenerateComment" xml:space="preserve">
+    <value>The program uses a simple way to solve a puzzle, so the result is only used for reference.</value>
+  </data>
+  <data name="AnalyzePage_GenerateCommentTitle" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="AnalyzePage_GenerateDate" xml:space="preserve">
+    <value>Generate date:</value>
+  </data>
   <data name="AnalyzePage_GivensCount" xml:space="preserve">
     <value>Givens count: </value>
   </data>
@@ -371,6 +383,9 @@
   </data>
   <data name="AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" xml:space="preserve">
     <value>Unique solution, but with grid being unfixed</value>
+  </data>
+  <data name="AnalyzePage_PuzzleIs" xml:space="preserve">
+    <value>Puzzle code: </value>
   </data>
   <data name="AnalyzePage_PuzzleRarity" xml:space="preserve">
     <value>Rarity</value>

@@ -183,6 +183,9 @@
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>所有可用步骤</value>
   </data>
+  <data name="AnalyzePage_AnalysisResultReportPdfTitle" xml:space="preserve">
+    <value>分析结果报告</value>
+  </data>
   <data name="AnalyzePage_AnalyzeButton" xml:space="preserve">
     <value>分析</value>
   </data>
@@ -279,6 +282,15 @@
   <data name="AnalyzePage_GatherStepsInCurrentGrid" xml:space="preserve">
     <value>搜索全部步骤</value>
   </data>
+  <data name="AnalyzePage_GenerateComment" xml:space="preserve">
+    <value>该程序使用的解题算法比较简单，因此步骤仅供参考。</value>
+  </data>
+  <data name="AnalyzePage_GenerateCommentTitle" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="AnalyzePage_GenerateDate" xml:space="preserve">
+    <value>生成日期：</value>
+  </data>
   <data name="AnalyzePage_GivensCount" xml:space="preserve">
     <value>已知数数量：</value>
   </data>
@@ -371,6 +383,9 @@
   </data>
   <data name="AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" xml:space="preserve">
     <value>唯一解（但是没有提示数）</value>
+  </data>
+  <data name="AnalyzePage_PuzzleIs" xml:space="preserve">
+    <value>题目代码：</value>
   </data>
   <data name="AnalyzePage_PuzzleRarity" xml:space="preserve">
     <value>罕见度</value>
