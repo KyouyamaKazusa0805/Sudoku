@@ -352,6 +352,32 @@
             </summary>
             <param name="propertyName">The property name.</param>
         </member>
+        <member name="T:SudokuStudio.ComponentModel.IAnalyzeTabPage">
+            <summary>
+            Defines a page that is used for displaying analysis result for a puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.IAnalyzeTabPage.BasePage">
+            <summary>
+            Indicates the parent page of the current tab.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.IAnalyzeTabPage.AnalysisResult">
+            <summary>
+            Gets or sets the analysis result, updating the current tab page using this property.
+            </summary>
+            <value>The value you want to update. If <see langword="null"/>, clears the page data.</value>
+        </member>
+        <member name="T:SudokuStudio.ComponentModel.IOperationProviderPage">
+            <summary>
+            Provides with a app-bar operation provider page.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.IOperationProviderPage.BasePage">
+            <summary>
+            Indicates the base page.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute">
             <summary>
             Defines an attribute that is used for source generation on properties.
@@ -1557,32 +1583,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Interaction.FailedReceivedDroppedFileReason.FileCannotBeParsed">
             <summary>
             Indicates the failed reason is that the file cannot be parsed.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Interaction.IAnalyzeTabPage">
-            <summary>
-            Defines a page that is used for displaying analysis result for a puzzle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.IAnalyzeTabPage.BasePage">
-            <summary>
-            Indicates the parent page of the current tab.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.IAnalyzeTabPage.AnalysisResult">
-            <summary>
-            Gets or sets the analysis result, updating the current tab page using this property.
-            </summary>
-            <value>The value you want to update. If <see langword="null"/>, clears the page data.</value>
-        </member>
-        <member name="T:SudokuStudio.Interaction.IOperationProviderPage">
-            <summary>
-            Provides with a app-bar operation provider page.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.IOperationProviderPage.BasePage">
-            <summary>
-            Indicates the base page.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.OpenFileFailedEventArgs">
@@ -5757,7 +5757,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.BasePage">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.SudokuStudio#Interaction#IAnalyzeTabPage#AnalysisResult">
+        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.SudokuStudio#ComponentModel#IAnalyzeTabPage#AnalysisResult">
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetTechniqueGroups(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logical.IStep})">
@@ -5793,7 +5793,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._analysisResult">
-            <inheritdoc cref="P:SudokuStudio.Interaction.IAnalyzeTabPage.AnalysisResult"/>
+            <inheritdoc cref="P:SudokuStudio.ComponentModel.IAnalyzeTabPage.AnalysisResult"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyDistribution">
             <summary>

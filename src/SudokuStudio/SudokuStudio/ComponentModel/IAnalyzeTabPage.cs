@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction;
+﻿namespace SudokuStudio.ComponentModel;
 
 /// <summary>
 /// Defines a page that is used for displaying analysis result for a puzzle.

@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction;
+﻿namespace SudokuStudio.ComponentModel;
 
 /// <summary>
 /// Provides with a app-bar operation provider page.
