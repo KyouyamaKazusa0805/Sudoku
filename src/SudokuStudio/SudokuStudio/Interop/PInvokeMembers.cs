@@ -3,7 +3,8 @@
 /// <summary>
 /// Provides with some deprecated P/Invoke methods. Such methods may be used in the future.
 /// </summary>
-internal static class PInvoke_Deprecated
+[Obsolete("This type contains some members (especially for methods) that are deprecated or being deprecated. If you want to use them, please remove this attribute to use them.", false)]
+internal static class PInvokeMembers
 {
 	/// <summary>
 	/// Retrieves the window handle to the active window attached to the calling thread's message queue.

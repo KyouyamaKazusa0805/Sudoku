@@ -2023,6 +2023,9 @@ if (student is (name: var name, age: >= 18))
             The caret's bounding rectangle, in client coordinates, relative to the window specified by the hwndCaret member.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interop.GuiThreadInfoFlags">
+            <inheritdoc cref="F:SudokuStudio.Interop.GUITHREADINFO.flags"/>
+        </member>
         <member name="T:SudokuStudio.Interop.IInitializeWithWindow">
             <summary>
             Exposes a method through which a client can provide an owner window
@@ -2142,12 +2145,12 @@ if (student is (name: var name, age: >= 18))
             The default DPI setting for a monitor is <see cref="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Effective_DPI"/>.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Interop.PInvoke_Deprecated">
+        <member name="T:SudokuStudio.Interop.PInvokeMembers">
             <summary>
             Provides with some deprecated P/Invoke methods. Such methods may be used in the future.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Interop.PInvoke_Deprecated.GetActiveWindow">
+        <member name="M:SudokuStudio.Interop.PInvokeMembers.GetActiveWindow">
             <summary>
             Retrieves the window handle to the active window attached to the calling thread's message queue.
             </summary>
@@ -2166,7 +2169,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
-        <member name="M:SudokuStudio.Interop.PInvoke_Deprecated.GetGUIThreadInfo(System.UInt32,SudokuStudio.Interop.GUITHREADINFO@)">
+        <member name="M:SudokuStudio.Interop.PInvokeMembers.GetGUIThreadInfo(System.UInt32,SudokuStudio.Interop.GUITHREADINFO@)">
             <summary>
             Retrieves information about the active window or a specified GUI thread.
             </summary>

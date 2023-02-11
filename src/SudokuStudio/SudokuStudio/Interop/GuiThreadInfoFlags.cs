@@ -1,5 +1,6 @@
 ﻿namespace SudokuStudio.Interop;
 
+/// <inheritdoc cref="GUITHREADINFO.flags"/>
 [Flags]
 internal enum GuiThreadInfoFlags
 {

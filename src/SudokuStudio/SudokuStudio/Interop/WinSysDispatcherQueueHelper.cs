@@ -1,5 +1,4 @@
 ﻿#if MICA_BACKDROP || ACRYLIC_BACKDROP
-
 namespace SudokuStudio.Interop;
 
 /// <summary>
