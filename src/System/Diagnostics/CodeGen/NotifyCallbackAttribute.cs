@@ -1,7 +1,12 @@
 ﻿namespace System.Diagnostics.CodeGen;
 
 /// <summary>
-/// Defines an attribute that is used for an auto-notifying field, to define the customized callback method name.
+/// <para>Defines an attribute that is used for an auto-notifying field, to define the customized callback method name.</para>
+/// <para>
+/// In addition, if you name the callback method "PropertyName<c>SetterAfter</c>" (where "PropertyName" will be replaced with your property),
+/// it will be automatically related to source generator, equivalent to expression
+/// <see langword="new"/> <see cref="NotifyCallbackAttribute"/>(<see langword="nameof"/>(PropertyName<c>SetterAfter</c>)).
+/// </para>
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed class NotifyCallbackAttribute : Attribute
