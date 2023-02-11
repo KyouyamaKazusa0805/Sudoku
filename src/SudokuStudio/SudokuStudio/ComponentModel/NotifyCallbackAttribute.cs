@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+﻿namespace SudokuStudio.ComponentModel;
 
 /// <summary>
 /// <para>Defines an attribute that is used for an auto-notifying field, to define the customized callback method name.</para>

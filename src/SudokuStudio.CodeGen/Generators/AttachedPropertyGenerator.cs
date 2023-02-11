@@ -11,7 +11,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 	{
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.AttachedPropertyAttribute`1", nodePredicate, transform)
+				.ForAttributeWithMetadataName("SudokuStudio.ComponentModel.AttachedPropertyAttribute`1", nodePredicate, transform)
 				.Where(static data => data is not null)
 				.Select(static (data, _) => data!.Value)
 				.Combine(context.CompilationProvider)

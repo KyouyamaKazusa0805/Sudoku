@@ -323,6 +323,126 @@
             <param name="displayKind">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
         </member>
+        <member name="T:SudokuStudio.ComponentModel.AttachedPropertyAttribute`1">
+            <summary>
+            Defines an attribute that defines an attached property.
+            </summary>
+            <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
+        </member>
+        <member name="M:SudokuStudio.ComponentModel.AttachedPropertyAttribute`1.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.ComponentModel.AttachedPropertyAttribute`1"/> instance via the generated property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.AttachedPropertyAttribute`1.CallbackMethodName">
+            <summary>
+            Indicates the callback method name.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1">
+            <summary>
+            Defines an attribute that defines a dependency property.
+            </summary>
+            <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
+        </member>
+        <member name="M:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1"/> instance via the generated property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+        </member>
+        <member name="T:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute">
+            <summary>
+            Defines an attribute that is used for source generation on properties.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute.DisableEventTrigger">
+            <summary>
+            Indicates whether the source generator doesn't emit the source code to trigger changed event
+            <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>.
+            </summary>
+            <seealso cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute.DisableDebuggerStepThrough">
+            <summary>
+            Indicates whether the source generator doesn't emit the source code to apply <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>.
+            </summary>
+            <seealso cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute.ComparisonMode">
+            <summary>
+            Indicates the customized comparison rule to be used to compare two objects.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute.Accessibility">
+            <summary>
+            Indicates the accessibility of the generated property. The default value is <see cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>.
+            </summary>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>
+        </member>
+        <member name="T:SudokuStudio.ComponentModel.NotifyCallbackAttribute">
+            <summary>
+            <para>Defines an attribute that is used for an auto-notifying field, to define the customized callback method name.</para>
+            <para>
+            In addition, if you name the callback method "PropertyName<c>SetterAfter</c>" (where "PropertyName" will be replaced with your property),
+            it will be automatically related to source generator, equivalent to expression
+            <see langword="new"/> <see cref="T:SudokuStudio.ComponentModel.NotifyCallbackAttribute"/>(<see langword="nameof"/>(PropertyName<c>SetterAfter</c>)).
+            </para>
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.ComponentModel.NotifyCallbackAttribute.#ctor">
+            <summary>
+            <para>Initializes a <see cref="T:SudokuStudio.ComponentModel.NotifyCallbackAttribute"/> instance.</para>
+            <para>
+            If the callback method ends with string <c>SetterAfter</c> and starts with the property name,
+            the method will be automatically referenced to the source generation if the method parameters are compatible with the basic rule
+            of source generation condition.
+            </para>
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.ComponentModel.NotifyCallbackAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.ComponentModel.NotifyCallbackAttribute"/> instance via the specified path whose corresponding member will be referenced.
+            </summary>
+            <param name="callbackMemberReferencePath">The referenced member path.</param>
+        </member>
+        <member name="T:SudokuStudio.ComponentModel.XamlBindingAttribute`1">
+            <summary>
+            Defines a binding base attribute type.
+            </summary>
+            <typeparam name="T">The type of the property.</typeparam>
+        </member>
+        <member name="M:SudokuStudio.ComponentModel.XamlBindingAttribute`1.#ctor(System.String)">
+            <summary>
+            Assigns the value <paramref name="propertyName"/>.
+            </summary>
+            <param name="propertyName">The property name.</param>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DocReferencedMemberName">
+            <summary>
+            Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DocReferencedPath">
+            <summary>
+            Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValueGeneratingMemberName">
+            <summary>
+            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
+            </summary>
+            <remarks>
+            This property will be used if the property <see cref="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue"/> cannot be assigned due to not being a constant.
+            </remarks>
+            <seealso cref="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue"/>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue">
+            <summary>
+            Indicates the default value.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Configuration.AnalysisPreferenceGroup">
             <summary>
             Represents with preference items that is used by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>.

@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+﻿namespace SudokuStudio.ComponentModel;
 
 /// <summary>
 /// Defines a binding base attribute type.

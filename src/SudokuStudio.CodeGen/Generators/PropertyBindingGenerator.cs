@@ -11,8 +11,9 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 	{
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName("System.Diagnostics.CodeGen.NotifyBackingFieldAttribute", nodePredicate, transform)
+				.ForAttributeWithMetadataName("SudokuStudio.ComponentModel.NotifyBackingFieldAttribute", nodePredicate, transform)
 				.Where(static data => data is not null)
+				.Select(static (data, _) => data!.Value)
 				.Collect(),
 			output
 		);
@@ -74,7 +75,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 				return null;
 			}
 
-			var callbackAttributeType = compilation.GetTypeByMetadataName("System.Diagnostics.CodeGen.NotifyCallbackAttribute")!;
+			var callbackAttributeType = compilation.GetTypeByMetadataName("SudokuStudio.ComponentModel.NotifyCallbackAttribute")!;
 			if (callbackAttributeType is null)
 			{
 				return null;
@@ -170,9 +171,9 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 			bool containsCompareToMethod() => allInterfaces.Contains(comparableType, SymbolEqualityComparer.Default);
 		}
 
-		void output(SourceProductionContext spc, ImmutableArray<Data?> data)
+		void output(SourceProductionContext spc, ImmutableArray<Data> data)
 		{
-			foreach (var group in data.CastToNotNull().GroupBy<Data, INamedTypeSymbol>(keySelector, SymbolEqualityComparer.Default))
+			foreach (var group in data.GroupBy<Data, INamedTypeSymbol>(keySelector, SymbolEqualityComparer.Default))
 			{
 				var type = group.Key;
 				var methodsInType = type.GetMembers().OfType<IMethodSymbol>();
@@ -239,8 +240,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 							=> methodsInType.FirstOrDefault(methodSymbol => methodSymbol.Name == methodName)?.Parameters switch
 							{
 								[]
-									=>
-									$$"""
+									=> $$"""
 
 
 												{{methodName}}();
@@ -248,8 +248,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 								[{ Type: { NullableAnnotation: var parameterNullability } parameterType }]
 								when SymbolEqualityComparer.Default.Equals(parameterType, fieldType)
 									&& nullabilityCompatibilityChecker(nullability, parameterNullability)
-									=>
-									$$"""
+									=> $$"""
 
 
 												{{methodName}}(value);
@@ -260,8 +259,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 							=> methodsInType.FirstOrDefault(methodSymbol => methodSymbol.Name == methodName)?.Parameters switch
 							{
 								[]
-									=>
-									$$"""
+									=> $$"""
 
 
 												{{methodName}}();
@@ -269,8 +267,7 @@ public sealed class PropertyBindingGenerator : IIncrementalGenerator
 								[{ Type: { NullableAnnotation: var parameterNullability } parameterType }]
 								when SymbolEqualityComparer.Default.Equals(parameterType, fieldType)
 									&& nullabilityCompatibilityChecker(nullability, parameterNullability)
-									=>
-									$$"""
+									=> $$"""
 
 
 												{{methodName}}(value);

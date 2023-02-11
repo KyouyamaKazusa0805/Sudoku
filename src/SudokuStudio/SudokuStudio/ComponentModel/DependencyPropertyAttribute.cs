@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+﻿namespace SudokuStudio.ComponentModel;
 
 /// <summary>
 /// Defines an attribute that defines a dependency property.

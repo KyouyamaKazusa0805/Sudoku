@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+﻿namespace SudokuStudio.ComponentModel;
 
 /// <summary>
 /// Defines an attribute that is used for source generation on properties.
