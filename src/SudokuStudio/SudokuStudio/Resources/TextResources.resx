@@ -183,6 +183,9 @@
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>All Available Steps</value>
   </data>
+  <data name="AnalyzePage_AnalysisResultNotExist" xml:space="preserve">
+    <value>Cannot output analysis because the puzzle has never been analyzed yet.</value>
+  </data>
   <data name="AnalyzePage_AnalysisResultReportPdfTitle" xml:space="preserve">
     <value>Analysis Result Report</value>
   </data>
@@ -341,6 +344,9 @@
   </data>
   <data name="AnalyzePage_OpenSudokuFormat" xml:space="preserve">
     <value>OpenSudoku compatible format</value>
+  </data>
+  <data name="AnalyzePage_OutputFailed" xml:space="preserve">
+    <value>Failed to Output</value>
   </data>
   <data name="AnalyzePage_PasteCommandName" xml:space="preserve">
     <value>Paste</value>

@@ -19,6 +19,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 	{
 		if (BasePage.AnalysisResultCache is not { } analysisResult)
 		{
+			ErrorDialog_AnalysisResultNotExist.IsOpen = true;
 			return;
 		}
 
@@ -68,110 +69,110 @@ file sealed class AnalysisResultDocumentCreator
 		=> await Task.Run(
 			() => Document.Create(
 				dc => dc.Page(
-				page =>
-				{
-					page.Margin(50);
-					page.Header().Element(
-						c => c
-							.Row(
-								row =>
-								{
-									row.RelativeItem().Column(
-										column =>
-										{
-											column.Item().Text(GetString("AnalyzePage_AnalysisResultReportPdfTitle")).Style(TitleStyle);
-											column.Item()
-												.Text(
-													static text =>
-													{
-														text.Span(GetString("AnalyzePage_GenerateDate")).SemiBold().Style(DefaultStyle);
-														text.Span($"{DateTime.Now:d}").Style(DefaultStyle);
-													}
-												);
-											column.Item()
-												.Text(
-													text =>
-													{
-														text.Span(GetString("AnalyzePage_PuzzleIs")).SemiBold().Style(DefaultStyle);
-														text.Span($"{AnalysisResult.Puzzle:#}").Style(DefaultStyle);
-													}
-												);
-										}
-									);
-								}
-							)
-					);
-
-					page.Content().Element(
-						c => c
-							.PaddingVertical(40)
-							.Column(
-								column =>
-								{
-									column.Spacing(5);
-									column.Item().Element(
-										c => c
-											.Table(
-												table =>
-												{
-													table.ColumnsDefinition(
-														static columns =>
+					page =>
+					{
+						page.Margin(50);
+						page.Header().Element(
+							c => c
+								.Row(
+									row =>
+									{
+										row.RelativeItem().Column(
+											column =>
+											{
+												column.Item().Text(GetString("AnalyzePage_AnalysisResultReportPdfTitle")).Style(TitleStyle);
+												column.Item()
+													.Text(
+														static text =>
 														{
-															columns.RelativeColumn();
-															columns.RelativeColumn();
-															columns.ConstantColumn(80);
-															columns.ConstantColumn(80);
-															columns.ConstantColumn(80);
+															text.Span(GetString("AnalyzePage_GenerateDate")).SemiBold().Style(DefaultStyle);
+															text.Span($"{DateTime.Now:d}").Style(DefaultStyle);
 														}
 													);
-
-													table.Header(
-														static header =>
+												column.Item()
+													.Text(
+														text =>
 														{
-															header.Cell().Element(cellStyle).Text(GetString("AnalyzePage_TechniqueOrTechniqueGroupName"));
-															header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_TechniqueCount"));
-															header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyLevel"));
-															header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyTotal"));
-															header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyMax"));
+															text.Span(GetString("AnalyzePage_PuzzleIs")).SemiBold().Style(DefaultStyle);
+															text.Span($"{AnalysisResult.Puzzle:#}").Style(DefaultStyle);
+														}
+													);
+											}
+										);
+									}
+								)
+						);
+
+						page.Content().Element(
+							c => c
+								.PaddingVertical(40)
+								.Column(
+									column =>
+									{
+										column.Spacing(5);
+										column.Item().Element(
+											c => c
+												.Table(
+													table =>
+													{
+														table.ColumnsDefinition(
+															static columns =>
+															{
+																columns.RelativeColumn();
+																columns.RelativeColumn();
+																columns.ConstantColumn(80);
+																columns.ConstantColumn(80);
+																columns.ConstantColumn(80);
+															}
+														);
+
+														table.Header(
+															static header =>
+															{
+																header.Cell().Element(cellStyle).Text(GetString("AnalyzePage_TechniqueOrTechniqueGroupName"));
+																header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_TechniqueCount"));
+																header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyLevel"));
+																header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyTotal"));
+																header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyMax"));
+
+
+																static PdfContainer cellStyle(PdfContainer container)
+																	=> container
+																		.DefaultTextStyle(DefaultStyle)
+																		.PaddingVertical(5)
+																		.BorderBottom(1)
+																		.BorderColor(PdfColors.Black);
+															}
+														);
+
+														foreach (var element in AnalysisResultTableRow.CreateListFrom(AnalysisResult))
+														{
+															table.Cell().Element(cellStyle).Text(element.TechniqueName);
+															table.Cell().Element(cellStyle).AlignRight().Text(element.CountOfSteps.ToString());
+															table.Cell().Element(cellStyle).AlignRight().Text(DifficultyLevelConversion.GetName(element.DifficultyLevel));
+															table.Cell().Element(cellStyle).AlignRight().Text($"{element.TotalDifficulty:0.0}");
+															table.Cell().Element(cellStyle).AlignRight().Text($"{element.MaximumDifficulty:0.0}");
 
 
 															static PdfContainer cellStyle(PdfContainer container)
 																=> container
 																	.DefaultTextStyle(DefaultStyle)
-																	.PaddingVertical(5)
 																	.BorderBottom(1)
-																	.BorderColor(PdfColors.Black);
+																	.BorderColor(PdfColors.Grey.Lighten2)
+																	.PaddingVertical(5);
 														}
-													);
-
-													foreach (var element in AnalysisResultTableRow.CreateListFrom(AnalysisResult))
-													{
-														table.Cell().Element(cellStyle).Text(element.TechniqueName);
-														table.Cell().Element(cellStyle).AlignRight().Text(element.CountOfSteps.ToString());
-														table.Cell().Element(cellStyle).AlignRight().Text(DifficultyLevelConversion.GetName(element.DifficultyLevel));
-														table.Cell().Element(cellStyle).AlignRight().Text($"{element.TotalDifficulty:0.0}");
-														table.Cell().Element(cellStyle).AlignRight().Text($"{element.MaximumDifficulty:0.0}");
-
-
-														static PdfContainer cellStyle(PdfContainer container)
-															=> container
-																.DefaultTextStyle(DefaultStyle)
-																.BorderBottom(1)
-																.BorderColor(PdfColors.Grey.Lighten2)
-																.PaddingVertical(5);
 													}
-												}
-											)
-									);
+												)
+										);
 
-									if (!string.IsNullOrWhiteSpace(Comment))
-									{
-										column.AddComment(Comment);
+										if (!string.IsNullOrWhiteSpace(Comment))
+										{
+											column.AddComment(Comment);
+										}
 									}
-								}
-							)
-					);
-				}
+								)
+						);
+					}
 			)
 		)
 	);

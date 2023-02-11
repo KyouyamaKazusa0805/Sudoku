@@ -7,9 +7,16 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=po:PrintingOperation}">
+	<Page.Resources>
+		<TeachingTip
+			x:Name="ErrorDialog_AnalysisResultNotExist" Target="{x:Bind PrintButton}" IsLightDismissEnabled="True"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_OutputFailed}"
+			Subtitle="{m:R Key=AnalyzePage_AnalysisResultNotExist}" />
+	</Page.Resources>
+
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">
 		<AppBarButton
-			Icon="Print" Label="{m:R Key=AnalyzePage_PrintAnalysisResult}"
+			x:Name="PrintButton" Icon="Print" Label="{m:R Key=AnalyzePage_PrintAnalysisResult}"
 			Click="PrintAnalysisButton_ClickAsync" />
 	</CommandBar>
 </Page>

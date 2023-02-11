@@ -2691,6 +2691,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to All Available Steps.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AnalysisResultNotExist">
+            <summary>
+              Looks up a localized string similar to Cannot output analysis because the puzzle has never been analyzed yet..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AnalysisResultReportPdfTitle">
             <summary>
               Looks up a localized string similar to Analysis Result Report.
@@ -2954,6 +2959,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_OpenSudokuFormat">
             <summary>
               Looks up a localized string similar to OpenSudoku compatible format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_OutputFailed">
+            <summary>
+              Looks up a localized string similar to Failed to Output.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PasteCommandName">

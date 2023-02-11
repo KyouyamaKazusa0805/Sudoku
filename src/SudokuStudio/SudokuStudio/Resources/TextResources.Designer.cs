@@ -340,6 +340,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot output analysis because the puzzle has never been analyzed yet..
+        /// </summary>
+        internal static string AnalyzePage_AnalysisResultNotExist {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AnalysisResultNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analysis Result Report.
         /// </summary>
         internal static string AnalyzePage_AnalysisResultReportPdfTitle {
@@ -813,6 +822,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_OpenSudokuFormat {
             get {
                 return ResourceManager.GetString("AnalyzePage_OpenSudokuFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to Output.
+        /// </summary>
+        internal static string AnalyzePage_OutputFailed {
+            get {
+                return ResourceManager.GetString("AnalyzePage_OutputFailed", resourceCulture);
             }
         }
         

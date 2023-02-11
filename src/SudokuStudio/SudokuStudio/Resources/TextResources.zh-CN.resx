@@ -183,6 +183,9 @@
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>所有可用步骤</value>
   </data>
+  <data name="AnalyzePage_AnalysisResultNotExist" xml:space="preserve">
+    <value>题目解析结果无法导出，因为该题目还没有参与分析过。</value>
+  </data>
   <data name="AnalyzePage_AnalysisResultReportPdfTitle" xml:space="preserve">
     <value>分析结果报告</value>
   </data>
@@ -341,6 +344,9 @@
   </data>
   <data name="AnalyzePage_OpenSudokuFormat" xml:space="preserve">
     <value>OpenSudoku 软件兼容的文本格式</value>
+  </data>
+  <data name="AnalyzePage_OutputFailed" xml:space="preserve">
+    <value>导出失败</value>
   </data>
   <data name="AnalyzePage_PasteCommandName" xml:space="preserve">
     <value>粘贴</value>
