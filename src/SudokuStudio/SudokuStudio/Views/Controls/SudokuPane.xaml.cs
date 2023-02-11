@@ -41,6 +41,20 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private bool _useDifferentColorToDisplayDeltaDigits = true;
 
 	/// <summary>
+	/// Indicates whether the pane disable flyout open.
+	/// </summary>
+	[NotifyBackingField]
+	private bool _disableFlyout = false;
+
+	/// <summary>
+	/// Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits
+	/// in its containing houses, this pane will do nothing by this value being <see langword="true"/>.
+	/// If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.
+	/// </summary>
+	[NotifyBackingField]
+	private bool _preventSimpleConfliction = true;
+
+	/// <summary>
 	/// Indicates the font scale of given digits. The value should generally be below 1.0.
 	/// </summary>
 	[NotifyBackingField]
@@ -402,6 +416,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates the event that is triggered when a file is failed to be received via dropped file.
 	/// </summary>
 	public event FailedReceivedDroppedFileEventHandler? FailedReceivedDroppedFile;
+
+	/// <summary>
+	/// Indicates the event that is triggered when a digit is input (that cause a change in a cell).
+	/// </summary>
+	public event DigitInputEventHandler? DigitInput;
 
 
 	/// <summary>
@@ -792,6 +811,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				SetPuzzle(modified);
 
+				DigitInput?.Invoke(this, new(cell, -1));
+
 				break;
 			}
 			case ((false, true, false, false), var cell, var digit) when Puzzle.Exists(cell, digit) is true:
@@ -803,7 +824,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
-			case ((false, false, false, false), var cell, var digit) when !Puzzle.DuplicateWith(cell, digit):
+			case ((false, false, false, false), var cell, var digit)
+			when PreventSimpleConfliction && !Puzzle.DuplicateWith(cell, digit) || !PreventSimpleConfliction:
 			{
 				var modified = Puzzle;
 				if (Puzzle.GetStatus(cell) == CellStatus.Modifiable)
@@ -814,6 +836,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				modified[cell] = digit;
 				SetPuzzle(modified);
+
+				DigitInput?.Invoke(this, new(cell, digit));
 
 				break;
 			}

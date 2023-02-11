@@ -2,6 +2,7 @@
 	x:Class="SudokuStudio.App"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
 	RequestedTheme="Light">
 	<Application.Resources>
 		<ResourceDictionary>
@@ -17,6 +18,9 @@
 				<Setter Property="FontSize" Value="16" />
 				<Setter Property="Margin" Value="0,0,0,6" />
 			</Style>
+			<vcvt:StringToFontFamilyConverter x:Key="String2FontConverter" />
+			<vcvt:Int32ToCoordinateLabelKindConverter x:Key="IntToCoordinateKindConverter" />
+			<vcvt:Int32ToCoordinateLabelModeConverter x:Key="IntToCoordinateModeConverter" />
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

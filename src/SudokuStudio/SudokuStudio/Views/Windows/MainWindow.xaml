@@ -48,6 +48,12 @@
 			Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked">
 			<NavigationView.MenuItems>
 				<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:R Key=MainWindow_Analyze}" Icon="ShowResults" />
+				<NavigationViewItemSeparator />
+				<NavigationViewItem Icon="Repair" Content="{m:R Key=MainWindow_ExtraFunctions}">
+					<NavigationViewItem.MenuItems>
+						<NavigationViewItem x:Name="SingleCountingPageItem" Icon="OutlineStar" Content="{m:R Key=MainWindow_SingleCountingPracticing}" />
+					</NavigationViewItem.MenuItems>
+				</NavigationViewItem>
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>
 				<NavigationViewItem x:Name="AboutPagetItem" Content="{m:R Key=MainWindow_About}" Icon="People" />

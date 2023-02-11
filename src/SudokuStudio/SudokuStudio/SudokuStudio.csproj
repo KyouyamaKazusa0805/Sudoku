@@ -65,6 +65,7 @@
 		<None Remove="Views\Pages\Settings\AnalysisPreferenceItemsPage.xaml" />
 		<None Remove="Views\Pages\Settings\BasicPreferenceItemsPage.xaml" />
 		<None Remove="Views\Pages\Settings\DrawingPreferenceItemsPage.xaml" />
+		<None Remove="Views\Pages\SingleCountingPracticingPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -104,6 +105,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\SingleCountingPracticingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Operation\PrintingOperation.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

@@ -501,6 +501,9 @@
   <data name="MainWindow_AnalyzePageTitle" xml:space="preserve">
     <value>Solving &amp; Analysis</value>
   </data>
+  <data name="MainWindow_ExtraFunctions" xml:space="preserve">
+    <value>Extra functions</value>
+  </data>
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
@@ -509,6 +512,12 @@
   </data>
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>Settings &amp; Preferences</value>
+  </data>
+  <data name="MainWindow_SingleCountingPracticing" xml:space="preserve">
+    <value>Single Counting Practicing</value>
+  </data>
+  <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
+    <value>Single Counting Practicing</value>
   </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
     <value>Allow collision on ALS-XY-Wing</value>
@@ -686,6 +695,35 @@
   </data>
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>Weak link dash style</value>
+  </data>
+  <data name="SingleCountingPracticingPage_ComplexMode" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="SingleCountingPracticingPage_FullHouseMode" xml:space="preserve">
+    <value>Full house</value>
+  </data>
+  <data name="SingleCountingPracticingPage_InputPuzzlesCount" xml:space="preserve">
+    <value>Input the desired number of puzzles to practice:</value>
+  </data>
+  <data name="SingleCountingPracticingPage_Intro" xml:space="preserve">
+    <value>This page offers you a sudoku grid to practice techniques "Naked Single" and "Full House". You can get experienced from this page.
+The right-side of the page contains an input text box, you should input the answer here for each puzzle. The puzzle will generate some puzzles, you should input the result inside the text box mentioned above. No matter whether your answer is correct, program will go to the next puzzle.</value>
+  </data>
+  <data name="SingleCountingPracticingPage_NakedSingleMode" xml:space="preserve">
+    <value>Naked single</value>
+  </data>
+  <data name="SingleCountingPracticingPage_ResultDisplayLabel" xml:space="preserve">
+    <value>Game over. This is your data:
+Total time used: {0:hh':'mm':'ss'.'fff}
+Puzzles count: {1}
+Average time used: {2:hh':'mm':'ss'.'fff}
+Correct rate: {3:P} ({4}/{5})</value>
+  </data>
+  <data name="SingleCountingPracticingPage_SelectMode" xml:space="preserve">
+    <value>Select mode:</value>
+  </data>
+  <data name="SingleCountingPracticingPage_Start" xml:space="preserve">
+    <value>Start!</value>
   </data>
   <data name="Sudoku" xml:space="preserve">
     <value>Sudoku</value>

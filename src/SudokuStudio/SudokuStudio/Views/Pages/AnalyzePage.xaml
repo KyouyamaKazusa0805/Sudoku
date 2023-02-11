@@ -22,9 +22,6 @@
 			<Setter Property="BorderThickness" Value="2" />
 			<Setter Property="Margin" Value="0,10" />
 		</Style>
-		<vcvt:StringToFontFamilyConverter x:Key="String2FontConverter" />
-		<vcvt:Int32ToCoordinateLabelKindConverter x:Key="IntToCoordinateKindConverter" />
-		<vcvt:Int32ToCoordinateLabelModeConverter x:Key="IntToCoordinateModeConverter" />
 	</Page.Resources>
 
 	<ScrollViewer VerticalScrollBarVisibility="Hidden">

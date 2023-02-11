@@ -67,6 +67,9 @@ public sealed partial class MainWindow : Window
 #elif MICA_BACKDROP
 		TrySetMicaBackdrop();
 #elif ACRYLIC_BACKDROP
+#line 1 "Backdrop Configuration"
+#warning Acrylic backdrop is not fully supported in the program. Some UI features may not be configured so UI may not represent a good look.
+#line default
 		TrySetAcrylicBackdrop();
 #endif
 
@@ -88,7 +91,8 @@ public sealed partial class MainWindow : Window
 		{
 			{ static (isSettingInvokedOrSelected, _) => isSettingInvokedOrSelected, typeof(SettingsPage) },
 			{ (_, container) => container == AnalyzePageItem, typeof(AnalyzePage) },
-			{ (_, container) => container == AboutPagetItem, typeof(AboutPage) }
+			{ (_, container) => container == AboutPagetItem, typeof(AboutPage) },
+			{ (_, container) => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) }
 		};
 
 	/// <summary>

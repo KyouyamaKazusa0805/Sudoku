@@ -1294,6 +1294,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extra functions.
+        /// </summary>
+        internal static string MainWindow_ExtraFunctions {
+            get {
+                return ResourceManager.GetString("MainWindow_ExtraFunctions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu.
         /// </summary>
         internal static string MainWindow_Menu {
@@ -1317,6 +1326,24 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_SettingsPageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_SettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single Counting Practicing.
+        /// </summary>
+        internal static string MainWindow_SingleCountingPracticing {
+            get {
+                return ResourceManager.GetString("MainWindow_SingleCountingPracticing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single Counting Practicing.
+        /// </summary>
+        internal static string MainWindow_SingleCountingPracticingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_SingleCountingPracticingPageTitle", resourceCulture);
             }
         }
         
@@ -1848,6 +1875,83 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_WeakLinkDashStyle {
             get {
                 return ResourceManager.GetString("SettingsPage_WeakLinkDashStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both.
+        /// </summary>
+        internal static string SingleCountingPracticingPage_ComplexMode {
+            get {
+                return ResourceManager.GetString("SingleCountingPracticingPage_ComplexMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full house.
+        /// </summary>
+        internal static string SingleCountingPracticingPage_FullHouseMode {
+            get {
+                return ResourceManager.GetString("SingleCountingPracticingPage_FullHouseMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input the desired number of puzzles to practice:.
+        /// </summary>
+        internal static string SingleCountingPracticingPage_InputPuzzlesCount {
+            get {
+                return ResourceManager.GetString("SingleCountingPracticingPage_InputPuzzlesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page offers you a sudoku grid to practice techniques &quot;Naked Single&quot; and &quot;Full House&quot;. You can get experienced from this page.
+        ///The right-side of the page contains an input text box, you should input the answer here for each puzzle. The puzzle will generate some puzzles, you should input the result inside the text box mentioned above. No matter whether your answer is correct, program will go to the next puzzle..
+        /// </summary>
+        internal static string SingleCountingPracticingPage_Intro {
+            get {
+                return ResourceManager.GetString("SingleCountingPracticingPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked single.
+        /// </summary>
+        internal static string SingleCountingPracticingPage_NakedSingleMode {
+            get {
+                return ResourceManager.GetString("SingleCountingPracticingPage_NakedSingleMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game over. This is your data:
+        ///Total time used: {0:hh&apos;:&apos;mm&apos;:&apos;ss&apos;.&apos;fff}
+        ///Puzzles count: {1}
+        ///Average time used: {2:hh&apos;:&apos;mm&apos;:&apos;ss&apos;.&apos;fff}
+        ///Correct rate: {3:P} ({4}/{5}).
+        /// </summary>
+        internal static string SingleCountingPracticingPage_ResultDisplayLabel {
+            get {
+                return ResourceManager.GetString("SingleCountingPracticingPage_ResultDisplayLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select mode:.
+        /// </summary>
+        internal static string SingleCountingPracticingPage_SelectMode {
+            get {
+                return ResourceManager.GetString("SingleCountingPracticingPage_SelectMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start!.
+        /// </summary>
+        internal static string SingleCountingPracticingPage_Start {
+            get {
+                return ResourceManager.GetString("SingleCountingPracticingPage_Start", resourceCulture);
             }
         }
         

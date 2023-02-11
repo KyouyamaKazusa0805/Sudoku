@@ -501,6 +501,9 @@
   <data name="MainWindow_AnalyzePageTitle" xml:space="preserve">
     <value>解题与分析</value>
   </data>
+  <data name="MainWindow_ExtraFunctions" xml:space="preserve">
+    <value>额外功能</value>
+  </data>
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>菜单</value>
   </data>
@@ -509,6 +512,12 @@
   </data>
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>偏好项设置</value>
+  </data>
+  <data name="MainWindow_SingleCountingPracticing" xml:space="preserve">
+    <value>唯余数数练习</value>
+  </data>
+  <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
+    <value>唯余数数练习</value>
   </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
     <value>允许 ALS-XY-Wing 技巧里的 ALS 结构重叠</value>
@@ -686,6 +695,34 @@
   </data>
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>弱链的虚线周期</value>
+  </data>
+  <data name="SingleCountingPracticingPage_ComplexMode" xml:space="preserve">
+    <value>两种都有</value>
+  </data>
+  <data name="SingleCountingPracticingPage_FullHouseMode" xml:space="preserve">
+    <value>只有同区剩余</value>
+  </data>
+  <data name="SingleCountingPracticingPage_InputPuzzlesCount" xml:space="preserve">
+    <value>请输入练习题目的个数：</value>
+  </data>
+  <data name="SingleCountingPracticingPage_Intro" xml:space="preserve">
+    <value>该页面给你提供了一个练习环境，可以帮助你练习“唯一余数”和“同区剩余”技巧。</value>
+  </data>
+  <data name="SingleCountingPracticingPage_NakedSingleMode" xml:space="preserve">
+    <value>只有唯一余数</value>
+  </data>
+  <data name="SingleCountingPracticingPage_ResultDisplayLabel" xml:space="preserve">
+    <value>游戏结束。下面是你的成绩：
+总用时：{0:hh':'mm':'ss'.'fff}
+题目数量：{1}
+平均用时：{2:hh':'mm':'ss'.'fff}
+正确率：{3:P}（{4}/{5}）</value>
+  </data>
+  <data name="SingleCountingPracticingPage_SelectMode" xml:space="preserve">
+    <value>请选择模式：</value>
+  </data>
+  <data name="SingleCountingPracticingPage_Start" xml:space="preserve">
+    <value>开始！</value>
   </data>
   <data name="Sudoku" xml:space="preserve">
     <value>数独</value>

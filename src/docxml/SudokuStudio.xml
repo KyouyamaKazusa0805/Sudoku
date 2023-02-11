@@ -1445,6 +1445,12 @@ if (student is (name: var name, age: >= 18))
             Provides with conversion methods used by XAML designer, about selected cells.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.SingleCountingPracticingPageConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about <see cref="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.SudokuGridConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about puzzle details displayed.
@@ -1539,6 +1545,42 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Interaction.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.DigitInputEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.DigitInputEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.DigitInputEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.DigitInputEventArgs.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Interaction.DigitInputEventArgs"/> instance via the specified cell and input digit.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="newDigitInput">The digit input.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DigitInputEventArgs.Cell">
+            <summary>
+            Indicates the cell that raises the event triggered.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DigitInputEventArgs.DigitInput">
+            <summary>
+            Indicates the digit input that raises the event triggered. -1 is for clear the cell.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DigitInputEventArgs.Candidate">
+            <summary>
+            Indicates the candidate constructed. -1 is for the case that <see cref="P:SudokuStudio.Interaction.DigitInputEventArgs.DigitInput"/> is -1.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.DigitInputEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.DigitInput"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.DigitInput"/>
         </member>
         <member name="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs">
             <summary>
@@ -3566,6 +3608,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Solving &amp; Analysis.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_ExtraFunctions">
+            <summary>
+              Looks up a localized string similar to Extra functions.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Menu">
             <summary>
               Looks up a localized string similar to Menu.
@@ -3579,6 +3626,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_SettingsPageTitle">
             <summary>
               Looks up a localized string similar to Settings &amp; Preferences.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_SingleCountingPracticing">
+            <summary>
+              Looks up a localized string similar to Single Counting Practicing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_SingleCountingPracticingPageTitle">
+            <summary>
+              Looks up a localized string similar to Single Counting Practicing.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
@@ -3874,6 +3931,51 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_WeakLinkDashStyle">
             <summary>
               Looks up a localized string similar to Weak link dash style.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SingleCountingPracticingPage_ComplexMode">
+            <summary>
+              Looks up a localized string similar to Both.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SingleCountingPracticingPage_FullHouseMode">
+            <summary>
+              Looks up a localized string similar to Full house.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SingleCountingPracticingPage_InputPuzzlesCount">
+            <summary>
+              Looks up a localized string similar to Input the desired number of puzzles to practice:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SingleCountingPracticingPage_Intro">
+             <summary>
+               Looks up a localized string similar to This page offers you a sudoku grid to practice techniques &quot;Naked Single&quot; and &quot;Full House&quot;. You can get experienced from this page.
+            The right-side of the page contains an input text box, you should input the answer here for each puzzle. The puzzle will generate some puzzles, you should input the result inside the text box mentioned above. No matter whether your answer is correct, program will go to the next puzzle..
+             </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SingleCountingPracticingPage_NakedSingleMode">
+            <summary>
+              Looks up a localized string similar to Naked single.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SingleCountingPracticingPage_ResultDisplayLabel">
+             <summary>
+               Looks up a localized string similar to Game over. This is your data:
+            Total time used: {0:hh&apos;:&apos;mm&apos;:&apos;ss&apos;.&apos;fff}
+            Puzzles count: {1}
+            Average time used: {2:hh&apos;:&apos;mm&apos;:&apos;ss&apos;.&apos;fff}
+            Correct rate: {3:P} ({4}/{5}).
+             </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SingleCountingPracticingPage_SelectMode">
+            <summary>
+              Looks up a localized string similar to Select mode:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SingleCountingPracticingPage_Start">
+            <summary>
+              Looks up a localized string similar to Start!.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.Sudoku">
@@ -4897,6 +4999,18 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the pane displays for delta digits using different colors.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._disableFlyout">
+            <summary>
+            Indicates whether the pane disable flyout open.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._preventSimpleConfliction">
+            <summary>
+            Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits
+            in its containing houses, this pane will do nothing by this value being <see langword="true"/>.
+            If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._givenFontScale">
             <summary>
             Indicates the font scale of given digits. The value should generally be below 1.0.
@@ -5157,6 +5271,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the event that is triggered when a file is failed to be received via dropped file.
             </summary>
         </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.DigitInput">
+            <summary>
+            Indicates the event that is triggered when a digit is input (that cause a change in a cell).
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UndoStep">
             <summary>
             Undo a step.
@@ -5268,6 +5387,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._useDifferentColorToDisplayDeltaDigits"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._disableFlyout"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventSimpleConfliction">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._preventSimpleConfliction"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._givenFontScale"/>
@@ -6268,6 +6393,172 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage">
+            <summary>
+            Represents a page that provides with practise tool to allow you practicing counting logic for technique Naked Single and Full House.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.MaxPuzzlesCountSupported">
+            <summary>
+            Indicates the maximum possible supported number of puzzles.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage._stopwatch">
+            <summary>
+            Defines a timer instance.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage._isRunning">
+            <summary>
+            Indicates whether the game is running.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage._currentPuzzleIndex">
+            <summary>
+            Indicates the puzzles last.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage._targetResultData">
+            <summary>
+            Indicates the target result data.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage._answeredData">
+            <summary>
+            Indicates the answered data.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage"/> instance.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Pages.SingleCountingPracticingPage.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.InitializeFields">
+            <summary>
+            Initializes for fields.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.InitializeEvents">
+            <summary>
+            Initializes for events.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.GeneratePuzzle">
+            <summary>
+            Try to generate a new puzzle.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedModeProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCountProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedModeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedModeProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCountProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCountProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning">
+            <inheritdoc cref="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage._isRunning"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Extensions.CountWithIndex``2(System.Collections.Generic.List{``0},System.Collections.Generic.List{``1},System.Func{``0,``1,System.Boolean},System.Int32)">
+            <summary>
+            Counts up the number of instances that satisfies the specified condition, with the specified instance as the reference,
+            using index from another collection.
+            </summary>
+            <typeparam name="T1">The type of elements from the current collection.</typeparam>
+            <typeparam name="T2">The type of elements from the other collection.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="other">The other collection.</param>
+            <param name="predicate">The condition.</param>
+            <param name="count">The number of elements.</param>
+            <returns>An <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Extensions.Refresh``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            Refresh the collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="count">The number of elements to be created.</param>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Generator">
+            <summary>
+            The local puzzle generator.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Generator.Rng">
+            <summary>
+            A random number generator.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Generator.Generate(SudokuStudio.Views.Pages.GeneratingMode,System.Int32@)">
+            <summary>
+            Try to generate a new puzzle.
+            </summary>
+            <param name="mode">The mode.</param>
+            <param name="targetCandidate">Indicates the target candidate as the result.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.GeneratingMode">
+            <summary>
+            Indicates the generating mode.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratingMode.None">
+            <summary>
+            Indicates the mode is none.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouseOnly">
+            <summary>
+            Indicates the generator generates the puzzle that relies on full houses.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingleOnly">
+            <summary>
+            Indicates the generator generates the puzzle that relies on naked singles.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
