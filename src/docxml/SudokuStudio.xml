@@ -1234,22 +1234,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.Commands.GatherCommand.Execute(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="T:SudokuStudio.Interaction.Commands.OpenFileCommand">
-            <summary>
-            Defines an open-file command.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interaction.Commands.OpenFileCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Interaction.Commands.SaveFileCommand">
-            <summary>
-            Defines a save-file command.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interaction.Commands.SaveFileCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="T:SudokuStudio.Interaction.Commands.UnfixGridCommand">
             <summary>
             Defines a command to unfix a grid.
@@ -5351,6 +5335,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Sets the end view.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.EnsureUnsnapped(System.Boolean)">
+            <summary>
+            To determine whether the current application view is in an unsnapped state.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeComponent">
             <summary>

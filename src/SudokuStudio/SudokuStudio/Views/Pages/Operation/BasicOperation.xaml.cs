@@ -147,6 +147,10 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged, IOper
 
 		Dialog_AreYouSureToReturnToEmpty.IsOpen = false;
 	}
+
+	private async void SaveFileButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.SaveFileInternalAsync();
+
+	private async void OpenFileButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.OpenFileInternalAsync();
 }
 
 /// <summary>

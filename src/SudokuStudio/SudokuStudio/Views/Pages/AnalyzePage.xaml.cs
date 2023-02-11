@@ -128,10 +128,8 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// <returns>A task that handles the operation.</returns>
 	internal async Task OpenFileInternalAsync()
 	{
-		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
-		if (!unsnapped)
+		if (!EnsureUnsnapped(false))
 		{
-			OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.UnsnappingFailed));
 			return;
 		}
 
@@ -150,10 +148,8 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// <returns>A task that handles the operation.</returns>
 	internal async Task SaveFileInternalAsync()
 	{
-		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
-		if (!unsnapped)
+		if (!EnsureUnsnapped(true))
 		{
-			SaveFileFailed?.Invoke(this, new(SaveFileFailedReason.UnsnappingFailed));
 			return;
 		}
 
@@ -200,10 +196,8 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// <returns>A task that handles the operation.</returns>
 	internal async Task<bool> SaveFileInternalAsync(ArrayList gridFormatters)
 	{
-		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
-		if (!unsnapped)
+		if (!EnsureUnsnapped(true))
 		{
-			SaveFileFailed?.Invoke(this, new(SaveFileFailedReason.UnsnappingFailed));
 			return false;
 		}
 
@@ -493,6 +487,30 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		{
 			CurrentViewIndex = length - 1;
 		}
+	}
+
+	/// <summary>
+	/// To determine whether the current application view is in an unsnapped state.
+	/// </summary>
+	/// <returns>The <see cref="bool"/> value indicating that.</returns>
+	private bool EnsureUnsnapped(bool isFileSaving)
+	{
+		/// <see cref="FileOpenPicker"/> APIs will not work if the application is in a snapped state.
+		/// If an app wants to show a <see cref="FileOpenPicker"/> while snapped, it must attempt to unsnap first.
+		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
+		if (!unsnapped)
+		{
+			if (isFileSaving)
+			{
+				SaveFileFailed?.Invoke(this, new(SaveFileFailedReason.UnsnappingFailed));
+			}
+			else
+			{
+				OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.UnsnappingFailed));
+			}
+		}
+
+		return unsnapped;
 	}
 
 
