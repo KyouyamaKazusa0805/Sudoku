@@ -495,8 +495,10 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	private bool EnsureUnsnapped(bool isFileSaving)
 	{
-		/// <see cref="FileOpenPicker"/> APIs will not work if the application is in a snapped state.
-		/// If an app wants to show a <see cref="FileOpenPicker"/> while snapped, it must attempt to unsnap first.
+		/**
+			<see cref="FileOpenPicker"/> APIs will not work if the application is in a snapped state.
+			If an app wants to show a <see cref="FileOpenPicker"/> while snapped, it must attempt to unsnap first.
+		*/
 		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
 		if (!unsnapped)
 		{
