@@ -134,10 +134,10 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		}
 
 		var fop = new FileOpenPicker()
+			.WithAwareHandleOnWin32()
 			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
 			.AddFileTypeFilter(CommonFileExtensions.Text)
-			.AddFileTypeFilter(CommonFileExtensions.PlainText)
-			.WithAwareHandleOnWin32();
+			.AddFileTypeFilter(CommonFileExtensions.PlainText);
 
 		await LoadPuzzleCoreAsync(await fop.PickSingleFileAsync());
 	}
@@ -154,12 +154,12 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		}
 
 		var fsp = new FileSavePicker()
+			.WithAwareHandleOnWin32()
 			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
 			.WithSuggestedFileName(GetString("Sudoku"))
 			.AddFileTypeChoice(GetString("FileExtension_TextDescription"), CommonFileExtensions.Text)
 			.AddFileTypeChoice(GetString("FileExtension_PlainTextDescription"), CommonFileExtensions.PlainText)
-			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture)
-			.WithAwareHandleOnWin32();
+			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture);
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath } file)
 		{
@@ -202,12 +202,12 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		}
 
 		var fsp = new FileSavePicker()
+			.WithAwareHandleOnWin32()
 			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
 			.WithSuggestedFileName(GetString("Sudoku"))
 			.AddFileTypeChoice(GetString("FileExtension_TextDescription"), CommonFileExtensions.Text)
 			.AddFileTypeChoice(GetString("FileExtension_PlainTextDescription"), CommonFileExtensions.PlainText)
-			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture)
-			.WithAwareHandleOnWin32();
+			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture);
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath } file)
 		{

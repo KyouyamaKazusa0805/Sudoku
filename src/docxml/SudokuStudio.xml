@@ -2061,6 +2061,22 @@ if (student is (name: var name, age: >= 18))
             </see>.
             </remarks>
         </member>
+        <member name="T:SudokuStudio.Interop.IWindowNative">
+            <summary>
+            <para>
+            Enables interoperability between XAML and a native window. This interface is implemented by <see cref="T:Microsoft.UI.Xaml.Window"/>,
+            which desktop apps can use to get the underlying HWND of the window.
+            </para>
+            <para>For more info, and code examples, see
+            <see href="https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd">Retrieve a window handle (HWND).</see>
+            </para>
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interop.IWindowNative.WindowHandle">
+            <summary>
+            Retrieves the window handle (HWND) of the window represented by the object that implements <see cref="T:SudokuStudio.Interop.IWindowNative"/>.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interop.Monitor_DPI_Type">
             <summary>
             Identifies the dots per inch (dpi) setting for a monitor.
@@ -2125,6 +2141,117 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The default DPI setting for a monitor is <see cref="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Effective_DPI"/>.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Interop.PInvoke_Deprecated">
+            <summary>
+            Provides with some deprecated P/Invoke methods. Such methods may be used in the future.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interop.PInvoke_Deprecated.GetActiveWindow">
+            <summary>
+            Retrieves the window handle to the active window attached to the calling thread's message queue.
+            </summary>
+            <returns>
+            The return value is the handle to the active window attached to the calling thread's message queue.
+            Otherwise, the return value is <see langword="null"/>.
+            </returns>
+            <remarks>
+            <para>
+            To get the handle to the foreground window, you can use
+            <see href="https://learn.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-getforegroundwindow">GetForegroundWindow</see>.
+            </para>
+            <para>
+            To get the window handle to the active window in the message queue for another thread, use
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo</see>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Interop.PInvoke_Deprecated.GetGUIThreadInfo(System.UInt32,SudokuStudio.Interop.GUITHREADINFO@)">
+            <summary>
+            Retrieves information about the active window or a specified GUI thread.
+            </summary>
+            <param name="idThread">
+            The identifier for the thread for which information is to be retrieved. To retrieve this value, use the
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowthreadprocessid">GetWindowThreadProcessId</see> function.
+            If this parameter is <see langword="null"/>, the function returns information for the foreground thread.
+            </param>
+            <param name="lpgui">
+            A pointer to a <see cref="T:SudokuStudio.Interop.GUITHREADINFO"/> structure that receives information describing the thread.
+            Note that you must set the cbSize member to <see langword="sizeof"/>(<see cref="T:SudokuStudio.Interop.GUITHREADINFO"/>) before calling this function.
+            </param>
+            <returns>
+            <para>If the function succeeds, the return value is nonzero.</para>
+            <para>
+            If the function fails, the return value is zero. To get extended error information, call
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</see>.
+            </para>
+            </returns>
+            <remarks>
+            <para>
+            This function succeeds even if the active window is not owned by the calling process.
+            If the specified thread does not exist or have an input queue, the function will fail.
+            </para>
+            <para>
+            This function is useful for retrieving out-of-context information about a thread.
+            The information retrieved is the same as if an application retrieved the information about itself.
+            </para>
+            <para>
+            For an edit control, the returned rcCaret rectangle contains the caret plus information on text direction and padding.
+            Thus, it may not give the correct position of the cursor. The Sans Serif font uses four characters for the cursor:
+            <list type="table">
+            <listheader>
+            <term>Cursor character</term>
+            <description>Unicode code point</description>
+            </listheader>
+            <item>
+            <term><c>CURSOR_LTR</c></term>
+            <description>0xf00c</description>
+            </item>
+            <item>
+            <term><c>CURSOR_RTL</c></term>
+            <description>0xf00d</description>
+            </item>
+            <item>
+            <term><c>CURSOR_THAI</c></term>
+            <description>0xf00e</description>
+            </item>
+            <item>
+            <term><c>CURSOR_USA</c></term>
+            <description>0xfff (this is a marker value with no associated glyph)</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            To get the actual insertion point in the rcCaret rectangle, perform the following steps.
+            <list type="number">
+            <item>
+            Call <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getkeyboardlayout">GetKeyboardLayout</see>
+            to retrieve the current input language.
+            </item>
+            <item>Determine the character used for the cursor, based on the current input language.</item>
+            <item>
+            Call <see href="https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfonta">CreateFont</see>
+            using Sans Serif for the font, the height given by <see cref="F:SudokuStudio.Interop.GUITHREADINFO.rcCaret"/>, and a width of zero.
+            For <c>fnWeight</c>, call <c>SystemParametersInfo(SPI_GETCARETWIDTH, 0, pvParam, 0)</c>.
+            If <c>pvParam</c> is greater than 1, set <c>fnWeight</c> to 700, otherwise set <c>fnWeight</c> to 400.
+            </item>
+            <item>
+            Select the font into a device context (DC) and use
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getcharabcwidthsa">GetCharABCWidths</see>
+            to get the B width of the appropriate cursor character.
+            </item>
+            <item>
+            Add the B width to <see cref="P:System.Drawing.Rectangle.Left"/> in <see cref="F:SudokuStudio.Interop.GUITHREADINFO.rcCaret"/>
+            to obtain the actual insertion point.
+            </item>
+            </list>
+            </para>
+            <para>
+            The function may not return valid window handles in the <see cref="T:SudokuStudio.Interop.GUITHREADINFO"/>
+            structure when called to retrieve information for the foreground thread, such as when a window is losing activation.
+            </para>
+            </remarks>
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo function (winuser.h)</see>
         </member>
         <member name="T:SudokuStudio.Interop.WinSysDispatcherQueueHelper">
             <summary>
@@ -6270,13 +6397,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
         </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.WithAwareHandleOnWin32(Windows.Storage.Pickers.FileOpenPicker,System.Boolean)">
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.WithAwareHandleOnWin32(Windows.Storage.Pickers.FileOpenPicker)">
             <summary>
             To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
             </summary>
             <param name="this">The instance.</param>
-            <param name="isAsync">Indicatees whether the method is inside an asynchronized environment.</param>
-            <exception cref="T:System.ComponentModel.Win32Exception">Throws when in asynchronized environment, this method cannot fetch GUI thread information.</exception>
         </member>
         <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.WithSuggestedStartLocation(Windows.Storage.Pickers.FileOpenPicker,Windows.Storage.Pickers.PickerLocationId)">
             <summary>
@@ -6288,113 +6413,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Adds the file type filter into the <see cref="P:Windows.Storage.Pickers.FileOpenPicker.FileTypeFilter"/> property.
             </summary>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.GetActiveWindow">
-            <summary>
-            Retrieves the window handle to the active window attached to the calling thread's message queue.
-            </summary>
-            <returns>
-            The return value is the handle to the active window attached to the calling thread's message queue.
-            Otherwise, the return value is <see langword="null"/>.
-            </returns>
-            <remarks>
-            <para>
-            To get the handle to the foreground window, you can use
-            <see href="https://learn.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-getforegroundwindow">GetForegroundWindow</see>.
-            </para>
-            <para>
-            To get the window handle to the active window in the message queue for another thread, use
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo</see>.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.GetGUIThreadInfo(System.UInt32,SudokuStudio.Interop.GUITHREADINFO@)">
-            <summary>
-            Retrieves information about the active window or a specified GUI thread.
-            </summary>
-            <param name="idThread">
-            The identifier for the thread for which information is to be retrieved. To retrieve this value, use the
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowthreadprocessid">GetWindowThreadProcessId</see> function.
-            If this parameter is <see langword="null"/>, the function returns information for the foreground thread.
-            </param>
-            <param name="lpgui">
-            A pointer to a <see cref="T:SudokuStudio.Interop.GUITHREADINFO"/> structure that receives information describing the thread.
-            Note that you must set the cbSize member to <see langword="sizeof"/>(<see cref="T:SudokuStudio.Interop.GUITHREADINFO"/>) before calling this function.
-            </param>
-            <returns>
-            <para>If the function succeeds, the return value is nonzero.</para>
-            <para>
-            If the function fails, the return value is zero. To get extended error information, call
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</see>.
-            </para>
-            </returns>
-            <remarks>
-            <para>
-            This function succeeds even if the active window is not owned by the calling process.
-            If the specified thread does not exist or have an input queue, the function will fail.
-            </para>
-            <para>
-            This function is useful for retrieving out-of-context information about a thread.
-            The information retrieved is the same as if an application retrieved the information about itself.
-            </para>
-            <para>
-            For an edit control, the returned rcCaret rectangle contains the caret plus information on text direction and padding.
-            Thus, it may not give the correct position of the cursor. The Sans Serif font uses four characters for the cursor:
-            <list type="table">
-            <listheader>
-            <term>Cursor character</term>
-            <description>Unicode code point</description>
-            </listheader>
-            <item>
-            <term><c>CURSOR_LTR</c></term>
-            <description>0xf00c</description>
-            </item>
-            <item>
-            <term><c>CURSOR_RTL</c></term>
-            <description>0xf00d</description>
-            </item>
-            <item>
-            <term><c>CURSOR_THAI</c></term>
-            <description>0xf00e</description>
-            </item>
-            <item>
-            <term><c>CURSOR_USA</c></term>
-            <description>0xfff (this is a marker value with no associated glyph)</description>
-            </item>
-            </list>
-            </para>
-            <para>
-            To get the actual insertion point in the rcCaret rectangle, perform the following steps.
-            <list type="number">
-            <item>
-            Call <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getkeyboardlayout">GetKeyboardLayout</see>
-            to retrieve the current input language.
-            </item>
-            <item>Determine the character used for the cursor, based on the current input language.</item>
-            <item>
-            Call <see href="https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfonta">CreateFont</see>
-            using Sans Serif for the font, the height given by <see cref="F:SudokuStudio.Interop.GUITHREADINFO.rcCaret"/>, and a width of zero.
-            For <c>fnWeight</c>, call <c>SystemParametersInfo(SPI_GETCARETWIDTH, 0, pvParam, 0)</c>.
-            If <c>pvParam</c> is greater than 1, set <c>fnWeight</c> to 700, otherwise set <c>fnWeight</c> to 400.
-            </item>
-            <item>
-            Select the font into a device context (DC) and use
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getcharabcwidthsa">GetCharABCWidths</see>
-            to get the B width of the appropriate cursor character.
-            </item>
-            <item>
-            Add the B width to <see cref="P:System.Drawing.Rectangle.Left"/> in <see cref="F:SudokuStudio.Interop.GUITHREADINFO.rcCaret"/>
-            to obtain the actual insertion point.
-            </item>
-            </list>
-            </para>
-            <para>
-            The function may not return valid window handles in the
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-guithreadinfo">GUITHREADINFO</see>
-            structure when called to retrieve information for the foreground thread, such as when a window is losing activation.
-            </para>
-            </remarks>
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo function (winuser.h)</see>
+            <seealso cref="P:Windows.Storage.Pickers.FileOpenPicker.FileTypeFilter"/>
         </member>
         <member name="T:Windows.Storage.Pickers.FileSavePickerExtensions">
             <summary>
@@ -6402,13 +6421,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
         </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithAwareHandleOnWin32(Windows.Storage.Pickers.FileSavePicker,System.Boolean)">
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithAwareHandleOnWin32(Windows.Storage.Pickers.FileSavePicker)">
             <summary>
             To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
             </summary>
             <param name="this">The instance.</param>
-            <param name="isAsync">Indicatees whether the method is inside an asynchronized environment.</param>
-            <exception cref="T:System.ComponentModel.Win32Exception">Throws when in asynchronized environment, this method cannot fetch GUI thread information.</exception>
         </member>
         <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithSuggestedFileName(Windows.Storage.Pickers.FileSavePicker,System.String)">
             <summary>
@@ -6433,113 +6450,6 @@ if (student is (name: var name, age: >= 18))
             Adds the file type choices into the <see cref="P:Windows.Storage.Pickers.FileSavePicker.FileTypeChoices"/> property.
             </summary>
             <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.FileTypeChoices"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.GetActiveWindow">
-            <summary>
-            Retrieves the window handle to the active window attached to the calling thread's message queue.
-            </summary>
-            <returns>
-            The return value is the handle to the active window attached to the calling thread's message queue.
-            Otherwise, the return value is <see langword="null"/>.
-            </returns>
-            <remarks>
-            <para>
-            To get the handle to the foreground window, you can use
-            <see href="https://learn.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-getforegroundwindow">GetForegroundWindow</see>.
-            </para>
-            <para>
-            To get the window handle to the active window in the message queue for another thread, use
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo</see>.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.GetGUIThreadInfo(System.UInt32,SudokuStudio.Interop.GUITHREADINFO@)">
-            <summary>
-            Retrieves information about the active window or a specified GUI thread.
-            </summary>
-            <param name="idThread">
-            The identifier for the thread for which information is to be retrieved. To retrieve this value, use the
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowthreadprocessid">GetWindowThreadProcessId</see> function.
-            If this parameter is <see langword="null"/>, the function returns information for the foreground thread.
-            </param>
-            <param name="lpgui">
-            A pointer to a <see cref="T:SudokuStudio.Interop.GUITHREADINFO"/> structure that receives information describing the thread.
-            Note that you must set the cbSize member to <see langword="sizeof"/>(<see cref="T:SudokuStudio.Interop.GUITHREADINFO"/>) before calling this function.
-            </param>
-            <returns>
-            <para>If the function succeeds, the return value is nonzero.</para>
-            <para>
-            If the function fails, the return value is zero. To get extended error information, call
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</see>.
-            </para>
-            </returns>
-            <remarks>
-            <para>
-            This function succeeds even if the active window is not owned by the calling process.
-            If the specified thread does not exist or have an input queue, the function will fail.
-            </para>
-            <para>
-            This function is useful for retrieving out-of-context information about a thread.
-            The information retrieved is the same as if an application retrieved the information about itself.
-            </para>
-            <para>
-            For an edit control, the returned rcCaret rectangle contains the caret plus information on text direction and padding.
-            Thus, it may not give the correct position of the cursor. The Sans Serif font uses four characters for the cursor:
-            <list type="table">
-            <listheader>
-            <term>Cursor character</term>
-            <description>Unicode code point</description>
-            </listheader>
-            <item>
-            <term><c>CURSOR_LTR</c></term>
-            <description>0xf00c</description>
-            </item>
-            <item>
-            <term><c>CURSOR_RTL</c></term>
-            <description>0xf00d</description>
-            </item>
-            <item>
-            <term><c>CURSOR_THAI</c></term>
-            <description>0xf00e</description>
-            </item>
-            <item>
-            <term><c>CURSOR_USA</c></term>
-            <description>0xfff (this is a marker value with no associated glyph)</description>
-            </item>
-            </list>
-            </para>
-            <para>
-            To get the actual insertion point in the rcCaret rectangle, perform the following steps.
-            <list type="number">
-            <item>
-            Call <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getkeyboardlayout">GetKeyboardLayout</see>
-            to retrieve the current input language.
-            </item>
-            <item>Determine the character used for the cursor, based on the current input language.</item>
-            <item>
-            Call <see href="https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfonta">CreateFont</see>
-            using Sans Serif for the font, the height given by <see cref="F:SudokuStudio.Interop.GUITHREADINFO.rcCaret"/>, and a width of zero.
-            For <c>fnWeight</c>, call <c>SystemParametersInfo(SPI_GETCARETWIDTH, 0, pvParam, 0)</c>.
-            If <c>pvParam</c> is greater than 1, set <c>fnWeight</c> to 700, otherwise set <c>fnWeight</c> to 400.
-            </item>
-            <item>
-            Select the font into a device context (DC) and use
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getcharabcwidthsa">GetCharABCWidths</see>
-            to get the B width of the appropriate cursor character.
-            </item>
-            <item>
-            Add the B width to <see cref="P:System.Drawing.Rectangle.Left"/> in <see cref="F:SudokuStudio.Interop.GUITHREADINFO.rcCaret"/>
-            to obtain the actual insertion point.
-            </item>
-            </list>
-            </para>
-            <para>
-            The function may not return valid window handles in the
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-guithreadinfo">GUITHREADINFO</see>
-            structure when called to retrieve information for the foreground thread, such as when a window is losing activation.
-            </para>
-            </remarks>
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo function (winuser.h)</see>
         </member>
         <member name="T:Windows.Foundation.PointExtensions">
             <summary>

@@ -1,5 +1,4 @@
 ﻿#if CUSTOMIZED_TITLE_BAR
-
 namespace SudokuStudio.Interop;
 
 /// <summary>
