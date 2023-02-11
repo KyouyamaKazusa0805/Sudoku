@@ -471,6 +471,9 @@
   <data name="FileExtension_PlainTextDescription" xml:space="preserve">
     <value>普通文本文件格式</value>
   </data>
+  <data name="FileExtension_PortableDocument" xml:space="preserve">
+    <value>便携式文档格式</value>
+  </data>
   <data name="FileExtension_TextDescription" xml:space="preserve">
     <value>数独题目格式</value>
   </data>
@@ -695,6 +698,9 @@
   </data>
   <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
     <value>举例：!1-4、!567、!8、9</value>
+  </data>
+  <data name="SuggestedFileName_Output" xml:space="preserve">
+    <value>导出</value>
   </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>容易</value>

@@ -15,6 +15,13 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 	public AnalyzePage BasePage { get; set; } = null!;
 
 
+	/// <summary>
+	/// The method called by <see cref="Page_Loaded(object, RoutedEventArgs)"/> and <see cref="Page_Unloaded(object, RoutedEventArgs)"/>.
+	/// </summary>
+	private void OnSaveFileFailed(AnalyzePage _, SaveFileFailedEventArgs e)
+		=> (e.Reason switch { SaveFileFailedReason.UnsnappingFailed => ErrorDialog_ProgramIsSnapped }).IsOpen = true;
+
+
 	private async void PrintAnalysisButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		if (BasePage.AnalysisResultCache is not { } analysisResult)
@@ -29,9 +36,28 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 			AnalysisResult = analysisResult
 		}.CreateDocumentAsync();
 
-		var desktopPath = Environment.GetFolderPath(SpecialFolder.Desktop);
-		document.GeneratePdf($@"{desktopPath}\output.pdf");
+		if (!BasePage.EnsureUnsnapped(true))
+		{
+			return;
+		}
+
+		var fsp = new FileSavePicker()
+			.WithAwareHandleOnWin32()
+			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
+			.WithSuggestedFileName(GetString("SuggestedFileName_Output"))
+			.AddFileTypeChoice(GetString("FileExtension_PortableDocument"), CommonFileExtensions.PortableDocument);
+
+		if (await fsp.PickSaveFileAsync() is not { Path: var filePath })
+		{
+			return;
+		}
+
+		document.GeneratePdf(filePath);
 	}
+
+	private void Page_Loaded(object sender, RoutedEventArgs e) => BasePage.SaveFileFailed += OnSaveFileFailed;
+
+	private void Page_Unloaded(object sender, RoutedEventArgs e) => BasePage.SaveFileFailed -= OnSaveFileFailed;
 }
 
 /// <summary>

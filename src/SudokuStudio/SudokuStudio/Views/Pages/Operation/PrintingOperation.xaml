@@ -6,8 +6,13 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=po:PrintingOperation}">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=po:PrintingOperation}"
+	Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 	<Page.Resources>
+		<TeachingTip
+			x:Name="ErrorDialog_ProgramIsSnapped" Target="{x:Bind PrintButton}" IsLightDismissEnabled="True"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_FailedToOpenFilePicker}"
+			Subtitle="{m:R Key=AnalyzePage_CannotOpenFile_ProgramIsSnapped}" />
 		<TeachingTip
 			x:Name="ErrorDialog_AnalysisResultNotExist" Target="{x:Bind PrintButton}" IsLightDismissEnabled="True"
 			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_OutputFailed}"

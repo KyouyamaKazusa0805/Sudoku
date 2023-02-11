@@ -3393,6 +3393,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Plain text format.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FileExtension_PortableDocument">
+            <summary>
+              Looks up a localized string similar to Portable document format.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.FileExtension_TextDescription">
             <summary>
               Looks up a localized string similar to Sudoku puzzle format.
@@ -3768,6 +3773,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Usage: !1-4、!567、!8、9.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SuggestedFileName_Output">
+            <summary>
+              Looks up a localized string similar to Output.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Storage.CommonFileExtensions">
             <summary>
             Provides a list of file extension names of bound file types used by this project.
@@ -3791,6 +3801,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Storage.CommonFileExtensions.UserPreference">
             <summary>
             Indicates the user preference file format (SSP - Sudoku Studio Preference format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.CommonFileExtensions.PortableDocument">
+            <summary>
+            Indicates the portable document format.
             </summary>
         </member>
         <member name="T:SudokuStudio.Storage.CommonPaths">
@@ -5482,6 +5497,12 @@ if (student is (name: var name, age: >= 18))
             <param name="analysisResult">The analysis result instance.</param>
             <seealso cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.EnsureUnsnapped(System.Boolean)">
+            <summary>
+            To determine whether the current application view is in an unsnapped state.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.OpenFileInternalAsync">
             <summary>
             Open a file.
@@ -5558,12 +5579,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Sets the end view.
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.EnsureUnsnapped(System.Boolean)">
-            <summary>
-            To determine whether the current application view is in an unsnapped state.
-            </summary>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeComponent">
             <summary>
@@ -5973,6 +5988,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.PrintingOperation.BasePage">
             <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.OnSaveFileFailed(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Interaction.SaveFileFailedEventArgs)">
+            <summary>
+            The method called by <see cref="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/>.
+            </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.InitializeComponent">
             <summary>

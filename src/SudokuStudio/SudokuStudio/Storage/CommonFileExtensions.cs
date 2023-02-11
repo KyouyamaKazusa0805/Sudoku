@@ -24,4 +24,9 @@ public static class CommonFileExtensions
 	/// Indicates the user preference file format (SSP - Sudoku Studio Preference format).
 	/// </summary>
 	public const string UserPreference = ".ssp";
+
+	/// <summary>
+	/// Indicates the portable document format.
+	/// </summary>
+	public const string PortableDocument = ".pdf";
 }

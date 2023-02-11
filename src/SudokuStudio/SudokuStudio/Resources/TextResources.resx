@@ -471,6 +471,9 @@
   <data name="FileExtension_PlainTextDescription" xml:space="preserve">
     <value>Plain text format</value>
   </data>
+  <data name="FileExtension_PortableDocument" xml:space="preserve">
+    <value>Portable document format</value>
+  </data>
   <data name="FileExtension_TextDescription" xml:space="preserve">
     <value>Sudoku puzzle format</value>
   </data>
@@ -695,6 +698,9 @@
   </data>
   <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
     <value>Usage: !1-4、!567、!8、9</value>
+  </data>
+  <data name="SuggestedFileName_Output" xml:space="preserve">
+    <value>Output</value>
   </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>Easy</value>

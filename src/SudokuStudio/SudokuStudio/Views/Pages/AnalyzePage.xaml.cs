@@ -123,6 +123,32 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	}
 
 	/// <summary>
+	/// To determine whether the current application view is in an unsnapped state.
+	/// </summary>
+	/// <returns>The <see cref="bool"/> value indicating that.</returns>
+	internal bool EnsureUnsnapped(bool isFileSaving)
+	{
+		/**
+			<see cref="FileOpenPicker"/> APIs will not work if the application is in a snapped state.
+			If an app wants to show a <see cref="FileOpenPicker"/> while snapped, it must attempt to unsnap first.
+		*/
+		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
+		if (!unsnapped)
+		{
+			if (isFileSaving)
+			{
+				SaveFileFailed?.Invoke(this, new(SaveFileFailedReason.UnsnappingFailed));
+			}
+			else
+			{
+				OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.UnsnappingFailed));
+			}
+		}
+
+		return unsnapped;
+	}
+
+	/// <summary>
 	/// Open a file.
 	/// </summary>
 	/// <returns>A task that handles the operation.</returns>
@@ -487,32 +513,6 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		{
 			CurrentViewIndex = length - 1;
 		}
-	}
-
-	/// <summary>
-	/// To determine whether the current application view is in an unsnapped state.
-	/// </summary>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	private bool EnsureUnsnapped(bool isFileSaving)
-	{
-		/**
-			<see cref="FileOpenPicker"/> APIs will not work if the application is in a snapped state.
-			If an app wants to show a <see cref="FileOpenPicker"/> while snapped, it must attempt to unsnap first.
-		*/
-		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
-		if (!unsnapped)
-		{
-			if (isFileSaving)
-			{
-				SaveFileFailed?.Invoke(this, new(SaveFileFailedReason.UnsnappingFailed));
-			}
-			else
-			{
-				OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.UnsnappingFailed));
-			}
-		}
-
-		return unsnapped;
 	}
 
 

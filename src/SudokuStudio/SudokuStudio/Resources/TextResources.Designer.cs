@@ -1204,6 +1204,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Portable document format.
+        /// </summary>
+        internal static string FileExtension_PortableDocument {
+            get {
+                return ResourceManager.GetString("FileExtension_PortableDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sudoku puzzle format.
         /// </summary>
         internal static string FileExtension_TextDescription {
@@ -1875,6 +1884,15 @@ namespace SudokuStudio.Resources {
         internal static string SudokuPane_RightClickMenu_InputSetterPlaceholder {
             get {
                 return ResourceManager.GetString("SudokuPane_RightClickMenu_InputSetterPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        internal static string SuggestedFileName_Output {
+            get {
+                return ResourceManager.GetString("SuggestedFileName_Output", resourceCulture);
             }
         }
     }
