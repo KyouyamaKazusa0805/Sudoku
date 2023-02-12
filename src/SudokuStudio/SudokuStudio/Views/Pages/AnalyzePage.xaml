@@ -161,7 +161,8 @@
 						a:StepGathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
 					/>
 					<PipsPager
-						HorizontalAlignment="Center" MaxVisiblePips="10" PreviousButtonVisibility="Visible" NextButtonVisibility="Visible"
+						HorizontalAlignment="Center" MaxVisiblePips="10"
+						PreviousButtonVisibility="VisibleOnPointerOver" NextButtonVisibility="VisibleOnPointerOver"
 						Visibility="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerVisibility(VisualUnit),Mode=OneWay}"
 						NumberOfPages="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerPageCount(VisualUnit),Mode=OneWay}"
 						SelectedPageIndex="{x:Bind cvt:AnalyzeConversion.GetCurrentViewIndexForViewPipsPager(CurrentViewIndex),Mode=TwoWay,BindBack=SkipToSpecifiedViewIndex}" />
