@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interop;
+﻿namespace SudokuStudio.Runtime.InteropServices;
 
 /// <summary>
 /// Exposes a method through which a client can provide an owner window

@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interop;
+﻿namespace SudokuStudio.Runtime.InteropServices;
 
 /// <inheritdoc cref="GUITHREADINFO.flags"/>
 [Flags]

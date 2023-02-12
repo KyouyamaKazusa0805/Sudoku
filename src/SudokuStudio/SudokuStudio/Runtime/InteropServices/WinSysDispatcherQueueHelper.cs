@@ -1,5 +1,5 @@
 ﻿#if MICA_BACKDROP || ACRYLIC_BACKDROP
-namespace SudokuStudio.Interop;
+namespace SudokuStudio.Runtime.InteropServices;
 
 /// <summary>
 /// Defines a helper instance that is applied to type <see cref="WinSysDispatcherQueue"/>.

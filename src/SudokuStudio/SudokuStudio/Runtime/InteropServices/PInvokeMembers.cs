@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interop;
+﻿namespace SudokuStudio.Runtime.InteropServices;
 
 /// <summary>
 /// Provides with some deprecated P/Invoke methods. Such methods may be used in the future.

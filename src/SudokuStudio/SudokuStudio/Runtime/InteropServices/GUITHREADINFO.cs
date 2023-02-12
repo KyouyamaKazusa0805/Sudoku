@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interop;
+﻿namespace SudokuStudio.Runtime.InteropServices;
 
 /// <summary>
 /// Contains information about a GUI thread.

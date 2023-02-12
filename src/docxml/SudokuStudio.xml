@@ -2051,393 +2051,6 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusion">The overlapped result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:SudokuStudio.Interop.DispatcherQueueOptions">
-            <summary>
-            Specifies the threading and apartment type for a new
-            <see href="https://learn.microsoft.com/en-us/uwp/api/windows.system.dispatcherqueuecontroller"><c>DispatcherQueueController</c></see>.
-            </summary>
-            <remarks>
-            <para>Introduced in Windows 10, version 1709.</para>
-            <para><b>Requirements</b></para>
-            <para>
-            <list type="table">
-            <item>
-            <term>Header</term>
-            <description><c>dispatcherqueue.h</c></description>
-            </item>
-            </list>
-            </para>
-            <para>
-            Source: <see href="https://learn.microsoft.com/en-us/windows/win32/api/dispatcherqueue/ns-dispatcherqueue-dispatcherqueueoptions">DispatcherQueueOptions structure (dispatcherqueue.h)</see>.
-            </para>
-            </remarks>
-            <seealso href="https://learn.microsoft.com/en-us/windows/win32/api/dispatcherqueue/nf-dispatcherqueue-createdispatcherqueuecontroller">
-            <c>CreateDispatcherQueueController</c>
-            </seealso>
-        </member>
-        <member name="F:SudokuStudio.Interop.DispatcherQueueOptions.dwSize">
-            <summary>
-            Size of this <c><b>DispatcherQueueOptions</b></c> structure.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.DispatcherQueueOptions.threadType">
-            <summary>
-            Thread affinity for the created <c><b>DispatcherQueueController</b></c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.DispatcherQueueOptions.apartmentType">
-            <summary>
-            Specifies whether to initialize COM apartment on the new thread as an application single-threaded apartment (ASTA)
-            or single-threaded apartment (STA). This field is only relevant if <see cref="F:SudokuStudio.Interop.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_DEDICATED</c>.
-            Use <c>DQTAT_COM_NONE</c> when <see cref="F:SudokuStudio.Interop.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_CURRENT</c>.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Interop.GUITHREADINFO">
-            <summary>
-            Contains information about a GUI thread.
-            </summary>
-            <remarks>
-            This structure is used with the
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo</see>
-            function to retrieve information about the active window or a specified GUI thread.
-            </remarks>
-        </member>
-        <member name="F:SudokuStudio.Interop.GUITHREADINFO.cbSize">
-            <summary>
-            The size of this structure, in bytes. The caller must set this member to <see langword="sizeof"/>(<see cref="T:SudokuStudio.Interop.GUITHREADINFO"/>).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.GUITHREADINFO.flags">
-            <summary>
-            The thread state. This member can be one or more of the following values.
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term>
-            <c>GUI_CARETBLINKING</c><br/>
-            0x00000001
-            </term>
-            <description>The caret's blink state. This bit is set if the caret is visible.</description>
-            </item>
-            <item>
-            <term>
-            <c>GUI_INMENUMODE</c><br/>
-            0x00000004
-            </term>
-            <description>The thread's menu state. This bit is set if the thread is in menu mode.</description>
-            </item>
-            <item>
-            <term>
-            <c>GUI_INMOVESIZE</c><br/>
-            0x00000002
-            </term>
-            <description>The thread's move state. This bit is set if the thread is in a move or size loop.</description>
-            </item>
-            <item>
-            <term>
-            <c>GUI_POPUPMENUMODE</c><br/>
-            0x00000010
-            </term>
-            <description>The thread's pop-up menu state. This bit is set if the thread has an active pop-up menu.</description>
-            </item>
-            <item>
-            <term>
-            <c>GUI_SYSTEMMENUMODE</c><br/>
-            0x00000008
-            </term>
-            <description>The thread's system menu state. This bit is set if the thread is in a system menu mode.</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.GUITHREADINFO.hwndActive">
-            <summary>
-            A handle to the active window within the thread.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.GUITHREADINFO.hwndFocus">
-            <summary>
-            A handle to the window that has the keyboard focus.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.GUITHREADINFO.hwndCapture">
-            <summary>
-            A handle to the window that has captured the mouse.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.GUITHREADINFO.hwndMenuOwner">
-            <summary>
-            A handle to the window that owns any active menus.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.GUITHREADINFO.hwndMoveSize">
-            <summary>
-            A handle to the window in a move or size loop.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.GUITHREADINFO.hwndCaret">
-            <summary>
-            A handle to the window that is displaying the caret.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.GUITHREADINFO.rcCaret">
-            <summary>
-            The caret's bounding rectangle, in client coordinates, relative to the window specified by the hwndCaret member.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Interop.GuiThreadInfoFlags">
-            <inheritdoc cref="F:SudokuStudio.Interop.GUITHREADINFO.flags"/>
-        </member>
-        <member name="T:SudokuStudio.Interop.IInitializeWithWindow">
-            <summary>
-            Exposes a method through which a client can provide an owner window
-            to a Windows Runtime (WinRT) object used in a desktop application.
-            </summary>
-            <remarks>
-            <para>
-            <b>When to initialize:</b><br/>
-            Implement this interface if your object needs to be provided with an owner window,
-            generally to display UI. Most third-party applications will not need to implement this interface.
-            </para>
-            <para>
-            <b>When to use:</b><br/>
-            Use this interface if you will provide an owner window to a WinRT object in a desktop application.
-            For more information about this scenario, see
-            <see href="https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp#classes-that-use-iinitializewithwindow">
-            Classes that use <c>IInitializeWithWindow</c>
-            </see>.
-            </para>
-            <para>
-            This interface is implemented by the following objects. Note that this is necessarily an incomplete list;
-            refer to an individual object's documentation to determine whether that object implements this interface.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:SudokuStudio.Interop.IInitializeWithWindow.Initialize(System.IntPtr)">
-            <summary>
-            Specifies an owner window to be used by a Windows Runtime (WinRT) object that is used in a desktop app.
-            </summary>
-            <param name="hwnd">The handle of the window to be used as the owner window.</param>
-            <remarks>
-            The method doesn't return anything, but the method returns an HResult value
-            in the Win32 API. For more information, please visit
-            <see href="https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-iinitializewithwindow-initialize">
-            this link
-            </see>.
-            </remarks>
-        </member>
-        <member name="T:SudokuStudio.Interop.IWindowNative">
-            <summary>
-            <para>
-            Enables interoperability between XAML and a native window. This interface is implemented by <see cref="T:Microsoft.UI.Xaml.Window"/>,
-            which desktop apps can use to get the underlying HWND of the window.
-            </para>
-            <para>For more info, and code examples, see
-            <see href="https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd">Retrieve a window handle (HWND).</see>
-            </para>
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interop.IWindowNative.WindowHandle">
-            <summary>
-            Retrieves the window handle (HWND) of the window represented by the object that implements <see cref="T:SudokuStudio.Interop.IWindowNative"/>.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Interop.Monitor_DPI_Type">
-            <summary>
-            Identifies the dots per inch (dpi) setting for a monitor.
-            </summary>
-            <remarks>
-            <para>
-            All of these settings are affected by the
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/ne-shellscalingapi-process_dpi_awareness">PROCESS_DPI_AWARENESS</see>
-            of your application.
-            </para>
-            <para><b>Requirements</b></para>
-            <para>
-            <list type="table">
-            <item>
-            <term>Minimum supported client</term>
-            <description>Windows 8.1 [desktop apps only]</description>
-            </item>
-            <item>
-            <term>Minimum supported server</term>
-            <description>Windows Server 2012 R2 [desktop apps only]</description>
-            </item>
-            <item>
-            <term>Header</term>
-            <description><c>shellscalingapi.h</c></description>
-            </item>
-            </list>
-            </para>
-            <para>
-            Source: <see href="https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type">MONITOR_DPI_TYPE enumeration (shellscalingapi.h)</see>.
-            </para>
-            </remarks>
-        </member>
-        <member name="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Effective_DPI">
-            <summary>
-            <para>Value: <i>0</i></para>
-            <para>
-            The effective DPI. This value should be used when determining the correct scale factor for scaling UI elements.
-            This incorporates the scale factor set by the user for this specific display.
-            </para>
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Angular_DPI">
-            <summary>
-            <para>Value: <i>1</i></para>
-            <para>
-            The angular DPI. This DPI ensures rendering at a compliant angular resolution on the screen.
-            This does not include the scale factor set by the user for this specific display.
-            </para>
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Raw_DPI">
-            <summary>
-            <para>Value: <i>2</i></para>
-            <para>
-            The raw DPI. This value is the linear DPI of the screen as measured on the screen itself.
-            Use this value when you want to read the pixel density and not the recommended scaling setting.
-            This does not include the scale factor set by the user for this specific display and is not guaranteed to be a supported DPI value.
-            </para>
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Default">
-            <summary>
-            The default DPI setting for a monitor is <see cref="F:SudokuStudio.Interop.Monitor_DPI_Type.MDT_Effective_DPI"/>.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Interop.PInvokeMembers">
-            <summary>
-            Provides with some deprecated P/Invoke methods. Such methods may be used in the future.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interop.PInvokeMembers.GetActiveWindow">
-            <summary>
-            Retrieves the window handle to the active window attached to the calling thread's message queue.
-            </summary>
-            <returns>
-            The return value is the handle to the active window attached to the calling thread's message queue.
-            Otherwise, the return value is <see langword="null"/>.
-            </returns>
-            <remarks>
-            <para>
-            To get the handle to the foreground window, you can use
-            <see href="https://learn.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-getforegroundwindow">GetForegroundWindow</see>.
-            </para>
-            <para>
-            To get the window handle to the active window in the message queue for another thread, use
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo</see>.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:SudokuStudio.Interop.PInvokeMembers.GetGUIThreadInfo(System.UInt32,SudokuStudio.Interop.GUITHREADINFO@)">
-            <summary>
-            Retrieves information about the active window or a specified GUI thread.
-            </summary>
-            <param name="idThread">
-            The identifier for the thread for which information is to be retrieved. To retrieve this value, use the
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowthreadprocessid">GetWindowThreadProcessId</see> function.
-            If this parameter is <see langword="null"/>, the function returns information for the foreground thread.
-            </param>
-            <param name="lpgui">
-            A pointer to a <see cref="T:SudokuStudio.Interop.GUITHREADINFO"/> structure that receives information describing the thread.
-            Note that you must set the cbSize member to <see langword="sizeof"/>(<see cref="T:SudokuStudio.Interop.GUITHREADINFO"/>) before calling this function.
-            </param>
-            <returns>
-            <para>If the function succeeds, the return value is nonzero.</para>
-            <para>
-            If the function fails, the return value is zero. To get extended error information, call
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</see>.
-            </para>
-            </returns>
-            <remarks>
-            <para>
-            This function succeeds even if the active window is not owned by the calling process.
-            If the specified thread does not exist or have an input queue, the function will fail.
-            </para>
-            <para>
-            This function is useful for retrieving out-of-context information about a thread.
-            The information retrieved is the same as if an application retrieved the information about itself.
-            </para>
-            <para>
-            For an edit control, the returned rcCaret rectangle contains the caret plus information on text direction and padding.
-            Thus, it may not give the correct position of the cursor. The Sans Serif font uses four characters for the cursor:
-            <list type="table">
-            <listheader>
-            <term>Cursor character</term>
-            <description>Unicode code point</description>
-            </listheader>
-            <item>
-            <term><c>CURSOR_LTR</c></term>
-            <description>0xf00c</description>
-            </item>
-            <item>
-            <term><c>CURSOR_RTL</c></term>
-            <description>0xf00d</description>
-            </item>
-            <item>
-            <term><c>CURSOR_THAI</c></term>
-            <description>0xf00e</description>
-            </item>
-            <item>
-            <term><c>CURSOR_USA</c></term>
-            <description>0xfff (this is a marker value with no associated glyph)</description>
-            </item>
-            </list>
-            </para>
-            <para>
-            To get the actual insertion point in the rcCaret rectangle, perform the following steps.
-            <list type="number">
-            <item>
-            Call <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getkeyboardlayout">GetKeyboardLayout</see>
-            to retrieve the current input language.
-            </item>
-            <item>Determine the character used for the cursor, based on the current input language.</item>
-            <item>
-            Call <see href="https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfonta">CreateFont</see>
-            using Sans Serif for the font, the height given by <see cref="F:SudokuStudio.Interop.GUITHREADINFO.rcCaret"/>, and a width of zero.
-            For <c>fnWeight</c>, call <c>SystemParametersInfo(SPI_GETCARETWIDTH, 0, pvParam, 0)</c>.
-            If <c>pvParam</c> is greater than 1, set <c>fnWeight</c> to 700, otherwise set <c>fnWeight</c> to 400.
-            </item>
-            <item>
-            Select the font into a device context (DC) and use
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getcharabcwidthsa">GetCharABCWidths</see>
-            to get the B width of the appropriate cursor character.
-            </item>
-            <item>
-            Add the B width to <see cref="P:System.Drawing.Rectangle.Left"/> in <see cref="F:SudokuStudio.Interop.GUITHREADINFO.rcCaret"/>
-            to obtain the actual insertion point.
-            </item>
-            </list>
-            </para>
-            <para>
-            The function may not return valid window handles in the <see cref="T:SudokuStudio.Interop.GUITHREADINFO"/>
-            structure when called to retrieve information for the foreground thread, such as when a window is losing activation.
-            </para>
-            </remarks>
-            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo function (winuser.h)</see>
-        </member>
-        <member name="T:SudokuStudio.Interop.WinSysDispatcherQueueHelper">
-            <summary>
-            Defines a helper instance that is applied to type <see cref="T:Windows.System.DispatcherQueue"/>.
-            </summary>
-            <seealso cref="T:Windows.System.DispatcherQueue"/>
-        </member>
-        <member name="F:SudokuStudio.Interop.WinSysDispatcherQueueHelper._dispatcherQueueController">
-            <summary>
-            The internal field that is used for exchanging.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interop.WinSysDispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController">
-            <summary>
-            Try to create a <see cref="T:Windows.System.DispatcherQueueController"/> instance.
-            </summary>
-            <seealso cref="T:Windows.System.DispatcherQueueController"/>
-        </member>
         <member name="T:SudokuStudio.Markup.DashArrayExtension">
             <summary>
             Defines a <see cref="T:SudokuStudio.Collection.DashArray"/> markup extension.
@@ -4025,6 +3638,393 @@ if (student is (name: var name, age: >= 18))
             <summary>
               Looks up a localized string similar to Output.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.DispatcherQueueOptions">
+            <summary>
+            Specifies the threading and apartment type for a new
+            <see href="https://learn.microsoft.com/en-us/uwp/api/windows.system.dispatcherqueuecontroller"><c>DispatcherQueueController</c></see>.
+            </summary>
+            <remarks>
+            <para>Introduced in Windows 10, version 1709.</para>
+            <para><b>Requirements</b></para>
+            <para>
+            <list type="table">
+            <item>
+            <term>Header</term>
+            <description><c>dispatcherqueue.h</c></description>
+            </item>
+            </list>
+            </para>
+            <para>
+            Source: <see href="https://learn.microsoft.com/en-us/windows/win32/api/dispatcherqueue/ns-dispatcherqueue-dispatcherqueueoptions">DispatcherQueueOptions structure (dispatcherqueue.h)</see>.
+            </para>
+            </remarks>
+            <seealso href="https://learn.microsoft.com/en-us/windows/win32/api/dispatcherqueue/nf-dispatcherqueue-createdispatcherqueuecontroller">
+            <c>CreateDispatcherQueueController</c>
+            </seealso>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.DispatcherQueueOptions.dwSize">
+            <summary>
+            Size of this <c><b>DispatcherQueueOptions</b></c> structure.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.DispatcherQueueOptions.threadType">
+            <summary>
+            Thread affinity for the created <c><b>DispatcherQueueController</b></c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.DispatcherQueueOptions.apartmentType">
+            <summary>
+            Specifies whether to initialize COM apartment on the new thread as an application single-threaded apartment (ASTA)
+            or single-threaded apartment (STA). This field is only relevant if <see cref="F:SudokuStudio.Runtime.InteropServices.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_DEDICATED</c>.
+            Use <c>DQTAT_COM_NONE</c> when <see cref="F:SudokuStudio.Runtime.InteropServices.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_CURRENT</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.GUITHREADINFO">
+            <summary>
+            Contains information about a GUI thread.
+            </summary>
+            <remarks>
+            This structure is used with the
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo</see>
+            function to retrieve information about the active window or a specified GUI thread.
+            </remarks>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.cbSize">
+            <summary>
+            The size of this structure, in bytes. The caller must set this member to <see langword="sizeof"/>(<see cref="T:SudokuStudio.Runtime.InteropServices.GUITHREADINFO"/>).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.flags">
+            <summary>
+            The thread state. This member can be one or more of the following values.
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>
+            <c>GUI_CARETBLINKING</c><br/>
+            0x00000001
+            </term>
+            <description>The caret's blink state. This bit is set if the caret is visible.</description>
+            </item>
+            <item>
+            <term>
+            <c>GUI_INMENUMODE</c><br/>
+            0x00000004
+            </term>
+            <description>The thread's menu state. This bit is set if the thread is in menu mode.</description>
+            </item>
+            <item>
+            <term>
+            <c>GUI_INMOVESIZE</c><br/>
+            0x00000002
+            </term>
+            <description>The thread's move state. This bit is set if the thread is in a move or size loop.</description>
+            </item>
+            <item>
+            <term>
+            <c>GUI_POPUPMENUMODE</c><br/>
+            0x00000010
+            </term>
+            <description>The thread's pop-up menu state. This bit is set if the thread has an active pop-up menu.</description>
+            </item>
+            <item>
+            <term>
+            <c>GUI_SYSTEMMENUMODE</c><br/>
+            0x00000008
+            </term>
+            <description>The thread's system menu state. This bit is set if the thread is in a system menu mode.</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.hwndActive">
+            <summary>
+            A handle to the active window within the thread.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.hwndFocus">
+            <summary>
+            A handle to the window that has the keyboard focus.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.hwndCapture">
+            <summary>
+            A handle to the window that has captured the mouse.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.hwndMenuOwner">
+            <summary>
+            A handle to the window that owns any active menus.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.hwndMoveSize">
+            <summary>
+            A handle to the window in a move or size loop.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.hwndCaret">
+            <summary>
+            A handle to the window that is displaying the caret.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.rcCaret">
+            <summary>
+            The caret's bounding rectangle, in client coordinates, relative to the window specified by the hwndCaret member.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.GuiThreadInfoFlags">
+            <inheritdoc cref="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.flags"/>
+        </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.IInitializeWithWindow">
+            <summary>
+            Exposes a method through which a client can provide an owner window
+            to a Windows Runtime (WinRT) object used in a desktop application.
+            </summary>
+            <remarks>
+            <para>
+            <b>When to initialize:</b><br/>
+            Implement this interface if your object needs to be provided with an owner window,
+            generally to display UI. Most third-party applications will not need to implement this interface.
+            </para>
+            <para>
+            <b>When to use:</b><br/>
+            Use this interface if you will provide an owner window to a WinRT object in a desktop application.
+            For more information about this scenario, see
+            <see href="https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp#classes-that-use-iinitializewithwindow">
+            Classes that use <c>IInitializeWithWindow</c>
+            </see>.
+            </para>
+            <para>
+            This interface is implemented by the following objects. Note that this is necessarily an incomplete list;
+            refer to an individual object's documentation to determine whether that object implements this interface.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Runtime.InteropServices.IInitializeWithWindow.Initialize(System.IntPtr)">
+            <summary>
+            Specifies an owner window to be used by a Windows Runtime (WinRT) object that is used in a desktop app.
+            </summary>
+            <param name="hwnd">The handle of the window to be used as the owner window.</param>
+            <remarks>
+            The method doesn't return anything, but the method returns an HResult value
+            in the Win32 API. For more information, please visit
+            <see href="https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-iinitializewithwindow-initialize">
+            this link
+            </see>.
+            </remarks>
+        </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.IWindowNative">
+            <summary>
+            <para>
+            Enables interoperability between XAML and a native window. This interface is implemented by <see cref="T:Microsoft.UI.Xaml.Window"/>,
+            which desktop apps can use to get the underlying HWND of the window.
+            </para>
+            <para>For more info, and code examples, see
+            <see href="https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd">Retrieve a window handle (HWND).</see>
+            </para>
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Runtime.InteropServices.IWindowNative.WindowHandle">
+            <summary>
+            Retrieves the window handle (HWND) of the window represented by the object that implements <see cref="T:SudokuStudio.Runtime.InteropServices.IWindowNative"/>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.Monitor_DPI_Type">
+            <summary>
+            Identifies the dots per inch (dpi) setting for a monitor.
+            </summary>
+            <remarks>
+            <para>
+            All of these settings are affected by the
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/ne-shellscalingapi-process_dpi_awareness">PROCESS_DPI_AWARENESS</see>
+            of your application.
+            </para>
+            <para><b>Requirements</b></para>
+            <para>
+            <list type="table">
+            <item>
+            <term>Minimum supported client</term>
+            <description>Windows 8.1 [desktop apps only]</description>
+            </item>
+            <item>
+            <term>Minimum supported server</term>
+            <description>Windows Server 2012 R2 [desktop apps only]</description>
+            </item>
+            <item>
+            <term>Header</term>
+            <description><c>shellscalingapi.h</c></description>
+            </item>
+            </list>
+            </para>
+            <para>
+            Source: <see href="https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type">MONITOR_DPI_TYPE enumeration (shellscalingapi.h)</see>.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.Monitor_DPI_Type.MDT_Effective_DPI">
+            <summary>
+            <para>Value: <i>0</i></para>
+            <para>
+            The effective DPI. This value should be used when determining the correct scale factor for scaling UI elements.
+            This incorporates the scale factor set by the user for this specific display.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.Monitor_DPI_Type.MDT_Angular_DPI">
+            <summary>
+            <para>Value: <i>1</i></para>
+            <para>
+            The angular DPI. This DPI ensures rendering at a compliant angular resolution on the screen.
+            This does not include the scale factor set by the user for this specific display.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.Monitor_DPI_Type.MDT_Raw_DPI">
+            <summary>
+            <para>Value: <i>2</i></para>
+            <para>
+            The raw DPI. This value is the linear DPI of the screen as measured on the screen itself.
+            Use this value when you want to read the pixel density and not the recommended scaling setting.
+            This does not include the scale factor set by the user for this specific display and is not guaranteed to be a supported DPI value.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.Monitor_DPI_Type.MDT_Default">
+            <summary>
+            The default DPI setting for a monitor is <see cref="F:SudokuStudio.Runtime.InteropServices.Monitor_DPI_Type.MDT_Effective_DPI"/>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.PInvokeMembers">
+            <summary>
+            Provides with some deprecated P/Invoke methods. Such methods may be used in the future.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Runtime.InteropServices.PInvokeMembers.GetActiveWindow">
+            <summary>
+            Retrieves the window handle to the active window attached to the calling thread's message queue.
+            </summary>
+            <returns>
+            The return value is the handle to the active window attached to the calling thread's message queue.
+            Otherwise, the return value is <see langword="null"/>.
+            </returns>
+            <remarks>
+            <para>
+            To get the handle to the foreground window, you can use
+            <see href="https://learn.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-getforegroundwindow">GetForegroundWindow</see>.
+            </para>
+            <para>
+            To get the window handle to the active window in the message queue for another thread, use
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo</see>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Runtime.InteropServices.PInvokeMembers.GetGUIThreadInfo(System.UInt32,SudokuStudio.Runtime.InteropServices.GUITHREADINFO@)">
+            <summary>
+            Retrieves information about the active window or a specified GUI thread.
+            </summary>
+            <param name="idThread">
+            The identifier for the thread for which information is to be retrieved. To retrieve this value, use the
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowthreadprocessid">GetWindowThreadProcessId</see> function.
+            If this parameter is <see langword="null"/>, the function returns information for the foreground thread.
+            </param>
+            <param name="lpgui">
+            A pointer to a <see cref="T:SudokuStudio.Runtime.InteropServices.GUITHREADINFO"/> structure that receives information describing the thread.
+            Note that you must set the cbSize member to <see langword="sizeof"/>(<see cref="T:SudokuStudio.Runtime.InteropServices.GUITHREADINFO"/>) before calling this function.
+            </param>
+            <returns>
+            <para>If the function succeeds, the return value is nonzero.</para>
+            <para>
+            If the function fails, the return value is zero. To get extended error information, call
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</see>.
+            </para>
+            </returns>
+            <remarks>
+            <para>
+            This function succeeds even if the active window is not owned by the calling process.
+            If the specified thread does not exist or have an input queue, the function will fail.
+            </para>
+            <para>
+            This function is useful for retrieving out-of-context information about a thread.
+            The information retrieved is the same as if an application retrieved the information about itself.
+            </para>
+            <para>
+            For an edit control, the returned rcCaret rectangle contains the caret plus information on text direction and padding.
+            Thus, it may not give the correct position of the cursor. The Sans Serif font uses four characters for the cursor:
+            <list type="table">
+            <listheader>
+            <term>Cursor character</term>
+            <description>Unicode code point</description>
+            </listheader>
+            <item>
+            <term><c>CURSOR_LTR</c></term>
+            <description>0xf00c</description>
+            </item>
+            <item>
+            <term><c>CURSOR_RTL</c></term>
+            <description>0xf00d</description>
+            </item>
+            <item>
+            <term><c>CURSOR_THAI</c></term>
+            <description>0xf00e</description>
+            </item>
+            <item>
+            <term><c>CURSOR_USA</c></term>
+            <description>0xfff (this is a marker value with no associated glyph)</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            To get the actual insertion point in the rcCaret rectangle, perform the following steps.
+            <list type="number">
+            <item>
+            Call <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getkeyboardlayout">GetKeyboardLayout</see>
+            to retrieve the current input language.
+            </item>
+            <item>Determine the character used for the cursor, based on the current input language.</item>
+            <item>
+            Call <see href="https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfonta">CreateFont</see>
+            using Sans Serif for the font, the height given by <see cref="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.rcCaret"/>, and a width of zero.
+            For <c>fnWeight</c>, call <c>SystemParametersInfo(SPI_GETCARETWIDTH, 0, pvParam, 0)</c>.
+            If <c>pvParam</c> is greater than 1, set <c>fnWeight</c> to 700, otherwise set <c>fnWeight</c> to 400.
+            </item>
+            <item>
+            Select the font into a device context (DC) and use
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getcharabcwidthsa">GetCharABCWidths</see>
+            to get the B width of the appropriate cursor character.
+            </item>
+            <item>
+            Add the B width to <see cref="P:System.Drawing.Rectangle.Left"/> in <see cref="F:SudokuStudio.Runtime.InteropServices.GUITHREADINFO.rcCaret"/>
+            to obtain the actual insertion point.
+            </item>
+            </list>
+            </para>
+            <para>
+            The function may not return valid window handles in the <see cref="T:SudokuStudio.Runtime.InteropServices.GUITHREADINFO"/>
+            structure when called to retrieve information for the foreground thread, such as when a window is losing activation.
+            </para>
+            </remarks>
+            <see href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo">GetGUIThreadInfo function (winuser.h)</see>
+        </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.WinSysDispatcherQueueHelper">
+            <summary>
+            Defines a helper instance that is applied to type <see cref="T:Windows.System.DispatcherQueue"/>.
+            </summary>
+            <seealso cref="T:Windows.System.DispatcherQueue"/>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.WinSysDispatcherQueueHelper._dispatcherQueueController">
+            <summary>
+            The internal field that is used for exchanging.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Runtime.InteropServices.WinSysDispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController">
+            <summary>
+            Try to create a <see cref="T:Windows.System.DispatcherQueueController"/> instance.
+            </summary>
+            <seealso cref="T:Windows.System.DispatcherQueueController"/>
         </member>
         <member name="T:SudokuStudio.Storage.CommonFileExtensions">
             <summary>
@@ -6636,9 +6636,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Windows.MainWindow._wsdqHelper">
             <summary>
-            Defines a <see cref="T:SudokuStudio.Interop.WinSysDispatcherQueueHelper"/> instance used for interaction with <see cref="T:Windows.System.DispatcherQueue"/>.
+            Defines a <see cref="T:SudokuStudio.Runtime.InteropServices.WinSysDispatcherQueueHelper"/> instance used for interaction with <see cref="T:Windows.System.DispatcherQueue"/>.
             </summary>
-            <seealso cref="T:SudokuStudio.Interop.WinSysDispatcherQueueHelper"/>
+            <seealso cref="T:SudokuStudio.Runtime.InteropServices.WinSysDispatcherQueueHelper"/>
             <seealso cref="T:Windows.System.DispatcherQueue"/>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.#ctor">

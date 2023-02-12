@@ -1,5 +1,5 @@
 ﻿#if CUSTOMIZED_TITLE_BAR
-namespace SudokuStudio.Interop;
+namespace SudokuStudio.Runtime.InteropServices;
 
 /// <summary>
 /// Identifies the dots per inch (dpi) setting for a monitor.
