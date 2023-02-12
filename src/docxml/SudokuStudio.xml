@@ -5579,16 +5579,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.BasePane"/>
             <seealso cref="M:SudokuStudio.Views.Controls.SudokuPaneCell.Flyout_Opening(System.Object,System.Object)"/>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell._candidatesMask">
-            <summary>
-            Indicates the candidates mask.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell._status">
-            <summary>
-            Indicates the cell status.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/> instance.
@@ -5603,9 +5593,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the cell index.
             </summary>
-        </member>
-        <member name="E:SudokuStudio.Views.Controls.SudokuPaneCell.PropertyChanged">
-            <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.InitializeComponent">
             <summary>
@@ -5622,11 +5609,29 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.StatusProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status"/>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPaneCell._candidatesMask"/>
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty" />
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPaneCell._status"/>
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StatusProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StatusProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueGroupView">
             <summary>

@@ -64,6 +64,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 				var docPath = (string?)null;
 				var defaultValueGenerator = (string?)null;
 				var defaultValue = (object?)null;
+				var callbackMethodName = (string?)null;
 				foreach (var pair in namedArgs)
 				{
 					switch (pair)
@@ -86,6 +87,11 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						case ("DefaultValue", { Value: { } v }):
 						{
 							defaultValue = v;
+							break;
+						}
+						case ("CallbackMethodName", { Value: string v }):
+						{
+							callbackMethodName = v;
 							break;
 						}
 					}
@@ -118,7 +124,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 				propertiesData.Add(
 					new(
 						propertyName, propertyType, docCref, docPath,
-						defaultValueGenerator, defaultValueGeneratorKind, defaultValue
+						defaultValueGenerator, defaultValueGeneratorKind, defaultValue, callbackMethodName
 					)
 				);
 
@@ -141,37 +147,17 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 				var properties = new List<string>();
 				foreach (var (_, propertiesData) in group)
 				{
-					foreach (var (propertyName, propertyType, docCref, docPath, generatorMemberName, generatorMemberKind, defaultValue) in propertiesData)
+					foreach (
+						var (
+							propertyName, propertyType, docCref, docPath, generatorMemberName,
+							generatorMemberKind, defaultValue, callbackMethodName
+						) in propertiesData
+					)
 					{
 						var propertyTypeStr = propertyType.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
-						var doc = (docCref, docPath) switch
-						{
-							(null, null) or (null, not null)
-								=>
-								$"""
-								/// <summary>
-									/// Indicates the interactive property that uses dependency property <see cref="{propertyName}Property"/> to get or set value.
-									/// </summary>
-									/// <seealso cref="{propertyName}Property" />
-								""",
-							(not null, null) => $"""/// <inheritdoc cref="{docCref}"/>""",
-							(not null, not null) => $"""/// <inheritdoc cref="{docCref}" path="{docPath}"/>"""
-						};
+						var doc = XamlBinding.GetDocumentationComment(propertyName, docCref, docPath, true);
 
-						var defaultValueCreatorStr = (defaultValue, generatorMemberName, generatorMemberKind) switch
-						{
-							(char c, _, _) => $", '{c}'",
-							(string s, _, _) => $", \"{s}\"",
-							(not null, _, _) => $", {defaultValue.ToString().ToLower()}", // true -> "True"
-							(_, null, _) => string.Empty,
-							(_, not null, { } kind) => kind switch
-							{
-								DefaultValueGeneratingMemberKind.Field or DefaultValueGeneratingMemberKind.Property => $", {generatorMemberName}",
-								DefaultValueGeneratingMemberKind.ParameterlessMethod => $", {generatorMemberName}()",
-								_ => null
-							},
-							_ => null
-						};
+						var defaultValueCreatorStr = XamlBinding.GetPropertyMetadataString(defaultValue, generatorMemberName, generatorMemberKind, callbackMethodName, propertyTypeStr);
 						if (defaultValueCreatorStr is null)
 						{
 							// Error case has been encountered.
@@ -187,7 +173,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
 								public static readonly global::Microsoft.UI.Xaml.DependencyProperty {propertyName}Property =
-									RegisterDependency<{propertyTypeStr}, {containingTypeStr}>(nameof({propertyName}){defaultValueCreatorStr});
+									global::Microsoft.UI.Xaml.DependencyProperty.Register(nameof({propertyName}), typeof({propertyTypeStr}), typeof({containingTypeStr}), {defaultValueCreatorStr});
 							"""
 						);
 
@@ -260,6 +246,7 @@ file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> Prope
 /// Indicates the kind of the referenced member specified as the argument <see cref="DefaultValueGeneratingMemberName"/>.
 /// </param>
 /// <param name="DefaultValue">Indicates the real default value.</param>
+/// <param name="CallbackMethodName">Indicates the callback method name.</param>
 file readonly record struct PropertyData(
 	string PropertyName,
 	ITypeSymbol PropertyType,
@@ -267,36 +254,6 @@ file readonly record struct PropertyData(
 	string? DocPath,
 	string? DefaultValueGeneratingMemberName,
 	DefaultValueGeneratingMemberKind? DefaultValueGeneratingMemberKind,
-	object? DefaultValue
+	object? DefaultValue,
+	string? CallbackMethodName
 );
-
-/// <summary>
-/// Defines a kind of default value generating member.
-/// </summary>
-file enum DefaultValueGeneratingMemberKind
-{
-	/// <summary>
-	/// Indicates the member type is a field.
-	/// </summary>
-	Field,
-
-	/// <summary>
-	/// Indicates the member type is a property.
-	/// </summary>
-	Property,
-
-	/// <summary>
-	/// Indicates the member type is a parameterless method.
-	/// </summary>
-	ParameterlessMethod,
-
-	/// <summary>
-	/// Indicates the member cannot be referenced.
-	/// </summary>
-	CannotReference,
-
-	/// <summary>
-	/// Otherwise.
-	/// </summary>
-	Otherwise
-}

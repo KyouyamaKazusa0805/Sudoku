@@ -6,7 +6,7 @@ namespace SudokuStudio.Views.Controls;
 /// <seealso cref="SudokuPane"/>
 [DependencyProperty<short>("CandidatesMask", DefaultValue = 511)]
 [DependencyProperty<CellStatus>("Status", DefaultValue = CellStatus.Empty)]
-public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
+public sealed partial class SudokuPaneCell : UserControl
 {
 	/// <summary>
 	/// Indicates the selected cell. The value is temporarily assigned into here, from <see cref="BasePane"/> property.
@@ -38,10 +38,6 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 	/// Indicates the cell index.
 	/// </summary>
 	internal int CellIndex { get; init; }
-
-
-	/// <inheritdoc/>
-	public event PropertyChangedEventHandler? PropertyChanged;
 
 
 	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => BasePane.SelectedCell = CellIndex;

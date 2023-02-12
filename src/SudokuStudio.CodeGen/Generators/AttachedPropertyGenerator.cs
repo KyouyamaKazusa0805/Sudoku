@@ -146,48 +146,9 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 					)
 					{
 						var propertyTypeStr = propertyType.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
-						var doc = (docCref, docPath) switch
-						{
-							(null, null) or (null, not null)
-								=>
-								$"""
-								/// <summary>
-									/// Indicates the interactive setter or getter methods that uses attached property <see cref="{propertyName}Property"/> to get or set value.
-									/// </summary>
-									/// <seealso cref="{propertyName}Property" />
-								""",
-							(not null, null) => $"""/// <inheritdoc cref="{docCref}"/>""",
-							(not null, not null) => $"""/// <inheritdoc cref="{docCref}" path="{docPath}"/>"""
-						};
+						var doc = XamlBinding.GetDocumentationComment(propertyName, docCref, docPath, false);
 
-						var defaultValueCreatorStr = (defaultValue, generatorMemberName, generatorMemberKind, callbackMethodName) switch
-						{
-							(char c, _, _, null) => $", new('{c}')",
-							(char c, _, _, _) => $", new('{c}', {callbackMethodName})",
-							(string s, _, _, null) => $", new(\"{s}\")",
-							(string s, _, _, _) => $", new(\"{s}\", {callbackMethodName})",
-							(not null, _, _, null) => $", new({defaultValue.ToString().ToLower()})", // true -> "True"
-							(not null, _, _, _) => $", new({defaultValue.ToString().ToLower()}, {callbackMethodName})", // true -> "True"
-							(_, null, _, null) => string.Empty,
-							(_, null, _, _) => $", new(default({propertyTypeStr}), {callbackMethodName})",
-							(_, not null, { } kind, _) => kind switch
-							{
-								DefaultValueGeneratingMemberKind.Field or DefaultValueGeneratingMemberKind.Property
-									=> callbackMethodName switch
-									{
-										null => $", new({generatorMemberName})",
-										_ => $", new({generatorMemberName}, {callbackMethodName})"
-									},
-								DefaultValueGeneratingMemberKind.ParameterlessMethod
-									=> callbackMethodName switch
-									{
-										null => $", new({generatorMemberName}())",
-										_ => $", new({generatorMemberName}(), {callbackMethodName})"
-									},
-								_ => null
-							},
-							_ => null
-						};
+						var defaultValueCreatorStr = XamlBinding.GetPropertyMetadataString(defaultValue, generatorMemberName, generatorMemberKind, callbackMethodName, propertyTypeStr);
 						if (defaultValueCreatorStr is null)
 						{
 							// Error case has been encountered.
@@ -202,7 +163,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
 								public static readonly global::Microsoft.UI.Xaml.DependencyProperty {propertyName}Property =
-									global::Microsoft.UI.Xaml.DependencyProperty.RegisterAttached("{propertyName}", typeof({propertyTypeStr}), typeof({containingTypeStr}){defaultValueCreatorStr});
+									global::Microsoft.UI.Xaml.DependencyProperty.RegisterAttached("{propertyName}", typeof({propertyTypeStr}), typeof({containingTypeStr}), {defaultValueCreatorStr});
 							"""
 						);
 
@@ -288,34 +249,3 @@ file readonly record struct PropertyData(
 	object? DefaultValue,
 	string? CallbackMethodName
 );
-
-/// <summary>
-/// Defines a kind of default value generating member.
-/// </summary>
-file enum DefaultValueGeneratingMemberKind
-{
-	/// <summary>
-	/// Indicates the member type is a field.
-	/// </summary>
-	Field,
-
-	/// <summary>
-	/// Indicates the member type is a property.
-	/// </summary>
-	Property,
-
-	/// <summary>
-	/// Indicates the member type is a parameterless method.
-	/// </summary>
-	ParameterlessMethod,
-
-	/// <summary>
-	/// Indicates the member cannot be referenced.
-	/// </summary>
-	CannotReference,
-
-	/// <summary>
-	/// Otherwise.
-	/// </summary>
-	Otherwise
-}
