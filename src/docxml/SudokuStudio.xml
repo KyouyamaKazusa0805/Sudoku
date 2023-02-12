@@ -3943,6 +3943,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Full house.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SingleCountingPracticingPage_Index5Only">
+            <summary>
+              Looks up a localized string similar to Row/Column/Block 5 Only.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SingleCountingPracticingPage_InputPuzzlesCount">
             <summary>
               Looks up a localized string similar to Input the desired number of puzzles to practice:.
@@ -6546,20 +6551,27 @@ if (student is (name: var name, age: >= 18))
             Indicates the generating mode.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.GeneratingMode.None">
+        <member name="F:SudokuStudio.Views.Pages.GeneratingMode.House5">
             <summary>
-            Indicates the mode is none.
+            Indicates the generator generates the puzzle that only uses row/column/block 5.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouseOnly">
+        <member name="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouse">
             <summary>
             Indicates the generator generates the puzzle that relies on full houses.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingleOnly">
+        <member name="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingle">
             <summary>
             Indicates the generator generates the puzzle that relies on naked singles.
             </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratingMode.Both">
+            <summary>
+            Indicates both <see cref="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouse"/> and <see cref="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingle"/>.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouse"/>
+            <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingle"/>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
             <summary>

@@ -702,6 +702,9 @@
   <data name="SingleCountingPracticingPage_FullHouseMode" xml:space="preserve">
     <value>只有同区剩余</value>
   </data>
+  <data name="SingleCountingPracticingPage_Index5Only" xml:space="preserve">
+    <value>只使用第 5 行/列/宫</value>
+  </data>
   <data name="SingleCountingPracticingPage_InputPuzzlesCount" xml:space="preserve">
     <value>请输入练习题目的个数：</value>
   </data>

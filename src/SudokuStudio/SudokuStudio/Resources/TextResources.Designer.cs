@@ -1897,6 +1897,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Row/Column/Block 5 Only.
+        /// </summary>
+        internal static string SingleCountingPracticingPage_Index5Only {
+            get {
+                return ResourceManager.GetString("SingleCountingPracticingPage_Index5Only", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input the desired number of puzzles to practice:.
         /// </summary>
         internal static string SingleCountingPracticingPage_InputPuzzlesCount {

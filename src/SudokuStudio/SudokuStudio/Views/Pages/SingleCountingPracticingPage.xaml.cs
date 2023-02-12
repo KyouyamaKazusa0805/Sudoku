@@ -78,7 +78,7 @@ public sealed partial class SingleCountingPracticingPage : Page, INotifyProperty
 	/// </summary>
 	private void GeneratePuzzle()
 	{
-		var final = Generator.Generate((GeneratingMode)(SelectedMode + 1), out var targetCandidate);
+		var final = Generator.Generate((GeneratingMode)SelectedMode, out var targetCandidate);
 		SudokuPane.Puzzle = final;
 		_targetResultData[_currentPuzzleIndex] = targetCandidate;
 	}
@@ -212,11 +212,9 @@ file static class Generator
 	/// <returns>The result.</returns>
 	public static Grid Generate(GeneratingMode mode, out int targetCandidate)
 	{
-		Debug.Assert(Enum.IsDefined(mode));
-
-		if (!IsPow2((int)mode))
+		if (mode == GeneratingMode.Both)
 		{
-			mode = Rng.Next(0, 1000) < 500 ? GeneratingMode.FullHouseOnly : GeneratingMode.NakedSingleOnly;
+			mode = Rng.Next(0, 1000) < 500 ? GeneratingMode.FullHouse : GeneratingMode.NakedSingle;
 		}
 
 		scoped var digits = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
@@ -230,44 +228,55 @@ file static class Generator
 		}
 
 		var result = Grid.Empty;
-		if (mode == GeneratingMode.FullHouseOnly)
+		switch (mode)
 		{
-			var house = Rng.Next(0, 27);
-			var cell = HouseCells[house][Rng.Next(0, 9)];
-
-			var i = 0;
-			foreach (var otherCell in HousesMap[house] - cell)
+			case GeneratingMode.House5 or GeneratingMode.FullHouse:
 			{
-				result[otherCell] = digits[i++];
+				var house = mode == GeneratingMode.House5 ? Rng.Next(0, 3) * 9 + 4 : Rng.Next(0, 27);
+				var cell = HouseCells[house][Rng.Next(0, 9)];
+
+				var i = 0;
+				foreach (var otherCell in HousesMap[house] - cell)
+				{
+					result[otherCell] = digits[i++];
+				}
+
+				targetCandidate = cell * 9 + digits[^1];
+
+				break;
 			}
-
-			targetCandidate = cell * 9 + digits[^1];
-		}
-		else
-		{
-			var cell = Rng.Next(0, 81);
-			scoped var peers = new Span<int>(Peers[cell]);
-
-			for (var currentShuffleRound = 0; currentShuffleRound < 15; currentShuffleRound++)
+			case GeneratingMode.NakedSingle:
 			{
-				var a = Rng.Next(0, 20);
-				var b = Rng.Next(0, 20) is var t && t == a ? (t + 1) % 20 : t;
-				(peers[a], peers[b]) = (peers[b], peers[a]);
-			}
+				var cell = Rng.Next(0, 81);
+				scoped var peers = new Span<int>(Peers[cell]);
 
-			var cells = CellMap.Empty;
-			foreach (var index in stackalloc[] { 0, 2, 4, 7, 9, 11, 14, 16, 18 })
+				for (var currentShuffleRound = 0; currentShuffleRound < 15; currentShuffleRound++)
+				{
+					var a = Rng.Next(0, 20);
+					var b = Rng.Next(0, 20) is var t && t == a ? (t + 1) % 20 : t;
+					(peers[a], peers[b]) = (peers[b], peers[a]);
+				}
+
+				var cells = CellMap.Empty;
+				foreach (var index in stackalloc[] { 0, 2, 4, 7, 9, 11, 14, 16, 18 })
+				{
+					cells.Add(peers[index]);
+				}
+
+				var i = 0;
+				foreach (var otherCell in cells - cells[Rng.Next(0, 9)])
+				{
+					result[otherCell] = digits[i++];
+				}
+
+				targetCandidate = cell * 9 + digits[^1];
+
+				break;
+			}
+			default:
 			{
-				cells.Add(peers[index]);
+				throw new ArgumentException("The mode is invalid, it may not be defined in the enumeration type.", nameof(mode));
 			}
-
-			var i = 0;
-			foreach (var otherCell in cells - cells[Rng.Next(0, 9)])
-			{
-				result[otherCell] = digits[i++];
-			}
-
-			targetCandidate = cell * 9 + digits[^1];
 		}
 
 		result.Fix();
@@ -278,21 +287,27 @@ file static class Generator
 /// <summary>
 /// Indicates the generating mode.
 /// </summary>
-[Flags]
 file enum GeneratingMode : int
 {
 	/// <summary>
-	/// Indicates the mode is none.
+	/// Indicates the generator generates the puzzle that only uses row/column/block 5.
 	/// </summary>
-	None = 0,
+	House5 = 0,
 
 	/// <summary>
 	/// Indicates the generator generates the puzzle that relies on full houses.
 	/// </summary>
-	FullHouseOnly = 1,
+	FullHouse = 1,
 
 	/// <summary>
 	/// Indicates the generator generates the puzzle that relies on naked singles.
 	/// </summary>
-	NakedSingleOnly = 1 << 1
+	NakedSingle = 2,
+
+	/// <summary>
+	/// Indicates both <see cref="FullHouse"/> and <see cref="NakedSingle"/>.
+	/// </summary>
+	/// <seealso cref="FullHouse"/>
+	/// <seealso cref="NakedSingle"/>
+	Both = 3
 }

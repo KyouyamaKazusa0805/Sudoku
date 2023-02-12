@@ -19,7 +19,7 @@
 			<Grid ColumnDefinitions="Auto,*">
 				<!--Sudoku pane-->
 				<c:SudokuPane
-					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" CoordinateLabelDisplayMode="None"
+					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0"
 					HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCursors="True" DisplayCandidates="False"
 					DisableFlyout="True" Puzzle="{x:Bind concepts:Grid.Empty}" PreventSimpleConfliction="False"
 					CursorBackgroundColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor,Mode=OneWay}"
@@ -31,8 +31,12 @@
 					GivenColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData.FontColor,Mode=OneWay}"
 					ModifiableColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontData.FontColor,Mode=OneWay}"
 					PencilmarkColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontData.FontColor,Mode=OneWay}"
+					BorderColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=OneWay}"
+					CoordinateLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+					CoordinateLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData.FontScale,Mode=OneWay}"
 					CoordinateLabelColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData.FontColor,Mode=OneWay}"
-					BorderColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=OneWay}" />
+					CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
+					CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}" />
 
 				<!--Info displaying pane-->
 				<StackPanel Grid.Column="1" Orientation="Vertical" Spacing="10">
@@ -46,6 +50,7 @@
 							RelativePanel.RightOf="SelectModelLabel" x:Name="SelectModeComboxBox"
 							SelectedIndex="{x:Bind SelectedMode,Mode=TwoWay}"
 							IsEnabled="{x:Bind cvt:SingleCountingPracticingPageConversion.GetIsEnabled(IsRunning),Mode=OneWay}">
+							<ComboBoxItem Content="{m:R Key=SingleCountingPracticingPage_Index5Only}" />
 							<ComboBoxItem Content="{m:R Key=SingleCountingPracticingPage_FullHouseMode}" />
 							<ComboBoxItem Content="{m:R Key=SingleCountingPracticingPage_NakedSingleMode}" />
 							<ComboBoxItem Content="{m:R Key=SingleCountingPracticingPage_ComplexMode}" />
@@ -59,7 +64,7 @@
 							SpinButtonPlacementMode="Inline" Value="{x:Bind TestedPuzzlesCount,Mode=TwoWay}" />
 					</RelativePanel>
 					<TextBlock
-						x:Name="ResultDataDisplayer" Margin="0,60,0,0" HorizontalAlignment="Center"
+						x:Name="ResultDataDisplayer" Margin="0,60,0,0"
 						Visibility="{x:Bind cvt:SingleCountingPracticingPageConversion.GetResultDisplayerVisibility(ResultDataDisplayer.Text),Mode=OneWay}" />
 				</StackPanel>
 			</Grid>

@@ -702,6 +702,9 @@
   <data name="SingleCountingPracticingPage_FullHouseMode" xml:space="preserve">
     <value>Full house</value>
   </data>
+  <data name="SingleCountingPracticingPage_Index5Only" xml:space="preserve">
+    <value>Row/Column/Block 5 Only</value>
+  </data>
   <data name="SingleCountingPracticingPage_InputPuzzlesCount" xml:space="preserve">
     <value>Input the desired number of puzzles to practice:</value>
   </data>
