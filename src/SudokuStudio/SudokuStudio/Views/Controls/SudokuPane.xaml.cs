@@ -52,7 +52,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.
 	/// </summary>
 	[NotifyBackingField]
-	private bool _preventConfilctingInput = true;
+	private bool _preventConflictingInput = true;
 
 	/// <summary>
 	/// Indicates the font scale of given digits. The value should generally be below 1.0.
@@ -825,7 +825,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				break;
 			}
 			case ((false, false, false, false), var cell, var digit)
-			when PreventConfilctingInput && !Puzzle.DuplicateWith(cell, digit) || !PreventConfilctingInput:
+			when PreventConflictingInput && !Puzzle.DuplicateWith(cell, digit) || !PreventConflictingInput:
 			{
 				var modified = Puzzle;
 				if (Puzzle.GetStatus(cell) == CellStatus.Modifiable)

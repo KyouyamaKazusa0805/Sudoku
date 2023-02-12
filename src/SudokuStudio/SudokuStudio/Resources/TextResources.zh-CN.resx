@@ -594,6 +594,9 @@
   <data name="SettingsPage_DifficultyLevelForegrounds" xml:space="preserve">
     <value>难度系数文字配色</value>
   </data>
+  <data name="SettingsPage_DisableSudokuPaneLayoutDisplaying" xml:space="preserve">
+    <value>阻止右键数独盘面的时候弹出菜单</value>
+  </data>
   <data name="SettingsPage_DisplayCursorsDescription" xml:space="preserve">
     <value>光标指的是一组高亮单元格，它用来指示你鼠标指针指向的单元格。</value>
   </data>
@@ -677,6 +680,12 @@
   </data>
   <data name="SettingsPage_OverlappedAssignmentColor" xml:space="preserve">
     <value>结构内出数（类似自噬形式的出数）</value>
+  </data>
+  <data name="SettingsPage_PreventConflictingInput" xml:space="preserve">
+    <value>阻止显而易见的冲突输入</value>
+  </data>
+  <data name="SettingsPage_PreventConflictingInputDescription" xml:space="preserve">
+    <value>该设置项主要是限制用户输入错误的数值。如果用户往某个单元格里填入一个它所在行、列、宫里本来就包含了的提示数或填入数的数字，那么如果该设置项为“是”的时候，程序将防止用户往其中填值。</value>
   </data>
   <data name="SettingsPage_SearchExtendedBivalueUniversalGraveTypes" xml:space="preserve">
     <value>允许搜索全双值格致死解法的各种拓展构型</value>

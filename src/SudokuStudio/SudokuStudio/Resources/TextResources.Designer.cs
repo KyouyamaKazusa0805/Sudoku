@@ -1573,6 +1573,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable flyout in sudoku pane when right-clicked.
+        /// </summary>
+        internal static string SettingsPage_DisableSudokuPaneLayoutDisplaying {
+            get {
+                return ResourceManager.GetString("SettingsPage_DisableSudokuPaneLayoutDisplaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cursors are a group of highlighted cells that describes what cell your cursor point points to..
         /// </summary>
         internal static string SettingsPage_DisplayCursorsDescription {
@@ -1821,6 +1830,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_OverlappedAssignmentColor {
             get {
                 return ResourceManager.GetString("SettingsPage_OverlappedAssignmentColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prevent conflicting inputs.
+        /// </summary>
+        internal static string SettingsPage_PreventConflictingInput {
+            get {
+                return ResourceManager.GetString("SettingsPage_PreventConflictingInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option limits the case that user wants to input a digit into a cell, whose containing houses has already include the digit as given or modifiable values. If this option is set true, the program won&apos;t allow this case, and do nothing after you input a wrong digit..
+        /// </summary>
+        internal static string SettingsPage_PreventConflictingInputDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_PreventConflictingInputDescription", resourceCulture);
             }
         }
         

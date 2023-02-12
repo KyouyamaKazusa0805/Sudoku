@@ -25,6 +25,19 @@
 					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DistinctWithDeltaDigits,Mode=TwoWay}"
 					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
 			</StackPanel>
+			<StackPanel>
+				<TextBlock Text="{m:R Key=SettingsPage_DisableSudokuPaneLayoutDisplaying}" Style="{StaticResource PreferenceItemTitleStyle}" />
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=TwoWay}"
+					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
+			</StackPanel>
+			<StackPanel>
+				<TextBlock Text="{m:R Key=SettingsPage_PreventConflictingInput}" Style="{StaticResource PreferenceItemTitleStyle}" />
+				<TextBlock Text="{m:R Key=SettingsPage_PreventConflictingInputDescription}" TextWrapping="WrapWholeWords" />
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=TwoWay}"
+					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
+			</StackPanel>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

@@ -89,6 +89,8 @@
 				<c:SudokuPane
 					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" BasePage="{x:Bind}"
 					HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1"
+					DisableFlyout="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=OneWay}"
+					PreventConflictingInput="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=OneWay}"
 					GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 					ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 					PencilmarkFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"

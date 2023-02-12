@@ -594,6 +594,9 @@
   <data name="SettingsPage_DifficultyLevelForegrounds" xml:space="preserve">
     <value>Foreground colors of difficulty levels</value>
   </data>
+  <data name="SettingsPage_DisableSudokuPaneLayoutDisplaying" xml:space="preserve">
+    <value>Disable flyout in sudoku pane when right-clicked</value>
+  </data>
   <data name="SettingsPage_DisplayCursorsDescription" xml:space="preserve">
     <value>Cursors are a group of highlighted cells that describes what cell your cursor point points to.</value>
   </data>
@@ -677,6 +680,12 @@
   </data>
   <data name="SettingsPage_OverlappedAssignmentColor" xml:space="preserve">
     <value>Assignments (Cannibalism-like)</value>
+  </data>
+  <data name="SettingsPage_PreventConflictingInput" xml:space="preserve">
+    <value>Prevent conflicting inputs</value>
+  </data>
+  <data name="SettingsPage_PreventConflictingInputDescription" xml:space="preserve">
+    <value>This option limits the case that user wants to input a digit into a cell, whose containing houses has already include the digit as given or modifiable values. If this option is set true, the program won't allow this case, and do nothing after you input a wrong digit.</value>
   </data>
   <data name="SettingsPage_SearchExtendedBivalueUniversalGraveTypes" xml:space="preserve">
     <value>Allow searching for extended types of Bi-value Universal Grave</value>

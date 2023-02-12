@@ -682,6 +682,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DistinctWithDeltaDigits"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DisableSudokuPaneLayoutProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisableSudokuPaneLayout"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisableSudokuPaneLayout"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.PreventConflictingInputProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PreventConflictingInput"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PreventConflictingInput"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
@@ -876,6 +888,12 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DistinctWithDeltaDigits">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisableSudokuPaneLayout">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PreventConflictingInput">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>
@@ -3763,6 +3781,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Foreground colors of difficulty levels.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DisableSudokuPaneLayoutDisplaying">
+            <summary>
+              Looks up a localized string similar to Disable flyout in sudoku pane when right-clicked.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DisplayCursorsDescription">
             <summary>
               Looks up a localized string similar to Cursors are a group of highlighted cells that describes what cell your cursor point points to..
@@ -3901,6 +3924,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OverlappedAssignmentColor">
             <summary>
               Looks up a localized string similar to Assignments (Cannibalism-like).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_PreventConflictingInput">
+            <summary>
+              Looks up a localized string similar to Prevent conflicting inputs.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_PreventConflictingInputDescription">
+            <summary>
+              Looks up a localized string similar to This option limits the case that user wants to input a digit into a cell, whose containing houses has already include the digit as given or modifiable values. If this option is set true, the program won&apos;t allow this case, and do nothing after you input a wrong digit..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_SearchExtendedBivalueUniversalGraveTypes">
@@ -5009,7 +5042,7 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the pane disable flyout open.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._preventConfilctingInput">
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._preventConflictingInput">
             <summary>
             Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits
             in its containing houses, this pane will do nothing by this value being <see langword="true"/>.
@@ -5396,8 +5429,8 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._disableFlyout"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventConfilctingInput">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._preventConfilctingInput"/>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._preventConflictingInput"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._givenFontScale"/>
