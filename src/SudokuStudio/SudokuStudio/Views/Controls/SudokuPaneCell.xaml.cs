@@ -4,6 +4,8 @@ namespace SudokuStudio.Views.Controls;
 /// Defines a cell displayed in a <see cref="SudokuPane"/>.
 /// </summary>
 /// <seealso cref="SudokuPane"/>
+[DependencyProperty<short>("CandidatesMask", DefaultValue = 511)]
+[DependencyProperty<CellStatus>("Status", DefaultValue = CellStatus.Empty)]
 public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 {
 	/// <summary>
@@ -19,18 +21,6 @@ public sealed partial class SudokuPaneCell : UserControl, INotifyPropertyChanged
 	/// <seealso cref="BasePane"/>
 	/// <seealso cref="Flyout_Opening(object, object)"/>
 	private int _temporarySelectedCell = -1;
-
-	/// <summary>
-	/// Indicates the candidates mask.
-	/// </summary>
-	[NotifyBackingField]
-	private short _candidatesMask = 511;
-
-	/// <summary>
-	/// Indicates the cell status.
-	/// </summary>
-	[NotifyBackingField]
-	private CellStatus _status = CellStatus.Empty;
 
 
 	/// <summary>
