@@ -6507,7 +6507,7 @@ if (student is (name: var name, age: >= 18))
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Extensions.CountWithIndex``2(System.Collections.Generic.List{``0},System.Collections.Generic.List{``1},System.Func{``0,``1,System.Boolean},System.Int32)">
+        <member name="M:SudokuStudio.Views.Pages.Extensions.CountWithSameIndex``2(System.Collections.Generic.List{``0},System.Collections.Generic.List{``1},System.Func{``0,``1,System.Boolean},System.Int32)">
             <summary>
             Counts up the number of instances that satisfies the specified condition, with the specified instance as the reference,
             using index from another collection.

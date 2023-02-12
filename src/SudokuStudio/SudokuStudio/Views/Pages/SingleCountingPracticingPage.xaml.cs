@@ -95,7 +95,7 @@ public sealed partial class SingleCountingPracticingPage : Page, INotifyProperty
 			_stopwatch.Stop();
 			_currentPuzzleIndex = -1;
 
-			var correctCount = _answeredData.CountWithIndex(_targetResultData, static (a, b) => a.Candidate == b, TestedPuzzlesCount);
+			var correctCount = _answeredData.CountWithSameIndex(_targetResultData, static (a, b) => a.Candidate == b, TestedPuzzlesCount);
 			var totalTimeSpan = _answeredData[TestedPuzzlesCount - 1].TimeSpan;
 			ResultDataDisplayer.Text = string.Format(
 				GetString("SingleCountingPracticingPage_ResultDisplayLabel"),
@@ -158,7 +158,7 @@ file static class Extensions
 	/// <param name="predicate">The condition.</param>
 	/// <param name="count">The number of elements.</param>
 	/// <returns>An <see cref="int"/> result.</returns>
-	public static int CountWithIndex<T1, T2>(this List<T1?> @this, List<T2?> other, Func<T1?, T2?, bool> predicate, int count)
+	public static int CountWithSameIndex<T1, T2>(this List<T1?> @this, List<T2?> other, Func<T1?, T2?, bool> predicate, int count)
 		where T1 : notnull
 		where T2 : notnull
 	{
