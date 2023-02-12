@@ -47,15 +47,9 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ![](docs/pic/command-line.png)
 
-### 原来的 UI
-
-![](docs/pic/winui-1.png)
-
-> 代码请参见 [winui-reserved](https://github.com/SunnieShine/Sudoku/tree/winui-reserved) 分支。由于原来的代码我不太满意，很多绑定的逻辑写得都不好，而且不便于重新调整，再加上有 bug 没有修复，因此停更了。
-
 ### 现在的 UI
 
-![](docs/pic/winui-2.png)
+![](docs/pic/winui.png)
 
 群机器人：
 
