@@ -8,5 +8,5 @@ internal static class SingleCountingPracticingPageConversion
 {
 	public static bool GetIsEnabled(bool isRunning) => !isRunning;
 
-	public static Visibility GetResultDisplayerVisibility(string s) => string.IsNullOrWhiteSpace(s) ? Visibility.Collapsed : Visibility.Visible;
+	public static Visibility GetResultDisplayerVisibility(bool isRunning) => isRunning ? Visibility.Collapsed : Visibility.Visible;
 }

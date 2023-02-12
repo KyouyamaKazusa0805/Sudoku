@@ -15,7 +15,7 @@
 	Loaded="Page_Loaded">
 	<ScrollViewer Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
 		<StackPanel Spacing="26">
-			<TextBlock Text="{m:R Key=SingleCountingPracticingPage_Intro}" Margin="0,10,0,0" />
+			<TextBlock Text="{m:R Key=SingleCountingPracticingPage_Intro}" TextWrapping="WrapWholeWords" Margin="0,10,0,0" />
 			<Grid ColumnDefinitions="Auto,*">
 				<!--Sudoku pane-->
 				<c:SudokuPane
@@ -39,33 +39,32 @@
 					CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}" />
 
 				<!--Info displaying pane-->
-				<StackPanel Grid.Column="1" Orientation="Vertical" Spacing="10">
+				<StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
 					<Button
 						x:Name="StartButton" Content="{m:R Key=SingleCountingPracticingPage_Start}"
 						IsEnabled="{x:Bind cvt:SingleCountingPracticingPageConversion.GetIsEnabled(IsRunning),Mode=OneWay}"
 						Click="StartButton_Click" />
-					<RelativePanel>
-						<TextBlock x:Name="SelectModelLabel" Text="{m:R Key=SingleCountingPracticingPage_SelectMode}" />
+					<Grid ColumnDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=SingleCountingPracticingPage_SelectMode}" VerticalAlignment="Center" />
 						<ComboBox
-							RelativePanel.RightOf="SelectModelLabel" x:Name="SelectModeComboxBox"
-							SelectedIndex="{x:Bind SelectedMode,Mode=TwoWay}"
+							x:Name="SelectModeComboxBox" Grid.Column="1" SelectedIndex="{x:Bind SelectedMode,Mode=TwoWay}"
 							IsEnabled="{x:Bind cvt:SingleCountingPracticingPageConversion.GetIsEnabled(IsRunning),Mode=OneWay}">
 							<ComboBoxItem Content="{m:R Key=SingleCountingPracticingPage_Index5Only}" />
 							<ComboBoxItem Content="{m:R Key=SingleCountingPracticingPage_FullHouseMode}" />
 							<ComboBoxItem Content="{m:R Key=SingleCountingPracticingPage_NakedSingleMode}" />
 							<ComboBoxItem Content="{m:R Key=SingleCountingPracticingPage_ComplexMode}" />
 						</ComboBox>
-					</RelativePanel>
-					<RelativePanel>
-						<TextBlock x:Name="InputPuzzlesCountLabel" Text="{m:R Key=SingleCountingPracticingPage_InputPuzzlesCount}" />
+					</Grid>
+					<Grid ColumnDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=SingleCountingPracticingPage_InputPuzzlesCount}" VerticalAlignment="Center" />
 						<c:IntegerBox
-							RelativePanel.RightOf="InputPuzzlesCountLabel" SmallChange="1" LargeChange="5" Minimum="5" Maximum="100"
-							IsEnabled="{x:Bind cvt:SingleCountingPracticingPageConversion.GetIsEnabled(IsRunning),Mode=OneWay}"
-							SpinButtonPlacementMode="Inline" Value="{x:Bind TestedPuzzlesCount,Mode=TwoWay}" />
-					</RelativePanel>
+							SmallChange="1" LargeChange="5" Minimum="5" Maximum="100" SpinButtonPlacementMode="Inline"
+							Grid.Column="1" Value="{x:Bind TestedPuzzlesCount,Mode=TwoWay}"
+							IsEnabled="{x:Bind cvt:SingleCountingPracticingPageConversion.GetIsEnabled(IsRunning),Mode=OneWay}" />
+					</Grid>
 					<TextBlock
 						x:Name="ResultDataDisplayer" Margin="0,60,0,0"
-						Visibility="{x:Bind cvt:SingleCountingPracticingPageConversion.GetResultDisplayerVisibility(ResultDataDisplayer.Text),Mode=OneWay}" />
+						Visibility="{x:Bind cvt:SingleCountingPracticingPageConversion.GetResultDisplayerVisibility(IsRunning),Mode=OneWay}" />
 				</StackPanel>
 			</Grid>
 		</StackPanel>

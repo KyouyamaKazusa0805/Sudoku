@@ -89,6 +89,7 @@ public sealed partial class SingleCountingPracticingPage : Page, INotifyProperty
 		{
 			_stopwatch.Start();
 			_currentPuzzleIndex = 0;
+			ResultDataDisplayer.Text = string.Empty;
 		}
 		else
 		{

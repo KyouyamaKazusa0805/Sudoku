@@ -709,7 +709,8 @@
     <value>请输入练习题目的个数：</value>
   </data>
   <data name="SingleCountingPracticingPage_Intro" xml:space="preserve">
-    <value>该页面给你提供了一个练习环境，可以帮助你练习“唯一余数”和“同区剩余”技巧。</value>
+    <value>该页面给你提供了一个练习环境，可以帮助你练习“唯一余数”和“同区剩余”技巧。
+点击开始后，程序会生成指定个数的题目，并一个接一个地给出。你需要逐个按照数独规则得到出数结果，并给出该题目的答案，填到格子里去。不论答对与否，题目都会继续给出，直到完成指定数量的题目。当你全部完成后，程序将会自动计算结果，并显示在右侧。</value>
   </data>
   <data name="SingleCountingPracticingPage_NakedSingleMode" xml:space="preserve">
     <value>只有唯一余数</value>

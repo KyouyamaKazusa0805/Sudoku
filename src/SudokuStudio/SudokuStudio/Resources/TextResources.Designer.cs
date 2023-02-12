@@ -1916,7 +1916,7 @@ namespace SudokuStudio.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to This page offers you a sudoku grid to practice techniques &quot;Naked Single&quot; and &quot;Full House&quot;. You can get experienced from this page.
-        ///The right-side of the page contains an input text box, you should input the answer here for each puzzle. The puzzle will generate some puzzles, you should input the result inside the text box mentioned above. No matter whether your answer is correct, program will go to the next puzzle..
+        ///The puzzle will generate some puzzles and display them one by one, you should input the result inside the sudoku pane. No matter whether your answer is correct, program will go to the next puzzle. When you answer the specified number of puzzles, the game will be automatically over, and calculates the result..
         /// </summary>
         internal static string SingleCountingPracticingPage_Intro {
             get {
