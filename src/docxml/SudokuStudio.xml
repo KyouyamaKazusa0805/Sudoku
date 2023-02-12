@@ -3610,7 +3610,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_ExtraFunctions">
             <summary>
-              Looks up a localized string similar to Extra functions.
+              Looks up a localized string similar to Extra Functions.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Menu">

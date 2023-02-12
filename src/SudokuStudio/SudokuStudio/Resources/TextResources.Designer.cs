@@ -1294,7 +1294,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extra functions.
+        ///   Looks up a localized string similar to Extra Functions.
         /// </summary>
         internal static string MainWindow_ExtraFunctions {
             get {
