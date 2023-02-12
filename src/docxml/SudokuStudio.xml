@@ -103,21 +103,6 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
-        <member name="T:SudokuStudio.AppLifecycle.ProgramPreinstantiationInfo">
-            <summary>
-            Represents the pre-instantiation information.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.AppLifecycle.ProgramPreinstantiationInfo.OpenedSudoku">
-            <summary>
-            The opened sudoku file content.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.AppLifecycle.ProgramPreinstantiationInfo.OpenedProgramPreference">
-            <summary>
-            The program preference.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Collection.ColorPalette">
             <summary>
             Represents a color palette that contains a list of <see cref="T:Windows.UI.Color"/> instances that can be used in UI binding.
