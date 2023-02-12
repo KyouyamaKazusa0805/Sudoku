@@ -12,20 +12,24 @@
 		<StackPanel.Resources>
 			<Style x:Key="EmbeddedPageStyle" TargetType="Page">
 				<Setter Property="Margin" Value="0,20" />
+				<Setter Property="Height" Value="720" />
 			</Style>
 		</StackPanel.Resources>
 
 		<TextBlock Text="{m:R Key=SettingsPage_Intro}" Margin="0,10,0,0" />
-		<Pivot Margin="-10,0,20,20">
-			<PivotItem Header="{m:R Key=SettingsPage_Basic}" MaxHeight="720">
+		<!--
+		It seems that Windows App SDK v1.2.3 does not fully support Pivot control, or something that I cannot find goes wrong :(
+		-->
+		<TabView Margin="-10,0,20,20" TabWidthMode="Equal" HorizontalAlignment="Left" IsAddTabButtonVisible="False">
+			<TabViewItem Header="{m:R Key=SettingsPage_Basic}" IsClosable="False">
 				<ps:BasicPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}" />
-			</PivotItem>
-			<PivotItem Header="{m:R Key=SettingsPage_Analysis}" MaxHeight="720">
+			</TabViewItem>
+			<TabViewItem Header="{m:R Key=SettingsPage_Analysis}" IsClosable="False">
 				<ps:AnalysisPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}" />
-			</PivotItem>
-			<PivotItem Header="{m:R Key=SettingsPage_Drawing}" MaxHeight="720">
+			</TabViewItem>
+			<TabViewItem Header="{m:R Key=SettingsPage_Drawing}" IsClosable="False">
 				<ps:DrawingPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}" />
-			</PivotItem>
-		</Pivot>
+			</TabViewItem>
+		</TabView>
 	</StackPanel>
 </Page>
