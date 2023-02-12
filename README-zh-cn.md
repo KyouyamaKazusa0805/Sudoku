@@ -43,15 +43,15 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ## 界面
 
-### 控制台
+### 控制台项目
 
 ![](docs/pic/command-line.png)
 
-### 现在的 UI
+### UI 项目
 
 ![](docs/pic/winui.png)
 
-群机器人：
+### 群机器人
 
 <img src="docs/pic/bot.jpg" style="zoom:40%" />
 

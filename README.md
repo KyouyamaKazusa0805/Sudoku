@@ -51,7 +51,7 @@ This repositoty is created for the following kinds of users:
 
 ![](docs/pic/command-line.png)
 
-### Today's UI Project
+### User Interface
 
 ![](docs/pic/winui.png)
 
