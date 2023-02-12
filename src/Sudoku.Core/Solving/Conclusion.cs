@@ -99,6 +99,9 @@ public readonly partial struct Conclusion :
 		get => (ConclusionType)(_mask >> 10 & 1);
 	}
 
+	[DebuggerHidden]
+	private string OutputString => $"{CellsMap[Cell]}{ConclusionType.GetNotation()}{Digit + 1}";
+
 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out ConclusionType conclusionType, out int candidate);
@@ -142,7 +145,6 @@ public readonly partial struct Conclusion :
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
 	public override partial int GetHashCode();
 
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{CellsMap[Cell]}{ConclusionType.GetNotation()}{Digit + 1}";
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.SimpleMember, nameof(OutputString))]
+	public override partial string ToString();
 }
