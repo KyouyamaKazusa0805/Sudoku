@@ -7,6 +7,10 @@ internal static class AnalyzeConversion
 {
 	public static bool GetIsEnabled(Grid grid) => !grid.GetSolution().IsUndefined;
 
+	public static int GetViewPipsPagerPageCount(VisualUnit? visualUnit) => visualUnit?.Views.Length ?? 0;
+
+	public static int GetCurrentViewIndexForViewPipsPager(int currentIndex) => currentIndex;
+
 	public static string GetEliminationString(IStep step) => ConclusionFormatter.Format(step.Conclusions.ToArray(), FormattingMode.Normal);
 
 	public static string GetDifficultyRatingText(IStep step) => step.Difficulty.ToString("0.0");
@@ -27,6 +31,9 @@ internal static class AnalyzeConversion
 
 	public static Visibility GetSolvingPathListVisibility(object itemsSource)
 		=> itemsSource switch { SolvingPathStepCollection and not [] => Visibility.Visible, _ => Visibility.Collapsed };
+
+	public static Visibility GetViewPipsPagerVisibility(VisualUnit? visualUnit)
+		=> visualUnit switch { { Views.Length: >= 2 } => Visibility.Visible, _ => Visibility.Collapsed };
 
 	public static IEnumerable<Inline> GetInlinesOfTooltip(SolvingPathStep s)
 	{

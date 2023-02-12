@@ -515,6 +515,20 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		}
 	}
 
+	/// <summary>
+	/// Skips to the specified index of the view.
+	/// </summary>
+	/// <param name="viewIndex">The view index.</param>
+	private void SkipToSpecifiedViewIndex(int viewIndex)
+	{
+		if (VisualUnit is not { Views.Length: var length } || length <= viewIndex)
+		{
+			return;
+		}
+
+		CurrentViewIndex = viewIndex;
+	}
+
 
 	private void CommandBarView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
 		=> SwitchingPage(args.InvokedItemContainer);

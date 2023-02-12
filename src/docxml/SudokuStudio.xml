@@ -5869,6 +5869,12 @@ if (student is (name: var name, age: >= 18))
             Sets the end view.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SkipToSpecifiedViewIndex(System.Int32)">
+            <summary>
+            Skips to the specified index of the view.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeComponent">
             <summary>
             InitializeComponent()
