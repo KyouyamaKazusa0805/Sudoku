@@ -3,27 +3,13 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a font picker.
 /// </summary>
+[DependencyProperty<string>("SelectedFontName", DefaultValueGeneratingMemberName = nameof(SelectedFontNamePropertyDefaultValue))]
+[DependencyProperty<double>("SelectedFontScale")]
+[DependencyProperty<Color>("SelectedColor", DefaultValueGeneratingMemberName = nameof(SelectedColorPropertyDefaultValue))]
 public sealed partial class FontPicker : UserControl
 {
-	/// <summary>
-	/// The dependency property that binds with <see cref="SelectedFontName"/>.
-	/// </summary>
-	/// <seealso cref="SelectedFontName"/>
-	public static readonly DependencyProperty SelectedFontNameProperty =
-		RegisterDependency<string, FontPicker>(nameof(SelectedFontName), FontFamily.XamlAutoFontFamily.Source);
-
-	/// <summary>
-	/// The dependency property that binds with <see cref="SelectedFontScale"/>.
-	/// </summary>
-	/// <seealso cref="SelectedFontScale"/>
-	public static readonly DependencyProperty SelectedFontScaleProperty = RegisterDependency<double, FontPicker>(nameof(SelectedFontScale));
-
-	/// <summary>
-	/// The dependency property that binds with <see cref="SelectedColor"/>.
-	/// </summary>
-	/// <seealso cref="SelectedColor"/>
-	public static readonly DependencyProperty SelectedColorProperty =
-		RegisterDependency<Color, FontPicker>(nameof(SelectedColor), Colors.Transparent);
+	private static readonly string SelectedFontNamePropertyDefaultValue = FontFamily.XamlAutoFontFamily.Source;
+	private static readonly Color SelectedColorPropertyDefaultValue = Colors.Transparent;
 
 
 	/// <summary>
@@ -38,36 +24,6 @@ public sealed partial class FontPicker : UserControl
 	/// </summary>
 	public FontPicker() => InitializeComponent();
 
-
-	/// <summary>
-	/// Indicates the selected font scale.
-	/// </summary>
-	public double SelectedFontScale
-	{
-		get => (double)GetValue(SelectedFontScaleProperty);
-
-		set => SetValue(SelectedFontScaleProperty, value);
-	}
-
-	/// <summary>
-	/// Indicates the selected font name.
-	/// </summary>
-	public string SelectedFontName
-	{
-		get => (string)GetValue(SelectedFontNameProperty);
-
-		set => SetValue(SelectedFontNameProperty, value);
-	}
-
-	/// <summary>
-	/// Indicates the selected font name.
-	/// </summary>
-	public Color SelectedColor
-	{
-		get => (Color)GetValue(SelectedColorProperty);
-
-		set => SetValue(SelectedColorProperty, value);
-	}
 
 	/// <summary>
 	/// Indicates the selected font data.

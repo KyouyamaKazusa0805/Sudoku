@@ -4690,27 +4690,10 @@ if (student is (name: var name, age: >= 18))
             Represents a dash array text box.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty">
-            <summary>
-            Indicates the dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>
-        </member>
         <member name="M:SudokuStudio.Views.Controls.DashArrayTextBox.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.DashArrayTextBox"/> instance.
             </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray">
-            <summary>
-            Indicates the dash array.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.DashArrayTextBox.SetDashArrayViaString(System.String)">
-            <summary>
-            Try to set to property <see cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/> via the current text box's text.
-            </summary>
-            <param name="text">The text input.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.DashArrayTextBox.InitializeComponent">
             <summary>
@@ -4726,6 +4709,18 @@ if (student is (name: var name, age: >= 18))
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Controls.ExtendedExpander">
             <summary>
@@ -4908,24 +4903,6 @@ if (student is (name: var name, age: >= 18))
             Represents a font picker.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontNameProperty">
-            <summary>
-            The dependency property that binds with <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleProperty">
-            <summary>
-            The dependency property that binds with <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedColorProperty">
-            <summary>
-            The dependency property that binds with <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.FontPicker._fontsRange">
             <summary>
             Indicates the fonts.
@@ -4934,21 +4911,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.FontPicker.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.FontPicker"/> instance.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale">
-            <summary>
-            Indicates the selected font scale.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName">
-            <summary>
-            Indicates the selected font name.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor">
-            <summary>
-            Indicates the selected font name.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontData">
@@ -4970,6 +4932,42 @@ if (student is (name: var name, age: >= 18))
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontNameProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontNameProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontNameProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedColorProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedColorProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Controls.IntegerBox">
             <summary>
