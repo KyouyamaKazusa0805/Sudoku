@@ -165,193 +165,37 @@
             <param name="this">The puzzle.</param>
             <returns>The solution grid.</returns>
         </member>
-        <member name="T:Sudoku.Generating.ExercisePuzzlers.ExerciseFactory">
-            <summary>
-            Defines a type that creates exercises.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.ExerciseFactory.FullHouse">
-            <summary>
-            Creates a full house puzzle.
-            </summary>
-            <returns>The puzzle.</returns>
-        </member>
-        <member name="T:Sudoku.Generating.ExercisePuzzlers.FullHouseExerciseGenerator">
-            <summary>
-            Defines a full-house technique exercise generator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.FullHouseExerciseGenerator.Generate">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk">
-            <summary>
-            Defines a chunk that stores the cells in a house.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk._mask">
-            <summary>
-            Indicates the mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.#ctor(System.Int32,System.Int32*)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk"/> instance via the chunk of 9 values. 0 is for empty cell.
-            </summary>
-            <param name="house">Indicates the house used.</param>
-            <param name="chunkValues">A chunk of values. This argument must hold 9 elements.</param>
-        </member>
-        <member name="P:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.House">
-            <summary>
-            Indicates the house used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.ResultCandidate">
-            <summary>
-            Indicates the result candidate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Cells">
-            <summary>
-            Indicates the cells used in this structure.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Digits">
-            <summary>
-            Indicates the digits used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32[]@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.Equals(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.CompareTo(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.CompareTo(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Implicit(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)~Sudoku.Concepts.Grid">
-            <summary>
-            Converts the current <see cref="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk"/> instance into a <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <param name="chunk">The <see cref="T:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Equality(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_Inequality(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_GreaterThan(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_GreaterThanOrEqual(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_LessThan(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.HouseCellChunk.op_LessThanOrEqual(Sudoku.Generating.ExercisePuzzlers.HouseCellChunk,Sudoku.Generating.ExercisePuzzlers.HouseCellChunk)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Generating.ExercisePuzzlers.IExerciseGenerator">
-            <summary>
-            Defines an exercise generator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.ExercisePuzzlers.IExerciseGenerator.Generate">
-            <summary>
-            Try to generate a puzzle.
-            </summary>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="T:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator">
+        <member name="T:Sudoku.Generating.HardLikePuzzleGenerator">
             <summary>
             Defines a puzzle generator that makes the given pattern as a hard one.
             A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.BlockFactor">
+        <member name="F:Sudoku.Generating.HardLikePuzzleGenerator.BlockFactor">
             <summary>
             Indicates the block factor.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.SwappingFactor">
+        <member name="F:Sudoku.Generating.HardLikePuzzleGenerator.SwappingFactor">
             <summary>
             Indicates the swapping factor.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.Solver">
+        <member name="F:Sudoku.Generating.HardLikePuzzleGenerator.Solver">
             <summary>
             Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
             of a puzzle being generated.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator._random">
+        <member name="F:Sudoku.Generating.HardLikePuzzleGenerator._random">
             <summary>
             Indicates the random number generator.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.HardLikePuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
+        <member name="M:Sudoku.Generating.HardLikePuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
             <summary>
             Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
             </summary>
@@ -360,19 +204,19 @@ if (student is (name: var name, age: >= 18))
             The pointer that points to the solution. The result value will be changed here.
             </param>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.CreatePattern(System.Int32*)">
+        <member name="M:Sudoku.Generating.HardLikePuzzleGenerator.CreatePattern(System.Int32*)">
             <summary>
             Creates a start pattern based on a base pattern.
             </summary>
             <param name="pattern">The base pattern.</param>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.RecreatePattern(System.Int32*)">
+        <member name="M:Sudoku.Generating.HardLikePuzzleGenerator.RecreatePattern(System.Int32*)">
             <summary>
             To re-create the pattern.
             </summary>
             <param name="pattern">The pointer that points to an array of the pattern values.</param>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
+        <member name="M:Sudoku.Generating.HardLikePuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
             <summary>
             Check whether the digit in its peer cells has duplicate ones.
             </summary>
@@ -380,12 +224,12 @@ if (student is (name: var name, age: >= 18))
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Generating.Puzzlers.IPuzzler">
+        <member name="T:Sudoku.Generating.IPuzzler">
             <summary>
             Defines a type that can create a new sudoku puzzle game.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.IPuzzler.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.IPuzzler.Generate(System.Threading.CancellationToken)">
             <summary>
             Creates a sudoku grid puzzle.
             </summary>
@@ -394,7 +238,7 @@ if (student is (name: var name, age: >= 18))
             The result puzzle generated. If canceled, the return value will be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </returns>
         </member>
-        <member name="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator">
+        <member name="T:Sudoku.Generating.PatternBasedPuzzleGenerator">
             <summary>
             Indicates a puzzle generator that uses the pattern-based sudoku generation algorithm.
             </summary>
@@ -419,86 +263,86 @@ if (student is (name: var name, age: >= 18))
             </list>
             </remarks>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.RetrialTimes">
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator.RetrialTimes">
             <summary>
             Indicates the times that can retry a new pattern without updating sudoku solution template.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.MinPatternCellsCount">
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator.MinPatternCellsCount">
             <summary>
             Indicates the number of pattern cells used that can be used in the generation for a pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.MaxPatternCellsCount">
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator.MaxPatternCellsCount">
             <summary>
             Indicates the number of pattern cells used that can be used in the generation for a pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.EmptyGridCharArray">
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator.EmptyGridCharArray">
             <summary>
             Indicates the empty grid characters.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.SwapperHouseStarts">
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator.SwapperHouseStarts">
             <summary>
             Indicates the swapper house starts.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.SwappableFactor">
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator.SwappableFactor">
             <summary>
             Indicates the swappable factor.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Solver">
-            <inheritdoc cref="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.Solver"/>
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator.Solver">
+            <inheritdoc cref="F:Sudoku.Generating.HardLikePuzzleGenerator.Solver"/>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.SolverWithSolution">
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator.SolverWithSolution">
             <summary>
             Indicates the solver with solution grid can be used.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator._baseCandidates">
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._baseCandidates">
             <summary>
             Indicates the base candidates.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator._pattern">
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._pattern">
             <summary>
             Indicates the pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator._random">
-            <inheritdoc cref="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator._random"/>
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._random">
+            <inheritdoc cref="F:Sudoku.Generating.HardLikePuzzleGenerator._random"/>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.#ctor">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator"/> instance.
+            Initializes a <see cref="T:Sudoku.Generating.PatternBasedPuzzleGenerator"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator"/> instance via the specified pattern.
+            Initializes a <see cref="T:Sudoku.Generating.PatternBasedPuzzleGenerator"/> instance via the specified pattern.
             </summary>
             <param name="pattern">The pattern.</param>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@,System.Int32[])">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@,System.Int32[])">
             <summary>
-            Initializes a <see cref="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator"/> instance via the specified pattern
+            Initializes a <see cref="T:Sudoku.Generating.PatternBasedPuzzleGenerator"/> instance via the specified pattern
             and the initial candidates as the pattern.
             </summary>
             <param name="pattern">The pattern.</param>
             <param name="baseCandidates">The base candidates.</param>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Generate(System.Int32,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.Int32,System.Threading.CancellationToken)">
             <summary>
             Creates a sudoku puzzle via the specified trial times.
             </summary>
             <param name="times">The trial times.</param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
             <returns>
             If user has canceled the operation or the maximum trial times has been reached, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>;
@@ -506,40 +350,40 @@ if (student is (name: var name, age: >= 18))
             </returns>
             <exception cref="T:System.InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.GenerateAsync(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.GenerateAsync(System.Threading.CancellationToken)">
             <summary>
             Creates a sudoku puzzle asynchoronously.
             </summary>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> instance that returns a <see cref="T:Sudoku.Concepts.Grid"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Shuffle(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Shuffle(Sudoku.Concepts.Grid@)">
             <summary>
             To shuffle the grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.AdjustPattern(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.AdjustPattern(Sudoku.Concepts.CellMap@)">
             <summary>
             Adjust a pattern slightly.
             </summary>
             <param name="pattern">The pattern.</param>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.GeneratePattern">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.GeneratePattern">
             <summary>
             Randomize to generate a pattern.
             </summary>
             <returns>A pattern result.</returns>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.RandomizeThreeDigits">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.RandomizeThreeDigits">
             <summary>
             Randomize to generate three candidates at different places.
             </summary>
             <returns>A triplet of cells.</returns>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.GetCells(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.GetCells(System.Int32,System.Int32)">
             <summary>
             Get the cells that is used for swapping via <see cref="F:Sudoku.Concepts.SymmetryType.Central"/>,
             and the specified row and column value.
@@ -549,24 +393,24 @@ if (student is (name: var name, age: >= 18))
             <returns>The cells.</returns>
             <seealso cref="F:Sudoku.Concepts.SymmetryType.Central"/>
         </member>
-        <member name="T:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator">
+        <member name="T:Sudoku.Generating.SymmetricPatternPuzzleGenerator">
             <summary>
             Defines a symmetric puzzle generator, that is, a generator than can include the symmetrical placement
             of all givens while generating puzzles.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.Solver">
-            <inheritdoc cref="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.Solver"/>
+        <member name="F:Sudoku.Generating.SymmetricPatternPuzzleGenerator.Solver">
+            <inheritdoc cref="F:Sudoku.Generating.HardLikePuzzleGenerator.Solver"/>
         </member>
-        <member name="F:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator._random">
+        <member name="F:Sudoku.Generating.SymmetricPatternPuzzleGenerator._random">
             <summary>
             Indicates the random number generator.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.SymmetricPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetryType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.SymmetricPatternPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetryType,System.Threading.CancellationToken)">
             <summary>
             Generates a sudoku puzzle, via the specified number of givens used, the symmetry type, and
             a cancellation token to cancel the operation.
@@ -576,7 +420,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The result sudoku puzzle.</returns>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
+        <member name="M:Sudoku.Generating.SymmetricPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
             <summary>
             Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
             </summary>
@@ -585,7 +429,7 @@ if (student is (name: var name, age: >= 18))
             The pointer that points to the solution. The result value will be changed here.
             </param>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.GetCells(Sudoku.Concepts.SymmetryType,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Generating.SymmetricPatternPuzzleGenerator.GetCells(Sudoku.Concepts.SymmetryType,System.Int32,System.Int32)">
             <summary>
             Get the cells that is used for swapping via the specified symmetry type, and the specified row
             and column value.
@@ -595,7 +439,7 @@ if (student is (name: var name, age: >= 18))
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
+        <member name="M:Sudoku.Generating.SymmetricPatternPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
             <summary>
             Check whether the digit in its peer cells has duplicate ones.
             </summary>

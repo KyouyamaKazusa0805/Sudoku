@@ -6,6 +6,6 @@
 /// <seealso cref="Point"/>
 internal static partial class PointExtensions
 {
-	[DeconstructionMethod]
+	[GeneratedDeconstruction]
 	public static partial void Deconstruct(this Point @this, out int x, out int y);
 }

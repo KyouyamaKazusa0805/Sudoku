@@ -14,6 +14,6 @@ internal static partial class PointFExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Point Truncate(this PointF @this) => new((int)@this.X, (int)@this.Y);
 
-	[DeconstructionMethod]
+	[GeneratedDeconstruction]
 	public static partial void Deconstruct(this PointF @this, out float x, out float y);
 }

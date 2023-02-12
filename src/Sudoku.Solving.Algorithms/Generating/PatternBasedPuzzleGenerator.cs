@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Generating.Puzzlers;
+﻿namespace Sudoku.Generating;
 
 /// <summary>
 /// Indicates a puzzle generator that uses the pattern-based sudoku generation algorithm.

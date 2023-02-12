@@ -341,6 +341,9 @@ dotnet_diagnostic.CS0078.severity = none
 # CS0184: 'is' expression's given expression is never of the provided type
 dotnet_diagnostic.CS0184.severity = error
 
+# CS0618: Type or member is obsolete
+dotnet_diagnostic.CS0618.severity = silent
+
 # CS1587: XML comment is not placed on a valid language element
 dotnet_diagnostic.CS1587.severity = none
 

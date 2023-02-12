@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Generating.Puzzlers;
+﻿namespace Sudoku.Generating;
 
 /// <summary>
 /// Defines a type that can create a new sudoku puzzle game.

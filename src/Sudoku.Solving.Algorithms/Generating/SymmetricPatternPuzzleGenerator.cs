@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Generating.Puzzlers;
+﻿namespace Sudoku.Generating;
 
 /// <summary>
 /// Defines a symmetric puzzle generator, that is, a generator than can include the symmetrical placement
