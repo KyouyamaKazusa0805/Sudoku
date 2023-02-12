@@ -535,6 +535,12 @@
         <member name="P:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
@@ -574,6 +580,12 @@
             <summary>
             Indicates the current instance being iterated. Please note that the value is returned by reference.
             </summary>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.GetEnumerator">
             <summary>
@@ -623,6 +635,12 @@
             <summary>
             Indicates the current instance being iterated. Please note that the value is returned by reference.
             </summary>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.GetEnumerator">
             <summary>
@@ -4879,6 +4897,12 @@ fixed (short* ptr = instance)
             <summary>
             Determines whether the current stopwatch is currently active.
             </summary>
+        </member>
+        <member name="M:System.Timers.ValueStopwatch.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Timers.ValueStopwatch.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:System.Timers.ValueStopwatch.GetElapsedTime">
             <summary>

@@ -15183,6 +15183,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.OnlyFindOne"/>
         </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.Rarity">
             <summary>
             Indicates the rarity of the technique.

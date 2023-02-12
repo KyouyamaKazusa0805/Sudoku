@@ -4,7 +4,7 @@
 /// Defines an enumerator that iterates the one-dimensional array.
 /// </summary>
 /// <typeparam name="T">The type of the element.</typeparam>
-public ref struct OneDimensionalArrayEnumerator<T>
+public ref partial struct OneDimensionalArrayEnumerator<T>
 {
 	/// <summary>
 	/// Indicates the length of the array to iterate.
@@ -41,6 +41,14 @@ public ref struct OneDimensionalArrayEnumerator<T>
 		get => _innerArray[_index];
 	}
 
+
+#pragma warning disable CS0809
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
+	public override readonly partial bool Equals(object? obj);
+
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
+	public override readonly partial int GetHashCode();
+#pragma warning restore CS0809
 
 	/// <summary>
 	/// Gets the enumerator to iterate on each elements that is with the <see langword="ref"/> keyword.

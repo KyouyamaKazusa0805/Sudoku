@@ -4,7 +4,7 @@
 /// Defines an enumerator that iterates the possible fields of an enumeration type.
 /// </summary>
 /// <typeparam name="T">The type of the enumeration type, that is marked the attribute <see cref="FlagsAttribute"/>.</typeparam>
-public ref struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, Enum
+public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, Enum
 {
 	/// <summary>
 	/// Indicates the fields of the type to iterate.
@@ -41,6 +41,14 @@ public ref struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, Enum
 	public T Current { get; private set; } = default;
 
 
+#pragma warning disable CS0809
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
+	public override readonly partial bool Equals(object? obj);
+
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
+	public override readonly partial int GetHashCode();
+#pragma warning restore CS0809
+
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	public unsafe bool MoveNext()
 	{
@@ -64,7 +72,6 @@ public ref struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, Enum
 
 		return false;
 	}
-
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

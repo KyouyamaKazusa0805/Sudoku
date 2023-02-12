@@ -4,7 +4,7 @@
 /// Encapsulates a grid parser that can parse a string value and convert it
 /// into a valid <see cref="Grid"/> instance as the result.
 /// </summary>
-public unsafe ref struct GridParser
+public unsafe ref partial struct GridParser
 {
 	/// <summary>
 	/// The list of all methods to parse.
@@ -117,6 +117,14 @@ public unsafe ref struct GridParser
 	/// <seealso cref="ParsingValue"/>
 	private bool ContainsTab => ParsingValue.Contains('\t');
 
+
+#pragma warning disable CS0809
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
+	public override readonly partial bool Equals(object? obj);
+
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
+	public override readonly partial int GetHashCode();
+#pragma warning restore CS0809
 
 	/// <summary>
 	/// To parse the value.

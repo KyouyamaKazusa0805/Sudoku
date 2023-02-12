@@ -8661,6 +8661,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:Sudoku.Text.Parsing.GridParser.ParsingValue"/>
         </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="M:Sudoku.Text.Parsing.GridParser.Parse">
             <summary>
             To parse the value.

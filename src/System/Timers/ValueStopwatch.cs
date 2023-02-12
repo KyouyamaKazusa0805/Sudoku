@@ -7,7 +7,7 @@ namespace System.Timers;
 /// <summary>
 /// Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/> to optimize the performance.
 /// </summary>
-public readonly ref struct ValueStopwatch
+public readonly ref partial struct ValueStopwatch
 {
 	/// <summary>
 	/// The read-only value that indicates the formula converting from timestamp to ticks.
@@ -47,6 +47,14 @@ public readonly ref struct ValueStopwatch
 		get => _startTimestamp != 0;
 	}
 
+
+#pragma warning disable CS0809
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
+	public override partial bool Equals(object? obj);
+
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
+	public override partial int GetHashCode();
+#pragma warning restore CS0809
 
 	/// <summary>
 	/// Try to get the elapsed time.
