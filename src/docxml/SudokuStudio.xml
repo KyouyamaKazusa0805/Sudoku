@@ -5009,7 +5009,7 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the pane disable flyout open.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._preventSimpleConfliction">
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._preventConfilctingInput">
             <summary>
             Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits
             in its containing houses, this pane will do nothing by this value being <see langword="true"/>.
@@ -5396,8 +5396,8 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._disableFlyout"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventSimpleConfliction">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._preventSimpleConfliction"/>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventConfilctingInput">
+            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._preventConfilctingInput"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._givenFontScale"/>
