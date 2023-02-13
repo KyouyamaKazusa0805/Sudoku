@@ -202,6 +202,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public event DigitInputEventHandler? DigitInput;
 
+	/// <summary>
+	/// Indicates the event that is triggered when the internal grid is updated with the specified behavior,
+	/// such as removed a candidate, filled with a digit, etc..
+	/// </summary>
+	public event GridUpdatedEventHandler? GridUpdated;
+
 
 	/// <summary>
 	/// Undo a step.
@@ -218,6 +224,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		var target = _undoStack.Pop();
 		SetPuzzle(target, whileUndoingOrRedoing: true);
+
+		GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Undoing, target));
 	}
 
 	/// <summary>
@@ -235,6 +243,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		var target = _redoStack.Pop();
 		SetPuzzle(target, whileUndoingOrRedoing: true);
+
+		GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Redoing, target));
 	}
 
 	/// <summary>
@@ -387,7 +397,17 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		ViewUnit = null!;
 
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
+
+		GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Replacing, value));
 	}
+
+	/// <summary>
+	/// Triggers <see cref="GridUpdated"/> event. This method can only be called by internal control type <see cref="SudokuPaneCell"/>.
+	/// </summary>
+	/// <param name="behavior">The behavior.</param>
+	/// <param name="value">The new value to assign.</param>
+	/// <seealso cref="SudokuPaneCell"/>
+	internal void TriggerGridUpdated(GridUpdatedBehavior behavior, object value) => GridUpdated?.Invoke(this, new(behavior, value));
 
 	/// <summary>
 	/// To initialize children controls for <see cref="_children"/>.
@@ -604,6 +624,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				var modified = Puzzle;
 				modified[cell] = -1;
 
+				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Clear, cell));
+
 				SetPuzzle(modified);
 
 				DigitInput?.Invoke(this, new(cell, -1));
@@ -616,6 +638,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				modified[cell, digit] = false;
 
 				SetPuzzle(modified);
+
+				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Elimination, cell * 9 + digit));
 
 				break;
 			}
@@ -630,9 +654,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 
 				modified[cell] = digit;
+
+				
+
 				SetPuzzle(modified);
 
 				DigitInput?.Invoke(this, new(cell, digit));
+				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Elimination, cell * 9 + digit));
 
 				break;
 			}

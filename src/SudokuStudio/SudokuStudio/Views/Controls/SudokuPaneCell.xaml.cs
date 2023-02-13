@@ -99,7 +99,12 @@ internal sealed partial class SudokuPaneCell : UserControl
 				modified[cell] = -1;
 			}
 
-			modified[cell] = TrailingZeroCount(digits);
+			var digit = TrailingZeroCount(digits);
+			modified[cell] = digit;
+
+			BasePane.SetPuzzle(modified);
+
+			BasePane.TriggerGridUpdated(GridUpdatedBehavior.Assignment, cell * 9 + digit);
 		}
 		else if (type == Elimination && cellStatus == CellStatus.Empty)
 		{
@@ -110,9 +115,11 @@ internal sealed partial class SudokuPaneCell : UserControl
 					modified[cell, digit] = false;
 				}
 			}
-		}
 
-		BasePane.SetPuzzle(modified);
+			BasePane.SetPuzzle(modified);
+
+			BasePane.TriggerGridUpdated(GridUpdatedBehavior.EliminationMultiple, (short)(cell << 9) | digits);
+		}
 
 		// Closes the flyout manually.
 		p.IsOpen = false;

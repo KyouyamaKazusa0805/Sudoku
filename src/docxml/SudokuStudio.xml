@@ -1635,6 +1635,126 @@ if (student is (name: var name, age: >= 18))
             Indicates the failed reason is that the file cannot be parsed.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.GridUpdatedBehavior">
+            <summary>
+            Represents a kind that describes which behavior the grid is updated.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.GridUpdatedBehavior.Elimination">
+            <summary>
+            Indicates the behavior is removing a candidate from the specified grid.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.GridUpdatedBehavior.EliminationMultiple">
+            <summary>
+            Indicates the behavior is removing a list of candidates from the specified grid.
+            This field will be used for the case that user eliminated candidates by context flyout
+            after mouse right button is clicked.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.GridUpdatedBehavior.Assignment">
+            <summary>
+            Indicates the behavior is assiging a digit into a cell with the specified grid.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.GridUpdatedBehavior.Clear">
+            <summary>
+            Indicates the behavior is clearing a cell, resetting the cell as empty one.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.GridUpdatedBehavior.Undoing">
+            <summary>
+            Indicates the behavior is undoing the grid.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.GridUpdatedBehavior.Redoing">
+            <summary>
+            Indicates the behavior is redoing the grid.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.GridUpdatedBehavior.Replacing">
+            <summary>
+            Indicates the behavior is changing the grid into another new value, by assigning property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
+            with a newer <see cref="T:Sudoku.Concepts.Grid"/> value.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.GridUpdatedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.GridUpdatedEventArgs.#ctor(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Interaction.GridUpdatedEventArgs"/> instance via the specified data.
+            </summary>
+            <param name="behavior">The behavior that describes which kind of behavior is applied to replacing a grid with the new value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridUpdatedEventArgs.NewValue">
+            <summary>
+            <para>Indicates the new value to be replaced.</para>
+            <para>
+            The type of the value is <see cref="T:System.Object"/> because the internal type will be varied
+            from different value of property <see cref="P:SudokuStudio.Interaction.GridUpdatedEventArgs.Behavior"/>. The target type is:
+            <list type="table">
+            <listheader>
+            <term>Value of property <see cref="P:SudokuStudio.Interaction.GridUpdatedEventArgs.Behavior"/></term>
+            <description>Target type of this property</description>
+            </listheader>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Elimination"/></term>
+            <description>An <see cref="T:System.Int32"/> value indicating the candidate eliminated.</description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.EliminationMultiple"/></term>
+            <description>
+            An <see cref="T:System.Int16"/> value indicating the candidates eliminated,
+            by <c><![CDATA[>> 9]]></c> to get the target cell, and <c><![CDATA[& 511]]></c> to get digits eliminated.
+            </description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Assignment"/></term>
+            <description>An <see cref="T:System.Int32"/> value indicating the candidate set.</description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Clear"/></term>
+            <description>An <see cref="T:System.Int32"/> value indicating the cell to be set empty.</description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Undoing"/></term>
+            <description>A <see cref="T:Sudoku.Concepts.Grid"/> value indicating the newer grid to be replaced with the original one.</description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Redoing"/></term>
+            <description>A <see cref="T:Sudoku.Concepts.Grid"/> value indicating the newer grid to be replaced with the original one.</description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Replacing"/></term>
+            <description>A <see cref="T:Sudoku.Concepts.Grid"/> value indicating the newer grid to be replaced with the original one.</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            You can use pattern matching to check the internal type such as <c>NewValue is int targetValue</c>,
+            or just use type casting: <c>(int)NewValue</c> if you know what the behavior is currently.
+            </para>
+            </summary>
+            <seealso cref="P:SudokuStudio.Interaction.GridUpdatedEventArgs.Behavior"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridUpdatedEventArgs.Behavior">
+            <summary>
+            Indicates the behavior.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.GridUpdatedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.OpenFileFailedEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventHandler"/>.
@@ -5051,6 +5171,12 @@ if (student is (name: var name, age: >= 18))
             Indicates the event that is triggered when a digit is input (that cause a change in a cell).
             </summary>
         </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated">
+            <summary>
+            Indicates the event that is triggered when the internal grid is updated with the specified behavior,
+            such as removed a candidate, filled with a digit, etc..
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UndoStep">
             <summary>
             Undo a step.
@@ -5116,6 +5242,14 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/>
             <seealso cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)">
+            <summary>
+            Triggers <see cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/> event. This method can only be called by internal control type <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>.
+            </summary>
+            <param name="behavior">The behavior.</param>
+            <param name="value">The new value to assign.</param>
+            <seealso cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeChildrenControls">
             <summary>
