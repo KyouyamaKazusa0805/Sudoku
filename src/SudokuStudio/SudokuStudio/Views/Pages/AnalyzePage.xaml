@@ -160,12 +160,16 @@
 						a:StepGathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=OneWay}"
 						a:StepGathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
 					/>
-					<PipsPager
-						HorizontalAlignment="Center" MaxVisiblePips="10"
-						PreviousButtonVisibility="VisibleOnPointerOver" NextButtonVisibility="VisibleOnPointerOver"
-						Visibility="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerVisibility(VisualUnit),Mode=OneWay}"
-						NumberOfPages="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerPageCount(VisualUnit),Mode=OneWay}"
-						SelectedPageIndex="{x:Bind cvt:AnalyzeConversion.GetCurrentViewIndexForViewPipsPager(CurrentViewIndex),Mode=TwoWay,BindBack=SkipToSpecifiedViewIndex}" />
+					<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,*">
+						<PipsPager
+							MaxVisiblePips="10" PreviousButtonVisibility="VisibleOnPointerOver" NextButtonVisibility="VisibleOnPointerOver"
+							Visibility="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerVisibility(VisualUnit),Mode=OneWay}"
+							NumberOfPages="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerPageCount(VisualUnit),Mode=OneWay}"
+							SelectedPageIndex="{x:Bind cvt:AnalyzeConversion.GetCurrentViewIndexForViewPipsPager(CurrentViewIndex),Mode=TwoWay,BindBack=SkipToSpecifiedViewIndex}" />
+						<TextBlock
+							Grid.Column="1" Visibility="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerVisibility(VisualUnit),Mode=OneWay}"
+							Text="{x:Bind cvt:AnalyzeConversion.GetViewIndexDisplayerString(VisualUnit,CurrentViewIndex),Mode=OneWay}" />
+					</Grid>
 				</StackPanel>
 
 				<!--Analyze data-->

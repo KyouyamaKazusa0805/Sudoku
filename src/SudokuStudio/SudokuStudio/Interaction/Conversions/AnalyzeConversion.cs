@@ -17,6 +17,9 @@ internal static class AnalyzeConversion
 
 	public static string GetIndexText(SolvingPathStep step) => (step.Index + 1).ToString();
 
+	public static string GetViewIndexDisplayerString(VisualUnit? visualUnit, int currentIndex)
+		=> visualUnit?.Views.Length is { } length ? $"{currentIndex + 1}/{length}" : "0/0";
+
 	public static Visibility GetProgressRingVisibility(bool isAnalyzerLaunched, bool isGathererLaunched)
 		=> isAnalyzerLaunched || isGathererLaunched ? Visibility.Visible : Visibility.Collapsed;
 
