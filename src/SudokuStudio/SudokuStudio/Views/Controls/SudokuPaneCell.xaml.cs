@@ -6,7 +6,7 @@ namespace SudokuStudio.Views.Controls;
 /// <seealso cref="SudokuPane"/>
 [DependencyProperty<short>("CandidatesMask", DefaultValue = 511)]
 [DependencyProperty<CellStatus>("Status", DefaultValue = CellStatus.Empty)]
-public sealed partial class SudokuPaneCell : UserControl
+internal sealed partial class SudokuPaneCell : UserControl
 {
 	/// <summary>
 	/// Indicates the selected cell. The value is temporarily assigned into here, from <see cref="BasePane"/> property.
