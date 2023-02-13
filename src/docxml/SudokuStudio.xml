@@ -315,11 +315,6 @@
             </summary>
             <param name="propertyName">The property name.</param>
         </member>
-        <member name="P:SudokuStudio.ComponentModel.AttachedPropertyAttribute`1.CallbackMethodName">
-            <summary>
-            Indicates the callback method name.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1">
             <summary>
             Defines an attribute that defines a dependency property.
@@ -435,6 +430,16 @@
             Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.
             </summary>
         </member>
+        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DocSummary">
+            <summary>
+            Indicates the <c>summary</c> content of the dependency property displayed in XML documentation comment.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DocRemarks">
+            <summary>
+            Indicates the <c>remarks</c> content of the dependency property displayed in XML documentation comment.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValueGeneratingMemberName">
             <summary>
             Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
@@ -443,6 +448,11 @@
             This property will be used if the property <see cref="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue"/> cannot be assigned due to not being a constant.
             </remarks>
             <seealso cref="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue"/>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.CallbackMethodName">
+            <summary>
+            Indicates the callback method name.
+            </summary>
         </member>
         <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue">
             <summary>
@@ -4999,260 +5009,9 @@ if (student is (name: var name, age: >= 18))
             <b>Please do not modify any elements in this array.</b>
             </remarks>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates">
-            <summary>
-            Indicates whether the pane displays for candidates.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._displayCursors">
-            <summary>
-            Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers of the target cell
-            that is the one your mouse points to.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._useDifferentColorToDisplayDeltaDigits">
-            <summary>
-            Indicates whether the pane displays for delta digits using different colors.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._disableFlyout">
-            <summary>
-            Indicates whether the pane disable flyout open.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._preventConflictingInput">
-            <summary>
-            Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits
-            in its containing houses, this pane will do nothing by this value being <see langword="true"/>.
-            If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._givenFontScale">
-            <summary>
-            Indicates the font scale of given digits. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._modifiableFontScale">
-            <summary>
-            Indicates the font scale of modifiable digits. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFontScale">
-            <summary>
-            Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelFontScale">
-            <summary>
-            Indicates the font scale of baba group characters. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFontScale">
-            <summary>
-            Indicates the coordinate label font scale. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._highlightCandidateCircleScale">
-            <summary>
-            Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._highlightBackgroundOpacity">
-            <summary>
-            Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._chainStrokeThickness">
-            <summary>
-            Indicates the chain stroke thickness.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._selectedCell">
-            <summary>
-            Indicates the currently selected cell.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelDisplayKind">
-            <summary>
-            Indicates the displaying kind of coordinate labels.
-            </summary>
-            <remarks>
-            For more information please visit <see cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayKind"/>.
-            </remarks>
-            <seealso cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayKind"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelDisplayMode">
-            <summary>
-            Indicates the displaying mode of coordinate labels.
-            </summary>
-            <remarks>
-            For more information please visit <see cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayMode"/>.
-            </remarks>
-            <seealso cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayMode"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._givenColor">
-            <summary>
-            Indicates the given color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._modifiableColor">
-            <summary>
-            Indicates the modifiable color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkColor">
-            <summary>
-            Indicates the pencilmark color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelColor">
-            <summary>
-            Indicates the coordinate label color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelColor">
-            <summary>
-            Indicates the baba group label color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._deltaCandidateColor">
-            <summary>
-            Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._deltaCellColor">
-            <summary>
-            Indicates the color that is used for displaying cell digits that are wrongly filled.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._borderColor">
-            <summary>
-            Indicates the border color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._cursorBackgroundColor">
-            <summary>
-            Indicates the cursor background color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._linkColor">
-            <summary>
-            Indicates the link color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._normalColor">
-            <summary>
-            Indicates the normal color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._assignmentColor">
-            <summary>
-            Indicates the assignment color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._overlappedAssignmentColor">
-            <summary>
-            Indicates the overlapped assignment color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._eliminationColor">
-            <summary>
-            Indicates the elimination color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._cannibalismColor">
-            <summary>
-            Indicates the cannibalism color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._exofinColor">
-            <summary>
-            Indicates the exofin color.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._endofinColor">
-            <summary>
-            Indicates the endofin color.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._puzzle">
             <summary>
             Indicates the target puzzle.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._strongLinkDashStyle">
-            <summary>
-            Indicates the dash style of the strong links.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._weakLinkDashStyle">
-            <summary>
-            Indicates the dash style of the weak links.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._cycleLikeLinkDashStyle">
-            <summary>
-            Indicates the dash style of the cycle-like technique links.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._otherLinkDashStyle">
-            <summary>
-            Indicates the dash style of the other links.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._givenFont">
-            <summary>
-            Indicates the given font.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._modifiableFont">
-            <summary>
-            Indicates the modifiable font.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFont">
-            <summary>
-            Indicates the candidate font.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFont">
-            <summary>
-            Indicates the coordinate label font.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelFont">
-            <summary>
-            Indicates the baba group label font.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._viewUnit">
-            <summary>
-            Indicates the view unit used.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._auxiliaryColors">
-            <summary>
-            Indicates the auxiliary colors.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._difficultyLevelForegrounds">
-            <summary>
-            Indicates the foreground colors of all 6 kinds of difficulty levels.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._difficultyLevelBackgrounds">
-            <summary>
-            Indicates the background colors of all 6 kinds of difficulty levels.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._userDefinedColorPalette">
-            <summary>
-            Indicates the user-defined colors used by customized views.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._almostLockedSetsColors">
-            <summary>
-            Indicates the colors applied to technique structure Almost Locked Sets.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.#ctor">
@@ -5395,149 +5154,539 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidatesProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DisplayCursorsProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigitsProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DisableFlyoutProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInputProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenFontScaleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScaleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScaleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScaleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScaleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScaleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacityProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThicknessProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.SelectedCellProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKindProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayModeProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ModifiableColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.BorderColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.LinkColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.NormalColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.AssignmentColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EliminationColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CannibalismColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ExofinColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EndofinColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyleProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenFontProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFont"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFont"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFont"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFont"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ViewUnitProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnit"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnit"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColorsProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegroundsProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgroundsProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPaletteProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColorsProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCandidates"/>
+            <summary>
+            Indicates whether the pane displays for candidates.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._displayCursors"/>
+            <summary>
+            Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers of the target cell that is the one your mouse points to.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._useDifferentColorToDisplayDeltaDigits"/>
+            <summary>
+            Indicates whether the pane displays for delta digits using different colors.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._disableFlyout"/>
+            <summary>
+            Indicates whether the pane disable flyout open.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._preventConflictingInput"/>
+            <summary>
+            Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits in its containing houses, this pane will do nothing by this value being <see langword="true"/>. If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._givenFontScale"/>
+            <summary>
+            Indicates the font scale of given digits. The value should generally be below 1.0.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScale">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._modifiableFontScale"/>
+            <summary>
+            Indicates the font scale of modifiable digits. The value should generally be below 1.0.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFontScale"/>
+            <summary>
+            Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScale">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelFontScale"/>
+            <summary>
+            Indicates the font scale of baba group characters. The value should generally be below 1.0.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFontScale"/>
+            <summary>
+            Indicates the coordinate label font scale. The value should generally be below 1.0.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._highlightCandidateCircleScale"/>
+            <summary>
+            Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._highlightBackgroundOpacity"/>
+            <summary>
+            Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._chainStrokeThickness"/>
+            <summary>
+            Indicates the chain stroke thickness.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._selectedCell"/>
+            <summary>
+            Indicates the currently selected cell.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelDisplayKind"/>
+            <summary>
+            Indicates the displaying kind of coordinate labels.
+            </summary>
+            <remarks>
+            For more information please visit <see cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayKind"/>.
+            </remarks>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelDisplayMode"/>
+            <summary>
+            Indicates the displaying mode of coordinate labels.
+            </summary>
+            <remarks>
+            For more information please visit <see cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayMode"/>.
+            </remarks>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._givenColor"/>
+            <summary>
+            Indicates the given color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._modifiableColor"/>
+            <summary>
+            Indicates the modifiable color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkColor"/>
+            <summary>
+            Indicates the pencilmark color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelColor"/>
+            <summary>
+            Indicates the coordinate label color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelColor"/>
+            <summary>
+            Indicates the baba group label color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._deltaCandidateColor"/>
+            <summary>
+            Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._deltaCellColor"/>
+            <summary>
+            Indicates the color that is used for displaying cell digits that are wrongly filled.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._borderColor"/>
+            <summary>
+            Indicates the border color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._cursorBackgroundColor"/>
+            <summary>
+            Indicates the cursor background color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._linkColor"/>
+            <summary>
+            Indicates the link color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._normalColor"/>
+            <summary>
+            Indicates the normal color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._assignmentColor"/>
+            <summary>
+            Indicates the assignment color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._overlappedAssignmentColor"/>
+            <summary>
+            Indicates the overlapped assignment color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._eliminationColor"/>
+            <summary>
+            Indicates the elimination color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._cannibalismColor"/>
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._exofinColor"/>
+            <summary>
+            Indicates the exofin color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._endofinColor"/>
+            <summary>
+            Indicates the endofin color.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._strongLinkDashStyle"/>
+            <summary>
+            Indicates the dash style of the strong links.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._weakLinkDashStyle"/>
+            <summary>
+            Indicates the dash style of the weak links.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._cycleLikeLinkDashStyle"/>
+            <summary>
+            Indicates the dash style of the cycle-like technique links.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._otherLinkDashStyle"/>
+            <summary>
+            Indicates the dash style of the other links.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._givenFont"/>
+            <summary>
+            Indicates the given font.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFont">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._modifiableFont"/>
+            <summary>
+            Indicates the modifiable font.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFont">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._pencilmarkFont"/>
+            <summary>
+            Indicates the candidate font.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._coordinateLabelFont"/>
+            <summary>
+            Indicates the coordinate label font.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._babaGroupLabelFont"/>
+            <summary>
+            Indicates the baba group label font.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnit">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._viewUnit"/>
+            <summary>
+            Indicates the view unit used.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._auxiliaryColors"/>
+            <summary>
+            Indicates the auxiliary colors.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._difficultyLevelForegrounds"/>
+            <summary>
+            Indicates the foreground colors of all 6 kinds of difficulty levels.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._difficultyLevelBackgrounds"/>
+            <summary>
+            Indicates the background colors of all 6 kinds of difficulty levels.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._userDefinedColorPalette"/>
+            <summary>
+            Indicates the user-defined colors used by customized views.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._almostLockedSetsColors"/>
+            <summary>
+            Indicates the colors applied to technique structure Almost Locked Sets.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPaneCell">
             <summary>

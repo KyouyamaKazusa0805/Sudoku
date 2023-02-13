@@ -14,10 +14,4 @@ public sealed class AttachedPropertyAttribute<T> : XamlBindingAttribute<T>
 	public AttachedPropertyAttribute(string propertyName) : base(propertyName)
 	{
 	}
-
-
-	/// <summary>
-	/// Indicates the callback method name.
-	/// </summary>
-	public string? CallbackMethodName { get; init; }
 }

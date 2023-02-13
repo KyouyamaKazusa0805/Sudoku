@@ -56,6 +56,8 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 				var defaultValueGenerator = (string?)null;
 				var defaultValue = (object?)null;
 				var callbackMethodName = (string?)null;
+				var docSummary = (string?)null;
+				var docRemarks = (string?)null;
 				foreach (var pair in namedArgs)
 				{
 					switch (pair)
@@ -83,6 +85,16 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 						case ("CallbackMethodName", { Value: string v }):
 						{
 							callbackMethodName = v;
+							break;
+						}
+						case ("DocSummary", { Value: string v }):
+						{
+							docSummary = v;
+							break;
+						}
+						case ("DocRemarks", { Value: string v }):
+						{
+							docRemarks = v;
 							break;
 						}
 					}
@@ -114,7 +126,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 
 				propertiesData.Add(
 					new(
-						propertyName, propertyType, docCref, docPath,
+						propertyName, propertyType, new(docSummary, docRemarks, docCref, docPath),
 						defaultValueGenerator, defaultValueGeneratorKind, defaultValue, callbackMethodName
 					)
 				);
@@ -140,13 +152,13 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 				{
 					foreach (
 						var (
-							propertyName, propertyType, docCref, docPath, generatorMemberName,
+							propertyName, propertyType, docData, generatorMemberName,
 							generatorMemberKind, defaultValue, callbackMethodName
 						) in propertiesData
 					)
 					{
 						var propertyTypeStr = propertyType.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
-						var doc = XamlBinding.GetDocumentationComment(propertyName, docCref, docPath, false);
+						var doc = XamlBinding.GetDocumentationComment(propertyName, docData, false);
 
 						var defaultValueCreatorStr = XamlBinding.GetPropertyMetadataString(defaultValue, generatorMemberName, generatorMemberKind, callbackMethodName, propertyTypeStr);
 						if (defaultValueCreatorStr is null)
@@ -229,8 +241,7 @@ file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> Prope
 /// </summary>
 /// <param name="PropertyName">Indicates the property name.</param>
 /// <param name="PropertyType">Indicates the property type.</param>
-/// <param name="DocCref">Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.</param>
-/// <param name="DocPath">Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.</param>
+/// <param name="DocumentationCommentData">Indicates the documentation data.</param>
 /// <param name="DefaultValueGeneratingMemberName">
 /// Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
 /// </param>
@@ -242,8 +253,7 @@ file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> Prope
 file readonly record struct PropertyData(
 	string PropertyName,
 	ITypeSymbol PropertyType,
-	string? DocCref,
-	string? DocPath,
+	DocumentationCommentData DocumentationCommentData,
 	string? DefaultValueGeneratingMemberName,
 	DefaultValueGeneratingMemberKind? DefaultValueGeneratingMemberKind,
 	object? DefaultValue,

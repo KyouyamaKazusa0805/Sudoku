@@ -5,24 +5,46 @@
 /// </summary>
 internal static class XamlBinding
 {
-	public static string? GetDocumentationComment(string propertyName, string? docCref, string? docPath, bool isDependencyProperty)
-		=> (docCref, docPath) switch
+	public static string? GetDocumentationComment(string propertyName, DocumentationCommentData data, bool isDependencyProperty)
+		=> (propertyName, data, isDependencyProperty) switch
 		{
-			(null, null) or (null, not null)
-			when (
-				isDependencyProperty
-					? $"""Indicates the interactive property that uses dependency property <see cref="{propertyName}Property"/> to get or set value."""
-					: $"""Indicates the interactive setter or getter methods that uses attached property <see cref="{propertyName}Property"/> to get or set value."""
-			) is var summary
-				=>
-				$"""
+			(_, ({ } summary, { } remarks, _, _), _)
+				=> $"""
 				/// <summary>
 					/// {summary}
 					/// </summary>
+					/// <remarks>
+					/// {remarks}
+					/// </remarks>
+				""",
+			(_, ({ } summary, _, _, _), _)
+				=> $"""
+				/// <summary>
+					/// {summary}
+					/// </summary>
+				""",
+			(_, (_, _, { } docCref, { } docPath), _)
+				=> $"""
+				/// <inheritdoc cref="{docCref}" path="{docPath}"/>
+				""",
+			(_, (_, _, { } docCref, _), _)
+				=> $"""
+				/// <inheritdoc cref="{docCref}"/>
+				""",
+			(_, _, true)
+				=> $"""
+				/// <summary>
+					/// Indicates the interactive property that uses dependency property <see cref="{propertyName}Property"/> to get or set value.
+					/// </summary>
 					/// <seealso cref="{propertyName}Property" />
 				""",
-			(not null, null) => $"""/// <inheritdoc cref="{docCref}"/>""",
-			(not null, not null) => $"""/// <inheritdoc cref="{docCref}" path="{docPath}"/>"""
+			(_, _, false)
+				=> $"""
+				/// <summary>
+					/// Indicates the interactive setter or getter methods that uses attached property <see cref="{propertyName}Property"/> to get or set value.
+					/// </summary>
+					/// <seealso cref="{propertyName}Property" />
+				"""
 		};
 
 	public static string? GetPropertyMetadataString(

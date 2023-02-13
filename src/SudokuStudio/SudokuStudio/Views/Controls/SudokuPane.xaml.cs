@@ -3,315 +3,89 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Defines a sudoku pane control.
 /// </summary>
+[DependencyProperty<bool>("DisplayCandidates", DefaultValue = true, DocSummary = "Indicates whether the pane displays for candidates.", CallbackMethodName = nameof(DisplayCandidatesPropertyCallback))]
+[DependencyProperty<bool>("DisplayCursors", DefaultValue = true, DocSummary = "Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers of the target cell that is the one your mouse points to.")]
+[DependencyProperty<bool>("UseDifferentColorToDisplayDeltaDigits", DefaultValue = true, DocSummary = "Indicates whether the pane displays for delta digits using different colors.")]
+[DependencyProperty<bool>("DisableFlyout", DocSummary = "Indicates whether the pane disable flyout open.")]
+[DependencyProperty<bool>("PreventConflictingInput", DefaultValue = true, DocSummary = "Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits in its containing houses, this pane will do nothing by this value being <see langword=\"true\"/>. If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.")]
+[DependencyProperty<double>("GivenFontScale", DefaultValue = 1.0, DocSummary = "Indicates the font scale of given digits. The value should generally be below 1.0.")]
+[DependencyProperty<double>("ModifiableFontScale", DefaultValue = 1.0, DocSummary = "Indicates the font scale of modifiable digits. The value should generally be below 1.0.")]
+[DependencyProperty<double>("PencilmarkFontScale", DefaultValue = .33, DocSummary = "Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.")]
+[DependencyProperty<double>("BabaGroupLabelFontScale", DefaultValue = .6, DocSummary = "Indicates the font scale of baba group characters. The value should generally be below 1.0.")]
+[DependencyProperty<double>("CoordinateLabelFontScale", DefaultValue = .4, DocSummary = "Indicates the coordinate label font scale. The value should generally be below 1.0.")]
+[DependencyProperty<double>("HighlightCandidateCircleScale", DefaultValue = .9, DocSummary = "Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.")]
+[DependencyProperty<double>("HighlightBackgroundOpacity", DefaultValue = .15, DocSummary = "Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.")]
+[DependencyProperty<double>("ChainStrokeThickness", DefaultValue = 2.0, DocSummary = "Indicates the chain stroke thickness.")]
+[DependencyProperty<int>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
+[DependencyProperty<CoordinateLabelDisplayKind>("CoordinateLabelDisplayKind", DefaultValue = CoordinateLabelDisplayKind.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayKind\"/>.")]
+[DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayMode\"/>.")]
+[DependencyProperty<Color>("GivenColor", DefaultValueGeneratingMemberName = nameof(GivenColorDefaultValue), DocSummary = "Indicates the given color.")]
+[DependencyProperty<Color>("ModifiableColor", DefaultValueGeneratingMemberName = nameof(ModifiableColorDefaultValue), DocSummary = "Indicates the modifiable color.")]
+[DependencyProperty<Color>("PencilmarkColor", DefaultValueGeneratingMemberName = nameof(PencilmarkColorDefaultValue), DocSummary = "Indicates the pencilmark color.")]
+[DependencyProperty<Color>("CoordinateLabelColor", DefaultValueGeneratingMemberName = nameof(CoordinateLabelColorDefaultValue), DocSummary = "Indicates the coordinate label color.")]
+[DependencyProperty<Color>("BabaGroupLabelColor", DefaultValueGeneratingMemberName = nameof(BabaGroupLabelColorDefaultValue), DocSummary = "Indicates the baba group label color.")]
+[DependencyProperty<Color>("DeltaCandidateColor", DefaultValueGeneratingMemberName = nameof(DeltaCandidateColorDefaultValue), DocSummary = "Indicates the color that is used for displaying candidates that are wrongly removed, but correct.")]
+[DependencyProperty<Color>("DeltaCellColor", DefaultValueGeneratingMemberName = nameof(DeltaCellColorDefaultValue), DocSummary = "Indicates the color that is used for displaying cell digits that are wrongly filled.")]
+[DependencyProperty<Color>("BorderColor", DefaultValueGeneratingMemberName = nameof(BorderColorDefaultValue), DocSummary = "Indicates the border color.")]
+[DependencyProperty<Color>("CursorBackgroundColor", DefaultValueGeneratingMemberName = nameof(CursorBackgroundColorDefaultValue), DocSummary = "Indicates the cursor background color.")]
+[DependencyProperty<Color>("LinkColor", DefaultValueGeneratingMemberName = nameof(LinkColorDefaultValue), DocSummary = "Indicates the link color.")]
+[DependencyProperty<Color>("NormalColor", DefaultValueGeneratingMemberName = nameof(NormalColorDefaultValue), DocSummary = "Indicates the normal color.")]
+[DependencyProperty<Color>("AssignmentColor", DefaultValueGeneratingMemberName = nameof(AssignmentColorDefaultValue), DocSummary = "Indicates the assignment color.")]
+[DependencyProperty<Color>("OverlappedAssignmentColor", DefaultValueGeneratingMemberName = nameof(OverlappedAssignmentColorDefaultValue), DocSummary = "Indicates the overlapped assignment color.")]
+[DependencyProperty<Color>("EliminationColor", DefaultValueGeneratingMemberName = nameof(EliminationColorDefaultValue), DocSummary = "Indicates the elimination color.")]
+[DependencyProperty<Color>("CannibalismColor", DefaultValueGeneratingMemberName = nameof(CannibalismColorDefaultValue), DocSummary = "Indicates the cannibalism color.")]
+[DependencyProperty<Color>("ExofinColor", DefaultValueGeneratingMemberName = nameof(ExofinColorDefaultValue), DocSummary = "Indicates the exofin color.")]
+[DependencyProperty<Color>("EndofinColor", DefaultValueGeneratingMemberName = nameof(EndofinColorDefaultValue), DocSummary = "Indicates the endofin color.")]
+[DependencyProperty<DashArray>("StrongLinkDashStyle", DefaultValueGeneratingMemberName = nameof(StrongLinkDashStyleDefaultValue), DocSummary = "Indicates the dash style of the strong links.")]
+[DependencyProperty<DashArray>("WeakLinkDashStyle", DefaultValueGeneratingMemberName = nameof(WeakLinkDashStyleDefaultValue), DocSummary = "Indicates the dash style of the weak links.")]
+[DependencyProperty<DashArray>("CycleLikeLinkDashStyle", DefaultValueGeneratingMemberName = nameof(CycleLikeLinkDashStyleDefaultValue), DocSummary = "Indicates the dash style of the cycle-like technique links.")]
+[DependencyProperty<DashArray>("OtherLinkDashStyle", DefaultValueGeneratingMemberName = nameof(OtherLinkDashStyleDefaultValue), DocSummary = "Indicates the dash style of the other links.")]
+[DependencyProperty<FontFamily>("GivenFont", DefaultValueGeneratingMemberName = nameof(GivenFontDefaultValue), DocSummary = "Indicates the given font.")]
+[DependencyProperty<FontFamily>("ModifiableFont", DefaultValueGeneratingMemberName = nameof(ModifiableFontDefaultValue), DocSummary = "Indicates the modifiable font.")]
+[DependencyProperty<FontFamily>("PencilmarkFont", DefaultValueGeneratingMemberName = nameof(PencilmarkFontDefaultValue), DocSummary = "Indicates the candidate font.")]
+[DependencyProperty<FontFamily>("CoordinateLabelFont", DefaultValueGeneratingMemberName = nameof(CoordinateLabelFontDefaultValue), DocSummary = "Indicates the coordinate label font.")]
+[DependencyProperty<FontFamily>("BabaGroupLabelFont", DefaultValueGeneratingMemberName = nameof(BabaGroupLabelFontDefaultValue), DocSummary = "Indicates the baba group label font.")]
+[DependencyProperty<ViewUnit>("ViewUnit", DocSummary = "Indicates the view unit used.", CallbackMethodName = nameof(ViewUnitPropertyCallback))]
+[DependencyProperty<ColorPalette>("AuxiliaryColors", DefaultValueGeneratingMemberName = nameof(AuxiliaryColorsDefaultValue), DocSummary = "Indicates the auxiliary colors.")]
+[DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DefaultValueGeneratingMemberName = nameof(DifficultyLevelForegroundsDefaultValue), DocSummary = "Indicates the foreground colors of all 6 kinds of difficulty levels.")]
+[DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DefaultValueGeneratingMemberName = nameof(DifficultyLevelBackgroundsDefaultValue), DocSummary = "Indicates the background colors of all 6 kinds of difficulty levels.")]
+[DependencyProperty<ColorPalette>("UserDefinedColorPalette", DefaultValueGeneratingMemberName = nameof(UserDefinedColorPaletteDefaultValue), DocSummary = "Indicates the user-defined colors used by customized views.")]
+[DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DefaultValueGeneratingMemberName = nameof(AlmostLockedSetsColorsDefaultValue), DocSummary = "Indicates the colors applied to technique structure Almost Locked Sets.")]
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
-	/// <summary>
-	/// Defines a pair of stacks that stores undo and redo steps.
-	/// </summary>
-	internal readonly ObservableStack<Grid> _undoStack = new(), _redoStack = new();
-
-	/// <summary>
-	/// The easy entry to visit children <see cref="SudokuPaneCell"/> instances. This field contains 81 elements,
-	/// indicating controls being displayed as 81 cells in a sudoku grid respectively.
-	/// </summary>
-	/// <remarks>
-	/// Although this field is not marked as <see langword="readonly"/>, it will only be initialized during initialization.
-	/// <b>Please do not modify any elements in this array.</b>
-	/// </remarks>
-	internal SudokuPaneCell[] _children;
-
-	/// <summary>
-	/// Indicates whether the pane displays for candidates.
-	/// </summary>
-	[NotifyBackingField]
-	[NotifyCallback]
-	private bool _displayCandidates = true;
-
-	/// <summary>
-	/// Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers of the target cell
-	/// that is the one your mouse points to.
-	/// </summary>
-	[NotifyBackingField]
-	private bool _displayCursors = true;
-
-	/// <summary>
-	/// Indicates whether the pane displays for delta digits using different colors.
-	/// </summary>
-	[NotifyBackingField]
-	private bool _useDifferentColorToDisplayDeltaDigits = true;
-
-	/// <summary>
-	/// Indicates whether the pane disable flyout open.
-	/// </summary>
-	[NotifyBackingField]
-	private bool _disableFlyout = false;
-
-	/// <summary>
-	/// Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits
-	/// in its containing houses, this pane will do nothing by this value being <see langword="true"/>.
-	/// If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.
-	/// </summary>
-	[NotifyBackingField]
-	private bool _preventConflictingInput = true;
-
-	/// <summary>
-	/// Indicates the font scale of given digits. The value should generally be below 1.0.
-	/// </summary>
-	[NotifyBackingField]
-	private double _givenFontScale = 1.0;
-
-	/// <summary>
-	/// Indicates the font scale of modifiable digits. The value should generally be below 1.0.
-	/// </summary>
-	[NotifyBackingField]
-	private double _modifiableFontScale = 1.0;
-
-	/// <summary>
-	/// Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
-	/// </summary>
-	[NotifyBackingField]
-	private double _pencilmarkFontScale = .33;
-
-	/// <summary>
-	/// Indicates the font scale of baba group characters. The value should generally be below 1.0.
-	/// </summary>
-	[NotifyBackingField]
-	private double _babaGroupLabelFontScale = .6;
-
-	/// <summary>
-	/// Indicates the coordinate label font scale. The value should generally be below 1.0.
-	/// </summary>
-	[NotifyBackingField]
-	private double _coordinateLabelFontScale = .4;
-
-	/// <summary>
-	/// Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
-	/// </summary>
-	[NotifyBackingField]
-	private double _highlightCandidateCircleScale = .9;
-
-	/// <summary>
-	/// Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
-	/// </summary>
-	[NotifyBackingField]
-	private double _highlightBackgroundOpacity = .15;
-
-	/// <summary>
-	/// Indicates the chain stroke thickness.
-	/// </summary>
-	[NotifyBackingField]
-	private double _chainStrokeThickness = 2;
-
-	/// <summary>
-	/// Indicates the currently selected cell.
-	/// </summary>
-	[NotifyBackingField]
-	private int _selectedCell;
-
-	/// <summary>
-	/// Indicates the displaying kind of coordinate labels.
-	/// </summary>
-	/// <remarks>
-	/// For more information please visit <see cref="Interaction.CoordinateLabelDisplayKind"/>.
-	/// </remarks>
-	/// <seealso cref="Interaction.CoordinateLabelDisplayKind"/>
-	[NotifyBackingField]
-	private CoordinateLabelDisplayKind _coordinateLabelDisplayKind = CoordinateLabelDisplayKind.RxCy;
-
-	/// <summary>
-	/// Indicates the displaying mode of coordinate labels.
-	/// </summary>
-	/// <remarks>
-	/// For more information please visit <see cref="Interaction.CoordinateLabelDisplayMode"/>.
-	/// </remarks>
-	/// <seealso cref="Interaction.CoordinateLabelDisplayMode"/>
-	[NotifyBackingField]
-	private CoordinateLabelDisplayMode _coordinateLabelDisplayMode = CoordinateLabelDisplayMode.UpperAndLeft;
-
-	/// <summary>
-	/// Indicates the given color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _givenColor = Colors.Black;
-
-	/// <summary>
-	/// Indicates the modifiable color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _modifiableColor = Colors.Blue;
-
-	/// <summary>
-	/// Indicates the pencilmark color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _pencilmarkColor = new() { A = 255, R = 100, G = 100, B = 100 };
-
-	/// <summary>
-	/// Indicates the coordinate label color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _coordinateLabelColor = new() { A = 255, R = 100, G = 100, B = 100 };
-
-	/// <summary>
-	/// Indicates the baba group label color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _babaGroupLabelColor = Colors.Red;
-
-	/// <summary>
-	/// Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _deltaCandidateColor = Color.FromArgb(255, 255, 185, 185);
-
-	/// <summary>
-	/// Indicates the color that is used for displaying cell digits that are wrongly filled.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _deltaCellColor = new() { A = 255, R = 255 };
-
-	/// <summary>
-	/// Indicates the border color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _borderColor = Colors.Black;
-
-	/// <summary>
-	/// Indicates the cursor background color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _cursorBackgroundColor = new() { A = 32, B = 255 };
-
-	/// <summary>
-	/// Indicates the link color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _linkColor = Colors.Red;
-
-	/// <summary>
-	/// Indicates the normal color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _normalColor = Color.FromArgb(255, 63, 218, 101);
-
-	/// <summary>
-	/// Indicates the assignment color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _assignmentColor = Color.FromArgb(255, 63, 218, 101);
-
-	/// <summary>
-	/// Indicates the overlapped assignment color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _overlappedAssignmentColor = Color.FromArgb(255, 0, 255, 204);
-
-	/// <summary>
-	/// Indicates the elimination color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _eliminationColor = Color.FromArgb(255, 255, 118, 132);
-
-	/// <summary>
-	/// Indicates the cannibalism color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _cannibalismColor = new() { A = 255, R = 235 };
-
-	/// <summary>
-	/// Indicates the exofin color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _exofinColor = Color.FromArgb(255, 127, 187, 255);
-
-	/// <summary>
-	/// Indicates the endofin color.
-	/// </summary>
-	[NotifyBackingField]
-	private Color _endofinColor = Color.FromArgb(255, 216, 178, 255);
-
-	/// <summary>
-	/// Indicates the target puzzle.
-	/// </summary>
-	private Grid _puzzle = Grid.Empty;
-
-	/// <summary>
-	/// Indicates the dash style of the strong links.
-	/// </summary>
-	[NotifyBackingField]
-	private DashArray _strongLinkDashStyle = new();
-
-	/// <summary>
-	/// Indicates the dash style of the weak links.
-	/// </summary>
-	[NotifyBackingField]
-	private DashArray _weakLinkDashStyle = new(3, 1.5);
-
-	/// <summary>
-	/// Indicates the dash style of the cycle-like technique links.
-	/// </summary>
-	[NotifyBackingField]
-	private DashArray _cycleLikeLinkDashStyle = new();
-
-	/// <summary>
-	/// Indicates the dash style of the other links.
-	/// </summary>
-	[NotifyBackingField]
-	private DashArray _otherLinkDashStyle = new(3, 3);
-
-	/// <summary>
-	/// Indicates the given font.
-	/// </summary>
-	[NotifyBackingField]
-	private FontFamily _givenFont = new("Tahoma");
-
-	/// <summary>
-	/// Indicates the modifiable font.
-	/// </summary>
-	[NotifyBackingField]
-	private FontFamily _modifiableFont = new("Tahoma");
-
-	/// <summary>
-	/// Indicates the candidate font.
-	/// </summary>
-	[NotifyBackingField]
-	private FontFamily _pencilmarkFont = new("Tahoma");
-
-	/// <summary>
-	/// Indicates the coordinate label font.
-	/// </summary>
-	[NotifyBackingField]
-	private FontFamily _coordinateLabelFont = new("Tahoma");
-
-	/// <summary>
-	/// Indicates the baba group label font.
-	/// </summary>
-	[NotifyBackingField]
-	private FontFamily _babaGroupLabelFont = new("Times New Roman");
-
-	/// <summary>
-	/// Indicates the view unit used.
-	/// </summary>
-	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference, DisableEventTrigger = true)]
-	[NotifyCallback]
-	private ViewUnit? _viewUnit;
-
-	/// <summary>
-	/// Indicates the auxiliary colors.
-	/// </summary>
-	[NotifyBackingField]
-	private ColorPalette _auxiliaryColors = new()
+	private static readonly Color GivenColorDefaultValue = Colors.Black;
+	private static readonly Color ModifiableColorDefaultValue = Colors.Blue;
+	private static readonly Color PencilmarkColorDefaultValue = new() { A = 255, R = 100, G = 100, B = 100 };
+	private static readonly Color CoordinateLabelColorDefaultValue = new() { A = 255, R = 100, G = 100, B = 100 };
+	private static readonly Color BabaGroupLabelColorDefaultValue = Colors.Red;
+	private static readonly Color DeltaCandidateColorDefaultValue = Color.FromArgb(255, 255, 185, 185);
+	private static readonly Color DeltaCellColorDefaultValue = new() { A = 255, R = 255 };
+	private static readonly Color BorderColorDefaultValue = Colors.Black;
+	private static readonly Color CursorBackgroundColorDefaultValue = new() { A = 32, B = 255 };
+	private static readonly Color LinkColorDefaultValue = Colors.Red;
+	private static readonly Color NormalColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
+	private static readonly Color AssignmentColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
+	private static readonly Color OverlappedAssignmentColorDefaultValue = Color.FromArgb(255, 0, 255, 204);
+	private static readonly Color EliminationColorDefaultValue = Color.FromArgb(255, 255, 118, 132);
+	private static readonly Color CannibalismColorDefaultValue = new() { A = 255, R = 235 };
+	private static readonly Color ExofinColorDefaultValue = Color.FromArgb(255, 127, 187, 255);
+	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
+	private static readonly DashArray StrongLinkDashStyleDefaultValue = new();
+	private static readonly DashArray WeakLinkDashStyleDefaultValue = new(3, 1.5);
+	private static readonly DashArray CycleLikeLinkDashStyleDefaultValue = new();
+	private static readonly DashArray OtherLinkDashStyleDefaultValue = new(3, 3);
+	private static readonly FontFamily GivenFontDefaultValue = new("Tahoma");
+	private static readonly FontFamily ModifiableFontDefaultValue = new("Tahoma");
+	private static readonly FontFamily PencilmarkFontDefaultValue = new("Tahoma");
+	private static readonly FontFamily CoordinateLabelFontDefaultValue = new("Tahoma");
+	private static readonly FontFamily BabaGroupLabelFontDefaultValue = new("Times New Roman");
+	private static readonly ColorPalette AuxiliaryColorsDefaultValue = new()
 	{
 		Color.FromArgb(255, 255, 192,  89),
 		Color.FromArgb(255, 127, 187, 255),
 		Color.FromArgb(255, 216, 178, 255)
 	};
-
-	/// <summary>
-	/// Indicates the foreground colors of all 6 kinds of difficulty levels.
-	/// </summary>
-	[NotifyBackingField]
-	private ColorPalette _difficultyLevelForegrounds = new()
+	private static readonly ColorPalette DifficultyLevelForegroundsDefaultValue = new()
 	{
 		Color.FromArgb(255,   0,  51, 204),
 		Color.FromArgb(255,   0, 102,   0),
@@ -320,12 +94,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 102,   0,   0),
 		Colors.Black
 	};
-
-	/// <summary>
-	/// Indicates the background colors of all 6 kinds of difficulty levels.
-	/// </summary>
-	[NotifyBackingField]
-	private ColorPalette _difficultyLevelBackgrounds = new()
+	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = new()
 	{
 		Color.FromArgb(255, 204, 204, 255),
 		Color.FromArgb(255, 100, 255, 100),
@@ -334,12 +103,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 255, 100, 100),
 		Color.FromArgb(255, 220, 220, 220)
 	};
-
-	/// <summary>
-	/// Indicates the user-defined colors used by customized views.
-	/// </summary>
-	[NotifyBackingField]
-	private ColorPalette _userDefinedColorPalette = new()
+	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = new()
 	{
 		Color.FromArgb(255,  63, 218, 101), // Green
 		Color.FromArgb(255, 255, 192,  89), // Orange
@@ -357,12 +121,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 215, 255, 215), // Light green
 		Color.FromArgb(255, 192, 192, 192) // Gray
 	};
-
-	/// <summary>
-	/// Indicates the colors applied to technique structure Almost Locked Sets.
-	/// </summary>
-	[NotifyBackingField]
-	private ColorPalette _almostLockedSetsColors = new()
+	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = new()
 	{
 		Color.FromArgb(255, 255, 203, 203),
 		Color.FromArgb(255, 178, 223, 223),
@@ -370,6 +129,27 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 255, 255, 150),
 		Color.FromArgb(255, 247, 222, 143)
 	};
+
+
+	/// <summary>
+	/// Defines a pair of stacks that stores undo and redo steps.
+	/// </summary>
+	internal readonly ObservableStack<Grid> _undoStack = new(), _redoStack = new();
+
+	/// <summary>
+	/// The easy entry to visit children <see cref="SudokuPaneCell"/> instances. This field contains 81 elements,
+	/// indicating controls being displayed as 81 cells in a sudoku grid respectively.
+	/// </summary>
+	/// <remarks>
+	/// Although this field is not marked as <see langword="readonly"/>, it will only be initialized during initialization.
+	/// <b>Please do not modify any elements in this array.</b>
+	/// </remarks>
+	internal SudokuPaneCell[] _children;
+
+	/// <summary>
+	/// Indicates the target puzzle.
+	/// </summary>
+	private Grid _puzzle = Grid.Empty;
 
 
 	/// <summary>
@@ -604,7 +384,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		// Clears the view unit.
-		ViewUnit = null;
+		ViewUnit = null!;
 
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
 	}
@@ -661,15 +441,30 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		_redoStack.Clear();
 	}
 
-	private void DisplayCandidatesSetterAfter(bool value) => ((App)Application.Current).Preference.UIPreferences.DisplayCandidates = value;
 
-	private void ViewUnitSetterAfter(ViewUnit? value)
+	private static void DisplayCandidatesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		ViewUnitFrameworkElementFactory.RemoveViewUnitControls(BasePage);
+		if (e is not { NewValue: bool value })
+		{
+			return;
+		}
+
+		((App)Application.Current).Preference.UIPreferences.DisplayCandidates = value;
+	}
+
+	private static void ViewUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is not (SudokuPane { BasePage: var basePage }, { NewValue: var rawValue and (null or ViewUnit _) }))
+		{
+			return;
+		}
+
+		var value = rawValue as ViewUnit;
+		ViewUnitFrameworkElementFactory.RemoveViewUnitControls(basePage);
 
 		if (value is not null)
 		{
-			ViewUnitFrameworkElementFactory.AddViewUnitControls(BasePage, value);
+			ViewUnitFrameworkElementFactory.AddViewUnitControls(basePage, value);
 		}
 	}
 

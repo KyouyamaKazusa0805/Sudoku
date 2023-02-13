@@ -26,6 +26,16 @@ public abstract class XamlBindingAttribute<T> : Attribute
 	public string? DocReferencedPath { get; init; }
 
 	/// <summary>
+	/// Indicates the <c>summary</c> content of the dependency property displayed in XML documentation comment.
+	/// </summary>
+	public string? DocSummary { get; init; }
+
+	/// <summary>
+	/// Indicates the <c>remarks</c> content of the dependency property displayed in XML documentation comment.
+	/// </summary>
+	public string? DocRemarks { get; init; }
+
+	/// <summary>
 	/// Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
 	/// </summary>
 	/// <remarks>
@@ -33,6 +43,11 @@ public abstract class XamlBindingAttribute<T> : Attribute
 	/// </remarks>
 	/// <seealso cref="DefaultValue"/>
 	public string? DefaultValueGeneratingMemberName { get; init; }
+
+	/// <summary>
+	/// Indicates the callback method name.
+	/// </summary>
+	public string? CallbackMethodName { get; init; }
 
 	/// <summary>
 	/// Indicates the default value.
