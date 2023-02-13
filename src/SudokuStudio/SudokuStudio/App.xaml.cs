@@ -54,12 +54,6 @@ public partial class App : Application
 	[DebuggerHidden]
 	internal Grid? FirstGrid { get; set; }
 
-	/// <summary>
-	/// Defines the sudoku pane used.
-	/// </summary>
-	[DebuggerHidden]
-	internal SudokuPane? SudokuPane { get; set; }
-
 
 	/// <summary>
 	/// Indicates the assembly version.
@@ -123,10 +117,9 @@ public partial class App : Application
 	private void LoadConfigurationFileFromLocal()
 	{
 		var targetPath = CommonPaths.UserPreference;
-		var pref = Preference;
 		if (File.Exists(targetPath) && ProgramPreferenceFileHandler.Read(targetPath) is { } loadedConfig)
 		{
-			pref.CoverBy(loadedConfig);
+			Preference.CoverBy(loadedConfig);
 		}
 	}
 }
