@@ -47,18 +47,12 @@
 								IsChecked="{x:Bind SudokuPane.DisplayCandidates,Mode=TwoWay}" />
 							<AppBarButton
 								CommandParameter="{x:Bind SudokuPane}" Label="{m:R Key=AnalyzePage_FixGrid}" Icon="Pin"
-								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetFixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}">
-								<AppBarButton.Command>
-									<cmd:FixGridCommand />
-								</AppBarButton.Command>
-							</AppBarButton>
+								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetFixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
+								Click="FixGridButton_Click" />
 							<AppBarButton
 								CommandParameter="{x:Bind SudokuPane}" Label="{m:R Key=AnalyzePage_UnfixGrid}" Icon="UnPin"
-								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}">
-								<AppBarButton.Command>
-									<cmd:UnfixGridCommand />
-								</AppBarButton.Command>
-							</AppBarButton>
+								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
+								Click="UnfixGridButton_Click" />
 							<AppBarToggleButton
 								IsThreeState="False" Icon="List" Label="{m:R Key=AnalyzePage_LogicalSolverIsFullyApplied}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=TwoWay}" />

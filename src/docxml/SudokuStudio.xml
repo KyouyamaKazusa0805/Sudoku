@@ -1377,28 +1377,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.Commands.ButtonCommand.Execute(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="T:SudokuStudio.Interaction.Commands.FixGridCommand">
-            <summary>
-            Defines a command to fix a grid.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interaction.Commands.FixGridCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="T:SudokuStudio.Interaction.Commands.GatherCommand">
             <summary>
             Defines a gather command.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.Commands.GatherCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Interaction.Commands.UnfixGridCommand">
-            <summary>
-            Defines a command to unfix a grid.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interaction.Commands.UnfixGridCommand.Execute(System.Object)">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.AnalyzeConversion">
