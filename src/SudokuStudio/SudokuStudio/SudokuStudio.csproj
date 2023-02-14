@@ -13,6 +13,7 @@
 		<DocumentationFile>..\..\docxml\SudokuStudio.xml</DocumentationFile>
 		<Description>The project represents with user interfaces that operates with sudoku puzzles.</Description>
 	</PropertyGroup>
+
 	<ItemGroup>
 		<Content Remove="Resources\images\baba.gif" />
 		<Content Remove="Resources\images\group.gif" />
@@ -31,6 +32,7 @@
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
 		<PackageReference Include="QuestPDF" Version="2022.12.1" />
+		<PackageReference Include="WinUICommunity.SettingsUI" Version="3.0.4" />
 		<PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

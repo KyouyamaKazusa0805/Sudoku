@@ -5,61 +5,68 @@
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:models="using:SudokuStudio.Models"
+	xmlns:wc="using:WinUICommunity.SettingsUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AboutPage}">
 	<ScrollViewer Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
 		<StackPanel Spacing="4">
 			<TextBlock Text="{m:R Key=AboutPage_DetailDescription}" Margin="0,0,0,12" />
 
 			<!--Author info-->
-			<c:ExtendedExpander Title="{m:R Key=AboutPage_Author}">
-				<c:ExtendedExpander.Icon>
+			<wc:Setting Header="{m:R Key=AboutPage_Author}">
+				<wc:Setting.Icon>
 					<SymbolIcon Symbol="People" />
-				</c:ExtendedExpander.Icon>
-				<TextBlock Text="{m:R Key=AboutPage_AuthorName}" />
-			</c:ExtendedExpander>
-			<c:ExtendedExpander Title="{m:R Key=AboutPage_AuthorMoreInfo}">
-				<c:ExtendedExpander.Icon>
+				</wc:Setting.Icon>
+				<wc:Setting.ActionContent>
+					<TextBlock Text="{m:R Key=AboutPage_AuthorName}" Padding="6" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=AboutPage_AuthorMoreInfo}">
+				<wc:Setting.Icon>
 					<SymbolIcon Symbol="Contact" />
-				</c:ExtendedExpander.Icon>
-				<StackPanel Orientation="Horizontal">
-					<HyperlinkButton NavigateUri="https://github.com/SunnieShine" Content="GitHub" />
-					<TextBlock Text=" | " VerticalAlignment="Center" />
-					<HyperlinkButton NavigateUri="https://space.bilibili.com/23736703" Content="{m:R Key=AboutPage_Bilibili}" />
-					<TextBlock Text=" | " VerticalAlignment="Center" />
-					<HyperlinkButton NavigateUri="https://gitee.com/SunnieShine" Content="Gitee" />
-				</StackPanel>
-			</c:ExtendedExpander>
+				</wc:Setting.Icon>
+				<wc:Setting.ActionContent>
+					<StackPanel Orientation="Horizontal">
+						<HyperlinkButton NavigateUri="https://github.com/SunnieShine" Content="GitHub" />
+						<TextBlock Text=" | " VerticalAlignment="Center" />
+						<HyperlinkButton NavigateUri="https://space.bilibili.com/23736703" Content="{m:R Key=AboutPage_Bilibili}" />
+						<TextBlock Text=" | " VerticalAlignment="Center" />
+						<HyperlinkButton NavigateUri="https://gitee.com/SunnieShine" Content="Gitee" />
+					</StackPanel>
+				</wc:Setting.ActionContent>
+			</wc:Setting>
 
 			<!--Framework info-->
-			<c:ExtendedExpander Title="{m:R Key=AboutPage_Framework}" Description="{m:R Key=AboutPage_FrameworkDescription}">
-				<c:ExtendedExpander.Icon>
+			<wc:Setting Header="{m:R Key=AboutPage_Framework}" Description="{m:R Key=AboutPage_FrameworkDescription}">
+				<wc:Setting.Icon>
 					<SymbolIcon Symbol="Library" />
-				</c:ExtendedExpander.Icon>
-				<StackPanel Orientation="Horizontal">
-					<HyperlinkButton NavigateUri="https://github.com/microsoft/microsoft-ui-xaml" Content="WinUI 3" />
-					<TextBlock Text=" | " VerticalAlignment="Center" />
-					<HyperlinkButton NavigateUri="https://github.com/microsoft/WindowsAppSDK" Content="Windows App SDK" />
-					<TextBlock Text=" | " VerticalAlignment="Center" />
-					<HyperlinkButton NavigateUri="https://github.com/dotnet/runtime" Content=".NET Runtime" />
-				</StackPanel>
-			</c:ExtendedExpander>
-			<c:ExtendedExpander Title="{m:R Key=AboutPage_CompilationInfo}" Description="{x:Bind cvt:CompilationConversion.GetCompilationInfo()}">
-				<c:ExtendedExpander.Icon>
-					<ImageIcon Source="/Resources/images/logo.png" Height="24" />
-				</c:ExtendedExpander.Icon>
-			</c:ExtendedExpander>
+				</wc:Setting.Icon>
+				<wc:Setting.ActionContent>
+					<StackPanel Orientation="Horizontal">
+						<HyperlinkButton NavigateUri="https://github.com/microsoft/microsoft-ui-xaml" Content="WinUI 3" />
+						<TextBlock Text=" | " VerticalAlignment="Center" />
+						<HyperlinkButton NavigateUri="https://github.com/microsoft/WindowsAppSDK" Content="Windows App SDK" />
+						<TextBlock Text=" | " VerticalAlignment="Center" />
+						<HyperlinkButton NavigateUri="https://github.com/dotnet/runtime" Content=".NET Runtime" />
+					</StackPanel>
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=AboutPage_CompilationInfo}">
+				<wc:Setting.Icon>
+					<ImageIcon Source="/Resources/images/icon.png" />
+				</wc:Setting.Icon>
+				<wc:Setting.ActionContent>
+					<TextBlock Text="{x:Bind cvt:CompilationConversion.GetCompilationInfo()}" Padding="6" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
 
 			<!--Special thanks-->
-			<c:ExtendedExpander Title="{m:R Key=AboutPage_SpecialThanks}" Description="{m:R Key=AboutPage_SpecialThanksDescription}">
-				<c:ExtendedExpander.Icon>
-					<SymbolIcon Symbol="Link" />
-				</c:ExtendedExpander.Icon>
-				<c:ExtendedExpander.ExpandableContent>
-					<ListView SelectionMode="None" Margin="40,20,10,30">
+			<wc:SettingExpander Header="{m:R Key=AboutPage_SpecialThanks}">
+				<StackPanel Spacing="12" Margin="40,20">
+					<TextBlock Text="{m:R Key=AboutPage_SpecialThanksDescription}" />
+					<ListView SelectionMode="None">
 						<ListView.ItemTemplate>
 							<DataTemplate x:DataType="models:RepositoryInfo">
 								<Grid RowDefinitions="*,*,*" ColumnDefinitions="Auto,Auto,*">
@@ -78,7 +85,7 @@
 										Text="{x:Bind cvt:CompilationConversion.ForReference(IsForReference)}" />
 									<HyperlinkButton
 										Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6" NavigateUri="{x:Bind Site}">
-										<FontIcon Glyph="&#xE8A7;" />
+										<SymbolIcon Symbol="Link" />
 									</HyperlinkButton>
 								</Grid>
 							</DataTemplate>
@@ -109,8 +116,8 @@
 							Name="{m:R Key=AboutPage_SpecialThanks_WindowsCommunityToolkit}" OpenSourceLicense="MIT"
 							Site="https://github.com/CommunityToolkit/WindowsCommunityToolkit" Initials="CT" />
 					</ListView>
-				</c:ExtendedExpander.ExpandableContent>
-			</c:ExtendedExpander>
+				</StackPanel>
+			</wc:SettingExpander>
 		</StackPanel>
 	</ScrollViewer>
 </Page>
