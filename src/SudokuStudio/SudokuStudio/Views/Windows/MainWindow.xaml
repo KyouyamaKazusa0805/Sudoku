@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:av="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
 	xmlns:m="using:SudokuStudio.Markup"
 	mc:Ignorable="d"
 	Closed="Window_Closed">
@@ -55,7 +56,17 @@
 					</NavigationViewItem.MenuItems>
 				</NavigationViewItem>
 				<NavigationViewItemSeparator />
-				<NavigationViewItem Icon="Setting" Content="{m:R Key=MainWindow_Settings}">
+				<NavigationViewItem Content="{m:R Key=MainWindow_Settings}">
+					<NavigationViewItem.Icon>
+						<AnimatedIcon>
+							<AnimatedIcon.Source>
+								<av:AnimatedSettingsVisualSource />
+							</AnimatedIcon.Source>
+							<AnimatedIcon.FallbackIconSource>
+								<SymbolIconSource Symbol="Setting" />
+							</AnimatedIcon.FallbackIconSource>
+						</AnimatedIcon>
+					</NavigationViewItem.Icon>
 					<NavigationViewItem.MenuItems>
 						<NavigationViewItem x:Name="BasicSettingsPageItem" Content="{m:R Key=SettingsPage_Basic}" />
 						<NavigationViewItem x:Name="AnalyaisSettingsPageItem" Content="{m:R Key=SettingsPage_Analysis}" />
