@@ -1276,6 +1276,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analysis Options.
+        /// </summary>
+        internal static string MainWindow_AnalysisPreferenceItemsPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_AnalysisPreferenceItemsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analyze.
         /// </summary>
         internal static string MainWindow_Analyze {
@@ -1290,6 +1299,24 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_AnalyzePageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_AnalyzePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program Basic Options.
+        /// </summary>
+        internal static string MainWindow_BasicPreferenceItemsPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_BasicPreferenceItemsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drawing Options.
+        /// </summary>
+        internal static string MainWindow_DrawingPreferenceItemsPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_DrawingPreferenceItemsPageTitle", resourceCulture);
             }
         }
         
@@ -1317,6 +1344,15 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_Search {
             get {
                 return ResourceManager.GetString("MainWindow_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string MainWindow_Settings {
+            get {
+                return ResourceManager.GetString("MainWindow_Settings", resourceCulture);
             }
         }
         

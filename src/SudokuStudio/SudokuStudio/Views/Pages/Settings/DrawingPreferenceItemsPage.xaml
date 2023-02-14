@@ -12,7 +12,7 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:DrawingPreferenceItemsPage}">
-	<Grid ColumnDefinitions="*,Auto">
+	<Grid ColumnDefinitions="*,Auto" Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
 		<!--Preference items-->
 		<ScrollViewer>
 			<StackPanel Spacing="26" Margin="0,0,60,0">

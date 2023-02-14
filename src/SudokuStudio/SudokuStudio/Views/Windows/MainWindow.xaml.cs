@@ -89,10 +89,15 @@ public sealed partial class MainWindow : Window
 	private void InitializeField()
 		=> _navigatingData = new()
 		{
+#if false
 			{ static (isSettingInvokedOrSelected, _) => isSettingInvokedOrSelected, typeof(SettingsPage) },
+#endif
 			{ (_, container) => container == AnalyzePageItem, typeof(AnalyzePage) },
 			{ (_, container) => container == AboutPagetItem, typeof(AboutPage) },
-			{ (_, container) => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) }
+			{ (_, container) => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) },
+			{ (_, container) => container == BasicSettingsPageItem, typeof(BasicPreferenceItemsPage) },
+			{ (_, container) => container == AnalyaisSettingsPageItem, typeof(AnalysisPreferenceItemsPage) },
+			{ (_, container) => container == DrawingSettingsPageItem, typeof(DrawingPreferenceItemsPage) }
 		};
 
 	/// <summary>

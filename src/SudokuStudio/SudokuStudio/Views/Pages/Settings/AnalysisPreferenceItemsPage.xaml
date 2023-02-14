@@ -10,7 +10,7 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:AnalysisPreferenceItemsPage}">
-	<ScrollViewer>
+	<ScrollViewer Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
 		<StackPanel Spacing="26">
 			<StackPanel>
 				<TextBlock Text="{m:R Key=SettingsPage_EnableFullHouse}" Style="{StaticResource PreferenceItemTitleStyle}" />

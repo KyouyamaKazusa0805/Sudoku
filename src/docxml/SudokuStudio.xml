@@ -3328,6 +3328,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to About....
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_AnalysisPreferenceItemsPageTitle">
+            <summary>
+              Looks up a localized string similar to Analysis Options.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Analyze">
             <summary>
               Looks up a localized string similar to Analyze.
@@ -3336,6 +3341,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_AnalyzePageTitle">
             <summary>
               Looks up a localized string similar to Solving &amp; Analysis.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_BasicPreferenceItemsPageTitle">
+            <summary>
+              Looks up a localized string similar to Program Basic Options.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_DrawingPreferenceItemsPageTitle">
+            <summary>
+              Looks up a localized string similar to Drawing Options.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_ExtraFunctions">
@@ -3351,6 +3366,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Search">
             <summary>
               Looks up a localized string similar to Search....
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Settings">
+            <summary>
+              Looks up a localized string similar to Settings.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_SettingsPageTitle">

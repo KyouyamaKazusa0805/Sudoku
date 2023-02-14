@@ -495,11 +495,20 @@
   <data name="MainWindow_AboutPageTitle" xml:space="preserve">
     <value>About...</value>
   </data>
+  <data name="MainWindow_AnalysisPreferenceItemsPageTitle" xml:space="preserve">
+    <value>Analysis Options</value>
+  </data>
   <data name="MainWindow_Analyze" xml:space="preserve">
     <value>Analyze</value>
   </data>
   <data name="MainWindow_AnalyzePageTitle" xml:space="preserve">
     <value>Solving &amp; Analysis</value>
+  </data>
+  <data name="MainWindow_BasicPreferenceItemsPageTitle" xml:space="preserve">
+    <value>Program Basic Options</value>
+  </data>
+  <data name="MainWindow_DrawingPreferenceItemsPageTitle" xml:space="preserve">
+    <value>Drawing Options</value>
   </data>
   <data name="MainWindow_ExtraFunctions" xml:space="preserve">
     <value>Extra Functions</value>
@@ -509,6 +518,9 @@
   </data>
   <data name="MainWindow_Search" xml:space="preserve">
     <value>Search...</value>
+  </data>
+  <data name="MainWindow_Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>Settings &amp; Preferences</value>

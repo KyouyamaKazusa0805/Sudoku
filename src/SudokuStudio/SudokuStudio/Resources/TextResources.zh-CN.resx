@@ -495,11 +495,20 @@
   <data name="MainWindow_AboutPageTitle" xml:space="preserve">
     <value>关于……</value>
   </data>
+  <data name="MainWindow_AnalysisPreferenceItemsPageTitle" xml:space="preserve">
+    <value>题目分析设置</value>
+  </data>
   <data name="MainWindow_Analyze" xml:space="preserve">
     <value>分析</value>
   </data>
   <data name="MainWindow_AnalyzePageTitle" xml:space="preserve">
     <value>解题与分析</value>
+  </data>
+  <data name="MainWindow_BasicPreferenceItemsPageTitle" xml:space="preserve">
+    <value>程序基本设置</value>
+  </data>
+  <data name="MainWindow_DrawingPreferenceItemsPageTitle" xml:space="preserve">
+    <value>配色及盘面渲染设置</value>
   </data>
   <data name="MainWindow_ExtraFunctions" xml:space="preserve">
     <value>额外功能</value>
@@ -509,6 +518,9 @@
   </data>
   <data name="MainWindow_Search" xml:space="preserve">
     <value>搜索……</value>
+  </data>
+  <data name="MainWindow_Settings" xml:space="preserve">
+    <value>设置</value>
   </data>
   <data name="MainWindow_SettingsPageTitle" xml:space="preserve">
     <value>偏好项设置</value>
