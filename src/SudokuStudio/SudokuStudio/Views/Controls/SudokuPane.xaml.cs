@@ -169,7 +169,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		get => _puzzle;
 
-		set => SetPuzzle(value, clearStack: true);
+		set => SetPuzzle(value, true, true);
 	}
 
 	/// <summary>
@@ -267,6 +267,32 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		Clipboard.SetContent(dataPackage);
 	}
+	
+	/// <summary>
+	/// Try to set puzzle, with a <see cref="bool"/> value indicating whether the stack fields <see cref="_undoStack"/>
+	/// and <see cref="_redoStack"/> will be cleared.
+	/// </summary>
+	/// <param name="value">The newer grid.</param>
+	/// <param name="clearStack">
+	/// <para>Indicates whether the stack fields <see cref="_undoStack"/> and <see cref="_redoStack"/> will be cleared.</para>
+	/// <para>The default value is <see langword="false"/>.</para>
+	/// </param>
+	/// <param name="clearAnalyzeTabData">
+	/// <para>Indicates whether the puzzle-replacing operation will clear analyze data.</para>
+	/// <para>The default value is <see langword="true"/>.</para>
+	/// </param>
+	/// <remarks>
+	/// <para>
+	/// This method is nearly equal to <see cref="set_Puzzle(Grid)"/>, but this method can also control undoing and redoing stacks.
+	/// </para>
+	/// <para>Generally, we use this method more times than covering with property <see cref="Puzzle"/>.</para>
+	/// </remarks>
+	/// <seealso cref="_undoStack"/>
+	/// <seealso cref="_redoStack"/>
+	/// <seealso cref="set_Puzzle(Grid)"/>
+	/// <seealso cref="Puzzle"/>
+	public void SetPuzzle(scoped in Grid value, bool clearStack = false, bool clearAnalyzeTabData = true)
+		=> SetPuzzle(value, clearStack: clearStack, whileUndoingOrRedoing: false, clearAnalyzeTabData: clearAnalyzeTabData);
 
 	/// <summary>
 	/// Copy the snapshot of the sudoku grid control, to the clipboard.
@@ -331,77 +357,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Try to set puzzle, with a <see cref="bool"/> value indicating whether the stack fields <see cref="_undoStack"/>
-	/// and <see cref="_redoStack"/> will be cleared.
-	/// </summary>
-	/// <param name="value">The newer grid.</param>
-	/// <param name="clearStack">
-	/// <para>Indicates whether the stack fields <see cref="_undoStack"/> and <see cref="_redoStack"/> will be cleared.</para>
-	/// <para>The default value is <see langword="false"/>.</para>
-	/// </param>
-	/// <param name="whileUndoingOrRedoing">
-	/// <para>Indicates whether the current operation occurred while undoing and redoing a grid step.</para>
-	/// <para>The default value is <see langword="false"/>.</para>
-	/// </param>
-	/// <param name="clearAnalyzeTabData">
-	/// <para>Indicates whether the puzzle-replacing operation will clear analyze data.</para>
-	/// <para>The default value is <see langword="true"/>.</para>
-	/// </param>
-	/// <remarks>
-	/// <para>
-	/// This method is nearly equal to <see cref="set_Puzzle(Grid)"/>, but this method can also control undoing and redoing stacks.
-	/// </para>
-	/// <para>Generally, we use this method more times than covering with property <see cref="Puzzle"/>.</para>
-	/// </remarks>
-	/// <seealso cref="_undoStack"/>
-	/// <seealso cref="_redoStack"/>
-	/// <seealso cref="set_Puzzle(Grid)"/>
-	/// <seealso cref="Puzzle"/>
-	internal void SetPuzzle(scoped in Grid value, bool clearStack = false, bool whileUndoingOrRedoing = false, bool clearAnalyzeTabData = true)
-	{
-		if (_puzzle == value)
-		{
-			return;
-		}
-
-		// Pushes the grid into the stack if worth.
-		if (!whileUndoingOrRedoing && !clearStack)
-		{
-			_undoStack.Push(_puzzle);
-		}
-
-		_puzzle = value;
-
-		UpdateCellData(value);
-		switch (clearStack, whileUndoingOrRedoing)
-		{
-			case (true, _):
-			{
-				ClearStacks();
-				break;
-			}
-			case (false, false):
-			{
-				_redoStack.Clear();
-				break;
-			}
-		}
-
-		// Clears the analyze tab pages is worth.
-		if (clearAnalyzeTabData)
-		{
-			BasePage?.ClearAnalyzeTabsData();
-		}
-
-		// Clears the view unit.
-		ViewUnit = null;
-
-		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
-
-		GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Replacing, value));
-	}
-
-	/// <summary>
 	/// Triggers <see cref="GridUpdated"/> event. This method can only be called by internal control type <see cref="SudokuPaneCell"/>.
 	/// </summary>
 	/// <param name="behavior">The behavior.</param>
@@ -459,6 +414,66 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		_undoStack.Clear();
 		_redoStack.Clear();
+	}
+
+	/// <summary>
+	/// <inheritdoc cref="SetPuzzle(in Grid, bool, bool)" path="/summary"/>
+	/// </summary>
+	/// <param name="value">
+	/// <inheritdoc cref="SetPuzzle(in Grid, bool, bool)" path="/param[@name='value']"/>
+	/// </param>
+	/// <param name="clearStack">
+	/// <inheritdoc cref="SetPuzzle(in Grid, bool, bool)" path="/param[@name='clearStack']"/>
+	/// </param>
+	/// <param name="whileUndoingOrRedoing">
+	/// <para>Indicates whether the method is called while undoing and redoing.</para>
+	/// <para>The default value is <see langword="false"/>.</para>
+	/// </param>
+	/// <param name="clearAnalyzeTabData">
+	/// <inheritdoc cref="SetPuzzle(in Grid, bool, bool)" path="/param[@name='clearAnalyzeTabData']"/>
+	/// </param>
+	private void SetPuzzle(scoped in Grid value, bool clearStack = false, bool whileUndoingOrRedoing = false, bool clearAnalyzeTabData = true)
+	{
+		if (_puzzle == value)
+		{
+			return;
+		}
+
+		// Pushes the grid into the stack if worth.
+		if (!whileUndoingOrRedoing && !clearStack)
+		{
+			_undoStack.Push(_puzzle);
+		}
+
+		_puzzle = value;
+
+		UpdateCellData(value);
+		switch (clearStack, whileUndoingOrRedoing)
+		{
+			case (true, _):
+			{
+				ClearStacks();
+				break;
+			}
+			case (false, false):
+			{
+				_redoStack.Clear();
+				break;
+			}
+		}
+
+		// Clears the analyze tab pages is worth.
+		if (clearAnalyzeTabData)
+		{
+			BasePage?.ClearAnalyzeTabsData();
+		}
+
+		// Clears the view unit.
+		ViewUnit = null;
+
+		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
+
+		GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Replacing, value));
 	}
 
 
@@ -626,7 +641,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Clear, cell));
 
-				SetPuzzle(modified);
+				SetPuzzle(modified, false, true);
 
 				DigitInput?.Invoke(this, new(cell, -1));
 
@@ -637,7 +652,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				var modified = Puzzle;
 				modified[cell, digit] = false;
 
-				SetPuzzle(modified);
+				SetPuzzle(modified, false, true);
 
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Elimination, cell * 9 + digit));
 
@@ -655,7 +670,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				modified[cell] = digit;
 
-				SetPuzzle(modified);
+				SetPuzzle(modified, false, true);
 
 				DigitInput?.Invoke(this, new(cell, digit));
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Assignment, cell * 9 + digit));

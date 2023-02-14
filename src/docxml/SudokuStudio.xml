@@ -5181,6 +5181,31 @@ if (student is (name: var name, age: >= 18))
             Copies the current grid as text into the clipboard.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+            <summary>
+            Try to set puzzle, with a <see cref="T:System.Boolean"/> value indicating whether the stack fields <see cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/>
+            and <see cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/> will be cleared.
+            </summary>
+            <param name="value">The newer grid.</param>
+            <param name="clearStack">
+            <para>Indicates whether the stack fields <see cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/> and <see cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/> will be cleared.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="clearAnalyzeTabData">
+            <para>Indicates whether the puzzle-replacing operation will clear analyze data.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </param>
+            <remarks>
+            <para>
+            This method is nearly equal to <see cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>, but this method can also control undoing and redoing stacks.
+            </para>
+            <para>Generally, we use this method more times than covering with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>.</para>
+            </remarks>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/>
+            <seealso cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.CopySnapshotAsync">
             <summary>
             Copy the snapshot of the sudoku grid control, to the clipboard.
@@ -5202,35 +5227,6 @@ if (student is (name: var name, age: >= 18))
             <returns>
             The typical <see langword="await"/>able instance that holds the task to paste the text.
             </returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Try to set puzzle, with a <see cref="T:System.Boolean"/> value indicating whether the stack fields <see cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/>
-            and <see cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/> will be cleared.
-            </summary>
-            <param name="value">The newer grid.</param>
-            <param name="clearStack">
-            <para>Indicates whether the stack fields <see cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/> and <see cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/> will be cleared.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-            <param name="whileUndoingOrRedoing">
-            <para>Indicates whether the current operation occurred while undoing and redoing a grid step.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-            <param name="clearAnalyzeTabData">
-            <para>Indicates whether the puzzle-replacing operation will clear analyze data.</para>
-            <para>The default value is <see langword="true"/>.</para>
-            </param>
-            <remarks>
-            <para>
-            This method is nearly equal to <see cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>, but this method can also control undoing and redoing stacks.
-            </para>
-            <para>Generally, we use this method more times than covering with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>.</para>
-            </remarks>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/>
-            <seealso cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)">
             <summary>
@@ -5261,6 +5257,24 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Try to clear stacks <see cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/> and <see cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/>.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            <inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/summary"/>
+            </summary>
+            <param name="value">
+            <inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='value']"/>
+            </param>
+            <param name="clearStack">
+            <inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='clearStack']"/>
+            </param>
+            <param name="whileUndoingOrRedoing">
+            <para>Indicates whether the method is called while undoing and redoing.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="clearAnalyzeTabData">
+            <inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='clearAnalyzeTabData']"/>
+            </param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeComponent">
             <summary>
