@@ -655,8 +655,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				modified[cell] = digit;
 
-				
-
 				SetPuzzle(modified);
 
 				DigitInput?.Invoke(this, new(cell, digit));
