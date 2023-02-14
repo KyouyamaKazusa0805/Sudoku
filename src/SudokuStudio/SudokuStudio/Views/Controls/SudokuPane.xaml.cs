@@ -658,7 +658,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				SetPuzzle(modified);
 
 				DigitInput?.Invoke(this, new(cell, digit));
-				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Elimination, cell * 9 + digit));
+				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Assignment, cell * 9 + digit));
 
 				break;
 			}
