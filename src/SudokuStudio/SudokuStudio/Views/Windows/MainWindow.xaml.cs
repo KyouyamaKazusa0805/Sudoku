@@ -22,10 +22,10 @@ public sealed partial class MainWindow : Window
 #endif
 
 	/// <summary>
-	/// The navigating data. This field is used by <see cref="SwitchingPage(bool, NavigationViewItemBase)"/>.
+	/// The navigating data. This field is used by <see cref="SwitchingPage(NavigationViewItemBase)"/>.
 	/// </summary>
-	/// <seealso cref="SwitchingPage(bool, NavigationViewItemBase)"/>
-	private Dictionary<Func<bool, NavigationViewItemBase, bool>, Type> _navigatingData;
+	/// <seealso cref="SwitchingPage(NavigationViewItemBase)"/>
+	private Dictionary<Func<NavigationViewItemBase, bool>, Type> _navigatingData;
 
 #if MICA_BACKDROP || ACRYLIC_BACKDROP
 #if MICA_BACKDROP
@@ -89,15 +89,12 @@ public sealed partial class MainWindow : Window
 	private void InitializeField()
 		=> _navigatingData = new()
 		{
-#if false
-			{ static (isSettingInvokedOrSelected, _) => isSettingInvokedOrSelected, typeof(SettingsPage) },
-#endif
-			{ (_, container) => container == AnalyzePageItem, typeof(AnalyzePage) },
-			{ (_, container) => container == AboutPagetItem, typeof(AboutPage) },
-			{ (_, container) => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) },
-			{ (_, container) => container == BasicSettingsPageItem, typeof(BasicPreferenceItemsPage) },
-			{ (_, container) => container == AnalyaisSettingsPageItem, typeof(AnalysisPreferenceItemsPage) },
-			{ (_, container) => container == DrawingSettingsPageItem, typeof(DrawingPreferenceItemsPage) }
+			{ container => container == AnalyzePageItem, typeof(AnalyzePage) },
+			{ container => container == AboutPagetItem, typeof(AboutPage) },
+			{ container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) },
+			{ container => container == BasicSettingsPageItem, typeof(BasicPreferenceItemsPage) },
+			{ container => container == AnalyaisSettingsPageItem, typeof(AnalysisPreferenceItemsPage) },
+			{ container => container == DrawingSettingsPageItem, typeof(DrawingPreferenceItemsPage) }
 		};
 
 	/// <summary>
@@ -124,9 +121,6 @@ public sealed partial class MainWindow : Window
 	/// This passage is for full customization of application title bar.
 	/// </remarks>
 	[MemberNotNull(nameof(_appWindow))]
-#if false
-	[Conditional("CUSTOMIZED_TITLE_BAR")]
-#endif
 	private void InitializeAppWindow()
 	{
 		_appWindow = this.GetAppWindow(out _, out _);
@@ -328,15 +322,14 @@ public sealed partial class MainWindow : Window
 	/// An outer-layered method to switching pages. This method can be used by both
 	/// <see cref="NavigationView_ItemInvoked"/> and <see cref="MainNavigationView_SelectionChanged"/>.
 	/// </summary>
-	/// <param name="isSettingInvokedOrSelected">Indicates whether the setting menu item is invoked or selected.</param>
 	/// <param name="container">The container.</param>
 	/// <seealso cref="NavigationView_ItemInvoked"/>
 	/// <seealso cref="MainNavigationView_SelectionChanged"/>
-	private void SwitchingPage(bool isSettingInvokedOrSelected, NavigationViewItemBase container)
+	private void SwitchingPage(NavigationViewItemBase container)
 	{
 		foreach (var (condition, pageType) in _navigatingData)
 		{
-			if (condition(isSettingInvokedOrSelected, container))
+			if (condition(container))
 			{
 				NavigateToPage(pageType);
 				return;
@@ -454,10 +447,10 @@ public sealed partial class MainWindow : Window
 	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => AnalyzePageItem.IsSelected = true;
 
 	private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-		=> SwitchingPage(args.IsSettingsInvoked, args.InvokedItemContainer);
+		=> SwitchingPage(args.InvokedItemContainer);
 
 	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-		=> SwitchingPage(args.IsSettingsSelected, args.SelectedItemContainer);
+		=> SwitchingPage(args.SelectedItemContainer);
 
 	private void Window_Closed(object sender, WindowEventArgs args)
 		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).Preference);

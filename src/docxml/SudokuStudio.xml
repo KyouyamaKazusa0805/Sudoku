@@ -6921,9 +6921,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Windows.MainWindow._navigatingData">
             <summary>
-            The navigating data. This field is used by <see cref="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(System.Boolean,Microsoft.UI.Xaml.Controls.NavigationViewItemBase)"/>.
+            The navigating data. This field is used by <see cref="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)"/>.
             </summary>
-            <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(System.Boolean,Microsoft.UI.Xaml.Controls.NavigationViewItemBase)"/>
+            <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)"/>
         </member>
         <member name="F:SudokuStudio.Views.Windows.MainWindow._micaController">
             <summary>
@@ -7000,12 +7000,11 @@ if (student is (name: var name, age: >= 18))
             Try to set program name onto the title.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(System.Boolean,Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
             <summary>
             An outer-layered method to switching pages. This method can be used by both
             <see cref="M:SudokuStudio.Views.Windows.MainWindow.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Windows.MainWindow.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
             </summary>
-            <param name="isSettingInvokedOrSelected">Indicates whether the setting menu item is invoked or selected.</param>
             <param name="container">The container.</param>
             <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/>
             <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>
