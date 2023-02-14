@@ -75,7 +75,7 @@
 				</NavigationViewItem>
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>
-				<NavigationViewItem x:Name="AboutPagetItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
+				<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
 			</NavigationView.FooterMenuItems>
 
 			<Frame x:Name="NavigationViewFrame" />

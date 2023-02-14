@@ -90,7 +90,7 @@ public sealed partial class MainWindow : Window
 		=> _navigatingData = new()
 		{
 			{ container => container == AnalyzePageItem, typeof(AnalyzePage) },
-			{ container => container == AboutPagetItem, typeof(AboutPage) },
+			{ container => container == AboutPageItem, typeof(AboutPage) },
 			{ container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) },
 			{ container => container == BasicSettingsPageItem, typeof(BasicPreferenceItemsPage) },
 			{ container => container == AnalyaisSettingsPageItem, typeof(AnalysisPreferenceItemsPage) },
