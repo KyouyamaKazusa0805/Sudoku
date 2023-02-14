@@ -45,7 +45,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 					{
 						ConstructorArguments: [{ Value: string propertyName }],
 						NamedArguments: var namedArgs,
-						AttributeClass.TypeArguments: [ITypeSymbol propertyType]
+						AttributeClass.TypeArguments: [ITypeSymbol { IsReferenceType: var isReferenceType } propertyType]
 					})
 				{
 					continue;
@@ -58,6 +58,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 				var callbackMethodName = (string?)null;
 				var docSummary = (string?)null;
 				var docRemarks = (string?)null;
+				var isNullable = false;
 				foreach (var pair in namedArgs)
 				{
 					switch (pair)
@@ -97,6 +98,11 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 							docRemarks = v;
 							break;
 						}
+						case ("IsNullable", { Value: bool v }) when isReferenceType:
+						{
+							isNullable = v;
+							break;
+						}
 					}
 				}
 
@@ -127,7 +133,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 				propertiesData.Add(
 					new(
 						propertyName, propertyType, new(docSummary, docRemarks, docCref, docPath),
-						defaultValueGenerator, defaultValueGeneratorKind, defaultValue, callbackMethodName
+						defaultValueGenerator, defaultValueGeneratorKind, defaultValue, callbackMethodName, isNullable
 					)
 				);
 
@@ -153,7 +159,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 					foreach (
 						var (
 							propertyName, propertyType, docData, generatorMemberName,
-							generatorMemberKind, defaultValue, callbackMethodName
+							generatorMemberKind, defaultValue, callbackMethodName, isNullable
 						) in propertiesData
 					)
 					{
@@ -166,6 +172,8 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 							// Error case has been encountered.
 							continue;
 						}
+
+						var nullableToken = isNullable ? "?" : string.Empty;
 
 						attachedProperties.Add(
 							$"""
@@ -186,7 +194,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 								[global::System.Diagnostics.DebuggerStepThroughAttribute]
 								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-								public static void Set{{propertyName}}(global::Microsoft.UI.Xaml.DependencyObject obj, {{propertyTypeStr}} value)
+								public static void Set{{propertyName}}(global::Microsoft.UI.Xaml.DependencyObject obj, {{propertyTypeStr}}{{nullableToken}} value)
 									=> obj.SetValue({{propertyName}}Property, value);
 
 								{{doc}}
@@ -194,7 +202,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 								[global::System.Diagnostics.DebuggerStepThroughAttribute]
 								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-								public static {{propertyTypeStr}} Get{{propertyName}}(global::Microsoft.UI.Xaml.DependencyObject obj)
+								public static {{propertyTypeStr}}{{nullableToken}} Get{{propertyName}}(global::Microsoft.UI.Xaml.DependencyObject obj)
 									=> ({{propertyTypeStr}})obj.GetValue({{propertyName}}Property);
 							"""
 						);
@@ -250,6 +258,7 @@ file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> Prope
 /// </param>
 /// <param name="DefaultValue">Indicates the real default value.</param>
 /// <param name="CallbackMethodName">The callback method name.</param>
+/// <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
 file readonly record struct PropertyData(
 	string PropertyName,
 	ITypeSymbol PropertyType,
@@ -257,5 +266,6 @@ file readonly record struct PropertyData(
 	string? DefaultValueGeneratingMemberName,
 	DefaultValueGeneratingMemberKind? DefaultValueGeneratingMemberKind,
 	object? DefaultValue,
-	string? CallbackMethodName
+	string? CallbackMethodName,
+	bool IsNullable
 );

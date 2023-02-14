@@ -45,7 +45,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<FontFamily>("PencilmarkFont", DefaultValueGeneratingMemberName = nameof(PencilmarkFontDefaultValue), DocSummary = "Indicates the candidate font.")]
 [DependencyProperty<FontFamily>("CoordinateLabelFont", DefaultValueGeneratingMemberName = nameof(CoordinateLabelFontDefaultValue), DocSummary = "Indicates the coordinate label font.")]
 [DependencyProperty<FontFamily>("BabaGroupLabelFont", DefaultValueGeneratingMemberName = nameof(BabaGroupLabelFontDefaultValue), DocSummary = "Indicates the baba group label font.")]
-[DependencyProperty<ViewUnit>("ViewUnit", DocSummary = "Indicates the view unit used.", CallbackMethodName = nameof(ViewUnitPropertyCallback))]
+[DependencyProperty<ViewUnit>("ViewUnit", IsNullable = true, DocSummary = "Indicates the view unit used.", CallbackMethodName = nameof(ViewUnitPropertyCallback))]
 [DependencyProperty<ColorPalette>("AuxiliaryColors", DefaultValueGeneratingMemberName = nameof(AuxiliaryColorsDefaultValue), DocSummary = "Indicates the auxiliary colors.")]
 [DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DefaultValueGeneratingMemberName = nameof(DifficultyLevelForegroundsDefaultValue), DocSummary = "Indicates the foreground colors of all 6 kinds of difficulty levels.")]
 [DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DefaultValueGeneratingMemberName = nameof(DifficultyLevelBackgroundsDefaultValue), DocSummary = "Indicates the background colors of all 6 kinds of difficulty levels.")]
@@ -394,7 +394,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		// Clears the view unit.
-		ViewUnit = null!;
+		ViewUnit = null;
 
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
 

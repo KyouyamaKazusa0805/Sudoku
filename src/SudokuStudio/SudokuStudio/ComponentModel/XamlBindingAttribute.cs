@@ -16,6 +16,11 @@ public abstract class XamlBindingAttribute<T> : Attribute
 
 
 	/// <summary>
+	/// Indicates whether the property type is nullable if the member is reference type; for value type, this property has no effect.
+	/// </summary>
+	public bool IsNullable { get; init; }
+
+	/// <summary>
 	/// Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.
 	/// </summary>
 	public string? DocReferencedMemberName { get; init; }

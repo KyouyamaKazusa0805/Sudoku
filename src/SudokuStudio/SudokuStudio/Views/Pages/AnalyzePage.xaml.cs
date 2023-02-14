@@ -448,7 +448,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		{
 			{ Conclusions: var conclusions, Views: [] } => new() { Conclusions = conclusions, View = View.Empty },
 			{ Conclusions: var conclusions, Views: var views } => new() { Conclusions = conclusions, View = views[value] },
-			_ => null!
+			_ => null
 		};
 
 	/// <summary>

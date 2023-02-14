@@ -54,7 +54,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 					{
 						ConstructorArguments: [{ Value: string propertyName }],
 						NamedArguments: var namedArgs,
-						AttributeClass.TypeArguments: [ITypeSymbol propertyType]
+						AttributeClass.TypeArguments: [ITypeSymbol { IsReferenceType: var isReferenceType } propertyType]
 					})
 				{
 					continue;
@@ -67,6 +67,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 				var callbackMethodName = (string?)null;
 				var docSummary = (string?)null;
 				var docRemarks = (string?)null;
+				var isNullable = false;
 				foreach (var pair in namedArgs)
 				{
 					switch (pair)
@@ -106,6 +107,11 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 							docRemarks = v;
 							break;
 						}
+						case ("IsNullable", { Value: bool v }) when isReferenceType:
+						{
+							isNullable = v;
+							break;
+						}
 					}
 				}
 
@@ -141,7 +147,8 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						defaultValueGenerator,
 						defaultValueGeneratorKind,
 						defaultValue,
-						callbackMethodName
+						callbackMethodName,
+						isNullable
 					)
 				);
 
@@ -167,7 +174,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 					foreach (
 						var (
 							propertyName, propertyType, docData, generatorMemberName,
-							generatorMemberKind, defaultValue, callbackMethodName
+							generatorMemberKind, defaultValue, callbackMethodName, isNullable
 						) in propertiesData
 					)
 					{
@@ -180,6 +187,8 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 							// Error case has been encountered.
 							continue;
 						}
+
+						var nullableToken = isNullable ? "?" : string.Empty;
 
 						dependencyProperties.Add(
 							$"""
@@ -199,11 +208,11 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 							{{doc}}
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
-								public {{propertyTypeStr}} {{propertyName}}
+								public {{propertyTypeStr}}{{nullableToken}} {{propertyName}}
 								{
 									[global::System.Diagnostics.DebuggerStepThroughAttribute]
 									[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-									get => ({{propertyTypeStr}})GetValue({{propertyName}}Property);
+									get => ({{propertyTypeStr}}{{nullableToken}})GetValue({{propertyName}}Property);
 
 									[global::System.Diagnostics.DebuggerStepThroughAttribute]
 									[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -264,6 +273,7 @@ file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> Prope
 /// </param>
 /// <param name="DefaultValue">Indicates the real default value.</param>
 /// <param name="CallbackMethodName">Indicates the callback method name.</param>
+/// <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
 file readonly record struct PropertyData(
 	string PropertyName,
 	ITypeSymbol PropertyType,
@@ -271,5 +281,6 @@ file readonly record struct PropertyData(
 	string? DefaultValueGeneratingMemberName,
 	DefaultValueGeneratingMemberKind? DefaultValueGeneratingMemberKind,
 	object? DefaultValue,
-	string? CallbackMethodName
+	string? CallbackMethodName,
+	bool IsNullable
 );

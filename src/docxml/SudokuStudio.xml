@@ -420,6 +420,11 @@
             </summary>
             <param name="propertyName">The property name.</param>
         </member>
+        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.IsNullable">
+            <summary>
+            Indicates whether the property type is nullable if the member is reference type; for value type, this property has no effect.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DocReferencedMemberName">
             <summary>
             Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.
