@@ -17,9 +17,15 @@
 internal sealed class ProjectWideWindowManager
 {
 	/// <summary>
+	/// Indicates the list of active windows.
+	/// </summary>
+	private readonly List<Window> _activeWindows = new();
+
+
+	/// <summary>
 	/// Indicates the currently active windows.
 	/// </summary>
-	public static List<Window> ActiveWindows { get; } = new();
+	public IEnumerable<Window> ActiveWindows => _activeWindows;
 
 
 	/// <summary>
@@ -27,7 +33,8 @@ internal sealed class ProjectWideWindowManager
 	/// </summary>
 	/// <typeparam name="TWindow">The type of the window.</typeparam>
 	/// <returns>The created window instance.</returns>
-	public static TWindow CreateWindow<TWindow>() where TWindow : Window, new()
+	/// <seealso cref="ActiveWindows"/>
+	public TWindow CreateWindow<TWindow>() where TWindow : Window, new()
 	{
 		var newWindow = new TWindow();
 
@@ -40,11 +47,11 @@ internal sealed class ProjectWideWindowManager
 	/// </summary>
 	/// <param name="element">The UI element.</param>
 	/// <returns>The target window. If none found, <see langword="null"/>.</returns>
-	public static Window? GetWindowForElement(UIElement element)
+	public Window? GetWindowForElement(UIElement element)
 	{
 		if (element.XamlRoot is not null)
 		{
-			foreach (var window in ActiveWindows)
+			foreach (var window in _activeWindows)
 			{
 				if (element.XamlRoot == window.Content.XamlRoot)
 				{
@@ -63,7 +70,7 @@ internal sealed class ProjectWideWindowManager
 	/// <param name="element">The UI element.</param>
 	/// <param name="name">The name to be searched for.</param>
 	/// <returns>The found element. If none found, <see langword="null"/>.</returns>
-	public static UIElement? FindElementByName(UIElement element, string name)
+	public UIElement? FindElementByName(UIElement element, string name)
 		=> element.XamlRoot is { Content: FrameworkElement f } && f.FindName(name) is UIElement ele ? ele : null;
 #endif
 
@@ -71,10 +78,10 @@ internal sealed class ProjectWideWindowManager
 	/// Try to track the window, recording it into the property <see cref="ActiveWindows"/>.
 	/// </summary>
 	/// <param name="window">The window.</param>
-	private static void TrackWindow(Window window)
+	private void TrackWindow(Window window)
 	{
-		window.Closed += (_, _) => ActiveWindows.Remove(window);
+		window.Closed += (_, _) => _activeWindows.Remove(window);
 
-		ActiveWindows.Add(window);
+		_activeWindows.Add(window);
 	}
 }

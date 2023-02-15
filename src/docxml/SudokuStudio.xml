@@ -24,11 +24,6 @@
             </summary>
             <param name="args">The command-line arguments.</param>
         </member>
-        <member name="P:SudokuStudio.App.RunningWindow">
-            <summary>
-            Indicates the main window that the program is running. If <see langword="null"/>, no window will be run.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.App.Preference">
             <summary>
             Indicates the program-reserved user preference.
@@ -49,6 +44,11 @@
             Indicates the first-opened grid.
             </summary>
         </member>
+        <member name="P:SudokuStudio.App.WindowManager">
+            <summary>
+            Indicates the window manager.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.App.AssemblyVersion">
             <summary>
             Indicates the assembly version.
@@ -62,11 +62,10 @@
             Register resource-fetching service.
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.ActivicateMainWindow``1">
+        <member name="M:SudokuStudio.App.ActivicateMainWindow">
             <summary>
             Creates a window, and activicate it.
             </summary>
-            <typeparam name="TWindow">The type of the window you should activicate.</typeparam>
         </member>
         <member name="M:SudokuStudio.App.HandleOnProgramOpeningEntryCase">
             <summary>
@@ -2643,6 +2642,11 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Microsoft.UI.Xaml.Window"/>
             <seealso cref="T:Microsoft.UI.Xaml.UIElement"/>
         </member>
+        <member name="F:SudokuStudio.ProjectWideWindowManager._activeWindows">
+            <summary>
+            Indicates the list of active windows.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.ProjectWideWindowManager.ActiveWindows">
             <summary>
             Indicates the currently active windows.
@@ -2654,6 +2658,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <typeparam name="TWindow">The type of the window.</typeparam>
             <returns>The created window instance.</returns>
+            <seealso cref="P:SudokuStudio.ProjectWideWindowManager.ActiveWindows"/>
         </member>
         <member name="M:SudokuStudio.ProjectWideWindowManager.GetWindowForElement(Microsoft.UI.Xaml.UIElement)">
             <summary>

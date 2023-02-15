@@ -43,7 +43,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 
 		var fsp = new FileSavePicker();
 
-		var window = ProjectWideWindowManager.GetWindowForElement(this);
+		var window = ((App)Application.Current).WindowManager.GetWindowForElement(this);
 		var hWnd = WindowNative.GetWindowHandle(window);
 		InitializeWithWindow.Initialize(fsp, hWnd);
 

@@ -161,7 +161,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 		var fop = new FileOpenPicker();
 
-		var window = ProjectWideWindowManager.GetWindowForElement(this);
+		var window = ((App)Application.Current).WindowManager.GetWindowForElement(this);
 		var hWnd = WindowNative.GetWindowHandle(window);
 		InitializeWithWindow.Initialize(fop, hWnd);
 
@@ -191,7 +191,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 		var fsp = new FileSavePicker();
 
-		var window = ProjectWideWindowManager.GetWindowForElement(this);
+		var window = ((App)Application.Current).WindowManager.GetWindowForElement(this);
 		var hWnd = WindowNative.GetWindowHandle(window);
 		InitializeWithWindow.Initialize(fsp, hWnd);
 
@@ -243,7 +243,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 		var fsp = new FileSavePicker();
 
-		var window = ProjectWideWindowManager.GetWindowForElement(this);
+		var window = ((App)Application.Current).WindowManager.GetWindowForElement(this);
 		var hWnd = WindowNative.GetWindowHandle(window);
 		InitializeWithWindow.Initialize(fsp, hWnd);
 

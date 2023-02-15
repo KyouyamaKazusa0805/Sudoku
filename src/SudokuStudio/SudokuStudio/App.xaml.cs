@@ -28,11 +28,6 @@ public partial class App : Application
 
 
 	/// <summary>
-	/// Indicates the main window that the program is running. If <see langword="null"/>, no window will be run.
-	/// </summary>
-	public Window? RunningWindow { get; private set; }
-
-	/// <summary>
 	/// Indicates the program-reserved user preference.
 	/// </summary>
 	public ProgramPreference Preference { get; } = new();
@@ -54,6 +49,11 @@ public partial class App : Application
 	[DebuggerHidden]
 	internal Grid? FirstGrid { get; set; }
 
+	/// <summary>
+	/// Indicates the window manager.
+	/// </summary>
+	internal ProjectWideWindowManager WindowManager { get; } = new();
+
 
 	/// <summary>
 	/// Indicates the assembly version.
@@ -63,12 +63,11 @@ public partial class App : Application
 
 
 	/// <inheritdoc/>
-	[MemberNotNull(nameof(RunningWindow))]
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
 		RegisterResourceFetching();
 		HandleOnProgramOpeningEntryCase();
-		ActivicateMainWindow<MainWindow>();
+		ActivicateMainWindow();
 		LoadConfigurationFileFromLocal();
 	}
 
@@ -80,10 +79,7 @@ public partial class App : Application
 	/// <summary>
 	/// Creates a window, and activicate it.
 	/// </summary>
-	/// <typeparam name="TWindow">The type of the window you should activicate.</typeparam>
-	[MemberNotNull(nameof(RunningWindow))]
-	private void ActivicateMainWindow<TWindow>() where TWindow : Window, new()
-		=> (RunningWindow = ProjectWideWindowManager.CreateWindow<MainWindow>()).Activate();
+	private void ActivicateMainWindow() => WindowManager.CreateWindow<MainWindow>().Activate();
 
 	/// <summary>
 	/// Handle the cases how user opens this program.
