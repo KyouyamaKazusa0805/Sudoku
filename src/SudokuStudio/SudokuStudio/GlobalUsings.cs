@@ -110,7 +110,6 @@ global using static System.Diagnostics.CodeAnalysis.Justification;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static System.Text.Json.JsonSerializer;
-global using static Microsoft.UI.Xaml.DependencyPropertyRegistering;
 global using static Sudoku.SolutionWideReadOnlyFields;
 global using static Sudoku.Solving.ConclusionType;
 global using static SudokuStudio.Resources.ResourceDictionary;

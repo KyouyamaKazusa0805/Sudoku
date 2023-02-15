@@ -1411,6 +1411,11 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The <see cref="T:Microsoft.UI.Xaml.Documents.Run"/> instance.</param>
             <returns>A <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance.</returns>
         </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.ColorConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about color conversion.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.CompilationConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about compilation information.
@@ -4746,24 +4751,10 @@ if (student is (name: var name, age: >= 18))
             Represents a color selector.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.ColorSelector.SelectedColorProperty">
-            <summary>
-            Indicates the dependency property that binds with the property <see cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.ColorSelector._selectedColor">
-            <summary>
-            Indicates the inner color.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Controls.ColorSelector.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.ColorSelector"/> instance.
             </summary>
-        </member>
-        <member name="E:SudokuStudio.Views.Controls.ColorSelector.PropertyChanged">
-            <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Controls.ColorSelector.GridView_ItemClick(System.Object,Microsoft.UI.Xaml.Controls.ItemClickEventArgs)">
             <summary>
@@ -4801,8 +4792,16 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.ColorSelector.SelectedColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor">
-            <inheritdoc cref="F:SudokuStudio.Views.Controls.ColorSelector._selectedColor"/>
+            <summary>
+            Indicates the inner color.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.DashArrayTextBox">
             <summary>
@@ -7161,29 +7160,6 @@ if (student is (name: var name, age: >= 18))
 					</para>
 				</remarks>
 			</target>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.DependencyPropertyRegistering">
-            <summary>
-            Provides a type that simply calls <see cref="M:Microsoft.UI.Xaml.DependencyProperty.Register(System.String,System.Type,System.Type,Microsoft.UI.Xaml.PropertyMetadata)"/>
-            and <see cref="M:Microsoft.UI.Xaml.DependencyProperty.RegisterAttached(System.String,System.Type,System.Type,Microsoft.UI.Xaml.PropertyMetadata)"/>.
-            </summary>
-            <seealso cref="M:Microsoft.UI.Xaml.DependencyProperty.Register(System.String,System.Type,System.Type,Microsoft.UI.Xaml.PropertyMetadata)"/>
-            <seealso cref="M:Microsoft.UI.Xaml.DependencyProperty.RegisterAttached(System.String,System.Type,System.Type,Microsoft.UI.Xaml.PropertyMetadata)"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.DependencyPropertyRegistering.RegisterDependency``2(System.String,``0,System.Action{Microsoft.UI.Xaml.DependencyObject,``0})">
-            <summary>
-            Registers a <see cref="T:Microsoft.UI.Xaml.DependencyProperty"/> instance that simply calls the method
-            <see cref="M:Microsoft.UI.Xaml.DependencyProperty.Register(System.String,System.Type,System.Type,Microsoft.UI.Xaml.PropertyMetadata)"/>.
-            </summary>
-            <typeparam name="TProperty">The type of the property.</typeparam>
-            <typeparam name="TType">The containing type.</typeparam>
-            <param name="propertyName">The property name.</param>
-            <param name="defaultValue">The default value of the property.</param>
-            <param name="callback">
-            <inheritdoc cref="M:Microsoft.UI.Xaml.PropertyMetadata.#ctor(System.Object,Microsoft.UI.Xaml.PropertyChangedCallback)" path="/param[@name='propertyChangedCallback']"/>
-            </param>
-            <returns>A <see cref="T:Microsoft.UI.Xaml.DependencyProperty"/> instance.</returns>
-            <seealso cref="M:Microsoft.UI.Xaml.DependencyProperty.Register(System.String,System.Type,System.Type,Microsoft.UI.Xaml.PropertyMetadata)"/>
         </member>
         <member name="T:Microsoft.UI.Xaml.UIElementExtensions">
             <summary>

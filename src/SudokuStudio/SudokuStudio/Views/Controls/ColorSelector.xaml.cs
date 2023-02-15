@@ -3,35 +3,16 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a color selector.
 /// </summary>
-public sealed partial class ColorSelector : UserControl, INotifyPropertyChanged
+[DependencyProperty<Color>("SelectedColor", DefaultValueGeneratingMemberName = nameof(SelectedColorDefaultValue), DocSummary = "Indicates the inner color.")]
+public sealed partial class ColorSelector : UserControl
 {
-	/// <summary>
-	/// Indicates the dependency property that binds with the property <see cref="SelectedColor"/>.
-	/// </summary>
-	/// <seealso cref="SelectedColor"/>
-	public static readonly DependencyProperty SelectedColorProperty =
-		RegisterDependency<Color, ColorSelector>(nameof(SelectedColor), Colors.Transparent);
-
-
-	/// <summary>
-	/// Indicates the inner color.
-	/// </summary>
-	[NotifyBackingField]
-	[NotifyCallback]
-	private Color _selectedColor;
+	private static readonly Color SelectedColorDefaultValue = Colors.Transparent;
 
 
 	/// <summary>
 	/// Initializes a <see cref="ColorSelector"/> instance.
 	/// </summary>
 	public ColorSelector() => InitializeComponent();
-
-
-	/// <inheritdoc/>
-	public event PropertyChangedEventHandler? PropertyChanged;
-
-
-	private void SelectedColorSetterAfter(Color value) => CurrentColorBorder.Background = new SolidColorBrush(value);
 
 
 	/// <summary>
