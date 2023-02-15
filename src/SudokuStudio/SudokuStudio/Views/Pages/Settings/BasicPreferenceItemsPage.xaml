@@ -6,38 +6,45 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
+	xmlns:wc="using:WinUICommunity.SettingsUI.Controls"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:BasicPreferenceItemsPage}">
-	<ScrollViewer Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
-		<StackPanel Spacing="26">
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_DisplayCursorsTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<TextBlock Text="{m:R Key=SettingsPage_DisplayCursorsDescription}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_DistinctWithDeltaDigitsTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<TextBlock Text="{m:R Key=SettingsPage_DistinctWithDeltaDigitsDescription}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DistinctWithDeltaDigits,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_DisableSudokuPaneLayoutDisplaying}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_PreventConflictingInput}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<TextBlock Text="{m:R Key=SettingsPage_PreventConflictingInputDescription}" TextWrapping="WrapWholeWords" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
+	<Page.Resources>
+		<Style TargetType="ToggleSwitch">
+			<Setter Property="OnContent" Value="{m:R Key=SettingsPage_OnContent}" />
+			<Setter Property="OffContent" Value="{m:R Key=SettingsPage_OffContent}" />
+			<Setter Property="HorizontalAlignment" Value="Right" />
+			<Setter Property="Width" Value="76" />
+		</Style>
+	</Page.Resources>
+
+	<ScrollViewer>
+		<StackPanel Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}" Spacing="4">
+			<wc:Setting Header="{m:R Key=SettingsPage_DisplayCursorsTitle}" Description="{m:R Key=SettingsPage_DisplayCursorsDescription}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting
+				Header="{m:R Key=SettingsPage_DistinctWithDeltaDigitsTitle}"
+				Description="{m:R Key=SettingsPage_DistinctWithDeltaDigitsDescription}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DistinctWithDeltaDigits,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_DisableSudokuPaneLayoutDisplaying}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting
+				Header="{m:R Key=SettingsPage_PreventConflictingInput}"
+				Description="{m:R Key=SettingsPage_PreventConflictingInputDescription}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

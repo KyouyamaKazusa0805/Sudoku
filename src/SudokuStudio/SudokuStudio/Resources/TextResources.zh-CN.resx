@@ -691,7 +691,7 @@
     <value>顶部和左侧</value>
   </data>
   <data name="SettingsPage_OverlappedAssignmentColor" xml:space="preserve">
-    <value>结构内出数（类似自噬形式的出数）</value>
+    <value>结构内出数</value>
   </data>
   <data name="SettingsPage_PreventConflictingInput" xml:space="preserve">
     <value>阻止显而易见的冲突输入</value>

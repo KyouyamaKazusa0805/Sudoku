@@ -9,272 +9,325 @@
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
+	xmlns:wc="using:WinUICommunity.SettingsUI.Controls"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:DrawingPreferenceItemsPage}">
+	<Page.Resources>
+		<Style TargetType="ToggleSwitch">
+			<Setter Property="OnContent" Value="{m:R Key=SettingsPage_OnContent}" />
+			<Setter Property="OffContent" Value="{m:R Key=SettingsPage_OffContent}" />
+			<Setter Property="HorizontalAlignment" Value="Right" />
+			<Setter Property="Width" Value="76" />
+		</Style>
+	</Page.Resources>
+
 	<Grid ColumnDefinitions="*,Auto" Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
 		<!--Preference items-->
 		<ScrollViewer>
-			<StackPanel Spacing="26" Margin="0,0,60,0">
-				<StackPanel>
-					<TextBlock
-						Text="{m:R Key=SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle}"
-						Style="{StaticResource PreferenceItemTitleStyle}" />
-					<RelativePanel>
-						<Slider
-							x:Name="SliderEllipseScale" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
-							Minimum="0" Maximum="1" TickFrequency="0.1" StepFrequency="0.1" HorizontalAlignment="Left"
-							Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Mode=TwoWay}" />
-						<TextBlock
-							RelativePanel.RightOf="SliderEllipseScale" Margin="24,0,0,0" VerticalAlignment="Center"
-							Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderEllipseScale.Value,'0.0'),Mode=OneWay}" />
-					</RelativePanel>
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_HighlightBackgroundOpacityTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<RelativePanel>
-						<Slider
-							x:Name="SliderBackgroundOpacity" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
-							Minimum="0" Maximum="1" TickFrequency="0.05" StepFrequency="0.05" HorizontalAlignment="Left"
-							Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Mode=TwoWay}" />
-						<TextBlock
-							RelativePanel.RightOf="SliderBackgroundOpacity" Margin="24,0,0,0" VerticalAlignment="Center"
-							Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderBackgroundOpacity.Value,'0.00'),Mode=OneWay}" />
-					</RelativePanel>
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_ChainStrokeThicknessTitle}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<RelativePanel>
-						<Slider
-							x:Name="SliderChainStrokeThickness" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
-							Minimum="0" Maximum="5" TickFrequency="0.1" StepFrequency="0.1" HorizontalAlignment="Left"
-							Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=TwoWay}" />
-						<TextBlock
-							RelativePanel.RightOf="SliderChainStrokeThickness" Margin="24,0,0,0" VerticalAlignment="Center"
-							Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderChainStrokeThickness.Value,'0.0'),Mode=OneWay}" />
-					</RelativePanel>
-				</StackPanel>
-				<StackPanel>
-					<TextBlock
-						Text="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}"
-						Style="{StaticResource PreferenceItemTitleStyle}" />
-					<ComboBox
-						x:Name="ComboBoxCoordinateMode" Width="200"
-						SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
-						<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
-						<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
-						<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
-					</ComboBox>
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_DeltaCellColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<TextBlock Text="{m:R Key=SettingsPage_DeltaCellColorDescription}" />
-					<c:ColorSelector
-						x:Name="DeltaCellColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaValueColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_DeltaCandidateColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<TextBlock Text="{m:R Key=SettingsPage_DeltaCandidateColorDescription}" />
-					<c:ColorSelector
-						x:Name="DeltaCandidateColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_BorderColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:ColorSelector
-						x:Name="BorderColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_CursorBackgroundColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:ColorSelector
-						x:Name="CursorBackgroundColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_GivenFontData}" Style="{StaticResource PreferenceItemTitleStyle}" />
+			<StackPanel Spacing="4" Margin="0,0,30,0">
+				<wc:Setting Header="{m:R Key=SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle}">
+					<wc:Setting.ActionContent>
+						<StackPanel Orientation="Horizontal" Spacing="16">
+							<Slider
+								x:Name="SliderEllipseScale" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
+								Minimum="0" Maximum="1" TickFrequency="0.1" StepFrequency="0.1" HorizontalAlignment="Left"
+								Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Mode=TwoWay}" />
+							<TextBlock
+								VerticalAlignment="Center"
+								Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderEllipseScale.Value,'0.0'),Mode=OneWay}" />
+						</StackPanel>
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_HighlightBackgroundOpacityTitle}">
+					<wc:Setting.ActionContent>
+						<StackPanel Orientation="Horizontal" Spacing="16">
+							<Slider
+								x:Name="SliderBackgroundOpacity" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
+								Minimum="0" Maximum="1" TickFrequency="0.05" StepFrequency="0.05" HorizontalAlignment="Left"
+								Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Mode=TwoWay}" />
+							<TextBlock
+								VerticalAlignment="Center"
+								Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderBackgroundOpacity.Value,'0.00'),Mode=OneWay}" />
+						</StackPanel>
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_ChainStrokeThicknessTitle}">
+					<wc:Setting.ActionContent>
+						<StackPanel Orientation="Horizontal" Spacing="16">
+							<Slider
+								x:Name="SliderChainStrokeThickness" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
+								Minimum="0" Maximum="5" TickFrequency="0.1" StepFrequency="0.1" HorizontalAlignment="Left"
+								Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=TwoWay}" />
+							<TextBlock
+								VerticalAlignment="Center"
+								Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderChainStrokeThickness.Value,'0.0'),Mode=OneWay}" />
+						</StackPanel>
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}">
+					<wc:Setting.ActionContent>
+						<ComboBox
+							x:Name="ComboBoxCoordinateMode" Width="150"
+							SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
+							<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
+							<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
+							<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
+						</ComboBox>
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_DeltaCellColor}" Description="{m:R Key=SettingsPage_DeltaCellColorDescription}">
+					<wc:Setting.ActionContent>
+						<c:ColorSelector
+							x:Name="DeltaCellColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaValueColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_DeltaCandidateColor}" Description="{m:R Key=SettingsPage_DeltaCandidateColorDescription}">
+					<wc:Setting.ActionContent>
+						<c:ColorSelector
+							x:Name="DeltaCandidateColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_BorderColor}">
+					<wc:Setting.ActionContent>
+						<c:ColorSelector
+							x:Name="BorderColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_CursorBackgroundColor}">
+					<wc:Setting.ActionContent>
+						<c:ColorSelector
+							x:Name="CursorBackgroundColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:SettingExpander Header="{m:R Key=SettingsPage_GivenFontData}">
 					<c:FontPicker
-						x:Name="GivenFontPicker"
-						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_ModifiableFontData}" Style="{StaticResource PreferenceItemTitleStyle}" />
+						x:Name="GivenFontPicker" Margin="40,10"
+						a:FontPickerBindable.SelectedFontData="{x:Bind
+							((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData,
+							Mode=TwoWay}" />
+				</wc:SettingExpander>
+				<wc:SettingExpander Header="{m:R Key=SettingsPage_ModifiableFontData}">
 					<c:FontPicker
-						x:Name="ModifiableFontPicker"
-						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontData,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_CandidateFontData}" Style="{StaticResource PreferenceItemTitleStyle}" />
+						x:Name="ModifiableFontPicker" Margin="40,10"
+						a:FontPickerBindable.SelectedFontData="{x:Bind
+							((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontData,
+							Mode=TwoWay}" />
+				</wc:SettingExpander>
+				<wc:SettingExpander Header="{m:R Key=SettingsPage_CandidateFontData}">
 					<c:FontPicker
-						x:Name="PencilmarkFontPicker"
-						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontData,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_CoordinateLabelFontData}" Style="{StaticResource PreferenceItemTitleStyle}" />
+						x:Name="PencilmarkFontPicker" Margin="40,10"
+						a:FontPickerBindable.SelectedFontData="{x:Bind
+							((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontData,
+							Mode=TwoWay}" />
+				</wc:SettingExpander>
+				<wc:SettingExpander Header="{m:R Key=SettingsPage_CoordinateLabelFontData}">
 					<c:FontPicker
-						x:Name="CoordinateFontPicker"
-						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_ChainColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:ColorSelector
-						x:Name="ChainColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_NormalColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:ColorSelector
-						x:Name="NormalColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.NormalColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_AssignmentColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:ColorSelector
-						x:Name="AssignmentColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_OverlappedAssignmentColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:ColorSelector
-						x:Name="OverlappedAssignmentColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_EliminationColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:ColorSelector
-						x:Name="EliminationColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_CannibalismColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:ColorSelector
-						x:Name="CannibalismColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_ExofinColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:ColorSelector
-						x:Name="ExofinColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ExofinColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_EndofinColor}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:ColorSelector
-						x:Name="EndofinColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EndofinColor,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_AuxiliaryColors}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<TextBlock Text="{m:R Key=SettingsPage_AuxiliaryColorsDescription}" />
-					<RelativePanel Margin="0,10,0,0">
-						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors1SelectorTitle" Text="#1:" />
+						x:Name="CoordinateFontPicker" Margin="40,10"
+						a:FontPickerBindable.SelectedFontData="{x:Bind
+							((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData,
+							Mode=TwoWay}" />
+				</wc:SettingExpander>
+				<wc:Setting Header="{m:R Key=SettingsPage_ChainColor}">
+					<wc:Setting.ActionContent>
 						<c:ColorSelector
-							RelativePanel.RightOf="AuxiliaryColors1SelectorTitle"
-							RelativePanel.AlignVerticalCenterWith="AuxiliaryColors1SelectorTitle" Margin="10,0,0,0"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[0],Mode=TwoWay}" />
-					</RelativePanel>
-					<RelativePanel>
-						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors2SelectorTitle" Text="#2:" />
+							x:Name="ChainColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_NormalColor}">
+					<wc:Setting.ActionContent>
 						<c:ColorSelector
-							RelativePanel.RightOf="AuxiliaryColors2SelectorTitle"
-							RelativePanel.AlignVerticalCenterWith="AuxiliaryColors2SelectorTitle" Margin="10,0,0,0"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[1],Mode=TwoWay}" />
-					</RelativePanel>
-					<RelativePanel>
-						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors3SelectorTitle" Text="#3:" />
+							x:Name="NormalColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.NormalColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_AssignmentColor}">
+					<wc:Setting.ActionContent>
 						<c:ColorSelector
-							RelativePanel.RightOf="AuxiliaryColors3SelectorTitle"
-							RelativePanel.AlignVerticalCenterWith="AuxiliaryColors3SelectorTitle" Margin="10,0,0,0"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[2],Mode=TwoWay}" />
-					</RelativePanel>
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_AlmostLockedSetsColors}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<RelativePanel Margin="0,10,0,0">
-						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors1SelectorTitle" Text="#1:" />
+							x:Name="AssignmentColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_OverlappedAssignmentColor}">
+					<wc:Setting.ActionContent>
 						<c:ColorSelector
-							RelativePanel.RightOf="AlmostLockedSetsColors1SelectorTitle"
-							RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors1SelectorTitle" Margin="10,0,0,0"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[0],Mode=TwoWay}" />
-					</RelativePanel>
-					<RelativePanel>
-						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors2SelectorTitle" Text="#2:" />
+							x:Name="OverlappedAssignmentColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_EliminationColor}">
+					<wc:Setting.ActionContent>
 						<c:ColorSelector
-							RelativePanel.RightOf="AlmostLockedSetsColors2SelectorTitle"
-							RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors2SelectorTitle" Margin="10,0,0,0"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[1],Mode=TwoWay}" />
-					</RelativePanel>
-					<RelativePanel>
-						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors3SelectorTitle" Text="#3:" />
+							x:Name="EliminationColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_CannibalismColor}">
+					<wc:Setting.ActionContent>
 						<c:ColorSelector
-							RelativePanel.RightOf="AlmostLockedSetsColors3SelectorTitle"
-							RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors3SelectorTitle" Margin="10,0,0,0"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[2],Mode=TwoWay}" />
-					</RelativePanel>
-					<RelativePanel>
-						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors4SelectorTitle" Text="#4:" />
+							x:Name="CannibalismColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_ExofinColor}">
+					<wc:Setting.ActionContent>
 						<c:ColorSelector
-							RelativePanel.RightOf="AlmostLockedSetsColors4SelectorTitle"
-							RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors4SelectorTitle" Margin="10,0,0,0"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[3],Mode=TwoWay}" />
-					</RelativePanel>
-					<RelativePanel>
-						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors5SelectorTitle" Text="#5:" />
+							x:Name="ExofinColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ExofinColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_EndofinColor}">
+					<wc:Setting.ActionContent>
 						<c:ColorSelector
-							RelativePanel.RightOf="AlmostLockedSetsColors5SelectorTitle"
-							RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors5SelectorTitle" Margin="10,0,0,0"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[4],Mode=TwoWay}" />
-					</RelativePanel>
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_BabaGroupFontData}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-						<Image>
-							<Image.Source>
-								<BitmapImage AutoPlay="True" UriSource="/Resources/images/baba.gif" />
-							</Image.Source>
-						</Image>
-						<Image>
-							<Image.Source>
-								<BitmapImage AutoPlay="True" UriSource="/Resources/images/is.gif" />
-							</Image.Source>
-						</Image>
-						<Image>
-							<Image.Source>
-								<BitmapImage AutoPlay="True" UriSource="/Resources/images/group.gif" />
-							</Image.Source>
-						</Image>
+							x:Name="EndofinColorSelector"
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EndofinColor,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:SettingExpander>
+					<wc:SettingExpander.Header>
+						<wc:Setting
+							Header="{m:R Key=SettingsPage_AuxiliaryColors}"
+							Description="{m:R Key=SettingsPage_AuxiliaryColorsDescription}" />
+					</wc:SettingExpander.Header>
+
+					<StackPanel Margin="40,10">
+						<RelativePanel Margin="0,10,0,0">
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors1SelectorTitle" Text="#1:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="AuxiliaryColors1SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="AuxiliaryColors1SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[0],Mode=TwoWay}" />
+						</RelativePanel>
+						<RelativePanel>
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors2SelectorTitle" Text="#2:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="AuxiliaryColors2SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="AuxiliaryColors2SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[1],Mode=TwoWay}" />
+						</RelativePanel>
+						<RelativePanel>
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors3SelectorTitle" Text="#3:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="AuxiliaryColors3SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="AuxiliaryColors3SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[2],Mode=TwoWay}" />
+						</RelativePanel>
 					</StackPanel>
+				</wc:SettingExpander>
+				<wc:SettingExpander Header="{m:R Key=SettingsPage_AlmostLockedSetsColors}">
+					<StackPanel Margin="40,10">
+						<RelativePanel Margin="0,10,0,0">
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors1SelectorTitle" Text="#1:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="AlmostLockedSetsColors1SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors1SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind
+									((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[0],
+									Mode=TwoWay}" />
+						</RelativePanel>
+						<RelativePanel>
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors2SelectorTitle" Text="#2:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="AlmostLockedSetsColors2SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors2SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind
+									((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[1],
+									Mode=TwoWay}" />
+						</RelativePanel>
+						<RelativePanel>
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors3SelectorTitle" Text="#3:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="AlmostLockedSetsColors3SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors3SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind
+									((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[2],
+									Mode=TwoWay}" />
+						</RelativePanel>
+						<RelativePanel>
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors4SelectorTitle" Text="#4:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="AlmostLockedSetsColors4SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors4SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind
+									((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[3],
+									Mode=TwoWay}" />
+						</RelativePanel>
+						<RelativePanel>
+							<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors5SelectorTitle" Text="#5:" />
+							<c:ColorSelector
+								RelativePanel.RightOf="AlmostLockedSetsColors5SelectorTitle"
+								RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors5SelectorTitle" Margin="10,0,0,0"
+								SelectedColor="{x:Bind
+									((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[4],
+									Mode=TwoWay}" />
+						</RelativePanel>
+					</StackPanel>
+				</wc:SettingExpander>
+				<wc:SettingExpander>
+					<wc:SettingExpander.Header>
+						<wc:Setting Header="{m:R Key=SettingsPage_BabaGroupFontData}">
+							<wc:Setting.ActionContent>
+								<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+									<Image>
+										<Image.Source>
+											<BitmapImage AutoPlay="True" UriSource="/Resources/images/baba.gif" />
+										</Image.Source>
+									</Image>
+									<Image>
+										<Image.Source>
+											<BitmapImage AutoPlay="True" UriSource="/Resources/images/is.gif" />
+										</Image.Source>
+									</Image>
+									<Image>
+										<Image.Source>
+											<BitmapImage AutoPlay="True" UriSource="/Resources/images/group.gif" />
+										</Image.Source>
+									</Image>
+								</StackPanel>
+							</wc:Setting.ActionContent>
+						</wc:Setting>
+					</wc:SettingExpander.Header>
+
 					<c:FontPicker
-						x:Name="BabaGroupingFontPicker"
-						a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontData,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_StrongLinkDashStyle}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<TextBlock Text="{m:R Key=SettingsPage_StrongLinkDashStyleDescription}" TextWrapping="WrapWholeWords" />
-					<c:DashArrayTextBox
-						x:Name="StrongLinkDashStyleBox" Width="200"
-						DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_WeakLinkDashStyle}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:DashArrayTextBox
-						x:Name="WeakLinkDashStyleBox" Width="200"
-						DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel>
-					<TextBlock Text="{m:R Key=SettingsPage_CyclingCellLinkDashStyle}" Style="{StaticResource PreferenceItemTitleStyle}" />
-					<c:DashArrayTextBox
-						x:Name="CycleLikeCellLinkDashStyleBox" Width="200"
-						DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle,Mode=TwoWay}" />
-				</StackPanel>
+						x:Name="BabaGroupingFontPicker" Margin="40,10"
+						a:FontPickerBindable.SelectedFontData="{x:Bind
+							((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontData,
+							Mode=TwoWay}" />
+				</wc:SettingExpander>
+				<wc:Setting
+					Header="{m:R Key=SettingsPage_StrongLinkDashStyle}"
+					Description="{m:R Key=SettingsPage_StrongLinkDashStyleDescription}">
+					<wc:Setting.ActionContent>
+						<c:DashArrayTextBox
+							x:Name="StrongLinkDashStyleBox" Width="150"
+							DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_WeakLinkDashStyle}">
+					<wc:Setting.ActionContent>
+						<c:DashArrayTextBox
+							x:Name="WeakLinkDashStyleBox" Width="150"
+							DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
+				<wc:Setting Header="{m:R Key=SettingsPage_CyclingCellLinkDashStyle}">
+					<wc:Setting.ActionContent>
+						<c:DashArrayTextBox
+							x:Name="CycleLikeCellLinkDashStyleBox" Width="150"
+							DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle,Mode=TwoWay}" />
+					</wc:Setting.ActionContent>
+				</wc:Setting>
 			</StackPanel>
 		</ScrollViewer>
 
 		<!--Sample grid-->
 		<c:SudokuPane
-			Grid.Column="1" Margin="60,0,0,0" Width="610" Height="610" HorizontalAlignment="Center" VerticalAlignment="Center"
+			Grid.Column="1" Margin="30,0,0,0" Width="610" Height="610" HorizontalAlignment="Center" VerticalAlignment="Center"
 			DisplayCursors="True" SelectedCell="-1" DisableFlyout="True"
 			Puzzle="{m:Grid Text='000001230123004+5604+5600789078900+1000000000000000+9001230123004+5604+5600789078900000'}"
 			DeltaCellColor="{x:Bind DeltaCellColorSelector.SelectedColor,Mode=OneWay}"
@@ -284,7 +337,9 @@
 			HighlightCandidateCircleScale="{x:Bind SliderEllipseScale.Value,Mode=OneWay}"
 			HighlightBackgroundOpacity="{x:Bind SliderBackgroundOpacity.Value,Mode=OneWay}"
 			ChainStrokeThickness="{x:Bind SliderChainStrokeThickness.Value,Mode=OneWay}"
-			CoordinateLabelDisplayMode="{x:Bind cvt:SettingsPageConversion.GetCoordinateLabelDisplayMode(ComboBoxCoordinateMode.SelectedIndex),Mode=OneWay}"
+			CoordinateLabelDisplayMode="{x:Bind
+				cvt:SettingsPageConversion.GetCoordinateLabelDisplayMode(ComboBoxCoordinateMode.SelectedIndex),
+				Mode=OneWay}"
 			GivenFont="{x:Bind cvt:SettingsPageConversion.GetFont(GivenFontPicker.SelectedFontName),Mode=OneWay}"
 			GivenFontScale="{x:Bind GivenFontPicker.SelectedFontScale,Mode=OneWay}"
 			GivenColor="{x:Bind GivenFontPicker.SelectedColor,Mode=OneWay}"

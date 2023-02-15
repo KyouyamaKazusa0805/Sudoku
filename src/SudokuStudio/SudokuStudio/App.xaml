@@ -12,7 +12,7 @@
 			</ResourceDictionary.MergedDictionaries>
 
 			<Style x:Key="PreferenceSliderStyle" TargetType="Slider">
-				<Setter Property="Width" Value="400" />
+				<Setter Property="Width" Value="300" />
 			</Style>
 			<Style x:Key="PreferenceItemTitleStyle" TargetType="TextBlock">
 				<Setter Property="FontWeight" Value="Bold" />

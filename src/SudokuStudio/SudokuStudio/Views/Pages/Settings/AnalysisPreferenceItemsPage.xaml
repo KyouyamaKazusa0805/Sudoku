@@ -7,213 +7,168 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
+	xmlns:wc="using:WinUICommunity.SettingsUI.Controls"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:AnalysisPreferenceItemsPage}">
-	<ScrollViewer Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
-		<StackPanel Spacing="26">
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_EnableFullHouse}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<TextBlock Text="{m:R Key=SettingsPage_EnableFullHouseDescription}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_EnableLastDigit}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableLastDigit,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_HiddenSinglesInBlockFirst}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_AllowIncompleteUniqueRectangles}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowIncompleteUniqueRectangles,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_SearchForExtendedUniqueRectangles}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForExtendedUniqueRectangles,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock
-					Text="{m:R Key=SettingsPage_SearchExtendedBivalueUniversalGraveTypes}"
-					Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedBivalueUniversalGraveTypes,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock
-					Text="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXzRule}"
-					Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXzRule,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock
-					Text="{m:R Key=SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule}"
-					Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLoopedPatternsOnAlmostLockedSetXzRule,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock
-					Text="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXyWing}"
-					Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXyWing,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_MaxSizeOfRegularWing}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<c:IntegerBox
-					Minimum="3" Maximum="9" LargeChange="2" SpinButtonPlacementMode="Inline" Width="200" HorizontalAlignment="Left"
-					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfRegularWing,Mode=TwoWay}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_MaxSizeOfComplexFish}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<c:IntegerBox
-					Minimum="2" Maximum="7" LargeChange="2" SpinButtonPlacementMode="Inline" Width="200" HorizontalAlignment="Left"
-					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_DifficultyLevelForegrounds}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<RelativePanel Margin="0,10,0,0">
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelForegroundsEasySelectorTitle" Text="{m:R Key=_DifficultyLevel_Easy}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelForegroundsEasySelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsEasySelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
-				</RelativePanel>
-				<RelativePanel>
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelForegroundsModerateSelectorTitle" Text="{m:R Key=_DifficultyLevel_Moderate}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelForegroundsModerateSelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsModerateSelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[1],Mode=TwoWay}" />
-				</RelativePanel>
-				<RelativePanel>
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelForegroundsHardSelectorTitle" Text="{m:R Key=_DifficultyLevel_Hard}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelForegroundsHardSelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsHardSelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[2],Mode=TwoWay}" />
-				</RelativePanel>
-				<RelativePanel>
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelForegroundsFiendishSelectorTitle" Text="{m:R Key=_DifficultyLevel_Fiendish}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelForegroundsFiendishSelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsFiendishSelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[3],Mode=TwoWay}" />
-				</RelativePanel>
-				<RelativePanel>
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelForegroundsNightmareSelectorTitle" Text="{m:R Key=_DifficultyLevel_Nightmare}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelForegroundsNightmareSelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsNightmareSelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[4],Mode=TwoWay}" />
-				</RelativePanel>
-				<RelativePanel>
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelForegroundsUnknownSelectorTitle" Text="{m:R Key=_DifficultyLevel_Unknown}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelForegroundsUnknownSelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelForegroundsUnknownSelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[5],Mode=TwoWay}" />
-				</RelativePanel>
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_DifficultyLevelBackgrounds}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<RelativePanel Margin="0,10,0,0">
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelBackgroundsEasySelectorTitle" Text="{m:R Key=_DifficultyLevel_Easy}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelBackgroundsEasySelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsEasySelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[0],Mode=TwoWay}" />
-				</RelativePanel>
-				<RelativePanel>
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelBackgroundsModerateSelectorTitle" Text="{m:R Key=_DifficultyLevel_Moderate}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelBackgroundsModerateSelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsModerateSelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[1],Mode=TwoWay}" />
-				</RelativePanel>
-				<RelativePanel>
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelBackgroundsHardSelectorTitle" Text="{m:R Key=_DifficultyLevel_Hard}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelBackgroundsHardSelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsHardSelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[2],Mode=TwoWay}" />
-				</RelativePanel>
-				<RelativePanel>
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelBackgroundsFiendishSelectorTitle" Text="{m:R Key=_DifficultyLevel_Fiendish}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelBackgroundsFiendishSelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsFiendishSelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[3],Mode=TwoWay}" />
-				</RelativePanel>
-				<RelativePanel>
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelBackgroundsNightmareSelectorTitle" Text="{m:R Key=_DifficultyLevel_Nightmare}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelBackgroundsNightmareSelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsNightmareSelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[4],Mode=TwoWay}" />
-				</RelativePanel>
-				<RelativePanel>
-					<TextBlock
-						RelativePanel.AlignVerticalCenterWithPanel="True"
-						x:Name="DifficultyLevelBackgroundsUnknownSelectorTitle" Text="{m:R Key=_DifficultyLevel_Unknown}" />
-					<c:ColorSelector
-						RelativePanel.RightOf="DifficultyLevelBackgroundsUnknownSelectorTitle"
-						RelativePanel.AlignVerticalCenterWith="DifficultyLevelBackgroundsUnknownSelectorTitle" Margin="10,0,0,0"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[5],Mode=TwoWay}" />
-				</RelativePanel>
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_MaxSizeOfComplexFish}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=TwoWay}"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}" />
-			</StackPanel>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=SettingsPage_MaxSizeOfComplexFish}" Style="{StaticResource PreferenceItemTitleStyle}" />
-				<c:IntegerBox
-					Minimum="100" Maximum="10000" SmallChange="10" LargeChange="100" SpinButtonPlacementMode="Inline" Width="200"
-					HorizontalAlignment="Left"
-					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
-			</StackPanel>
+	<Page.Resources>
+		<Style TargetType="ToggleSwitch">
+			<Setter Property="OnContent" Value="{m:R Key=SettingsPage_OnContent}" />
+			<Setter Property="OffContent" Value="{m:R Key=SettingsPage_OffContent}" />
+			<Setter Property="HorizontalAlignment" Value="Right" />
+			<Setter Property="Width" Value="76" />
+		</Style>
+	</Page.Resources>
+
+	<ScrollViewer>
+		<StackPanel Margin="56,10" Spacing="4">
+			<wc:Setting Header="{m:R Key=SettingsPage_EnableFullHouse}" Description="{m:R Key=SettingsPage_EnableFullHouseDescription}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_EnableLastDigit}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableLastDigit,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_HiddenSinglesInBlockFirst}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_AllowIncompleteUniqueRectangles}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowIncompleteUniqueRectangles,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_SearchForExtendedUniqueRectangles}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForExtendedUniqueRectangles,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_SearchExtendedBivalueUniversalGraveTypes}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedBivalueUniversalGraveTypes,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXzRule}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXzRule,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLoopedPatternsOnAlmostLockedSetXzRule,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXyWing}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXyWing,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_MaxSizeOfRegularWing}">
+				<wc:Setting.ActionContent>
+					<c:IntegerBox
+						Minimum="3" Maximum="9" LargeChange="2" SpinButtonPlacementMode="Inline" Width="150"
+						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfRegularWing,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
+				<wc:Setting.ActionContent>
+					<c:IntegerBox
+						Minimum="2" Maximum="7" LargeChange="2" SpinButtonPlacementMode="Inline" Width="150"
+						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:SettingExpander Header="{m:R Key=SettingsPage_DifficultyLevelForegrounds}">
+				<StackPanel Spacing="4" Margin="40,10">
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Easy}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Moderate}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[1],Mode=TwoWay}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Hard}" VerticalAlignment="Center"/>
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[2],Mode=TwoWay}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Fiendish}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[3],Mode=TwoWay}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Nightmare}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[4],Mode=TwoWay}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Unknown}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[5],Mode=TwoWay}" />
+					</StackPanel>
+				</StackPanel>
+			</wc:SettingExpander>
+			<wc:SettingExpander Header="{m:R Key=SettingsPage_DifficultyLevelBackgrounds}">
+				<StackPanel Spacing="4" Margin="40,10">
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Easy}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Moderate}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[1],Mode=TwoWay}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Hard}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[2],Mode=TwoWay}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Fiendish}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[3],Mode=TwoWay}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Nightmare}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[4],Mode=TwoWay}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="20">
+						<TextBlock Text="{m:R Key=_DifficultyLevel_Unknown}" VerticalAlignment="Center" />
+						<c:ColorSelector
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[5],Mode=TwoWay}" />
+					</StackPanel>
+				</StackPanel>
+			</wc:SettingExpander>
+			<wc:Setting Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
+				<wc:Setting.ActionContent>
+					<c:IntegerBox
+						Minimum="100" Maximum="10000" SmallChange="10" LargeChange="150" SpinButtonPlacementMode="Inline" Width="150"
+						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
 		</StackPanel>
 	</ScrollViewer>
 </Page>
