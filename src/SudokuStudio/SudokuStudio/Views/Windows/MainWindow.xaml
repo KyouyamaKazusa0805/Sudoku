@@ -48,9 +48,9 @@
 			AlwaysShowHeader="True" PaneTitle="{m:R Key=MainWindow_Menu}"
 			Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked">
 			<NavigationView.MenuItems>
-				<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:R Key=MainWindow_Analyze}" Icon="ShowResults" />
+				<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:R Key=MainWindow_Analyze}" Icon="Edit" />
 				<NavigationViewItemSeparator />
-				<NavigationViewItem Icon="Repair" Content="{m:R Key=MainWindow_ExtraFunctions}">
+				<NavigationViewItem Icon="Flag" Content="{m:R Key=MainWindow_ExtraFunctions}">
 					<NavigationViewItem.MenuItems>
 						<NavigationViewItem x:Name="SingleCountingPageItem" Icon="OutlineStar" Content="{m:R Key=MainWindow_SingleCountingPracticing}" />
 					</NavigationViewItem.MenuItems>
