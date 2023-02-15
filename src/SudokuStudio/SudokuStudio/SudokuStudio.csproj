@@ -49,8 +49,6 @@
 	<ItemGroup>
 		<None Remove="Views\Controls\ColorSelector.xaml" />
 		<None Remove="Views\Controls\DashArrayTextBox.xaml" />
-		<None Remove="Views\Controls\ExtendedExpander.xaml" />
-		<None Remove="Views\Controls\ExtendedExpanderHeader.xaml" />
 		<None Remove="Views\Controls\FontPicker.xaml" />
 		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Controls\SudokuPaneCell.xaml" />
@@ -129,12 +127,6 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\AboutPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Page Update="Views\Controls\ExtendedExpanderHeader.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Page Update="Views\Controls\ExtendedExpander.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\Analyze\PuzzleGraphs.xaml">
