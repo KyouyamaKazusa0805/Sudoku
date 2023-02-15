@@ -55,7 +55,6 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 				ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
 				ImmutableArray.Create(
 					View.Empty
-						| new CandidateViewNode(DisplayColorKind.Normal, resultCell * 9 + digit)
 						| new HouseViewNode(DisplayColorKind.Normal, house)
 				),
 				resultCell,
@@ -151,7 +150,7 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 
 			var step = new NakedSingleStep(
 				ImmutableArray.Create(new Conclusion(Assignment, cell, digit)),
-				ImmutableArray.Create(View.Empty | new CandidateViewNode(DisplayColorKind.Normal, cell * 9 + digit)),
+				ImmutableArray.Create(View.Empty),
 				cell,
 				digit
 			);
@@ -218,7 +217,6 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 				ImmutableArray.Create(
 					View.Empty
 						| (enableAndIsLastDigit ? cellOffsets : null)
-						| new CandidateViewNode(DisplayColorKind.Normal, resultCell * 9 + digit)
 						| (enableAndIsLastDigit ? null : new HouseViewNode(DisplayColorKind.Normal, house))
 				),
 				resultCell,
