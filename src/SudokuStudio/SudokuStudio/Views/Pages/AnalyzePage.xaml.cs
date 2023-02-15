@@ -159,13 +159,23 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			return;
 		}
 
-		var fop = new FileOpenPicker()
-			.WithAwareHandleOnWin32()
-			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
-			.AddFileTypeFilter(CommonFileExtensions.Text)
-			.AddFileTypeFilter(CommonFileExtensions.PlainText);
+		var fop = new FileOpenPicker();
 
-		await LoadPuzzleCoreAsync(await fop.PickSingleFileAsync());
+		var window = ProjectWideWindowManager.GetWindowForElement(this);
+		var hWnd = WindowNative.GetWindowHandle(window);
+		InitializeWithWindow.Initialize(fop, hWnd);
+
+		fop.ViewMode = PickerViewMode.Thumbnail;
+		fop.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+		fop.FileTypeFilter.Add(CommonFileExtensions.Text);
+		fop.FileTypeFilter.Add(CommonFileExtensions.PlainText);
+
+		if (await fop.PickSingleFileAsync() is not { } file)
+		{
+			return;
+		}
+
+		await LoadPuzzleCoreAsync(file);
 	}
 
 	/// <summary>
@@ -179,13 +189,17 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			return;
 		}
 
-		var fsp = new FileSavePicker()
-			.WithAwareHandleOnWin32()
-			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
-			.WithSuggestedFileName(GetString("Sudoku"))
-			.AddFileTypeChoice(GetString("FileExtension_TextDescription"), CommonFileExtensions.Text)
-			.AddFileTypeChoice(GetString("FileExtension_PlainTextDescription"), CommonFileExtensions.PlainText)
-			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture);
+		var fsp = new FileSavePicker();
+
+		var window = ProjectWideWindowManager.GetWindowForElement(this);
+		var hWnd = WindowNative.GetWindowHandle(window);
+		InitializeWithWindow.Initialize(fsp, hWnd);
+
+		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+		fsp.SuggestedFileName = GetString("Sudoku");
+		fsp.FileTypeChoices.Add(GetString("FileExtension_TextDescription"), new[] { CommonFileExtensions.Text });
+		fsp.FileTypeChoices.Add(GetString("FileExtension_PlainTextDescription"), new[] { CommonFileExtensions.PlainText });
+		fsp.FileTypeChoices.Add(GetString("FileExtension_Picture"), new[] { CommonFileExtensions.PortablePicture });
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath } file)
 		{
@@ -227,13 +241,17 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			return false;
 		}
 
-		var fsp = new FileSavePicker()
-			.WithAwareHandleOnWin32()
-			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
-			.WithSuggestedFileName(GetString("Sudoku"))
-			.AddFileTypeChoice(GetString("FileExtension_TextDescription"), CommonFileExtensions.Text)
-			.AddFileTypeChoice(GetString("FileExtension_PlainTextDescription"), CommonFileExtensions.PlainText)
-			.AddFileTypeChoice(GetString("FileExtension_Picture"), CommonFileExtensions.PortablePicture);
+		var fsp = new FileSavePicker();
+
+		var window = ProjectWideWindowManager.GetWindowForElement(this);
+		var hWnd = WindowNative.GetWindowHandle(window);
+		InitializeWithWindow.Initialize(fsp, hWnd);
+
+		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+		fsp.SuggestedFileName = GetString("Sudoku");
+		fsp.FileTypeChoices.Add(GetString("FileExtension_TextDescription"), new[] { CommonFileExtensions.Text });
+		fsp.FileTypeChoices.Add(GetString("FileExtension_PlainTextDescription"), new[] { CommonFileExtensions.PlainText });
+		fsp.FileTypeChoices.Add(GetString("FileExtension_Picture"), new[] { CommonFileExtensions.PortablePicture });
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath } file)
 		{

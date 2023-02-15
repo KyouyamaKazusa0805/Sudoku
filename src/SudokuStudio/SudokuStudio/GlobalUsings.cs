@@ -72,7 +72,6 @@ global using Sudoku.Solving.Logical.StepGatherers;
 global using Sudoku.Text;
 global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;
-global using SudokuStudio;
 global using SudokuStudio.Collection;
 global using SudokuStudio.ComponentModel;
 global using SudokuStudio.Configuration;

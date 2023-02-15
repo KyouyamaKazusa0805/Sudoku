@@ -2627,6 +2627,47 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="args">The command-line arguments.</param>
         </member>
+        <member name="T:SudokuStudio.ProjectWideWindowManager">
+            <summary>
+            <para>Provides with a project-wide window manager type, as a helper class type.</para>
+            <para>
+            This helper class to allow the app to find the Window that contains an arbitrary <see cref="T:Microsoft.UI.Xaml.UIElement"/> (GetWindowForElement).
+            To do this, we keep trackof all active <see cref="T:Microsoft.UI.Xaml.Window"/>s.
+            </para>
+            <para>
+            The app code must call <see cref="M:SudokuStudio.ProjectWideWindowManager.CreateWindow``1"/> rather than "<see langword="new"/> <see cref="T:Microsoft.UI.Xaml.Window"/>()" expression
+            so we can keep track of all the relevant windows.
+            </para>
+            <para>In the future, we would like to support this in platform APIs.</para>
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
+            <seealso cref="T:Microsoft.UI.Xaml.UIElement"/>
+        </member>
+        <member name="P:SudokuStudio.ProjectWideWindowManager.ActiveWindows">
+            <summary>
+            Indicates the currently active windows.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.ProjectWideWindowManager.CreateWindow``1">
+            <summary>
+            Creates a new window, and records it into the property <see cref="P:SudokuStudio.ProjectWideWindowManager.ActiveWindows"/>.
+            </summary>
+            <typeparam name="TWindow">The type of the window.</typeparam>
+            <returns>The created window instance.</returns>
+        </member>
+        <member name="M:SudokuStudio.ProjectWideWindowManager.GetWindowForElement(Microsoft.UI.Xaml.UIElement)">
+            <summary>
+            Gets the target window that displays the current <see cref="T:Microsoft.UI.Xaml.UIElement"/>.
+            </summary>
+            <param name="element">The UI element.</param>
+            <returns>The target window. If none found, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:SudokuStudio.ProjectWideWindowManager.TrackWindow(Microsoft.UI.Xaml.Window)">
+            <summary>
+            Try to track the window, recording it into the property <see cref="P:SudokuStudio.ProjectWideWindowManager.ActiveWindows"/>.
+            </summary>
+            <param name="window">The window.</param>
+        </member>
         <member name="T:SudokuStudio.Resources.ResourceDictionary">
             <summary>
             Defines an easy entry to get <see cref="T:System.String"/> resources.
@@ -6986,66 +7027,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The <see cref="T:Windows.UI.Color"/> instance.</param>
             <returns>Final <see cref="T:SkiaSharp.SKColor"/> instance.</returns>
-        </member>
-        <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
-            </summary>
-            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.WithAwareHandleOnWin32(Windows.Storage.Pickers.FileOpenPicker)">
-            <summary>
-            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
-            </summary>
-            <param name="this">The instance.</param>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.WithSuggestedStartLocation(Windows.Storage.Pickers.FileOpenPicker,Windows.Storage.Pickers.PickerLocationId)">
-            <summary>
-            Sets the property <see cref="P:Windows.Storage.Pickers.FileOpenPicker.SuggestedStartLocation"/> with the specified value.
-            </summary>
-            <seealso cref="P:Windows.Storage.Pickers.FileOpenPicker.SuggestedStartLocation"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.AddFileTypeFilter(Windows.Storage.Pickers.FileOpenPicker,System.String)">
-            <summary>
-            Adds the file type filter into the <see cref="P:Windows.Storage.Pickers.FileOpenPicker.FileTypeFilter"/> property.
-            </summary>
-            <seealso cref="P:Windows.Storage.Pickers.FileOpenPicker.FileTypeFilter"/>
-        </member>
-        <member name="T:Windows.Storage.Pickers.FileSavePickerExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>.
-            </summary>
-            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithAwareHandleOnWin32(Windows.Storage.Pickers.FileSavePicker)">
-            <summary>
-            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
-            </summary>
-            <param name="this">The instance.</param>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithSuggestedFileName(Windows.Storage.Pickers.FileSavePicker,System.String)">
-            <summary>
-            Sets the property <see cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedFileName"/> with the specified value.
-            </summary>
-            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedFileName"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithSuggestedStartLocation(Windows.Storage.Pickers.FileSavePicker,Windows.Storage.Pickers.PickerLocationId)">
-            <summary>
-            Sets the property <see cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedStartLocation"/> with the specified value.
-            </summary>
-            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.SuggestedStartLocation"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.WithDefaultFileExtension(Windows.Storage.Pickers.FileSavePicker,System.String)">
-            <summary>
-            Sets the property <see cref="P:Windows.Storage.Pickers.FileSavePicker.DefaultFileExtension"/> with the specified value.
-            </summary>
-            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.DefaultFileExtension"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.AddFileTypeChoice(Windows.Storage.Pickers.FileSavePicker,System.String,System.String[])">
-            <summary>
-            Adds the file type choices into the <see cref="P:Windows.Storage.Pickers.FileSavePicker.FileTypeChoices"/> property.
-            </summary>
-            <seealso cref="P:Windows.Storage.Pickers.FileSavePicker.FileTypeChoices"/>
         </member>
         <member name="T:Windows.Foundation.PointExtensions">
             <summary>

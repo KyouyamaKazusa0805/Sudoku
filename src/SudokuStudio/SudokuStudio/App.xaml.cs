@@ -82,7 +82,8 @@ public partial class App : Application
 	/// </summary>
 	/// <typeparam name="TWindow">The type of the window you should activicate.</typeparam>
 	[MemberNotNull(nameof(RunningWindow))]
-	private void ActivicateMainWindow<TWindow>() where TWindow : Window, new() => (RunningWindow = new TWindow()).Activate();
+	private void ActivicateMainWindow<TWindow>() where TWindow : Window, new()
+		=> (RunningWindow = ProjectWideWindowManager.CreateWindow<MainWindow>()).Activate();
 
 	/// <summary>
 	/// Handle the cases how user opens this program.

@@ -41,11 +41,15 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 			return;
 		}
 
-		var fsp = new FileSavePicker()
-			.WithAwareHandleOnWin32()
-			.WithSuggestedStartLocation(PickerLocationId.DocumentsLibrary)
-			.WithSuggestedFileName(GetString("SuggestedFileName_Output"))
-			.AddFileTypeChoice(GetString("FileExtension_PortableDocument"), CommonFileExtensions.PortableDocument);
+		var fsp = new FileSavePicker();
+
+		var window = ProjectWideWindowManager.GetWindowForElement(this);
+		var hWnd = WindowNative.GetWindowHandle(window);
+		InitializeWithWindow.Initialize(fsp, hWnd);
+
+		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+		fsp.SuggestedFileName = GetString("SuggestedFileName_Output");
+		fsp.FileTypeChoices.Add(GetString("FileExtension_PortableDocument"), new[] { CommonFileExtensions.PortableDocument });
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath })
 		{
