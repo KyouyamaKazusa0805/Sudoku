@@ -3484,6 +3484,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Solving &amp; Analysis.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AnalysisDescription">
+            <summary>
+              Looks up a localized string similar to This page lists options that controls the analysis and gathering solving steps of a puzzle.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AssignmentColor">
             <summary>
               Looks up a localized string similar to Assignments.
@@ -3507,6 +3512,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Basic">
             <summary>
               Looks up a localized string similar to Basic preferences.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_BasicDescription">
+            <summary>
+              Looks up a localized string similar to This page lists options that controls the program itself.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_BorderColor">
@@ -3607,6 +3617,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Drawing">
             <summary>
               Looks up a localized string similar to Drawing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DrawingDescription">
+            <summary>
+              Looks up a localized string similar to This page lists options that controls the drawing and rendering of sudoku puzzles.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EliminationColor">
@@ -6522,6 +6537,13 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Pages.SettingsPage"/> instance.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetMainWindow">
+            <summary>
+            Gets the main window.
+            </summary>
+            <returns>The main window.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.SettingsPage.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -6805,9 +6827,10 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Windows.MainWindow._navigatingData">
             <summary>
-            The navigating data. This field is used by <see cref="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)"/>.
+            The navigating data. This dictionary stores the routing data that can be used and controlled
+            by control <see cref="F:SudokuStudio.Views.Windows.MainWindow.NavigationViewFrame"/>.
             </summary>
-            <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)"/>
+            <seealso cref="F:SudokuStudio.Views.Windows.MainWindow.NavigationViewFrame"/>
         </member>
         <member name="F:SudokuStudio.Views.Windows.MainWindow._micaController">
             <summary>
@@ -6830,6 +6853,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``1">
+            <summary>
+            Try to navigate to the target page via its type specified as type argument.
+            </summary>
+            <typeparam name="TPage">The type of the page.</typeparam>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeField">
             <summary>
@@ -6892,6 +6921,16 @@ if (student is (name: var name, age: >= 18))
             <param name="container">The container.</param>
             <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/>
             <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase,System.Boolean)">
+            <summary>
+            An outer-layered method to switching pages. This method can be used by both
+            <see cref="M:SudokuStudio.Views.Windows.MainWindow.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Windows.MainWindow.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
+            </summary>
+            <param name="container">The container.</param>
+            <param name="isSettingsNavigationViewItemSelectedOrInvoked">
+            A <see cref="T:System.Boolean"/> value indicating whether the settings item is invoked or selected.
+            </param>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.TrySetMicaBackdrop">
             <summary>

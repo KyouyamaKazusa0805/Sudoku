@@ -22,9 +22,10 @@ public sealed partial class MainWindow : Window
 #endif
 
 	/// <summary>
-	/// The navigating data. This field is used by <see cref="SwitchingPage(NavigationViewItemBase)"/>.
+	/// The navigating data. This dictionary stores the routing data that can be used and controlled
+	/// by control <see cref="NavigationViewFrame"/>.
 	/// </summary>
-	/// <seealso cref="SwitchingPage(NavigationViewItemBase)"/>
+	/// <seealso cref="NavigationViewFrame"/>
 	private Dictionary<Func<NavigationViewItemBase, bool>, Type> _navigatingData;
 
 #if MICA_BACKDROP || ACRYLIC_BACKDROP
@@ -83,6 +84,12 @@ public sealed partial class MainWindow : Window
 
 
 	/// <summary>
+	/// Try to navigate to the target page via its type specified as type argument.
+	/// </summary>
+	/// <typeparam name="TPage">The type of the page.</typeparam>
+	internal void NavigateToPage<TPage>() where TPage : Page => NavigateToPage(typeof(TPage));
+
+	/// <summary>
 	/// Initializes fields.
 	/// </summary>
 	[MemberNotNull(nameof(_navigatingData))]
@@ -91,10 +98,7 @@ public sealed partial class MainWindow : Window
 		{
 			{ container => container == AnalyzePageItem, typeof(AnalyzePage) },
 			{ container => container == AboutPageItem, typeof(AboutPage) },
-			{ container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) },
-			{ container => container == BasicSettingsPageItem, typeof(BasicPreferenceItemsPage) },
-			{ container => container == AnalyaisSettingsPageItem, typeof(AnalysisPreferenceItemsPage) },
-			{ container => container == DrawingSettingsPageItem, typeof(DrawingPreferenceItemsPage) }
+			{ container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) }
 		};
 
 	/// <summary>
@@ -337,6 +341,26 @@ public sealed partial class MainWindow : Window
 		}
 	}
 
+	/// <summary>
+	/// An outer-layered method to switching pages. This method can be used by both
+	/// <see cref="NavigationView_ItemInvoked"/> and <see cref="MainNavigationView_SelectionChanged"/>.
+	/// </summary>
+	/// <param name="container">The container.</param>
+	/// <param name="isSettingsNavigationViewItemSelectedOrInvoked">
+	/// A <see cref="bool"/> value indicating whether the settings item is invoked or selected.
+	/// </param>
+	private void SwitchingPage(NavigationViewItemBase container, bool isSettingsNavigationViewItemSelectedOrInvoked)
+	{
+		if (isSettingsNavigationViewItemSelectedOrInvoked)
+		{
+			NavigateToPage(typeof(SettingsPage));
+		}
+		else
+		{
+			SwitchingPage(container);
+		}
+	}
+
 #if MICA_BACKDROP || ACRYLIC_BACKDROP
 	/// <summary>
 	/// Try to set Mica backdrop.
@@ -447,10 +471,10 @@ public sealed partial class MainWindow : Window
 	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => AnalyzePageItem.IsSelected = true;
 
 	private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-		=> SwitchingPage(args.InvokedItemContainer);
+		=> SwitchingPage(args.InvokedItemContainer, args.IsSettingsInvoked);
 
 	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-		=> SwitchingPage(args.SelectedItemContainer);
+		=> SwitchingPage(args.SelectedItemContainer, args.IsSettingsSelected);
 
 	private void Window_Closed(object sender, WindowEventArgs args)
 		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).Preference);

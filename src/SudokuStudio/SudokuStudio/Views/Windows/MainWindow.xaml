@@ -44,7 +44,7 @@
 		<!--Navigation view-->
 		<NavigationView
 			x:Name="MainNavigationView" Grid.Row="1" SelectionFollowsFocus="Disabled" IsBackButtonVisible="Collapsed"
-			IsSettingsVisible="False" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False"
+			IsSettingsVisible="True" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False"
 			AlwaysShowHeader="True" PaneTitle="{m:R Key=MainWindow_Menu}"
 			Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked">
 			<NavigationView.MenuItems>
@@ -53,24 +53,6 @@
 				<NavigationViewItem Icon="Flag" Content="{m:R Key=MainWindow_ExtraFunctions}">
 					<NavigationViewItem.MenuItems>
 						<NavigationViewItem x:Name="SingleCountingPageItem" Icon="OutlineStar" Content="{m:R Key=MainWindow_SingleCountingPracticing}" />
-					</NavigationViewItem.MenuItems>
-				</NavigationViewItem>
-				<NavigationViewItemSeparator />
-				<NavigationViewItem Content="{m:R Key=MainWindow_Settings}">
-					<NavigationViewItem.Icon>
-						<AnimatedIcon>
-							<AnimatedIcon.Source>
-								<av:AnimatedSettingsVisualSource />
-							</AnimatedIcon.Source>
-							<AnimatedIcon.FallbackIconSource>
-								<SymbolIconSource Symbol="Setting" />
-							</AnimatedIcon.FallbackIconSource>
-						</AnimatedIcon>
-					</NavigationViewItem.Icon>
-					<NavigationViewItem.MenuItems>
-						<NavigationViewItem x:Name="BasicSettingsPageItem" Content="{m:R Key=SettingsPage_Basic}" />
-						<NavigationViewItem x:Name="AnalyaisSettingsPageItem" Content="{m:R Key=SettingsPage_Analysis}" />
-						<NavigationViewItem x:Name="DrawingSettingsPageItem" Content="{m:R Key=SettingsPage_Drawing}" />
 					</NavigationViewItem.MenuItems>
 				</NavigationViewItem>
 			</NavigationView.MenuItems>

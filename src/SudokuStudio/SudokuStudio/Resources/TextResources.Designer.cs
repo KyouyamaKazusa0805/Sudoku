@@ -1438,6 +1438,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This page lists options that controls the analysis and gathering solving steps of a puzzle.
+        /// </summary>
+        internal static string SettingsPage_AnalysisDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_AnalysisDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assignments.
         /// </summary>
         internal static string SettingsPage_AssignmentColor {
@@ -1479,6 +1488,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_Basic {
             get {
                 return ResourceManager.GetString("SettingsPage_Basic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page lists options that controls the program itself.
+        /// </summary>
+        internal static string SettingsPage_BasicDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_BasicDescription", resourceCulture);
             }
         }
         
@@ -1659,6 +1677,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_Drawing {
             get {
                 return ResourceManager.GetString("SettingsPage_Drawing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page lists options that controls the drawing and rendering of sudoku puzzles.
+        /// </summary>
+        internal static string SettingsPage_DrawingDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DrawingDescription", resourceCulture);
             }
         }
         

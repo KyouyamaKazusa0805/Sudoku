@@ -549,6 +549,9 @@
   <data name="SettingsPage_Analysis" xml:space="preserve">
     <value>Solving &amp; Analysis</value>
   </data>
+  <data name="SettingsPage_AnalysisDescription" xml:space="preserve">
+    <value>This page lists options that controls the analysis and gathering solving steps of a puzzle</value>
+  </data>
   <data name="SettingsPage_AssignmentColor" xml:space="preserve">
     <value>Assignments</value>
   </data>
@@ -563,6 +566,9 @@
   </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>Basic preferences</value>
+  </data>
+  <data name="SettingsPage_BasicDescription" xml:space="preserve">
+    <value>This page lists options that controls the program itself</value>
   </data>
   <data name="SettingsPage_BorderColor" xml:space="preserve">
     <value>Border</value>
@@ -623,6 +629,9 @@
   </data>
   <data name="SettingsPage_Drawing" xml:space="preserve">
     <value>Drawing</value>
+  </data>
+  <data name="SettingsPage_DrawingDescription" xml:space="preserve">
+    <value>This page lists options that controls the drawing and rendering of sudoku puzzles</value>
   </data>
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>Eliminations</value>

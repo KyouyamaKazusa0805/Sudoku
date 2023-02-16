@@ -6,9 +6,9 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
-	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
+	xmlns:wc="using:WinUICommunity.SettingsUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:SettingsPage}">
-	<StackPanel Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}" Spacing="20">
+	<StackPanel Margin="56,10" Spacing="4">
 		<StackPanel.Resources>
 			<Style x:Key="EmbeddedPageStyle" TargetType="Page">
 				<Setter Property="Margin" Value="0,20" />
@@ -17,19 +17,26 @@
 		</StackPanel.Resources>
 
 		<TextBlock Text="{m:R Key=SettingsPage_Intro}" Margin="0,10,0,0" />
-		<!--
-		It seems that Windows App SDK v1.2.3 does not fully support Pivot control, or something that I cannot find goes wrong :(
-		-->
-		<TabView Margin="-10,0,20,20" TabWidthMode="Equal" HorizontalAlignment="Left" IsAddTabButtonVisible="False">
-			<TabViewItem Header="{m:R Key=SettingsPage_Basic}" IsClosable="False">
-				<ps:BasicPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}" />
-			</TabViewItem>
-			<TabViewItem Header="{m:R Key=SettingsPage_Analysis}" IsClosable="False">
-				<ps:AnalysisPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}" />
-			</TabViewItem>
-			<TabViewItem Header="{m:R Key=SettingsPage_Drawing}" IsClosable="False">
-				<ps:DrawingPreferenceItemsPage Style="{StaticResource EmbeddedPageStyle}" />
-			</TabViewItem>
-		</TabView>
+		<wc:Setting Header="{m:R Key=SettingsPage_Basic}" Description="{m:R Key=SettingsPage_BasicDescription}">
+			<wc:Setting.ActionContent>
+				<Button Click="GoToBasicOptionsButton_Click">
+					<SymbolIcon Symbol="Forward" />
+				</Button>
+			</wc:Setting.ActionContent>
+		</wc:Setting>
+		<wc:Setting Header="{m:R Key=SettingsPage_Analysis}" Description="{m:R Key=SettingsPage_AnalysisDescription}">
+			<wc:Setting.ActionContent>
+				<Button Click="GoToAnalysisOptionsButton_Click">
+					<SymbolIcon Symbol="Forward" />
+				</Button>
+			</wc:Setting.ActionContent>
+		</wc:Setting>
+		<wc:Setting Header="{m:R Key=SettingsPage_Drawing}" Description="{m:R Key=SettingsPage_DrawingDescription}">
+			<wc:Setting.ActionContent>
+				<Button Click="GoToRenderingOptionsButton_Click">
+					<SymbolIcon Symbol="Forward" />
+				</Button>
+			</wc:Setting.ActionContent>
+		</wc:Setting>
 	</StackPanel>
 </Page>
