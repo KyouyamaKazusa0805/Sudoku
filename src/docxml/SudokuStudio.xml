@@ -48,6 +48,34 @@
             <summary>
             Indicates the window manager.
             </summary>
+            <remarks>
+            <para>This property is used by checking running window, which is helpful on multiple-window interaction.</para>
+            <para><i>
+            This property can also be used by <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> and <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> cases, for getting the running window
+            that the current control lies in. However, due to not implementing of WinUI 3 official APIs, when call
+            <see cref="M:Windows.Storage.Pickers.FileOpenPicker.PickSingleFileAsync"/> and <see cref="M:Windows.Storage.Pickers.FileSavePicker.PickSaveFileAsync"/> will directly cause
+            an exception thrown, which scenario is nearly same as
+            <see href="https://github.com/microsoft/microsoft-ui-xaml/issues/2716">this issue</see> mentioned as an issue in GitHub.
+            In addition, I found <see href="https://github.com/microsoft/WindowsAppSDK/discussions/1887">this discussion</see>
+            to describe about <see cref="T:WinRT.Interop.InitializeWithWindow"/> handling, which wants to solve this problem.
+            </i></para>
+            <para><i>
+            However, today's API still throw exception, which means we can still not use <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
+            and <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> at present.
+            </i></para>
+            </remarks>
+            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
+            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
+            <seealso cref="T:Windows.Storage.Pickers.FolderPicker"/>
+            <seealso cref="T:SudokuStudio.Runtime.InteropServices.IInitializeWithWindow"/>
+            <seealso cref="M:Windows.Storage.Pickers.FileOpenPicker.PickSingleFileAsync"/>
+            <seealso cref="M:Windows.Storage.Pickers.FileSavePicker.PickSaveFileAsync"/>
+            <seealso href="https://github.com/microsoft/microsoft-ui-xaml/issues/2716">
+            <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>, <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>, and <see cref="T:Windows.Storage.Pickers.FolderPicker"/> break in WinUI3 Desktop
+            </seealso>
+            <seealso href="https://github.com/microsoft/WindowsAppSDK/discussions/1887">
+            Improved APIs for Picker/Dialog classes that implement <see cref="T:SudokuStudio.Runtime.InteropServices.IInitializeWithWindow"/>
+            </seealso>
         </member>
         <member name="P:SudokuStudio.App.AssemblyVersion">
             <summary>

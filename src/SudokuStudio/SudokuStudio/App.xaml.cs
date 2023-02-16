@@ -52,6 +52,34 @@ public partial class App : Application
 	/// <summary>
 	/// Indicates the window manager.
 	/// </summary>
+	/// <remarks>
+	/// <para>This property is used by checking running window, which is helpful on multiple-window interaction.</para>
+	/// <para><i>
+	/// This property can also be used by <see cref="FileOpenPicker"/> and <see cref="FileSavePicker"/> cases, for getting the running window
+	/// that the current control lies in. However, due to not implementing of WinUI 3 official APIs, when call
+	/// <see cref="FileOpenPicker.PickSingleFileAsync()"/> and <see cref="FileSavePicker.PickSaveFileAsync"/> will directly cause
+	/// an exception thrown, which scenario is nearly same as
+	/// <see href="https://github.com/microsoft/microsoft-ui-xaml/issues/2716">this issue</see> mentioned as an issue in GitHub.
+	/// In addition, I found <see href="https://github.com/microsoft/WindowsAppSDK/discussions/1887">this discussion</see>
+	/// to describe about <see cref="InitializeWithWindow"/> handling, which wants to solve this problem.
+	/// </i></para>
+	/// <para><i>
+	/// However, today's API still throw exception, which means we can still not use <see cref="FileOpenPicker"/>
+	/// and <see cref="FileSavePicker"/> at present.
+	/// </i></para>
+	/// </remarks>
+	/// <seealso cref="FileOpenPicker"/>
+	/// <seealso cref="FileSavePicker"/>
+	/// <seealso cref="FolderPicker"/>
+	/// <seealso cref="IInitializeWithWindow"/>
+	/// <seealso cref="FileOpenPicker.PickSingleFileAsync()"/>
+	/// <seealso cref="FileSavePicker.PickSaveFileAsync"/>
+	/// <seealso href="https://github.com/microsoft/microsoft-ui-xaml/issues/2716">
+	/// <see cref="FileOpenPicker"/>, <see cref="FileSavePicker"/>, and <see cref="FolderPicker"/> break in WinUI3 Desktop
+	/// </seealso>
+	/// <seealso href="https://github.com/microsoft/WindowsAppSDK/discussions/1887">
+	/// Improved APIs for Picker/Dialog classes that implement <see cref="IInitializeWithWindow"/>
+	/// </seealso>
 	internal ProjectWideWindowManager WindowManager { get; } = new();
 
 
