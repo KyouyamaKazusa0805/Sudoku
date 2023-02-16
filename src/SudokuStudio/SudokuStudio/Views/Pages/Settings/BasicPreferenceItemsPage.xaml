@@ -20,7 +20,7 @@
 	</Page.Resources>
 
 	<ScrollViewer>
-		<StackPanel Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}" Spacing="4">
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
 			<wc:Setting Header="{m:R Key=SettingsPage_DisplayCursorsTitle}" Description="{m:R Key=SettingsPage_DisplayCursorsDescription}">
 				<wc:Setting.ActionContent>
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=TwoWay}" />

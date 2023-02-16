@@ -17,6 +17,7 @@
 			<vcvt:StringToFontFamilyConverter x:Key="String2FontConverter" />
 			<vcvt:Int32ToCoordinateLabelKindConverter x:Key="IntToCoordinateKindConverter" />
 			<vcvt:Int32ToCoordinateLabelModeConverter x:Key="IntToCoordinateModeConverter" />
+			<Thickness x:Key="ContentAlignedWithNavigationViewHeaderMargin">56,20</Thickness>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

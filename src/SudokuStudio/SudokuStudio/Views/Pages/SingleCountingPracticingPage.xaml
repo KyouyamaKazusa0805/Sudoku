@@ -13,8 +13,8 @@
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:SingleCountingPracticingPage}"
 	Loaded="Page_Loaded">
-	<ScrollViewer Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
-		<StackPanel Spacing="26">
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="26">
 			<TextBlock Text="{m:R Key=SingleCountingPracticingPage_Intro}" TextWrapping="WrapWholeWords" Margin="0,10,0,0" />
 			<Grid ColumnDefinitions="Auto,*">
 				<!--Sudoku pane-->

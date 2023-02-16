@@ -21,7 +21,7 @@
 	</Page.Resources>
 
 	<ScrollViewer>
-		<StackPanel Margin="56,10" Spacing="4">
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
 			<wc:Setting Header="{m:R Key=SettingsPage_EnableFullHouse}" Description="{m:R Key=SettingsPage_EnableFullHouseDescription}">
 				<wc:Setting.ActionContent>
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=TwoWay}" />

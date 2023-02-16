@@ -10,8 +10,8 @@
 	xmlns:models="using:SudokuStudio.Models"
 	xmlns:wc="using:WinUICommunity.SettingsUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AboutPage}">
-	<ScrollViewer Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
-		<StackPanel Spacing="4">
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
 			<TextBlock Text="{m:R Key=AboutPage_DetailDescription}" Margin="0,0,0,12" />
 
 			<!--Author info-->

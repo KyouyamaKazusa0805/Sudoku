@@ -22,7 +22,7 @@
 		</Style>
 	</Page.Resources>
 
-	<Grid ColumnDefinitions="*,Auto" Margin="{m:Thickness Base={StaticResource NavigationViewHeaderMargin},Top=10,Right=56}">
+	<Grid ColumnDefinitions="*,Auto" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
 		<!--Preference items-->
 		<ScrollViewer>
 			<StackPanel Spacing="4" Margin="0,0,30,0">
