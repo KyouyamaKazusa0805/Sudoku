@@ -127,7 +127,7 @@ public sealed partial class MainWindow : Window
 	[MemberNotNull(nameof(_appWindow))]
 	private void InitializeAppWindow()
 	{
-		_appWindow = this.GetAppWindow(out _, out _);
+		_appWindow = this.GetAppWindow();
 		_appWindow.Changed += (sender, args) =>
 		{
 			if ((sender, args) is not ({ Presenter.Kind: var kind, TitleBar: var titleBar }, { DidPresenterChange: var didPresenterChange }))
@@ -306,9 +306,16 @@ public sealed partial class MainWindow : Window
 		if (NavigationViewFrame.SourcePageType != pageType)
 		{
 			NavigationViewFrame.Navigate(pageType, null, NavigationTransitionInfo);
-			MainNavigationView.Header = GetStringNullable($"{nameof(MainWindow)}_{pageType.Name}{nameof(Title)}") ?? string.Empty;
+			SetFrameDisplayTitle(pageType);
 		}
 	}
+
+	/// <summary>
+	/// Try to set the title of the main navigation frame.
+	/// </summary>
+	/// <param name="pageType">The page type.</param>
+	private void SetFrameDisplayTitle(Type pageType)
+		=> MainNavigationView.Header = GetStringNullable($"{nameof(MainWindow)}_{pageType.Name}Title") ?? string.Empty;
 
 #if CUSTOMIZED_TITLE_BAR
 	/// <summary>
@@ -478,4 +485,30 @@ public sealed partial class MainWindow : Window
 
 	private void Window_Closed(object sender, WindowEventArgs args)
 		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).Preference);
+
+	private void MainNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+	{
+		if (NavigationViewFrame is { CanGoBack: true, BackStack: [.., { SourcePageType: var lastPageType }] })
+		{
+			NavigationViewFrame.GoBack();
+
+			SetFrameDisplayTitle(lastPageType);
+		}
+	}
+}
+
+/// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Gets <see cref="AppWindow"/> instance for the current <see cref="Window"/> instance.
+	/// </summary>
+	/// <param name="this">The current <see cref="Window"/> instance.</param>
+	/// <returns>A valid <see cref="AppWindow"/> instance.</returns>
+	public static AppWindow GetAppWindow(this Window @this)
+	{
+		var hWnd = WindowNative.GetWindowHandle(@this);
+		var wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
+		return AppWindow.GetFromWindowId(wndId);
+	}
 }

@@ -6639,6 +6639,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="pageType">The target page type.</param>
         </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetFrameDisplayTitle(System.Type)">
+            <summary>
+            Try to set the title of the main navigation frame.
+            </summary>
+            <param name="pageType">The page type.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SetAppIcon">
             <summary>
             Try to set icon of the program.
@@ -6695,6 +6701,20 @@ if (student is (name: var name, age: >= 18))
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Windows.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.Extensions.GetAppWindow(Microsoft.UI.Xaml.Window)">
+            <summary>
+            Gets <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance for the current <see cref="T:Microsoft.UI.Xaml.Window"/> instance.
+            </summary>
+            <param name="this">The current <see cref="T:Microsoft.UI.Xaml.Window"/> instance.</param>
+            <returns>A valid <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
         <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
             <summary>
@@ -6965,20 +6985,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="default">The default DPI value. The default value is 96.</param>
             <returns>The DPI value to get.</returns>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.WindowExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Window"/>.
-            </summary>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.WindowExtensions.GetAppWindow(Microsoft.UI.Xaml.Window,System.IntPtr@,Microsoft.UI.WindowId@)">
-            <summary>
-            Gets <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance for the current <see cref="T:Microsoft.UI.Xaml.Window"/> instance.
-            </summary>
-            <param name="this">The current <see cref="T:Microsoft.UI.Xaml.Window"/> instance.</param>
-            <param name="hWnd">Indicates the handle of the window. The value is an <see cref="T:System.IntPtr"/> integer value.</param>
-            <param name="wndId">Indicates the handle of the window. The value is a <see cref="T:Microsoft.UI.WindowId"/> sturcture instance.</param>
-            <returns>A valid <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
         <member name="T:System.Numerics.Vector2Extensions">
             <summary>

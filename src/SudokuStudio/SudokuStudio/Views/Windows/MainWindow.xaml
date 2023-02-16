@@ -43,10 +43,11 @@
 
 		<!--Navigation view-->
 		<NavigationView
-			x:Name="MainNavigationView" Grid.Row="1" SelectionFollowsFocus="Disabled" IsBackButtonVisible="Collapsed"
-			IsSettingsVisible="True" IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False"
-			AlwaysShowHeader="True" PaneTitle="{m:R Key=MainWindow_Menu}"
-			Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked">
+			x:Name="MainNavigationView" Grid.Row="1" SelectionFollowsFocus="Disabled" IsPaneOpen="True" IsPaneToggleButtonVisible="False"
+			IsSettingsVisible="True" IsBackButtonVisible="Auto"
+			IsTabStop="False" IsBackEnabled="True" AlwaysShowHeader="True" PaneTitle="{m:R Key=MainWindow_Menu}"
+			Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked"
+			BackRequested="MainNavigationView_BackRequested">
 			<NavigationView.MenuItems>
 				<NavigationViewItem x:Name="AnalyzePageItem" Content="{m:R Key=MainWindow_Analyze}" Icon="Edit" />
 				<NavigationViewItemSeparator />
