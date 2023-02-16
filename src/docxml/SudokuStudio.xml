@@ -2197,19 +2197,6 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusion">The overlapped result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:SudokuStudio.Markup.DashArrayExtension">
-            <summary>
-            Defines a <see cref="T:SudokuStudio.Collection.DashArray"/> markup extension.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Markup.DashArrayExtension.Expression">
-            <summary>
-            The text.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Markup.DashArrayExtension.ProvideValue">
-            <inheritdoc/>
-        </member>
         <member name="T:SudokuStudio.Markup.GridExtension">
             <summary>
             Defines a markup extension that can parse a <see cref="T:System.String"/> value, converting it into a valid <see cref="T:Sudoku.Concepts.Grid"/>
