@@ -31,7 +31,7 @@ namespace SudokuStudio.Runtime.InteropServices;
 /// Source: <see href="https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type">MONITOR_DPI_TYPE enumeration (shellscalingapi.h)</see>.
 /// </para>
 /// </remarks>
-internal enum Monitor_DPI_Type : int
+internal enum MonitorDpiType : int
 {
 	/// <summary>
 	/// <para>Value: <i>0</i></para>

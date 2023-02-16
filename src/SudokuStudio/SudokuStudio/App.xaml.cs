@@ -71,14 +71,14 @@ public partial class App : Application
 	/// <seealso cref="FileOpenPicker"/>
 	/// <seealso cref="FileSavePicker"/>
 	/// <seealso cref="FolderPicker"/>
-	/// <seealso cref="IInitializeWithWindow"/>
+	/// <seealso cref="InitializeWithWindow"/>
 	/// <seealso cref="FileOpenPicker.PickSingleFileAsync()"/>
 	/// <seealso cref="FileSavePicker.PickSaveFileAsync"/>
 	/// <seealso href="https://github.com/microsoft/microsoft-ui-xaml/issues/2716">
 	/// <see cref="FileOpenPicker"/>, <see cref="FileSavePicker"/>, and <see cref="FolderPicker"/> break in WinUI3 Desktop
 	/// </seealso>
 	/// <seealso href="https://github.com/microsoft/WindowsAppSDK/discussions/1887">
-	/// Improved APIs for Picker/Dialog classes that implement <see cref="IInitializeWithWindow"/>
+	/// Improved APIs for Picker/Dialog classes that implement <see cref="InitializeWithWindow"/>
 	/// </seealso>
 	internal ProjectWideWindowManager WindowManager { get; } = new();
 

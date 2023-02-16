@@ -450,7 +450,7 @@ public sealed partial class MainWindow : Window
 		var hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
 
 		// Get DPI.
-		var result = GetDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out var dpiX, out _);
+		var result = GetDpiForMonitor(hMonitor, MonitorDpiType.MDT_Default, out var dpiX, out _);
 		if (result != 0)
 		{
 			throw new InvalidOperationException("Could not get DPI for monitor.");
@@ -464,7 +464,7 @@ public sealed partial class MainWindow : Window
 
 #if CUSTOMIZED_TITLE_BAR
 	[LibraryImport("Shcore", SetLastError = true)]
-	private static partial int GetDpiForMonitor(nint hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
+	private static partial int GetDpiForMonitor(nint hmonitor, MonitorDpiType dpiType, out uint dpiX, out uint dpiY);
 #endif
 
 
