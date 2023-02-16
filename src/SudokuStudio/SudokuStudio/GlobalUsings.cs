@@ -128,7 +128,6 @@ global using PdfContainer = QuestPDF.Infrastructure.IContainer;
 global using Grid = Sudoku.Concepts.Grid;
 global using VisualUnit = Sudoku.Presentation.IVisual;
 global using TechniqueGroupModel = SudokuStudio.Models.TechniqueGroup;
-global using DrawingRectangle = System.Drawing.Rectangle;
 global using SpecialFolder = System.Environment.SpecialFolder;
 global using SystemPath = System.IO.Path;
 global using Size = Windows.Foundation.Size;
