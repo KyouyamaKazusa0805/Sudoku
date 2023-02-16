@@ -7,7 +7,8 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 	public IStep? GetAll(scoped in LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		using scoped ValueList<CellMap> rbList = new(3), cbList = new(3);
+		using scoped var rbList = new ValueList<CellMap>(3);
+		using scoped var cbList = new ValueList<CellMap>(3);
 		foreach (var pivot in EmptyCells)
 		{
 			var r = pivot.ToHouseIndex(HouseType.Row);

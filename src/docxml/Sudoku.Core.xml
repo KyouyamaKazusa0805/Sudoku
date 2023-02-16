@@ -5245,6 +5245,226 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Squirmbag.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_AdvancedMultipleChainingStepSearcher">
+            <summary>
+              Looks up a localized string similar to Multiple Forcing Chains (Advanced).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_AlmostLockedCandidatesStepSearcher">
+            <summary>
+              Looks up a localized string similar to Almost Locked Candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_AlmostLockedSetsWWingStepSearcher">
+            <summary>
+              Looks up a localized string similar to Almost Locked Sets W-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_AlmostLockedSetsXyWingStepSearcher">
+            <summary>
+              Looks up a localized string similar to Almost Locked Sets XY-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_AlmostLockedSetsXzStepSearcher">
+            <summary>
+              Looks up a localized string similar to Almost Locked Sets XZ.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_BivalueOddagonStepSearcher">
+            <summary>
+              Looks up a localized string similar to Bi-value Oddagon.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_BivalueUniversalGraveStepSearcher">
+            <summary>
+              Looks up a localized string similar to Bi-value Universal Grave.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_BowmanBingoStepSearcher">
+            <summary>
+              Looks up a localized string similar to Bowman&apos;s Bingo.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_BruteForceStepSearcher">
+            <summary>
+              Looks up a localized string similar to Brute Force.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_ChromaticPatternStepSearcher">
+            <summary>
+              Looks up a localized string similar to Chromatic Pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_ComplexFishStepSearcher">
+            <summary>
+              Looks up a localized string similar to Complex Fishes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_DeathBlossomStepSearcher">
+            <summary>
+              Looks up a localized string similar to Death Blossom.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_DominoLoopStepSearcher">
+            <summary>
+              Looks up a localized string similar to Domino Loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_EmptyRectangleIntersectionPairStepSearcher">
+            <summary>
+              Looks up a localized string similar to Empty Rectangle Intersection Pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_EmptyRectangleStepSearcher">
+            <summary>
+              Looks up a localized string similar to Empty Rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_ExtendedRectangleStepSearcher">
+            <summary>
+              Looks up a localized string similar to Extended Rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_FireworkStepSearcher">
+            <summary>
+              Looks up a localized string similar to Firework.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_GuardianStepSearcher">
+            <summary>
+              Looks up a localized string similar to Guardian.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_GurthSymmetricalPlacementStepSearcher">
+            <summary>
+              Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_JuniorExocetStepSearcher">
+            <summary>
+              Looks up a localized string similar to Junior Exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_LockedCandidatesStepSearcher">
+            <summary>
+              Looks up a localized string similar to Locked Candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_MultiBranchWWingStepSearcher">
+            <summary>
+              Looks up a localized string similar to Multi-Branched W-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_MultipleChainingStepSearcher">
+            <summary>
+              Looks up a localized string similar to Multiple Forcing Chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_MultisectorLockedSetsStepSearcher">
+            <summary>
+              Looks up a localized string similar to Multi-Sector Locked Sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_NonMultipleChainingStepSearcher">
+            <summary>
+              Looks up a localized string similar to Alternating Inference Chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_NormalFishStepSearcher">
+            <summary>
+              Looks up a localized string similar to Normal Fishes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_PatternOverlayStepSearcher">
+            <summary>
+              Looks up a localized string similar to Pattern Overlay.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_QiuDeadlyPatternStepSearcher">
+            <summary>
+              Looks up a localized string similar to Qiu&apos;s Deadly Pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_RegularWingStepSearcher">
+            <summary>
+              Looks up a localized string similar to Regular Wings.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_ReverseBivalueUniversalGraveStepSearcher">
+            <summary>
+              Looks up a localized string similar to Reverse Bi-value Universal Grave.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_RwDeadlyPatternStepSearcher">
+            <summary>
+              Looks up a localized string similar to RW&apos;s Deadly Pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_SeniorExocetStepSearcher">
+            <summary>
+              Looks up a localized string similar to Senior Exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_SingleStepSearcher">
+            <summary>
+              Looks up a localized string similar to Singles.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_SubsetStepSearcher">
+            <summary>
+              Looks up a localized string similar to Subsets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_SueDeCoq3DimensionStepSearcher">
+            <summary>
+              Looks up a localized string similar to Sue de Coq 3 Dimension.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_SueDeCoqStepSearcher">
+            <summary>
+              Looks up a localized string similar to Sue de Coq.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_TemplateStepSearcher">
+            <summary>
+              Looks up a localized string similar to Templates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_TwoStrongLinksStepSearcher">
+            <summary>
+              Looks up a localized string similar to Two-Strong Links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_UniqueLoopStepSearcher">
+            <summary>
+              Looks up a localized string similar to Unique Loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_UniqueMatrixStepSearcher">
+            <summary>
+              Looks up a localized string similar to Unique Matrix.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_UniquenessClueCoverStepSearcher">
+            <summary>
+              Looks up a localized string similar to Uniqueness Clue Cover.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_UniquePolygonStepSearcher">
+            <summary>
+              Looks up a localized string similar to Unique Polygon.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_UniqueRectangleStepSearcher">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_WWingStepSearcher">
+            <summary>
+              Looks up a localized string similar to W-Wing.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.StuvwxyzWing">
             <summary>
               Looks up a localized string similar to STUVWXYZ-Wing.

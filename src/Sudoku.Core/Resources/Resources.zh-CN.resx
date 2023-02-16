@@ -1566,7 +1566,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="PatternOverlay" xml:space="preserve">
-    <value>同数叠加删减</value>
+    <value>同数叠加</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TemplateSet" xml:space="preserve">
@@ -1883,5 +1883,181 @@
   </data>
   <data name="TechniqueFormat_RegionForcingChainsStep" xml:space="preserve">
     <value>{Name}：所有位于 {HouseStr} 里的数字 {DigitStr} 都会得到同样的结论 =&gt; {ElimStr}</value>
+  </data>
+  <data name="StepSearcherName_AdvancedMultipleChainingStepSearcher" xml:space="preserve">
+    <value>强制链（进阶）</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_AlmostLockedCandidatesStepSearcher" xml:space="preserve">
+    <value>欠一数组</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_AlmostLockedSetsWWingStepSearcher" xml:space="preserve">
+    <value>待定数组・W-Wing</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_AlmostLockedSetsXyWingStepSearcher" xml:space="preserve">
+    <value>待定数组・XY-Wing</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_AlmostLockedSetsXzStepSearcher" xml:space="preserve">
+    <value>待定数组・双强链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_BivalueOddagonStepSearcher" xml:space="preserve">
+    <value>死环</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_BivalueUniversalGraveStepSearcher" xml:space="preserve">
+    <value>全双值格致死解法</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_BowmanBingoStepSearcher" xml:space="preserve">
+    <value>Bowman 试数</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_BruteForceStepSearcher" xml:space="preserve">
+    <value>计算机试数</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_ChromaticPatternStepSearcher" xml:space="preserve">
+    <value>三值死环</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_ComplexFishStepSearcher" xml:space="preserve">
+    <value>复杂鱼</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_DeathBlossomStepSearcher" xml:space="preserve">
+    <value>死亡绽放</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_DominoLoopStepSearcher" xml:space="preserve">
+    <value>多米诺环</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_EmptyRectangleIntersectionPairStepSearcher" xml:space="preserve">
+    <value>对交空矩形</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_EmptyRectangleStepSearcher" xml:space="preserve">
+    <value>空矩形</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_ExtendedRectangleStepSearcher" xml:space="preserve">
+    <value>拓展矩形</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_FireworkStepSearcher" xml:space="preserve">
+    <value>花火数组</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_GuardianStepSearcher" xml:space="preserve">
+    <value>守护者</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_GurthSymmetricalPlacementStepSearcher" xml:space="preserve">
+    <value>宇宙法</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_JuniorExocetStepSearcher" xml:space="preserve">
+    <value>初级飞鱼导弹</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_LockedCandidatesStepSearcher" xml:space="preserve">
+    <value>区块</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_MultiBranchWWingStepSearcher" xml:space="preserve">
+    <value>多分支 W-Wing</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_MultipleChainingStepSearcher" xml:space="preserve">
+    <value>强制链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_MultisectorLockedSetsStepSearcher" xml:space="preserve">
+    <value>网</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_NonMultipleChainingStepSearcher" xml:space="preserve">
+    <value>普通链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_NormalFishStepSearcher" xml:space="preserve">
+    <value>普通鱼</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_PatternOverlayStepSearcher" xml:space="preserve">
+    <value>同数叠加</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_QiuDeadlyPatternStepSearcher" xml:space="preserve">
+    <value>淑芬致命结构</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_RegularWingStepSearcher" xml:space="preserve">
+    <value>规则 Wing</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_ReverseBivalueUniversalGraveStepSearcher" xml:space="preserve">
+    <value>反转双数致命结构</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_RwDeadlyPatternStepSearcher" xml:space="preserve">
+    <value>RW 致命结构</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_SeniorExocetStepSearcher" xml:space="preserve">
+    <value>高级飞鱼导弹</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_SingleStepSearcher" xml:space="preserve">
+    <value>排除和唯余</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_SubsetStepSearcher" xml:space="preserve">
+    <value>数组</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_SueDeCoq3DimensionStepSearcher" xml:space="preserve">
+    <value>融合待定数组・三维</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_SueDeCoqStepSearcher" xml:space="preserve">
+    <value>融合待定数组</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_TemplateStepSearcher" xml:space="preserve">
+    <value>模板</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_TwoStrongLinksStepSearcher" xml:space="preserve">
+    <value>双强链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_UniqueLoopStepSearcher" xml:space="preserve">
+    <value>唯一环</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_UniqueMatrixStepSearcher" xml:space="preserve">
+    <value>唯一矩阵</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_UniquenessClueCoverStepSearcher" xml:space="preserve">
+    <value>唯一性提示信息覆盖</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_UniquePolygonStepSearcher" xml:space="preserve">
+    <value>探长致命结构</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_UniqueRectangleStepSearcher" xml:space="preserve">
+    <value>唯一矩形</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="StepSearcherName_WWingStepSearcher" xml:space="preserve">
+    <value>W-Wing</value>
+    <comment>Step Searcher Name</comment>
   </data>
 </root>

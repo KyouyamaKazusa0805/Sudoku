@@ -763,6 +763,22 @@
             To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Logical.Annotations.StepSearcherAttribute.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.Annotations.StepSearcherAttribute"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Annotations.StepSearcherAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.Annotations.StepSearcherAttribute"/> instance via the resource entry.
+            </summary>
+            <param name="nameResourceEntry">The resource entry.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherAttribute.NameResourceEntry">
+            <summary>
+            Indicates the name stored in resource dictionary, specified as its entry (i.e. resource key).
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute">
             <summary>
             Defines an attribute that applies to a step searcher, to define more options on UI configurations.
@@ -6342,6 +6358,12 @@ if (student is (name: var name, age: >= 18))
             by option <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.HighMemoryAllocation"/> being configured.
             </summary>
             <seealso cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.HighMemoryAllocation"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.IStepSearcher.TypeResourceName">
+            <summary>
+            Indicates the resource name of the current step searcher.
+            If resource cannot find the specified resource, its type name will be returned.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.IStepSearcher.Options">
             <summary>

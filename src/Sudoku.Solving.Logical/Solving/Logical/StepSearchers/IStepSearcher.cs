@@ -83,8 +83,35 @@ public interface IStepSearcher
 	/// <seealso cref="StepSearcherRunningOptions.HighMemoryAllocation"/>
 	sealed bool IsConfiguredHighAllocation
 	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GetType().GetCustomAttribute<StepSearcherRunningOptionsAttribute>() is { Options: var options }
 			&& options.Flags(StepSearcherRunningOptions.HighMemoryAllocation);
+	}
+
+	/// <summary>
+	/// Indicates the resource name of the current step searcher.
+	/// If resource cannot find the specified resource, its type name will be returned.
+	/// </summary>
+	sealed string TypeResourceName
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get
+		{
+			const string commonPrefix = "StepSearcherName_";
+
+			return GetType() switch
+			{
+				{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherAttribute>() switch
+				{
+					{ NameResourceEntry: { } key } => R[key] ?? f(typeName),
+					_ => f(typeName)
+				}
+			};
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static string f(string typeName) => R[$"{commonPrefix}{typeName}"] ?? typeName;
+		}
 	}
 
 	/// <summary>

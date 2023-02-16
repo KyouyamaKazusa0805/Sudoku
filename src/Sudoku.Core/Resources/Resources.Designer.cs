@@ -2779,6 +2779,402 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Multiple Forcing Chains (Advanced).
+        /// </summary>
+        internal static string StepSearcherName_AdvancedMultipleChainingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_AdvancedMultipleChainingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Candidates.
+        /// </summary>
+        internal static string StepSearcherName_AlmostLockedCandidatesStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_AlmostLockedCandidatesStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Sets W-Wing.
+        /// </summary>
+        internal static string StepSearcherName_AlmostLockedSetsWWingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_AlmostLockedSetsWWingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Sets XY-Wing.
+        /// </summary>
+        internal static string StepSearcherName_AlmostLockedSetsXyWingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_AlmostLockedSetsXyWingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Sets XZ.
+        /// </summary>
+        internal static string StepSearcherName_AlmostLockedSetsXzStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_AlmostLockedSetsXzStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Oddagon.
+        /// </summary>
+        internal static string StepSearcherName_BivalueOddagonStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_BivalueOddagonStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Universal Grave.
+        /// </summary>
+        internal static string StepSearcherName_BivalueUniversalGraveStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_BivalueUniversalGraveStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bowman&apos;s Bingo.
+        /// </summary>
+        internal static string StepSearcherName_BowmanBingoStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_BowmanBingoStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brute Force.
+        /// </summary>
+        internal static string StepSearcherName_BruteForceStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_BruteForceStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chromatic Pattern.
+        /// </summary>
+        internal static string StepSearcherName_ChromaticPatternStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_ChromaticPatternStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complex Fishes.
+        /// </summary>
+        internal static string StepSearcherName_ComplexFishStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_ComplexFishStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Death Blossom.
+        /// </summary>
+        internal static string StepSearcherName_DeathBlossomStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_DeathBlossomStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domino Loop.
+        /// </summary>
+        internal static string StepSearcherName_DominoLoopStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_DominoLoopStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty Rectangle Intersection Pair.
+        /// </summary>
+        internal static string StepSearcherName_EmptyRectangleIntersectionPairStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_EmptyRectangleIntersectionPairStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty Rectangle.
+        /// </summary>
+        internal static string StepSearcherName_EmptyRectangleStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_EmptyRectangleStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Rectangle.
+        /// </summary>
+        internal static string StepSearcherName_ExtendedRectangleStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_ExtendedRectangleStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firework.
+        /// </summary>
+        internal static string StepSearcherName_FireworkStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_FireworkStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardian.
+        /// </summary>
+        internal static string StepSearcherName_GuardianStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_GuardianStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
+        /// </summary>
+        internal static string StepSearcherName_GurthSymmetricalPlacementStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_GurthSymmetricalPlacementStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Junior Exocet.
+        /// </summary>
+        internal static string StepSearcherName_JuniorExocetStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_JuniorExocetStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates.
+        /// </summary>
+        internal static string StepSearcherName_LockedCandidatesStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_LockedCandidatesStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multi-Branched W-Wing.
+        /// </summary>
+        internal static string StepSearcherName_MultiBranchWWingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_MultiBranchWWingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple Forcing Chains.
+        /// </summary>
+        internal static string StepSearcherName_MultipleChainingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_MultipleChainingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multi-Sector Locked Sets.
+        /// </summary>
+        internal static string StepSearcherName_MultisectorLockedSetsStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_MultisectorLockedSetsStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternating Inference Chains.
+        /// </summary>
+        internal static string StepSearcherName_NonMultipleChainingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_NonMultipleChainingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Fishes.
+        /// </summary>
+        internal static string StepSearcherName_NormalFishStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_NormalFishStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pattern Overlay.
+        /// </summary>
+        internal static string StepSearcherName_PatternOverlayStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_PatternOverlayStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern.
+        /// </summary>
+        internal static string StepSearcherName_QiuDeadlyPatternStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_QiuDeadlyPatternStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular Wings.
+        /// </summary>
+        internal static string StepSearcherName_RegularWingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_RegularWingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse Bi-value Universal Grave.
+        /// </summary>
+        internal static string StepSearcherName_ReverseBivalueUniversalGraveStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_ReverseBivalueUniversalGraveStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RW&apos;s Deadly Pattern.
+        /// </summary>
+        internal static string StepSearcherName_RwDeadlyPatternStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_RwDeadlyPatternStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Senior Exocet.
+        /// </summary>
+        internal static string StepSearcherName_SeniorExocetStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_SeniorExocetStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Singles.
+        /// </summary>
+        internal static string StepSearcherName_SingleStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_SingleStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subsets.
+        /// </summary>
+        internal static string StepSearcherName_SubsetStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_SubsetStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq 3 Dimension.
+        /// </summary>
+        internal static string StepSearcherName_SueDeCoq3DimensionStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_SueDeCoq3DimensionStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq.
+        /// </summary>
+        internal static string StepSearcherName_SueDeCoqStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_SueDeCoqStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates.
+        /// </summary>
+        internal static string StepSearcherName_TemplateStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_TemplateStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two-Strong Links.
+        /// </summary>
+        internal static string StepSearcherName_TwoStrongLinksStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_TwoStrongLinksStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Loop.
+        /// </summary>
+        internal static string StepSearcherName_UniqueLoopStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_UniqueLoopStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Matrix.
+        /// </summary>
+        internal static string StepSearcherName_UniqueMatrixStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_UniqueMatrixStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uniqueness Clue Cover.
+        /// </summary>
+        internal static string StepSearcherName_UniquenessClueCoverStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_UniquenessClueCoverStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Polygon.
+        /// </summary>
+        internal static string StepSearcherName_UniquePolygonStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_UniquePolygonStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle.
+        /// </summary>
+        internal static string StepSearcherName_UniqueRectangleStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_UniqueRectangleStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to W-Wing.
+        /// </summary>
+        internal static string StepSearcherName_WWingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_WWingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to STUVWXYZ-Wing.
         /// </summary>
         internal static string StuvwxyzWing {

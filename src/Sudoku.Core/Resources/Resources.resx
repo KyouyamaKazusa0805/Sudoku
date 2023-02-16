@@ -1569,4 +1569,136 @@
   <data name="TechniqueFormat_RegionForcingChainsStep" xml:space="preserve">
     <value>{Name}: It is proved that all position of digit {DigitStr} in house {HouseStr} will lead to a same conclusion =&gt; {ElimStr}</value>
   </data>
+  <data name="StepSearcherName_AdvancedMultipleChainingStepSearcher" xml:space="preserve">
+    <value>Multiple Forcing Chains (Advanced)</value>
+  </data>
+  <data name="StepSearcherName_AlmostLockedCandidatesStepSearcher" xml:space="preserve">
+    <value>Almost Locked Candidates</value>
+  </data>
+  <data name="StepSearcherName_AlmostLockedSetsWWingStepSearcher" xml:space="preserve">
+    <value>Almost Locked Sets W-Wing</value>
+  </data>
+  <data name="StepSearcherName_AlmostLockedSetsXyWingStepSearcher" xml:space="preserve">
+    <value>Almost Locked Sets XY-Wing</value>
+  </data>
+  <data name="StepSearcherName_AlmostLockedSetsXzStepSearcher" xml:space="preserve">
+    <value>Almost Locked Sets XZ</value>
+  </data>
+  <data name="StepSearcherName_BivalueOddagonStepSearcher" xml:space="preserve">
+    <value>Bi-value Oddagon</value>
+  </data>
+  <data name="StepSearcherName_BivalueUniversalGraveStepSearcher" xml:space="preserve">
+    <value>Bi-value Universal Grave</value>
+  </data>
+  <data name="StepSearcherName_BowmanBingoStepSearcher" xml:space="preserve">
+    <value>Bowman's Bingo</value>
+  </data>
+  <data name="StepSearcherName_BruteForceStepSearcher" xml:space="preserve">
+    <value>Brute Force</value>
+  </data>
+  <data name="StepSearcherName_ChromaticPatternStepSearcher" xml:space="preserve">
+    <value>Chromatic Pattern</value>
+  </data>
+  <data name="StepSearcherName_ComplexFishStepSearcher" xml:space="preserve">
+    <value>Complex Fishes</value>
+  </data>
+  <data name="StepSearcherName_DeathBlossomStepSearcher" xml:space="preserve">
+    <value>Death Blossom</value>
+  </data>
+  <data name="StepSearcherName_DominoLoopStepSearcher" xml:space="preserve">
+    <value>Domino Loop</value>
+  </data>
+  <data name="StepSearcherName_EmptyRectangleIntersectionPairStepSearcher" xml:space="preserve">
+    <value>Empty Rectangle Intersection Pair</value>
+  </data>
+  <data name="StepSearcherName_EmptyRectangleStepSearcher" xml:space="preserve">
+    <value>Empty Rectangle</value>
+  </data>
+  <data name="StepSearcherName_ExtendedRectangleStepSearcher" xml:space="preserve">
+    <value>Extended Rectangle</value>
+  </data>
+  <data name="StepSearcherName_FireworkStepSearcher" xml:space="preserve">
+    <value>Firework</value>
+  </data>
+  <data name="StepSearcherName_GuardianStepSearcher" xml:space="preserve">
+    <value>Guardian</value>
+  </data>
+  <data name="StepSearcherName_GurthSymmetricalPlacementStepSearcher" xml:space="preserve">
+    <value>Gurth's Symmetrical Placement</value>
+  </data>
+  <data name="StepSearcherName_JuniorExocetStepSearcher" xml:space="preserve">
+    <value>Junior Exocet</value>
+  </data>
+  <data name="StepSearcherName_LockedCandidatesStepSearcher" xml:space="preserve">
+    <value>Locked Candidates</value>
+  </data>
+  <data name="StepSearcherName_MultiBranchWWingStepSearcher" xml:space="preserve">
+    <value>Multi-Branched W-Wing</value>
+  </data>
+  <data name="StepSearcherName_MultipleChainingStepSearcher" xml:space="preserve">
+    <value>Multiple Forcing Chains</value>
+  </data>
+  <data name="StepSearcherName_MultisectorLockedSetsStepSearcher" xml:space="preserve">
+    <value>Multi-Sector Locked Sets</value>
+  </data>
+  <data name="StepSearcherName_NonMultipleChainingStepSearcher" xml:space="preserve">
+    <value>Alternating Inference Chains</value>
+  </data>
+  <data name="StepSearcherName_NormalFishStepSearcher" xml:space="preserve">
+    <value>Normal Fishes</value>
+  </data>
+  <data name="StepSearcherName_PatternOverlayStepSearcher" xml:space="preserve">
+    <value>Pattern Overlay</value>
+  </data>
+  <data name="StepSearcherName_QiuDeadlyPatternStepSearcher" xml:space="preserve">
+    <value>Qiu's Deadly Pattern</value>
+  </data>
+  <data name="StepSearcherName_RegularWingStepSearcher" xml:space="preserve">
+    <value>Regular Wings</value>
+  </data>
+  <data name="StepSearcherName_ReverseBivalueUniversalGraveStepSearcher" xml:space="preserve">
+    <value>Reverse Bi-value Universal Grave</value>
+  </data>
+  <data name="StepSearcherName_RwDeadlyPatternStepSearcher" xml:space="preserve">
+    <value>RW's Deadly Pattern</value>
+  </data>
+  <data name="StepSearcherName_SeniorExocetStepSearcher" xml:space="preserve">
+    <value>Senior Exocet</value>
+  </data>
+  <data name="StepSearcherName_SingleStepSearcher" xml:space="preserve">
+    <value>Singles</value>
+  </data>
+  <data name="StepSearcherName_SubsetStepSearcher" xml:space="preserve">
+    <value>Subsets</value>
+  </data>
+  <data name="StepSearcherName_SueDeCoq3DimensionStepSearcher" xml:space="preserve">
+    <value>Sue de Coq 3 Dimension</value>
+  </data>
+  <data name="StepSearcherName_SueDeCoqStepSearcher" xml:space="preserve">
+    <value>Sue de Coq</value>
+  </data>
+  <data name="StepSearcherName_TemplateStepSearcher" xml:space="preserve">
+    <value>Templates</value>
+  </data>
+  <data name="StepSearcherName_TwoStrongLinksStepSearcher" xml:space="preserve">
+    <value>Two-Strong Links</value>
+  </data>
+  <data name="StepSearcherName_UniqueLoopStepSearcher" xml:space="preserve">
+    <value>Unique Loop</value>
+  </data>
+  <data name="StepSearcherName_UniqueMatrixStepSearcher" xml:space="preserve">
+    <value>Unique Matrix</value>
+  </data>
+  <data name="StepSearcherName_UniquenessClueCoverStepSearcher" xml:space="preserve">
+    <value>Uniqueness Clue Cover</value>
+  </data>
+  <data name="StepSearcherName_UniquePolygonStepSearcher" xml:space="preserve">
+    <value>Unique Polygon</value>
+  </data>
+  <data name="StepSearcherName_UniqueRectangleStepSearcher" xml:space="preserve">
+    <value>Unique Rectangle</value>
+  </data>
+  <data name="StepSearcherName_WWingStepSearcher" xml:space="preserve">
+    <value>W-Wing</value>
+  </data>
 </root>
