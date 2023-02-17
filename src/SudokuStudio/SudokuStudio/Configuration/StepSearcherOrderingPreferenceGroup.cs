@@ -5,7 +5,7 @@
 /// </summary>
 /// <seealso cref="LogicalSolver"/>
 /// <seealso cref="IStepSearcher"/>
-[DependencyProperty<ObservableCollection<StepSearcherSerializationData>>("StepSearchersOrder", DefaultValueGeneratingMemberName = nameof(StepSearchersOrderDefaultValue), CallbackMethodName = nameof(StepSearchersOrderPropertyCallback))]
+[DependencyProperty<ObservableCollection<StepSearcherSerializationData>>("StepSearchersOrder", DefaultValueGeneratingMemberName = nameof(StepSearchersOrderDefaultValue))]
 public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGroup
 {
 	private static readonly ObservableCollection<StepSearcherSerializationData> StepSearchersOrderDefaultValue = new(
@@ -19,6 +19,7 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 	);
 
 
+	[Callback]
 	private static void StepSearchersOrderPropertyCallback(DependencyObject obj, DependencyPropertyChangedEventArgs e)
 	{
 		if (e is not { NewValue: ObservableCollection<StepSearcherSerializationData> stepSearchersData })

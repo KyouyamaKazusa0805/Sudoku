@@ -342,6 +342,11 @@
             </summary>
             <param name="propertyName">The property name.</param>
         </member>
+        <member name="T:SudokuStudio.ComponentModel.CallbackAttribute">
+            <summary>
+            Defines an attribute that indicates the callback method of the bound dependency property or attached property.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1">
             <summary>
             Defines an attribute that defines a dependency property.

@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Defines a sudoku pane control.
 /// </summary>
-[DependencyProperty<bool>("DisplayCandidates", DefaultValue = true, DocSummary = "Indicates whether the pane displays for candidates.", CallbackMethodName = nameof(DisplayCandidatesPropertyCallback))]
+[DependencyProperty<bool>("DisplayCandidates", DefaultValue = true, DocSummary = "Indicates whether the pane displays for candidates.")]
 [DependencyProperty<bool>("DisplayCursors", DefaultValue = true, DocSummary = "Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers of the target cell that is the one your mouse points to.")]
 [DependencyProperty<bool>("UseDifferentColorToDisplayDeltaDigits", DefaultValue = true, DocSummary = "Indicates whether the pane displays for delta digits using different colors.")]
 [DependencyProperty<bool>("DisableFlyout", DocSummary = "Indicates whether the pane disable flyout open.")]
@@ -45,7 +45,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<FontFamily>("PencilmarkFont", DefaultValueGeneratingMemberName = nameof(PencilmarkFontDefaultValue), DocSummary = "Indicates the candidate font.")]
 [DependencyProperty<FontFamily>("CoordinateLabelFont", DefaultValueGeneratingMemberName = nameof(CoordinateLabelFontDefaultValue), DocSummary = "Indicates the coordinate label font.")]
 [DependencyProperty<FontFamily>("BabaGroupLabelFont", DefaultValueGeneratingMemberName = nameof(BabaGroupLabelFontDefaultValue), DocSummary = "Indicates the baba group label font.")]
-[DependencyProperty<ViewUnit>("ViewUnit", IsNullable = true, DocSummary = "Indicates the view unit used.", CallbackMethodName = nameof(ViewUnitPropertyCallback))]
+[DependencyProperty<ViewUnit>("ViewUnit", IsNullable = true, DocSummary = "Indicates the view unit used.")]
 [DependencyProperty<ColorPalette>("AuxiliaryColors", DefaultValueGeneratingMemberName = nameof(AuxiliaryColorsDefaultValue), DocSummary = "Indicates the auxiliary colors.")]
 [DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DefaultValueGeneratingMemberName = nameof(DifficultyLevelForegroundsDefaultValue), DocSummary = "Indicates the foreground colors of all 6 kinds of difficulty levels.")]
 [DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DefaultValueGeneratingMemberName = nameof(DifficultyLevelBackgroundsDefaultValue), DocSummary = "Indicates the background colors of all 6 kinds of difficulty levels.")]
@@ -477,6 +477,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 
+	[Callback]
 	private static void DisplayCandidatesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if (e is not { NewValue: bool value })
@@ -487,6 +488,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		((App)Application.Current).Preference.UIPreferences.DisplayCandidates = value;
 	}
 
+	[Callback]
 	private static void ViewUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if ((d, e) is not (SudokuPane { BasePage: var basePage }, { NewValue: var rawValue and (null or ViewUnit _) }))

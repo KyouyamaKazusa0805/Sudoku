@@ -115,6 +115,20 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 					}
 				}
 
+				const string callbackMethodSuffix = "PropertyCallback";
+				var callbackAttribute = compilation.GetTypeByMetadataName("SudokuStudio.ComponentModel.CallbackAttribute")!;
+				callbackMethodName ??= (
+					from methodSymbol in typeSymbol.GetMembers().OfType<IMethodSymbol>()
+					where methodSymbol is { IsStatic: true, ReturnsVoid: true }
+					let methodName = methodSymbol.Name
+					where methodName.EndsWith(callbackMethodSuffix)
+					let relatedPropertyName = methodName[..methodName.IndexOf(callbackMethodSuffix)]
+					where relatedPropertyName == propertyName
+					let attributesData = methodSymbol.GetAttributes()
+					where attributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, callbackAttribute))
+					select methodName
+				).FirstOrDefault();
+
 				var defaultValueGeneratorKind = (DefaultValueGeneratingMemberKind?)null;
 				if (defaultValueGenerator is not null)
 				{

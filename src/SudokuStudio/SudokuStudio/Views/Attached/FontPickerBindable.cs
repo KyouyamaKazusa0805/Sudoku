@@ -4,14 +4,17 @@
 /// Defines a bind behaviors on <see cref="FontPicker"/> instances.
 /// </summary>
 /// <seealso cref="FontPicker"/>
-[AttachedProperty<FontSerializationData>(nameof(FontPicker.SelectedFontData), CallbackMethodName = nameof(SelectedFontDataPropertyCallback))]
+[AttachedProperty<FontSerializationData>(nameof(FontPicker.SelectedFontData))]
 public static partial class FontPickerBindable
 {
+	[Callback]
 	private static void SelectedFontDataPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is (FontPicker target, { NewValue: FontSerializationData n }))
+		if ((d, e) is not (FontPicker target, { NewValue: FontSerializationData n }))
 		{
-			(target.SelectedFontName, target.SelectedFontScale, target.SelectedColor) = n;
+			return;
 		}
+
+		(target.SelectedFontName, target.SelectedFontScale, target.SelectedColor) = n;
 	}
 }
