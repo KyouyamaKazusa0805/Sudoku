@@ -2678,6 +2678,64 @@ if (student is (name: var name, age: >= 18))
             Indicates the key of the group.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Models.TechniquePageRoutingData">
+            <summary>
+            Defines a routing data of technique page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.TechniquePageRoutingData.DefaultCulture">
+            <summary>
+            Indicates the default culture.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.IsEnabled">
+            <summary>
+            Indicates whether the page is enabled.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.RoutingPageTypeName">
+            <summary>
+            Indicates the routing page type name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.TechniqueResourceName">
+            <summary>
+            Indicates the resource name of this technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.TechniqueEnglishName">
+            <summary>
+            Indicates the resource default name (English name) of this technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.Technique">
+            <summary>
+            Indicates the technique code that the page related to.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.HashCode">
+            <summary>
+            Indicates the hash code of the data.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.Equals(SudokuStudio.Models.TechniquePageRoutingData)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.op_Equality(SudokuStudio.Models.TechniquePageRoutingData,SudokuStudio.Models.TechniquePageRoutingData)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.op_Inequality(SudokuStudio.Models.TechniquePageRoutingData,SudokuStudio.Models.TechniquePageRoutingData)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Models.ViewUnit">
             <summary>
             Defines a view unit.
@@ -3565,6 +3623,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Single Counting Practicing.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_TechniqueFile">
+            <summary>
+              Looks up a localized string similar to Technique File.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_TechniqueFilePageTitle">
+            <summary>
+              Looks up a localized string similar to Technique File.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
             <summary>
               Looks up a localized string similar to Allow collision on ALS-XY-Wing.
@@ -3973,6 +4041,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SuggestedFileName_Output">
             <summary>
               Looks up a localized string similar to Output.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.TechniqueFilePage_Intro">
+            <summary>
+              Looks up a localized string similar to This page lists techniques that the current program are supported, which can help you learn them..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.TechniqueFilePage_Singles">
+            <summary>
+              Looks up a localized string similar to Singles.
             </summary>
         </member>
         <member name="T:SudokuStudio.Runtime.InteropServices.DispatcherQueueOptions">
@@ -6758,6 +6836,69 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouse"/>
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingle"/>
         </member>
+        <member name="T:SudokuStudio.Views.Pages.TechniqueFilePage">
+            <summary>
+            The hub page of introduction of techniques.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.TechniqueFilePage._singles">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueFilePage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.GetMainWindow">
+            <summary>
+            Gets the main window.
+            </summary>
+            <returns>The main window.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage">
+            <summary>
+            Introduction page of technique <see cref="F:Sudoku.Solving.Logical.Techniques.Technique.FullHouse"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.Logical.Techniques.Technique.FullHouse"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
             <summary>
             Provides with a <see cref="T:Microsoft.UI.Xaml.Window"/> instance that is running as main instance of the program.
@@ -6805,6 +6946,12 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type)">
+            <summary>
+            Try to navigate to the target page.
+            </summary>
+            <param name="pageType">The target page type.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``1">
             <summary>
             Try to navigate to the target page via its type specified as type argument.
@@ -6847,12 +6994,6 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.NotSupportedException">Throws when the actual theme is not defined.</exception>
             <seealso cref="P:Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration.Theme"/>
             <seealso cref="F:SudokuStudio.Views.Windows.MainWindow._configurationSource"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type)">
-            <summary>
-            Try to navigate to the target page.
-            </summary>
-            <param name="pageType">The target page type.</param>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SetFrameDisplayTitle(System.Type)">
             <summary>

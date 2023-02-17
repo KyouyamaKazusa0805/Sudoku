@@ -84,6 +84,19 @@ public sealed partial class MainWindow : Window
 
 
 	/// <summary>
+	/// Try to navigate to the target page.
+	/// </summary>
+	/// <param name="pageType">The target page type.</param>
+	internal void NavigateToPage(Type pageType)
+	{
+		if (NavigationViewFrame.SourcePageType != pageType)
+		{
+			NavigationViewFrame.Navigate(pageType, null, NavigationTransitionInfo);
+			SetFrameDisplayTitle(pageType);
+		}
+	}
+
+	/// <summary>
 	/// Try to navigate to the target page via its type specified as type argument.
 	/// </summary>
 	/// <typeparam name="TPage">The type of the page.</typeparam>
@@ -98,7 +111,8 @@ public sealed partial class MainWindow : Window
 		{
 			{ container => container == AnalyzePageItem, typeof(AnalyzePage) },
 			{ container => container == AboutPageItem, typeof(AboutPage) },
-			{ container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) }
+			{ container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) },
+			{ container => container == TechniqueFilePageItem, typeof(TechniqueFilePage) }
 		};
 
 	/// <summary>
@@ -296,19 +310,6 @@ public sealed partial class MainWindow : Window
 			};
 	}
 #endif
-
-	/// <summary>
-	/// Try to navigate to the target page.
-	/// </summary>
-	/// <param name="pageType">The target page type.</param>
-	private void NavigateToPage(Type pageType)
-	{
-		if (NavigationViewFrame.SourcePageType != pageType)
-		{
-			NavigationViewFrame.Navigate(pageType, null, NavigationTransitionInfo);
-			SetFrameDisplayTitle(pageType);
-		}
-	}
 
 	/// <summary>
 	/// Try to set the title of the main navigation frame.

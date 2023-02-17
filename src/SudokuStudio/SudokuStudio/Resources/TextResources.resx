@@ -531,6 +531,12 @@
   <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
     <value>Single Counting Practicing</value>
   </data>
+  <data name="MainWindow_TechniqueFile" xml:space="preserve">
+    <value>Technique File</value>
+  </data>
+  <data name="MainWindow_TechniqueFilePageTitle" xml:space="preserve">
+    <value>Technique File</value>
+  </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
     <value>Allow collision on ALS-XY-Wing</value>
   </data>
@@ -778,6 +784,12 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="SuggestedFileName_Output" xml:space="preserve">
     <value>Output</value>
+  </data>
+  <data name="TechniqueFilePage_Intro" xml:space="preserve">
+    <value>This page lists techniques that the current program are supported, which can help you learn them.</value>
+  </data>
+  <data name="TechniqueFilePage_Singles" xml:space="preserve">
+    <value>Singles</value>
   </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>Easy</value>

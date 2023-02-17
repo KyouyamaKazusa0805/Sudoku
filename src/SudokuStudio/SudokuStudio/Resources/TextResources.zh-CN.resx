@@ -531,6 +531,12 @@
   <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
     <value>唯余数数练习</value>
   </data>
+  <data name="MainWindow_TechniqueFile" xml:space="preserve">
+    <value>技巧介绍</value>
+  </data>
+  <data name="MainWindow_TechniqueFilePageTitle" xml:space="preserve">
+    <value>技巧档案馆</value>
+  </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
     <value>允许 ALS-XY-Wing 技巧里的 ALS 结构重叠</value>
   </data>
@@ -778,6 +784,12 @@
   </data>
   <data name="SuggestedFileName_Output" xml:space="preserve">
     <value>导出</value>
+  </data>
+  <data name="TechniqueFilePage_Intro" xml:space="preserve">
+    <value>该页面列举的是一系列程序所支持的数独解题技巧，你可以通过该页面列举的内容进行技巧的学习。</value>
+  </data>
+  <data name="TechniqueFilePage_Singles" xml:space="preserve">
+    <value>出数类技巧</value>
   </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>容易</value>

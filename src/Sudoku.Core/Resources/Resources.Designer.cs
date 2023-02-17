@@ -22,7 +22,7 @@ namespace Sudoku.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Sudoku.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sudoku.Resources.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Sudoku.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
         /// </summary>
-        internal static string AbsurdChains {
+        public static string AbsurdChains {
             get {
                 return ResourceManager.GetString("AbsurdChains", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Hidden Sets Chain.
         /// </summary>
-        internal static string AlmostHiddenSetsChain {
+        public static string AlmostHiddenSetsChain {
             get {
                 return ResourceManager.GetString("AlmostHiddenSetsChain", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Locked Pair.
         /// </summary>
-        internal static string AlmostLockedPair {
+        public static string AlmostLockedPair {
             get {
                 return ResourceManager.GetString("AlmostLockedPair", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Locked Quadruple.
         /// </summary>
-        internal static string AlmostLockedQuadruple {
+        public static string AlmostLockedQuadruple {
             get {
                 return ResourceManager.GetString("AlmostLockedQuadruple", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Locked Sets Chain.
         /// </summary>
-        internal static string AlmostLockedSetsChain {
+        public static string AlmostLockedSetsChain {
             get {
                 return ResourceManager.GetString("AlmostLockedSetsChain", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Locked Sets W-Wing.
         /// </summary>
-        internal static string AlmostLockedSetsWWing {
+        public static string AlmostLockedSetsWWing {
             get {
                 return ResourceManager.GetString("AlmostLockedSetsWWing", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Locked Sets XY-Wing.
         /// </summary>
-        internal static string AlmostLockedSetsXyWing {
+        public static string AlmostLockedSetsXyWing {
             get {
                 return ResourceManager.GetString("AlmostLockedSetsXyWing", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Locked Triple.
         /// </summary>
-        internal static string AlmostLockedTriple {
+        public static string AlmostLockedTriple {
             get {
                 return ResourceManager.GetString("AlmostLockedTriple", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Alternating Inference Chain.
         /// </summary>
-        internal static string AlternatingInferenceChain {
+        public static string AlternatingInferenceChain {
             get {
                 return ResourceManager.GetString("AlternatingInferenceChain", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to been solved..
         /// </summary>
-        internal static string AnalysisResultBeenSolved {
+        public static string AnalysisResultBeenSolved {
             get {
                 return ResourceManager.GetString("AnalysisResultBeenSolved", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bottleneck step:.
         /// </summary>
-        internal static string AnalysisResultBottleneckStep {
+        public static string AnalysisResultBottleneckStep {
             get {
                 return ResourceManager.GetString("AnalysisResultBottleneckStep", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to In step.
         /// </summary>
-        internal static string AnalysisResultInStep {
+        public static string AnalysisResultInStep {
             get {
                 return ResourceManager.GetString("AnalysisResultInStep", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to min.
         /// </summary>
-        internal static string AnalysisResultMin {
+        public static string AnalysisResultMin {
             get {
                 return ResourceManager.GetString("AnalysisResultMin", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to not .
         /// </summary>
-        internal static string AnalysisResultNot {
+        public static string AnalysisResultNot {
             get {
                 return ResourceManager.GetString("AnalysisResultNot", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Puzzle: .
         /// </summary>
-        internal static string AnalysisResultPuzzle {
+        public static string AnalysisResultPuzzle {
             get {
                 return ResourceManager.GetString("AnalysisResultPuzzle", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Puzzle has .
         /// </summary>
-        internal static string AnalysisResultPuzzleHas {
+        public static string AnalysisResultPuzzleHas {
             get {
                 return ResourceManager.GetString("AnalysisResultPuzzleHas", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Puzzle rating: .
         /// </summary>
-        internal static string AnalysisResultPuzzleRating {
+        public static string AnalysisResultPuzzleRating {
             get {
                 return ResourceManager.GetString("AnalysisResultPuzzleRating", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Solution: .
         /// </summary>
-        internal static string AnalysisResultPuzzleSolution {
+        public static string AnalysisResultPuzzleSolution {
             get {
                 return ResourceManager.GetString("AnalysisResultPuzzleSolution", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Solving steps:.
         /// </summary>
-        internal static string AnalysisResultSolvingSteps {
+        public static string AnalysisResultSolvingSteps {
             get {
                 return ResourceManager.GetString("AnalysisResultSolvingSteps", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to steps.
         /// </summary>
-        internal static string AnalysisResultStepPlural {
+        public static string AnalysisResultStepPlural {
             get {
                 return ResourceManager.GetString("AnalysisResultStepPlural", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to step.
         /// </summary>
-        internal static string AnalysisResultStepSingular {
+        public static string AnalysisResultStepSingular {
             get {
                 return ResourceManager.GetString("AnalysisResultStepSingular", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Technique used:.
         /// </summary>
-        internal static string AnalysisResultTechniqueUsed {
+        public static string AnalysisResultTechniqueUsed {
             get {
                 return ResourceManager.GetString("AnalysisResultTechniqueUsed", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to   technique using.
         /// </summary>
-        internal static string AnalysisResultTechniqueUsing {
+        public static string AnalysisResultTechniqueUsing {
             get {
                 return ResourceManager.GetString("AnalysisResultTechniqueUsing", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Time elapsed: .
         /// </summary>
-        internal static string AnalysisResultTimeElapsed {
+        public static string AnalysisResultTimeElapsed {
             get {
                 return ResourceManager.GetString("AnalysisResultTimeElapsed", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to total.
         /// </summary>
-        internal static string AnalysisResultTotal {
+        public static string AnalysisResultTotal {
             get {
                 return ResourceManager.GetString("AnalysisResultTotal", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Anti-diagonal.
         /// </summary>
-        internal static string AntiDiagonalSymmetry {
+        public static string AntiDiagonalSymmetry {
             get {
                 return ResourceManager.GetString("AntiDiagonalSymmetry", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle + 2D.
         /// </summary>
-        internal static string AvoidableRectangle2D {
+        public static string AvoidableRectangle2D {
             get {
                 return ResourceManager.GetString("AvoidableRectangle2D", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle + 3X.
         /// </summary>
-        internal static string AvoidableRectangle3X {
+        public static string AvoidableRectangle3X {
             get {
                 return ResourceManager.GetString("AvoidableRectangle3X", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle Guardian.
         /// </summary>
-        internal static string AvoidableRectangleBrokenWing {
+        public static string AvoidableRectangleBrokenWing {
             get {
                 return ResourceManager.GetString("AvoidableRectangleBrokenWing", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Almost Locked Sets XZ Rule.
         /// </summary>
-        internal static string AvoidableRectangleExternalAlmostLockedSetsXz {
+        public static string AvoidableRectangleExternalAlmostLockedSetsXz {
             get {
                 return ResourceManager.GetString("AvoidableRectangleExternalAlmostLockedSetsXz", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Skyscraper.
         /// </summary>
-        internal static string AvoidableRectangleExternalSkyscraper {
+        public static string AvoidableRectangleExternalSkyscraper {
             get {
                 return ResourceManager.GetString("AvoidableRectangleExternalSkyscraper", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Turbot Fish.
         /// </summary>
-        internal static string AvoidableRectangleExternalTurbotFish {
+        public static string AvoidableRectangleExternalTurbotFish {
             get {
                 return ResourceManager.GetString("AvoidableRectangleExternalTurbotFish", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Two-String Kite.
         /// </summary>
-        internal static string AvoidableRectangleExternalTwoStringKite {
+        public static string AvoidableRectangleExternalTwoStringKite {
             get {
                 return ResourceManager.GetString("AvoidableRectangleExternalTwoStringKite", resourceCulture);
             }
@@ -360,7 +360,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Type 1.
         /// </summary>
-        internal static string AvoidableRectangleExternalType1 {
+        public static string AvoidableRectangleExternalType1 {
             get {
                 return ResourceManager.GetString("AvoidableRectangleExternalType1", resourceCulture);
             }
@@ -369,7 +369,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Type 2.
         /// </summary>
-        internal static string AvoidableRectangleExternalType2 {
+        public static string AvoidableRectangleExternalType2 {
             get {
                 return ResourceManager.GetString("AvoidableRectangleExternalType2", resourceCulture);
             }
@@ -378,7 +378,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Type 3.
         /// </summary>
-        internal static string AvoidableRectangleExternalType3 {
+        public static string AvoidableRectangleExternalType3 {
             get {
                 return ResourceManager.GetString("AvoidableRectangleExternalType3", resourceCulture);
             }
@@ -387,7 +387,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Type 4.
         /// </summary>
-        internal static string AvoidableRectangleExternalType4 {
+        public static string AvoidableRectangleExternalType4 {
             get {
                 return ResourceManager.GetString("AvoidableRectangleExternalType4", resourceCulture);
             }
@@ -396,7 +396,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External XY-Wing.
         /// </summary>
-        internal static string AvoidableRectangleExternalXyWing {
+        public static string AvoidableRectangleExternalXyWing {
             get {
                 return ResourceManager.GetString("AvoidableRectangleExternalXyWing", resourceCulture);
             }
@@ -405,7 +405,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle Hidden Single in Block.
         /// </summary>
-        internal static string AvoidableRectangleHiddenSingleBlock {
+        public static string AvoidableRectangleHiddenSingleBlock {
             get {
                 return ResourceManager.GetString("AvoidableRectangleHiddenSingleBlock", resourceCulture);
             }
@@ -414,7 +414,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle Hidden Single in Column.
         /// </summary>
-        internal static string AvoidableRectangleHiddenSingleColumn {
+        public static string AvoidableRectangleHiddenSingleColumn {
             get {
                 return ResourceManager.GetString("AvoidableRectangleHiddenSingleColumn", resourceCulture);
             }
@@ -423,7 +423,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle Hidden Single in Row.
         /// </summary>
-        internal static string AvoidableRectangleHiddenSingleRow {
+        public static string AvoidableRectangleHiddenSingleRow {
             get {
                 return ResourceManager.GetString("AvoidableRectangleHiddenSingleRow", resourceCulture);
             }
@@ -432,7 +432,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle Sue de Coq.
         /// </summary>
-        internal static string AvoidableRectangleSueDeCoq {
+        public static string AvoidableRectangleSueDeCoq {
             get {
                 return ResourceManager.GetString("AvoidableRectangleSueDeCoq", resourceCulture);
             }
@@ -441,7 +441,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle Type 1.
         /// </summary>
-        internal static string AvoidableRectangleType1 {
+        public static string AvoidableRectangleType1 {
             get {
                 return ResourceManager.GetString("AvoidableRectangleType1", resourceCulture);
             }
@@ -450,7 +450,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle Type 2.
         /// </summary>
-        internal static string AvoidableRectangleType2 {
+        public static string AvoidableRectangleType2 {
             get {
                 return ResourceManager.GetString("AvoidableRectangleType2", resourceCulture);
             }
@@ -459,7 +459,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle Type 3.
         /// </summary>
-        internal static string AvoidableRectangleType3 {
+        public static string AvoidableRectangleType3 {
             get {
                 return ResourceManager.GetString("AvoidableRectangleType3", resourceCulture);
             }
@@ -468,7 +468,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle Type 5.
         /// </summary>
-        internal static string AvoidableRectangleType5 {
+        public static string AvoidableRectangleType5 {
             get {
                 return ResourceManager.GetString("AvoidableRectangleType5", resourceCulture);
             }
@@ -477,7 +477,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle WXYZ-Wing.
         /// </summary>
-        internal static string AvoidableRectangleWxyzWing {
+        public static string AvoidableRectangleWxyzWing {
             get {
                 return ResourceManager.GetString("AvoidableRectangleWxyzWing", resourceCulture);
             }
@@ -486,7 +486,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle XY-Wing.
         /// </summary>
-        internal static string AvoidableRectangleXyWing {
+        public static string AvoidableRectangleXyWing {
             get {
                 return ResourceManager.GetString("AvoidableRectangleXyWing", resourceCulture);
             }
@@ -495,7 +495,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle XYZ-Wing.
         /// </summary>
-        internal static string AvoidableRectangleXyzWing {
+        public static string AvoidableRectangleXyzWing {
             get {
                 return ResourceManager.GetString("AvoidableRectangleXyzWing", resourceCulture);
             }
@@ -504,7 +504,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Oddagon Type 1.
         /// </summary>
-        internal static string BivalueOddagonType1 {
+        public static string BivalueOddagonType1 {
             get {
                 return ResourceManager.GetString("BivalueOddagonType1", resourceCulture);
             }
@@ -513,7 +513,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Oddagon Type 2.
         /// </summary>
-        internal static string BivalueOddagonType2 {
+        public static string BivalueOddagonType2 {
             get {
                 return ResourceManager.GetString("BivalueOddagonType2", resourceCulture);
             }
@@ -522,7 +522,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Oddagon Type 3.
         /// </summary>
-        internal static string BivalueOddagonType3 {
+        public static string BivalueOddagonType3 {
             get {
                 return ResourceManager.GetString("BivalueOddagonType3", resourceCulture);
             }
@@ -531,7 +531,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bivalue Universal Grave False Candidate.
         /// </summary>
-        internal static string BivalueUniversalGraveFalseCandidateType {
+        public static string BivalueUniversalGraveFalseCandidateType {
             get {
                 return ResourceManager.GetString("BivalueUniversalGraveFalseCandidateType", resourceCulture);
             }
@@ -540,7 +540,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave + n.
         /// </summary>
-        internal static string BivalueUniversalGravePlusN {
+        public static string BivalueUniversalGravePlusN {
             get {
                 return ResourceManager.GetString("BivalueUniversalGravePlusN", resourceCulture);
             }
@@ -549,7 +549,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave + n Forcing Chains.
         /// </summary>
-        internal static string BivalueUniversalGravePlusNForcingChains {
+        public static string BivalueUniversalGravePlusNForcingChains {
             get {
                 return ResourceManager.GetString("BivalueUniversalGravePlusNForcingChains", resourceCulture);
             }
@@ -558,7 +558,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave Type 1.
         /// </summary>
-        internal static string BivalueUniversalGraveType1 {
+        public static string BivalueUniversalGraveType1 {
             get {
                 return ResourceManager.GetString("BivalueUniversalGraveType1", resourceCulture);
             }
@@ -567,7 +567,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave Type 2.
         /// </summary>
-        internal static string BivalueUniversalGraveType2 {
+        public static string BivalueUniversalGraveType2 {
             get {
                 return ResourceManager.GetString("BivalueUniversalGraveType2", resourceCulture);
             }
@@ -576,7 +576,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave Type 3.
         /// </summary>
-        internal static string BivalueUniversalGraveType3 {
+        public static string BivalueUniversalGraveType3 {
             get {
                 return ResourceManager.GetString("BivalueUniversalGraveType3", resourceCulture);
             }
@@ -585,7 +585,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave Type 4.
         /// </summary>
-        internal static string BivalueUniversalGraveType4 {
+        public static string BivalueUniversalGraveType4 {
             get {
                 return ResourceManager.GetString("BivalueUniversalGraveType4", resourceCulture);
             }
@@ -594,7 +594,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave XY-Wing.
         /// </summary>
-        internal static string BivalueUniversalGraveXyWing {
+        public static string BivalueUniversalGraveXyWing {
             get {
                 return ResourceManager.GetString("BivalueUniversalGraveXyWing", resourceCulture);
             }
@@ -603,7 +603,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave XZ Rule.
         /// </summary>
-        internal static string BivalueUniversalGraveXzRule {
+        public static string BivalueUniversalGraveXzRule {
             get {
                 return ResourceManager.GetString("BivalueUniversalGraveXzRule", resourceCulture);
             }
@@ -612,7 +612,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bowman Bingo.
         /// </summary>
-        internal static string BowmanBingo {
+        public static string BowmanBingo {
             get {
                 return ResourceManager.GetString("BowmanBingo", resourceCulture);
             }
@@ -621,7 +621,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Guardian.
         /// </summary>
-        internal static string BrokenWing {
+        public static string BrokenWing {
             get {
                 return ResourceManager.GetString("BrokenWing", resourceCulture);
             }
@@ -630,7 +630,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Brute Force.
         /// </summary>
-        internal static string BruteForce {
+        public static string BruteForce {
             get {
                 return ResourceManager.GetString("BruteForce", resourceCulture);
             }
@@ -639,7 +639,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to been solved..
         /// </summary>
-        internal static string BruteForceSolverResultBeenSolved {
+        public static string BruteForceSolverResultBeenSolved {
             get {
                 return ResourceManager.GetString("BruteForceSolverResultBeenSolved", resourceCulture);
             }
@@ -648,7 +648,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to not .
         /// </summary>
-        internal static string BruteForceSolverResultNot {
+        public static string BruteForceSolverResultNot {
             get {
                 return ResourceManager.GetString("BruteForceSolverResultNot", resourceCulture);
             }
@@ -657,7 +657,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Puzzle: .
         /// </summary>
-        internal static string BruteForceSolverResultPuzzle {
+        public static string BruteForceSolverResultPuzzle {
             get {
                 return ResourceManager.GetString("BruteForceSolverResultPuzzle", resourceCulture);
             }
@@ -666,7 +666,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Puzzle has .
         /// </summary>
-        internal static string BruteForceSolverResultPuzzleHas {
+        public static string BruteForceSolverResultPuzzleHas {
             get {
                 return ResourceManager.GetString("BruteForceSolverResultPuzzleHas", resourceCulture);
             }
@@ -675,7 +675,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Solution: .
         /// </summary>
-        internal static string BruteForceSolverResultSolution {
+        public static string BruteForceSolverResultSolution {
             get {
                 return ResourceManager.GetString("BruteForceSolverResultSolution", resourceCulture);
             }
@@ -684,7 +684,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Time elapsed: .
         /// </summary>
-        internal static string BruteForceSolverResultTimeElapsed {
+        public static string BruteForceSolverResultTimeElapsed {
             get {
                 return ResourceManager.GetString("BruteForceSolverResultTimeElapsed", resourceCulture);
             }
@@ -693,7 +693,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cell Forcing Chains.
         /// </summary>
-        internal static string CellChains {
+        public static string CellChains {
             get {
                 return ResourceManager.GetString("CellChains", resourceCulture);
             }
@@ -702,7 +702,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cell Forcing Chains.
         /// </summary>
-        internal static string CellForcingChains {
+        public static string CellForcingChains {
             get {
                 return ResourceManager.GetString("CellForcingChains", resourceCulture);
             }
@@ -711,7 +711,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Central.
         /// </summary>
-        internal static string CentralSymmetry {
+        public static string CentralSymmetry {
             get {
                 return ResourceManager.GetString("CentralSymmetry", resourceCulture);
             }
@@ -720,7 +720,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to , .
         /// </summary>
-        internal static string ChineseComma {
+        public static string ChineseComma {
             get {
                 return ResourceManager.GetString("ChineseComma", resourceCulture);
             }
@@ -729,7 +729,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Chromatic Pattern Type 1.
         /// </summary>
-        internal static string ChromaticPatternType1 {
+        public static string ChromaticPatternType1 {
             get {
                 return ResourceManager.GetString("ChromaticPatternType1", resourceCulture);
             }
@@ -738,7 +738,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Chromatic Pattern Type 2.
         /// </summary>
-        internal static string ChromaticPatternType2 {
+        public static string ChromaticPatternType2 {
             get {
                 return ResourceManager.GetString("ChromaticPatternType2", resourceCulture);
             }
@@ -747,7 +747,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Chromatic Pattern Type 3.
         /// </summary>
-        internal static string ChromaticPatternType3 {
+        public static string ChromaticPatternType3 {
             get {
                 return ResourceManager.GetString("ChromaticPatternType3", resourceCulture);
             }
@@ -756,7 +756,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Chromatic Pattern Type 4.
         /// </summary>
-        internal static string ChromaticPatternType4 {
+        public static string ChromaticPatternType4 {
             get {
                 return ResourceManager.GetString("ChromaticPatternType4", resourceCulture);
             }
@@ -765,7 +765,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Chromatic Pattern XZ Rule.
         /// </summary>
-        internal static string ChromaticPatternXzRule {
+        public static string ChromaticPatternXzRule {
             get {
                 return ResourceManager.GetString("ChromaticPatternXzRule", resourceCulture);
             }
@@ -774,7 +774,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Claiming.
         /// </summary>
-        internal static string Claiming {
+        public static string Claiming {
             get {
                 return ResourceManager.GetString("Claiming", resourceCulture);
             }
@@ -783,7 +783,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to :.
         /// </summary>
-        internal static string Colon {
+        public static string Colon {
             get {
                 return ResourceManager.GetString("Colon", resourceCulture);
             }
@@ -792,7 +792,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to , .
         /// </summary>
-        internal static string Comma {
+        public static string Comma {
             get {
                 return ResourceManager.GetString("Comma", resourceCulture);
             }
@@ -801,7 +801,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Complex Senior Exocet.
         /// </summary>
-        internal static string ComplexSeniorExocet {
+        public static string ComplexSeniorExocet {
             get {
                 return ResourceManager.GetString("ComplexSeniorExocet", resourceCulture);
             }
@@ -810,7 +810,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Continuous Nice Loop.
         /// </summary>
-        internal static string ContinuousNiceLoop {
+        public static string ContinuousNiceLoop {
             get {
                 return ResourceManager.GetString("ContinuousNiceLoop", resourceCulture);
             }
@@ -819,7 +819,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cell Death Blossom.
         /// </summary>
-        internal static string DeathBlossomCellType {
+        public static string DeathBlossomCellType {
             get {
                 return ResourceManager.GetString("DeathBlossomCellType", resourceCulture);
             }
@@ -828,7 +828,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Diagonal.
         /// </summary>
-        internal static string DiagonalSymmetry {
+        public static string DiagonalSymmetry {
             get {
                 return ResourceManager.GetString("DiagonalSymmetry", resourceCulture);
             }
@@ -837,7 +837,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Discontinuous Nice Loop.
         /// </summary>
-        internal static string DiscontinuousNiceLoop {
+        public static string DiscontinuousNiceLoop {
             get {
                 return ResourceManager.GetString("DiscontinuousNiceLoop", resourceCulture);
             }
@@ -846,7 +846,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Domino Loop.
         /// </summary>
-        internal static string DominoLoop {
+        public static string DominoLoop {
             get {
                 return ResourceManager.GetString("DominoLoop", resourceCulture);
             }
@@ -855,7 +855,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dynamic Double Forcing Chains.
         /// </summary>
-        internal static string DoubleChains {
+        public static string DoubleChains {
             get {
                 return ResourceManager.GetString("DoubleChains", resourceCulture);
             }
@@ -864,7 +864,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Doubly-Linked Almost Locked Sets XZ Rule.
         /// </summary>
-        internal static string DoublyLinkedAlmostLockedSetsXzRule {
+        public static string DoublyLinkedAlmostLockedSetsXzRule {
             get {
                 return ResourceManager.GetString("DoublyLinkedAlmostLockedSetsXzRule", resourceCulture);
             }
@@ -873,7 +873,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dynamic Cell Forcing Chains.
         /// </summary>
-        internal static string DynamicCellForcingChains {
+        public static string DynamicCellForcingChains {
             get {
                 return ResourceManager.GetString("DynamicCellForcingChains", resourceCulture);
             }
@@ -882,7 +882,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
         /// </summary>
-        internal static string DynamicContradictionForcingChains {
+        public static string DynamicContradictionForcingChains {
             get {
                 return ResourceManager.GetString("DynamicContradictionForcingChains", resourceCulture);
             }
@@ -891,7 +891,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dynamic Double Forcing Chains.
         /// </summary>
-        internal static string DynamicDoubleForcingChains {
+        public static string DynamicDoubleForcingChains {
             get {
                 return ResourceManager.GetString("DynamicDoubleForcingChains", resourceCulture);
             }
@@ -900,7 +900,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dynamic Forcing Chains.
         /// </summary>
-        internal static string DynamicForcingChains {
+        public static string DynamicForcingChains {
             get {
                 return ResourceManager.GetString("DynamicForcingChains", resourceCulture);
             }
@@ -909,7 +909,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dynamic.
         /// </summary>
-        internal static string DynamicKeyword {
+        public static string DynamicKeyword {
             get {
                 return ResourceManager.GetString("DynamicKeyword", resourceCulture);
             }
@@ -918,7 +918,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dynamic Region Forcing Chains.
         /// </summary>
-        internal static string DynamicRegionForcingChains {
+        public static string DynamicRegionForcingChains {
             get {
                 return ResourceManager.GetString("DynamicRegionForcingChains", resourceCulture);
             }
@@ -927,7 +927,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ....
         /// </summary>
-        internal static string Ellipsis {
+        public static string Ellipsis {
             get {
                 return ResourceManager.GetString("Ellipsis", resourceCulture);
             }
@@ -936,7 +936,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Empty Rectangle.
         /// </summary>
-        internal static string EmptyRectangle {
+        public static string EmptyRectangle {
             get {
                 return ResourceManager.GetString("EmptyRectangle", resourceCulture);
             }
@@ -945,7 +945,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Empty Rectangle Intersection Pair.
         /// </summary>
-        internal static string EmptyRectangleIntersectionPair {
+        public static string EmptyRectangleIntersectionPair {
             get {
                 return ResourceManager.GetString("EmptyRectangleIntersectionPair", resourceCulture);
             }
@@ -954,7 +954,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to endo target: .
         /// </summary>
-        internal static string EndoTaraget {
+        public static string EndoTaraget {
             get {
                 return ResourceManager.GetString("EndoTaraget", resourceCulture);
             }
@@ -963,7 +963,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Target.
         /// </summary>
-        internal static string ExocetBasicEliminationName {
+        public static string ExocetBasicEliminationName {
             get {
                 return ResourceManager.GetString("ExocetBasicEliminationName", resourceCulture);
             }
@@ -972,7 +972,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-bi Pattern.
         /// </summary>
-        internal static string ExocetBiBiPatternEliminationName {
+        public static string ExocetBiBiPatternEliminationName {
             get {
                 return ResourceManager.GetString("ExocetBiBiPatternEliminationName", resourceCulture);
             }
@@ -981,7 +981,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Compatibility Test.
         /// </summary>
-        internal static string ExocetCompatibilityTestEliminationName {
+        public static string ExocetCompatibilityTestEliminationName {
             get {
                 return ResourceManager.GetString("ExocetCompatibilityTestEliminationName", resourceCulture);
             }
@@ -990,7 +990,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to  eliminations: .
         /// </summary>
-        internal static string ExocetElimination {
+        public static string ExocetElimination {
             get {
                 return ResourceManager.GetString("ExocetElimination", resourceCulture);
             }
@@ -999,7 +999,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Generalized Swordfish.
         /// </summary>
-        internal static string ExocetGeneralizedSwordfishEliminationName {
+        public static string ExocetGeneralizedSwordfishEliminationName {
             get {
                 return ResourceManager.GetString("ExocetGeneralizedSwordfishEliminationName", resourceCulture);
             }
@@ -1008,7 +1008,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Mirror.
         /// </summary>
-        internal static string ExocetMirrorEliminationName {
+        public static string ExocetMirrorEliminationName {
             get {
                 return ResourceManager.GetString("ExocetMirrorEliminationName", resourceCulture);
             }
@@ -1017,7 +1017,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Target Inference.
         /// </summary>
-        internal static string ExocetTargetInferenceEliminationName {
+        public static string ExocetTargetInferenceEliminationName {
             get {
                 return ResourceManager.GetString("ExocetTargetInferenceEliminationName", resourceCulture);
             }
@@ -1026,7 +1026,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Target Pair.
         /// </summary>
-        internal static string ExocetTargetPairEliminationName {
+        public static string ExocetTargetPairEliminationName {
             get {
                 return ResourceManager.GetString("ExocetTargetPairEliminationName", resourceCulture);
             }
@@ -1035,7 +1035,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to True Base.
         /// </summary>
-        internal static string ExocetTrueBaseEliminationName {
+        public static string ExocetTrueBaseEliminationName {
             get {
                 return ResourceManager.GetString("ExocetTrueBaseEliminationName", resourceCulture);
             }
@@ -1044,7 +1044,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Extended Gurth&apos;s Symmetrical Placement.
         /// </summary>
-        internal static string ExtendedGurthSymmetricalPlacement {
+        public static string ExtendedGurthSymmetricalPlacement {
             get {
                 return ResourceManager.GetString("ExtendedGurthSymmetricalPlacement", resourceCulture);
             }
@@ -1053,7 +1053,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Extended Rectangle Type 1.
         /// </summary>
-        internal static string ExtendedRectangleType1 {
+        public static string ExtendedRectangleType1 {
             get {
                 return ResourceManager.GetString("ExtendedRectangleType1", resourceCulture);
             }
@@ -1062,7 +1062,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Extended Rectangle Type 2.
         /// </summary>
-        internal static string ExtendedRectangleType2 {
+        public static string ExtendedRectangleType2 {
             get {
                 return ResourceManager.GetString("ExtendedRectangleType2", resourceCulture);
             }
@@ -1071,7 +1071,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Extended Rectangle Type 3.
         /// </summary>
-        internal static string ExtendedRectangleType3 {
+        public static string ExtendedRectangleType3 {
             get {
                 return ResourceManager.GetString("ExtendedRectangleType3", resourceCulture);
             }
@@ -1080,7 +1080,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Extended Rectangle Type 4.
         /// </summary>
-        internal static string ExtendedRectangleType4 {
+        public static string ExtendedRectangleType4 {
             get {
                 return ResourceManager.GetString("ExtendedRectangleType4", resourceCulture);
             }
@@ -1089,7 +1089,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Extended Subset Principle.
         /// </summary>
-        internal static string ExtendedSubsetPrinciple {
+        public static string ExtendedSubsetPrinciple {
             get {
                 return ResourceManager.GetString("ExtendedSubsetPrinciple", resourceCulture);
             }
@@ -1098,7 +1098,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to false.
         /// </summary>
-        internal static string FalseKeyword {
+        public static string FalseKeyword {
             get {
                 return ResourceManager.GetString("FalseKeyword", resourceCulture);
             }
@@ -1107,7 +1107,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to  f.
         /// </summary>
-        internal static string Fin {
+        public static string Fin {
             get {
                 return ResourceManager.GetString("Fin", resourceCulture);
             }
@@ -1116,7 +1116,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Franken Jellyfish.
         /// </summary>
-        internal static string FinnedFrankenJellyfish {
+        public static string FinnedFrankenJellyfish {
             get {
                 return ResourceManager.GetString("FinnedFrankenJellyfish", resourceCulture);
             }
@@ -1125,7 +1125,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Franken Leviathan.
         /// </summary>
-        internal static string FinnedFrankenLeviathan {
+        public static string FinnedFrankenLeviathan {
             get {
                 return ResourceManager.GetString("FinnedFrankenLeviathan", resourceCulture);
             }
@@ -1134,7 +1134,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Franken Squirmbag.
         /// </summary>
-        internal static string FinnedFrankenSquirmbag {
+        public static string FinnedFrankenSquirmbag {
             get {
                 return ResourceManager.GetString("FinnedFrankenSquirmbag", resourceCulture);
             }
@@ -1143,7 +1143,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Franken Swordfish.
         /// </summary>
-        internal static string FinnedFrankenSwordfish {
+        public static string FinnedFrankenSwordfish {
             get {
                 return ResourceManager.GetString("FinnedFrankenSwordfish", resourceCulture);
             }
@@ -1152,7 +1152,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Franken Whale.
         /// </summary>
-        internal static string FinnedFrankenWhale {
+        public static string FinnedFrankenWhale {
             get {
                 return ResourceManager.GetString("FinnedFrankenWhale", resourceCulture);
             }
@@ -1161,7 +1161,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Franken X-Wing.
         /// </summary>
-        internal static string FinnedFrankenXWing {
+        public static string FinnedFrankenXWing {
             get {
                 return ResourceManager.GetString("FinnedFrankenXWing", resourceCulture);
             }
@@ -1170,7 +1170,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Jellyfish.
         /// </summary>
-        internal static string FinnedJellyfish {
+        public static string FinnedJellyfish {
             get {
                 return ResourceManager.GetString("FinnedJellyfish", resourceCulture);
             }
@@ -1179,7 +1179,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Leviathan.
         /// </summary>
-        internal static string FinnedLeviathan {
+        public static string FinnedLeviathan {
             get {
                 return ResourceManager.GetString("FinnedLeviathan", resourceCulture);
             }
@@ -1188,7 +1188,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Mutant Jellyfish.
         /// </summary>
-        internal static string FinnedMutantJellyfish {
+        public static string FinnedMutantJellyfish {
             get {
                 return ResourceManager.GetString("FinnedMutantJellyfish", resourceCulture);
             }
@@ -1197,7 +1197,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Mutant Leviathan.
         /// </summary>
-        internal static string FinnedMutantLeviathan {
+        public static string FinnedMutantLeviathan {
             get {
                 return ResourceManager.GetString("FinnedMutantLeviathan", resourceCulture);
             }
@@ -1206,7 +1206,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Mutant Squirmbag.
         /// </summary>
-        internal static string FinnedMutantSquirmbag {
+        public static string FinnedMutantSquirmbag {
             get {
                 return ResourceManager.GetString("FinnedMutantSquirmbag", resourceCulture);
             }
@@ -1215,7 +1215,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Mutant Swordfish.
         /// </summary>
-        internal static string FinnedMutantSwordfish {
+        public static string FinnedMutantSwordfish {
             get {
                 return ResourceManager.GetString("FinnedMutantSwordfish", resourceCulture);
             }
@@ -1224,7 +1224,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Mutant Whale.
         /// </summary>
-        internal static string FinnedMutantWhale {
+        public static string FinnedMutantWhale {
             get {
                 return ResourceManager.GetString("FinnedMutantWhale", resourceCulture);
             }
@@ -1233,7 +1233,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Mutant X-Wing.
         /// </summary>
-        internal static string FinnedMutantXWing {
+        public static string FinnedMutantXWing {
             get {
                 return ResourceManager.GetString("FinnedMutantXWing", resourceCulture);
             }
@@ -1242,7 +1242,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Squirmbag.
         /// </summary>
-        internal static string FinnedSquirmbag {
+        public static string FinnedSquirmbag {
             get {
                 return ResourceManager.GetString("FinnedSquirmbag", resourceCulture);
             }
@@ -1251,7 +1251,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Swordfish.
         /// </summary>
-        internal static string FinnedSwordfish {
+        public static string FinnedSwordfish {
             get {
                 return ResourceManager.GetString("FinnedSwordfish", resourceCulture);
             }
@@ -1260,7 +1260,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned Whale.
         /// </summary>
-        internal static string FinnedWhale {
+        public static string FinnedWhale {
             get {
                 return ResourceManager.GetString("FinnedWhale", resourceCulture);
             }
@@ -1269,7 +1269,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Finned X-Wing.
         /// </summary>
-        internal static string FinnedXWing {
+        public static string FinnedXWing {
             get {
                 return ResourceManager.GetString("FinnedXWing", resourceCulture);
             }
@@ -1278,7 +1278,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Firework Pair Type 1.
         /// </summary>
-        internal static string FireworkPairType1 {
+        public static string FireworkPairType1 {
             get {
                 return ResourceManager.GetString("FireworkPairType1", resourceCulture);
             }
@@ -1287,7 +1287,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Firework Pair Type 2.
         /// </summary>
-        internal static string FireworkPairType2 {
+        public static string FireworkPairType2 {
             get {
                 return ResourceManager.GetString("FireworkPairType2", resourceCulture);
             }
@@ -1296,7 +1296,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Firework Pair Type 3.
         /// </summary>
-        internal static string FireworkPairType3 {
+        public static string FireworkPairType3 {
             get {
                 return ResourceManager.GetString("FireworkPairType3", resourceCulture);
             }
@@ -1305,7 +1305,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Firework Quadruple.
         /// </summary>
-        internal static string FireworkQuadruple {
+        public static string FireworkQuadruple {
             get {
                 return ResourceManager.GetString("FireworkQuadruple", resourceCulture);
             }
@@ -1314,7 +1314,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Firework Triple.
         /// </summary>
-        internal static string FireworkTriple {
+        public static string FireworkTriple {
             get {
                 return ResourceManager.GetString("FireworkTriple", resourceCulture);
             }
@@ -1323,7 +1323,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Fishy Cycle.
         /// </summary>
-        internal static string FishyCycle {
+        public static string FishyCycle {
             get {
                 return ResourceManager.GetString("FishyCycle", resourceCulture);
             }
@@ -1332,7 +1332,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Franken Jellyfish.
         /// </summary>
-        internal static string FrankenJellyfish {
+        public static string FrankenJellyfish {
             get {
                 return ResourceManager.GetString("FrankenJellyfish", resourceCulture);
             }
@@ -1341,7 +1341,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Franken Leviathan.
         /// </summary>
-        internal static string FrankenLeviathan {
+        public static string FrankenLeviathan {
             get {
                 return ResourceManager.GetString("FrankenLeviathan", resourceCulture);
             }
@@ -1350,7 +1350,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Franken Squirmbag.
         /// </summary>
-        internal static string FrankenSquirmbag {
+        public static string FrankenSquirmbag {
             get {
                 return ResourceManager.GetString("FrankenSquirmbag", resourceCulture);
             }
@@ -1359,7 +1359,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Franken Swordfish.
         /// </summary>
-        internal static string FrankenSwordfish {
+        public static string FrankenSwordfish {
             get {
                 return ResourceManager.GetString("FrankenSwordfish", resourceCulture);
             }
@@ -1368,7 +1368,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Franken Whale.
         /// </summary>
-        internal static string FrankenWhale {
+        public static string FrankenWhale {
             get {
                 return ResourceManager.GetString("FrankenWhale", resourceCulture);
             }
@@ -1377,7 +1377,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Franken X-Wing.
         /// </summary>
-        internal static string FrankenXWing {
+        public static string FrankenXWing {
             get {
                 return ResourceManager.GetString("FrankenXWing", resourceCulture);
             }
@@ -1386,7 +1386,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Full House.
         /// </summary>
-        internal static string FullHouse {
+        public static string FullHouse {
             get {
                 return ResourceManager.GetString("FullHouse", resourceCulture);
             }
@@ -1395,7 +1395,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped Alternating Inference Chain.
         /// </summary>
-        internal static string GroupedAlternatingInferenceChain {
+        public static string GroupedAlternatingInferenceChain {
             get {
                 return ResourceManager.GetString("GroupedAlternatingInferenceChain", resourceCulture);
             }
@@ -1404,7 +1404,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped Bi-value Oddagon.
         /// </summary>
-        internal static string GroupedBivalueOddagon {
+        public static string GroupedBivalueOddagon {
             get {
                 return ResourceManager.GetString("GroupedBivalueOddagon", resourceCulture);
             }
@@ -1413,7 +1413,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped Continuous Nice Loop.
         /// </summary>
-        internal static string GroupedContinuousNiceLoop {
+        public static string GroupedContinuousNiceLoop {
             get {
                 return ResourceManager.GetString("GroupedContinuousNiceLoop", resourceCulture);
             }
@@ -1422,7 +1422,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped Discontinuous Nice Loop.
         /// </summary>
-        internal static string GroupedDiscontinuousNiceLoop {
+        public static string GroupedDiscontinuousNiceLoop {
             get {
                 return ResourceManager.GetString("GroupedDiscontinuousNiceLoop", resourceCulture);
             }
@@ -1431,7 +1431,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped Fishy Cycle.
         /// </summary>
-        internal static string GroupedFishyCycle {
+        public static string GroupedFishyCycle {
             get {
                 return ResourceManager.GetString("GroupedFishyCycle", resourceCulture);
             }
@@ -1440,7 +1440,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped Hybrid Wing.
         /// </summary>
-        internal static string GroupedHybridWing {
+        public static string GroupedHybridWing {
             get {
                 return ResourceManager.GetString("GroupedHybridWing", resourceCulture);
             }
@@ -1449,7 +1449,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped Local Wing.
         /// </summary>
-        internal static string GroupedLocalWing {
+        public static string GroupedLocalWing {
             get {
                 return ResourceManager.GetString("GroupedLocalWing", resourceCulture);
             }
@@ -1458,7 +1458,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped M-Wing.
         /// </summary>
-        internal static string GroupedMWing {
+        public static string GroupedMWing {
             get {
                 return ResourceManager.GetString("GroupedMWing", resourceCulture);
             }
@@ -1467,7 +1467,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped Purple Cow.
         /// </summary>
-        internal static string GroupedPurpleCow {
+        public static string GroupedPurpleCow {
             get {
                 return ResourceManager.GetString("GroupedPurpleCow", resourceCulture);
             }
@@ -1476,7 +1476,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped Split Wing.
         /// </summary>
-        internal static string GroupedSplitWing {
+        public static string GroupedSplitWing {
             get {
                 return ResourceManager.GetString("GroupedSplitWing", resourceCulture);
             }
@@ -1485,7 +1485,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped W-Wing.
         /// </summary>
-        internal static string GroupedWWing {
+        public static string GroupedWWing {
             get {
                 return ResourceManager.GetString("GroupedWWing", resourceCulture);
             }
@@ -1494,7 +1494,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped X-Chain.
         /// </summary>
-        internal static string GroupedXChain {
+        public static string GroupedXChain {
             get {
                 return ResourceManager.GetString("GroupedXChain", resourceCulture);
             }
@@ -1503,7 +1503,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped XY-Chain.
         /// </summary>
-        internal static string GroupedXyChain {
+        public static string GroupedXyChain {
             get {
                 return ResourceManager.GetString("GroupedXyChain", resourceCulture);
             }
@@ -1512,7 +1512,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped XY-Cycle.
         /// </summary>
-        internal static string GroupedXyCycle {
+        public static string GroupedXyCycle {
             get {
                 return ResourceManager.GetString("GroupedXyCycle", resourceCulture);
             }
@@ -1521,7 +1521,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped XY-Wing.
         /// </summary>
-        internal static string GroupedXyWing {
+        public static string GroupedXyWing {
             get {
                 return ResourceManager.GetString("GroupedXyWing", resourceCulture);
             }
@@ -1530,7 +1530,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grouped XY-X-Chain.
         /// </summary>
-        internal static string GroupedXyXChain {
+        public static string GroupedXyXChain {
             get {
                 return ResourceManager.GetString("GroupedXyXChain", resourceCulture);
             }
@@ -1539,7 +1539,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to guardians.
         /// </summary>
-        internal static string GuardianPlural {
+        public static string GuardianPlural {
             get {
                 return ResourceManager.GetString("GuardianPlural", resourceCulture);
             }
@@ -1548,7 +1548,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to a guardian.
         /// </summary>
-        internal static string GuardianSingular {
+        public static string GuardianSingular {
             get {
                 return ResourceManager.GetString("GuardianSingular", resourceCulture);
             }
@@ -1557,7 +1557,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
         /// </summary>
-        internal static string GurthSymmetricalPlacement {
+        public static string GurthSymmetricalPlacement {
             get {
                 return ResourceManager.GetString("GurthSymmetricalPlacement", resourceCulture);
             }
@@ -1566,7 +1566,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hidden Avoidable Rectangle.
         /// </summary>
-        internal static string HiddenAvoidableRectangle {
+        public static string HiddenAvoidableRectangle {
             get {
                 return ResourceManager.GetString("HiddenAvoidableRectangle", resourceCulture);
             }
@@ -1575,7 +1575,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to hidden.
         /// </summary>
-        internal static string HiddenKeyword {
+        public static string HiddenKeyword {
             get {
                 return ResourceManager.GetString("HiddenKeyword", resourceCulture);
             }
@@ -1584,7 +1584,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hidden Pair.
         /// </summary>
-        internal static string HiddenPair {
+        public static string HiddenPair {
             get {
                 return ResourceManager.GetString("HiddenPair", resourceCulture);
             }
@@ -1593,7 +1593,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hidden Quadruple.
         /// </summary>
-        internal static string HiddenQuadruple {
+        public static string HiddenQuadruple {
             get {
                 return ResourceManager.GetString("HiddenQuadruple", resourceCulture);
             }
@@ -1602,7 +1602,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hidden Single in Block.
         /// </summary>
-        internal static string HiddenSingleBlock {
+        public static string HiddenSingleBlock {
             get {
                 return ResourceManager.GetString("HiddenSingleBlock", resourceCulture);
             }
@@ -1611,7 +1611,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hidden Single in Column.
         /// </summary>
-        internal static string HiddenSingleColumn {
+        public static string HiddenSingleColumn {
             get {
                 return ResourceManager.GetString("HiddenSingleColumn", resourceCulture);
             }
@@ -1620,7 +1620,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hidden Single in Row.
         /// </summary>
-        internal static string HiddenSingleRow {
+        public static string HiddenSingleRow {
             get {
                 return ResourceManager.GetString("HiddenSingleRow", resourceCulture);
             }
@@ -1629,7 +1629,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hidden Triple.
         /// </summary>
-        internal static string HiddenTriple {
+        public static string HiddenTriple {
             get {
                 return ResourceManager.GetString("HiddenTriple", resourceCulture);
             }
@@ -1638,7 +1638,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hidden Unique Rectangle.
         /// </summary>
-        internal static string HiddenUniqueRectangle {
+        public static string HiddenUniqueRectangle {
             get {
                 return ResourceManager.GetString("HiddenUniqueRectangle", resourceCulture);
             }
@@ -1647,7 +1647,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to House Forcing Chains.
         /// </summary>
-        internal static string HouseChains {
+        public static string HouseChains {
             get {
                 return ResourceManager.GetString("HouseChains", resourceCulture);
             }
@@ -1656,7 +1656,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hybrid Wing.
         /// </summary>
-        internal static string HybridWing {
+        public static string HybridWing {
             get {
                 return ResourceManager.GetString("HybridWing", resourceCulture);
             }
@@ -1665,7 +1665,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to . Extra houses will be included:.
         /// </summary>
-        internal static string IncludedExtraHouse {
+        public static string IncludedExtraHouse {
             get {
                 return ResourceManager.GetString("IncludedExtraHouse", resourceCulture);
             }
@@ -1674,7 +1674,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incomplete RSTUVWXYZ-Wing.
         /// </summary>
-        internal static string IncompleteRstuvwxyzWing {
+        public static string IncompleteRstuvwxyzWing {
             get {
                 return ResourceManager.GetString("IncompleteRstuvwxyzWing", resourceCulture);
             }
@@ -1683,7 +1683,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incomplete STUVWXYZ-Wing.
         /// </summary>
-        internal static string IncompleteStuvwxyzWing {
+        public static string IncompleteStuvwxyzWing {
             get {
                 return ResourceManager.GetString("IncompleteStuvwxyzWing", resourceCulture);
             }
@@ -1692,7 +1692,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incomplete TUVWXYZ-Wing.
         /// </summary>
-        internal static string IncompleteTuvwxyzWing {
+        public static string IncompleteTuvwxyzWing {
             get {
                 return ResourceManager.GetString("IncompleteTuvwxyzWing", resourceCulture);
             }
@@ -1701,7 +1701,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incomplete UVWXYZ-Wing.
         /// </summary>
-        internal static string IncompleteUvwxyzWing {
+        public static string IncompleteUvwxyzWing {
             get {
                 return ResourceManager.GetString("IncompleteUvwxyzWing", resourceCulture);
             }
@@ -1710,7 +1710,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incomplete VWXYZ-Wing.
         /// </summary>
-        internal static string IncompleteVwxyzWing {
+        public static string IncompleteVwxyzWing {
             get {
                 return ResourceManager.GetString("IncompleteVwxyzWing", resourceCulture);
             }
@@ -1719,7 +1719,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Incomplete WXYZ-Wing.
         /// </summary>
-        internal static string IncompleteWxyzWing {
+        public static string IncompleteWxyzWing {
             get {
                 return ResourceManager.GetString("IncompleteWxyzWing", resourceCulture);
             }
@@ -1728,7 +1728,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Jellyfish.
         /// </summary>
-        internal static string Jellyfish {
+        public static string Jellyfish {
             get {
                 return ResourceManager.GetString("Jellyfish", resourceCulture);
             }
@@ -1737,7 +1737,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Junior Exocet.
         /// </summary>
-        internal static string JuniorExocet {
+        public static string JuniorExocet {
             get {
                 return ResourceManager.GetString("JuniorExocet", resourceCulture);
             }
@@ -1746,7 +1746,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to in.
         /// </summary>
-        internal static string KeywordIn {
+        public static string KeywordIn {
             get {
                 return ResourceManager.GetString("KeywordIn", resourceCulture);
             }
@@ -1755,7 +1755,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 1033.
         /// </summary>
-        internal static string Language {
+        public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
             }
@@ -1764,7 +1764,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Last Digit.
         /// </summary>
-        internal static string LastDigit {
+        public static string LastDigit {
             get {
                 return ResourceManager.GetString("LastDigit", resourceCulture);
             }
@@ -1773,7 +1773,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Leviathan.
         /// </summary>
-        internal static string Leviathan {
+        public static string Leviathan {
             get {
                 return ResourceManager.GetString("Leviathan", resourceCulture);
             }
@@ -1782,7 +1782,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Local Wing.
         /// </summary>
-        internal static string LocalWing {
+        public static string LocalWing {
             get {
                 return ResourceManager.GetString("LocalWing", resourceCulture);
             }
@@ -1791,7 +1791,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to , locked member 1:.
         /// </summary>
-        internal static string LockedMemberQ {
+        public static string LockedMemberQ {
             get {
                 return ResourceManager.GetString("LockedMemberQ", resourceCulture);
             }
@@ -1800,7 +1800,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to , locked member 2: .
         /// </summary>
-        internal static string LockedMemberR {
+        public static string LockedMemberR {
             get {
                 return ResourceManager.GetString("LockedMemberR", resourceCulture);
             }
@@ -1809,7 +1809,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Locked Pair.
         /// </summary>
-        internal static string LockedPair {
+        public static string LockedPair {
             get {
                 return ResourceManager.GetString("LockedPair", resourceCulture);
             }
@@ -1818,7 +1818,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Locked Qiu&apos;s Deadly Pattern.
         /// </summary>
-        internal static string LockedQiuDeadlyPattern {
+        public static string LockedQiuDeadlyPattern {
             get {
                 return ResourceManager.GetString("LockedQiuDeadlyPattern", resourceCulture);
             }
@@ -1827,7 +1827,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Locked Triple.
         /// </summary>
-        internal static string LockedTriple {
+        public static string LockedTriple {
             get {
                 return ResourceManager.GetString("LockedTriple", resourceCulture);
             }
@@ -1836,7 +1836,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to W-Wing Multiple Branches.
         /// </summary>
-        internal static string MultiBranchWWing {
+        public static string MultiBranchWWing {
             get {
                 return ResourceManager.GetString("MultiBranchWWing", resourceCulture);
             }
@@ -1845,7 +1845,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Multi-sector Locked Sets.
         /// </summary>
-        internal static string MultisectorLockedSets {
+        public static string MultisectorLockedSets {
             get {
                 return ResourceManager.GetString("MultisectorLockedSets", resourceCulture);
             }
@@ -1854,7 +1854,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Mutant Jellyfish.
         /// </summary>
-        internal static string MutantJellyfish {
+        public static string MutantJellyfish {
             get {
                 return ResourceManager.GetString("MutantJellyfish", resourceCulture);
             }
@@ -1863,7 +1863,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Mutant Leviathan.
         /// </summary>
-        internal static string MutantLeviathan {
+        public static string MutantLeviathan {
             get {
                 return ResourceManager.GetString("MutantLeviathan", resourceCulture);
             }
@@ -1872,7 +1872,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Mutant Squirmbag.
         /// </summary>
-        internal static string MutantSquirmbag {
+        public static string MutantSquirmbag {
             get {
                 return ResourceManager.GetString("MutantSquirmbag", resourceCulture);
             }
@@ -1881,7 +1881,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Mutant Swordfish.
         /// </summary>
-        internal static string MutantSwordfish {
+        public static string MutantSwordfish {
             get {
                 return ResourceManager.GetString("MutantSwordfish", resourceCulture);
             }
@@ -1890,7 +1890,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Mutant Whale.
         /// </summary>
-        internal static string MutantWhale {
+        public static string MutantWhale {
             get {
                 return ResourceManager.GetString("MutantWhale", resourceCulture);
             }
@@ -1899,7 +1899,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Mutant X-Wing.
         /// </summary>
-        internal static string MutantXWing {
+        public static string MutantXWing {
             get {
                 return ResourceManager.GetString("MutantXWing", resourceCulture);
             }
@@ -1908,7 +1908,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to M-Wing.
         /// </summary>
-        internal static string MWing {
+        public static string MWing {
             get {
                 return ResourceManager.GetString("MWing", resourceCulture);
             }
@@ -1917,7 +1917,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to naked.
         /// </summary>
-        internal static string NakedKeyword {
+        public static string NakedKeyword {
             get {
                 return ResourceManager.GetString("NakedKeyword", resourceCulture);
             }
@@ -1926,7 +1926,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Naked Pair.
         /// </summary>
-        internal static string NakedPair {
+        public static string NakedPair {
             get {
                 return ResourceManager.GetString("NakedPair", resourceCulture);
             }
@@ -1935,7 +1935,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Naked Pair (+).
         /// </summary>
-        internal static string NakedPairPlus {
+        public static string NakedPairPlus {
             get {
                 return ResourceManager.GetString("NakedPairPlus", resourceCulture);
             }
@@ -1944,7 +1944,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Naked Quadruple.
         /// </summary>
-        internal static string NakedQuadruple {
+        public static string NakedQuadruple {
             get {
                 return ResourceManager.GetString("NakedQuadruple", resourceCulture);
             }
@@ -1953,7 +1953,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Naked Quadruple (+).
         /// </summary>
-        internal static string NakedQuadruplePlus {
+        public static string NakedQuadruplePlus {
             get {
                 return ResourceManager.GetString("NakedQuadruplePlus", resourceCulture);
             }
@@ -1962,7 +1962,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Naked Single.
         /// </summary>
-        internal static string NakedSingle {
+        public static string NakedSingle {
             get {
                 return ResourceManager.GetString("NakedSingle", resourceCulture);
             }
@@ -1971,7 +1971,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Naked Triple.
         /// </summary>
-        internal static string NakedTriple {
+        public static string NakedTriple {
             get {
                 return ResourceManager.GetString("NakedTriple", resourceCulture);
             }
@@ -1980,7 +1980,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Naked Triple (+).
         /// </summary>
-        internal static string NakedTriplePlus {
+        public static string NakedTriplePlus {
             get {
                 return ResourceManager.GetString("NakedTriplePlus", resourceCulture);
             }
@@ -1989,7 +1989,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to  (+).
         /// </summary>
-        internal static string NestedSuffix_Level1 {
+        public static string NestedSuffix_Level1 {
             get {
                 return ResourceManager.GetString("NestedSuffix_Level1", resourceCulture);
             }
@@ -1998,7 +1998,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to  (+ AICs).
         /// </summary>
-        internal static string NestedSuffix_Level2 {
+        public static string NestedSuffix_Level2 {
             get {
                 return ResourceManager.GetString("NestedSuffix_Level2", resourceCulture);
             }
@@ -2007,7 +2007,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to  (+ Multiple Forcing Chains).
         /// </summary>
-        internal static string NestedSuffix_Level3 {
+        public static string NestedSuffix_Level3 {
             get {
                 return ResourceManager.GetString("NestedSuffix_Level3", resourceCulture);
             }
@@ -2016,7 +2016,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to  (+ Dynamic Forcing Chains).
         /// </summary>
-        internal static string NestedSuffix_Level4 {
+        public static string NestedSuffix_Level4 {
             get {
                 return ResourceManager.GetString("NestedSuffix_Level4", resourceCulture);
             }
@@ -2025,7 +2025,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to  (+ Dynamic Forcing Chains {0}).
         /// </summary>
-        internal static string NestedSuffix_Level5OrGreater {
+        public static string NestedSuffix_Level5OrGreater {
             get {
                 return ResourceManager.GetString("NestedSuffix_Level5OrGreater", resourceCulture);
             }
@@ -2034,7 +2034,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Nishio Forcing Chains.
         /// </summary>
-        internal static string NishioChains {
+        public static string NishioChains {
             get {
                 return ResourceManager.GetString("NishioChains", resourceCulture);
             }
@@ -2043,7 +2043,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Nishio Forcing Chains.
         /// </summary>
-        internal static string NishioForcingChains {
+        public static string NishioForcingChains {
             get {
                 return ResourceManager.GetString("NishioForcingChains", resourceCulture);
             }
@@ -2052,7 +2052,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Nishio.
         /// </summary>
-        internal static string NishioKeyword {
+        public static string NishioKeyword {
             get {
                 return ResourceManager.GetString("NishioKeyword", resourceCulture);
             }
@@ -2061,7 +2061,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Node Collision.
         /// </summary>
-        internal static string NodeCollision {
+        public static string NodeCollision {
             get {
                 return ResourceManager.GetString("NodeCollision", resourceCulture);
             }
@@ -2070,7 +2070,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No mapping.
         /// </summary>
-        internal static string NoMappingRelation {
+        public static string NoMappingRelation {
             get {
                 return ResourceManager.GetString("NoMappingRelation", resourceCulture);
             }
@@ -2079,7 +2079,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AICs.
         /// </summary>
-        internal static string NormalChains {
+        public static string NormalChains {
             get {
                 return ResourceManager.GetString("NormalChains", resourceCulture);
             }
@@ -2088,7 +2088,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to  or .
         /// </summary>
-        internal static string OrKeywordWithSpaces {
+        public static string OrKeywordWithSpaces {
             get {
                 return ResourceManager.GetString("OrKeywordWithSpaces", resourceCulture);
             }
@@ -2097,7 +2097,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Pattern Overlay.
         /// </summary>
-        internal static string PatternOverlay {
+        public static string PatternOverlay {
             get {
                 return ResourceManager.GetString("PatternOverlay", resourceCulture);
             }
@@ -2106,7 +2106,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Pointing.
         /// </summary>
-        internal static string Pointing {
+        public static string Pointing {
             get {
                 return ResourceManager.GetString("Pointing", resourceCulture);
             }
@@ -2115,7 +2115,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Purple Cow.
         /// </summary>
-        internal static string PurpleCow {
+        public static string PurpleCow {
             get {
                 return ResourceManager.GetString("PurpleCow", resourceCulture);
             }
@@ -2124,7 +2124,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 1.
         /// </summary>
-        internal static string QiuDeadlyPatternType1 {
+        public static string QiuDeadlyPatternType1 {
             get {
                 return ResourceManager.GetString("QiuDeadlyPatternType1", resourceCulture);
             }
@@ -2133,7 +2133,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 2.
         /// </summary>
-        internal static string QiuDeadlyPatternType2 {
+        public static string QiuDeadlyPatternType2 {
             get {
                 return ResourceManager.GetString("QiuDeadlyPatternType2", resourceCulture);
             }
@@ -2142,7 +2142,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 3.
         /// </summary>
-        internal static string QiuDeadlyPatternType3 {
+        public static string QiuDeadlyPatternType3 {
             get {
                 return ResourceManager.GetString("QiuDeadlyPatternType3", resourceCulture);
             }
@@ -2151,7 +2151,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 4.
         /// </summary>
-        internal static string QiuDeadlyPatternType4 {
+        public static string QiuDeadlyPatternType4 {
             get {
                 return ResourceManager.GetString("QiuDeadlyPatternType4", resourceCulture);
             }
@@ -2160,7 +2160,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Region Forcing Chains.
         /// </summary>
-        internal static string RegionForcingChains {
+        public static string RegionForcingChains {
             get {
                 return ResourceManager.GetString("RegionForcingChains", resourceCulture);
             }
@@ -2169,7 +2169,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Remote Pair.
         /// </summary>
-        internal static string RemotePair {
+        public static string RemotePair {
             get {
                 return ResourceManager.GetString("RemotePair", resourceCulture);
             }
@@ -2178,7 +2178,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Reverse Unique Rectangle Type 1.
         /// </summary>
-        internal static string ReverseUniqueRectangleType1 {
+        public static string ReverseUniqueRectangleType1 {
             get {
                 return ResourceManager.GetString("ReverseUniqueRectangleType1", resourceCulture);
             }
@@ -2187,7 +2187,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Reverse Unique Rectangle Type 2.
         /// </summary>
-        internal static string ReverseUniqueRectangleType2 {
+        public static string ReverseUniqueRectangleType2 {
             get {
                 return ResourceManager.GetString("ReverseUniqueRectangleType2", resourceCulture);
             }
@@ -2196,7 +2196,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Reverse Unique Rectangle Type 3.
         /// </summary>
-        internal static string ReverseUniqueRectangleType3 {
+        public static string ReverseUniqueRectangleType3 {
             get {
                 return ResourceManager.GetString("ReverseUniqueRectangleType3", resourceCulture);
             }
@@ -2205,7 +2205,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Reverse Unique Rectangle Type 4.
         /// </summary>
-        internal static string ReverseUniqueRectangleType4 {
+        public static string ReverseUniqueRectangleType4 {
             get {
                 return ResourceManager.GetString("ReverseUniqueRectangleType4", resourceCulture);
             }
@@ -2214,7 +2214,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to RSTUVWXYZ-Wing.
         /// </summary>
-        internal static string RstuvwxyzWing {
+        public static string RstuvwxyzWing {
             get {
                 return ResourceManager.GetString("RstuvwxyzWing", resourceCulture);
             }
@@ -2223,7 +2223,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to RW&apos;s Deadly Pattern.
         /// </summary>
-        internal static string RwDeadlyPattern {
+        public static string RwDeadlyPattern {
             get {
                 return ResourceManager.GetString("RwDeadlyPattern", resourceCulture);
             }
@@ -2232,7 +2232,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Franken Jellyfish.
         /// </summary>
-        internal static string SashimiFrankenJellyfish {
+        public static string SashimiFrankenJellyfish {
             get {
                 return ResourceManager.GetString("SashimiFrankenJellyfish", resourceCulture);
             }
@@ -2241,7 +2241,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Franken Leviathan.
         /// </summary>
-        internal static string SashimiFrankenLeviathan {
+        public static string SashimiFrankenLeviathan {
             get {
                 return ResourceManager.GetString("SashimiFrankenLeviathan", resourceCulture);
             }
@@ -2250,7 +2250,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Franken Squirmbag.
         /// </summary>
-        internal static string SashimiFrankenSquirmbag {
+        public static string SashimiFrankenSquirmbag {
             get {
                 return ResourceManager.GetString("SashimiFrankenSquirmbag", resourceCulture);
             }
@@ -2259,7 +2259,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Franken Swordfish.
         /// </summary>
-        internal static string SashimiFrankenSwordfish {
+        public static string SashimiFrankenSwordfish {
             get {
                 return ResourceManager.GetString("SashimiFrankenSwordfish", resourceCulture);
             }
@@ -2268,7 +2268,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Franken Whale.
         /// </summary>
-        internal static string SashimiFrankenWhale {
+        public static string SashimiFrankenWhale {
             get {
                 return ResourceManager.GetString("SashimiFrankenWhale", resourceCulture);
             }
@@ -2277,7 +2277,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Franken X-Wing.
         /// </summary>
-        internal static string SashimiFrankenXWing {
+        public static string SashimiFrankenXWing {
             get {
                 return ResourceManager.GetString("SashimiFrankenXWing", resourceCulture);
             }
@@ -2286,7 +2286,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Jellyfish.
         /// </summary>
-        internal static string SashimiJellyfish {
+        public static string SashimiJellyfish {
             get {
                 return ResourceManager.GetString("SashimiJellyfish", resourceCulture);
             }
@@ -2295,7 +2295,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Leviathan.
         /// </summary>
-        internal static string SashimiLeviathan {
+        public static string SashimiLeviathan {
             get {
                 return ResourceManager.GetString("SashimiLeviathan", resourceCulture);
             }
@@ -2304,7 +2304,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Mutant Jellyfish.
         /// </summary>
-        internal static string SashimiMutantJellyfish {
+        public static string SashimiMutantJellyfish {
             get {
                 return ResourceManager.GetString("SashimiMutantJellyfish", resourceCulture);
             }
@@ -2313,7 +2313,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Mutant Leviathan.
         /// </summary>
-        internal static string SashimiMutantLeviathan {
+        public static string SashimiMutantLeviathan {
             get {
                 return ResourceManager.GetString("SashimiMutantLeviathan", resourceCulture);
             }
@@ -2322,7 +2322,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Mutant Squirmbag.
         /// </summary>
-        internal static string SashimiMutantSquirmbag {
+        public static string SashimiMutantSquirmbag {
             get {
                 return ResourceManager.GetString("SashimiMutantSquirmbag", resourceCulture);
             }
@@ -2331,7 +2331,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Mutant Swordfish.
         /// </summary>
-        internal static string SashimiMutantSwordfish {
+        public static string SashimiMutantSwordfish {
             get {
                 return ResourceManager.GetString("SashimiMutantSwordfish", resourceCulture);
             }
@@ -2340,7 +2340,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Mutant Whale.
         /// </summary>
-        internal static string SashimiMutantWhale {
+        public static string SashimiMutantWhale {
             get {
                 return ResourceManager.GetString("SashimiMutantWhale", resourceCulture);
             }
@@ -2349,7 +2349,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Mutant X-Wing.
         /// </summary>
-        internal static string SashimiMutantXWing {
+        public static string SashimiMutantXWing {
             get {
                 return ResourceManager.GetString("SashimiMutantXWing", resourceCulture);
             }
@@ -2358,7 +2358,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Squirmbag.
         /// </summary>
-        internal static string SashimiSquirmbag {
+        public static string SashimiSquirmbag {
             get {
                 return ResourceManager.GetString("SashimiSquirmbag", resourceCulture);
             }
@@ -2367,7 +2367,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Swordfish.
         /// </summary>
-        internal static string SashimiSwordfish {
+        public static string SashimiSwordfish {
             get {
                 return ResourceManager.GetString("SashimiSwordfish", resourceCulture);
             }
@@ -2376,7 +2376,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi Whale.
         /// </summary>
-        internal static string SashimiWhale {
+        public static string SashimiWhale {
             get {
                 return ResourceManager.GetString("SashimiWhale", resourceCulture);
             }
@@ -2385,7 +2385,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sashimi X-Wing.
         /// </summary>
-        internal static string SashimiXWing {
+        public static string SashimiXWing {
             get {
                 return ResourceManager.GetString("SashimiXWing", resourceCulture);
             }
@@ -2394,7 +2394,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Senior Exocet.
         /// </summary>
-        internal static string SeniorExocet {
+        public static string SeniorExocet {
             get {
                 return ResourceManager.GetString("SeniorExocet", resourceCulture);
             }
@@ -2403,7 +2403,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Franken Jellyfish.
         /// </summary>
-        internal static string SiameseFinnedFrankenJellyfish {
+        public static string SiameseFinnedFrankenJellyfish {
             get {
                 return ResourceManager.GetString("SiameseFinnedFrankenJellyfish", resourceCulture);
             }
@@ -2412,7 +2412,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Franken Leviathan.
         /// </summary>
-        internal static string SiameseFinnedFrankenLeviathan {
+        public static string SiameseFinnedFrankenLeviathan {
             get {
                 return ResourceManager.GetString("SiameseFinnedFrankenLeviathan", resourceCulture);
             }
@@ -2421,7 +2421,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Franken Squirmbag.
         /// </summary>
-        internal static string SiameseFinnedFrankenSquirmbag {
+        public static string SiameseFinnedFrankenSquirmbag {
             get {
                 return ResourceManager.GetString("SiameseFinnedFrankenSquirmbag", resourceCulture);
             }
@@ -2430,7 +2430,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Franken Swordfish.
         /// </summary>
-        internal static string SiameseFinnedFrankenSwordfish {
+        public static string SiameseFinnedFrankenSwordfish {
             get {
                 return ResourceManager.GetString("SiameseFinnedFrankenSwordfish", resourceCulture);
             }
@@ -2439,7 +2439,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Franken Whale.
         /// </summary>
-        internal static string SiameseFinnedFrankenWhale {
+        public static string SiameseFinnedFrankenWhale {
             get {
                 return ResourceManager.GetString("SiameseFinnedFrankenWhale", resourceCulture);
             }
@@ -2448,7 +2448,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Franken X-Wing.
         /// </summary>
-        internal static string SiameseFinnedFrankenXWing {
+        public static string SiameseFinnedFrankenXWing {
             get {
                 return ResourceManager.GetString("SiameseFinnedFrankenXWing", resourceCulture);
             }
@@ -2457,7 +2457,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Jellyfish.
         /// </summary>
-        internal static string SiameseFinnedJellyfish {
+        public static string SiameseFinnedJellyfish {
             get {
                 return ResourceManager.GetString("SiameseFinnedJellyfish", resourceCulture);
             }
@@ -2466,7 +2466,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Leviathan.
         /// </summary>
-        internal static string SiameseFinnedLeviathan {
+        public static string SiameseFinnedLeviathan {
             get {
                 return ResourceManager.GetString("SiameseFinnedLeviathan", resourceCulture);
             }
@@ -2475,7 +2475,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Mutant Jellyfish.
         /// </summary>
-        internal static string SiameseFinnedMutantJellyfish {
+        public static string SiameseFinnedMutantJellyfish {
             get {
                 return ResourceManager.GetString("SiameseFinnedMutantJellyfish", resourceCulture);
             }
@@ -2484,7 +2484,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Mutant Leviathan.
         /// </summary>
-        internal static string SiameseFinnedMutantLeviathan {
+        public static string SiameseFinnedMutantLeviathan {
             get {
                 return ResourceManager.GetString("SiameseFinnedMutantLeviathan", resourceCulture);
             }
@@ -2493,7 +2493,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Mutant Squirmbag.
         /// </summary>
-        internal static string SiameseFinnedMutantSquirmbag {
+        public static string SiameseFinnedMutantSquirmbag {
             get {
                 return ResourceManager.GetString("SiameseFinnedMutantSquirmbag", resourceCulture);
             }
@@ -2502,7 +2502,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Mutant Swordfish.
         /// </summary>
-        internal static string SiameseFinnedMutantSwordfish {
+        public static string SiameseFinnedMutantSwordfish {
             get {
                 return ResourceManager.GetString("SiameseFinnedMutantSwordfish", resourceCulture);
             }
@@ -2511,7 +2511,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Mutant Whale.
         /// </summary>
-        internal static string SiameseFinnedMutantWhale {
+        public static string SiameseFinnedMutantWhale {
             get {
                 return ResourceManager.GetString("SiameseFinnedMutantWhale", resourceCulture);
             }
@@ -2520,7 +2520,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Mutant X-Wing.
         /// </summary>
-        internal static string SiameseFinnedMutantXWing {
+        public static string SiameseFinnedMutantXWing {
             get {
                 return ResourceManager.GetString("SiameseFinnedMutantXWing", resourceCulture);
             }
@@ -2529,7 +2529,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Squirmbag.
         /// </summary>
-        internal static string SiameseFinnedSquirmbag {
+        public static string SiameseFinnedSquirmbag {
             get {
                 return ResourceManager.GetString("SiameseFinnedSquirmbag", resourceCulture);
             }
@@ -2538,7 +2538,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Swordfish.
         /// </summary>
-        internal static string SiameseFinnedSwordfish {
+        public static string SiameseFinnedSwordfish {
             get {
                 return ResourceManager.GetString("SiameseFinnedSwordfish", resourceCulture);
             }
@@ -2547,7 +2547,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Whale.
         /// </summary>
-        internal static string SiameseFinnedWhale {
+        public static string SiameseFinnedWhale {
             get {
                 return ResourceManager.GetString("SiameseFinnedWhale", resourceCulture);
             }
@@ -2556,7 +2556,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Finned X-Wing.
         /// </summary>
-        internal static string SiameseFinnedXWing {
+        public static string SiameseFinnedXWing {
             get {
                 return ResourceManager.GetString("SiameseFinnedXWing", resourceCulture);
             }
@@ -2565,7 +2565,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Junior Exocet.
         /// </summary>
-        internal static string SiameseJuniorExocet {
+        public static string SiameseJuniorExocet {
             get {
                 return ResourceManager.GetString("SiameseJuniorExocet", resourceCulture);
             }
@@ -2574,7 +2574,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Franken Jellyfish.
         /// </summary>
-        internal static string SiameseSashimiFrankenJellyfish {
+        public static string SiameseSashimiFrankenJellyfish {
             get {
                 return ResourceManager.GetString("SiameseSashimiFrankenJellyfish", resourceCulture);
             }
@@ -2583,7 +2583,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Franken Leviathan.
         /// </summary>
-        internal static string SiameseSashimiFrankenLeviathan {
+        public static string SiameseSashimiFrankenLeviathan {
             get {
                 return ResourceManager.GetString("SiameseSashimiFrankenLeviathan", resourceCulture);
             }
@@ -2592,7 +2592,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Franken Squirmbag.
         /// </summary>
-        internal static string SiameseSashimiFrankenSquirmbag {
+        public static string SiameseSashimiFrankenSquirmbag {
             get {
                 return ResourceManager.GetString("SiameseSashimiFrankenSquirmbag", resourceCulture);
             }
@@ -2601,7 +2601,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Franken Swordfish.
         /// </summary>
-        internal static string SiameseSashimiFrankenSwordfish {
+        public static string SiameseSashimiFrankenSwordfish {
             get {
                 return ResourceManager.GetString("SiameseSashimiFrankenSwordfish", resourceCulture);
             }
@@ -2610,7 +2610,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Franken Whale.
         /// </summary>
-        internal static string SiameseSashimiFrankenWhale {
+        public static string SiameseSashimiFrankenWhale {
             get {
                 return ResourceManager.GetString("SiameseSashimiFrankenWhale", resourceCulture);
             }
@@ -2619,7 +2619,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Franken X-Wing.
         /// </summary>
-        internal static string SiameseSashimiFrankenXWing {
+        public static string SiameseSashimiFrankenXWing {
             get {
                 return ResourceManager.GetString("SiameseSashimiFrankenXWing", resourceCulture);
             }
@@ -2628,7 +2628,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Jellyfish.
         /// </summary>
-        internal static string SiameseSashimiJellyfish {
+        public static string SiameseSashimiJellyfish {
             get {
                 return ResourceManager.GetString("SiameseSashimiJellyfish", resourceCulture);
             }
@@ -2637,7 +2637,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Leviathan.
         /// </summary>
-        internal static string SiameseSashimiLeviathan {
+        public static string SiameseSashimiLeviathan {
             get {
                 return ResourceManager.GetString("SiameseSashimiLeviathan", resourceCulture);
             }
@@ -2646,7 +2646,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Mutant Jellyfish.
         /// </summary>
-        internal static string SiameseSashimiMutantJellyfish {
+        public static string SiameseSashimiMutantJellyfish {
             get {
                 return ResourceManager.GetString("SiameseSashimiMutantJellyfish", resourceCulture);
             }
@@ -2655,7 +2655,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Mutant Leviathan.
         /// </summary>
-        internal static string SiameseSashimiMutantLeviathan {
+        public static string SiameseSashimiMutantLeviathan {
             get {
                 return ResourceManager.GetString("SiameseSashimiMutantLeviathan", resourceCulture);
             }
@@ -2664,7 +2664,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Mutant Squirmbag.
         /// </summary>
-        internal static string SiameseSashimiMutantSquirmbag {
+        public static string SiameseSashimiMutantSquirmbag {
             get {
                 return ResourceManager.GetString("SiameseSashimiMutantSquirmbag", resourceCulture);
             }
@@ -2673,7 +2673,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Mutant Swordfish.
         /// </summary>
-        internal static string SiameseSashimiMutantSwordfish {
+        public static string SiameseSashimiMutantSwordfish {
             get {
                 return ResourceManager.GetString("SiameseSashimiMutantSwordfish", resourceCulture);
             }
@@ -2682,7 +2682,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Mutant Whale.
         /// </summary>
-        internal static string SiameseSashimiMutantWhale {
+        public static string SiameseSashimiMutantWhale {
             get {
                 return ResourceManager.GetString("SiameseSashimiMutantWhale", resourceCulture);
             }
@@ -2691,7 +2691,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Mutant X-Wing.
         /// </summary>
-        internal static string SiameseSashimiMutantXWing {
+        public static string SiameseSashimiMutantXWing {
             get {
                 return ResourceManager.GetString("SiameseSashimiMutantXWing", resourceCulture);
             }
@@ -2700,7 +2700,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Squirmbag.
         /// </summary>
-        internal static string SiameseSashimiSquirmbag {
+        public static string SiameseSashimiSquirmbag {
             get {
                 return ResourceManager.GetString("SiameseSashimiSquirmbag", resourceCulture);
             }
@@ -2709,7 +2709,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Swordfish.
         /// </summary>
-        internal static string SiameseSashimiSwordfish {
+        public static string SiameseSashimiSwordfish {
             get {
                 return ResourceManager.GetString("SiameseSashimiSwordfish", resourceCulture);
             }
@@ -2718,7 +2718,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Whale.
         /// </summary>
-        internal static string SiameseSashimiWhale {
+        public static string SiameseSashimiWhale {
             get {
                 return ResourceManager.GetString("SiameseSashimiWhale", resourceCulture);
             }
@@ -2727,7 +2727,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi X-Wing.
         /// </summary>
-        internal static string SiameseSashimiXWing {
+        public static string SiameseSashimiXWing {
             get {
                 return ResourceManager.GetString("SiameseSashimiXWing", resourceCulture);
             }
@@ -2736,7 +2736,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Siamese Senior Exocet.
         /// </summary>
-        internal static string SiameseSeniorExocet {
+        public static string SiameseSeniorExocet {
             get {
                 return ResourceManager.GetString("SiameseSeniorExocet", resourceCulture);
             }
@@ -2745,7 +2745,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Singly-Linked Almost Locked Sets XZ Rule.
         /// </summary>
-        internal static string SinglyLinkedAlmostLockedSetsXzRule {
+        public static string SinglyLinkedAlmostLockedSetsXzRule {
             get {
                 return ResourceManager.GetString("SinglyLinkedAlmostLockedSetsXzRule", resourceCulture);
             }
@@ -2754,7 +2754,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Skyscraper.
         /// </summary>
-        internal static string Skyscraper {
+        public static string Skyscraper {
             get {
                 return ResourceManager.GetString("Skyscraper", resourceCulture);
             }
@@ -2763,7 +2763,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Split Wing.
         /// </summary>
-        internal static string SplitWing {
+        public static string SplitWing {
             get {
                 return ResourceManager.GetString("SplitWing", resourceCulture);
             }
@@ -2772,7 +2772,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Squirmbag.
         /// </summary>
-        internal static string Squirmbag {
+        public static string Squirmbag {
             get {
                 return ResourceManager.GetString("Squirmbag", resourceCulture);
             }
@@ -2781,7 +2781,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Multiple Forcing Chains (Advanced).
         /// </summary>
-        internal static string StepSearcherName_AdvancedMultipleChainingStepSearcher {
+        public static string StepSearcherName_AdvancedMultipleChainingStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_AdvancedMultipleChainingStepSearcher", resourceCulture);
             }
@@ -2790,7 +2790,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Locked Candidates.
         /// </summary>
-        internal static string StepSearcherName_AlmostLockedCandidatesStepSearcher {
+        public static string StepSearcherName_AlmostLockedCandidatesStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_AlmostLockedCandidatesStepSearcher", resourceCulture);
             }
@@ -2799,7 +2799,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Locked Sets W-Wing.
         /// </summary>
-        internal static string StepSearcherName_AlmostLockedSetsWWingStepSearcher {
+        public static string StepSearcherName_AlmostLockedSetsWWingStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_AlmostLockedSetsWWingStepSearcher", resourceCulture);
             }
@@ -2808,7 +2808,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Locked Sets XY-Wing.
         /// </summary>
-        internal static string StepSearcherName_AlmostLockedSetsXyWingStepSearcher {
+        public static string StepSearcherName_AlmostLockedSetsXyWingStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_AlmostLockedSetsXyWingStepSearcher", resourceCulture);
             }
@@ -2817,7 +2817,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Almost Locked Sets XZ.
         /// </summary>
-        internal static string StepSearcherName_AlmostLockedSetsXzStepSearcher {
+        public static string StepSearcherName_AlmostLockedSetsXzStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_AlmostLockedSetsXzStepSearcher", resourceCulture);
             }
@@ -2826,7 +2826,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Oddagon.
         /// </summary>
-        internal static string StepSearcherName_BivalueOddagonStepSearcher {
+        public static string StepSearcherName_BivalueOddagonStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_BivalueOddagonStepSearcher", resourceCulture);
             }
@@ -2835,7 +2835,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave.
         /// </summary>
-        internal static string StepSearcherName_BivalueUniversalGraveStepSearcher {
+        public static string StepSearcherName_BivalueUniversalGraveStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_BivalueUniversalGraveStepSearcher", resourceCulture);
             }
@@ -2844,7 +2844,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Bowman&apos;s Bingo.
         /// </summary>
-        internal static string StepSearcherName_BowmanBingoStepSearcher {
+        public static string StepSearcherName_BowmanBingoStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_BowmanBingoStepSearcher", resourceCulture);
             }
@@ -2853,7 +2853,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Brute Force.
         /// </summary>
-        internal static string StepSearcherName_BruteForceStepSearcher {
+        public static string StepSearcherName_BruteForceStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_BruteForceStepSearcher", resourceCulture);
             }
@@ -2862,7 +2862,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Chromatic Pattern.
         /// </summary>
-        internal static string StepSearcherName_ChromaticPatternStepSearcher {
+        public static string StepSearcherName_ChromaticPatternStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_ChromaticPatternStepSearcher", resourceCulture);
             }
@@ -2871,7 +2871,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Complex Fishes.
         /// </summary>
-        internal static string StepSearcherName_ComplexFishStepSearcher {
+        public static string StepSearcherName_ComplexFishStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_ComplexFishStepSearcher", resourceCulture);
             }
@@ -2880,7 +2880,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Death Blossom.
         /// </summary>
-        internal static string StepSearcherName_DeathBlossomStepSearcher {
+        public static string StepSearcherName_DeathBlossomStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_DeathBlossomStepSearcher", resourceCulture);
             }
@@ -2889,7 +2889,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Domino Loop.
         /// </summary>
-        internal static string StepSearcherName_DominoLoopStepSearcher {
+        public static string StepSearcherName_DominoLoopStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_DominoLoopStepSearcher", resourceCulture);
             }
@@ -2898,7 +2898,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Empty Rectangle Intersection Pair.
         /// </summary>
-        internal static string StepSearcherName_EmptyRectangleIntersectionPairStepSearcher {
+        public static string StepSearcherName_EmptyRectangleIntersectionPairStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_EmptyRectangleIntersectionPairStepSearcher", resourceCulture);
             }
@@ -2907,7 +2907,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Empty Rectangle.
         /// </summary>
-        internal static string StepSearcherName_EmptyRectangleStepSearcher {
+        public static string StepSearcherName_EmptyRectangleStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_EmptyRectangleStepSearcher", resourceCulture);
             }
@@ -2916,7 +2916,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Extended Rectangle.
         /// </summary>
-        internal static string StepSearcherName_ExtendedRectangleStepSearcher {
+        public static string StepSearcherName_ExtendedRectangleStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_ExtendedRectangleStepSearcher", resourceCulture);
             }
@@ -2925,7 +2925,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Firework.
         /// </summary>
-        internal static string StepSearcherName_FireworkStepSearcher {
+        public static string StepSearcherName_FireworkStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_FireworkStepSearcher", resourceCulture);
             }
@@ -2934,7 +2934,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Guardian.
         /// </summary>
-        internal static string StepSearcherName_GuardianStepSearcher {
+        public static string StepSearcherName_GuardianStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_GuardianStepSearcher", resourceCulture);
             }
@@ -2943,7 +2943,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
         /// </summary>
-        internal static string StepSearcherName_GurthSymmetricalPlacementStepSearcher {
+        public static string StepSearcherName_GurthSymmetricalPlacementStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_GurthSymmetricalPlacementStepSearcher", resourceCulture);
             }
@@ -2952,7 +2952,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Junior Exocet.
         /// </summary>
-        internal static string StepSearcherName_JuniorExocetStepSearcher {
+        public static string StepSearcherName_JuniorExocetStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_JuniorExocetStepSearcher", resourceCulture);
             }
@@ -2961,7 +2961,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Locked Candidates.
         /// </summary>
-        internal static string StepSearcherName_LockedCandidatesStepSearcher {
+        public static string StepSearcherName_LockedCandidatesStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_LockedCandidatesStepSearcher", resourceCulture);
             }
@@ -2970,7 +2970,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Multi-Branched W-Wing.
         /// </summary>
-        internal static string StepSearcherName_MultiBranchWWingStepSearcher {
+        public static string StepSearcherName_MultiBranchWWingStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_MultiBranchWWingStepSearcher", resourceCulture);
             }
@@ -2979,7 +2979,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Multiple Forcing Chains.
         /// </summary>
-        internal static string StepSearcherName_MultipleChainingStepSearcher {
+        public static string StepSearcherName_MultipleChainingStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_MultipleChainingStepSearcher", resourceCulture);
             }
@@ -2988,7 +2988,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Multi-Sector Locked Sets.
         /// </summary>
-        internal static string StepSearcherName_MultisectorLockedSetsStepSearcher {
+        public static string StepSearcherName_MultisectorLockedSetsStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_MultisectorLockedSetsStepSearcher", resourceCulture);
             }
@@ -2997,7 +2997,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Alternating Inference Chains.
         /// </summary>
-        internal static string StepSearcherName_NonMultipleChainingStepSearcher {
+        public static string StepSearcherName_NonMultipleChainingStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_NonMultipleChainingStepSearcher", resourceCulture);
             }
@@ -3006,7 +3006,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Normal Fishes.
         /// </summary>
-        internal static string StepSearcherName_NormalFishStepSearcher {
+        public static string StepSearcherName_NormalFishStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_NormalFishStepSearcher", resourceCulture);
             }
@@ -3015,7 +3015,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Pattern Overlay.
         /// </summary>
-        internal static string StepSearcherName_PatternOverlayStepSearcher {
+        public static string StepSearcherName_PatternOverlayStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_PatternOverlayStepSearcher", resourceCulture);
             }
@@ -3024,7 +3024,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern.
         /// </summary>
-        internal static string StepSearcherName_QiuDeadlyPatternStepSearcher {
+        public static string StepSearcherName_QiuDeadlyPatternStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_QiuDeadlyPatternStepSearcher", resourceCulture);
             }
@@ -3033,7 +3033,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Regular Wings.
         /// </summary>
-        internal static string StepSearcherName_RegularWingStepSearcher {
+        public static string StepSearcherName_RegularWingStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_RegularWingStepSearcher", resourceCulture);
             }
@@ -3042,7 +3042,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Reverse Bi-value Universal Grave.
         /// </summary>
-        internal static string StepSearcherName_ReverseBivalueUniversalGraveStepSearcher {
+        public static string StepSearcherName_ReverseBivalueUniversalGraveStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_ReverseBivalueUniversalGraveStepSearcher", resourceCulture);
             }
@@ -3051,7 +3051,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to RW&apos;s Deadly Pattern.
         /// </summary>
-        internal static string StepSearcherName_RwDeadlyPatternStepSearcher {
+        public static string StepSearcherName_RwDeadlyPatternStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_RwDeadlyPatternStepSearcher", resourceCulture);
             }
@@ -3060,7 +3060,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Senior Exocet.
         /// </summary>
-        internal static string StepSearcherName_SeniorExocetStepSearcher {
+        public static string StepSearcherName_SeniorExocetStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_SeniorExocetStepSearcher", resourceCulture);
             }
@@ -3069,7 +3069,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Singles.
         /// </summary>
-        internal static string StepSearcherName_SingleStepSearcher {
+        public static string StepSearcherName_SingleStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_SingleStepSearcher", resourceCulture);
             }
@@ -3078,7 +3078,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Subsets.
         /// </summary>
-        internal static string StepSearcherName_SubsetStepSearcher {
+        public static string StepSearcherName_SubsetStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_SubsetStepSearcher", resourceCulture);
             }
@@ -3087,7 +3087,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sue de Coq 3 Dimension.
         /// </summary>
-        internal static string StepSearcherName_SueDeCoq3DimensionStepSearcher {
+        public static string StepSearcherName_SueDeCoq3DimensionStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_SueDeCoq3DimensionStepSearcher", resourceCulture);
             }
@@ -3096,7 +3096,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sue de Coq.
         /// </summary>
-        internal static string StepSearcherName_SueDeCoqStepSearcher {
+        public static string StepSearcherName_SueDeCoqStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_SueDeCoqStepSearcher", resourceCulture);
             }
@@ -3105,7 +3105,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Templates.
         /// </summary>
-        internal static string StepSearcherName_TemplateStepSearcher {
+        public static string StepSearcherName_TemplateStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_TemplateStepSearcher", resourceCulture);
             }
@@ -3114,7 +3114,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Two-Strong Links.
         /// </summary>
-        internal static string StepSearcherName_TwoStrongLinksStepSearcher {
+        public static string StepSearcherName_TwoStrongLinksStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_TwoStrongLinksStepSearcher", resourceCulture);
             }
@@ -3123,7 +3123,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Loop.
         /// </summary>
-        internal static string StepSearcherName_UniqueLoopStepSearcher {
+        public static string StepSearcherName_UniqueLoopStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_UniqueLoopStepSearcher", resourceCulture);
             }
@@ -3132,7 +3132,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Matrix.
         /// </summary>
-        internal static string StepSearcherName_UniqueMatrixStepSearcher {
+        public static string StepSearcherName_UniqueMatrixStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_UniqueMatrixStepSearcher", resourceCulture);
             }
@@ -3141,7 +3141,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Uniqueness Clue Cover.
         /// </summary>
-        internal static string StepSearcherName_UniquenessClueCoverStepSearcher {
+        public static string StepSearcherName_UniquenessClueCoverStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_UniquenessClueCoverStepSearcher", resourceCulture);
             }
@@ -3150,7 +3150,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Polygon.
         /// </summary>
-        internal static string StepSearcherName_UniquePolygonStepSearcher {
+        public static string StepSearcherName_UniquePolygonStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_UniquePolygonStepSearcher", resourceCulture);
             }
@@ -3159,7 +3159,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle.
         /// </summary>
-        internal static string StepSearcherName_UniqueRectangleStepSearcher {
+        public static string StepSearcherName_UniqueRectangleStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_UniqueRectangleStepSearcher", resourceCulture);
             }
@@ -3168,7 +3168,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to W-Wing.
         /// </summary>
-        internal static string StepSearcherName_WWingStepSearcher {
+        public static string StepSearcherName_WWingStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_WWingStepSearcher", resourceCulture);
             }
@@ -3177,7 +3177,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to STUVWXYZ-Wing.
         /// </summary>
-        internal static string StuvwxyzWing {
+        public static string StuvwxyzWing {
             get {
                 return ResourceManager.GetString("StuvwxyzWing", resourceCulture);
             }
@@ -3186,7 +3186,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to pair.
         /// </summary>
-        internal static string SubsetNamesSize2 {
+        public static string SubsetNamesSize2 {
             get {
                 return ResourceManager.GetString("SubsetNamesSize2", resourceCulture);
             }
@@ -3195,7 +3195,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to triple.
         /// </summary>
-        internal static string SubsetNamesSize3 {
+        public static string SubsetNamesSize3 {
             get {
                 return ResourceManager.GetString("SubsetNamesSize3", resourceCulture);
             }
@@ -3204,7 +3204,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to quadruple.
         /// </summary>
-        internal static string SubsetNamesSize4 {
+        public static string SubsetNamesSize4 {
             get {
                 return ResourceManager.GetString("SubsetNamesSize4", resourceCulture);
             }
@@ -3213,7 +3213,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to quintuple.
         /// </summary>
-        internal static string SubsetNamesSize5 {
+        public static string SubsetNamesSize5 {
             get {
                 return ResourceManager.GetString("SubsetNamesSize5", resourceCulture);
             }
@@ -3222,7 +3222,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to sextuple.
         /// </summary>
-        internal static string SubsetNamesSize6 {
+        public static string SubsetNamesSize6 {
             get {
                 return ResourceManager.GetString("SubsetNamesSize6", resourceCulture);
             }
@@ -3231,7 +3231,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to septuple.
         /// </summary>
-        internal static string SubsetNamesSize7 {
+        public static string SubsetNamesSize7 {
             get {
                 return ResourceManager.GetString("SubsetNamesSize7", resourceCulture);
             }
@@ -3240,7 +3240,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sue de Coq.
         /// </summary>
-        internal static string SueDeCoq {
+        public static string SueDeCoq {
             get {
                 return ResourceManager.GetString("SueDeCoq", resourceCulture);
             }
@@ -3249,7 +3249,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sue de Coq 3 Dimension.
         /// </summary>
-        internal static string SueDeCoq3Dimension {
+        public static string SueDeCoq3Dimension {
             get {
                 return ResourceManager.GetString("SueDeCoq3Dimension", resourceCulture);
             }
@@ -3258,7 +3258,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sue de Coq Cannibalism.
         /// </summary>
-        internal static string SueDeCoqCannibalism {
+        public static string SueDeCoqCannibalism {
             get {
                 return ResourceManager.GetString("SueDeCoqCannibalism", resourceCulture);
             }
@@ -3267,7 +3267,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sue de Coq Isolated Digit.
         /// </summary>
-        internal static string SueDeCoqIsolated {
+        public static string SueDeCoqIsolated {
             get {
                 return ResourceManager.GetString("SueDeCoqIsolated", resourceCulture);
             }
@@ -3276,7 +3276,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Swordfish.
         /// </summary>
-        internal static string Swordfish {
+        public static string Swordfish {
             get {
                 return ResourceManager.GetString("Swordfish", resourceCulture);
             }
@@ -3285,7 +3285,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} from {BaseCellsStr} to {TargetCellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_AlmostLockedCandidatesStep {
+        public static string TechniqueFormat_AlmostLockedCandidatesStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_AlmostLockedCandidatesStep", resourceCulture);
             }
@@ -3294,7 +3294,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Two ALSes {Als1Str}, {Als2Str} connected by {ConjStr}, W = {WStr}, X = {XStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_AlmostLockedSetsWWingStep {
+        public static string TechniqueFormat_AlmostLockedSetsWWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_AlmostLockedSetsWWingStep", resourceCulture);
             }
@@ -3303,7 +3303,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {Als1Str} -&gt; {BridgeStr} -&gt; {Als2Str}, X = {XStr}, Y = {YStr}, Z = {ZStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_AlmostLockedSetsXyWingStep {
+        public static string TechniqueFormat_AlmostLockedSetsXyWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_AlmostLockedSetsXyWingStep", resourceCulture);
             }
@@ -3312,7 +3312,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: ALS #1: {Als1Str}, ALS #2: {Als2Str}, X = {XStr}{ZResultStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_AlmostLockedSetsXzRule {
+        public static string TechniqueFormat_AlmostLockedSetsXzRule {
             get {
                 return ResourceManager.GetString("TechniqueFormat_AlmostLockedSetsXzRule", resourceCulture);
             }
@@ -3321,7 +3321,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Chain {ChainStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_AlternatingInferenceChainStep {
+        public static string TechniqueFormat_AlternatingInferenceChainStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_AlternatingInferenceChainStep", resourceCulture);
             }
@@ -3330,7 +3330,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with hidden single: if cell {BaseCellStr} is filled with the digit {Digit1Str}, house {HouseStr} will only contain a cell {TargetCellStr} can be filled with that digit, but will raise the deadly pattern =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_AvoidableRectangleWithHiddenSingleStep {
+        public static string TechniqueFormat_AvoidableRectangleWithHiddenSingleStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_AvoidableRectangleWithHiddenSingleStep", resourceCulture);
             }
@@ -3339,7 +3339,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: All candidates {CandsStr} can be eliminated because a loop is formed =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BidirectionalCycleStep {
+        public static string TechniqueFormat_BidirectionalCycleStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BidirectionalCycleStep", resourceCulture);
             }
@@ -3348,7 +3348,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: It can be proved to be a contradiction if {AnchorIsTrueOrFalseStr} is {AnchorIsNotOnStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BinaryChainingStep {
+        public static string TechniqueFormat_BinaryChainingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BinaryChainingStep", resourceCulture);
             }
@@ -3357,7 +3357,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: If the cell {CellStr} only contains the digits {Digit1Str} and {Digit2Str} (or one of those two), the loop {LoopStr} will form an error structure =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BivalueOddagonType1Step {
+        public static string TechniqueFormat_BivalueOddagonType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType1Step", resourceCulture);
             }
@@ -3366,7 +3366,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: If all digit {ExtraDigitStr} in cells {LoopStr} are removed, the loop will from an error structure =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BivalueOddagonType2Step {
+        public static string TechniqueFormat_BivalueOddagonType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType2Step", resourceCulture);
             }
@@ -3375,7 +3375,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: To avoid the structure {LoopStr} of digits {Digit1Str} and {Digit2Str} error, the only way is to form the subset (digits {DigitsStr} in cells {ExtraCellsStr}) =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BivalueOddagonType3Step {
+        public static string TechniqueFormat_BivalueOddagonType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType3Step", resourceCulture);
             }
@@ -3384,7 +3384,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: If {FalseCandidateStr} is true, the grid will be reduced to a BUG deadly pattern =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep {
+        public static string TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep", resourceCulture);
             }
@@ -3393,7 +3393,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: True candidates: {CandidatesStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BivalueUniversalGraveMultipleStep {
+        public static string TechniqueFormat_BivalueUniversalGraveMultipleStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveMultipleStep", resourceCulture);
             }
@@ -3402,7 +3402,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BivalueUniversalGraveType1Step {
+        public static string TechniqueFormat_BivalueUniversalGraveType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveType1Step", resourceCulture);
             }
@@ -3411,7 +3411,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {ExtraDigitStr} with cells {CellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BivalueUniversalGraveType2Step {
+        public static string TechniqueFormat_BivalueUniversalGraveType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveType2Step", resourceCulture);
             }
@@ -3420,7 +3420,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: True candidates {TrueCandidatesStr} with {SubsetTypeStr} {SizeStr} {ExtraDigitsStr} in cells {CellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BivalueUniversalGraveType3Step {
+        public static string TechniqueFormat_BivalueUniversalGraveType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveType3Step", resourceCulture);
             }
@@ -3429,7 +3429,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BivalueUniversalGraveType4Step {
+        public static string TechniqueFormat_BivalueUniversalGraveType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveType4Step", resourceCulture);
             }
@@ -3438,7 +3438,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BivalueUniversalGraveXzStep {
+        public static string TechniqueFormat_BivalueUniversalGraveXzStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveXzStep", resourceCulture);
             }
@@ -3447,7 +3447,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Try {ContradictionSeriesStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_BowmanBingoStep {
+        public static string TechniqueFormat_BowmanBingoStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BowmanBingoStep", resourceCulture);
             }
@@ -3456,7 +3456,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {AssignmentStr}.
         /// </summary>
-        internal static string TechniqueFormat_BruteForceStep {
+        public static string TechniqueFormat_BruteForceStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BruteForceStep", resourceCulture);
             }
@@ -3465,7 +3465,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: It can be proved using chains that all digits are false from {SourceCellStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_CellChainingStep {
+        public static string TechniqueFormat_CellChainingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_CellChainingStep", resourceCulture);
             }
@@ -3474,7 +3474,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: It is proved that all candidates in cell {CellStr} will lead to a same conclusion =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_CellForcingChainsStep {
+        public static string TechniqueFormat_CellForcingChainsStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_CellForcingChainsStep", resourceCulture);
             }
@@ -3483,7 +3483,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {CellsStr} in blocks {BlocksStr} will form an invalid structure if these cells only contain the digits {DigitsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ChromaticPatternType1Step {
+        public static string TechniqueFormat_ChromaticPatternType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ChromaticPatternType1Step", resourceCulture);
             }
@@ -3492,7 +3492,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} in blocks {BlocksStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ChromaticPatternXzStep {
+        public static string TechniqueFormat_ChromaticPatternXzStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ChromaticPatternXzStep", resourceCulture);
             }
@@ -3501,7 +3501,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetsStr}\\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ComplexFishStep {
+        public static string TechniqueFormat_ComplexFishStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ComplexFishStep", resourceCulture);
             }
@@ -3510,7 +3510,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Loop {ChainStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ContinuousNiceLoopStep {
+        public static string TechniqueFormat_ContinuousNiceLoopStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ContinuousNiceLoopStep", resourceCulture);
             }
@@ -3519,7 +3519,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: It is proved that the candidate {StartCandStr} is {StartCandOnOffStr}, both true and false states of candidate {EndCandStr} can be found, leading to a contradiction =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ContradictionForcingChainsStep {
+        public static string TechniqueFormat_ContradictionForcingChainsStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ContradictionForcingChainsStep", resourceCulture);
             }
@@ -3528,7 +3528,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: No matter what digit will be filled in cell {CellStr}, the related ALSes {AlsesStr} will keep at least one digit {DigitStr} being true =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_DeathBlossomCellTypeStep {
+        public static string TechniqueFormat_DeathBlossomCellTypeStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_DeathBlossomCellTypeStep", resourceCulture);
             }
@@ -3537,7 +3537,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_DominoLoopStep {
+        public static string TechniqueFormat_DominoLoopStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_DominoLoopStep", resourceCulture);
             }
@@ -3546,7 +3546,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: It is proved that a same conclusion - {StartCandStr} being {StartCandOnOffStr} can be found no matter what state the candidate {EndCandStr} now is =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_DoubleForcingChainsStep {
+        public static string TechniqueFormat_DoubleForcingChainsStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_DoubleForcingChainsStep", resourceCulture);
             }
@@ -3555,7 +3555,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {HouseStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_EmptyRectangleIntersectionPairStep {
+        public static string TechniqueFormat_EmptyRectangleIntersectionPairStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_EmptyRectangleIntersectionPairStep", resourceCulture);
             }
@@ -3564,7 +3564,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitStr} in {HouseStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_EmptyRectangleStep {
+        public static string TechniqueFormat_EmptyRectangleStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_EmptyRectangleStep", resourceCulture);
             }
@@ -3573,7 +3573,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ExtendedRectangleType1Step {
+        public static string TechniqueFormat_ExtendedRectangleType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ExtendedRectangleType1Step", resourceCulture);
             }
@@ -3582,7 +3582,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} with extra digit {ExtraDigitStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ExtendedRectangleType2Step {
+        public static string TechniqueFormat_ExtendedRectangleType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ExtendedRectangleType2Step", resourceCulture);
             }
@@ -3591,7 +3591,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} with {ExtraDigitsStr} in cells {ExtraCellsStr} in {HouseStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ExtendedRectangleType3Step {
+        public static string TechniqueFormat_ExtendedRectangleType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ExtendedRectangleType3Step", resourceCulture);
             }
@@ -3600,7 +3600,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ExtendedRectangleType4Step {
+        public static string TechniqueFormat_ExtendedRectangleType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ExtendedRectangleType4Step", resourceCulture);
             }
@@ -3609,7 +3609,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Only the digit {EspDigitStr} can be duplicate in cells {CellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate {
+        public static string TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate", resourceCulture);
             }
@@ -3618,7 +3618,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: All digits can&apos;t be duplicate in cells {CellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate {
+        public static string TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate", resourceCulture);
             }
@@ -3627,7 +3627,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Two of three cells {CellsStr} must form a hidden pair of digits {DigitsStr}, therefore one of cells {ExtraCell1Str} and {ExtraCell2Str} should be a naked pair with that firework =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_FireworkPairType1Step {
+        public static string TechniqueFormat_FireworkPairType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_FireworkPairType1Step", resourceCulture);
             }
@@ -3636,7 +3636,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Two fireworks {Firework1Str} and {Firework2Str} of digits {DigitsStr}, and an extra cell {ExtraCellStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_FireworkPairType2Step {
+        public static string TechniqueFormat_FireworkPairType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_FireworkPairType2Step", resourceCulture);
             }
@@ -3645,7 +3645,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {CellsStr} of digits {DigitsStr} is a firework, with empty rectangle in house {EmptyRectangleStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_FireworkPairType3Step {
+        public static string TechniqueFormat_FireworkPairType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_FireworkPairType3Step", resourceCulture);
             }
@@ -3654,7 +3654,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {CellsStr} must form a hidden quadruple of digits {DigitsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_FireworkQuadrupleStep {
+        public static string TechniqueFormat_FireworkQuadrupleStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_FireworkQuadrupleStep", resourceCulture);
             }
@@ -3663,7 +3663,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {CellsStr} Must form a hidden triple of digits {DigitsStr} in multi- houses =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_FireworkTripleStep {
+        public static string TechniqueFormat_FireworkTripleStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_FireworkTripleStep", resourceCulture);
             }
@@ -3672,7 +3672,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: It is proved that the candidate {CandStr} is {OnOffStr}, the state of the candidate will be flipped, forming a contradiction =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ForcingChainStep {
+        public static string TechniqueFormat_ForcingChainStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ForcingChainStep", resourceCulture);
             }
@@ -3681,7 +3681,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
         /// </summary>
-        internal static string TechniqueFormat_FullHouseStep {
+        public static string TechniqueFormat_FullHouseStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_FullHouseStep", resourceCulture);
             }
@@ -3690,7 +3690,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {StartCellStr} to {EndCellStr} with bridge cells {BridgeStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_GroupedWWingStep {
+        public static string TechniqueFormat_GroupedWWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_GroupedWWingStep", resourceCulture);
             }
@@ -3699,7 +3699,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_GuardianStep {
+        public static string TechniqueFormat_GuardianStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_GuardianStep", resourceCulture);
             }
@@ -3708,7 +3708,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {SymmetryTypeStr}, mapping relations: {MappingStr} =&gt;  {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_GurthSymmetricalPlacementStep {
+        public static string TechniqueFormat_GurthSymmetricalPlacementStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_GurthSymmetricalPlacementStep", resourceCulture);
             }
@@ -3717,7 +3717,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr} in {HouseStr}.
         /// </summary>
-        internal static string TechniqueFormat_HiddenSingle {
+        public static string TechniqueFormat_HiddenSingle {
             get {
                 return ResourceManager.GetString("TechniqueFormat_HiddenSingle", resourceCulture);
             }
@@ -3726,7 +3726,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitStr} in {HouseStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_HiddenSubsetStep {
+        public static string TechniqueFormat_HiddenSubsetStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_HiddenSubsetStep", resourceCulture);
             }
@@ -3735,7 +3735,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: It can be proved using chains that digit {DigitStr} from {HouseStr} are false =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_HouseChainingStep {
+        public static string TechniqueFormat_HouseChainingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_HouseChainingStep", resourceCulture);
             }
@@ -3744,7 +3744,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr}, digits {DigitsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_JuniorExocetStep {
+        public static string TechniqueFormat_JuniorExocetStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_JuniorExocetStep", resourceCulture);
             }
@@ -3753,7 +3753,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
         /// </summary>
-        internal static string TechniqueFormat_LastDigit {
+        public static string TechniqueFormat_LastDigit {
             get {
                 return ResourceManager.GetString("TechniqueFormat_LastDigit", resourceCulture);
             }
@@ -3762,7 +3762,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_LockedCandidatesStep {
+        public static string TechniqueFormat_LockedCandidatesStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_LockedCandidatesStep", resourceCulture);
             }
@@ -3771,7 +3771,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Leaves {LeavesStr}, root cells {RootStr} in house {HouseStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_MultiBranchWWingStep {
+        public static string TechniqueFormat_MultiBranchWWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_MultiBranchWWingStep", resourceCulture);
             }
@@ -3780,7 +3780,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_MultisectorLockedSetsStep {
+        public static string TechniqueFormat_MultisectorLockedSetsStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_MultisectorLockedSetsStep", resourceCulture);
             }
@@ -3789,7 +3789,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
         /// </summary>
-        internal static string TechniqueFormat_NakedSingleStep {
+        public static string TechniqueFormat_NakedSingleStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_NakedSingleStep", resourceCulture);
             }
@@ -3798,7 +3798,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in {HouseStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_NakedSubsetStep {
+        public static string TechniqueFormat_NakedSubsetStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_NakedSubsetStep", resourceCulture);
             }
@@ -3807,7 +3807,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_NormalFishStep {
+        public static string TechniqueFormat_NormalFishStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_NormalFishStep", resourceCulture);
             }
@@ -3816,7 +3816,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digit {DigitStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_PatternOverlayStep {
+        public static string TechniqueFormat_PatternOverlayStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_PatternOverlayStep", resourceCulture);
             }
@@ -3825,7 +3825,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if{Quantifier}{Number} {SingularOrPlural} {CandidateStr} {BeVerb} false =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_QiuDeadlyPatternLockedTypeStep {
+        public static string TechniqueFormat_QiuDeadlyPatternLockedTypeStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_QiuDeadlyPatternLockedTypeStep", resourceCulture);
             }
@@ -3834,7 +3834,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if {CandidateStr} is false =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_QiuDeadlyPatternType1Step {
+        public static string TechniqueFormat_QiuDeadlyPatternType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_QiuDeadlyPatternType1Step", resourceCulture);
             }
@@ -3843,7 +3843,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if all the extra digits {ExtraDigitStr} in pair cells is false =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_QiuDeadlyPatternType2Step {
+        public static string TechniqueFormat_QiuDeadlyPatternType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_QiuDeadlyPatternType2Step", resourceCulture);
             }
@@ -3852,7 +3852,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {PatternStr} won&apos;t be a deadly pattern if and only if digits {DigitsStr} in cells {CellsStr} is a naked {SubsetName} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_QiuDeadlyPatternType3Step {
+        public static string TechniqueFormat_QiuDeadlyPatternType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_QiuDeadlyPatternType3Step", resourceCulture);
             }
@@ -3861,7 +3861,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if another digit in either cells lying on the conjugate pair {ConjStr} is true =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_QiuDeadlyPatternType4Step {
+        public static string TechniqueFormat_QiuDeadlyPatternType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_QiuDeadlyPatternType4Step", resourceCulture);
             }
@@ -3870,7 +3870,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: It is proved that all position of digit {DigitStr} in house {HouseStr} will lead to a same conclusion =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_RegionForcingChainsStep {
+        public static string TechniqueFormat_RegionForcingChainsStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_RegionForcingChainsStep", resourceCulture);
             }
@@ -3879,7 +3879,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in {PivotCellStr} with {CellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_RegularWingStep {
+        public static string TechniqueFormat_RegularWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_RegularWingStep", resourceCulture);
             }
@@ -3888,7 +3888,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Only cells {CellsStr} gives the value of digits {DigitsStr}, meaning digits will be a deadly pattern if the target cell {TargetCellStr} is filled with {TargetDigitStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ReverseUniqueRectangleType1Step {
+        public static string TechniqueFormat_ReverseUniqueRectangleType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ReverseUniqueRectangleType1Step", resourceCulture);
             }
@@ -3897,7 +3897,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {CellsStr} of digits {DigitsStr}, with an extra digit {ExtraDigitStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_ReverseUniqueRectangleType2Step {
+        public static string TechniqueFormat_ReverseUniqueRectangleType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ReverseUniqueRectangleType2Step", resourceCulture);
             }
@@ -3906,7 +3906,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_RwDeadlyPatternStep {
+        public static string TechniqueFormat_RwDeadlyPatternStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_RwDeadlyPatternStep", resourceCulture);
             }
@@ -3915,7 +3915,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_SueDeCoq3DimensionStep {
+        public static string TechniqueFormat_SueDeCoq3DimensionStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_SueDeCoq3DimensionStep", resourceCulture);
             }
@@ -3924,7 +3924,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) &amp; {LineCellsStr}({LineDigitsStr}) =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_SueDeCoqStep {
+        public static string TechniqueFormat_SueDeCoqStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_SueDeCoqStep", resourceCulture);
             }
@@ -3933,7 +3933,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digit {DigitStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_TemplateStep {
+        public static string TechniqueFormat_TemplateStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_TemplateStep", resourceCulture);
             }
@@ -3942,7 +3942,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseHouseStr}\\{TargetHouseStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_TwoStrongLinksStep {
+        public static string TechniqueFormat_TwoStrongLinksStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_TwoStrongLinksStep", resourceCulture);
             }
@@ -3951,7 +3951,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueLoopType1Step {
+        public static string TechniqueFormat_UniqueLoopType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueLoopType1Step", resourceCulture);
             }
@@ -3960,7 +3960,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the extra digit {ExtraDigitStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueLoopType2Step {
+        public static string TechniqueFormat_UniqueLoopType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueLoopType2Step", resourceCulture);
             }
@@ -3969,7 +3969,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the naked {SubsetName} with extra digits {DigitsStr} in cells {SubsetCellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueLoopType3Step {
+        public static string TechniqueFormat_UniqueLoopType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueLoopType3Step", resourceCulture);
             }
@@ -3978,7 +3978,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueLoopType4Step {
+        public static string TechniqueFormat_UniqueLoopType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueLoopType4Step", resourceCulture);
             }
@@ -3987,7 +3987,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueMatrixType1Step {
+        public static string TechniqueFormat_UniqueMatrixType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueMatrixType1Step", resourceCulture);
             }
@@ -3996,7 +3996,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the extra digit {ExtraDigitStr} is all false in the pattern =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueMatrixType2Step {
+        public static string TechniqueFormat_UniqueMatrixType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueMatrixType2Step", resourceCulture);
             }
@@ -4005,7 +4005,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueMatrixType3Step {
+        public static string TechniqueFormat_UniqueMatrixType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueMatrixType3Step", resourceCulture);
             }
@@ -4014,7 +4014,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate house {ConjStr} can&apos;t set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueMatrixType4Step {
+        public static string TechniqueFormat_UniqueMatrixType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueMatrixType4Step", resourceCulture);
             }
@@ -4023,7 +4023,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Enumerates all possible cases filling the chute {ChuteIndexStr} (i.e. houses {HousesStr}), we can find two digits that cannot cover =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniquenessClueCoverType2Step {
+        public static string TechniqueFormat_UniquenessClueCoverType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniquenessClueCoverType2Step", resourceCulture);
             }
@@ -4032,7 +4032,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniquePolygonType1Step {
+        public static string TechniqueFormat_UniquePolygonType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniquePolygonType1Step", resourceCulture);
             }
@@ -4041,7 +4041,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} with the extra digit {ExtraDigitStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniquePolygonType2Step {
+        public static string TechniqueFormat_UniquePolygonType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniquePolygonType2Step", resourceCulture);
             }
@@ -4050,7 +4050,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} with the digits {ExtraDigitsStr} in cells {ExtraCellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniquePolygonType3Step {
+        public static string TechniqueFormat_UniquePolygonType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniquePolygonType3Step", resourceCulture);
             }
@@ -4059,7 +4059,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} with the conjugate house {ConjHouseStr} of the extra digits {ExtraCombStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniquePolygonType4Step {
+        public static string TechniqueFormat_UniquePolygonType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniquePolygonType4Step", resourceCulture);
             }
@@ -4068,7 +4068,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with X = {XDigitStr}, Y = {YDigitStr} and a bi-value cell {XYCellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangle2DOr3XStep {
+        public static string TechniqueFormat_UniqueRectangle2DOr3XStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangle2DOr3XStep", resourceCulture);
             }
@@ -4077,7 +4077,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external ALS {AnotherAlsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep {
+        public static string TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep", resourceCulture);
             }
@@ -4086,7 +4086,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian cells {GuardianCellsStr}, forming a turbot fish with cells {CellPairStr} of digit {TurbotFishDigitStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleExternalTurbotFishStep {
+        public static string TechniqueFormat_UniqueRectangleExternalTurbotFishStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalTurbotFishStep", resourceCulture);
             }
@@ -4095,7 +4095,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleExternalType1Or2Step {
+        public static string TechniqueFormat_UniqueRectangleExternalType1Or2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalType1Or2Step", resourceCulture);
             }
@@ -4104,7 +4104,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleExternalType3Step {
+        public static string TechniqueFormat_UniqueRectangleExternalType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalType3Step", resourceCulture);
             }
@@ -4113,7 +4113,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleExternalType4Step {
+        public static string TechniqueFormat_UniqueRectangleExternalType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalType4Step", resourceCulture);
             }
@@ -4122,7 +4122,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external XY-Wing, with cell pair {CellPairStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleExternalXyWingStep {
+        public static string TechniqueFormat_UniqueRectangleExternalXyWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalXyWingStep", resourceCulture);
             }
@@ -4131,7 +4131,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleType1Step {
+        public static string TechniqueFormat_UniqueRectangleType1Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleType1Step", resourceCulture);
             }
@@ -4140,7 +4140,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the extra digit {ExtraDigitStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleType2Step {
+        public static string TechniqueFormat_UniqueRectangleType2Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleType2Step", resourceCulture);
             }
@@ -4149,7 +4149,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the digit {DigitsStr} in {OnlyKeyword}cells {CellsStr} in {HouseStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleType3Step {
+        public static string TechniqueFormat_UniqueRectangleType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleType3Step", resourceCulture);
             }
@@ -4158,7 +4158,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with {Prefix}conjugate pair{Suffix} {ConjPairsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleWithConjugatePairStep {
+        public static string TechniqueFormat_UniqueRectangleWithConjugatePairStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithConjugatePairStep", resourceCulture);
             }
@@ -4167,7 +4167,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a generalized Sue de Coq in cells {MergedCellsStr} of digits {DigitsStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleWithSueDeCoqStep {
+        public static string TechniqueFormat_UniqueRectangleWithSueDeCoqStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithSueDeCoqStep", resourceCulture);
             }
@@ -4176,7 +4176,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with unknown covering: Suppose {TargetCellStr} is filled with the unknown digit X (X is {DigitsStr}), then 4 cells form a UR deadly pattern of digit X and {ExtraDigitStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleWithUnknownCoveringStep {
+        public static string TechniqueFormat_UniqueRectangleWithUnknownCoveringStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithUnknownCoveringStep", resourceCulture);
             }
@@ -4185,7 +4185,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a wing (pivots: {PivotsStr}, with digits: {DigitsStr} in cells {CellsStr}) =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_UniqueRectangleWithWingStep {
+        public static string TechniqueFormat_UniqueRectangleWithWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithWingStep", resourceCulture);
             }
@@ -4194,7 +4194,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
         /// </summary>
-        internal static string TechniqueFormat_WWingStep {
+        public static string TechniqueFormat_WWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_WWingStep", resourceCulture);
             }
@@ -4203,7 +4203,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Template Delete.
         /// </summary>
-        internal static string TemplateDelete {
+        public static string TemplateDelete {
             get {
                 return ResourceManager.GetString("TemplateDelete", resourceCulture);
             }
@@ -4212,7 +4212,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Template Set.
         /// </summary>
-        internal static string TemplateSet {
+        public static string TemplateSet {
             get {
                 return ResourceManager.GetString("TemplateSet", resourceCulture);
             }
@@ -4221,7 +4221,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to true.
         /// </summary>
-        internal static string TrueKeyword {
+        public static string TrueKeyword {
             get {
                 return ResourceManager.GetString("TrueKeyword", resourceCulture);
             }
@@ -4230,7 +4230,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Turbot Fish.
         /// </summary>
-        internal static string TurbotFish {
+        public static string TurbotFish {
             get {
                 return ResourceManager.GetString("TurbotFish", resourceCulture);
             }
@@ -4239,7 +4239,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to TUVWXYZ-Wing.
         /// </summary>
-        internal static string TuvwxyzWing {
+        public static string TuvwxyzWing {
             get {
                 return ResourceManager.GetString("TuvwxyzWing", resourceCulture);
             }
@@ -4248,7 +4248,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Two-String Kite.
         /// </summary>
-        internal static string TwoStringKite {
+        public static string TwoStringKite {
             get {
                 return ResourceManager.GetString("TwoStringKite", resourceCulture);
             }
@@ -4257,7 +4257,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Loop Type 1.
         /// </summary>
-        internal static string UniqueLoopType1 {
+        public static string UniqueLoopType1 {
             get {
                 return ResourceManager.GetString("UniqueLoopType1", resourceCulture);
             }
@@ -4266,7 +4266,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Loop Type 2.
         /// </summary>
-        internal static string UniqueLoopType2 {
+        public static string UniqueLoopType2 {
             get {
                 return ResourceManager.GetString("UniqueLoopType2", resourceCulture);
             }
@@ -4275,7 +4275,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Loop Type 3.
         /// </summary>
-        internal static string UniqueLoopType3 {
+        public static string UniqueLoopType3 {
             get {
                 return ResourceManager.GetString("UniqueLoopType3", resourceCulture);
             }
@@ -4284,7 +4284,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Loop Type 4.
         /// </summary>
-        internal static string UniqueLoopType4 {
+        public static string UniqueLoopType4 {
             get {
                 return ResourceManager.GetString("UniqueLoopType4", resourceCulture);
             }
@@ -4293,7 +4293,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Matrix Type 1.
         /// </summary>
-        internal static string UniqueMatrixType1 {
+        public static string UniqueMatrixType1 {
             get {
                 return ResourceManager.GetString("UniqueMatrixType1", resourceCulture);
             }
@@ -4302,7 +4302,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Matrix Type 2.
         /// </summary>
-        internal static string UniqueMatrixType2 {
+        public static string UniqueMatrixType2 {
             get {
                 return ResourceManager.GetString("UniqueMatrixType2", resourceCulture);
             }
@@ -4311,7 +4311,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Matrix Type 3.
         /// </summary>
-        internal static string UniqueMatrixType3 {
+        public static string UniqueMatrixType3 {
             get {
                 return ResourceManager.GetString("UniqueMatrixType3", resourceCulture);
             }
@@ -4320,7 +4320,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Matrix Type 4.
         /// </summary>
-        internal static string UniqueMatrixType4 {
+        public static string UniqueMatrixType4 {
             get {
                 return ResourceManager.GetString("UniqueMatrixType4", resourceCulture);
             }
@@ -4329,7 +4329,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Uniqueness Clue Cover Type 2.
         /// </summary>
-        internal static string UniquenessClueCoverType2 {
+        public static string UniquenessClueCoverType2 {
             get {
                 return ResourceManager.GetString("UniquenessClueCoverType2", resourceCulture);
             }
@@ -4338,7 +4338,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Polygon Type 1.
         /// </summary>
-        internal static string UniquePolygonType1 {
+        public static string UniquePolygonType1 {
             get {
                 return ResourceManager.GetString("UniquePolygonType1", resourceCulture);
             }
@@ -4347,7 +4347,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Polygon Type 2.
         /// </summary>
-        internal static string UniquePolygonType2 {
+        public static string UniquePolygonType2 {
             get {
                 return ResourceManager.GetString("UniquePolygonType2", resourceCulture);
             }
@@ -4356,7 +4356,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Polygon Type 3.
         /// </summary>
-        internal static string UniquePolygonType3 {
+        public static string UniquePolygonType3 {
             get {
                 return ResourceManager.GetString("UniquePolygonType3", resourceCulture);
             }
@@ -4365,7 +4365,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Polygon Type 4.
         /// </summary>
-        internal static string UniquePolygonType4 {
+        public static string UniquePolygonType4 {
             get {
                 return ResourceManager.GetString("UniquePolygonType4", resourceCulture);
             }
@@ -4374,7 +4374,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 2B/1SL.
         /// </summary>
-        internal static string UniqueRectangle2B1 {
+        public static string UniqueRectangle2B1 {
             get {
                 return ResourceManager.GetString("UniqueRectangle2B1", resourceCulture);
             }
@@ -4383,7 +4383,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 2D.
         /// </summary>
-        internal static string UniqueRectangle2D {
+        public static string UniqueRectangle2D {
             get {
                 return ResourceManager.GetString("UniqueRectangle2D", resourceCulture);
             }
@@ -4392,7 +4392,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 2D/1SL.
         /// </summary>
-        internal static string UniqueRectangle2D1 {
+        public static string UniqueRectangle2D1 {
             get {
                 return ResourceManager.GetString("UniqueRectangle2D1", resourceCulture);
             }
@@ -4401,7 +4401,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 3E/2SL.
         /// </summary>
-        internal static string UniqueRectangle3E2 {
+        public static string UniqueRectangle3E2 {
             get {
                 return ResourceManager.GetString("UniqueRectangle3E2", resourceCulture);
             }
@@ -4410,7 +4410,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 3N/2SL.
         /// </summary>
-        internal static string UniqueRectangle3N2 {
+        public static string UniqueRectangle3N2 {
             get {
                 return ResourceManager.GetString("UniqueRectangle3N2", resourceCulture);
             }
@@ -4419,7 +4419,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 3U/2SL.
         /// </summary>
-        internal static string UniqueRectangle3U2 {
+        public static string UniqueRectangle3U2 {
             get {
                 return ResourceManager.GetString("UniqueRectangle3U2", resourceCulture);
             }
@@ -4428,7 +4428,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 3X.
         /// </summary>
-        internal static string UniqueRectangle3X {
+        public static string UniqueRectangle3X {
             get {
                 return ResourceManager.GetString("UniqueRectangle3X", resourceCulture);
             }
@@ -4437,7 +4437,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 3x/1SL.
         /// </summary>
-        internal static string UniqueRectangle3X1L {
+        public static string UniqueRectangle3X1L {
             get {
                 return ResourceManager.GetString("UniqueRectangle3X1L", resourceCulture);
             }
@@ -4446,7 +4446,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 3X/1SL.
         /// </summary>
-        internal static string UniqueRectangle3X1U {
+        public static string UniqueRectangle3X1U {
             get {
                 return ResourceManager.GetString("UniqueRectangle3X1U", resourceCulture);
             }
@@ -4455,7 +4455,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 3X/2SL.
         /// </summary>
-        internal static string UniqueRectangle3X2 {
+        public static string UniqueRectangle3X2 {
             get {
                 return ResourceManager.GetString("UniqueRectangle3X2", resourceCulture);
             }
@@ -4464,7 +4464,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 4C/3SL.
         /// </summary>
-        internal static string UniqueRectangle4C3 {
+        public static string UniqueRectangle4C3 {
             get {
                 return ResourceManager.GetString("UniqueRectangle4C3", resourceCulture);
             }
@@ -4473,7 +4473,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 4x/1SL.
         /// </summary>
-        internal static string UniqueRectangle4X1L {
+        public static string UniqueRectangle4X1L {
             get {
                 return ResourceManager.GetString("UniqueRectangle4X1L", resourceCulture);
             }
@@ -4482,7 +4482,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 4X/1SL.
         /// </summary>
-        internal static string UniqueRectangle4X1U {
+        public static string UniqueRectangle4X1U {
             get {
                 return ResourceManager.GetString("UniqueRectangle4X1U", resourceCulture);
             }
@@ -4491,7 +4491,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 4x/2SL.
         /// </summary>
-        internal static string UniqueRectangle4X2L {
+        public static string UniqueRectangle4X2L {
             get {
                 return ResourceManager.GetString("UniqueRectangle4X2L", resourceCulture);
             }
@@ -4500,7 +4500,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 4X/2SL.
         /// </summary>
-        internal static string UniqueRectangle4X2U {
+        public static string UniqueRectangle4X2U {
             get {
                 return ResourceManager.GetString("UniqueRectangle4X2U", resourceCulture);
             }
@@ -4509,7 +4509,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle + 4X/3SL.
         /// </summary>
-        internal static string UniqueRectangle4X3 {
+        public static string UniqueRectangle4X3 {
             get {
                 return ResourceManager.GetString("UniqueRectangle4X3", resourceCulture);
             }
@@ -4518,7 +4518,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Almost Locked Sets XZ Rule.
         /// </summary>
-        internal static string UniqueRectangleExternalAlmostLockedSetsXz {
+        public static string UniqueRectangleExternalAlmostLockedSetsXz {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalAlmostLockedSetsXz", resourceCulture);
             }
@@ -4527,7 +4527,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Skyscraper.
         /// </summary>
-        internal static string UniqueRectangleExternalSkyscraper {
+        public static string UniqueRectangleExternalSkyscraper {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalSkyscraper", resourceCulture);
             }
@@ -4536,7 +4536,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Turbot Fish.
         /// </summary>
-        internal static string UniqueRectangleExternalTurbotFish {
+        public static string UniqueRectangleExternalTurbotFish {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalTurbotFish", resourceCulture);
             }
@@ -4545,7 +4545,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Two-String Kite.
         /// </summary>
-        internal static string UniqueRectangleExternalTwoStringKite {
+        public static string UniqueRectangleExternalTwoStringKite {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalTwoStringKite", resourceCulture);
             }
@@ -4554,7 +4554,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Type 1.
         /// </summary>
-        internal static string UniqueRectangleExternalType1 {
+        public static string UniqueRectangleExternalType1 {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalType1", resourceCulture);
             }
@@ -4563,7 +4563,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Type 2.
         /// </summary>
-        internal static string UniqueRectangleExternalType2 {
+        public static string UniqueRectangleExternalType2 {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalType2", resourceCulture);
             }
@@ -4572,7 +4572,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Type 3.
         /// </summary>
-        internal static string UniqueRectangleExternalType3 {
+        public static string UniqueRectangleExternalType3 {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalType3", resourceCulture);
             }
@@ -4581,7 +4581,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Type 4.
         /// </summary>
-        internal static string UniqueRectangleExternalType4 {
+        public static string UniqueRectangleExternalType4 {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalType4", resourceCulture);
             }
@@ -4590,7 +4590,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External XY-Wing.
         /// </summary>
-        internal static string UniqueRectangleExternalXyWing {
+        public static string UniqueRectangleExternalXyWing {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalXyWing", resourceCulture);
             }
@@ -4599,7 +4599,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle Sue de Coq.
         /// </summary>
-        internal static string UniqueRectangleSueDeCoq {
+        public static string UniqueRectangleSueDeCoq {
             get {
                 return ResourceManager.GetString("UniqueRectangleSueDeCoq", resourceCulture);
             }
@@ -4608,7 +4608,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle Type 1.
         /// </summary>
-        internal static string UniqueRectangleType1 {
+        public static string UniqueRectangleType1 {
             get {
                 return ResourceManager.GetString("UniqueRectangleType1", resourceCulture);
             }
@@ -4617,7 +4617,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle Type 2.
         /// </summary>
-        internal static string UniqueRectangleType2 {
+        public static string UniqueRectangleType2 {
             get {
                 return ResourceManager.GetString("UniqueRectangleType2", resourceCulture);
             }
@@ -4626,7 +4626,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle Type 3.
         /// </summary>
-        internal static string UniqueRectangleType3 {
+        public static string UniqueRectangleType3 {
             get {
                 return ResourceManager.GetString("UniqueRectangleType3", resourceCulture);
             }
@@ -4635,7 +4635,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle Type 4.
         /// </summary>
-        internal static string UniqueRectangleType4 {
+        public static string UniqueRectangleType4 {
             get {
                 return ResourceManager.GetString("UniqueRectangleType4", resourceCulture);
             }
@@ -4644,7 +4644,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle Type 5.
         /// </summary>
-        internal static string UniqueRectangleType5 {
+        public static string UniqueRectangleType5 {
             get {
                 return ResourceManager.GetString("UniqueRectangleType5", resourceCulture);
             }
@@ -4653,7 +4653,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle Type 6.
         /// </summary>
-        internal static string UniqueRectangleType6 {
+        public static string UniqueRectangleType6 {
             get {
                 return ResourceManager.GetString("UniqueRectangleType6", resourceCulture);
             }
@@ -4662,7 +4662,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle Unknown Covering.
         /// </summary>
-        internal static string UniqueRectangleUnknownCovering {
+        public static string UniqueRectangleUnknownCovering {
             get {
                 return ResourceManager.GetString("UniqueRectangleUnknownCovering", resourceCulture);
             }
@@ -4671,7 +4671,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle WXYZ-Wing.
         /// </summary>
-        internal static string UniqueRectangleWxyzWing {
+        public static string UniqueRectangleWxyzWing {
             get {
                 return ResourceManager.GetString("UniqueRectangleWxyzWing", resourceCulture);
             }
@@ -4680,7 +4680,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle XY-Wing.
         /// </summary>
-        internal static string UniqueRectangleXyWing {
+        public static string UniqueRectangleXyWing {
             get {
                 return ResourceManager.GetString("UniqueRectangleXyWing", resourceCulture);
             }
@@ -4689,7 +4689,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle XYZ-Wing.
         /// </summary>
-        internal static string UniqueRectangleXyzWing {
+        public static string UniqueRectangleXyzWing {
             get {
                 return ResourceManager.GetString("UniqueRectangleXyzWing", resourceCulture);
             }
@@ -4698,7 +4698,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to UVWXYZ-Wing.
         /// </summary>
-        internal static string UvwxyzWing {
+        public static string UvwxyzWing {
             get {
                 return ResourceManager.GetString("UvwxyzWing", resourceCulture);
             }
@@ -4707,7 +4707,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to VWXYZ-Wing.
         /// </summary>
-        internal static string VwxyzWing {
+        public static string VwxyzWing {
             get {
                 return ResourceManager.GetString("VwxyzWing", resourceCulture);
             }
@@ -4716,7 +4716,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Whale.
         /// </summary>
-        internal static string Whale {
+        public static string Whale {
             get {
                 return ResourceManager.GetString("Whale", resourceCulture);
             }
@@ -4725,7 +4725,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to W-Wing.
         /// </summary>
-        internal static string WWing {
+        public static string WWing {
             get {
                 return ResourceManager.GetString("WWing", resourceCulture);
             }
@@ -4734,7 +4734,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to WXYZ-Wing.
         /// </summary>
-        internal static string WxyzWing {
+        public static string WxyzWing {
             get {
                 return ResourceManager.GetString("WxyzWing", resourceCulture);
             }
@@ -4743,7 +4743,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to X-Chain.
         /// </summary>
-        internal static string XChain {
+        public static string XChain {
             get {
                 return ResourceManager.GetString("XChain", resourceCulture);
             }
@@ -4752,7 +4752,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to X-Wing.
         /// </summary>
-        internal static string XWing {
+        public static string XWing {
             get {
                 return ResourceManager.GetString("XWing", resourceCulture);
             }
@@ -4761,7 +4761,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to XY-Chain.
         /// </summary>
-        internal static string XyChain {
+        public static string XyChain {
             get {
                 return ResourceManager.GetString("XyChain", resourceCulture);
             }
@@ -4770,7 +4770,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to XY-Cycle.
         /// </summary>
-        internal static string XyCycle {
+        public static string XyCycle {
             get {
                 return ResourceManager.GetString("XyCycle", resourceCulture);
             }
@@ -4779,7 +4779,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to XY-Wing.
         /// </summary>
-        internal static string XyWing {
+        public static string XyWing {
             get {
                 return ResourceManager.GetString("XyWing", resourceCulture);
             }
@@ -4788,7 +4788,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to XY-X-Chain.
         /// </summary>
-        internal static string XyXChain {
+        public static string XyXChain {
             get {
                 return ResourceManager.GetString("XyXChain", resourceCulture);
             }
@@ -4797,7 +4797,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to XYZ-Wing.
         /// </summary>
-        internal static string XyzWing {
+        public static string XyzWing {
             get {
                 return ResourceManager.GetString("XyzWing", resourceCulture);
             }
@@ -4806,7 +4806,7 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Y-Chain.
         /// </summary>
-        internal static string YChain {
+        public static string YChain {
             get {
                 return ResourceManager.GetString("YChain", resourceCulture);
             }

@@ -27,7 +27,7 @@
 	<ItemGroup>
 		<EmbeddedResource Update="Resources\Resources.resx">
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-			<Generator>ResXFileCodeGenerator</Generator>
+			<Generator>PublicResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\Resources.zh-CN.resx">
 			<SubType>Designer</SubType>

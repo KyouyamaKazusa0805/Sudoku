@@ -1384,6 +1384,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Technique File.
+        /// </summary>
+        internal static string MainWindow_TechniqueFile {
+            get {
+                return ResourceManager.GetString("MainWindow_TechniqueFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique File.
+        /// </summary>
+        internal static string MainWindow_TechniqueFilePageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_TechniqueFilePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow collision on ALS-XY-Wing.
         /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXyWing {
@@ -2114,6 +2132,24 @@ namespace SudokuStudio.Resources {
         internal static string SuggestedFileName_Output {
             get {
                 return ResourceManager.GetString("SuggestedFileName_Output", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page lists techniques that the current program are supported, which can help you learn them..
+        /// </summary>
+        internal static string TechniqueFilePage_Intro {
+            get {
+                return ResourceManager.GetString("TechniqueFilePage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Singles.
+        /// </summary>
+        internal static string TechniqueFilePage_Singles {
+            get {
+                return ResourceManager.GetString("TechniqueFilePage_Singles", resourceCulture);
             }
         }
     }
