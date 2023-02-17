@@ -26,7 +26,7 @@ public sealed partial class MainWindow : Window
 	/// by control <see cref="NavigationViewFrame"/>.
 	/// </summary>
 	/// <seealso cref="NavigationViewFrame"/>
-	private Dictionary<Func<NavigationViewItemBase, bool>, Type> _navigatingData;
+	private Dictionary<Predicate<NavigationViewItemBase>, Type> _navigatingData;
 
 #if MICA_BACKDROP || ACRYLIC_BACKDROP
 #if MICA_BACKDROP
