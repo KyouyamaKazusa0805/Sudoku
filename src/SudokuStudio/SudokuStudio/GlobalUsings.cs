@@ -129,6 +129,7 @@ global using PdfColors = QuestPDF.Helpers.Colors;
 global using PdfContainer = QuestPDF.Infrastructure.IContainer;
 global using Grid = Sudoku.Concepts.Grid;
 global using VisualUnit = Sudoku.Presentation.IVisual;
+global using DefaultValueAttribute = SudokuStudio.ComponentModel.DefaultValueAttribute;
 global using TechniqueGroupModel = SudokuStudio.Models.TechniqueGroup;
 global using SpecialFolder = System.Environment.SpecialFolder;
 global using SystemPath = System.IO.Path;

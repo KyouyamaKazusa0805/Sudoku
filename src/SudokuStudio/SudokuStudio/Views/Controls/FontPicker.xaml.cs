@@ -3,13 +3,16 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a font picker.
 /// </summary>
-[DependencyProperty<string>("SelectedFontName", DefaultValueGeneratingMemberName = nameof(SelectedFontNamePropertyDefaultValue))]
+[DependencyProperty<string>("SelectedFontName")]
 [DependencyProperty<double>("SelectedFontScale")]
-[DependencyProperty<Color>("SelectedColor", DefaultValueGeneratingMemberName = nameof(SelectedColorPropertyDefaultValue))]
+[DependencyProperty<Color>("SelectedColor")]
 public sealed partial class FontPicker : UserControl
 {
-	private static readonly string SelectedFontNamePropertyDefaultValue = FontFamily.XamlAutoFontFamily.Source;
-	private static readonly Color SelectedColorPropertyDefaultValue = Colors.Transparent;
+	[DefaultValue]
+	private static readonly string SelectedFontNameDefaultValue = FontFamily.XamlAutoFontFamily.Source;
+
+	[DefaultValue]
+	private static readonly Color SelectedColorDefaultValue = Colors.Transparent;
 
 
 	/// <summary>

@@ -6,12 +6,13 @@
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 [DependencyProperty<string>("FontName", DefaultValue = "")]
 [DependencyProperty<double>("FontScale", DefaultValue = .6)]
-[DependencyProperty<Color>("FontColor", DefaultValueGeneratingMemberName = nameof(FontColorDefaultValue))]
+[DependencyProperty<Color>("FontColor")]
 public sealed partial class FontSerializationData :
 	DependencyObject,
 	IEquatable<FontSerializationData>,
 	IEqualityOperators<FontSerializationData, FontSerializationData, bool>
 {
+	[DefaultValue]
 	private static readonly Color FontColorDefaultValue = Colors.Black;
 
 

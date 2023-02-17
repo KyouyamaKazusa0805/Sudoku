@@ -17,56 +17,91 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<double>("ChainStrokeThickness", DefaultValue = 1.5, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness")]
 [DependencyProperty<int>("CoordinateLabelDisplayKind", DefaultValue = (int)K.RxCy, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind")]
 [DependencyProperty<int>("CoordinateLabelDisplayMode", DefaultValue = (int)M.FourDirection, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode")]
-[DependencyProperty<Color>("DeltaValueColor", DefaultValueGeneratingMemberName = nameof(DeltaValueColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor")]
-[DependencyProperty<Color>("DeltaPencilmarkColor", DefaultValueGeneratingMemberName = nameof(DeltaPencilmarkColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor")]
-[DependencyProperty<Color>("SudokuPaneBorderColor", DefaultValueGeneratingMemberName = nameof(SudokuPaneBorderColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.BorderColor")]
-[DependencyProperty<Color>("CursorBackgroundColor", DefaultValueGeneratingMemberName = nameof(CursorBackgroundColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor")]
-[DependencyProperty<Color>("ChainColor", DefaultValueGeneratingMemberName = nameof(ChainColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.LinkColor")]
-[DependencyProperty<Color>("NormalColor", DefaultValueGeneratingMemberName = nameof(NormalColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.NormalColor")]
-[DependencyProperty<Color>("AssignmentColor", DefaultValueGeneratingMemberName = nameof(AssignmentColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AssignmentColor")]
-[DependencyProperty<Color>("OverlappedAssignmentColor", DefaultValueGeneratingMemberName = nameof(OverlappedAssignmentColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor")]
-[DependencyProperty<Color>("EliminationColor", DefaultValueGeneratingMemberName = nameof(EliminationColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EliminationColor")]
-[DependencyProperty<Color>("CannibalismColor", DefaultValueGeneratingMemberName = nameof(CannibalismColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CannibalismColor")]
-[DependencyProperty<Color>("ExofinColor", DefaultValueGeneratingMemberName = nameof(ExofinColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ExofinColor")]
-[DependencyProperty<Color>("EndofinColor", DefaultValueGeneratingMemberName = nameof(EndofinColorDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EndofinColor")]
-[DependencyProperty<DashArray>("StrongLinkDashStyle", DefaultValueGeneratingMemberName = nameof(StrongLinkDashStyleDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle")]
-[DependencyProperty<DashArray>("WeakLinkDashStyle", DefaultValueGeneratingMemberName = nameof(WeakLinkDashStyleDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle")]
-[DependencyProperty<DashArray>("CyclingCellLinkDashStyle", DefaultValueGeneratingMemberName = nameof(CyclingCellLinkDashStyleDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle")]
-[DependencyProperty<DashArray>("OtherLinkDashStyle", DefaultValueGeneratingMemberName = nameof(OtherLinkDashStyleDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle")]
-[DependencyProperty<ColorPalette>("AuxiliaryColors", DefaultValueGeneratingMemberName = nameof(AuxiliaryColorsDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors")]
-[DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DefaultValueGeneratingMemberName = nameof(DifficultyLevelForegroundsDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds")]
-[DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DefaultValueGeneratingMemberName = nameof(DifficultyLevelBackgroundsDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds")]
-[DependencyProperty<ColorPalette>("UserDefinedColorPalette", DefaultValueGeneratingMemberName = nameof(UserDefinedColorPaletteDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette")]
-[DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DefaultValueGeneratingMemberName = nameof(AlmostLockedSetsColorsDefaultValue), DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors")]
-[DependencyProperty<FontSerializationData>("GivenFontData", DefaultValueGeneratingMemberName = nameof(GivenFontDataDefaultValue))]
-[DependencyProperty<FontSerializationData>("ModifiableFontData", DefaultValueGeneratingMemberName = nameof(ModifiableFontDataDefaultValue))]
-[DependencyProperty<FontSerializationData>("PencilmarkFontData", DefaultValueGeneratingMemberName = nameof(PencilmarkFontDataDefaultValue))]
-[DependencyProperty<FontSerializationData>("BabaGroupingFontData", DefaultValueGeneratingMemberName = nameof(BabaGroupingFontDataDefaultValue))]
-[DependencyProperty<FontSerializationData>("CoordinateLabelFontData", DefaultValueGeneratingMemberName = nameof(CoordinateLabelFontDataDefaultValue))]
+[DependencyProperty<Color>("DeltaValueColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor")]
+[DependencyProperty<Color>("DeltaPencilmarkColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor")]
+[DependencyProperty<Color>("SudokuPaneBorderColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.BorderColor")]
+[DependencyProperty<Color>("CursorBackgroundColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor")]
+[DependencyProperty<Color>("ChainColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.LinkColor")]
+[DependencyProperty<Color>("NormalColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.NormalColor")]
+[DependencyProperty<Color>("AssignmentColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AssignmentColor")]
+[DependencyProperty<Color>("OverlappedAssignmentColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor")]
+[DependencyProperty<Color>("EliminationColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EliminationColor")]
+[DependencyProperty<Color>("CannibalismColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CannibalismColor")]
+[DependencyProperty<Color>("ExofinColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ExofinColor")]
+[DependencyProperty<Color>("EndofinColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EndofinColor")]
+[DependencyProperty<DashArray>("StrongLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle")]
+[DependencyProperty<DashArray>("WeakLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle")]
+[DependencyProperty<DashArray>("CyclingCellLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle")]
+[DependencyProperty<DashArray>("OtherLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle")]
+[DependencyProperty<ColorPalette>("AuxiliaryColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors")]
+[DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds")]
+[DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds")]
+[DependencyProperty<ColorPalette>("UserDefinedColorPalette", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette")]
+[DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors")]
+[DependencyProperty<FontSerializationData>("GivenFontData")]
+[DependencyProperty<FontSerializationData>("ModifiableFontData")]
+[DependencyProperty<FontSerializationData>("PencilmarkFontData")]
+[DependencyProperty<FontSerializationData>("BabaGroupingFontData")]
+[DependencyProperty<FontSerializationData>("CoordinateLabelFontData")]
 public sealed partial class UIPreferenceGroup : PreferenceGroup
 {
+	[DefaultValue]
 	private static readonly Color DeltaValueColorDefaultValue = Colors.Red;
+
+	[DefaultValue]
 	private static readonly Color DeltaPencilmarkColorDefaultValue = Color.FromArgb(255, 255, 185, 185);
+
+	[DefaultValue]
 	private static readonly Color SudokuPaneBorderColorDefaultValue = Colors.Black;
+
+	[DefaultValue]
 	private static readonly Color CursorBackgroundColorDefaultValue = Colors.Blue with { A = 32 };
+
+	[DefaultValue]
 	private static readonly Color ChainColorDefaultValue = Colors.Red;
+
+	[DefaultValue]
 	private static readonly Color NormalColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
+
+	[DefaultValue]
 	private static readonly Color AssignmentColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
+
+	[DefaultValue]
 	private static readonly Color OverlappedAssignmentColorDefaultValue = Color.FromArgb(255, 0, 255, 204);
+
+	[DefaultValue]
 	private static readonly Color EliminationColorDefaultValue = Color.FromArgb(255, 255, 118, 132);
+
+	[DefaultValue]
 	private static readonly Color CannibalismColorDefaultValue = Color.FromArgb(255, 235, 0, 0);
+
+	[DefaultValue]
 	private static readonly Color ExofinColorDefaultValue = Color.FromArgb(255, 127, 187, 255);
+
+	[DefaultValue]
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
+
+	[DefaultValue]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = new();
+
+	[DefaultValue]
 	private static readonly DashArray WeakLinkDashStyleDefaultValue = new(3, 1.5);
+
+	[DefaultValue]
 	private static readonly DashArray CyclingCellLinkDashStyleDefaultValue = new();
+
+	[DefaultValue]
 	private static readonly DashArray OtherLinkDashStyleDefaultValue = new(3, 3);
+
+	[DefaultValue]
 	private static readonly ColorPalette AuxiliaryColorsDefaultValue = new()
 	{
 		Color.FromArgb(255, 255, 192, 89),
 		Color.FromArgb(255, 127, 187, 255),
 		Color.FromArgb(255, 216, 178, 255)
 	};
+
+	[DefaultValue]
 	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = new()
 	{
 		Color.FromArgb(255, 255, 203, 203),
@@ -75,6 +110,8 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Color.FromArgb(255, 255, 255, 150),
 		Color.FromArgb(255, 247, 222, 143)
 	};
+
+	[DefaultValue]
 	private static readonly ColorPalette DifficultyLevelForegroundsDefaultValue = new()
 	{
 		Color.FromArgb(255, 0, 51, 204),
@@ -84,6 +121,8 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Color.FromArgb(255, 102, 0, 0),
 		Colors.Black
 	};
+
+	[DefaultValue]
 	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = new()
 	{
 		Color.FromArgb(255, 204, 204, 255),
@@ -93,6 +132,8 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Color.FromArgb(255, 255, 100, 100),
 		Color.FromArgb(255, 220, 220, 220)
 	};
+
+	[DefaultValue]
 	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = new()
 	{
 		Color.FromArgb(255, 63, 218, 101),
@@ -111,30 +152,40 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Color.FromArgb(255, 215, 255, 215),
 		Color.FromArgb(255, 192, 192, 192)
 	};
+
+	[DefaultValue]
 	private static readonly FontSerializationData GivenFontDataDefaultValue = new()
 	{
 		FontName = "Cascadia Code",
 		FontScale = .85,
 		FontColor = Colors.Black
 	};
+
+	[DefaultValue]
 	private static readonly FontSerializationData ModifiableFontDataDefaultValue = new()
 	{
 		FontName = "Cascadia Code",
 		FontScale = .85,
 		FontColor = Colors.Blue
 	};
+
+	[DefaultValue]
 	private static readonly FontSerializationData PencilmarkFontDataDefaultValue = new()
 	{
 		FontName = "Cascadia Code",
 		FontScale = .3,
 		FontColor = Color.FromArgb(255, 100, 100, 100)
 	};
+
+	[DefaultValue]
 	private static readonly FontSerializationData BabaGroupingFontDataDefaultValue = new()
 	{
 		FontName = "Times New Roman",
 		FontScale = .6,
 		FontColor = Colors.Red
 	};
+
+	[DefaultValue]
 	private static readonly FontSerializationData CoordinateLabelFontDataDefaultValue = new()
 	{
 		FontName = "Cascadia Code",

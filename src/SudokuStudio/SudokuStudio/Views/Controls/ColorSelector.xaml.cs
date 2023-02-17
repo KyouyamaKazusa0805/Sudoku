@@ -3,9 +3,10 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a color selector.
 /// </summary>
-[DependencyProperty<Color>("SelectedColor", DefaultValueGeneratingMemberName = nameof(SelectedColorDefaultValue), DocSummary = "Indicates the inner color.")]
+[DependencyProperty<Color>("SelectedColor", DocSummary = "Indicates the inner color.")]
 public sealed partial class ColorSelector : UserControl
 {
+	[DefaultValue]
 	private static readonly Color SelectedColorDefaultValue = Colors.Transparent;
 
 

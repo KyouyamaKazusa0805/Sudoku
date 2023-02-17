@@ -19,72 +19,127 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<int>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
 [DependencyProperty<CoordinateLabelDisplayKind>("CoordinateLabelDisplayKind", DefaultValue = CoordinateLabelDisplayKind.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayKind\"/>.")]
 [DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayMode\"/>.")]
-[DependencyProperty<Color>("GivenColor", DefaultValueGeneratingMemberName = nameof(GivenColorDefaultValue), DocSummary = "Indicates the given color.")]
-[DependencyProperty<Color>("ModifiableColor", DefaultValueGeneratingMemberName = nameof(ModifiableColorDefaultValue), DocSummary = "Indicates the modifiable color.")]
-[DependencyProperty<Color>("PencilmarkColor", DefaultValueGeneratingMemberName = nameof(PencilmarkColorDefaultValue), DocSummary = "Indicates the pencilmark color.")]
-[DependencyProperty<Color>("CoordinateLabelColor", DefaultValueGeneratingMemberName = nameof(CoordinateLabelColorDefaultValue), DocSummary = "Indicates the coordinate label color.")]
-[DependencyProperty<Color>("BabaGroupLabelColor", DefaultValueGeneratingMemberName = nameof(BabaGroupLabelColorDefaultValue), DocSummary = "Indicates the baba group label color.")]
-[DependencyProperty<Color>("DeltaCandidateColor", DefaultValueGeneratingMemberName = nameof(DeltaCandidateColorDefaultValue), DocSummary = "Indicates the color that is used for displaying candidates that are wrongly removed, but correct.")]
-[DependencyProperty<Color>("DeltaCellColor", DefaultValueGeneratingMemberName = nameof(DeltaCellColorDefaultValue), DocSummary = "Indicates the color that is used for displaying cell digits that are wrongly filled.")]
-[DependencyProperty<Color>("BorderColor", DefaultValueGeneratingMemberName = nameof(BorderColorDefaultValue), DocSummary = "Indicates the border color.")]
-[DependencyProperty<Color>("CursorBackgroundColor", DefaultValueGeneratingMemberName = nameof(CursorBackgroundColorDefaultValue), DocSummary = "Indicates the cursor background color.")]
-[DependencyProperty<Color>("LinkColor", DefaultValueGeneratingMemberName = nameof(LinkColorDefaultValue), DocSummary = "Indicates the link color.")]
-[DependencyProperty<Color>("NormalColor", DefaultValueGeneratingMemberName = nameof(NormalColorDefaultValue), DocSummary = "Indicates the normal color.")]
-[DependencyProperty<Color>("AssignmentColor", DefaultValueGeneratingMemberName = nameof(AssignmentColorDefaultValue), DocSummary = "Indicates the assignment color.")]
-[DependencyProperty<Color>("OverlappedAssignmentColor", DefaultValueGeneratingMemberName = nameof(OverlappedAssignmentColorDefaultValue), DocSummary = "Indicates the overlapped assignment color.")]
-[DependencyProperty<Color>("EliminationColor", DefaultValueGeneratingMemberName = nameof(EliminationColorDefaultValue), DocSummary = "Indicates the elimination color.")]
-[DependencyProperty<Color>("CannibalismColor", DefaultValueGeneratingMemberName = nameof(CannibalismColorDefaultValue), DocSummary = "Indicates the cannibalism color.")]
-[DependencyProperty<Color>("ExofinColor", DefaultValueGeneratingMemberName = nameof(ExofinColorDefaultValue), DocSummary = "Indicates the exofin color.")]
-[DependencyProperty<Color>("EndofinColor", DefaultValueGeneratingMemberName = nameof(EndofinColorDefaultValue), DocSummary = "Indicates the endofin color.")]
-[DependencyProperty<DashArray>("StrongLinkDashStyle", DefaultValueGeneratingMemberName = nameof(StrongLinkDashStyleDefaultValue), DocSummary = "Indicates the dash style of the strong links.")]
-[DependencyProperty<DashArray>("WeakLinkDashStyle", DefaultValueGeneratingMemberName = nameof(WeakLinkDashStyleDefaultValue), DocSummary = "Indicates the dash style of the weak links.")]
-[DependencyProperty<DashArray>("CycleLikeLinkDashStyle", DefaultValueGeneratingMemberName = nameof(CycleLikeLinkDashStyleDefaultValue), DocSummary = "Indicates the dash style of the cycle-like technique links.")]
-[DependencyProperty<DashArray>("OtherLinkDashStyle", DefaultValueGeneratingMemberName = nameof(OtherLinkDashStyleDefaultValue), DocSummary = "Indicates the dash style of the other links.")]
-[DependencyProperty<FontFamily>("GivenFont", DefaultValueGeneratingMemberName = nameof(GivenFontDefaultValue), DocSummary = "Indicates the given font.")]
-[DependencyProperty<FontFamily>("ModifiableFont", DefaultValueGeneratingMemberName = nameof(ModifiableFontDefaultValue), DocSummary = "Indicates the modifiable font.")]
-[DependencyProperty<FontFamily>("PencilmarkFont", DefaultValueGeneratingMemberName = nameof(PencilmarkFontDefaultValue), DocSummary = "Indicates the candidate font.")]
-[DependencyProperty<FontFamily>("CoordinateLabelFont", DefaultValueGeneratingMemberName = nameof(CoordinateLabelFontDefaultValue), DocSummary = "Indicates the coordinate label font.")]
-[DependencyProperty<FontFamily>("BabaGroupLabelFont", DefaultValueGeneratingMemberName = nameof(BabaGroupLabelFontDefaultValue), DocSummary = "Indicates the baba group label font.")]
+[DependencyProperty<Color>("GivenColor", DocSummary = "Indicates the given color.")]
+[DependencyProperty<Color>("ModifiableColor", DocSummary = "Indicates the modifiable color.")]
+[DependencyProperty<Color>("PencilmarkColor", DocSummary = "Indicates the pencilmark color.")]
+[DependencyProperty<Color>("CoordinateLabelColor", DocSummary = "Indicates the coordinate label color.")]
+[DependencyProperty<Color>("BabaGroupLabelColor", DocSummary = "Indicates the baba group label color.")]
+[DependencyProperty<Color>("DeltaCandidateColor", DocSummary = "Indicates the color that is used for displaying candidates that are wrongly removed, but correct.")]
+[DependencyProperty<Color>("DeltaCellColor", DocSummary = "Indicates the color that is used for displaying cell digits that are wrongly filled.")]
+[DependencyProperty<Color>("BorderColor", DocSummary = "Indicates the border color.")]
+[DependencyProperty<Color>("CursorBackgroundColor", DocSummary = "Indicates the cursor background color.")]
+[DependencyProperty<Color>("LinkColor", DocSummary = "Indicates the link color.")]
+[DependencyProperty<Color>("NormalColor", DocSummary = "Indicates the normal color.")]
+[DependencyProperty<Color>("AssignmentColor", DocSummary = "Indicates the assignment color.")]
+[DependencyProperty<Color>("OverlappedAssignmentColor", DocSummary = "Indicates the overlapped assignment color.")]
+[DependencyProperty<Color>("EliminationColor", DocSummary = "Indicates the elimination color.")]
+[DependencyProperty<Color>("CannibalismColor", DocSummary = "Indicates the cannibalism color.")]
+[DependencyProperty<Color>("ExofinColor", DocSummary = "Indicates the exofin color.")]
+[DependencyProperty<Color>("EndofinColor", DocSummary = "Indicates the endofin color.")]
+[DependencyProperty<DashArray>("StrongLinkDashStyle", DocSummary = "Indicates the dash style of the strong links.")]
+[DependencyProperty<DashArray>("WeakLinkDashStyle", DocSummary = "Indicates the dash style of the weak links.")]
+[DependencyProperty<DashArray>("CycleLikeLinkDashStyle", DocSummary = "Indicates the dash style of the cycle-like technique links.")]
+[DependencyProperty<DashArray>("OtherLinkDashStyle", DocSummary = "Indicates the dash style of the other links.")]
+[DependencyProperty<FontFamily>("GivenFont", DocSummary = "Indicates the given font.")]
+[DependencyProperty<FontFamily>("ModifiableFont", DocSummary = "Indicates the modifiable font.")]
+[DependencyProperty<FontFamily>("PencilmarkFont", DocSummary = "Indicates the candidate font.")]
+[DependencyProperty<FontFamily>("CoordinateLabelFont", DocSummary = "Indicates the coordinate label font.")]
+[DependencyProperty<FontFamily>("BabaGroupLabelFont", DocSummary = "Indicates the baba group label font.")]
 [DependencyProperty<ViewUnit>("ViewUnit", IsNullable = true, DocSummary = "Indicates the view unit used.")]
-[DependencyProperty<ColorPalette>("AuxiliaryColors", DefaultValueGeneratingMemberName = nameof(AuxiliaryColorsDefaultValue), DocSummary = "Indicates the auxiliary colors.")]
-[DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DefaultValueGeneratingMemberName = nameof(DifficultyLevelForegroundsDefaultValue), DocSummary = "Indicates the foreground colors of all 6 kinds of difficulty levels.")]
-[DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DefaultValueGeneratingMemberName = nameof(DifficultyLevelBackgroundsDefaultValue), DocSummary = "Indicates the background colors of all 6 kinds of difficulty levels.")]
-[DependencyProperty<ColorPalette>("UserDefinedColorPalette", DefaultValueGeneratingMemberName = nameof(UserDefinedColorPaletteDefaultValue), DocSummary = "Indicates the user-defined colors used by customized views.")]
-[DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DefaultValueGeneratingMemberName = nameof(AlmostLockedSetsColorsDefaultValue), DocSummary = "Indicates the colors applied to technique structure Almost Locked Sets.")]
+[DependencyProperty<ColorPalette>("AuxiliaryColors", DocSummary = "Indicates the auxiliary colors.")]
+[DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DocSummary = "Indicates the foreground colors of all 6 kinds of difficulty levels.")]
+[DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DocSummary = "Indicates the background colors of all 6 kinds of difficulty levels.")]
+[DependencyProperty<ColorPalette>("UserDefinedColorPalette", DocSummary = "Indicates the user-defined colors used by customized views.")]
+[DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DocSummary = "Indicates the colors applied to technique structure Almost Locked Sets.")]
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
+	[DefaultValue]
 	private static readonly Color GivenColorDefaultValue = Colors.Black;
+
+	[DefaultValue]
 	private static readonly Color ModifiableColorDefaultValue = Colors.Blue;
+
+	[DefaultValue]
 	private static readonly Color PencilmarkColorDefaultValue = new() { A = 255, R = 100, G = 100, B = 100 };
+
+	[DefaultValue]
 	private static readonly Color CoordinateLabelColorDefaultValue = new() { A = 255, R = 100, G = 100, B = 100 };
+
+	[DefaultValue]
 	private static readonly Color BabaGroupLabelColorDefaultValue = Colors.Red;
+
+	[DefaultValue]
 	private static readonly Color DeltaCandidateColorDefaultValue = Color.FromArgb(255, 255, 185, 185);
+
+	[DefaultValue]
 	private static readonly Color DeltaCellColorDefaultValue = new() { A = 255, R = 255 };
+
+	[DefaultValue]
 	private static readonly Color BorderColorDefaultValue = Colors.Black;
+
+	[DefaultValue]
 	private static readonly Color CursorBackgroundColorDefaultValue = new() { A = 32, B = 255 };
+
+	[DefaultValue]
 	private static readonly Color LinkColorDefaultValue = Colors.Red;
+
+	[DefaultValue]
 	private static readonly Color NormalColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
+
+	[DefaultValue]
 	private static readonly Color AssignmentColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
+
+	[DefaultValue]
 	private static readonly Color OverlappedAssignmentColorDefaultValue = Color.FromArgb(255, 0, 255, 204);
+
+	[DefaultValue]
 	private static readonly Color EliminationColorDefaultValue = Color.FromArgb(255, 255, 118, 132);
+
+	[DefaultValue]
 	private static readonly Color CannibalismColorDefaultValue = new() { A = 255, R = 235 };
+
+	[DefaultValue]
 	private static readonly Color ExofinColorDefaultValue = Color.FromArgb(255, 127, 187, 255);
+
+	[DefaultValue]
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
+
+	[DefaultValue]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = new();
+
+	[DefaultValue]
 	private static readonly DashArray WeakLinkDashStyleDefaultValue = new(3, 1.5);
+
+	[DefaultValue]
 	private static readonly DashArray CycleLikeLinkDashStyleDefaultValue = new();
+
+	[DefaultValue]
 	private static readonly DashArray OtherLinkDashStyleDefaultValue = new(3, 3);
+
+	[DefaultValue]
 	private static readonly FontFamily GivenFontDefaultValue = new("Tahoma");
+
+	[DefaultValue]
 	private static readonly FontFamily ModifiableFontDefaultValue = new("Tahoma");
+
+	[DefaultValue]
 	private static readonly FontFamily PencilmarkFontDefaultValue = new("Tahoma");
+
+	[DefaultValue]
 	private static readonly FontFamily CoordinateLabelFontDefaultValue = new("Tahoma");
+
+	[DefaultValue]
 	private static readonly FontFamily BabaGroupLabelFontDefaultValue = new("Times New Roman");
+
+	[DefaultValue]
 	private static readonly ColorPalette AuxiliaryColorsDefaultValue = new()
 	{
 		Color.FromArgb(255, 255, 192,  89),
 		Color.FromArgb(255, 127, 187, 255),
 		Color.FromArgb(255, 216, 178, 255)
 	};
+
+	[DefaultValue]
 	private static readonly ColorPalette DifficultyLevelForegroundsDefaultValue = new()
 	{
 		Color.FromArgb(255,   0,  51, 204),
@@ -94,6 +149,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 102,   0,   0),
 		Colors.Black
 	};
+
+	[DefaultValue]
 	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = new()
 	{
 		Color.FromArgb(255, 204, 204, 255),
@@ -103,6 +160,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 255, 100, 100),
 		Color.FromArgb(255, 220, 220, 220)
 	};
+
+	[DefaultValue]
 	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = new()
 	{
 		Color.FromArgb(255,  63, 218, 101), // Green
@@ -121,6 +180,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 215, 255, 215), // Light green
 		Color.FromArgb(255, 192, 192, 192) // Gray
 	};
+
+	[DefaultValue]
 	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = new()
 	{
 		Color.FromArgb(255, 255, 203, 203),

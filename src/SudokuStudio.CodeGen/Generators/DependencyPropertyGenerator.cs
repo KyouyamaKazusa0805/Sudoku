@@ -129,6 +129,20 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 					select methodName
 				).FirstOrDefault();
 
+				const string defaultValueFieldSuffix = "DefaultValue";
+				var defaultValueAttribute = compilation.GetTypeByMetadataName("SudokuStudio.ComponentModel.DefaultValueAttribute")!;
+				defaultValueGenerator ??= (
+					from fieldSymbol in typeSymbol.GetMembers().OfType<IFieldSymbol>()
+					where fieldSymbol.IsStatic
+					let fieldName = fieldSymbol.Name
+					where fieldName.EndsWith(defaultValueFieldSuffix)
+					let relatedPropertyName = fieldName[..fieldName.IndexOf(defaultValueFieldSuffix)]
+					where relatedPropertyName == propertyName
+					let attributesData = fieldSymbol.GetAttributes()
+					where attributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, defaultValueAttribute))
+					select fieldName
+				).FirstOrDefault();
+
 				var defaultValueGeneratorKind = (DefaultValueGeneratingMemberKind?)null;
 				if (defaultValueGenerator is not null)
 				{

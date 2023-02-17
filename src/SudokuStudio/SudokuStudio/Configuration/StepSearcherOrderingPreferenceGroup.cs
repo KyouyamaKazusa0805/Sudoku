@@ -5,9 +5,10 @@
 /// </summary>
 /// <seealso cref="LogicalSolver"/>
 /// <seealso cref="IStepSearcher"/>
-[DependencyProperty<ObservableCollection<StepSearcherSerializationData>>("StepSearchersOrder", DefaultValueGeneratingMemberName = nameof(StepSearchersOrderDefaultValue))]
+[DependencyProperty<ObservableCollection<StepSearcherSerializationData>>("StepSearchersOrder")]
 public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGroup
 {
+	[DefaultValue]
 	private static readonly ObservableCollection<StepSearcherSerializationData> StepSearchersOrderDefaultValue = new(
 		from searcher in StepSearcherPool.DefaultCollection(false)
 		select new StepSearcherSerializationData

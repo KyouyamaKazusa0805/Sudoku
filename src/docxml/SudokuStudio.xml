@@ -347,6 +347,11 @@
             Defines an attribute that indicates the callback method of the bound dependency property or attached property.
             </summary>
         </member>
+        <member name="T:SudokuStudio.ComponentModel.DefaultValueAttribute">
+            <summary>
+            Defines an attribute that indicates the default-value generator member, whose name is bound with a dependency property or attached property.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1">
             <summary>
             Defines an attribute that defines a dependency property.
@@ -482,7 +487,14 @@
             Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
             </summary>
             <remarks>
-            This property will be used if the property <see cref="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue"/> cannot be assigned due to not being a constant.
+            <para>This property will be used if the property <see cref="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue"/> cannot be assigned due to not being a constant.</para>
+            <para>
+            <i>This property is being deprecated. Please use type <see cref="T:SudokuStudio.ComponentModel.DefaultValueAttribute"/> instead:</i>
+            <code><![CDATA[
+            [DefaultValue]
+            private static readonly object DependencyPropertyNameDefaultValue = ...;
+            ]]></code>
+            </para>
             </remarks>
             <seealso cref="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue"/>
         </member>
@@ -490,6 +502,16 @@
             <summary>
             Indicates the callback method name.
             </summary>
+            <remarks>
+            <i>This property is being deprecated. Please use type <see cref="T:SudokuStudio.ComponentModel.CallbackAttribute"/> instead:</i>
+            <code><![CDATA[
+            [Callback]
+            private static void PropertyNamePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+            {
+                // ...
+            }
+            ]]></code>
+            </remarks>
         </member>
         <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue">
             <summary>
