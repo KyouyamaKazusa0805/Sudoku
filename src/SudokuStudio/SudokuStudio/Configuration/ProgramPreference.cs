@@ -11,6 +11,9 @@ public sealed class ProgramPreference
 	/// <inheritdoc cref="UIPreferenceGroup"/>
 	public UIPreferenceGroup UIPreferences { get; set; } = new();
 
+	/// <inheritdoc cref="StepSearcherOrderingPreferenceGroup"/>
+	public StepSearcherOrderingPreferenceGroup StepSearcherOrdering { get; set; } = new();
+
 
 	/// <summary>
 	/// Try to cover the preference from the specified instance <paramref name="new"/>.

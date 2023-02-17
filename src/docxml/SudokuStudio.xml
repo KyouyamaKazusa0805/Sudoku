@@ -673,12 +673,34 @@
         <member name="P:SudokuStudio.Configuration.ProgramPreference.UIPreferences">
             <inheritdoc cref="T:SudokuStudio.Configuration.UIPreferenceGroup"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.ProgramPreference.StepSearcherOrdering">
+            <inheritdoc cref="T:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup"/>
+        </member>
         <member name="M:SudokuStudio.Configuration.ProgramPreference.CoverBy(SudokuStudio.Configuration.ProgramPreference)">
             <summary>
             Try to cover the preference from the specified instance <paramref name="new"/>.
             </summary>
             <param name="new">The newer instance that is used for covering the current instance.</param>
             <exception cref="T:System.NotSupportedException">Throws when the property type is not supported to be serialized, or not found.</exception>
+        </member>
+        <member name="T:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup">
+            <summary>
+            Represents with preference items that is used by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>, for the ordering of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
+            <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty" />
         </member>
         <member name="T:SudokuStudio.Configuration.UIPreferenceGroup">
             <summary>
@@ -1479,12 +1501,6 @@ if (student is (name: var name, age: >= 18))
             Provides with conversion methods used by XAML designer, about <see cref="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage"/>.
             </summary>
             <seealso cref="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage"/>
-        </member>
-        <member name="T:SudokuStudio.Interaction.Conversions.StepSearcherListViewConversion">
-            <summary>
-            Provides with conversion methods used by XAML designer, about <see cref="T:SudokuStudio.Views.Controls.StepSearcherListView"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Views.Controls.StepSearcherListView"/>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.SudokuGridConversion">
             <summary>
@@ -2556,6 +2572,68 @@ if (student is (name: var name, age: >= 18))
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="T:SudokuStudio.Models.StepSearcherSerializationData">
+            <summary>
+            Defines a serialization data of a step searcher.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Models.StepSearcherSerializationData.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:SudokuStudio.Models.StepSearcherSerializationData.Equals(SudokuStudio.Models.StepSearcherSerializationData)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Models.StepSearcherSerializationData.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:SudokuStudio.Models.StepSearcherSerializationData.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:SudokuStudio.Models.StepSearcherSerializationData.CreateStepSearchers">
+            <summary>
+            Creates a list of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances.
+            </summary>
+            <returns>A list of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances.</returns>
+        </member>
+        <member name="M:SudokuStudio.Models.StepSearcherSerializationData.op_Equality(SudokuStudio.Models.StepSearcherSerializationData,SudokuStudio.Models.StepSearcherSerializationData)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Models.StepSearcherSerializationData.op_Inequality(SudokuStudio.Models.StepSearcherSerializationData,SudokuStudio.Models.StepSearcherSerializationData)">
+            <inheritdoc/>
+        </member>
+        <member name="F:SudokuStudio.Models.StepSearcherSerializationData.IsEnabledProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.IsEnabled"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Models.StepSearcherSerializationData.IsEnabled"/>
+        </member>
+        <member name="F:SudokuStudio.Models.StepSearcherSerializationData.NameProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.Name"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Models.StepSearcherSerializationData.Name"/>
+        </member>
+        <member name="F:SudokuStudio.Models.StepSearcherSerializationData.TypeNameProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.TypeName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Models.StepSearcherSerializationData.TypeName"/>
+        </member>
+        <member name="P:SudokuStudio.Models.StepSearcherSerializationData.IsEnabled">
+            <summary>
+            Indicates whether the step searcher is enabled.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.StepSearcherSerializationData.Name">
+            <summary>
+            Indicates the name of the step searcher.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.StepSearcherSerializationData.TypeName">
+            <summary>
+            Indicates the type name of the step searcher. This property can be used for creating instances via reflection using method <see cref="M:System.Activator.CreateInstance(System.Type)"/>.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Models.TechniqueGroup">
             <summary>
@@ -3768,6 +3846,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
             <summary>
               Looks up a localized string similar to Only search for steps in a same difficulty level for step searchers.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepSearcherOrdering">
+            <summary>
+              Looks up a localized string similar to Ordering of step searchers.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StrongLinkDashStyle">

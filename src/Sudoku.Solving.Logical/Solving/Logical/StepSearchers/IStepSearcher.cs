@@ -89,6 +89,15 @@ public interface IStepSearcher
 	}
 
 	/// <summary>
+	/// Indicates the name of the type.
+	/// </summary>
+	sealed string TypeName
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => GetType().Name;
+	}
+
+	/// <summary>
 	/// Indicates the resource name of the current step searcher.
 	/// If resource cannot find the specified resource, its type name will be returned.
 	/// </summary>

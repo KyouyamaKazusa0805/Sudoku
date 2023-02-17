@@ -12,6 +12,6 @@ internal static class ModuleInitializer
 		R.RegisterAssembly(typeof(ModuleInitializer).Assembly);
 
 		// Initializes for step searchers.
-		StepSearcherPool.Collection = StepSearcherPool.DefaultCollection;
+		StepSearcherPool.Collection = StepSearcherPool.DefaultCollection();
 	}
 }

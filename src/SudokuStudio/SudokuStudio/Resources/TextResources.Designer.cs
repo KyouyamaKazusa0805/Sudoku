@@ -1942,6 +1942,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ordering of step searchers.
+        /// </summary>
+        internal static string SettingsPage_StepSearcherOrdering {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepSearcherOrdering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Strong link dash style.
         /// </summary>
         internal static string SettingsPage_StrongLinkDashStyle {

@@ -717,6 +717,9 @@
   <data name="SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps" xml:space="preserve">
     <value>Only search for steps in a same difficulty level for step searchers</value>
   </data>
+  <data name="SettingsPage_StepSearcherOrdering" xml:space="preserve">
+    <value>Ordering of step searchers</value>
+  </data>
   <data name="SettingsPage_StrongLinkDashStyle" xml:space="preserve">
     <value>Strong link dash style</value>
   </data>

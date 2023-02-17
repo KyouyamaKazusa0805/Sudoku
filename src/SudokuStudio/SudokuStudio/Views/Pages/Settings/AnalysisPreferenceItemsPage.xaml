@@ -169,6 +169,11 @@
 						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
 				</wc:Setting.ActionContent>
 			</wc:Setting>
+			<wc:SettingExpander Header="{m:R Key=SettingsPage_StepSearcherOrdering}">
+				<c:StepSearcherListView
+					Margin="40,10" Width="300" HorizontalAlignment="Left"
+					StepSearchers="{x:Bind ((z:App)y:Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder,Mode=TwoWay}" />
+			</wc:SettingExpander>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

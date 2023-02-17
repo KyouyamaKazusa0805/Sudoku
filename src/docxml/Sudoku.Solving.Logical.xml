@@ -121,10 +121,30 @@
             The step searchers to find steps to apply to a certain puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Buffers.StepSearcherPool.DefaultCollection">
+        <member name="M:Sudoku.Buffers.StepSearcherPool.DefaultCollection(System.Boolean)">
             <summary>
             Gets the default collection of step searchers via reflection.
             </summary>
+            <param name="separated">
+            <para><inheritdoc cref="M:Sudoku.Buffers.StepSearcherPool.GetStepSearchers(System.Type,System.Boolean)" path="/param[@name='separated']"/></para>
+            <para>The default value is <see langword="true"/>.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Buffers.StepSearcherPool.GetStepSearchers(System.Type,System.Boolean)">
+            <summary>
+            Try to create an array of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s via the specified step searcher type.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="separated">
+            Indicates whether the step searcher will be considered as separated one.
+            If <see langword="true"/>, the method will check for <see cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>, getting all instances,
+            and returning all created <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s via the data of that attribute defined;
+            otherwise, only one instance will be returned.
+            </param>
+            <returns>A collection of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the internal initialization data is invalid.</exception>
+            <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>
         </member>
         <member name="T:Sudoku.Collections.Logical.NodeList">
             <summary>
@@ -6366,6 +6386,11 @@ if (student is (name: var name, age: >= 18))
             by option <see cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.HighMemoryAllocation"/> being configured.
             </summary>
             <seealso cref="F:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions.HighMemoryAllocation"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.IStepSearcher.TypeName">
+            <summary>
+            Indicates the name of the type.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.IStepSearcher.TypeResourceName">
             <summary>

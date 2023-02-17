@@ -717,6 +717,9 @@
   <data name="SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps" xml:space="preserve">
     <value>在单步所有步骤搜索功能中，只搜索同难度级别的技巧</value>
   </data>
+  <data name="SettingsPage_StepSearcherOrdering" xml:space="preserve">
+    <value>技巧搜索器的执行顺序</value>
+  </data>
   <data name="SettingsPage_StrongLinkDashStyle" xml:space="preserve">
     <value>强链的虚线周期</value>
   </data>
