@@ -6,6 +6,7 @@
 /// <seealso cref="IStepSearcher"/>
 /// <completionlist cref="WellKnownStepSearcherCollections"/>
 public sealed class StepSearcherCollection :
+	ICloneable<StepSearcherCollection>,
 	IEnumerable<IStepSearcher>,
 	IReadOnlyCollection<IStepSearcher>,
 	IReadOnlyList<IStepSearcher>,
@@ -50,6 +51,10 @@ public sealed class StepSearcherCollection :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StepSearcherCollection Slice(int start, int count) => new(_stepSearchers[start..(start + count)]);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public StepSearcherCollection Clone() => this[..];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

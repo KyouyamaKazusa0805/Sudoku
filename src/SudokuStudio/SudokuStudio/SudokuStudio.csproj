@@ -50,6 +50,7 @@
 		<None Remove="Views\Controls\ColorSelector.xaml" />
 		<None Remove="Views\Controls\DashArrayTextBox.xaml" />
 		<None Remove="Views\Controls\FontPicker.xaml" />
+		<None Remove="Views\Controls\StepSearcherListView.xaml" />
 		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Controls\SudokuPaneCell.xaml" />
 		<None Remove="Views\Controls\TechniqueGroupView.xaml" />
@@ -105,6 +106,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Controls\StepSearcherListView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\SingleCountingPracticingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

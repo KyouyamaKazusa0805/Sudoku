@@ -1,0 +1,23 @@
+<UserControl
+	x:Class="SudokuStudio.Views.Controls.StepSearcherListView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
+	xmlns:l="using:Sudoku.Solving.Logical"
+	xmlns:ra="using:Sudoku.Runtime.AnalysisServices"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:StepSearcherListView}">
+	<ListView
+		x:Name="MainListView" SelectionMode="Single" ItemsSource="{x:Bind StepSearchers,Mode=TwoWay}"
+		CanDragItems="True" CanReorderItems="True" AllowDrop="True">
+		<ListView.ItemTemplate>
+			<DataTemplate x:DataType="l:IStepSearcher">
+				<TextBlock
+					Text="{x:Bind TypeResourceName}"
+					Foreground="{x:Bind cvt:StepSearcherListViewConversion.GetIsEnabledBrush(Options.EnabledArea,ra:SearcherEnabledArea.Default,IsTemporarilyDisabled)}" />
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
+</UserControl>

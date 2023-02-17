@@ -1480,6 +1480,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.StepSearcherListViewConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about <see cref="T:SudokuStudio.Views.Controls.StepSearcherListView"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Controls.StepSearcherListView"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.SudokuGridConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about puzzle details displayed.
@@ -4747,6 +4753,42 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.IntegerBox.LargeChange">
             <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.NumberBox.LargeChange"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.StepSearcherListView">
+            <summary>
+            Represents a <see cref="T:Microsoft.UI.Xaml.Controls.ListView"/> control that displays for <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.StepSearcherListView"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchersProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchers"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchers"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchers">
+            <summary>
+            Indicates the step searchers.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPane">
             <summary>

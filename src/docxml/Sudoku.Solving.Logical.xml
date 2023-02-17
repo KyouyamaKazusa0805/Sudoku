@@ -121,6 +121,11 @@
             The step searchers to find steps to apply to a certain puzzle.
             </summary>
         </member>
+        <member name="P:Sudoku.Buffers.StepSearcherPool.DefaultCollection">
+            <summary>
+            Gets the default collection of step searchers via reflection.
+            </summary>
+        </member>
         <member name="T:Sudoku.Collections.Logical.NodeList">
             <summary>
             Defines a list of <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode"/> using doubly linked list as the backing algorithm.
@@ -5393,6 +5398,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.Clone">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.GetEnumerator">

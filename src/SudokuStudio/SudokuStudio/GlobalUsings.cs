@@ -56,6 +56,7 @@ global using Microsoft.Windows.AppLifecycle;
 global using QuestPDF.Fluent;
 global using QuestPDF.Infrastructure;
 global using SkiaSharp;
+global using Sudoku.Buffers;
 global using Sudoku.Checking;
 global using Sudoku.Concepts;
 global using Sudoku.Filtering;
