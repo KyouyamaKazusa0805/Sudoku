@@ -4852,6 +4852,41 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Controls.StepSearcherListView"/> instance.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.StepSearcherSerializationDataStringPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match the string "IsEnabled".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match '='.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [Tt].<br/>
+                        ○ Match the string "rue".<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a character in the set [Ff].<br/>
+                        ○ Match the string "alse".<br/>
+            ○ Match ','.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "Name".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match '='.<br/>
+            ○ Match a whitespace character greedily any number of times.<br/>
+            ○ 2nd capture group.<br/>
+                ○ Match a character other than ',' atomically at least once.<br/>
+            ○ Match ','.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "TypeName".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match '='.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 3rd capture group.<br/>
+                ○ Match a word character atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -4877,6 +4912,29 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the step searchers.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Extensions.RemoveIf``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Predicate{``0})">
+            <summary>
+            Removes the specified element if the specified condition returns <see langword="true"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="predicate">The condition that checks whether the element should be removed.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Extensions.GetIndexViaCursorPoint(Microsoft.UI.Xaml.DragEventArgs,Microsoft.UI.Xaml.Controls.ListView)">
+            <summary>
+            Infers the index of the element to be removed via specified event data provider instance of type <see cref="T:Microsoft.UI.Xaml.DragEventArgs"/>.
+            </summary>
+            <param name="this">The drag-drop event data provider instance.</param>
+            <param name="target">The target list view.</param>
+            <returns>The index of the element to be removed.</returns>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPane">
             <summary>
@@ -7168,6 +7226,44 @@ if (student is (name: var name, age: >= 18))
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.StepSearcherSerializationDataStringPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the StepSearcherSerializationDataStringPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.StepSearcherSerializationDataStringPattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.StepSearcherSerializationDataStringPattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.StepSearcherSerializationDataStringPattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.StepSearcherSerializationDataStringPattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.StepSearcherSerializationDataStringPattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.StepSearcherSerializationDataStringPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.StepSearcherSerializationDataStringPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.StepSearcherSerializationDataStringPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IsWordChar(System.Char)">
+            <summary>Determines whether the character is part of the [\w] set.</summary>
         </member>
     </members>
 </doc>
