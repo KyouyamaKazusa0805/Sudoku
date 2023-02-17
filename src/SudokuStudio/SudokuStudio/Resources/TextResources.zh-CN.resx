@@ -720,6 +720,9 @@
   <data name="SettingsPage_StepSearcherOrdering" xml:space="preserve">
     <value>技巧搜索器的执行顺序</value>
   </data>
+  <data name="SettingsPage_StepSearcherOrderingDescription" xml:space="preserve">
+    <value>该设置项列举的是程序使用到的技巧步骤的搜索顺序。比如说，如果你将“数组”的这一个项拖到“区块”之前，那么数组技巧就会先搜索，然后才是区块。如果你取消勾选它，那么程序在搜搜技巧步骤的时候，就不会搜索对应技巧类型的步骤。另外，我们强烈不建议你将一些非常重要的技巧禁用掉或者重新调整顺序，例如“排除和唯余”。</value>
+  </data>
   <data name="SettingsPage_StrongLinkDashStyle" xml:space="preserve">
     <value>强链的虚线周期</value>
   </data>

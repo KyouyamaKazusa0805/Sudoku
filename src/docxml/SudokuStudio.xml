@@ -3853,6 +3853,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Ordering of step searchers.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepSearcherOrderingDescription">
+            <summary>
+              Looks up a localized string similar to This option controls the ordering of step-searching. For example, if you put &quot;Subsets&quot; before &quot;Locked Candidates&quot;, subset-related steps will have a higher priority to be searched. If you disable it, it will be really disabled in step-searching. In addition, we recommend you NOT disable or re-order some important step searchers such as &quot;Singles&quot;..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StrongLinkDashStyle">
             <summary>
               Looks up a localized string similar to Strong link dash style.

@@ -1951,6 +1951,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This option controls the ordering of step-searching. For example, if you put &quot;Subsets&quot; before &quot;Locked Candidates&quot;, subset-related steps will have a higher priority to be searched. If you disable it, it will be really disabled in step-searching. In addition, we recommend you NOT disable or re-order some important step searchers such as &quot;Singles&quot;..
+        /// </summary>
+        internal static string SettingsPage_StepSearcherOrderingDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepSearcherOrderingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Strong link dash style.
         /// </summary>
         internal static string SettingsPage_StrongLinkDashStyle {
