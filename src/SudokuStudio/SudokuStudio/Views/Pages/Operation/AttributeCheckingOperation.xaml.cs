@@ -1,0 +1,99 @@
+namespace SudokuStudio.Views.Pages.Operation;
+
+/// <summary>
+/// Attribute checking operation page.
+/// </summary>
+public sealed partial class AttributeCheckingOperation : Page, IOperationProviderPage
+{
+	/// <summary>
+	/// Indicates the sync root.
+	/// </summary>
+	private static readonly object SyncRoot = new();
+
+
+	/// <summary>
+	/// Initializes an <see cref="AttributeCheckingOperation"/> instance.
+	/// </summary>
+	public AttributeCheckingOperation() => InitializeComponent();
+
+
+	/// <inheritdoc/>
+	public AnalyzePage BasePage { get; set; } = null!;
+
+
+	private async void BackdoorButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		var puzzle = BasePage.SudokuPane.Puzzle;
+		if (!puzzle.IsValid())
+		{
+			// Invalid puzzle.
+			return;
+		}
+
+		var backdoors = await Task.Run(() => { lock (SyncRoot) { return BackdoorSearcher.GetBackdoors(puzzle); } });
+		var view = View.Empty;
+		foreach (var (type, candidate) in backdoors)
+		{
+			view.Add(new CandidateViewNode(type == Assignment ? DisplayColorKind.Assignment : DisplayColorKind.Elimination, candidate));
+		}
+
+		var visualUnit = new BackdoorVisualUnit(view);
+		BasePage.VisualUnit = visualUnit;
+	}
+
+	private async void TrueCandidateButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		var puzzle = BasePage.SudokuPane.Puzzle;
+		if (!puzzle.IsValid())
+		{
+			// Invalid puzzle.
+			return;
+		}
+
+		var trueCandidates = await Task.Run(() => { lock (SyncRoot) { return new TrueCandidatesSearcher(puzzle).GetAllTrueCandidates(64); } });
+
+		var view = View.Empty;
+		trueCandidates.ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Assignment, candidate)));
+
+		var visualUnit = new TrueCandidateVisualUnit(view);
+		BasePage.VisualUnit = visualUnit;
+	}
+}
+
+/// <summary>
+/// Defines a backdoor visual unit.
+/// </summary>
+file sealed class BackdoorVisualUnit : VisualUnit
+{
+	/// <summary>
+	/// Initializes a <see cref="BackdoorVisualUnit"/> instance via the specified view.
+	/// </summary>
+	/// <param name="view">The view.</param>
+	public BackdoorVisualUnit(View view) => Views = ImmutableArray.Create(view);
+
+
+	/// <inheritdoc/>
+	public ImmutableArray<View> Views { get; }
+
+	/// <inheritdoc/>
+	ImmutableArray<Conclusion> VisualUnit.Conclusions { get; } = ImmutableArray.Create<Conclusion>();
+}
+
+/// <summary>
+/// Defines a true-candidate visual unit.
+/// </summary>
+file sealed class TrueCandidateVisualUnit : VisualUnit
+{
+	/// <summary>
+	/// Initializes a <see cref="TrueCandidateVisualUnit"/> instance via the specified view.
+	/// </summary>
+	/// <param name="view">The view.</param>
+	public TrueCandidateVisualUnit(View view) => Views = ImmutableArray.Create(view);
+
+
+	/// <inheritdoc/>
+	public ImmutableArray<View> Views { get; }
+
+	/// <inheritdoc/>
+	ImmutableArray<Conclusion> VisualUnit.Conclusions { get; } = ImmutableArray.Create<Conclusion>();
+}

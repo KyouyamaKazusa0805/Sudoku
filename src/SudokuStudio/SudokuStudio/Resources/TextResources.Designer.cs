@@ -394,6 +394,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backdoors.
+        /// </summary>
+        internal static string AnalyzePage_BackdoorButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_BackdoorButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string AnalyzePage_Cancel {
@@ -853,6 +862,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attribute checking.
+        /// </summary>
+        internal static string AnalyzePage_PivotItem_AttributeCheckingOperation {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PivotItem_AttributeCheckingOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basics.
         /// </summary>
         internal static string AnalyzePage_PivotItem_BasicOperations {
@@ -1146,6 +1164,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_ToggleDisplayingCandidates {
             get {
                 return ResourceManager.GetString("AnalyzePage_ToggleDisplayingCandidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to True candidates.
+        /// </summary>
+        internal static string AnalyzePage_TrueCandidateButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_TrueCandidateButton", resourceCulture);
             }
         }
         

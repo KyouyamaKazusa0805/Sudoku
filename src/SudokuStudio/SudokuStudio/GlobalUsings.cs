@@ -63,6 +63,7 @@ global using Sudoku.Checking;
 global using Sudoku.Concepts;
 global using Sudoku.Filtering;
 global using Sudoku.Generating;
+global using Sudoku.Preprocessing.Checking;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Rating;

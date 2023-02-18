@@ -201,6 +201,9 @@
   <data name="AnalyzePage_ArgumentsPolarScoreName" xml:space="preserve">
     <value>Score</value>
   </data>
+  <data name="AnalyzePage_BackdoorButton" xml:space="preserve">
+    <value>Backdoors</value>
+  </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -354,6 +357,9 @@
   <data name="AnalyzePage_PencilmarkFormat" xml:space="preserve">
     <value>Pencilmarked format</value>
   </data>
+  <data name="AnalyzePage_PivotItem_AttributeCheckingOperation" xml:space="preserve">
+    <value>Attribute checking</value>
+  </data>
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>Basics</value>
   </data>
@@ -452,6 +458,9 @@
   </data>
   <data name="AnalyzePage_ToggleDisplayingCandidates" xml:space="preserve">
     <value>Show/Hide candidates</value>
+  </data>
+  <data name="AnalyzePage_TrueCandidateButton" xml:space="preserve">
+    <value>True candidates</value>
   </data>
   <data name="AnalyzePage_UndefinedGrid" xml:space="preserve">
     <value>&lt;Undefined&gt;</value>

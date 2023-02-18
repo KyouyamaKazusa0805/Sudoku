@@ -441,6 +441,10 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		{
 			NavigateToPage(typeof(BasicOperation));
 		}
+		else if (container == AttributeCheckingOperationBar)
+		{
+			NavigateToPage(typeof(AttributeCheckingOperation));
+		}
 		else if (container == PrintingOperationBar)
 		{
 			NavigateToPage(typeof(PrintingOperation));

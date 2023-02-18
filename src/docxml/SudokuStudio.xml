@@ -2985,6 +2985,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Score.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_BackdoorButton">
+            <summary>
+              Looks up a localized string similar to Backdoors.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Cancel">
             <summary>
               Looks up a localized string similar to Cancel.
@@ -3240,6 +3245,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Pencilmarked format.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PivotItem_AttributeCheckingOperation">
+            <summary>
+              Looks up a localized string similar to Attribute checking.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PivotItem_BasicOperations">
             <summary>
               Looks up a localized string similar to Basics.
@@ -3403,6 +3413,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ToggleDisplayingCandidates">
             <summary>
               Looks up a localized string similar to Show/Hide candidates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_TrueCandidateButton">
+            <summary>
+              Looks up a localized string similar to True candidates.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_UndefinedGrid">
@@ -6290,6 +6305,73 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
             <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.Summary._analysisResult"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation">
+            <summary>
+            Attribute checking operation page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.SyncRoot">
+            <summary>
+            Indicates the sync root.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.BasePage">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit">
+            <summary>
+            Defines a backdoor visual unit.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.#ctor(Sudoku.Presentation.View)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit"/> instance via the specified view.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.Views">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.Sudoku#Presentation#IVisual#Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit">
+            <summary>
+            Defines a true-candidate visual unit.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.#ctor(Sudoku.Presentation.View)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit"/> instance via the specified view.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.Views">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.Sudoku#Presentation#IVisual#Conclusions">
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.BasicOperation">
             <summary>

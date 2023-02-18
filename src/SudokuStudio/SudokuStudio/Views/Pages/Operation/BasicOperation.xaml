@@ -92,12 +92,8 @@
 	</Page.Resources>
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">
-		<AppBarButton
-			x:Name="OpenFileButton" Icon="OpenFile" Label="{m:R Key=AnalyzePage_OpenFile}" CommandParameter="{x:Bind BasePage}"
-			Click="OpenFileButton_ClickAsync" />
-		<AppBarButton
-			x:Name="SaveFileButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFile}"
-			Click="SaveFileButton_ClickAsync" />
+		<AppBarButton x:Name="OpenFileButton" Icon="OpenFile" Label="{m:R Key=AnalyzePage_OpenFile}" Click="OpenFileButton_ClickAsync" />
+		<AppBarButton x:Name="SaveFileButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFile}" Click="SaveFileButton_ClickAsync" />
 		<AppBarButton x:Name="SaveAsButton" Icon="SaveLocal" Label="{m:R Key=AnalyzePage_SaveFileAnother}" Click="SaveAsButton_Click" />
 		<AppBarSeparator />
 		<AppBarButton x:Name="CopyButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyCommandName}" Click="CopyButton_Click" />
