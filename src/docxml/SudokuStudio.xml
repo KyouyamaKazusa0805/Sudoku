@@ -3620,14 +3620,14 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Single Counting Practicing.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_TechniqueFile">
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_TechniqueGallery">
             <summary>
-              Looks up a localized string similar to Technique File.
+              Looks up a localized string similar to Technique Gallery.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_TechniqueFilePageTitle">
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_TechniqueGalleryPageTitle">
             <summary>
-              Looks up a localized string similar to Technique File.
+              Looks up a localized string similar to Technique Gallery.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
@@ -4040,12 +4040,12 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Output.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.TextResources.TechniqueFilePage_Intro">
+        <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_Intro">
             <summary>
               Looks up a localized string similar to This page lists techniques that the current program are supported, which can help you learn them..
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.TextResources.TechniqueFilePage_Singles">
+        <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_Singles">
             <summary>
               Looks up a localized string similar to Singles.
             </summary>
@@ -4297,13 +4297,13 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Storage.SudokuPlainTextFileHandler.Write(System.String,Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
-        <member name="T:SudokuStudio.TechniqueFileData">
+        <member name="T:SudokuStudio.TechniqueGalleryData">
             <summary>
-            Provides with a field that stores the techniques data used by page <see cref="T:SudokuStudio.Views.Pages.TechniqueFilePage"/>.
+            Provides with a field that stores the techniques data used by page <see cref="T:SudokuStudio.Views.Pages.TechniqueGalleryPage"/>.
             </summary>
-            <seealso cref="T:SudokuStudio.Views.Pages.TechniqueFilePage"/>
+            <seealso cref="T:SudokuStudio.Views.Pages.TechniqueGalleryPage"/>
         </member>
-        <member name="F:SudokuStudio.TechniqueFileData.RoutingGroups">
+        <member name="F:SudokuStudio.TechniqueGalleryData.RoutingGroups">
             <summary>
             The routing groups.
             </summary>
@@ -6844,34 +6844,34 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouse"/>
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingle"/>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.TechniqueFilePage">
+        <member name="T:SudokuStudio.Views.Pages.TechniqueGalleryPage">
             <summary>
             The hub page of introduction of techniques.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.#ctor">
+        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.#ctor">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueFilePage"/> instance.
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueGalleryPage"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.GetMainWindow">
+        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.GetMainWindow">
             <summary>
             Gets the main window.
             </summary>
             <returns>The main window.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.InitializeComponent">
+        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.InitializeComponent">
             <summary>
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.Connect(System.Int32,System.Object)">
+        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.Connect(System.Int32,System.Object)">
             <summary>
             Connect()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.GetBindingConnector(System.Int32,System.Object)">
+        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

@@ -3,10 +3,10 @@
 using static Technique;
 
 /// <summary>
-/// Provides with a field that stores the techniques data used by page <see cref="TechniqueFilePage"/>.
+/// Provides with a field that stores the techniques data used by page <see cref="TechniqueGalleryPage"/>.
 /// </summary>
-/// <seealso cref="TechniqueFilePage"/>
-internal static class TechniqueFileData
+/// <seealso cref="TechniqueGalleryPage"/>
+internal static class TechniqueGalleryData
 {
 	/// <summary>
 	/// The routing groups.
@@ -15,7 +15,7 @@ internal static class TechniqueFileData
 	{
 		new()
 		{
-			Title = GetString("TechniqueFilePage_Singles"),
+			Title = GetString("TechniqueGalleryPage_Singles"),
 			Collection = new TechniquePageRoutingData[]
 			{
 				new() { IsEnabled = false, Color = Colors.Green, Technique = FullHouse, RoutingPageTypeName = typeof(FullHousePage).Name },

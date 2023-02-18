@@ -3,12 +3,12 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// The hub page of introduction of techniques.
 /// </summary>
-public sealed partial class TechniqueFilePage : Page
+public sealed partial class TechniqueGalleryPage : Page
 {
 	/// <summary>
-	/// Initializes a <see cref="TechniqueFilePage"/> instance.
+	/// Initializes a <see cref="TechniqueGalleryPage"/> instance.
 	/// </summary>
-	public TechniqueFilePage() => InitializeComponent();
+	public TechniqueGalleryPage() => InitializeComponent();
 
 
 	/// <summary>

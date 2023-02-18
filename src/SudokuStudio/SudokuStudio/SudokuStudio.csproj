@@ -67,7 +67,7 @@
 		<None Remove="Views\Pages\Settings\BasicPreferenceItemsPage.xaml" />
 		<None Remove="Views\Pages\Settings\DrawingPreferenceItemsPage.xaml" />
 		<None Remove="Views\Pages\SingleCountingPracticingPage.xaml" />
-		<None Remove="Views\Pages\TechniqueFilePage.xaml" />
+		<None Remove="Views\Pages\TechniqueGalleryPage.xaml" />
 		<None Remove="Views\Pages\Techniques\FullHousePage.xaml" />
 	</ItemGroup>
 
@@ -108,7 +108,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="Views\Pages\TechniqueFilePage.xaml">
+		<Page Update="Views\Pages\TechniqueGalleryPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Controls\StepSearcherListView.xaml">

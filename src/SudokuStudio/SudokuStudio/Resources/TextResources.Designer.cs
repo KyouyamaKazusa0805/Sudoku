@@ -1384,20 +1384,20 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Technique File.
+        ///   Looks up a localized string similar to Technique Gallery.
         /// </summary>
-        internal static string MainWindow_TechniqueFile {
+        internal static string MainWindow_TechniqueGallery {
             get {
-                return ResourceManager.GetString("MainWindow_TechniqueFile", resourceCulture);
+                return ResourceManager.GetString("MainWindow_TechniqueGallery", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Technique File.
+        ///   Looks up a localized string similar to Technique Gallery.
         /// </summary>
-        internal static string MainWindow_TechniqueFilePageTitle {
+        internal static string MainWindow_TechniqueGalleryPageTitle {
             get {
-                return ResourceManager.GetString("MainWindow_TechniqueFilePageTitle", resourceCulture);
+                return ResourceManager.GetString("MainWindow_TechniqueGalleryPageTitle", resourceCulture);
             }
         }
         
@@ -2138,18 +2138,18 @@ namespace SudokuStudio.Resources {
         /// <summary>
         ///   Looks up a localized string similar to This page lists techniques that the current program are supported, which can help you learn them..
         /// </summary>
-        internal static string TechniqueFilePage_Intro {
+        internal static string TechniqueGalleryPage_Intro {
             get {
-                return ResourceManager.GetString("TechniqueFilePage_Intro", resourceCulture);
+                return ResourceManager.GetString("TechniqueGalleryPage_Intro", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Singles.
         /// </summary>
-        internal static string TechniqueFilePage_Singles {
+        internal static string TechniqueGalleryPage_Singles {
             get {
-                return ResourceManager.GetString("TechniqueFilePage_Singles", resourceCulture);
+                return ResourceManager.GetString("TechniqueGalleryPage_Singles", resourceCulture);
             }
         }
     }

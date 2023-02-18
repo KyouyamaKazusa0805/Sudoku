@@ -52,14 +52,12 @@
 				<NavigationViewItemSeparator />
 				<NavigationViewItem Icon="Flag" Content="{m:R Key=MainWindow_ExtraFunctions}">
 					<NavigationViewItem.MenuItems>
-						<NavigationViewItem
-							x:Name="SingleCountingPageItem" Icon="OutlineStar"
-							Content="{m:R Key=MainWindow_SingleCountingPracticing}" />
+						<NavigationViewItem x:Name="SingleCountingPageItem" Icon="OutlineStar" Content="{m:R Key=MainWindow_SingleCountingPracticing}" />
 					</NavigationViewItem.MenuItems>
 				</NavigationViewItem>
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>
-				<NavigationViewItem x:Name="TechniqueFilePageItem" Icon="Bookmarks" Content="{m:R Key=MainWindow_TechniqueFile}" />
+				<NavigationViewItem x:Name="TechniqueGalleryPageItem" Icon="Bookmarks" Content="{m:R Key=MainWindow_TechniqueGallery}" />
 				<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
 			</NavigationView.FooterMenuItems>
 
