@@ -1940,6 +1940,32 @@ if (student is (name: var name, age: >= 18))
             Indicates the simple description.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs.#ctor(System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs"/> instance via a <see cref="T:System.Boolean"/> value
+            indicating whether the mouse wheel is clockwise.
+            </summary>
+            <param name="isClockwise">A <see cref="T:System.Boolean"/> value indicating whether the mouse wheel is clockwise.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs.IsClockwise">
+            <summary>
+            Indicates whether the direction is clockwise.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.MouseWheelChanged"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.MouseWheelChanged"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventHandler"/>.
@@ -4940,6 +4966,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the event that is triggered when the internal grid is updated with the specified behavior,
             such as removed a candidate, filled with a digit, etc..
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.MouseWheelChanged">
+            <summary>
+            Indicates the event that is triggered when the mouse wheel is changed.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UndoStep">

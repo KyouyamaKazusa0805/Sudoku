@@ -153,6 +153,7 @@
 						a:LogicalSolverProperties.SolverIgnoreHighAllocationAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=OneWay}"
 						a:StepGathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=OneWay}"
 						a:StepGathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
+						MouseWheelChanged="SudokuPane_MouseWheelChanged"
 					/>
 					<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,*">
 						<PipsPager

@@ -581,4 +581,12 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 		SudokuPane.Puzzle = modified;
 	}
+
+	private void SudokuPane_MouseWheelChanged(SudokuPane sender, SudokuPaneMouseWheelChangedEventArgs e)
+	{
+		if (VisualUnit is { Views.Length: var length and not 0 })
+		{
+			((Action)(e.IsClockwise ? SetNextView : SetPreviousView))();
+		}
+	}
 }

@@ -269,6 +269,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public event GridUpdatedEventHandler? GridUpdated;
 
+	/// <summary>
+	/// Indicates the event that is triggered when the mouse wheel is changed.
+	/// </summary>
+	public event SudokuPaneMouseWheelChangedEventHandler? MouseWheelChanged;
+
 
 	/// <summary>
 	/// Undo a step.
@@ -680,6 +685,19 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 			}
 		}
+	}
+
+	private void UserControl_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
+	{
+		var pointerPoint = e.GetCurrentPoint((UIElement)sender);
+		if (pointerPoint.Properties.MouseWheelDelta is not (var delta and not 0))
+		{
+			return;
+		}
+
+		MouseWheelChanged?.Invoke(this, new(delta < 0));
+
+		e.Handled = true;
 	}
 
 	private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
