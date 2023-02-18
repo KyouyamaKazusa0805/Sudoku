@@ -399,6 +399,12 @@
   <data name="AnalyzePage_PuzzleIs" xml:space="preserve">
     <value>Puzzle code: </value>
   </data>
+  <data name="AnalyzePage_PuzzleIsInvalid" xml:space="preserve">
+    <value>Puzzle is invalid. It means it has no solution, or contains multiple solutions, which is invalid case to be checked.</value>
+  </data>
+  <data name="AnalyzePage_PuzzleIsInvalidTitle" xml:space="preserve">
+    <value>Failed</value>
+  </data>
   <data name="AnalyzePage_PuzzleRarity" xml:space="preserve">
     <value>Rarity</value>
   </data>

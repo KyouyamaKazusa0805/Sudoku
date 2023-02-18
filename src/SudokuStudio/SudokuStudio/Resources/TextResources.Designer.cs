@@ -988,6 +988,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Puzzle is invalid. It means it has no solution, or contains multiple solutions, which is invalid case to be checked..
+        /// </summary>
+        internal static string AnalyzePage_PuzzleIsInvalid {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleIsInvalidTitle {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleIsInvalidTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rarity.
         /// </summary>
         internal static string AnalyzePage_PuzzleRarity {

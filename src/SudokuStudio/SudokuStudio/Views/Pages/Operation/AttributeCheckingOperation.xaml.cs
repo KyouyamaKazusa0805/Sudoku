@@ -26,7 +26,9 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		var puzzle = BasePage.SudokuPane.Puzzle;
 		if (!puzzle.IsValid())
 		{
-			// Invalid puzzle.
+			ErrorDialog_PuzzleIsInvalid.Target = BackdoorButton;
+			ErrorDialog_PuzzleIsInvalid.IsOpen = true;
+
 			return;
 		}
 
@@ -46,7 +48,9 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		var puzzle = BasePage.SudokuPane.Puzzle;
 		if (!puzzle.IsValid())
 		{
-			// Invalid puzzle.
+			ErrorDialog_PuzzleIsInvalid.Target = TrueCandidateButton;
+			ErrorDialog_PuzzleIsInvalid.IsOpen = true;
+
 			return;
 		}
 

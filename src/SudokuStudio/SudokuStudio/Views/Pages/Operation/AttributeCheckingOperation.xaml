@@ -7,6 +7,13 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=po:AttributeCheckingOperation}">
+	<Page.Resources>
+		<TeachingTip
+			x:Name="ErrorDialog_PuzzleIsInvalid" IsLightDismissEnabled="True"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_PuzzleIsInvalidTitle}"
+			Subtitle="{m:R Key=AnalyzePage_PuzzleIsInvalid}" />
+	</Page.Resources>
+
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">
 		<AppBarButton x:Name="BackdoorButton" Icon="Message" Label="{m:R Key=AnalyzePage_BackdoorButton}" Click="BackdoorButton_ClickAsync" />
 		<AppBarButton

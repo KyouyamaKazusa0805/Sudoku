@@ -3315,6 +3315,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Puzzle code: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleIsInvalid">
+            <summary>
+              Looks up a localized string similar to Puzzle is invalid. It means it has no solution, or contains multiple solutions, which is invalid case to be checked..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleIsInvalidTitle">
+            <summary>
+              Looks up a localized string similar to Failed.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleRarity">
             <summary>
               Looks up a localized string similar to Rarity.

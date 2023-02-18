@@ -399,6 +399,12 @@
   <data name="AnalyzePage_PuzzleIs" xml:space="preserve">
     <value>题目代码：</value>
   </data>
+  <data name="AnalyzePage_PuzzleIsInvalid" xml:space="preserve">
+    <value>该题目不唯一解。题目在必须唯一解的时候，才可以使用此功能。</value>
+  </data>
+  <data name="AnalyzePage_PuzzleIsInvalidTitle" xml:space="preserve">
+    <value>失败</value>
+  </data>
   <data name="AnalyzePage_PuzzleRarity" xml:space="preserve">
     <value>罕见度</value>
   </data>
