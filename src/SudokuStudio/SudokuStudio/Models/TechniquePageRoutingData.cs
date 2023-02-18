@@ -37,4 +37,9 @@ public sealed class TechniquePageRoutingData
 	/// Indicates the technique code that the page related to.
 	/// </summary>
 	public required Technique Technique { get; set; }
+
+	/// <summary>
+	/// Indicates the color of the current technique.
+	/// </summary>
+	public required Color Color { get; set; }
 }

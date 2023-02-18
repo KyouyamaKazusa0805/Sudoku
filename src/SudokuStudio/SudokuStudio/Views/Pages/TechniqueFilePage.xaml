@@ -50,7 +50,7 @@
 												<Grid Width="72" CornerRadius="{ThemeResource ControlCornerRadius}">
 													<Grid.Background>
 														<LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-															<GradientStop Color="Green" Offset="0.0" />
+															<GradientStop Color="{x:Bind Color}" Offset="0.0" />
 															<GradientStop Color="Transparent" Offset="0.62" />
 														</LinearGradientBrush>
 													</Grid.Background>

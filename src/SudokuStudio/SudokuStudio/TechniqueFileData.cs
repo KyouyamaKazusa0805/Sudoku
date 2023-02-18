@@ -18,12 +18,12 @@ internal static class TechniqueFileData
 			Title = GetString("TechniqueFilePage_Singles"),
 			Collection = new TechniquePageRoutingData[]
 			{
-				new() { IsEnabled = false, Technique = FullHouse, RoutingPageTypeName = typeof(FullHousePage).Name },
-				new() { IsEnabled = false, Technique = LastDigit },
-				new() { IsEnabled = false, Technique = HiddenSingleBlock },
-				new() { IsEnabled = false, Technique = HiddenSingleRow },
-				new() { IsEnabled = false, Technique = HiddenSingleColumn },
-				new() { IsEnabled = false, Technique = NakedSingle }
+				new() { IsEnabled = false, Color = Colors.Green, Technique = FullHouse, RoutingPageTypeName = typeof(FullHousePage).Name },
+				new() { IsEnabled = false, Color = Colors.Green, Technique = LastDigit },
+				new() { IsEnabled = false, Color = Colors.Green, Technique = HiddenSingleBlock },
+				new() { IsEnabled = false, Color = Colors.Green, Technique = HiddenSingleRow },
+				new() { IsEnabled = false, Color = Colors.Green, Technique = HiddenSingleColumn },
+				new() { IsEnabled = false, Color = Colors.Green, Technique = NakedSingle }
 			}
 		}
 	};

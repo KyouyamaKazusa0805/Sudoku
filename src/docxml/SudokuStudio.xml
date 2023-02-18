@@ -2713,6 +2713,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the technique code that the page related to.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.Color">
+            <summary>
+            Indicates the color of the current technique.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Models.TechniquePageRoutingDataGroup">
             <summary>
             Defines a group that stores the data of the techniques and routing information, and its title.
