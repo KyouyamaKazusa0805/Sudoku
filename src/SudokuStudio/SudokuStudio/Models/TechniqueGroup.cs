@@ -6,7 +6,7 @@
 public sealed class TechniqueGroup : List<object>
 {
 	/// <summary>
-	/// Initializes a <see cref="TechniqueGroup"/> instance via the specified list of elements.
+	/// Initializes a <see cref="TechniqueGroupModel"/> instance via the specified list of elements.
 	/// </summary>
 	/// <param name="elements">The elements.</param>
 	public TechniqueGroup(IEnumerable<object> elements) : base(elements)

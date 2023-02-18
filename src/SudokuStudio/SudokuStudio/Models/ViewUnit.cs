@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a view unit.
 /// </summary>
-public sealed partial class ViewUnit
+public sealed class ViewUnit
 {
 	/// <summary>
 	/// Indicates the candidates as conclusions in a single <see cref="IStep"/>.
@@ -15,8 +15,4 @@ public sealed partial class ViewUnit
 	/// Indicates a view of highlight elements.
 	/// </summary>
 	public View View { get; set; } = null!;
-
-
-	[DeconstructionMethod]
-	public partial void Deconstruct(out View view, out ImmutableArray<Conclusion> conclusions);
 }

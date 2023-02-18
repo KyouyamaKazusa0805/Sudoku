@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a path step in a whole solving path.
 /// </summary>
-public sealed partial class SolvingPathStep
+public sealed class SolvingPathStep
 {
 	/// <summary>
 	/// Indicates the index of the step.
@@ -24,8 +24,4 @@ public sealed partial class SolvingPathStep
 	/// Indicates the step details.
 	/// </summary>
 	public required IStep Step { get; set; }
-
-
-	[DeconstructionMethod]
-	public partial void Deconstruct(out int index, out Grid stepGrid, out StepTooltipDisplayKind displayKinds, out IStep step);
 }

@@ -41,7 +41,7 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 
 	private void ListViewItem_Tapped(object sender, TappedRoutedEventArgs e)
 	{
-		if (sender is not ListViewItem { Tag: SolvingPathStep(_, var stepGrid, _, var step) })
+		if (sender is not ListViewItem { Tag: SolvingPathStep { StepGrid: var stepGrid, Step: var step } })
 		{
 			return;
 		}

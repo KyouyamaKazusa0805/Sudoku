@@ -10,11 +10,27 @@ public static partial class FontPickerBindable
 	[Callback]
 	private static void SelectedFontDataPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (FontPicker target, { NewValue: FontSerializationData n }))
+		if (
+#pragma warning disable format
+			(d, e) is not (
+				FontPicker target,
+				{
+					NewValue: FontSerializationData
+					{
+						FontName: var fontName,
+						FontScale: var fontScale,
+						FontColor: var fontColor
+					}
+				}
+			)
+#pragma warning restore format
+		)
 		{
 			return;
 		}
 
-		(target.SelectedFontName, target.SelectedFontScale, target.SelectedColor) = n;
+		target.SelectedFontName = fontName;
+		target.SelectedFontScale = fontScale;
+		target.SelectedColor = fontColor;
 	}
 }

@@ -40,7 +40,12 @@ internal static class AnalyzeConversion
 
 	public static IEnumerable<Inline> GetInlinesOfTooltip(SolvingPathStep s)
 	{
-		if (s is not (var index, _, var displayKind, { Name: var name, ShowDifficulty: var showDifficulty, Difficulty: var difficulty } step))
+		if (s is not
+			{
+				Index: var index,
+				DisplayKinds: var displayKind,
+				Step: { Name: var name, ShowDifficulty: var showDifficulty, Difficulty: var difficulty } step
+			})
 		{
 			throw new ArgumentException($"The argument '{nameof(s)}' is invalid.", nameof(s));
 		}

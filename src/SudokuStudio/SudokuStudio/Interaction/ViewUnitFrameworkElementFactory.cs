@@ -59,10 +59,14 @@ internal static class ViewUnitFrameworkElementFactory
 	/// <seealso cref="ViewUnit"/>
 	public static void AddViewUnitControls(AnalyzePage targetPage, ViewUnit viewUnit)
 	{
-		var (view, conclusions) = viewUnit;
+		if (viewUnit is not { View.BasicNodes: var nodes, Conclusions: var conclusions })
+		{
+			return;
+		}
+
 		var overlapped = new List<Conclusion>();
 		var linx = new List<LinkViewNode>();
-		foreach (var viewNode in view.BasicNodes)
+		foreach (var viewNode in nodes)
 		{
 			(
 				viewNode switch
