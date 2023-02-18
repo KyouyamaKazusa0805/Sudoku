@@ -14,12 +14,8 @@ public sealed class TechniquePageRoutingData
 	/// <summary>
 	/// Indicates whether the page is enabled.
 	/// </summary>
+	[MemberNotNullWhen(true, nameof(RoutingPageTypeName))]
 	public bool IsEnabled { get; set; } = true;
-
-	/// <summary>
-	/// Indicates the routing page type name.
-	/// </summary>
-	public required string RoutingPageTypeName { get; set; }
 
 	/// <summary>
 	/// Indicates the resource name of this technique.
@@ -30,6 +26,12 @@ public sealed class TechniquePageRoutingData
 	/// Indicates the resource default name (English name) of this technique.
 	/// </summary>
 	public string OriginalName => SudokuDefaultResource.ResourceManager.GetString(Technique.ToString(), DefaultCulture)!;
+
+	/// <summary>
+	/// Indicates the routing page type name.
+	/// </summary>
+	[DisallowNull]
+	public string? RoutingPageTypeName { get; set; }
 
 	/// <summary>
 	/// Indicates the technique code that the page related to.

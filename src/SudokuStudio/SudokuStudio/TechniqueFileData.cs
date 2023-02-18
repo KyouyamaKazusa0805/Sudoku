@@ -1,5 +1,7 @@
 ﻿namespace SudokuStudio;
 
+using static Technique;
+
 /// <summary>
 /// Provides with a field that stores the techniques data used by page <see cref="TechniqueFilePage"/>.
 /// </summary>
@@ -16,12 +18,12 @@ internal static class TechniqueFileData
 			Title = GetString("TechniqueFilePage_Singles"),
 			Collection = new TechniquePageRoutingData[]
 			{
-				new() { Technique = Technique.FullHouse, RoutingPageTypeName = typeof(FullHousePage).Name },
-				new() { Technique = Technique.LastDigit, RoutingPageTypeName = typeof(FullHousePage).Name },
-				new() { Technique = Technique.HiddenSingleBlock, RoutingPageTypeName = typeof(FullHousePage).Name },
-				new() { Technique = Technique.HiddenSingleRow, RoutingPageTypeName = typeof(FullHousePage).Name },
-				new() { Technique = Technique.HiddenSingleColumn, RoutingPageTypeName = typeof(FullHousePage).Name },
-				new() { Technique = Technique.NakedSingle, RoutingPageTypeName = typeof(FullHousePage).Name }
+				new() { IsEnabled = false, Technique = FullHouse, RoutingPageTypeName = typeof(FullHousePage).Name },
+				new() { IsEnabled = false, Technique = LastDigit },
+				new() { IsEnabled = false, Technique = HiddenSingleBlock },
+				new() { IsEnabled = false, Technique = HiddenSingleRow },
+				new() { IsEnabled = false, Technique = HiddenSingleColumn },
+				new() { IsEnabled = false, Technique = NakedSingle }
 			}
 		}
 	};

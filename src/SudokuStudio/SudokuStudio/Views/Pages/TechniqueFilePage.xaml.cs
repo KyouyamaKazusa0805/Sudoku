@@ -26,7 +26,7 @@ public sealed partial class TechniqueFilePage : Page
 
 	private void GridView_ItemClick(object sender, ItemClickEventArgs e)
 	{
-		if (e is not { ClickedItem: TechniquePageRoutingData { RoutingPageTypeName: var typeName } })
+		if (e is not { ClickedItem: TechniquePageRoutingData { IsEnabled: true, RoutingPageTypeName: var typeName } })
 		{
 			return;
 		}

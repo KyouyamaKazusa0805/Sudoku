@@ -2693,11 +2693,6 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the page is enabled.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.RoutingPageTypeName">
-            <summary>
-            Indicates the routing page type name.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Models.TechniquePageRoutingData.Name">
             <summary>
             Indicates the resource name of this technique.
@@ -2706,6 +2701,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Models.TechniquePageRoutingData.OriginalName">
             <summary>
             Indicates the resource default name (English name) of this technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.RoutingPageTypeName">
+            <summary>
+            Indicates the routing page type name.
             </summary>
         </member>
         <member name="P:SudokuStudio.Models.TechniquePageRoutingData.Technique">
