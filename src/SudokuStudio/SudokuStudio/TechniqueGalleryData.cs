@@ -38,9 +38,13 @@ internal static class TechniqueGalleryData
 			Title = GetString("TechniqueGalleryPage_Subsets"),
 			Collection = new TechniquePageRoutingData[]
 			{
+				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.LockedPair },
+				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.LockedTriple },
 				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.NakedPair },
 				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.NakedTriple },
+				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.NakedTriplePlus },
 				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.NakedQuadruple },
+				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.NakedQuadruplePlus },
 				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.HiddenPair },
 				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.HiddenTriple },
 				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.HiddenQuadruple }
