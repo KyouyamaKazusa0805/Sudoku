@@ -72,11 +72,13 @@ internal sealed partial class SudokuPaneCell : UserControl
 	private void InputSetter_KeyDown(object sender, KeyRoutedEventArgs e)
 	{
 		if (
+#pragma warning disable format
 			(this, sender, e) is not (
-				Item1: { BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
+				{ BasePane.Puzzle: var modified, _temporarySelectedCell: var cell and not -1 },
 				TextBox { Text: var text, Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup p } } },
-				e: { Key: VirtualKey.Enter }
+				{ Key: VirtualKey.Enter }
 			)
+#pragma warning restore format
 		)
 		{
 			return;
