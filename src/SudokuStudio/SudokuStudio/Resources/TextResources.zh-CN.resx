@@ -532,10 +532,10 @@
     <value>唯余数数练习</value>
   </data>
   <data name="MainWindow_TechniqueGallery" xml:space="preserve">
-    <value>技巧介绍</value>
+    <value>技巧博物馆</value>
   </data>
   <data name="MainWindow_TechniqueGalleryPageTitle" xml:space="preserve">
-    <value>技巧档案馆</value>
+    <value>技巧博物馆</value>
   </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
     <value>允许 ALS-XY-Wing 技巧里的 ALS 结构重叠</value>
