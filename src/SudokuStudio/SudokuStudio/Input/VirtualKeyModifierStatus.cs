@@ -14,6 +14,17 @@ public readonly record struct VirtualKeyModifierStatus(bool IsControlKeyDown, bo
 	IEqualityOperators<VirtualKeyModifierStatus, VirtualKeyModifierStatus, bool>
 {
 	/// <summary>
+	/// Indicates whether all modifier keys are not pressed.
+	/// </summary>
+	public bool AllFalse => this is (false, false, false, false);
+
+	/// <summary>
+	/// Indicates whether all modifier keys are pressed.
+	/// </summary>
+	public bool AllTrue => this is (true, true, true, true);
+
+
+	/// <summary>
 	/// Creates a <see cref="VirtualKeyModifiers"/> instance using the current data.
 	/// </summary>
 	/// <returns>A <see cref="VirtualKeyModifiers"/> instance.</returns>

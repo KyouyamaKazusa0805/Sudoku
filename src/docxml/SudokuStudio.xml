@@ -1485,6 +1485,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.IsWindowsKeyDown">
             <summary>Indicates whether the windows key is input.</summary>
         </member>
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.AllFalse">
+            <summary>
+            Indicates whether all modifier keys are not pressed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.AllTrue">
+            <summary>
+            Indicates whether all modifier keys are pressed.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.AsKeyModifiers">
             <summary>
             Creates a <see cref="T:Windows.System.VirtualKeyModifiers"/> instance using the current data.
@@ -5052,6 +5062,11 @@ if (student is (name: var name, age: >= 18))
         <member name="E:SudokuStudio.Views.Controls.SudokuPane.MouseWheelChanged">
             <summary>
             Indicates the event that is triggered when the mouse wheel is changed.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.EscapeKeyFired">
+            <summary>
+            Indicates the event that is triggered when escape key is pressed.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UndoStep">

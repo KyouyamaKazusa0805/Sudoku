@@ -274,6 +274,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public event SudokuPaneMouseWheelChangedEventHandler? MouseWheelChanged;
 
+	/// <summary>
+	/// Indicates the event that is triggered when escape key is pressed.
+	/// </summary>
+	public event EventHandler? EscapeKeyFired;
+
 
 	/// <summary>
 	/// Undo a step.
@@ -333,7 +338,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		Clipboard.SetContent(dataPackage);
 	}
-	
+
 	/// <summary>
 	/// Try to set puzzle, with a <see cref="bool"/> value indicating whether the stack fields <see cref="_undoStack"/>
 	/// and <see cref="_redoStack"/> will be cleared.
@@ -702,20 +707,21 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
 	{
-		/**
-			Please note that the parent control may use globalized hotkeys to control some behaviors.
-			If <c>e.Handled</c> is not set <see langword="false"/> value before exited parent <c>KeyDown</c> method,
-			this method will not be triggered and executed.
-		*/
-		switch (Keyboard.GetModifierStatusForCurrentThread(), SelectedCell, Keyboard.GetInputDigit(e.Key))
+		switch (Keyboard.GetModifierStatusForCurrentThread(), SelectedCell, e.Key, Keyboard.GetInputDigit(e.Key))
 		{
-			case (_, not (>= 0 and < 81), _):
-			case (_, var cell, _) when Puzzle.GetStatus(cell) == CellStatus.Given:
-			case (_, _, -2):
+			case ({ AllFalse: true }, _, VirtualKey.Escape, _):
+			{
+				EscapeKeyFired?.Invoke(this, EventArgs.Empty);
+				break;
+			}
+			default:
+			case (_, not (>= 0 and < 81), _, _):
+			case (_, var cell, _, _) when Puzzle.GetStatus(cell) == CellStatus.Given:
+			case (_, _, _, -2):
 			{
 				return;
 			}
-			case ((false, false, false, false), var cell, -1):
+			case ({ AllFalse: true }, var cell, _, -1):
 			{
 				var modified = Puzzle;
 				modified[cell] = -1;
@@ -728,7 +734,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
-			case ((false, true, false, false), var cell, var digit) when Puzzle.Exists(cell, digit) is true:
+			case ((false, true, false, false), var cell, _, var digit) when Puzzle.Exists(cell, digit) is true:
 			{
 				var modified = Puzzle;
 				modified[cell, digit] = false;
@@ -739,7 +745,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
-			case ((false, false, false, false), var cell, var digit)
+			case ({ AllFalse: true }, var cell, _, var digit)
 			when PreventConflictingInput && !Puzzle.DuplicateWith(cell, digit) || !PreventConflictingInput:
 			{
 				var modified = Puzzle;

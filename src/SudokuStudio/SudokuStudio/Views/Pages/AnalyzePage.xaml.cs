@@ -593,4 +593,12 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			((Action)(e.IsClockwise ? SetNextView : SetPreviousView))();
 		}
 	}
+
+	private void SudokuPane_EscapeKeyFired(object sender, EventArgs e)
+	{
+		if (VisualUnit is { Views.Length: not 0 })
+		{
+			VisualUnit = null;
+		}
+	}
 }
