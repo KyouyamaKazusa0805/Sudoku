@@ -5064,11 +5064,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the event that is triggered when the mouse wheel is changed.
             </summary>
         </member>
-        <member name="E:SudokuStudio.Views.Controls.SudokuPane.EscapeKeyFired">
-            <summary>
-            Indicates the event that is triggered when escape key is pressed.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UndoStep">
             <summary>
             Undo a step.
@@ -6043,6 +6038,17 @@ if (student is (name: var name, age: >= 18))
             Skips to the specified index of the view.
             </summary>
             <param name="viewIndex">The view index.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.ClearView">
+            <summary>
+            Clear the visual unit data.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.IsSudokuPaneFocused">
+            <summary>
+            Checks whether the pane is focused.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeComponent">
             <summary>

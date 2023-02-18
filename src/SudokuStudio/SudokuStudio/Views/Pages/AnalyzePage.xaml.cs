@@ -413,7 +413,8 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			(new((VirtualKey)189), SetPreviousView), // Minus sign
 			(new((VirtualKey)187), SetNextView), // Equals sign
 			(new(VirtualKey.Home), SetHomeView),
-			(new(VirtualKey.End), SetEndView)
+			(new(VirtualKey.End), SetEndView),
+			(new(VirtualKey.Escape), ClearView)
 		};
 
 	/// <summary>
@@ -478,7 +479,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetPreviousView()
 	{
-		if (SudokuPane.FocusState == FocusState.Unfocused)
+		if (!IsSudokuPaneFocused())
 		{
 			return;
 		}
@@ -494,7 +495,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetNextView()
 	{
-		if (SudokuPane.FocusState == FocusState.Unfocused)
+		if (!IsSudokuPaneFocused())
 		{
 			return;
 		}
@@ -510,7 +511,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetHomeView()
 	{
-		if (SudokuPane.FocusState == FocusState.Unfocused)
+		if (!IsSudokuPaneFocused())
 		{
 			return;
 		}
@@ -526,7 +527,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	private void SetEndView()
 	{
-		if (SudokuPane.FocusState == FocusState.Unfocused)
+		if (!IsSudokuPaneFocused())
 		{
 			return;
 		}
@@ -550,6 +551,28 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 		CurrentViewIndex = viewIndex;
 	}
+
+	/// <summary>
+	/// Clear the visual unit data.
+	/// </summary>
+	private void ClearView()
+	{
+		if (!IsSudokuPaneFocused())
+		{
+			return;
+		}
+
+		if (VisualUnit is { Views.Length: not 0 })
+		{
+			VisualUnit = null;
+		}
+	}
+
+	/// <summary>
+	/// Checks whether the pane is focused.
+	/// </summary>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private bool IsSudokuPaneFocused() => SudokuPane.FocusState != FocusState.Unfocused;
 
 
 	private void CommandBarView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -591,14 +614,6 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		if (VisualUnit is { Views.Length: var length and not 0 })
 		{
 			((Action)(e.IsClockwise ? SetNextView : SetPreviousView))();
-		}
-	}
-
-	private void SudokuPane_EscapeKeyFired(object sender, EventArgs e)
-	{
-		if (VisualUnit is { Views.Length: not 0 })
-		{
-			VisualUnit = null;
 		}
 	}
 }

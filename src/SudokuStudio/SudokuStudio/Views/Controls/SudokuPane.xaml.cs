@@ -274,11 +274,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public event SudokuPaneMouseWheelChangedEventHandler? MouseWheelChanged;
 
-	/// <summary>
-	/// Indicates the event that is triggered when escape key is pressed.
-	/// </summary>
-	public event EventHandler? EscapeKeyFired;
-
 
 	/// <summary>
 	/// Undo a step.
@@ -709,11 +704,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		switch (Keyboard.GetModifierStatusForCurrentThread(), SelectedCell, e.Key, Keyboard.GetInputDigit(e.Key))
 		{
-			case ({ AllFalse: true }, _, VirtualKey.Escape, _):
-			{
-				EscapeKeyFired?.Invoke(this, EventArgs.Empty);
-				break;
-			}
 			default:
 			case (_, not (>= 0 and < 81), _, _):
 			case (_, var cell, _, _) when Puzzle.GetStatus(cell) == CellStatus.Given:
