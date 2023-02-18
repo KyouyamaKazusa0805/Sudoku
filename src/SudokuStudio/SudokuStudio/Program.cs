@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a type that is only used for surrounding with main method <c>Main</c>.
 /// </summary>
-internal static partial class Program
+internal static class Program
 {
 	/// <summary>
 	/// Provides with the program entry point.
@@ -12,7 +12,7 @@ internal static partial class Program
 	[STAThread]
 	private static void Main(string[] args)
 	{
-		XamlCheckProcessRequirements();
+		Interoperability.XamlCheckProcessRequirements();
 
 		ComWrappersSupport.InitializeComWrappers();
 		Application.Start(
@@ -25,7 +25,4 @@ internal static partial class Program
 			}
 		);
 	}
-
-	[LibraryImport("Microsoft.ui.xaml")]
-	private static partial void XamlCheckProcessRequirements();
 }

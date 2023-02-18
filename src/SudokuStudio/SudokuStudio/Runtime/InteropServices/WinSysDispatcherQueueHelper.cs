@@ -32,12 +32,8 @@ internal sealed partial class WinSysDispatcherQueueHelper
 			options.threadType = 2; // DQTYPE_THREAD_CURRENT
 			options.apartmentType = 2; // DQTAT_COM_STA
 
-			_ = createController(options, ref _dispatcherQueueController);
+			_ = Interoperability.CreateDispatcherQueueController(options, ref _dispatcherQueueController);
 		}
-
-
-		[DllImport("CoreMessaging", EntryPoint = "CreateDispatcherQueueController")]
-		static extern int createController([In] DispatcherQueueOptions options, [In, Out, MarshalAs(UnmanagedType.IUnknown)] ref object? dispatcherQueueController);
 	}
 }
 #endif

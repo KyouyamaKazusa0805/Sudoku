@@ -4091,6 +4091,11 @@ if (student is (name: var name, age: >= 18))
             Use <c>DQTAT_COM_NONE</c> when <see cref="F:SudokuStudio.Runtime.InteropServices.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_CURRENT</c>.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.Interoperability">
+            <summary>
+            Provides with a set of methods that is defined as native methods (written by other programming languages such as C++).
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Runtime.InteropServices.MonitorDpiType">
             <summary>
             Identifies the dots per inch (dpi) setting for a monitor.
