@@ -29,10 +29,12 @@ internal sealed partial class SudokuPaneCell : UserControl
 	public SudokuPaneCell() => InitializeComponent();
 
 
+#nullable disable
 	/// <summary>
 	/// Indicates the base pane.
 	/// </summary>
-	public SudokuPane BasePane { get; set; } = null!;
+	public SudokuPane BasePane { get; set; }
+#nullable restore
 
 	/// <summary>
 	/// Indicates the cell index.
