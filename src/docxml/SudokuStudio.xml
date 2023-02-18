@@ -2698,12 +2698,12 @@ if (student is (name: var name, age: >= 18))
             Indicates the routing page type name.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.TechniqueResourceName">
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.Name">
             <summary>
             Indicates the resource name of this technique.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.TechniqueEnglishName">
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.OriginalName">
             <summary>
             Indicates the resource default name (English name) of this technique.
             </summary>
@@ -2713,28 +2713,20 @@ if (student is (name: var name, age: >= 18))
             Indicates the technique code that the page related to.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.HashCode">
+        <member name="T:SudokuStudio.Models.TechniquePageRoutingDataGroup">
             <summary>
-            Indicates the hash code of the data.
+            Defines a group that stores the data of the techniques and routing information, and its title.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingDataGroup.Title">
+            <summary>
+            Indicates the title of the group.
+            </summary>
         </member>
-        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.Equals(SudokuStudio.Models.TechniquePageRoutingData)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.op_Equality(SudokuStudio.Models.TechniquePageRoutingData,SudokuStudio.Models.TechniquePageRoutingData)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Models.TechniquePageRoutingData.op_Inequality(SudokuStudio.Models.TechniquePageRoutingData,SudokuStudio.Models.TechniquePageRoutingData)">
-            <inheritdoc/>
+        <member name="P:SudokuStudio.Models.TechniquePageRoutingDataGroup.Collection">
+            <summary>
+            Indicates the internal data collection.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Models.ViewUnit">
             <summary>
@@ -4299,6 +4291,17 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Storage.SudokuPlainTextFileHandler.Write(System.String,Sudoku.Concepts.Grid)">
             <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.TechniqueFileData">
+            <summary>
+            Provides with a field that stores the techniques data used by page <see cref="T:SudokuStudio.Views.Pages.TechniqueFilePage"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Pages.TechniqueFilePage"/>
+        </member>
+        <member name="F:SudokuStudio.TechniqueFileData.RoutingGroups">
+            <summary>
+            The routing groups.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Attached.FontPickerBindable">
             <summary>
@@ -6839,11 +6842,6 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Views.Pages.TechniqueFilePage">
             <summary>
             The hub page of introduction of techniques.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.TechniqueFilePage._singles">
-            <summary>
-            
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.TechniqueFilePage.#ctor">

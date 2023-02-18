@@ -3,10 +3,7 @@
 /// <summary>
 /// Defines a routing data of technique page.
 /// </summary>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
-public sealed partial class TechniquePageRoutingData :
-	IEquatable<TechniquePageRoutingData>,
-	IEqualityOperators<TechniquePageRoutingData, TechniquePageRoutingData, bool>
+public sealed class TechniquePageRoutingData
 {
 	/// <summary>
 	/// Indicates the default culture.
@@ -27,33 +24,15 @@ public sealed partial class TechniquePageRoutingData :
 	/// <summary>
 	/// Indicates the resource name of this technique.
 	/// </summary>
-	public string TechniqueResourceName => MergedResources.R[Technique.ToString()]!;
+	public string Name => MergedResources.R[Technique.ToString()]!;
 
 	/// <summary>
 	/// Indicates the resource default name (English name) of this technique.
 	/// </summary>
-	public string TechniqueEnglishName => SudokuDefaultResource.ResourceManager.GetString(Technique.ToString(), DefaultCulture)!;
+	public string OriginalName => SudokuDefaultResource.ResourceManager.GetString(Technique.ToString(), DefaultCulture)!;
 
 	/// <summary>
 	/// Indicates the technique code that the page related to.
 	/// </summary>
 	public required Technique Technique { get; set; }
-
-	/// <summary>
-	/// Indicates the hash code of the data.
-	/// </summary>
-	private int HashCode => (int)Technique;
-
-
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
-
-	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] TechniquePageRoutingData? other) => other is not null && Technique == other.Technique;
-
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(HashCode))]
-	public override partial int GetHashCode();
-
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.SimpleMember, nameof(TechniqueResourceName))]
-	public override partial string ToString();
 }

@@ -6,44 +6,6 @@ namespace SudokuStudio.Views.Pages;
 public sealed partial class TechniqueFilePage : Page
 {
 	/// <summary>
-	/// 
-	/// </summary>
-	private readonly ObservableCollection<TechniquePageRoutingData> _singles = new()
-	{
-		new()
-		{
-			Technique = Technique.FullHouse,
-			RoutingPageTypeName = typeof(FullHousePage).Name
-		},
-		new()
-		{
-			Technique = Technique.LastDigit,
-			RoutingPageTypeName = typeof(FullHousePage).Name
-		},
-		new()
-		{
-			Technique = Technique.HiddenSingleBlock,
-			RoutingPageTypeName = typeof(FullHousePage).Name
-		},
-		new()
-		{
-			Technique = Technique.HiddenSingleRow,
-			RoutingPageTypeName = typeof(FullHousePage).Name
-		},
-		new()
-		{
-			Technique = Technique.HiddenSingleColumn,
-			RoutingPageTypeName = typeof(FullHousePage).Name
-		},
-		new()
-		{
-			Technique = Technique.NakedSingle,
-			RoutingPageTypeName = typeof(FullHousePage).Name
-		}
-	};
-
-
-	/// <summary>
 	/// Initializes a <see cref="TechniqueFilePage"/> instance.
 	/// </summary>
 	public TechniqueFilePage() => InitializeComponent();
