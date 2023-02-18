@@ -785,11 +785,17 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SuggestedFileName_Output" xml:space="preserve">
     <value>Output</value>
   </data>
+  <data name="TechniqueGalleryPage_Intersections" xml:space="preserve">
+    <value>Intersections</value>
+  </data>
   <data name="TechniqueGalleryPage_Intro" xml:space="preserve">
     <value>This page lists techniques that the current program are supported, which can help you learn them.</value>
   </data>
   <data name="TechniqueGalleryPage_Singles" xml:space="preserve">
     <value>Singles</value>
+  </data>
+  <data name="TechniqueGalleryPage_Subsets" xml:space="preserve">
+    <value>Subsets</value>
   </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>Easy</value>

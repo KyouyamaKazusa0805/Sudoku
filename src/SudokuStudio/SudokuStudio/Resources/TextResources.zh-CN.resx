@@ -785,11 +785,17 @@
   <data name="SuggestedFileName_Output" xml:space="preserve">
     <value>导出</value>
   </data>
+  <data name="TechniqueGalleryPage_Intersections" xml:space="preserve">
+    <value>区块</value>
+  </data>
   <data name="TechniqueGalleryPage_Intro" xml:space="preserve">
     <value>该页面列举的是一系列程序所支持的数独解题技巧，你可以通过该页面列举的内容进行技巧的学习。</value>
   </data>
   <data name="TechniqueGalleryPage_Singles" xml:space="preserve">
     <value>出数类技巧</value>
+  </data>
+  <data name="TechniqueGalleryPage_Subsets" xml:space="preserve">
+    <value>数组</value>
   </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>容易</value>

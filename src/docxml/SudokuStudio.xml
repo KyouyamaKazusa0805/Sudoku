@@ -4040,6 +4040,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Output.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_Intersections">
+            <summary>
+              Looks up a localized string similar to Intersections.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_Intro">
             <summary>
               Looks up a localized string similar to This page lists techniques that the current program are supported, which can help you learn them..
@@ -4048,6 +4053,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_Singles">
             <summary>
               Looks up a localized string similar to Singles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_Subsets">
+            <summary>
+              Looks up a localized string similar to Subsets.
             </summary>
         </member>
         <member name="T:SudokuStudio.Runtime.InteropServices.DispatcherQueueOptions">

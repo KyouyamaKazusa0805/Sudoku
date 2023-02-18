@@ -2136,6 +2136,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Intersections.
+        /// </summary>
+        internal static string TechniqueGalleryPage_Intersections {
+            get {
+                return ResourceManager.GetString("TechniqueGalleryPage_Intersections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page lists techniques that the current program are supported, which can help you learn them..
         /// </summary>
         internal static string TechniqueGalleryPage_Intro {
@@ -2150,6 +2159,15 @@ namespace SudokuStudio.Resources {
         internal static string TechniqueGalleryPage_Singles {
             get {
                 return ResourceManager.GetString("TechniqueGalleryPage_Singles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subsets.
+        /// </summary>
+        internal static string TechniqueGalleryPage_Subsets {
+            get {
+                return ResourceManager.GetString("TechniqueGalleryPage_Subsets", resourceCulture);
             }
         }
     }
