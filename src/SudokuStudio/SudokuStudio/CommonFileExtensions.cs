@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Storage;
+﻿namespace SudokuStudio;
 
 /// <summary>
 /// Provides a list of file extension names of bound file types used by this project.
@@ -14,6 +14,11 @@ public static class CommonFileExtensions
 	/// Indicates the portable picture format.
 	/// </summary>
 	public const string PortablePicture = ".png";
+
+	/// <summary>
+	/// Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating).
+	/// </summary>
+	public const string GeneratingHistory = ".ssg";
 
 	/// <summary>
 	/// Indicates the sudoku text file format (SST - Sudoku Studio Text format).

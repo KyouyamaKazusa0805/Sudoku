@@ -714,6 +714,12 @@
   <data name="SettingsPage_PreventConflictingInputDescription" xml:space="preserve">
     <value>This option limits the case that user wants to input a digit into a cell, whose containing houses has already include the digit as given or modifiable values. If this option is set true, the program won't allow this case, and do nothing after you input a wrong digit.</value>
   </data>
+  <data name="SettingsPage_SavePuzzleGeneratingHistory" xml:space="preserve">
+    <value>Save puzzle-generating history</value>
+  </data>
+  <data name="SettingsPage_SavePuzzleGeneratingHistoryDescription" xml:space="preserve">
+    <value>If true, when we click "generate" button in the analysis page, the puzzle will be automatically saved into history collection, then if we close the program, the history collection will be output into your comuputer, in "MyDocuments" folder.</value>
+  </data>
   <data name="SettingsPage_SearchExtendedBivalueUniversalGraveTypes" xml:space="preserve">
     <value>Allow searching for extended types of Bi-value Universal Grave</value>
   </data>

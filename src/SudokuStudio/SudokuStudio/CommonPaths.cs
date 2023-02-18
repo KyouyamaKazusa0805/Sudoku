@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Storage;
+﻿namespace SudokuStudio;
 
 /// <summary>
 /// Provides with some paths that is used for the whole program.
@@ -10,6 +10,11 @@ internal static class CommonPaths
 	/// </summary>
 	public static readonly string UserPreference;
 
+	/// <summary>
+	/// Indicates puzzle-generating history path.
+	/// </summary>
+	public static readonly string GeneratingHistory;
+
 
 	/// <include file='../../../global-doc-comments.xml' path='g/static-constructor' />
 	static CommonPaths()
@@ -17,5 +22,6 @@ internal static class CommonPaths
 		var documents = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 
 		UserPreference = $@"{documents}\SudokuStudio\user-preference{CommonFileExtensions.UserPreference}";
+		GeneratingHistory = $@"{documents}\SudokuStudio\generating-history{CommonFileExtensions.GeneratingHistory}";
 	}
 }

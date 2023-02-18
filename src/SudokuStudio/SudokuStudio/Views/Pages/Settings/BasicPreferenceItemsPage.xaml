@@ -45,6 +45,13 @@
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=TwoWay}" />
 				</wc:Setting.ActionContent>
 			</wc:Setting>
+			<wc:Setting
+				Header="{m:R Key=SettingsPage_SavePuzzleGeneratingHistory}"
+				Description="{m:R Key=SettingsPage_SavePuzzleGeneratingHistoryDescription}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

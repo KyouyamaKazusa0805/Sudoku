@@ -33,6 +33,11 @@ public partial class App : Application
 	public ProgramPreference Preference { get; } = new();
 
 	/// <summary>
+	/// Indicates the puzzle-generating history.
+	/// </summary>
+	public PuzzleGenertingHistory PuzzleGeneratingHistory { get; } = new();
+
+	/// <summary>
 	/// Indicates the program solver.
 	/// </summary>
 	public LogicalSolver ProgramSolver { get; } = new();

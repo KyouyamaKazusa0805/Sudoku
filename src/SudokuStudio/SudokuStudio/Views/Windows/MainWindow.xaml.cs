@@ -116,6 +116,37 @@ public sealed partial class MainWindow : Window
 		};
 
 	/// <summary>
+	/// Saves for preferences.
+	/// </summary>
+	private void SavePreference() => ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).Preference);
+
+	/// <summary>
+	/// Saves for puzzle generating history.
+	/// </summary>
+	private void SavePuzzleGeneratingHistory()
+	{
+		if (Application.Current is not App
+			{
+				Preference.UIPreferences.SavePuzzleGeneratingHistory: true,
+				PuzzleGeneratingHistory: { Puzzles: { Count: not 0 } puzzles } history
+			})
+		{
+			return;
+		}
+
+		if (File.Exists(CommonPaths.GeneratingHistory) && PuzzleGeneratingHistoryFileHandler.Read(CommonPaths.GeneratingHistory) is { } @base)
+		{
+			@base.Puzzles.AddRange(puzzles);
+
+			PuzzleGeneratingHistoryFileHandler.Write(CommonPaths.GeneratingHistory, @base);
+		}
+		else
+		{
+			PuzzleGeneratingHistoryFileHandler.Write(CommonPaths.GeneratingHistory, history);
+		}
+	}
+
+	/// <summary>
 	/// Sets the status of app title bars conditionally.
 	/// </summary>
 	private void SetAppTitleBarStatus()
@@ -479,7 +510,10 @@ public sealed partial class MainWindow : Window
 		=> SwitchingPage(args.SelectedItemContainer, args.IsSettingsSelected);
 
 	private void Window_Closed(object sender, WindowEventArgs args)
-		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).Preference);
+	{
+		SavePreference();
+		SavePuzzleGeneratingHistory();
+	}
 
 	private void MainNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
 	{

@@ -714,6 +714,12 @@
   <data name="SettingsPage_PreventConflictingInputDescription" xml:space="preserve">
     <value>该设置项主要是限制用户输入错误的数值。如果用户往某个单元格里填入一个它所在行、列、宫里本来就包含了的提示数或填入数的数字，那么如果该设置项为“是”的时候，程序将防止用户往其中填值。</value>
   </data>
+  <data name="SettingsPage_SavePuzzleGeneratingHistory" xml:space="preserve">
+    <value>保存软件的出题记录</value>
+  </data>
+  <data name="SettingsPage_SavePuzzleGeneratingHistoryDescription" xml:space="preserve">
+    <value>如果该设置项为“是”的话，那么每一次点击“出题”按钮都会将出的题目专门保存到一个历史记录集合之中，然后在你关掉程序之后，自动导出为一个单独的文件，保存路径在“我的文档”之中。</value>
+  </data>
   <data name="SettingsPage_SearchExtendedBivalueUniversalGraveTypes" xml:space="preserve">
     <value>允许搜索全双值格致死解法的各种拓展构型</value>
   </data>

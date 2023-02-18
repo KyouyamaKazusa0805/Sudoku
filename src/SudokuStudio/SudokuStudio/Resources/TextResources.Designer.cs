@@ -1933,6 +1933,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save puzzle-generating history.
+        /// </summary>
+        internal static string SettingsPage_SavePuzzleGeneratingHistory {
+            get {
+                return ResourceManager.GetString("SettingsPage_SavePuzzleGeneratingHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If true, when we click &quot;generate&quot; button in the analysis page, the puzzle will be automatically saved into history collection, then if we close the program, the history collection will be output into your comuputer, in &quot;MyDocuments&quot; folder..
+        /// </summary>
+        internal static string SettingsPage_SavePuzzleGeneratingHistoryDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_SavePuzzleGeneratingHistoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow searching for extended types of Bi-value Universal Grave.
         /// </summary>
         internal static string SettingsPage_SearchExtendedBivalueUniversalGraveTypes {

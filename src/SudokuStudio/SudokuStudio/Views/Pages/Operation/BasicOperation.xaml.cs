@@ -73,6 +73,11 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged, IOper
 
 		BasePage.GeneratorIsNotRunning = true;
 
+		if (((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
+		{
+			((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { GridString = grid.ToString() });
+		}
+
 		BasePage.SudokuPane.Puzzle = grid;
 	}
 
