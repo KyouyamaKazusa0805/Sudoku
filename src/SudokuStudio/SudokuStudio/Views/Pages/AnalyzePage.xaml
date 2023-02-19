@@ -157,6 +157,7 @@
 						a:StepGathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=OneWay}"
 						a:StepGathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
 						MouseWheelChanged="SudokuPane_MouseWheelChanged"
+						GridUpdated="SudokuPane_GridUpdated"
 					/>
 					<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,*">
 						<PipsPager

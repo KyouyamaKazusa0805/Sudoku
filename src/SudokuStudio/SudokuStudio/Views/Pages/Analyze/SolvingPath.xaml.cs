@@ -45,7 +45,8 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 			return;
 		}
 
-		BasePage.SudokuPane.SetPuzzle(stepGrid, clearStack: true, clearAnalyzeTabData: false);
+		BasePage.SudokuPane.SetPuzzle(stepGrid, true);
+
 		BasePage.CurrentViewIndex = -1;
 		BasePage.VisualUnit = step;
 	}

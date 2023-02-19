@@ -67,6 +67,8 @@ internal sealed partial class SudokuPaneCell : UserControl
 
 		modified[cell] = digit;
 		BasePane.SetPuzzle(modified);
+
+		BasePane.TriggerGridUpdated(GridUpdatedBehavior.Assignment, cell * 9 + digit);
 	}
 
 	private void InputSetter_KeyDown(object sender, KeyRoutedEventArgs e)

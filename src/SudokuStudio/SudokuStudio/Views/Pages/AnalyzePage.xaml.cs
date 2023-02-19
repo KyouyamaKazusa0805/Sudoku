@@ -602,4 +602,20 @@ public sealed partial class AnalyzePage : Page
 			((Action)(e.IsClockwise ? SetNextView : SetPreviousView))();
 		}
 	}
+
+	private void SudokuPane_GridUpdated(SudokuPane sender, GridUpdatedEventArgs e)
+	{
+		switch (e)
+		{
+			case
+			{
+				Behavior: GridUpdatedBehavior.Clear or GridUpdatedBehavior.Elimination or GridUpdatedBehavior.EliminationMultiple
+					or GridUpdatedBehavior.Assignment
+			}:
+			{
+				ClearAnalyzeTabsData();
+				break;
+			}
+		}
+	}
 }
