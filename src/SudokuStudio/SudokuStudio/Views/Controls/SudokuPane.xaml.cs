@@ -316,27 +316,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Copies the current grid as text into the clipboard.
-	/// </summary>
-	public void Copy()
-	{
-		if (FocusState == FocusState.Unfocused)
-		{
-			return;
-		}
-
-		if (Puzzle is var puzzle and ({ IsUndefined: true } or { IsEmpty: true }))
-		{
-			return;
-		}
-
-		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		dataPackage.SetText(puzzle.ToString(SusserFormat.Full));
-
-		Clipboard.SetContent(dataPackage);
-	}
-
-	/// <summary>
 	/// Try to set puzzle, with a <see cref="bool"/> value indicating whether undoing and redoing stacks should be cleared.
 	/// </summary>
 	/// <param name="value">The newer grid.</param>
@@ -354,68 +333,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <seealso cref="set_Puzzle(Grid)"/>
 	/// <seealso cref="Puzzle"/>
 	public void SetPuzzle(scoped in Grid value, bool clearStack = false) => SetPuzzleInternal(value, clearStack, false);
-
-	/// <summary>
-	/// Copy the snapshot of the sudoku grid control, to the clipboard.
-	/// </summary>
-	/// <returns>
-	/// The typical <see langword="await"/>able instance that holds the task to copy the snapshot.
-	/// </returns>
-	/// <remarks>
-	/// The code is referenced from
-	/// <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L120">here</see>
-	/// and
-	/// <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L182">here</see>.
-	/// </remarks>
-	public async Task CopySnapshotAsync()
-	{
-		if (FocusState == FocusState.Unfocused)
-		{
-			return;
-		}
-
-		// Creates the stream to store the output image data.
-		var stream = new InMemoryRandomAccessStream();
-
-		// Gets the snapshot of the control.
-		await this.RenderToAsync(stream);
-
-		// Copies the data to the data package.
-		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		var streamRef = RandomAccessStreamReference.CreateFromStream(stream);
-		dataPackage.SetBitmap(streamRef);
-
-		// Copies to the clipboard.
-		Clipboard.SetContent(dataPackage);
-	}
-
-	/// <summary>
-	/// Pastes the text, to the clipboard.
-	/// </summary>
-	/// <returns>
-	/// The typical <see langword="await"/>able instance that holds the task to paste the text.
-	/// </returns>
-	public async Task PasteAsync()
-	{
-		if (FocusState == FocusState.Unfocused)
-		{
-			return;
-		}
-
-		var dataPackageView = Clipboard.GetContent();
-		if (!dataPackageView.Contains(StandardDataFormats.Text))
-		{
-			return;
-		}
-
-		var gridStr = await dataPackageView.GetTextAsync();
-		if (!Grid.TryParse(gridStr, out var grid))
-		{
-			return;
-		}
-
-		Puzzle = grid;
-	}
 
 	/// <summary>
 	/// Triggers <see cref="GridUpdated"/> event. This method can only be called by internal control type <see cref="SudokuPaneCell"/>.

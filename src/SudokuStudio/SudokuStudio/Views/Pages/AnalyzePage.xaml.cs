@@ -26,7 +26,7 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// Defines a key-value pair of functions that is used for routing hotkeys.
 	/// </summary>
-	private (Hotkey Hotkey, Action Action)[] _hotkeyFunctions;
+	private Dictionary<Hotkey, Action> _hotkeyFunctions;
 
 
 	/// <summary>
@@ -82,6 +82,27 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	/// <summary>
+	/// Copies for sudoku puzzle text.
+	/// </summary>
+	internal void CopySudokuGridText()
+	{
+		if (!IsSudokuPaneFocused())
+		{
+			return;
+		}
+
+		if (SudokuPane.Puzzle is var puzzle and ({ IsUndefined: true } or { IsEmpty: true }))
+		{
+			return;
+		}
+
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		dataPackage.SetText(puzzle.ToString(SusserFormat.Full));
+
+		Clipboard.SetContent(dataPackage);
+	}
+
+	/// <summary>
 	/// To determine whether the current application view is in an unsnapped state.
 	/// </summary>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
@@ -105,6 +126,68 @@ public sealed partial class AnalyzePage : Page
 		}
 
 		return unsnapped;
+	}
+
+	/// <summary>
+	/// Copy the snapshot of the sudoku grid control, to the clipboard.
+	/// </summary>
+	/// <returns>
+	/// The typical <see langword="await"/>able instance that holds the task to copy the snapshot.
+	/// </returns>
+	/// <remarks>
+	/// The code is referenced from
+	/// <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L120">here</see>
+	/// and
+	/// <see href="https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/21cb9b6bc0da3b234c5854ecac449cb3bd261f29/Official%20Windows%20Platform%20Sample/XAML%20render%20to%20bitmap%20sample/%5BC%23%5D-XAML%20render%20to%20bitmap%20sample/C%23/Scenario2.xaml.cs#L182">here</see>.
+	/// </remarks>
+	internal async Task CopySudokuGridControlAsSnapshotAsync()
+	{
+		if (!IsSudokuPaneFocused())
+		{
+			return;
+		}
+
+		// Creates the stream to store the output image data.
+		var stream = new InMemoryRandomAccessStream();
+
+		// Gets the snapshot of the control.
+		await SudokuPane.RenderToAsync(stream);
+
+		// Copies the data to the data package.
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		var streamRef = RandomAccessStreamReference.CreateFromStream(stream);
+		dataPackage.SetBitmap(streamRef);
+
+		// Copies to the clipboard.
+		Clipboard.SetContent(dataPackage);
+	}
+
+	/// <summary>
+	/// Pastes the text, to the clipboard.
+	/// </summary>
+	/// <returns>
+	/// The typical <see langword="await"/>able instance that holds the task to paste the text.
+	/// </returns>
+	internal async Task PasteCodeToSudokuGridAsync()
+	{
+		if (!IsSudokuPaneFocused())
+		{
+			return;
+		}
+
+		var dataPackageView = Clipboard.GetContent();
+		if (!dataPackageView.Contains(StandardDataFormats.Text))
+		{
+			return;
+		}
+
+		var gridStr = await dataPackageView.GetTextAsync();
+		if (!Grid.TryParse(gridStr, out var grid))
+		{
+			return;
+		}
+
+		SudokuPane.Puzzle = grid;
 	}
 
 	/// <summary>
@@ -358,23 +441,23 @@ public sealed partial class AnalyzePage : Page
 	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData))]
 	private void InitializeFields()
 	{
-		_hotkeyFunctions = new (Hotkey, Action)[]
+		_hotkeyFunctions = new()
 		{
-			(new(VirtualKeyModifiers.Control, VirtualKey.Z), SudokuPane.UndoStep),
-			(new(VirtualKeyModifiers.Control, VirtualKey.Y), SudokuPane.RedoStep),
-			(new(VirtualKeyModifiers.Control, VirtualKey.C), SudokuPane.Copy),
-			(
+			{ new(VirtualKeyModifiers.Control, VirtualKey.Z), SudokuPane.UndoStep },
+			{ new(VirtualKeyModifiers.Control, VirtualKey.Y), SudokuPane.RedoStep },
+			{ new(VirtualKeyModifiers.Control, VirtualKey.C), CopySudokuGridText },
+			{
 				new(VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift, VirtualKey.C),
-				async () => await SudokuPane.CopySnapshotAsync()
-			),
-			(new(VirtualKeyModifiers.Control, VirtualKey.V), async () => await SudokuPane.PasteAsync()),
-			(new(VirtualKeyModifiers.Control, VirtualKey.O), async () => await OpenFileInternalAsync()),
-			(new(VirtualKeyModifiers.Control, VirtualKey.S), async () => await SaveFileInternalAsync()),
-			(new((VirtualKey)189), SetPreviousView), // Minus sign
-			(new((VirtualKey)187), SetNextView), // Equals sign
-			(new(VirtualKey.Home), SetHomeView),
-			(new(VirtualKey.End), SetEndView),
-			(new(VirtualKey.Escape), ClearView)
+				async () => await CopySudokuGridControlAsSnapshotAsync()
+			},
+			{ new(VirtualKeyModifiers.Control, VirtualKey.V), async () => await PasteCodeToSudokuGridAsync() },
+			{ new(VirtualKeyModifiers.Control, VirtualKey.O), async () => await OpenFileInternalAsync() },
+			{ new(VirtualKeyModifiers.Control, VirtualKey.S), async () => await SaveFileInternalAsync() },
+			{ new((VirtualKey)189), SetPreviousView }, // Minus sign
+			{ new((VirtualKey)187), SetNextView }, // Equals sign
+			{ new(VirtualKey.Home), SetHomeView },
+			{ new(VirtualKey.End), SetEndView },
+			{ new(VirtualKey.Escape), ClearView }
 		};
 		_navigatingData = new()
 		{
@@ -392,7 +475,7 @@ public sealed partial class AnalyzePage : Page
 		if (((App)Application.Current).FirstGrid is { } grid)
 		{
 			SudokuPane.Puzzle = grid;
-			((App)Application.Current).FirstGrid = null!; // Maybe not necessary...
+			((App)Application.Current).FirstGrid = null; // Maybe not necessary...
 		}
 	}
 

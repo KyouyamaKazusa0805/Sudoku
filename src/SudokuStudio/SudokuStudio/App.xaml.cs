@@ -56,8 +56,6 @@ public partial class App : Application
 	/// <summary>
 	/// Indicates the first-opened grid.
 	/// </summary>
-	[DisallowNull]
-	[DebuggerHidden]
 	internal Grid? FirstGrid { get; set; }
 
 	/// <summary>
