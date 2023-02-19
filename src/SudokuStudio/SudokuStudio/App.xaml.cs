@@ -136,21 +136,28 @@ public partial class App : Application
 			return;
 		}
 
-		if (AppInstance.GetCurrent().GetActivatedEventArgs() is not
+		switch (AppInstance.GetCurrent().GetActivatedEventArgs())
+		{
+			case { Kind: ExtendedActivationKind.Protocol, Data: IProtocolActivatedEventArgs { Uri: _ } }:
+			{
+				break;
+			}
+			case
 			{
 				Kind: ExtendedActivationKind.File,
-				Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: CommonFileExtensions.Text, Path: var filePath } file, ..] }
-			})
-		{
-			return;
-		}
+				Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: CommonFileExtensions.Text, Path: var filePath }] }
+			}:
+			{
+				if (SudokuFileHandler.Read(filePath) is not [{ GridString: var gridStr }, ..] || !Grid.TryParse(gridStr, out var grid))
+				{
+					return;
+				}
 
-		if (SudokuFileHandler.Read(filePath) is not [{ GridString: var gridStr }, ..] || !Grid.TryParse(gridStr, out var grid))
-		{
-			return;
-		}
+				FirstGrid = grid;
 
-		FirstGrid = grid;
+				break;
+			}
+		}
 	}
 
 	/// <summary>
