@@ -37,7 +37,7 @@
 		RowDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto" ColumnDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto">
 		<!--Outside border-->
 		<Border
-			Grid.Row="1" Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="11" BorderThickness="4"
+			Grid.Row="1" Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="11" BorderThickness="4" Background="White"
 			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 
 		<!--Coordinate labels-->
