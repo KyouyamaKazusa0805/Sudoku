@@ -4,6 +4,7 @@ global using System.Collections.Immutable;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Linq;
+global using System.Reflection;
 global using System.Threading;
 global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CSharp;

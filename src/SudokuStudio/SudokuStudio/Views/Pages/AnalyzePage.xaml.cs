@@ -3,7 +3,14 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Defines a new page that stores a set of controls to analyze a sudoku grid.
 /// </summary>
-public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
+[DependencyProperty<bool>("IsAnalyzerLaunched", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the analyzer is launched.")]
+[DependencyProperty<bool>("IsGathererLaunched", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the gatherer is launched.")]
+[DependencyProperty<bool>("GeneratorIsNotRunning", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the generator is not running currently.")]
+[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"VisualUnit.Views\"/> displayed.")]
+[DependencyProperty<double>("ProgressPercent", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the progress percent value.")]
+[DependencyProperty<LogicalSolverResult>("AnalysisResultCache", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the anlaysis result cache.")]
+[DependencyProperty<VisualUnit>("VisualUnit", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the visual unit.")]
+public sealed partial class AnalyzePage : Page
 {
 	/// <summary>
 	/// The default navigation transition instance that will create animation fallback while switching pages.
@@ -12,54 +19,9 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 
 	/// <summary>
-	/// Indicates whether the analyzer is launched.
-	/// </summary>
-	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
-	private bool _isAnalyzerLaunched;
-
-	/// <summary>
-	/// Indicates whether the gatherer is launched.
-	/// </summary>
-	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
-	private bool _isGathererLaunched;
-
-	/// <summary>
-	/// Indicates whether the generator is not running currently.
-	/// </summary>
-	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
-	private bool _generatorIsNotRunning = true;
-
-	/// <summary>
-	/// Indicates the current index of the view of property <see cref="VisualUnit.Views"/> displayed.
-	/// </summary>
-	/// <seealso cref="VisualUnit.Views"/>
-	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal, ComparisonMode = EqualityComparisonMode.Disable)]
-	[NotifyCallback]
-	private int _currentViewIndex = -1;
-
-	/// <summary>
-	/// Indicates the progress percent value.
-	/// </summary>
-	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
-	private double _progressPercent;
-
-	/// <summary>
-	/// Indicates the anlaysis result cache.
-	/// </summary>
-	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
-	private LogicalSolverResult? _analysisResultCache;
-
-	/// <summary>
 	/// The navigating data.
 	/// </summary>
 	private Dictionary<Predicate<NavigationViewItemBase>, Type> _navigatingData;
-
-	/// <summary>
-	/// Indicates the visual unit.
-	/// </summary>
-	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal, ComparisonMode = EqualityComparisonMode.ObjectReference)]
-	[NotifyCallback]
-	private VisualUnit? _visualUnit;
 
 	/// <summary>
 	/// Defines a key-value pair of functions that is used for routing hotkeys.
@@ -77,9 +39,6 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		LoadInitialGrid();
 	}
 
-
-	/// <inheritdoc/>
-	public event PropertyChangedEventHandler? PropertyChanged;
 
 	/// <summary>
 	/// Provides with an event that is triggered when failed to open a file.
@@ -467,16 +426,6 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 		}
 	}
 
-	private void VisualUnitSetterAfter(VisualUnit? value) => CurrentViewIndex = value is null ? -1 : 0;
-
-	private void CurrentViewIndexSetterAfter(int value)
-		=> SudokuPane.ViewUnit = VisualUnit switch
-		{
-			{ Conclusions: var conclusions, Views: [] } => new() { Conclusions = conclusions, View = View.Empty },
-			{ Conclusions: var conclusions, Views: var views } => new() { Conclusions = conclusions, View = views[value] },
-			_ => null
-		};
-
 	/// <summary>
 	/// Sets the previous view.
 	/// </summary>
@@ -576,6 +525,40 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// </summary>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	private bool IsSudokuPaneFocused() => SudokuPane.FocusState != FocusState.Unfocused;
+
+
+	[Callback]
+	private static void CurrentViewIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is not (AnalyzePage { VisualUnit: var visualUnit } page, { NewValue: int value }))
+		{
+			return;
+		}
+
+		if (value == -1)
+		{
+			page.VisualUnit = null;
+			return;
+		}
+
+		page.SudokuPane.ViewUnit = visualUnit switch
+		{
+			{ Conclusions: var conclusions, Views: [] } => new() { Conclusions = conclusions, View = View.Empty },
+			{ Conclusions: var conclusions, Views: var views } => new() { Conclusions = conclusions, View = views[value] },
+			_ => null
+		};
+	}
+
+	[Callback]
+	private static void VisualUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is not (AnalyzePage page, { NewValue: var value and (null or VisualUnit _) }))
+		{
+			return;
+		}
+
+		page.CurrentViewIndex = value is VisualUnit ? 0 : -1;
+	}
 
 
 	private void CommandBarView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)

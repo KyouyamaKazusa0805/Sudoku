@@ -18,30 +18,30 @@ internal static class ViewUnitFrameworkElementFactory
 	/// Try to get all possible <see cref="FrameworkElement"/>s that are candidate controls
 	/// storing <see cref="ViewUnit"/>-displaying <see cref="FrameworkElement"/>s.
 	/// </summary>
-	/// <param name="targetPage">The target page.</param>
+	/// <param name="sudokuPane">The target pane.</param>
 	/// <returns>
 	/// A list of controls, whose <c>Chilren</c> property can be used for removing <see cref="ViewUnit"/>-displaying controls.
 	/// </returns>
 	/// <seealso cref="FrameworkElement"/>
 	/// <seealso cref="ViewUnit"/>
-	public static IEnumerable<FrameworkElement> GetViewUnitTargetParentControls(AnalyzePage targetPage)
+	public static IEnumerable<FrameworkElement> GetViewUnitTargetParentControls(SudokuPane sudokuPane)
 	{
-		foreach (var children in targetPage.SudokuPane._children)
+		foreach (var children in sudokuPane._children)
 		{
 			yield return children.MainGrid; // cell / candidate / baba group
 		}
 
-		yield return targetPage.SudokuPane.MainGrid; // house / chute / link
+		yield return sudokuPane.MainGrid; // house / chute / link
 	}
 
 	/// <summary>
 	/// Removes all possible controls that are used for displaying elements in a <see cref="ViewUnit"/>.
 	/// </summary>
-	/// <param name="targetPage">The target page.</param>
+	/// <param name="sudokuPane">The target pane.</param>
 	/// <seealso cref="ViewUnit"/>
-	public static void RemoveViewUnitControls(AnalyzePage targetPage)
+	public static void RemoveViewUnitControls(SudokuPane sudokuPane)
 	{
-		foreach (var targetControl in GetViewUnitTargetParentControls(targetPage))
+		foreach (var targetControl in GetViewUnitTargetParentControls(sudokuPane))
 		{
 			if (targetControl is GridLayout { Children: var children })
 			{
@@ -53,11 +53,11 @@ internal static class ViewUnitFrameworkElementFactory
 	/// <summary>
 	/// Adds a list of <see cref="FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="ViewUnit"/>.
 	/// </summary>
-	/// <param name="targetPage">The target page.</param>
+	/// <param name="sudokuPane">The target pane.</param>
 	/// <param name="viewUnit">The view unit that you want to display.</param>
 	/// <seealso cref="FrameworkElement"/>
 	/// <seealso cref="ViewUnit"/>
-	public static void AddViewUnitControls(AnalyzePage targetPage, ViewUnit viewUnit)
+	public static void AddViewUnitControls(SudokuPane sudokuPane, ViewUnit viewUnit)
 	{
 		if (viewUnit is not { View.BasicNodes: var nodes, Conclusions: var conclusions })
 		{
@@ -71,10 +71,10 @@ internal static class ViewUnitFrameworkElementFactory
 			(
 				viewNode switch
 				{
-					CellViewNode c => () => ForCellNode(targetPage, c),
+					CellViewNode c => () => ForCellNode(sudokuPane, c),
 					CandidateViewNode c => () =>
 					{
-						ForCandidateNode(targetPage, c, conclusions, out var o);
+						ForCandidateNode(sudokuPane, c, conclusions, out var o);
 						if (o is { } currentOverlappedConclusion)
 						{
 							overlapped.Add(currentOverlappedConclusion);
@@ -82,9 +82,9 @@ internal static class ViewUnitFrameworkElementFactory
 #pragma warning disable format
 					}, // Guess what? This comma is troublesome while formatting.
 #pragma warning restore format
-					HouseViewNode h => () => ForHouseNode(targetPage, h),
-					ChuteViewNode c => () => ForChuteNode(targetPage, c),
-					BabaGroupViewNode b => () => BabaGroupNode(targetPage, b),
+					HouseViewNode h => () => ForHouseNode(sudokuPane, h),
+					ChuteViewNode c => () => ForChuteNode(sudokuPane, c),
+					BabaGroupViewNode b => () => BabaGroupNode(sudokuPane, b),
 					LinkViewNode l => () => linx.Add(l),
 					_ => default(Action?)
 				}
@@ -93,25 +93,25 @@ internal static class ViewUnitFrameworkElementFactory
 
 		foreach (var conclusion in conclusions)
 		{
-			ForConclusion(targetPage, conclusion, overlapped);
+			ForConclusion(sudokuPane, conclusion, overlapped);
 		}
 
-		ForLinkNodes(targetPage, linx.ToArray(), conclusions);
+		ForLinkNodes(sudokuPane, linx.ToArray(), conclusions);
 	}
 
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for conclusions.
 	/// </summary>
-	/// <param name="targetPage">
-	/// The target page instance. This instance provides with user-defined customized properties used for displaying elements.
+	/// <param name="sudokuPane">
+	/// The target sudoku pane. This instance provides with user-defined customized properties used for displaying elements.
 	/// e.g. background color.
 	/// </param>
 	/// <param name="conclusion">The conclusion to be displayed.</param>
 	/// <param name="overlapped">A collection that stores for overlapped candidates.</param>
-	private static void ForConclusion(AnalyzePage targetPage, Conclusion conclusion, List<Conclusion> overlapped)
+	private static void ForConclusion(SudokuPane sudokuPane, Conclusion conclusion, List<Conclusion> overlapped)
 	{
 		var (type, candidate) = conclusion;
-		var paneCellControl = targetPage.SudokuPane._children[candidate / 9];
+		var paneCellControl = sudokuPane._children[candidate / 9];
 		if (paneCellControl is null)
 		{
 			return;
@@ -136,15 +136,15 @@ internal static class ViewUnitFrameworkElementFactory
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="CellViewNode"/>.
 	/// </summary>
-	/// <param name="targetPage">
-	/// <inheritdoc cref="ForConclusion(AnalyzePage, Conclusion, List{Conclusion})" path="/param[@name='targetPage']"/>
+	/// <param name="sudokuPane">
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion})" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="cellNode">The node to be displayed.</param>
 	/// <seealso cref="CellViewNode"/>
-	private static void ForCellNode(AnalyzePage targetPage, CellViewNode cellNode)
+	private static void ForCellNode(SudokuPane sudokuPane, CellViewNode cellNode)
 	{
 		var (id, cell) = cellNode;
-		var paneCellControl = targetPage.SudokuPane._children[cell];
+		var paneCellControl = sudokuPane._children[cell];
 		if (paneCellControl is null)
 		{
 			return;
@@ -155,7 +155,7 @@ internal static class ViewUnitFrameworkElementFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = InternalTag,
-			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity
+			Opacity = sudokuPane.HighlightBackgroundOpacity
 		};
 
 		GridLayout.SetRowSpan(control, 3);
@@ -168,11 +168,11 @@ internal static class ViewUnitFrameworkElementFactory
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="CandidateViewNode"/>.
 	/// </summary>
-	/// <param name="targetPage">
-	/// <inheritdoc cref="ForConclusion(AnalyzePage, Conclusion, List{Conclusion})" path="/param[@name='targetPage']"/>
+	/// <param name="sudokuPane">
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion})" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="candidateNode">
-	/// <inheritdoc cref="ForCellNode(AnalyzePage, CellViewNode)" path="/param[@name='cellNode']"/>
+	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode)" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalisms.</param>
 	/// <param name="overlapped">
@@ -180,13 +180,13 @@ internal static class ViewUnitFrameworkElementFactory
 	/// what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
 	/// </param>
 	/// <seealso cref="CandidateViewNode"/>
-	private static void ForCandidateNode(AnalyzePage targetPage, CandidateViewNode candidateNode, ImmutableArray<Conclusion> conclusions, out Conclusion? overlapped)
+	private static void ForCandidateNode(SudokuPane sudokuPane, CandidateViewNode candidateNode, ImmutableArray<Conclusion> conclusions, out Conclusion? overlapped)
 	{
 		overlapped = null;
 
 		var (id, candidate) = candidateNode;
 		var cell = candidate / 9;
-		var paneCellControl = targetPage.SudokuPane._children[cell];
+		var paneCellControl = sudokuPane._children[cell];
 		if (paneCellControl is null)
 		{
 			return;
@@ -203,12 +203,12 @@ internal static class ViewUnitFrameworkElementFactory
 	}
 
 	/// <summary>
-	/// The core method called by <see cref="ForCandidateNode(AnalyzePage, CandidateViewNode, ImmutableArray{Conclusion}, out Conclusion?)"/>.
+	/// The core method called by <see cref="ForCandidateNode(SudokuPane, CandidateViewNode, ImmutableArray{Conclusion}, out Conclusion?)"/>.
 	/// </summary>
 	/// <param name="color">The color to be used on rendering.</param>
 	/// <param name="candidate">The candidate to be rendered.</param>
 	/// <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
-	/// <seealso cref="ForCandidateNode(AnalyzePage, CandidateViewNode, ImmutableArray{Conclusion}, out Conclusion?)"/>
+	/// <seealso cref="ForCandidateNode(SudokuPane, CandidateViewNode, ImmutableArray{Conclusion}, out Conclusion?)"/>
 	private static void ForCandidateNodeCore(Color color, int candidate, SudokuPaneCell paneCellControl)
 	{
 		var (width, height) = paneCellControl.ActualSize / 3F * (float)paneCellControl.BasePane.HighlightCandidateCircleScale;
@@ -233,20 +233,20 @@ internal static class ViewUnitFrameworkElementFactory
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="HouseViewNode"/>.
 	/// </summary>
-	/// <param name="targetPage">
-	/// <inheritdoc cref="ForConclusion(AnalyzePage, Conclusion, List{Conclusion})" path="/param[@name='targetPage']"/>
+	/// <param name="sudokuPane">
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion})" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="houseNode">
-	/// <inheritdoc cref="ForCellNode(AnalyzePage, CellViewNode)" path="/param[@name='cellNode']"/>
+	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode)" path="/param[@name='cellNode']"/>
 	/// </param>
 	/// <exception cref="ArgumentException">
 	/// Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="HouseViewNode.House"/>.
 	/// </exception>
 	/// <seealso cref="HouseViewNode"/>
-	private static void ForHouseNode(AnalyzePage targetPage, HouseViewNode houseNode)
+	private static void ForHouseNode(SudokuPane sudokuPane, HouseViewNode houseNode)
 	{
 		var (id, house) = houseNode;
-		var gridControl = targetPage.SudokuPane.MainGrid;
+		var gridControl = sudokuPane.MainGrid;
 		if (gridControl is null)
 		{
 			return;
@@ -257,7 +257,7 @@ internal static class ViewUnitFrameworkElementFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = InternalTag,
-			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity
+			Opacity = sudokuPane.HighlightBackgroundOpacity
 		};
 
 		var (row, column, rowSpan, columnSpan) = house switch
@@ -283,20 +283,20 @@ internal static class ViewUnitFrameworkElementFactory
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="ChuteViewNode"/>.
 	/// </summary>
-	/// <param name="targetPage">
-	/// <inheritdoc cref="ForConclusion(AnalyzePage, Conclusion, List{Conclusion})" path="/param[@name='targetPage']"/>
+	/// <param name="sudokuPane">
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion})" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="chuteNode">
-	/// <inheritdoc cref="ForCellNode(AnalyzePage, CellViewNode)" path="/param[@name='cellNode']"/>
+	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode)" path="/param[@name='cellNode']"/>
 	/// </param>
 	/// <exception cref="ArgumentException">
 	/// Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="ChuteViewNode.ChuteIndex"/>.
 	/// </exception>
 	/// <seealso cref="ChuteViewNode"/>
-	private static void ForChuteNode(AnalyzePage targetPage, ChuteViewNode chuteNode)
+	private static void ForChuteNode(SudokuPane sudokuPane, ChuteViewNode chuteNode)
 	{
 		var (id, chute) = chuteNode;
-		var gridControl = targetPage.SudokuPane.MainGrid;
+		var gridControl = sudokuPane.MainGrid;
 		if (gridControl is null)
 		{
 			return;
@@ -307,7 +307,7 @@ internal static class ViewUnitFrameworkElementFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = InternalTag,
-			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity
+			Opacity = sudokuPane.HighlightBackgroundOpacity
 		};
 
 		var (row, column, rowSpan, columnSpan) = chute switch
@@ -332,17 +332,17 @@ internal static class ViewUnitFrameworkElementFactory
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="BabaGroupViewNode"/>.
 	/// </summary>
-	/// <param name="targetPage">
-	/// <inheritdoc cref="ForConclusion(AnalyzePage, Conclusion, List{Conclusion})" path="/param[@name='targetPage']"/>
+	/// <param name="sudokuPane">
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion})" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="babaGroupNode">
-	/// <inheritdoc cref="ForCellNode(AnalyzePage, CellViewNode)" path="/param[@name='cellNode']"/>
+	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode)" path="/param[@name='cellNode']"/>
 	/// </param>
 	/// <seealso cref="BabaGroupViewNode"/>
-	private static void BabaGroupNode(AnalyzePage targetPage, BabaGroupViewNode babaGroupNode)
+	private static void BabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode)
 	{
 		var (id, cell, @char) = babaGroupNode;
-		var paneCellControl = targetPage.SudokuPane._children[cell];
+		var paneCellControl = sudokuPane._children[cell];
 		if (paneCellControl is null)
 		{
 			return;
@@ -353,16 +353,13 @@ internal static class ViewUnitFrameworkElementFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = InternalTag,
-			Opacity = targetPage.SudokuPane.HighlightBackgroundOpacity,
+			Opacity = sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
 				Text = @char.ToString(),
-				FontSize = PencilmarkTextConversion.GetFontSizeSimple(
-					targetPage.SudokuPane.ApproximateCellWidth,
-					targetPage.SudokuPane.BabaGroupLabelFontScale
-				),
-				FontFamily = targetPage.SudokuPane.BabaGroupLabelFont,
-				Foreground = new SolidColorBrush(targetPage.SudokuPane.BabaGroupLabelColor),
+				FontSize = PencilmarkTextConversion.GetFontSizeSimple(sudokuPane.ApproximateCellWidth, sudokuPane.BabaGroupLabelFontScale),
+				FontFamily = sudokuPane.BabaGroupLabelFont,
+				Foreground = new SolidColorBrush(sudokuPane.BabaGroupLabelColor),
 				FontWeight = FontWeights.Bold,
 				FontStyle = FontStyle.Italic,
 				HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -382,25 +379,25 @@ internal static class ViewUnitFrameworkElementFactory
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="LinkViewNode"/>s.
 	/// </summary>
-	/// <param name="targetPage">
-	/// <inheritdoc cref="ForConclusion(AnalyzePage, Conclusion, List{Conclusion})" path="/param[@name='targetPage']"/>
+	/// <param name="sudokuPane">
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion})" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="linkNodes">
-	/// <inheritdoc cref="ForCellNode(AnalyzePage, CellViewNode)" path="/param[@name='cellNode']"/>
+	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode)" path="/param[@name='cellNode']"/>
 	/// </param>
 	/// <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
 	/// <remarks>
 	/// This method is special: We should handle all <see cref="LinkViewNode"/>s together.
 	/// </remarks>
-	private static void ForLinkNodes(AnalyzePage targetPage, LinkViewNode[] linkNodes, ImmutableArray<Conclusion> conclusions)
+	private static void ForLinkNodes(SudokuPane sudokuPane, LinkViewNode[] linkNodes, ImmutableArray<Conclusion> conclusions)
 	{
-		var gridControl = targetPage.SudokuPane.MainGrid;
+		var gridControl = sudokuPane.MainGrid;
 		if (gridControl is null)
 		{
 			return;
 		}
 
-		var pathCreator = new PathCreator(targetPage, new(gridControl), conclusions);
+		var pathCreator = new PathCreator(sudokuPane, new(gridControl), conclusions);
 		foreach (var link in pathCreator.CreateLinks(linkNodes))
 		{
 			GridLayout.SetRow(link, 2);
@@ -417,11 +414,11 @@ internal static class ViewUnitFrameworkElementFactory
 /// <summary>
 /// Extracted type that creates the <see cref="Path"/> instances.
 /// </summary>
-/// <param name="Page">Indicates the page data.</param>
+/// <param name="Pane">Indicates the sudoku pane control.</param>
 /// <param name="Converter">Indicates the position converter.</param>
 /// <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
 /// <seealso cref="Path"/>
-file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Converter, ImmutableArray<Conclusion> Conclusions)
+file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Converter, ImmutableArray<Conclusion> Conclusions)
 {
 	/// <summary>
 	/// Indicates the rotate angle (45 degrees).
@@ -459,10 +456,10 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 			var dashArray = (
 				inference switch
 				{
-					Inference.Strong => Page.SudokuPane.StrongLinkDashStyle,
-					Inference.Weak => Page.SudokuPane.WeakLinkDashStyle,
-					Inference.Default => Page.SudokuPane.CycleLikeLinkDashStyle,
-					_ => Page.SudokuPane.OtherLinkDashStyle
+					Inference.Strong => Pane.StrongLinkDashStyle,
+					Inference.Weak => Pane.WeakLinkDashStyle,
+					Inference.Default => Pane.CycleLikeLinkDashStyle,
+					_ => Pane.OtherLinkDashStyle
 				}
 			).ToDoubleCollection();
 			switch (inference)
@@ -474,8 +471,8 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 
 					yield return new()
 					{
-						Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
-						StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+						Stroke = new SolidColorBrush(Pane.LinkColor),
+						StrokeThickness = Pane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
 						Tag = ViewUnitFrameworkElementFactory.InternalTag
@@ -550,8 +547,8 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 
 						yield return new()
 						{
-							Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
-							StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+							Stroke = new SolidColorBrush(Pane.LinkColor),
+							StrokeThickness = Pane.ChainStrokeThickness,
 							StrokeDashArray = dashArray,
 							Data = new GeometryGroup
 							{
@@ -576,8 +573,8 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 						};
 						yield return new()
 						{
-							Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
-							StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+							Stroke = new SolidColorBrush(Pane.LinkColor),
+							StrokeThickness = Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = GeometryCollectionFactory.ArrowCap(pt1, pt2) },
 							Tag = ViewUnitFrameworkElementFactory.InternalTag
 						};
@@ -590,16 +587,16 @@ file sealed record PathCreator(AnalyzePage Page, SudokuPanePositionConverter Con
 
 						yield return new()
 						{
-							Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
-							StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+							Stroke = new SolidColorBrush(Pane.LinkColor),
+							StrokeThickness = Pane.ChainStrokeThickness,
 							StrokeDashArray = dashArray,
 							Data = new GeometryGroup { Children = new GeometryCollection { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
 							Tag = ViewUnitFrameworkElementFactory.InternalTag
 						};
 						yield return new()
 						{
-							Stroke = new SolidColorBrush(Page.SudokuPane.LinkColor),
-							StrokeThickness = Page.SudokuPane.ChainStrokeThickness,
+							Stroke = new SolidColorBrush(Pane.LinkColor),
+							StrokeThickness = Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = GeometryCollectionFactory.ArrowCap(pt1, pt2) },
 							Tag = ViewUnitFrameworkElementFactory.InternalTag
 						};

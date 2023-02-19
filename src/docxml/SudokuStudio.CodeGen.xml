@@ -142,6 +142,70 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DependencyPropertyGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.NAttribute">
+            <summary>
+            The name attribute that applies to a field in enumeration field, indicating its name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.NAttribute.Name">
+            <summary>
+            Indicates the name of the attribute.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.GetName(Sudoku.Diagnostics.CodeGen.Generators.Accessibility)">
+            <summary>
+            Gets the name of the accessibility enumeration field.
+            </summary>
+            <param name="this">The field.</param>
+            <returns>The name of the field.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Accessibility">
+            <summary>
+            Defines an accessibility kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.File">
+            <summary>
+            Indicates the accessibility is <see langword="file"/>-scoped.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Private">
+            <summary>
+            Indicates the accessibility is <see langword="private"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Protected">
+            <summary>
+            Indicates the accessibility is <see langword="protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.PrivateProtected">
+            <summary>
+            Indicates the accessibility is <see langword="private protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Internal">
+            <summary>
+            Indicates the accessibility is <see langword="internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.ProtectedInternal">
+            <summary>
+            Indicates the accessibility is <see langword="protected internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Public">
+            <summary>
+            Indicates the accessibility is <see langword="public"/>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData">
             <summary>
             Indicates the property generating data.
@@ -149,7 +213,6 @@
             <param name="PropertyName">Indicates the property name.</param>
             <param name="PropertyType">Indicates the property type.</param>
             <param name="DocumentationCommentData">The documentation data.</param>
-            
             <param name="DefaultValueGeneratingMemberName">
             Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
             </param>
@@ -159,15 +222,15 @@
             <param name="DefaultValue">Indicates the real default value.</param>
             <param name="CallbackMethodName">Indicates the callback method name.</param>
             <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
+            <param name="Accessibility">The accessibility.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.Diagnostics.CodeGen.DocumentationCommentData,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.Diagnostics.CodeGen.DocumentationCommentData,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Sudoku.Diagnostics.CodeGen.Generators.Accessibility)">
             <summary>
             Indicates the property generating data.
             </summary>
             <param name="PropertyName">Indicates the property name.</param>
             <param name="PropertyType">Indicates the property type.</param>
             <param name="DocumentationCommentData">The documentation data.</param>
-            
             <param name="DefaultValueGeneratingMemberName">
             Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
             </param>
@@ -177,6 +240,7 @@
             <param name="DefaultValue">Indicates the real default value.</param>
             <param name="CallbackMethodName">Indicates the callback method name.</param>
             <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
+            <param name="Accessibility">The accessibility.</param>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.PropertyName">
             <summary>Indicates the property name.</summary>
@@ -205,6 +269,9 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.IsNullable">
             <summary>Indicates whether the source generator will emit nullable token for reference typed properties.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.Accessibility">
+            <summary>The accessibility.</summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyBindingGenerator">
             <summary>

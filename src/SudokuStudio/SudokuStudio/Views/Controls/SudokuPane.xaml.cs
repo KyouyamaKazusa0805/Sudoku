@@ -557,17 +557,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[Callback]
 	private static void ViewUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (SudokuPane { BasePage: var basePage }, { NewValue: var rawValue and (null or ViewUnit _) }))
+		if ((d, e) is not (SudokuPane pane, { NewValue: var rawValue and (null or ViewUnit _) }))
 		{
 			return;
 		}
 
-		var value = rawValue as ViewUnit;
-		ViewUnitFrameworkElementFactory.RemoveViewUnitControls(basePage);
+		ViewUnitFrameworkElementFactory.RemoveViewUnitControls(pane);
 
-		if (value is not null)
+		if (rawValue is ViewUnit value)
 		{
-			ViewUnitFrameworkElementFactory.AddViewUnitControls(basePage, value);
+			ViewUnitFrameworkElementFactory.AddViewUnitControls(pane, value);
 		}
 	}
 

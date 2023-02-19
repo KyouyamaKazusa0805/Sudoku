@@ -3,24 +3,10 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines the solving path page.
 /// </summary>
-public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyPropertyChanged
+[DependencyProperty<StepTooltipDisplayKind>("StepTooltipDisplayKind", DefaultValue = StepTooltipDisplayKind.TechniqueName | StepTooltipDisplayKind.DifficultyRating | StepTooltipDisplayKind.SimpleDescription, DocSummary = "Indicates the tooltip display kind.")]
+[DependencyProperty<LogicalSolverResult>("AnalysisResult", IsNullable = true, DocSummary = "Indicates the analysis result.")]
+public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 {
-	/// <summary>
-	/// Indicates the analysis result.
-	/// </summary>
-	[NotifyBackingField(DisableEventTrigger = true)]
-	[NotifyCallback]
-	private LogicalSolverResult? _analysisResult;
-
-	/// <summary>
-	/// Indicates the tooltip display kind.
-	/// </summary>
-	[NotifyBackingField]
-	private StepTooltipDisplayKind _stepTooltipDisplayKind = StepTooltipDisplayKind.TechniqueName
-		| StepTooltipDisplayKind.DifficultyRating
-		| StepTooltipDisplayKind.SimpleDescription;
-
-
 	/// <summary>
 	/// Initializes a <see cref="SolvingPath"/> instance.
 	/// </summary>
@@ -31,12 +17,25 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 	public AnalyzePage BasePage { get; set; } = null!;
 
 
-	/// <inheritdoc/>
-	public event PropertyChangedEventHandler? PropertyChanged;
+	[Callback]
+	private static void AnalysisResultPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if (
+#pragma warning disable format
+			(d, e) is not (
+				SolvingPath { StepTooltipDisplayKind: var kind, SolvingPathList: var pathListView } path,
+				{ NewValue: var value and (null or LogicalSolverResult) }
+			)
+#pragma warning restore format
+		)
+		{
+			return;
+		}
 
-
-	private void AnalysisResultSetterAfter(LogicalSolverResult? value)
-		=> SolvingPathList.ItemsSource = value is null ? null : SolvingPathStepCollection.Create(value, StepTooltipDisplayKind);
+		pathListView.ItemsSource = value is LogicalSolverResult analysisResult
+			? SolvingPathStepCollection.Create(analysisResult, kind)
+			: null;
+	}
 
 
 	private void ListViewItem_Tapped(object sender, TappedRoutedEventArgs e)
@@ -47,6 +46,7 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage, INotifyProperty
 		}
 
 		BasePage.SudokuPane.SetPuzzle(stepGrid, clearStack: true, clearAnalyzeTabData: false);
+		BasePage.CurrentViewIndex = -1;
 		BasePage.VisualUnit = step;
 	}
 }

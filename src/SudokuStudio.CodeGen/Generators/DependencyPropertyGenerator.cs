@@ -68,6 +68,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 				var docSummary = (string?)null;
 				var docRemarks = (string?)null;
 				var isNullable = false;
+				var accessibility = Accessibility.Public;
 				foreach (var pair in namedArgs)
 				{
 					switch (pair)
@@ -110,6 +111,11 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						case ("IsNullable", { Value: bool v }) when isReferenceType:
 						{
 							isNullable = v;
+							break;
+						}
+						case ("Accessibility", { Value: int v }):
+						{
+							accessibility = (Accessibility)v;
 							break;
 						}
 					}
@@ -176,7 +182,8 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						defaultValueGeneratorKind,
 						defaultValue,
 						callbackMethodName,
-						isNullable
+						isNullable,
+						accessibility
 					)
 				);
 
@@ -202,7 +209,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 					foreach (
 						var (
 							propertyName, propertyType, docData, generatorMemberName,
-							generatorMemberKind, defaultValue, callbackMethodName, isNullable
+							generatorMemberKind, defaultValue, callbackMethodName, isNullable, accessibility
 						) in propertiesData
 					)
 					{
@@ -217,6 +224,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						}
 
 						var nullableToken = isNullable ? "?" : string.Empty;
+						var accessibilityModifier = accessibility.GetName();
 
 						dependencyProperties.Add(
 							$"""
@@ -226,7 +234,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 								/// <seealso cref="{propertyName}"/>
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
-								public static readonly global::Microsoft.UI.Xaml.DependencyProperty {propertyName}Property =
+								{accessibilityModifier} static readonly global::Microsoft.UI.Xaml.DependencyProperty {propertyName}Property =
 									global::Microsoft.UI.Xaml.DependencyProperty.Register(nameof({propertyName}), typeof({propertyTypeStr}), typeof({containingTypeStr}), {defaultValueCreatorStr});
 							"""
 						);
@@ -236,7 +244,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 							{{doc}}
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
-								public {{propertyTypeStr}}{{nullableToken}} {{propertyName}}
+								{{accessibilityModifier}} {{propertyTypeStr}}{{nullableToken}} {{propertyName}}
 								{
 									[global::System.Diagnostics.DebuggerStepThroughAttribute]
 									[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -287,12 +295,88 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> PropertiesData);
 
 /// <summary>
+/// The name attribute that applies to a field in enumeration field, indicating its name.
+/// </summary>
+[AttributeUsage(AttributeTargets.Field, Inherited = false)]
+file sealed class NAttribute : Attribute
+{
+	public NAttribute(string name) => Name = name;
+
+
+	/// <summary>
+	/// Indicates the name of the attribute.
+	/// </summary>
+	public string Name { get; }
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Gets the name of the accessibility enumeration field.
+	/// </summary>
+	/// <param name="this">The field.</param>
+	/// <returns>The name of the field.</returns>
+	public static string GetName(this Accessibility @this)
+		=> typeof(Accessibility).GetField(@this.ToString())!.GetCustomAttribute<NAttribute>()!.Name;
+}
+
+/// <summary>
+/// Defines an accessibility kind.
+/// </summary>
+file enum Accessibility
+{
+	None,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="file"/>-scoped.
+	/// </summary>
+	[N("file")]
+	File,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="private"/>.
+	/// </summary>
+	[N("private")]
+	Private,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="protected"/>.
+	/// </summary>
+	[N("protected")]
+	Protected,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="private protected"/>.
+	/// </summary>
+	[N("private protected")]
+	PrivateProtected,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="internal"/>.
+	/// </summary>
+	[N("internal")]
+	Internal,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="protected internal"/>.
+	/// </summary>
+	[N("protected internal")]
+	ProtectedInternal,
+
+	/// <summary>
+	/// Indicates the accessibility is <see langword="public"/>.
+	/// </summary>
+	[N("public")]
+	Public
+}
+
+/// <summary>
 /// Indicates the property generating data.
 /// </summary>
 /// <param name="PropertyName">Indicates the property name.</param>
 /// <param name="PropertyType">Indicates the property type.</param>
 /// <param name="DocumentationCommentData">The documentation data.</param>
-/// 
 /// <param name="DefaultValueGeneratingMemberName">
 /// Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
 /// </param>
@@ -302,6 +386,7 @@ file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> Prope
 /// <param name="DefaultValue">Indicates the real default value.</param>
 /// <param name="CallbackMethodName">Indicates the callback method name.</param>
 /// <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
+/// <param name="Accessibility">The accessibility.</param>
 file readonly record struct PropertyData(
 	string PropertyName,
 	ITypeSymbol PropertyType,
@@ -310,5 +395,6 @@ file readonly record struct PropertyData(
 	DefaultValueGeneratingMemberKind? DefaultValueGeneratingMemberKind,
 	object? DefaultValue,
 	string? CallbackMethodName,
-	bool IsNullable
+	bool IsNullable,
+	Accessibility Accessibility
 );
