@@ -7,6 +7,12 @@
 public partial class App : Application
 {
 	/// <summary>
+	/// Indicates the instance that is used for synchronization for asynchronized environment.
+	/// </summary>
+	internal static readonly object SyncRoot = new();
+
+
+	/// <summary>
 	/// Indicates the command-line arguments.
 	/// </summary>
 	private readonly string[] _commandLineArgs;

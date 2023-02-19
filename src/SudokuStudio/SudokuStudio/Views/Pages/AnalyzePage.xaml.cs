@@ -12,11 +12,6 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 
 
 	/// <summary>
-	/// Defines an instance that is used for synchronizing analysis operation.
-	/// </summary>
-	internal readonly object AnalyzeSyncRoot = new();
-
-	/// <summary>
 	/// Indicates whether the analyzer is launched.
 	/// </summary>
 	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]

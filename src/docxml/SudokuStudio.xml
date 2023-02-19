@@ -10,6 +10,11 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Application"/>
         </member>
+        <member name="F:SudokuStudio.App.SyncRoot">
+            <summary>
+            Indicates the instance that is used for synchronization for asynchronized environment.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.App._commandLineArgs">
             <summary>
             Indicates the command-line arguments.
@@ -5874,11 +5879,6 @@ if (student is (name: var name, age: >= 18))
             The default navigation transition instance that will create animation fallback while switching pages.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.AnalyzeSyncRoot">
-            <summary>
-            Defines an instance that is used for synchronizing analysis operation.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._isAnalyzerLaunched">
             <summary>
             Indicates whether the analyzer is launched.
@@ -6345,11 +6345,6 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation">
             <summary>
             Attribute checking operation page.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.SyncRoot">
-            <summary>
-            Indicates the sync root.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.#ctor">

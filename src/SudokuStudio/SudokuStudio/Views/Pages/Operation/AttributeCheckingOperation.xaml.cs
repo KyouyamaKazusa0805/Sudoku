@@ -6,12 +6,6 @@ namespace SudokuStudio.Views.Pages.Operation;
 public sealed partial class AttributeCheckingOperation : Page, IOperationProviderPage
 {
 	/// <summary>
-	/// Indicates the sync root.
-	/// </summary>
-	private static readonly object SyncRoot = new();
-
-
-	/// <summary>
 	/// Initializes an <see cref="AttributeCheckingOperation"/> instance.
 	/// </summary>
 	public AttributeCheckingOperation() => InitializeComponent();
@@ -32,7 +26,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		var backdoors = await Task.Run(() => { lock (SyncRoot) { return BackdoorSearcher.GetBackdoors(puzzle); } });
+		var backdoors = await Task.Run(getBackdoors);
 		var view = View.Empty;
 		foreach (var (type, candidate) in backdoors)
 		{
@@ -41,6 +35,15 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 
 		var visualUnit = new BackdoorVisualUnit(view);
 		BasePage.VisualUnit = visualUnit;
+
+
+		Conclusion[] getBackdoors()
+		{
+			lock (App.SyncRoot)
+			{
+				return BackdoorSearcher.GetBackdoors(puzzle);
+			}
+		}
 	}
 
 	private async void TrueCandidateButton_ClickAsync(object sender, RoutedEventArgs e)
@@ -54,13 +57,22 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		var trueCandidates = await Task.Run(() => { lock (SyncRoot) { return new TrueCandidatesSearcher(puzzle).GetAllTrueCandidates(64); } });
+		var trueCandidates = await Task.Run(getTrueCandidates);
 
 		var view = View.Empty;
 		trueCandidates.ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Assignment, candidate)));
 
 		var visualUnit = new TrueCandidateVisualUnit(view);
 		BasePage.VisualUnit = visualUnit;
+
+
+		Candidates getTrueCandidates()
+		{
+			lock (App.SyncRoot)
+			{
+				return new TrueCandidatesSearcher(puzzle).GetAllTrueCandidates(64);
+			}
+		}
 	}
 }
 

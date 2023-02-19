@@ -72,7 +72,7 @@ public sealed class AnalyzeCommand : ButtonCommand
 
 		LogicalSolverResult analyze()
 		{
-			lock (self.AnalyzeSyncRoot)
+			lock (App.SyncRoot)
 			{
 				return solver.Solve(puzzle, new Progress<double>(progressReportHandler));
 			}

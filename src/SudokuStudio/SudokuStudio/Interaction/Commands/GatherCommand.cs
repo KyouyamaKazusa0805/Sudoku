@@ -36,7 +36,7 @@ public sealed class GatherCommand : ButtonCommand
 
 		IEnumerable<IStep> gather()
 		{
-			lock (self.AnalyzeSyncRoot)
+			lock (App.SyncRoot)
 			{
 				return gatherer.Search(grid, new Progress<double>(progressReportHandler));
 			}
