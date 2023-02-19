@@ -15,6 +15,11 @@
             Indicates the instance that is used for synchronization for asynchronized environment.
             </summary>
         </member>
+        <member name="F:SudokuStudio.App.DefaultNavigationTransitionInfo">
+            <summary>
+            Indicates the transition that switching pages.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.App._commandLineArgs">
             <summary>
             Indicates the command-line arguments.
@@ -5786,19 +5791,14 @@ if (student is (name: var name, age: >= 18))
             Defines a new page that stores a set of controls to analyze a sudoku grid.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.NavigationTransitionInfo">
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions">
             <summary>
-            The default navigation transition instance that will create animation fallback while switching pages.
+            Defines a key-value pair of functions that is used for routing hotkeys.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._navigatingData">
             <summary>
             The navigating data.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions">
-            <summary>
-            Defines a key-value pair of functions that is used for routing hotkeys.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.#ctor">
@@ -5894,9 +5894,10 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeFields">
             <summary>
-            Try to initialize field <see cref="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions"/>.
+            Try to initialize field <see cref="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions"/> and <see cref="F:SudokuStudio.Views.Pages.AnalyzePage._navigatingData"/>.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions"/>
+            <seealso cref="F:SudokuStudio.Views.Pages.AnalyzePage._navigatingData"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.LoadInitialGrid">
             <summary>
@@ -6927,11 +6928,6 @@ if (student is (name: var name, age: >= 18))
             Provides with a <see cref="T:Microsoft.UI.Xaml.Window"/> instance that is running as main instance of the program.
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Window"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Windows.MainWindow.NavigationTransitionInfo">
-            <summary>
-            The default navigation transition instance that will create animation fallback while switching pages.
-            </summary>
         </member>
         <member name="F:SudokuStudio.Views.Windows.MainWindow._appWindow">
             <summary>

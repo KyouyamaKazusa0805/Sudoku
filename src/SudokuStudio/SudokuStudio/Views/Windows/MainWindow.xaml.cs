@@ -6,12 +6,6 @@ namespace SudokuStudio.Views.Windows;
 /// <seealso cref="Window"/>
 public sealed partial class MainWindow : Window
 {
-	/// <summary>
-	/// The default navigation transition instance that will create animation fallback while switching pages.
-	/// </summary>
-	private static readonly NavigationTransitionInfo NavigationTransitionInfo = new EntranceNavigationTransitionInfo();
-
-
 #if CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Defines an <see cref="AppWindow"/> instance that is used by interaction with core application behaviors,
@@ -91,7 +85,7 @@ public sealed partial class MainWindow : Window
 	{
 		if (NavigationViewFrame.SourcePageType != pageType)
 		{
-			NavigationViewFrame.Navigate(pageType, null, NavigationTransitionInfo);
+			NavigationViewFrame.Navigate(pageType, null, App.DefaultNavigationTransitionInfo);
 			SetFrameDisplayTitle(pageType);
 		}
 	}

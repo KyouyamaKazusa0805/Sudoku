@@ -11,6 +11,14 @@ public partial class App : Application
 	/// </summary>
 	internal static readonly object SyncRoot = new();
 
+	/// <summary>
+	/// Indicates the transition that switching pages.
+	/// </summary>
+	internal static readonly NavigationTransitionInfo DefaultNavigationTransitionInfo = new SlideNavigationTransitionInfo
+	{
+		Effect = SlideNavigationTransitionEffect.FromRight
+	};
+
 
 	/// <summary>
 	/// Indicates the command-line arguments.

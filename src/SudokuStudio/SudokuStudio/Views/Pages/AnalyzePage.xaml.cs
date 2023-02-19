@@ -13,20 +13,14 @@ namespace SudokuStudio.Views.Pages;
 public sealed partial class AnalyzePage : Page
 {
 	/// <summary>
-	/// The default navigation transition instance that will create animation fallback while switching pages.
+	/// Defines a key-value pair of functions that is used for routing hotkeys.
 	/// </summary>
-	private static readonly NavigationTransitionInfo NavigationTransitionInfo = new EntranceNavigationTransitionInfo();
-
+	private Dictionary<Hotkey, Action> _hotkeyFunctions;
 
 	/// <summary>
 	/// The navigating data.
 	/// </summary>
 	private Dictionary<Predicate<NavigationViewItemBase>, Type> _navigatingData;
-
-	/// <summary>
-	/// Defines a key-value pair of functions that is used for routing hotkeys.
-	/// </summary>
-	private Dictionary<Hotkey, Action> _hotkeyFunctions;
 
 
 	/// <summary>
@@ -435,9 +429,10 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	/// <summary>
-	/// Try to initialize field <see cref="_hotkeyFunctions"/>.
+	/// Try to initialize field <see cref="_hotkeyFunctions"/> and <see cref="_navigatingData"/>.
 	/// </summary>
 	/// <seealso cref="_hotkeyFunctions"/>
+	/// <seealso cref="_navigatingData"/>
 	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData))]
 	private void InitializeFields()
 	{
@@ -505,7 +500,7 @@ public sealed partial class AnalyzePage : Page
 	{
 		if (CommandBarFrame.SourcePageType != pageType)
 		{
-			CommandBarFrame.Navigate(pageType, this, NavigationTransitionInfo);
+			CommandBarFrame.Navigate(pageType, this, App.DefaultNavigationTransitionInfo);
 		}
 	}
 
