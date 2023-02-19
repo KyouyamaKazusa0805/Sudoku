@@ -39,6 +39,53 @@
         <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name=".ssg">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ssg</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>SudokuStudio Generated Puzzle History File</uap:DisplayName>
+            <uap:Logo>4.png</uap:Logo>
+            <uap:InfoTip>SudokuStudio Generated Puzzle History File</uap:InfoTip>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name=".ssd">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ssd</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:Logo>3.png</uap:Logo>
+            <uap:InfoTip>SudokuStudio Drawing File</uap:InfoTip>
+            <uap:DisplayName>SudokuStudio Drawing File</uap:DisplayName>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name=".ssp">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ssp</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:Logo>2.png</uap:Logo>
+            <uap:InfoTip>SudokuStudio Preferences File</uap:InfoTip>
+            <uap:DisplayName>SudokuStudio Preferences File</uap:DisplayName>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name=".sst">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.sst</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:Logo>1.png</uap:Logo>
+            <uap:InfoTip>SudokuStudio Grid File</uap:InfoTip>
+            <uap:DisplayName>SudokuStudio Grid File</uap:DisplayName>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="sudoku">
+            <uap:DisplayName>SudokuStudio protocol</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
 

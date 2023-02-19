@@ -362,12 +362,17 @@
         </member>
         <member name="F:SudokuStudio.CommonFileExtensions.GeneratingHistory">
             <summary>
-            Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating).
+            Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating format).
             </summary>
         </member>
         <member name="F:SudokuStudio.CommonFileExtensions.Text">
             <summary>
             Indicates the sudoku text file format (SST - Sudoku Studio Text format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.CommonFileExtensions.Drawing">
+            <summary>
+            Indicates the sudoku drawing format (SSD - Sudoku Studio Drawing format).
             </summary>
         </member>
         <member name="F:SudokuStudio.CommonFileExtensions.UserPreference">

@@ -16,7 +16,7 @@ public static class CommonFileExtensions
 	public const string PortablePicture = ".png";
 
 	/// <summary>
-	/// Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating).
+	/// Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating format).
 	/// </summary>
 	public const string GeneratingHistory = ".ssg";
 
@@ -24,6 +24,11 @@ public static class CommonFileExtensions
 	/// Indicates the sudoku text file format (SST - Sudoku Studio Text format).
 	/// </summary>
 	public const string Text = ".sst";
+
+	/// <summary>
+	/// Indicates the sudoku drawing format (SSD - Sudoku Studio Drawing format).
+	/// </summary>
+	public const string Drawing = ".ssd";
 
 	/// <summary>
 	/// Indicates the user preference file format (SSP - Sudoku Studio Preference format).
