@@ -605,17 +605,10 @@ public sealed partial class AnalyzePage : Page
 
 	private void SudokuPane_GridUpdated(SudokuPane sender, GridUpdatedEventArgs e)
 	{
-		switch (e)
+		if (e.Behavior is GridUpdatedBehavior.Clear or GridUpdatedBehavior.Elimination
+			or GridUpdatedBehavior.EliminationMultiple or GridUpdatedBehavior.Assignment)
 		{
-			case
-			{
-				Behavior: GridUpdatedBehavior.Clear or GridUpdatedBehavior.Elimination or GridUpdatedBehavior.EliminationMultiple
-					or GridUpdatedBehavior.Assignment
-			}:
-			{
-				ClearAnalyzeTabsData();
-				break;
-			}
+			ClearAnalyzeTabsData();
 		}
 	}
 }
