@@ -199,8 +199,8 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 			foreach (var group in data.GroupBy<Data, INamedTypeSymbol>(static data => data.Type, SymbolEqualityComparer.Default))
 			{
 				var containingType = group.Key;
-				var containingTypeStr = containingType.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
-				var namespaceStr = containingType.ContainingNamespace.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
+				var containingTypeStr = containingType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+				var namespaceStr = containingType.ContainingNamespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 
 				var dependencyProperties = new List<string>();
 				var properties = new List<string>();
@@ -213,10 +213,10 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						) in propertiesData
 					)
 					{
-						var propertyTypeStr = propertyType.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints);
+						var propertyTypeStr = propertyType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 						var doc = XamlBinding.GetDocumentationComment(propertyName, docData, true);
 
-						var defaultValueCreatorStr = XamlBinding.GetPropertyMetadataString(defaultValue, generatorMemberName, generatorMemberKind, callbackMethodName, propertyTypeStr);
+						var defaultValueCreatorStr = XamlBinding.GetPropertyMetadataString(defaultValue, propertyType, generatorMemberName, generatorMemberKind, callbackMethodName, propertyTypeStr);
 						if (defaultValueCreatorStr is null)
 						{
 							// Error case has been encountered.
