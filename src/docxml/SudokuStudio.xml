@@ -6175,29 +6175,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the "Han" character.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._analysisResult">
-            <inheritdoc cref="P:SudokuStudio.ComponentModel.IAnalyzeTabPage.AnalysisResult"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyDistribution">
-            <summary>
-            Indicates the difficulty distribution values.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyLevelProportion">
-            <summary>
-            Indicates the difficulty level proportion values.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._puzzleArgumentsPolar">
-            <summary>
-            Indicates the multiple arguments that describes the current puzzle.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyDistributionSections">
-            <summary>
-            Difficulty distribution sections.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs"/> instance.
@@ -6206,37 +6183,14 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.BasePage">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesX">
-            <summary>
-            Difficulty distribution axes X.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesY">
-            <summary>
-            Difficulty distribution axes Y.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxes">
-            <summary>
-            Radius axes.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxes">
-            <summary>
-            Polar axes.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DefaultNameLabelPaint">
             <summary>
             Default name or label <see cref="T:LiveChartsCore.SkiaSharpView.Painting.Paint"/> instance.
             </summary>
         </member>
-        <member name="E:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PropertyChanged">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.InitializeFields">
+        <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.InitializeProperties">
             <summary>
-            Initializes for fields.
+            Initializes for properties.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.UpdateForDifficultyDistribution(Sudoku.Solving.Logical.LogicalSolverResult)">
@@ -6275,20 +6229,104 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResultProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResult"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResult"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistribution"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistribution"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportionProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolarProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolar"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolar"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionSectionsProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionSections"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionSections"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesXProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesX"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesX"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesYProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesY"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesY"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxesProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxes"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxes"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxesProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxes"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxes"/>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResult">
-            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._analysisResult"/>
+            <inheritdoc cref="P:SudokuStudio.ComponentModel.IAnalyzeTabPage.AnalysisResult"/>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistribution">
-            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyDistribution"/>
+            <summary>
+            Indicates the difficulty distribution values.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion">
-            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyLevelProportion"/>
+            <summary>
+            Indicates the difficulty level proportion values.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolar">
-            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._puzzleArgumentsPolar"/>
+            <summary>
+            Indicates the multiple arguments that describes the current puzzle.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionSections">
-            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs._difficultyDistributionSections"/>
+            <summary>
+            Difficulty distribution sections.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesX">
+            <summary>
+            Difficulty distribution axes X.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesY">
+            <summary>
+            Difficulty distribution axes Y.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxes">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxesProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxes">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxesProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>
@@ -6345,11 +6383,6 @@ if (student is (name: var name, age: >= 18))
             Defines a summary page.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.Summary._analysisResult">
-            <summary>
-            Indicates the analysis result.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.Summary"/> instance.
@@ -6373,8 +6406,16 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResultProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
-            <inheritdoc cref="F:SudokuStudio.Views.Pages.Analyze.Summary._analysisResult"/>
+            <summary>
+            Indicates the analysis result.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation">
             <summary>
@@ -6448,20 +6489,12 @@ if (student is (name: var name, age: >= 18))
             Defines a default puzzle generator.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation._succeedFilePath">
-            <summary>
-            Indicates the path of the saved file.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.BasicOperation"/> instance.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.BasePage">
-            <inheritdoc/>
-        </member>
-        <member name="E:SudokuStudio.Views.Pages.Operation.BasicOperation.PropertyChanged">
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.OnSaveFileFailed(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Interaction.SaveFileFailedEventArgs)">
@@ -6489,8 +6522,16 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePathProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath"/>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
-            <inheritdoc cref="F:SudokuStudio.Views.Pages.Operation.BasicOperation._succeedFilePath"/>
+            <summary>
+            Indicates the path of the saved file.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.FormatFlags">
             <summary>
@@ -6740,11 +6781,6 @@ if (student is (name: var name, age: >= 18))
             Defines a timer instance.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage._isRunning">
-            <summary>
-            Indicates whether the game is running.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage._currentPuzzleIndex">
             <summary>
             Indicates the puzzles last.
@@ -6764,9 +6800,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage"/> instance.
             </summary>
-        </member>
-        <member name="E:SudokuStudio.Views.Pages.SingleCountingPracticingPage.PropertyChanged">
-            <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.InitializeFields">
             <summary>
@@ -6798,6 +6831,12 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunningProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedModeProperty">
             <summary>
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode"/>.
@@ -6810,6 +6849,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount"/>
         </member>
+        <member name="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning">
+            <summary>
+            Indicates whether the game is running.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode">
             <summary>
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedModeProperty"/> to get or set value.
@@ -6821,9 +6865,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCountProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCountProperty" />
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning">
-            <inheritdoc cref="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage._isRunning"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Extensions">
             <target name="class" when="extension">

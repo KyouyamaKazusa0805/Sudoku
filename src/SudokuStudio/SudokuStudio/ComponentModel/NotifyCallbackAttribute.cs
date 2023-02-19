@@ -9,6 +9,7 @@
 /// </para>
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
+[Obsolete($"This type is being deprecated. Please use type '{nameof(CallbackAttribute)}' instead.", false)]
 public sealed class NotifyCallbackAttribute : Attribute
 {
 	/// <summary>

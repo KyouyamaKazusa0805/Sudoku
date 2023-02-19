@@ -3,16 +3,9 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines a summary page.
 /// </summary>
+[DependencyProperty<LogicalSolverResult>("AnalysisResult", IsNullable = true, DocSummary = "Indicates the analysis result.")]
 public sealed partial class Summary : Page, IAnalyzeTabPage
 {
-	/// <summary>
-	/// Indicates the analysis result.
-	/// </summary>
-	[NotifyBackingField(DisableEventTrigger = true)]
-	[NotifyCallback]
-	private LogicalSolverResult? _analysisResult;
-
-
 	/// <summary>
 	/// Initializes a <see cref="Summary"/> instance.
 	/// </summary>
@@ -23,6 +16,14 @@ public sealed partial class Summary : Page, IAnalyzeTabPage
 	public AnalyzePage BasePage { get; set; } = null!;
 
 
-	private void AnalysisResultSetterAfter(LogicalSolverResult? value)
-		=> SummaryTable.ItemsSource = value is null ? null : AnalysisResultTableRow.CreateListFrom(value);
+	[Callback]
+	private static void AnalysisResultPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is not (Summary page, { NewValue: var rawValue and (null or LogicalSolverResult) }))
+		{
+			return;
+		}
+
+		page.SummaryTable.ItemsSource = rawValue is LogicalSolverResult value ? AnalysisResultTableRow.CreateListFrom(value) : null;
+	}
 }

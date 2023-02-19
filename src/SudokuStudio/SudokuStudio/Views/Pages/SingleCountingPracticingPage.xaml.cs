@@ -3,9 +3,10 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Represents a page that provides with practise tool to allow you practicing counting logic for technique Naked Single and Full House.
 /// </summary>
+[DependencyProperty<bool>("IsRunning", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the game is running.")]
 [DependencyProperty<int>("SelectedMode", DefaultValue = -1)]
 [DependencyProperty<int>("TestedPuzzlesCount", DefaultValue = 10)]
-public sealed partial class SingleCountingPracticingPage : Page, INotifyPropertyChanged
+public sealed partial class SingleCountingPracticingPage : Page
 {
 	/// <summary>
 	/// Indicates the maximum possible supported number of puzzles.
@@ -17,13 +18,6 @@ public sealed partial class SingleCountingPracticingPage : Page, INotifyProperty
 	/// Defines a timer instance.
 	/// </summary>
 	private readonly Stopwatch _stopwatch = new();
-
-	/// <summary>
-	/// Indicates whether the game is running.
-	/// </summary>
-	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
-	[NotifyCallback]
-	private bool _isRunning;
 
 	/// <summary>
 	/// Indicates the puzzles last.
@@ -50,10 +44,6 @@ public sealed partial class SingleCountingPracticingPage : Page, INotifyProperty
 		InitializeEvents();
 		InitializeFields();
 	}
-
-
-	/// <inheritdoc/>
-	public event PropertyChangedEventHandler? PropertyChanged;
 
 
 	/// <summary>
@@ -83,34 +73,41 @@ public sealed partial class SingleCountingPracticingPage : Page, INotifyProperty
 		_targetResultData[_currentPuzzleIndex] = targetCandidate;
 	}
 
-	private void IsRunningSetterAfter(bool value)
+
+	[Callback]
+	private static void IsRunningPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
+		if ((d, e) is not (SingleCountingPracticingPage { TestedPuzzlesCount: var testedCount } page, { NewValue: bool value }))
+		{
+			return;
+		}
+
 		if (value)
 		{
-			_stopwatch.Start();
-			_currentPuzzleIndex = 0;
-			ResultDataDisplayer.Text = string.Empty;
+			page._stopwatch.Start();
+			page._currentPuzzleIndex = 0;
+			page.ResultDataDisplayer.Text = string.Empty;
 		}
 		else
 		{
-			_stopwatch.Stop();
-			_currentPuzzleIndex = -1;
+			page._stopwatch.Stop();
+			page._currentPuzzleIndex = -1;
 
-			var correctCount = _answeredData.CountWithSameIndex(_targetResultData, static (a, b) => a.Candidate == b, TestedPuzzlesCount);
-			var totalTimeSpan = _answeredData[TestedPuzzlesCount - 1].TimeSpan;
-			ResultDataDisplayer.Text = string.Format(
+			var correctCount = page._answeredData.CountWithSameIndex(page._targetResultData, (a, b) => a.Candidate == b, testedCount);
+			var totalTimeSpan = page._answeredData[testedCount - 1].TimeSpan;
+			page.ResultDataDisplayer.Text = string.Format(
 				GetString("SingleCountingPracticingPage_ResultDisplayLabel"),
 				totalTimeSpan,
-				TestedPuzzlesCount,
-				totalTimeSpan / TestedPuzzlesCount,
-				(double)correctCount / TestedPuzzlesCount,
+				testedCount,
+				totalTimeSpan / testedCount,
+				(double)correctCount / testedCount,
 				correctCount,
-				TestedPuzzlesCount
+				testedCount
 			);
 		}
 
-		_targetResultData.Refresh(MaxPuzzlesCountSupported);
-		_answeredData.Refresh(MaxPuzzlesCountSupported);
+		page._targetResultData.Refresh(MaxPuzzlesCountSupported);
+		page._answeredData.Refresh(MaxPuzzlesCountSupported);
 	}
 
 

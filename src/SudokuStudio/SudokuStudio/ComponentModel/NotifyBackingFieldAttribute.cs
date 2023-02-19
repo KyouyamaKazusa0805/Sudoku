@@ -4,6 +4,7 @@
 /// Defines an attribute that is used for source generation on properties.
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
+[Obsolete($"This type is being deprecated. Please use types 'DependencyPropertyAttribute`1' and 'AttachedPropertyAttribute`1' instead.", false)]
 public sealed class NotifyBackingFieldAttribute : Attribute
 {
 	/// <summary>

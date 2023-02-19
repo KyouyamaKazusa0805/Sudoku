@@ -3,7 +3,16 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines a tab page that displays for graphs that describes the difficulty and analysis data of a puzzle.
 /// </summary>
-public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropertyChanged
+[DependencyProperty<LogicalSolverResult>("AnalysisResult", IsNullable = true, DocReferencedMemberName = "global::SudokuStudio.ComponentModel.IAnalyzeTabPage.AnalysisResult")]
+[DependencyProperty<ObservableCollection<ISeries>>("DifficultyDistribution", DocSummary = "Indicates the difficulty distribution values.")]
+[DependencyProperty<ObservableCollection<ISeries>>("DifficultyLevelProportion", DocSummary = "Indicates the difficulty level proportion values.")]
+[DependencyProperty<ObservableCollection<ISeries>>("PuzzleArgumentsPolar", DocSummary = "Indicates the multiple arguments that describes the current puzzle.")]
+[DependencyProperty<ObservableCollection<Section<SkiaSharpDrawingContext>>>("DifficultyDistributionSections", DocSummary = "Difficulty distribution sections.")]
+[DependencyProperty<ICartesianAxis[]>("DifficultyDistributionAxesX", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Difficulty distribution axes X.")]
+[DependencyProperty<ICartesianAxis[]>("DifficultyDistributionAxesY", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Difficulty distribution axes Y.")]
+[DependencyProperty<IPolarAxis[]>("RadiusAxes", Accessibility = GeneralizedAccessibility.Internal)]
+[DependencyProperty<IPolarAxis[]>("PolarAxes", Accessibility = GeneralizedAccessibility.Internal)]
+public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage
 {
 	/// <summary>
 	/// Indicates the "Han" character.
@@ -11,16 +20,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 	private const char HanCharacter = '\u6c49';
 
 
-	/// <inheritdoc cref="IAnalyzeTabPage.AnalysisResult"/>
-	[NotifyBackingField(DisableEventTrigger = true)]
-	[NotifyCallback]
-	private LogicalSolverResult? _analysisResult;
-
-	/// <summary>
-	/// Indicates the difficulty distribution values.
-	/// </summary>
-	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference)]
-	private ObservableCollection<ISeries> _difficultyDistribution = new()
+	[DefaultValue]
+	private static readonly ObservableCollection<ISeries> DifficultyDistributionDefaultValue = new()
 	{
 		new LineSeries<double>
 		{
@@ -32,11 +33,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		}
 	};
 
-	/// <summary>
-	/// Indicates the difficulty level proportion values.
-	/// </summary>
-	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference)]
-	private ObservableCollection<ISeries> _difficultyLevelProportion = new()
+	[DefaultValue]
+	private static readonly ObservableCollection<ISeries> DifficultyLevelProportionDefaultValue = new()
 	{
 		new PieSeries<double>(),
 		new PieSeries<double>(),
@@ -46,11 +44,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		new PieSeries<double>()
 	};
 
-	/// <summary>
-	/// Indicates the multiple arguments that describes the current puzzle.
-	/// </summary>
-	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference)]
-	private ObservableCollection<ISeries> _puzzleArgumentsPolar = new()
+	[DefaultValue]
+	private static readonly ObservableCollection<ISeries> PuzzleArgumentsPolarDefaultValue = new()
 	{
 		new PolarLineSeries<double>
 		{
@@ -66,11 +61,8 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		}
 	};
 
-	/// <summary>
-	/// Difficulty distribution sections.
-	/// </summary>
-	[NotifyBackingField(ComparisonMode = EqualityComparisonMode.ObjectReference)]
-	private ObservableCollection<Section<SkiaSharpDrawingContext>> _difficultyDistributionSections = new()
+	[DefaultValue]
+	private static readonly ObservableCollection<Section<SkiaSharpDrawingContext>> DifficultyDistributionSectionsDefaultValue = new()
 	{
 		new RectangularSection { Yi = 2.4, Yj = 2.4 },
 		new RectangularSection { Yi = 3.8, Yj = 3.8 },
@@ -79,45 +71,33 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		new RectangularSection { Yi = 11.0, Yj = 11.0 }
 	};
 
-
-	/// <summary>
-	/// Initializes a <see cref="PuzzleGraphs"/> instance.
-	/// </summary>
-	public PuzzleGraphs()
+	[DefaultValue]
+	private static readonly ICartesianAxis[] DifficultyDistributionAxesXDefaultValue = new ICartesianAxis[]
 	{
-		InitializeComponent();
-		InitializeFields();
-	}
-
-
-	/// <inheritdoc/>
-	public AnalyzePage BasePage { get; set; } = null!;
-
-	/// <summary>
-	/// Difficulty distribution axes X.
-	/// </summary>
-	internal ICartesianAxis[] DifficultyDistributionAxesX { get; set; } = new ICartesianAxis[]
-	{
-		new Axis { Name = GetString("AnalyzePage_DifficultyDistributionXLabel"), LabelsPaint = null, NamePaint = DefaultNameLabelPaint }
+		new Axis
+		{
+			Name = GetString("AnalyzePage_DifficultyDistributionXLabel"),
+			LabelsPaint = null,
+			NamePaint = DefaultNameLabelPaint
+		}
 	};
 
-	/// <summary>
-	/// Difficulty distribution axes Y.
-	/// </summary>
-	internal ICartesianAxis[] DifficultyDistributionAxesY { get; set; } = new ICartesianAxis[]
+	[DefaultValue]
+	private static readonly ICartesianAxis[] DifficultyDistributionAxesYDefaultValue = new ICartesianAxis[]
 	{
-		new Axis { Name = GetString("AnalyzePage_DifficultyDistributionYLabel"), LabelsPaint = null, NamePaint = DefaultNameLabelPaint }
+		new Axis
+		{
+			Name = GetString("AnalyzePage_DifficultyDistributionYLabel"),
+			LabelsPaint = null,
+			NamePaint = DefaultNameLabelPaint
+		}
 	};
 
-	/// <summary>
-	/// Radius axes.
-	/// </summary>
-	internal IPolarAxis[] RadiusAxes { get; set; } = new IPolarAxis[] { new PolarAxis { LabelsPaint = null } };
+	[DefaultValue]
+	private static readonly IPolarAxis[] RadiusAxesDefaultValue = new IPolarAxis[] { new PolarAxis { LabelsPaint = null } };
 
-	/// <summary>
-	/// Polar axes.
-	/// </summary>
-	internal IPolarAxis[] PolarAxes { get; set; } = new IPolarAxis[]
+	[DefaultValue]
+	private static readonly IPolarAxis[] PolarAxesDefaultValue = new IPolarAxis[]
 	{
 		new PolarAxis
 		{
@@ -138,25 +118,35 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 
 
 	/// <summary>
+	/// Initializes a <see cref="PuzzleGraphs"/> instance.
+	/// </summary>
+	public PuzzleGraphs()
+	{
+		InitializeComponent();
+		InitializeProperties();
+	}
+
+
+	/// <inheritdoc/>
+	public AnalyzePage BasePage { get; set; } = null!;
+
+
+	/// <summary>
 	/// Default name or label <see cref="Paint"/> instance.
 	/// </summary>
 	private static Paint DefaultNameLabelPaint
 		=> new SolidColorPaint { Color = SKColors.Black, SKTypeface = SKFontManager.Default.MatchCharacter(HanCharacter) };
 
 
-	/// <inheritdoc/>
-	public event PropertyChangedEventHandler? PropertyChanged;
-
-
 	/// <summary>
-	/// Initializes for fields.
+	/// Initializes for properties.
 	/// </summary>
-	private void InitializeFields()
+	private void InitializeProperties()
 	{
-		for (var i = 0; i < _difficultyLevelProportion.Count; i++)
+		for (var i = 0; i < DifficultyLevelProportion.Count; i++)
 		{
 			var i2 = i;
-			var element = (PieSeries<double>)_difficultyLevelProportion[i];
+			var element = (PieSeries<double>)DifficultyLevelProportion[i];
 			element.Values = new ObservableCollection<double> { i == 0 ? 100 : 0 };
 			element.DataLabelsSize = 12;
 			element.DataLabelsFormatter =
@@ -187,13 +177,6 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			};
 	}
 
-	private void AnalysisResultSetterAfter(LogicalSolverResult? value)
-	{
-		UpdateForDifficultyDistribution(value);
-		UpdateForDifficultyLevelProportion(value);
-		UpdatePuzzleArgumentsPolar(value);
-	}
-
 	/// <summary>
 	/// Update data for property <see cref="DifficultyDistribution"/>.
 	/// </summary>
@@ -208,8 +191,6 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 		{
 			coll.AddRange(from step in value select (double)(step.Difficulty - 1.0M));
 		}
-
-		PropertyChanged?.Invoke(this, new(nameof(DifficultyDistribution)));
 	}
 
 	/// <summary>
@@ -249,8 +230,6 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			}
 		}
 
-		PropertyChanged?.Invoke(this, new(nameof(DifficultyLevelProportion)));
-
 
 		static bool counterPredicate(IStep step, DifficultyLevel key)
 			=> key switch
@@ -279,8 +258,21 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage, INotifyPropert
 			coll[1] = rater.Rarity;
 			coll[2] = rater.Directability;
 		}
+	}
 
-		PropertyChanged?.Invoke(this, new(nameof(PuzzleArgumentsPolar)));
+
+	[Callback]
+	private static void AnalysisResultPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is not (PuzzleGraphs page, { NewValue: var rawValue and (null or LogicalSolverResult) }))
+		{
+			return;
+		}
+
+		var value = rawValue as LogicalSolverResult;
+		page.UpdateForDifficultyDistribution(value);
+		page.UpdateForDifficultyLevelProportion(value);
+		page.UpdatePuzzleArgumentsPolar(value);
 	}
 
 

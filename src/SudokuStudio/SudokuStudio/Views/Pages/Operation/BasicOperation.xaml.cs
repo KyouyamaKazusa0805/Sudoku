@@ -3,19 +3,13 @@ namespace SudokuStudio.Views.Pages.Operation;
 /// <summary>
 /// Indicates the basic operation command bar.
 /// </summary>
-public sealed partial class BasicOperation : Page, INotifyPropertyChanged, IOperationProviderPage
+[DependencyProperty<string>("SucceedFilePath", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the path of the saved file.")]
+public sealed partial class BasicOperation : Page, IOperationProviderPage
 {
 	/// <summary>
 	/// Defines a default puzzle generator.
 	/// </summary>
 	private static readonly PatternBasedPuzzleGenerator Generator = new();
-
-
-	/// <summary>
-	/// Indicates the path of the saved file.
-	/// </summary>
-	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal)]
-	private string? _succeedFilePath;
 
 
 	/// <summary>
@@ -26,10 +20,6 @@ public sealed partial class BasicOperation : Page, INotifyPropertyChanged, IOper
 
 	/// <inheritdoc/>
 	public AnalyzePage BasePage { get; set; } = null!;
-
-
-	/// <inheritdoc/>
-	public event PropertyChangedEventHandler? PropertyChanged;
 
 
 	/// <summary>
