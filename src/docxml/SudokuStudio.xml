@@ -5910,6 +5910,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the anlaysis result cache.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._navigatingData">
+            <summary>
+            The navigating data.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._visualUnit">
             <summary>
             Indicates the visual unit.
@@ -5987,7 +5992,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeField">
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeFields">
             <summary>
             Try to initialize field <see cref="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions"/>.
             </summary>

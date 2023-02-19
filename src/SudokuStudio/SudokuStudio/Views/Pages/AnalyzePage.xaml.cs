@@ -55,6 +55,11 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	private LogicalSolverResult? _analysisResultCache;
 
 	/// <summary>
+	/// The navigating data.
+	/// </summary>
+	private Dictionary<Predicate<NavigationViewItemBase>, Type> _navigatingData;
+
+	/// <summary>
 	/// Indicates the visual unit.
 	/// </summary>
 	[NotifyBackingField(Accessibility = GeneralizedAccessibility.Internal, ComparisonMode = EqualityComparisonMode.ObjectReference)]
@@ -73,7 +78,7 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	public AnalyzePage()
 	{
 		InitializeComponent();
-		InitializeField();
+		InitializeFields();
 		LoadInitialGrid();
 	}
 
@@ -396,9 +401,10 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// Try to initialize field <see cref="_hotkeyFunctions"/>.
 	/// </summary>
 	/// <seealso cref="_hotkeyFunctions"/>
-	[MemberNotNull(nameof(_hotkeyFunctions))]
-	private void InitializeField()
-		=> _hotkeyFunctions = new (Hotkey, Action)[]
+	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData))]
+	private void InitializeFields()
+	{
+		_hotkeyFunctions = new (Hotkey, Action)[]
 		{
 			(new(VirtualKeyModifiers.Control, VirtualKey.Z), SudokuPane.UndoStep),
 			(new(VirtualKeyModifiers.Control, VirtualKey.Y), SudokuPane.RedoStep),
@@ -416,6 +422,13 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 			(new(VirtualKey.End), SetEndView),
 			(new(VirtualKey.Escape), ClearView)
 		};
+		_navigatingData = new()
+		{
+			{ container => container == BasicOperationBar, typeof(BasicOperation) },
+			{ container => container == AttributeCheckingOperationBar, typeof(AttributeCheckingOperation) },
+			{ container => container == PrintingOperationBar, typeof(PrintingOperation) }
+		};
+	}
 
 	/// <summary>
 	/// Load initial grid.
@@ -438,17 +451,12 @@ public sealed partial class AnalyzePage : Page, INotifyPropertyChanged
 	/// <seealso cref="CommandBarView_SelectionChanged"/>
 	private void SwitchingPage(NavigationViewItemBase container)
 	{
-		if (container == BasicOperationBar)
+		foreach (var (predicate, type) in _navigatingData)
 		{
-			NavigateToPage(typeof(BasicOperation));
-		}
-		else if (container == AttributeCheckingOperationBar)
-		{
-			NavigateToPage(typeof(AttributeCheckingOperation));
-		}
-		else if (container == PrintingOperationBar)
-		{
-			NavigateToPage(typeof(PrintingOperation));
+			if (predicate(container))
+			{
+				NavigateToPage(type);
+			}
 		}
 	}
 
