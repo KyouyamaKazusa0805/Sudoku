@@ -463,61 +463,6 @@
             Indicates the base page.
             </summary>
         </member>
-        <member name="T:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute">
-            <summary>
-            Defines an attribute that is used for source generation on properties.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute.DisableEventTrigger">
-            <summary>
-            Indicates whether the source generator doesn't emit the source code to trigger changed event
-            <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>.
-            </summary>
-            <seealso cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute.DisableDebuggerStepThrough">
-            <summary>
-            Indicates whether the source generator doesn't emit the source code to apply <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>.
-            </summary>
-            <seealso cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute.ComparisonMode">
-            <summary>
-            Indicates the customized comparison rule to be used to compare two objects.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.NotifyBackingFieldAttribute.Accessibility">
-            <summary>
-            Indicates the accessibility of the generated property. The default value is <see cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>.
-            </summary>
-            <seealso cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>
-        </member>
-        <member name="T:SudokuStudio.ComponentModel.NotifyCallbackAttribute">
-            <summary>
-            <para>Defines an attribute that is used for an auto-notifying field, to define the customized callback method name.</para>
-            <para>
-            In addition, if you name the callback method "PropertyName<c>SetterAfter</c>" (where "PropertyName" will be replaced with your property),
-            it will be automatically related to source generator, equivalent to expression
-            <see langword="new"/> <see cref="T:SudokuStudio.ComponentModel.NotifyCallbackAttribute"/>(<see langword="nameof"/>(PropertyName<c>SetterAfter</c>)).
-            </para>
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.ComponentModel.NotifyCallbackAttribute.#ctor">
-            <summary>
-            <para>Initializes a <see cref="T:SudokuStudio.ComponentModel.NotifyCallbackAttribute"/> instance.</para>
-            <para>
-            If the callback method ends with string <c>SetterAfter</c> and starts with the property name,
-            the method will be automatically referenced to the source generation if the method parameters are compatible with the basic rule
-            of source generation condition.
-            </para>
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.ComponentModel.NotifyCallbackAttribute.#ctor(System.String)">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.ComponentModel.NotifyCallbackAttribute"/> instance via the specified path whose corresponding member will be referenced.
-            </summary>
-            <param name="callbackMemberReferencePath">The referenced member path.</param>
-        </member>
         <member name="T:SudokuStudio.ComponentModel.XamlBindingAttribute`1">
             <summary>
             Defines a binding base attribute type.

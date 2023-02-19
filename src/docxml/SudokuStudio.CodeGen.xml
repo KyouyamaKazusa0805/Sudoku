@@ -4,6 +4,46 @@
         <name>SudokuStudio.CodeGen</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Accessibility">
+            <summary>
+            Defines an accessibility kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.File">
+            <summary>
+            Indicates the accessibility is <see langword="file"/>-scoped.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.Private">
+            <summary>
+            Indicates the accessibility is <see langword="private"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.Protected">
+            <summary>
+            Indicates the accessibility is <see langword="protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.PrivateProtected">
+            <summary>
+            Indicates the accessibility is <see langword="private protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.Internal">
+            <summary>
+            Indicates the accessibility is <see langword="internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.ProtectedInternal">
+            <summary>
+            Indicates the accessibility is <see langword="protected internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.Public">
+            <summary>
+            Indicates the accessibility is <see langword="public"/>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind">
             <summary>
             Defines a kind of default value generating member.
@@ -63,6 +103,19 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.DocumentationCommentData.DocPath">
             <summary>Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.</summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AccessibilityExtensions">
+            <summary>
+            Provides with extension methods for <see cref="T:Sudoku.Diagnostics.CodeGen.Accessibility"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Accessibility"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AccessibilityExtensions.GetName(Sudoku.Diagnostics.CodeGen.Accessibility)">
+            <summary>
+            Gets the name of the accessibility enumeration field.
+            </summary>
+            <param name="this">The field.</param>
+            <returns>The name of the field.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AttachedPropertyGenerator">
             <summary>
@@ -142,70 +195,6 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DependencyPropertyGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.NAttribute">
-            <summary>
-            The name attribute that applies to a field in enumeration field, indicating its name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.NAttribute.Name">
-            <summary>
-            Indicates the name of the attribute.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.GetName(Sudoku.Diagnostics.CodeGen.Generators.Accessibility)">
-            <summary>
-            Gets the name of the accessibility enumeration field.
-            </summary>
-            <param name="this">The field.</param>
-            <returns>The name of the field.</returns>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Accessibility">
-            <summary>
-            Defines an accessibility kind.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.File">
-            <summary>
-            Indicates the accessibility is <see langword="file"/>-scoped.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Private">
-            <summary>
-            Indicates the accessibility is <see langword="private"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Protected">
-            <summary>
-            Indicates the accessibility is <see langword="protected"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.PrivateProtected">
-            <summary>
-            Indicates the accessibility is <see langword="private protected"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Internal">
-            <summary>
-            Indicates the accessibility is <see langword="internal"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.ProtectedInternal">
-            <summary>
-            Indicates the accessibility is <see langword="protected internal"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Public">
-            <summary>
-            Indicates the accessibility is <see langword="public"/>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData">
             <summary>
             Indicates the property generating data.
@@ -224,7 +213,7 @@
             <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
             <param name="Accessibility">The accessibility.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.Diagnostics.CodeGen.DocumentationCommentData,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Sudoku.Diagnostics.CodeGen.Generators.Accessibility)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.Diagnostics.CodeGen.DocumentationCommentData,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Sudoku.Diagnostics.CodeGen.Accessibility)">
             <summary>
             Indicates the property generating data.
             </summary>
@@ -273,167 +262,21 @@
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.Accessibility">
             <summary>The accessibility.</summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyBindingGenerator">
+        <member name="T:Sudoku.Diagnostics.CodeGen.NameAttribute">
             <summary>
-            Defines a source generator that is used for binding properties.
+            The name attribute that applies to a field in enumeration field, indicating its name.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyBindingGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode">
+        <member name="M:Sudoku.Diagnostics.CodeGen.NameAttribute.#ctor(System.String)">
             <summary>
-            Defines a mode to limit value's equality comparison.
+            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.NameAttribute"/> via the name.
             </summary>
+            <param name="name">The name of the field.</param>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.None">
+        <member name="P:Sudoku.Diagnostics.CodeGen.NameAttribute.Name">
             <summary>
-            Indicates the mode is none.
+            Indicates the name of the attribute.
             </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.EqualityOperator">
-            <summary>
-            Indicates the comparison mode is to call <c><see langword="operator"/> ==</c> to check whether two instances are considered equal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.InstanceEqualsMethod">
-            <summary>
-            Indicates the comparison mode is to call <c><see cref="M:System.IEquatable`1.Equals(`0)"/></c>
-            to check whether two instances are considered equal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.InstanceCompareToMethod">
-            <summary>
-            Indicates the comparison mode is to call <c><see cref="M:System.IComparable`1.CompareTo(`0)"/></c>
-            to check whether two instances are considered equal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.EqualityComparerDefaultInstance">
-            <summary>
-            Indicates the comparison mode is to call <c><see cref="M:System.Collections.Generic.EqualityComparer`1.Equals(`0,`0)"/></c>
-            via instance <see cref="P:System.Collections.Generic.EqualityComparer`1.Default"/> to check whether two instances are considered equal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode.ObjectReference">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Accessibility">
-            <summary>
-            Defines an accessibility kind.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.File">
-            <summary>
-            Indicates the accessibility is <see langword="file"/>-scoped.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Private">
-            <summary>
-            Indicates the accessibility is <see langword="private"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Protected">
-            <summary>
-            Indicates the accessibility is <see langword="protected"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.PrivateProtected">
-            <summary>
-            Indicates the accessibility is <see langword="private protected"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Internal">
-            <summary>
-            Indicates the accessibility is <see langword="internal"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.ProtectedInternal">
-            <summary>
-            Indicates the accessibility is <see langword="protected internal"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Accessibility.Public">
-            <summary>
-            Indicates the accessibility is <see langword="public"/>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
-            <summary>
-            Defines a gathered data tuple.
-            </summary>
-            <param name="PropertyName">The property name.</param>
-            <param name="FieldSymbol">Indicates the field symbol.</param>
-            <param name="Type">Indicates the containing type symbol.</param>
-            <param name="ComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
-            <param name="Accessibility">Indicates the accessibility.</param>
-            <param name="DoNotEmitPropertyChangedEventTrigger">
-            Indicates whether the source generator does not emit source code to trigger property changed event.
-            </param>
-            <param name="DoNotEmitDebuggerStepThroughAttribute">
-            Indicates whether the source generator does not emit source code of <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>.
-            </param>
-            <param name="CallbackAttributeType">Indicates the callback attribute type.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(System.String,Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Sudoku.Diagnostics.CodeGen.Generators.EqualityComparisonMode,Sudoku.Diagnostics.CodeGen.Generators.Accessibility,System.Boolean,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            Defines a gathered data tuple.
-            </summary>
-            <param name="PropertyName">The property name.</param>
-            <param name="FieldSymbol">Indicates the field symbol.</param>
-            <param name="Type">Indicates the containing type symbol.</param>
-            <param name="ComparisonMode">Indicates a mode to compare two instances, used by property setter.</param>
-            <param name="Accessibility">Indicates the accessibility.</param>
-            <param name="DoNotEmitPropertyChangedEventTrigger">
-            Indicates whether the source generator does not emit source code to trigger property changed event.
-            </param>
-            <param name="DoNotEmitDebuggerStepThroughAttribute">
-            Indicates whether the source generator does not emit source code of <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>.
-            </param>
-            <param name="CallbackAttributeType">Indicates the callback attribute type.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PropertyName">
-            <summary>The property name.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.FieldSymbol">
-            <summary>Indicates the field symbol.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Type">
-            <summary>Indicates the containing type symbol.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.ComparisonMode">
-            <summary>Indicates a mode to compare two instances, used by property setter.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Accessibility">
-            <summary>Indicates the accessibility.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.DoNotEmitPropertyChangedEventTrigger">
-            <summary>
-            Indicates whether the source generator does not emit source code to trigger property changed event.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.DoNotEmitDebuggerStepThroughAttribute">
-            <summary>
-            Indicates whether the source generator does not emit source code of <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.CallbackAttributeType">
-            <summary>Indicates the callback attribute type.</summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.ToPascalCasing(System.String)">
-            <summary>
-            Converts the specified string in camel-casing into pascal-casing.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The converted result.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.XamlBinding">
             <summary>
