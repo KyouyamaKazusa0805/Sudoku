@@ -409,7 +409,7 @@
     <value>罕见度</value>
   </data>
   <data name="AnalyzePage_Redo" xml:space="preserve">
-    <value>恢复撤销步骤一步</value>
+    <value>恢复一步</value>
   </data>
   <data name="AnalyzePage_ResetCommandName" xml:space="preserve">
     <value>初盘复盘</value>
