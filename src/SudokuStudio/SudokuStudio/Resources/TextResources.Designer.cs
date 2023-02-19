@@ -2217,6 +2217,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Normal Fishes.
+        /// </summary>
+        internal static string TechniqueGalleryPage_NormalFishes {
+            get {
+                return ResourceManager.GetString("TechniqueGalleryPage_NormalFishes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Singles.
         /// </summary>
         internal static string TechniqueGalleryPage_Singles {

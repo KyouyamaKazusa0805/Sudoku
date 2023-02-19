@@ -49,6 +49,22 @@ internal static class TechniqueGalleryData
 				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.HiddenTriple },
 				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.HiddenQuadruple }
 			}
+		},
+		new()
+		{
+			Title = GetString("TechniqueGalleryPage_NormalFishes"),
+			Collection = new TechniquePageRoutingData[]
+			{
+				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.XWing },
+				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.FinnedXWing },
+				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.SashimiXWing },
+				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.Swordfish },
+				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.FinnedSwordfish },
+				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.SashimiSwordfish },
+				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.Jellyfish },
+				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.FinnedJellyfish },
+				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.SashimiJellyfish }
+			}
 		}
 	};
 }

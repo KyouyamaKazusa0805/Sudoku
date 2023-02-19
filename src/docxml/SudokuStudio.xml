@@ -4015,6 +4015,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This page lists techniques that the current program are supported, which can help you learn them..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_NormalFishes">
+            <summary>
+              Looks up a localized string similar to Normal Fishes.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_Singles">
             <summary>
               Looks up a localized string similar to Singles.
