@@ -5,20 +5,14 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
-	xmlns:cmd="using:SudokuStudio.Interaction.Commands"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:GridGathering}">
-
 	<ScrollViewer>
 		<StackPanel Spacing="6">
 			<Button
-				x:Name="GatherButton" x:FieldModifier="internal"
-				CommandParameter="{x:Bind BasePage}" Content="{m:R Key=AnalyzePage_GatherStepsInCurrentGrid}">
-				<Button.Command>
-					<cmd:GatherCommand />
-				</Button.Command>
-			</Button>
+				x:Name="GatherButton" x:FieldModifier="internal" Content="{m:R Key=AnalyzePage_GatherStepsInCurrentGrid}"
+				Click="GatherButton_ClickAsync" />
 			<StackPanel Orientation="Horizontal" Spacing="4">
 				<TextBox
 					x:Name="StepGatheringTextBox" Width="300" PlaceholderText="{m:R Key=AnalyzePage_SearchAllSteps}"
@@ -30,9 +24,7 @@
 					x:Name="FilteringExpressionInvalidHint" Foreground="Red" VerticalAlignment="Center" Visibility="Collapsed"
 					Text="{m:R Key=AnalyzePage_FilteringFailedDueToInvalidExpression}" />
 			</StackPanel>
-			<c:TechniqueGroupView
-				x:Name="TechniqueGroupView" x:FieldModifier="internal"
-				StepChosen="TechniqueGroupView_StepChosen" />
+			<c:TechniqueGroupView x:Name="TechniqueGroupView" x:FieldModifier="internal" StepChosen="TechniqueGroupView_StepChosen" />
 		</StackPanel>
 	</ScrollViewer>
 </Page>

@@ -81,4 +81,49 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 
 	private void StepGatheringTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		=> FilteringExpressionInvalidHint.Visibility = Visibility.Collapsed;
+
+	private async void GatherButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		var grid = BasePage.SudokuPane.Puzzle;
+		if (!grid.IsValid())
+		{
+			return;
+		}
+
+		BasePage.GatherTabPage.GatherButton.IsEnabled = false;
+		BasePage.IsGathererLaunched = true;
+		BasePage.GatherTabPage.TechniqueGroupView.ClearViewSource();
+
+		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
+
+		var gatherer = ((App)Application.Current).ProgramGatherer;
+		var result = await Task.Run(gather);
+
+		BasePage.GatherTabPage._currentFountSteps = result;
+		BasePage.GatherTabPage.TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result);
+		BasePage.GatherTabPage.GatherButton.IsEnabled = true;
+		BasePage.IsGathererLaunched = false;
+
+
+		IEnumerable<IStep> gather()
+		{
+			lock (App.SyncRoot)
+			{
+				return gatherer.Search(grid, new Progress<double>(progressReportHandler));
+			}
+
+
+			void progressReportHandler(double percent)
+			{
+				DispatcherQueue.TryEnqueue(updatePercentValueCallback);
+
+
+				void updatePercentValueCallback()
+				{
+					BasePage.ProgressPercent = percent * 100;
+					BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat!, percent);
+				}
+			}
+		}
+	}
 }

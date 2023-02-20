@@ -6,7 +6,6 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:a="using:SudokuStudio.Views.Attached"
 	xmlns:c="using:SudokuStudio.Views.Controls"
-	xmlns:cmd="using:SudokuStudio.Interaction.Commands"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
@@ -74,13 +73,9 @@
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=TwoWay}" />
 							<AppBarSeparator />
 							<AppBarButton
-								x:Name="AnalyzeButton" x:FieldModifier="internal" CommandParameter="{x:Bind}" Icon="Find"
-								Label="{m:R Key=AnalyzePage_AnalyzeButton}"
-								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}">
-								<AppBarButton.Command>
-									<cmd:AnalyzeCommand />
-								</AppBarButton.Command>
-							</AppBarButton>
+								x:Name="AnalyzeButton" x:FieldModifier="internal" Icon="Find" Label="{m:R Key=AnalyzePage_AnalyzeButton}"
+								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}"
+								Click="AnalyzeButton_ClickAsync" />
 						</CommandBar>
 					</Border>
 				</Grid>

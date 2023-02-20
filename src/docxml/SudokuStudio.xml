@@ -1495,36 +1495,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Inequality(Windows.System.VirtualKeyModifiers,SudokuStudio.Input.VirtualKeyModifierStatus)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:SudokuStudio.Interaction.Commands.AnalyzeCommand">
-            <summary>
-            Defines a command to analyze a puzzle.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interaction.Commands.AnalyzeCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Interaction.Commands.ButtonCommand">
-            <summary>
-            Defines a button command.
-            </summary>
-        </member>
-        <member name="E:SudokuStudio.Interaction.Commands.ButtonCommand.CanExecuteChanged">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Interaction.Commands.ButtonCommand.CanExecute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Interaction.Commands.ButtonCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Interaction.Commands.GatherCommand">
-            <summary>
-            Defines a gather command.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interaction.Commands.GatherCommand.Execute(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.AnalyzeConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about analyze tab pages.

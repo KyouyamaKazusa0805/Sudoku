@@ -690,4 +690,72 @@ public sealed partial class AnalyzePage : Page
 			ClearAnalyzeTabsData();
 		}
 	}
+
+	private async void AnalyzeButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		var puzzle = SudokuPane.Puzzle;
+		if (!puzzle.IsValid())
+		{
+			return;
+		}
+
+		AnalyzeButton.IsEnabled = false;
+		ClearAnalyzeTabsData();
+		IsAnalyzerLaunched = true;
+
+		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
+
+		var solver = ((App)Application.Current).ProgramSolver;
+		var analysisResult = await Task.Run(analyze);
+
+		AnalyzeButton.IsEnabled = true;
+		IsAnalyzerLaunched = false;
+
+		switch (analysisResult)
+		{
+			case { IsSolved: true }:
+			{
+				UpdateAnalysisResult(analysisResult);
+				AnalysisResultCache = analysisResult;
+
+				break;
+			}
+#if false
+			case
+			{
+				WrongStep: _,
+				FailedReason: _,
+				UnhandledException: WrongStepException { CurrentInvalidGrid: _ }
+			}:
+			{
+				break;
+			}
+			case { FailedReason: _, UnhandledException: _ }:
+			{
+				break;
+			}
+#endif
+		}
+
+
+		void progressReportHandler(double percent)
+		{
+			DispatcherQueue.TryEnqueue(updatePercentValueCallback);
+
+
+			void updatePercentValueCallback()
+			{
+				ProgressPercent = percent * 100;
+				AnalyzeProgressLabel.Text = string.Format(textFormat!, percent);
+			}
+		}
+
+		LogicalSolverResult analyze()
+		{
+			lock (App.SyncRoot)
+			{
+				return solver.Solve(puzzle, new Progress<double>(progressReportHandler));
+			}
+		}
+	}
 }
