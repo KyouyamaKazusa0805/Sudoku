@@ -596,6 +596,7 @@ public sealed partial class AnalyzePage : Page
 		if (VisualUnit is { Views.Length: not 0 })
 		{
 			VisualUnit = null;
+			SudokuPane.ViewUnit = null;
 		}
 	}
 
@@ -637,6 +638,8 @@ public sealed partial class AnalyzePage : Page
 		}
 
 		page.CurrentViewIndex = value is VisualUnit ? 0 : -1;
+		page.ViewsSwitcher.Visibility = Visibility.Collapsed;
+		page.ViewsCountDisplayer.Visibility = Visibility.Collapsed;
 	}
 
 

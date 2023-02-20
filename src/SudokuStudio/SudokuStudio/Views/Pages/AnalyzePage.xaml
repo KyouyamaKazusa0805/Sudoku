@@ -163,12 +163,14 @@
 					/>
 					<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,*">
 						<PipsPager
-							MaxVisiblePips="10" PreviousButtonVisibility="VisibleOnPointerOver" NextButtonVisibility="VisibleOnPointerOver"
+							x:Name="ViewsSwitcher" MaxVisiblePips="10" PreviousButtonVisibility="VisibleOnPointerOver"
+							NextButtonVisibility="VisibleOnPointerOver"
 							Visibility="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerVisibility(VisualUnit),Mode=OneWay}"
 							NumberOfPages="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerPageCount(VisualUnit),Mode=OneWay}"
 							SelectedPageIndex="{x:Bind cvt:AnalyzeConversion.GetCurrentViewIndexForViewPipsPager(CurrentViewIndex),Mode=TwoWay,BindBack=SkipToSpecifiedViewIndex}" />
 						<TextBlock
-							Grid.Column="1" Visibility="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerVisibility(VisualUnit),Mode=OneWay}"
+							x:Name="ViewsCountDisplayer" Grid.Column="1"
+							Visibility="{x:Bind cvt:AnalyzeConversion.GetViewPipsPagerVisibility(VisualUnit),Mode=OneWay}"
 							Text="{x:Bind cvt:AnalyzeConversion.GetViewIndexDisplayerString(VisualUnit,CurrentViewIndex),Mode=OneWay}" />
 					</Grid>
 				</StackPanel>
