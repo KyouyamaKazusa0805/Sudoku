@@ -3247,7 +3247,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PivotItem_AttributeCheckingOperation">
             <summary>
-              Looks up a localized string similar to Attribute checking.
+              Looks up a localized string similar to Attributes.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PivotItem_BasicOperations">

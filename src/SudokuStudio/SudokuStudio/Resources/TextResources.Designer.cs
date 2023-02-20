@@ -889,7 +889,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attribute checking.
+        ///   Looks up a localized string similar to Attributes.
         /// </summary>
         internal static string AnalyzePage_PivotItem_AttributeCheckingOperation {
             get {

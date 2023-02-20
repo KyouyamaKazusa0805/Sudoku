@@ -367,7 +367,7 @@
     <value>候选数盘面（铅笔盘）格式</value>
   </data>
   <data name="AnalyzePage_PivotItem_AttributeCheckingOperation" xml:space="preserve">
-    <value>题目特性/属性校验</value>
+    <value>特性校验</value>
   </data>
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>基本功能</value>
