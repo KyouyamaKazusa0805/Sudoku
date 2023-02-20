@@ -13,7 +13,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName("SudokuStudio.ComponentModel.DependencyPropertyAttribute`1", nodePredicate, transform)
 				.Where(static data => data is not null)
-				.Select(static (data, _) => data!.Value)
+				.Select(static (data, _) => data!)
 				.Combine(context.CompilationProvider)
 				.Where(static pair => pair.Right.AssemblyName == "SudokuStudio")
 				.Select(static (pair, _) => pair.Left)
@@ -307,7 +307,15 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 	}
 }
 
-file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> PropertiesData);
+/// <summary>
+/// The gathered data. This type is only used for describing the details of gathered result.
+/// </summary>
+/// <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
+/// <param name="PropertiesData">
+/// Indicates the internal data. For more information please visit doc commnets for type <see cref="PropertyData"/>.
+/// </param>
+/// <seealso cref="PropertyData"/>
+file sealed record Data(INamedTypeSymbol Type, List<PropertyData> PropertiesData);
 
 /// <summary>
 /// Indicates the property generating data.
@@ -328,7 +336,7 @@ file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> Prope
 /// <param name="MembersNotNullWhenReturnsTrue">
 /// Indicates the member names that won't be <see langword="null"/> if the dependency property returns <see langword="true"/>.
 /// </param>
-file readonly record struct PropertyData(
+file sealed record PropertyData(
 	string PropertyName,
 	ITypeSymbol PropertyType,
 	DocumentationCommentData DocumentationCommentData,

@@ -125,6 +125,34 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AttachedPropertyGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
+            <summary>
+            The gathered data. This type is only used for describing the details of gathered result.
+            </summary>
+            <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
+            <param name="PropertiesData">
+            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            </param>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.Diagnostics.CodeGen.Generators.PropertyData})">
+            <summary>
+            The gathered data. This type is only used for describing the details of gathered result.
+            </summary>
+            <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
+            <param name="PropertiesData">
+            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            </param>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Type">
+            <summary>The type symbol whose corresponding type is one where attributes declared.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PropertiesData">
+            <summary>
+            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData">
             <summary>
             Indicates the property generating data.
@@ -194,6 +222,34 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DependencyPropertyGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
+            <summary>
+            The gathered data. This type is only used for describing the details of gathered result.
+            </summary>
+            <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
+            <param name="PropertiesData">
+            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            </param>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.Diagnostics.CodeGen.Generators.PropertyData})">
+            <summary>
+            The gathered data. This type is only used for describing the details of gathered result.
+            </summary>
+            <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
+            <param name="PropertiesData">
+            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            </param>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Type">
+            <summary>The type symbol whose corresponding type is one where attributes declared.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PropertiesData">
+            <summary>
+            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData">
             <summary>

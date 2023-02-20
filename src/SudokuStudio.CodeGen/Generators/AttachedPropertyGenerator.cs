@@ -13,7 +13,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName("SudokuStudio.ComponentModel.AttachedPropertyAttribute`1", nodePredicate, transform)
 				.Where(static data => data is not null)
-				.Select(static (data, _) => data!.Value)
+				.Select(static (data, _) => data!)
 				.Combine(context.CompilationProvider)
 				.Where(static pair => pair.Right.AssemblyName == "SudokuStudio")
 				.Select(static (pair, _) => pair.Left)
@@ -270,7 +270,15 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 	}
 }
 
-file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> PropertiesData);
+/// <summary>
+/// The gathered data. This type is only used for describing the details of gathered result.
+/// </summary>
+/// <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
+/// <param name="PropertiesData">
+/// Indicates the internal data. For more information please visit doc commnets for type <see cref="PropertyData"/>.
+/// </param>
+/// <seealso cref="PropertyData"/>
+file sealed record Data(INamedTypeSymbol Type, List<PropertyData> PropertiesData);
 
 /// <summary>
 /// Indicates the property generating data.
@@ -287,7 +295,7 @@ file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> Prope
 /// <param name="DefaultValue">Indicates the real default value.</param>
 /// <param name="CallbackMethodName">The callback method name.</param>
 /// <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
-file readonly record struct PropertyData(
+file sealed record PropertyData(
 	string PropertyName,
 	ITypeSymbol PropertyType,
 	DocumentationCommentData DocumentationCommentData,
