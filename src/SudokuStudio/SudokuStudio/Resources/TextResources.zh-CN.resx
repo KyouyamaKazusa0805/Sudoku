@@ -195,6 +195,9 @@
   <data name="AnalyzePage_AnalyzerProgress" xml:space="preserve">
     <value>进度：{0:P}</value>
   </data>
+  <data name="AnalyzePage_AntidiagonalSwapButton" xml:space="preserve">
+    <value>反对角线（撇对角线）翻转</value>
+  </data>
   <data name="AnalyzePage_AreYouSureToReturnToEmpty" xml:space="preserve">
     <value>该操作会将盘面置空（恢复为空盘状态）。确定要这么做？</value>
   </data>
@@ -242,6 +245,9 @@
   </data>
   <data name="AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven" xml:space="preserve">
     <value>当前盘面格式，只不过全部确定值都视为提示数</value>
+  </data>
+  <data name="AnalyzePage_DiagonalSwapButton" xml:space="preserve">
+    <value>正对角线（捺对角线）翻转</value>
   </data>
   <data name="AnalyzePage_DifficultyChartTitle" xml:space="preserve">
     <value>难度分布</value>
@@ -309,6 +315,9 @@
   <data name="AnalyzePage_IsMinimal" xml:space="preserve">
     <value>是否为最小题：</value>
   </data>
+  <data name="AnalyzePage_LeftRightSwapButton" xml:space="preserve">
+    <value>左右镜面翻转</value>
+  </data>
   <data name="AnalyzePage_LiveCharts" xml:space="preserve">
     <value>数据图表</value>
   </data>
@@ -366,6 +375,9 @@
   <data name="AnalyzePage_PivotItem_PrintingOperation" xml:space="preserve">
     <value>打印</value>
   </data>
+  <data name="AnalyzePage_PivotItem_ShuffleOperations" xml:space="preserve">
+    <value>变换</value>
+  </data>
   <data name="AnalyzePage_PrintAnalysisResult" xml:space="preserve">
     <value>打印分析结果</value>
   </data>
@@ -413,6 +425,15 @@
   </data>
   <data name="AnalyzePage_ResetCommandName" xml:space="preserve">
     <value>初盘复盘</value>
+  </data>
+  <data name="AnalyzePage_RotateClockwiseButton" xml:space="preserve">
+    <value>顺时针旋转 90°</value>
+  </data>
+  <data name="AnalyzePage_RotateCounterclockwiseButton" xml:space="preserve">
+    <value>逆时针旋转 90°</value>
+  </data>
+  <data name="AnalyzePage_RotatePiButton" xml:space="preserve">
+    <value>旋转 180°</value>
   </data>
   <data name="AnalyzePage_SaveAsButtonContent" xml:space="preserve">
     <value>选择保存路径！</value>
@@ -464,6 +485,9 @@
   </data>
   <data name="AnalyzePage_ToggleDisplayingCandidates" xml:space="preserve">
     <value>隐藏/显示候选数</value>
+  </data>
+  <data name="AnalyzePage_TopBottomSwapButton" xml:space="preserve">
+    <value>上下镜面翻转</value>
   </data>
   <data name="AnalyzePage_TrueCandidateButton" xml:space="preserve">
     <value>查看真数</value>

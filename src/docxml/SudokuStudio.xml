@@ -2960,6 +2960,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Progress: {0:P}.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AntidiagonalSwapButton">
+            <summary>
+              Looks up a localized string similar to Anti-diagonal swap.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_AreYouSureToReturnToEmpty">
             <summary>
               Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty status. Are you sure?.
@@ -3038,6 +3043,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven">
             <summary>
               Looks up a localized string similar to Current grid format, but all values will be treated as givens.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DiagonalSwapButton">
+            <summary>
+              Looks up a localized string similar to Diagonal swap.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyChartTitle">
@@ -3150,6 +3160,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Is Minimal puzzle: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_LeftRightSwapButton">
+            <summary>
+              Looks up a localized string similar to Left-Right swap.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_LiveCharts">
             <summary>
               Looks up a localized string similar to Data Charts.
@@ -3245,6 +3260,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Printing.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PivotItem_ShuffleOperations">
+            <summary>
+              Looks up a localized string similar to Transformations.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PrintAnalysisResult">
             <summary>
               Looks up a localized string similar to Print analysis.
@@ -3323,6 +3343,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ResetCommandName">
             <summary>
               Looks up a localized string similar to Reset.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_RotateClockwiseButton">
+            <summary>
+              Looks up a localized string similar to Rotate 90°.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_RotateCounterclockwiseButton">
+            <summary>
+              Looks up a localized string similar to Rotate -90°.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_RotatePiButton">
+            <summary>
+              Looks up a localized string similar to Rotate 180°.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SaveAsButtonContent">
@@ -3408,6 +3443,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ToggleDisplayingCandidates">
             <summary>
               Looks up a localized string similar to Show/Hide candidates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_TopBottomSwapButton">
+            <summary>
+              Looks up a localized string similar to Top-Bottom swap.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_TrueCandidateButton">
@@ -6605,6 +6645,34 @@ if (student is (name: var name, age: >= 18))
 					Provides with file-local extension methods.
 				</summary>
 			</target>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.ShuffleOperation">
+            <summary>
+            The shuffle operation page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.ShuffleOperation.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.ShuffleOperation"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.ShuffleOperation.BasePage">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.ShuffleOperation.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.ShuffleOperation.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.ShuffleOperation.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.SettingsPage">
             <summary>

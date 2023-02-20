@@ -1,0 +1,19 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Operation.ShuffleOperation"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:po="using:SudokuStudio.Views.Pages.Operation"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=po:ShuffleOperation}">
+	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">
+		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_LeftRightSwapButton}" Click="LeftRightSwapButton_Click" />
+		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_TopBottomSwapButton}" Click="TopBottomSwapButton_Click" />
+		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_DiagonalSwapButton}" Click="DiagonalSwapButton_Click" />
+		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_AntidiagonalSwapButton}" Click="AntidiagonalSwapButton_Click" />
+		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_RotateClockwiseButton}" Click="RotateClockwiseButton_Click" />
+		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_RotateCounterclockwiseButton}" Click="RotateCounterclockwiseButton_Click" />
+		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_RotatePiButton}" Click="RotatePiButton_Click" />
+	</CommandBar>
+</Page>

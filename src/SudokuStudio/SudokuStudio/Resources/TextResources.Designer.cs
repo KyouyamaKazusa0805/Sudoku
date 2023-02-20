@@ -376,6 +376,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anti-diagonal swap.
+        /// </summary>
+        internal static string AnalyzePage_AntidiagonalSwapButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AntidiagonalSwapButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty status. Are you sure?.
         /// </summary>
         internal static string AnalyzePage_AreYouSureToReturnToEmpty {
@@ -516,6 +525,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven {
             get {
                 return ResourceManager.GetString("AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diagonal swap.
+        /// </summary>
+        internal static string AnalyzePage_DiagonalSwapButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DiagonalSwapButton", resourceCulture);
             }
         }
         
@@ -718,6 +736,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Left-Right swap.
+        /// </summary>
+        internal static string AnalyzePage_LeftRightSwapButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_LeftRightSwapButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data Charts.
         /// </summary>
         internal static string AnalyzePage_LiveCharts {
@@ -889,6 +916,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transformations.
+        /// </summary>
+        internal static string AnalyzePage_PivotItem_ShuffleOperations {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PivotItem_ShuffleOperations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Print analysis.
         /// </summary>
         internal static string AnalyzePage_PrintAnalysisResult {
@@ -1029,6 +1065,33 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_ResetCommandName {
             get {
                 return ResourceManager.GetString("AnalyzePage_ResetCommandName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate 90°.
+        /// </summary>
+        internal static string AnalyzePage_RotateClockwiseButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_RotateClockwiseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate -90°.
+        /// </summary>
+        internal static string AnalyzePage_RotateCounterclockwiseButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_RotateCounterclockwiseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate 180°.
+        /// </summary>
+        internal static string AnalyzePage_RotatePiButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_RotatePiButton", resourceCulture);
             }
         }
         
@@ -1182,6 +1245,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_ToggleDisplayingCandidates {
             get {
                 return ResourceManager.GetString("AnalyzePage_ToggleDisplayingCandidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top-Bottom swap.
+        /// </summary>
+        internal static string AnalyzePage_TopBottomSwapButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_TopBottomSwapButton", resourceCulture);
             }
         }
         

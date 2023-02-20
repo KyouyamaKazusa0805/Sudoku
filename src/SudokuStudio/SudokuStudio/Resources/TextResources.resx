@@ -195,6 +195,9 @@
   <data name="AnalyzePage_AnalyzerProgress" xml:space="preserve">
     <value>Progress: {0:P}</value>
   </data>
+  <data name="AnalyzePage_AntidiagonalSwapButton" xml:space="preserve">
+    <value>Anti-diagonal swap</value>
+  </data>
   <data name="AnalyzePage_AreYouSureToReturnToEmpty" xml:space="preserve">
     <value>This will clear the puzzle, returning the puzzle to empty status. Are you sure?</value>
   </data>
@@ -242,6 +245,9 @@
   </data>
   <data name="AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven" xml:space="preserve">
     <value>Current grid format, but all values will be treated as givens</value>
+  </data>
+  <data name="AnalyzePage_DiagonalSwapButton" xml:space="preserve">
+    <value>Diagonal swap</value>
   </data>
   <data name="AnalyzePage_DifficultyChartTitle" xml:space="preserve">
     <value>Difficulty distribution</value>
@@ -309,6 +315,9 @@
   <data name="AnalyzePage_IsMinimal" xml:space="preserve">
     <value>Is Minimal puzzle: </value>
   </data>
+  <data name="AnalyzePage_LeftRightSwapButton" xml:space="preserve">
+    <value>Left-Right swap</value>
+  </data>
   <data name="AnalyzePage_LiveCharts" xml:space="preserve">
     <value>Data Charts</value>
   </data>
@@ -366,6 +375,9 @@
   <data name="AnalyzePage_PivotItem_PrintingOperation" xml:space="preserve">
     <value>Printing</value>
   </data>
+  <data name="AnalyzePage_PivotItem_ShuffleOperations" xml:space="preserve">
+    <value>Transformations</value>
+  </data>
   <data name="AnalyzePage_PrintAnalysisResult" xml:space="preserve">
     <value>Print analysis</value>
   </data>
@@ -413,6 +425,15 @@
   </data>
   <data name="AnalyzePage_ResetCommandName" xml:space="preserve">
     <value>Reset</value>
+  </data>
+  <data name="AnalyzePage_RotateClockwiseButton" xml:space="preserve">
+    <value>Rotate 90°</value>
+  </data>
+  <data name="AnalyzePage_RotateCounterclockwiseButton" xml:space="preserve">
+    <value>Rotate -90°</value>
+  </data>
+  <data name="AnalyzePage_RotatePiButton" xml:space="preserve">
+    <value>Rotate 180°</value>
   </data>
   <data name="AnalyzePage_SaveAsButtonContent" xml:space="preserve">
     <value>Save!</value>
@@ -464,6 +485,9 @@
   </data>
   <data name="AnalyzePage_ToggleDisplayingCandidates" xml:space="preserve">
     <value>Show/Hide candidates</value>
+  </data>
+  <data name="AnalyzePage_TopBottomSwapButton" xml:space="preserve">
+    <value>Top-Bottom swap</value>
   </data>
   <data name="AnalyzePage_TrueCandidateButton" xml:space="preserve">
     <value>True candidates</value>

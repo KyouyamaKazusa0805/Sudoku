@@ -37,6 +37,7 @@
 							<NavigationViewItem
 								x:Name="AttributeCheckingOperationBar"
 								Content="{m:R Key=AnalyzePage_PivotItem_AttributeCheckingOperation}" />
+							<NavigationViewItem x:Name="ShuffleOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_ShuffleOperations}" />
 							<NavigationViewItem x:Name="PrintingOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_PrintingOperation}" />
 						</NavigationView.MenuItems>
 
