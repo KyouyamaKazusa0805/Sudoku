@@ -236,7 +236,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						var memberNotNullComment = membersNotNullWhenReturnsTrue is not null ? string.Empty : "//";
 						var notNullMembersStr = membersNotNullWhenReturnsTrue switch
 						{
-							null => null,
+							null or [] => "new string[0]",
 							_ => string.Join(", ", from element in membersNotNullWhenReturnsTrue select $"nameof({element})")
 						};
 
