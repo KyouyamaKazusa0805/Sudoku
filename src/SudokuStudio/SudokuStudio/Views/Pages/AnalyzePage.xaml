@@ -25,9 +25,11 @@
 
 	<ScrollViewer VerticalScrollBarVisibility="Hidden">
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="10">
-			<!--Main menu-->
 			<Border Style="{StaticResource MenuBarBorderStyle}">
 				<Grid RowDefinitions="*,*">
+					<!--
+					Navigation-styled functions
+					-->
 					<NavigationView
 						x:Name="CommandBarView" Grid.Row="0" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
 						IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="False"
@@ -43,6 +45,10 @@
 
 						<Frame x:Name="CommandBarFrame" Navigated="CommandBarFrame_Navigated" BorderBrush="Transparent" />
 					</NavigationView>
+
+					<!--
+					Common functions
+					-->
 					<Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#EAEAEA">
 						<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Collapsed">
 							<AppBarToggleButton
@@ -80,10 +86,11 @@
 				</Grid>
 			</Border>
 
-			<!--Sudoku grid and tab pages-->
 			<Grid ColumnDefinitions="Auto,*" Margin="0,0,20,0">
 				<StackPanel Orientation="Vertical" Spacing="12">
-					<!--Main sudoku grid control-->
+					<!--
+					Sudoku grid
+					-->
 					<c:SudokuPane
 						x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" SelectedCell="-1"
 						HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -171,7 +178,9 @@
 					</Grid>
 				</StackPanel>
 
-				<!--Analyze data-->
+				<!--
+				Analysis result tabs
+				-->
 				<Grid Grid.Column="1">
 					<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
 						<ProgressRing
@@ -216,6 +225,9 @@
 				</Grid>
 			</Grid>
 
+			<!--
+			Extra information
+			-->
 			<!--
 			<StackPanel Orientation="Vertical" Spacing="40" Margin="0,120,20,60">
 			<TextBlock Text="{m:R Key=AnalyzePage_PuzzleData}" Style="{StaticResource SubtitleTextBlockStyle}" />
