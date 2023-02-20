@@ -281,13 +281,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 
 	/// <summary>
-	/// Undo a step.
+	/// Undo a step. This method requires member <see cref="EnableUndoRedoStacking"/> be <see langword="true"/>.
 	/// </summary>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the property <see cref="EnableUndoRedoStacking"/> is not <see langword="true"/>.
+	/// </exception>
 	public void UndoStep()
 	{
 		if (!EnableUndoRedoStacking)
 		{
-			return;
+			throw new InvalidOperationException($"Undoing operation requires property '{nameof(EnableUndoRedoStacking)}' be true value.");
 		}
 
 		if (_undoStack.Count == 0)
@@ -306,13 +309,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Redo a step.
+	/// Redo a step. This method requires member <see cref="EnableUndoRedoStacking"/> be <see langword="true"/>.
 	/// </summary>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the property <see cref="EnableUndoRedoStacking"/> is not <see langword="true"/>.
+	/// </exception>
 	public void RedoStep()
 	{
 		if (!EnableUndoRedoStacking)
 		{
-			return;
+			throw new InvalidOperationException($"Redoing operation requires property '{nameof(EnableUndoRedoStacking)}' be true value.");
 		}
 
 		if (_redoStack.Count == 0)

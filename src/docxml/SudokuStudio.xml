@@ -5055,13 +5055,19 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UndoStep">
             <summary>
-            Undo a step.
+            Undo a step. This method requires member <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/> be <see langword="true"/>.
             </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/> is not <see langword="true"/>.
+            </exception>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.RedoStep">
             <summary>
-            Redo a step.
+            Redo a step. This method requires member <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/> be <see langword="true"/>.
             </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/> is not <see langword="true"/>.
+            </exception>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
