@@ -33,11 +33,11 @@
 	</UserControl.Resources>
 
 	<Grid
-		x:Name="MainGrid" x:FieldModifier="internal"
+		x:Name="MainGrid" x:FieldModifier="internal" Background="White"
 		RowDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto" ColumnDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto">
 		<!--Outside border-->
 		<Border
-			Grid.Row="1" Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="11" BorderThickness="4" Background="White"
+			Grid.Row="1" Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="11" BorderThickness="4"
 			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 
 		<!--Coordinate labels-->

@@ -65,7 +65,7 @@ internal static class ViewUnitFrameworkElementFactory
 		}
 
 		var overlapped = new List<Conclusion>();
-		var linx = new List<LinkViewNode>();
+		var links = new List<LinkViewNode>();
 		foreach (var viewNode in nodes)
 		{
 			(
@@ -85,7 +85,7 @@ internal static class ViewUnitFrameworkElementFactory
 					HouseViewNode h => () => ForHouseNode(sudokuPane, h),
 					ChuteViewNode c => () => ForChuteNode(sudokuPane, c),
 					BabaGroupViewNode b => () => BabaGroupNode(sudokuPane, b),
-					LinkViewNode l => () => linx.Add(l),
+					LinkViewNode l => () => links.Add(l),
 					_ => default(Action?)
 				}
 			)?.Invoke();
@@ -96,7 +96,7 @@ internal static class ViewUnitFrameworkElementFactory
 			ForConclusion(sudokuPane, conclusion, overlapped);
 		}
 
-		ForLinkNodes(sudokuPane, linx.ToArray(), conclusions);
+		ForLinkNodes(sudokuPane, links.ToArray(), conclusions);
 	}
 
 	/// <summary>
@@ -439,7 +439,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 	public IEnumerable<Path> CreateLinks(LinkViewNode[] nodes)
 	{
 		var points = getPoints(nodes);
-
 		_ = Converter is (var (ow, oh), _) and ((var cs, _), _, _, _);
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
