@@ -84,8 +84,8 @@
 				<StackPanel Orientation="Vertical" Spacing="12">
 					<!--Main sudoku grid control-->
 					<c:SudokuPane
-						x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" BasePage="{x:Bind}"
-						HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1"
+						x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" SelectedCell="-1"
+						HorizontalAlignment="Left" VerticalAlignment="Top"
 						DisableFlyout="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=OneWay}"
 						PreventConflictingInput="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=OneWay}"
 						GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
@@ -156,8 +156,7 @@
 						a:LogicalSolverProperties.SolverIgnoreHighAllocationAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=OneWay}"
 						a:StepGathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=OneWay}"
 						a:StepGathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
-						MouseWheelChanged="SudokuPane_MouseWheelChanged"
-						GridUpdated="SudokuPane_GridUpdated"
+						MouseWheelChanged="SudokuPane_MouseWheelChanged" GridUpdated="SudokuPane_GridUpdated"
 					/>
 					<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,*">
 						<PipsPager

@@ -5008,11 +5008,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle">
             <inheritdoc cref="F:SudokuStudio.Views.Controls.SudokuPane._puzzle"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BasePage">
-            <summary>
-            Indicates the base page.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ApproximateCellWidth">
             <summary>
             Indicates the approximately-measured width and height value of a cell.
