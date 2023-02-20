@@ -276,6 +276,18 @@
   <data name="AnalyzePage_Ensure" xml:space="preserve">
     <value>Ensure...</value>
   </data>
+  <data name="AnalyzePage_ErrorStepDescription" xml:space="preserve">
+    <value>Error step description: {0}</value>
+  </data>
+  <data name="AnalyzePage_ErrorStepDialogCloseButtonText" xml:space="preserve">
+    <value>Okay!</value>
+  </data>
+  <data name="AnalyzePage_ErrorStepEncountered" xml:space="preserve">
+    <value>An error step has been encountered, which causes the analyzer module shut down. The error step is:</value>
+  </data>
+  <data name="AnalyzePage_ErrorStepEncounteredTitle" xml:space="preserve">
+    <value>Info</value>
+  </data>
   <data name="AnalyzePage_ExcelFormat" xml:space="preserve">
     <value>Excel compatible format</value>
   </data>

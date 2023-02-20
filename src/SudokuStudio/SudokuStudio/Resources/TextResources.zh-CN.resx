@@ -276,6 +276,18 @@
   <data name="AnalyzePage_Ensure" xml:space="preserve">
     <value>请确认……</value>
   </data>
+  <data name="AnalyzePage_ErrorStepDescription" xml:space="preserve">
+    <value>错误步骤描述：{0}</value>
+  </data>
+  <data name="AnalyzePage_ErrorStepDialogCloseButtonText" xml:space="preserve">
+    <value>好嘞！</value>
+  </data>
+  <data name="AnalyzePage_ErrorStepEncountered" xml:space="preserve">
+    <value>程序遇到一个错误步骤，导致程序无法继续分析该题目。该错误步骤为：</value>
+  </data>
+  <data name="AnalyzePage_ErrorStepEncounteredTitle" xml:space="preserve">
+    <value>信息</value>
+  </data>
   <data name="AnalyzePage_ExcelFormat" xml:space="preserve">
     <value>Excel 软件兼容的文本格式</value>
   </data>

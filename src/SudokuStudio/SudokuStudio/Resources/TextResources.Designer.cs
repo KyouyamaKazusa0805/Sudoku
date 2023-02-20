@@ -619,6 +619,42 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error step description: {0}.
+        /// </summary>
+        internal static string AnalyzePage_ErrorStepDescription {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ErrorStepDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Okay!.
+        /// </summary>
+        internal static string AnalyzePage_ErrorStepDialogCloseButtonText {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ErrorStepDialogCloseButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error step has been encountered, which causes the analyzer module shut down. The error step is:.
+        /// </summary>
+        internal static string AnalyzePage_ErrorStepEncountered {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ErrorStepEncountered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Info.
+        /// </summary>
+        internal static string AnalyzePage_ErrorStepEncounteredTitle {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ErrorStepEncounteredTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Excel compatible format.
         /// </summary>
         internal static string AnalyzePage_ExcelFormat {

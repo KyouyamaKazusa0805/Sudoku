@@ -3065,6 +3065,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Ensure....
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ErrorStepDescription">
+            <summary>
+              Looks up a localized string similar to Error step description: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ErrorStepDialogCloseButtonText">
+            <summary>
+              Looks up a localized string similar to Okay!.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ErrorStepEncountered">
+            <summary>
+              Looks up a localized string similar to An error step has been encountered, which causes the analyzer module shut down. The error step is:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ErrorStepEncounteredTitle">
+            <summary>
+              Looks up a localized string similar to Info.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ExcelFormat">
             <summary>
               Looks up a localized string similar to Excel compatible format.
@@ -6378,6 +6398,56 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
             <summary>
             Indicates the analysis result.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent">
+            <summary>
+            Defines a content dialog content that describes for an error step.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepText">
+            <summary>
+            <para>Indicates the error step text.</para>
+            <para>
+            This property is <see langword="set"/>-only, which means you can only assign the property with a new value.
+            </para>
+            </summary>
+            <value>
+            <para><inheritdoc cref="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepText" path="//summary/para[1]"/></para>
+            <para>
+            This value can be get by calling <see cref="M:System.Object.ToString"/> method of type <see cref="T:Sudoku.Solving.Logical.IStep"/> like:
+            <code>
+            ErrorStepText = wrongStep.ToString();
+            </code>
+            </para>
+            </value>
+            <seealso cref="T:Sudoku.Solving.Logical.IStep"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepGrid">
+            <summary>
+            <para>Indicates the error step grid.</para>
+            <para><inheritdoc cref="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepText" path="//summary/para[2]"/></para>
+            </summary>
+            <value><inheritdoc cref="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepGrid" path="//summary/para[1]"/></value>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation">

@@ -720,16 +720,30 @@ public sealed partial class AnalyzePage : Page
 
 				break;
 			}
-#if false
 			case
 			{
-				WrongStep: _,
-				FailedReason: _,
-				UnhandledException: WrongStepException { CurrentInvalidGrid: _ }
+				WrongStep: { } wrongStep,
+				FailedReason: SearcherFailedReason.WrongStep,
+				UnhandledException: WrongStepException { CurrentInvalidGrid: var invalidGrid }
 			}:
 			{
+				await new ContentDialog
+				{
+					XamlRoot = XamlRoot,
+					Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
+					Title = GetString("AnalyzePage_ErrorStepEncounteredTitle"),
+					CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText")!,
+					DefaultButton = ContentDialogButton.Close,
+					Content = new ErrorStepDialogContent
+					{
+						ErrorStepGrid = invalidGrid,
+						ErrorStepText = string.Format(GetString("AnalyzePage_ErrorStepDescription"), wrongStep),
+					}
+				}.ShowAsync();
+
 				break;
 			}
+#if false
 			case { FailedReason: _, UnhandledException: _ }:
 			{
 				break;
