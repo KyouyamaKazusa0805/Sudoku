@@ -638,8 +638,8 @@ public sealed partial class AnalyzePage : Page
 		}
 
 		page.CurrentViewIndex = value is VisualUnit ? 0 : -1;
-		page.ViewsSwitcher.Visibility = Visibility.Collapsed;
-		page.ViewsCountDisplayer.Visibility = Visibility.Collapsed;
+		page.ViewsSwitcher.Visibility = Visibility.Collapsed; // A rescue.
+		page.ViewsCountDisplayer.Visibility = Visibility.Collapsed; // A rescue.
 	}
 
 
