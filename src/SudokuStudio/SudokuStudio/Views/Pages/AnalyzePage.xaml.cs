@@ -638,8 +638,10 @@ public sealed partial class AnalyzePage : Page
 		}
 
 		page.CurrentViewIndex = value is VisualUnit ? 0 : -1;
-		page.ViewsSwitcher.Visibility = Visibility.Collapsed; // A rescue.
-		page.ViewsCountDisplayer.Visibility = Visibility.Collapsed; // A rescue.
+
+		// A rescue. The code snippet is used for manually updating the pipspager and text block.
+		page.ViewsSwitcher.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
+		page.ViewsCountDisplayer.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 	}
 
 
