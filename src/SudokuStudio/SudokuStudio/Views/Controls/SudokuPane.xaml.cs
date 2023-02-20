@@ -383,11 +383,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		if (EnableUndoRedoStacking)
 		{
-			_undoStack = new();
-			_redoStack = new();
-
-			_undoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
-			_redoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
+			(_undoStack = new()).Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
+			(_redoStack = new()).Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
 		}
 	}
 
