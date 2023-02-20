@@ -65,6 +65,27 @@ internal static class TechniqueGalleryData
 				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.FinnedJellyfish },
 				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.SashimiJellyfish }
 			}
+		},
+		new()
+		{
+			Title = GetString("TechniqueGalleryPage_RegularWings"),
+			Collection = new TechniquePageRoutingData[]
+			{
+				new() { IsEnabled = false, Color = Colors.Pink, Technique = Technique.XyWing },
+				new() { IsEnabled = false, Color = Colors.Pink, Technique = Technique.XyzWing },
+				new() { IsEnabled = false, Color = Colors.Pink, Technique = Technique.WxyzWing },
+				new() { IsEnabled = false, Color = Colors.Pink, Technique = Technique.VwxyzWing },
+				new() { IsEnabled = false, Color = Colors.Pink, Technique = Technique.IncompleteWxyzWing },
+				new() { IsEnabled = false, Color = Colors.Pink, Technique = Technique.IncompleteVwxyzWing }
+			}
+		},
+		new()
+		{
+			Title = GetString("TechniqueGalleryPage_IrregularWings"),
+			Collection = new TechniquePageRoutingData[]
+			{
+				new() { IsEnabled = false, Color = Colors.DeepPink, Technique = Technique.WWing }
+			}
 		}
 	};
 }

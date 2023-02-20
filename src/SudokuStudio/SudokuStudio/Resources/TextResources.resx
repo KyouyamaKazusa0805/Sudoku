@@ -848,8 +848,14 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueGalleryPage_Intro" xml:space="preserve">
     <value>This page lists techniques that the current program are supported, which can help you learn them.</value>
   </data>
+  <data name="TechniqueGalleryPage_IrregularWings" xml:space="preserve">
+    <value>Irregular Wings</value>
+  </data>
   <data name="TechniqueGalleryPage_NormalFishes" xml:space="preserve">
     <value>Normal Fishes</value>
+  </data>
+  <data name="TechniqueGalleryPage_RegularWings" xml:space="preserve">
+    <value>Regular Wings</value>
   </data>
   <data name="TechniqueGalleryPage_Singles" xml:space="preserve">
     <value>Singles</value>

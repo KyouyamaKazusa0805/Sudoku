@@ -848,8 +848,14 @@
   <data name="TechniqueGalleryPage_Intro" xml:space="preserve">
     <value>该页面列举的是一系列程序所支持的数独解题技巧，你可以通过该页面列举的内容进行技巧的学习。</value>
   </data>
+  <data name="TechniqueGalleryPage_IrregularWings" xml:space="preserve">
+    <value>不规则 Wing</value>
+  </data>
   <data name="TechniqueGalleryPage_NormalFishes" xml:space="preserve">
     <value>普通鱼</value>
+  </data>
+  <data name="TechniqueGalleryPage_RegularWings" xml:space="preserve">
+    <value>规则 Wing</value>
   </data>
   <data name="TechniqueGalleryPage_Singles" xml:space="preserve">
     <value>出数类技巧</value>
