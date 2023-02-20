@@ -216,9 +216,9 @@
 				</Grid>
 			</Grid>
 
+			<!--
 			<StackPanel Orientation="Vertical" Spacing="40" Margin="0,120,20,60">
-				<!--Basic information of the puzzle-->
-				<TextBlock Text="{m:R Key=AnalyzePage_PuzzleData}" Style="{StaticResource SubtitleTextBlockStyle}" />
+			<TextBlock Text="{m:R Key=AnalyzePage_PuzzleData}" Style="{StaticResource SubtitleTextBlockStyle}" />
 				<TextBlock TextWrapping="Wrap" IsTextSelectionEnabled="True">
 					<Bold>
 						<Run Text="{m:R Key=AnalyzePage_GivensCount}" />
@@ -248,6 +248,7 @@
 					<Run Text="{x:Bind cvt:SudokuGridConversion.GetIsMinimal(SudokuPane.Puzzle),Mode=OneWay}" />
 				</TextBlock>
 			</StackPanel>
+			-->
 		</StackPanel>
 	</ScrollViewer>
 </Page>
