@@ -74,15 +74,6 @@ public abstract class XamlBindingAttribute<T> : Attribute
 	public string? CallbackMethodName { get; init; }
 
 	/// <summary>
-	/// Indicates the property accessibility. The default value is <see cref="GeneralizedAccessibility.Public"/>.
-	/// </summary>
-	/// <remarks>
-	/// This property only works with dependency properties.
-	/// </remarks>
-	/// <seealso cref="GeneralizedAccessibility.Public"/>
-	public GeneralizedAccessibility Accessibility { get; init; }
-
-	/// <summary>
 	/// Indicates the default value.
 	/// </summary>
 	public T? DefaultValue { get; init; }

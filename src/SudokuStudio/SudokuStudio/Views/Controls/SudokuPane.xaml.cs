@@ -8,6 +8,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<bool>("UseDifferentColorToDisplayDeltaDigits", DefaultValue = true, DocSummary = "Indicates whether the pane displays for delta digits using different colors.")]
 [DependencyProperty<bool>("DisableFlyout", DocSummary = "Indicates whether the pane disable flyout open.")]
 [DependencyProperty<bool>("PreventConflictingInput", DefaultValue = true, DocSummary = "Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits in its containing houses, this pane will do nothing by this value being <see langword=\"true\"/>. If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.")]
+[DependencyProperty<bool>("EnableUndoRedoStacking", DefaultValue = true, MembersNotNullWhenReturnsTrue = new[] { nameof(_redoStack), nameof(_undoStack) }, DocSummary = "Indicates whether the pane enables for undoing and redoing operation.")]
 [DependencyProperty<double>("GivenFontScale", DefaultValue = 1.0, DocSummary = "Indicates the font scale of given digits. The value should generally be below 1.0.")]
 [DependencyProperty<double>("ModifiableFontScale", DefaultValue = 1.0, DocSummary = "Indicates the font scale of modifiable digits. The value should generally be below 1.0.")]
 [DependencyProperty<double>("PencilmarkFontScale", DefaultValue = .33, DocSummary = "Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.")]
@@ -193,9 +194,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 
 	/// <summary>
-	/// Defines a pair of stacks that stores undo and redo steps.
+	/// Defines a pair of stacks that stores undo steps.
+	/// This field can be used when <see cref="EnableUndoRedoStacking"/> is <see langword="true"/>.
 	/// </summary>
-	internal readonly ObservableStack<Grid> _undoStack = new(), _redoStack = new();
+	/// <seealso cref="EnableUndoRedoStacking"/>
+	internal ObservableStack<Grid>? _undoStack;
+
+	/// <summary>
+	/// Defines a pair of stacks that stores redo steps.
+	/// This field can be used when <see cref="EnableUndoRedoStacking"/> is <see langword="true"/>.
+	/// </summary>
+	/// <seealso cref="EnableUndoRedoStacking"/>
+	internal ObservableStack<Grid>? _redoStack;
 
 	/// <summary>
 	/// The easy entry to visit children <see cref="SudokuPaneCell"/> instances. This field contains 81 elements,
@@ -280,6 +290,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public void UndoStep()
 	{
+		if (!EnableUndoRedoStacking)
+		{
+			return;
+		}
+
 		if (_undoStack.Count == 0)
 		{
 			// No more steps can be undone.
@@ -300,6 +315,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public void RedoStep()
 	{
+		if (!EnableUndoRedoStacking)
+		{
+			return;
+		}
+
 		if (_redoStack.Count == 0)
 		{
 			// No more steps can be redone.
@@ -366,8 +386,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	private void InitializeEvents()
 	{
-		_undoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
-		_redoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
+		if (EnableUndoRedoStacking)
+		{
+			_undoStack = new();
+			_redoStack = new();
+
+			_undoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
+			_redoStack.Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
+		}
 	}
 
 	/// <summary>
@@ -395,7 +421,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private void SetPuzzleInternal(scoped in Grid value, bool clearStack, bool whileUndoingOrRedoing)
 	{
 		// Pushes the grid into the stack if worth.
-		if (!whileUndoingOrRedoing && !clearStack)
+		if (!whileUndoingOrRedoing && !clearStack && EnableUndoRedoStacking)
 		{
 			_undoStack.Push(_puzzle);
 		}
@@ -405,13 +431,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		UpdateCellData(value);
 		switch (clearStack, whileUndoingOrRedoing)
 		{
-			case (true, _):
+			case (true, _) when EnableUndoRedoStacking:
 			{
 				_undoStack.Clear();
 				_redoStack.Clear();
 				break;
 			}
-			case (false, false):
+			case (false, false) when EnableUndoRedoStacking:
 			{
 				_redoStack.Clear();
 				break;

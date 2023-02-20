@@ -447,6 +447,21 @@
             </summary>
             <param name="propertyName">The property name.</param>
         </member>
+        <member name="P:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1.MembersNotNullWhenReturnsTrue">
+            <summary>
+            Indicates whether the dependency property returns <see langword="true"/>,
+            the specified target members won't be <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1.Accessibility">
+            <summary>
+            Indicates the property accessibility. The default value is <see cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>.
+            </summary>
+            <remarks>
+            This property only works with dependency properties.
+            </remarks>
+            <seealso cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>
+        </member>
         <member name="T:SudokuStudio.ComponentModel.IAnalyzeTabPage">
             <summary>
             Defines a page that is used for displaying analysis result for a puzzle.
@@ -540,15 +555,6 @@
             }
             ]]></code>
             </remarks>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.Accessibility">
-            <summary>
-            Indicates the property accessibility. The default value is <see cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>.
-            </summary>
-            <remarks>
-            This property only works with dependency properties.
-            </remarks>
-            <seealso cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>
         </member>
         <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue">
             <summary>
@@ -4967,13 +4973,17 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._undoStack">
             <summary>
-            Defines a pair of stacks that stores undo and redo steps.
+            Defines a pair of stacks that stores undo steps.
+            This field can be used when <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/> is <see langword="true"/>.
             </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._redoStack">
             <summary>
-            Defines a pair of stacks that stores undo and redo steps.
+            Defines a pair of stacks that stores redo steps.
+            This field can be used when <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/> is <see langword="true"/>.
             </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._children">
             <summary>
@@ -5145,6 +5155,12 @@ if (student is (name: var name, age: >= 18))
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStackingProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenFontScaleProperty">
             <summary>
@@ -5427,6 +5443,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput">
             <summary>
             Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits in its containing houses, this pane will do nothing by this value being <see langword="true"/>. If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking">
+            <summary>
+            Indicates whether the pane enables for undoing and redoing operation.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale">

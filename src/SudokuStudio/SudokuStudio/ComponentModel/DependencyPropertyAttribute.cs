@@ -14,4 +14,20 @@ public sealed class DependencyPropertyAttribute<T> : XamlBindingAttribute<T>
 	public DependencyPropertyAttribute(string propertyName) : base(propertyName)
 	{
 	}
+
+
+	/// <summary>
+	/// Indicates whether the dependency property returns <see langword="true"/>,
+	/// the specified target members won't be <see langword="null"/>.
+	/// </summary>
+	public string[]? MembersNotNullWhenReturnsTrue { get; init; }
+
+	/// <summary>
+	/// Indicates the property accessibility. The default value is <see cref="GeneralizedAccessibility.Public"/>.
+	/// </summary>
+	/// <remarks>
+	/// This property only works with dependency properties.
+	/// </remarks>
+	/// <seealso cref="GeneralizedAccessibility.Public"/>
+	public GeneralizedAccessibility Accessibility { get; init; }
 }

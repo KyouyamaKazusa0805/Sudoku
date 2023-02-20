@@ -67,6 +67,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 				var callbackMethodName = (string?)null;
 				var docSummary = (string?)null;
 				var docRemarks = (string?)null;
+				var membersNotNullWhenReturnsTrue = (string[]?)null;
 				var isNullable = false;
 				var accessibility = Accessibility.Public;
 				foreach (var pair in namedArgs)
@@ -116,6 +117,11 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						case ("Accessibility", { Value: int v }):
 						{
 							accessibility = (Accessibility)v;
+							break;
+						}
+						case ("MembersNotNullWhenReturnsTrue", { Values: { } rawValues }):
+						{
+							membersNotNullWhenReturnsTrue = (from rawValue in rawValues select (string)rawValue.Value!).ToArray();
 							break;
 						}
 					}
@@ -183,7 +189,8 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						defaultValue,
 						callbackMethodName,
 						isNullable,
-						accessibility
+						accessibility,
+						membersNotNullWhenReturnsTrue
 					)
 				);
 
@@ -209,7 +216,8 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 					foreach (
 						var (
 							propertyName, propertyType, docData, generatorMemberName,
-							generatorMemberKind, defaultValue, callbackMethodName, isNullable, accessibility
+							generatorMemberKind, defaultValue, callbackMethodName, isNullable,
+							accessibility, membersNotNullWhenReturnsTrue
 						) in propertiesData
 					)
 					{
@@ -225,6 +233,12 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 
 						var nullableToken = isNullable ? "?" : string.Empty;
 						var accessibilityModifier = accessibility.GetName();
+						var memberNotNullComment = membersNotNullWhenReturnsTrue is not null ? string.Empty : "//";
+						var notNullMembersStr = membersNotNullWhenReturnsTrue switch
+						{
+							null => null,
+							_ => string.Join(", ", from element in membersNotNullWhenReturnsTrue select $"nameof({element})")
+						};
 
 						dependencyProperties.Add(
 							$"""
@@ -242,6 +256,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						properties.Add(
 							$$"""
 							{{doc}}
+								{{memberNotNullComment}}[global::System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, {{notNullMembersStr}})]
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 								{{accessibilityModifier}} {{propertyTypeStr}}{{nullableToken}} {{propertyName}}
@@ -310,6 +325,9 @@ file readonly record struct Data(INamedTypeSymbol Type, List<PropertyData> Prope
 /// <param name="CallbackMethodName">Indicates the callback method name.</param>
 /// <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
 /// <param name="Accessibility">The accessibility.</param>
+/// <param name="MembersNotNullWhenReturnsTrue">
+/// Indicates the member names that won't be <see langword="null"/> if the dependency property returns <see langword="true"/>.
+/// </param>
 file readonly record struct PropertyData(
 	string PropertyName,
 	ITypeSymbol PropertyType,
@@ -319,5 +337,6 @@ file readonly record struct PropertyData(
 	object? DefaultValue,
 	string? CallbackMethodName,
 	bool IsNullable,
-	Accessibility Accessibility
+	Accessibility Accessibility,
+	string[]? MembersNotNullWhenReturnsTrue
 );

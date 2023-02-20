@@ -212,8 +212,11 @@
             <param name="CallbackMethodName">Indicates the callback method name.</param>
             <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
             <param name="Accessibility">The accessibility.</param>
+            <param name="MembersNotNullWhenReturnsTrue">
+            Indicates the member names that won't be <see langword="null"/> if the dependency property returns <see langword="true"/>.
+            </param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.Diagnostics.CodeGen.DocumentationCommentData,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Sudoku.Diagnostics.CodeGen.Accessibility)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.Diagnostics.CodeGen.DocumentationCommentData,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Sudoku.Diagnostics.CodeGen.Accessibility,System.String[])">
             <summary>
             Indicates the property generating data.
             </summary>
@@ -230,6 +233,9 @@
             <param name="CallbackMethodName">Indicates the callback method name.</param>
             <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
             <param name="Accessibility">The accessibility.</param>
+            <param name="MembersNotNullWhenReturnsTrue">
+            Indicates the member names that won't be <see langword="null"/> if the dependency property returns <see langword="true"/>.
+            </param>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.PropertyName">
             <summary>Indicates the property name.</summary>
@@ -261,6 +267,11 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.Accessibility">
             <summary>The accessibility.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.MembersNotNullWhenReturnsTrue">
+            <summary>
+            Indicates the member names that won't be <see langword="null"/> if the dependency property returns <see langword="true"/>.
+            </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.NameAttribute">
             <summary>
