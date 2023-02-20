@@ -13,9 +13,9 @@ public sealed partial class ErrorStepDialogContent : Page
 
 	/// <summary>
 	/// <para>Indicates the error step text.</para>
-	/// <para>
+	/// <para><i>
 	/// This property is <see langword="set"/>-only, which means you can only assign the property with a new value.
-	/// </para>
+	/// </i></para>
 	/// </summary>
 	/// <value>
 	/// <para><inheritdoc cref="ErrorStepText" path="//summary/para[1]"/></para>

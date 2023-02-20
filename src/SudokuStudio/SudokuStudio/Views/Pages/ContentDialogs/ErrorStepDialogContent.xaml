@@ -11,7 +11,7 @@
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pd:ErrorStepDialogContent}">
 	<StackPanel Orientation="Vertical" Spacing="6">
-		<TextBlock Text="{m:R Key=AnalyzePage_ErrorStepEncountered}" Margin="{StaticResource AppBarBottomBorderThemeThickness}" />
+		<TextBlock Text="{m:R Key=AnalyzePage_ErrorStepEncountered}" />
 		<c:SudokuPane
 			x:Name="ErrorStepDisplayer" x:FieldModifier="internal" Width="610" Height="610"
 			HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCursors="True" DisplayCandidates="True"

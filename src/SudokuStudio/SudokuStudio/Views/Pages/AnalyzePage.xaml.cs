@@ -737,7 +737,7 @@ public sealed partial class AnalyzePage : Page
 					XamlRoot = XamlRoot,
 					Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
 					Title = GetString("AnalyzePage_ErrorStepEncounteredTitle"),
-					CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText")!,
+					CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText"),
 					DefaultButton = ContentDialogButton.Close,
 					Content = new ErrorStepDialogContent
 					{
@@ -748,12 +748,20 @@ public sealed partial class AnalyzePage : Page
 
 				break;
 			}
-#if false
-			case { FailedReason: _, UnhandledException: _ }:
+			case { FailedReason: SearcherFailedReason.ExceptionThrown, UnhandledException: { } ex }:
 			{
+				await new ContentDialog
+				{
+					XamlRoot = XamlRoot,
+					Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
+					Title = GetString("AnalyzePage_ExceptionThrownTitle"),
+					CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText"),
+					DefaultButton = ContentDialogButton.Close,
+					Content = new ExceptionThrownOnAnalyzingContent { ThrownException = ex }
+				}.ShowAsync();
+
 				break;
 			}
-#endif
 		}
 
 

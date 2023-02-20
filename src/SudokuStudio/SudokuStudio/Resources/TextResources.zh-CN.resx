@@ -291,6 +291,12 @@
   <data name="AnalyzePage_ExcelFormat" xml:space="preserve">
     <value>Excel 软件兼容的文本格式</value>
   </data>
+  <data name="AnalyzePage_ExceptionThrown" xml:space="preserve">
+    <value>程序分析期间出现异常错误</value>
+  </data>
+  <data name="AnalyzePage_ExceptionThrownTitle" xml:space="preserve">
+    <value>信息</value>
+  </data>
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>失败</value>
   </data>

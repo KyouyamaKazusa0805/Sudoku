@@ -664,6 +664,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exception is thrown.
+        /// </summary>
+        internal static string AnalyzePage_ExceptionThrown {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ExceptionThrown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Info.
+        /// </summary>
+        internal static string AnalyzePage_ExceptionThrownTitle {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ExceptionThrownTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed.
         /// </summary>
         internal static string AnalyzePage_FailedToOpenFilePicker {
