@@ -1078,6 +1078,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This grid is not valid for BUG+n, no true candidates searched..
+        /// </summary>
+        internal static string AnalyzePage_PuzzleIsNotBugMultiple {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleIsNotBugMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Info.
+        /// </summary>
+        internal static string AnalyzePage_PuzzleIsNotBugMultipleTitle {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PuzzleIsNotBugMultipleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rarity.
         /// </summary>
         internal static string AnalyzePage_PuzzleRarity {

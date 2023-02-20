@@ -3320,6 +3320,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Failed.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleIsNotBugMultiple">
+            <summary>
+              Looks up a localized string similar to This grid is not valid for BUG+n, no true candidates searched..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleIsNotBugMultipleTitle">
+            <summary>
+              Looks up a localized string similar to Info.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_PuzzleRarity">
             <summary>
               Looks up a localized string similar to Rarity.

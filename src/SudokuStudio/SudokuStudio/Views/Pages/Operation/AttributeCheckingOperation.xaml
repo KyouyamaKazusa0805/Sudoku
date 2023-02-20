@@ -12,6 +12,10 @@
 			x:Name="ErrorDialog_PuzzleIsInvalid" IsLightDismissEnabled="True"
 			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_PuzzleIsInvalidTitle}"
 			Subtitle="{m:R Key=AnalyzePage_PuzzleIsInvalid}" />
+		<TeachingTip
+			x:Name="ErrorDialog_PuzzleIsNotBugMultipleGrid" Target="{x:Bind TrueCandidateButton}" IsLightDismissEnabled="True"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_PuzzleIsNotBugMultipleTitle}"
+			Subtitle="{m:R Key=AnalyzePage_PuzzleIsNotBugMultiple}" />
 	</Page.Resources>
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">

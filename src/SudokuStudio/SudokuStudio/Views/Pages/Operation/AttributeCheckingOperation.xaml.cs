@@ -58,6 +58,12 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		}
 
 		var trueCandidates = await Task.Run(getTrueCandidates);
+		if (trueCandidates.Count == 0)
+		{
+			ErrorDialog_PuzzleIsNotBugMultipleGrid.IsOpen = true;
+
+			return;
+		}
 
 		var view = View.Empty;
 		trueCandidates.ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Assignment, candidate)));

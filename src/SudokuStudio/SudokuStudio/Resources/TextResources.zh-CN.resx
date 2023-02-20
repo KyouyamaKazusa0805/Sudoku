@@ -429,6 +429,12 @@
   <data name="AnalyzePage_PuzzleIsInvalidTitle" xml:space="preserve">
     <value>失败</value>
   </data>
+  <data name="AnalyzePage_PuzzleIsNotBugMultiple" xml:space="preserve">
+    <value>该盘面不是合理的 BUG+n 盘面，无法正确搜索真数。</value>
+  </data>
+  <data name="AnalyzePage_PuzzleIsNotBugMultipleTitle" xml:space="preserve">
+    <value>信息</value>
+  </data>
   <data name="AnalyzePage_PuzzleRarity" xml:space="preserve">
     <value>罕见度</value>
   </data>
