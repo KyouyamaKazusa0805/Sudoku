@@ -765,23 +765,22 @@ public sealed partial class AnalyzePage : Page
 		}
 
 
-		void progressReportHandler(double percent)
-		{
-			DispatcherQueue.TryEnqueue(updatePercentValueCallback);
-
-
-			void updatePercentValueCallback()
-			{
-				ProgressPercent = percent * 100;
-				AnalyzeProgressLabel.Text = string.Format(textFormat!, percent);
-			}
-		}
-
 		LogicalSolverResult analyze()
 		{
 			lock (App.SyncRoot)
 			{
-				return solver.Solve(puzzle, new Progress<double>(progressReportHandler));
+				return solver.Solve(
+					puzzle,
+					new Progress<double>(
+						percent => DispatcherQueue.TryEnqueue(
+							() =>
+							{
+								ProgressPercent = percent * 100;
+								AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+							}
+						)
+					)
+				);
 			}
 		}
 	}
