@@ -687,19 +687,7 @@ public sealed partial class AnalyzePage : Page
 		}
 	}
 
-	private void SudokuPane_GridUpdated(SudokuPane sender, GridUpdatedEventArgs e)
-	{
-		if (e is not
-			{
-				Behavior: GridUpdatedBehavior.Clear
-					or GridUpdatedBehavior.Elimination
-					or GridUpdatedBehavior.EliminationMultiple
-					or GridUpdatedBehavior.Assignment
-			})
-		{
-			ClearAnalyzeTabsData();
-		}
-	}
+	private void SudokuPane_GridUpdated(SudokuPane sender, GridUpdatedEventArgs e) => ClearAnalyzeTabsData();
 
 	private async void AnalyzeButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
