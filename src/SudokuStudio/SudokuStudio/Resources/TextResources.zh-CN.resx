@@ -477,6 +477,12 @@
   <data name="AnalyzePage_SelectAll" xml:space="preserve">
     <value>全部选择</value>
   </data>
+  <data name="AnalyzePage_SelectColor" xml:space="preserve">
+    <value>选择颜色：</value>
+  </data>
+  <data name="AnalyzePage_SelectDrawingMode" xml:space="preserve">
+    <value>模式：</value>
+  </data>
   <data name="AnalyzePage_SimpleDescription" xml:space="preserve">
     <value>步骤信息：</value>
   </data>

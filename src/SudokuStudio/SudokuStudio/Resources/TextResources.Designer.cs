@@ -1285,6 +1285,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select color:.
+        /// </summary>
+        internal static string AnalyzePage_SelectColor {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SelectColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mode: .
+        /// </summary>
+        internal static string AnalyzePage_SelectDrawingMode {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SelectDrawingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Step Description:.
         /// </summary>
         internal static string AnalyzePage_SimpleDescription {

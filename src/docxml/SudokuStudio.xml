@@ -3480,6 +3480,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Select all.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SelectColor">
+            <summary>
+              Looks up a localized string similar to Select color:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SelectDrawingMode">
+            <summary>
+              Looks up a localized string similar to Mode: .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_SimpleDescription">
             <summary>
               Looks up a localized string similar to Step Description:.
@@ -6122,6 +6132,12 @@ if (student is (name: var name, age: >= 18))
             Clear the visual unit data.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SetDrawingMode(System.Int32)">
+            <summary>
+            Sets the drawing index via the specified index of <see cref="T:System.Int32"/> value.
+            </summary>
+            <param name="selectedIndex">The selected index.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.IsSudokuPaneFocused">
             <summary>
             Checks whether the pane is focused.
@@ -6167,12 +6183,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColorProperty">
-            <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor"/>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercentProperty">
             <summary>
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>.
@@ -6185,11 +6195,23 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.DrawingMode"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCacheProperty">
             <summary>
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPaletteProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPalette"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPalette"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.VisualUnitProperty">
             <summary>
@@ -6217,11 +6239,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the current index of the view of property <see cref="P:Sudoku.Presentation.IVisual.Views"/> displayed.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor">
-            <summary>
-            Indicates the current selected color.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent">
             <summary>
             Indicates the progress percent value.
@@ -6232,9 +6249,19 @@ if (student is (name: var name, age: >= 18))
             Indicates the drawing mode.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor">
+            <summary>
+            Indicates the current selected color.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache">
             <summary>
             Indicates the anlaysis result cache.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPalette">
+            <summary>
+            Indicates the user-defined colors.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit">
