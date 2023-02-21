@@ -63,19 +63,32 @@
 								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
 								Click="UnfixGridButton_Click" />
 							<AppBarToggleButton
-								IsThreeState="False" Icon="List" Label="{m:R Key=AnalyzePage_LogicalSolverIsFullyApplied}"
+								Icon="List" Label="{m:R Key=AnalyzePage_LogicalSolverIsFullyApplied}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=TwoWay}" />
 							<AppBarToggleButton
-								IsThreeState="False" Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresSlowAlgorithms}"
+								Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresSlowAlgorithms}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms,Mode=TwoWay}" />
 							<AppBarToggleButton
-								IsThreeState="False" Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms}"
+								Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=TwoWay}" />
 							<AppBarSeparator />
 							<AppBarButton
 								x:Name="AnalyzeButton" x:FieldModifier="internal" Icon="Find" Label="{m:R Key=AnalyzePage_AnalyzeButton}"
 								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}"
 								Click="AnalyzeButton_ClickAsync" />
+							<AppBarSeparator />
+							<AppBarButton x:Name="DrawingButton" Label="{m:R Key=AnalyzePage_DrawingButton}">
+								<AppBarButton.Icon>
+									<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;" />
+								</AppBarButton.Icon>
+								<AppBarButton.Flyout>
+									<Flyout>
+										<StackPanel Orientation="Horizontal" Spacing="10">
+
+										</StackPanel>
+									</Flyout>
+								</AppBarButton.Flyout>
+							</AppBarButton>
 						</CommandBar>
 					</Border>
 				</Grid>

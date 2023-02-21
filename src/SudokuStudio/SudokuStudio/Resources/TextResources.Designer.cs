@@ -124,6 +124,69 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Baba Grouping.
+        /// </summary>
+        internal static string _DrawingMode_BabaGrouping {
+            get {
+                return ResourceManager.GetString("_DrawingMode_BabaGrouping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Candidate.
+        /// </summary>
+        internal static string _DrawingMode_Candidate {
+            get {
+                return ResourceManager.GetString("_DrawingMode_Candidate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell.
+        /// </summary>
+        internal static string _DrawingMode_Cell {
+            get {
+                return ResourceManager.GetString("_DrawingMode_Cell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chute.
+        /// </summary>
+        internal static string _DrawingMode_Chute {
+            get {
+                return ResourceManager.GetString("_DrawingMode_Chute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House.
+        /// </summary>
+        internal static string _DrawingMode_House {
+            get {
+                return ResourceManager.GetString("_DrawingMode_House", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link.
+        /// </summary>
+        internal static string _DrawingMode_Link {
+            get {
+                return ResourceManager.GetString("_DrawingMode_Link", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string _DrawingMode_None {
+            get {
+                return ResourceManager.GetString("_DrawingMode_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sudoku Studio.
         /// </summary>
         internal static string _ProgramName {
@@ -597,6 +660,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_DifficultyTotal {
             get {
                 return ResourceManager.GetString("AnalyzePage_DifficultyTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Painting mode.
+        /// </summary>
+        internal static string AnalyzePage_DrawingButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DrawingButton", resourceCulture);
             }
         }
         

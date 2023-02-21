@@ -270,6 +270,9 @@
   <data name="AnalyzePage_DifficultyTotal" xml:space="preserve">
     <value>总难度分</value>
   </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
   <data name="AnalyzePage_EmptyGrid" xml:space="preserve">
     <value>&lt;空盘&gt;</value>
   </data>
@@ -895,6 +898,27 @@
   </data>
   <data name="_DifficultyLevel_Unknown" xml:space="preserve">
     <value>未知</value>
+  </data>
+  <data name="_DrawingMode_BabaGrouping" xml:space="preserve">
+    <value>代数</value>
+  </data>
+  <data name="_DrawingMode_Candidate" xml:space="preserve">
+    <value>候选数</value>
+  </data>
+  <data name="_DrawingMode_Cell" xml:space="preserve">
+    <value>单元格</value>
+  </data>
+  <data name="_DrawingMode_Chute" xml:space="preserve">
+    <value>大区域</value>
+  </data>
+  <data name="_DrawingMode_House" xml:space="preserve">
+    <value>区域</value>
+  </data>
+  <data name="_DrawingMode_Link" xml:space="preserve">
+    <value>强弱链</value>
+  </data>
+  <data name="_DrawingMode_None" xml:space="preserve">
+    <value>无</value>
   </data>
   <data name="_Token_Colon" xml:space="preserve">
     <value>：</value>

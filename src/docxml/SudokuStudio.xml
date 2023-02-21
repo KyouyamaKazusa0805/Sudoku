@@ -1541,6 +1541,11 @@ if (student is (name: var name, age: >= 18))
             Provides with conversion methods used by XAML designer, about difficulty level title label.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.DrawingConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about drawing.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.IdentifierConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about <see cref="T:Sudoku.Presentation.Identifier"/> instances.
@@ -1693,6 +1698,46 @@ if (student is (name: var name, age: >= 18))
             <param name="sender">An object which triggers the event.</param>
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.DigitInput"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.DrawingMode">
+            <summary>
+            Indicates the drawing mode.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawingMode.None">
+            <summary>
+            Indicates the mode is none.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawingMode.Cell">
+            <summary>
+            Indicates the mode is cell filling.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawingMode.Candidate">
+            <summary>
+            Indicates the mode is candidate filling.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawingMode.House">
+            <summary>
+            Indicates the mode is house filling.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawingMode.Chute">
+            <summary>
+            Indicates the mode is chute filling.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawingMode.Link">
+            <summary>
+            Indicates the mode is link drawing.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawingMode.BabaGrouping">
+            <summary>
+            Indicates the mode is baba grouping.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs">
             <summary>
@@ -2790,6 +2835,41 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Unknown.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DrawingMode_BabaGrouping">
+            <summary>
+              Looks up a localized string similar to Baba Grouping.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DrawingMode_Candidate">
+            <summary>
+              Looks up a localized string similar to Candidate.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DrawingMode_Cell">
+            <summary>
+              Looks up a localized string similar to Cell.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DrawingMode_Chute">
+            <summary>
+              Looks up a localized string similar to Chute.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DrawingMode_House">
+            <summary>
+              Looks up a localized string similar to House.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DrawingMode_Link">
+            <summary>
+              Looks up a localized string similar to Link.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._DrawingMode_None">
+            <summary>
+              Looks up a localized string similar to None.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources._ProgramName">
             <summary>
               Looks up a localized string similar to Sudoku Studio.
@@ -3053,6 +3133,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DifficultyTotal">
             <summary>
               Looks up a localized string similar to Total.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DrawingButton">
+            <summary>
+              Looks up a localized string similar to Painting mode.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_EmptyGrid">
@@ -6082,11 +6167,23 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColorProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercentProperty">
             <summary>
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.DrawingModeProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.DrawingMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.DrawingMode"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCacheProperty">
             <summary>
@@ -6120,9 +6217,19 @@ if (student is (name: var name, age: >= 18))
             Indicates the current index of the view of property <see cref="P:Sudoku.Presentation.IVisual.Views"/> displayed.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor">
+            <summary>
+            Indicates the current selected color.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent">
             <summary>
             Indicates the progress percent value.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.DrawingMode">
+            <summary>
+            Indicates the drawing mode.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache">

@@ -7,7 +7,9 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<bool>("IsGathererLaunched", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the gatherer is launched.")]
 [DependencyProperty<bool>("GeneratorIsNotRunning", DefaultValue = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the generator is not running currently.")]
 [DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"VisualUnit.Views\"/> displayed.")]
+[DependencyProperty<int>("CurrentSelectedColor", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current selected color.")]
 [DependencyProperty<double>("ProgressPercent", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the progress percent value.")]
+[DependencyProperty<DrawingMode>("DrawingMode", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the drawing mode.")]
 [DependencyProperty<LogicalSolverResult>("AnalysisResultCache", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the anlaysis result cache.")]
 [DependencyProperty<VisualUnit>("VisualUnit", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the visual unit.")]
 public sealed partial class AnalyzePage : Page
@@ -687,7 +689,14 @@ public sealed partial class AnalyzePage : Page
 		}
 	}
 
-	private void SudokuPane_GridUpdated(SudokuPane sender, GridUpdatedEventArgs e) => ClearAnalyzeTabsData();
+	private void SudokuPane_GridUpdated(SudokuPane sender, GridUpdatedEventArgs e)
+	{
+		if (e.Behavior is GridUpdatedBehavior.Assignment or GridUpdatedBehavior.Elimination
+			or GridUpdatedBehavior.EliminationMultiple or GridUpdatedBehavior.Clear)
+		{
+			ClearAnalyzeTabsData();
+		}
+	}
 
 	private async void AnalyzeButton_ClickAsync(object sender, RoutedEventArgs e)
 	{

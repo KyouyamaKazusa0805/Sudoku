@@ -270,6 +270,9 @@
   <data name="AnalyzePage_DifficultyTotal" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>Painting mode</value>
+  </data>
   <data name="AnalyzePage_EmptyGrid" xml:space="preserve">
     <value>&lt;Empty&gt;</value>
   </data>
@@ -895,6 +898,27 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="_DifficultyLevel_Unknown" xml:space="preserve">
     <value>Unknown</value>
+  </data>
+  <data name="_DrawingMode_BabaGrouping" xml:space="preserve">
+    <value>Baba Grouping</value>
+  </data>
+  <data name="_DrawingMode_Candidate" xml:space="preserve">
+    <value>Candidate</value>
+  </data>
+  <data name="_DrawingMode_Cell" xml:space="preserve">
+    <value>Cell</value>
+  </data>
+  <data name="_DrawingMode_Chute" xml:space="preserve">
+    <value>Chute</value>
+  </data>
+  <data name="_DrawingMode_House" xml:space="preserve">
+    <value>House</value>
+  </data>
+  <data name="_DrawingMode_Link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="_DrawingMode_None" xml:space="preserve">
+    <value>None</value>
   </data>
   <data name="_ProgramName" xml:space="preserve">
     <value>Sudoku Studio</value>
