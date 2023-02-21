@@ -91,7 +91,7 @@
 		</TeachingTip>
 	</Page.Resources>
 
-	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">
+	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 		<AppBarButton x:Name="OpenFileButton" Icon="OpenFile" Label="{m:R Key=AnalyzePage_OpenFile}" Click="OpenFileButton_ClickAsync" />
 		<AppBarButton x:Name="SaveFileButton" Icon="Save" Label="{m:R Key=AnalyzePage_SaveFile}" Click="SaveFileButton_ClickAsync" />
 		<AppBarButton x:Name="SaveAsButton" Icon="SaveLocal" Label="{m:R Key=AnalyzePage_SaveFileAnother}" Click="SaveAsButton_Click" />

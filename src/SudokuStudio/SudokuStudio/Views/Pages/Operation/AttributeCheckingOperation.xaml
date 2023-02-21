@@ -18,7 +18,7 @@
 			Subtitle="{m:R Key=AnalyzePage_PuzzleIsNotBugMultiple}" />
 	</Page.Resources>
 
-	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">
+	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 		<AppBarButton x:Name="BackdoorButton" Icon="Message" Label="{m:R Key=AnalyzePage_BackdoorButton}" Click="BackdoorButton_ClickAsync" />
 		<AppBarButton
 			x:Name="TrueCandidateButton" Icon="Message" Label="{m:R Key=AnalyzePage_TrueCandidateButton}"

@@ -7,7 +7,7 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:po="using:SudokuStudio.Views.Pages.Operation"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=po:ShuffleOperation}">
-	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">
+	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_LeftRightSwapButton}" Click="LeftRightSwapButton_Click" />
 		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_TopBottomSwapButton}" Click="TopBottomSwapButton_Click" />
 		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_DiagonalSwapButton}" Click="DiagonalSwapButton_Click" />

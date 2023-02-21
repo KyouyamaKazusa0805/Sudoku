@@ -49,7 +49,7 @@
 					Common functions
 					-->
 					<Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#EAEAEA">
-						<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Collapsed">
+						<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 							<AppBarToggleButton
 								Label="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}"
 								Icon="{x:Bind cvt:SymbolIconConversion.GetSymbolViaCandidateVisibility(SudokuPane.DisplayCandidates),Mode=OneWay}"

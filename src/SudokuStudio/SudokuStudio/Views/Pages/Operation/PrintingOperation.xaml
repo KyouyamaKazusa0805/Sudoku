@@ -19,7 +19,7 @@
 			Subtitle="{m:R Key=AnalyzePage_AnalysisResultNotExist}" />
 	</Page.Resources>
 
-	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left" IsSticky="True" OverflowButtonVisibility="Auto">
+	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 		<AppBarButton
 			x:Name="PrintButton" Icon="Print" Label="{m:R Key=AnalyzePage_PrintAnalysisResult}"
 			Click="PrintAnalysisButton_ClickAsync" />
