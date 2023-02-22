@@ -79,6 +79,76 @@
 							<ComboBoxItem Content="{m:R Key=_DrawingMode_BabaGrouping}" />
 						</ComboBox>
 					</Grid>
+					<Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=DrawingPage_SelectColor}" Margin="0,0,0,6" />
+						<Rectangle
+							Grid.Row="0" Grid.Column="1" Width="24" Height="24" Stroke="Gray" StrokeThickness="1" HorizontalAlignment="Left"
+							Fill="{x:Bind cvt:DrawingConversion.GetSelectedBrush(SelectedColorIndex),Mode=OneWay}" />
+						<Grid
+							Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top"
+							RowDefinitions="24,24,24" ColumnDefinitions="24,24,24,24,24">
+							<Button
+								Grid.Row="0" Grid.Column="0" Tag="0" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[0]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="0" Grid.Column="1" Tag="1" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[1]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="0" Grid.Column="2" Tag="2" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[2]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="0" Grid.Column="3" Tag="3" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[3]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="0" Grid.Column="4" Tag="4" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[4]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="1" Grid.Column="0" Tag="5" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[5]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="1" Grid.Column="1" Tag="6" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[6]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="1" Grid.Column="2" Tag="7" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[7]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="1" Grid.Column="3" Tag="8" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[8]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="1" Grid.Column="4" Tag="9" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[9]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="2" Grid.Column="0" Tag="10" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[10]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="2" Grid.Column="1" Tag="11" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[11]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="2" Grid.Column="2" Tag="12" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[12]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="2" Grid.Column="3" Tag="13" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[13]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+							<Button
+								Grid.Row="2" Grid.Column="4" Tag="14" VerticalAlignment="Stretch"
+								Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedColorPalette[14]),Mode=OneWay}"
+								Click="ColorPaletteButton_Click" />
+						</Grid>
+					</Grid>
 				</StackPanel>
 			</Grid>
 		</StackPanel>

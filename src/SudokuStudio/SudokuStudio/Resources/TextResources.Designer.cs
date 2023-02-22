@@ -1474,6 +1474,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select color: .
+        /// </summary>
+        internal static string DrawingPage_SelectColor {
+            get {
+                return ResourceManager.GetString("DrawingPage_SelectColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Mode: .
         /// </summary>
         internal static string DrawingPage_SelectMode {

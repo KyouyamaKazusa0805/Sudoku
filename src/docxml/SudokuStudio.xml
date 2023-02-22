@@ -3592,6 +3592,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This page allows you drawing onto the sudoku grid..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_SelectColor">
+            <summary>
+              Looks up a localized string similar to Select color: .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_SelectMode">
             <summary>
               Looks up a localized string similar to Select Mode: .
@@ -6695,16 +6700,36 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndexProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.DrawingPage.SelectedModeProperty">
             <summary>
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPaletteProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex">
+            <summary>
+            Indicates the selected color index.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode">
             <summary>
             Indicates the selected drawing mode.
             </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette">
+            <inheritdoc cref="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation">
             <summary>

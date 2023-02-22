@@ -540,6 +540,9 @@
   <data name="DrawingPage_Intro" xml:space="preserve">
     <value>This page allows you drawing onto the sudoku grid.</value>
   </data>
+  <data name="DrawingPage_SelectColor" xml:space="preserve">
+    <value>Select color: </value>
+  </data>
   <data name="DrawingPage_SelectMode" xml:space="preserve">
     <value>Select Mode: </value>
   </data>

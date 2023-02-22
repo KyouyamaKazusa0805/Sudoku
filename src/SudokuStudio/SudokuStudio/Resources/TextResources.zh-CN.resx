@@ -543,6 +543,9 @@
   <data name="DrawingPage_Intro" xml:space="preserve">
     <value>这个页面你可以使用基本的绘图功能，为题目配色进行调整。</value>
   </data>
+  <data name="DrawingPage_SelectColor" xml:space="preserve">
+    <value>选择颜色：</value>
+  </data>
   <data name="DrawingPage_SelectMode" xml:space="preserve">
     <value>选择模式：</value>
   </data>
