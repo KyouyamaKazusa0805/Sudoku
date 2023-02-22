@@ -373,10 +373,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="clearStack">
 	/// Indicates whether undoing and redoing stacks should be cleared. The default value is <see langword="false"/>.
 	/// </param>
-	/// <seealso cref="_undoStack"/>
-	/// <seealso cref="_redoStack"/>
-	/// <seealso cref="set_Puzzle(Grid)"/>
-	/// <seealso cref="Puzzle"/>
 	/// <seealso cref="SudokuPaneCell"/>
 	internal void SetPuzzleInternal(scoped in Grid value, bool clearStack = false) => SetPuzzleInternal(value, clearStack, false);
 

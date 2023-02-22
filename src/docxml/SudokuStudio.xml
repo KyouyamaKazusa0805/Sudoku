@@ -5337,10 +5337,6 @@ if (student is (name: var name, age: >= 18))
             <param name="clearStack">
             Indicates whether undoing and redoing stacks should be cleared. The default value is <see langword="false"/>.
             </param>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/>
-            <seealso cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeChildrenControls">
