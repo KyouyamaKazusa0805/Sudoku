@@ -6149,12 +6149,6 @@ if (student is (name: var name, age: >= 18))
             Clear the visual unit data.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SetDrawingMode(System.Int32)">
-            <summary>
-            Sets the drawing index via the specified index of <see cref="T:System.Int32"/> value.
-            </summary>
-            <param name="selectedIndex">The selected index.</param>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.IsSudokuPaneFocused">
             <summary>
             Checks whether the pane is focused.
@@ -6206,18 +6200,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.DrawingModeProperty">
-            <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.DrawingMode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.DrawingMode"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColorProperty">
-            <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor"/>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCacheProperty">
             <summary>
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>.
@@ -6259,16 +6241,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent">
             <summary>
             Indicates the progress percent value.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.DrawingMode">
-            <summary>
-            Indicates the drawing mode.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentSelectedColor">
-            <summary>
-            Indicates the current selected color.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache">

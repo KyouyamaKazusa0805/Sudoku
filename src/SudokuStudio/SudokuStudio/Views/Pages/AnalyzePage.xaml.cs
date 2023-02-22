@@ -8,8 +8,6 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<bool>("GeneratorIsNotRunning", DefaultValue = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the generator is not running currently.")]
 [DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"VisualUnit.Views\"/> displayed.")]
 [DependencyProperty<double>("ProgressPercent", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the progress percent value.")]
-[DependencyProperty<DrawingMode>("DrawingMode", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the drawing mode.")]
-[DependencyProperty<Color>("CurrentSelectedColor", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current selected color.")]
 [DependencyProperty<LogicalSolverResult>("AnalysisResultCache", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the anlaysis result cache.")]
 [DependencyProperty<ColorPalette>("UserDefinedPalette", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the user-defined colors.")]
 [DependencyProperty<VisualUnit>("VisualUnit", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the visual unit.")]
@@ -606,12 +604,6 @@ public sealed partial class AnalyzePage : Page
 			SudokuPane.ViewUnit = null;
 		}
 	}
-
-	/// <summary>
-	/// Sets the drawing index via the specified index of <see cref="int"/> value.
-	/// </summary>
-	/// <param name="selectedIndex">The selected index.</param>
-	private void SetDrawingMode(int selectedIndex) => DrawingMode = (DrawingMode)selectedIndex;
 
 	/// <summary>
 	/// Checks whether the pane is focused.
