@@ -2784,6 +2784,13 @@ if (student is (name: var name, age: >= 18))
             <param name="key">The resource key.</param>
             <returns>The target resource.</returns>
         </member>
+        <member name="M:SudokuStudio.Resources.ResourceDictionary.Token(System.String)">
+            <summary>
+            Try to fetch the specified token via its name.
+            </summary>
+            <param name="tokenName">The name of the token, such as <c>Colon</c>.</param>
+            <returns>The token string.</returns>
+        </member>
         <member name="T:SudokuStudio.Resources.TextResources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.

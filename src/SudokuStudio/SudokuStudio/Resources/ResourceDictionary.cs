@@ -16,4 +16,11 @@ internal static class ResourceDictionary
 	/// <returns>The target resource.</returns>
 	public static string GetString(string key)
 		=> TextResources.ResourceManager.GetString(key) ?? throw new KeyNotFoundException("The target resource is not found.");
+
+	/// <summary>
+	/// Try to fetch the specified token via its name.
+	/// </summary>
+	/// <param name="tokenName">The name of the token, such as <c>Colon</c>.</param>
+	/// <returns>The token string.</returns>
+	public static string Token(string tokenName) => GetString($"_Token_{tokenName}");
 }

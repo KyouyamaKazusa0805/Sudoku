@@ -26,7 +26,7 @@ internal static class DrawingConversion
 		return selectedIndex switch
 		{
 			0 or -1 => baseText,
-			_ => $"{baseText}{GetString("_Token_Colon")}{GetModeString((DrawingMode)selectedIndex)}"
+			_ => $"{baseText}{Token("Colon")}{GetModeString((DrawingMode)selectedIndex)}"
 		};
 	}
 

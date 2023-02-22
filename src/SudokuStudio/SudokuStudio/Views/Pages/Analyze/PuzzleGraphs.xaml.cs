@@ -172,7 +172,7 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage
 			{
 				{ StackedValue.Share: 0 } => string.Empty,
 				{ StackedValue.Share: var percent, PrimaryValue: var a, StackedValue.Total: var b } when !percent.NearlyEquals(0, 1E-2)
-					=> $"{difficultyLevelName}{GetString("_Token_Colon")}{(int)a}/{(int)b} ({percent:P2})",
+					=> $"{difficultyLevelName}{Token("Colon")}{(int)a}/{(int)b} ({percent:P2})",
 				_ => string.Empty
 			};
 	}
