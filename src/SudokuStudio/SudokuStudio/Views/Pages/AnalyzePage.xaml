@@ -54,6 +54,7 @@
 								Label="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}"
 								Icon="{x:Bind cvt:SymbolIconConversion.GetSymbolViaCandidateVisibility(SudokuPane.DisplayCandidates),Mode=OneWay}"
 								IsChecked="{x:Bind SudokuPane.DisplayCandidates,Mode=TwoWay}" />
+							<AppBarSeparator />
 							<AppBarButton
 								CommandParameter="{x:Bind SudokuPane}" Label="{m:R Key=AnalyzePage_FixGrid}" Icon="Pin"
 								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetFixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
@@ -62,6 +63,7 @@
 								CommandParameter="{x:Bind SudokuPane}" Label="{m:R Key=AnalyzePage_UnfixGrid}" Icon="UnPin"
 								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
 								Click="UnfixGridButton_Click" />
+							<AppBarSeparator />
 							<AppBarToggleButton
 								Icon="List" Label="{m:R Key=AnalyzePage_LogicalSolverIsFullyApplied}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=TwoWay}" />
@@ -76,103 +78,6 @@
 								x:Name="AnalyzeButton" x:FieldModifier="internal" Icon="Find" Label="{m:R Key=AnalyzePage_AnalyzeButton}"
 								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}"
 								Click="AnalyzeButton_ClickAsync" />
-							<!--
-							<AppBarSeparator />
-							<AppBarButton
-								x:Name="DrawingButton"
-								Label="{x:Bind cvt:DrawingConversion.GetDrawingModeButtonText(DrawingModeComboBox.SelectedIndex),Mode=OneWay}">
-								<AppBarButton.Icon>
-									<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;" />
-								</AppBarButton.Icon>
-								<AppBarButton.Flyout>
-									<Flyout>
-										<StackPanel Spacing="10">
-											<Grid ColumnDefinitions="Auto,*">
-												<TextBlock VerticalAlignment="Center" Text="{m:R Key=AnalyzePage_SelectDrawingMode}" />
-												<ComboBox
-													x:Name="DrawingModeComboBox" Grid.Column="1" Width="200"
-													SelectedIndex="{x:Bind cvt:DrawingConversion.GetDrawingModeIndex(DrawingMode),
-														Mode=TwoWay,
-														BindBack=SetDrawingMode}">
-													<ComboBoxItem Content="{m:R Key=_DrawingMode_None}" />
-													<ComboBoxItem Content="{m:R Key=_DrawingMode_Cell}" />
-													<ComboBoxItem Content="{m:R Key=_DrawingMode_Candidate}" />
-													<ComboBoxItem Content="{m:R Key=_DrawingMode_House}" />
-													<ComboBoxItem Content="{m:R Key=_DrawingMode_Chute}" />
-													<ComboBoxItem Content="{m:R Key=_DrawingMode_Link}" />
-													<ComboBoxItem Content="{m:R Key=_DrawingMode_BabaGrouping}" />
-												</ComboBox>
-											</Grid>
-											<Grid RowDefinitions="Auto,*">
-												<TextBlock Text="{m:R Key=AnalyzePage_SelectColor}" />
-												<Grid Grid.Row="1" RowDefinitions="24,24,24" ColumnDefinitions="24,24,24,24,24">
-													<Button
-														Grid.Row="0" Grid.Column="0" Tag="0"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[0]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="0" Grid.Column="1" Tag="1"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[1]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="0" Grid.Column="2" Tag="2"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[2]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="0" Grid.Column="3" Tag="3"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[3]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="0" Grid.Column="4" Tag="4"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[4]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="1" Grid.Column="0" Tag="5"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[5]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="1" Grid.Column="1" Tag="6"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[6]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="1" Grid.Column="2" Tag="7"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[7]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="1" Grid.Column="3" Tag="8"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[8]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="1" Grid.Column="4" Tag="9"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[9]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="2" Grid.Column="0" Tag="10"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[10]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="2" Grid.Column="1" Tag="11"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[11]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="2" Grid.Column="2" Tag="12"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[12]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="2" Grid.Column="3" Tag="13"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[13]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-													<Button
-														Grid.Row="2" Grid.Column="4" Tag="14"
-														Background="{x:Bind cvt:DrawingConversion.GetBrush(UserDefinedPalette[14]),Mode=OneWay}"
-														Click="ColorButton_Click" />
-												</Grid>
-											</Grid>
-										</StackPanel>
-									</Flyout>
-								</AppBarButton.Flyout>
-							</AppBarButton>
-							-->
 						</CommandBar>
 					</Border>
 				</Grid>

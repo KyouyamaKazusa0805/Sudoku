@@ -579,6 +579,12 @@
   <data name="MainWindow_BasicPreferenceItemsPageTitle" xml:space="preserve">
     <value>Program Basic Options</value>
   </data>
+  <data name="MainWindow_Drawing" xml:space="preserve">
+    <value>Drawing</value>
+  </data>
+  <data name="MainWindow_DrawingPageTitle" xml:space="preserve">
+    <value>Customized Drawing</value>
+  </data>
   <data name="MainWindow_DrawingPreferenceItemsPageTitle" xml:space="preserve">
     <value>Drawing Options</value>
   </data>

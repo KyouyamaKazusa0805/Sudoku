@@ -797,14 +797,4 @@ public sealed partial class AnalyzePage : Page
 			}
 		}
 	}
-
-	private void ColorButton_Click(object sender, RoutedEventArgs e)
-	{
-		if (sender is not Button { Tag: string s } || !int.TryParse(s, out var i))
-		{
-			return;
-		}
-
-		CurrentSelectedColor = UserDefinedPalette[i];
-	}
 }

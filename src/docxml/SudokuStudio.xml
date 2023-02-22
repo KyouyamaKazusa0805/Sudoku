@@ -3657,6 +3657,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Program Basic Options.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Drawing">
+            <summary>
+              Looks up a localized string similar to Drawing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_DrawingPageTitle">
+            <summary>
+              Looks up a localized string similar to Customized Drawing.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_DrawingPreferenceItemsPageTitle">
             <summary>
               Looks up a localized string similar to Drawing Options.
@@ -6649,6 +6659,31 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ExceptionThrownOnAnalyzingContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.DrawingPage">
+            <summary>
+            Defines a drawing page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.DrawingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.DrawingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.DrawingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.DrawingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.DrawingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

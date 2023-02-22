@@ -1591,6 +1591,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drawing.
+        /// </summary>
+        internal static string MainWindow_Drawing {
+            get {
+                return ResourceManager.GetString("MainWindow_Drawing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customized Drawing.
+        /// </summary>
+        internal static string MainWindow_DrawingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_DrawingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drawing Options.
         /// </summary>
         internal static string MainWindow_DrawingPreferenceItemsPageTitle {

@@ -579,6 +579,12 @@
   <data name="MainWindow_BasicPreferenceItemsPageTitle" xml:space="preserve">
     <value>程序基本设置</value>
   </data>
+  <data name="MainWindow_Drawing" xml:space="preserve">
+    <value>绘图</value>
+  </data>
+  <data name="MainWindow_DrawingPageTitle" xml:space="preserve">
+    <value>自定义绘图</value>
+  </data>
   <data name="MainWindow_DrawingPreferenceItemsPageTitle" xml:space="preserve">
     <value>配色及盘面渲染设置</value>
   </data>
