@@ -70,7 +70,6 @@
 						<ComboBox
 							Grid.Column="1" Width="200"
 							SelectedIndex="{x:Bind cvt:DrawingConversion.GetDrawingModeIndex(SelectedMode),Mode=TwoWay,BindBack=SetSelectedMode}">
-							<!--<ComboBoxItem Content="{m:R Key=_DrawingMode_None}" />-->
 							<ComboBoxItem Content="{m:R Key=_DrawingMode_Cell}" />
 							<ComboBoxItem Content="{m:R Key=_DrawingMode_Candidate}" />
 							<ComboBoxItem Content="{m:R Key=_DrawingMode_House}" />
