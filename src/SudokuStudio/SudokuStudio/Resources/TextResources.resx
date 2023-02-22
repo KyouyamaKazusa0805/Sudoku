@@ -270,9 +270,6 @@
   <data name="AnalyzePage_DifficultyTotal" xml:space="preserve">
     <value>Total</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>Painting mode</value>
-  </data>
   <data name="AnalyzePage_EmptyGrid" xml:space="preserve">
     <value>&lt;Empty&gt;</value>
   </data>
@@ -486,6 +483,9 @@
   <data name="AnalyzePage_SimpleDescription" xml:space="preserve">
     <value>Step Description:</value>
   </data>
+  <data name="AnalyzePage_StartDrawingButton" xml:space="preserve">
+    <value>Switch to drawing mode</value>
+  </data>
   <data name="AnalyzePage_StepDetail" xml:space="preserve">
     <value>Solving Path</value>
   </data>
@@ -536,6 +536,12 @@
   </data>
   <data name="AnalyzePage_Uniqueness" xml:space="preserve">
     <value>Solution Uniqueness: </value>
+  </data>
+  <data name="DrawingPage_Intro" xml:space="preserve">
+    <value>This page allows you drawing onto the sudoku grid.</value>
+  </data>
+  <data name="DrawingPage_SelectMode" xml:space="preserve">
+    <value>Select Mode: </value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>Portable picture format</value>

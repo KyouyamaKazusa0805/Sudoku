@@ -664,15 +664,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Painting mode.
-        /// </summary>
-        internal static string AnalyzePage_DrawingButton {
-            get {
-                return ResourceManager.GetString("AnalyzePage_DrawingButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;Empty&gt;.
         /// </summary>
         internal static string AnalyzePage_EmptyGrid {
@@ -1312,6 +1303,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Switch to drawing mode.
+        /// </summary>
+        internal static string AnalyzePage_StartDrawingButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_StartDrawingButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Solving Path.
         /// </summary>
         internal static string AnalyzePage_StepDetail {
@@ -1461,6 +1461,24 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_Uniqueness {
             get {
                 return ResourceManager.GetString("AnalyzePage_Uniqueness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page allows you drawing onto the sudoku grid..
+        /// </summary>
+        internal static string DrawingPage_Intro {
+            get {
+                return ResourceManager.GetString("DrawingPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Mode: .
+        /// </summary>
+        internal static string DrawingPage_SelectMode {
+            get {
+                return ResourceManager.GetString("DrawingPage_SelectMode", resourceCulture);
             }
         }
         

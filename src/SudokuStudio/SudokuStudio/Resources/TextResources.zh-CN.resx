@@ -486,6 +486,9 @@
   <data name="AnalyzePage_SimpleDescription" xml:space="preserve">
     <value>步骤信息：</value>
   </data>
+  <data name="AnalyzePage_StartDrawingButton" xml:space="preserve">
+    <value>切换至绘图模式</value>
+  </data>
   <data name="AnalyzePage_StepDetail" xml:space="preserve">
     <value>解题步骤</value>
   </data>
@@ -536,6 +539,12 @@
   </data>
   <data name="AnalyzePage_Uniqueness" xml:space="preserve">
     <value>盘面唯一性：</value>
+  </data>
+  <data name="DrawingPage_Intro" xml:space="preserve">
+    <value>这个页面你可以使用基本的绘图功能，为题目配色进行调整。</value>
+  </data>
+  <data name="DrawingPage_SelectMode" xml:space="preserve">
+    <value>选择模式：</value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>图片文件</value>

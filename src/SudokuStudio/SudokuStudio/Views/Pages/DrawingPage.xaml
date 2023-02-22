@@ -5,16 +5,19 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:DrawingPage}">
 	<ScrollViewer>
-		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="10">
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="40">
+			<TextBlock Text="{m:R Key=DrawingPage_Intro}" />
 			<Grid ColumnDefinitions="Auto,*">
 				<c:SudokuPane
-					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" SelectedCell="-1"
-					HorizontalAlignment="Left" VerticalAlignment="Top" DisplayCandidates="True"
+					x:Name="SudokuPane" Width="610" Height="610" Margin="0,0,40,0" SelectedCell="-1"
+					HorizontalAlignment="Left" VerticalAlignment="Top" DisplayCandidates="True" EnableUndoRedoStacking="False"
 					DisableFlyout="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=OneWay}"
 					PreventConflictingInput="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=OneWay}"
 					GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
@@ -61,6 +64,22 @@
 					DifficultyLevelBackgrounds="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds,Mode=OneWay}"
 					UserDefinedColorPalette="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.UserDefinedColorPalette,Mode=OneWay}"
 				/>
+				<StackPanel Grid.Column="1" Spacing="24">
+					<Grid ColumnDefinitions="Auto,*">
+						<TextBlock VerticalAlignment="Center" Text="{m:R Key=DrawingPage_SelectMode}" />
+						<ComboBox
+							Grid.Column="1" Width="200"
+							SelectedIndex="{x:Bind cvt:DrawingConversion.GetDrawingModeIndex(SelectedMode),Mode=TwoWay,BindBack=SetSelectedMode}">
+							<!--<ComboBoxItem Content="{m:R Key=_DrawingMode_None}" />-->
+							<ComboBoxItem Content="{m:R Key=_DrawingMode_Cell}" />
+							<ComboBoxItem Content="{m:R Key=_DrawingMode_Candidate}" />
+							<ComboBoxItem Content="{m:R Key=_DrawingMode_House}" />
+							<ComboBoxItem Content="{m:R Key=_DrawingMode_Chute}" />
+							<ComboBoxItem Content="{m:R Key=_DrawingMode_Link}" />
+							<ComboBoxItem Content="{m:R Key=_DrawingMode_BabaGrouping}" />
+						</ComboBox>
+					</Grid>
+				</StackPanel>
 			</Grid>
 		</StackPanel>
 	</ScrollViewer>

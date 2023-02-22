@@ -3142,11 +3142,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Total.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_DrawingButton">
-            <summary>
-              Looks up a localized string similar to Painting mode.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_EmptyGrid">
             <summary>
               Looks up a localized string similar to &lt;Empty&gt;.
@@ -3502,6 +3497,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Step Description:.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_StartDrawingButton">
+            <summary>
+              Looks up a localized string similar to Switch to drawing mode.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_StepDetail">
             <summary>
               Looks up a localized string similar to Solving Path.
@@ -3585,6 +3585,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Uniqueness">
             <summary>
               Looks up a localized string similar to Solution Uniqueness: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_Intro">
+            <summary>
+              Looks up a localized string similar to This page allows you drawing onto the sudoku grid..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_SelectMode">
+            <summary>
+              Looks up a localized string similar to Select Mode: .
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.FileExtension_Picture">
@@ -6155,6 +6165,13 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetMainWindow">
+            <summary>
+            Gets the main window.
+            </summary>
+            <returns>The main window.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -6645,6 +6662,9 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Pages.DrawingPage"/> instance.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.DrawingPage.OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
+            <inheritdoc/>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.DrawingPage.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -6658,6 +6678,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.DrawingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.DrawingPage.SelectedModeProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode">
+            <summary>
+            Indicates the selected drawing mode.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation">
@@ -7316,11 +7347,27 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="pageType">The target page type.</param>
         </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``1(System.Type,``0)">
+            <summary>
+            Try to navigate to the target page.
+            </summary>
+            <typeparam name="T">The type of the data.</typeparam>
+            <param name="pageType">The target page type.</param>
+            <param name="data">The data.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``1">
             <summary>
             Try to navigate to the target page via its type specified as type argument.
             </summary>
             <typeparam name="TPage">The type of the page.</typeparam>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``2(``1)">
+            <summary>
+            Try to navigate to the target page via its type specified as type argument, and routing data specified as argument.
+            </summary>
+            <typeparam name="TPage">The type of the page.</typeparam>
+            <typeparam name="TData">The type of the data.</typeparam>
+            <param name="data">The data.</param>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeField">
             <summary>

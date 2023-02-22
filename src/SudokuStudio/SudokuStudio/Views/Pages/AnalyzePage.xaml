@@ -78,6 +78,12 @@
 								x:Name="AnalyzeButton" x:FieldModifier="internal" Icon="Find" Label="{m:R Key=AnalyzePage_AnalyzeButton}"
 								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}"
 								Click="AnalyzeButton_ClickAsync" />
+							<AppBarSeparator />
+							<AppBarButton Label="{m:R Key=AnalyzePage_StartDrawingButton}" Click="StartDrawingButton_Click">
+								<AppBarButton.Icon>
+									<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;" />
+								</AppBarButton.Icon>
+							</AppBarButton>
 						</CommandBar>
 					</Border>
 				</Grid>

@@ -611,6 +611,18 @@ public sealed partial class AnalyzePage : Page
 	/// <returns>A <see cref="bool"/> result.</returns>
 	private bool IsSudokuPaneFocused() => SudokuPane.FocusState != FocusState.Unfocused;
 
+	/// <summary>
+	/// Gets the main window.
+	/// </summary>
+	/// <returns>The main window.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the base window cannot be found.</exception>
+	private MainWindow GetMainWindow()
+		=> ((App)Application.Current).WindowManager.GetWindowForElement(this) switch
+		{
+			MainWindow mainWindow => mainWindow,
+			_ => throw new InvalidOperationException("Main window cannot be found.")
+		};
+
 
 	[Callback]
 	private static void CurrentViewIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -789,4 +801,7 @@ public sealed partial class AnalyzePage : Page
 			}
 		}
 	}
+
+	private void StartDrawingButton_Click(object sender, RoutedEventArgs e)
+		=> GetMainWindow().NavigateToPage(typeof(DrawingPage), SudokuPane.Puzzle);
 }
