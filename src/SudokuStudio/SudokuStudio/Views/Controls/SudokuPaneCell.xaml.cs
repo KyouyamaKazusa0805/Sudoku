@@ -52,6 +52,11 @@ internal sealed partial class SudokuPaneCell : UserControl
 
 	private void TextBlock_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
 	{
+		if (!BasePane.EnableDoubleTapFilling)
+		{
+			return;
+		}
+
 		if ((this, sender) is not ({ BasePane: { Puzzle: var modified, SelectedCell: var cell and not -1 } }, TextBlock { Text: var text }))
 		{
 			return;
@@ -59,8 +64,8 @@ internal sealed partial class SudokuPaneCell : UserControl
 
 		if (!int.TryParse(text, out var originalDigit)
 			|| originalDigit - 1 is not (var digit and >= 0 and < 9)
-			|| (modified.GetCandidates(cell) >> digit & 1) == 0
-			|| modified.GetStatus(cell) != CellStatus.Empty)
+			|| modified.GetStatus(cell) != CellStatus.Empty
+			|| (modified.GetCandidates(cell) >> digit & 1) == 0)
 		{
 			return;
 		}
@@ -69,6 +74,47 @@ internal sealed partial class SudokuPaneCell : UserControl
 		BasePane.SetPuzzle(modified);
 
 		BasePane.TriggerGridUpdated(GridUpdatedBehavior.Assignment, cell * 9 + digit);
+	}
+
+	private void TextBlock_RightTapped(object sender, RightTappedRoutedEventArgs e)
+	{
+		if (!BasePane.EnableRightTapRemoving)
+		{
+			return;
+		}
+
+		if ((this, sender) is not ({ BasePane: { Puzzle: var modified, SelectedCell: var cell and not -1 } }, TextBlock { Text: var text }))
+		{
+			return;
+		}
+
+		if (!int.TryParse(text, out var originalDigit)
+			|| originalDigit - 1 is not (var digit and >= 0 and < 9)
+			|| modified.GetStatus(cell) != CellStatus.Empty
+			|| (modified.GetCandidates(cell) >> digit & 1) == 0)
+		{
+			return;
+		}
+
+		modified[cell, digit] = false;
+		BasePane.SetPuzzle(modified);
+
+		BasePane.TriggerGridUpdated(GridUpdatedBehavior.Elimination, cell * 9 + digit);
+	}
+
+	private void TextBlock_Tapped(object sender, TappedRoutedEventArgs e)
+	{
+		if ((this, sender) is not ({ BasePane.SelectedCell: var cell and not -1 }, TextBlock { Text: var text }))
+		{
+			return;
+		}
+
+		if (!int.TryParse(text, out var originalDigit) || originalDigit - 1 is not (var digit and >= 0 and < 9))
+		{
+			return;
+		}
+
+		BasePane.TriggerClicked(cell * 9 + digit);
 	}
 
 	private void InputSetter_KeyDown(object sender, KeyRoutedEventArgs e)

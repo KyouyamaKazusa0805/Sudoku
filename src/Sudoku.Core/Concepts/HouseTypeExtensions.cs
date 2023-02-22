@@ -38,6 +38,27 @@ public static class HouseTypeExtensions
 	}
 
 	/// <summary>
+	/// <inheritdoc cref="CopyHouseInfo(int, int*)" path="/summary"/>
+	/// </summary>
+	/// <param name="cell"><inheritdoc cref="CopyHouseInfo(int, int*)" path="/param[@name='cell']"/></param>
+	/// <param name="reference">
+	/// The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="Span{T}"/>,
+	/// only if the sequence can store at least 3 values.
+	/// </param>
+	/// <exception cref="ArgumentNullRefException">
+	/// Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void CopyHouseInfo(this int cell, ref int reference)
+	{
+		ArgumentNullRefException.ThrowIfNullRef(ref reference);
+
+		AddByteOffset(ref reference, 0) = BlockTable[cell];
+		AddByteOffset(ref reference, 1) = RowTable[cell];
+		AddByteOffset(ref reference, 2) = ColumnTable[cell];
+	}
+
+	/// <summary>
 	/// Get the house index (0..27 for block 1-9, row 1-9 and column 1-9)
 	/// for the specified cell and the house type.
 	/// </summary>

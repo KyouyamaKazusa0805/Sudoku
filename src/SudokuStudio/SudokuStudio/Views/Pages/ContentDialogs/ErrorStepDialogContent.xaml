@@ -15,7 +15,7 @@
 		<c:SudokuPane
 			x:Name="ErrorStepDisplayer" x:FieldModifier="internal" Width="610" Height="610"
 			HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCursors="True" DisplayCandidates="True"
-			DisableFlyout="True" EnableUndoRedoStacking="False"
+			DisableFlyout="True" EnableUndoRedoStacking="False" EnableDoubleTapFilling="False" EnableRightTapRemoving="False"
 			CursorBackgroundColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor,Mode=OneWay}"
 			GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 			ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"

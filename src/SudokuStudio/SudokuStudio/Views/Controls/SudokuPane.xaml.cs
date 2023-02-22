@@ -9,6 +9,8 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<bool>("DisableFlyout", DocSummary = "Indicates whether the pane disable flyout open.")]
 [DependencyProperty<bool>("PreventConflictingInput", DefaultValue = true, DocSummary = "Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits in its containing houses, this pane will do nothing by this value being <see langword=\"true\"/>. If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.")]
 [DependencyProperty<bool>("EnableUndoRedoStacking", DefaultValue = true, MembersNotNullWhenReturnsTrue = new[] { nameof(_redoStack), nameof(_undoStack) }, DocSummary = "Indicates whether the pane enables for undoing and redoing operation.")]
+[DependencyProperty<bool>("EnableDoubleTapFilling", DefaultValue = true, DocSummary = "Indicates whether the digit will be automatically input by double tapping a candidate.")]
+[DependencyProperty<bool>("EnableRightTapRemoving", DefaultValue = true, DocSummary = "Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.")]
 [DependencyProperty<double>("GivenFontScale", DefaultValue = 1.0, DocSummary = "Indicates the font scale of given digits. The value should generally be below 1.0.")]
 [DependencyProperty<double>("ModifiableFontScale", DefaultValue = 1.0, DocSummary = "Indicates the font scale of modifiable digits. The value should generally be below 1.0.")]
 [DependencyProperty<double>("PencilmarkFontScale", DefaultValue = .33, DocSummary = "Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.")]
@@ -279,6 +281,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public event SudokuPaneMouseWheelChangedEventHandler? MouseWheelChanged;
 
+	/// <summary>
+	/// Indicates the event that is triggered when a candidate is clicked.
+	/// This event can be also used for checking the clicked cell, house, chute, etc..
+	/// </summary>
+	public event GridClickedEventHandler? Clicked;
+
 
 	/// <summary>
 	/// Undo a step. This method requires member <see cref="EnableUndoRedoStacking"/> be <see langword="true"/>.
@@ -356,12 +364,20 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public void SetPuzzle(scoped in Grid value, bool clearStack = false) => SetPuzzleInternal(value, clearStack, false);
 
 	/// <summary>
-	/// Triggers <see cref="GridUpdated"/> event. This method can only be called by internal control type <see cref="SudokuPaneCell"/>.
+	/// <para>Triggers <see cref="GridUpdated"/> event.</para>
+	/// <para>This method can only be called by internal control type <see cref="SudokuPaneCell"/>.</para>
 	/// </summary>
 	/// <param name="behavior">The behavior.</param>
 	/// <param name="value">The new value to assign.</param>
 	/// <seealso cref="SudokuPaneCell"/>
 	internal void TriggerGridUpdated(GridUpdatedBehavior behavior, object value) => GridUpdated?.Invoke(this, new(behavior, value));
+
+	/// <summary>
+	///	<para>Triggers <see cref="Clicked"/> event.</para>
+	///	<para><inheritdoc cref="TriggerGridUpdated(GridUpdatedBehavior, object)" path="//summary/para[2]"/></para>
+	/// </summary>
+	/// <param name="candidate">The candidate.</param>
+	internal void TriggerClicked(int candidate) => Clicked?.Invoke(this, new(candidate));
 
 	/// <summary>
 	/// To initialize children controls for <see cref="_children"/>.

@@ -96,7 +96,9 @@
 					-->
 					<c:SudokuPane
 						x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" SelectedCell="-1"
-						HorizontalAlignment="Left" VerticalAlignment="Top"
+						HorizontalAlignment="Left" VerticalAlignment="Top" ViewUnit="{x:Null}"
+						EnableDoubleTapFilling="True"
+						EnableRightTapRemoving="True"
 						DisableFlyout="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=OneWay}"
 						PreventConflictingInput="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=OneWay}"
 						GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"

@@ -1784,6 +1784,51 @@ if (student is (name: var name, age: >= 18))
             Indicates the failed reason is that the file cannot be parsed.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.GridClickedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.GridClickedEventArgs.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Interaction.GridClickedEventArgs"/> instance.
+            </summary>
+            <param name="candidate">The candidate.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.Candidate">
+            <summary>
+            Indicates the clicked candidate.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.Cell">
+            <summary>
+            Indicates the clicked cell.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.Digit">
+            <summary>
+            Indicates the clicked digit.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.Houses">
+            <summary>
+            Indicates the houses that the current cell lies in.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.Chutes">
+            <summary>
+            Indicates the chutes the current cell lines in.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.GridClickedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.Clicked"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.Clicked"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.GridUpdatedBehavior">
             <summary>
             Represents a kind that describes which behavior the grid is updated.
@@ -5245,6 +5290,12 @@ if (student is (name: var name, age: >= 18))
             Indicates the event that is triggered when the mouse wheel is changed.
             </summary>
         </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.Clicked">
+            <summary>
+            Indicates the event that is triggered when a candidate is clicked.
+            This event can be also used for checking the clicked cell, house, chute, etc..
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UndoStep">
             <summary>
             Undo a step. This method requires member <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/> be <see langword="true"/>.
@@ -5282,11 +5333,19 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)">
             <summary>
-            Triggers <see cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/> event. This method can only be called by internal control type <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>.
+            <para>Triggers <see cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/> event.</para>
+            <para>This method can only be called by internal control type <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>.</para>
             </summary>
             <param name="behavior">The behavior.</param>
             <param name="value">The new value to assign.</param>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.TriggerClicked(System.Int32)">
+            <summary>
+            <para>Triggers <see cref="E:SudokuStudio.Views.Controls.SudokuPane.Clicked"/> event.</para>
+            <para><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)" path="//summary/para[2]"/></para>
+            </summary>
+            <param name="candidate">The candidate.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeChildrenControls">
             <summary>
@@ -5364,6 +5423,18 @@ if (student is (name: var name, age: >= 18))
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFillingProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFilling"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFilling"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EnableRightTapRemovingProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableRightTapRemoving"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableRightTapRemoving"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenFontScaleProperty">
             <summary>
@@ -5651,6 +5722,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking">
             <summary>
             Indicates whether the pane enables for undoing and redoing operation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFilling">
+            <summary>
+            Indicates whether the digit will be automatically input by double tapping a candidate.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableRightTapRemoving">
+            <summary>
+            Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale">

@@ -2824,6 +2824,19 @@ if (student is (name: var name, age: >= 18))
             Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
             </exception>
         </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32@)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32*)" path="/summary"/>
+            </summary>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32*)" path="/param[@name='cell']"/></param>
+            <param name="reference">
+            The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="T:System.Span`1"/>,
+            only if the sequence can store at least 3 values.
+            </param>
+            <exception cref="T:System.ArgumentNullRefException">
+            Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
+            </exception>
+        </member>
         <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)">
             <summary>
             Get the house index (0..27 for block 1-9, row 1-9 and column 1-9)
