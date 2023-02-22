@@ -87,5 +87,5 @@ internal sealed record UniqueRectangleType3Step(
 	internal string HouseStr() => HouseFormatter.Format(1 << House);
 
 	[ResourceTextFormatter]
-	internal string AppearLimitKeyword() => R["Appears"]!;
+	internal string AppearLimitKeyword() => R["Appear"]!;
 }
