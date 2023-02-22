@@ -10,13 +10,13 @@
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:TechniqueGalleryPage}">
 	<ScrollViewer>
-		<StackPanel Spacing="40" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
-			<TextBlock Text="{m:R Key=TechniqueGalleryPage_Intro}" Margin="0,20,0,40" />
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="10">
+			<TextBlock Text="{m:R Key=TechniqueGalleryPage_Intro}" />
 			<ListView SelectionMode="None" ItemsSource="{x:Bind z:TechniqueGalleryData.RoutingGroups}">
 				<ListView.ItemTemplate>
 					<DataTemplate x:DataType="models:TechniquePageRoutingDataGroup">
 						<StackPanel Orientation="Vertical" Spacing="20">
-							<TextBlock Text="{x:Bind Title}" Style="{StaticResource TitleTextBlockStyle}" />
+							<TextBlock Text="{x:Bind Title}" Style="{StaticResource SubtitleTextBlockStyle}" />
 							<GridView ItemsSource="{x:Bind Collection}" ItemClick="GridView_ItemClick">
 								<GridView.ItemTemplate>
 									<DataTemplate x:DataType="models:TechniquePageRoutingData">
