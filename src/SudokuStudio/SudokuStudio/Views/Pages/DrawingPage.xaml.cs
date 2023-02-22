@@ -17,12 +17,15 @@ public sealed partial class DrawingPage : Page
 	{
 		base.OnNavigatedTo(e);
 
-		if (e is not { NavigationMode: NavigationMode.New, Parameter: Grid grid })
+		switch (e)
 		{
-			return;
-		}
+			case { NavigationMode: NavigationMode.New, Parameter: Grid grid }:
+			{
+				SudokuPane.Puzzle = grid;
 
-		SudokuPane.Puzzle = grid;
+				break;
+			}
+		}
 	}
 
 	private void SetSelectedMode(int selectedIndex) => SelectedMode = (DrawingMode)(selectedIndex + 1);
