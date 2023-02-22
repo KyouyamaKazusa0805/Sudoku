@@ -4182,6 +4182,21 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Subsets.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_UniqueRectangles">
+            <summary>
+              Looks up a localized string similar to Unique Rectangles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_UniqueRectangles2">
+            <summary>
+              Looks up a localized string similar to Unique Rectangles with Conjugate Pairs.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.TechniqueGalleryPage_UniqueRectangles3">
+            <summary>
+              Looks up a localized string similar to Unique Rectangles with Techniques.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Runtime.InteropServices.DispatcherQueueOptions">
             <summary>
             Specifies the threading and apartment type for a new

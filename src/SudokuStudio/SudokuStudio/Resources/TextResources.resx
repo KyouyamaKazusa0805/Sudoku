@@ -896,6 +896,15 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueGalleryPage_Subsets" xml:space="preserve">
     <value>Subsets</value>
   </data>
+  <data name="TechniqueGalleryPage_UniqueRectangles" xml:space="preserve">
+    <value>Unique Rectangles</value>
+  </data>
+  <data name="TechniqueGalleryPage_UniqueRectangles2" xml:space="preserve">
+    <value>Unique Rectangles with Conjugate Pairs</value>
+  </data>
+  <data name="TechniqueGalleryPage_UniqueRectangles3" xml:space="preserve">
+    <value>Unique Rectangles with Techniques</value>
+  </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>Easy</value>
   </data>

@@ -2530,5 +2530,32 @@ namespace SudokuStudio.Resources {
                 return ResourceManager.GetString("TechniqueGalleryPage_Subsets", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangles.
+        /// </summary>
+        internal static string TechniqueGalleryPage_UniqueRectangles {
+            get {
+                return ResourceManager.GetString("TechniqueGalleryPage_UniqueRectangles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangles with Conjugate Pairs.
+        /// </summary>
+        internal static string TechniqueGalleryPage_UniqueRectangles2 {
+            get {
+                return ResourceManager.GetString("TechniqueGalleryPage_UniqueRectangles2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangles with Techniques.
+        /// </summary>
+        internal static string TechniqueGalleryPage_UniqueRectangles3 {
+            get {
+                return ResourceManager.GetString("TechniqueGalleryPage_UniqueRectangles3", resourceCulture);
+            }
+        }
     }
 }
