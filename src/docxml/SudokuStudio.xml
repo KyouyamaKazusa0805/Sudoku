@@ -5312,29 +5312,10 @@ if (student is (name: var name, age: >= 18))
             Throws when the property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/> is not <see langword="true"/>.
             </exception>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Try to set puzzle, with a <see cref="T:System.Boolean"/> value indicating whether undoing and redoing stacks should be cleared.
-            </summary>
-            <param name="value">The newer grid.</param>
-            <param name="clearStack">
-            <para>Indicates whether undoing and redoing stacks should be cleared.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-            <remarks>
-            This method is nearly equal to <see cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>, but this method can also control undoing and redoing stacks:
-            <see cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/> is equivalent to the invocation of this method, by passing <see langword="true"/>
-            of argument <paramref name="clearStack"/>.
-            </remarks>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/>
-            <seealso cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
-        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)">
             <summary>
             <para>Triggers <see cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/> event.</para>
-            <para>This method can only be called by internal control type <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>.</para>
+            <para>This method can only be used by internal control type <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/> or the current type scope.</para>
             </summary>
             <param name="behavior">The behavior.</param>
             <param name="value">The new value to assign.</param>
@@ -5346,6 +5327,21 @@ if (student is (name: var name, age: >= 18))
             <para><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)" path="//summary/para[2]"/></para>
             </summary>
             <param name="candidate">The candidate.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            <para>Try to set puzzle, with a <see cref="T:System.Boolean"/> value indicating whether undoing and redoing stacks should be cleared.</para>
+            <para><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)" path="//summary/para[2]"/></para>
+            </summary>
+            <param name="value">The newer grid.</param>
+            <param name="clearStack">
+            Indicates whether undoing and redoing stacks should be cleared. The default value is <see langword="false"/>.
+            </param>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._undoStack"/>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._redoStack"/>
+            <seealso cref="M:SudokuStudio.Views.Controls.SudokuPane.set_Puzzle(Sudoku.Concepts.Grid)"/>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
+            <seealso cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeChildrenControls">
             <summary>
@@ -5369,8 +5365,8 @@ if (student is (name: var name, age: >= 18))
             Try to update the puzzle value by using the specified newer <see cref="T:Sudoku.Concepts.Grid"/> instance,
             and two parameters indicating the details of the current updating operation.
             </summary>
-            <param name="value"><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean)" path="/param[@name='value']"/></param>
-            <param name="clearStack"><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzle(Sudoku.Concepts.Grid@,System.Boolean)" path="//param[@name='clearStack']/para[1]"/></param>
+            <param name="value"><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,System.Boolean)" path="/param[@name='value']"/></param>
+            <param name="clearStack"><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,System.Boolean)" path="//param[@name='clearStack']/para[1]"/></param>
             <param name="whileUndoingOrRedoing">Indicates whether the method is called while undoing and redoing.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeComponent">

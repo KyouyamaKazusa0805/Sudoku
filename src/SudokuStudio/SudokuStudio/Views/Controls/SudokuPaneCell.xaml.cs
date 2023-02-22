@@ -71,7 +71,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 		}
 
 		modified[cell] = digit;
-		BasePane.SetPuzzle(modified);
+		BasePane.SetPuzzleInternal(modified);
 
 		BasePane.TriggerGridUpdated(GridUpdatedBehavior.Assignment, cell * 9 + digit);
 	}
@@ -97,7 +97,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 		}
 
 		modified[cell, digit] = false;
-		BasePane.SetPuzzle(modified);
+		BasePane.SetPuzzleInternal(modified);
 
 		BasePane.TriggerGridUpdated(GridUpdatedBehavior.Elimination, cell * 9 + digit);
 	}
@@ -154,7 +154,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 			var digit = TrailingZeroCount(digits);
 			modified[cell] = digit;
 
-			BasePane.SetPuzzle(modified);
+			BasePane.SetPuzzleInternal(modified);
 
 			BasePane.TriggerGridUpdated(GridUpdatedBehavior.Assignment, cell * 9 + digit);
 		}
@@ -168,7 +168,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 				}
 			}
 
-			BasePane.SetPuzzle(modified);
+			BasePane.SetPuzzleInternal(modified);
 
 			BasePane.TriggerGridUpdated(GridUpdatedBehavior.EliminationMultiple, (short)(cell << 9) | digits);
 		}
