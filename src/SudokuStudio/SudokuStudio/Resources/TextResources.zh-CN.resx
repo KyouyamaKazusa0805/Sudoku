@@ -732,6 +732,13 @@
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>删数</value>
   </data>
+  <data name="SettingsPage_EnableDoubleTapFillingForSudokuPane" xml:space="preserve">
+    <value>允许鼠标双击候选数直接填入数字</value>
+  </data>
+  <data name="SettingsPage_EnableDoubleTapFillingForSudokuPaneDescription" xml:space="preserve">
+    <value>如果该选项为“是”的话，那么当你双击盘面的某个候选数的时候，这个数字会自动填入到单元格之中。
+不过需要注意的是，不是所有页面的数独盘面都会关联到该设置，因为有些页面的盘面不需要候选数，也就不存在该设置项的配置功能的生效与否了。</value>
+  </data>
   <data name="SettingsPage_EnableFullHouse" xml:space="preserve">
     <value>启用“同区剩余”技巧</value>
   </data>
@@ -740,6 +747,13 @@
   </data>
   <data name="SettingsPage_EnableLastDigit" xml:space="preserve">
     <value>启用“同数剩余”技巧</value>
+  </data>
+  <data name="SettingsPage_EnableRightTapRemovingForSudokuPane" xml:space="preserve">
+    <value>允许鼠标右键点击候选数删除该数字</value>
+  </data>
+  <data name="SettingsPage_EnableRightTapRemovingForSudokuPaneDescription" xml:space="preserve">
+    <value>如果该选项为“是”的话，那么当你使用鼠标右键点击盘面的某个候选数的时候，这个数字会自动从单元格里移除（即删数操作）。
+不过需要注意的是，不是所有页面的数独盘面都会关联到该设置，因为有些页面的盘面不需要候选数，也就不存在该设置项的配置功能的生效与否了。</value>
   </data>
   <data name="SettingsPage_EndofinColor" xml:space="preserve">
     <value>内鱼鳍</value>

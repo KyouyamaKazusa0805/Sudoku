@@ -2041,6 +2041,25 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable double tapping to fill digit.
+        /// </summary>
+        internal static string SettingsPage_EnableDoubleTapFillingForSudokuPane {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableDoubleTapFillingForSudokuPane", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If this option is enabled, when you double-clicked a candidate (requiring displaying candidates), the digit can be automatically input into the cell.
+        ///In addition, some sudoku panels in some pages may not be related to this option because of not displaying of candidates..
+        /// </summary>
+        internal static string SettingsPage_EnableDoubleTapFillingForSudokuPaneDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableDoubleTapFillingForSudokuPaneDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable technique &quot;Full House&quot;.
         /// </summary>
         internal static string SettingsPage_EnableFullHouse {
@@ -2064,6 +2083,25 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_EnableLastDigit {
             get {
                 return ResourceManager.GetString("SettingsPage_EnableLastDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable right tapping to remove digit.
+        /// </summary>
+        internal static string SettingsPage_EnableRightTapRemovingForSudokuPane {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableRightTapRemovingForSudokuPane", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If this option is enabled, when you right-clicked a candidate (requiring displaying candidates), the digit will be removed from the cell.
+        ///In additional, some sudoku panels in some pages may not be related to this option because of not displaying of candidates..
+        /// </summary>
+        internal static string SettingsPage_EnableRightTapRemovingForSudokuPaneDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableRightTapRemovingForSudokuPaneDescription", resourceCulture);
             }
         }
         

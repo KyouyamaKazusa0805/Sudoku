@@ -52,6 +52,20 @@
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory,Mode=TwoWay}" />
 				</wc:Setting.ActionContent>
 			</wc:Setting>
+			<wc:Setting
+				Header="{m:R Key=SettingsPage_EnableDoubleTapFillingForSudokuPane}"
+				Description="{m:R Key=SettingsPage_EnableDoubleTapFillingForSudokuPaneDescription}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableDoubleTapFillingForSudokuPane,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
+			<wc:Setting
+				Header="{m:R Key=SettingsPage_EnableRightTapRemovingForSudokuPane}"
+				Description="{m:R Key=SettingsPage_EnableDoubleTapFillingForSudokuPaneDescription}">
+				<wc:Setting.ActionContent>
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableRightTapRemovingForSudokuPane,Mode=TwoWay}" />
+				</wc:Setting.ActionContent>
+			</wc:Setting>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

@@ -729,6 +729,13 @@
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>Eliminations</value>
   </data>
+  <data name="SettingsPage_EnableDoubleTapFillingForSudokuPane" xml:space="preserve">
+    <value>Enable double tapping to fill digit</value>
+  </data>
+  <data name="SettingsPage_EnableDoubleTapFillingForSudokuPaneDescription" xml:space="preserve">
+    <value>If this option is enabled, when you double-clicked a candidate (requiring displaying candidates), the digit can be automatically input into the cell.
+In addition, some sudoku panels in some pages may not be related to this option because of not displaying of candidates.</value>
+  </data>
   <data name="SettingsPage_EnableFullHouse" xml:space="preserve">
     <value>Enable technique "Full House"</value>
   </data>
@@ -737,6 +744,13 @@
   </data>
   <data name="SettingsPage_EnableLastDigit" xml:space="preserve">
     <value>Enable technique "Last Digit"</value>
+  </data>
+  <data name="SettingsPage_EnableRightTapRemovingForSudokuPane" xml:space="preserve">
+    <value>Enable right tapping to remove digit</value>
+  </data>
+  <data name="SettingsPage_EnableRightTapRemovingForSudokuPaneDescription" xml:space="preserve">
+    <value>If this option is enabled, when you right-clicked a candidate (requiring displaying candidates), the digit will be removed from the cell.
+In additional, some sudoku panels in some pages may not be related to this option because of not displaying of candidates.</value>
   </data>
   <data name="SettingsPage_EndofinColor" xml:space="preserve">
     <value>Endo-fins</value>
