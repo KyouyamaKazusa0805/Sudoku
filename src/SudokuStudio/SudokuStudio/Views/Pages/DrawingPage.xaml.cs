@@ -14,6 +14,12 @@ public sealed partial class DrawingPage : Page
 
 
 	/// <summary>
+	/// Defines a local view.
+	/// </summary>
+	private readonly ViewUnit _localView = new() { Conclusions = ImmutableArray<Conclusion>.Empty, View = View.Empty };
+
+
+	/// <summary>
 	/// Initializes a <see cref="DrawingPage"/> instance.
 	/// </summary>
 	public DrawingPage() => InitializeComponent();
@@ -46,5 +52,32 @@ public sealed partial class DrawingPage : Page
 		}
 
 		SelectedColorIndex = i;
+	}
+
+	private void SudokuPane_Clicked(SudokuPane sender, GridClickedEventArgs e)
+	{
+		switch (this, e)
+		{
+			case ({ SelectedMode: DrawingMode.Cell, SelectedColorIndex: var index and not -1 }, { Cell: var cell })
+			when UserDefinedColorPalette[index].GetIdentifier() is var id:
+			{
+				_localView.View.Add(new CellViewNode(id, cell));
+
+				SudokuPane.ViewUnit = null; // Change the reference to update view.
+				SudokuPane.ViewUnit = _localView;
+
+				break;
+			}
+			case ({ SelectedMode: DrawingMode.Candidate, SelectedColorIndex: var index and not -1 }, { Candidate: var candidate })
+			when UserDefinedColorPalette[index].GetIdentifier() is var id:
+			{
+				_localView.View.Add(new CandidateViewNode(id, candidate));
+
+				SudokuPane.ViewUnit = null; // Change the reference to update view.
+				SudokuPane.ViewUnit = _localView;
+
+				break;
+			}
+		}
 	}
 }

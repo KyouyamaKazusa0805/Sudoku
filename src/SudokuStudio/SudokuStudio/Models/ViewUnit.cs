@@ -3,16 +3,8 @@
 /// <summary>
 /// Defines a view unit.
 /// </summary>
-public sealed class ViewUnit
+[DependencyProperty<ImmutableArray<Conclusion>>("Conclusions", DocSummary = "Indicates the candidates as conclusions in a single <see cref=\"IStep\"/>.")]
+[DependencyProperty<View>("View", DocSummary = "Indicates a view of highlight elements.")]
+public sealed partial class ViewUnit : DependencyObject
 {
-	/// <summary>
-	/// Indicates the candidates as conclusions in a single <see cref="IStep"/>.
-	/// </summary>
-	/// <seealso cref="IStep"/>
-	public ImmutableArray<Conclusion> Conclusions { get; set; }
-
-	/// <summary>
-	/// Indicates a view of highlight elements.
-	/// </summary>
-	public View View { get; set; } = null!;
 }

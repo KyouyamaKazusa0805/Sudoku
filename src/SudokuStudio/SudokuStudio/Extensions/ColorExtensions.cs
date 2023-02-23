@@ -19,7 +19,18 @@ public static partial class ColorExtensions
 	/// <returns>Final <see cref="SKColor"/> instance.</returns>
 	public static SKColor AsSKColor(this Color @this)
 	{
-		_ = @this is var (a, r, g, b);
+		var (a, r, g, b) = @this;
 		return new(r, g, b, a);
+	}
+
+	/// <summary>
+	/// Gets an equivalent <see cref="Identifier"/> instance via the current color.
+	/// </summary>
+	/// <param name="color">The color.</param>
+	/// <returns>An <see cref="Identifier"/> instance.</returns>
+	public static Identifier GetIdentifier(this Color color)
+	{
+		var (a, r, g, b) = color;
+		return (a, r, g, b);
 	}
 }

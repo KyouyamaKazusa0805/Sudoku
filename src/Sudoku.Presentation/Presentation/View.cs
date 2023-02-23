@@ -127,6 +127,25 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 	public bool ConflictWith(int candidate) => OfType<CandidateViewNode>().Any(n => n.Candidate == candidate);
 
 	/// <summary>
+	/// Determines whether the current collection contains a <see cref="ViewNode"/> instance whose value is considered equal
+	/// with the specified node.
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool Contains(ViewNode node)
+	{
+		foreach (var element in _nodes)
+		{
+			if (element == node)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
 	/// Projects the collection, converting it into a new collection whose elements is converted by the specified method.
 	/// </summary>
 	/// <param name="selector">The selector.</param>

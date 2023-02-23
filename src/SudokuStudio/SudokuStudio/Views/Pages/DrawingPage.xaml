@@ -65,6 +65,7 @@
 					DifficultyLevelForegrounds="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds,Mode=OneWay}"
 					DifficultyLevelBackgrounds="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds,Mode=OneWay}"
 					UserDefinedColorPalette="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.UserDefinedColorPalette,Mode=OneWay}"
+					Clicked="SudokuPane_Clicked"
 				/>
 				<StackPanel Grid.Column="1" Spacing="24">
 					<Grid ColumnDefinitions="Auto,*">

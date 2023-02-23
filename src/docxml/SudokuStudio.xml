@@ -2767,11 +2767,22 @@ if (student is (name: var name, age: >= 18))
             Defines a view unit.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Models.ViewUnit.ConclusionsProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.ViewUnit.Conclusions"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Models.ViewUnit.Conclusions"/>
+        </member>
+        <member name="F:SudokuStudio.Models.ViewUnit.ViewProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.ViewUnit.View"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Models.ViewUnit.View"/>
+        </member>
         <member name="P:SudokuStudio.Models.ViewUnit.Conclusions">
             <summary>
             Indicates the candidates as conclusions in a single <see cref="T:Sudoku.Solving.Logical.IStep"/>.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.IStep"/>
         </member>
         <member name="P:SudokuStudio.Models.ViewUnit.View">
             <summary>
@@ -6794,6 +6805,11 @@ if (student is (name: var name, age: >= 18))
             Defines a drawing page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.DrawingPage._localView">
+            <summary>
+            Defines a local view.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.DrawingPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.DrawingPage"/> instance.
@@ -7776,6 +7792,13 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The <see cref="T:Windows.UI.Color"/> instance.</param>
             <returns>Final <see cref="T:SkiaSharp.SKColor"/> instance.</returns>
+        </member>
+        <member name="M:Windows.UI.ColorExtensions.GetIdentifier(Windows.UI.Color)">
+            <summary>
+            Gets an equivalent <see cref="T:Sudoku.Presentation.Identifier"/> instance via the current color.
+            </summary>
+            <param name="color">The color.</param>
+            <returns>An <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
         </member>
         <member name="T:Windows.Foundation.PointExtensions">
             <summary>
