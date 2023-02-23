@@ -814,6 +814,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SavePuzzleGeneratingHistory"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPaneProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPane"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPane"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPaneProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
@@ -1018,6 +1030,16 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SavePuzzleGeneratingHistory">
             <summary>
             Indicates whether the program saves for puzzle-generting history.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPane">
+            <summary>
+            Indicates whether sudoku pane in analysis page provides with a simpler way to fill with digits via double tapping.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane">
+            <summary>
+            Indicates whether sudoku pane in analysis page provides with a simpler way to delete digits via right tapping.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">

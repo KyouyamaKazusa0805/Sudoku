@@ -13,6 +13,8 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<bool>("DisableSudokuPaneLayout", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DisableFlyout")]
 [DependencyProperty<bool>("PreventConflictingInput", DefaultValue = true, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput")]
 [DependencyProperty<bool>("SavePuzzleGeneratingHistory", DefaultValue = true, DocSummary = "Indicates whether the program saves for puzzle-generting history.")]
+[DependencyProperty<bool>("EnableDoubleTapFillingForSudokuPane", DefaultValue = true, DocSummary = "Indicates whether sudoku pane in analysis page provides with a simpler way to fill with digits via double tapping.")]
+[DependencyProperty<bool>("EnableRightTapRemovingForSudokuPane", DefaultValue = true, DocSummary = "Indicates whether sudoku pane in analysis page provides with a simpler way to delete digits via right tapping.")]
 [DependencyProperty<double>("HighlightedPencilmarkBackgroundEllipseScale", DefaultValue = .9, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale")]
 [DependencyProperty<double>("HighlightedBackgroundOpacity", DefaultValue = .15, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity")]
 [DependencyProperty<double>("ChainStrokeThickness", DefaultValue = 1.5, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness")]
