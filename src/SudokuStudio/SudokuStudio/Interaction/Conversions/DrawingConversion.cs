@@ -15,6 +15,19 @@ internal static class DrawingConversion
 			Inference.Default => 2
 		};
 
+	public static Visibility GetColorPaletteSelectorVisibility(DrawingMode drawingMode)
+		=> drawingMode switch
+		{
+			DrawingMode.Cell or DrawingMode.Candidate or DrawingMode.Chute or DrawingMode.House => Visibility.Visible,
+			_ => Visibility.Collapsed
+		};
+
+	public static Visibility GetLinkKindSelectorVisibility(DrawingMode drawingMode)
+		=> drawingMode == DrawingMode.Link ? Visibility.Visible : Visibility.Collapsed;
+
+	public static Visibility GetBabaGroupVisibility(DrawingMode drawingMode)
+		=> drawingMode == DrawingMode.BabaGrouping ? Visibility.Visible : Visibility.Collapsed;
+
 	public static Brush GetBrush(Color color) => new SolidColorBrush(color);
 
 	public static Brush GetSelectedBrush(int currentColorIndex)

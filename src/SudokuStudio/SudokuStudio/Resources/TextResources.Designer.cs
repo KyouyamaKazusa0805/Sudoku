@@ -1492,6 +1492,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input character as a baba group: .
+        /// </summary>
+        internal static string DrawingPage_InputCharacter {
+            get {
+                return ResourceManager.GetString("DrawingPage_InputCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single character required :).
+        /// </summary>
+        internal static string DrawingPage_InputCharacterIsInvalid {
+            get {
+                return ResourceManager.GetString("DrawingPage_InputCharacterIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to e.g. a, x, z, etc..
+        /// </summary>
+        internal static string DrawingPage_InputCharacterTextBoxPlaceholder {
+            get {
+                return ResourceManager.GetString("DrawingPage_InputCharacterTextBoxPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page allows you drawing onto the sudoku grid..
         /// </summary>
         internal static string DrawingPage_Intro {

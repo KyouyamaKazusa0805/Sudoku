@@ -3722,6 +3722,21 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Solution Uniqueness: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_InputCharacter">
+            <summary>
+              Looks up a localized string similar to Input character as a baba group: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_InputCharacterIsInvalid">
+            <summary>
+              Looks up a localized string similar to Single character required :).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_InputCharacterTextBoxPlaceholder">
+            <summary>
+              Looks up a localized string similar to e.g. a, x, z, etc..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_Intro">
             <summary>
               Looks up a localized string similar to This page allows you drawing onto the sudoku grid..
@@ -6912,6 +6927,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInputProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInput"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInput"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.DrawingPage.SelectedModeProperty">
             <summary>
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>.
@@ -6933,6 +6954,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex">
             <summary>
             Indicates the selected color index.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInput">
+            <summary>
+            Indicates the input character that is used as a baba group variable.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode">

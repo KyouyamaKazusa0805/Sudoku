@@ -81,7 +81,9 @@
 							<ComboBoxItem Content="{m:R Key=_DrawingMode_BabaGrouping}" />
 						</ComboBox>
 					</Grid>
-					<Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,*">
+					<Grid
+						RowDefinitions="Auto,*" ColumnDefinitions="Auto,*"
+						Visibility="{x:Bind cvt:DrawingConversion.GetColorPaletteSelectorVisibility(SelectedMode),Mode=OneWay}">
 						<TextBlock Text="{m:R Key=DrawingPage_SelectColor}" Margin="0,0,0,6" />
 						<Rectangle
 							Grid.Row="0" Grid.Column="1" Width="24" Height="24" Stroke="Gray" StrokeThickness="1" HorizontalAlignment="Left"
@@ -151,7 +153,9 @@
 								Click="ColorPaletteButton_Click" />
 						</Grid>
 					</Grid>
-					<Grid ColumnDefinitions="Auto,*">
+					<Grid
+						ColumnDefinitions="Auto,*"
+						Visibility="{x:Bind cvt:DrawingConversion.GetLinkKindSelectorVisibility(SelectedMode),Mode=OneWay}">
 						<TextBlock Text="{m:R Key=DrawingPage_SelectLinkType}" VerticalAlignment="Center" />
 						<ComboBox
 							x:Name="LinkTypeChoser" Grid.Column="1" Width="200"
@@ -160,6 +164,18 @@
 							<ComboBoxItem Content="{m:R Key=_Inference_Weak}" Tag="Weak" />
 							<ComboBoxItem Content="{m:R Key=_Inference_Default}" Tag="Default" />
 						</ComboBox>
+					</Grid>
+					<Grid
+						ColumnDefinitions="Auto,*,Auto"
+						Visibility="{x:Bind cvt:DrawingConversion.GetBabaGroupVisibility(SelectedMode),Mode=OneWay}">
+						<TextBlock Text="{m:R Key=DrawingPage_InputCharacter}" VerticalAlignment="Center" />
+						<TextBox
+							Text="{x:Bind BabaGroupNameInput,Mode=TwoWay}" Grid.Column="1"
+							PlaceholderText="{m:R Key=DrawingPage_InputCharacterTextBoxPlaceholder}"
+							TextChanged="TextBox_TextChanged" />
+						<TextBlock
+							x:Name="InvalidInputInfoDisplayer" Grid.Column="2" Text="{m:R Key=DrawingPage_InputCharacterIsInvalid}"
+							Foreground="Red" Visibility="Collapsed" />
 					</Grid>
 				</StackPanel>
 			</Grid>

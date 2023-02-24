@@ -4,6 +4,7 @@ namespace SudokuStudio.Views.Pages;
 /// Defines a drawing page.
 /// </summary>
 [DependencyProperty<int>("SelectedColorIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the selected color index.")]
+[DependencyProperty<string>("BabaGroupNameInput", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the input character that is used as a baba group variable.")]
 [DependencyProperty<DrawingMode>("SelectedMode", DefaultValue = DrawingMode.Cell, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the selected drawing mode.")]
 [DependencyProperty<Inference>("LinkKind", DefaultValue = Inference.Strong, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the link type.")]
 [DependencyProperty<ColorPalette>("UserDefinedColorPalette", Accessibility = GeneralizedAccessibility.Internal, DocReferencedMemberName = "global::SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette")]
@@ -112,7 +113,7 @@ public sealed partial class DrawingPage : Page
 	{
 		switch (e)
 		{
-			case { Candidate: var candidate2 }:
+			case { Candidate: var candidate2, MouseButton: MouseButton.Left }:
 			{
 				if (_previousSelectedCandidate is not { } candidate1)
 				{
@@ -152,7 +153,7 @@ public sealed partial class DrawingPage : Page
 	{
 		switch (e)
 		{
-			case { Candidate: var candidate2 }:
+			case { Candidate: var candidate2, MouseButton: MouseButton.Left }:
 			{
 				if (_previousSelectedCandidate is not { } candidate1)
 				{
@@ -207,7 +208,7 @@ public sealed partial class DrawingPage : Page
 	{
 		switch (e)
 		{
-			case { Candidate: var candidate2 }:
+			case { Candidate: var candidate2, MouseButton: MouseButton.Left }:
 			{
 				if (_previousSelectedCandidate is not { } candidate1)
 				{
@@ -237,7 +238,37 @@ public sealed partial class DrawingPage : Page
 
 	private bool CheckBabaGroupingNode(int index, GridClickedEventArgs e)
 	{
-		// TODO: Implemented.
+		if (BabaGroupNameInput is null or [])
+		{
+			return true;
+		}
+
+		if (BabaGroupNameInput is not [var character])
+		{
+			InvalidInputInfoDisplayer.Visibility = Visibility.Visible;
+			return true;
+		}
+
+		switch (e)
+		{
+			case { Candidate: var candidate }:
+			{
+				var cell = candidate / 9;
+				if (_localView.View.Exists(element => element is BabaGroupViewNode { Cell: var c } && c == cell, out var foundNode))
+				{
+					_localView.View.Remove(foundNode);
+				}
+				else
+				{
+					var id = UserDefinedColorPalette[index].GetIdentifier();
+					_localView.View.Add(new BabaGroupViewNode(id, cell, (Utf8Char)character, Grid.MaxCandidatesMask));
+				}
+
+				UpdateViewUnit();
+
+				break;
+			}
+		}
 
 		return true;
 	}
@@ -280,4 +311,6 @@ public sealed partial class DrawingPage : Page
 	ClearField:
 		_previousSelectedCandidate = null;
 	}
+
+	private void TextBox_TextChanged(object sender, TextChangedEventArgs e) => InvalidInputInfoDisplayer.Visibility = Visibility.Collapsed;
 }

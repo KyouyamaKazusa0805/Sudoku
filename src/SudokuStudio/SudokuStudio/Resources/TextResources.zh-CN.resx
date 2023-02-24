@@ -540,6 +540,15 @@
   <data name="AnalyzePage_Uniqueness" xml:space="preserve">
     <value>盘面唯一性：</value>
   </data>
+  <data name="DrawingPage_InputCharacter" xml:space="preserve">
+    <value>输入代数用的字符：</value>
+  </data>
+  <data name="DrawingPage_InputCharacterIsInvalid" xml:space="preserve">
+    <value>只能输入单个字符哦 :)</value>
+  </data>
+  <data name="DrawingPage_InputCharacterTextBoxPlaceholder" xml:space="preserve">
+    <value>如：a、x、y 之类</value>
+  </data>
   <data name="DrawingPage_Intro" xml:space="preserve">
     <value>这个页面你可以使用基本的绘图功能，为题目配色进行调整。</value>
   </data>

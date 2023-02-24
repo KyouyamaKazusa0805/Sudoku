@@ -537,6 +537,15 @@
   <data name="AnalyzePage_Uniqueness" xml:space="preserve">
     <value>Solution Uniqueness: </value>
   </data>
+  <data name="DrawingPage_InputCharacter" xml:space="preserve">
+    <value>Input character as a baba group: </value>
+  </data>
+  <data name="DrawingPage_InputCharacterIsInvalid" xml:space="preserve">
+    <value>Single character required :)</value>
+  </data>
+  <data name="DrawingPage_InputCharacterTextBoxPlaceholder" xml:space="preserve">
+    <value>e.g. a, x, z, etc.</value>
+  </data>
   <data name="DrawingPage_Intro" xml:space="preserve">
     <value>This page allows you drawing onto the sudoku grid.</value>
   </data>
