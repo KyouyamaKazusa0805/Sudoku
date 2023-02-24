@@ -216,7 +216,11 @@ public sealed partial class DrawingPage : Page
 					return false;
 				}
 
-				if (_localView.View.Exists(element => element is LinkViewNode { Start.Cells: [var c1], End.Cells: [var c2] } && c1 == candidate1 && c2 == candidate2, out var foundNode))
+				var cell1 = candidate1 / 9;
+				var cell2 = candidate2 / 9;
+				var digit1 = candidate1 % 9;
+				var digit2 = candidate2 % 9;
+				if (_localView.View.Exists(predicate, out var foundNode))
 				{
 					_localView.View.Remove(foundNode);
 				}
@@ -230,6 +234,12 @@ public sealed partial class DrawingPage : Page
 				UpdateViewUnit();
 
 				break;
+
+
+				bool predicate(ViewNode element)
+					=> element is LinkViewNode { Start: { Cells: [var c1], Digit: var d1 }, End: { Cells: [var c2], Digit: var d2 } }
+					&& c1 == cell1 && c2 == cell2
+					&& d1 == digit1 && d2 == digit2;
 			}
 		}
 
