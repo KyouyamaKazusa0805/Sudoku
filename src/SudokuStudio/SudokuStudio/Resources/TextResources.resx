@@ -543,6 +543,9 @@
   <data name="DrawingPage_SelectColor" xml:space="preserve">
     <value>Select color: </value>
   </data>
+  <data name="DrawingPage_SelectLinkType" xml:space="preserve">
+    <value>Select link type: </value>
+  </data>
   <data name="DrawingPage_SelectMode" xml:space="preserve">
     <value>Select Mode: </value>
   </data>
@@ -963,6 +966,15 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="_DrawingMode_None" xml:space="preserve">
     <value>None</value>
+  </data>
+  <data name="_Inference_Default" xml:space="preserve">
+    <value>Cell-cell links</value>
+  </data>
+  <data name="_Inference_Strong" xml:space="preserve">
+    <value>Strong</value>
+  </data>
+  <data name="_Inference_Weak" xml:space="preserve">
+    <value>Weak</value>
   </data>
   <data name="_ProgramName" xml:space="preserve">
     <value>Sudoku Studio</value>

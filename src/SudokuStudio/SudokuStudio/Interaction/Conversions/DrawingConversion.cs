@@ -7,6 +7,14 @@ internal static class DrawingConversion
 {
 	public static int GetDrawingModeIndex(DrawingMode drawingMode) => (int)(drawingMode - 1);
 
+	public static int GetLinkTypeIndex(Inference inference)
+		=> inference switch
+		{
+			Inference.Strong => 0,
+			Inference.Weak => 1,
+			Inference.Default => 2
+		};
+
 	public static Brush GetBrush(Color color) => new SolidColorBrush(color);
 
 	public static Brush GetSelectedBrush(int currentColorIndex)

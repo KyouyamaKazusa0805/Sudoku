@@ -546,6 +546,9 @@
   <data name="DrawingPage_SelectColor" xml:space="preserve">
     <value>选择颜色：</value>
   </data>
+  <data name="DrawingPage_SelectLinkType" xml:space="preserve">
+    <value>选择链的关系类型：</value>
+  </data>
   <data name="DrawingPage_SelectMode" xml:space="preserve">
     <value>选择模式：</value>
   </data>
@@ -966,6 +969,15 @@
   </data>
   <data name="_DrawingMode_None" xml:space="preserve">
     <value>无</value>
+  </data>
+  <data name="_Inference_Default" xml:space="preserve">
+    <value>单元格之间的连接</value>
+  </data>
+  <data name="_Inference_Strong" xml:space="preserve">
+    <value>强链关系</value>
+  </data>
+  <data name="_Inference_Weak" xml:space="preserve">
+    <value>弱链关系</value>
   </data>
   <data name="_Token_Colon" xml:space="preserve">
     <value>：</value>

@@ -1849,6 +1849,22 @@ if (student is (name: var name, age: >= 18))
             Indicates the clicked mouse button.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Interaction.GridClickedEventArgs.GetHouse(System.Int32)">
+            <summary>
+            Try to calculate house indices for a candiate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <returns>
+            A triplet indicating block, row and column index. All three values are <![CDATA[>= 0 and < 9]]>.
+            </returns>
+        </member>
+        <member name="M:SudokuStudio.Interaction.GridClickedEventArgs.GetChute(System.Int32)">
+            <summary>
+            Try to calculate chute indices for a candidate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <returns>A pair of two values indicating chute indices in a mega-row and mega-column.</returns>
+        </member>
         <member name="T:SudokuStudio.Interaction.GridClickedEventHandler">
             <summary>
             Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.Clicked"/>.
@@ -2981,6 +2997,21 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to None.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources._Inference_Default">
+            <summary>
+              Looks up a localized string similar to Cell-cell links.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._Inference_Strong">
+            <summary>
+              Looks up a localized string similar to Strong.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources._Inference_Weak">
+            <summary>
+              Looks up a localized string similar to Weak.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources._ProgramName">
             <summary>
               Looks up a localized string similar to Sudoku Studio.
@@ -3699,6 +3730,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_SelectColor">
             <summary>
               Looks up a localized string similar to Select color: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_SelectLinkType">
+            <summary>
+              Looks up a localized string similar to Select link type: .
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_SelectMode">
@@ -6837,6 +6873,11 @@ if (student is (name: var name, age: >= 18))
             Defines a local view.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.DrawingPage._previousSelectedCandidate">
+            <summary>
+            Indicates the previously selected candidate.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.DrawingPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.DrawingPage"/> instance.
@@ -6844,6 +6885,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Views.Pages.DrawingPage.OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
             <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.DrawingPage.UpdateViewUnit">
+            <summary>
+            Try to update view unit.
+            </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.DrawingPage.InitializeComponent">
             <summary>
@@ -6872,6 +6918,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.DrawingPage.LinkKindProperty">
+            <summary>
+            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.LinkKind"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.LinkKind"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPaletteProperty">
             <summary>
             Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette"/>.
@@ -6886,6 +6938,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode">
             <summary>
             Indicates the selected drawing mode.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.DrawingPage.LinkKind">
+            <summary>
+            Indicates the link type.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette">

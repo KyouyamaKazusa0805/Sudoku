@@ -187,6 +187,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cell-cell links.
+        /// </summary>
+        internal static string _Inference_Default {
+            get {
+                return ResourceManager.GetString("_Inference_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strong.
+        /// </summary>
+        internal static string _Inference_Strong {
+            get {
+                return ResourceManager.GetString("_Inference_Strong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weak.
+        /// </summary>
+        internal static string _Inference_Weak {
+            get {
+                return ResourceManager.GetString("_Inference_Weak", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sudoku Studio.
         /// </summary>
         internal static string _ProgramName {
@@ -1479,6 +1506,15 @@ namespace SudokuStudio.Resources {
         internal static string DrawingPage_SelectColor {
             get {
                 return ResourceManager.GetString("DrawingPage_SelectColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select link type: .
+        /// </summary>
+        internal static string DrawingPage_SelectLinkType {
+            get {
+                return ResourceManager.GetString("DrawingPage_SelectLinkType", resourceCulture);
             }
         }
         

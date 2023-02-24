@@ -151,6 +151,16 @@
 								Click="ColorPaletteButton_Click" />
 						</Grid>
 					</Grid>
+					<Grid ColumnDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=DrawingPage_SelectLinkType}" VerticalAlignment="Center" />
+						<ComboBox
+							x:Name="LinkTypeChoser" Grid.Column="1" Width="200"
+							SelectedIndex="{x:Bind cvt:DrawingConversion.GetLinkTypeIndex(LinkKind),Mode=TwoWay,BindBack=SetLinkType}">
+							<ComboBoxItem Content="{m:R Key=_Inference_Strong}" Tag="Strong" />
+							<ComboBoxItem Content="{m:R Key=_Inference_Weak}" Tag="Weak" />
+							<ComboBoxItem Content="{m:R Key=_Inference_Default}" Tag="Default" />
+						</ComboBox>
+					</Grid>
 				</StackPanel>
 			</Grid>
 		</StackPanel>
