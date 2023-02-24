@@ -362,8 +362,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	///	<para>Triggers <see cref="Clicked"/> event.</para>
 	///	<para><inheritdoc cref="TriggerGridUpdated(GridUpdatedBehavior, object)" path="//summary/para[2]"/></para>
 	/// </summary>
+	/// <param name="mouseButton">Indicates the mouse button clicked.</param>
 	/// <param name="candidate">The candidate.</param>
-	internal void TriggerClicked(int candidate) => Clicked?.Invoke(this, new(candidate));
+	internal void TriggerClicked(MouseButton mouseButton, int candidate) => Clicked?.Invoke(this, new(mouseButton, candidate));
 
 	/// <summary>
 	/// <para>Try to set puzzle, with a <see cref="bool"/> value indicating whether undoing and redoing stacks should be cleared.</para>

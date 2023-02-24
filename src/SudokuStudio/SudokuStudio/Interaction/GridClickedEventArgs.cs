@@ -9,8 +9,9 @@ public sealed class GridClickedEventArgs : EventArgs
 	/// <summary>
 	/// Initializes a <see cref="GridClickedEventArgs"/> instance.
 	/// </summary>
+	/// <param name="mouseButton">Indicates the mouse button clicked.</param>
 	/// <param name="candidate">The candidate.</param>
-	public GridClickedEventArgs(int candidate) => Candidate = candidate;
+	public GridClickedEventArgs(MouseButton mouseButton, int candidate) => (MouseButton, Candidate) = (mouseButton, candidate);
 
 
 	/// <summary>
@@ -47,4 +48,9 @@ public sealed class GridClickedEventArgs : EventArgs
 	/// </summary>
 	public (int Megarow, int Megacolumn) Chutes
 		=> ((Cell.ToHouseIndex(HouseType.Row) - 9) / 3, (Cell.ToHouseIndex(HouseType.Column) - 18) / 3);
+
+	/// <summary>
+	/// Indicates the clicked mouse button.
+	/// </summary>
+	public MouseButton MouseButton { get; }
 }

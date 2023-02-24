@@ -132,16 +132,26 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	/// <param name="node">The node.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Contains(ViewNode node)
+	public bool Contains(ViewNode node) => Exists(element => element == node, out _);
+
+	/// <summary>
+	/// Determines whether the current collection contains a <see cref="ViewNode"/> instance whose value satisfies the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition to check for each node.</param>
+	/// <param name="node">The found node.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool Exists(Predicate<ViewNode> predicate, [NotNullWhen(true)] out ViewNode? node)
 	{
 		foreach (var element in _nodes)
 		{
-			if (element == node)
+			if (predicate(element))
 			{
+				node = element;
 				return true;
 			}
 		}
 
+		node = null;
 		return false;
 	}
 

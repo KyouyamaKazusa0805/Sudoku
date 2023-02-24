@@ -56,25 +56,55 @@ public sealed partial class DrawingPage : Page
 
 	private void SudokuPane_Clicked(SudokuPane sender, GridClickedEventArgs e)
 	{
-		switch (this, e)
+		switch (this)
 		{
-			case ({ SelectedMode: DrawingMode.Cell, SelectedColorIndex: var index and not -1 }, { Cell: var cell })
-			when UserDefinedColorPalette[index].GetIdentifier() is var id:
+			case { SelectedMode: DrawingMode.Cell, SelectedColorIndex: var index and not -1 }:
 			{
-				_localView.View.Add(new CellViewNode(id, cell));
+				switch (e)
+				{
+					case { Cell: var cell, MouseButton: MouseButton.Left }:
+					{
+						if (_localView.View.Exists(element => element is CellViewNode { Cell: var c } && c == cell, out var foundNode))
+						{
+							_localView.View.Remove(foundNode);
+						}
+						else
+						{
+							var id = UserDefinedColorPalette[index].GetIdentifier();
+							_localView.View.Add(new CellViewNode(id, cell));
+						}
 
-				SudokuPane.ViewUnit = null; // Change the reference to update view.
-				SudokuPane.ViewUnit = _localView;
+						SudokuPane.ViewUnit = null; // Change the reference to update view.
+						SudokuPane.ViewUnit = _localView;
+
+						break;
+					}
+				}
 
 				break;
 			}
-			case ({ SelectedMode: DrawingMode.Candidate, SelectedColorIndex: var index and not -1 }, { Candidate: var candidate })
-			when UserDefinedColorPalette[index].GetIdentifier() is var id:
+			case { SelectedMode: DrawingMode.Candidate, SelectedColorIndex: var index and not -1 }:
 			{
-				_localView.View.Add(new CandidateViewNode(id, candidate));
+				switch (e)
+				{
+					case { Candidate: var candidate, MouseButton: MouseButton.Left }:
+					{
+						if (_localView.View.Exists(element => element is CandidateViewNode { Candidate: var c } && c == candidate, out var foundNode))
+						{
+							_localView.View.Remove(foundNode);
+						}
+						else
+						{
+							var id = UserDefinedColorPalette[index].GetIdentifier();
+							_localView.View.Add(new CandidateViewNode(id, candidate));
+						}
 
-				SudokuPane.ViewUnit = null; // Change the reference to update view.
-				SudokuPane.ViewUnit = _localView;
+						SudokuPane.ViewUnit = null; // Change the reference to update view.
+						SudokuPane.ViewUnit = _localView;
+
+						break;
+					}
+				}
 
 				break;
 			}

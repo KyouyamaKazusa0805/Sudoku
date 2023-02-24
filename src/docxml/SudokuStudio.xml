@@ -1812,10 +1812,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.GridClickedEventArgs.#ctor(System.Int32)">
+        <member name="M:SudokuStudio.Interaction.GridClickedEventArgs.#ctor(SudokuStudio.Interaction.MouseButton,System.Int32)">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Interaction.GridClickedEventArgs"/> instance.
             </summary>
+            <param name="mouseButton">Indicates the mouse button clicked.</param>
             <param name="candidate">The candidate.</param>
         </member>
         <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.Candidate">
@@ -1841,6 +1842,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.Chutes">
             <summary>
             Indicates the chutes the current cell lines in.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.MouseButton">
+            <summary>
+            Indicates the clicked mouse button.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.GridClickedEventHandler">
@@ -1970,6 +1976,26 @@ if (student is (name: var name, age: >= 18))
             <param name="sender">An object which triggers the event.</param>
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.MouseButton">
+            <summary>
+            Defines a mouse button.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.MouseButton.Left">
+            <summary>
+            Indicates the mouse button is left button.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.MouseButton.Right">
+            <summary>
+            Indicates the mouse button is right button.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.MouseButton.Middle">
+            <summary>
+            Indicates the mouse button is middle button (mouse wheel).
+            </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.OpenFileFailedEventArgs">
             <summary>
@@ -5376,11 +5402,12 @@ if (student is (name: var name, age: >= 18))
             <param name="value">The new value to assign.</param>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.TriggerClicked(System.Int32)">
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.TriggerClicked(SudokuStudio.Interaction.MouseButton,System.Int32)">
             <summary>
             <para>Triggers <see cref="E:SudokuStudio.Views.Controls.SudokuPane.Clicked"/> event.</para>
             <para><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)" path="//summary/para[2]"/></para>
             </summary>
+            <param name="mouseButton">Indicates the mouse button clicked.</param>
             <param name="candidate">The candidate.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,System.Boolean)">
