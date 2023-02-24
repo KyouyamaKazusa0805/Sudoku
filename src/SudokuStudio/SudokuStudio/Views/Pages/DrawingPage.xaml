@@ -67,7 +67,7 @@
 					UserDefinedColorPalette="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.UserDefinedColorPalette,Mode=OneWay}"
 					Clicked="SudokuPane_Clicked"
 				/>
-				<StackPanel Grid.Column="1" Spacing="24">
+				<StackPanel Grid.Column="1">
 					<Grid ColumnDefinitions="Auto,*">
 						<TextBlock VerticalAlignment="Center" Text="{m:R Key=DrawingPage_SelectMode}" />
 						<ComboBox
@@ -82,7 +82,7 @@
 						</ComboBox>
 					</Grid>
 					<Grid
-						RowDefinitions="Auto,*" ColumnDefinitions="Auto,*"
+						RowDefinitions="Auto,*" ColumnDefinitions="Auto,*" Margin="0,24,0,0"
 						Visibility="{x:Bind cvt:DrawingConversion.GetColorPaletteSelectorVisibility(SelectedMode),Mode=OneWay}">
 						<TextBlock Text="{m:R Key=DrawingPage_SelectColor}" Margin="0,0,0,6" />
 						<Rectangle
@@ -154,7 +154,7 @@
 						</Grid>
 					</Grid>
 					<Grid
-						ColumnDefinitions="Auto,*"
+						ColumnDefinitions="Auto,*" Margin="0,24,0,0"
 						Visibility="{x:Bind cvt:DrawingConversion.GetLinkKindSelectorVisibility(SelectedMode),Mode=OneWay}">
 						<TextBlock Text="{m:R Key=DrawingPage_SelectLinkType}" VerticalAlignment="Center" />
 						<ComboBox
@@ -166,7 +166,7 @@
 						</ComboBox>
 					</Grid>
 					<Grid
-						ColumnDefinitions="Auto,Auto,*"
+						ColumnDefinitions="Auto,Auto,*" Margin="0,24,0,0"
 						Visibility="{x:Bind cvt:DrawingConversion.GetBabaGroupVisibility(SelectedMode),Mode=OneWay}">
 						<TextBlock Text="{m:R Key=DrawingPage_InputCharacter}" VerticalAlignment="Center" />
 						<TextBox
