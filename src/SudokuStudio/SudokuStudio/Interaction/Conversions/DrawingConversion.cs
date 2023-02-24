@@ -18,7 +18,7 @@ internal static class DrawingConversion
 	public static Visibility GetColorPaletteSelectorVisibility(DrawingMode drawingMode)
 		=> drawingMode switch
 		{
-			DrawingMode.Cell or DrawingMode.Candidate or DrawingMode.Chute or DrawingMode.House => Visibility.Visible,
+			DrawingMode.Cell or DrawingMode.Candidate or DrawingMode.Chute or DrawingMode.House or DrawingMode.BabaGrouping => Visibility.Visible,
 			_ => Visibility.Collapsed
 		};
 

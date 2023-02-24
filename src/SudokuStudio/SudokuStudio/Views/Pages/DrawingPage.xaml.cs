@@ -238,34 +238,40 @@ public sealed partial class DrawingPage : Page
 
 	private bool CheckBabaGroupingNode(int index, GridClickedEventArgs e)
 	{
-		if (BabaGroupNameInput is null or [])
+		switch (BabaGroupNameInput)
 		{
-			return true;
-		}
-
-		if (BabaGroupNameInput is not [var character])
-		{
-			InvalidInputInfoDisplayer.Visibility = Visibility.Visible;
-			return true;
-		}
-
-		switch (e)
-		{
-			case { Candidate: var candidate }:
+			case null or []:
 			{
-				var cell = candidate / 9;
-				if (_localView.View.Exists(element => element is BabaGroupViewNode { Cell: var c } && c == cell, out var foundNode))
+				return true;
+			}
+			case [var character]:
+			{
+				switch (e)
 				{
-					_localView.View.Remove(foundNode);
-				}
-				else
-				{
-					var id = UserDefinedColorPalette[index].GetIdentifier();
-					_localView.View.Add(new BabaGroupViewNode(id, cell, (Utf8Char)character, Grid.MaxCandidatesMask));
+					case { Candidate: var candidate }:
+					{
+						var cell = candidate / 9;
+						if (_localView.View.Exists(element => element is BabaGroupViewNode { Cell: var c } && c == cell, out var foundNode))
+						{
+							_localView.View.Remove(foundNode);
+						}
+						else
+						{
+							var id = UserDefinedColorPalette[index].GetIdentifier();
+							_localView.View.Add(new BabaGroupViewNode(id, cell, (Utf8Char)character, Grid.MaxCandidatesMask));
+						}
+
+						UpdateViewUnit();
+
+						break;
+					}
 				}
 
-				UpdateViewUnit();
-
+				break;
+			}
+			default:
+			{
+				InvalidInputInfoDisplayer.Visibility = Visibility.Visible;
 				break;
 			}
 		}
@@ -311,6 +317,4 @@ public sealed partial class DrawingPage : Page
 	ClearField:
 		_previousSelectedCandidate = null;
 	}
-
-	private void TextBox_TextChanged(object sender, TextChangedEventArgs e) => InvalidInputInfoDisplayer.Visibility = Visibility.Collapsed;
 }

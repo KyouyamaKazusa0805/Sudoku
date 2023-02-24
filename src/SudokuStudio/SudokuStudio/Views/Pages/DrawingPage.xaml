@@ -166,16 +166,15 @@
 						</ComboBox>
 					</Grid>
 					<Grid
-						ColumnDefinitions="Auto,*,Auto"
+						ColumnDefinitions="Auto,Auto,*"
 						Visibility="{x:Bind cvt:DrawingConversion.GetBabaGroupVisibility(SelectedMode),Mode=OneWay}">
 						<TextBlock Text="{m:R Key=DrawingPage_InputCharacter}" VerticalAlignment="Center" />
 						<TextBox
-							Text="{x:Bind BabaGroupNameInput,Mode=TwoWay}" Grid.Column="1"
-							PlaceholderText="{m:R Key=DrawingPage_InputCharacterTextBoxPlaceholder}"
-							TextChanged="TextBox_TextChanged" />
+							Text="{x:Bind BabaGroupNameInput,Mode=TwoWay}" Grid.Column="1" Width="200"
+							PlaceholderText="{m:R Key=DrawingPage_InputCharacterTextBoxPlaceholder}" />
 						<TextBlock
-							x:Name="InvalidInputInfoDisplayer" Grid.Column="2" Text="{m:R Key=DrawingPage_InputCharacterIsInvalid}"
-							Foreground="Red" Visibility="Collapsed" />
+							x:Name="InvalidInputInfoDisplayer" Grid.Column="2" VerticalAlignment="Center"
+							Text="{m:R Key=DrawingPage_InputCharacterIsInvalid}" Foreground="Red" Visibility="Collapsed" />
 					</Grid>
 				</StackPanel>
 			</Grid>
