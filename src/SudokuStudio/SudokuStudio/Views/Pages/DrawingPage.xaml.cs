@@ -239,11 +239,11 @@ public sealed partial class DrawingPage : Page
 				bool predicate(ViewNode element)
 					=> element switch
 					{
-						LinkViewNode { Start: { Cells: [var c1], Digit: var d1 }, End: { Cells: [var c2], Digit: var d2 }, Inference: not Inference.Default }
-							=> c1 == cell1 && c2 == cell2 && d1 == digit1 && d2 == digit2
-							|| c2 == cell1 && c1 == cell2 && d2 == digit1 && d1 == digit2,
 						LinkViewNode { Start.Cells: [var c1], End.Cells: [var c2], Inference: Inference.Default }
-							=> c1 == cell1 && c2 == cell2 || c2 == cell1 && c1 == cell2
+							=> c1 == cell1 && c2 == cell2 || c2 == cell1 && c1 == cell2,
+						LinkViewNode { Start: { Cells: [var c1], Digit: var d1 }, End: { Cells: [var c2], Digit: var d2 } }
+							=> c1 == cell1 && c2 == cell2 && d1 == digit1 && d2 == digit2
+							|| c2 == cell1 && c1 == cell2 && d2 == digit1 && d1 == digit2
 					};
 			}
 		}
