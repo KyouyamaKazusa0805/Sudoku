@@ -55,7 +55,11 @@ public unsafe partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
-	public readonly int Count => _count;
+	public readonly int Count
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _count;
+	}
 
 	/// <inheritdoc/>
 	readonly int IStatusMapBase<CandidateMap>.Shifting => sizeof(long) << 3;
