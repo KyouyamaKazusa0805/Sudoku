@@ -1,0 +1,27 @@
+// This file stores all file nesting rules based on this whole solution.
+// Visual Studio version 16.9+ supports custom file nesting.
+
+{
+  "dependentFileProviders": {
+    "add": {
+      "fileToFile": {
+        "add": {
+          "DigitInputEventArgs.cs": [ "DigitInputEventHandler.cs" ],
+          "FailedReceivedDroppedFileEventArgs.cs": [ "FailedReceivedDroppedFileEventHandler.cs" ],
+          "FailedReceivedDroppedFileReason.cs": [ "FailedReceivedDroppedFileEventHandler.cs" ],
+          "GridClickedEventArgs.cs": [ "GridClickedEventHandler.cs" ],
+          "MouseButton.cs": [ "GridClickedEventHandler.cs" ],
+          "GridUpdatedEventArgs.cs": [ "GridUpdatedEventHandler.cs" ],
+          "GridUpdatedBehavior.cs": [ "GridUpdatedEventHandler.cs" ],
+          "OpenFileFailedEventArgs.cs": [ "OpenFileFailedEventHandler.cs" ],
+          "OpenFileFailedReason.cs": [ "OpenFileFailedEventHandler.cs" ],
+          "SaveFileFailedEventArgs.cs": [ "SaveFileFailedEventHandler.cs" ],
+          "SaveFileFailedReason.cs": [ "SaveFileFailedEventHandler.cs" ],
+          "SudokuPaneMouseWheelChangedEventArgs.cs": [ "SudokuPaneMouseWheelChangedEventHandler.cs" ],
+          "TechniqueGroupViewStepChosenEventArgs.cs": [ "TechniqueGroupViewStepChosenEventHandler.cs" ],
+        },
+        "addedExtension": {}
+      }
+    }
+  }
+}
