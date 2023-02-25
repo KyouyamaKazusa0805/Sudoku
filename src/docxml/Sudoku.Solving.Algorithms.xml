@@ -732,6 +732,23 @@
             <param name="map">The map.</param>
             <returns>The position.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Algorithms.Bitwise.BitwiseSolver.StringLengthOf(System.Char*)">
+            <summary>
+            Get the length of the specified string which is represented by a <see cref="T:System.Char"/>*.
+            </summary>
+            <param name="ptr">The pointer.</param>
+            <returns>The total length.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+            </exception>
+            <remarks>
+            In C#, this function is unsafe because the implementation of
+            <see cref="T:System.String"/> types between C and C# is totally different.
+            In C, <see cref="T:System.String"/> is like a <see cref="T:System.Char"/>* or a
+            <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
+            However, C# not.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Solving.Algorithms.Bitwise.Constants">
             <target name="class" when="constant">
 				<summary>

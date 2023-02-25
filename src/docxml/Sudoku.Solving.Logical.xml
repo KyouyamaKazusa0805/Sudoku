@@ -5411,9 +5411,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.Count">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.System#ISlicable{Sudoku#Solving#Logical#StepSearchers#StepSearcherCollection,Sudoku#Solving#Logical#IStepSearcher}#Length">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection.Item(System.Int32)">
             <inheritdoc/>
         </member>

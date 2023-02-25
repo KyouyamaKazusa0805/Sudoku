@@ -2966,9 +2966,6 @@ fixed (short* ptr = instance)
         <member name="P:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ICollection{System#Int32}#Count">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.System#ISlicable{TSelf,System#Int32}#Length">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.IStatusMapBase`1.Empty">
             <summary>
             Indicates the empty instance.

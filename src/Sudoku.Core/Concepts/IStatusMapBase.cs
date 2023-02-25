@@ -28,7 +28,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	ISelectClauseProvider<int>,
 	ISimpleFormattable,
 	ISimpleParsable<TSelf>,
-	ISlicable<TSelf, int>,
 	ISubtractionOperators<TSelf, TSelf, TSelf>
 	where TSelf : unmanaged, IStatusMapBase<TSelf>
 {
@@ -47,9 +46,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 
 	/// <inheritdoc/>
 	int ICollection<int>.Count => Count;
-
-	/// <inheritdoc/>
-	int ISlicable<TSelf, int>.Length => Count;
 
 
 	/// <summary>

@@ -349,7 +349,7 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 			_g = g;
 		}
 
-		switch (PointerOperations.StringLengthOf(puzzle))
+		switch (StringLengthOf(puzzle))
 		{
 			case 81:
 			{
@@ -989,6 +989,34 @@ public sealed unsafe class BitwiseSolver : ISimpleSolver
 	/// <returns>The position.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static byte BitPos(uint map) => MultiplyDeBruijnBitPosition32[map * 0x077CB531U >> 27];
+
+	/// <summary>
+	/// Get the length of the specified string which is represented by a <see cref="char"/>*.
+	/// </summary>
+	/// <param name="ptr">The pointer.</param>
+	/// <returns>The total length.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+	/// </exception>
+	/// <remarks>
+	/// In C#, this function is unsafe because the implementation of
+	/// <see cref="string"/> types between C and C# is totally different.
+	/// In C, <see cref="string"/> is like a <see cref="char"/>* or a
+	/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>.
+	/// However, C# not.
+	/// </remarks>
+	private static unsafe int StringLengthOf(char* ptr)
+	{
+		ArgumentNullException.ThrowIfNull(ptr);
+
+		var result = 0;
+		for (var p = ptr; *p != '\0'; p++)
+		{
+			result++;
+		}
+
+		return result;
+	}
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>

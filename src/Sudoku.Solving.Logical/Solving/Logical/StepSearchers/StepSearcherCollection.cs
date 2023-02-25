@@ -9,8 +9,7 @@ public sealed class StepSearcherCollection :
 	ICloneable<StepSearcherCollection>,
 	IEnumerable<IStepSearcher>,
 	IReadOnlyCollection<IStepSearcher>,
-	IReadOnlyList<IStepSearcher>,
-	ISlicable<StepSearcherCollection, IStepSearcher>
+	IReadOnlyList<IStepSearcher>
 {
 	/// <summary>
 	/// The internal array of <see cref="IStepSearcher"/>s.
@@ -30,13 +29,6 @@ public sealed class StepSearcherCollection :
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _stepSearchers.Length;
-	}
-
-	/// <inheritdoc/>
-	int ISlicable<StepSearcherCollection, IStepSearcher>.Length
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Count;
 	}
 
 
