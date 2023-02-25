@@ -11,6 +11,12 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:DrawingPage}">
+	<Page.Resources>
+		<Style x:Key="DrawingInfoChangerStyle" TargetType="Grid">
+			<Setter Property="Margin" Value="0,0,24,0" />
+		</Style>
+	</Page.Resources>
+
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="40">
 			<TextBlock Text="{m:R Key=DrawingPage_Intro}" />
@@ -81,7 +87,7 @@
 						</ComboBox>
 					</Grid>
 					<Grid
-						RowDefinitions="Auto,*" ColumnDefinitions="Auto,*" Margin="0,24,0,0"
+						RowDefinitions="Auto,*" ColumnDefinitions="Auto,*" Style="{StaticResource DrawingInfoChangerStyle}"
 						Visibility="{x:Bind cvt:DrawingConversion.GetColorPaletteSelectorVisibility(SelectedMode),Mode=OneWay}">
 						<TextBlock Text="{m:R Key=DrawingPage_SelectColor}" Margin="0,0,0,6" />
 						<Rectangle
@@ -153,7 +159,7 @@
 						</Grid>
 					</Grid>
 					<Grid
-						ColumnDefinitions="Auto,*" Margin="0,24,0,0"
+						ColumnDefinitions="Auto,*" Style="{StaticResource DrawingInfoChangerStyle}"
 						Visibility="{x:Bind cvt:DrawingConversion.GetLinkKindSelectorVisibility(SelectedMode),Mode=OneWay}">
 						<TextBlock Text="{m:R Key=DrawingPage_SelectLinkType}" VerticalAlignment="Center" />
 						<ComboBox
@@ -165,7 +171,7 @@
 						</ComboBox>
 					</Grid>
 					<Grid
-						ColumnDefinitions="Auto,Auto,*" Margin="0,24,0,0"
+						ColumnDefinitions="Auto,Auto,*" Style="{StaticResource DrawingInfoChangerStyle}"
 						Visibility="{x:Bind cvt:DrawingConversion.GetBabaGroupVisibility(SelectedMode),Mode=OneWay}">
 						<TextBlock Text="{m:R Key=DrawingPage_InputCharacter}" VerticalAlignment="Center" />
 						<TextBox
