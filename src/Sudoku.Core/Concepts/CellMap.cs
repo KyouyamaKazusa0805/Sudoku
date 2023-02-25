@@ -1,5 +1,4 @@
 ﻿#pragma warning disable IDE0032, IDE0064
-
 namespace Sudoku.Concepts;
 
 /// <summary>
@@ -13,7 +12,7 @@ namespace Sudoku.Concepts;
 /// <code><![CDATA[
 /// var cellMap = CellMap.Empty;
 /// cellMap += 0; // Adds 'r1c1' into the collection.
-/// cellMap.Add(0); // Adds 'r1c2' into the collection.
+/// cellMap.Add(1); // Adds 'r1c2' into the collection.
 /// cellMap.AddRange(stackalloc[] { 2, 3, 4 }); // Adds 'r1c345' into the collection.
 /// cellMap |= anotherCellMap; // Adds a list of another instance of type 'CellMap' into the current collection.
 /// ]]></code>
@@ -442,6 +441,12 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	static CellMap IStatusMapBase<CellMap>.Empty => Empty;
 
+	/// <inheritdoc/>
+	static CellMap IMinMaxValue<CellMap>.MaxValue => MaxValue;
+
+	/// <inheritdoc/>
+	static CellMap IMinMaxValue<CellMap>.MinValue => MinValue;
+
 
 	/// <inheritdoc/>
 	public readonly int this[int index]
@@ -583,7 +588,7 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(int item) => ((item < Shifting ? _low : _high) >> item % Shifting & 1) != 0;
+	public readonly bool Contains(int offset) => ((offset < Shifting ? _low : _high) >> offset % Shifting & 1) != 0;
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override readonly partial bool Equals(object? obj);
@@ -714,7 +719,12 @@ public unsafe partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly OneDimensionalArrayEnumerator<int> GetEnumerator() => Offsets.EnumerateImmutable();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Slices the current instance, and get the new instance with some of elements between two indices.
+	/// </summary>
+	/// <param name="start">The start index.</param>
+	/// <param name="count">The number of elements.</param>
+	/// <returns>The target instance.</returns>
 	public readonly CellMap Slice(int start, int count)
 	{
 		var result = Empty;
@@ -741,15 +751,6 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	public void AddRange(IEnumerable<int> offsets)
-	{
-		foreach (var offset in offsets)
-		{
-			Add(offset);
-		}
-	}
-
-	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddChecked(int offset)
 	{
@@ -764,6 +765,32 @@ public unsafe partial struct CellMap :
 		if (!older)
 		{
 			_count++;
+		}
+	}
+
+	/// <inheritdoc/>
+	public void AddRange(IEnumerable<int> offsets)
+	{
+		foreach (var offset in offsets)
+		{
+			Add(offset);
+		}
+	}
+
+	/// <inheritdoc cref="IStatusMapBase{TSelf}.AddRange(ReadOnlySpan{int})"/>
+	/// <remarks>
+	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
+	/// also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
+	/// this method will throw an exception to report about this.
+	/// </remarks>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when found at least one cell offset invalid.
+	/// </exception>
+	public void AddRangeChecked(IEnumerable<int> offsets)
+	{
+		foreach (var cell in offsets)
+		{
+			AddChecked(cell);
 		}
 	}
 
@@ -891,10 +918,11 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator +(scoped in CellMap collection, IEnumerable<int> cells)
+	public static CellMap operator +(scoped in CellMap collection, IEnumerable<int> offsets)
 	{
 		var result = collection;
-		result.AddRange(cells);
+		result.AddRange(offsets);
+
 		return result;
 	}
 
@@ -931,26 +959,26 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap[] operator &(scoped in CellMap cells, int subsetSize)
+	public static CellMap[] operator &(scoped in CellMap offsets, int subsetSize)
 	{
-		if (subsetSize == 0 || subsetSize > cells._count)
+		if (subsetSize == 0 || subsetSize > offsets._count)
 		{
 			return Array.Empty<CellMap>();
 		}
 
-		if (subsetSize == cells._count)
+		if (subsetSize == offsets._count)
 		{
-			return new[] { cells };
+			return new[] { offsets };
 		}
 
-		var n = cells._count;
+		var n = offsets._count;
 		var buffer = stackalloc int[subsetSize];
 		if (n <= 30 && subsetSize <= 30)
 		{
 			// Optimization: Use table to get the total number of result elements.
 			var totalIndex = 0;
 			var result = new CellMap[Combinatorial[n - 1, subsetSize - 1]];
-			f(subsetSize, n, subsetSize, cells.Offsets);
+			f(subsetSize, n, subsetSize, offsets.Offsets);
 			return result;
 
 
@@ -988,7 +1016,7 @@ public unsafe partial struct CellMap :
 		else
 		{
 			var result = new List<CellMap>();
-			f(subsetSize, n, subsetSize, cells.Offsets);
+			f(subsetSize, n, subsetSize, offsets.Offsets);
 			return result.ToArray();
 
 
@@ -1022,14 +1050,14 @@ public unsafe partial struct CellMap :
 		=> CreateByBits(left._high & right._high, left._low & right._low);
 
 	/// <inheritdoc/>
-	public static CellMap[] operator |(scoped in CellMap cells, int subsetSize)
+	public static CellMap[] operator |(scoped in CellMap offsets, int subsetSize)
 	{
-		if (subsetSize == 0 || cells is [])
+		if (subsetSize == 0 || offsets is [])
 		{
 			return Array.Empty<CellMap>();
 		}
 
-		var n = cells._count;
+		var n = offsets._count;
 
 		var desiredSize = 0;
 		var length = Min(n, subsetSize);
@@ -1042,7 +1070,7 @@ public unsafe partial struct CellMap :
 		var result = new List<CellMap>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRange(cells & i);
+			result.AddRange(offsets & i);
 		}
 
 		return result.ToArray();

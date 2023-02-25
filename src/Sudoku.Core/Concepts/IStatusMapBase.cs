@@ -70,12 +70,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <inheritdoc/>
 	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => TSelf.Empty;
 
-	/// <inheritdoc/>
-	static TSelf IMinMaxValue<TSelf>.MinValue => TSelf.MinValue;
-
-	/// <inheritdoc/>
-	static TSelf IMinMaxValue<TSelf>.MaxValue => TSelf.MaxValue;
-
 
 	/// <summary>
 	/// Adds a new offset into the current collection.
@@ -111,17 +105,8 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
 	/// this method will throw an exception to report about this.
 	/// </remarks>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when found at least one cell offset invalid.
-	/// </exception>
-	sealed void AddRangeChecked(IEnumerable<int> offsets)
-	{
-		const string error = "The value cannot be added because the cell offset is an invalid value.";
-		foreach (var cell in offsets)
-		{
-			Add(cell is < 0 or >= 81 ? throw new InvalidOperationException(error) : cell);
-		}
-	}
+	/// <exception cref="InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
+	void AddRangeChecked(IEnumerable<int> offsets);
 
 	/// <summary>
 	/// Set the specified offset as <see langword="false"/> value.
@@ -175,13 +160,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// Iterates on each element in this collection.
 	/// </summary>
 	/// <param name="action">The visitor that handles for each element in this collection.</param>
-	void ForEach(Action<int> action)
-	{
-		foreach (var cell in this)
-		{
-			action(cell);
-		}
-	}
+	void ForEach(Action<int> action);
 
 	/// <inheritdoc cref="ISet{T}.ExceptWith(IEnumerable{T})"/>
 	new void ExceptWith(IEnumerable<int> other);
@@ -198,9 +177,9 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <summary>
 	/// Determine whether the map contains the specified offset.
 	/// </summary>
-	/// <param name="item">The offset.</param>
+	/// <param name="offset">The offset.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	new bool Contains(int item);
+	new bool Contains(int offset);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	bool Equals(scoped in TSelf other);
@@ -491,27 +470,28 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	}
 
 	/// <summary>
-	/// Adds the specified list of <paramref name="cells"/> to the <paramref name="collection"/>,
+	/// Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
 	/// and returns the added result.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	/// <param name="cells">A list of cells to be added.</param>
+	/// <param name="offsets">A list of cells to be added.</param>
 	/// <returns>The result collection.</returns>
-	static abstract TSelf operator +(scoped in TSelf collection, IEnumerable<int> cells);
+	static abstract TSelf operator +(scoped in TSelf collection, IEnumerable<int> offsets);
 
 	/// <summary>
-	/// Adds the specified list of <paramref name="cells"/> to the <paramref name="collection"/>,
+	/// Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
 	/// and returns the added result.
-	/// This operator will check the validity of the argument <paramref name="cells"/>.
+	/// This operator will check the validity of the argument <paramref name="offsets"/>.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	/// <param name="cells">A list of cells to be added.</param>
+	/// <param name="offsets">A list of cells to be added.</param>
 	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual TSelf operator checked +(scoped in TSelf collection, IEnumerable<int> cells)
+	static virtual TSelf operator checked +(scoped in TSelf collection, IEnumerable<int> offsets)
 	{
 		var result = collection;
-		result.AddRangeChecked(cells);
+		result.AddRangeChecked(offsets);
+
 		return result;
 	}
 
@@ -644,7 +624,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// Gets all subsets of the current collection via the specified size
 	/// indicating the <b>maximum</b> number of elements of the each subset.
 	/// </summary>
-	/// <param name="cells">Indicates the base template cells.</param>
+	/// <param name="offsets">Indicates the base template cells.</param>
 	/// <param name="subsetSize">The size to get.</param>
 	/// <returns>
 	/// All possible subsets. If:
@@ -654,7 +634,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <description>Meaning</description>
 	/// </listheader>
 	/// <item>
-	/// <term><c><paramref name="subsetSize"/> &gt; <paramref name="cells"/>.Count</c></term>
+	/// <term><c><paramref name="subsetSize"/> &gt; <paramref name="offsets"/>.Count</c></term>
 	/// <description>Will return an empty array</description>
 	/// </item>
 	/// <item>
@@ -668,14 +648,14 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// coming from <c><![CDATA[cells & 1]]></c>,
 	/// <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
 	/// </remarks>
-	static virtual TSelf[] operator |(scoped in TSelf cells, int subsetSize)
+	static virtual TSelf[] operator |(scoped in TSelf offsets, int subsetSize)
 	{
-		if (subsetSize == 0 || cells is [])
+		if (subsetSize == 0 || offsets is [])
 		{
 			return Array.Empty<TSelf>();
 		}
 
-		var n = cells.Count;
+		var n = offsets.Count;
 		var desiredSize = 0;
 		var length = Min(n, subsetSize);
 		for (var i = 1; i <= length; i++)
@@ -687,7 +667,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 		var result = new List<TSelf>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRange(cells & i);
+			result.AddRange(offsets & i);
 		}
 
 		return result.ToArray();
