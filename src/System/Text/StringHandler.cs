@@ -247,9 +247,8 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped StringHandler other) => Equals(this, other);
 
-	/// <inheritdoc cref="IFixable{TSelf, TFixedVariable}.GetPinnableReference"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
 	public readonly ref readonly char GetPinnableReference() => ref MemoryMarshal.GetReference(_chars);
 
 	/// <summary>

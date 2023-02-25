@@ -12,7 +12,6 @@ namespace Sudoku.Concepts;
 public unsafe partial struct Grid :
 	IEnumerable<int>,
 	IEqualityOperators<Grid, Grid, bool>,
-	IFixable<Grid, short>,
 	IFormattable,
 	IMinMaxValue<Grid>,
 	IParsable<Grid>,
@@ -498,9 +497,6 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<int>.Count => 81;
 
-	/// <inheritdoc/>
-	readonly ref readonly short IFixable<Grid, short>.BlockReference => ref _values[0];
-
 
 	/// <summary>
 	/// Indicates the event handler property, to be triggered when a value in the current grid is modified.
@@ -868,9 +864,8 @@ public unsafe partial struct Grid :
 		return result;
 	}
 
-	/// <inheritdoc cref="IFixable{TSelf, TFixedVariable}.GetPinnableReference"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
 	public readonly ref readonly short GetPinnableReference() => ref _values[0];
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
@@ -1095,7 +1090,6 @@ public unsafe partial struct Grid :
 	/// <param name="index">The desired index.</param>
 	/// <returns>The reference to the mask that you want to get.</returns>
 	/// <remarks>
-	/// <para>
 	/// This method returns the reference, which means you can use this method as an l-value.
 	/// For example, if you want to use bitwise-or operator to update the value, you can use:
 	/// <code><![CDATA[
@@ -1107,14 +1101,6 @@ public unsafe partial struct Grid :
 	/// <c>grid.GetMaskRefAt(0) = grid.GetMaskRefAt(0) | mask</c>, and it can be replaced
 	/// with the expression <c>grid._values[0] = grid._values[0] | mask</c>,
 	/// meaning we update the mask at the first place (i.e. <c>r1c1</c>).
-	/// </para>
-	/// <para>
-	/// This method is a little bit different with <see cref="GetPinnableReference"/>.
-	/// This method returns an modifiable reference, therefore the return value is
-	/// <see langword="ref"/> <see cref="short"/> instead of <see langword="ref readonly"/> <see cref="short"/>
-	/// being used by that method, which means you cannot use it as an l-value to update the mask.
-	/// In addition, that method always returns the reference to the <b>first</b> element.
-	/// </para>
 	/// </remarks>
 	/// <seealso cref="GetPinnableReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1176,10 +1162,6 @@ public unsafe partial struct Grid :
 
 		return result;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	ref short IFixable<Grid, short>.GetPinnableReference() => ref _values[0];
 
 	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.

@@ -1767,9 +1767,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Grid.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.System#IFixable{Sudoku#Concepts#Grid,System#Int16}#BlockReference">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Grid.UserValueChanged">
             <summary>
             Indicates the event handler property, to be triggered when a value in the current grid is modified.
@@ -1986,7 +1983,41 @@ if (student is (name: var name, age: >= 18))
             <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetPinnableReference">
-            <inheritdoc cref="M:System.IFixable`2.GetPinnableReference"/>
+            <target name="method">
+				<summary>
+					Returns a reference as the fixed position of the current instance.
+					For example, the return value will be the pointer value that points to the zero-indexed
+					place in an array.
+				</summary>
+				<returns>A reference as the fixed position of the current instance.</returns>
+				<remarks>
+					Beginning with C# 7, we can customize the return value type of a <see langword="fixed" /> variable
+					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
+					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
+					of element type:
+					<code>
+<![CDATA[
+class ExampleType
+{
+    private fixed short _maskList[100];
+
+    public ref readonly short GetPinnableReference() => ref _maskList[0];
+}
+]]>
+					</code>
+					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
+					as the left-value.
+					<code>
+<![CDATA[
+var instance = new ExampleType();
+fixed (short* ptr = instance)
+{
+    // Operation here.
+}
+]]>
+					</code>
+				</remarks>
+			</target>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -2142,7 +2173,6 @@ if (student is (name: var name, age: >= 18))
             <param name="index">The desired index.</param>
             <returns>The reference to the mask that you want to get.</returns>
             <remarks>
-            <para>
             This method returns the reference, which means you can use this method as an l-value.
             For example, if you want to use bitwise-or operator to update the value, you can use:
             <code><![CDATA[
@@ -2154,14 +2184,6 @@ if (student is (name: var name, age: >= 18))
             <c>grid.GetMaskRefAt(0) = grid.GetMaskRefAt(0) | mask</c>, and it can be replaced
             with the expression <c>grid._values[0] = grid._values[0] | mask</c>,
             meaning we update the mask at the first place (i.e. <c>r1c1</c>).
-            </para>
-            <para>
-            This method is a little bit different with <see cref="M:Sudoku.Concepts.Grid.GetPinnableReference"/>.
-            This method returns an modifiable reference, therefore the return value is
-            <see langword="ref"/> <see cref="T:System.Int16"/> instead of <see langword="ref readonly"/> <see cref="T:System.Int16"/>
-            being used by that method, which means you cannot use it as an l-value to update the mask.
-            In addition, that method always returns the reference to the <b>first</b> element.
-            </para>
             </remarks>
             <seealso cref="M:Sudoku.Concepts.Grid.GetPinnableReference"/>
         </member>
@@ -2186,9 +2208,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Linq#ISelectClauseProvider{System#Int16}#Select``1(System.Func{System.Int16,``0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#IFixable{Sudoku#Concepts#Grid,System#Int16}#GetPinnableReference">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">

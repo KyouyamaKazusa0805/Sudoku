@@ -16,7 +16,6 @@ public readonly unsafe partial struct Utf8String :
 	IEnumerable<Utf8Char>,
 	IEqualityOperators<Utf8String, Utf8String, bool>,
 	IEquatable<Utf8String>,
-	IFixable<Utf8String, Utf8Char>,
 	IReadOnlyCollection<Utf8Char>,
 	IReadOnlyList<Utf8Char>
 {
@@ -101,9 +100,6 @@ public readonly unsafe partial struct Utf8String :
 		get => Length;
 	}
 
-	/// <inheritdoc/>
-	ref readonly Utf8Char IFixable<Utf8String, Utf8Char>.BlockReference => ref _value[0];
-
 
 	/// <summary>
 	/// Gets the reference of a character at the specified index in the current string.
@@ -184,9 +180,8 @@ public readonly unsafe partial struct Utf8String :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Contains(Utf8String s) => IndexOf(s) != -1;
 
-	/// <inheritdoc cref="IFixable{TSelf, TFixedVariable}.GetPinnableReference"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
 	public ref Utf8Char GetPinnableReference() => ref MemoryMarshal.GetArrayDataReference(_value);
 
 	/// <inheritdoc/>

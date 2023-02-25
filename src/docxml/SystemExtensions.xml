@@ -3325,7 +3325,41 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.Text.StringHandler.GetPinnableReference">
-            <inheritdoc cref="M:System.IFixable`2.GetPinnableReference"/>
+            <target name="method">
+				<summary>
+					Returns a reference as the fixed position of the current instance.
+					For example, the return value will be the pointer value that points to the zero-indexed
+					place in an array.
+				</summary>
+				<returns>A reference as the fixed position of the current instance.</returns>
+				<remarks>
+					Beginning with C# 7, we can customize the return value type of a <see langword="fixed" /> variable
+					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
+					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
+					of element type:
+					<code>
+<![CDATA[
+class ExampleType
+{
+    private fixed short _maskList[100];
+
+    public ref readonly short GetPinnableReference() => ref _maskList[0];
+}
+]]>
+					</code>
+					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
+					as the left-value.
+					<code>
+<![CDATA[
+var instance = new ExampleType();
+fixed (short* ptr = instance)
+{
+    // Operation here.
+}
+]]>
+					</code>
+				</remarks>
+			</target>
         </member>
         <member name="M:System.Text.StringHandler.GetPinnableReference(System.Boolean)">
             <summary>
@@ -5140,9 +5174,6 @@ fixed (short* ptr = instance)
         <member name="P:System.Utf8String.System#Collections#Generic#IReadOnlyCollection{System#Utf8Char}#Count">
             <inheritdoc/>
         </member>
-        <member name="P:System.Utf8String.System#IFixable{System#Utf8String,System#Utf8Char}#BlockReference">
-            <inheritdoc/>
-        </member>
         <member name="P:System.Utf8String.Item(System.Int32)">
             <summary>
             Gets the reference of a character at the specified index in the current string.
@@ -5174,7 +5205,41 @@ fixed (short* ptr = instance)
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:System.Utf8String.GetPinnableReference">
-            <inheritdoc cref="M:System.IFixable`2.GetPinnableReference"/>
+            <target name="method">
+				<summary>
+					Returns a reference as the fixed position of the current instance.
+					For example, the return value will be the pointer value that points to the zero-indexed
+					place in an array.
+				</summary>
+				<returns>A reference as the fixed position of the current instance.</returns>
+				<remarks>
+					Beginning with C# 7, we can customize the return value type of a <see langword="fixed" /> variable
+					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
+					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
+					of element type:
+					<code>
+<![CDATA[
+class ExampleType
+{
+    private fixed short _maskList[100];
+
+    public ref readonly short GetPinnableReference() => ref _maskList[0];
+}
+]]>
+					</code>
+					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
+					as the left-value.
+					<code>
+<![CDATA[
+var instance = new ExampleType();
+fixed (short* ptr = instance)
+{
+    // Operation here.
+}
+]]>
+					</code>
+				</remarks>
+			</target>
         </member>
         <member name="M:System.Utf8String.GetHashCode">
             <inheritdoc/>
