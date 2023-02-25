@@ -2422,13 +2422,7 @@ if (student is (name: var name, age: >= 18))
             <param name="nodes">The link view nodes.</param>
             <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
         </member>
-        <member name="T:SudokuStudio.Interaction.GeometryCollectionFactory">
-            <summary>
-            Represents a factory type that can creates a collection of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via the specified rule.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Media.Geometry"/>
-        </member>
-        <member name="M:SudokuStudio.Interaction.GeometryCollectionFactory.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
+        <member name="M:SudokuStudio.Interaction.PathCreator.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
             <summary>
             Creates a list of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via two <see cref="T:Windows.Foundation.Point"/>s indicating start and end point respectively,
             meaning the arrow cap lines besides the line.

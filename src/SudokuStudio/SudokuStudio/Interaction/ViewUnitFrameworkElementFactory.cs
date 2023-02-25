@@ -449,8 +449,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				continue;
 			}
 
-			_ = Converter.GetPosition(startCell * 9 + startDigit) is (var pt1x, var pt1y) pt1;
-			_ = Converter.GetPosition(endCell * 9 + endDigit) is (var pt2x, var pt2y) pt2;
+			_ = Converter.GetPosition(startCell * 9 + (inference == Inference.Default ? 4 : startDigit)) is (var pt1x, var pt1y) pt1;
+			_ = Converter.GetPosition(endCell * 9 + (inference == Inference.Default ? 4 : endDigit)) is (var pt2x, var pt2y) pt2;
 
 			var dashArray = (
 				inference switch
@@ -574,7 +574,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						{
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = Pane.ChainStrokeThickness,
-							Data = new GeometryGroup { Children = GeometryCollectionFactory.ArrowCap(pt1, pt2) },
+							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
 							Tag = ViewUnitFrameworkElementFactory.InternalTag
 						};
 					}
@@ -596,7 +596,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						{
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = Pane.ChainStrokeThickness,
-							Data = new GeometryGroup { Children = GeometryCollectionFactory.ArrowCap(pt1, pt2) },
+							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
 							Tag = ViewUnitFrameworkElementFactory.InternalTag
 						};
 					}
@@ -709,13 +709,13 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			var points = new HashSet<Point>();
 			foreach (var node in nodes)
 			{
-				if (node is not (_, ([var startCell, ..], var startDigit), ([var endCell, ..], var endDigit), _))
+				if (node is not (_, ([var startCell, ..], var startDigit), ([var endCell, ..], var endDigit), var kind))
 				{
 					continue;
 				}
 
-				points.Add(Converter.GetPosition(startCell * 9 + startDigit));
-				points.Add(Converter.GetPosition(endCell * 9 + endDigit));
+				points.Add(Converter.GetPosition(startCell * 9 + (kind == Inference.Default ? 4 : startDigit)));
+				points.Add(Converter.GetPosition(endCell * 9 + (kind == Inference.Default ? 4 : endDigit)));
 			}
 
 			foreach (var (_, candidate) in Conclusions)
@@ -726,14 +726,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			return points;
 		}
 	}
-}
 
-/// <summary>
-/// Represents a factory type that can creates a collection of <see cref="Geometry"/> instances via the specified rule.
-/// </summary>
-/// <seealso cref="Geometry"/>
-file static class GeometryCollectionFactory
-{
+
 	/// <summary>
 	/// Creates a list of <see cref="Geometry"/> instances via two <see cref="Point"/>s indicating start and end point respectively,
 	/// meaning the arrow cap lines besides the line.
@@ -741,7 +735,7 @@ file static class GeometryCollectionFactory
 	/// <param name="pt1">The start point.</param>
 	/// <param name="pt2">The end point.</param>
 	/// <returns>An instance of type <see cref="IEnumerable{T}"/> of <see cref="Geometry"/>.</returns>
-	public static GeometryCollection ArrowCap(Point pt1, Point pt2)
+	private static GeometryCollection ArrowCap(Point pt1, Point pt2)
 	{
 		var arrowLength = 10.0;
 		var theta = 30.0;
