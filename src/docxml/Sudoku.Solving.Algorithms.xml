@@ -756,36 +756,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblComplexMask">
-            <summary>
-            To keep mini rows still valid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblMaskSingle">
-            <summary>
-            Kill in other blocks locked column/box.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblShrinkSingle">
-            <summary>
-            Keep only rows with single.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblRowUniq">
-            <remarks>
-            1 is row not defined in block mode <c>1</c> to <c>111</c>.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblColumnSingle">
-            <summary>
-            Single in column applied to shrunk block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Algorithms.Bitwise.Constants.TblRowMask">
-            <summary>
-            Rows where single found: <c>000</c> to <c>111</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Algorithms.Bitwise.State">
             <summary>
             To describe a state for a current grid using binary values.
