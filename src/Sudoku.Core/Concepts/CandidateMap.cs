@@ -544,7 +544,7 @@ public unsafe partial struct CandidateMap :
 	public static CandidateMap operator &(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
 		var copied = left;
-		foreach (var pair in new LocalRefEnumerator(ref copied._bits[0], right._bits[0]))
+		foreach (var pair in new RefEnumerator(ref copied._bits[0], right._bits[0]))
 		{
 			pair.First &= pair.Second;
 		}
@@ -556,7 +556,7 @@ public unsafe partial struct CandidateMap :
 	public static CandidateMap operator |(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
 		var copied = left;
-		foreach (var pair in new LocalRefEnumerator(ref copied._bits[0], right._bits[0]))
+		foreach (var pair in new RefEnumerator(ref copied._bits[0], right._bits[0]))
 		{
 			pair.First |= pair.Second;
 		}
@@ -568,7 +568,7 @@ public unsafe partial struct CandidateMap :
 	public static CandidateMap operator ^(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
 		var copied = left;
-		foreach (var pair in new LocalRefEnumerator(ref copied._bits[0], right._bits[0]))
+		foreach (var pair in new RefEnumerator(ref copied._bits[0], right._bits[0]))
 		{
 			pair.First ^= pair.Second;
 		}
@@ -580,7 +580,7 @@ public unsafe partial struct CandidateMap :
 	public static CandidateMap operator -(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
 		var copied = left;
-		foreach (var pair in new LocalRefEnumerator(ref copied._bits[0], right._bits[0]))
+		foreach (var pair in new RefEnumerator(ref copied._bits[0], right._bits[0]))
 		{
 			pair.First &= ~pair.Second;
 		}
@@ -857,7 +857,7 @@ file readonly ref struct RefPair
 /// <summary>
 /// Defines an enumerator that iterates the one-dimensional array.
 /// </summary>
-file ref struct LocalRefEnumerator
+file ref struct RefEnumerator
 {
 	/// <summary>
 	/// Indicates the first reference.
@@ -876,12 +876,12 @@ file ref struct LocalRefEnumerator
 
 
 	/// <summary>
-	/// Initializes a <see cref="LocalRefEnumerator"/> instance via the specified two references to iterate.
+	/// Initializes a <see cref="RefEnumerator"/> instance via the specified two references to iterate.
 	/// </summary>
 	/// <param name="first">The first reference.</param>
 	/// <param name="second">The second reference.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal LocalRefEnumerator(ref long first, in long second)
+	internal RefEnumerator(ref long first, in long second)
 	{
 		_refFirst = ref first;
 		_refSecond = ref second;
@@ -899,7 +899,7 @@ file ref struct LocalRefEnumerator
 
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	public readonly LocalRefEnumerator GetEnumerator() => this;
+	public readonly RefEnumerator GetEnumerator() => this;
 
 	/// <summary>
 	/// Retrieve the iterator to make it points to the next element.
