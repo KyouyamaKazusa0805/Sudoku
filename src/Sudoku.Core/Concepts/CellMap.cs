@@ -22,7 +22,6 @@ namespace Sudoku.Concepts;
 [IsLargeStruct]
 [JsonConverter(typeof(Converter))]
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators | GeneratedOperator.ComparisonOperators)]
-[GeneratedOverloadingOperator(GeneratedOperator.Boolean)]
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
@@ -887,6 +886,12 @@ public unsafe partial struct CellMap :
 	public static bool operator !(scoped in CellMap offsets) => offsets ? false : true;
 
 	/// <inheritdoc/>
+	public static bool operator true(scoped in CellMap value) => value._count != 0;
+
+	/// <inheritdoc/>
+	public static bool operator false(scoped in CellMap value) => value._count == 0;
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator ~(scoped in CellMap offsets)
 		=> CreateByBits(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
@@ -1181,7 +1186,24 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CellMap IAdditionOperators<CellMap, int, CellMap>.operator checked +(CellMap left, int right)
+		=> right is >= 0 and < 81 ? left + right : throw new ArgumentOutOfRangeException(nameof(right));
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap IAdditionOperators<CellMap, IEnumerable<int>, CellMap>.operator +(CellMap left, IEnumerable<int> right) => left + right;
+
+	/// <inheritdoc/>
+	static CellMap IAdditionOperators<CellMap, IEnumerable<int>, CellMap>.operator checked +(CellMap left, IEnumerable<int> right)
+	{
+		var copied = left;
+		foreach (var element in right)
+		{
+			((IStatusMapBase<CellMap>)copied).AddChecked(element);
+		}
+
+		return copied;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1189,29 +1211,81 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>.operator -(CellMap left, IEnumerable<int> right) => left - right;
+	static CellMap ISubtractionOperators<CellMap, int, CellMap>.operator checked -(CellMap left, int right)
+		=> right is >= 0 and < 81 ? left - right : throw new ArgumentOutOfRangeException(nameof(right));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IMultiplyOperators<CellMap, int, CandidateMap>.operator *(CellMap left, int right) => left * right;
+	static CellMap ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>.operator -(CellMap left, IEnumerable<int> right) => left - right;
 
-	/// <summary>
-	/// Expands via the specified digit. This operator will check the validity of the argument <paramref name="right"/>.
-	/// </summary>
-	/// <param name="left">The base map.</param>
-	/// <param name="right">The digit.</param>
-	/// <returns>The result instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IMultiplyOperators<CellMap, int, CandidateMap>.operator checked *(CellMap left, int right)
+	/// <inheritdoc/>
+	static CellMap ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>.operator checked -(CellMap left, IEnumerable<int> right)
 	{
-		Argument.ThrowIfFalse(right is >= 0 and < 9, "The argument is invalid.");
+		var copied = left;
+		foreach (var element in right)
+		{
+			if (element is not (>= 0 and < 81))
+			{
+				throw new ArgumentException("Element in collection is invalid.", nameof(right));
+			}
 
-		return left * right;
+			((IStatusMapBase<CellMap>)copied).Remove(element);
+		}
+
+		return copied;
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap IModulusOperators<CellMap, CellMap, CellMap>.operator %(CellMap left, CellMap right) => left % right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CandidateMap IMultiplyOperators<CellMap, int, CandidateMap>.operator *(CellMap left, int right) => left * right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CandidateMap IMultiplyOperators<CellMap, int, CandidateMap>.operator checked *(CellMap left, int right)
+		=> right is >= 0 and < 9 ? left * right : throw new ArgumentOutOfRangeException(nameof(right));
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CellMap IStatusMapBase<CellMap>.operator checked +(scoped in CellMap collection, int offset)
+		=> offset is >= 0 and < 81 ? collection + collection : throw new ArgumentOutOfRangeException(nameof(offset));
+
+	/// <inheritdoc/>
+	static CellMap IStatusMapBase<CellMap>.operator checked +(scoped in CellMap collection, IEnumerable<int> offsets)
+	{
+		var copied = collection;
+		foreach (var element in offsets)
+		{
+			((IStatusMapBase<CellMap>)copied).AddChecked(element);
+		}
+
+		return copied;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CellMap IStatusMapBase<CellMap>.operator checked -(scoped in CellMap left, int right)
+		=> right is >= 0 and < 81 ? left - right : throw new ArgumentOutOfRangeException(nameof(right));
+
+	/// <inheritdoc/>
+	static CellMap IStatusMapBase<CellMap>.operator checked -(scoped in CellMap collection, IEnumerable<int> offsets)
+	{
+		var copied = collection;
+		foreach (var element in offsets)
+		{
+			if (element is not (>= 0 and < 81))
+			{
+				throw new ArgumentException("Element in collection is invalid.", nameof(offsets));
+			}
+
+			((IStatusMapBase<CellMap>)copied).Remove(element);
+		}
+
+		return copied;
+	}
 
 
 	/// <inheritdoc/>
@@ -1254,18 +1328,6 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
-	/// <inheritdoc/>
-	public static explicit operator checked CellMap(int[] offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			((IStatusMapBase<CellMap>)result).AddChecked(offset);
-		}
-
-		return result;
-	}
-
 	/// <summary>
 	/// Implicit cast from <see cref="CellMap"/> to <see cref="Int128"/>.
 	/// </summary>
@@ -1293,6 +1355,18 @@ public unsafe partial struct CellMap :
 		=> int128 >> 81 == 0
 			? CreateByInt128(int128)
 			: throw new OverflowException($"The base {nameof(Int128)} integer is greater than '{nameof(MaxValue)}'.");
+
+	/// <inheritdoc/>
+	static explicit IStatusMapBase<CellMap>.operator checked CellMap(int[] offsets)
+	{
+		var result = Empty;
+		foreach (var offset in offsets)
+		{
+			((IStatusMapBase<CellMap>)result).AddChecked(offset);
+		}
+
+		return result;
+	}
 
 	/// <inheritdoc/>
 	static implicit IStatusMapBase<CellMap>.operator CellMap(scoped Span<int> offsets)
@@ -1325,18 +1399,6 @@ public unsafe partial struct CellMap :
 		foreach (var offset in offsets)
 		{
 			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	static explicit IStatusMapBase<CellMap>.operator checked CellMap(int[] offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			((IStatusMapBase<CellMap>)result).AddChecked(offset);
 		}
 
 		return result;

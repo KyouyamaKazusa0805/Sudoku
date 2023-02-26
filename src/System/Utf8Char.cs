@@ -3,8 +3,7 @@
 /// <summary>
 /// Represents a character as a UTF-8 code unit.
 /// </summary>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
-[GeneratedOverloadingOperator(GeneratedOperator.ComparisonOperators)]
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators | GeneratedOperator.ComparisonOperators)]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,

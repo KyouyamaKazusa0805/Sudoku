@@ -66,12 +66,5 @@ public enum GeneratedOperator
 	/// <seealso cref="Inequality"/>
 	/// <seealso cref="LessThan"/>
 	/// <seealso cref="LessThanOrEqual"/>
-	ComparisonOperators = GreaterThan | GreaterThanOrEqual | LessThan | LessThanOrEqual,
-
-	/// <summary>
-	/// Indicates the equality operators (containing <see cref="True"/> and <see cref="False"/>).
-	/// </summary>
-	/// <seealso cref="True"/>
-	/// <seealso cref="False"/>
-	Boolean = True | False,
+	ComparisonOperators = GreaterThan | GreaterThanOrEqual | LessThan | LessThanOrEqual
 }

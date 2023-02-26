@@ -19,7 +19,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [IsLargeStruct]
 [JsonConverter(typeof(Converter))]
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators | GeneratedOperator.Boolean)]
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public unsafe partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, int, CandidateMap>,
 	IAdditionOperators<CandidateMap, IEnumerable<int>, CandidateMap>,
@@ -476,6 +476,12 @@ public unsafe partial struct CandidateMap :
 	public static bool operator !(scoped in CandidateMap offsets) => offsets ? false : true;
 
 	/// <inheritdoc/>
+	public static bool operator true(scoped in CandidateMap value) => value._count != 0;
+
+	/// <inheritdoc/>
+	public static bool operator false(scoped in CandidateMap value) => value._count == 0;
+
+	/// <inheritdoc/>
 	public static CandidateMap operator ~(scoped in CandidateMap offsets)
 	{
 		var result = offsets;
@@ -702,8 +708,25 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CandidateMap IAdditionOperators<CandidateMap, int, CandidateMap>.operator checked +(CandidateMap left, int right)
+		=> right is >= 0 and < 729 ? left + right : throw new ArgumentOutOfRangeException(nameof(right));
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap IAdditionOperators<CandidateMap, IEnumerable<int>, CandidateMap>.operator +(CandidateMap left, IEnumerable<int> right)
 		=> left + right;
+
+	/// <inheritdoc/>
+	static CandidateMap IAdditionOperators<CandidateMap, IEnumerable<int>, CandidateMap>.operator checked +(CandidateMap left, IEnumerable<int> right)
+	{
+		var copied = left;
+		foreach (var element in right)
+		{
+			((IStatusMapBase<CandidateMap>)copied).AddChecked(element);
+		}
+
+		return copied;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -712,13 +735,74 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CandidateMap ISubtractionOperators<CandidateMap, int, CandidateMap>.operator checked -(CandidateMap left, int right)
+		=> right is >= 0 and < 729 ? left - right : throw new ArgumentOutOfRangeException(nameof(right));
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap ISubtractionOperators<CandidateMap, IEnumerable<int>, CandidateMap>.operator -(CandidateMap left, IEnumerable<int> right)
 		=> left - right;
+
+	/// <inheritdoc/>
+	static CandidateMap ISubtractionOperators<CandidateMap, IEnumerable<int>, CandidateMap>.operator checked -(CandidateMap left, IEnumerable<int> right)
+	{
+		var copied = left;
+		foreach (var element in right)
+		{
+			if (element is not (>= 0 and < 81))
+			{
+				throw new ArgumentException("Element in collection is invalid.", nameof(right));
+			}
+
+			((IStatusMapBase<CandidateMap>)copied).Remove(element);
+		}
+
+		return copied;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap IModulusOperators<CandidateMap, CandidateMap, CandidateMap>.operator %(CandidateMap left, CandidateMap right)
 		=> left % right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CandidateMap IStatusMapBase<CandidateMap>.operator checked +(scoped in CandidateMap collection, int offset)
+		=> offset is >= 0 and < 81 ? collection + collection : throw new ArgumentOutOfRangeException(nameof(offset));
+
+	/// <inheritdoc/>
+	static CandidateMap IStatusMapBase<CandidateMap>.operator checked +(scoped in CandidateMap collection, IEnumerable<int> offsets)
+	{
+		var copied = collection;
+		foreach (var element in offsets)
+		{
+			((IStatusMapBase<CandidateMap>)copied).AddChecked(element);
+		}
+
+		return copied;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CandidateMap IStatusMapBase<CandidateMap>.operator checked -(scoped in CandidateMap left, int right)
+		=> right is >= 0 and < 81 ? left - right : throw new ArgumentOutOfRangeException(nameof(right));
+
+	/// <inheritdoc/>
+	static CandidateMap IStatusMapBase<CandidateMap>.operator checked -(scoped in CandidateMap collection, IEnumerable<int> offsets)
+	{
+		var copied = collection;
+		foreach (var element in offsets)
+		{
+			if (element is not (>= 0 and < 81))
+			{
+				throw new ArgumentException("Element in collection is invalid.", nameof(offsets));
+			}
+
+			((IStatusMapBase<CandidateMap>)copied).Remove(element);
+		}
+
+		return copied;
+	}
 
 
 	/// <inheritdoc/>

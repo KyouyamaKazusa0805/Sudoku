@@ -47,16 +47,6 @@
             Indicates <c><see langword="operator"/> <![CDATA[<=]]></c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Operator.True">
-            <summary>
-            Indicates <c><see langword="operator true"/></c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.Operator.False">
-            <summary>
-            Indicates <c><see langword="operator false"/></c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
             <summary>
             Defines a gathered data tuple.

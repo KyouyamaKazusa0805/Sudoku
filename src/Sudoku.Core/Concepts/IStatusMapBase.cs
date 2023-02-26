@@ -4,18 +4,15 @@
 /// Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
 /// </summary>
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
-public unsafe interface IStatusMapBase<[Self] TSelf> :
+public interface IStatusMapBase<[Self] TSelf> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
-	IBooleanOperators<TSelf>,
 	ICollection<int>,
 	IEnumerable,
 	IEnumerable<int>,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IFormattable,
-	ILogicalNotOperators<TSelf, bool>,
-	ILogicalOperators<TSelf, TSelf, TSelf>,
 	IMinMaxValue<TSelf>,
 	IParsable<TSelf>,
 	IReadOnlyCollection<int>,
@@ -147,10 +144,10 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	void CopyTo(int* arr, int length);
+	unsafe void CopyTo(int* arr, int length);
 
 	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
-	new void CopyTo(int[] array, int arrayIndex)
+	new unsafe void CopyTo(int[] array, int arrayIndex)
 	{
 		fixed (int* pArray = array)
 		{
@@ -165,7 +162,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// The target <see cref="Span{T}"/> instance.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed void CopyTo(scoped Span<int> span)
+	sealed unsafe void CopyTo(scoped Span<int> span)
 	{
 		fixed (int* ptr = span)
 		{
@@ -398,6 +395,15 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	static abstract bool operator !(scoped in TSelf offsets);
 
 	/// <summary>
+	/// Reverse status for all offsets, which means all <see langword="true"/> bits
+	/// will be set <see langword="false"/>, and all <see langword="false"/> bits
+	/// will be set <see langword="true"/>.
+	/// </summary>
+	/// <param name="offsets">The instance to negate.</param>
+	/// <returns>The negative result.</returns>
+	static abstract TSelf operator ~(scoped in TSelf offsets);
+
+	/// <summary>
 	/// Determines whether the specified <typeparamref name="TSelf"/> collection is not empty.
 	/// </summary>
 	/// <param name="cells">The collection.</param>
@@ -422,15 +428,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	static virtual bool operator !=(scoped in TSelf left, scoped in TSelf right) => !(left == right);
 
 	/// <summary>
-	/// Reverse status for all offsets, which means all <see langword="true"/> bits
-	/// will be set <see langword="false"/>, and all <see langword="false"/> bits
-	/// will be set <see langword="true"/>.
-	/// </summary>
-	/// <param name="offsets">The instance to negate.</param>
-	/// <returns>The negative result.</returns>
-	static abstract TSelf operator ~(scoped in TSelf offsets);
-
-	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
 	/// and returns the added result.
 	/// </summary>
@@ -447,12 +444,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be added.</param>
 	/// <returns>The result collection.</returns>
-	static virtual TSelf operator checked +(scoped in TSelf collection, int offset)
-	{
-		Argument.ThrowIfInvalid(offset is >= 0 and < 81, "The offset is invalid.");
-
-		return collection + offset;
-	}
+	static abstract TSelf operator checked +(scoped in TSelf collection, int offset);
 
 	/// <summary>
 	/// Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
@@ -471,14 +463,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offsets">A list of cells to be added.</param>
 	/// <returns>The result collection.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual TSelf operator checked +(scoped in TSelf collection, IEnumerable<int> offsets)
-	{
-		var result = collection;
-		result.AddRangeChecked(offsets);
-
-		return result;
-	}
+	static abstract TSelf operator checked +(scoped in TSelf collection, IEnumerable<int> offsets);
 
 	/// <summary>
 	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
@@ -496,13 +481,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual TSelf operator checked -(scoped in TSelf collection, int offset)
-	{
-		Argument.ThrowIfInvalid(offset is >= 0 and < 81, "The offset is invalid.");
-
-		return collection - offset;
-	}
+	static abstract TSelf operator checked -(scoped in TSelf collection, int offset);
 
 	/// <summary>
 	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
@@ -521,16 +500,7 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <param name="collection">The left instance.</param>
 	/// <param name="offsets">The right instance.</param>
 	/// <returns>The result.</returns>
-	static virtual TSelf operator checked -(scoped in TSelf collection, IEnumerable<int> offsets)
-	{
-		var result = collection;
-		foreach (var offset in offsets)
-		{
-			result = checked(result - offset);
-		}
-
-		return result;
-	}
+	static abstract TSelf operator checked -(scoped in TSelf collection, IEnumerable<int> offsets);
 
 	/// <summary>
 	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="left"/> instance
@@ -539,7 +509,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static virtual TSelf operator -(scoped in TSelf left, scoped in TSelf right) => left & ~right;
 
 	/// <summary>
@@ -660,18 +629,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool ILogicalNotOperators<TSelf, bool>.operator !(TSelf value) => !value;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IBooleanOperators<TSelf>.operator true(TSelf value) => value ? true : false;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IBooleanOperators<TSelf>.operator false(TSelf value) => value ? false : true;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<TSelf, TSelf, bool>.operator ==(TSelf left, TSelf right) => left == right;
 
 	/// <inheritdoc/>
@@ -697,14 +654,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static TSelf IBitwiseOperators<TSelf, TSelf, TSelf>.operator ^(TSelf left, TSelf right) => left ^ right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static TSelf ILogicalOperators<TSelf, TSelf, TSelf>.operator &(TSelf value, TSelf other) => value & other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static TSelf ILogicalOperators<TSelf, TSelf, TSelf>.operator |(TSelf value, TSelf other) => value | other;
 
 
 	/// <summary>

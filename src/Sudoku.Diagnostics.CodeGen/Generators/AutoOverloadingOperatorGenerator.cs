@@ -69,8 +69,10 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						Operator.GreaterThanOrEqual => op_GreaterThanOrEqual,
 						Operator.LessThan => op_LessThan,
 						Operator.LessThanOrEqual => op_LessThanOrEqual,
+#if false
 						Operator.True => op_True,
 						Operator.False => op_False,
+#endif
 						_ => default(Func<INamedTypeSymbol, string>?)
 					};
 
@@ -214,7 +216,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 					var crefText = isLargeStruct
 						? $@" cref=""global::System.Numerics.IComparisonOperators{{TSelf, TOther, TResult}}.{nameof(op_LessThanOrEqual)}(TSelf, TOther)"""
 						: string.Empty;
-					
+
 					return
 						$"""
 							/// <inheritdoc{crefText}/>
@@ -226,6 +228,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 						""";
 				}
 
+#if false
 				string op_True(INamedTypeSymbol typeSymbol)
 				{
 					var isLargeStruct = typeIsLargeStruct(typeSymbol, largeStructAttribute);
@@ -283,6 +286,7 @@ public sealed class AutoOverloadingOperatorGenerator : IIncrementalGenerator
 									=> {executingCode};
 						""";
 				}
+#endif
 			}
 
 			spc.AddSource(
@@ -335,6 +339,7 @@ file enum Operator : int
 	/// </summary>
 	LessThanOrEqual = 1 << 5,
 
+#if false
 	/// <summary>
 	/// Indicates <c><see langword="operator true"/></c>.
 	/// </summary>
@@ -344,6 +349,7 @@ file enum Operator : int
 	/// Indicates <c><see langword="operator false"/></c>.
 	/// </summary>
 	False = 1 << 7
+#endif
 }
 
 /// <summary>

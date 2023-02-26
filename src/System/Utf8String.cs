@@ -7,8 +7,7 @@ namespace System;
 /// <summary>
 /// Represents text as a sequence of UTF-8 code units.
 /// </summary>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
-[GeneratedOverloadingOperator(GeneratedOperator.ComparisonOperators)]
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators | GeneratedOperator.ComparisonOperators)]
 public readonly unsafe partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
