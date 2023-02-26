@@ -95,7 +95,7 @@ public interface IStatusMapBase<[Self] TSelf> :
 	/// Set the specified offset as <see langword="true"/> value, with range check.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when the specified cell offset is invalid.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the specified offset is invalid.</exception>
 	void AddChecked(int offset);
 
 	/// <summary>
@@ -116,7 +116,8 @@ public interface IStatusMapBase<[Self] TSelf> :
 	/// <inheritdoc cref="AddRange(ReadOnlySpan{int})"/>
 	/// <remarks>
 	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
-	/// also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
+	/// also checks for the validity of each offsets.
+	/// If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
 	/// this method will throw an exception to report about this.
 	/// </remarks>
 	/// <exception cref="InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
@@ -127,6 +128,45 @@ public interface IStatusMapBase<[Self] TSelf> :
 	/// </summary>
 	/// <param name="offset">The offset.</param>
 	new void Remove(int offset);
+
+	/// <summary>
+	/// Set the specified offset as <see langword="false"/> value, with range check.
+	/// </summary>
+	/// <param name="offset">The offset.</param>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the specified offset is invalid.</exception>
+	void RemoveChecked(int offset);
+
+	/// <summary>
+	/// Set the specified offsets as <see langword="false"/> value.
+	/// </summary>
+	/// <param name="offsets">The offsets to remove.</param>
+	sealed void RemoveRange(scoped ReadOnlySpan<int> offsets)
+	{
+		foreach (var cell in offsets)
+		{
+			Remove(cell);
+		}
+	}
+
+	/// <inheritdoc cref="RemoveRange(ReadOnlySpan{int})"/>
+	/// <remarks>
+	/// Different with the method <see cref="RemoveRange(IEnumerable{int})"/>, this method
+	/// also checks for the validity of each offsets.
+	/// If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
+	/// this method will throw an exception to report about this.
+	/// </remarks>
+	/// <exception cref="InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
+	void RemoveRange(IEnumerable<int> offsets);
+
+	/// <inheritdoc cref="RemoveRange(ReadOnlySpan{int})"/>
+	/// <remarks>
+	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
+	/// also checks for the validity of each offsets.
+	/// If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
+	/// this method will throw an exception to report about this.
+	/// </remarks>
+	/// <exception cref="InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
+	void RemoveRangeChecked(IEnumerable<int> offsets);
 
 	/// <summary>
 	/// Clear all bits.

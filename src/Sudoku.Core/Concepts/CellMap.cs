@@ -723,7 +723,6 @@ public unsafe partial struct CellMap :
 		}
 	}
 
-
 	/// <inheritdoc/>
 	public void AddRange(IEnumerable<int> offsets)
 	{
@@ -743,6 +742,15 @@ public unsafe partial struct CellMap :
 		if (older)
 		{
 			_count--;
+		}
+	}
+
+	/// <inheritdoc/>
+	public void RemoveRange(IEnumerable<int> offsets)
+	{
+		foreach (var offset in offsets)
+		{
+			Remove(offset);
 		}
 	}
 
@@ -768,35 +776,28 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void IStatusMapBase<CellMap>.AddChecked(int offset)
-	{
-		if (offset is not (>= 0 and < 81))
-		{
-			throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid.");
-		}
+		=> Add(offset is >= 0 and < 81 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid."));
 
-		scoped ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
-		var older = Contains(offset);
-		v |= checked(1L << offset % Shifting);
-		if (!older)
-		{
-			_count++;
-		}
-	}
-
-	/// <inheritdoc cref="IStatusMapBase{TSelf}.AddRange(ReadOnlySpan{int})"/>
-	/// <remarks>
-	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
-	/// also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
-	/// this method will throw an exception to report about this.
-	/// </remarks>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when found at least one cell offset invalid.
-	/// </exception>
+	/// <inheritdoc/>
 	void IStatusMapBase<CellMap>.AddRangeChecked(IEnumerable<int> offsets)
 	{
 		foreach (var cell in offsets)
 		{
 			((IStatusMapBase<CellMap>)this).AddChecked(cell);
+		}
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void IStatusMapBase<CellMap>.RemoveChecked(int offset)
+		=> Remove(offset is >= 0 and < 81 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid."));
+
+	/// <inheritdoc/>
+	void IStatusMapBase<CellMap>.RemoveRangeChecked(IEnumerable<int> offsets)
+	{
+		foreach (var cell in offsets)
+		{
+			((IStatusMapBase<CellMap>)this).RemoveChecked(cell);
 		}
 	}
 
@@ -1187,20 +1188,23 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap IAdditionOperators<CellMap, int, CellMap>.operator checked +(CellMap left, int right)
-		=> right is >= 0 and < 81 ? left + right : throw new ArgumentOutOfRangeException(nameof(right));
+	{
+		var copied = left;
+		((IStatusMapBase<CellMap>)copied).AddChecked(right);
+
+		return copied;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap IAdditionOperators<CellMap, IEnumerable<int>, CellMap>.operator +(CellMap left, IEnumerable<int> right) => left + right;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap IAdditionOperators<CellMap, IEnumerable<int>, CellMap>.operator checked +(CellMap left, IEnumerable<int> right)
 	{
 		var copied = left;
-		foreach (var element in right)
-		{
-			((IStatusMapBase<CellMap>)copied).AddChecked(element);
-		}
+		((IStatusMapBase<CellMap>)copied).AddRangeChecked(right);
 
 		return copied;
 	}
@@ -1212,7 +1216,12 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap ISubtractionOperators<CellMap, int, CellMap>.operator checked -(CellMap left, int right)
-		=> right is >= 0 and < 81 ? left - right : throw new ArgumentOutOfRangeException(nameof(right));
+	{
+		var copied = left;
+		((IStatusMapBase<CellMap>)left).RemoveChecked(right);
+
+		return copied;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1222,15 +1231,7 @@ public unsafe partial struct CellMap :
 	static CellMap ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>.operator checked -(CellMap left, IEnumerable<int> right)
 	{
 		var copied = left;
-		foreach (var element in right)
-		{
-			if (element is not (>= 0 and < 81))
-			{
-				throw new ArgumentException("Element in collection is invalid.", nameof(right));
-			}
-
-			((IStatusMapBase<CellMap>)copied).Remove(element);
-		}
+		((IStatusMapBase<CellMap>)copied).RemoveRangeChecked(right);
 
 		return copied;
 	}
@@ -1251,38 +1252,37 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap IStatusMapBase<CellMap>.operator checked +(scoped in CellMap collection, int offset)
-		=> offset is >= 0 and < 81 ? collection + collection : throw new ArgumentOutOfRangeException(nameof(offset));
+	{
+		var copied = collection;
+		((IStatusMapBase<CellMap>)copied).AddChecked(offset);
+
+		return copied;
+	}
 
 	/// <inheritdoc/>
 	static CellMap IStatusMapBase<CellMap>.operator checked +(scoped in CellMap collection, IEnumerable<int> offsets)
 	{
 		var copied = collection;
-		foreach (var element in offsets)
-		{
-			((IStatusMapBase<CellMap>)copied).AddChecked(element);
-		}
+		((IStatusMapBase<CellMap>)copied).AddRangeChecked(offsets);
 
 		return copied;
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IStatusMapBase<CellMap>.operator checked -(scoped in CellMap left, int right)
-		=> right is >= 0 and < 81 ? left - right : throw new ArgumentOutOfRangeException(nameof(right));
+	static CellMap IStatusMapBase<CellMap>.operator checked -(scoped in CellMap collection, int offset)
+	{
+		var copied = collection;
+		((IStatusMapBase<CellMap>)copied).RemoveChecked(offset);
+
+		return copied;
+	}
 
 	/// <inheritdoc/>
 	static CellMap IStatusMapBase<CellMap>.operator checked -(scoped in CellMap collection, IEnumerable<int> offsets)
 	{
 		var copied = collection;
-		foreach (var element in offsets)
-		{
-			if (element is not (>= 0 and < 81))
-			{
-				throw new ArgumentException("Element in collection is invalid.", nameof(offsets));
-			}
-
-			((IStatusMapBase<CellMap>)copied).Remove(element);
-		}
+		((IStatusMapBase<CellMap>)copied).RemoveRangeChecked(offsets);
 
 		return copied;
 	}

@@ -131,6 +131,9 @@
         <member name="M:Sudoku.Concepts.CandidateMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Clear">
             <inheritdoc/>
         </member>
@@ -141,15 +144,13 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.ReadOnlySpan{System.Int32})"/>
-            <remarks>
-            Different with the method <see cref="M:Sudoku.Concepts.CandidateMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
-            also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
-            this method will throw an exception to report about this.
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when found at least one cell offset invalid.
-            </exception>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#RemoveChecked(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#ISimpleFormattable#ToString(System.String)">
             <inheritdoc/>
@@ -731,6 +732,9 @@
         <member name="M:Sudoku.Concepts.CellMap.Remove(System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.Clear">
             <inheritdoc/>
         </member>
@@ -744,15 +748,13 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.ReadOnlySpan{System.Int32})"/>
-            <remarks>
-            Different with the method <see cref="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
-            also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
-            this method will throw an exception to report about this.
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when found at least one cell offset invalid.
-            </exception>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#RemoveChecked(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
@@ -2727,7 +2729,7 @@ fixed (short* ptr = instance)
             Set the specified offset as <see langword="true"/> value, with range check.
             </summary>
             <param name="offset">The offset.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified cell offset is invalid.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified offset is invalid.</exception>
         </member>
         <member name="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.ReadOnlySpan{System.Int32})">
             <summary>
@@ -2742,7 +2744,8 @@ fixed (short* ptr = instance)
             <inheritdoc cref="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.ReadOnlySpan{System.Int32})"/>
             <remarks>
             Different with the method <see cref="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
-            also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
+            also checks for the validity of each offsets.
+            If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
             this method will throw an exception to report about this.
             </remarks>
             <exception cref="T:System.InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
@@ -2752,6 +2755,39 @@ fixed (short* ptr = instance)
             Set the specified offset as <see langword="false"/> value.
             </summary>
             <param name="offset">The offset.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IStatusMapBase`1.RemoveChecked(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="false"/> value, with range check.
+            </summary>
+            <param name="offset">The offset.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified offset is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRange(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Set the specified offsets as <see langword="false"/> value.
+            </summary>
+            <param name="offsets">The offsets to remove.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRange(System.ReadOnlySpan{System.Int32})"/>
+            <remarks>
+            Different with the method <see cref="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
+            also checks for the validity of each offsets.
+            If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
+            this method will throw an exception to report about this.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRange(System.ReadOnlySpan{System.Int32})"/>
+            <remarks>
+            Different with the method <see cref="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
+            also checks for the validity of each offsets.
+            If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
+            this method will throw an exception to report about this.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
         </member>
         <member name="M:Sudoku.Concepts.IStatusMapBase`1.Clear">
             <summary>

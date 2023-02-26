@@ -358,6 +358,15 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
+	public void RemoveRange(IEnumerable<int> offsets)
+	{
+		foreach (var element in offsets)
+		{
+			Remove(element);
+		}
+	}
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => this = default;
 
@@ -381,29 +390,28 @@ public unsafe partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void IStatusMapBase<CandidateMap>.AddChecked(int offset)
-	{
-		if (offset is not (>= 0 and < 729))
-		{
-			throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid.");
-		}
+		=> Add(offset is >= 0 and < 729 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The candidate offset is invalid."));
 
-		Add(offset);
-	}
-
-	/// <inheritdoc cref="IStatusMapBase{TSelf}.AddRange(ReadOnlySpan{int})"/>
-	/// <remarks>
-	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
-	/// also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
-	/// this method will throw an exception to report about this.
-	/// </remarks>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when found at least one cell offset invalid.
-	/// </exception>
+	/// <inheritdoc/>
 	void IStatusMapBase<CandidateMap>.AddRangeChecked(IEnumerable<int> offsets)
 	{
 		foreach (var cell in offsets)
 		{
 			((IStatusMapBase<CandidateMap>)this).AddChecked(cell);
+		}
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void IStatusMapBase<CandidateMap>.RemoveChecked(int offset)
+		=> Remove(offset is >= 0 and < 729 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The candidate offset is invalid."));
+
+	/// <inheritdoc/>
+	void IStatusMapBase<CandidateMap>.RemoveRangeChecked(IEnumerable<int> offsets)
+	{
+		foreach (var cell in offsets)
+		{
+			((IStatusMapBase<CandidateMap>)this).RemoveChecked(cell);
 		}
 	}
 
@@ -703,13 +711,17 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IAdditionOperators<CandidateMap, int, CandidateMap>.operator +(CandidateMap left, int right)
-		=> left + right;
+	static CandidateMap IAdditionOperators<CandidateMap, int, CandidateMap>.operator +(CandidateMap left, int right) => left + right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap IAdditionOperators<CandidateMap, int, CandidateMap>.operator checked +(CandidateMap left, int right)
-		=> right is >= 0 and < 729 ? left + right : throw new ArgumentOutOfRangeException(nameof(right));
+	{
+		var copied = left;
+		((IStatusMapBase<CandidateMap>)copied).AddChecked(right);
+
+		return copied;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -717,26 +729,28 @@ public unsafe partial struct CandidateMap :
 		=> left + right;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap IAdditionOperators<CandidateMap, IEnumerable<int>, CandidateMap>.operator checked +(CandidateMap left, IEnumerable<int> right)
 	{
 		var copied = left;
-		foreach (var element in right)
-		{
-			((IStatusMapBase<CandidateMap>)copied).AddChecked(element);
-		}
+		((IStatusMapBase<CandidateMap>)copied).AddRangeChecked(right);
 
 		return copied;
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap ISubtractionOperators<CandidateMap, int, CandidateMap>.operator -(CandidateMap left, int right)
-		=> left - right;
+	static CandidateMap ISubtractionOperators<CandidateMap, int, CandidateMap>.operator -(CandidateMap left, int right) => left - right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap ISubtractionOperators<CandidateMap, int, CandidateMap>.operator checked -(CandidateMap left, int right)
-		=> right is >= 0 and < 729 ? left - right : throw new ArgumentOutOfRangeException(nameof(right));
+	{
+		var copied = left;
+		((IStatusMapBase<CandidateMap>)copied).RemoveChecked(right);
+
+		return copied;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -744,18 +758,11 @@ public unsafe partial struct CandidateMap :
 		=> left - right;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap ISubtractionOperators<CandidateMap, IEnumerable<int>, CandidateMap>.operator checked -(CandidateMap left, IEnumerable<int> right)
 	{
 		var copied = left;
-		foreach (var element in right)
-		{
-			if (element is not (>= 0 and < 81))
-			{
-				throw new ArgumentException("Element in collection is invalid.", nameof(right));
-			}
-
-			((IStatusMapBase<CandidateMap>)copied).Remove(element);
-		}
+		((IStatusMapBase<CandidateMap>)copied).RemoveRangeChecked(right);
 
 		return copied;
 	}
@@ -768,38 +775,39 @@ public unsafe partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap IStatusMapBase<CandidateMap>.operator checked +(scoped in CandidateMap collection, int offset)
-		=> offset is >= 0 and < 81 ? collection + collection : throw new ArgumentOutOfRangeException(nameof(offset));
-
-	/// <inheritdoc/>
-	static CandidateMap IStatusMapBase<CandidateMap>.operator checked +(scoped in CandidateMap collection, IEnumerable<int> offsets)
 	{
 		var copied = collection;
-		foreach (var element in offsets)
-		{
-			((IStatusMapBase<CandidateMap>)copied).AddChecked(element);
-		}
+		((IStatusMapBase<CandidateMap>)copied).AddChecked(offset);
 
 		return copied;
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IStatusMapBase<CandidateMap>.operator checked -(scoped in CandidateMap left, int right)
-		=> right is >= 0 and < 81 ? left - right : throw new ArgumentOutOfRangeException(nameof(right));
+	static CandidateMap IStatusMapBase<CandidateMap>.operator checked +(scoped in CandidateMap collection, IEnumerable<int> offsets)
+	{
+		var copied = collection;
+		((IStatusMapBase<CandidateMap>)copied).AddRangeChecked(offsets);
+
+		return copied;
+	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CandidateMap IStatusMapBase<CandidateMap>.operator checked -(scoped in CandidateMap collection, int offset)
+	{
+		var copied = collection;
+		((IStatusMapBase<CandidateMap>)copied).RemoveChecked(offset);
+
+		return copied;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap IStatusMapBase<CandidateMap>.operator checked -(scoped in CandidateMap collection, IEnumerable<int> offsets)
 	{
 		var copied = collection;
-		foreach (var element in offsets)
-		{
-			if (element is not (>= 0 and < 81))
-			{
-				throw new ArgumentException("Element in collection is invalid.", nameof(offsets));
-			}
-
-			((IStatusMapBase<CandidateMap>)copied).Remove(element);
-		}
+		((IStatusMapBase<CandidateMap>)copied).RemoveRangeChecked(offsets);
 
 		return copied;
 	}
