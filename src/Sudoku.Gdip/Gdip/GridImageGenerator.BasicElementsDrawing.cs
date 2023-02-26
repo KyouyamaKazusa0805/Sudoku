@@ -64,7 +64,7 @@ partial class GridImageGenerator
 		for (var cell = 0; cell < 81; cell++)
 		{
 			var mask = puzzle._values[cell];
-			switch (MaskToStatus(mask))
+			switch (MaskOperations.MaskToStatus(mask))
 			{
 				case CellStatus.Empty when showCandidates:
 				{

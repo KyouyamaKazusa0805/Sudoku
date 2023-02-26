@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Solving.Mechanism;
 
 /// <summary>
 /// Defines a complex solver, that uses complex algorithm to solve a puzzle, returning

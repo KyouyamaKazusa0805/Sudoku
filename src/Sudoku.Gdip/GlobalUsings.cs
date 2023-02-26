@@ -20,7 +20,7 @@ global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Presentation.Nodes.Grouped;
 global using Sudoku.Presentation.Nodes.Shapes;
+global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Solving;
 global using static System.MathF;
 global using static Sudoku.Drawing.ProjectWideConstants;
-global using static Sudoku.Runtime.MaskServices.MaskOperations;

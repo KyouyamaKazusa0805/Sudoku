@@ -864,9 +864,9 @@
             <summary>
             Defines an attribute that can be applied to a property in step searcher interface type,
             indicating the property is represented as a setting property, that can interact
-            with the <see cref="T:Sudoku.Solving.IComplexSolver`2"/> type.
+            with the <see cref="T:Sudoku.Solving.Mechanism.IComplexSolver`2"/> type.
             </summary>
-            <seealso cref="T:Sudoku.Solving.IComplexSolver`2"/>
+            <seealso cref="T:Sudoku.Solving.Mechanism.IComplexSolver`2"/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Annotations.StepSearcherRunningOptions">
             <summary>

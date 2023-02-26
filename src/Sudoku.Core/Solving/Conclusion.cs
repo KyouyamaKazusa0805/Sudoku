@@ -9,8 +9,7 @@
 /// will be greater; if those two hold same conclusion type, but one of those two holds
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
-[GeneratedOverloadingOperator(GeneratedOperator.ComparisonOperators)]
+[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators | GeneratedOperator.ComparisonOperators)]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion, bool>,

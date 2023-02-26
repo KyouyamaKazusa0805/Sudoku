@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Solving.Mechanism;
 
 /// <summary>
 /// Defines an instance that describes the result after executed the method
