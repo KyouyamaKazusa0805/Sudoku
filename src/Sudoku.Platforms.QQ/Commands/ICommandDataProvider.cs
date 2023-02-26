@@ -50,15 +50,15 @@ internal interface ICommandDataProvider
 	/// </summary>
 	/// <param name="rawCoordinate">The coordinate string value.</param>
 	/// <returns>
-	/// Returns a value that can be <see cref="CellMap"/>, <see cref="Candidates"/> and <see cref="int"/> value, where:
+	/// Returns a value that can be <see cref="CellMap"/>, <see cref="CandidateMap"/> and <see cref="int"/> value, where:
 	/// <list type="table">
 	/// <item>
 	/// <term><see cref="CellMap"/></term>
 	/// <description>The cells parsed if the string value can be parsed as <see cref="CellMap"/>.</description>
 	/// </item>
 	/// <item>
-	/// <term><see cref="Candidates"/></term>
-	/// <description>The candidates parsed if the string value can be parsed as <see cref="Candidates"/>.</description>
+	/// <term><see cref="CandidateMap"/></term>
+	/// <description>The candidates parsed if the string value can be parsed as <see cref="CandidateMap"/>.</description>
 	/// </item>
 	/// <item>
 	/// <term><see cref="int"/></term>
@@ -67,7 +67,7 @@ internal interface ICommandDataProvider
 	/// </list>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static OneOf<CellMap, Candidates, int> GetCoordinate(string rawCoordinate)
+	internal static OneOf<CellMap, CandidateMap, int> GetCoordinate(string rawCoordinate)
 	{
 		const StringSplitOptions splitOptions = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
 

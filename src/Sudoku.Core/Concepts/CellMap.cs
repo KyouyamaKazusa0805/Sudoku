@@ -28,7 +28,7 @@ public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
 	IDivisionOperators<CellMap, int, short>,
 	IModulusOperators<CellMap, CellMap, CellMap>,
-	IMultiplyOperators<CellMap, int, Candidates>,
+	IMultiplyOperators<CellMap, int, CandidateMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
 	ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>,
 	IStatusMapBase<CellMap>
@@ -1118,28 +1118,15 @@ public unsafe partial struct CellMap :
 	/// <param name="base">The base map.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result instance.</returns>
-	public static Candidates operator *(scoped in CellMap @base, int digit)
+	public static CandidateMap operator *(scoped in CellMap @base, int digit)
 	{
-		var result = Candidates.Empty;
+		var result = CandidateMap.Empty;
 		foreach (var cell in @base.Offsets)
 		{
-			result.AddAnyway(cell * 9 + digit);
+			result.Add(cell * 9 + digit);
 		}
 
 		return result;
-	}
-
-	/// <summary>
-	/// Expands via the specified digit. This operator will check the validity of the argument <paramref name="digit"/>.
-	/// </summary>
-	/// <param name="base">The base map.</param>
-	/// <param name="digit">The digit.</param>
-	/// <returns>The result instance.</returns>
-	public static Candidates operator checked *(scoped in CellMap @base, int digit)
-	{
-		Argument.ThrowIfFalse(digit is >= 0 and < 9, "The argument is invalid.");
-
-		return @base * digit;
 	}
 
 	/// <summary>
@@ -1164,23 +1151,23 @@ public unsafe partial struct CellMap :
 		return p;
 	}
 
-	/// <summary>
-	/// Get the sub-view mask of this map. This operator will check the validity
-	/// of the argument <paramref name="houseIndex"/>.
-	/// </summary>
-	/// <param name="map">The map.</param>
-	/// <param name="houseIndex">The house index.</param>
-	/// <returns>The mask.</returns>
-	public static short operator checked /(scoped in CellMap map, int houseIndex)
-	{
-		Argument.ThrowIfFalse(houseIndex is >= 0 and < 27);
-
-		return map / houseIndex;
-	}
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static short IDivisionOperators<CellMap, int, short>.operator /(CellMap left, int right) => left / right;
+
+	/// <summary>
+	/// Get the sub-view mask of this map. This operator will check the validity of the argument <paramref name="right"/>.
+	/// </summary>
+	/// <param name="left">The map.</param>
+	/// <param name="right">The house index.</param>
+	/// <returns>The mask.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static short IDivisionOperators<CellMap, int, short>.operator checked /(CellMap left, int right)
+	{
+		Argument.ThrowIfFalse(right is >= 0 and < 27);
+
+		return left / right;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1200,7 +1187,21 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IMultiplyOperators<CellMap, int, Candidates>.operator *(CellMap left, int right) => left * right;
+	static CandidateMap IMultiplyOperators<CellMap, int, CandidateMap>.operator *(CellMap left, int right) => left * right;
+
+	/// <summary>
+	/// Expands via the specified digit. This operator will check the validity of the argument <paramref name="right"/>.
+	/// </summary>
+	/// <param name="left">The base map.</param>
+	/// <param name="right">The digit.</param>
+	/// <returns>The result instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CandidateMap IMultiplyOperators<CellMap, int, CandidateMap>.operator checked *(CellMap left, int right)
+	{
+		Argument.ThrowIfFalse(right is >= 0 and < 9, "The argument is invalid.");
+
+		return left * right;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

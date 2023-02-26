@@ -530,7 +530,7 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 			}
 		}
 
-		if (!new Candidates(candidates) is not { Count: not 0 } elimMap)
+		if ((CandidateMap.Empty + candidates).PeerIntersection is not (var elimMap and not []))
 		{
 			return null;
 		}

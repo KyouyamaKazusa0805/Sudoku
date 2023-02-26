@@ -30,7 +30,7 @@ internal sealed record QiuDeadlyPatternLockedTypeStep(
 
 
 	[ResourceTextFormatter]
-	internal string CandidateStr() => new Candidates(Candidates).ToString();
+	internal string CandidateStr() => (CandidateMap.Empty + Candidates).ToString();
 
 	[ResourceTextFormatter]
 	internal string Quantifier() => Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };

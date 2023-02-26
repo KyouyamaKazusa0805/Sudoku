@@ -42,11 +42,11 @@ internal sealed record BinaryForcingChainsStep(
 	internal string EndCandStr() => RxCyNotation.ToCandidateString(FromOnPotential.Candidate);
 
 	/// <inheritdoc/>
-	protected override Candidates GetGreenPotentials(int viewIndex)
+	protected override CandidateMap GetGreenPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedGreenPotentials(viewIndex) : GetColorCandidates(viewIndex, true);
 
 	/// <inheritdoc/>
-	protected override Candidates GetRedPotentials(int viewIndex)
+	protected override CandidateMap GetRedPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedRedPotentials(viewIndex) : GetColorCandidates(viewIndex, false);
 
 	/// <inheritdoc/>
@@ -60,6 +60,6 @@ internal sealed record BinaryForcingChainsStep(
 	/// <param name="state">The state of the candidate you want to color.</param>
 	/// <returns>All colored candidates with a same state.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Candidates GetColorCandidates(int viewIndex, bool state)
+	private CandidateMap GetColorCandidates(int viewIndex, bool state)
 		=> GetColorCandidates(viewIndex == 0 ? FromOnPotential : FromOffPotential, state, state);
 }

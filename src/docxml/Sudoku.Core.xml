@@ -47,8 +47,25 @@
             </summary>
             <seealso cref="P:Sudoku.Concepts.IStatusMapBase`1.Shifting"/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance with the peer candidates of the specified candidate and a <see cref="T:System.Boolean"/>
+            value indicating whether the map will process itself with <see langword="true"/> value.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="withItself">Indicates whether the map will process itself with <see langword="true"/> value.</param>
+        </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Count">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.PeerIntersection">
+            <inheritdoc cref="P:Sudoku.Concepts.CellMap.PeerIntersection"/>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.StringChunks">
+            <summary>
+            Gets all chunks of the current collection. That means, the list of <see cref="T:System.String"/> representations
+            that describes all cell indices, grouped and collapsed with same row/column.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#Shifting">
             <inheritdoc/>
@@ -165,6 +182,9 @@
         <member name="M:Sudoku.Concepts.CandidateMap.op_LogicalNot(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_OnesComplement(Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Division(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc cref="M:System.Numerics.IDivisionOperators`3.op_Division(`0,`1)"/>
         </member>
@@ -180,9 +200,6 @@
         <member name="M:Sudoku.Concepts.CandidateMap.op_Subtraction(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_OnesComplement(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_BitwiseAnd(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
@@ -195,9 +212,23 @@
         <member name="M:Sudoku.Concepts.CandidateMap.op_Subtraction(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/summary"/>
+            </summary>
+            <param name="base">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/param[@name='base']"/>
+            </param>
+            <param name="template">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/param[@name='template']"/>
+            </param>
+            <returns><inheritdoc cref="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_BitwiseAnd(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc/>
-            <exception cref="T:System.NotImplementedException">Throws always.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.CandidateMap,System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IAdditionOperators{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap}#op_Addition(Sudoku.Concepts.CandidateMap,System.Int32)">
             <inheritdoc/>
@@ -211,18 +242,23 @@
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CandidateMap,System#Collections#Generic#IEnumerable{System#Int32},Sudoku#Concepts#CandidateMap}#op_Subtraction(Sudoku.Concepts.CandidateMap,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.CandidateMap,System.Int32)">
+        <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IModulusOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap}#op_Modulus(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(Sudoku.Concepts.CandidateMap)~Sudoku.Concepts.Candidates">
-            <summary>
-            Implicit cast. This method will be removed in the future.
-            </summary>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_Implicit(Sudoku.Concepts.CandidateMap@)~System.Int32[]">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(Sudoku.Concepts.Candidates)~Sudoku.Concepts.CandidateMap">
-            <summary>
-            Implicit cast. This method will be removed in the future.
-            </summary>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_Implicit(System.Span{System.Int32})~Sudoku.Concepts.CandidateMap">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_Implicit(System.ReadOnlySpan{System.Int32})~Sudoku.Concepts.CandidateMap">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CandidateMap">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_CheckedExplicit(System.Int32[])~Sudoku.Concepts.CandidateMap">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Equality(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -301,556 +337,19 @@
             and now there's no elements to be iterated.
             </returns>
         </member>
-        <member name="T:Sudoku.Concepts.Candidates">
+        <member name="T:Sudoku.Concepts.Converter">
             <summary>
-            Encapsulates a map that contains 729 positions to represent a candidate.
-            </summary>
-            <remarks><i>
-            This type is being deprecated. You can also use this type but we don't recommend you use it.
-            In the future, I'll re-consider about the design of this type.
-            </i></remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates.Shifting">
-            <summary>
-            Indicates the size of each unit.
+            Indicates the JSON converter of the current type.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Candidates.Empty">
-            <summary>
-            Indicates an empty instance (all bits are 0).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._0">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._1">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._2">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._3">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._4">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._5">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._6">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._7">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._8">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._9">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._10">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Candidates._11">
-            <summary>
-            The inner binary values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor">
-            <summary>
-            Throws a <see cref="T:System.NotSupportedException"/>.
-            </summary>
-            <exception cref="T:System.NotSupportedException">
-            The exception will always be thrown.
-            </exception>
-            <remarks>
-            The main idea of the parameterless constructor is to create a new instance
-            without any extra information, but the current type is special:
-            the author wants to make you use another member instead of it to get a better experience.
-            Therefore, the parameterless constructor is disallowed to be invoked
-            no matter what kind of invocation, reflection or strongly reference.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified candidate and its peers.
-            </summary>
-            <param name="candidate">The candidate.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(System.Int32*,System.Int32)">
-            <summary>
-            Initializes an instance with the candidate list specified as a pointer.
-            </summary>
-            <param name="candidates">The pointer points to an array of elements.</param>
-            <param name="length">The length of the array.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="candidates"/> is <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(System.Int32,System.Boolean)">
-            <summary>
-            Indicates an instance with the peer candidates of the specified candidate and a <see cref="T:System.Boolean"/>
-            value indicating whether the map will process itself with <see langword="true"/> value.
-            </summary>
-            <param name="candidate">The candidate.</param>
-            <param name="setItself">
-            Indicates whether the map will process itself with <see langword="true"/> value.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(System.Int32[])">
-            <summary>
-            Initializes an instance with the specified candidates.
-            </summary>
-            <param name="candidates">The candidates.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(System.Int64[])">
-            <summary>
-            Initializes an instance with the binary array.
-            </summary>
-            <param name="binary">The array.</param>
-            <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(System.Int64*,System.Int32)">
-            <summary>
-            Initializes an instance with the pointer to the binary array and the length.
-            </summary>
-            <param name="binary">The pointer to the binary array.</param>
-            <param name="length">The length.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="binary"/> is <see langword="null"/>.
-            </exception>
-            <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Initializes an instance with the specified <see cref="T:Sudoku.Concepts.CellMap"/> and the number
-            representing.
-            </summary>
-            <param name="map">The map.</param>
-            <param name="digit">The digit.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Initializes an instance with the specified candidates.
-            </summary>
-            <param name="candidates">The candidates.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with the specified candidates.
-            </summary>
-            <param name="candidates">The candidates.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.#ctor(System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64)">
-            <summary>
-            Copies the values into the collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Candidates.Count">
-            <summary>
-            Indicates the number of the values stored in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Candidates.Offsets">
-            <summary>
-            Indicates all indices of set bits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Candidates.Item(System.Int32)">
-            <summary>
-            Get the offset at the specified position index.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>
-            The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.CopyTo(System.Int32*,System.Int32)">
-            <summary>
-            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
-            </summary>
-            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
-            <param name="length">The length of that array.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the capacity isn't enough to store all values.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.CopyTo(System.Span{System.Int32})">
-            <summary>
-            Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
-            </summary>
-            <param name="span">
-            The target <see cref="T:System.Span`1"/> instance.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.ForEach(System.Action{System.Int32})">
-            <summary>
-            Iterates on each element in this collection.
-            </summary>
-            <param name="action">The visitor that handles for each element in this collection.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.Equals(Sudoku.Concepts.Candidates@)">
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.Contains(System.Int32)">
-            <summary>
-            Determine whether the map contains the specified offset.
-            </summary>
-            <param name="offset">The offset.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="offset"/> is out of range.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.ToArray">
-            <summary>
-            Get all offsets whose bits are set <see langword="true"/>.
-            </summary>
-            <returns>An array of offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.GetSubviewMask(System.Int32,System.Int32)">
-            <summary>
-            Get the sub-view mask of this map.
-            </summary>
-            <param name="house">The house index.</param>
-            <param name="digit">The digit.</param>
-            <returns>The mask.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.ToString(System.String)">
-            <inheritdoc/>
-            <remarks>
-            <b><i>This method does not implement any formats. This method or even the whole type will be reconsidered.</i></b>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.Reduce(System.Int32)">
-            <summary>
-            Get the final <see cref="T:Sudoku.Concepts.CellMap"/> to get all cells that the corresponding indices
-            are set <see langword="true"/>.
-            </summary>
-            <param name="digit">The digit.</param>
-            <returns>The map of all cells chosen.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.ToSpan">
-            <summary>
-            Converts the current instance to a <see cref="T:System.Span`1"/> of type <see cref="T:System.Int32"/>.
-            </summary>
-            <returns>The <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.ToReadOnlySpan">
-            <summary>
-            Converts the current instance to a <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:System.Int32"/>.
-            </summary>
-            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.GetEnumerator">
-            <summary>
-            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.Add(System.Int32)">
-            <summary>
-            Set the specified offset as <see langword="true"/> or <see langword="false"/> value.
-            </summary>
-            <param name="offset">
-            The offset. This value can be positive and negative. If 
-            negative, the offset will be assigned <see langword="false"/>
-            into the corresponding bit position of its absolute value.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.AddAnyway(System.Int32)">
-            <summary>
-            Set the specified offset as <see langword="true"/> value.
-            </summary>
-            <param name="offset">The offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Concepts.Candidates.Add(System.Int32)"/>, the method will process negative values,
-            but this won't.
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.Candidates.Add(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.Remove(System.Int32)">
-            <summary>
-            Set the specified offset as <see langword="false"/> value.
-            </summary>
-            <param name="offset">The offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Concepts.Candidates.Add(System.Int32)"/>, this method <b>can't</b> receive the negative value as the parameter.
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.Candidates.Add(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.AddRange(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Set the specified offsets as <see langword="true"/> value.
-            </summary>
-            <param name="offsets">The offsets to add.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.Candidates.AddRange(System.ReadOnlySpan{System.Int32}@)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.Clear">
-            <summary>
-            Clear all bits.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#IEquatable{Sudoku#Concepts#Candidates}#Equals(Sudoku.Concepts.Candidates)">
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CandidateMap,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.InternalAdd(System.Int32,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.Parse(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.Parse(System.String,Sudoku.Text.CandidatesParsingOptions)">
-            <summary>
-            Parse a <see cref="T:System.String"/> and convert to the <see cref="T:Sudoku.Concepts.Candidates"/> instance.
-            </summary>
-            <param name="str">The string text.</param>
-            <param name="options">The options to parse.</param>
-            <returns>The result instance.</returns>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.TryParse(System.String,Sudoku.Concepts.Candidates@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_LogicalNot(Sudoku.Concepts.Candidates@)">
-            <summary>
-            Gets the peer intersection of the current instance.
-            </summary>
-            <param name="offsets">The offsets.</param>
-            <returns>The result list that is the peer intersection of the current instance.</returns>
-            <remarks>
-            A <b>Peer Intersection</b> is a set of candidates that all candidates
-            from the base collection can be seen.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_OnesComplement(Sudoku.Concepts.Candidates@)">
-            <summary>
-            Reverse status for all offsets, which means all <see langword="true"/> bits
-            will be set <see langword="false"/>, and all <see langword="false"/> bits
-            will be set <see langword="true"/>.
-            </summary>
-            <param name="offsets">The instance to negate.</param>
-            <returns>The negative result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_GreaterThan(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
-            <summary>
-            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
-            </summary>
-            <param name="left">The subtrahend.</param>
-            <param name="right">The subtractor.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_LessThan(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
-            <summary>
-            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
-            </summary>
-            <param name="left">The subtrahend.</param>
-            <param name="right">The subtractor.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_BitwiseAnd(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
-            <summary>
-            Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_BitwiseOr(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
-            <summary>
-            Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
-            and return the merged result.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_ExclusiveOr(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
-            <summary>
-            Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Subtraction(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
-            <summary>
-            Get a <see cref="T:Sudoku.Concepts.Candidates"/> that contains all <paramref name="left"/> instance
-            but not in <paramref name="right"/> instance.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Subtraction(Sudoku.Concepts.Candidates@,System.Int32)">
-            <summary>
-            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
-            and returns the removed result.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offset">The offset to be removed.</param>
-            <returns>The result collection.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="offset"/> is out of range.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Addition(Sudoku.Concepts.Candidates@,System.Int32)">
-            <summary>
-            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
-            and returns the added result.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offset">The offset to be removed.</param>
-            <returns>The result collection.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="offset"/> is out of range.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Addition(Sudoku.Concepts.Candidates@,System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Creates a copy of argument <paramref name="collection"/>, and adds a list of candidates into the copy,
-            then returns it.
-            </summary>
-            <param name="collection">The collection of candidates.</param>
-            <param name="candidates">The candidates to be added.</param>
-            <returns>The copy of argument <paramref name="collection"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Modulus(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
-            <summary>
-            <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>
-            <para>The operator is used for searching for and checking eliminations.</para>
-            </summary>
-            <param name="base">The base map.</param>
-            <param name="template">The template map that the base map to check and cover.</param>
-            <returns>The result map.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Division(Sudoku.Concepts.Candidates@,System.Int32)">
-            <summary>
-            Simplified calls <see cref="M:Sudoku.Concepts.Candidates.Reduce(System.Int32)"/>.
-            </summary>
-            <param name="candidates">The candidates.</param>
-            <param name="digit">The digit.</param>
-            <returns>The cells.</returns>
-            <seealso cref="M:Sudoku.Concepts.Candidates.Reduce(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IEqualityOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,System#Boolean}#op_Equality(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IEqualityOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,System#Boolean}#op_Inequality(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IAdditionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#Candidates}#op_Addition(Sudoku.Concepts.Candidates,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#ISubtractionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#Candidates}#op_Subtraction(Sudoku.Concepts.Candidates,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#ISubtractionOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_Subtraction(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IDivisionOperators{Sudoku#Concepts#Candidates,System#Int32,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.Candidates,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IModulusOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_Modulus(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_OnesComplement(Sudoku.Concepts.Candidates)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_BitwiseAnd(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_BitwiseOr(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.System#Numerics#IBitwiseOperators{Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates,Sudoku#Concepts#Candidates}#op_ExclusiveOr(Sudoku.Concepts.Candidates,Sudoku.Concepts.Candidates)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Implicit(System.Int32[])~Sudoku.Concepts.Candidates">
-            <summary>
-            Implicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Concepts.Candidates"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Implicit(System.Span{System.Int32}@)~Sudoku.Concepts.Candidates">
-            <summary>
-            Implicit cast from <see cref="T:System.Span`1"/> to <see cref="T:Sudoku.Concepts.Candidates"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Implicit(System.ReadOnlySpan{System.Int32}@)~Sudoku.Concepts.Candidates">
-            <summary>
-            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <see cref="T:Sudoku.Concepts.Candidates"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Explicit(Sudoku.Concepts.Candidates@)~System.Int32[]">
-            <summary>
-            Explicit cast from <see cref="T:Sudoku.Concepts.Candidates"/> to <see cref="T:System.Int32"/>[].
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Explicit(Sudoku.Concepts.Candidates@)~System.Span{System.Int32}">
-            <summary>
-            Explicit cast from <see cref="T:Sudoku.Concepts.Candidates"/> to <see cref="T:System.Span`1"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Explicit(Sudoku.Concepts.Candidates@)~System.ReadOnlySpan{System.Int32}">
-            <summary>
-            Explicit cast from <see cref="T:Sudoku.Concepts.Candidates"/> to <see cref="T:System.ReadOnlySpan`1"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Equality(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Candidates.op_Inequality(Sudoku.Concepts.Candidates@,Sudoku.Concepts.Candidates@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.CellMap">
             <summary>
@@ -1390,14 +889,6 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">The digit.</param>
             <returns>The result instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_CheckedMultiply(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Expands via the specified digit. This operator will check the validity of the argument <paramref name="digit"/>.
-            </summary>
-            <param name="base">The base map.</param>
-            <param name="digit">The digit.</param>
-            <returns>The result instance.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Division(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Get the sub-view mask of this map.
@@ -1406,17 +897,16 @@ if (student is (name: var name, age: >= 18))
             <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_CheckedDivision(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Get the sub-view mask of this map. This operator will check the validity
-            of the argument <paramref name="houseIndex"/>.
-            </summary>
-            <param name="map">The map.</param>
-            <param name="houseIndex">The house index.</param>
-            <returns>The mask.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CellMap,System#Int32,System#Int16}#op_Division(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CellMap,System#Int32,System#Int16}#op_CheckedDivision(Sudoku.Concepts.CellMap,System.Int32)">
+            <summary>
+            Get the sub-view mask of this map. This operator will check the validity of the argument <paramref name="right"/>.
+            </summary>
+            <param name="left">The map.</param>
+            <param name="right">The house index.</param>
+            <returns>The mask.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IAdditionOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_Addition(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
@@ -1430,8 +920,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CellMap,System#Collections#Generic#IEnumerable{System#Int32},Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#Candidates}#op_Multiply(Sudoku.Concepts.CellMap,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CandidateMap}#op_Multiply(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CandidateMap}#op_CheckedMultiply(Sudoku.Concepts.CellMap,System.Int32)">
+            <summary>
+            Expands via the specified digit. This operator will check the validity of the argument <paramref name="right"/>.
+            </summary>
+            <param name="left">The base map.</param>
+            <param name="right">The digit.</param>
+            <returns>The result instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IModulusOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Modulus(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
@@ -7229,27 +6727,6 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The conclusion type.</param>
             <returns>The notation of the conclusion type.</returns>
         </member>
-        <member name="T:Sudoku.Text.CandidatesParsingOptions">
-            <summary>
-            Encapsulates an option that is specified to parse the <see cref="T:Sudoku.Concepts.Candidates"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Candidates"/>
-        </member>
-        <member name="F:Sudoku.Text.CandidatesParsingOptions.ShortForm">
-            <summary>
-            Indicates the short form, such as <c>312</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.CandidatesParsingOptions.BracketForm">
-            <summary>
-            Indicates the bracket form, such as <c>{ r1c1, r3c3 }(12)</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.CandidatesParsingOptions.PrepositionalForm">
-            <summary>
-            Indicates the prepositional form, such as <c>12{ r1c1, r3c3 }</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Text.DigitRange">
             <summary>
             Defines a digit range.
@@ -8403,13 +7880,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Text.Notations.EliminationNotation.CandidateNotation">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Notations.EliminationNotation.TryParseCandidates(System.String,Sudoku.Concepts.Candidates@)">
+        <member name="M:Sudoku.Text.Notations.EliminationNotation.TryParseCandidates(System.String,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Notations.EliminationNotation.ToCandidatesString(Sudoku.Concepts.Candidates@)">
+        <member name="M:Sudoku.Text.Notations.EliminationNotation.ToCandidatesString(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Notations.EliminationNotation.ToCandidatesString(Sudoku.Concepts.Candidates@,Sudoku.Text.Notations.EliminationNotationOptions@)">
+        <member name="M:Sudoku.Text.Notations.EliminationNotation.ToCandidatesString(Sudoku.Concepts.CandidateMap@,Sudoku.Text.Notations.EliminationNotationOptions@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.EliminationNotation.ParseCandidates(System.String)">
@@ -8460,22 +7937,22 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Text.Notations.ICandidateNotation`2">
             <summary>
-            Defines a type that can convert a <see cref="T:Sudoku.Concepts.Candidates"/> instance into a result <see cref="T:System.String"/>
+            Defines a type that can convert a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance into a result <see cref="T:System.String"/>
             representation to describe the candidate collection.
             </summary>
             <typeparam name="TSelf">The base type that applies the interface.</typeparam>
             <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
         </member>
         <member name="P:Sudoku.Text.Notations.ICandidateNotation`2.CandidateNotation">
             <summary>
             Indicates the candidate notation kind that the current type supports.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.Notations.ICandidateNotation`2.TryParseCandidates(System.String,Sudoku.Concepts.Candidates@)">
+        <member name="M:Sudoku.Text.Notations.ICandidateNotation`2.TryParseCandidates(System.String,Sudoku.Concepts.CandidateMap@)">
             <summary>
             <para>
-            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.Candidates"/>
-            instance.
+            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
             </para>
             <para>
             Different with the method <see cref="M:Sudoku.Text.Notations.ICandidateNotation`2.ParseCandidates(System.String)"/>, the method will return a
@@ -8485,20 +7962,20 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="str">The <see cref="T:System.String"/> value.</param>
             <param name="result">
-            The <see cref="T:Sudoku.Concepts.Candidates"/> result. If the return value is <see langword="false"/>,
+            The <see cref="T:Sudoku.Concepts.CandidateMap"/> result. If the return value is <see langword="false"/>,
             this argument will be a discard and cannot be used.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the parsing operation is successful.</returns>
             <seealso cref="M:Sudoku.Text.Notations.ICandidateNotation`2.ParseCandidates(System.String)"/>
         </member>
-        <member name="M:Sudoku.Text.Notations.ICandidateNotation`2.ToCandidatesString(Sudoku.Concepts.Candidates@)">
+        <member name="M:Sudoku.Text.Notations.ICandidateNotation`2.ToCandidatesString(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Gets the <see cref="T:System.String"/> representation of a list of candidates.
             </summary>
             <param name="candidates">The candidate list.</param>
             <returns>The <see cref="T:System.String"/> representation describe the candidate list.</returns>
         </member>
-        <member name="M:Sudoku.Text.Notations.ICandidateNotation`2.ToCandidatesString(Sudoku.Concepts.Candidates@,`1@)">
+        <member name="M:Sudoku.Text.Notations.ICandidateNotation`2.ToCandidatesString(Sudoku.Concepts.CandidateMap@,`1@)">
             <summary>
             Gets the <see cref="T:System.String"/> representation of a list of candidates.
             </summary>
@@ -8508,11 +7985,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notations.ICandidateNotation`2.ParseCandidates(System.String)">
             <summary>
-            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.Candidates"/>
+            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.CandidateMap"/>
             instance.
             </summary>
             <param name="str">The <see cref="T:System.String"/> value.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Candidates"/> result.</returns>
+            <returns>The <see cref="T:Sudoku.Concepts.CandidateMap"/> result.</returns>
             <exception cref="T:System.FormatException">
             Throws when the parsing operation is failed due to invalid characters or invalid operation.
             </exception>
@@ -8769,7 +8246,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Notations.RxCyNotation.ParseCells(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.TryParseCandidates(System.String,Sudoku.Concepts.Candidates@)">
+        <member name="M:Sudoku.Text.Notations.RxCyNotation.TryParseCandidates(System.String,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.RxCyNotation.ToCandidateString(System.Int32)">
@@ -8779,10 +8256,10 @@ if (student is (name: var name, age: >= 18))
             <param name="candidate">The candidate.</param>
             <returns>The <see cref="T:System.String"/> representation of a candidate.</returns>
         </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.ToCandidatesString(Sudoku.Concepts.Candidates@)">
+        <member name="M:Sudoku.Text.Notations.RxCyNotation.ToCandidatesString(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.ToCandidatesString(Sudoku.Concepts.Candidates@,Sudoku.Text.Notations.RxCyNotationOptions@)">
+        <member name="M:Sudoku.Text.Notations.RxCyNotation.ToCandidatesString(Sudoku.Concepts.CandidateMap@,Sudoku.Text.Notations.RxCyNotationOptions@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notations.RxCyNotation.ParseCandidates(System.String)">

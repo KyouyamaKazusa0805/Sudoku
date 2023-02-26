@@ -44,8 +44,9 @@ internal sealed record BivalueUniversalGraveType3Step(
 	/// </summary>
 	private int Size => PopCount((uint)DigitsMask);
 
+
 	[ResourceTextFormatter]
-	internal string TrueCandidatesStr() => new Candidates(TrueCandidates).ToString();
+	internal string TrueCandidatesStr() => (CandidateMap.Empty + TrueCandidates).ToString();
 
 	[ResourceTextFormatter]
 	internal string SubsetTypeStr() => R[IsNaked ? "NakedKeyword" : "HiddenKeyword"]!;

@@ -23,6 +23,7 @@ public unsafe partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, int, CandidateMap>,
 	IAdditionOperators<CandidateMap, IEnumerable<int>, CandidateMap>,
 	IDivisionOperators<CandidateMap, int, CellMap>,
+	IModulusOperators<CandidateMap, CandidateMap, CandidateMap>,
 	ISubtractionOperators<CandidateMap, int, CandidateMap>,
 	ISubtractionOperators<CandidateMap, IEnumerable<int>, CandidateMap>,
 	IStatusMapBase<CandidateMap>
@@ -54,11 +55,68 @@ public unsafe partial struct CandidateMap :
 	private fixed long _bits[12];
 
 
+	/// <summary>
+	/// Indicates a <see cref="CandidateMap"/> instance with the peer candidates of the specified candidate and a <see cref="bool"/>
+	/// value indicating whether the map will process itself with <see langword="true"/> value.
+	/// </summary>
+	/// <param name="candidate">The candidate.</param>
+	/// <param name="withItself">Indicates whether the map will process itself with <see langword="true"/> value.</param>
+	private CandidateMap(int candidate, bool withItself)
+	{
+		(this, var cell, var digit) = (default, candidate / 9, candidate % 9);
+
+		foreach (var c in PeersMap[cell])
+		{
+			Add(c * 9 + digit);
+		}
+		for (var d = 0; d < 9; d++)
+		{
+			if (d != digit || d == digit && withItself)
+			{
+				Add(cell * 9 + d);
+			}
+		}
+	}
+
+
 	/// <inheritdoc/>
 	public readonly int Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _count;
+	}
+
+	/// <inheritdoc cref="CellMap.PeerIntersection"/>
+	public CandidateMap PeerIntersection
+	{
+		get
+		{
+			if (_count == 0)
+			{
+				// Empty list can't contain any peer intersections.
+				return Empty;
+			}
+
+			var result = ~Empty;
+			foreach (var candidate in Offsets)
+			{
+				result &= new CandidateMap(candidate, false);
+			}
+
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Gets all chunks of the current collection. That means, the list of <see cref="string"/> representations
+	/// that describes all cell indices, grouped and collapsed with same row/column.
+	/// </summary>
+	[DebuggerHidden]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	internal readonly string[] StringChunks
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 	}
 
 	/// <inheritdoc/>
@@ -198,7 +256,7 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => RxCyNotation.ToCandidatesString((Candidates)this);
+	public override readonly string ToString() => RxCyNotation.ToCandidatesString(this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -226,12 +284,16 @@ public unsafe partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(int offset)
 	{
-		scoped ref var v = ref _bits[offset >> 6];
-		var older = Contains(offset);
-		v |= checked(1L << offset & 63);
-		if (!older)
+		fixed (long* pBits = _bits)
 		{
-			_count++;
+			var v = &pBits[offset >> 6];
+			var older = Contains(offset);
+
+			*v |= 1L << (offset & 63);
+			if (!older)
+			{
+				_count++;
+			}
 		}
 	}
 
@@ -244,13 +306,7 @@ public unsafe partial struct CandidateMap :
 			throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid.");
 		}
 
-		scoped ref var v = ref _bits[offset >> 6];
-		var older = Contains(offset);
-		v |= checked(1L << offset & 63);
-		if (!older)
-		{
-			_count++;
-		}
+		Add(offset);
 	}
 
 	/// <inheritdoc/>
@@ -287,12 +343,16 @@ public unsafe partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(int offset)
 	{
-		scoped ref var v = ref _bits[offset >> 6];
-		var older = Contains(offset);
-		v &= ~(1L << offset & 63);
-		if (older)
+		fixed (long* pBits = _bits)
 		{
-			_count--;
+			var v = &pBits[offset >> 6];
+			var older = Contains(offset);
+
+			*v &= ~(1L << (offset & 63));
+			if (older)
+			{
+				_count--;
+			}
 		}
 	}
 
@@ -371,6 +431,19 @@ public unsafe partial struct CandidateMap :
 	/// <inheritdoc/>
 	public static bool operator !(scoped in CandidateMap offsets) => offsets ? false : true;
 
+	/// <inheritdoc/>
+	public static CandidateMap operator ~(scoped in CandidateMap offsets)
+	{
+		var result = offsets;
+		result._bits[11] = ~result._bits[11] & 0x1FFFFFF;
+		for (var i = 0; i < 11; i++)
+		{
+			result._bits[i] = ~result._bits[i];
+		}
+
+		return result;
+	}
+
 	/// <inheritdoc cref="IDivisionOperators{TSelf, TOther, TResult}.op_Division(TSelf, TOther)"/>
 	public static CellMap operator /(scoped in CandidateMap offsets, int digit)
 	{
@@ -389,11 +462,6 @@ public unsafe partial struct CandidateMap :
 	/// <inheritdoc/>
 	public static CandidateMap operator +(scoped in CandidateMap collection, int offset)
 	{
-		if (collection.Contains(offset))
-		{
-			return collection;
-		}
-
 		var copied = collection;
 		copied.Add(offset);
 
@@ -412,11 +480,6 @@ public unsafe partial struct CandidateMap :
 	/// <inheritdoc/>
 	public static CandidateMap operator -(scoped in CandidateMap collection, int offset)
 	{
-		if (collection.Contains(offset))
-		{
-			return collection;
-		}
-
 		var copied = collection;
 		copied.Remove(offset);
 
@@ -433,19 +496,6 @@ public unsafe partial struct CandidateMap :
 		}
 
 		return copied;
-	}
-
-	/// <inheritdoc/>
-	public static CandidateMap operator ~(scoped in CandidateMap offsets)
-	{
-		var result = offsets;
-		result._bits[11] = ~result._bits[11] & 0x1FFFFFF;
-		for (var i = 0; i < 11; i++)
-		{
-			result._bits[i] = ~result._bits[i];
-		}
-
-		return result;
 	}
 
 	/// <inheritdoc/>
@@ -496,12 +546,110 @@ public unsafe partial struct CandidateMap :
 		return copied;
 	}
 
+	/// <summary>
+	/// <inheritdoc cref="CellMap.op_Modulus(in CellMap, in CellMap)" path="/summary"/>
+	/// </summary>
+	/// <param name="base">
+	/// <inheritdoc cref="CellMap.op_Modulus(in CellMap, in CellMap)" path="/param[@name='base']"/>
+	/// </param>
+	/// <param name="template">
+	/// <inheritdoc cref="CellMap.op_Modulus(in CellMap, in CellMap)" path="/param[@name='template']"/>
+	/// </param>
+	/// <returns><inheritdoc cref="CellMap.op_Modulus(in CellMap, in CellMap)" path="/returns"/></returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap operator %(scoped in CandidateMap @base, scoped in CandidateMap template)
+		=> (@base & template).PeerIntersection & template;
+
 	/// <inheritdoc/>
-	/// <exception cref="NotImplementedException">Throws always.</exception>
-	[DoesNotReturn]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap[] operator &(scoped in CandidateMap offsets, int subsetSize)
-		=> throw new NotImplementedException("This method is too complex to be implemented. In the future I'll consider on it.");
+	{
+		if (subsetSize == 0 || subsetSize > offsets._count)
+		{
+			return Array.Empty<CandidateMap>();
+		}
+
+		if (subsetSize == offsets._count)
+		{
+			return new[] { offsets };
+		}
+
+		var n = offsets._count;
+		var buffer = stackalloc int[subsetSize];
+		if (n <= 30 && subsetSize <= 30)
+		{
+			// Optimization: Use table to get the total number of result elements.
+			var totalIndex = 0;
+			var result = new CandidateMap[Combinatorial[n - 1, subsetSize - 1]];
+			f(subsetSize, n, subsetSize, offsets.Offsets);
+			return result;
+
+
+			void f(int size, int last, int index, int[] offsets)
+			{
+				for (var i = last; i >= index; i--)
+				{
+					buffer[index - 1] = i - 1;
+					if (index > 1)
+					{
+						f(size, i - 1, index - 1, offsets);
+					}
+					else
+					{
+						var temp = new int[size];
+						for (var j = 0; j < size; j++)
+						{
+							temp[j] = offsets[buffer[j]];
+						}
+
+						result[totalIndex++] = (CandidateMap)temp;
+					}
+				}
+			}
+		}
+		else if (n > 30 && subsetSize > 30)
+		{
+			throw new NotSupportedException(
+				"""
+				Both cells count and subset size is too large, which may cause potential out of memory exception. 
+				This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
+				""".RemoveLineEndings()
+			);
+		}
+		else
+		{
+			var result = new List<CandidateMap>();
+			f(subsetSize, n, subsetSize, offsets.Offsets);
+			return result.ToArray();
+
+
+			void f(int size, int last, int index, int[] offsets)
+			{
+				for (var i = last; i >= index; i--)
+				{
+					buffer[index - 1] = i - 1;
+					if (index > 1)
+					{
+						f(size, i - 1, index - 1, offsets);
+					}
+					else
+					{
+						var temp = new int[size];
+						for (var j = 0; j < size; j++)
+						{
+							temp[j] = offsets[buffer[j]];
+						}
+
+						result.Add((CandidateMap)temp);
+					}
+				}
+			}
+		}
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static CellMap IDivisionOperators<CandidateMap, int, CellMap>.operator /(CandidateMap left, int right) => left / right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -525,38 +673,61 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IDivisionOperators<CandidateMap, int, CellMap>.operator /(CandidateMap left, int right) => left / right;
+	static CandidateMap IModulusOperators<CandidateMap, CandidateMap, CandidateMap>.operator %(CandidateMap left, CandidateMap right)
+		=> left % right;
 
 
-#if DEBUG
-	/// <summary>
-	/// Implicit cast. This method will be removed in the future.
-	/// </summary>
-	public static explicit operator Candidates(CandidateMap collection)
-	{
-		var result = Candidates.Empty;
-		foreach (var element in collection.Offsets)
-		{
-			result.Add(element);
-		}
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static implicit operator int[](scoped in CandidateMap offsets) => offsets.Offsets;
 
-		return result;
-	}
-
-	/// <summary>
-	/// Implicit cast. This method will be removed in the future.
-	/// </summary>
-	public static explicit operator CandidateMap(Candidates collection)
+	/// <inheritdoc/>
+	public static implicit operator CandidateMap(scoped Span<int> offsets)
 	{
 		var result = Empty;
-		foreach (var element in collection)
+		foreach (var offset in offsets)
 		{
-			result.Add(element);
+			result.Add(offset);
 		}
 
 		return result;
 	}
-#endif
+
+	/// <inheritdoc/>
+	public static implicit operator CandidateMap(scoped ReadOnlySpan<int> offsets)
+	{
+		var result = Empty;
+		foreach (var offset in offsets)
+		{
+			result.Add(offset);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	public static explicit operator CandidateMap(int[] offsets)
+	{
+		var result = Empty;
+		foreach (var offset in offsets)
+		{
+			result.Add(offset);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	public static explicit operator checked CandidateMap(int[] offsets)
+	{
+		var result = Empty;
+		foreach (var offset in offsets)
+		{
+			result.AddChecked(offset);
+		}
+
+		return result;
+	}
 }
 
 /// <summary>
@@ -642,4 +813,32 @@ file ref struct LocalRefEnumerator
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool MoveNext() => ++_index < 12;
+}
+
+/// <summary>
+/// Indicates the JSON converter of the current type.
+/// </summary>
+file sealed class Converter : JsonConverter<CandidateMap>
+{
+	/// <inheritdoc/>
+	public override bool HandleNull => false;
+
+
+	/// <inheritdoc/>
+	public override CandidateMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	{
+		var result = CandidateMap.Empty;
+		var parts = JsonSerializer.Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
+		foreach (var part in parts)
+		{
+			result |= RxCyNotation.ParseCandidates(part);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override void Write(Utf8JsonWriter writer, CandidateMap value, JsonSerializerOptions options)
+		=> writer.WriteArray(value.StringChunks, options);
 }

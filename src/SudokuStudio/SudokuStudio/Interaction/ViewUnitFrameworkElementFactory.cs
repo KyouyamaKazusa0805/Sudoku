@@ -180,7 +180,12 @@ internal static class ViewUnitFrameworkElementFactory
 	/// what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
 	/// </param>
 	/// <seealso cref="CandidateViewNode"/>
-	private static void ForCandidateNode(SudokuPane sudokuPane, CandidateViewNode candidateNode, ImmutableArray<Conclusion> conclusions, out Conclusion? overlapped)
+	private static void ForCandidateNode(
+		SudokuPane sudokuPane,
+		CandidateViewNode candidateNode,
+		ImmutableArray<Conclusion> conclusions,
+		out Conclusion? overlapped
+	)
 	{
 		overlapped = null;
 

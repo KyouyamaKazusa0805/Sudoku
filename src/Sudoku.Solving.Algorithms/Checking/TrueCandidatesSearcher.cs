@@ -31,7 +31,7 @@ public sealed class TrueCandidatesSearcher
 	/// <summary>
 	/// Indicates all true candidates (non-BUG candidates).
 	/// </summary>
-	public Candidates TrueCandidates => GetAllTrueCandidates(81 - 17);
+	public CandidateMap TrueCandidates => GetAllTrueCandidates(81 - 17);
 
 
 	/// <summary>
@@ -41,7 +41,7 @@ public sealed class TrueCandidatesSearcher
 	/// <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>All true candidates.</returns>
-	public unsafe Candidates GetAllTrueCandidates(int maximumEmptyCells, CancellationToken cancellationToken = default)
+	public unsafe CandidateMap GetAllTrueCandidates(int maximumEmptyCells, CancellationToken cancellationToken = default)
 	{
 		// Get the number of multi-value cells.
 		// If the number of that is greater than the specified number,
@@ -54,7 +54,7 @@ public sealed class TrueCandidatesSearcher
 				case 1:
 				case > 2 when ++multivaluedCellsCount > maximumEmptyCells:
 				{
-					return Array.Empty<int>();
+					return CandidateMap.Empty;
 				}
 			}
 		}
@@ -76,7 +76,7 @@ public sealed class TrueCandidatesSearcher
 					{
 						// The specified house contains at least three positions to fill with the digit,
 						// which is invalid in any BUG + n patterns.
-						return Array.Empty<int>();
+						return CandidateMap.Empty;
 					}
 				}
 			}
@@ -111,7 +111,7 @@ public sealed class TrueCandidatesSearcher
 		var currentIndex = 1;
 		var chosen = new int[multivaluedCellsCount + 1];
 		var resultMap = new CellMap[9];
-		var result = Candidates.Empty;
+		var result = CandidateMap.Empty;
 		do
 		{
 			int i;
@@ -168,7 +168,7 @@ public sealed class TrueCandidatesSearcher
 						map = Puzzle.CandidatesMap[digit] - stack[currentIndex, digit];
 						foreach (var cell in map)
 						{
-							result.AddAnyway(cell * 9 + digit);
+							result.Add(cell * 9 + digit);
 						}
 					}
 

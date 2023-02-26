@@ -127,7 +127,7 @@ public record SusserFormat(bool WithCandidates = false, bool WithModifiables = f
 			_ => Grid.Undefined
 		};
 
-		var eliminatedCandidates = Candidates.Empty;
+		var eliminatedCandidates = CandidateMap.Empty;
 		for (var c = 0; c < 81; c++)
 		{
 			var status = grid.GetStatus(c);

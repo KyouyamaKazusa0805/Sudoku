@@ -19,7 +19,7 @@ internal sealed record ForcingChainStep(ConclusionList Conclusions, ChainNode Ta
 	internal string OnOffStrZhCn() => (Target.IsOn ? R["TrueKeyword"] : R["FalseKeyword"])!;
 
 	/// <inheritdoc/>
-	protected override Candidates GetGreenPotentials(int viewIndex)
+	protected override CandidateMap GetGreenPotentials(int viewIndex)
 	{
 		if (viewIndex >= FlatViewsCount)
 		{
@@ -36,7 +36,7 @@ internal sealed record ForcingChainStep(ConclusionList Conclusions, ChainNode Ta
 	}
 
 	/// <inheritdoc/>
-	protected override Candidates GetRedPotentials(int viewIndex)
+	protected override CandidateMap GetRedPotentials(int viewIndex)
 	{
 		if (viewIndex >= FlatViewsCount)
 		{
@@ -62,5 +62,5 @@ internal sealed record ForcingChainStep(ConclusionList Conclusions, ChainNode Ta
 	/// <param name="state">The state of the candidate you want to color.</param>
 	/// <returns>All colored candidates with a same state.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Candidates GetColorCandidates(bool state) => GetColorCandidates(Target, state, state);
+	private CandidateMap GetColorCandidates(bool state) => GetColorCandidates(Target, state, state);
 }

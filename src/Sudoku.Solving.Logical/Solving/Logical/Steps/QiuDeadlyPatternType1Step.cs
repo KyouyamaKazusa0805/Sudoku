@@ -20,5 +20,5 @@ internal sealed record QiuDeadlyPatternType1Step(
 
 
 	[ResourceTextFormatter]
-	internal string CandidateStr() => (Candidates.Empty + Candidate).ToString();
+	internal string CandidateStr() => (CandidateMap.Empty + Candidate).ToString();
 }

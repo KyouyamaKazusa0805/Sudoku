@@ -20,5 +20,5 @@ internal sealed record UniqueMatrixType1Step(
 	public override int Type => 1;
 
 	[ResourceTextFormatter]
-	internal string CandidateStr() => (Candidates.Empty + Candidate).ToString();
+	internal string CandidateStr() => (CandidateMap.Empty + Candidate).ToString();
 }

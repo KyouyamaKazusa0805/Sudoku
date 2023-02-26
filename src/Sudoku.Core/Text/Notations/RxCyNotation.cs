@@ -255,7 +255,7 @@ public sealed partial class RxCyNotation :
 	}
 
 	/// <inheritdoc/>
-	public static bool TryParseCandidates(string str, out Candidates result)
+	public static bool TryParseCandidates(string str, out CandidateMap result)
 	{
 		try
 		{
@@ -279,10 +279,10 @@ public sealed partial class RxCyNotation :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCandidatesString(scoped in Candidates candidates) => ToCandidatesString(candidates, RxCyNotationOptions.Default);
+	public static string ToCandidatesString(scoped in CandidateMap candidates) => ToCandidatesString(candidates, RxCyNotationOptions.Default);
 
 	/// <inheritdoc/>
-	public static string ToCandidatesString(scoped in Candidates candidates, scoped in RxCyNotationOptions options)
+	public static string ToCandidatesString(scoped in CandidateMap candidates, scoped in RxCyNotationOptions options)
 	{
 		return candidates switch
 		{
@@ -321,7 +321,7 @@ public sealed partial class RxCyNotation :
 	}
 
 	/// <inheritdoc/>
-	public static Candidates ParseCandidates(string str)
+	public static CandidateMap ParseCandidates(string str)
 	{
 		if (prepositionalForm(str, out var r))
 		{
@@ -343,7 +343,7 @@ public sealed partial class RxCyNotation :
 		throw new FormatException("The target string cannot be parsed as a valid candidates collection.");
 
 
-		static bool prepositionalForm(string str, out Candidates result)
+		static bool prepositionalForm(string str, out CandidateMap result)
 		{
 			if (Candidates_PrepositionalFormPattern().Match(str) is not { Success: true, Value: var s })
 			{
@@ -355,7 +355,7 @@ public sealed partial class RxCyNotation :
 				goto ReturnInvalid;
 			}
 
-			var r = Candidates.Empty;
+			var r = CandidateMap.Empty;
 			foreach (var row in rows)
 			{
 				foreach (var column in columns)
@@ -375,7 +375,7 @@ public sealed partial class RxCyNotation :
 			return false;
 		}
 
-		static bool postpositionalForm(string str, out Candidates result)
+		static bool postpositionalForm(string str, out CandidateMap result)
 		{
 			if (Candidates_PostpositionalFormPattern().Match(str) is not { Success: true, Value: [_, .. var s, _] })
 			{
@@ -387,7 +387,7 @@ public sealed partial class RxCyNotation :
 				goto ReturnInvalid;
 			}
 
-			var r = Candidates.Empty;
+			var r = CandidateMap.Empty;
 			foreach (var row in rows)
 			{
 				foreach (var column in columns)
@@ -407,7 +407,7 @@ public sealed partial class RxCyNotation :
 			return false;
 		}
 
-		static bool complexPrepositionalForm(string str, out Candidates result)
+		static bool complexPrepositionalForm(string str, out CandidateMap result)
 		{
 			if (Candidates_ComplexPrepositionalFormPattern().Match(str) is not { Success: true, Value: var s })
 			{
@@ -421,7 +421,7 @@ public sealed partial class RxCyNotation :
 			}
 
 			var digits = s[..s.IndexOf('{')];
-			var r = Candidates.Empty;
+			var r = CandidateMap.Empty;
 			foreach (var cell in cells)
 			{
 				foreach (var digit in digits)
@@ -438,7 +438,7 @@ public sealed partial class RxCyNotation :
 			return false;
 		}
 
-		static bool complexPostpositionalForm(string str, out Candidates result)
+		static bool complexPostpositionalForm(string str, out CandidateMap result)
 		{
 			if (Candidates_ComplexPostpositionalFormPattern().Match(str) is not { Success: true, Value: var s })
 			{
@@ -452,7 +452,7 @@ public sealed partial class RxCyNotation :
 			}
 
 			var digits = s[(s.IndexOf('(') + 1)..s.IndexOf(')')];
-			var r = Candidates.Empty;
+			var r = CandidateMap.Empty;
 			foreach (var cell in cells)
 			{
 				foreach (var digit in digits)

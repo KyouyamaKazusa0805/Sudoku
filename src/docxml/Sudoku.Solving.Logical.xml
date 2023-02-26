@@ -7662,7 +7662,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.GetLinks(Sudoku.Solving.Logical.Patterns.ChainNode)">
             <summary>
-            Try to fetch all <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instances of the branch from the specified target, specified as a <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode"/> instance.
+            Try to fetch all <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instances of the branch from the specified target,
+            specified as a <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode"/> instance.
             </summary>
             <param name="target">The target node.</param>
             <returns>All <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> displayed in this branch.</returns>

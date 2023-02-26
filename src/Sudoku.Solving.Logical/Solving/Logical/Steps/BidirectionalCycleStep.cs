@@ -11,13 +11,13 @@ internal sealed record BidirectionalCycleStep(ConclusionList Conclusions, ChainN
 	ChainingStep(Conclusions, IsX, IsY)
 {
 	[ResourceTextFormatter]
-	internal string CandsStr() => RxCyNotation.ToCandidatesString(Candidates.Empty + from element in Conclusions select element.Candidate);
+	internal string CandsStr() => RxCyNotation.ToCandidatesString(CandidateMap.Empty + from element in Conclusions select element.Candidate);
 
 	/// <inheritdoc/>
-	protected override Candidates GetGreenPotentials(int viewNum) => GetColorCandidates(DestinationOn, true, false);
+	protected override CandidateMap GetGreenPotentials(int viewNum) => GetColorCandidates(DestinationOn, true, false);
 
 	/// <inheritdoc/>
-	protected override Candidates GetRedPotentials(int viewNum) => GetColorCandidates(DestinationOn, false, true);
+	protected override CandidateMap GetRedPotentials(int viewNum) => GetColorCandidates(DestinationOn, false, true);
 
 	/// <inheritdoc/>
 	protected override List<LinkViewNode> GetLinks(int viewIndex) => GetLinks(DestinationOn);

@@ -418,9 +418,9 @@ internal abstract record ChainingStep(
 	/// <param name="state">The state of the node to be colored.</param>
 	/// <param name="skipTarget">Indicates whether we should skip the target node.</param>
 	/// <returns>All found candidates.</returns>
-	protected Candidates GetColorCandidates(ChainNode target, bool state, bool skipTarget)
+	protected CandidateMap GetColorCandidates(ChainNode target, bool state, bool skipTarget)
 	{
-		var result = Candidates.Empty;
+		var result = CandidateMap.Empty;
 		foreach (var p in target.FullChainPotentials)
 		{
 			var (cell, digit, isOn) = p;
@@ -438,7 +438,7 @@ internal abstract record ChainingStep(
 	/// </summary>
 	/// <param name="nestedViewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected Candidates GetNestedGreenPotentials(int nestedViewIndex)
+	protected CandidateMap GetNestedGreenPotentials(int nestedViewIndex)
 	{
 		nestedViewIndex -= FlatViewsCount;
 
@@ -451,7 +451,7 @@ internal abstract record ChainingStep(
 	/// </summary>
 	/// <param name="nestedViewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected Candidates GetNestedRedPotentials(int nestedViewIndex)
+	protected CandidateMap GetNestedRedPotentials(int nestedViewIndex)
 	{
 		nestedViewIndex -= FlatViewsCount;
 
@@ -464,14 +464,14 @@ internal abstract record ChainingStep(
 	/// </summary>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected abstract Candidates GetGreenPotentials(int viewIndex);
+	protected abstract CandidateMap GetGreenPotentials(int viewIndex);
 
 	/// <summary>
 	/// Try to fetch all candidates to be colored in red (state 2: the candidate is "off").
 	/// </summary>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected abstract Candidates GetRedPotentials(int viewIndex);
+	protected abstract CandidateMap GetRedPotentials(int viewIndex);
 
 	/// <summary>
 	/// Try to fetch all candidates to be colored in blue
@@ -480,9 +480,9 @@ internal abstract record ChainingStep(
 	/// <param name="grid">The grid as a candidate reference.</param>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected Candidates GetBluePotentials(scoped in Grid grid, int viewIndex)
+	protected CandidateMap GetBluePotentials(scoped in Grid grid, int viewIndex)
 	{
-		var result = Candidates.Empty;
+		var result = CandidateMap.Empty;
 
 		viewIndex -= FlatViewsCount;
 		if (viewIndex >= 0)
@@ -523,7 +523,8 @@ internal abstract record ChainingStep(
 	protected abstract List<LinkViewNode> GetLinks(int viewIndex);
 
 	/// <summary>
-	/// Try to fetch all <see cref="LinkViewNode"/> instances of the branch from the specified target, specified as a <see cref="ChainNode"/> instance.
+	/// Try to fetch all <see cref="LinkViewNode"/> instances of the branch from the specified target,
+	/// specified as a <see cref="ChainNode"/> instance.
 	/// </summary>
 	/// <param name="target">The target node.</param>
 	/// <returns>All <see cref="LinkViewNode"/> displayed in this branch.</returns>

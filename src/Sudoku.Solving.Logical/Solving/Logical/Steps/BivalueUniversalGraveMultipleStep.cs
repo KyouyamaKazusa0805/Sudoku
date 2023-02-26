@@ -32,6 +32,7 @@ internal sealed record BivalueUniversalGraveMultipleStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
+
 	[ResourceTextFormatter]
-	internal string CandidatesStr() => new Candidates(Candidates).ToString();
+	internal string CandidatesStr() => (CandidateMap.Empty + Candidates).ToString();
 }

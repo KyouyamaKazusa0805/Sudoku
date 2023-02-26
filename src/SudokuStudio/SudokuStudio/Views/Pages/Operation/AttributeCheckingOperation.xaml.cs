@@ -72,7 +72,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		BasePage.VisualUnit = visualUnit;
 
 
-		Candidates getTrueCandidates()
+		CandidateMap getTrueCandidates()
 		{
 			lock (App.SyncRoot)
 			{

@@ -424,7 +424,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 			return null;
 		}
 
-		if (!new Candidates(trueCandidates) is not { Count: var mapCount and not 0 } map)
+		if ((CandidateMap.Empty + trueCandidates).PeerIntersection is not { Count: var mapCount and not 0 } map)
 		{
 			return null;
 		}

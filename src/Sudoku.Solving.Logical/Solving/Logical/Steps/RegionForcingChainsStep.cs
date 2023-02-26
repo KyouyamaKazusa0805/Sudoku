@@ -25,11 +25,11 @@ internal sealed record RegionForcingChainsStep(
 	internal string HouseStr() => $"{char.ToLower(HouseIndex.ToHouseType().ToString()[0])}{HouseIndex % 9 + 1}";
 
 	/// <inheritdoc/>
-	protected override Candidates GetGreenPotentials(int viewIndex)
+	protected override CandidateMap GetGreenPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedGreenPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), true, true);
 
 	/// <inheritdoc/>
-	protected override Candidates GetRedPotentials(int viewIndex)
+	protected override CandidateMap GetRedPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedRedPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), false, false);
 
 	/// <inheritdoc/>
