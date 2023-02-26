@@ -14,6 +14,7 @@ public interface IStatusMapBase<[Self] TSelf> :
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IFormattable,
 	IMinMaxValue<TSelf>,
+	IModulusOperators<TSelf, TSelf, TSelf>,
 	IParsable<TSelf>,
 	IReadOnlyCollection<int>,
 	IReadOnlyList<int>,
@@ -694,6 +695,15 @@ public interface IStatusMapBase<[Self] TSelf> :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static TSelf IBitwiseOperators<TSelf, TSelf, TSelf>.operator ^(TSelf left, TSelf right) => left ^ right;
+
+	/// <summary>
+	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+	/// </summary>
+	/// <param name="left">The base map.</param>
+	/// <param name="right">The template map that the base map to check and cover.</param>
+	/// <returns>The result map.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static TSelf IModulusOperators<TSelf, TSelf, TSelf>.operator %(TSelf left, TSelf right) => (left & right).PeerIntersection & right;
 
 
 	/// <summary>

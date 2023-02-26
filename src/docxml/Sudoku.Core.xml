@@ -220,15 +220,11 @@
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/summary"/>
+            Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
             </summary>
-            <param name="base">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/param[@name='base']"/>
-            </param>
-            <param name="template">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/param[@name='template']"/>
-            </param>
-            <returns><inheritdoc cref="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
+            <param name="base">The base map.</param>
+            <param name="template">The template map that the base map to check and cover.</param>
+            <returns>The result map.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_BitwiseAnd(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc/>
@@ -258,9 +254,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CandidateMap,System#Collections#Generic#IEnumerable{System#Int32},Sudoku#Concepts#CandidateMap}#op_CheckedSubtraction(Sudoku.Concepts.CandidateMap,System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IModulusOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap}#op_Modulus(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_CheckedAddition(Sudoku.Concepts.CandidateMap@,System.Int32)">
@@ -845,11 +838,15 @@
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
-            Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)" path="/summary"/>
             </summary>
-            <param name="base">The base map.</param>
-            <param name="template">The template map that the base map to check and cover.</param>
-            <returns>The result map.</returns>
+            <param name="base">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)" path="/param[@name='base']"/>
+            </param>
+            <param name="template">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)" path="/param[@name='template']"/>
+            </param>
+            <returns><inheritdoc cref="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)" path="/returns"/></returns>
             <remarks>
             <para>
             The operator is commonly used for checking eliminations, especially in type 2 of deadly patterns. 
@@ -929,9 +926,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CellMap,System#Collections#Generic#IEnumerable{System#Int32},Sudoku#Concepts#CellMap}#op_CheckedSubtraction(Sudoku.Concepts.CellMap,System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IModulusOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Modulus(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CandidateMap}#op_Multiply(Sudoku.Concepts.CellMap,System.Int32)">
@@ -3195,6 +3189,14 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#IModulusOperators{TSelf,TSelf,TSelf}#op_Modulus(`0,`0)">
+            <summary>
+            Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+            </summary>
+            <param name="left">The base map.</param>
+            <param name="right">The template map that the base map to check and cover.</param>
+            <returns>The result map.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Implicit(`0@)~System.Int32[]">
             <summary>

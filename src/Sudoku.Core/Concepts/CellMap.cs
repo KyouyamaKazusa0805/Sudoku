@@ -29,7 +29,6 @@ public unsafe partial struct CellMap :
 	IComparable<CellMap>,
 	IComparisonOperators<CellMap, CellMap, bool>,
 	IDivisionOperators<CellMap, int, short>,
-	IModulusOperators<CellMap, CellMap, CellMap>,
 	IMultiplyOperators<CellMap, int, CandidateMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
 	ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>,
@@ -1083,11 +1082,15 @@ public unsafe partial struct CellMap :
 		=> CreateByBits(left._high ^ right._high, left._low ^ right._low);
 
 	/// <summary>
-	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+	/// <inheritdoc cref="CandidateMap.op_Modulus(in CandidateMap, in CandidateMap)" path="/summary"/>
 	/// </summary>
-	/// <param name="base">The base map.</param>
-	/// <param name="template">The template map that the base map to check and cover.</param>
-	/// <returns>The result map.</returns>
+	/// <param name="base">
+	/// <inheritdoc cref="CandidateMap.op_Modulus(in CandidateMap, in CandidateMap)" path="/param[@name='base']"/>
+	/// </param>
+	/// <param name="template">
+	/// <inheritdoc cref="CandidateMap.op_Modulus(in CandidateMap, in CandidateMap)" path="/param[@name='template']"/>
+	/// </param>
+	/// <returns><inheritdoc cref="CandidateMap.op_Modulus(in CandidateMap, in CandidateMap)" path="/returns"/></returns>
 	/// <remarks>
 	/// <para>
 	/// The operator is commonly used for checking eliminations, especially in type 2 of deadly patterns. 
@@ -1235,10 +1238,6 @@ public unsafe partial struct CellMap :
 
 		return copied;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IModulusOperators<CellMap, CellMap, CellMap>.operator %(CellMap left, CellMap right) => left % right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

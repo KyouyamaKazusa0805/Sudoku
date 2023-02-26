@@ -24,7 +24,6 @@ public unsafe partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, int, CandidateMap>,
 	IAdditionOperators<CandidateMap, IEnumerable<int>, CandidateMap>,
 	IDivisionOperators<CandidateMap, int, CellMap>,
-	IModulusOperators<CandidateMap, CandidateMap, CandidateMap>,
 	ISubtractionOperators<CandidateMap, int, CandidateMap>,
 	ISubtractionOperators<CandidateMap, IEnumerable<int>, CandidateMap>,
 	IStatusMapBase<CandidateMap>
@@ -605,15 +604,11 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="CellMap.op_Modulus(in CellMap, in CellMap)" path="/summary"/>
+	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
 	/// </summary>
-	/// <param name="base">
-	/// <inheritdoc cref="CellMap.op_Modulus(in CellMap, in CellMap)" path="/param[@name='base']"/>
-	/// </param>
-	/// <param name="template">
-	/// <inheritdoc cref="CellMap.op_Modulus(in CellMap, in CellMap)" path="/param[@name='template']"/>
-	/// </param>
-	/// <returns><inheritdoc cref="CellMap.op_Modulus(in CellMap, in CellMap)" path="/returns"/></returns>
+	/// <param name="base">The base map.</param>
+	/// <param name="template">The template map that the base map to check and cover.</param>
+	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator %(scoped in CandidateMap @base, scoped in CandidateMap template)
 		=> (@base & template).PeerIntersection & template;
@@ -766,11 +761,6 @@ public unsafe partial struct CandidateMap :
 
 		return copied;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IModulusOperators<CandidateMap, CandidateMap, CandidateMap>.operator %(CandidateMap left, CandidateMap right)
-		=> left % right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
