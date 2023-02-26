@@ -18,6 +18,7 @@ namespace Sudoku.Concepts;
 /// ]]></code>
 /// </remarks>
 [IsLargeStruct]
+[JsonConverter(typeof(Converter))]
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators | GeneratedOperator.Boolean)]
 public unsafe partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, int, CandidateMap>,
