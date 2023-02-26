@@ -315,10 +315,13 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
+	[JsonInclude]
 	public readonly string[] StringChunks
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+		get => this
+			? ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+			: Array.Empty<string>();
 	}
 
 	/// <summary>
@@ -423,14 +426,6 @@ public unsafe partial struct CellMap :
 			return arr;
 		}
 	}
-
-	/// <summary>
-	/// Indicates the cell offsets in this collection.
-	/// </summary>
-	[JsonInclude]
-	[DebuggerHidden]
-	private readonly string[] NotationSegments => this ? StringChunks : Array.Empty<string>();
-
 
 	/// <inheritdoc/>
 	static CellMap IStatusMapBase<CellMap>.Empty => Empty;

@@ -551,11 +551,6 @@
             Indicates the cell offsets in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.NotationSegments">
-            <summary>
-            Indicates the cell offsets in this collection.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#Empty">
             <inheritdoc/>
         </member>

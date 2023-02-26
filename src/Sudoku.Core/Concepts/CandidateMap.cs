@@ -108,6 +108,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
+	[JsonInclude]
 	public readonly string[] StringChunks
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
