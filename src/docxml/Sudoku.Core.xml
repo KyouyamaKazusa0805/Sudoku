@@ -1563,21 +1563,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Grid.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.UserValueChanged">
-            <summary>
-            Indicates the event handler property, to be triggered when a value in the current grid is modified.
-            This customized handler will be triggered on same time with field <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/> being executed.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.UserRefreshingCandidates">
-            <summary>
-            Indicates the event handler property, to be triggered when the candidates are refreshed.
-            This customized handler will be triggered on same time with field <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
-            being executed.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
-        </member>
         <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MinValue">
             <inheritdoc/>
         </member>
@@ -2163,98 +2148,13 @@ fixed (short* ptr = instance)
             <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
             <seealso cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.op_Equality(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.op_Inequality(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs">
-            <summary>
-            Defines a type that is triggered when the candidates are refreshed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.#ctor(Sudoku.Concepts.Grid@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.GridRefreshingCandidatesEventArgs"/> instance via the specified grid to be updated.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridRefreshingCandidatesEventArgs._gridRef">
-            <summary>
-            The backing field of property <see cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef"/>
-        </member>
-        <member name="P:Sudoku.Concepts.GridRefreshingCandidatesEventArgs.GridRef">
-            <summary>
-            Indicates the reference to the grid whose candidates are refreshed.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.GridValueChangedEventArgs">
-            <summary>
-            Defines a type that is triggered when the specified value in a grid has been changed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridValueChangedEventArgs.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.GridValueChangedEventArgs"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridValueChangedEventArgs.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int16,System.Int16)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.GridValueChangedEventArgs"/> instance via the specified grid to be updated,
-            the cell, old and new mask information to be updated.
-            </summary>
-            <param name="gridRef">The reference to the grid.</param>
-            <param name="appliedDigit">The applied digit. -1 is for empty.</param>
-            <param name="cell">The cell used.</param>
-            <param name="oldMaskValue">The old and original mask value in the grid.</param>
-            <param name="newMaskValue">The new value to be replaced with.</param>
-        </member>
-        <member name="F:Sudoku.Concepts.GridValueChangedEventArgs._gridRef">
-            <summary>
-            The backing field of property <see cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef"/>
-        </member>
-        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.Cell">
-            <summary>
-            Indicates the cell to be updated and changed its value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.SetDigit">
-            <summary>
-            Indicates applied digit. -1 is for clear the cell, changed its status to <see cref="F:Sudoku.Concepts.CellStatus.Empty"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellStatus"/>
-        </member>
-        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.OldMaskValue">
-            <summary>
-            Indicates the mask value that is the old and original value in the current grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.NewMaskValue">
-            <summary>
-            Indicates the mask value as replacer to update the old value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.GridValueChangedEventArgs.GridRef">
-            <summary>
-            Indicates the reference to the grid whose inner value has been changed.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.GridCandidateEnumerator">
+        <member name="T:Sudoku.Concepts.Grid.GridCandidateEnumerator">
             <summary>
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
             <see cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Concepts.GridCandidateEnumerator.#ctor(System.Int16@)">
+        <member name="M:Sudoku.Concepts.Grid.GridCandidateEnumerator.#ctor(System.Int16@)">
             <summary>
             Initializes an instance with the specified reference to an array to iterate.
             </summary>
@@ -2264,32 +2164,32 @@ fixed (short* ptr = instance)
             even though C# allows we passing a constant as an <see langword="in"/> argument.
             </remarks>
         </member>
-        <member name="F:Sudoku.Concepts.GridCandidateEnumerator._start">
+        <member name="F:Sudoku.Concepts.Grid.GridCandidateEnumerator._start">
             <summary>
             The pointer to the start value.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.GridCandidateEnumerator._refCurrent">
+        <member name="F:Sudoku.Concepts.Grid.GridCandidateEnumerator._refCurrent">
             <summary>
             The current pointer.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.GridCandidateEnumerator._currentMask">
+        <member name="F:Sudoku.Concepts.Grid.GridCandidateEnumerator._currentMask">
             <summary>
             Indicates the current mask.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.GridCandidateEnumerator._currentIndex">
+        <member name="F:Sudoku.Concepts.Grid.GridCandidateEnumerator._currentIndex">
             <summary>
             The current index.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.GridCandidateEnumerator.Current">
+        <member name="P:Sudoku.Concepts.Grid.GridCandidateEnumerator.Current">
             <summary>
             Gets the element in the collection at the current position of the enumerator.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.GridCandidateEnumerator.MoveNext">
+        <member name="M:Sudoku.Concepts.Grid.GridCandidateEnumerator.MoveNext">
             <summary>
             Advances the enumerator to the next element of the collection.
             </summary>
@@ -2310,21 +2210,21 @@ fixed (short* ptr = instance)
             </list>
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.GridCandidateEnumerator.Reset">
+        <member name="M:Sudoku.Concepts.Grid.GridCandidateEnumerator.Reset">
             <summary>
             Sets the enumerator to its initial position, which is before the first element in the collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.GridCandidateEnumerator.GetEnumerator">
+        <member name="M:Sudoku.Concepts.Grid.GridCandidateEnumerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="T:Sudoku.Concepts.GridMaskEnumerator">
+        <member name="T:Sudoku.Concepts.Grid.GridMaskEnumerator">
             <summary>
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Concepts.GridMaskEnumerator.#ctor(System.Int16@)">
+        <member name="M:Sudoku.Concepts.Grid.GridMaskEnumerator.#ctor(System.Int16@)">
             <summary>
             Initializes an instance with the specified pointer to an array to iterate.
             </summary>
@@ -2333,27 +2233,27 @@ fixed (short* ptr = instance)
             Note here we should point at the one-unit-length memory before the array start.
             </remarks>
         </member>
-        <member name="F:Sudoku.Concepts.GridMaskEnumerator._start">
+        <member name="F:Sudoku.Concepts.Grid.GridMaskEnumerator._start">
             <summary>
             The pointer to the start value.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.GridMaskEnumerator._refCurrent">
+        <member name="F:Sudoku.Concepts.Grid.GridMaskEnumerator._refCurrent">
             <summary>
             The current pointer.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.GridMaskEnumerator._currentIndex">
+        <member name="F:Sudoku.Concepts.Grid.GridMaskEnumerator._currentIndex">
             <summary>
             The current index.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.GridMaskEnumerator.Current">
+        <member name="P:Sudoku.Concepts.Grid.GridMaskEnumerator.Current">
             <summary>
             Gets the element in the collection at the current position of the enumerator.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.GridMaskEnumerator.MoveNext">
+        <member name="M:Sudoku.Concepts.Grid.GridMaskEnumerator.MoveNext">
             <summary>
             Advances the enumerator to the next element of the collection.
             </summary>
@@ -2374,13 +2274,19 @@ fixed (short* ptr = instance)
             </list>
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.GridMaskEnumerator.Reset">
+        <member name="M:Sudoku.Concepts.Grid.GridMaskEnumerator.Reset">
             <summary>
             Sets the enumerator to its initial position, which is before the first element in the collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.GridMaskEnumerator.GetEnumerator">
+        <member name="M:Sudoku.Concepts.Grid.GridMaskEnumerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.op_Equality(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.op_Inequality(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.Converter">
             <summary>
@@ -2396,44 +2302,12 @@ fixed (short* ptr = instance)
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.EventHandlers">
-            <summary>
-            Represents event handlers used by <see cref="T:Sudoku.Concepts.Grid"/> instances, especially for fields
-            <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/> and <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-            <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
-            <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
-        </member>
-        <member name="M:Sudoku.Concepts.EventHandlers.EventHandlerOnRefreshingCandidates(Sudoku.Concepts.Grid@)">
-            <summary>
-            The method that is invoked by event handler field <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Concepts.Grid"/> instance.</param>
-            <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
-        </member>
-        <member name="M:Sudoku.Concepts.EventHandlers.EventHandlerOnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
-            <summary>
-            The method that is invoked by event handler field <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/>.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Concepts.Grid"/> instance.</param>
-            <param name="cell">The cell.</param>
-            <param name="oldMask">The old and original mask.</param>
-            <param name="newMask">The new mask.</param>
-            <param name="setValue">The set value. Assign -1 if the cell should be set empty.</param>
-            <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
-        </member>
         <member name="T:Sudoku.Concepts.Helper">
             <summary>
             Represents a helper method used by <see cref="T:Sudoku.Concepts.Grid"/> instances, especially for equality checking method <see cref="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
             <seealso cref="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)"/>
-            <!--
-            Licensed to the .NET Foundation under one or more agreements.
-            The .NET Foundation licenses this file to you under the MIT license.
-            https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
-            -->
         </member>
         <member name="M:Sudoku.Concepts.Helper.SequenceEqual(System.Byte@,System.Byte@,System.UIntPtr)">
             <summary>

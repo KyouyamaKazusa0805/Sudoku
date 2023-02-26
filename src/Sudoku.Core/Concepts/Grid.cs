@@ -1,5 +1,4 @@
 ﻿#define TARGET_64BIT
-
 namespace Sudoku.Concepts;
 
 /// <summary>
@@ -188,13 +187,52 @@ public unsafe partial struct Grid :
 		}
 
 		// Initializes events.
-		ValueChanged = &EventHandlers.EventHandlerOnValueChanged;
-		RefreshingCandidates = &EventHandlers.EventHandlerOnRefreshingCandidates;
+		ValueChanged = &onValueChanged;
+		RefreshingCandidates = &onRefreshingCandidates;
 
 		// Initializes special fields.
 		Undefined = default; // This field must be initialized after parsing the following two special fields.
 		MinValue = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
 		MaxValue = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
+
+
+		static void onRefreshingCandidates(ref Grid @this)
+		{
+			for (var i = 0; i < 81; i++)
+			{
+				if (@this.GetStatus(i) == CellStatus.Empty)
+				{
+					// Remove all appeared digits.
+					var mask = MaxCandidatesMask;
+					foreach (var cell in PeersMap[i])
+					{
+						if (@this[cell] is var digit and not -1)
+						{
+							mask &= (short)~(1 << digit);
+						}
+					}
+
+					@this._values[i] = (short)(EmptyMask | mask);
+				}
+			}
+		}
+
+		static void onValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
+		{
+			if (setValue != -1)
+			{
+				foreach (var peerCell in PeersMap[cell])
+				{
+					if (@this.GetStatus(peerCell) == CellStatus.Empty)
+					{
+						// You can't do this because of being invoked recursively.
+						//@this[peerCell, setValue] = false;
+
+						@this._values[peerCell] &= (short)~(1 << setValue);
+					}
+				}
+			}
+		}
 	}
 
 
@@ -497,24 +535,6 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<int>.Count => 81;
 
-
-	/// <summary>
-	/// Indicates the event handler property, to be triggered when a value in the current grid is modified.
-	/// This customized handler will be triggered on same time with field <see cref="ValueChanged"/> being executed.
-	/// </summary>
-	/// <seealso cref="ValueChanged"/>
-	[DisallowNull]
-	public static delegate*<in GridValueChangedEventArgs, void> UserValueChanged { get; set; }
-
-	/// <summary>
-	/// Indicates the event handler property, to be triggered when the candidates are refreshed.
-	/// This customized handler will be triggered on same time with field <see cref="RefreshingCandidates"/>
-	/// being executed.
-	/// </summary>
-	/// <seealso cref="RefreshingCandidates"/>
-	[DisallowNull]
-	public static delegate*<in GridRefreshingCandidatesEventArgs, void> UserRefreshingCandidates { get; set; }
-
 	/// <inheritdoc/>
 	static Grid IMinMaxValue<Grid>.MinValue => MinValue;
 
@@ -576,11 +596,6 @@ public unsafe partial struct Grid :
 
 					RefreshingCandidates(ref this);
 
-					if (UserRefreshingCandidates != null)
-					{
-						UserRefreshingCandidates(new(in this));
-					}
-
 					break;
 				}
 				case >= 0 and < 9:
@@ -593,11 +608,6 @@ public unsafe partial struct Grid :
 
 					// To trigger the event, which is used for eliminate all same candidates in peer cells.
 					ValueChanged(ref this, cell, copied, result, value);
-
-					if (UserValueChanged != null)
-					{
-						UserValueChanged(new(in this, cell, value, copied, result));
-					}
 
 					break;
 				}
@@ -637,11 +647,6 @@ public unsafe partial struct Grid :
 
 				// To trigger the event.
 				ValueChanged(ref this, cell, copied, _values[cell], -1);
-
-				if (UserValueChanged != null)
-				{
-					UserValueChanged(new(in this, cell, -1, copied, _values[cell]));
-				}
 			}
 		}
 	}
@@ -1057,11 +1062,6 @@ public unsafe partial struct Grid :
 		mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
 
 		ValueChanged(ref this, cell, copied, mask, -1);
-
-		if (UserValueChanged != null)
-		{
-			UserValueChanged(new(in this, cell, -1, copied, mask));
-		}
 	}
 
 	/// <summary>
@@ -1077,11 +1077,6 @@ public unsafe partial struct Grid :
 		m = mask;
 
 		ValueChanged(ref this, cell, copied, m, -1);
-
-		if (UserValueChanged != null)
-		{
-			UserValueChanged(new(in this, cell, -1, copied, m));
-		}
 	}
 
 	/// <summary>
@@ -1430,104 +1425,51 @@ public unsafe partial struct Grid :
 	/// <seealso cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Grid([ConstantExpected] string? gridCode) => gridCode is null ? Undefined : Parse(gridCode);
-}
 
-/// <summary>
-/// Defines a type that is triggered when the candidates are refreshed.
-/// </summary>
-public readonly ref partial struct GridRefreshingCandidatesEventArgs
-{
+
 	/// <summary>
-	/// Initializes a <see cref="GridRefreshingCandidatesEventArgs"/> instance.
+	/// Defines the default enumerator that iterates the <see cref="Grid"/> through the candidates in the current <see cref="Grid"/> instance.
 	/// </summary>
-	[FileAccessOnly]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridRefreshingCandidatesEventArgs()
+	/// <see cref="Grid"/>
+	public ref partial struct GridCandidateEnumerator
 	{
+		/// <summary>
+		/// Initializes an instance with the specified reference to an array to iterate.
+		/// </summary>
+		/// <param name="arr">The reference to an array.</param>
+		/// <remarks>
+		/// Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
+		/// even though C# allows we passing a constant as an <see langword="in"/> argument.
+		/// </remarks>
+		[FileAccessOnly]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal GridCandidateEnumerator(ref short arr)
+		{
+			_refCurrent = ref SubtractByteOffset(ref arr, 1);
+			_start = ref _refCurrent;
+		}
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="GridRefreshingCandidatesEventArgs"/> instance via the specified grid to be updated.
+	/// Defines the default enumerator that iterates the <see cref="Grid"/> through the masks in the current <see cref="Grid"/> instance.
 	/// </summary>
-	[FileAccessOnly]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal GridRefreshingCandidatesEventArgs(in Grid gridRef) => _gridRef = ref gridRef;
-}
-
-/// <summary>
-/// Defines a type that is triggered when the specified value in a grid has been changed.
-/// </summary>
-public readonly ref partial struct GridValueChangedEventArgs
-{
-	/// <summary>
-	/// Initializes a <see cref="GridValueChangedEventArgs"/> instance.
-	/// </summary>
-	[FileAccessOnly]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridValueChangedEventArgs()
+	/// <seealso cref="Grid"/>
+	public ref partial struct GridMaskEnumerator
 	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="GridValueChangedEventArgs"/> instance via the specified grid to be updated,
-	/// the cell, old and new mask information to be updated.
-	/// </summary>
-	/// <param name="gridRef">The reference to the grid.</param>
-	/// <param name="appliedDigit">The applied digit. -1 is for empty.</param>
-	/// <param name="cell">The cell used.</param>
-	/// <param name="oldMaskValue">The old and original mask value in the grid.</param>
-	/// <param name="newMaskValue">The new value to be replaced with.</param>
-	[FileAccessOnly]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal GridValueChangedEventArgs(in Grid gridRef, int cell, int appliedDigit, short oldMaskValue, short newMaskValue)
-	{
-		_gridRef = ref gridRef;
-		(Cell, SetDigit, OldMaskValue, NewMaskValue) = (cell, appliedDigit, oldMaskValue, newMaskValue);
-	}
-}
-
-/// <summary>
-/// Defines the default enumerator that iterates the <see cref="Grid"/> through the candidates in the current <see cref="Grid"/> instance.
-/// </summary>
-/// <see cref="Grid"/>
-public ref partial struct GridCandidateEnumerator
-{
-	/// <summary>
-	/// Initializes an instance with the specified reference to an array to iterate.
-	/// </summary>
-	/// <param name="arr">The reference to an array.</param>
-	/// <remarks>
-	/// Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
-	/// even though C# allows we passing a constant as an <see langword="in"/> argument.
-	/// </remarks>
-	[FileAccessOnly]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal GridCandidateEnumerator(ref short arr)
-	{
-		_refCurrent = ref SubtractByteOffset(ref arr, 1);
-		_start = ref _refCurrent;
-	}
-}
-
-/// <summary>
-/// Defines the default enumerator that iterates the <see cref="Grid"/> through the masks in the current <see cref="Grid"/> instance.
-/// </summary>
-/// <seealso cref="Grid"/>
-public ref partial struct GridMaskEnumerator
-{
-	/// <summary>
-	/// Initializes an instance with the specified pointer to an array to iterate.
-	/// </summary>
-	/// <param name="arr">The pointer to an array.</param>
-	/// <remarks>
-	/// Note here we should point at the one-unit-length memory before the array start.
-	/// </remarks>
-	[FileAccessOnly]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal GridMaskEnumerator(ref short arr)
-	{
-		_refCurrent = ref SubtractByteOffset(ref arr, 1);
-		_start = ref _refCurrent;
+		/// <summary>
+		/// Initializes an instance with the specified pointer to an array to iterate.
+		/// </summary>
+		/// <param name="arr">The pointer to an array.</param>
+		/// <remarks>
+		/// Note here we should point at the one-unit-length memory before the array start.
+		/// </remarks>
+		[FileAccessOnly]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal GridMaskEnumerator(ref short arr)
+		{
+			_refCurrent = ref SubtractByteOffset(ref arr, 1);
+			_start = ref _refCurrent;
+		}
 	}
 }
 
@@ -1550,78 +1492,15 @@ file sealed class Converter : JsonConverter<Grid>
 		=> writer.WriteStringValue(value.ToString(SusserFormat.Full));
 }
 
-/// <summary>
-/// Represents event handlers used by <see cref="Grid"/> instances, especially for fields
-/// <see cref="Grid.RefreshingCandidates"/> and <see cref="Grid.ValueChanged"/>.
-/// </summary>
-/// <seealso cref="Grid"/>
-/// <seealso cref="Grid.RefreshingCandidates"/>
-/// <seealso cref="Grid.ValueChanged"/>
-file static unsafe class EventHandlers
-{
-	/// <summary>
-	/// The method that is invoked by event handler field <see cref="Grid.RefreshingCandidates"/>.
-	/// </summary>
-	/// <param name="this">The <see cref="Grid"/> instance.</param>
-	/// <seealso cref="Grid.RefreshingCandidates"/>
-	public static void EventHandlerOnRefreshingCandidates(ref Grid @this)
-	{
-		for (var i = 0; i < 81; i++)
-		{
-			if (@this.GetStatus(i) == CellStatus.Empty)
-			{
-				// Remove all appeared digits.
-				var mask = Grid.MaxCandidatesMask;
-				foreach (var cell in PeersMap[i])
-				{
-					if (@this[cell] is var digit and not -1)
-					{
-						mask &= (short)~(1 << digit);
-					}
-				}
-
-				@this._values[i] = (short)(Grid.EmptyMask | mask);
-			}
-		}
-	}
-
-	/// <summary>
-	/// The method that is invoked by event handler field <see cref="Grid.ValueChanged"/>.
-	/// </summary>
-	/// <param name="this">The <see cref="Grid"/> instance.</param>
-	/// <param name="cell">The cell.</param>
-	/// <param name="oldMask">The old and original mask.</param>
-	/// <param name="newMask">The new mask.</param>
-	/// <param name="setValue">The set value. Assign -1 if the cell should be set empty.</param>
-	/// <seealso cref="Grid.ValueChanged"/>
-	public static void EventHandlerOnValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
-	{
-		if (setValue != -1)
-		{
-			foreach (var peerCell in PeersMap[cell])
-			{
-				if (@this.GetStatus(peerCell) == CellStatus.Empty)
-				{
-					// You can't do this because of being invoked recursively.
-					//@this[peerCell, setValue] = false;
-
-					@this._values[peerCell] &= (short)~(1 << setValue);
-				}
-			}
-		}
-	}
-}
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
 
 /// <summary>
 /// Represents a helper method used by <see cref="Grid"/> instances, especially for equality checking method <see cref="Grid.Equals(in Grid)"/>.
 /// </summary>
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.Equals(in Grid)"/>
-/// <!--
-/// Licensed to the .NET Foundation under one or more agreements.
-/// The .NET Foundation licenses this file to you under the MIT license.
-/// https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
-/// -->
 file static unsafe class Helper
 {
 	/// <summary>
