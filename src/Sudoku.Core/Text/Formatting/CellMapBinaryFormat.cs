@@ -22,10 +22,11 @@ public sealed record CellMapBinaryFormat(bool WithSeparator = true) : ICellMapFo
 	public string ToString(scoped in CellMap cellMap)
 	{
 		scoped var sb = new StringHandler(81);
-		int i;
-		var (low, high) = cellMap;
+		var low = cellMap._low;
+		var high = cellMap._high;
 
 		var value = low;
+		int i;
 		for (i = 0; i < 27; i++, value >>= 1)
 		{
 			sb.Append(value & 1);

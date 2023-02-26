@@ -9,9 +9,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	IBooleanOperators<TSelf>,
 	ICollection<int>,
-	IComparable,
-	IComparable<TSelf>,
-	IComparisonOperators<TSelf, TSelf, bool>,
 	IEnumerable,
 	IEnumerable<int>,
 	IEquatable<TSelf>,
@@ -40,6 +37,26 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// Indicates the number of the values stored in this collection.
 	/// </summary>
 	new int Count { get; }
+
+	/// <summary>
+	/// Gets all chunks of the current collection, meaning a list of <see cref="string"/> values that can describe
+	/// all cell and candidate indices, grouped with same row/column.
+	/// </summary>
+	string[] StringChunks { get; }
+
+	/// <summary>
+	/// Indicates the peer intersection of the current instance.
+	/// </summary>
+	/// <remarks>
+	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
+	/// For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
+	/// </remarks>
+	TSelf PeerIntersection { get; }
+
+	/// <summary>
+	/// Indicates the cell offsets in this collection.
+	/// </summary>
+	protected abstract int[] Offsets { get; }
 
 	/// <inheritdoc/>
 	bool ICollection<int>.IsReadOnly => false;
@@ -185,19 +202,18 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	bool Equals(scoped in TSelf other);
 
 	/// <summary>
-	/// <inheritdoc cref="IComparable{T}.CompareTo(T)" path="/summary"/>
-	/// </summary>
-	/// <param name="other">
-	/// <inheritdoc cref="IComparable{T}.CompareTo(T)" path="/param[@name='other']"/>
-	/// </param>
-	/// <returns>An indicating the result.</returns>
-	int CompareTo(scoped in TSelf other);
-
-	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
 	/// </summary>
 	/// <returns>An array of offsets.</returns>
 	int[] ToArray();
+
+	/// <summary>
+	/// Slices the current instance, and get the new instance with some of elements between two indices.
+	/// </summary>
+	/// <param name="start">The start index.</param>
+	/// <param name="count">The number of elements.</param>
+	/// <returns>The target instance.</returns>
+	TSelf Slice(int start, int count);
 
 	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
@@ -341,21 +357,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable<TSelf>.CompareTo(TSelf other) => CompareTo(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable.CompareTo([NotNull] object? obj)
-	{
-		ArgumentNullException.ThrowIfNull(obj);
-
-		return obj is TSelf other
-			? CompareTo(other)
-			: throw new ArgumentException($"The argument must be of type '{typeof(TSelf).Name}'.", nameof(obj));
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<int>)this).GetEnumerator();
 
 	/// <inheritdoc/>
@@ -411,22 +412,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static virtual bool operator false(scoped in TSelf cells) => cells.Count == 0;
-
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator >(scoped in TSelf left, scoped in TSelf right) => left.CompareTo(right) > 0;
-
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator >=(scoped in TSelf left, scoped in TSelf right) => left.CompareTo(right) >= 0;
-
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator <(scoped in TSelf left, scoped in TSelf right) => left.CompareTo(right) < 0;
-
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator <=(scoped in TSelf left, scoped in TSelf right) => left.CompareTo(right) <= 0;
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -692,22 +677,6 @@ public unsafe interface IStatusMapBase<[Self] TSelf> :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<TSelf, TSelf, bool>.operator !=(TSelf left, TSelf right) => left != right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<TSelf, TSelf, bool>.operator >(TSelf left, TSelf right) => left > right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<TSelf, TSelf, bool>.operator >=(TSelf left, TSelf right) => left >= right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<TSelf, TSelf, bool>.operator <(TSelf left, TSelf right) => left < right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<TSelf, TSelf, bool>.operator <=(TSelf left, TSelf right) => left <= right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

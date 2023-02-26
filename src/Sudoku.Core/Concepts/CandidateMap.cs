@@ -56,6 +56,26 @@ public unsafe partial struct CandidateMap :
 
 
 	/// <summary>
+	/// Initializes a <see cref="CandidateMap"/> instance via a list of candidate offsets
+	/// represented as a RxCy notation defined by <see cref="RxCyNotation"/>.
+	/// </summary>
+	/// <param name="segments">The candidate offsets, represented as a RxCy notation.</param>
+	/// <seealso cref="RxCyNotation"/>
+	[DebuggerHidden]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[JsonConstructor]
+	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true, DiagnosticId = "SCA0103", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103")]
+	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, Url = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103")]
+	public CandidateMap(string[] segments)
+	{
+		this = Empty;
+		foreach (var segment in segments)
+		{
+			this |= RxCyNotation.ParseCandidates(segment);
+		}
+	}
+
+	/// <summary>
 	/// Indicates a <see cref="CandidateMap"/> instance with the peer candidates of the specified candidate and a <see cref="bool"/>
 	/// value indicating whether the map will process itself with <see langword="true"/> value.
 	/// </summary>
@@ -86,7 +106,50 @@ public unsafe partial struct CandidateMap :
 		get => _count;
 	}
 
-	/// <inheritdoc cref="CellMap.PeerIntersection"/>
+	/// <inheritdoc/>
+	public readonly string[] StringChunks
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get
+		{
+			return this switch
+			{
+				{ _count: 0 } => Array.Empty<string>(),
+				[var a] => new[] { RxCyNotation.ToCandidateString(a) },
+				_ => f(Offsets)
+			};
+
+
+			static string[] f(int[] offsets)
+			{
+				var list = new List<string>();
+				foreach (var digitGroup in
+					from candidate in offsets
+					group candidate by candidate % 9 into digitGroups
+					orderby digitGroups.Key
+					select digitGroups)
+				{
+					scoped var sb = new StringHandler(50);
+					var cells = CellMap.Empty;
+					foreach (var candidate in digitGroup)
+					{
+						cells.Add(candidate / 9);
+					}
+
+					sb.Append(RxCyNotation.ToCellsString(cells));
+					sb.Append('(');
+					sb.Append(digitGroup.Key + 1);
+					sb.Append(')');
+
+					list.Add(sb.ToStringAndClear());
+				}
+
+				return list.ToArray();
+			}
+		}
+	}
+
+	/// <inheritdoc/>
 	public CandidateMap PeerIntersection
 	{
 		get
@@ -107,20 +170,11 @@ public unsafe partial struct CandidateMap :
 		}
 	}
 
-	/// <summary>
-	/// Gets all chunks of the current collection. That means, the list of <see cref="string"/> representations
-	/// that describes all cell indices, grouped and collapsed with same row/column.
-	/// </summary>
-	[DebuggerHidden]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	internal readonly string[] StringChunks
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-	}
-
 	/// <inheritdoc/>
 	readonly int IStatusMapBase<CandidateMap>.Shifting => sizeof(long) << 3;
+
+	/// <inheritdoc/>
+	readonly int[] IStatusMapBase<CandidateMap>.Offsets => Offsets;
 
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
@@ -262,12 +316,7 @@ public unsafe partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly OneDimensionalArrayEnumerator<int> GetEnumerator() => Offsets.EnumerateImmutable();
 
-	/// <summary>
-	/// Slices the current instance, and get the new instance with some of elements between two indices.
-	/// </summary>
-	/// <param name="start">The start index.</param>
-	/// <param name="count">The number of elements.</param>
-	/// <returns>The target instance.</returns>
+	/// <inheritdoc/>
 	public readonly CandidateMap Slice(int start, int count)
 	{
 		var result = Empty;
@@ -298,40 +347,11 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddChecked(int offset)
-	{
-		if (offset is not (>= 0 and < 729))
-		{
-			throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid.");
-		}
-
-		Add(offset);
-	}
-
-	/// <inheritdoc/>
 	public void AddRange(IEnumerable<int> offsets)
 	{
 		foreach (var element in offsets)
 		{
 			Add(element);
-		}
-	}
-
-	/// <inheritdoc cref="IStatusMapBase{TSelf}.AddRange(ReadOnlySpan{int})"/>
-	/// <remarks>
-	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
-	/// also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
-	/// this method will throw an exception to report about this.
-	/// </remarks>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when found at least one cell offset invalid.
-	/// </exception>
-	public void AddRangeChecked(IEnumerable<int> offsets)
-	{
-		foreach (var cell in offsets)
-		{
-			AddChecked(cell);
 		}
 	}
 
@@ -357,11 +377,33 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	/// <exception cref="NotImplementedException">Throws always due to too complex.</exception>
-	[DoesNotReturn]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly int IStatusMapBase<CandidateMap>.CompareTo(scoped in CandidateMap other)
-		=> throw new NotImplementedException("Instances of this type contains too many bits, which is hard to be used as comparison.");
+	void IStatusMapBase<CandidateMap>.AddChecked(int offset)
+	{
+		if (offset is not (>= 0 and < 729))
+		{
+			throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid.");
+		}
+
+		Add(offset);
+	}
+
+	/// <inheritdoc cref="IStatusMapBase{TSelf}.AddRange(ReadOnlySpan{int})"/>
+	/// <remarks>
+	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
+	/// also checks for the validity of each cell offsets. If the value is below 0 or greater than 80,
+	/// this method will throw an exception to report about this.
+	/// </remarks>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when found at least one cell offset invalid.
+	/// </exception>
+	void IStatusMapBase<CandidateMap>.AddRangeChecked(IEnumerable<int> offsets)
+	{
+		foreach (var cell in offsets)
+		{
+			((IStatusMapBase<CandidateMap>)this).AddChecked(cell);
+		}
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -723,11 +765,67 @@ public unsafe partial struct CandidateMap :
 		var result = Empty;
 		foreach (var offset in offsets)
 		{
-			result.AddChecked(offset);
+			((IStatusMapBase<CandidateMap>)result).AddChecked(offset);
 		}
 
 		return result;
 	}
+
+	/// <inheritdoc/>
+	static implicit IStatusMapBase<CandidateMap>.operator CandidateMap(scoped Span<int> offsets)
+	{
+		var result = Empty;
+		foreach (var offset in offsets)
+		{
+			result.Add(offset);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	static implicit IStatusMapBase<CandidateMap>.operator CandidateMap(scoped ReadOnlySpan<int> offsets)
+	{
+		var result = Empty;
+		foreach (var offset in offsets)
+		{
+			result.Add(offset);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	static explicit IStatusMapBase<CandidateMap>.operator CandidateMap(int[] offsets)
+	{
+		var result = Empty;
+		foreach (var offset in offsets)
+		{
+			result.Add(offset);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	static explicit IStatusMapBase<CandidateMap>.operator checked CandidateMap(int[] offsets)
+	{
+		var result = Empty;
+		foreach (var offset in offsets)
+		{
+			((IStatusMapBase<CandidateMap>)result).AddChecked(offset);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static explicit IStatusMapBase<CandidateMap>.operator Span<int>(scoped in CandidateMap offsets) => offsets.Offsets;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static explicit IStatusMapBase<CandidateMap>.operator ReadOnlySpan<int>(scoped in CandidateMap offsets) => offsets.Offsets;
 }
 
 /// <summary>
