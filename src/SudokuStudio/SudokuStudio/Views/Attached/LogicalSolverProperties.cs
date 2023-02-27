@@ -8,6 +8,7 @@
 [AttachedProperty<bool>("EnableFullHouse", DefaultValue = true)]
 [AttachedProperty<bool>("EnableLastDigit", DefaultValue = true)]
 [AttachedProperty<bool>("HiddenSinglesInBlockFirst", DefaultValue = true)]
+[AttachedProperty<bool>("UseIttoryuMode")]
 [AttachedProperty<bool>("AllowIncompleteUniqueRectangles", DefaultValue = true)]
 [AttachedProperty<bool>("SearchForExtendedUniqueRectangles", DefaultValue = true)]
 [AttachedProperty<bool>("SearchExtendedBivalueUniversalGraveTypes", DefaultValue = true)]
@@ -37,6 +38,10 @@ public static partial class LogicalSolverProperties
 	[Callback]
 	private static void HiddenSinglesInBlockFirstPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> SudokuPaneBindable.GetProgramSolver((SudokuPane)d).SingleStepSearcher_HiddenSinglesInBlockFirst = (bool)e.NewValue;
+
+	[Callback]
+	private static void UseIttoryuModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> SudokuPaneBindable.GetProgramSolver((SudokuPane)d).SingleStepSearcher_UseIttoryuMode = (bool)e.NewValue;
 
 	[Callback]
 	private static void AllowIncompleteUniqueRectanglesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

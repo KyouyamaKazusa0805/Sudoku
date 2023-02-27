@@ -64,6 +64,10 @@
 								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
 								Click="UnfixGridButton_Click" />
 							<AppBarSeparator />
+							<AppBarButton
+								x:Name="AnalyzeButton" x:FieldModifier="internal" Icon="Find" Label="{m:R Key=AnalyzePage_AnalyzeButton}"
+								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}"
+								Click="AnalyzeButton_ClickAsync" />
 							<AppBarToggleButton
 								Icon="List" Label="{m:R Key=AnalyzePage_LogicalSolverIsFullyApplied}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=TwoWay}" />
@@ -76,11 +80,6 @@
 							<AppBarToggleButton
 								Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=TwoWay}" />
-							<AppBarSeparator />
-							<AppBarButton
-								x:Name="AnalyzeButton" x:FieldModifier="internal" Icon="Find" Label="{m:R Key=AnalyzePage_AnalyzeButton}"
-								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}"
-								Click="AnalyzeButton_ClickAsync" />
 							<AppBarSeparator />
 							<AppBarButton Label="{m:R Key=AnalyzePage_StartDrawingButton}" Click="StartDrawingButton_Click">
 								<AppBarButton.Icon>
@@ -168,6 +167,7 @@
 						a:LogicalSolverProperties.CheckAdvancedJuniorExocet="True"
 						a:LogicalSolverProperties.CheckAdvancedSeniorExocet="True"
 						a:LogicalSolverProperties.SolverIsFullApplying="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=OneWay}"
+						a:LogicalSolverProperties.UseIttoryuMode="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerUseIttoryuMode,Mode=OneWay}"
 						a:LogicalSolverProperties.SolverIgnoreSlowAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms,Mode=OneWay}"
 						a:LogicalSolverProperties.SolverIgnoreHighAllocationAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=OneWay}"
 						a:StepGathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=OneWay}"

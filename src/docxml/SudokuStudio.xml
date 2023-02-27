@@ -4657,6 +4657,11 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>HiddenSinglesInBlockFirst</c>.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.UseIttoryuModeProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>UseIttoryuMode</c>.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowIncompleteUniqueRectanglesProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>AllowIncompleteUniqueRectangles</c>.
@@ -4772,6 +4777,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.HiddenSinglesInBlockFirstProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.HiddenSinglesInBlockFirstProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.UseIttoryuModeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.UseIttoryuModeProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.UseIttoryuModeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.UseIttoryuModeProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetAllowIncompleteUniqueRectangles(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>
