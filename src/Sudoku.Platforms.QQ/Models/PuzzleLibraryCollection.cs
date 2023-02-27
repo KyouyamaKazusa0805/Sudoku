@@ -107,19 +107,4 @@ internal sealed partial class PuzzleLibraryCollection
 			yield return selector(element);
 		}
 	}
-
-
-	/// <summary>
-	/// Defines the internal enumerator of this type.
-	/// </summary>
-	public ref partial struct Enumerator
-	{
-		/// <summary>
-		/// Initializes an <see cref="Enumerator"/> instance via the specified <see cref="PuzzleLibraryCollection"/> instance.
-		/// </summary>
-		/// <param name="collection">The <see cref="PuzzleLibraryCollection"/> instance.</param>
-		[FileAccessOnly]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Enumerator(PuzzleLibraryCollection collection) => _enumerator = collection.PuzzleLibraries.GetEnumerator();
-	}
 }

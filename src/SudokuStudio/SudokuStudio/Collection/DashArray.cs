@@ -18,7 +18,6 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 	/// <summary>
 	/// The double values.
 	/// </summary>
-	[FileAccessOnly]
 	internal readonly double[] _doubles = Array.Empty<double>();
 
 
@@ -101,20 +100,6 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 
 	/// <inheritdoc/>
 	IEnumerator<double> IEnumerable<double>.GetEnumerator() => ((IEnumerable<double>)_doubles).GetEnumerator();
-
-
-	/// <summary>
-	/// Defines an enumerator of this type.
-	/// </summary>
-	public ref partial struct Enumerator
-	{
-		/// <summary>
-		/// Initializes a <see cref="Enumerator"/> instance.
-		/// </summary>
-		/// <param name="doubles">The double values.</param>
-		[FileAccessOnly]
-		internal Enumerator(double[] doubles) => _doubles = doubles;
-	}
 }
 
 /// <summary>

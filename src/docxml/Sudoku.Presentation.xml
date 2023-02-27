@@ -2091,11 +2091,6 @@ if (student is (name: var name, age: >= 18))
             Defines an identifier that can differ colors.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.Identifier.#ctor">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance.
-            </summary>
-        </member>
         <member name="M:Sudoku.Presentation.Identifier.#ctor(System.Int32)">
             <summary>
             Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the ID value.
@@ -2273,7 +2268,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Presentation.Identifier.op_Inequality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Presentation.JsonConverter">
+        <member name="T:Sudoku.Presentation.Converter">
             <summary>
             Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Presentation.Identifier"/>.
             </summary>
@@ -2293,18 +2288,18 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="T:Sudoku.Presentation.Identifier"/>
         </member>
-        <member name="F:Sudoku.Presentation.JsonConverter.ValuePropertyName">
+        <member name="F:Sudoku.Presentation.Converter.ValuePropertyName">
             <summary>
             Indicates the property name <c>"Value"</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Presentation.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Identifier,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Presentation.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Identifier,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.JsonConverter.ConvertName(System.String,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Presentation.Converter.ConvertName(System.String,System.Text.Json.JsonSerializerOptions)">
             <summary>
             Try to convert the specified string value as the specified naming policy
             specified in argument <paramref name="options"/>.
@@ -2629,16 +2624,16 @@ if (student is (name: var name, age: >= 18))
             used by <see langword="foreach"/> statements.
             </summary>
         </member>
+        <member name="F:Sudoku.Presentation.View.Iterator._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.View.Iterator.#ctor(Sudoku.Presentation.View)">
             <summary>
             Initializes an <see cref="T:Sudoku.Presentation.View.Iterator"/> instance via the specified list of nodes.
             </summary>
             <param name="view">The internal nodes.</param>
-        </member>
-        <member name="F:Sudoku.Presentation.View.Iterator._enumerator">
-            <summary>
-            The internal enumerator.
-            </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.Iterator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
@@ -2659,87 +2654,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Presentation.View.Iterator.MoveNext">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
-        <member name="T:Sudoku.Presentation.View.SelectIterator`1">
-            <summary>
-            Represents an enumerator that iterates for a list of elements that is projected by the current collection,
-            converting by the specified converter.
-            </summary>
-            <typeparam name="T">The type of projected elements.</typeparam>
-        </member>
-        <member name="M:Sudoku.Presentation.View.SelectIterator`1.#ctor(Sudoku.Presentation.View,System.Func{Sudoku.Presentation.Nodes.ViewNode,`0})">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance via the specified list of nodes.
-            </summary>
-            <param name="view">The internal nodes.</param>
-            <param name="selector">The selector.</param>
-        </member>
-        <member name="F:Sudoku.Presentation.View.SelectIterator`1._selector">
-            <summary>
-            The selector method.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.View.SelectIterator`1._enumerator">
-            <summary>
-            The internal enumerator.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.SelectIterator`1.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.SelectIterator`1.GetEnumerator">
-            <summary>
-            Creates an <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance.
-            </summary>
-            <returns>An <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.SelectIterator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="T:Sudoku.Presentation.View.WhereIterator">
-            <summary>
-            Represents an enumerator that iterates for view nodes satisfying the specified condition.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.View.WhereIterator.#ctor(Sudoku.Presentation.View,System.Func{Sudoku.Presentation.Nodes.ViewNode,System.Boolean})">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance via the specified list of nodes.
-            </summary>
-            <param name="view">The internal nodes.</param>
-            <param name="filteringCondition">The condition.</param>
-        </member>
-        <member name="F:Sudoku.Presentation.View.WhereIterator._filteringCondition">
-            <summary>
-            The filtering condition.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.View.WhereIterator._enumerator">
-            <summary>
-            The internal enumerator.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.View.WhereIterator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.WhereIterator.GetEnumerator">
-            <summary>
-            Creates an <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance.
-            </summary>
-            <returns>An <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.WhereIterator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
         <member name="T:Sudoku.Presentation.View.OfTypeIterator`1">
             <summary>
             Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
             </summary>
             <typeparam name="T">The type of the element node.</typeparam>
-        </member>
-        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.#ctor(Sudoku.Presentation.View)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance via the specified list of nodes.
-            </summary>
-            <param name="view">The internal nodes.</param>
         </member>
         <member name="F:Sudoku.Presentation.View.OfTypeIterator`1._count">
             <summary>
@@ -2750,6 +2669,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The internal enumerator.
             </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.#ctor(Sudoku.Presentation.View)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance via the specified list of nodes.
+            </summary>
+            <param name="view">The internal nodes.</param>
         </member>
         <member name="P:Sudoku.Presentation.View.OfTypeIterator`1.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
@@ -2775,6 +2700,76 @@ if (student is (name: var name, age: >= 18))
             <returns>An array of elements.</returns>
         </member>
         <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.Presentation.View.SelectIterator`1">
+            <summary>
+            Represents an enumerator that iterates for a list of elements that is projected by the current collection,
+            converting by the specified converter.
+            </summary>
+            <typeparam name="T">The type of projected elements.</typeparam>
+        </member>
+        <member name="F:Sudoku.Presentation.View.SelectIterator`1._selector">
+            <summary>
+            The selector method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.View.SelectIterator`1._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.SelectIterator`1.#ctor(Sudoku.Presentation.View,System.Func{Sudoku.Presentation.Nodes.ViewNode,`0})">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance via the specified list of nodes.
+            </summary>
+            <param name="view">The internal nodes.</param>
+            <param name="selector">The selector.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.View.SelectIterator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.SelectIterator`1.GetEnumerator">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.SelectIterator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.Presentation.View.WhereIterator">
+            <summary>
+            Represents an enumerator that iterates for view nodes satisfying the specified condition.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.View.WhereIterator._filteringCondition">
+            <summary>
+            The filtering condition.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.View.WhereIterator._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.WhereIterator.#ctor(Sudoku.Presentation.View,System.Func{Sudoku.Presentation.Nodes.ViewNode,System.Boolean})">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance via the specified list of nodes.
+            </summary>
+            <param name="view">The internal nodes.</param>
+            <param name="filteringCondition">The condition.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.View.WhereIterator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.WhereIterator.GetEnumerator">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.WhereIterator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="T:Sudoku.Presentation.ViewExtensions">

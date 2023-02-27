@@ -38,6 +38,24 @@ Then you can reference the doc here.
 			<b>Developer Notes</b>
 		</para>
 	</deverloper-notes>
+	
+	<!-- Requires compound invocation -->
+	<requires-compound-invocation>
+		<para>
+			<b>
+				<i>
+					This operator can only be used as compound one. For example:
+				</i>
+			</b>
+			<code>
+<![CDATA[
+result &= expression;
+result |= expression;
+result ^= expression;
+]]>
+			</code>
+		</para>
+	</requires-compound-invocation>
 
 	<!-- C# features -->
 	<csharp5>
@@ -233,6 +251,14 @@ fixed (short* ptr = instance)
 					one module by default.
 				</remarks>
 			</target>
+		</feature>
+		<feature name="function-pointer">
+			<b>
+				<i>
+					This member is only exposed for user for knowing the data structure backing implementation,
+					so it is disallowed to invoke it.
+				</i>
+			</b>
 		</feature>
 	</csharp9>
 	<csharp11>

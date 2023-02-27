@@ -4,7 +4,7 @@
 /// Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
 /// </summary>
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
-public interface IBitStatusMap<[Self] TSelf> :
+public interface IBitStatusMap<TSelf> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	ICollection<int>,

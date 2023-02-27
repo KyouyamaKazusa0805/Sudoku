@@ -149,22 +149,6 @@ internal sealed partial class MultipleForcingChains :
 
 		return result;
 	}
-
-
-	/// <summary>
-	/// Defines an enumerator that iterates the current collection.
-	/// </summary>
-	public ref partial struct Enumerator
-	{
-		/// <summary>
-		/// Initializes an <see cref="Enumerator"/> instance via the specified <see cref="MultipleForcingChains"/> instance.
-		/// </summary>
-		/// <param name="multipleForcingChains">The <see cref="MultipleForcingChains"/> instance.</param>
-		[FileAccessOnly]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Enumerator(MultipleForcingChains multipleForcingChains)
-			=> _enumerator = multipleForcingChains._internalDictionary.GetEnumerator();
-	}
 }
 
 /// <summary>

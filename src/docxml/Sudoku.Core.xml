@@ -1316,6 +1316,76 @@ if (student is (name: var name, age: >= 18))
             Represents a sudoku grid that uses the mask list to construct the data structure.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Grid.CandidateEnumerator">
+            <summary>
+            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <see cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.CandidateEnumerator._start">
+            <summary>
+            The pointer to the start value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.CandidateEnumerator._refCurrent">
+            <summary>
+            The current pointer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.CandidateEnumerator._currentMask">
+            <summary>
+            Indicates the current mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.CandidateEnumerator._currentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.#ctor(System.Int16@)">
+            <summary>
+            Initializes an instance with the specified reference to an array to iterate.
+            </summary>
+            <param name="arr">The reference to an array.</param>
+            <remarks>
+            Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
+            even though C# allows we passing a constant as an <see langword="in"/> argument.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.CandidateEnumerator.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            <list type="table">
+            <listheader>
+            <term>Return value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>If the enumerator was successfully advanced to the next element.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>If the enumerator has passed the end of the collection.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element in the collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
         <member name="F:Sudoku.Concepts.Grid.DefaultMask">
             <summary>
             Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -1350,11 +1420,31 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the event triggered when the value is changed.
             </summary>
+            <remarks>
+            <feature name="function-pointer">
+			<b>
+				<i>
+					This member is only exposed for user for knowing the data structure backing implementation,
+					so it is disallowed to invoke it.
+				</i>
+			</b>
+		</feature>
+            </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.RefreshingCandidates">
             <summary>
             Indicates the event triggered when should re-compute candidates.
             </summary>
+            <remarks>
+            <feature name="function-pointer">
+			<b>
+				<i>
+					This member is only exposed for user for knowing the data structure backing implementation,
+					so it is disallowed to invoke it.
+				</i>
+			</b>
+		</feature>
+            </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Empty">
             <summary>
@@ -2184,83 +2274,28 @@ fixed (short* ptr = instance)
             <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
             <seealso cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
         </member>
-        <member name="T:Sudoku.Concepts.Grid.GridCandidateEnumerator">
-            <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <see cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.GridCandidateEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Initializes an instance with the specified reference to an array to iterate.
-            </summary>
-            <param name="arr">The reference to an array.</param>
-            <remarks>
-            Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
-            even though C# allows we passing a constant as an <see langword="in"/> argument.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.GridCandidateEnumerator._start">
-            <summary>
-            The pointer to the start value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.GridCandidateEnumerator._refCurrent">
-            <summary>
-            The current pointer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.GridCandidateEnumerator._currentMask">
-            <summary>
-            Indicates the current mask.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.GridCandidateEnumerator._currentIndex">
-            <summary>
-            The current index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.GridCandidateEnumerator.Current">
-            <summary>
-            Gets the element in the collection at the current position of the enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.GridCandidateEnumerator.MoveNext">
-            <summary>
-            Advances the enumerator to the next element of the collection.
-            </summary>
-            <returns>
-            <list type="table">
-            <listheader>
-            <term>Return value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>If the enumerator was successfully advanced to the next element.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>If the enumerator has passed the end of the collection.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.GridCandidateEnumerator.Reset">
-            <summary>
-            Sets the enumerator to its initial position, which is before the first element in the collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.GridCandidateEnumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="T:Sudoku.Concepts.Grid.GridMaskEnumerator">
+        <member name="T:Sudoku.Concepts.Grid.MaskEnumerator">
             <summary>
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GridMaskEnumerator.#ctor(System.Int16@)">
+        <member name="F:Sudoku.Concepts.Grid.MaskEnumerator._start">
+            <summary>
+            The pointer to the start value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.MaskEnumerator._refCurrent">
+            <summary>
+            The current pointer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.MaskEnumerator._currentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.#ctor(System.Int16@)">
             <summary>
             Initializes an instance with the specified pointer to an array to iterate.
             </summary>
@@ -2269,27 +2304,12 @@ fixed (short* ptr = instance)
             Note here we should point at the one-unit-length memory before the array start.
             </remarks>
         </member>
-        <member name="F:Sudoku.Concepts.Grid.GridMaskEnumerator._start">
-            <summary>
-            The pointer to the start value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.GridMaskEnumerator._refCurrent">
-            <summary>
-            The current pointer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.GridMaskEnumerator._currentIndex">
-            <summary>
-            The current index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.GridMaskEnumerator.Current">
+        <member name="P:Sudoku.Concepts.Grid.MaskEnumerator.Current">
             <summary>
             Gets the element in the collection at the current position of the enumerator.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GridMaskEnumerator.MoveNext">
+        <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.MoveNext">
             <summary>
             Advances the enumerator to the next element of the collection.
             </summary>
@@ -2310,12 +2330,12 @@ fixed (short* ptr = instance)
             </list>
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GridMaskEnumerator.Reset">
+        <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.Reset">
             <summary>
             Sets the enumerator to its initial position, which is before the first element in the collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GridMaskEnumerator.GetEnumerator">
+        <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Equality(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">

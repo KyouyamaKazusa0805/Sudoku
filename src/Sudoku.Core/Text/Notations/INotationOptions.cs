@@ -7,7 +7,7 @@
 /// <typeparam name="TSelf">The type of the handler.</typeparam>
 /// <seealso cref="ICellNotation{TSelf, TOptions}"/>
 /// <seealso cref="ICandidateNotation{TSelf, TOptions}"/>
-public interface INotationOptions<[Self] TSelf> where TSelf : struct, INotationOptions<TSelf>
+public interface INotationOptions<TSelf> where TSelf : struct, INotationOptions<TSelf>
 {
 	/// <summary>
 	/// Indicates the default instance.

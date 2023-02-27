@@ -4,7 +4,7 @@
 /// <inheritdoc cref="ICloneable" path="/summary"/>
 /// </summary>
 /// <typeparam name="TSelf">The type of the instance.</typeparam>
-public interface ICloneable<[Self] out TSelf> : ICloneable where TSelf : class?, ICloneable<TSelf>?
+public interface ICloneable<out TSelf> : ICloneable where TSelf : class?, ICloneable<TSelf>?
 {
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	new TSelf Clone();

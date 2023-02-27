@@ -1,10 +1,12 @@
 ﻿#define ENHANCED_DRAWING_APIS
-
 namespace Sudoku.Presentation;
 
 partial class View
 {
-	partial struct WhereIterator
+	/// <summary>
+	/// Represents an enumerator that iterates for view nodes satisfying the specified condition.
+	/// </summary>
+	public ref struct WhereIterator
 	{
 		/// <summary>
 		/// The filtering condition.
@@ -15,6 +17,16 @@ partial class View
 		/// The internal enumerator.
 		/// </summary>
 		private List<ViewNode>.Enumerator _enumerator;
+
+
+		/// <summary>
+		/// Initializes an <see cref="WhereIterator"/> instance via the specified list of nodes.
+		/// </summary>
+		/// <param name="view">The internal nodes.</param>
+		/// <param name="filteringCondition">The condition.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal WhereIterator(View view, Func<ViewNode, bool> filteringCondition)
+			=> (_enumerator, _filteringCondition) = (view._nodes.GetEnumerator(), filteringCondition);
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>

@@ -239,25 +239,4 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 	/// <returns>The array of elements of type <typeparamref name="T"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly ImmutableArray<T> ToImmutableArray() => ImmutableArray.Create(ToArray());
-
-
-	/// <summary>
-	/// Defines the enumerator of this type.
-	/// </summary>
-	public ref partial struct Enumerator
-	{
-		/// <summary>
-		/// Initializes the <see cref="Enumerator"/> type via the current instance.
-		/// </summary>
-		/// <param name="ptr">The pointer that points to the list.</param>
-		[FileAccessOnly]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Enumerator(scoped in ValueList<T> ptr)
-		{
-			fixed (ValueList<T>* p = &ptr)
-			{
-				_ptr = p;
-			}
-		}
-	}
 }

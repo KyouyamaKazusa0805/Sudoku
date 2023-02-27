@@ -1486,37 +1486,4 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ElementToStringConverter<T>(scoped in T @this) where T : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
-
-
-	/// <summary>
-	/// Encapsulates the enumerator of this collection.
-	/// </summary>
-	public ref partial struct Enumerator
-	{
-		/// <summary>
-		/// Initializes an instance with the specified character list specified as a <see cref="Span{T}"/>.
-		/// </summary>
-		/// <param name="chars">The characters.</param>
-		/// <exception cref="NullReferenceException">
-		/// Throws when the field <see cref="_chars"/> in argument <paramref name="chars"/>
-		/// is a <see langword="null"/> reference after having been invoked <see cref="Span{T}.GetPinnableReference()"/>.
-		/// </exception>
-		/// <seealso cref="Span{T}"/>
-		/// <seealso cref="Span{T}.GetPinnableReference()"/>
-		[FileAccessOnly]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Enumerator(StringHandler chars) : this()
-		{
-			_length = chars.Length;
-			_index = -1;
-
-			ref var z = ref chars._chars.GetPinnableReference();
-			if (IsNullRef(ref z))
-			{
-				throw new NullReferenceException("The character block references to null.");
-			}
-
-			_ptr = ref SubtractByteOffset(ref z, 1);
-		}
-	}
 }

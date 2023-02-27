@@ -3,20 +3,10 @@
 /// <summary>
 /// Defines an identifier that can differ colors.
 /// </summary>
-[JsonConverter(typeof(JsonConverter))]
+[JsonConverter(typeof(Converter))]
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier, bool>
 {
-#pragma warning disable CS0618
-	/// <summary>
-	/// Initializes an <see cref="Identifier"/> instance.
-	/// </summary>
-	[FileAccessOnly]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Identifier()
-	{
-	}
-
 	/// <summary>
 	/// Initializes an <see cref="Identifier"/> instance via the ID value.
 	/// </summary>
@@ -41,7 +31,6 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// <param name="namedKind">The color kind.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private Identifier(DisplayColorKind namedKind) : this() => (Mode, NamedKind) = (IdentifierColorMode.Named, namedKind);
-#pragma warning restore CS0618
 
 
 	/// <summary>
@@ -270,7 +259,7 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 /// </code>
 /// </remarks>
 /// <seealso cref="Identifier"/>
-file sealed class JsonConverter : JsonConverter<Identifier>
+file sealed class Converter : JsonConverter<Identifier>
 {
 	/// <summary>
 	/// Indicates the property name <c>"Value"</c>.

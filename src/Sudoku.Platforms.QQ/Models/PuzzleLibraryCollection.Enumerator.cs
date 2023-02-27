@@ -2,12 +2,23 @@
 
 partial class PuzzleLibraryCollection
 {
-	partial struct Enumerator
+	/// <summary>
+	/// Defines the internal enumerator of this type.
+	/// </summary>
+	public ref struct Enumerator
 	{
 		/// <summary>
 		/// The internal enumerator.
 		/// </summary>
 		private List<PuzzleLibraryData>.Enumerator _enumerator;
+
+
+		/// <summary>
+		/// Initializes an <see cref="Enumerator"/> instance via the specified <see cref="PuzzleLibraryCollection"/> instance.
+		/// </summary>
+		/// <param name="collection">The <see cref="PuzzleLibraryCollection"/> instance.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal Enumerator(PuzzleLibraryCollection collection) => _enumerator = collection.PuzzleLibraries.GetEnumerator();
 
 
 		/// <inheritdoc cref="IEnumerator.Current"/>

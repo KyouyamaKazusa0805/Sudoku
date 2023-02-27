@@ -55,13 +55,17 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
-	[DisallowFunctionPointerInvocation]
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
+	/// </remarks>
 	public static readonly delegate*<ref Grid, int, short, short, int, void> ValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
-	[DisallowFunctionPointerInvocation]
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
+	/// </remarks>
 	public static readonly delegate*<ref Grid, void> RefreshingCandidates;
 
 	/// <summary>
@@ -969,7 +973,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly GridCandidateEnumerator GetEnumerator() => EnumerateCandidates();
+	public readonly CandidateEnumerator GetEnumerator() => EnumerateCandidates();
 
 	/// <summary>
 	/// Try to enumerate all possible candidates in the current grid.
@@ -979,7 +983,7 @@ public unsafe partial struct Grid :
 	/// to iterate all possible candidates in the current grid.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly GridCandidateEnumerator EnumerateCandidates() => new(ref AsRef(_values[0]));
+	public readonly CandidateEnumerator EnumerateCandidates() => new(ref AsRef(_values[0]));
 
 	/// <summary>
 	/// Try to enumerate the mask table of the current grid.
@@ -1005,7 +1009,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly GridMaskEnumerator EnumerateMasks() => new(ref AsRef(_values[0]));
+	public readonly MaskEnumerator EnumerateMasks() => new(ref AsRef(_values[0]));
 
 	/// <summary>
 	/// Reset the sudoku grid, to set all modifiable values to empty ones.
@@ -1425,52 +1429,6 @@ public unsafe partial struct Grid :
 	/// <seealso cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Grid([ConstantExpected] string? gridCode) => gridCode is null ? Undefined : Parse(gridCode);
-
-
-	/// <summary>
-	/// Defines the default enumerator that iterates the <see cref="Grid"/> through the candidates in the current <see cref="Grid"/> instance.
-	/// </summary>
-	/// <see cref="Grid"/>
-	public ref partial struct GridCandidateEnumerator
-	{
-		/// <summary>
-		/// Initializes an instance with the specified reference to an array to iterate.
-		/// </summary>
-		/// <param name="arr">The reference to an array.</param>
-		/// <remarks>
-		/// Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
-		/// even though C# allows we passing a constant as an <see langword="in"/> argument.
-		/// </remarks>
-		[FileAccessOnly]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal GridCandidateEnumerator(ref short arr)
-		{
-			_refCurrent = ref SubtractByteOffset(ref arr, 1);
-			_start = ref _refCurrent;
-		}
-	}
-
-	/// <summary>
-	/// Defines the default enumerator that iterates the <see cref="Grid"/> through the masks in the current <see cref="Grid"/> instance.
-	/// </summary>
-	/// <seealso cref="Grid"/>
-	public ref partial struct GridMaskEnumerator
-	{
-		/// <summary>
-		/// Initializes an instance with the specified pointer to an array to iterate.
-		/// </summary>
-		/// <param name="arr">The pointer to an array.</param>
-		/// <remarks>
-		/// Note here we should point at the one-unit-length memory before the array start.
-		/// </remarks>
-		[FileAccessOnly]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal GridMaskEnumerator(ref short arr)
-		{
-			_refCurrent = ref SubtractByteOffset(ref arr, 1);
-			_start = ref _refCurrent;
-		}
-	}
 }
 
 /// <summary>

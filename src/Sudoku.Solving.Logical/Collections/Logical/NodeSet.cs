@@ -72,17 +72,16 @@ internal sealed class NodeSet : HashSet<ChainNode>
 
 
 	/// <summary>
-	/// <para>
 	/// Gets the <see cref="ChainNode"/> instances that both <paramref name="left"/> and <paramref name="right"/> contain,
 	/// and modifies the argument <paramref name="left"/>, replacing it with <see cref="ChainNode"/>s mentioned above,
 	/// then returns it.
-	/// </para>
-	/// <para><b>This operator can only be used on compound cases: </b><c><![CDATA[a &= b]]></c>.</para>
 	/// </summary>
 	/// <param name="left">The first collection to be participated in merging operation.</param>
 	/// <param name="right">The second collection to be participated in merging operation.</param>
 	/// <returns>Modified collection <paramref name="left"/>.</returns>
-	[RequiresCompoundUsages]
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/requires-compound-invocation"/>
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static NodeSet operator &(NodeSet left, NodeSet right)
 	{
@@ -91,17 +90,16 @@ internal sealed class NodeSet : HashSet<ChainNode>
 	}
 
 	/// <summary>
-	/// <para>
 	/// Gets the <see cref="ChainNode"/> instances that comes from both collections <paramref name="left"/> and <paramref name="right"/>,
 	/// and modifies the argument <paramref name="left"/>, replacing it with <see cref="ChainNode"/>s mentioned above,
 	/// then returns it.
-	/// </para>
-	/// <para><b>This operator can only be used on compound cases: </b><c><![CDATA[a |= b]]></c>.</para>
 	/// </summary>
 	/// <param name="left">The first collection to be participated in merging operation.</param>
 	/// <param name="right">The second collection to be participated in merging operation.</param>
 	/// <returns>Modified collection <paramref name="left"/>.</returns>
-	[RequiresCompoundUsages]
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/requires-compound-invocation"/>
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static NodeSet operator |(NodeSet left, NodeSet right)
 	{
@@ -110,17 +108,16 @@ internal sealed class NodeSet : HashSet<ChainNode>
 	}
 
 	/// <summary>
-	/// <para>
 	/// Gets the <see cref="ChainNode"/> instances that only one collection in <paramref name="left"/> and <paramref name="right"/> contains,
 	/// and modifies the argument <paramref name="left"/>, replacing it with <see cref="ChainNode"/>s mentioned above,
 	/// then returns it.
-	/// </para>
-	/// <para><b>This operator can only be used on compound cases: </b><c><![CDATA[a ^= b]]></c>.</para>
 	/// </summary>
 	/// <param name="left">The first collection to be participated in merging operation.</param>
 	/// <param name="right">The second collection to be participated in merging operation.</param>
 	/// <returns>Modified collection <paramref name="left"/>.</returns>
-	[RequiresCompoundUsages]
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/requires-compound-invocation"/>
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static NodeSet operator ^(NodeSet left, NodeSet right)
 	{

@@ -2,7 +2,10 @@
 
 partial struct ValueList<T>
 {
-	partial struct Enumerator
+	/// <summary>
+	/// Defines the enumerator of this type.
+	/// </summary>
+	public ref struct Enumerator
 	{
 		/// <summary>
 		/// Indicates the inner pointer.
@@ -25,6 +28,19 @@ partial struct ValueList<T>
 		/// Indicates the current position.
 		/// </summary>
 		private byte _current = unchecked((byte)-1);
+
+
+		/// <summary>
+		/// Initializes the <see cref="Enumerator"/> type via the current instance.
+		/// </summary>
+		/// <param name="ptr">The pointer that points to the list.</param>
+		internal unsafe Enumerator(scoped in ValueList<T> ptr)
+		{
+			fixed (ValueList<T>* p = &ptr)
+			{
+				_ptr = p;
+			}
+		}
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>

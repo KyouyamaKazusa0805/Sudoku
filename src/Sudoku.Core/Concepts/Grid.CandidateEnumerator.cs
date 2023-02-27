@@ -2,7 +2,11 @@
 
 partial struct Grid
 {
-	partial struct GridCandidateEnumerator
+	/// <summary>
+	/// Defines the default enumerator that iterates the <see cref="Grid"/> through the candidates in the current <see cref="Grid"/> instance.
+	/// </summary>
+	/// <see cref="Grid"/>
+	public ref struct CandidateEnumerator
 	{
 		/// <summary>
 		/// The pointer to the start value.
@@ -23,6 +27,22 @@ partial struct Grid
 		/// The current index.
 		/// </summary>
 		private int _currentIndex = -1;
+
+
+		/// <summary>
+		/// Initializes an instance with the specified reference to an array to iterate.
+		/// </summary>
+		/// <param name="arr">The reference to an array.</param>
+		/// <remarks>
+		/// Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
+		/// even though C# allows we passing a constant as an <see langword="in"/> argument.
+		/// </remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal CandidateEnumerator(ref short arr)
+		{
+			_refCurrent = ref SubtractByteOffset(ref arr, 1);
+			_start = ref _refCurrent;
+		}
 
 
 		/// <summary>
@@ -93,6 +113,6 @@ partial struct Grid
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly GridCandidateEnumerator GetEnumerator() => this;
+		public readonly CandidateEnumerator GetEnumerator() => this;
 	}
 }

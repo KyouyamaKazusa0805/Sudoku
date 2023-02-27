@@ -22,15 +22,6 @@ public readonly ref partial struct ValueStopwatch
 
 
 	/// <summary>
-	/// Initializes a <see cref="ValueStopwatch"/> instance.
-	/// </summary>
-	[FileAccessOnly]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ValueStopwatch()
-	{
-	}
-
-	/// <summary>
 	/// Initializes a <see cref="ValueStopwatch"/> instance via the current timestamp.
 	/// </summary>
 	/// <param name="startTimestamp">The timestamp value that is represented as a <see cref="long"/> value.</param>

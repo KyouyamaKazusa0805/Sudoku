@@ -657,12 +657,6 @@
             Defines the enumerator of this type.
             </summary>
         </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.#ctor(System.Collections.Generic.ValueList{`0}@)">
-            <summary>
-            Initializes the <see cref="T:System.Collections.Generic.ValueList`1.Enumerator"/> type via the current instance.
-            </summary>
-            <param name="ptr">The pointer that points to the list.</param>
-        </member>
         <member name="F:System.Collections.Generic.ValueList`1.Enumerator._ptr">
             <summary>
             Indicates the inner pointer.
@@ -684,6 +678,12 @@
             <summary>
             Indicates the current position.
             </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.#ctor(System.Collections.Generic.ValueList{`0}@)">
+            <summary>
+            Initializes the <see cref="T:System.Collections.Generic.ValueList`1.Enumerator"/> type via the current instance.
+            </summary>
+            <param name="ptr">The pointer that points to the list.</param>
         </member>
         <member name="P:System.Collections.Generic.ValueList`1.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
@@ -1620,16 +1620,6 @@
             Represents diagnostic results.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.DisallowFunctionPointerInvocationAttribute">
-            <summary>
-            Indicates a field of function pointer type that cannot be invokable outside the scope of the type declaring that field.
-            </summary>
-        </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.FileAccessOnlyAttribute">
-            <summary>
-            Indicates the specified field can be accessed only in the current file where the field is declared.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.IsLargeStructAttribute">
             <summary>
             Indicates the type is a large structure.
@@ -1638,16 +1628,6 @@
         <member name="T:System.Diagnostics.CodeAnalysis.Justification">
             <summary>
             Represents justification.
-            </summary>
-        </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.RequiresCompoundUsagesAttribute">
-            <summary>
-            Defines an attribute that requires an operator usage can only be a compound one.
-            </summary>
-        </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.SelfAttribute">
-            <summary>
-            Indicates the generic argument is a self type.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeGen.DeconstructionMethodArgumentAttribute">
@@ -3814,21 +3794,6 @@ fixed (short* ptr = instance)
             <summary>
             Encapsulates the enumerator of this collection.
             </summary>
-            <summary>
-            Encapsulates the enumerator of this collection.
-            </summary>
-        </member>
-        <member name="M:System.Text.StringHandler.Enumerator.#ctor(System.Text.StringHandler)">
-            <summary>
-            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
-            </summary>
-            <param name="chars">The characters.</param>
-            <exception cref="T:System.NullReferenceException">
-            Throws when the field <see cref="F:System.Text.StringHandler._chars"/> in argument <paramref name="chars"/>
-            is a <see langword="null"/> reference after having been invoked <see cref="M:System.Span`1.GetPinnableReference"/>.
-            </exception>
-            <seealso cref="T:System.Span`1"/>
-            <seealso cref="M:System.Span`1.GetPinnableReference"/>
         </member>
         <member name="F:System.Text.StringHandler.Enumerator._length">
             <summary>
@@ -3844,6 +3809,18 @@ fixed (short* ptr = instance)
             <summary>
             Indicates the pointer that points to the current character.
             </summary>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.#ctor(System.Text.StringHandler)">
+            <summary>
+            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
+            </summary>
+            <param name="chars">The characters.</param>
+            <exception cref="T:System.NullReferenceException">
+            Throws when the field <see cref="F:System.Text.StringHandler._chars"/> in argument <paramref name="chars"/>
+            is a <see langword="null"/> reference after having been invoked <see cref="M:System.Span`1.GetPinnableReference"/>.
+            </exception>
+            <seealso cref="T:System.Span`1"/>
+            <seealso cref="M:System.Span`1.GetPinnableReference"/>
         </member>
         <member name="P:System.Text.StringHandler.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
@@ -4576,11 +4553,6 @@ fixed (short* ptr = instance)
         <member name="F:System.Timers.ValueStopwatch._startTimestamp">
             <summary>
             The inner timestamp.
-            </summary>
-        </member>
-        <member name="M:System.Timers.ValueStopwatch.#ctor">
-            <summary>
-            Initializes a <see cref="T:System.Timers.ValueStopwatch"/> instance.
             </summary>
         </member>
         <member name="M:System.Timers.ValueStopwatch.#ctor(System.Int64)">

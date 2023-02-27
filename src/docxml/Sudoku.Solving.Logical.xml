@@ -222,42 +222,87 @@
         </member>
         <member name="M:Sudoku.Collections.Logical.NodeSet.op_BitwiseAnd(Sudoku.Collections.Logical.NodeSet,Sudoku.Collections.Logical.NodeSet)">
             <summary>
-            <para>
-            Gets the <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode"/> instances that both <paramref name="left"/> and <paramref name="right"/> contain,
-            and modifies the argument <paramref name="left"/>, replacing it with <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode"/>s mentioned above,
+            Gets the <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode" /> instances that both <paramref name="left" /> and <paramref name="right" /> contain,
+            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode" />s mentioned above,
             then returns it.
-            </para>
-            <para><b>This operator can only be used on compound cases: </b><c><![CDATA[a &= b]]></c>.</para>
             </summary>
             <param name="left">The first collection to be participated in merging operation.</param>
             <param name="right">The second collection to be participated in merging operation.</param>
-            <returns>Modified collection <paramref name="left"/>.</returns>
+            <returns>Modified collection <paramref name="left" />.</returns>
+            <remarks>
+            <requires-compound-invocation>
+		<para>
+			<b>
+				<i>
+					This operator can only be used as compound one. For example:
+				</i>
+			</b>
+			<code>
+<![CDATA[
+result &= expression;
+result |= expression;
+result ^= expression;
+]]>
+			</code>
+		</para>
+	</requires-compound-invocation>
+            </remarks>
         </member>
         <member name="M:Sudoku.Collections.Logical.NodeSet.op_BitwiseOr(Sudoku.Collections.Logical.NodeSet,Sudoku.Collections.Logical.NodeSet)">
             <summary>
-            <para>
-            Gets the <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode"/> instances that comes from both collections <paramref name="left"/> and <paramref name="right"/>,
-            and modifies the argument <paramref name="left"/>, replacing it with <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode"/>s mentioned above,
+            Gets the <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode" /> instances that comes from both collections <paramref name="left" /> and <paramref name="right" />,
+            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode" />s mentioned above,
             then returns it.
-            </para>
-            <para><b>This operator can only be used on compound cases: </b><c><![CDATA[a |= b]]></c>.</para>
             </summary>
             <param name="left">The first collection to be participated in merging operation.</param>
             <param name="right">The second collection to be participated in merging operation.</param>
-            <returns>Modified collection <paramref name="left"/>.</returns>
+            <returns>Modified collection <paramref name="left" />.</returns>
+            <remarks>
+            <requires-compound-invocation>
+		<para>
+			<b>
+				<i>
+					This operator can only be used as compound one. For example:
+				</i>
+			</b>
+			<code>
+<![CDATA[
+result &= expression;
+result |= expression;
+result ^= expression;
+]]>
+			</code>
+		</para>
+	</requires-compound-invocation>
+            </remarks>
         </member>
         <member name="M:Sudoku.Collections.Logical.NodeSet.op_ExclusiveOr(Sudoku.Collections.Logical.NodeSet,Sudoku.Collections.Logical.NodeSet)">
             <summary>
-            <para>
-            Gets the <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode"/> instances that only one collection in <paramref name="left"/> and <paramref name="right"/> contains,
-            and modifies the argument <paramref name="left"/>, replacing it with <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode"/>s mentioned above,
+            Gets the <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode" /> instances that only one collection in <paramref name="left" /> and <paramref name="right" /> contains,
+            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode" />s mentioned above,
             then returns it.
-            </para>
-            <para><b>This operator can only be used on compound cases: </b><c><![CDATA[a ^= b]]></c>.</para>
             </summary>
             <param name="left">The first collection to be participated in merging operation.</param>
             <param name="right">The second collection to be participated in merging operation.</param>
-            <returns>Modified collection <paramref name="left"/>.</returns>
+            <returns>Modified collection <paramref name="left" />.</returns>
+            <remarks>
+            <requires-compound-invocation>
+		<para>
+			<b>
+				<i>
+					This operator can only be used as compound one. For example:
+				</i>
+			</b>
+			<code>
+<![CDATA[
+result &= expression;
+result |= expression;
+result ^= expression;
+]]>
+			</code>
+		</para>
+	</requires-compound-invocation>
+            </remarks>
         </member>
         <member name="T:Sudoku.Collections.Logical.EqualityComparer">
             <summary>
@@ -2459,16 +2504,16 @@ if (student is (name: var name, age: >= 18))
             Defines an enumerator that iterates the current collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator.#ctor(Sudoku.Solving.Logical.Patterns.MultipleForcingChains)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains"/> instance.
-            </summary>
-            <param name="multipleForcingChains">The <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains"/> instance.</param>
-        </member>
         <member name="F:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator._enumerator">
             <summary>
             The internal enumerator.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator.#ctor(Sudoku.Solving.Logical.Patterns.MultipleForcingChains)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains"/> instance.
+            </summary>
+            <param name="mfc">The <see cref="T:Sudoku.Solving.Logical.Patterns.MultipleForcingChains"/> instance.</param>
         </member>
         <member name="P:Sudoku.Solving.Logical.Patterns.MultipleForcingChains.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>

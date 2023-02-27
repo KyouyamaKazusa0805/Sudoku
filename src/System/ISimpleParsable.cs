@@ -11,7 +11,7 @@
 /// <typeparam name="TSelf">The type of the target result.</typeparam>
 /// <seealso cref="IParsable{TSelf}"/>
 /// <seealso cref="IFormatProvider"/>
-public interface ISimpleParsable<[Self] TSelf> where TSelf : ISimpleParsable<TSelf>
+public interface ISimpleParsable<TSelf> where TSelf : ISimpleParsable<TSelf>
 {
 	/// <summary>
 	/// Parse the specified string text, and get the same-meaning instance

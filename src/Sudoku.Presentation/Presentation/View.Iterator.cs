@@ -1,15 +1,26 @@
 ﻿#define ENHANCED_DRAWING_APIS
-
 namespace Sudoku.Presentation;
 
 partial class View
 {
-	partial struct Iterator
+	/// <summary>
+	/// Represents with a default enumerator type that provides the mechanism of elementary operations
+	/// used by <see langword="foreach"/> statements.
+	/// </summary>
+	public ref struct Iterator
 	{
 		/// <summary>
 		/// The internal enumerator.
 		/// </summary>
 		private List<ViewNode>.Enumerator _enumerator;
+
+
+		/// <summary>
+		/// Initializes an <see cref="Iterator"/> instance via the specified list of nodes.
+		/// </summary>
+		/// <param name="view">The internal nodes.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal Iterator(View view) => _enumerator = view._nodes.GetEnumerator();
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>

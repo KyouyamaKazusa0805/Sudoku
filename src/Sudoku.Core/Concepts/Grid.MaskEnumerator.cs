@@ -2,7 +2,11 @@
 
 partial struct Grid
 {
-	partial struct GridMaskEnumerator
+	/// <summary>
+	/// Defines the default enumerator that iterates the <see cref="Grid"/> through the masks in the current <see cref="Grid"/> instance.
+	/// </summary>
+	/// <seealso cref="Grid"/>
+	public ref struct MaskEnumerator
 	{
 		/// <summary>
 		/// The pointer to the start value.
@@ -18,6 +22,21 @@ partial struct Grid
 		/// The current index.
 		/// </summary>
 		private int _currentIndex = -1;
+
+
+		/// <summary>
+		/// Initializes an instance with the specified pointer to an array to iterate.
+		/// </summary>
+		/// <param name="arr">The pointer to an array.</param>
+		/// <remarks>
+		/// Note here we should point at the one-unit-length memory before the array start.
+		/// </remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal MaskEnumerator(ref short arr)
+		{
+			_refCurrent = ref SubtractByteOffset(ref arr, 1);
+			_start = ref _refCurrent;
+		}
 
 
 		/// <summary>
@@ -75,6 +94,6 @@ partial struct Grid
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly GridMaskEnumerator GetEnumerator() => this;
+		public readonly MaskEnumerator GetEnumerator() => this;
 	}
 }

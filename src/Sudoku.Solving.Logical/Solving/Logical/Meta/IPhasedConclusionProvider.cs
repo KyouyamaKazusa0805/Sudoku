@@ -7,7 +7,7 @@
 /// <typeparam name="TReasonEnum">
 /// The type of the enumeration that represents the details and reasons why the conclusions can be used.
 /// </typeparam>
-public interface IPhasedConclusionProvider<[Self] TSelf, TReasonEnum> : IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>
+public interface IPhasedConclusionProvider<TSelf, TReasonEnum> : IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>
 	where TSelf : IPhasedConclusionProvider<TSelf, TReasonEnum>, IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>
 	where TReasonEnum : unmanaged, Enum
 {

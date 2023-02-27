@@ -1,5 +1,4 @@
 ﻿#define ENHANCED_DRAWING_APIS
-
 namespace Sudoku.Presentation;
 
 /// <summary>
@@ -256,73 +255,5 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 		}
 
 		return originalView;
-	}
-
-
-	/// <summary>
-	/// Represents with a default enumerator type that provides the mechanism of elementary operations
-	/// used by <see langword="foreach"/> statements.
-	/// </summary>
-	public ref partial struct Iterator
-	{
-		/// <summary>
-		/// Initializes an <see cref="Iterator"/> instance via the specified list of nodes.
-		/// </summary>
-		/// <param name="view">The internal nodes.</param>
-		[FileAccessOnly]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Iterator(View view) => _enumerator = view._nodes.GetEnumerator();
-	}
-
-	/// <summary>
-	/// Represents an enumerator that iterates for a list of elements that is projected by the current collection,
-	/// converting by the specified converter.
-	/// </summary>
-	/// <typeparam name="T">The type of projected elements.</typeparam>
-	public ref partial struct SelectIterator<T>
-	{
-		/// <summary>
-		/// Initializes an <see cref="SelectIterator{T}"/> instance via the specified list of nodes.
-		/// </summary>
-		/// <param name="view">The internal nodes.</param>
-		/// <param name="selector">The selector.</param>
-		[FileAccessOnly]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal SelectIterator(View view, Func<ViewNode, T> selector) => (_enumerator, _selector) = (view._nodes.GetEnumerator(), selector);
-	}
-
-	/// <summary>
-	/// Represents an enumerator that iterates for view nodes satisfying the specified condition.
-	/// </summary>
-	public ref partial struct WhereIterator
-	{
-		/// <summary>
-		/// Initializes an <see cref="WhereIterator"/> instance via the specified list of nodes.
-		/// </summary>
-		/// <param name="view">The internal nodes.</param>
-		/// <param name="filteringCondition">The condition.</param>
-		[FileAccessOnly]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal WhereIterator(View view, Func<ViewNode, bool> filteringCondition)
-			=> (_enumerator, _filteringCondition) = (view._nodes.GetEnumerator(), filteringCondition);
-	}
-
-	/// <summary>
-	/// Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
-	/// </summary>
-	/// <typeparam name="T">The type of the element node.</typeparam>
-	public ref partial struct OfTypeIterator<T> where T : ViewNode
-	{
-		/// <summary>
-		/// Initializes an <see cref="OfTypeIterator{T}"/> instance via the specified list of nodes.
-		/// </summary>
-		/// <param name="view">The internal nodes.</param>
-		[FileAccessOnly]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal OfTypeIterator(View view)
-		{
-			_count = view._nodes.Count;
-			_enumerator = view._nodes.GetEnumerator();
-		}
 	}
 }

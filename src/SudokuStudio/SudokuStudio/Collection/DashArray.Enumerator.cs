@@ -2,7 +2,10 @@
 
 partial struct DashArray
 {
-	partial struct Enumerator
+	/// <summary>
+	/// Defines an enumerator of this type.
+	/// </summary>
+	public ref struct Enumerator
 	{
 		/// <summary>
 		/// The internal array to be iterated.
@@ -13,6 +16,13 @@ partial struct DashArray
 		/// Indicates the index of the current position.
 		/// </summary>
 		private int _index = -1;
+
+
+		/// <summary>
+		/// Initializes a <see cref="Enumerator"/> instance.
+		/// </summary>
+		/// <param name="doubles">The double values.</param>
+		internal Enumerator(double[] doubles) => _doubles = doubles;
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>

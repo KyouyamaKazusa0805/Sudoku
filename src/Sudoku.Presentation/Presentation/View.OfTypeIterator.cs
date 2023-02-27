@@ -1,10 +1,13 @@
 ﻿#define ENHANCED_DRAWING_APIS
-
 namespace Sudoku.Presentation;
 
 partial class View
 {
-	partial struct OfTypeIterator<T> where T : ViewNode
+	/// <summary>
+	/// Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
+	/// </summary>
+	/// <typeparam name="T">The type of the element node.</typeparam>
+	public ref struct OfTypeIterator<T> where T : ViewNode
 	{
 		/// <summary>
 		/// The total number of elements.
@@ -15,6 +18,18 @@ partial class View
 		/// The internal enumerator.
 		/// </summary>
 		private List<ViewNode>.Enumerator _enumerator;
+
+
+		/// <summary>
+		/// Initializes an <see cref="OfTypeIterator{T}"/> instance via the specified list of nodes.
+		/// </summary>
+		/// <param name="view">The internal nodes.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal OfTypeIterator(View view)
+		{
+			_count = view._nodes.Count;
+			_enumerator = view._nodes.GetEnumerator();
+		}
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>
