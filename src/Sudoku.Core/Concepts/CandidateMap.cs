@@ -26,9 +26,9 @@ public unsafe partial struct CandidateMap :
 	IDivisionOperators<CandidateMap, int, CellMap>,
 	ISubtractionOperators<CandidateMap, int, CandidateMap>,
 	ISubtractionOperators<CandidateMap, IEnumerable<int>, CandidateMap>,
-	IStatusMapBase<CandidateMap>
+	IBitStatusMap<CandidateMap>
 {
-	/// <inheritdoc cref="IStatusMapBase{T}.Empty"/>
+	/// <inheritdoc cref="IBitStatusMap{T}.Empty"/>
 	public static readonly CandidateMap Empty;
 
 	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
@@ -51,7 +51,7 @@ public unsafe partial struct CandidateMap :
 	/// <summary>
 	/// Indicates the internal bits. 12 is for floor(729 / <see langword="sizeof"/>(<see cref="long"/>) <![CDATA[<<]]> 6).
 	/// </summary>
-	/// <seealso cref="IStatusMapBase{TSelf}.Shifting"/>
+	/// <seealso cref="IBitStatusMap{TSelf}.Shifting"/>
 	private fixed long _bits[12];
 
 
@@ -172,10 +172,10 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	readonly int IStatusMapBase<CandidateMap>.Shifting => sizeof(long) << 3;
+	readonly int IBitStatusMap<CandidateMap>.Shifting => sizeof(long) << 3;
 
 	/// <inheritdoc/>
-	readonly int[] IStatusMapBase<CandidateMap>.Offsets => Offsets;
+	readonly int[] IBitStatusMap<CandidateMap>.Offsets => Offsets;
 
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
@@ -204,7 +204,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	static CandidateMap IStatusMapBase<CandidateMap>.Empty => Empty;
+	static CandidateMap IBitStatusMap<CandidateMap>.Empty => Empty;
 
 	/// <inheritdoc/>
 	static CandidateMap IMinMaxValue<CandidateMap>.MaxValue => MaxValue;
@@ -388,29 +388,29 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CandidateMap>.AddChecked(int offset)
+	void IBitStatusMap<CandidateMap>.AddChecked(int offset)
 		=> Add(offset is >= 0 and < 729 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The candidate offset is invalid."));
 
 	/// <inheritdoc/>
-	void IStatusMapBase<CandidateMap>.AddRangeChecked(IEnumerable<int> offsets)
+	void IBitStatusMap<CandidateMap>.AddRangeChecked(IEnumerable<int> offsets)
 	{
 		foreach (var cell in offsets)
 		{
-			((IStatusMapBase<CandidateMap>)this).AddChecked(cell);
+			((IBitStatusMap<CandidateMap>)this).AddChecked(cell);
 		}
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CandidateMap>.RemoveChecked(int offset)
+	void IBitStatusMap<CandidateMap>.RemoveChecked(int offset)
 		=> Remove(offset is >= 0 and < 729 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The candidate offset is invalid."));
 
 	/// <inheritdoc/>
-	void IStatusMapBase<CandidateMap>.RemoveRangeChecked(IEnumerable<int> offsets)
+	void IBitStatusMap<CandidateMap>.RemoveRangeChecked(IEnumerable<int> offsets)
 	{
 		foreach (var cell in offsets)
 		{
-			((IStatusMapBase<CandidateMap>)this).RemoveChecked(cell);
+			((IBitStatusMap<CandidateMap>)this).RemoveChecked(cell);
 		}
 	}
 
@@ -424,19 +424,19 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CandidateMap>.ExceptWith(IEnumerable<int> other) => this -= other;
+	void IBitStatusMap<CandidateMap>.ExceptWith(IEnumerable<int> other) => this -= other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CandidateMap>.IntersectWith(IEnumerable<int> other) => this &= Empty + other;
+	void IBitStatusMap<CandidateMap>.IntersectWith(IEnumerable<int> other) => this &= Empty + other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CandidateMap>.SymmetricExceptWith(IEnumerable<int> other) => this = (this - other) | (Empty + other - this);
+	void IBitStatusMap<CandidateMap>.SymmetricExceptWith(IEnumerable<int> other) => this = (this - other) | (Empty + other - this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CandidateMap>.UnionWith(IEnumerable<int> other) => this += other;
+	void IBitStatusMap<CandidateMap>.UnionWith(IEnumerable<int> other) => this += other;
 
 
 	/// <inheritdoc/>
@@ -713,7 +713,7 @@ public unsafe partial struct CandidateMap :
 	static CandidateMap IAdditionOperators<CandidateMap, int, CandidateMap>.operator checked +(CandidateMap left, int right)
 	{
 		var copied = left;
-		((IStatusMapBase<CandidateMap>)copied).AddChecked(right);
+		((IBitStatusMap<CandidateMap>)copied).AddChecked(right);
 
 		return copied;
 	}
@@ -728,7 +728,7 @@ public unsafe partial struct CandidateMap :
 	static CandidateMap IAdditionOperators<CandidateMap, IEnumerable<int>, CandidateMap>.operator checked +(CandidateMap left, IEnumerable<int> right)
 	{
 		var copied = left;
-		((IStatusMapBase<CandidateMap>)copied).AddRangeChecked(right);
+		((IBitStatusMap<CandidateMap>)copied).AddRangeChecked(right);
 
 		return copied;
 	}
@@ -742,7 +742,7 @@ public unsafe partial struct CandidateMap :
 	static CandidateMap ISubtractionOperators<CandidateMap, int, CandidateMap>.operator checked -(CandidateMap left, int right)
 	{
 		var copied = left;
-		((IStatusMapBase<CandidateMap>)copied).RemoveChecked(right);
+		((IBitStatusMap<CandidateMap>)copied).RemoveChecked(right);
 
 		return copied;
 	}
@@ -757,47 +757,47 @@ public unsafe partial struct CandidateMap :
 	static CandidateMap ISubtractionOperators<CandidateMap, IEnumerable<int>, CandidateMap>.operator checked -(CandidateMap left, IEnumerable<int> right)
 	{
 		var copied = left;
-		((IStatusMapBase<CandidateMap>)copied).RemoveRangeChecked(right);
+		((IBitStatusMap<CandidateMap>)copied).RemoveRangeChecked(right);
 
 		return copied;
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IStatusMapBase<CandidateMap>.operator checked +(scoped in CandidateMap collection, int offset)
+	static CandidateMap IBitStatusMap<CandidateMap>.operator checked +(scoped in CandidateMap collection, int offset)
 	{
 		var copied = collection;
-		((IStatusMapBase<CandidateMap>)copied).AddChecked(offset);
+		((IBitStatusMap<CandidateMap>)copied).AddChecked(offset);
 
 		return copied;
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IStatusMapBase<CandidateMap>.operator checked +(scoped in CandidateMap collection, IEnumerable<int> offsets)
+	static CandidateMap IBitStatusMap<CandidateMap>.operator checked +(scoped in CandidateMap collection, IEnumerable<int> offsets)
 	{
 		var copied = collection;
-		((IStatusMapBase<CandidateMap>)copied).AddRangeChecked(offsets);
+		((IBitStatusMap<CandidateMap>)copied).AddRangeChecked(offsets);
 
 		return copied;
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IStatusMapBase<CandidateMap>.operator checked -(scoped in CandidateMap collection, int offset)
+	static CandidateMap IBitStatusMap<CandidateMap>.operator checked -(scoped in CandidateMap collection, int offset)
 	{
 		var copied = collection;
-		((IStatusMapBase<CandidateMap>)copied).RemoveChecked(offset);
+		((IBitStatusMap<CandidateMap>)copied).RemoveChecked(offset);
 
 		return copied;
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IStatusMapBase<CandidateMap>.operator checked -(scoped in CandidateMap collection, IEnumerable<int> offsets)
+	static CandidateMap IBitStatusMap<CandidateMap>.operator checked -(scoped in CandidateMap collection, IEnumerable<int> offsets)
 	{
 		var copied = collection;
-		((IStatusMapBase<CandidateMap>)copied).RemoveRangeChecked(offsets);
+		((IBitStatusMap<CandidateMap>)copied).RemoveRangeChecked(offsets);
 
 		return copied;
 	}
@@ -849,14 +849,14 @@ public unsafe partial struct CandidateMap :
 		var result = Empty;
 		foreach (var offset in offsets)
 		{
-			((IStatusMapBase<CandidateMap>)result).AddChecked(offset);
+			((IBitStatusMap<CandidateMap>)result).AddChecked(offset);
 		}
 
 		return result;
 	}
 
 	/// <inheritdoc/>
-	static implicit IStatusMapBase<CandidateMap>.operator CandidateMap(scoped Span<int> offsets)
+	static implicit IBitStatusMap<CandidateMap>.operator CandidateMap(scoped Span<int> offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -868,7 +868,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	static implicit IStatusMapBase<CandidateMap>.operator CandidateMap(scoped ReadOnlySpan<int> offsets)
+	static implicit IBitStatusMap<CandidateMap>.operator CandidateMap(scoped ReadOnlySpan<int> offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -880,7 +880,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	static explicit IStatusMapBase<CandidateMap>.operator CandidateMap(int[] offsets)
+	static explicit IBitStatusMap<CandidateMap>.operator CandidateMap(int[] offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -892,12 +892,12 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	static explicit IStatusMapBase<CandidateMap>.operator checked CandidateMap(int[] offsets)
+	static explicit IBitStatusMap<CandidateMap>.operator checked CandidateMap(int[] offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
 		{
-			((IStatusMapBase<CandidateMap>)result).AddChecked(offset);
+			((IBitStatusMap<CandidateMap>)result).AddChecked(offset);
 		}
 
 		return result;
@@ -905,11 +905,11 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static explicit IStatusMapBase<CandidateMap>.operator Span<int>(scoped in CandidateMap offsets) => offsets.Offsets;
+	static explicit IBitStatusMap<CandidateMap>.operator Span<int>(scoped in CandidateMap offsets) => offsets.Offsets;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static explicit IStatusMapBase<CandidateMap>.operator ReadOnlySpan<int>(scoped in CandidateMap offsets) => offsets.Offsets;
+	static explicit IBitStatusMap<CandidateMap>.operator ReadOnlySpan<int>(scoped in CandidateMap offsets) => offsets.Offsets;
 }
 
 /// <summary>

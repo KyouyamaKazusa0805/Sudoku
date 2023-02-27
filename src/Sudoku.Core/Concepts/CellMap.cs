@@ -32,13 +32,13 @@ public unsafe partial struct CellMap :
 	IMultiplyOperators<CellMap, int, CandidateMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
 	ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>,
-	IStatusMapBase<CellMap>
+	IBitStatusMap<CellMap>
 {
-	/// <inheritdoc cref="IStatusMapBase{TSelf}.Shifting"/>
+	/// <inheritdoc cref="IBitStatusMap{TSelf}.Shifting"/>
 	private const int Shifting = 41;
 
 
-	/// <inheritdoc cref="IStatusMapBase{TSelf}.Empty"/>
+	/// <inheritdoc cref="IBitStatusMap{TSelf}.Empty"/>
 	public static readonly CellMap Empty;
 
 	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
@@ -380,10 +380,10 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	readonly int IStatusMapBase<CellMap>.Shifting => Shifting;
+	readonly int IBitStatusMap<CellMap>.Shifting => Shifting;
 
 	/// <inheritdoc/>
-	readonly int[] IStatusMapBase<CellMap>.Offsets => Offsets;
+	readonly int[] IBitStatusMap<CellMap>.Offsets => Offsets;
 
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
@@ -426,7 +426,7 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	static CellMap IStatusMapBase<CellMap>.Empty => Empty;
+	static CellMap IBitStatusMap<CellMap>.Empty => Empty;
 
 	/// <inheritdoc/>
 	static CellMap IMinMaxValue<CellMap>.MaxValue => MaxValue;
@@ -774,47 +774,47 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CellMap>.AddChecked(int offset)
+	void IBitStatusMap<CellMap>.AddChecked(int offset)
 		=> Add(offset is >= 0 and < 81 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid."));
 
 	/// <inheritdoc/>
-	void IStatusMapBase<CellMap>.AddRangeChecked(IEnumerable<int> offsets)
+	void IBitStatusMap<CellMap>.AddRangeChecked(IEnumerable<int> offsets)
 	{
 		foreach (var cell in offsets)
 		{
-			((IStatusMapBase<CellMap>)this).AddChecked(cell);
+			((IBitStatusMap<CellMap>)this).AddChecked(cell);
 		}
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CellMap>.RemoveChecked(int offset)
+	void IBitStatusMap<CellMap>.RemoveChecked(int offset)
 		=> Remove(offset is >= 0 and < 81 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid."));
 
 	/// <inheritdoc/>
-	void IStatusMapBase<CellMap>.RemoveRangeChecked(IEnumerable<int> offsets)
+	void IBitStatusMap<CellMap>.RemoveRangeChecked(IEnumerable<int> offsets)
 	{
 		foreach (var cell in offsets)
 		{
-			((IStatusMapBase<CellMap>)this).RemoveChecked(cell);
+			((IBitStatusMap<CellMap>)this).RemoveChecked(cell);
 		}
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CellMap>.ExceptWith(IEnumerable<int> other) => this -= other;
+	void IBitStatusMap<CellMap>.ExceptWith(IEnumerable<int> other) => this -= other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CellMap>.IntersectWith(IEnumerable<int> other) => this &= Empty + other;
+	void IBitStatusMap<CellMap>.IntersectWith(IEnumerable<int> other) => this &= Empty + other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CellMap>.SymmetricExceptWith(IEnumerable<int> other) => this = (this - other) | (Empty + other - this);
+	void IBitStatusMap<CellMap>.SymmetricExceptWith(IEnumerable<int> other) => this = (this - other) | (Empty + other - this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IStatusMapBase<CellMap>.UnionWith(IEnumerable<int> other) => this += other;
+	void IBitStatusMap<CellMap>.UnionWith(IEnumerable<int> other) => this += other;
 
 
 	/// <inheritdoc/>
@@ -1193,7 +1193,7 @@ public unsafe partial struct CellMap :
 	static CellMap IAdditionOperators<CellMap, int, CellMap>.operator checked +(CellMap left, int right)
 	{
 		var copied = left;
-		((IStatusMapBase<CellMap>)copied).AddChecked(right);
+		((IBitStatusMap<CellMap>)copied).AddChecked(right);
 
 		return copied;
 	}
@@ -1207,7 +1207,7 @@ public unsafe partial struct CellMap :
 	static CellMap IAdditionOperators<CellMap, IEnumerable<int>, CellMap>.operator checked +(CellMap left, IEnumerable<int> right)
 	{
 		var copied = left;
-		((IStatusMapBase<CellMap>)copied).AddRangeChecked(right);
+		((IBitStatusMap<CellMap>)copied).AddRangeChecked(right);
 
 		return copied;
 	}
@@ -1221,7 +1221,7 @@ public unsafe partial struct CellMap :
 	static CellMap ISubtractionOperators<CellMap, int, CellMap>.operator checked -(CellMap left, int right)
 	{
 		var copied = left;
-		((IStatusMapBase<CellMap>)left).RemoveChecked(right);
+		((IBitStatusMap<CellMap>)left).RemoveChecked(right);
 
 		return copied;
 	}
@@ -1234,7 +1234,7 @@ public unsafe partial struct CellMap :
 	static CellMap ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>.operator checked -(CellMap left, IEnumerable<int> right)
 	{
 		var copied = left;
-		((IStatusMapBase<CellMap>)copied).RemoveRangeChecked(right);
+		((IBitStatusMap<CellMap>)copied).RemoveRangeChecked(right);
 
 		return copied;
 	}
@@ -1250,38 +1250,38 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IStatusMapBase<CellMap>.operator checked +(scoped in CellMap collection, int offset)
+	static CellMap IBitStatusMap<CellMap>.operator checked +(scoped in CellMap collection, int offset)
 	{
 		var copied = collection;
-		((IStatusMapBase<CellMap>)copied).AddChecked(offset);
+		((IBitStatusMap<CellMap>)copied).AddChecked(offset);
 
 		return copied;
 	}
 
 	/// <inheritdoc/>
-	static CellMap IStatusMapBase<CellMap>.operator checked +(scoped in CellMap collection, IEnumerable<int> offsets)
+	static CellMap IBitStatusMap<CellMap>.operator checked +(scoped in CellMap collection, IEnumerable<int> offsets)
 	{
 		var copied = collection;
-		((IStatusMapBase<CellMap>)copied).AddRangeChecked(offsets);
+		((IBitStatusMap<CellMap>)copied).AddRangeChecked(offsets);
 
 		return copied;
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IStatusMapBase<CellMap>.operator checked -(scoped in CellMap collection, int offset)
+	static CellMap IBitStatusMap<CellMap>.operator checked -(scoped in CellMap collection, int offset)
 	{
 		var copied = collection;
-		((IStatusMapBase<CellMap>)copied).RemoveChecked(offset);
+		((IBitStatusMap<CellMap>)copied).RemoveChecked(offset);
 
 		return copied;
 	}
 
 	/// <inheritdoc/>
-	static CellMap IStatusMapBase<CellMap>.operator checked -(scoped in CellMap collection, IEnumerable<int> offsets)
+	static CellMap IBitStatusMap<CellMap>.operator checked -(scoped in CellMap collection, IEnumerable<int> offsets)
 	{
 		var copied = collection;
-		((IStatusMapBase<CellMap>)copied).RemoveRangeChecked(offsets);
+		((IBitStatusMap<CellMap>)copied).RemoveRangeChecked(offsets);
 
 		return copied;
 	}
@@ -1356,31 +1356,19 @@ public unsafe partial struct CellMap :
 			: throw new OverflowException($"The base {nameof(Int128)} integer is greater than '{nameof(MaxValue)}'.");
 
 	/// <inheritdoc/>
-	static explicit IStatusMapBase<CellMap>.operator checked CellMap(int[] offsets)
+	static explicit IBitStatusMap<CellMap>.operator checked CellMap(int[] offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
 		{
-			((IStatusMapBase<CellMap>)result).AddChecked(offset);
+			((IBitStatusMap<CellMap>)result).AddChecked(offset);
 		}
 
 		return result;
 	}
 
 	/// <inheritdoc/>
-	static implicit IStatusMapBase<CellMap>.operator CellMap(scoped Span<int> offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	static implicit IStatusMapBase<CellMap>.operator CellMap(scoped ReadOnlySpan<int> offsets)
+	static implicit IBitStatusMap<CellMap>.operator CellMap(scoped Span<int> offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -1392,7 +1380,19 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	static explicit IStatusMapBase<CellMap>.operator CellMap(int[] offsets)
+	static implicit IBitStatusMap<CellMap>.operator CellMap(scoped ReadOnlySpan<int> offsets)
+	{
+		var result = Empty;
+		foreach (var offset in offsets)
+		{
+			result.Add(offset);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	static explicit IBitStatusMap<CellMap>.operator CellMap(int[] offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -1405,11 +1405,11 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static explicit IStatusMapBase<CellMap>.operator Span<int>(scoped in CellMap offsets) => offsets.Offsets;
+	static explicit IBitStatusMap<CellMap>.operator Span<int>(scoped in CellMap offsets) => offsets.Offsets;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static explicit IStatusMapBase<CellMap>.operator ReadOnlySpan<int>(scoped in CellMap offsets) => offsets.Offsets;
+	static explicit IBitStatusMap<CellMap>.operator ReadOnlySpan<int>(scoped in CellMap offsets) => offsets.Offsets;
 }
 
 /// <summary>

@@ -4,7 +4,7 @@
 /// Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
 /// </summary>
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
-public interface IStatusMapBase<[Self] TSelf> :
+public interface IBitStatusMap<[Self] TSelf> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	ICollection<int>,
@@ -24,7 +24,7 @@ public interface IStatusMapBase<[Self] TSelf> :
 	ISimpleFormattable,
 	ISimpleParsable<TSelf>,
 	ISubtractionOperators<TSelf, TSelf, TSelf>
-	where TSelf : unmanaged, IStatusMapBase<TSelf>
+	where TSelf : unmanaged, IBitStatusMap<TSelf>
 {
 	/// <summary>
 	/// Indicates the size of each unit.

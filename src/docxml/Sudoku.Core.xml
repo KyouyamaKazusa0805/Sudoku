@@ -23,7 +23,7 @@
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.Empty">
-            <inheritdoc cref="P:Sudoku.Concepts.IStatusMapBase`1.Empty"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`1.Empty"/>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.MaxValue">
             <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>
@@ -45,7 +45,7 @@
             <summary>
             Indicates the internal bits. 12 is for floor(729 / <see langword="sizeof"/>(<see cref="T:System.Int64"/>) <![CDATA[<<]]> 6).
             </summary>
-            <seealso cref="P:Sudoku.Concepts.IStatusMapBase`1.Shifting"/>
+            <seealso cref="P:Sudoku.Concepts.IBitStatusMap`1.Shifting"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.#ctor(System.String[])">
             <summary>
@@ -72,10 +72,10 @@
         <member name="P:Sudoku.Concepts.CandidateMap.PeerIntersection">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#Shifting">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#Shifting">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#Offsets">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#Offsets">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Offsets">
@@ -83,7 +83,7 @@
             Indicates the cell offsets in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#Empty">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#Empty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CandidateMap}#MaxValue">
@@ -140,16 +140,16 @@
         <member name="M:Sudoku.Concepts.CandidateMap.Remove(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#AddChecked(System.Int32)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#AddChecked(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#RemoveChecked(System.Int32)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#RemoveChecked(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#ISimpleFormattable#ToString(System.String)">
@@ -158,16 +158,16 @@
         <member name="M:Sudoku.Concepts.CandidateMap.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,Sudoku.Concepts.CandidateMap@)">
@@ -256,16 +256,16 @@
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CandidateMap,System#Collections#Generic#IEnumerable{System#Int32},Sudoku#Concepts#CandidateMap}#op_CheckedSubtraction(Sudoku.Concepts.CandidateMap,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_CheckedAddition(Sudoku.Concepts.CandidateMap@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_CheckedAddition(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_CheckedAddition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_CheckedAddition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_CheckedSubtraction(Sudoku.Concepts.CandidateMap@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_CheckedSubtraction(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_CheckedSubtraction(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_CheckedSubtraction(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Implicit(Sudoku.Concepts.CandidateMap@)~System.Int32[]">
@@ -283,22 +283,22 @@
         <member name="M:Sudoku.Concepts.CandidateMap.op_CheckedExplicit(System.Int32[])~Sudoku.Concepts.CandidateMap">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_Implicit(System.Span{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Implicit(System.Span{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_Implicit(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Implicit(System.ReadOnlySpan{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_Explicit(System.Int32[])">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Explicit(System.Int32[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_CheckedExplicit(System.Int32[])">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_CheckedExplicit(System.Int32[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CandidateMap}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Equality(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
@@ -407,10 +407,10 @@
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Shifting">
-            <inheritdoc cref="P:Sudoku.Concepts.IStatusMapBase`1.Shifting"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`1.Shifting"/>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Empty">
-            <inheritdoc cref="P:Sudoku.Concepts.IStatusMapBase`1.Empty"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`1.Empty"/>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.MaxValue">
             <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>
@@ -558,10 +558,10 @@
         <member name="P:Sudoku.Concepts.CellMap.PeerIntersection">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#Shifting">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#Shifting">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#Offsets">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#Offsets">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Offsets">
@@ -569,7 +569,7 @@
             Indicates the cell offsets in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#Empty">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#Empty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CellMap}#MaxValue">
@@ -737,28 +737,28 @@
         <member name="M:Sudoku.Concepts.CellMap.System#IComparable{Sudoku#Concepts#CellMap}#CompareTo(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#AddChecked(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#AddChecked(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#RemoveChecked(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#RemoveChecked(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.CellMap@)">
@@ -934,16 +934,16 @@
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CandidateMap}#op_CheckedMultiply(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#op_CheckedAddition(Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_CheckedAddition(Sudoku.Concepts.CellMap@,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#op_CheckedAddition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_CheckedAddition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#op_CheckedSubtraction(Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_CheckedSubtraction(Sudoku.Concepts.CellMap@,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#op_CheckedSubtraction(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_CheckedSubtraction(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Implicit(Sudoku.Concepts.CellMap@)~System.Int32[]">
@@ -980,22 +980,22 @@
             corresponding to <see cref="F:Sudoku.Concepts.CellMap.MaxValue"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#op_CheckedExplicit(System.Int32[])">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_CheckedExplicit(System.Int32[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#op_Implicit(System.Span{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Implicit(System.Span{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#op_Implicit(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Implicit(System.ReadOnlySpan{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#op_Explicit(System.Int32[])">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Explicit(System.Int32[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#op_Explicit(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Explicit(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IStatusMapBase{Sudoku#Concepts#CellMap}#op_Explicit(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Explicit(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Equality(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
@@ -2604,6 +2604,600 @@ fixed (short* ptr = instance)
             </list>
             </returns>
         </member>
+        <member name="T:Sudoku.Concepts.IBitStatusMap`1">
+            <summary>
+            Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
+            </summary>
+            <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.Shifting">
+            <summary>
+            Indicates the size of each unit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.Count">
+            <summary>
+            Indicates the number of the values stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.StringChunks">
+            <summary>
+            Gets all chunks of the current collection, meaning a list of <see cref="T:System.String"/> values that can describe
+            all cell and candidate indices, grouped with same row/column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.PeerIntersection">
+            <summary>
+            Indicates the peer intersection of the current instance.
+            </summary>
+            <remarks>
+            A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
+            For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.Offsets">
+            <summary>
+            Indicates the cell offsets in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ICollection{System#Int32}#IsReadOnly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ICollection{System#Int32}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.Empty">
+            <summary>
+            Indicates the empty instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.Item(System.Int32)">
+            <summary>
+            Get the offset at the specified position index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>
+            The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
+            </returns>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlyList{System#Int32}#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Add(System.Int32)">
+            <summary>
+            Adds a new offset into the current collection.
+            </summary>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.AddChecked(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="true"/> value, with range check.
+            </summary>
+            <param name="offset">The offset.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified offset is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.AddRange(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Set the specified offsets as <see langword="true"/> value.
+            </summary>
+            <param name="offsets">The offsets to add.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`1.AddRange(System.ReadOnlySpan{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`1.AddRange(System.ReadOnlySpan{System.Int32})"/>
+            <remarks>
+            Different with the method <see cref="M:Sudoku.Concepts.IBitStatusMap`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
+            also checks for the validity of each offsets.
+            If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
+            this method will throw an exception to report about this.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Remove(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="false"/> value.
+            </summary>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.RemoveChecked(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="false"/> value, with range check.
+            </summary>
+            <param name="offset">The offset.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified offset is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.RemoveRange(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Set the specified offsets as <see langword="false"/> value.
+            </summary>
+            <param name="offsets">The offsets to remove.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`1.RemoveRange(System.ReadOnlySpan{System.Int32})"/>
+            <remarks>
+            Different with the method <see cref="M:Sudoku.Concepts.IBitStatusMap`1.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
+            also checks for the validity of each offsets.
+            If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
+            this method will throw an exception to report about this.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`1.RemoveRange(System.ReadOnlySpan{System.Int32})"/>
+            <remarks>
+            Different with the method <see cref="M:Sudoku.Concepts.IBitStatusMap`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
+            also checks for the validity of each offsets.
+            If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
+            this method will throw an exception to report about this.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Clear">
+            <summary>
+            Clear all bits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.CopyTo(System.Int32*,System.Int32)">
+            <summary>
+            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
+            </summary>
+            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
+            <param name="length">The length of that array.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the capacity isn't enough to store all values.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.CopyTo(System.Int32[],System.Int32)">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.CopyTo(System.Span{System.Int32})">
+            <summary>
+            Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
+            </summary>
+            <param name="span">
+            The target <see cref="T:System.Span`1"/> instance.
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.ForEach(System.Action{System.Int32})">
+            <summary>
+            Iterates on each element in this collection.
+            </summary>
+            <param name="action">The visitor that handles for each element in this collection.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Contains(System.Int32)">
+            <summary>
+            Determine whether the map contains the specified offset.
+            </summary>
+            <param name="offset">The offset.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Equals(`0@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.ToArray">
+            <summary>
+            Get all offsets whose bits are set <see langword="true"/>.
+            </summary>
+            <returns>An array of offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the current instance, and get the new instance with some of elements between two indices.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="count">The number of elements.</param>
+            <returns>The target instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ICollection{System#Int32}#Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ICollection{System#Int32}#CopyTo(System.Int32[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#Add(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ICollection{System#Int32}#Remove(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#Contains(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#IEquatable{TSelf}#Equals(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc cref="M:System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Linq#ISelectClauseProvider{System#Int32}#Select``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_LogicalNot(`0@)">
+            <summary>
+            Determines whether the current collection is empty.
+            </summary>
+            <param name="offsets">The cells to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_OnesComplement(`0@)">
+            <summary>
+            Reverse status for all offsets, which means all <see langword="true"/> bits
+            will be set <see langword="false"/>, and all <see langword="false"/> bits
+            will be set <see langword="true"/>.
+            </summary>
+            <param name="offsets">The instance to negate.</param>
+            <returns>The negative result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_True(`0@)">
+            <summary>
+            Determines whether the specified <typeparamref name="TSelf"/> collection is not empty.
+            </summary>
+            <param name="cells">The collection.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_False(`0@)">
+            <summary>
+            Determines whether the specified <typeparamref name="TSelf"/> collection is empty.
+            </summary>
+            <param name="cells">The collection.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Equality(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Inequality(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Addition(`0@,System.Int32)">
+            <summary>
+            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
+            and returns the added result.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be added.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_CheckedAddition(`0@,System.Int32)">
+            <summary>
+            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
+            and returns the added result.
+            This operator will check the validity of the argument <paramref name="offset"/>.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be added.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Addition(`0@,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
+            and returns the added result.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offsets">A list of cells to be added.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_CheckedAddition(`0@,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
+            and returns the added result.
+            This operator will check the validity of the argument <paramref name="offsets"/>.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offsets">A list of cells to be added.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Subtraction(`0@,System.Int32)">
+            <summary>
+            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
+            and returns the removed result.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be removed.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_CheckedSubtraction(`0@,System.Int32)">
+            <summary>
+            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
+            and returns the removed result. This operator will check the validity of the argument <paramref name="offset"/>.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be removed.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Subtraction(`0@,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
+            but not in <paramref name="offsets"/> instance.
+            </summary>
+            <param name="collection">The left instance.</param>
+            <param name="offsets">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_CheckedSubtraction(`0@,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
+            but not in <paramref name="offsets"/> instance.
+            This operator will check the validity of each element in the argument <paramref name="offsets"/>.
+            </summary>
+            <param name="collection">The left instance.</param>
+            <param name="offsets">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Subtraction(`0@,`0@)">
+            <summary>
+            Get a <typeparamref name="TSelf"/> that contains all <paramref name="left"/> instance
+            but not in <paramref name="right"/> instance.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_BitwiseAnd(`0@,`0@)">
+            <summary>
+            Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_BitwiseOr(`0@,`0@)">
+            <summary>
+            Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
+            and return the merged result.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_ExclusiveOr(`0@,`0@)">
+            <summary>
+            Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_BitwiseAnd(`0@,System.Int32)">
+            <summary>
+            Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
+            </summary>
+            <param name="offsets">Indicates the base template cells.</param>
+            <param name="subsetSize">The size to get.</param>
+            <returns>
+            All possible subsets. If:
+            <list type="table">
+            <listheader>
+            <term>Condition</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c><paramref name="subsetSize"/> &gt; <paramref name="offsets"/>.Count</c></term>
+            <description>Will return an empty array</description>
+            </item>
+            <item>
+            <term><c><paramref name="subsetSize"/> == <paramref name="offsets"/>.Count</c></term>
+            <description>
+            Will return an array that contains only one element, same as the argument <paramref name="offsets"/>.
+            </description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>The valid combinations.</description>
+            </item>
+            </list>
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            Throws when both <paramref name="offsets"/> count and <paramref name="subsetSize"/> are greater than 30.
+            </exception>
+            <remarks>
+            For example, if the argument <paramref name="offsets"/> is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
+            and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
+            will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_BitwiseOr(`0@,System.Int32)">
+            <summary>
+            Gets all subsets of the current collection via the specified size
+            indicating the <b>maximum</b> number of elements of the each subset.
+            </summary>
+            <param name="offsets">Indicates the base template cells.</param>
+            <param name="subsetSize">The size to get.</param>
+            <returns>
+            All possible subsets. If:
+            <list type="table">
+            <listheader>
+            <term>Condition</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c><paramref name="subsetSize"/> &gt; <paramref name="offsets"/>.Count</c></term>
+            <description>Will return an empty array</description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>The valid combinations.</description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            For example, the expression <c>cells | 3</c> is equivalent to all possible cases
+            coming from <c><![CDATA[cells & 1]]></c>,
+            <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Equality(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Inequality(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_OnesComplement(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#ISubtractionOperators{TSelf,TSelf,TSelf}#op_Subtraction(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseAnd(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseOr(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IModulusOperators{TSelf,TSelf,TSelf}#op_Modulus(`0,`0)">
+            <summary>
+            Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+            </summary>
+            <param name="left">The base map.</param>
+            <param name="right">The template map that the base map to check and cover.</param>
+            <returns>The result map.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Implicit(`0@)~System.Int32[]">
+            <summary>
+            Implicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.Int32"/>[].
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Implicit(System.Span{System.Int32})~`0">
+            <summary>
+            Implicit cast from <see cref="T:System.Span`1"/> to <typeparamref name="TSelf"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Implicit(System.ReadOnlySpan{System.Int32})~`0">
+            <summary>
+            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <typeparamref name="TSelf"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Explicit(System.Int32[])~`0">
+            <summary>
+            Explicit cast from <see cref="T:System.Int32"/>[] to <typeparamref name="TSelf"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_CheckedExplicit(System.Int32[])~`0">
+            <summary>
+            Explicit cast from <see cref="T:System.Int32"/>[] to <typeparamref name="TSelf"/>, with cell range check.
+            </summary>
+            <param name="offsets">The offsets.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when a certain element in the argument <paramref name="offsets"/>
+            is not a valid value to represent a cell offset.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Explicit(`0@)~System.Span{System.Int32}">
+            <summary>
+            Explicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.Span`1"/> of element type <see cref="T:System.Int32"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Explicit(`0@)~System.ReadOnlySpan{System.Int32}">
+            <summary>
+            Explicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.ReadOnlySpan`1"/> of element type <see cref="T:System.Int32"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
             Defines an inference.
@@ -2649,600 +3243,6 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Inference,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.IStatusMapBase`1">
-            <summary>
-            Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
-            </summary>
-            <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.Shifting">
-            <summary>
-            Indicates the size of each unit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.Count">
-            <summary>
-            Indicates the number of the values stored in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.StringChunks">
-            <summary>
-            Gets all chunks of the current collection, meaning a list of <see cref="T:System.String"/> values that can describe
-            all cell and candidate indices, grouped with same row/column.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.PeerIntersection">
-            <summary>
-            Indicates the peer intersection of the current instance.
-            </summary>
-            <remarks>
-            A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
-            For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.Offsets">
-            <summary>
-            Indicates the cell offsets in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ICollection{System#Int32}#IsReadOnly">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ICollection{System#Int32}#Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.Empty">
-            <summary>
-            Indicates the empty instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.Item(System.Int32)">
-            <summary>
-            Get the offset at the specified position index.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>
-            The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
-            </returns>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#IReadOnlyList{System#Int32}#Item(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.Add(System.Int32)">
-            <summary>
-            Adds a new offset into the current collection.
-            </summary>
-            <param name="offset">The offset.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.AddChecked(System.Int32)">
-            <summary>
-            Set the specified offset as <see langword="true"/> value, with range check.
-            </summary>
-            <param name="offset">The offset.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified offset is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Set the specified offsets as <see langword="true"/> value.
-            </summary>
-            <param name="offsets">The offsets to add.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.ReadOnlySpan{System.Int32})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.ReadOnlySpan{System.Int32})"/>
-            <remarks>
-            Different with the method <see cref="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
-            also checks for the validity of each offsets.
-            If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
-            this method will throw an exception to report about this.
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.Remove(System.Int32)">
-            <summary>
-            Set the specified offset as <see langword="false"/> value.
-            </summary>
-            <param name="offset">The offset.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.RemoveChecked(System.Int32)">
-            <summary>
-            Set the specified offset as <see langword="false"/> value, with range check.
-            </summary>
-            <param name="offset">The offset.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified offset is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRange(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Set the specified offsets as <see langword="false"/> value.
-            </summary>
-            <param name="offsets">The offsets to remove.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRange(System.ReadOnlySpan{System.Int32})"/>
-            <remarks>
-            Different with the method <see cref="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
-            also checks for the validity of each offsets.
-            If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
-            this method will throw an exception to report about this.
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.IStatusMapBase`1.RemoveRange(System.ReadOnlySpan{System.Int32})"/>
-            <remarks>
-            Different with the method <see cref="M:Sudoku.Concepts.IStatusMapBase`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
-            also checks for the validity of each offsets.
-            If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
-            this method will throw an exception to report about this.
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.Clear">
-            <summary>
-            Clear all bits.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.CopyTo(System.Int32*,System.Int32)">
-            <summary>
-            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
-            </summary>
-            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
-            <param name="length">The length of that array.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the capacity isn't enough to store all values.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.CopyTo(System.Int32[],System.Int32)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.CopyTo(System.Span{System.Int32})">
-            <summary>
-            Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
-            </summary>
-            <param name="span">
-            The target <see cref="T:System.Span`1"/> instance.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.ForEach(System.Action{System.Int32})">
-            <summary>
-            Iterates on each element in this collection.
-            </summary>
-            <param name="action">The visitor that handles for each element in this collection.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.Contains(System.Int32)">
-            <summary>
-            Determine whether the map contains the specified offset.
-            </summary>
-            <param name="offset">The offset.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.Equals(`0@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.ToArray">
-            <summary>
-            Get all offsets whose bits are set <see langword="true"/>.
-            </summary>
-            <returns>An array of offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.Slice(System.Int32,System.Int32)">
-            <summary>
-            Slices the current instance, and get the new instance with some of elements between two indices.
-            </summary>
-            <param name="start">The start index.</param>
-            <param name="count">The number of elements.</param>
-            <returns>The target instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.GetEnumerator">
-            <summary>
-            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ICollection{System#Int32}#Clear">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ICollection{System#Int32}#CopyTo(System.Int32[],System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#Add(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ICollection{System#Int32}#Remove(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#IReadOnlySet{System#Int32}#Contains(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#IEquatable{TSelf}#Equals(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#ISet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#IReadOnlySet{System#Int32}#Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#IReadOnlySet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Linq#ISelectClauseProvider{System#Int32}#Select``1(System.Func{System.Int32,``0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_LogicalNot(`0@)">
-            <summary>
-            Determines whether the current collection is empty.
-            </summary>
-            <param name="offsets">The cells to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_OnesComplement(`0@)">
-            <summary>
-            Reverse status for all offsets, which means all <see langword="true"/> bits
-            will be set <see langword="false"/>, and all <see langword="false"/> bits
-            will be set <see langword="true"/>.
-            </summary>
-            <param name="offsets">The instance to negate.</param>
-            <returns>The negative result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_True(`0@)">
-            <summary>
-            Determines whether the specified <typeparamref name="TSelf"/> collection is not empty.
-            </summary>
-            <param name="cells">The collection.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_False(`0@)">
-            <summary>
-            Determines whether the specified <typeparamref name="TSelf"/> collection is empty.
-            </summary>
-            <param name="cells">The collection.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Equality(`0@,`0@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Inequality(`0@,`0@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Addition(`0@,System.Int32)">
-            <summary>
-            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
-            and returns the added result.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offset">The offset to be added.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_CheckedAddition(`0@,System.Int32)">
-            <summary>
-            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
-            and returns the added result.
-            This operator will check the validity of the argument <paramref name="offset"/>.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offset">The offset to be added.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Addition(`0@,System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
-            and returns the added result.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offsets">A list of cells to be added.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_CheckedAddition(`0@,System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
-            and returns the added result.
-            This operator will check the validity of the argument <paramref name="offsets"/>.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offsets">A list of cells to be added.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Subtraction(`0@,System.Int32)">
-            <summary>
-            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
-            and returns the removed result.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offset">The offset to be removed.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_CheckedSubtraction(`0@,System.Int32)">
-            <summary>
-            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
-            and returns the removed result. This operator will check the validity of the argument <paramref name="offset"/>.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offset">The offset to be removed.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Subtraction(`0@,System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
-            but not in <paramref name="offsets"/> instance.
-            </summary>
-            <param name="collection">The left instance.</param>
-            <param name="offsets">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_CheckedSubtraction(`0@,System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
-            but not in <paramref name="offsets"/> instance.
-            This operator will check the validity of each element in the argument <paramref name="offsets"/>.
-            </summary>
-            <param name="collection">The left instance.</param>
-            <param name="offsets">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Subtraction(`0@,`0@)">
-            <summary>
-            Get a <typeparamref name="TSelf"/> that contains all <paramref name="left"/> instance
-            but not in <paramref name="right"/> instance.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_BitwiseAnd(`0@,`0@)">
-            <summary>
-            Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_BitwiseOr(`0@,`0@)">
-            <summary>
-            Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
-            and return the merged result.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_ExclusiveOr(`0@,`0@)">
-            <summary>
-            Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_BitwiseAnd(`0@,System.Int32)">
-            <summary>
-            Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
-            </summary>
-            <param name="offsets">Indicates the base template cells.</param>
-            <param name="subsetSize">The size to get.</param>
-            <returns>
-            All possible subsets. If:
-            <list type="table">
-            <listheader>
-            <term>Condition</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><c><paramref name="subsetSize"/> &gt; <paramref name="offsets"/>.Count</c></term>
-            <description>Will return an empty array</description>
-            </item>
-            <item>
-            <term><c><paramref name="subsetSize"/> == <paramref name="offsets"/>.Count</c></term>
-            <description>
-            Will return an array that contains only one element, same as the argument <paramref name="offsets"/>.
-            </description>
-            </item>
-            <item>
-            <term>Other cases</term>
-            <description>The valid combinations.</description>
-            </item>
-            </list>
-            </returns>
-            <exception cref="T:System.NotSupportedException">
-            Throws when both <paramref name="offsets"/> count and <paramref name="subsetSize"/> are greater than 30.
-            </exception>
-            <remarks>
-            For example, if the argument <paramref name="offsets"/> is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
-            and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
-            will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_BitwiseOr(`0@,System.Int32)">
-            <summary>
-            Gets all subsets of the current collection via the specified size
-            indicating the <b>maximum</b> number of elements of the each subset.
-            </summary>
-            <param name="offsets">Indicates the base template cells.</param>
-            <param name="subsetSize">The size to get.</param>
-            <returns>
-            All possible subsets. If:
-            <list type="table">
-            <listheader>
-            <term>Condition</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><c><paramref name="subsetSize"/> &gt; <paramref name="offsets"/>.Count</c></term>
-            <description>Will return an empty array</description>
-            </item>
-            <item>
-            <term>Other cases</term>
-            <description>The valid combinations.</description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            For example, the expression <c>cells | 3</c> is equivalent to all possible cases
-            coming from <c><![CDATA[cells & 1]]></c>,
-            <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Equality(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Inequality(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_OnesComplement(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#ISubtractionOperators{TSelf,TSelf,TSelf}#op_Subtraction(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseAnd(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseOr(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.System#Numerics#IModulusOperators{TSelf,TSelf,TSelf}#op_Modulus(`0,`0)">
-            <summary>
-            Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
-            </summary>
-            <param name="left">The base map.</param>
-            <param name="right">The template map that the base map to check and cover.</param>
-            <returns>The result map.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Implicit(`0@)~System.Int32[]">
-            <summary>
-            Implicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.Int32"/>[].
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Implicit(System.Span{System.Int32})~`0">
-            <summary>
-            Implicit cast from <see cref="T:System.Span`1"/> to <typeparamref name="TSelf"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Implicit(System.ReadOnlySpan{System.Int32})~`0">
-            <summary>
-            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <typeparamref name="TSelf"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Explicit(System.Int32[])~`0">
-            <summary>
-            Explicit cast from <see cref="T:System.Int32"/>[] to <typeparamref name="TSelf"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_CheckedExplicit(System.Int32[])~`0">
-            <summary>
-            Explicit cast from <see cref="T:System.Int32"/>[] to <typeparamref name="TSelf"/>, with cell range check.
-            </summary>
-            <param name="offsets">The offsets.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when a certain element in the argument <paramref name="offsets"/>
-            is not a valid value to represent a cell offset.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Explicit(`0@)~System.Span{System.Int32}">
-            <summary>
-            Explicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.Span`1"/> of element type <see cref="T:System.Int32"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IStatusMapBase`1.op_Explicit(`0@)~System.ReadOnlySpan{System.Int32}">
-            <summary>
-            Explicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.ReadOnlySpan`1"/> of element type <see cref="T:System.Int32"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
         </member>
         <member name="T:Sudoku.Concepts.SymmetryType">
             <summary>
