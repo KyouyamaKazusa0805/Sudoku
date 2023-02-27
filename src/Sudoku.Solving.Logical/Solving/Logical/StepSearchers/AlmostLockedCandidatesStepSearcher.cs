@@ -12,7 +12,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		for (var size = 2; size <= (CheckAlmostLockedQuadruple ? 4 : 3); size++)
 		{
@@ -20,11 +20,11 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 			{
 				if (c && EmptyCells)
 				{
-					if (GetAll(context, size, baseSet, coverSet, a, b, c) is { } step1)
+					if (GetAll(ref context, size, baseSet, coverSet, a, b, c) is { } step1)
 					{
 						return step1;
 					}
-					if (GetAll(context, size, coverSet, baseSet, b, a, c) is { } step2)
+					if (GetAll(ref context, size, coverSet, baseSet, b, a, c) is { } step2)
 					{
 						return step2;
 					}
@@ -38,7 +38,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 	/// <summary>
 	/// Process the calculation.
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="GetAll(in LogicalAnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="GetAll(ref LogicalAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="size">The size.</param>
 	/// <param name="baseSet">The base set.</param>
 	/// <param name="coverSet">The cover set.</param>
@@ -70,7 +70,7 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 	/// </para>
 	/// </remarks>
 	private static IStep? GetAll(
-		scoped in LogicalAnalysisContext context, int size, int baseSet, int coverSet,
+		scoped ref LogicalAnalysisContext context, int size, int baseSet, int coverSet,
 		scoped in CellMap a, scoped in CellMap b, scoped in CellMap c)
 	{
 		scoped ref readonly var grid = ref context.Grid;

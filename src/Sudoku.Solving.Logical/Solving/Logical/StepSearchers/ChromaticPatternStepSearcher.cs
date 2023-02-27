@@ -4,7 +4,7 @@
 internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		if (EmptyCells.Count < 12)
 		{
@@ -80,11 +80,11 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				}
 
 				// Gather steps.
-				if (CheckType1(context, pattern, blocks) is { } type1Step)
+				if (CheckType1(ref context, pattern, blocks) is { } type1Step)
 				{
 					return type1Step;
 				}
-				if (CheckXz(context, pattern, blocks) is { } typeXzStep)
+				if (CheckXz(ref context, pattern, blocks) is { } typeXzStep)
 				{
 					return typeXzStep;
 				}
@@ -116,7 +116,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// </item>
 	/// </list>
 	/// </summary>
-	private IStep? CheckType1(scoped in LogicalAnalysisContext context, scoped in CellMap pattern, int[] blocks)
+	private IStep? CheckType1(scoped ref LogicalAnalysisContext context, scoped in CellMap pattern, int[] blocks)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var extraCell in pattern)
@@ -184,7 +184,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// </item>
 	/// </list>
 	/// </summary>
-	private IStep? CheckXz(scoped in LogicalAnalysisContext context, scoped in CellMap pattern, int[] blocks)
+	private IStep? CheckXz(scoped ref LogicalAnalysisContext context, scoped in CellMap pattern, int[] blocks)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var allDigitsMask = grid.GetDigitsUnion(pattern);

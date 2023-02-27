@@ -4,7 +4,7 @@
 internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		// A valid SdC needs at least 4 cells like:
 		//

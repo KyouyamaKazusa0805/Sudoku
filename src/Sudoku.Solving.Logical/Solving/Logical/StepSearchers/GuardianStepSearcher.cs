@@ -8,14 +8,15 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		// Check POM eliminations first.
 		scoped ref readonly var grid = ref context.Grid;
 		scoped var eliminationMaps = (stackalloc CellMap[9]);
 		eliminationMaps.Fill(CellMap.Empty);
 		var pomSteps = new List<IStep>();
-		ElimsSearcher.GetAll(new(pomSteps, grid, false));
+		scoped var pomContext = new LogicalAnalysisContext(pomSteps, grid, false);
+		ElimsSearcher.GetAll(ref pomContext);
 		foreach (var step in pomSteps.Cast<PatternOverlayStep>())
 		{
 			scoped ref var currentMap = ref eliminationMaps[step.Digit];

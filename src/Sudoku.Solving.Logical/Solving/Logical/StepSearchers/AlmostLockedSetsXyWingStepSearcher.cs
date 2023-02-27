@@ -9,7 +9,7 @@ internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmos
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var rccs = new List<(AlmostLockedSet Left, AlmostLockedSet Right, short Mask)>();

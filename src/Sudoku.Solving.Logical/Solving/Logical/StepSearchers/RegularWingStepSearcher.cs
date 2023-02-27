@@ -9,7 +9,7 @@ internal sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepS
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		// Iterate on the size.
 		// Note that the greatest size is determined by two factors: the size that you specified

@@ -4,7 +4,7 @@
 internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		// Iterates on each digit.
 		scoped ref readonly var grid = ref context.Grid;

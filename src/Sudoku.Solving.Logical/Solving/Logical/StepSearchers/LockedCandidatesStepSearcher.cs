@@ -36,7 +36,7 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 	/// all possible location where may form a locked candidate.
 	/// </para>
 	/// </remarks>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		var housesMask = (short)0;
 		scoped ref readonly var grid = ref context.Grid;

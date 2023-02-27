@@ -22,7 +22,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 	/// will tell you what is it.
 	/// </para>
 	/// </remarks>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var house = stackalloc int[2];

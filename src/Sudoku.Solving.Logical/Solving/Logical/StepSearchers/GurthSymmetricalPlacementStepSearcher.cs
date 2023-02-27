@@ -5,7 +5,7 @@
 internal sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : IGurthSymmetricalPlacementStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		var methods = stackalloc delegate*<in Grid, GurthSymmetricalPlacementStep?>[]
 		{

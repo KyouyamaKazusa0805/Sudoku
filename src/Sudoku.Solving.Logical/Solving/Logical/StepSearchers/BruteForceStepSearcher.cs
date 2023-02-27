@@ -9,7 +9,7 @@ internal sealed partial class BruteForceStepSearcher : IBruteForceStepSearcher
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		if (Solution.IsUndefined)
 		{

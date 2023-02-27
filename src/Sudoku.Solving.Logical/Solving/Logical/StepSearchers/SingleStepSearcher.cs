@@ -16,13 +16,143 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 	[StepSearcherProperty]
 	public bool HiddenSinglesInBlockFirst { get; set; }
 
+	/// <inheritdoc/>
+	[StepSearcherProperty]
+	public bool UseIttoryuMode { get; set; }
+
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public unsafe IStep? GetAll(scoped ref LogicalAnalysisContext context)
+		=> UseIttoryuMode ? GetAll_IttoryuMode(ref context) : GetAll_NonIttoryuMode(ref context);
+
+	/// <summary>
+	/// Checks for single steps using ittoryu mode.
+	/// </summary>
+	/// <param name="context"><inheritdoc cref="GetAll(ref LogicalAnalysisContext)" path="/param[@name='context']"/></param>
+	/// <returns><inheritdoc cref="GetAll(ref LogicalAnalysisContext)" path="/returns"/></returns>
+	private IStep? GetAll_IttoryuMode(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var onlyFindOne = context.OnlyFindOne;
-		var accumulator = context.Accumulator!;
+
+		var digit = context.PreviousSetDigit;
+		for (var i = 0; i < 9; i++, digit = (digit + 1) % 9)
+		{
+			if (!EnableFullHouse)
+			{
+				goto CheckHiddenSingle;
+			}
+
+			for (var house = 0; house < 27; house++)
+			{
+				var count = 0;
+				var resultCell = -1;
+				var flag = true;
+				foreach (var cell in HousesMap[house])
+				{
+					if (grid.GetStatus(cell) == CellStatus.Empty)
+					{
+						resultCell = cell;
+						if (++count > 1)
+						{
+							flag = false;
+							break;
+						}
+					}
+				}
+				if (!flag || count == 0)
+				{
+					continue;
+				}
+
+				var tempDigit = TrailingZeroCount(grid.GetCandidates(resultCell));
+				if (tempDigit != digit)
+				{
+					continue;
+				}
+
+				var step = new FullHouseStep(
+					ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
+					ImmutableArray.Create(View.Empty | new HouseViewNode(DisplayColorKind.Normal, house)),
+					resultCell,
+					digit
+				);
+
+				if (context.OnlyFindOne)
+				{
+					context.PreviousSetDigit = digit;
+
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+			}
+
+		CheckHiddenSingle:
+			for (var house = 0; house < 27; house++)
+			{
+				if (CheckForHiddenSingleAndLastDigit(grid, digit, house) is not { } step)
+				{
+					continue;
+				}
+
+				if (context.OnlyFindOne)
+				{
+					context.PreviousSetDigit = digit;
+
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+			}
+
+			for (var cell = 0; cell < 81; cell++)
+			{
+				if (grid.GetStatus(cell) != CellStatus.Empty)
+				{
+					continue;
+				}
+
+				var mask = grid.GetCandidates(cell);
+				if (!IsPow2(mask))
+				{
+					continue;
+				}
+
+				var tempDigit = TrailingZeroCount(mask);
+				if (tempDigit != digit)
+				{
+					continue;
+				}
+
+				var step = new NakedSingleStep(
+					ImmutableArray.Create(new Conclusion(Assignment, cell, digit)),
+					ImmutableArray.Create(View.Empty),
+					cell,
+					digit
+				);
+
+				if (context.OnlyFindOne)
+				{
+					context.PreviousSetDigit = digit;
+
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Checks for single steps using non-ittoryu mode.
+	/// </summary>
+	/// <param name="context"><inheritdoc cref="GetAll(ref LogicalAnalysisContext)" path="/param[@name='context']"/></param>
+	/// <returns><inheritdoc cref="GetAll(ref LogicalAnalysisContext)" path="/returns"/></returns>
+	private IStep? GetAll_NonIttoryuMode(scoped ref LogicalAnalysisContext context)
+	{
+		scoped ref readonly var grid = ref context.Grid;
 
 		if (!EnableFullHouse)
 		{
@@ -31,7 +161,8 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 
 		for (var house = 0; house < 27; house++)
 		{
-			int count = 0, resultCell = -1;
+			var count = 0;
+			var resultCell = -1;
 			var flag = true;
 			foreach (var cell in HousesMap[house])
 			{
@@ -58,13 +189,14 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 				digit
 			);
 
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			accumulator.Add(step);
+			context.Accumulator.Add(step);
 		}
+
 	CheckHiddenSingle:
 		if (HiddenSinglesInBlockFirst)
 		{
@@ -73,17 +205,17 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-					if (g(grid, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(grid, digit, house) is not { } step)
 					{
 						continue;
 					}
 
-					if (onlyFindOne)
+					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					accumulator.Add(step);
+					context.Accumulator.Add(step);
 				}
 			}
 
@@ -92,17 +224,17 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-					if (g(grid, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(grid, digit, house) is not { } step)
 					{
 						continue;
 					}
 
-					if (onlyFindOne)
+					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					accumulator.Add(step);
+					context.Accumulator.Add(step);
 				}
 			}
 		}
@@ -115,17 +247,17 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 			{
 				for (var house = 0; house < 27; house++)
 				{
-					if (g(grid, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(grid, digit, house) is not { } step)
 					{
 						continue;
 					}
 
-					if (onlyFindOne)
+					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					accumulator.Add(step);
+					context.Accumulator.Add(step);
 				}
 			}
 		}
@@ -152,75 +284,86 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 				digit
 			);
 
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			accumulator.Add(step);
+			context.Accumulator.Add(step);
 		}
 
 		return null;
+	}
 
-
-		IStep? g(scoped in Grid grid, int digit, int house)
+	/// <summary>
+	/// Checks for existence of hidden single and last digit conclusion in the specified house.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="digit">The digit used.</param>
+	/// <param name="house">The house used.</param>
+	/// <returns>Not <see langword="null"/> if conclusion can be found.</returns>
+	/// <remarks>
+	/// <para><include file="../../global-doc-comments.xml" path="/g/deverloper-notes"/></para>
+	/// <para>
+	/// The main idea of hidden single is to search for a digit can only appear once in a house,
+	/// so we should check all possibilities in a house to found whether the house exists a digit
+	/// that only appears once indeed.
+	/// </para>
+	/// </remarks>
+	private IStep? CheckForHiddenSingleAndLastDigit(scoped in Grid grid, int digit, int house)
+	{
+		int count = 0, resultCell = -1;
+		var flag = true;
+		foreach (var cell in HousesMap[house])
 		{
-			// The main idea of hidden single is to search for a digit can only appear once in a house,
-			// so we should check all possibilities in a house to found whether the house exists a digit
-			// that only appears once indeed.
-			int count = 0, resultCell = -1;
-			var flag = true;
-			foreach (var cell in HousesMap[house])
+			if (grid.Exists(cell, digit) is true)
 			{
-				if (grid.Exists(cell, digit) is true)
+				resultCell = cell;
+				if (++count > 1)
 				{
-					resultCell = cell;
-					if (++count > 1)
-					{
-						flag = false;
-						break;
-					}
+					flag = false;
+					break;
 				}
 			}
-			if (!flag || count == 0)
-			{
-				// The digit has been filled into the house, or the digit appears more than once,
-				// the digit will be invalid for a hidden single. Just skip it.
-				return null;
-			}
-
-			// Now here the digit is a hidden single. We should gather the information
-			// (painting or text information) on the step in order to display onto the UI.
-			var enableAndIsLastDigit = false;
-			var cellOffsets = new List<CellViewNode>();
-			if (EnableLastDigit)
-			{
-				// Sum up the number of appearing in the grid of 'digit'.
-				var digitCount = 0;
-				for (var i = 0; i < 81; i++)
-				{
-					if (grid[i] == digit)
-					{
-						digitCount++;
-						cellOffsets.Add(new(DisplayColorKind.Normal, i));
-					}
-				}
-
-				enableAndIsLastDigit = digitCount == 8;
-			}
-
-			return new HiddenSingleStep(
-				ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
-				ImmutableArray.Create(
-					View.Empty
-						| (enableAndIsLastDigit ? cellOffsets : null)
-						| (enableAndIsLastDigit ? null : new HouseViewNode(DisplayColorKind.Normal, house))
-				),
-				resultCell,
-				digit,
-				house,
-				enableAndIsLastDigit
-			);
 		}
+		if (!flag || count == 0)
+		{
+			// The digit has been filled into the house, or the digit appears more than once,
+			// it will be invalid for a hidden single. Just skip it.
+			return null;
+		}
+
+		// Now here the digit is a hidden single. We should gather the information (painting or text information)
+		// on the step in order to display onto the UI.
+		var enableAndIsLastDigit = false;
+		var cellOffsets = new List<CellViewNode>();
+		if (EnableLastDigit)
+		{
+			// Sum up the number of appearing in the grid of 'digit'.
+			var digitCount = 0;
+			for (var i = 0; i < 81; i++)
+			{
+				if (grid[i] == digit)
+				{
+					digitCount++;
+					cellOffsets.Add(new(DisplayColorKind.Normal, i));
+				}
+			}
+
+			enableAndIsLastDigit = digitCount == 8;
+		}
+
+		return new HiddenSingleStep(
+			ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
+			ImmutableArray.Create(
+				View.Empty
+					| (enableAndIsLastDigit ? cellOffsets : null)
+					| (enableAndIsLastDigit ? null : new HouseViewNode(DisplayColorKind.Normal, house))
+			),
+			resultCell,
+			digit,
+			house,
+			enableAndIsLastDigit
+		);
 	}
 }

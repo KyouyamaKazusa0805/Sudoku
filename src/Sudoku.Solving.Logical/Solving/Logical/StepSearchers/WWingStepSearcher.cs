@@ -4,7 +4,7 @@
 internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		// The grid with possible W-Wing structure should contain at least two empty cells (start and end cell).
 		if (BivalueCells.Count < 2)

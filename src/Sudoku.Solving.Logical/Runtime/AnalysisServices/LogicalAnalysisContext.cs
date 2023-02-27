@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a context that is used by step searchers to check the details of the solving and analysis information.
 /// </summary>
-public readonly ref partial struct LogicalAnalysisContext
+public ref partial struct LogicalAnalysisContext
 {
 	/// <summary>
 	/// Indicates the puzzle to be solved and analyzed.
@@ -35,6 +35,12 @@ public readonly ref partial struct LogicalAnalysisContext
 	public bool OnlyFindOne { get; }
 
 	/// <summary>
+	/// Indicates the previously set digit. This field is only used for <see cref="ISingleStepSearcher"/>.
+	/// </summary>
+	/// <seealso cref="ISingleStepSearcher"/>
+	public int PreviousSetDigit { get; internal set; }
+
+	/// <summary>
 	/// <para>
 	/// <para>The accumulator to store each step.</para>
 	/// </para>
@@ -51,9 +57,9 @@ public readonly ref partial struct LogicalAnalysisContext
 
 #pragma warning disable CS0809
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
-	public override partial bool Equals(object? obj);
+	public override readonly partial bool Equals(object? obj);
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
-	public override partial int GetHashCode();
+	public override readonly partial int GetHashCode();
 #pragma warning restore CS0809
 }

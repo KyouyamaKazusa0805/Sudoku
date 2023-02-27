@@ -42,6 +42,7 @@ public static class CommonLogicalSolvers
 		SingleStepSearcher_EnableFullHouse = true,
 		SingleStepSearcher_EnableLastDigit = true,
 		SingleStepSearcher_HiddenSinglesInBlockFirst = true,
+		SingleStepSearcher_UseIttoryuMode = false,
 		UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles = true,
 		UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles = true,
 		BivalueUniversalGraveStepSearcher_SearchExtendedTypes = true,

@@ -4,7 +4,7 @@
 internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3DimensionStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		using scoped var rbList = new ValueList<CellMap>(3);

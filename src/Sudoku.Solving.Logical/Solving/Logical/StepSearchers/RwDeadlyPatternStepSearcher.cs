@@ -19,7 +19,7 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 	/// <see href="http://forum.enjoysudoku.com/yet-another-crazy-uniqueness-technique-t5589.html"/>
 	/// </para>
 	/// </remarks>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		for (var chuteIndex = 0; chuteIndex < 6; chuteIndex++)

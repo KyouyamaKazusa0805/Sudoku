@@ -4,7 +4,7 @@
 internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSetsWWingStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);

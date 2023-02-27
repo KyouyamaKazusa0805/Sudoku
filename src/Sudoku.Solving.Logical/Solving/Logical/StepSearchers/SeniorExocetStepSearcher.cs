@@ -9,7 +9,7 @@ internal sealed partial class SeniorExocetStepSearcher : ISeniorExocetStepSearch
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		// TODO: Re-implement SE.
 		return null;

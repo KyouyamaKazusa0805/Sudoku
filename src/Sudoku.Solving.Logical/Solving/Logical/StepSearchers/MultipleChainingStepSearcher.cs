@@ -48,7 +48,7 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		// TODO: Implement an implications cache.
 

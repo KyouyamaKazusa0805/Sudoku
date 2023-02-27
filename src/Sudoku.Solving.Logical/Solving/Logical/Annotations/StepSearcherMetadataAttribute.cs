@@ -16,13 +16,13 @@ public sealed class StepSearcherMetadataAttribute : Attribute
 	/// <para>
 	/// Indicates the technique searcher can or can't be used in some scenarios
 	/// where they aren't in traversing mode to call
-	/// <see cref="IStepSearcher.GetAll(in LogicalAnalysisContext)"/>
+	/// <see cref="IStepSearcher.GetAll(ref LogicalAnalysisContext)"/>
 	/// in <see cref="IStepSearcher"/>s one by one.
 	/// </para>
 	/// <para>
 	/// If <see langword="true"/>, the searcher can't use those <see langword="static"/>
 	/// properties such as <see cref="CandidatesMap"/> in its method
-	/// <see cref="IStepSearcher.GetAll(in LogicalAnalysisContext)"/>.
+	/// <see cref="IStepSearcher.GetAll(ref LogicalAnalysisContext)"/>.
 	/// </para>
 	/// <para><i>The default value is <see langword="false"/>.</i></para>
 	/// </summary>

@@ -14,7 +14,7 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		var list = new List<UniqueRectangleStep>();
 

@@ -12,7 +12,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 
@@ -458,7 +458,8 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 	private static IList<Conclusion>?[] GetPomEliminationsFirstly(scoped in Grid grid)
 	{
 		var tempList = new List<IStep>();
-		ElimsSearcher.GetAll(new(tempList, grid, false));
+		scoped var context = new LogicalAnalysisContext(tempList, grid, false);
+		ElimsSearcher.GetAll(ref context);
 
 		var result = new IList<Conclusion>?[9];
 		foreach (PatternOverlayStep step in tempList)

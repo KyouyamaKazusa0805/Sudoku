@@ -6,10 +6,6 @@
 /// </summary>
 public static class IttouryuPuzzleChecker
 {
-	/// <inheritdoc cref="IsIttouryu(in Grid, out ValueTuple{int, bool}[])"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsIttouryu(scoped in Grid grid) => IsIttouryu(grid, out _);
-
 	/// <summary>
 	/// Determines whether the puzzle is an ittouryu puzzle, which means we can fill the puzzle digit by digit.
 	/// </summary>
@@ -21,13 +17,10 @@ public static class IttouryuPuzzleChecker
 		var (listOfSteps, tempGrid, currentDigit) = (new List<(int, bool)>(), grid, -1);
 
 		// Iterates on each digit.
-		// Here we introduce an extra variable 'validatedTimes', which records how many times we have skipped
-		// the searching on a digit.
-		// For example, we find a hidden single of digit 1, but the next conclusion is about the digit 5,
-		// the variable 'validatedTimes' will be 4.
+		// Here we introduce an extra variable 'validatedTimes', which records how many times we have skipped searching on a digit.
+		// For example, we find a hidden single of digit 1, but the next conclusion is about the digit 5, variable 'validatedTimes' will be 4.
 		// If the variable is greater than 9, which means we have searched for all possible digit kinds
-		// that can be appeared in a sudoku grid, so we can conclude
-		// that all possible hidden and naked singles are used,
+		// that can be appeared in a sudoku grid, so we can conclude that all possible hidden and naked singles are used,
 		// which means the puzzle cannot be solved, unless we use advanced solving techniques.
 		// In this case, the puzzle is not an ittouryu one, just return false.
 		for (int digit = 0, validatedTimes = 0; validatedTimes < 9; digit = (digit + 1) % 9, validatedTimes++)

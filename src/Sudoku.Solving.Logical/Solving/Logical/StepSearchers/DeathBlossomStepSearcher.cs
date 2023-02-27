@@ -4,7 +4,7 @@
 internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;

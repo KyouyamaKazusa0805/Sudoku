@@ -4,7 +4,7 @@
 internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearcher, IChainingStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 

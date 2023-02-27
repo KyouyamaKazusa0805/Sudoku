@@ -4,7 +4,7 @@
 internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		for (var digit = 0; digit < 9; digit++)

@@ -13,7 +13,7 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		// Iterate on each digit.
 		var distributedMapsByDigit = Solution.ValuesMap;

@@ -53,11 +53,11 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 					cancellationToken.ThrowIfCancellationRequested();
 
 					// Searching.
-					var tempBag = new List<IStep>();
-					scoped var context = new LogicalAnalysisContext(tempBag, puzzle, false);
-					searcher.GetAll(context);
+					var accumulator = new List<IStep>();
+					scoped var context = new LogicalAnalysisContext(accumulator, puzzle, false);
+					searcher.GetAll(ref context);
 
-					switch (tempBag.Count)
+					switch (accumulator.Count)
 					{
 						case 0:
 						{
@@ -70,7 +70,7 @@ public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSear
 								i = currentLevel;
 							}
 
-							bag.AddRange(count > MaxStepsGathered ? tempBag.Slice(0, MaxStepsGathered) : tempBag);
+							bag.AddRange(count > MaxStepsGathered ? accumulator.Slice(0, MaxStepsGathered) : accumulator);
 
 							break;
 						}

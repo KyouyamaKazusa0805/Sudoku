@@ -160,5 +160,5 @@ public interface IStepSearcher
 	/// </list>
 	/// </returns>
 	/// <seealso cref="LogicalAnalysisContext"/>
-	IStep? GetAll(scoped in LogicalAnalysisContext context);
+	IStep? GetAll(scoped ref LogicalAnalysisContext context);
 }

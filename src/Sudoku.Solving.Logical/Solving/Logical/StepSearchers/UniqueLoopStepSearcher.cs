@@ -5,7 +5,7 @@
 internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		if (BivalueCells.Count < 5)
 		{

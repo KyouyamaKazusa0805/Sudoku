@@ -10,13 +10,13 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
-		if (CheckForTrueCandidateTypes(context) is { } trueCandidateTypeFirstFoundStep)
+		if (CheckForTrueCandidateTypes(ref context) is { } trueCandidateTypeFirstFoundStep)
 		{
 			return trueCandidateTypeFirstFoundStep;
 		}
-		if (CheckForFalseCandidateTypes(context) is { } falseCandidateTypeFirstFoundStep)
+		if (CheckForFalseCandidateTypes(ref context) is { } falseCandidateTypeFirstFoundStep)
 		{
 			return falseCandidateTypeFirstFoundStep;
 		}
@@ -24,7 +24,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckForTrueCandidateTypes(scoped in LogicalAnalysisContext context)
+	private IStep? CheckForTrueCandidateTypes(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		if (!IBivalueUniversalGraveStepSearcher.FindTrueCandidates(grid, out var trueCandidates))
@@ -97,7 +97,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckForFalseCandidateTypes(scoped in LogicalAnalysisContext context)
+	private IStep? CheckForFalseCandidateTypes(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var multivalueCells = EmptyCells - BivalueCells;

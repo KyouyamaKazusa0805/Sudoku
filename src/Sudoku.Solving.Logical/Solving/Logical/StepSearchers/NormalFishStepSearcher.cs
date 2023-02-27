@@ -11,7 +11,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		var r = stackalloc int*[9];
 		var c = stackalloc int*[9];

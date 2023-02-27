@@ -4,7 +4,7 @@
 internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisectorLockedSetsStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		var linkForEachHouse = stackalloc short[27];
 		var linkForEachDigit = stackalloc CellMap[9];

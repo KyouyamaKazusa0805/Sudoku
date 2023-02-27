@@ -25,4 +25,13 @@ public interface ISingleStepSearcher : IStepSearcher
 	/// Indicates whether the solver checks for hidden single in block firstly.
 	/// </summary>
 	bool HiddenSinglesInBlockFirst { get; set; }
+
+	/// <summary>
+	/// Indicates whether the solver uses ittoryu mode to solve a puzzle.
+	/// </summary>
+	/// <remarks>
+	/// For more information about what is an ittoryu puzzle, please visit
+	/// <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">this link</see>.
+	/// </remarks>
+	bool UseIttoryuMode { get; set; }
 }

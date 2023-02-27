@@ -20,7 +20,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		var tempAccumulator = new List<BowmanBingoStep>();
 		scoped ref readonly var grid = ref context.Grid;
@@ -75,16 +75,15 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 		return null;
 	}
 
-	private IStep? GetAll(
-		ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, int startCand, int length)
+	private IStep? GetAll(ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, int startCand, int length)
 	{
-		if (length == 0 || SinglesSearcher.GetAll(new(null, grid, true)) is not SingleStep singleInfo)
+		scoped var context = new LogicalAnalysisContext(null, grid, true);
+		if (length == 0 || SinglesSearcher.GetAll(ref context) is not SingleStep singleInfo)
 		{
 			// Two cases we don't need to go on.
-			// Case 1: the variable 'length' is 0.
+			// Case 1: The variable 'length' is 0.
 			// Case 2: The searcher can't get any new steps, which means the expression
-			// always returns the value null. Therefore, this case (grid[cell] = digit)
-			// is a bad try.
+			// always returns the value null. Therefore, this case (grid[cell] = digit) is a bad try.
 			goto ReturnNull;
 		}
 

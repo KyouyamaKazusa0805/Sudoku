@@ -4,7 +4,7 @@
 internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		var pairs = stackalloc short[8];
 		var tempLink = stackalloc short[8];

@@ -36,14 +36,14 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher,
 	/// in order to solve a puzzle faster. If the value is <see langword="true"/>,
-	/// the third argument of <see cref="IStepSearcher.GetAll(in LogicalAnalysisContext)"/>
+	/// the third argument of <see cref="IStepSearcher.GetAll(ref LogicalAnalysisContext)"/>
 	/// will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
 	/// and all steps will be applied at the same time.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	/// <seealso cref="IStepSearcher.GetAll(in LogicalAnalysisContext)"/>
+	/// <seealso cref="IStepSearcher.GetAll(ref LogicalAnalysisContext)"/>
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
@@ -199,7 +199,7 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 				{
 					var accumulator = new List<IStep>();
 					scoped var context = new LogicalAnalysisContext(accumulator, playground, false);
-					searcher.GetAll(context);
+					searcher.GetAll(ref context);
 					if (accumulator.Count == 0)
 					{
 						continue;
@@ -230,7 +230,8 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 				}
 				default:
 				{
-					switch (searcher.GetAll(new(null, playground, true)))
+					scoped var context = new LogicalAnalysisContext(null, playground, true);
+					switch (searcher.GetAll(ref context))
 					{
 						case null:
 						case IInvalidStep foundStep when ReferenceEquals(IInvalidStep.Instance, foundStep):
@@ -289,7 +290,8 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 			ICollection<Grid> stepGrids,
 			LogicalSolverResult resultBase,
 			CancellationToken cancellationToken,
-			[NotNullWhen(true)] out LogicalSolverResult? result)
+			[NotNullWhen(true)] out LogicalSolverResult? result
+		)
 		{
 			var atLeastOneConclusionIsWorth = false;
 			foreach (var (t, c, d) in step.Conclusions)

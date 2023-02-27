@@ -5,7 +5,7 @@
 internal sealed partial class PatternOverlayStepSearcher : IPatternOverlayStepSearcher
 {
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped in LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		var templates = IPatternOverlayStepSearcher.GetInvalidPos(context.Grid);
 		for (var digit = 0; digit < 9; digit++)
