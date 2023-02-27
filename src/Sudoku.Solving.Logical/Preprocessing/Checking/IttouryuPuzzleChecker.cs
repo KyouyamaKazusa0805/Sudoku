@@ -4,6 +4,7 @@
 /// Provides with a checker that determines whether the puzzle is an
 /// <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">ittouryu puzzle</see>.
 /// </summary>
+[Obsolete($"This type is being deprecated. The implementation is merged into type '{nameof(ISingleStepSearcher)}'.", false)]
 public static class IttouryuPuzzleChecker
 {
 	/// <summary>

@@ -33,9 +33,7 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 	private IStep? GetAll_IttoryuMode(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-
-		var digit = context.PreviousSetDigit;
-		for (var i = 0; i < 9; i++, digit = (digit + 1) % 9)
+		for (var (i, digit) = (0, context.PreviousSetDigit); i < 9; i++, digit = (digit + 1) % 9)
 		{
 			if (!EnableFullHouse)
 			{
