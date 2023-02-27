@@ -68,6 +68,9 @@
 								Icon="List" Label="{m:R Key=AnalyzePage_LogicalSolverIsFullyApplied}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=TwoWay}" />
 							<AppBarToggleButton
+								Icon="RepeatOne" Label="{m:R Key=AnalyzePage_AnalyzerUseIttoryuMode}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerUseIttoryuMode,Mode=TwoWay}" />
+							<AppBarToggleButton
 								Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresSlowAlgorithms}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms,Mode=TwoWay}" />
 							<AppBarToggleButton

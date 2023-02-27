@@ -7,6 +7,7 @@
 [DependencyProperty<bool>("EnableFullHouse", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableFullHouse")]
 [DependencyProperty<bool>("EnableLastDigit", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableLastDigit")]
 [DependencyProperty<bool>("HiddenSinglesInBlockFirst", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst")]
+[DependencyProperty<bool>("AnalyzerUseIttoryuMode", DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_UseIttoryuMode")]
 [DependencyProperty<bool>("AllowIncompleteUniqueRectangles", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles")]
 [DependencyProperty<bool>("SearchForExtendedUniqueRectangles", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles")]
 [DependencyProperty<bool>("SearchExtendedBivalueUniversalGraveTypes", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes")]

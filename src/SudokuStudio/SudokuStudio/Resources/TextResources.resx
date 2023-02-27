@@ -195,6 +195,9 @@
   <data name="AnalyzePage_AnalyzerProgress" xml:space="preserve">
     <value>Progress: {0:P}</value>
   </data>
+  <data name="AnalyzePage_AnalyzerUseIttoryuMode" xml:space="preserve">
+    <value>Ittoryu mode</value>
+  </data>
   <data name="AnalyzePage_AntidiagonalSwapButton" xml:space="preserve">
     <value>Anti-diagonal swap</value>
   </data>

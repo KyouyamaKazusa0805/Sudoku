@@ -195,6 +195,9 @@
   <data name="AnalyzePage_AnalyzerProgress" xml:space="preserve">
     <value>进度：{0:P}</value>
   </data>
+  <data name="AnalyzePage_AnalyzerUseIttoryuMode" xml:space="preserve">
+    <value>一刀流模式</value>
+  </data>
   <data name="AnalyzePage_AntidiagonalSwapButton" xml:space="preserve">
     <value>反对角线（撇对角线）翻转</value>
   </data>

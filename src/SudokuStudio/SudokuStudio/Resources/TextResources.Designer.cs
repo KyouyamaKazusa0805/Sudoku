@@ -466,6 +466,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ittoryu mode.
+        /// </summary>
+        internal static string AnalyzePage_AnalyzerUseIttoryuMode {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AnalyzerUseIttoryuMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Anti-diagonal swap.
         /// </summary>
         internal static string AnalyzePage_AntidiagonalSwapButton {
