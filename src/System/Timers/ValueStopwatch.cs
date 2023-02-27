@@ -48,13 +48,11 @@ public readonly ref partial struct ValueStopwatch
 	}
 
 
-#pragma warning disable CS0809
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
 	public override partial bool Equals(object? obj);
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override partial int GetHashCode();
-#pragma warning restore CS0809
 
 	/// <summary>
 	/// Try to get the elapsed time.

@@ -5,8 +5,6 @@
 #define DECREASE_INITIALIZATION_MEMORY_ALLOCATION
 #define DISCARD_INTERPOLATION_INFO
 #define USE_NEWER_CONSTANT_VALUES
-#pragma warning disable CS0809
-
 namespace System.Text;
 
 /// <summary>

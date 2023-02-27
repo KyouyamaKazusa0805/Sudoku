@@ -55,11 +55,9 @@ public ref partial struct LogicalAnalysisContext
 	public ICollection<IStep>? Accumulator { get; }
 
 
-#pragma warning disable CS0809
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
 	public override readonly partial bool Equals(object? obj);
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override readonly partial int GetHashCode();
-#pragma warning restore CS0809
 }
