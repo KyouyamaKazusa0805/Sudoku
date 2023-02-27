@@ -125,9 +125,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 				{
 					2 => CandidatesMap[digit] & (HousesMap[bs[0]] | HousesMap[bs[1]]),
 					3 => CandidatesMap[digit] & (HousesMap[bs[0]] | HousesMap[bs[1]] | HousesMap[bs[2]]),
-					4 => CandidatesMap[digit] & (
-						HousesMap[bs[0]] | HousesMap[bs[1]] | HousesMap[bs[2]] | HousesMap[bs[3]]
-					)
+					4 => CandidatesMap[digit] & (HousesMap[bs[0]] | HousesMap[bs[1]] | HousesMap[bs[2]] | HousesMap[bs[3]])
 				};
 
 				// Iterate on the cover set combination.
@@ -138,9 +136,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					{
 						2 => CandidatesMap[digit] & (HousesMap[cs[0]] | HousesMap[cs[1]]),
 						3 => CandidatesMap[digit] & (HousesMap[cs[0]] | HousesMap[cs[1]] | HousesMap[cs[2]]),
-						4 => CandidatesMap[digit] & (
-							HousesMap[cs[0]] | HousesMap[cs[1]] | HousesMap[cs[2]] | HousesMap[cs[3]]
-						)
+						4 => CandidatesMap[digit] & (HousesMap[cs[0]] | HousesMap[cs[1]] | HousesMap[cs[2]] | HousesMap[cs[3]])
 					};
 
 					// Now check the fins and the elimination cells.

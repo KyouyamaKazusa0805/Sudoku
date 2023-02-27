@@ -53,10 +53,7 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 			var digit = TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
 				ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
-				ImmutableArray.Create(
-					View.Empty
-						| new HouseViewNode(DisplayColorKind.Normal, house)
-				),
+				ImmutableArray.Create(View.Empty | new HouseViewNode(DisplayColorKind.Normal, house)),
 				resultCell,
 				digit
 			);

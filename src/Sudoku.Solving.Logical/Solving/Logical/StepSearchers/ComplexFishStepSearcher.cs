@@ -152,8 +152,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 						}
 
 						// Franken fishes doesn't contain both row and column two house types.
-						if (!searchForMutant
-							&& (baseSetsMask & AllRowsMask) != 0 && (baseSetsMask & AllColumnsMask) != 0)
+						if (!searchForMutant && (baseSetsMask & AllRowsMask) != 0 && (baseSetsMask & AllColumnsMask) != 0)
 						{
 							continue;
 						}
@@ -262,8 +261,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								var houseIndex = cell.ToHouseIndex(houseType);
 
 								// Check whether the house is both used in base sets and cover sets.
-								if ((usedInBaseSets >> houseIndex & 1) != 0
-									|| (usedInCoverSets >> houseIndex & 1) != 0)
+								if ((usedInBaseSets >> houseIndex & 1) != 0 || (usedInCoverSets >> houseIndex & 1) != 0)
 								{
 									continue;
 								}
@@ -296,16 +294,13 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 									goto BacktrackValue;
 								}
 
-								if (!searchForMutant
-									&& (usedInCoverSets & AllRowsMask) != 0
-									&& (usedInCoverSets & AllColumnsMask) != 0)
+								if (!searchForMutant && (usedInCoverSets & AllRowsMask) != 0 && (usedInCoverSets & AllColumnsMask) != 0)
 								{
 									// Mutant fish but checking Franken now.
 									goto BacktrackValue;
 								}
 
-								if (searchForMutant
-									&& baseHouseTypes != bothLines && coverHouseTypes != bothLines)
+								if (searchForMutant && baseHouseTypes != bothLines && coverHouseTypes != bothLines)
 								{
 									// Not Mutant fish.
 									goto BacktrackValue;
