@@ -8,17 +8,9 @@
 /// <param name="Blocks">The blocks used.</param>
 /// <param name="Pattern">The cells used.</param>
 /// <param name="DigitsMask">The digits mask.</param>
-internal abstract record ChromaticPatternStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	int[] Blocks,
-	scoped in CellMap Pattern,
-	short DigitsMask
-) : NegativeRankStep(Conclusions, Views), ILoopLikeStep
+internal abstract record ChromaticPatternStep(ConclusionList Conclusions, ViewList Views, int[] Blocks, scoped in CellMap Pattern, short DigitsMask) :
+	NegativeRankStep(Conclusions, Views)
 {
-	/// <inheritdoc/>
-	public bool? IsNice => null;
-
 	/// <inheritdoc/>
 	public override decimal Difficulty => 6.5M;
 

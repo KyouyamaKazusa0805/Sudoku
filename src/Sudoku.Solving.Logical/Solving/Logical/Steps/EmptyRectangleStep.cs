@@ -8,13 +8,8 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="Block">Indicates the block that the empty rectangle structure formed.</param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-internal sealed record EmptyRectangleStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	int Digit,
-	int Block,
-	scoped in Conjugate ConjugatePair
-) : SingleDigitPatternStep(Conclusions, Views, Digit), IChainLikeStep
+internal sealed record EmptyRectangleStep(ConclusionList Conclusions, ViewList Views, int Digit, int Block, scoped in Conjugate ConjugatePair) :
+	SingleDigitPatternStep(Conclusions, Views, Digit)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 4.6M;

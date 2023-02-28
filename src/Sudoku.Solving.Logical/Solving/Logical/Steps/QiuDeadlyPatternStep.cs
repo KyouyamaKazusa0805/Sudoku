@@ -6,17 +6,11 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern">Indicates the pattern used.</param>
-internal abstract record QiuDeadlyPatternStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	scoped in QiuDeadlyPattern Pattern
-) : DeadlyPatternStep(Conclusions, Views), IStepWithDistinctionDegree
+internal abstract record QiuDeadlyPatternStep(ConclusionList Conclusions, ViewList Views, scoped in QiuDeadlyPattern Pattern) :
+	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.8M;
-
-	/// <inheritdoc/>
-	public int DistinctionDegree => 1;
 
 	/// <summary>
 	/// Indicates the type of the current technique.
@@ -41,6 +35,7 @@ internal abstract record QiuDeadlyPatternStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
+
 
 	/// <summary>
 	/// Indicates the pattern string.

@@ -35,6 +35,7 @@ global using Sudoku.Linq;
 global using Sudoku.Preprocessing.Gathering;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
+global using Sudoku.Rating;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Runtime.DisplayingServices;

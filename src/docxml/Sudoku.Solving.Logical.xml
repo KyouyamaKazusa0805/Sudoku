@@ -6964,9 +6964,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.Digit2">
             <summary>Indicates the second digit.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.IsNice">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -7591,11 +7588,6 @@ if (student is (name: var name, age: >= 18))
             <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Logical.Steps.ChainingStep.TargetTypeNotSupportedMessage">
-            <summary>
-            Defines a target type not supported message.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -7816,26 +7808,26 @@ if (student is (name: var name, age: >= 18))
             <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.EqualityComparer">
+        <member name="T:Sudoku.Solving.Logical.Steps.Comparer">
             <summary>
             Defines a equality comparer used for comparison with two <see cref="T:Sudoku.Solving.Logical.Steps.ChainingStep"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Solving.Logical.Steps.ChainingStep"/>
         </member>
-        <member name="F:Sudoku.Solving.Logical.Steps.EqualityComparer.Instance">
+        <member name="F:Sudoku.Solving.Logical.Steps.Comparer.Instance">
             <summary>
             Indicates the singleton instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.EqualityComparer.#ctor">
+        <member name="M:Sudoku.Solving.Logical.Steps.Comparer.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Logical.Steps.EqualityComparer"/> instance.
+            Initializes a <see cref="T:Sudoku.Solving.Logical.Steps.Comparer"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.EqualityComparer.Equals(Sudoku.Solving.Logical.Steps.ChainingStep,Sudoku.Solving.Logical.Steps.ChainingStep)">
+        <member name="M:Sudoku.Solving.Logical.Steps.Comparer.Equals(Sudoku.Solving.Logical.Steps.ChainingStep,Sudoku.Solving.Logical.Steps.ChainingStep)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.EqualityComparer.GetHashCode(Sudoku.Solving.Logical.Steps.ChainingStep)">
+        <member name="M:Sudoku.Solving.Logical.Steps.Comparer.GetHashCode(Sudoku.Solving.Logical.Steps.ChainingStep)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.ChromaticPatternStep">
@@ -7866,9 +7858,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.DigitsMask">
             <summary>The digits mask.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.IsNice">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.Difficulty">
             <inheritdoc/>
@@ -8391,9 +8380,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the type of the step. The value must be between 1 and 4.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.DistinctionDegree">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.Format">
             <inheritdoc/>
@@ -8979,9 +8965,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.Guardians">
             <summary>Indicates the guardian cells used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.IsNice">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.Difficulty">
             <inheritdoc/>
@@ -9757,9 +9740,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.DistinctionDegree">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.Type">
             <summary>
             Indicates the type of the current technique.
@@ -10404,18 +10384,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.SingleStep.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IChainLikeStep">
-            <summary>
-            Defines a step is chain-like one.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.IChainLikeStep.GetExtraDifficultyByLength(System.Int32)">
-            <summary>
-            Get extra difficulty rating for a chain node sequence.
-            </summary>
-            <param name="length">The length.</param>
-            <returns>The difficulty.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1">
             <summary>
             Defines a step that can be distinctable.
@@ -10486,49 +10454,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1.GetHashCode(`0)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.ILoopLikeStep">
-            <summary>
-            Defines a step whose technique used is the loop.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.ILoopLikeStep.IsNice">
-            <summary>
-            <para>Indicates whether the current technique is the nice loop.</para>
-            <para>
-            A <b>Nice</b> loop is a loop that all weak links can be gathered to remove candidates
-            (if possible removable candidates exist).
-            </para>
-            </summary>
-            <returns>
-            The return value will be a <c><see cref="T:System.Boolean"/>?</c>:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The technique is the nice loop.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The technique is not a nice loop, e.g. a normal dynamic loop.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>
-            The technique is not a loop, but the structure forms a valid loop-shaped one, e.g. guardian.
-            </description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IStepWithDistinctionDegree">
-            <summary>
-            Defines a step type that contains the property <c>Distinction Degree</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.IStepWithDistinctionDegree.DistinctionDegree">
-            <summary>
-            Indicates the distinction degree of the step.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IStepWithPhasedDifficulty">
             <summary>
@@ -14973,6 +14898,18 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="grid">The grid used.</param>
             <returns>The results found.</returns>
+        </member>
+        <member name="T:Sudoku.Rating.ChainDifficultyRating">
+            <summary>
+            Represents a type that calculates for chain difficulty.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Rating.ChainDifficultyRating.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating for a chain node sequence.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The difficulty.</returns>
         </member>
         <member name="T:Sudoku.Rating.Rater">
             <summary>

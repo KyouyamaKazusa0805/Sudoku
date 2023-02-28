@@ -1,25 +1,25 @@
-﻿namespace Sudoku.Solving.Logical.Steps.Specialized;
+﻿namespace Sudoku.Rating;
 
 /// <summary>
-/// Defines a step is chain-like one.
+/// Represents a type that calculates for chain difficulty.
 /// </summary>
-public interface IChainLikeStep : IStep
+public static class ChainDifficultyRating
 {
 	/// <summary>
 	/// Get extra difficulty rating for a chain node sequence.
 	/// </summary>
 	/// <param name="length">The length.</param>
 	/// <returns>The difficulty.</returns>
-	protected static decimal GetExtraDifficultyByLength(int length)
+	public static decimal GetExtraDifficultyByLength(int length)
 	{
-		var added = 0M;
+		var result = 0M;
 		var ceil = 4;
 		for (var isOdd = false; length > ceil; isOdd = !isOdd)
 		{
-			added += .1M;
+			result += .1M;
 			ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
 		}
 
-		return added;
+		return result;
 	}
 }

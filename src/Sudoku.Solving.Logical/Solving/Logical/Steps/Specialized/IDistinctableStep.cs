@@ -35,7 +35,6 @@ internal interface IDistinctableStep<in T> : IStep where T : Step
 	/// </remarks>
 	static abstract bool Equals(T left, T right);
 
-
 	/// <summary>
 	/// Distinct the list, that is, remove all duplicate elements in this list,
 	/// which uses the method <see cref="Equals(T, T)"/> defined in this interface.

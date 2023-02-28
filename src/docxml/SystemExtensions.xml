@@ -2189,16 +2189,6 @@
         <member name="M:System.ArrayExtensions.CollectionElementRefEquals``1(``0[],``0[],)">
             <inheritdoc cref="!:Collections.Immutable.ImmutableArrayExtensions.CollectionElementRefEquals&lt;T&gt;(ImmutableArray&lt;T&gt;, ImmutableArray&lt;T&gt;, delegate*&lt;T, T, bool&gt;)"/>
         </member>
-        <member name="M:System.ArrayExtensions.CopyExcept``1(``0[],System.Int32)">
-            <summary>
-            Creates a new <see cref="T:System.Array"/> instance of type <typeparamref name="T"/>,
-            with all elements in the current instance, except the element at the specified index.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="index">The desired index.</param>
-            <returns>The target list.</returns>
-        </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Reflection.Assembly"/>.

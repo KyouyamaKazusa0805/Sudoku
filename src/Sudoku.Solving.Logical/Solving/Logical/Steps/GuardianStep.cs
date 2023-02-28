@@ -12,12 +12,8 @@
 internal sealed record GuardianStep(ConclusionList Conclusions, ViewList Views, int Digit, scoped in CellMap Loop, scoped in CellMap Guardians) :
 	NegativeRankStep(Conclusions, Views),
 	IDistinctableStep<GuardianStep>,
-	ILoopLikeStep,
 	IStepWithPhasedDifficulty
 {
-	/// <inheritdoc/>
-	public bool? IsNice => null;
-
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 

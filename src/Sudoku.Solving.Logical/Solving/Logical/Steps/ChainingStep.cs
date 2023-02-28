@@ -29,15 +29,8 @@ internal abstract record ChainingStep(
 	bool IsDynamic = false,
 	bool IsNishio = false,
 	int DynamicNestingLevel = 0
-) : Step(Conclusions, ViewList.Empty), IChainLikeStep
+) : Step(Conclusions, ViewList.Empty)
 {
-	/// <summary>
-	/// Defines a target type not supported message.
-	/// </summary>
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-	private const string TargetTypeNotSupportedMessage = "The target type of the chain is not supported. You should override this property for that type.";
-
-
 	/// <inheritdoc/>
 	public sealed override decimal Difficulty
 		=> LengthDifficulty + this switch
@@ -50,7 +43,7 @@ internal abstract record ChainingStep(
 			(BidirectionalCycleStep or ForcingChainStep) and { IsX: true, IsY: true } => 5.0M,
 			ForcingChainStep => 4.6M,
 			BidirectionalCycleStep => 4.5M,
-			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
 
 	/// <inheritdoc/>
@@ -117,7 +110,7 @@ internal abstract record ChainingStep(
 			(BinaryForcingChainsStep, _, _, _, true) => Technique.NishioForcingChains,
 			(BinaryForcingChainsStep { IsAbsurd: true }, _, _, _, false) => Technique.DynamicContradictionForcingChains,
 			(BinaryForcingChainsStep, _, _, _, _) => Technique.DynamicDoubleForcingChains,
-			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
 
 	/// <inheritdoc/>
@@ -126,7 +119,7 @@ internal abstract record ChainingStep(
 		{
 			ForcingChainStep or BidirectionalCycleStep => TechniqueTags.LongChaining,
 			CellForcingChainsStep or RegionForcingChainsStep or BinaryForcingChainsStep => TechniqueTags.LongChaining | TechniqueTags.ForcingChains,
-			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
 
 	/// <inheritdoc/>
@@ -143,7 +136,7 @@ internal abstract record ChainingStep(
 		{
 			ForcingChainStep or BidirectionalCycleStep => DifficultyLevel.Fiendish,
 			CellForcingChainsStep or RegionForcingChainsStep or BinaryForcingChainsStep => DifficultyLevel.Nightmare,
-			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
 
 	/// <inheritdoc/>
@@ -174,7 +167,7 @@ internal abstract record ChainingStep(
 			CellForcingChainsStep { Chains.Potentials: var targets } => ((List<ChainNode>)targets).ToArray(),
 			RegionForcingChainsStep { Chains.Potentials: var targets } => ((List<ChainNode>)targets).ToArray(),
 			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => new[] { on, off },
-			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
 
 	/// <summary>
@@ -187,7 +180,7 @@ internal abstract record ChainingStep(
 			BinaryForcingChainsStep => 2,
 			CellForcingChainsStep { Chains.Count: var count } => count,
 			RegionForcingChainsStep { Chains.Count: var count } => count,
-			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
 
 	/// <summary>
@@ -203,7 +196,7 @@ internal abstract record ChainingStep(
 			BinaryForcingChainsStep { FromOnPotential: var on } => on,
 			CellForcingChainsStep { Chains.Potentials: [var branchedStart, ..] } => branchedStart,
 			RegionForcingChainsStep { Chains.Potentials: [var branchedStart, ..] } => branchedStart,
-			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
 
 	/// <summary>
@@ -247,7 +240,7 @@ internal abstract record ChainingStep(
 			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => AncestorsCountOf(on) + AncestorsCountOf(off),
 			CellForcingChainsStep { Chains.Potentials: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
 			RegionForcingChainsStep { Chains.Potentials: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
-			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
 
 	/// <summary>
@@ -259,7 +252,7 @@ internal abstract record ChainingStep(
 		get
 		{
 			var result = 0;
-			var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
+			var processed = new HashSet<ChainingStep>(Comparer.Instance);
 			foreach (var target in ChainsTargets)
 			{
 				foreach (var p in target.FullChainPotentials)
@@ -285,7 +278,7 @@ internal abstract record ChainingStep(
 		get
 		{
 			var result = 0;
-			var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
+			var processed = new HashSet<ChainingStep>(Comparer.Instance);
 			foreach (var target in ChainsTargets)
 			{
 				foreach (var p in target.FullChainPotentials)
@@ -586,7 +579,7 @@ internal abstract record ChainingStep(
 			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => viewIndex switch { 0 => on, 1 => off },
 			CellForcingChainsStep { Chains.Potentials: var targets } => targets[viewIndex],
 			RegionForcingChainsStep { Chains.Potentials: var targets } => targets[viewIndex],
-			_ => throw new NotSupportedException(TargetTypeNotSupportedMessage)
+			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
 
 	/// <summary>
@@ -617,7 +610,7 @@ internal abstract record ChainingStep(
 	private IEnumerable<ChainingStep> GetNestedChains()
 	{
 		var result = new List<ChainingStep>();
-		var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
+		var processed = new HashSet<ChainingStep>(Comparer.Instance);
 		foreach (var target in ChainsTargets)
 		{
 			foreach (var p in target.FullChainPotentials)
@@ -656,7 +649,7 @@ internal abstract record ChainingStep(
 	/// <returns>A pair of values.</returns>
 	private (ChainingStep Step, int ViewIndex) GetNestedChain(int nestedViewIndex)
 	{
-		var processed = new HashSet<ChainingStep>(EqualityComparer.Instance);
+		var processed = new HashSet<ChainingStep>(Comparer.Instance);
 		foreach (var target in ChainsTargets)
 		{
 			foreach (var p in target.FullChainPotentials)
@@ -700,19 +693,19 @@ internal abstract record ChainingStep(
 /// Defines a equality comparer used for comparison with two <see cref="ChainingStep"/> instances.
 /// </summary>
 /// <seealso cref="ChainingStep"/>
-file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
+file sealed class Comparer : IEqualityComparer<ChainingStep>
 {
 	/// <summary>
 	/// Indicates the singleton instance.
 	/// </summary>
-	public static readonly EqualityComparer Instance = new();
+	public static readonly Comparer Instance = new();
 
 
 	/// <summary>
-	/// Initializes a <see cref="EqualityComparer"/> instance.
+	/// Initializes a <see cref="Comparer"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private EqualityComparer()
+	private Comparer()
 	{
 	}
 

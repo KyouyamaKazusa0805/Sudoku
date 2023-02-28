@@ -7,11 +7,9 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
-internal sealed record BowmanBingoStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	ConclusionList ContradictionLinks
-) : LastResortStep(Conclusions, Views), IChainLikeStep, IStepWithPhasedDifficulty
+internal sealed record BowmanBingoStep(ConclusionList Conclusions, ViewList Views, ConclusionList ContradictionLinks) :
+	LastResortStep(Conclusions, Views),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
@@ -21,20 +19,13 @@ internal sealed record BowmanBingoStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(
-				PhasedDifficultyRatingKinds.Length,
-				IChainLikeStep.GetExtraDifficultyByLength(ContradictionLinks.Length)
-			)
-		};
+		=> new[] { (PhasedDifficultyRatingKinds.Length, ChainDifficultyRating.GetExtraDifficultyByLength(ContradictionLinks.Length)) };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
 
 	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags
-		=> base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
+	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BowmanBingo;
@@ -44,6 +35,7 @@ internal sealed record BowmanBingoStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
+
 
 	[ResourceTextFormatter]
 	internal string ContradictionSeriesStr() => ConclusionFormatter.Format(ContradictionLinks.ToArray(), " -> ", false);

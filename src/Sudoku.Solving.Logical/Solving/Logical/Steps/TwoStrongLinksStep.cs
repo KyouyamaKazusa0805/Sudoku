@@ -8,22 +8,12 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="BaseHouse">Indicates the base house used.</param>
 /// <param name="TargetHouse">Indicates the target house used.</param>
-internal sealed record TwoStrongLinksStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	int Digit,
-	int BaseHouse,
-	int TargetHouse
-) : SingleDigitPatternStep(Conclusions, Views, Digit), IChainLikeStep
+internal sealed record TwoStrongLinksStep(ConclusionList Conclusions, ViewList Views, int Digit, int BaseHouse, int TargetHouse) :
+	SingleDigitPatternStep(Conclusions, Views, Digit)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty
-		=> TechniqueCode switch
-		{
-			Technique.TurbotFish => 4.2M,
-			Technique.Skyscraper => 4.0M,
-			Technique.TwoStringKite => 4.1M
-		};
+		=> TechniqueCode switch { Technique.TurbotFish => 4.2M, Technique.Skyscraper => 4.0M, Technique.TwoStringKite => 4.1M };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
