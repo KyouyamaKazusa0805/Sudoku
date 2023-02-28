@@ -64,7 +64,7 @@ file sealed class Comparer<T> : IEqualityComparer<T> where T : Step, IDistinctab
 	/// <summary>
 	/// Indicates the singleton instance.
 	/// </summary>
-	public static Comparer<T> Instance = new();
+	public static readonly Comparer<T> Instance = new();
 
 
 	/// <summary>
