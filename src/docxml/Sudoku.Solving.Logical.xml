@@ -10391,8 +10391,7 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="T">The type of the element to compare.</typeparam>
             <remarks>
             A <b>distinctable step</b> is a step that is with the unique information,
-            in order that multiple steps of the same type can be recognized by the relative methods,
-            to filter and remove same-value instances.
+            in order that multiple steps of the same type can be recognized by the relative methods to filter and remove same-value instances.
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)">
@@ -10419,12 +10418,11 @@ if (student is (name: var name, age: >= 18))
             but <see langword="record"/>s are automatically implemented useless and unmeaningful methods.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Distinct``1(System.Collections.Generic.IList{``0})">
+        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Distinct(System.Collections.Generic.IList{`0})">
             <summary>
             Distinct the list, that is, remove all duplicate elements in this list,
             which uses the method <see cref="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/> defined in this interface.
             </summary>
-            <typeparam name="TDistinctable">The type of the steps.</typeparam>
             <param name="list">The list of steps to be processed.</param>
             <returns>The list of steps.</returns>
             <remarks>

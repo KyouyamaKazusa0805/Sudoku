@@ -83,10 +83,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 				continue;
 			}
 
-			resultList =
-				from step in IDistinctableStep<UniqueLoopStep>.Distinct(resultAccumulator)
-				orderby step.Loop.Count
-				select step;
+			resultList = from step in IDistinctableStep<UniqueLoopStep>.Distinct(resultAccumulator) orderby step.Loop.Count select step;
 
 			if (onlyFindOne)
 			{

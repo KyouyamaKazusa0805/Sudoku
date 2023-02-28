@@ -6,10 +6,9 @@
 /// <typeparam name="T">The type of the element to compare.</typeparam>
 /// <remarks>
 /// A <b>distinctable step</b> is a step that is with the unique information,
-/// in order that multiple steps of the same type can be recognized by the relative methods,
-/// to filter and remove same-value instances.
+/// in order that multiple steps of the same type can be recognized by the relative methods to filter and remove same-value instances.
 /// </remarks>
-internal interface IDistinctableStep<in T> : IStep where T : Step
+internal interface IDistinctableStep<in T> : IStep where T : Step, IDistinctableStep<T>
 {
 	/// <summary>
 	/// To compare 2 instances of type <typeparamref name="T"/>, to determine whether 2 instances holds the same value.
@@ -39,7 +38,6 @@ internal interface IDistinctableStep<in T> : IStep where T : Step
 	/// Distinct the list, that is, remove all duplicate elements in this list,
 	/// which uses the method <see cref="Equals(T, T)"/> defined in this interface.
 	/// </summary>
-	/// <typeparam name="TDistinctable">The type of the steps.</typeparam>
 	/// <param name="list">The list of steps to be processed.</param>
 	/// <returns>The list of steps.</returns>
 	/// <remarks>
@@ -47,13 +45,13 @@ internal interface IDistinctableStep<in T> : IStep where T : Step
 	/// In other words, if the original list is in order, the final list after invoking this method will be also in order.
 	/// </remarks>
 	/// <seealso cref="Equals(T, T)"/>
-	static IEnumerable<TDistinctable> Distinct<TDistinctable>(IList<TDistinctable> list) where TDistinctable : Step, IDistinctableStep<TDistinctable>
+	static IEnumerable<T> Distinct(IList<T> list)
 		=> list switch
 		{
-			[] => Array.Empty<TDistinctable>(),
+			[] => Array.Empty<T>(),
 			[var firstElement] => new[] { firstElement },
-			[var a, var b] => TDistinctable.Equals(a, b) ? new[] { a } : new[] { a, b },
-			_ => new HashSet<TDistinctable>(list, Comparer<TDistinctable>.Instance)
+			[var a, var b] => T.Equals(a, b) ? new[] { a } : new[] { a, b },
+			_ => new HashSet<T>(list, Comparer<T>.Instance)
 		};
 }
 

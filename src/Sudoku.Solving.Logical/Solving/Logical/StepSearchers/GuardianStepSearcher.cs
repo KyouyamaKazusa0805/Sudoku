@@ -14,9 +14,11 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 		scoped ref readonly var grid = ref context.Grid;
 		scoped var eliminationMaps = (stackalloc CellMap[9]);
 		eliminationMaps.Fill(CellMap.Empty);
+
 		var pomSteps = new List<IStep>();
 		scoped var pomContext = new LogicalAnalysisContext(pomSteps, grid, false);
 		ElimsSearcher.GetAll(ref pomContext);
+
 		foreach (var step in pomSteps.Cast<PatternOverlayStep>())
 		{
 			scoped ref var currentMap = ref eliminationMaps[step.Digit];
@@ -59,11 +61,12 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, c * 9 + digit));
 				}
 
-				// Add found step into the collection.
-				// To be honest I can return the step if 'onlyFindOne' is true,
-				// but due to the limit of the algorithm, the method always gets the longer guardian loops
-				// instead of shorter ones.
-				// If we just return the first found step, we will miss steps being more elegant.
+				/**
+					Add found step into the collection.
+					To be honest I can return the step if <see cref="LogicalAnalysisContext.OnlyFindOne"/> is true,
+					but due to the limit of the algorithm, the method always gets the longer guardian loops instead of shorter ones.
+					If we just return the first found step, we will miss steps being more elegant.
+				*/
 				resultAccumulator.Add(
 					new GuardianStep(
 						from c in elimMap select new Conclusion(Elimination, c, digit),
@@ -81,19 +84,17 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 			return null;
 		}
 
-		var tempCollection = IDistinctableStep<GuardianStep>.Distinct(
-			(
-				from info in resultAccumulator
-				orderby info.Loop.Count, info.Guardians.Count
-				select info
-			).ToList()
-		);
+		var tempAccumulator =
+			from info in IDistinctableStep<GuardianStep>.Distinct(resultAccumulator)
+			orderby info.Loop.Count, info.Guardians.Count
+			select info;
+
 		if (context.OnlyFindOne)
 		{
-			return tempCollection.First();
+			return tempAccumulator.First();
 		}
 
-		context.Accumulator.AddRange(tempCollection);
+		context.Accumulator.AddRange(tempAccumulator);
 
 		return null;
 	}
