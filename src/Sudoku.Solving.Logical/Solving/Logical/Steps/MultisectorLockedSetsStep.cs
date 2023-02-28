@@ -10,7 +10,7 @@ internal sealed record MultisectorLockedSetsStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	scoped in CellMap Cells
-) : NonnegativeRankStep(Conclusions, Views), IStepWithRank, IStepWithPhasedDifficulty
+) : NonnegativeRankStep(Conclusions, Views), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
@@ -19,11 +19,7 @@ internal sealed record MultisectorLockedSetsStep(
 	public decimal BaseDifficulty => 9.4M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Size, A002024(Cells.Count) * .1M) };
-
-	/// <inheritdoc/>
-	public int Rank => 0;
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { (PhasedDifficultyRatingKinds.Size, A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.Msls;
@@ -39,6 +35,7 @@ internal sealed record MultisectorLockedSetsStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
+
 
 	[ResourceTextFormatter]
 	internal string CellsCountStr() => Cells.Count.ToString();

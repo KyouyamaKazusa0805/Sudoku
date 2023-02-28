@@ -16,12 +16,11 @@ internal sealed record AlmostLockedCandidatesStep(
 	scoped in CellMap BaseCells,
 	scoped in CellMap TargetCells,
 	bool HasValueCell
-) :
-	IntersectionStep(Conclusions, Views),
-	IStepWithSize,
-	IStepWithPhasedDifficulty
+) : IntersectionStep(Conclusions, Views), IStepWithPhasedDifficulty
 {
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the number of digits used.
+	/// </summary>
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
@@ -32,10 +31,7 @@ internal sealed record AlmostLockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(PhasedDifficultyRatingKinds.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0)
-		};
+		=> new[] { (PhasedDifficultyRatingKinds.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0) };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

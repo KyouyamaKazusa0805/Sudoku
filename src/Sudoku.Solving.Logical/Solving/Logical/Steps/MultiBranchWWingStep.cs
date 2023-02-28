@@ -14,9 +14,11 @@ internal sealed record MultiBranchWWingStep(
 	scoped in CellMap Leaves,
 	scoped in CellMap Root,
 	int House
-) : IrregularWingStep(Conclusions, Views), IStepWithSize, IStepWithPhasedDifficulty
+) : IrregularWingStep(Conclusions, Views), IStepWithPhasedDifficulty
 {
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the number of branches of the technique.
+	/// </summary>
 	public int Size => Leaves.Count;
 
 	/// <inheritdoc/>

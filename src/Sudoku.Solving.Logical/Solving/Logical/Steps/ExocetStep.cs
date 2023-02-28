@@ -7,16 +7,9 @@
 /// <param name="Exocet">INdicates the exocet pattern.</param>
 /// <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
 /// <param name="Eliminations">Indicates all possible eliminations.</param>
-internal abstract record ExocetStep(
-	ViewList Views,
-	scoped in Exocet Exocet,
-	short DigitsMask,
-	ImmutableArray<ExocetElimination> Eliminations
-) : Step(GatherConclusions(Eliminations), Views), IStepWithRank
+internal abstract record ExocetStep(ViewList Views, scoped in Exocet Exocet, short DigitsMask, ImmutableArray<ExocetElimination> Eliminations) :
+	Step(GatherConclusions(Eliminations), Views)
 {
-	/// <inheritdoc/>
-	public virtual int Rank => 0;
-
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 

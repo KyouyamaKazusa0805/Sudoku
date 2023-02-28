@@ -8,13 +8,8 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
 /// <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
-internal abstract record FishStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	int Digit,
-	int BaseSetsMask,
-	int CoverSetsMask
-) : Step(Conclusions, Views), IStepWithSize, IStepWithRank
+internal abstract record FishStep(ConclusionList Conclusions, ViewList Views, int Digit, int BaseSetsMask, int CoverSetsMask) :
+	Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
@@ -36,9 +31,6 @@ internal abstract record FishStep(
 	/// Other fishes of sizes not appearing in above don't have well-known names.
 	/// </remarks>
 	public int Size => PopCount((uint)BaseSetsMask);
-
-	/// <inheritdoc/>
-	public int Rank => PopCount((uint)CoverSetsMask) - PopCount((uint)BaseSetsMask);
 
 	/// <inheritdoc/>
 	public sealed override TechniqueTags TechniqueTags => TechniqueTags.Fishes | TechniqueTags.RankTheory;

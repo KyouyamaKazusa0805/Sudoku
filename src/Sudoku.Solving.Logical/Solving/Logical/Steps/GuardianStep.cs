@@ -9,17 +9,10 @@
 /// <param name="Loop">Indicates the loop cells used.</param>
 /// <param name="Guardians">Indicates the guardian cells used.</param>
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
-internal sealed record GuardianStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	int Digit,
-	scoped in CellMap Loop,
-	scoped in CellMap Guardians
-) :
+internal sealed record GuardianStep(ConclusionList Conclusions, ViewList Views, int Digit, scoped in CellMap Loop, scoped in CellMap Guardians) :
 	NegativeRankStep(Conclusions, Views),
 	IDistinctableStep<GuardianStep>,
 	ILoopLikeStep,
-	IStepWithRank,
 	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
@@ -36,9 +29,6 @@ internal sealed record GuardianStep(
 		=> new[] { (PhasedDifficultyRatingKinds.Size, A004526(Loop.Count + A004526(Guardians.Count)) * .1M) };
 
 	/// <inheritdoc/>
-	public int Rank => -1;
-
-	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BrokenWing;
 
 	/// <inheritdoc/>
@@ -52,6 +42,7 @@ internal sealed record GuardianStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
 
 	[ResourceTextFormatter]
 	internal string CellsStr() => Loop.ToString();

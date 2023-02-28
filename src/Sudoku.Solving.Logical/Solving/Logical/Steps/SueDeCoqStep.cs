@@ -28,7 +28,7 @@ internal sealed record SueDeCoqStep(
 	scoped in CellMap BlockCells,
 	scoped in CellMap LineCells,
 	scoped in CellMap IntersectionCells
-) : NonnegativeRankStep(Conclusions, Views), IStepWithRank, IStepWithPhasedDifficulty
+) : NonnegativeRankStep(Conclusions, Views), IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
@@ -43,9 +43,6 @@ internal sealed record SueDeCoqStep(
 			(PhasedDifficultyRatingKinds.Isolated, IsolatedDigitsMask != 0 ? .1M : 0),
 			(PhasedDifficultyRatingKinds.Cannibalism, IsCannibalistic ? .2M : 0)
 		};
-
-	/// <inheritdoc/>
-	public int Rank => 0;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.RankTheory | TechniqueTags.Als;

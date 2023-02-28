@@ -8,19 +8,11 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="BaseSet">Indicates the house that the current locked candidates forms.</param>
 /// <param name="CoverSet">Indicates the house that the current locked candidates influences.</param>
-internal sealed record LockedCandidatesStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	int Digit,
-	int BaseSet,
-	int CoverSet
-) : IntersectionStep(Conclusions, Views), IElementaryStep, IStepWithRank
+internal sealed record LockedCandidatesStep(ConclusionList Conclusions, ViewList Views, int Digit, int BaseSet, int CoverSet) :
+	IntersectionStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;
-
-	/// <inheritdoc/>
-	public int Rank => 0;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;
@@ -33,6 +25,7 @@ internal sealed record LockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
+
 
 	[ResourceTextFormatter]
 	internal string DigitStr() => (Digit + 1).ToString();

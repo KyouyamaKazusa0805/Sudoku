@@ -14,16 +14,13 @@ internal abstract record ChromaticPatternStep(
 	int[] Blocks,
 	scoped in CellMap Pattern,
 	short DigitsMask
-) : NegativeRankStep(Conclusions, Views), ILoopLikeStep, IStepWithRank
+) : NegativeRankStep(Conclusions, Views), ILoopLikeStep
 {
 	/// <inheritdoc/>
 	public bool? IsNice => null;
 
 	/// <inheritdoc/>
 	public override decimal Difficulty => 6.5M;
-
-	/// <inheritdoc/>
-	public int Rank => -1;
 
 	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.TrivalueOddagon;

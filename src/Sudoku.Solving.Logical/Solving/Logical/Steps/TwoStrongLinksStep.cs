@@ -14,7 +14,7 @@ internal sealed record TwoStrongLinksStep(
 	int Digit,
 	int BaseHouse,
 	int TargetHouse
-) : SingleDigitPatternStep(Conclusions, Views, Digit), IChainLikeStep, IStepWithRank
+) : SingleDigitPatternStep(Conclusions, Views, Digit), IChainLikeStep
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty
@@ -24,9 +24,6 @@ internal sealed record TwoStrongLinksStep(
 			Technique.Skyscraper => 4.0M,
 			Technique.TwoStringKite => 4.1M
 		};
-
-	/// <inheritdoc/>
-	public int Rank => 1;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -45,6 +42,7 @@ internal sealed record TwoStrongLinksStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
+
 
 	[ResourceTextFormatter]
 	internal string DigitStr() => (Digit + 1).ToString();

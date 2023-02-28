@@ -8,19 +8,14 @@
 /// <param name="House">The house that structure lies in.</param>
 /// <param name="Cells">All cells used.</param>
 /// <param name="DigitsMask">The mask that contains all digits used.</param>
-internal abstract record SubsetStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	int House,
-	scoped in CellMap Cells,
-	short DigitsMask
-) : Step(Conclusions, Views), IStepWithSize, IStepWithRank, IElementaryStep
+internal abstract record SubsetStep(ConclusionList Conclusions, ViewList Views, int House, scoped in CellMap Cells, short DigitsMask) :
+	Step(Conclusions, Views)
 {
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the number of cells used.
+	/// Due to the technique logic, you can also treat the result value of this property as the number of digits used.
+	/// </summary>
 	public int Size => PopCount((uint)DigitsMask);
-
-	/// <inheritdoc/>
-	public int Rank => 0;
 
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;

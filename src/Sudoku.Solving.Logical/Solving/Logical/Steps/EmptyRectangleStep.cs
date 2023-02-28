@@ -14,13 +14,10 @@ internal sealed record EmptyRectangleStep(
 	int Digit,
 	int Block,
 	scoped in Conjugate ConjugatePair
-) : SingleDigitPatternStep(Conclusions, Views, Digit), IChainLikeStep, IStepWithRank
+) : SingleDigitPatternStep(Conclusions, Views, Digit), IChainLikeStep
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 4.6M;
-
-	/// <inheritdoc/>
-	public int Rank => 1;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -36,6 +33,7 @@ internal sealed record EmptyRectangleStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
 
 	[ResourceTextFormatter]
 	internal string DigitStr() => (Digit + 1).ToString();

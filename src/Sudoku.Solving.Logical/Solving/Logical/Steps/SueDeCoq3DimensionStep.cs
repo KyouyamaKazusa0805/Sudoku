@@ -20,13 +20,10 @@ internal sealed record SueDeCoq3DimensionStep(
 	scoped in CellMap RowCells,
 	scoped in CellMap ColumnCells,
 	scoped in CellMap BlockCells
-) : NonnegativeRankStep(Conclusions, Views), IStepWithRank
+) : NonnegativeRankStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.5M;
-
-	/// <inheritdoc/>
-	public int Rank => 0;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.SueDeCoq3Dimension;
@@ -42,6 +39,7 @@ internal sealed record SueDeCoq3DimensionStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
+
 
 	[ResourceTextFormatter]
 	internal string Cells1Str() => RowCells.ToString();

@@ -6563,7 +6563,9 @@ if (student is (name: var name, age: >= 18))
             <summary>Indicates whether the step contains value cells.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.Size">
-            <inheritdoc/>
+            <summary>
+            Indicates the number of digits used.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.Difficulty">
             <inheritdoc/>
@@ -6966,9 +6968,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.TechniqueGroup">
@@ -7874,9 +7873,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.Rank">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.TechniqueGroup">
             <inheritdoc/>
         </member>
@@ -8166,9 +8162,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.DominoLoopStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.DominoLoopStep.Rank">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.DominoLoopStep.TechniqueTags">
             <inheritdoc/>
         </member>
@@ -8267,9 +8260,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleStep.Rank">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -8311,9 +8301,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExocetStep.Eliminations">
             <summary>Indicates all possible eliminations.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExocetStep.Rank">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExocetStep.Name">
             <inheritdoc/>
@@ -8841,9 +8828,6 @@ if (student is (name: var name, age: >= 18))
             Other fishes of sizes not appearing in above don't have well-known names.
             </remarks>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.FishStep.Rank">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FishStep.TechniqueTags">
             <inheritdoc/>
         </member>
@@ -9008,9 +8992,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.Rank">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -9098,9 +9079,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cell"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
             <param name="House">Indicates the house used.</param>
-            <param name="EnableAndIsLastDigit">
-            Indicates whether the current step is a <b>Last Digit</b> technique usage.
-            </param>
+            <param name="EnableAndIsLastDigit">Indicates whether the current step is a <b>Last Digit</b> technique usage.</param>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.HiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -9111,17 +9090,13 @@ if (student is (name: var name, age: >= 18))
             <param name="Cell"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
             <param name="House">Indicates the house used.</param>
-            <param name="EnableAndIsLastDigit">
-            Indicates whether the current step is a <b>Last Digit</b> technique usage.
-            </param>
+            <param name="EnableAndIsLastDigit">Indicates whether the current step is a <b>Last Digit</b> technique usage.</param>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.HiddenSingleStep.House">
             <summary>Indicates the house used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.HiddenSingleStep.EnableAndIsLastDigit">
-            <summary>
-            Indicates whether the current step is a <b>Last Digit</b> technique usage.
-            </summary>
+            <summary>Indicates whether the current step is a <b>Last Digit</b> technique usage.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.HiddenSingleStep.Difficulty">
             <inheritdoc/>
@@ -9322,9 +9297,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.LockedCandidatesStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.LockedCandidatesStep.Rank">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.LockedCandidatesStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -9367,7 +9339,9 @@ if (student is (name: var name, age: >= 18))
             <summary>The house used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.MultiBranchWWingStep.Size">
-            <inheritdoc/>
+            <summary>
+            Indicates the number of branches of the technique.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.MultiBranchWWingStep.Difficulty">
             <inheritdoc/>
@@ -9413,9 +9387,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.TechniqueTags">
@@ -10499,22 +10470,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Solving.Logical.Steps.Specialized.DefaultComparer`1.GetHashCode(`0)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IElementaryStep">
-            <summary>
-            Defines a step whose technique used is the elementary one.
-            </summary>
-            <remarks>
-            Here we define that the techniques often appearing and commonly to be used as below are elementary:
-            <list type="bullet">
-            <item>Full House, Last Digit, Hidden Single, Naked Single</item>
-            <item>Pointing, Claiming</item>
-            <item>Naked Pair, Naked Triple, Naked Quadruple</item>
-            <item>Naked Pair (+), Naked Triple (+), Naked Quadruple (+)</item>
-            <item>Hidden Pair, Hidden Triple, Hidden Quadruple</item>
-            <item>Locked Pair, Locked Triple</item>
-            </list>
-            </remarks>
-        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IInvalidStep">
             <summary>
             Provides with an invalid step instance that can be used for some cases that the technique should be skipped
@@ -10595,67 +10550,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.Specialized.IStepWithPhasedDifficulty.TotalDifficulty">
             <summary>
             Indicates the total difficulty value of the step.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IStepWithRank">
-            <summary>
-            Defines a step whose technique used is related to the rank theory,
-            which contains the property <c>Rank</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.IStepWithRank.Rank">
-            <summary>
-            Indicates the rank of the technique structure.
-            </summary>
-            <returns>
-            The return value can be separated with the following cases:
-            <list type="table">
-            <listheader>
-            <term>Range</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term><c><![CDATA[> 1]]></c></term>
-            <description>
-            The technique cannot be applied any eliminations except the intersection
-            that all possible branches can see.
-            </description>
-            </item>
-            <item>
-            <term><c><![CDATA[1]]></c></term>
-            <description>
-            The technique can be applied eliminations that is like a normal AIC.
-            </description>
-            </item>
-            <item>
-            <term><c><![CDATA[0]]></c></term>
-            <description>
-            The technique can be applied eliminations that is like a nice loop. For example,
-            a Sue de Coq.
-            </description>
-            </item>
-            <item>
-            <term><c><![CDATA[<= 1]]></c></term>
-            <description>
-            The negative rank value cannot be formed because the technique structure is at an invalid status.
-            </description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            Please note that sometimes a complex structure may not contain a valid and stable rank value.
-            You can visit <see href="http://sudoku.allanbarker.com/sweb/old/wL03.htm">this link</see>
-            for more details about the mixed-rank structures.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IStepWithSize">
-            <summary>
-            Defines a step type that contains the property <c>Size</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.IStepWithSize.Size">
-            <summary>
-            Indicates the size of the current step instance related to the specified technique.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep">
@@ -10824,10 +10718,10 @@ if (student is (name: var name, age: >= 18))
             <summary>The mask that contains all digits used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SubsetStep.Size">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.SubsetStep.Rank">
-            <inheritdoc/>
+            <summary>
+            Indicates the number of cells used.
+            Due to the technique logic, you can also treat the result value of this property as the number of digits used.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SubsetStep.Name">
             <inheritdoc/>
@@ -10895,9 +10789,6 @@ if (student is (name: var name, age: >= 18))
             <summary>The block cells map.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.TechniqueCode">
@@ -10986,9 +10877,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.TechniqueTags">
@@ -11101,9 +10989,6 @@ if (student is (name: var name, age: >= 18))
             <summary>Indicates the target house used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.DifficultyLevel">

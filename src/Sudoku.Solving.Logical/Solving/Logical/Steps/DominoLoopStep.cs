@@ -7,19 +7,13 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
 [StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
-internal sealed record DominoLoopStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells) :
-	NonnegativeRankStep(Conclusions, Views),
-	IStepWithRank
+internal sealed record DominoLoopStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells) : NonnegativeRankStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 9.6M;
 
 	/// <inheritdoc/>
-	public int Rank => 0;
-
-	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags
-		=> base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.RankTheory;
+	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.RankTheory;
 
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.DominoLoop;
@@ -32,6 +26,7 @@ internal sealed record DominoLoopStep(ConclusionList Conclusions, ViewList Views
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
+
 
 	[ResourceTextFormatter]
 	internal string CellsCountStr() => Cells.Count.ToString();

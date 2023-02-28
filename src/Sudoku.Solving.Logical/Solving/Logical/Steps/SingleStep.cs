@@ -7,9 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cell">Indicates the cell used.</param>
 /// <param name="Digit">Indicates the digit used.</param>
-internal abstract record SingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
-	Step(Conclusions, Views),
-	IElementaryStep
+internal abstract record SingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
