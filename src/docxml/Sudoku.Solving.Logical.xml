@@ -9148,6 +9148,78 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.HiddenUniqueRectangleStep.Format">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.IDistinctableStep`1">
+            <summary>
+            Defines a step that can be distinctable.
+            </summary>
+            <typeparam name="TSelf">
+            The type of the element to compare. The type must derive from <see cref="T:Sudoku.Solving.Logical.IStep"/> (e.g. <see cref="T:Sudoku.Solving.Logical.Steps.Step"/>),
+            and implement this interface type, with type argument be itself.
+            </typeparam>
+            <remarks>
+            A <b>distinctable step</b> is a step that is with the unique information,
+            in order that multiple steps of the same type can be recognized by the relative methods to filter and remove same-value instances.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.IDistinctableStep`1.Equals(`0,`0)">
+            <summary>
+            To compare 2 instances of type <typeparamref name="TSelf"/>, to determine whether 2 instances holds the same value.
+            </summary>
+            <param name="left">Indicates the first instance to compare.</param>
+            <param name="right">Indicates the second instance to compare.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the elements are same.
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>Two elements are same.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>Two elements holds the different values.</description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            The method can be the same implemented as the method <see cref="M:System.Object.Equals(System.Object)"/>,
+            but <see langword="record"/>s are automatically implemented useless and unmeaningful methods.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.IDistinctableStep`1.Distinct(System.Collections.Generic.IList{`0})">
+            <summary>
+            Distinct the list, that is, remove all duplicate elements in this list,
+            which uses the method <see cref="M:Sudoku.Solving.Logical.Steps.IDistinctableStep`1.Equals(`0,`0)"/> defined in this interface.
+            </summary>
+            <param name="list">The list of steps to be processed.</param>
+            <returns>The list of steps.</returns>
+            <remarks>
+            This method does not change the ordering of the original list.
+            In other words, if the original list is in order, the final list after invoking this method will be also in order.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Logical.Steps.IDistinctableStep`1.Equals(`0,`0)"/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.Comparer`1">
+            <summary>
+            The internal comparer instance.
+            </summary>
+            <typeparam name="T">The type of the step.</typeparam>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Steps.Comparer`1.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.Comparer`1.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.Steps.Comparer`1"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.Comparer`1.Equals(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.Comparer`1.GetHashCode(`0)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.IInvalidStep">
             <summary>
             Provides with an invalid step instance that can be used for some cases that the technique should be skipped
@@ -10382,75 +10454,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SingleStep.TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1">
-            <summary>
-            Defines a step that can be distinctable.
-            </summary>
-            <typeparam name="T">The type of the element to compare.</typeparam>
-            <remarks>
-            A <b>distinctable step</b> is a step that is with the unique information,
-            in order that multiple steps of the same type can be recognized by the relative methods to filter and remove same-value instances.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)">
-            <summary>
-            To compare 2 instances of type <typeparamref name="T"/>, to determine whether 2 instances holds the same value.
-            </summary>
-            <param name="left">Indicates the first instance to compare.</param>
-            <param name="right">Indicates the second instance to compare.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the elements are same.
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>Two elements are same.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>Two elements holds the different values.</description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            The method can be the same implemented as the method <see cref="M:System.Object.Equals(System.Object)"/>,
-            but <see langword="record"/>s are automatically implemented useless and unmeaningful methods.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Distinct(System.Collections.Generic.IList{`0})">
-            <summary>
-            Distinct the list, that is, remove all duplicate elements in this list,
-            which uses the method <see cref="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/> defined in this interface.
-            </summary>
-            <param name="list">The list of steps to be processed.</param>
-            <returns>The list of steps.</returns>
-            <remarks>
-            This method does not change the ordering of the original list.
-            In other words, if the original list is in order, the final list after invoking this method will be also in order.
-            </remarks>
-            <seealso cref="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1">
-            <summary>
-            The internal comparer instance.
-            </summary>
-            <typeparam name="T">The type of the step.</typeparam>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1.Instance">
-            <summary>
-            Indicates the singleton instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1.Equals(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1.GetHashCode(`0)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IStepWithPhasedDifficulty">
