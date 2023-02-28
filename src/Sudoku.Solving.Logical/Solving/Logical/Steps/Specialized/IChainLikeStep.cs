@@ -12,7 +12,7 @@ public interface IChainLikeStep : IStep
 	/// <returns>The difficulty.</returns>
 	protected static decimal GetExtraDifficultyByLength(int length)
 	{
-		decimal added = 0;
+		var added = 0M;
 		var ceil = 4;
 		for (var isOdd = false; length > ceil; isOdd = !isOdd)
 		{
