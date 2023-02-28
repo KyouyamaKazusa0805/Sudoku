@@ -7,21 +7,18 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">The cells used.</param>
 /// <param name="DigitsMask">The digits used.</param>
-internal sealed record FireworkQuadrupleStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	scoped in CellMap Cells,
-	short DigitsMask
-) : FireworkStep(Conclusions, Views)
+internal sealed record FireworkQuadrupleStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells, short DigitsMask) :
+	FireworkStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .4M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .4M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.FireworkQuadruple;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
+
 
 	[ResourceTextFormatter]
 	internal string CellsStr() => Cells.ToString();

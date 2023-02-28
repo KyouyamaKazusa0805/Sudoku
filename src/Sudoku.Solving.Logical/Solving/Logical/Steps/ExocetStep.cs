@@ -11,6 +11,9 @@ internal abstract record ExocetStep(ViewList Views, scoped in Exocet Exocet, sho
 	Step(GatherConclusions(Eliminations), Views)
 {
 	/// <inheritdoc/>
+	public override decimal BaseDifficulty => 9.4M;
+
+	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>

@@ -20,10 +20,12 @@ internal sealed record UniquePolygonType3Step(
 ) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.2M + ExtraCells.Count * .1M;
+	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override int Type => 3;
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, ExtraCells.Count * .1M) };
+
 
 	[ResourceTextFormatter]
 	internal string ExtraDigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);

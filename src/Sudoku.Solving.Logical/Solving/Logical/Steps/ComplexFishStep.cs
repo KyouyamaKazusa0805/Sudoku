@@ -25,44 +25,14 @@ internal sealed record ComplexFishStep(
 	bool? IsSashimi
 ) :
 	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask),
-	IDistinctableStep<ComplexFishStep>,
-	IStepWithPhasedDifficulty
+	IDistinctableStep<ComplexFishStep>
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => stackalloc[] { 0, 0, 3.2M, 3.8M, 5.2M, 6.0M, 6.0M, 6.6M, 7.0M }[Size];
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(
-				PhasedDifficultyRatingKinds.Sashimi,
-				IsSashimi switch
-				{
-					false => stackalloc[] { 0, 0, .2M, .2M, .2M, .3M, .3M, .3M, .4M }[Size],
-					true => stackalloc[] { 0, 0, .3M, .3M, .4M, .4M, .5M, .6M, .7M }[Size],
-					_ => 0
-				}
-			),
-			(
-				PhasedDifficultyRatingKinds.FishShape,
-				IsFranken
-					? stackalloc[] { 0, 0, .2M, 1.2M, 1.2M, 1.3M, 1.3M, 1.3M, 1.4M }[Size]
-					: stackalloc[] { 0, 0, .3M, 1.4M, 1.4M, 1.5M, 1.5M, 1.5M, 1.6M }[Size]
-			)
-		};
+	public override decimal BaseDifficulty => 3.2M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel
-		=> Size switch
-		{
-			2 => DifficultyLevel.Hard,
-			3 or 4 => DifficultyLevel.Fiendish,
-			_ => DifficultyLevel.Nightmare
-		};
+		=> Size switch { 2 => DifficultyLevel.Hard, 3 or 4 => DifficultyLevel.Fiendish, _ => DifficultyLevel.Nightmare };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => GetComplexFishTechniqueCodeFromName(InternalName);
@@ -82,41 +52,30 @@ internal sealed record ComplexFishStep(
 			_ => Rarity.HardlyEver
 		};
 
-	/// <summary>
-	/// The internal name.
-	/// </summary>
-	[DebuggerHidden]
-	private string InternalName
-	{
-		get
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
 		{
-			var fin = FinModifier == ComplexFishFinKind.Normal ? null : $"{FinModifier} ";
-			var shape = ShapeModifier == ComplexFishShapeKind.Basic ? null : $"{ShapeModifier} ";
-			var sizeName = Size switch
-			{
-				2 => "X-Wing",
-				3 => "Swordfish",
-				4 => "Jellyfish",
-				5 => "Squirmbag",
-				6 => "Whale",
-				7 => "Leviathan"
-			};
-			return $"{fin}{shape}{sizeName}";
-		}
-	}
-
-	/// <summary>
-	/// Indicates the fin modifier.
-	/// </summary>
-	[DebuggerHidden]
-	private ComplexFishFinKind FinModifier
-		=> IsSashimi switch { true => ComplexFishFinKind.Sashimi, false => ComplexFishFinKind.Finned, _ => ComplexFishFinKind.Normal };
-
-	/// <summary>
-	/// The shape modifier.
-	/// </summary>
-	[DebuggerHidden]
-	private ComplexFishShapeKind ShapeModifier => IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant;
+			new(
+				ExtraDifficultyCaseNames.Size,
+				Size switch { 2 => 0, 3 => .6M, 4 => 2.0M, 5 => 3.3M, 6 => 4.5M, 7 => 5.6M, _ => 6.6M }
+			),
+			new(
+				ExtraDifficultyCaseNames.Sashimi,
+				IsSashimi switch
+				{
+					false => Size switch { 2 or 3 or 4 => .2M, 5 or 6 or 7 => .3M, _ => .4M },
+					true => Size switch { 2 or 3 => .3M, 4 or 5 => .4M, 6 => .5M, 7 => .6M, _ => .7M },
+					_ => 0
+				}
+			),
+			new(
+				ExtraDifficultyCaseNames.FishShape,
+				IsFranken
+					? Size switch { 2 => 0, 3 or 4 => 1.1M, 5 or 6 or 7 => 1.2M, _ => 1.3M }
+					: Size switch { 2 => 0, 3 or 4 => 1.4M, 5 or 6 => 1.6M, 7 => 1.7M, _ => 2.0M }
+			)
+		};
 
 	/// <summary>
 	/// Indicates the base houses.
@@ -155,6 +114,42 @@ internal sealed record ComplexFishStep(
 			return result;
 		}
 	}
+
+	/// <summary>
+	/// The internal name.
+	/// </summary>
+	[DebuggerHidden]
+	private string InternalName
+	{
+		get
+		{
+			var fin = FinModifier == ComplexFishFinKind.Normal ? null : $"{FinModifier} ";
+			var shape = ShapeModifier == ComplexFishShapeKind.Basic ? null : $"{ShapeModifier} ";
+			var sizeName = Size switch
+			{
+				2 => "X-Wing",
+				3 => "Swordfish",
+				4 => "Jellyfish",
+				5 => "Squirmbag",
+				6 => "Whale",
+				7 => "Leviathan"
+			};
+			return $"{fin}{shape}{sizeName}";
+		}
+	}
+
+	/// <summary>
+	/// Indicates the fin modifier.
+	/// </summary>
+	[DebuggerHidden]
+	private ComplexFishFinKind FinModifier
+		=> IsSashimi switch { true => ComplexFishFinKind.Sashimi, false => ComplexFishFinKind.Finned, _ => ComplexFishFinKind.Normal };
+
+	/// <summary>
+	/// The shape modifier.
+	/// </summary>
+	[DebuggerHidden]
+	private ComplexFishShapeKind ShapeModifier => IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant;
 
 
 	[ResourceTextFormatter]

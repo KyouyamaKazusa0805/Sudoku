@@ -19,24 +19,18 @@ internal sealed record ExtendedRectangleType3Step(
 	scoped in CellMap ExtraCells,
 	short ExtraDigitsMask,
 	int House
-) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
+) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public override (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			base.ExtraDifficultyValues[0],
-			(PhasedDifficultyRatingKinds.ExtraDigit, PopCount((uint)ExtraDigitsMask) * .1M)
-		};
-
-	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.ExtraDigit, PopCount((uint)ExtraDigitsMask) * .1M) };
+
 
 	[ResourceTextFormatter]
 	internal string ExtraDigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);

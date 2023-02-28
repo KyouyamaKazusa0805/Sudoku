@@ -19,7 +19,7 @@ internal sealed record ReverseUniqueRectangleType2Step(
 ) : ReverseUniqueRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .1M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
 	public override int Type => 2;

@@ -14,7 +14,7 @@ internal sealed record MultiBranchWWingStep(
 	scoped in CellMap Leaves,
 	scoped in CellMap Root,
 	int House
-) : IrregularWingStep(Conclusions, Views), IStepWithPhasedDifficulty
+) : IrregularWingStep(Conclusions, Views)
 {
 	/// <summary>
 	/// Indicates the number of branches of the technique.
@@ -22,13 +22,11 @@ internal sealed record MultiBranchWWingStep(
 	public int Size => Leaves.Count;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+	public override decimal BaseDifficulty => 4.4M;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty => 3.7M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { (PhasedDifficultyRatingKinds.Size, Size * .3M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .3M, 4 => .6M, 5 => 1.0M, _ => 1.4M }) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.MultiBranchWWing;
@@ -37,7 +35,7 @@ internal sealed record MultiBranchWWingStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.Seldom;
+	public override Rarity Rarity => Size switch { 2 => Rarity.Often, 3 => Rarity.Seldom, _ => Rarity.HardlyEver };
 
 
 	[ResourceTextFormatter]

@@ -19,13 +19,11 @@ internal sealed record FireworkPairType1Step(
 ) : FireworkStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty;
-
-	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.FireworkPairType1;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
+
 
 	[ResourceTextFormatter]
 	internal string CellsStr() => Cells.ToString();

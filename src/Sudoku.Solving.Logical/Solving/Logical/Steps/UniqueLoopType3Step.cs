@@ -21,17 +21,19 @@ internal sealed record UniqueLoopType3Step(
 	scoped in CellMap Loop,
 	short SubsetDigitsMask,
 	scoped in CellMap SubsetCells
-) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop), IStepWithPhasedDifficulty
+) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public new (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Size, SubsetCells.Count * .1M) };
-
-	/// <inheritdoc/>
 	public override int Type => 3;
+
+	/// <inheritdoc/>
+	public override Rarity Rarity => Rarity.Seldom;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		// TODO: Fix ambiguity of 'ExtraDifficultyCaseNames.Size' here and base type's 'ExtraDifficultyCaseNames.Size'.
+		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M) };
+
 
 	[ResourceTextFormatter]
 	internal string SubsetCellsStr() => SubsetCells.ToString();
@@ -41,7 +43,4 @@ internal sealed record UniqueLoopType3Step(
 
 	[ResourceTextFormatter]
 	internal string SubsetName() => R[$"SubsetNamesSize{SubsetCells.Count + 1}"]!;
-
-	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.Seldom;
 }

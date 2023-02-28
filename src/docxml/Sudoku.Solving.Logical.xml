@@ -1511,132 +1511,6 @@ result ^= expression;
         <member name="M:Sudoku.Solving.Logical.Meta.IPhasedConclusionProvider`2.System#IEquatable{TSelf}#Equals(`0)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds">
-            <summary>
-            Provides with the kinds of the phased difficulty rating that is used
-            for the calculations the total rating of a step.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Size">
-            <summary>
-            Indicates the kind is the size. This field is used for sized techniques,
-            such as deadly patterns of type 3, naked or hidden subsets, fishes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.ExtraDigit">
-            <summary>
-            Indicates the kind is the extra digit. This field is used for deadly patterns of type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Sashimi">
-            <summary>
-            Indicates the kind is the sashimi. This field is only used for fishes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.FishShape">
-            <summary>
-            Indicates the kind is the fish shape. This field is only used for complex fishes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Hidden">
-            <summary>
-            Indicates the kind is the hidden. This field is used for some techniques that has hidden views.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Locked">
-            <summary>
-            Indicates the kind is the locked. This field is only used for naked subsets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.LockedDigit">
-            <summary>
-            Indicates the kind is the locked digit. This field is only used for Locked Qiu's Deadly Pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Length">
-            <summary>
-            Indicates the kind is the length. This field is used for variable-length chaining techniques.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.GroupedChains">
-            <summary>
-            Indicates the kind is the grouped chains. This field is used for grouped AIC and loops.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.ConjugatePair">
-            <summary>
-            Indicates the kind is the conjugate pair. This field is used for deadly patterns of type 4,
-            or advanced Unique Rectangle techniques.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Guardian">
-            <summary>
-            Indicates the kind is the guardian. This field is used for some guardian-related techniques,
-            such as guardian itself, Unique Rectangle + Guardian (i.e. Unique Rectangle External Types).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Petals">
-            <summary>
-            Indicates the number of petals used in death blossom.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.ValueCell">
-            <summary>
-            Indicates the kind is the value cell used in the pattern. This field is used for Almost Locked Candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Incompleteness">
-            <summary>
-            Indicates the kind is the incompleteness. This field is used for Unique Rectangle incomplete types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Avoidable">
-            <summary>
-            Indicates the kind is the avoidable. This field is used for avoidable rectangles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.WingSize">
-            <summary>
-            Indicates the kind is the wing size. This field is used for Unique Rectangle + Wings,
-            or Regular Wing technique itself.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Isolated">
-            <summary>
-            Indicates the kind is the isolated digits. This field is used for Sue de Coq variant types,
-            or Unique Rectangle + Sue de Coq.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Cannibalism">
-            <summary>
-            Indicates the kind is the cannibalism. This field is used for Sue de Coq variant types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.Mirror">
-            <summary>
-            Indicates the kind is the mirror eliminations. This field is only used for exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.BiBiPattern">
-            <summary>
-            Indicates the kind is the Bi-Bi pattern eliminations. This field is only used for exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.TargetPair">
-            <summary>
-            Indicates the kind is the target pair eliminations. This field is only used for exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.GeneralizedSwordfish">
-            <summary>
-            Indicates the kind is the generalized swordfish eliminations. This field is only used for exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds.ExtraHouse">
-            <summary>
-            Indicates the kind is the extra house. This field is only used for complex senior exocets.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Logical.Meta.ExocetEliminatedReason_EnumSwitchExpressionExtensions">
             <summary>
             Provides with extension methods for switching on the current type.
@@ -6562,19 +6436,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.HasValueCell">
             <summary>Indicates whether the step contains value cells.</summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.Size">
             <summary>
             Indicates the number of digits used.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.ExtraDifficultyValues">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.DifficultyLevel">
             <inheritdoc/>
@@ -6586,6 +6454,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.AlmostLockedSetsStep">
@@ -6653,7 +6524,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsWWingStep.X">
             <summary>Indicates the X digit.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsWWingStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsWWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsWWingStep.TechniqueTags">
@@ -6715,7 +6586,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXyWingStep.ZDigitsMask">
             <summary>Indicates the mask that holds the digits for the Z value.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXyWingStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXyWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXyWingStep.TechniqueTags">
@@ -6772,7 +6643,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXzStep.IsDoublyLinked">
             <summary>Indicates whether the ALS-XZ is doubly-linked.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXzStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXzStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXzStep.Format">
@@ -6827,7 +6698,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.AvoidableRectangleWithHiddenSingleStep.House">
             <summary></summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.AvoidableRectangleWithHiddenSingleStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.AvoidableRectangleWithHiddenSingleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.AvoidableRectangleWithHiddenSingleStep.DifficultyLevel">
@@ -6964,10 +6835,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.Digit2">
             <summary>Indicates the second digit.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.Equals(Sudoku.Solving.Logical.Steps.BivalueOddagonStep,Sudoku.Solving.Logical.Steps.BivalueOddagonStep)">
@@ -7032,15 +6906,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.ExtraDigit">
             <summary>Indicates the extra digit.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -7048,6 +6913,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step">
@@ -7080,15 +6948,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.ExtraDigitsMask">
             <summary>Indicates the mask that contains all extra digits used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -7096,6 +6955,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
@@ -7123,7 +6985,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the false candidate that will cause a BUG deadly pattern if it is true.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveFalseCandidateTypeStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveFalseCandidateTypeStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveFalseCandidateTypeStep.TechniqueCode">
@@ -7154,19 +7016,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveStep">
@@ -7183,7 +7042,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveStep.Format">
@@ -7242,19 +7101,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.Cells">
             <summary>Indicates the cells used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step">
@@ -7291,19 +7144,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.IsNaked">
             <summary>Indicates whether the specified subset is naked subset.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.Size">
@@ -7340,19 +7187,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.ConjugatePair">
             <summary>Indicates the conjugate pair used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep">
@@ -7384,19 +7225,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.ExtraCell">
             <summary>Indicates the XZ cell.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BowmanBingoStep">
@@ -7418,13 +7253,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BowmanBingoStep.ContradictionLinks">
             <summary>Indicates the list of contradiction links.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BowmanBingoStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BowmanBingoStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BowmanBingoStep.ExtraDifficultyValues">
+        <member name="P:Sudoku.Solving.Logical.Steps.BowmanBingoStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BowmanBingoStep.DifficultyLevel">
@@ -7456,7 +7288,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.BruteForceStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.BruteForceStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BruteForceStep.DifficultyLevel">
@@ -7588,7 +7420,7 @@ if (student is (name: var name, age: >= 18))
             <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Name">
@@ -7612,6 +7444,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChainingStep.SortKey">
@@ -7859,7 +7694,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.DigitsMask">
             <summary>The digits mask.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.TechniqueGroup">
@@ -7934,16 +7769,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternXzStep.ExtraDigitsMask">
             <summary>The extra digits mask.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternXzStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternXzStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternXzStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternXzStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ChromaticPatternXzStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.ComplexFishStep">
@@ -7986,13 +7815,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.IsSashimi">
             <summary>Indicates whether the fish is a Sashimi fish.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.DifficultyLevel">
@@ -8007,6 +7830,19 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.BaseHouses">
+            <summary>
+            Indicates the base houses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.CoverHouses">
+            <summary>
+            Indicates the cover houses.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.InternalName">
             <summary>
             The internal name.
@@ -8020,16 +7856,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.ShapeModifier">
             <summary>
             The shape modifier.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.BaseHouses">
-            <summary>
-            Indicates the base houses.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ComplexFishStep.CoverHouses">
-            <summary>
-            Indicates the cover houses.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ComplexFishStep.Equals(Sudoku.Solving.Logical.Steps.ComplexFishStep,Sudoku.Solving.Logical.Steps.ComplexFishStep)">
@@ -8087,16 +7913,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.DeathBlossomCellTypeStep.HubCell">
             <summary>Indicates a cell as the hub of petals.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.DeathBlossomCellTypeStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.DeathBlossomCellTypeStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.DeathBlossomCellTypeStep.ExtraDifficultyValues">
+        <member name="P:Sudoku.Solving.Logical.Steps.DeathBlossomCellTypeStep.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.DeathBlossomCellTypeStep.TechniqueCode">
+        <member name="P:Sudoku.Solving.Logical.Steps.DeathBlossomCellTypeStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.DeathBlossomStep">
@@ -8148,7 +7971,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.DominoLoopStep.Cells">
             <summary>Indicates the cells used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.DominoLoopStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.DominoLoopStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.DominoLoopStep.TechniqueTags">
@@ -8205,7 +8028,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleIntersectionPairStep.Digit2">
             <summary>Indicates the digit 2 used in this pattern.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleIntersectionPairStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleIntersectionPairStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleIntersectionPairStep.DifficultyLevel">
@@ -8246,7 +8069,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleStep.ConjugatePair">
             <summary>Indicates the conjugate pair used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.EmptyRectangleStep.DifficultyLevel">
@@ -8290,6 +8113,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExocetStep.Eliminations">
             <summary>Indicates all possible eliminations.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ExocetStep.BaseDifficulty">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExocetStep.Name">
             <inheritdoc/>
@@ -8370,9 +8196,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.DigitsMask">
             <summary>Indicates the mask that contains the digits used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -8382,9 +8205,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.TechniqueCode">
@@ -8397,6 +8217,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.DigitsStr">
@@ -8459,13 +8282,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType2Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType2Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType2Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.ExtendedRectangleType3Step">
@@ -8504,13 +8324,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType3Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType3Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.ExtendedRectangleType4Step">
@@ -8539,13 +8356,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType4Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType4Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType4Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType4Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ExtendedRectangleType4Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.FireworkPairType1Step">
@@ -8581,9 +8395,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType1Step.ExtraCell2">
             <summary>The extra cell 2.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType1Step.Difficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType1Step.TechniqueCode">
             <inheritdoc/>
@@ -8625,7 +8436,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType2Step.ExtraCell">
             <summary>The extra cell used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType2Step.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType2Step.TechniqueCode">
@@ -8663,7 +8474,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType3Step.EmptyRectangleBlock">
             <summary>The empty rectangle block used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType3Step.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType3Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType3Step.TechniqueCode">
@@ -8696,7 +8507,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkQuadrupleStep.DigitsMask">
             <summary>The digits used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.FireworkQuadrupleStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.FireworkQuadrupleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkQuadrupleStep.TechniqueCode">
@@ -8719,7 +8530,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.FireworkStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.FireworkStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkStep.DifficultyLevel">
@@ -8755,7 +8566,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkTripleStep.DigitsMask">
             <summary>The digits used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.FireworkTripleStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.FireworkTripleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkTripleStep.TechniqueCode">
@@ -8881,7 +8692,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.FullHouseStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FullHouseStep.TechniqueCode">
@@ -8925,7 +8736,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Solving.Logical.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Logical.Steps.GroupedWWingStep.EndCell"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.GroupedWWingStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.GroupedWWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.GroupedWWingStep.TechniqueCode">
@@ -8966,13 +8777,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.Guardians">
             <summary>Indicates the guardian cells used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.TechniqueCode">
@@ -8988,6 +8793,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.GuardianStep.Equals(Sudoku.Solving.Logical.Steps.GuardianStep,Sudoku.Solving.Logical.Steps.GuardianStep)">
@@ -9047,7 +8855,7 @@ if (student is (name: var name, age: >= 18))
             to what digits.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.GurthSymmetricalPlacementStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.GurthSymmetricalPlacementStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.GurthSymmetricalPlacementStep.TechniqueCode">
@@ -9081,7 +8889,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.HiddenSingleStep.EnableAndIsLastDigit">
             <summary>Indicates whether the current step is a <b>Last Digit</b> technique usage.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.HiddenSingleStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.HiddenSingleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.HiddenSingleStep.Rarity">
@@ -9113,10 +8921,13 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.HiddenSubsetStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.HiddenSubsetStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.HiddenSubsetStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.HiddenSubsetStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.HiddenUniqueRectangleStep">
@@ -9297,16 +9108,10 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.JuniorExocetStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.JuniorExocetStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.JuniorExocetStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.JuniorExocetStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.JuniorExocetStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.JuniorExocetStep.LockedMemberQStr">
@@ -9368,7 +9173,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.LockedCandidatesStep.CoverSet">
             <summary>Indicates the house that the current locked candidates influences.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.LockedCandidatesStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.LockedCandidatesStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.LockedCandidatesStep.TechniqueCode">
@@ -9417,13 +9222,10 @@ if (student is (name: var name, age: >= 18))
             Indicates the number of branches of the technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.MultiBranchWWingStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.MultiBranchWWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.MultiBranchWWingStep.ExtraDifficultyValues">
+        <member name="P:Sudoku.Solving.Logical.Steps.MultiBranchWWingStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.MultiBranchWWingStep.TechniqueCode">
@@ -9454,13 +9256,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.Cells">
             <summary>Indicates the cells used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.TechniqueTags">
@@ -9476,6 +9272,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.NakedSingleStep">
@@ -9496,7 +9295,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cell"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.NakedSingleStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.NakedSingleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.NakedSingleStep.Rarity">
@@ -9578,16 +9377,10 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.NakedSubsetStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.NakedSubsetStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.NakedSubsetStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.NakedSubsetStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.NakedSubsetStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.NegativeRankStep">
@@ -9696,13 +9489,10 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.NormalFishStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.NormalFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.NormalFishStep.ExtraDifficultyValues">
+        <member name="P:Sudoku.Solving.Logical.Steps.NormalFishStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.NormalFishStep.DifficultyLevel">
@@ -9739,7 +9529,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.PatternOverlayStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.PatternOverlayStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.PatternOverlayStep.DifficultyLevel">
@@ -9778,16 +9568,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternLockedTypeStep.Candidates">
             <summary>Indicates the candidates used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternLockedTypeStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternLockedTypeStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternLockedTypeStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternLockedTypeStep.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternLockedTypeStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep">
@@ -9809,7 +9593,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.Pattern">
             <summary>Indicates the pattern used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.Type">
@@ -9885,16 +9669,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step.ExtraDigit">
             <summary>Indicates the extra digit used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step">
@@ -9928,16 +9706,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step.IsNaked">
             <summary>Indicates whether the subset is a naked subset.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step">
@@ -9961,16 +9733,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step.ConjugatePair">
             <summary>Indicates the conjugate pair used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.RankTheoryStep">
@@ -10085,6 +9851,9 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the structure is incomplete.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.Size">
             <inheritdoc/>
             <remarks>
@@ -10125,15 +9894,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </remarks>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -10144,6 +9904,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.InternalName">
@@ -10223,7 +9986,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleStep.TechniqueCode">
@@ -10288,7 +10051,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType2Step.CellsHavingExtraDigit">
             <summary>Indicates the cells that contains the extra digit in the pattern.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType2Step.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType2Step.Type">
@@ -10323,7 +10086,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.ChuteIndex">
             <summary>Indicates the global chute index.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.Format">
@@ -10371,16 +10134,13 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the specified instance contains any extra houses.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.SeniorExocetStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SeniorExocetStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.SeniorExocetStep.ExtraDifficultyValues">
+        <member name="P:Sudoku.Solving.Logical.Steps.SeniorExocetStep.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.SeniorExocetStep.TechniqueCode">
+        <member name="P:Sudoku.Solving.Logical.Steps.SeniorExocetStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.SingleDigitPatternStep">
@@ -10456,26 +10216,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.SingleStep.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IStepWithPhasedDifficulty">
-            <summary>
-            Defines a type that holds an extra property to control advanced rule with extra difficulty value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.IStepWithPhasedDifficulty.BaseDifficulty">
-            <summary>
-            Indicates the base difficulty of the step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.IStepWithPhasedDifficulty.ExtraDifficultyValues">
-            <summary>
-            Indicates the extra difficulty values of the step, and its corresponding description.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.IStepWithPhasedDifficulty.TotalDifficulty">
-            <summary>
-            Indicates the total difficulty value of the step.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.Step">
             <summary>
             Provides with a logical solving step that is a technique usage, and contains the conclusions.
@@ -10502,7 +10242,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.Step.Format">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Step.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.Step.TechniqueCode">
@@ -10521,6 +10261,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.Step.ApplyTo(Sudoku.Concepts.Grid@)">
@@ -10583,6 +10326,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SubsetStep.DigitsMask">
             <summary>The mask that contains all digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SubsetStep.BaseDifficulty">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SubsetStep.Size">
             <summary>
@@ -10655,7 +10401,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.BlockCells">
             <summary>The block cells map.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.TechniqueCode">
@@ -10737,13 +10483,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.IntersectionCells">
             <summary>The map of intersection cells.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.TechniqueTags">
@@ -10759,6 +10499,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.SymmetryStep">
@@ -10814,7 +10557,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.TemplateStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.TemplateStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.TemplateStep.DifficultyLevel">
@@ -10855,7 +10598,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.TargetHouse">
             <summary>Indicates the target house used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.DifficultyLevel">
@@ -10899,13 +10642,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopStep.Loop">
             <summary>Indicates the loop that the instance used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopStep.Type">
@@ -10926,6 +10663,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopStep.LoopStr">
@@ -11000,6 +10740,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType2Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType2Step.Rarity">
             <inheritdoc/>
         </member>
@@ -11039,16 +10782,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step.SubsetCells">
             <summary>Indicates the subset cells.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step.Type">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueLoopType4Step">
@@ -11079,6 +10819,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType4Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType4Step.Rarity">
             <inheritdoc/>
         </member>
@@ -11106,7 +10849,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.DigitsMask">
             <summary>Indicates the digits used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.Type">
@@ -11191,16 +10934,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step.ExtraDigit">
             <summary>Indicates the extra digit used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step">
@@ -11237,16 +10974,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step.ExtraCells">
             <summary>Indicates the extra cells used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueMatrixType4Step">
@@ -11304,9 +11035,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.ExtraCells">
             <summary>Indicates the extra cells used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -11316,9 +11044,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.TechniqueCode">
@@ -11331,6 +11056,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniquenessClueCoverType2Step">
@@ -11402,7 +11130,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonStep.DigitsMask">
             <summary>The mask that contains all digits used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonStep.Type">
@@ -11479,7 +11207,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType2Step.ExtraDigit">
             <summary>The extra digit.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType2Step.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType2Step.Type">
@@ -11513,10 +11241,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType3Step.ExtraDigitsMask">
             <summary>Indicates the extra digits used for forming the subset.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType3Step.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType3Step.Type">
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniquePolygonType4Step">
@@ -11547,7 +11275,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType4Step.ExtraMask">
             <summary>Indicates the extra digits mask.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType4Step.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType4Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType4Step.Type">
@@ -11594,7 +11322,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangle2DOr3XStep.XyCell">
             <summary>Indicates the cell XY.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangle2DOr3XStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangle2DOr3XStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangle2DOr3XStep.DifficultyLevel">
@@ -11645,15 +11373,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.IsIncomplete">
             <summary>Indicates whether the rectangle is incomplete.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -11661,6 +11380,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep">
@@ -11717,22 +11439,19 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.IsIncomplete">
             <summary>Indicates whether the rectangle is incomplete.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.Format">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType1Or2Step">
@@ -11776,15 +11495,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType1Or2Step.IsIncomplete">
             <summary>Indicates whether the rectangle is incomplete.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType1Or2Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType1Or2Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType1Or2Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType1Or2Step.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -11792,6 +11502,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType1Or2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType1Or2Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType3Step">
@@ -11838,13 +11551,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType3Step.IsIncomplete">
             <summary>Indicates whether the rectangle is incomplete.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType3Step.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType3Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType3Step.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType3Step.DifficultyLevel">
@@ -11854,6 +11561,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType4Step">
@@ -11895,13 +11605,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType4Step.IsIncomplete">
             <summary>Indicates whether the rectangle is incomplete.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType4Step.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType4Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType4Step.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType4Step.DifficultyLevel">
@@ -11911,6 +11615,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType4Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType4Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalXyWingStep">
@@ -11952,19 +11659,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalXyWingStep.IsIncomplete">
             <summary>Indicates whether the rectangle is incomplete.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalXyWingStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalXyWingStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalXyWingStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalXyWingStep.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalXyWingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalXyWingStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleStep">
@@ -12082,6 +11786,9 @@ if (student is (name: var name, age: >= 18))
             </para>
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleStep.Format">
             <inheritdoc/>
         </member>
@@ -12117,9 +11824,6 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells"><inheritdoc/></param>
             <param name="IsAvoidable"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType1Step.Difficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType1Step.DifficultyLevel">
             <inheritdoc/>
@@ -12158,7 +11862,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType2Step.ExtraDigit">
             <summary>Indicates the extra digit used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType2Step.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType2Step.DifficultyLevel">
@@ -12265,19 +11969,13 @@ if (student is (name: var name, age: >= 18))
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep">
@@ -12311,16 +12009,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.ConjugatePairs">
             <summary>Indicates the conjugate pairs used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.DifficultyLevel">
@@ -12330,6 +12022,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.ConjPairsStr">
@@ -12438,13 +12133,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the cells in the intersection from houses <see cref="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.Difficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.DifficultyLevel">
@@ -12454,6 +12143,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep">
@@ -12488,7 +12180,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.ExtraDigit">
             <summary>Indicates the extra digit used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.DifficultyLevel">
@@ -12541,15 +12233,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.ExtraDigitsMask">
             <summary>Indicates the mask that contains all extra digits.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.ExtraDifficultyValues">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -12557,6 +12240,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.WingStep">
@@ -12623,7 +12309,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Solving.Logical.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Logical.Steps.WWingStep.EndCell"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.WWingStep.Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.WWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.WWingStep.TechniqueCode">
@@ -12647,7 +12333,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Format">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Difficulty">
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueCode">
@@ -12666,6 +12352,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Presentation#IVisual#Conclusions">
@@ -12771,10 +12460,26 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Text.ResourceTextFormatterAttribute"/>
             <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.IStep.BaseDifficulty">
+            <summary>
+            Indicates the difficulty of this technique step.
+            </summary>
+            <remarks>
+            Generally this property holds the default and basic difficulty of the step.
+            If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
+            as elementary and default rating value; other factors will be given in the other property <see cref="P:Sudoku.Solving.Logical.IStep.ExtraDifficultyCases"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Solving.Logical.IStep.ExtraDifficultyCases"/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.IStep.Difficulty">
             <summary>
-            The difficulty or this step.
+            Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
+            <see cref="P:Sudoku.Solving.Logical.IStep.BaseDifficulty"/> and <see cref="P:Sudoku.Solving.Logical.IStep.ExtraDifficultyCases"/>. For property <see cref="P:Sudoku.Solving.Logical.IStep.ExtraDifficultyCases"/>,
+            the result is to sum all values up of inner property <see cref="P:Sudoku.Rating.ExtraDifficultyCase.Value"/>.
             </summary>
+            <seealso cref="P:Sudoku.Solving.Logical.IStep.BaseDifficulty"/>
+            <seealso cref="P:Sudoku.Solving.Logical.IStep.ExtraDifficultyCases"/>
+            <seealso cref="T:Sudoku.Rating.ExtraDifficultyCase"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.IStep.TechniqueCode">
             <summary>
@@ -12825,6 +12530,12 @@ if (student is (name: var name, age: >= 18))
             during generating puzzles.
             </remarks>
             <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.IStep.ExtraDifficultyCases">
+            <summary>
+            Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
+            this property will keep <see langword="null"/> value.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Logical.IStep.ApplyTo(Sudoku.Concepts.Grid@)">
             <summary>
@@ -14917,31 +14628,156 @@ if (student is (name: var name, age: >= 18))
             Represents an extra rating case to be recorded into a technique step.
             </summary>
             <param name="Name">
-            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds"/>,
+            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Rating.ExtraDifficultyCaseNames"/>,
             you can use constants in that type to assign to this property.
             </param>
             <param name="Value">Indicates the value of the target rating.</param>
-            <seealso cref="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds"/>
+            <seealso cref="T:Sudoku.Rating.ExtraDifficultyCaseNames"/>
         </member>
         <member name="M:Sudoku.Rating.ExtraDifficultyCase.#ctor(System.String,System.Decimal)">
             <summary>
             Represents an extra rating case to be recorded into a technique step.
             </summary>
             <param name="Name">
-            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds"/>,
+            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Rating.ExtraDifficultyCaseNames"/>,
             you can use constants in that type to assign to this property.
             </param>
             <param name="Value">Indicates the value of the target rating.</param>
-            <seealso cref="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds"/>
+            <seealso cref="T:Sudoku.Rating.ExtraDifficultyCaseNames"/>
         </member>
         <member name="P:Sudoku.Rating.ExtraDifficultyCase.Name">
             <summary>
-            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds"/>,
+            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Rating.ExtraDifficultyCaseNames"/>,
             you can use constants in that type to assign to this property.
             </summary>
         </member>
         <member name="P:Sudoku.Rating.ExtraDifficultyCase.Value">
             <summary>Indicates the value of the target rating.</summary>
+        </member>
+        <member name="T:Sudoku.Rating.ExtraDifficultyCaseNames">
+            <summary>
+            Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Size">
+            <summary>
+            Indicates the kind is the size. This field is used for sized techniques,
+            such as deadly patterns of type 3, naked or hidden subsets, fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.ExtraDigit">
+            <summary>
+            Indicates the kind is the extra digit. This field is used for deadly patterns of type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Sashimi">
+            <summary>
+            Indicates the kind is the sashimi. This field is only used for fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.FishShape">
+            <summary>
+            Indicates the kind is the fish shape. This field is only used for complex fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Hidden">
+            <summary>
+            Indicates the kind is the hidden. This field is used for some techniques that has hidden views.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Locked">
+            <summary>
+            Indicates the kind is the locked. This field is only used for naked subsets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.LockedDigit">
+            <summary>
+            Indicates the kind is the locked digit. This field is only used for Locked Qiu's Deadly Pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Length">
+            <summary>
+            Indicates the kind is the length. This field is used for variable-length chaining techniques.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.GroupedChains">
+            <summary>
+            Indicates the kind is the grouped chains. This field is used for grouped AIC and loops.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.ConjugatePair">
+            <summary>
+            Indicates the kind is the conjugate pair. This field is used for deadly patterns of type 4,
+            or advanced Unique Rectangle techniques.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Guardian">
+            <summary>
+            Indicates the kind is the guardian. This field is used for some guardian-related techniques,
+            such as guardian itself, Unique Rectangle + Guardian (i.e. Unique Rectangle External Types).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Petals">
+            <summary>
+            Indicates the number of petals used in death blossom.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.ValueCell">
+            <summary>
+            Indicates the kind is the value cell used in the pattern. This field is used for Almost Locked Candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Incompleteness">
+            <summary>
+            Indicates the kind is the incompleteness. This field is used for Unique Rectangle incomplete types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Avoidable">
+            <summary>
+            Indicates the kind is the avoidable. This field is used for avoidable rectangles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.WingSize">
+            <summary>
+            Indicates the kind is the wing size. This field is used for Unique Rectangle + Wings,
+            or Regular Wing technique itself.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Isolated">
+            <summary>
+            Indicates the kind is the isolated digits. This field is used for Sue de Coq variant types,
+            or Unique Rectangle + Sue de Coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Cannibalism">
+            <summary>
+            Indicates the kind is the cannibalism. This field is used for Sue de Coq variant types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.Mirror">
+            <summary>
+            Indicates the kind is the mirror eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.BiBiPattern">
+            <summary>
+            Indicates the kind is the Bi-Bi pattern eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.TargetPair">
+            <summary>
+            Indicates the kind is the target pair eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.GeneralizedSwordfish">
+            <summary>
+            Indicates the kind is the generalized swordfish eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Rating.ExtraDifficultyCaseNames.ExtraHouse">
+            <summary>
+            Indicates the kind is the extra house. This field is only used for complex senior exocets.
+            </summary>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies">
             <summary>

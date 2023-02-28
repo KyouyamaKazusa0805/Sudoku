@@ -7,12 +7,8 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-internal sealed record ExtendedRectangleType1Step(
-	ConclusionList Conclusions,
-	ViewList Views,
-	scoped in CellMap Cells,
-	short DigitsMask
-) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
+internal sealed record ExtendedRectangleType1Step(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells, short DigitsMask) :
+	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

@@ -6,17 +6,11 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
-internal abstract record UniquenessClueCoverStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	scoped in CellMap ExtraCells
-) : DeadlyPatternStep(Conclusions, Views), IStepWithPhasedDifficulty
+internal abstract record UniquenessClueCoverStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap ExtraCells) :
+	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 6.5M;
+	public sealed override decimal BaseDifficulty => 6.5M;
 
 	/// <summary>
 	/// Indicates the type.
@@ -27,11 +21,7 @@ internal abstract record UniquenessClueCoverStep(
 	public sealed override string? Format => base.Format;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Size, A004526(ExtraCells.Count) * .1M) };
-
-	/// <inheritdoc/>
-	public override Technique TechniqueCode => Enum.Parse<Technique>($"UniquenessClueCoverType{Type}");
+	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UniquenessClueCoverType{Type}");
 
 	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UniquenessClueCover;
@@ -41,4 +31,8 @@ internal abstract record UniquenessClueCoverStep(
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
+
+	/// <inheritdoc/>
+	public sealed override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, A004526(ExtraCells.Count) * .1M) };
 }

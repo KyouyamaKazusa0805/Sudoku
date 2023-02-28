@@ -28,28 +28,16 @@ internal sealed record SueDeCoqStep(
 	scoped in CellMap BlockCells,
 	scoped in CellMap LineCells,
 	scoped in CellMap IntersectionCells
-) : NonnegativeRankStep(Conclusions, Views), IStepWithPhasedDifficulty
+) : NonnegativeRankStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 5.0M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(PhasedDifficultyRatingKinds.Isolated, IsolatedDigitsMask != 0 ? .1M : 0),
-			(PhasedDifficultyRatingKinds.Cannibalism, IsCannibalistic ? .2M : 0)
-		};
+	public override decimal BaseDifficulty => 5.0M;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.RankTheory | TechniqueTags.Als;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode
-		=> IsCannibalistic ? Technique.SueDeCoqCannibalism : Technique.SueDeCoq;
+	public override Technique TechniqueCode => IsCannibalistic ? Technique.SueDeCoqCannibalism : Technique.SueDeCoq;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
@@ -59,6 +47,15 @@ internal sealed record SueDeCoqStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(ExtraDifficultyCaseNames.Isolated, IsolatedDigitsMask != 0 ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .2M : 0)
+		};
+
 
 	[ResourceTextFormatter]
 	internal string IntersectionCellsStr() => IntersectionCells.ToString();

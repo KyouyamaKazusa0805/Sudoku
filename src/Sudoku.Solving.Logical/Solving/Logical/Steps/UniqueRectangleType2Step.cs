@@ -34,13 +34,14 @@ internal sealed record UniqueRectangleType2Step(
 )
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 4.6M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
+
 
 	[ResourceTextFormatter]
 	internal string ExtraDigitStr() => (ExtraDigit + 1).ToString();

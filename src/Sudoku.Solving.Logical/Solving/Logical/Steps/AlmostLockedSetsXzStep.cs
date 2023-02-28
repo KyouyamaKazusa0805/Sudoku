@@ -21,7 +21,7 @@ internal sealed record AlmostLockedSetsXzStep(
 ) : AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
+	public override decimal BaseDifficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
 
 	/// <inheritdoc/>
 	public override string? Format
@@ -50,6 +50,7 @@ internal sealed record AlmostLockedSetsXzStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
+
 
 	[ResourceTextFormatter]
 	internal string CellsStr() => (Als1.Map | Als2.Map).ToString();

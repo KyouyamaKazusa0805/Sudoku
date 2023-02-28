@@ -88,9 +88,25 @@ public interface IStep : IVisual
 	string? Format { get; }
 
 	/// <summary>
-	/// The difficulty or this step.
+	/// Indicates the difficulty of this technique step.
 	/// </summary>
-	decimal Difficulty { get; }
+	/// <remarks>
+	/// Generally this property holds the default and basic difficulty of the step.
+	/// If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
+	/// as elementary and default rating value; other factors will be given in the other property <see cref="ExtraDifficultyCases"/>.
+	/// </remarks>
+	/// <seealso cref="ExtraDifficultyCases"/>
+	decimal BaseDifficulty { get; }
+
+	/// <summary>
+	/// Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
+	/// <see cref="BaseDifficulty"/> and <see cref="ExtraDifficultyCases"/>. For property <see cref="ExtraDifficultyCases"/>,
+	/// the result is to sum all values up of inner property <see cref="ExtraDifficultyCase.Value"/>.
+	/// </summary>
+	/// <seealso cref="BaseDifficulty"/>
+	/// <seealso cref="ExtraDifficultyCases"/>
+	/// <seealso cref="ExtraDifficultyCase"/>
+	sealed decimal Difficulty => BaseDifficulty + (ExtraDifficultyCases?.Sum(static @case => @case.Value) ?? 0);
 
 	/// <summary>
 	/// The technique code of this instance used for comparison
@@ -141,6 +157,12 @@ public interface IStep : IVisual
 	/// </remarks>
 	/// <seealso cref="FlagsAttribute"/>
 	Rarity Rarity { get; }
+
+	/// <summary>
+	/// Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
+	/// this property will keep <see langword="null"/> value.
+	/// </summary>
+	ExtraDifficultyCase[]? ExtraDifficultyCases { get; }
 
 
 	/// <summary>

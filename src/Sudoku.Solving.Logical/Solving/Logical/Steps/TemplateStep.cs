@@ -14,7 +14,7 @@ internal sealed record TemplateStep(ConclusionList Conclusions, ViewList Views, 
 	public int Digit => Conclusions[0].Digit;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => 9.0M;
+	public override decimal BaseDifficulty => 9.0M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;

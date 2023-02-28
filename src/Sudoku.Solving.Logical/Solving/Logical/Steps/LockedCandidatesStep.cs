@@ -12,7 +12,7 @@ internal sealed record LockedCandidatesStep(ConclusionList Conclusions, ViewList
 	IntersectionStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;
+	public override decimal BaseDifficulty => BaseSet < 9 ? 2.6M : 2.8M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;

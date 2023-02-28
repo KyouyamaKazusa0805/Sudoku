@@ -17,27 +17,21 @@ internal sealed record BivalueUniversalGraveType3Step(
 	short DigitsMask,
 	scoped in CellMap Cells,
 	bool IsNaked
-) : BivalueUniversalGraveStep(Conclusions, Views), IStepWithPhasedDifficulty
+) : BivalueUniversalGraveStep(Conclusions, Views)
 {
-	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(PhasedDifficultyRatingKinds.Size, Size * .1M),
-			(PhasedDifficultyRatingKinds.Hidden, IsNaked ? 0 : .1M)
-		};
-
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType3;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(ExtraDifficultyCaseNames.Size, Size * .1M),
+			new(ExtraDifficultyCaseNames.Hidden, IsNaked ? 0 : .1M)
+		};
 
 	/// <summary>
 	/// Indicates the size of the subset.

@@ -22,7 +22,11 @@ internal sealed record UniqueLoopType2Step(
 	public override int Type => 2;
 
 	/// <inheritdoc/>
+	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
+
+	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
 
 	[ResourceTextFormatter]
 	internal string ExtraDigitStr() => (ExtraDigit + 1).ToString();

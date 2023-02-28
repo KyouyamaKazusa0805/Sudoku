@@ -21,20 +21,14 @@ internal sealed record ChromaticPatternXzStep(
 	int ExtraCell,
 	short DigitsMask,
 	short ExtraDigitsMask
-) : ChromaticPatternStep(Conclusions, Views, Blocks, Pattern, DigitsMask), IStepWithPhasedDifficulty
+) : ChromaticPatternStep(Conclusions, Views, Blocks, Pattern, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.ExtraDigit, .2M) };
-
-	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.ChromaticPatternXzRule;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .2M) };
 
 
 	[ResourceTextFormatter]

@@ -17,10 +17,11 @@ internal sealed record UniquePolygonType2Step(
 ) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.4M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
 	public override int Type => 2;
+
 
 	[ResourceTextFormatter]
 	internal string ExtraDigitStr() => (ExtraDigit + 1).ToString();

@@ -23,6 +23,7 @@ internal sealed record UniqueMatrixType4Step(
 	/// <inheritdoc/>
 	public override int Type => 4;
 
+
 	[ResourceTextFormatter]
 	internal string ConjStr() => ConjugateHouse.ToString();
 

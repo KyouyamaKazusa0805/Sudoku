@@ -24,39 +24,34 @@ internal sealed record UniqueRectangleExternalXyWingStep(
 	bool IsIncomplete,
 	bool IsAvoidable,
 	int AbsoluteOffset
-) :
-	UniqueRectangleStep(
-		Conclusions,
-		Views,
-		IsAvoidable ? Technique.AvoidableRectangleExternalXyWing : Technique.UniqueRectangleExternalXyWing,
-		Digit1,
-		Digit2,
-		Cells,
-		IsAvoidable,
-		AbsoluteOffset
-	),
-	IStepWithPhasedDifficulty
+) : UniqueRectangleStep(
+	Conclusions,
+	Views,
+	IsAvoidable ? Technique.AvoidableRectangleExternalXyWing : Technique.UniqueRectangleExternalXyWing,
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	AbsoluteOffset
+)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 4.7M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(PhasedDifficultyRatingKinds.Guardian, A004526(GuardianCells.Count) * .1M),
-			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0),
-			(PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0)
-		};
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
+			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
+		};
 
 
 	[ResourceTextFormatter]

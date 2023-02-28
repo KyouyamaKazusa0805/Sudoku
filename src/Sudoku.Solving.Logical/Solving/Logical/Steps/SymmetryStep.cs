@@ -17,8 +17,8 @@ internal abstract record SymmetryStep(ConclusionList Conclusions, ViewList Views
 	public sealed override Stableness Stableness => Stableness.Unstable;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
+	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
+	public sealed override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 }

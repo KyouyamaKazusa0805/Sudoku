@@ -14,26 +14,24 @@ internal sealed record DeathBlossomCellTypeStep(
 	int HubCell,
 	short DigitsMask,
 	AlmostLockedSet[] Petals
-) : DeathBlossomStep(Conclusions, Views, DigitsMask, Petals), IStepWithPhasedDifficulty
+) : DeathBlossomStep(Conclusions, Views, DigitsMask, Petals)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+	public override decimal BaseDifficulty => 8.3M;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty => 8.3M;
+	public override Technique TechniqueCode => Technique.DeathBlossomCellType;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
 		{
-			(
-				PhasedDifficultyRatingKinds.Petals,
+			new(
+				ExtraDifficultyCaseNames.Petals,
 				Petals.Length switch { >= 2 and < 5 => .1M, >= 5 and < 7 => .2M, _ => .3M }
 			)
 		};
 
-	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.DeathBlossomCellType;
 
 	[ResourceTextFormatter]
 	internal string CellStr() => RxCyNotation.ToCellString(HubCell);

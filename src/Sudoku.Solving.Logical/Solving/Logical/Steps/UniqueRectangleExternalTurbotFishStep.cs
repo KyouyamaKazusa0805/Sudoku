@@ -30,50 +30,45 @@ internal sealed record UniqueRectangleExternalTurbotFishStep(
 	bool IsIncomplete,
 	bool IsAvoidable,
 	int AbsoluteOffset
-) :
-	UniqueRectangleStep(
-		Conclusions,
-		Views,
-		(IsAvoidable, BaseHouse / 9, TargetHouse / 9) switch
-		{
-			(true, 0, _) or (true, _, 0) => Technique.AvoidableRectangleExternalTurbotFish,
-			(true, 1, 1) or (true, 2, 2) => Technique.AvoidableRectangleExternalSkyscraper,
-			(true, 1, 2) or (true, 2, 1) => Technique.AvoidableRectangleExternalTwoStringKite,
-			(false, 0, _) or (false, _, 0) => Technique.UniqueRectangleExternalTurbotFish,
-			(false, 1, 1) or (false, 2, 2) => Technique.UniqueRectangleExternalSkyscraper,
-			(false, 1, 2) or (false, 2, 1) => Technique.UniqueRectangleExternalTwoStringKite
-		},
-		Digit1,
-		Digit2,
-		Cells,
-		IsAvoidable,
-		AbsoluteOffset
-	),
-	IStepWithPhasedDifficulty
+) : UniqueRectangleStep(
+	Conclusions,
+	Views,
+	(IsAvoidable, BaseHouse / 9, TargetHouse / 9) switch
+	{
+		(true, 0, _) or (true, _, 0) => Technique.AvoidableRectangleExternalTurbotFish,
+		(true, 1, 1) or (true, 2, 2) => Technique.AvoidableRectangleExternalSkyscraper,
+		(true, 1, 2) or (true, 2, 1) => Technique.AvoidableRectangleExternalTwoStringKite,
+		(false, 0, _) or (false, _, 0) => Technique.UniqueRectangleExternalTurbotFish,
+		(false, 1, 1) or (false, 2, 2) => Technique.UniqueRectangleExternalSkyscraper,
+		(false, 1, 2) or (false, 2, 1) => Technique.UniqueRectangleExternalTwoStringKite
+	},
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	AbsoluteOffset
+)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty => 4.6M;
-
-	/// <inheritdoc/>
-	public override string? Format => R[$"TechniqueFormat_{nameof(UniqueRectangleStep)}"];
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(PhasedDifficultyRatingKinds.Guardian, A004526(GuardianCells.Count) * .1M),
-			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0),
-			(PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0)
-		};
+	public override string? Format => R["TechniqueFormat_UniqueRectangleStep"];
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
+			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
+		};
 
 
 	[ResourceTextFormatter]

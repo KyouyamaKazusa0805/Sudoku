@@ -8,13 +8,8 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Loop"><inheritdoc/></param>
-internal sealed record UniqueLoopType1Step(
-	ConclusionList Conclusions,
-	ViewList Views,
-	int Digit1,
-	int Digit2,
-	scoped in CellMap Loop
-) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
+internal sealed record UniqueLoopType1Step(ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in CellMap Loop) :
+	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

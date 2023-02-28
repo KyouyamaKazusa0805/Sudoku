@@ -38,7 +38,7 @@ internal sealed record UniqueRectangle2DOr3XStep(
 )
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 4.7M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -48,6 +48,7 @@ internal sealed record UniqueRectangle2DOr3XStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
+
 
 	[ResourceTextFormatter]
 	internal string XDigitStr() => (XDigit + 1).ToString();

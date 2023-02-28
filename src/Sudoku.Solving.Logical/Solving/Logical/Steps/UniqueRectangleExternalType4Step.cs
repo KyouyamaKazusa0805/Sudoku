@@ -25,32 +25,19 @@ internal sealed record UniqueRectangleExternalType4Step(
 	bool IsIncomplete,
 	bool IsAvoidable,
 	int AbsoluteOffset
-) :
-	UniqueRectangleStep(
-		Conclusions,
-		Views,
-		IsAvoidable ? Technique.AvoidableRectangleExternalType4 : Technique.UniqueRectangleExternalType4,
-		Digit1,
-		Digit2,
-		Cells,
-		IsAvoidable,
-		AbsoluteOffset
-	),
-	IStepWithPhasedDifficulty
+) : UniqueRectangleStep(
+	Conclusions,
+	Views,
+	IsAvoidable ? Technique.AvoidableRectangleExternalType4 : Technique.UniqueRectangleExternalType4,
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	AbsoluteOffset
+)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 4.7M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0),
-			(PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0)
-		};
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
@@ -60,6 +47,15 @@ internal sealed record UniqueRectangleExternalType4Step(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
+		};
+
 
 	[ResourceTextFormatter]
 	internal string ConjugatePairStr() => ConjugatePair.ToString();

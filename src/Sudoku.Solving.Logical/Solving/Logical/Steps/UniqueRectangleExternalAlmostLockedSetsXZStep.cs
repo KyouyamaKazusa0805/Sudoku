@@ -25,36 +25,17 @@ internal sealed record UniqueRectangleExternalAlmostLockedSetsXzStep(
 	bool IsIncomplete,
 	bool IsAvoidable,
 	int AbsoluteOffset
-) :
-	UniqueRectangleStep(
-		Conclusions,
-		Views,
-		IsAvoidable
-			? Technique.AvoidableRectangleExternalAlmostLockedSetsXz
-			: Technique.UniqueRectangleExternalAlmostLockedSetsXz,
-		Digit1,
-		Digit2,
-		Cells,
-		IsAvoidable,
-		AbsoluteOffset
-	),
-	IStepWithPhasedDifficulty
+) : UniqueRectangleStep(
+	Conclusions,
+	Views,
+	IsAvoidable ? Technique.AvoidableRectangleExternalAlmostLockedSetsXz : Technique.UniqueRectangleExternalAlmostLockedSetsXz,
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	AbsoluteOffset
+)
 {
-	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 4.5M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(PhasedDifficultyRatingKinds.Guardian, A004526(GuardianCells.Count) * .1M),
-			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0),
-			(PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? .1M : 0)
-		};
-
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
@@ -63,6 +44,15 @@ internal sealed record UniqueRectangleExternalAlmostLockedSetsXzStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
+			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
+		};
 
 
 	[ResourceTextFormatter]

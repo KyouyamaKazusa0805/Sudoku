@@ -12,7 +12,7 @@ internal sealed record EmptyRectangleStep(ConclusionList Conclusions, ViewList V
 	SingleDigitPatternStep(Conclusions, Views, Digit)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 4.6M;
+	public override decimal BaseDifficulty => 4.6M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

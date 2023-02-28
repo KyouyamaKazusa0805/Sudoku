@@ -10,7 +10,7 @@
 internal sealed record FullHouseStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) : SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 1.0M;
+	public override decimal BaseDifficulty => 1.0M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.FullHouse;

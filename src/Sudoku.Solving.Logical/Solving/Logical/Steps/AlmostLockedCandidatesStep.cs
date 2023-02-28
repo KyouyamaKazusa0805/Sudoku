@@ -16,22 +16,15 @@ internal sealed record AlmostLockedCandidatesStep(
 	scoped in CellMap BaseCells,
 	scoped in CellMap TargetCells,
 	bool HasValueCell
-) : IntersectionStep(Conclusions, Views), IStepWithPhasedDifficulty
+) : IntersectionStep(Conclusions, Views)
 {
+	/// <inheritdoc/>
+	public override decimal BaseDifficulty => 4.5M;
+
 	/// <summary>
 	/// Indicates the number of digits used.
 	/// </summary>
 	public int Size => PopCount((uint)DigitsMask);
-
-	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => Size switch { 2 => 4.5M, 3 => 5.2M, 4 => 5.7M };
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0) };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -44,6 +37,14 @@ internal sealed record AlmostLockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .7M, 4 => 1.2M }),
+			new(ExtraDifficultyCaseNames.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0)
+		};
 
 
 	[ResourceTextFormatter]

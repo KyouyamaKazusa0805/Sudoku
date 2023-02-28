@@ -11,18 +11,10 @@
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record GuardianStep(ConclusionList Conclusions, ViewList Views, int Digit, scoped in CellMap Loop, scoped in CellMap Guardians) :
 	NegativeRankStep(Conclusions, Views),
-	IDistinctableStep<GuardianStep>,
-	IStepWithPhasedDifficulty
+	IDistinctableStep<GuardianStep>
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 5.5M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Size, A004526(Loop.Count + A004526(Guardians.Count)) * .1M) };
+	public override decimal BaseDifficulty => 5.5M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BrokenWing;
@@ -38,6 +30,10 @@ internal sealed record GuardianStep(ConclusionList Conclusions, ViewList Views, 
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, A004526(Loop.Count + A004526(Guardians.Count)) * .1M) };
 
 
 	[ResourceTextFormatter]

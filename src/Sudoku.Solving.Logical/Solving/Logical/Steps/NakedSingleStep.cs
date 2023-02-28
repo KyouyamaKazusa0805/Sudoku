@@ -10,13 +10,14 @@
 internal sealed record NakedSingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) : SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 2.3M;
+	public override decimal BaseDifficulty => 2.3M;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.NakedSingle;
+
 
 	[ResourceTextFormatter]
 	internal string CellStr() => RxCyNotation.ToCellString(Cell);

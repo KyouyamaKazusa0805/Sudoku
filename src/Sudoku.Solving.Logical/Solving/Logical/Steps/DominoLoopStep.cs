@@ -10,7 +10,7 @@
 internal sealed record DominoLoopStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells) : NonnegativeRankStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 9.6M;
+	public override decimal BaseDifficulty => 9.6M;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.RankTheory;

@@ -7,12 +7,8 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the digits used.</param>
-internal abstract record ReverseBivalueUniversalGraveStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	scoped in CellMap Cells,
-	short DigitsMask
-) : DeadlyPatternStep(Conclusions, Views)
+internal abstract record ReverseBivalueUniversalGraveStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells, short DigitsMask) :
+	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <summary>
 	/// Indicates the type of the step.
@@ -33,6 +29,7 @@ internal abstract record ReverseBivalueUniversalGraveStep(
 
 	/// <inheritdoc/>
 	public sealed override Rarity Rarity => Rarity.HardlyEver;
+
 
 	/// <summary>
 	/// Indicates the digits string.

@@ -17,11 +17,16 @@ internal sealed record HiddenSubsetStep(
 ) : SubsetStep(Conclusions, Views, House, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => Size switch { 2 => 3.4M, 3 => 4.0M, 4 => 5.4M };
+	public override decimal BaseDifficulty => base.BaseDifficulty + .4M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode
 		=> Size switch { 2 => Technique.HiddenPair, 3 => Technique.HiddenTriple, 4 => Technique.HiddenQuadruple };
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M }) };
+
 
 	[ResourceTextFormatter]
 	internal string DigitStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

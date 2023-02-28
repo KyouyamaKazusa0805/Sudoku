@@ -21,6 +21,7 @@ internal sealed record ReverseUniqueRectangleType1Step(
 	/// <inheritdoc/>
 	public override int Type => 1;
 
+
 	[ResourceTextFormatter]
 	internal string TargetCellStr() => RxCyNotation.ToCellString(TargetCell);
 

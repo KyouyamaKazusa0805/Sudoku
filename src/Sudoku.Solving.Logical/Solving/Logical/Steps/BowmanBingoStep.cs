@@ -8,18 +8,17 @@
 /// <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
 [StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record BowmanBingoStep(ConclusionList Conclusions, ViewList Views, ConclusionList ContradictionLinks) :
-	LastResortStep(Conclusions, Views),
-	IStepWithPhasedDifficulty
+	LastResortStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+	public override decimal BaseDifficulty => 8.0M;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty => 8.0M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Length, ChainDifficultyRating.GetExtraDifficultyByLength(ContradictionLinks.Length)) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(ExtraDifficultyCaseNames.Length, ChainDifficultyRating.GetExtraDifficultyByLength(ContradictionLinks.Length))
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;

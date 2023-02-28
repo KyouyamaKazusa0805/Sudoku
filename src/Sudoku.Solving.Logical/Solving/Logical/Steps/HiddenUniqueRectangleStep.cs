@@ -33,5 +33,5 @@ internal sealed record HiddenUniqueRectangleStep(
 )
 {
 	/// <inheritdoc/>
-	public sealed override string? Format => R[$"TechniqueFormat_{nameof(UniqueRectangleWithConjugatePairStep)}"];
+	public override string? Format => R["TechniqueFormat_UniqueRectangleWithConjugatePairStep"];
 }

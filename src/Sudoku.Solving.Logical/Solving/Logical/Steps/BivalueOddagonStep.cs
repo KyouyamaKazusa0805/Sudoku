@@ -13,10 +13,14 @@ internal abstract record BivalueOddagonStep(ConclusionList Conclusions, ViewList
 	IDistinctableStep<BivalueOddagonStep>
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.0M;
+	public override decimal BaseDifficulty => 6.3M;
 
 	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.BivalueOddagon;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, (Loop.Count >> 1) * .1M) };
 
 
 	/// <inheritdoc/>

@@ -26,15 +26,12 @@ internal sealed record GurthSymmetricalPlacementStep(
 ) : SymmetryStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty
-		=> SymmetryType switch
-		{
-			SymmetryType.Diagonal or SymmetryType.AntiDiagonal => 7.1M,
-			SymmetryType.Central => 7.0M
-		};
+	public override decimal BaseDifficulty
+		=> SymmetryType switch { SymmetryType.Diagonal or SymmetryType.AntiDiagonal => 7.1M, SymmetryType.Central => 7.0M };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.GurthSymmetricalPlacement;
+
 
 	[ResourceTextFormatter]
 	internal string SymmetryTypeStr() => R[$"{SymmetryType}Symmetry"]!;

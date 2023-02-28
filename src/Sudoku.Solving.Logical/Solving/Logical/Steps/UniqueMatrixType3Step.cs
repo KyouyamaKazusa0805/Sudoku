@@ -19,20 +19,15 @@ internal sealed record UniqueMatrixType3Step(
 	short DigitsMask,
 	short ExtraDigitsMask,
 	scoped in CellMap ExtraCells
-) : UniqueMatrixStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
+) : UniqueMatrixStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.ExtraDigit, PopCount((uint)ExtraDigitsMask) * .1M) };
-
-	/// <inheritdoc/>
 	public override int Type => 3;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, PopCount((uint)ExtraDigitsMask) * .1M) };
+
 
 	[ResourceTextFormatter]
 	internal string ExtraCellsStr() => ExtraCells.ToString();

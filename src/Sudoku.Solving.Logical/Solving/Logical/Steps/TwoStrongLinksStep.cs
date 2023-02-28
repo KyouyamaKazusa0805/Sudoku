@@ -12,7 +12,7 @@ internal sealed record TwoStrongLinksStep(ConclusionList Conclusions, ViewList V
 	SingleDigitPatternStep(Conclusions, Views, Digit)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty
+	public override decimal BaseDifficulty
 		=> TechniqueCode switch { Technique.TurbotFish => 4.2M, Technique.Skyscraper => 4.0M, Technique.TwoStringKite => 4.1M };
 
 	/// <inheritdoc/>

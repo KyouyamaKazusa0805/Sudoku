@@ -14,20 +14,18 @@ internal sealed record ExtendedRectangleType2Step(
 	scoped in CellMap Cells,
 	short DigitsMask,
 	int ExtraDigit
-) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
+) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public override (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { base.ExtraDifficultyValues[0], (PhasedDifficultyRatingKinds.ExtraDigit, .1M) };
-
-	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.ExtraDigit, .1M) };
+
 
 	[ResourceTextFormatter]
 	internal string ExtraDigitStr() => (ExtraDigit + 1).ToString();

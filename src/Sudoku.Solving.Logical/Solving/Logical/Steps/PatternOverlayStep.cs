@@ -4,8 +4,7 @@
 /// Provides with a step that is a <b>Pattern Overlay</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
-internal sealed record PatternOverlayStep(ConclusionList Conclusions) :
-	LastResortStep(Conclusions, ImmutableArray.Create(View.Empty))
+internal sealed record PatternOverlayStep(ConclusionList Conclusions) : LastResortStep(Conclusions, ImmutableArray.Create(View.Empty))
 {
 	/// <summary>
 	/// Indicates the digit.
@@ -13,7 +12,7 @@ internal sealed record PatternOverlayStep(ConclusionList Conclusions) :
 	public int Digit => Conclusions[0].Digit;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => 8.5M;
+	public override decimal BaseDifficulty => 8.5M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
@@ -29,6 +28,7 @@ internal sealed record PatternOverlayStep(ConclusionList Conclusions) :
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
+
 
 	[ResourceTextFormatter]
 	internal string DigitStr() => (Digit + 1).ToString();

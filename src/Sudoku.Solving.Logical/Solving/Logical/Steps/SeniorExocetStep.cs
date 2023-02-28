@@ -17,26 +17,22 @@ internal sealed record SeniorExocetStep(
 	int EndoTargetCell,
 	int[]? ExtraHousesMask,
 	ImmutableArray<ExocetElimination> Eliminations
-) : ExocetStep(Views, Exocet, DigitsMask, Eliminations), IStepWithPhasedDifficulty
+) : ExocetStep(Views, Exocet, DigitsMask, Eliminations)
 {
 	/// <summary>
 	/// Indicates whether the specified instance contains any extra houses.
 	/// </summary>
-	public bool ContainsExtraHouses
-		=> ExtraHousesMask is not null && Array.Exists(ExtraHousesMask, static m => m != 0);
+	public bool ContainsExtraHouses => ExtraHousesMask is not null && Array.Exists(ExtraHousesMask, static m => m != 0);
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 9.6M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.ExtraHouse, ContainsExtraHouses ? 0 : .2M) };
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => ContainsExtraHouses ? Technique.ComplexSeniorExocet : Technique.SeniorExocet;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraHouse, ContainsExtraHouses ? 0 : .2M) };
 
 
 	[ResourceTextFormatter]

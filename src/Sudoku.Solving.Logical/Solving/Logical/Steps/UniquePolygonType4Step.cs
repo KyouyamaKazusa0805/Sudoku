@@ -19,10 +19,11 @@ internal sealed record UniquePolygonType4Step(
 ) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.5M;
+	public override decimal BaseDifficulty => 5.5M;
 
 	/// <inheritdoc/>
 	public override int Type => 4;
+
 
 	[ResourceTextFormatter]
 	internal string ExtraCombStr() => DigitMaskFormatter.Format(ExtraMask, FormattingMode.Normal);

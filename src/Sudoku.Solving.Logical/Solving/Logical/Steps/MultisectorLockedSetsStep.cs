@@ -6,20 +6,11 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
-internal sealed record MultisectorLockedSetsStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	scoped in CellMap Cells
-) : NonnegativeRankStep(Conclusions, Views), IStepWithPhasedDifficulty
+internal sealed record MultisectorLockedSetsStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells) :
+	NonnegativeRankStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 9.4M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { (PhasedDifficultyRatingKinds.Size, A002024(Cells.Count) * .1M) };
+	public override decimal BaseDifficulty => 9.4M;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.Msls;
@@ -35,6 +26,10 @@ internal sealed record MultisectorLockedSetsStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, A002024(Cells.Count) * .1M) };
 
 
 	[ResourceTextFormatter]

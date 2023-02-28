@@ -34,28 +34,17 @@ internal sealed record NormalFishStep(
 	int CoverSetsMask,
 	scoped in CellMap Fins,
 	bool? IsSashimi
-) : FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask), IStepWithPhasedDifficulty
+) : FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+	public override decimal BaseDifficulty => 3.2M;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty
-		=> Size switch
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
 		{
-			2 => 3.2M,
-			3 => 3.8M,
-			4 => 5.2M
-		};
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(
-				PhasedDifficultyRatingKinds.Sashimi,
-				IsSashimi switch { true => Size switch { 2 or 3 => .3M, 4 => .4M, }, false => .2M, _ => 0 }
-			)
+			new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => 0.6M, 4 => 2.0M }),
+			new(ExtraDifficultyCaseNames.Sashimi, IsSashimi switch { true => Size switch { 2 or 3 => .3M, 4 => .4M, }, false => .2M, _ => 0 })
 		};
 
 	/// <inheritdoc/>
@@ -88,8 +77,8 @@ internal sealed record NormalFishStep(
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.NormalFish;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity
-		=> Size switch { 2 => Rarity.Sometimes, 3 or 4 => Rarity.Seldom };
+	public override Rarity Rarity => Size switch { 2 => Rarity.Sometimes, 3 or 4 => Rarity.Seldom };
+
 
 	/// <summary>
 	/// Indicates the internal name.

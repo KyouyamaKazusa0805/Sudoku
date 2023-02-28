@@ -27,32 +27,33 @@ internal sealed record UniqueRectangleWithWingStep(
 	scoped in CellMap Petals,
 	short ExtraDigitsMask,
 	int AbsoluteOffset
-) :
-	UniqueRectangleStep(
-		Conclusions,
-		Views,
-		TechniqueCode2,
-		Digit1,
-		Digit2,
-		Cells,
-		IsAvoidable,
-		AbsoluteOffset
-	),
-	IStepWithPhasedDifficulty
+) : UniqueRectangleStep(
+	Conclusions,
+	Views,
+	TechniqueCode2,
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	AbsoluteOffset
+)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty => 4.4M;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
+	public override Rarity Rarity => Rarity.Seldom;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
 		{
-			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0),
-			(
-				PhasedDifficultyRatingKinds.WingSize,
+			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
+			new(
+				ExtraDifficultyCaseNames.WingSize,
 				TechniqueCode switch
 				{
 					Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => .2M,
@@ -62,15 +63,6 @@ internal sealed record UniqueRectangleWithWingStep(
 				}
 			)
 		};
-
-	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectanglePlus;
-
-	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.Seldom;
 
 
 	[ResourceTextFormatter]

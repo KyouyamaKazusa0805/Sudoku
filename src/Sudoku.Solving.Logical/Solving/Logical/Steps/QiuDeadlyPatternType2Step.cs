@@ -13,20 +13,14 @@ internal sealed record QiuDeadlyPatternType2Step(
 	ViewList Views,
 	scoped in QiuDeadlyPattern Pattern,
 	int ExtraDigit
-) : QiuDeadlyPatternStep(Conclusions, Views, Pattern), IStepWithPhasedDifficulty
+) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.ExtraDigit, .1M) };
-
-	/// <inheritdoc/>
 	public override int Type => 2;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .1M) };
 
 
 	[ResourceTextFormatter]

@@ -8,29 +8,12 @@
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
 /// <param name="Loop">Indicates the loop that the instance used.</param>
-internal abstract record UniqueLoopStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	int Digit1,
-	int Digit2,
-	scoped in CellMap Loop
-) : DeadlyPatternStep(Conclusions, Views), IDistinctableStep<UniqueLoopStep>, IStepWithPhasedDifficulty
+internal abstract record UniqueLoopStep(ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in CellMap Loop) :
+	DeadlyPatternStep(Conclusions, Views),
+	IDistinctableStep<UniqueLoopStep>
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty
-		=> Type switch
-		{
-			1 or 3 => 4.5M,
-			2 or 4 => 4.6M,
-			_ => throw new NotSupportedException("The specified type is not supported.")
-		};
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Size, (A004526(Loop.Count) - 3) * .1M) };
+	public override decimal BaseDifficulty => 4.5M;
 
 	/// <summary>
 	/// Indicates the type.
@@ -51,6 +34,11 @@ internal abstract record UniqueLoopStep(
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, (A004526(Loop.Count) - 3) * .1M) };
+
 
 	/// <summary>
 	/// Indicates the loop string.
@@ -77,10 +65,8 @@ internal abstract record UniqueLoopStep(
 		&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
 		&& (left, right) switch
 		{
-			(UniqueLoopType3Step { SubsetDigitsMask: var a }, UniqueLoopType3Step { SubsetDigitsMask: var b })
-				=> a == b,
-			(UniqueLoopType4Step { ConjugatePair: var a }, UniqueLoopType4Step { ConjugatePair: var b })
-				=> a == b,
+			(UniqueLoopType3Step { SubsetDigitsMask: var a }, UniqueLoopType3Step { SubsetDigitsMask: var b }) => a == b,
+			(UniqueLoopType4Step { ConjugatePair: var a }, UniqueLoopType4Step { ConjugatePair: var b }) => a == b,
 			_ => true
 		};
 }

@@ -23,7 +23,7 @@ internal sealed record AlmostLockedSetsXyWingStep(
 ) : AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 6.0M;
+	public override decimal BaseDifficulty => 6.0M;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;
@@ -39,6 +39,7 @@ internal sealed record AlmostLockedSetsXyWingStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
 
 	[ResourceTextFormatter]
 	internal string Als1Str() => Als1.ToString();

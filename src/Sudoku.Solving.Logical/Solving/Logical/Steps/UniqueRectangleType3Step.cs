@@ -45,34 +45,31 @@ internal sealed record UniqueRectangleType3Step(
 	bool IsAvoidable,
 	int AbsoluteOffset,
 	bool IsNaked = true
-) :
-	UniqueRectangleStep(
-		Conclusions,
-		Views,
-		IsAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
-		Digit1,
-		Digit2,
-		Cells,
-		IsAvoidable,
-		AbsoluteOffset
-	),
-	IStepWithPhasedDifficulty
+) : UniqueRectangleStep(
+	Conclusions,
+	Views,
+	IsAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	AbsoluteOffset
+)
 {
-	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => IsNaked ? 4.5M : 4.6M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Size, PopCount((uint)ExtraDigitsMask) * .1M) };
-
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(ExtraDifficultyCaseNames.Hidden, IsNaked ? 0 : .1M),
+			new(ExtraDifficultyCaseNames.Size, PopCount((uint)ExtraDigitsMask) * .1M)
+		};
+
 
 	[ResourceTextFormatter]
 	internal string DigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);

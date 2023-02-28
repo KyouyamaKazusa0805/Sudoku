@@ -19,7 +19,7 @@ internal sealed record GroupedWWingStep(
 ) : IrregularWingStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 4.5M;
+	public override decimal BaseDifficulty => 4.5M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.GroupedWWing;

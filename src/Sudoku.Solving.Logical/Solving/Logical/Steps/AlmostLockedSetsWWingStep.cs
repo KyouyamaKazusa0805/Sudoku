@@ -21,7 +21,7 @@ internal sealed record AlmostLockedSetsWWingStep(
 ) : AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 6.2M;
+	public override decimal BaseDifficulty => 6.2M;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;
@@ -37,6 +37,7 @@ internal sealed record AlmostLockedSetsWWingStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
+
 
 	[ResourceTextFormatter]
 	internal string Als1Str() => Als1.ToString();

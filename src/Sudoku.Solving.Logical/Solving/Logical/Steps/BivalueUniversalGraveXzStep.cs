@@ -14,23 +14,18 @@ internal sealed record BivalueUniversalGraveXzStep(
 	short DigitsMask,
 	scoped in CellMap Cells,
 	int ExtraCell
-) : BivalueUniversalGraveStep(Conclusions, Views), IStepWithPhasedDifficulty
+) : BivalueUniversalGraveStep(Conclusions, Views)
 {
-	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.ExtraDigit, .2M) };
-
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveXzRule;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .2M) };
+
 
 	[ResourceTextFormatter]
 	internal string DigitStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

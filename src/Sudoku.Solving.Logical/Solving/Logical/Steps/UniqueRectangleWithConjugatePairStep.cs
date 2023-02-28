@@ -23,31 +23,22 @@ internal record UniqueRectangleWithConjugatePairStep(
 	bool IsAvoidable,
 	Conjugate[] ConjugatePairs,
 	int AbsoluteOffset
-) :
-	UniqueRectangleStep(
-		Conclusions,
-		Views,
-		TechniqueCode2,
-		Digit1,
-		Digit2,
-		Cells,
-		IsAvoidable,
-		AbsoluteOffset
-	),
-	IStepWithPhasedDifficulty
+) : UniqueRectangleStep(
+	Conclusions,
+	Views,
+	TechniqueCode2,
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	AbsoluteOffset
+)
 {
 	/// <inheritdoc/>
-	public sealed override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 4.4M;
+	public sealed override decimal BaseDifficulty => 4.4M;
 
 	/// <inheritdoc/>
 	public override string? Format => base.Format;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.ConjugatePair, ConjugatePairs.Length * .2M) };
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -56,7 +47,12 @@ internal record UniqueRectangleWithConjugatePairStep(
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.Often;
+	public sealed override Rarity Rarity => Rarity.Often;
+
+	/// <inheritdoc/>
+	public sealed override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ConjugatePair, ConjugatePairs.Length * .2M) };
+
 
 	/// <summary>
 	/// Indicates the conjugate pair string.

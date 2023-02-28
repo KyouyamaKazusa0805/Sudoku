@@ -11,6 +11,9 @@
 internal abstract record SubsetStep(ConclusionList Conclusions, ViewList Views, int House, scoped in CellMap Cells, short DigitsMask) :
 	Step(Conclusions, Views)
 {
+	/// <inheritdoc/>
+	public override decimal BaseDifficulty => 3.0M;
+
 	/// <summary>
 	/// Indicates the number of cells used.
 	/// Due to the technique logic, you can also treat the result value of this property as the number of digits used.

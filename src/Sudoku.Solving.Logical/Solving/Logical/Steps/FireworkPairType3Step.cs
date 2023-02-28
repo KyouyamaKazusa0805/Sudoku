@@ -17,13 +17,14 @@ internal sealed record FireworkPairType3Step(
 ) : FireworkStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .2M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.FireworkPairType3;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
+
 
 	[ResourceTextFormatter]
 	internal string CellsStr() => Cells.ToString();

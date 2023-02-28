@@ -29,6 +29,7 @@ internal sealed record BinaryForcingChainsStep(
 	public override string? Format
 		=> IsAbsurd ? R["TechniqueFormat_ContradictionForcingChainsStep"] : R["TechniqueFormat_DoubleForcingChainsStep"];
 
+
 	[ResourceTextFormatter]
 	internal string StartCandStr() => RxCyNotation.ToCandidateString(SourcePotential.Candidate);
 

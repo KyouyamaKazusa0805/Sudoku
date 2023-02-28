@@ -8,7 +8,7 @@
 internal abstract record BivalueUniversalGraveStep(ConclusionList Conclusions, ViewList Views) : DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.6M;
+	public override decimal BaseDifficulty => 5.6M;
 
 	/// <inheritdoc/>
 	public sealed override string? Format => base.Format;

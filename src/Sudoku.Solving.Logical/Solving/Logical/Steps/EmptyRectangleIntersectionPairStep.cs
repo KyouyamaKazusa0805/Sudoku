@@ -21,7 +21,7 @@ internal sealed record EmptyRectangleIntersectionPairStep(
 ) : AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 6.0M;
+	public override decimal BaseDifficulty => 6.0M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
@@ -34,6 +34,7 @@ internal sealed record EmptyRectangleIntersectionPairStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
 
 	[ResourceTextFormatter]
 	internal string Digit1Str() => (Digit1 + 1).ToString();

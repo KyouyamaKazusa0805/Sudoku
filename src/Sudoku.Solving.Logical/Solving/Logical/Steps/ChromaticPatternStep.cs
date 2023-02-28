@@ -12,7 +12,7 @@ internal abstract record ChromaticPatternStep(ConclusionList Conclusions, ViewLi
 	NegativeRankStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 6.5M;
+	public override decimal BaseDifficulty => 6.5M;
 
 	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.TrivalueOddagon;

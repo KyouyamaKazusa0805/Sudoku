@@ -34,7 +34,7 @@ internal sealed record AvoidableRectangleWithHiddenSingleStep(
 )
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 4.7M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -44,6 +44,7 @@ internal sealed record AvoidableRectangleWithHiddenSingleStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
+
 
 	[ResourceTextFormatter]
 	internal string BaseCellStr() => RxCyNotation.ToCellString(BaseCell);

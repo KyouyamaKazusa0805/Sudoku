@@ -13,7 +13,7 @@ internal sealed record HiddenSingleStep(ConclusionList Conclusions, ViewList Vie
 	SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => this switch { { EnableAndIsLastDigit: true } => 1.1M, { House: < 9 } => 1.2M, _ => 1.5M };
+	public override decimal BaseDifficulty => this switch { { EnableAndIsLastDigit: true } => 1.1M, { House: < 9 } => 1.2M, _ => 1.5M };
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => EnableAndIsLastDigit || House < 9 ? Rarity.Always : Rarity.Often;

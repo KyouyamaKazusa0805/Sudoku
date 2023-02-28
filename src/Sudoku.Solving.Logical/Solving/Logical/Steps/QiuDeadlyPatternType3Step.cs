@@ -17,20 +17,15 @@ internal sealed record QiuDeadlyPatternType3Step(
 	short ExtraDigitsMask,
 	scoped in CellMap ExtraCells,
 	bool IsNaked
-) : QiuDeadlyPatternStep(Conclusions, Views, Pattern), IStepWithPhasedDifficulty
+) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Size, PopCount((uint)ExtraDigitsMask) * .1M) };
-
-	/// <inheritdoc/>
 	public override int Type => 3;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, PopCount((uint)ExtraDigitsMask) * .1M) };
+
 
 	[ResourceTextFormatter]
 	internal string DigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);

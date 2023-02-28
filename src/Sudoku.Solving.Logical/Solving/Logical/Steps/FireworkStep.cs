@@ -8,7 +8,7 @@
 internal abstract record FireworkStep(ConclusionList Conclusions, ViewList Views) : IntersectionStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.9M;
+	public override decimal BaseDifficulty => 5.9M;
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

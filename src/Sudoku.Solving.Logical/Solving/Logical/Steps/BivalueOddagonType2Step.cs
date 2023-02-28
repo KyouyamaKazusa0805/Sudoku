@@ -17,18 +17,8 @@ internal sealed record BivalueOddagonType2Step(
 	int Digit1,
 	int Digit2,
 	int ExtraDigit
-) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2), IStepWithPhasedDifficulty
+) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2)
 {
-	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.ExtraDigit, .1M) };
-
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueOddagonType2;
 
@@ -37,6 +27,11 @@ internal sealed record BivalueOddagonType2Step(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .1M) };
+
 
 	[ResourceTextFormatter]
 	internal string ExtraDigitStr() => (ExtraDigit + 1).ToString();

@@ -27,6 +27,7 @@ internal sealed record UniquenessClueCoverType2Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 
+
 	[ResourceTextFormatter]
 	internal string ChuteIndexStr() => (ChuteIndex + 1).ToString();
 

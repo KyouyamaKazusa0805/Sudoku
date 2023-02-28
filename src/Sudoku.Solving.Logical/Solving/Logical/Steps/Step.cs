@@ -14,7 +14,7 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 	public virtual string? Format => R[$"TechniqueFormat_{EqualityContract.Name}"];
 
 	/// <inheritdoc/>
-	public abstract decimal Difficulty { get; }
+	public abstract decimal BaseDifficulty { get; }
 
 	/// <inheritdoc/>
 	public abstract Technique TechniqueCode { get; }
@@ -34,6 +34,9 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 
 	/// <inheritdoc/>
 	public abstract Rarity Rarity { get; }
+
+	/// <inheritdoc/>
+	public virtual ExtraDifficultyCase[]? ExtraDifficultyCases => null;
 
 
 	/// <inheritdoc/>

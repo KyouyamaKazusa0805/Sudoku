@@ -30,9 +30,6 @@ internal sealed record UniqueRectangleType1Step(
 )
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 4.5M;
-
-	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>

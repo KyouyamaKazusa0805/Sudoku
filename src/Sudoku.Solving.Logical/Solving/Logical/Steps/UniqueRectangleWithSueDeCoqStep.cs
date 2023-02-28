@@ -48,34 +48,19 @@ internal sealed record UniqueRectangleWithSueDeCoqStep(
 	scoped in CellMap LineCells,
 	scoped in CellMap IntersectionCells,
 	int AbsoluteOffset
-) :
-	UniqueRectangleStep(
-		Conclusions,
-		Views,
-		IsAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
-		Digit1,
-		Digit2,
-		Cells,
-		IsAvoidable,
-		AbsoluteOffset
-	),
-	IStepWithPhasedDifficulty
+) : UniqueRectangleStep(
+	Conclusions,
+	Views,
+	IsAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	AbsoluteOffset
+)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => 5.0M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			(PhasedDifficultyRatingKinds.Size, (LineCells | BlockCells).Count * .1M),
-			(PhasedDifficultyRatingKinds.Isolated, !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
-			(PhasedDifficultyRatingKinds.Cannibalism, IsCannibalistic ? .1M : 0),
-			(PhasedDifficultyRatingKinds.Avoidable, IsAvoidable ? .1M : 0)
-		};
+	public override decimal BaseDifficulty => base.BaseDifficulty + .5M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
@@ -85,6 +70,17 @@ internal sealed record UniqueRectangleWithSueDeCoqStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(ExtraDifficultyCaseNames.Size, (LineCells | BlockCells).Count * .1M),
+			new(ExtraDifficultyCaseNames.Isolated, !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0)
+		};
+
 
 	[ResourceTextFormatter]
 	internal string MergedCellsStr() => (LineCells | BlockCells).ToString();

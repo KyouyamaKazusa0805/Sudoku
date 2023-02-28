@@ -14,24 +14,18 @@ internal sealed record ExtendedRectangleType4Step(
 	scoped in CellMap Cells,
 	short DigitsMask,
 	scoped in Conjugate ConjugatePair
-) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask), IStepWithPhasedDifficulty
+) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public override (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
-		{
-			base.ExtraDifficultyValues[0],
-			(PhasedDifficultyRatingKinds.ConjugatePair, .1M)
-		};
-
-	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.ConjugatePair, .1M) };
+
 
 	[ResourceTextFormatter]
 	internal string ConjStr() => ConjugatePair.ToString();

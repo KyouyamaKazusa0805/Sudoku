@@ -7,15 +7,11 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the digits used.</param>
-internal abstract record UniqueMatrixStep(
-	ConclusionList Conclusions,
-	ViewList Views,
-	scoped in CellMap Cells,
-	short DigitsMask
-) : DeadlyPatternStep(Conclusions, Views)
+internal abstract record UniqueMatrixStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells, short DigitsMask) :
+	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.3M;
+	public sealed override decimal BaseDifficulty => 5.3M;
 
 	/// <summary>
 	/// Indicates the type of the current technique step.
@@ -39,6 +35,7 @@ internal abstract record UniqueMatrixStep(
 
 	/// <inheritdoc/>
 	public sealed override Rarity Rarity => Rarity.HardlyEver;
+
 
 	/// <summary>
 	/// Indicates the digits string.

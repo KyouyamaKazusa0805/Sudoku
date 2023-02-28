@@ -19,18 +19,8 @@ internal sealed record BivalueOddagonType3Step(
 	int Digit2,
 	scoped in CellMap ExtraCells,
 	short ExtraDigitsMask
-) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2), IStepWithPhasedDifficulty
+) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2)
 {
-	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty => base.Difficulty;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Size, (ExtraCells.Count >> 1) * .1M) };
-
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueOddagonType3;
 
@@ -39,6 +29,11 @@ internal sealed record BivalueOddagonType3Step(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, (ExtraCells.Count >> 1) * .1M) };
+
 
 	[ResourceTextFormatter]
 	internal string LoopStr() => Loop.ToString();

@@ -10,7 +10,7 @@ internal abstract record QiuDeadlyPatternStep(ConclusionList Conclusions, ViewLi
 	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.8M;
+	public sealed override decimal BaseDifficulty => 5.8M;
 
 	/// <summary>
 	/// Indicates the type of the current technique.

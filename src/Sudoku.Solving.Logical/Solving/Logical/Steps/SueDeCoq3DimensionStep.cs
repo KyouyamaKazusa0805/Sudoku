@@ -23,7 +23,7 @@ internal sealed record SueDeCoq3DimensionStep(
 ) : NonnegativeRankStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.5M;
+	public override decimal BaseDifficulty => 5.5M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.SueDeCoq3Dimension;

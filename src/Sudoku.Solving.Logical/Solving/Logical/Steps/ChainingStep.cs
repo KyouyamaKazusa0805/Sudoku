@@ -32,8 +32,8 @@ internal abstract record ChainingStep(
 ) : Step(Conclusions, ViewList.Empty)
 {
 	/// <inheritdoc/>
-	public sealed override decimal Difficulty
-		=> LengthDifficulty + this switch
+	public sealed override decimal BaseDifficulty
+		=> this switch
 		{
 			{ DynamicNestingLevel: var l and >= 2 } => 9.5M + .5M * (l - 2),
 			{ DynamicNestingLevel: var l and > 0 } => 8.5M + .5M * l,
@@ -142,6 +142,10 @@ internal abstract record ChainingStep(
 	/// <inheritdoc/>
 	public sealed override Rarity Rarity
 		=> this switch { { DynamicNestingLevel: >= 2 } => Rarity.OnlyForSpecialPuzzles, _ => Rarity.HardlyEver };
+
+	/// <inheritdoc/>
+	public sealed override ExtraDifficultyCase[]? ExtraDifficultyCases
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Length, LengthDifficulty) };
 
 	/// <summary>
 	/// Indicates an <see cref="int"/> value indicating the ordering priority of the chain. Greater is heavier.
@@ -682,7 +686,7 @@ internal abstract record ChainingStep(
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int Compare(ChainingStep left, ChainingStep right)
-		=> Sign(left.Difficulty - right.Difficulty) is var d and not 0
+		=> Sign(left.BaseDifficulty - right.BaseDifficulty) is var d and not 0
 			? d
 			: Sign(left.Complexity - right.Complexity) is var c and not 0
 				? c

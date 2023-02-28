@@ -8,7 +8,7 @@
 internal sealed record BruteForceStep(ConclusionList Conclusions, ViewList Views) : LastResortStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 20.0M;
+	public override decimal BaseDifficulty => 20.0M;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
@@ -21,6 +21,7 @@ internal sealed record BruteForceStep(ConclusionList Conclusions, ViewList Views
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Always;
+
 
 	[ResourceTextFormatter]
 	internal string AssignmentStr() => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);

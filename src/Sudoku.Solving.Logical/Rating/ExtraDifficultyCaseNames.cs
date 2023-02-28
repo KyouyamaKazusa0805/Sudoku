@@ -1,10 +1,9 @@
-﻿namespace Sudoku.Solving.Logical.Meta;
+﻿namespace Sudoku.Rating;
 
 /// <summary>
-/// Provides with the kinds of the phased difficulty rating that is used
-/// for the calculations the total rating of a step.
+/// Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
 /// </summary>
-public static class PhasedDifficultyRatingKinds
+public static class ExtraDifficultyCaseNames
 {
 	/// <summary>
 	/// Indicates the kind is the size. This field is used for sized techniques,

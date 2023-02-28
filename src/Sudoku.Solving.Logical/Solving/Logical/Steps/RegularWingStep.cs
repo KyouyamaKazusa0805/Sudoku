@@ -17,12 +17,15 @@ internal sealed record RegularWingStep(
 	int PivotCandidatesCount,
 	short DigitsMask,
 	scoped in CellMap Petals
-) : WingStep(Conclusions, Views), IStepWithPhasedDifficulty
+) : WingStep(Conclusions, Views)
 {
 	/// <summary>
 	/// Indicates whether the structure is incomplete.
 	/// </summary>
 	public bool IsIncomplete => Size == PivotCandidatesCount + 1;
+
+	/// <inheritdoc/>
+	public override decimal BaseDifficulty => 4.2M;
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -65,26 +68,6 @@ internal sealed record RegularWingStep(
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
-
-	/// <inheritdoc/>
-	public decimal BaseDifficulty
-		=> Size switch
-		{
-			3 => 4.2M,
-			4 => 4.4M,
-			5 => 4.6M,
-			6 => 4.9M,
-			7 => 5.2M,
-			8 => 5.5M,
-			9 => 5.9M
-		};
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[] { (PhasedDifficultyRatingKinds.Incompleteness, IsIncomplete ? Size == 3 ? .2M : .1M : 0) };
-
-	/// <inheritdoc/>
 	public override Technique TechniqueCode
 		=> InternalName switch
 		{
@@ -124,6 +107,17 @@ internal sealed record RegularWingStep(
 			3 or 4 => Rarity.Seldom,
 			5 => Rarity.HardlyEver,
 			> 5 => Rarity.OnlyForSpecialPuzzles,
+		};
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
+		{
+			new(
+				ExtraDifficultyCaseNames.WingSize,
+				Size switch { 3 => 0, 4 => .2M, 5 => .4M, 6 => .7M, 7 => 1.0M, 8 => 1.3M, 9 => 1.6M, _ => 2.0M }
+			),
+			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? Size == 3 ? .2M : .1M : 0)
 		};
 
 	/// <summary>

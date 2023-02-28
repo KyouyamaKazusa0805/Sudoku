@@ -17,7 +17,7 @@ internal sealed record RwDeadlyPatternStep(
 ) : DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 7.5M;
+	public override decimal BaseDifficulty => 7.5M;
 
 	/// <inheritdoc/>
 	public sealed override string? Format => base.Format;

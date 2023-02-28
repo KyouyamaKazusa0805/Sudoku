@@ -21,38 +21,32 @@ internal sealed record JuniorExocetStep(
 	short LockedMemberR,
 #endif
 	ImmutableArray<ExocetElimination> Eliminations
-) : ExocetStep(Views, Exocet, DigitsMask, Eliminations), IStepWithPhasedDifficulty
+) : ExocetStep(Views, Exocet, DigitsMask, Eliminations)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+	public override Technique TechniqueCode => Technique.JuniorExocet;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty => 9.4M;
-
-	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues
-		=> new[]
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new ExtraDifficultyCase[]
 		{
-			(
-				PhasedDifficultyRatingKinds.Mirror,
+			new(
+				ExtraDifficultyCaseNames.Mirror,
 				Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.Mirror) ? .1M : 0
 			),
-			(
-				PhasedDifficultyRatingKinds.BiBiPattern,
+			new(
+				ExtraDifficultyCaseNames.BiBiPattern,
 				Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.BiBiPattern) ? .3M : 0
 			),
-			(
-				PhasedDifficultyRatingKinds.TargetPair,
+			new(
+				ExtraDifficultyCaseNames.TargetPair,
 				Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.TargetPair) ? .1M : 0
 			),
-			(
-				PhasedDifficultyRatingKinds.GeneralizedSwordfish,
+			new(
+				ExtraDifficultyCaseNames.GeneralizedSwordfish,
 				Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.GeneralizedSwordfish) ? .2M : 0
 			)
 		};
-
-	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.JuniorExocet;
 
 
 	/// <summary>
