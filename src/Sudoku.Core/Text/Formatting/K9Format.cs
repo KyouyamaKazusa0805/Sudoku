@@ -6,7 +6,7 @@
 /// <remarks>
 /// <inheritdoc cref="K9Notation" path="/remarks"/>
 /// </remarks>
-public sealed record K9Format : ICellMapFormatter
+public sealed record K9Format : ICellMapFormatter, ICandidateMapFormatter
 {
 	/// <inheritdoc cref="ICellMapFormatter.Instance"/>
 	public static readonly K9Format Default = new();
@@ -15,7 +15,32 @@ public sealed record K9Format : ICellMapFormatter
 	/// <inheritdoc/>
 	static ICellMapFormatter ICellMapFormatter.Instance => Default;
 
+	/// <inheritdoc/>
+	static ICandidateMapFormatter ICandidateMapFormatter.Instance => Default;
+
 
 	/// <inheritdoc/>
 	public string ToString(scoped in CellMap cellMap) => K9Notation.ToCellsString(cellMap);
+
+	/// <inheritdoc/>
+	public string ToString(scoped in CandidateMap candidateMap) => throw new NotImplementedException();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[return: NotNullIfNotNull(nameof(formatType))]
+	object? IFormatProvider.GetFormat(Type? formatType)
+	{
+		if ((formatType?.IsAssignableTo(typeof(ICellMapFormatter)) ?? false)
+			|| (formatType?.IsAssignableTo(typeof(ICandidateMapFormatter)) ?? false))
+		{
+			return Default;
+		}
+
+		if (formatType == GetType())
+		{
+			return this;
+		}
+
+		return null;
+	}
 }

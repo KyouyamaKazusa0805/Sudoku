@@ -4,6 +4,7 @@
 /// Represents with a formatter type that formats and parses a <see cref="CellMap"/> instance,
 /// converting it into an equivalent <see cref="string"/> value.
 /// </summary>
+/// <seealso cref="CellMap"/>
 public interface ICellMapFormatter : IFormatProvider, ICustomFormatter
 {
 	/// <inheritdoc cref="IGridFormatter.Instance"/>

@@ -688,7 +688,7 @@ public unsafe partial struct CellMap :
 			(not null, _) => ToString(format),
 			(_, ICellMapFormatter formatter) => formatter.ToString(this),
 			(_, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
-			(_, CultureInfo { Name: ['Z' or 'z', 'H' or 'h', ..] }) => K9Notation.ToCellsString(this),
+			(_, CultureInfo { Name: ['Z' or 'z', 'H' or 'h', ..] }) => ToString(K9Format.Default),
 			_ => ToString(RxCyFormat.Default)
 		};
 

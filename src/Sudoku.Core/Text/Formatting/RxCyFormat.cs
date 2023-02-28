@@ -6,7 +6,7 @@
 /// <remarks>
 /// <inheritdoc cref="RxCyNotation" path="/remarks"/>
 /// </remarks>
-public sealed record RxCyFormat : ICellMapFormatter
+public sealed record RxCyFormat : ICellMapFormatter, ICandidateMapFormatter
 {
 	/// <inheritdoc cref="ICellMapFormatter.Instance"/>
 	public static readonly RxCyFormat Default = new();
@@ -15,7 +15,32 @@ public sealed record RxCyFormat : ICellMapFormatter
 	/// <inheritdoc/>
 	static ICellMapFormatter ICellMapFormatter.Instance => Default;
 
+	/// <inheritdoc/>
+	static ICandidateMapFormatter ICandidateMapFormatter.Instance => Default;
+
 
 	/// <inheritdoc/>
 	public string ToString(scoped in CellMap cellMap) => RxCyNotation.ToCellsString(cellMap);
+
+	/// <inheritdoc/>
+	public string ToString(scoped in CandidateMap candidateMap) => RxCyNotation.ToCandidatesString(candidateMap);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[return: NotNullIfNotNull(nameof(formatType))]
+	object? IFormatProvider.GetFormat(Type? formatType)
+	{
+		if ((formatType?.IsAssignableTo(typeof(ICellMapFormatter)) ?? false)
+			|| (formatType?.IsAssignableTo(typeof(ICandidateMapFormatter)) ?? false))
+		{
+			return Default;
+		}
+
+		if (formatType == GetType())
+		{
+			return this;
+		}
+
+		return null;
+	}
 }
