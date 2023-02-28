@@ -14912,6 +14912,37 @@ if (student is (name: var name, age: >= 18))
             <param name="length">The length.</param>
             <returns>The difficulty.</returns>
         </member>
+        <member name="T:Sudoku.Rating.ExtraDifficultyCase">
+            <summary>
+            Represents an extra rating case to be recorded into a technique step.
+            </summary>
+            <param name="Name">
+            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds"/>,
+            you can use constants in that type to assign to this property.
+            </param>
+            <param name="Value">Indicates the value of the target rating.</param>
+            <seealso cref="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds"/>
+        </member>
+        <member name="M:Sudoku.Rating.ExtraDifficultyCase.#ctor(System.String,System.Decimal)">
+            <summary>
+            Represents an extra rating case to be recorded into a technique step.
+            </summary>
+            <param name="Name">
+            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds"/>,
+            you can use constants in that type to assign to this property.
+            </param>
+            <param name="Value">Indicates the value of the target rating.</param>
+            <seealso cref="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds"/>
+        </member>
+        <member name="P:Sudoku.Rating.ExtraDifficultyCase.Name">
+            <summary>
+            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Solving.Logical.Meta.PhasedDifficultyRatingKinds"/>,
+            you can use constants in that type to assign to this property.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rating.ExtraDifficultyCase.Value">
+            <summary>Indicates the value of the target rating.</summary>
+        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies">
             <summary>
             Represents a type holding some common read-only fields used by runtime or compiling-time.
