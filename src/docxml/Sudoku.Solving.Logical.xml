@@ -9165,6 +9165,25 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.HiddenUniqueRectangleStep.Format">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.IInvalidStep">
+            <summary>
+            Provides with an invalid step instance that can be used for some cases that the technique should be skipped
+            because it is temporarily not supported by the technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.Steps.IInvalidStep.Instance">
+            <summary>
+            Indicates the only instance of type <see cref="T:Sudoku.Solving.Logical.Steps.IInvalidStep"/> that can be used.
+            </summary>
+            <remarks>
+            This instance is special. The instance will be used only if the step searcher found the puzzle
+            being invalid to be successfully and correctly handled.
+            All members existed in type <see cref="T:Sudoku.Solving.Logical.IStep"/> are implemented with throwing behavior.
+            In other words, you cannot use any possible members in this instance; otherwise you will get
+            a <see cref="T:System.NotSupportedException"/> instance.
+            </remarks>
+            <seealso cref="T:System.NotSupportedException"/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.IntersectionStep">
             <summary>
             Provides with a step that is an <b>Intersection</b> technique.
@@ -10410,8 +10429,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)">
             <summary>
-            To compare 2 instances of type <typeparamref name="T"/>,
-            to determine whether 2 instances holds the same value.
+            To compare 2 instances of type <typeparamref name="T"/>, to determine whether 2 instances holds the same value.
             </summary>
             <param name="left">Indicates the first instance to compare.</param>
             <param name="right">Indicates the second instance to compare.</param>
@@ -10430,64 +10448,44 @@ if (student is (name: var name, age: >= 18))
             </returns>
             <remarks>
             The method can be the same implemented as the method <see cref="M:System.Object.Equals(System.Object)"/>,
-            but <see langword="record"/>s are automatically implemented the method, which is useless
-            and unmeaningful.
+            but <see langword="record"/>s are automatically implemented useless and unmeaningful methods.
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Distinct``1(System.Collections.Generic.IList{``0})">
             <summary>
-            Distinct the list, that is, remove all duplicate elements in this list, that uses the method
-            <see cref="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/> defined in this interface.
+            Distinct the list, that is, remove all duplicate elements in this list,
+            which uses the method <see cref="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/> defined in this interface.
             </summary>
             <typeparam name="TDistinctable">The type of the steps.</typeparam>
             <param name="list">The list of steps to be processed.</param>
             <returns>The list of steps.</returns>
             <remarks>
-            This method does not change the ordering of the original list. In other words, if the original list
-            is in order, the final list after invoking this method will be also in order.
+            This method does not change the ordering of the original list.
+            In other words, if the original list is in order, the final list after invoking this method will be also in order.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Logical.Steps.Specialized.IDistinctableStep`1.Equals(`0,`0)"/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.DefaultComparer`1">
+        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1">
             <summary>
             The internal comparer instance.
             </summary>
             <typeparam name="T">The type of the step.</typeparam>
         </member>
-        <member name="F:Sudoku.Solving.Logical.Steps.Specialized.DefaultComparer`1.Instance">
+        <member name="F:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1.Instance">
             <summary>
             Indicates the singleton instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.DefaultComparer`1.#ctor">
+        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Logical.Steps.Specialized.DefaultComparer`1"/> instance.
+            Initializes a <see cref="T:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.DefaultComparer`1.Equals(`0,`0)">
+        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1.Equals(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.DefaultComparer`1.GetHashCode(`0)">
+        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.Comparer`1.GetHashCode(`0)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.IInvalidStep">
-            <summary>
-            Provides with an invalid step instance that can be used for some cases that the technique should be skipped
-            because it is temporarily not supported by the technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Logical.Steps.Specialized.IInvalidStep.Instance">
-            <summary>
-            Indicates the only instance of type <see cref="T:Sudoku.Solving.Logical.Steps.Specialized.IInvalidStep"/> that can be used.
-            </summary>
-            <remarks>
-            This instance is special. The instance will be used only if the step searcher found the puzzle
-            being invalid to be successfully and correctly handled.
-            All members existed in type <see cref="T:Sudoku.Solving.Logical.IStep"/> are implemented with throwing behavior.
-            In other words, you cannot use any possible members in this instance; otherwise you will get
-            a <see cref="T:System.NotSupportedException"/> instance.
-            </remarks>
-            <seealso cref="T:System.NotSupportedException"/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.Specialized.ILoopLikeStep">
             <summary>
@@ -10551,63 +10549,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the total difficulty value of the step.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep">
-            <summary>
-            The background type that has implemented the type <see cref="T:Sudoku.Solving.Logical.Steps.Specialized.IInvalidStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.Steps.Specialized.IInvalidStep"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Difficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueTags">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Stableness">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Presentation#IVisual#Conclusions">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Presentation#IVisual#Views">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ApplyTo(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#Formatize(System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#HasTag(Sudoku.Solving.Logical.Techniques.TechniqueTags)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ToFullString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ToSimpleString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Specialized.InvalidStep.Sudoku#Solving#Logical#IStep#ElimStr">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.Step">
             <summary>
@@ -12766,6 +12707,63 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.WWingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.InvalidStep">
+            <summary>
+            The background type that has implemented the type <see cref="T:Sudoku.Solving.Logical.Steps.IInvalidStep"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Logical.Steps.IInvalidStep"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Presentation#IVisual#Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Presentation#IVisual#Views">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ApplyTo(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Formatize(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#HasTag(Sudoku.Solving.Logical.Techniques.TechniqueTags)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ToFullString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ToSimpleString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ElimStr">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.IStep">

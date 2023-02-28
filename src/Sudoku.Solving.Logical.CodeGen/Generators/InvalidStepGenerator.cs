@@ -16,7 +16,7 @@ public sealed class InvalidStepGenerator : IIncrementalGenerator
 
 				#nullable enable
 
-				namespace Sudoku.Solving.Logical.Steps.Specialized;
+				namespace Sudoku.Solving.Logical.Steps;
 
 				partial interface IInvalidStep
 				{
