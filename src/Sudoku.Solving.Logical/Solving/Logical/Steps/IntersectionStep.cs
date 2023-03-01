@@ -14,8 +14,5 @@ internal abstract record IntersectionStep(ConclusionList Conclusions, ViewList V
 	public sealed override string? Format => base.Format;
 
 	/// <inheritdoc/>
-	public sealed override Stableness Stableness => base.Stableness;
-
-	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.Intersections;
 }

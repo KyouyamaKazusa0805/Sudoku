@@ -14,9 +14,6 @@ internal abstract record SymmetryStep(ConclusionList Conclusions, ViewList Views
 	public sealed override TechniqueTags TechniqueTags => TechniqueTags.Symmetry;
 
 	/// <inheritdoc/>
-	public sealed override Stableness Stableness => Stableness.Unstable;
-
-	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>

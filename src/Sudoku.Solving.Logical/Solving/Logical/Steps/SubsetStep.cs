@@ -36,8 +36,5 @@ internal abstract record SubsetStep(ConclusionList Conclusions, ViewList Views, 
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Subset;
 
 	/// <inheritdoc/>
-	public sealed override Stableness Stableness => base.Stableness;
-
-	/// <inheritdoc/>
 	public sealed override Rarity Rarity => (Rarity)(Size - 1 << 1);
 }

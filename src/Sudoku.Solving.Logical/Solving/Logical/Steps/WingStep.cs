@@ -18,7 +18,4 @@ internal abstract record WingStep(ConclusionList Conclusions, ViewList Views) : 
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.Wings;
-
-	/// <inheritdoc/>
-	public sealed override Stableness Stableness => base.Stableness;
 }

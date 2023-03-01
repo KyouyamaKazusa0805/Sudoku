@@ -15,7 +15,4 @@ internal abstract record AlmostLockedSetsStep(ConclusionList Conclusions, ViewLi
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.Als;
-
-	/// <inheritdoc/>
-	public sealed override Stableness Stableness => base.Stableness;
 }

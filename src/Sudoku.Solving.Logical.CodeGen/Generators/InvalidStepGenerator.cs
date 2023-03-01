@@ -53,9 +53,6 @@ public sealed class InvalidStepGenerator : IIncrementalGenerator
 					global::Sudoku.Runtime.AnalysisServices.DifficultyLevel global::Sudoku.Solving.Logical.IStep.DifficultyLevel => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
-					global::Sudoku.Runtime.AnalysisServices.Stableness global::Sudoku.Solving.Logical.IStep.Stableness => throw new global::System.NotSupportedException();
-
-					/// <inheritdoc/>
 					global::Sudoku.Runtime.AnalysisServices.Rarity global::Sudoku.Solving.Logical.IStep.Rarity => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
@@ -76,9 +73,6 @@ public sealed class InvalidStepGenerator : IIncrementalGenerator
 
 					/// <inheritdoc/>
 					bool global::Sudoku.Solving.Logical.IStep.HasTag(global::Sudoku.Solving.Logical.Techniques.TechniqueTags flags) => throw new global::System.NotSupportedException();
-
-					/// <inheritdoc/>
-					string global::Sudoku.Solving.Logical.IStep.ToFullString() => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
 					string global::Sudoku.Solving.Logical.IStep.ToSimpleString() => throw new global::System.NotSupportedException();

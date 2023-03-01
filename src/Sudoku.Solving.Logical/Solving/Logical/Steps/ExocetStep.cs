@@ -29,9 +29,6 @@ internal abstract record ExocetStep(ViewList Views, scoped in Exocet Exocet, sho
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 	/// <inheritdoc/>
-	public sealed override Stableness Stableness => base.Stableness;
-
-	/// <inheritdoc/>
 	public sealed override Rarity Rarity => Rarity.HardlyEver;
 
 	/// <summary>
@@ -54,17 +51,6 @@ internal abstract record ExocetStep(ViewList Views, scoped in Exocet Exocet, sho
 		get => Exocet.TargetCellsMap;
 	}
 
-
-	/// <inheritdoc/>
-	public sealed override string ToFullString()
-	{
-		scoped var sb = new StringHandler(100);
-		sb.Append(base.ToFullString());
-		sb.AppendLine();
-		sb.AppendRangeWithLines(Eliminations);
-
-		return sb.ToStringAndClear();
-	}
 
 	/// <summary>
 	/// Indicates the digits string.

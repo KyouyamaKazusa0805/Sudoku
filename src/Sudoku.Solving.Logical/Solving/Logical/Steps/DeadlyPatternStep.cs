@@ -18,7 +18,4 @@ internal abstract record DeadlyPatternStep(ConclusionList Conclusions, ViewList 
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.DeadlyPattern;
-
-	/// <inheritdoc/>
-	public sealed override Stableness Stableness => base.Stableness;
 }

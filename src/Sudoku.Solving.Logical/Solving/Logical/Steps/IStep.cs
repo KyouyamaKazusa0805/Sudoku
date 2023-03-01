@@ -69,8 +69,8 @@ public interface IStep : IVisual
 	/// </para>
 	/// <para>
 	/// Because this property will get the value from the resource dictionary, the property supports
-	/// multiple language switching, which is better than the normal methods <c>ToString</c>
-	/// and <c>ToFullString</c>. Therefore, this property is the substitution of those two methods.
+	/// multiple language switching, which is better than the normal methods <c>ToString</c>.
+	/// Therefore, this property is the substitution of those two methods.
 	/// </para>
 	/// <para>
 	/// If you want to use the values in the resource documents,
@@ -82,7 +82,6 @@ public interface IStep : IVisual
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="ToFullString"/>
 	/// <seealso cref="ResourceTextFormatterAttribute"/>
 	/// <seealso cref="R"/>
 	string? Format { get; }
@@ -136,18 +135,6 @@ public interface IStep : IVisual
 	DifficultyLevel DifficultyLevel { get; }
 
 	/// <summary>
-	/// Indicates the stableness of this technique. The default value is <see cref="Stableness.Stable"/>.
-	/// </summary>
-	/// <remarks>
-	/// Although the type of this property is marked <see cref="FlagsAttribute"/>,
-	/// we still can't set multiple flag values into the result. The flags are filtered
-	/// during generating puzzles.
-	/// </remarks>
-	/// <seealso cref="Stableness.Stable"/>
-	/// <seealso cref="FlagsAttribute"/>
-	Stableness Stableness { get; }
-
-	/// <summary>
 	/// Indicates the rarity of this technique appears.
 	/// </summary>
 	/// <remarks>
@@ -185,13 +172,6 @@ public interface IStep : IVisual
 	/// </summary>
 	/// <returns>The string instance.</returns>
 	string ToSimpleString();
-
-	/// <summary>
-	/// Returns a string that contains the name, the conclusions and its all details.
-	/// This method is used for displaying details in text box control.
-	/// </summary>
-	/// <returns>The string instance.</returns>
-	string ToFullString();
 
 	/// <summary>
 	/// Formatizes the <see cref="Format"/> property string and output the result.

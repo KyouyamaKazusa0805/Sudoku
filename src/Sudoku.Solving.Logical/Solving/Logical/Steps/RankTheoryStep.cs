@@ -15,7 +15,4 @@ internal abstract record RankTheoryStep(ConclusionList Conclusions, ViewList Vie
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.RankTheory;
-
-	/// <inheritdoc/>
-	public sealed override Stableness Stableness => base.Stableness;
 }

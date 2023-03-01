@@ -9,7 +9,4 @@ internal abstract record LastResortStep(ConclusionList Conclusions, ViewList Vie
 {
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.LastResort;
-
-	/// <inheritdoc/>
-	public override Stableness Stableness => Stableness.LessUnstable;
 }

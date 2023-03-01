@@ -30,9 +30,6 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 	public abstract DifficultyLevel DifficultyLevel { get; }
 
 	/// <inheritdoc/>
-	public virtual Stableness Stableness => Stableness.Stable;
-
-	/// <inheritdoc/>
 	public abstract Rarity Rarity { get; }
 
 	/// <inheritdoc/>
@@ -70,10 +67,6 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString() => $"{Name} => {ElimStr()}";
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual string ToFullString() => ToString();
 
 	/// <inheritdoc/>
 	public string Formatize(bool handleEscaping = false)

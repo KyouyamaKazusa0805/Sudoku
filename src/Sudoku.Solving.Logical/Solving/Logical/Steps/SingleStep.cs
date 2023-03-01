@@ -13,9 +13,6 @@ internal abstract record SingleStep(ConclusionList Conclusions, ViewList Views, 
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>
-	public sealed override Stableness Stableness => base.Stableness;
-
-	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Easy;
 
 	/// <inheritdoc/>

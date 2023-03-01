@@ -19,7 +19,4 @@ internal abstract record SingleDigitPatternStep(ConclusionList Conclusions, View
 
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.SingleDigitPattern;
-
-	/// <inheritdoc/>
-	public sealed override Stableness Stableness => base.Stableness;
 }
