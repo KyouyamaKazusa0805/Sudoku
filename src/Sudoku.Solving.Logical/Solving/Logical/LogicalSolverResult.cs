@@ -350,7 +350,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 					}
 
 					var info = steps[i];
-					var infoStr = options.Flags(SolverResultFormattingOptions.ShowSimple) ? info.ToSimpleString() : info.Formatize();
+					var infoStr = options.Flags(SolverResultFormattingOptions.ShowSimple) ? info.ToSimpleString() : info.ToString();
 					var showDiff = options.Flags(SolverResultFormattingOptions.ShowDifficulty) && info.ShowDifficulty;
 
 					var d = $"({info.BaseDifficulty,5:0.0}";

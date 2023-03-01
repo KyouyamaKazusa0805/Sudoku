@@ -10293,6 +10293,12 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Step.ConclusionText">
+            <inheritdoc cref="P:Sudoku.Solving.Logical.IStep.ConclusionText"/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Step.Sudoku#Solving#Logical#IStep#ConclusionText">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.Step.ApplyTo(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
@@ -10301,25 +10307,16 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.Step.ToString">
             <summary>
-            Returns a string that only contains the name and the basic information.
+            <inheritdoc cref="M:Sudoku.Solving.Logical.IStep.ToString" path="/summary"/>
             </summary>
-            <returns>The string instance.</returns>
+            <returns>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.IStep.ToString" path="/returns"/>
+            </returns>
             <remarks>
-            <para>
-            This method uses <see langword="sealed"/> and <see langword="override"/> modifiers
-            to prevent the compiler overriding the method.
-            </para>
-            <para>The behavior is same as the method <see cref="M:Sudoku.Solving.Logical.Steps.Step.Formatize(System.Boolean)"/> invoking.</para>
+            <inheritdoc cref="M:Sudoku.Solving.Logical.IStep.ToString" path="//remarks/para[1]"/>
             </remarks>
-            <seealso cref="M:Sudoku.Solving.Logical.Steps.Step.Formatize(System.Boolean)"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.Step.ToSimpleString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Step.Formatize(System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Step.Sudoku#Solving#Logical#IStep#ElimStr">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.SubsetStep">
@@ -12345,6 +12342,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Name">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ConclusionText">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Format">
             <inheritdoc/>
         </member>
@@ -12381,16 +12381,13 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ApplyTo(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#Formatize(System.Boolean)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#HasTag(Sudoku.Solving.Logical.Techniques.TechniqueTags)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ToSimpleString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ElimStr">
+        <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.IStep">
@@ -12431,36 +12428,31 @@ if (student is (name: var name, age: >= 18))
             <para>
             A <b>format</b> is the better way to format the result text of this technique information instance.
             It'll be represented by the normal characters and the placeholders, e.g.
-            <code><![CDATA["{Name}: Cells {CellsStr} => {ElimsStr}"]]></code>
-            Here the string result <b>shouldn't</b> be with the leading <c>'$'</c> character, because this is a
-            format string instead of an interpolated one.
+            <code><![CDATA["Cells {0}, with digits {1}"]]></code>
             </para>
             <para>
-            Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> must have been implemented before
-            the property invoked. You should create 3 properties whose names are <c>Name</c>, <c>CellsStr</c>
-            and <c>ElimsStr</c>, and return the corresponding correct string result,
-            making them non-<see langword="public"/> (suggested keyword is <see langword="internal"/>)
-            and applying attribute <see cref="T:Sudoku.Text.ResourceTextFormatterAttribute"/> to it.
+            Here the placeholder <c>{0}</c>, and <c>{1}</c> must be provided by property <see cref="P:Sudoku.Solving.Logical.IStep.FormatInterpolatedParts"/>.
+            You should create 2 values that can be replaced with the placeholder <c>{0}</c> and <c>{1}</c>.
             </para>
             <para>
             The recommended implementation pattern is:
             <code><![CDATA[
-            [ResourceTextFormatter]
-            internal string CellsStr() => Cells.ToString();
+            private string CellsStr => Cells.ToString();
+            private string DigitsStr => Digits.ToString(separator: R.EmitPunctuation(Punctuation.Comma));
             ]]></code>
-            You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
-            into the <c>optional/vssnippets</c> folder. For more information, please open the markdown file
-            <see href="https://github.com/SunnieShine/Sudoku/blob/main/optional/README.md">README.md</see>
-            (in the <c>optional</c> folder) for more information.
             </para>
             <para>
-            Because this property will get the value from the resource dictionary, the property supports
-            multiple language switching, which is better than the normal methods <c>ToString</c>.
-            Therefore, this property is the substitution of those two methods.
+            And then fill the blank via property <see cref="P:Sudoku.Solving.Logical.IStep.FormatInterpolatedParts"/>:
+            <code><![CDATA[
+            public override IDictionary<string, string[]?>> FormatInterpolatedParts
+                => [["en-US": [CellsStr, DigitsStr]], ["zh-CN": [CellsStr, DigitsStr]]];
+            ]]></code>
+            via the feature provided by C# 12: Collection Literals. If you cannot decide the real name of the culture name,
+            just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
             </para>
             <para>
-            If you want to use the values in the resource documents,
-            just use the <see langword="static readonly"/> field <see cref="F:Sudoku.Resources.MergedResources.R"/> is okay:
+            If you want to use the values in the resource dictionary, you can just use a <see langword="static readonly"/> field
+            called <see cref="F:Sudoku.Resources.MergedResources.R"/>, for example:
             <code><![CDATA[
             using static Sudoku.Resources.MergedResources;
             
@@ -12468,7 +12460,7 @@ if (student is (name: var name, age: >= 18))
             ]]></code>
             </para>
             </remarks>
-            <seealso cref="T:Sudoku.Text.ResourceTextFormatterAttribute"/>
+            <seealso cref="P:Sudoku.Solving.Logical.IStep.FormatInterpolatedParts"/>
             <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.IStep.BaseDifficulty">
@@ -12542,9 +12534,14 @@ if (student is (name: var name, age: >= 18))
             The formats will be interpolated into the property <see cref="P:Sudoku.Solving.Logical.IStep.Format"/> result.
             </summary>
             <remarks>
+            <para>
             This property use a dictionary to merge globalizational format data.
             The key type is <see cref="T:System.String"/>, which can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
             for example, <c>"zh"</c>.
+            </para>
+            <para>
+            For more backing implementation details, please visit method <c>ToString</c> in derived class type called <c>Step</c>.
+            </para>
             </remarks>
             <seealso cref="P:Sudoku.Solving.Logical.IStep.Format"/>
             <seealso cref="T:System.Globalization.CultureInfo"/>
@@ -12570,32 +12567,28 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The string instance.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Logical.IStep.Formatize(System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.IStep.ToString">
             <summary>
-            Formatizes the <see cref="P:Sudoku.Solving.Logical.IStep.Format"/> property string and output the result.
+            Returns a string that only contains the name and the basic description.
             </summary>
-            <param name="handleEscaping">Indicates whether the method will handle the escaping characters.</param>
-            <returns>The result string.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the format is invalid. The possible cases are:
-            <list type="bullet">
-            <item>The format is <see langword="null"/>.</item>
-            <item>The interpolation part contains the empty value.</item>
-            <item>Missing the closed brace character <c>'}'</c>.</item>
-            <item>The number of interpolations failed to match.</item>
-            </list>
-            </exception>
-            <seealso cref="P:Sudoku.Solving.Logical.IStep.Format"/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.IStep.ElimStr">
-            <summary>
-            Indicates the string representation of the conclusions.
-            </summary>
+            <returns>The string instance.</returns>
             <remarks>
-            Most of techniques uses eliminations
-            so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
-            the property will still use this name rather than <c>AssignmentStr</c>.
+            <para><i>
+            This method uses modifiers <see langword="sealed"/> and <see langword="override"/> to prevent with compiler overriding this method.
+            </i></para>
+            <para><b><i>
+            In addition, <c>ToString</c> is a special method that has already been declared in type <see cref="T:System.Object"/>
+            as <see langword="virtual"/> one, so this interface member lacks of binding behavior on implementing,
+            which means even if you don't implement a parameterless method called <c>ToString</c> that returns <see cref="T:System.String"/>,
+            the code will also be compiled successfully if nullability analysis is disabled.
+            This member declared here is only used as a role of XML documentation comment provider.
+            </i></b></para>
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.IStep.ConclusionText">
+            <summary>
+            Indicates the string representation of the conclusions of the step.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Logical.Techniques.Technique">
             <summary>

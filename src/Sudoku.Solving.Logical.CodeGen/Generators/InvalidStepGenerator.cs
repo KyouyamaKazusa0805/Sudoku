@@ -35,6 +35,9 @@ public sealed class InvalidStepGenerator : IIncrementalGenerator
 					string global::Sudoku.Solving.Logical.IStep.Name => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
+					string global::Sudoku.Solving.Logical.IStep.ConclusionText => throw new global::System.NotSupportedException();
+
+					/// <inheritdoc/>
 					string? global::Sudoku.Solving.Logical.IStep.Format => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
@@ -72,16 +75,13 @@ public sealed class InvalidStepGenerator : IIncrementalGenerator
 					void global::Sudoku.Solving.Logical.IStep.ApplyTo(scoped ref global::Sudoku.Concepts.Grid grid) => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
-					string global::Sudoku.Solving.Logical.IStep.Formatize(bool handleEscaping) => throw new global::System.NotSupportedException();
-
-					/// <inheritdoc/>
 					bool global::Sudoku.Solving.Logical.IStep.HasTag(global::Sudoku.Solving.Logical.Techniques.TechniqueTags flags) => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
 					string global::Sudoku.Solving.Logical.IStep.ToSimpleString() => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
-					string global::Sudoku.Solving.Logical.IStep.ElimStr() => throw new global::System.NotSupportedException();
+					string global::Sudoku.Solving.Logical.IStep.ToString() => throw new global::System.NotSupportedException();
 				}
 				"""
 			)

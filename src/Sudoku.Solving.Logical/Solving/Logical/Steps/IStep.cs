@@ -45,36 +45,31 @@ public interface IStep : IVisual
 	/// <para>
 	/// A <b>format</b> is the better way to format the result text of this technique information instance.
 	/// It'll be represented by the normal characters and the placeholders, e.g.
-	/// <code><![CDATA["{Name}: Cells {CellsStr} => {ElimsStr}"]]></code>
-	/// Here the string result <b>shouldn't</b> be with the leading <c>'$'</c> character, because this is a
-	/// format string instead of an interpolated one.
+	/// <code><![CDATA["Cells {0}, with digits {1}"]]></code>
 	/// </para>
 	/// <para>
-	/// Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> must have been implemented before
-	/// the property invoked. You should create 3 properties whose names are <c>Name</c>, <c>CellsStr</c>
-	/// and <c>ElimsStr</c>, and return the corresponding correct string result,
-	/// making them non-<see langword="public"/> (suggested keyword is <see langword="internal"/>)
-	/// and applying attribute <see cref="ResourceTextFormatterAttribute"/> to it.
+	/// Here the placeholder <c>{0}</c>, and <c>{1}</c> must be provided by property <see cref="FormatInterpolatedParts"/>.
+	/// You should create 2 values that can be replaced with the placeholder <c>{0}</c> and <c>{1}</c>.
 	/// </para>
 	/// <para>
 	/// The recommended implementation pattern is:
 	/// <code><![CDATA[
-	/// [ResourceTextFormatter]
-	/// internal string CellsStr() => Cells.ToString();
+	/// private string CellsStr => Cells.ToString();
+	/// private string DigitsStr => Digits.ToString(separator: R.EmitPunctuation(Punctuation.Comma));
 	/// ]]></code>
-	/// You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
-	/// into the <c>optional/vssnippets</c> folder. For more information, please open the markdown file
-	/// <see href="https://github.com/SunnieShine/Sudoku/blob/main/optional/README.md">README.md</see>
-	/// (in the <c>optional</c> folder) for more information.
 	/// </para>
 	/// <para>
-	/// Because this property will get the value from the resource dictionary, the property supports
-	/// multiple language switching, which is better than the normal methods <c>ToString</c>.
-	/// Therefore, this property is the substitution of those two methods.
+	/// And then fill the blank via property <see cref="FormatInterpolatedParts"/>:
+	/// <code><![CDATA[
+	/// public override IDictionary<string, string[]?>> FormatInterpolatedParts
+	///     => [["en-US": [CellsStr, DigitsStr]], ["zh-CN": [CellsStr, DigitsStr]]];
+	/// ]]></code>
+	/// via the feature provided by C# 12: Collection Literals. If you cannot decide the real name of the culture name,
+	/// just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
 	/// </para>
 	/// <para>
-	/// If you want to use the values in the resource documents,
-	/// just use the <see langword="static readonly"/> field <see cref="R"/> is okay:
+	/// If you want to use the values in the resource dictionary, you can just use a <see langword="static readonly"/> field
+	/// called <see cref="R"/>, for example:
 	/// <code><![CDATA[
 	/// using static Sudoku.Resources.MergedResources;
 	/// 
@@ -82,7 +77,7 @@ public interface IStep : IVisual
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="ResourceTextFormatterAttribute"/>
+	/// <seealso cref="FormatInterpolatedParts"/>
 	/// <seealso cref="R"/>
 	string? Format { get; }
 
@@ -156,9 +151,14 @@ public interface IStep : IVisual
 	/// The formats will be interpolated into the property <see cref="Format"/> result.
 	/// </summary>
 	/// <remarks>
+	/// <para>
 	/// This property use a dictionary to merge globalizational format data.
 	/// The key type is <see cref="string"/>, which can be used for the comparison of the current culture via type <see cref="CultureInfo"/>,
 	/// for example, <c>"zh"</c>.
+	/// </para>
+	/// <para>
+	/// For more backing implementation details, please visit method <c>ToString</c> in derived class type called <c>Step</c>.
+	/// </para>
 	/// </remarks>
 	/// <seealso cref="Format"/>
 	/// <seealso cref="CultureInfo"/>
@@ -187,29 +187,25 @@ public interface IStep : IVisual
 	string ToSimpleString();
 
 	/// <summary>
-	/// Formatizes the <see cref="Format"/> property string and output the result.
+	/// Returns a string that only contains the name and the basic description.
 	/// </summary>
-	/// <param name="handleEscaping">Indicates whether the method will handle the escaping characters.</param>
-	/// <returns>The result string.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the format is invalid. The possible cases are:
-	/// <list type="bullet">
-	/// <item>The format is <see langword="null"/>.</item>
-	/// <item>The interpolation part contains the empty value.</item>
-	/// <item>Missing the closed brace character <c>'}'</c>.</item>
-	/// <item>The number of interpolations failed to match.</item>
-	/// </list>
-	/// </exception>
-	/// <seealso cref="Format"/>
-	string Formatize(bool handleEscaping = false);
+	/// <returns>The string instance.</returns>
+	/// <remarks>
+	/// <para><i>
+	/// This method uses modifiers <see langword="sealed"/> and <see langword="override"/> to prevent with compiler overriding this method.
+	/// </i></para>
+	/// <para><b><i>
+	/// In addition, <c>ToString</c> is a special method that has already been declared in type <see cref="object"/>
+	/// as <see langword="virtual"/> one, so this interface member lacks of binding behavior on implementing,
+	/// which means even if you don't implement a parameterless method called <c>ToString</c> that returns <see cref="string"/>,
+	/// the code will also be compiled successfully if nullability analysis is disabled.
+	/// This member declared here is only used as a role of XML documentation comment provider.
+	/// </i></b></para>
+	/// </remarks>
+	string ToString();
 
 	/// <summary>
-	/// Indicates the string representation of the conclusions.
+	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
-	/// <remarks>
-	/// Most of techniques uses eliminations
-	/// so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
-	/// the property will still use this name rather than <c>AssignmentStr</c>.
-	/// </remarks>
-	protected string ElimStr();
+	protected abstract string ConclusionText { get; }
 }

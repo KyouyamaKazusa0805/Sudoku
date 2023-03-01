@@ -38,6 +38,12 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 	/// <inheritdoc/>
 	public virtual IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
 
+	/// <inheritdoc cref="IStep.ConclusionText"/>
+	protected string ConclusionText => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
+
+	/// <inheritdoc/>
+	string IStep.ConclusionText => ConclusionText;
+
 
 	/// <inheritdoc/>
 	public void ApplyTo(scoped ref Grid grid)
@@ -53,126 +59,32 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 	public bool HasTag(TechniqueTags flags) => flags.IsFlag() ? TechniqueTags.Flags(flags) : TechniqueTags.MultiFlags(flags);
 
 	/// <summary>
-	/// Returns a string that only contains the name and the basic information.
+	/// <inheritdoc cref="IStep.ToString" path="/summary"/>
 	/// </summary>
-	/// <returns>The string instance.</returns>
+	/// <returns>
+	/// <inheritdoc cref="IStep.ToString" path="/returns"/>
+	/// </returns>
 	/// <remarks>
-	/// <para>
-	/// This method uses <see langword="sealed"/> and <see langword="override"/> modifiers
-	/// to prevent the compiler overriding the method.
-	/// </para>
-	/// <para>The behavior is same as the method <see cref="Formatize(bool)"/> invoking.</para>
+	/// <inheritdoc cref="IStep.ToString" path="//remarks/para[1]"/>
 	/// </remarks>
-	/// <seealso cref="Formatize(bool)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override string ToString() => Formatize(true);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToSimpleString() => $"{Name} => {ElimStr()}";
-
-	/// <inheritdoc/>
-	public string Formatize(bool handleEscaping = false)
+	public sealed override string ToString()
 	{
-		// Check whether the format property is not null.
-		if (Format is not { } format)
+		var currentCultureName = CultureInfo.CurrentCulture.Name;
+		var formatArgs = FormatInterpolatedParts?.FirstOrDefault(comparison).Value;
+		var colonToken = R.EmitPunctuation(Punctuation.Colon);
+		return (Format, formatArgs) switch
 		{
-			throw new InvalidOperationException("The format can't be null.");
-		}
+			(null, _) => ToSimpleString(),
+			(_, null) => $"{Name}{colonToken}{Format} => {ConclusionText}",
+			_ => $"{Name}{colonToken}{string.Format(Format, formatArgs)} => {ConclusionText}"
+		};
 
-		// Get the interpolation values, and extract them into a new collection to store the format values.
-		var length = format.Length;
-		scoped var sb = new StringHandler(length);
-		var formats = new List<string>(10);
-		var formatCount = 0;
-		for (var i = 0; i < length - 1; i++)
-		{
-			switch (format[i], format[i + 1])
-			{
-				case ('{', '}'):
-				{
-					throw new InvalidOperationException("The interpolation part cannot contain empty value.");
-				}
-				case ('{', '{'):
-				{
-					sb.Append("{{");
-					i++;
 
-					break;
-				}
-				case ('}', '}'):
-				{
-					sb.Append("}}");
-					i++;
-
-					break;
-				}
-				case ('{', not '{'):
-				{
-					var pos = -1;
-					for (var j = i + 1; j < length; j++)
-					{
-						if (format[j] == '}')
-						{
-							pos = j;
-							break;
-						}
-					}
-					if (pos == -1)
-					{
-						throw new InvalidOperationException("Missing the closed brace character '}'.");
-					}
-
-					sb.Append('{');
-					sb.Append(formatCount++);
-					sb.Append('}');
-
-					formats.Add(format[(i + 1)..pos]);
-
-					i = pos;
-
-					break;
-				}
-				case ('\\', var right) when handleEscaping: // Unescape the escaping characters.
-				{
-					sb.Append(right);
-					i++;
-
-					break;
-				}
-				case (var left, _):
-				{
-					sb.Append(left);
-
-					break;
-				}
-			}
-		}
-
-		// Use reflection to invoke each properties, and get the interpolation result.
-		var type = GetType();
-		var matchedFormats = (
-			from f in formats
-			select type.GetMethod(f, BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance) into method
-			where method?.IsDefined(typeof(ResourceTextFormatterAttribute)) ?? false
-			select method.Invoke(method.IsStatic ? null : this, null) as string into result
-			where result is not null
-			select result
-		).Prepend(Name).ToArray();
-
-		// Check the length validity.
-		if (formatCount != matchedFormats.Length)
-		{
-			throw new InvalidOperationException("The number of interpolations failed to match.");
-		}
-
-		// Format and return the value.
-		return string.Format(sb.ToStringAndClear(), matchedFormats);
+		bool comparison(KeyValuePair<string, string[]?> kvp)
+			=> currentCultureName.StartsWith(kvp.Key, StringComparison.CurrentCultureIgnoreCase);
 	}
 
-	[ResourceTextFormatter]
-	protected string ElimStr() => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
-
 	/// <inheritdoc/>
-	string IStep.ElimStr() => ElimStr();
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToSimpleString() => $"{Name} => {ConclusionText}";
 }
