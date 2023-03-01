@@ -83,7 +83,7 @@ internal static class AnalyzeConversion
 
 			result.Add(new Run { Text = GetString("AnalyzePage_SimpleDescription") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
-			result.Add(new Run { Text = step.ToString()! });
+			result.Add(new Run { Text = step.ToString() });
 		}
 
 		return result;
