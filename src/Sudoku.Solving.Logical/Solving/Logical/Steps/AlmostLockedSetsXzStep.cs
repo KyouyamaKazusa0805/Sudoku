@@ -51,22 +51,36 @@ internal sealed record AlmostLockedSetsXzStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{
+				"en",
+				IsDoublyLinked is null
+					? ZDigitsMask == 0 ? new[] { CellsStr } : new[] { EspDigitStr, CellsStr }
+					: new[] { Als1Str, Als2Str, XStr, ZResultStr }
+			},
+			{
+				"zh",
+				IsDoublyLinked is null
+					? ZDigitsMask == 0 ? new[] { CellsStr } : new[] { EspDigitStr, CellsStr }
+					: new[] { Als1Str, Als2Str, XStr, ZResultStr }
+			}
+		};
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => (Als1.Map | Als2.Map).ToString();
+	private string CellsStr => (Als1.Map | Als2.Map).ToString();
 
-	[ResourceTextFormatter]
-	internal string EspDigitStr() => (TrailingZeroCount(ZDigitsMask) + 1).ToString();
+	private string EspDigitStr => (TrailingZeroCount(ZDigitsMask) + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string Als1Str() => Als1.ToString();
+	private string Als1Str => Als1.ToString();
 
-	[ResourceTextFormatter]
-	internal string Als2Str() => Als2.ToString();
+	private string Als2Str => Als2.ToString();
 
-	[ResourceTextFormatter]
-	internal string XStr() => DigitMaskFormatter.Format(XDigitsMask, FormattingMode.Normal);
+	private string XStr => DigitMaskFormatter.Format(XDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string ZResultStr() => ZDigitsMask != 0 ? $"{R.EmitPunctuation(Punctuation.Comma)}Z = {DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal)}" : string.Empty;
+	private string ZResultStr
+		=> ZDigitsMask == 0
+			? string.Empty
+			: $"{R.EmitPunctuation(Punctuation.Comma)}Z = {DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal)}";
 }

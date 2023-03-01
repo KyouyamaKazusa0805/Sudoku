@@ -3283,7 +3283,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} from {BaseCellsStr} to {TargetCellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} from {1} to {2}.
         /// </summary>
         public static string TechniqueFormat_AlmostLockedCandidatesStep {
             get {
@@ -3292,7 +3292,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Two ALSes {Als1Str}, {Als2Str} connected by {ConjStr}, W = {WStr}, X = {XStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Two ALSes {0}, {1} connected by {2}, W = {3}, X = {4}.
         /// </summary>
         public static string TechniqueFormat_AlmostLockedSetsWWingStep {
             get {
@@ -3301,7 +3301,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {Als1Str} -&gt; {BridgeStr} -&gt; {Als2Str}, X = {XStr}, Y = {YStr}, Z = {ZStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} -&gt; {1} -&gt; {2}, X = {3}, Y = {4}, Z = {5}.
         /// </summary>
         public static string TechniqueFormat_AlmostLockedSetsXyWingStep {
             get {
@@ -3310,7 +3310,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: ALS #1: {Als1Str}, ALS #2: {Als2Str}, X = {XStr}{ZResultStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to ALS #1: {0}, ALS #2: {1}, X = {2}{3}.
         /// </summary>
         public static string TechniqueFormat_AlmostLockedSetsXzRule {
             get {
@@ -3328,7 +3328,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with hidden single: if cell {BaseCellStr} is filled with the digit {Digit1Str}, house {HouseStr} will only contain a cell {TargetCellStr} can be filled with that digit, but will raise the deadly pattern =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with hidden single: if cell {3} is filled with the digit {0}, house {5} will only contain a cell {6} can be filled with that digit, but will raise the deadly pattern.
         /// </summary>
         public static string TechniqueFormat_AvoidableRectangleWithHiddenSingleStep {
             get {
@@ -3337,7 +3337,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: All candidates {CandsStr} can be eliminated because a loop is formed =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to All candidates {0} can be eliminated because a loop is formed.
         /// </summary>
         public static string TechniqueFormat_BidirectionalCycleStep {
             get {
@@ -3355,7 +3355,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: If the cell {CellStr} only contains the digits {Digit1Str} and {Digit2Str} (or one of those two), the loop {LoopStr} will form an error structure =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to If the cell {0} only contains the digits {1} and {2} (or one of those two), the loop {3} will form an error structure.
         /// </summary>
         public static string TechniqueFormat_BivalueOddagonType1Step {
             get {
@@ -3364,7 +3364,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: If all digit {ExtraDigitStr} in cells {LoopStr} are removed, the loop will from an error structure =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to If all digit {0} in cells {1} are removed, the loop will from an error structure.
         /// </summary>
         public static string TechniqueFormat_BivalueOddagonType2Step {
             get {
@@ -3373,7 +3373,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: To avoid the structure {LoopStr} of digits {Digit1Str} and {Digit2Str} error, the only way is to form the subset (digits {DigitsStr} in cells {ExtraCellsStr}) =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to To avoid the structure {0} of digits {1} and {2} error, the only way is to form the subset (digits {3} in cells {4}).
         /// </summary>
         public static string TechniqueFormat_BivalueOddagonType3Step {
             get {
@@ -3382,7 +3382,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: If {FalseCandidateStr} is true, the grid will be reduced to a BUG deadly pattern =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to If {0} is true, the grid will be reduced to a BUG deadly pattern.
         /// </summary>
         public static string TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep {
             get {
@@ -3391,7 +3391,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: True candidates: {CandidatesStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to True candidates: {0}.
         /// </summary>
         public static string TechniqueFormat_BivalueUniversalGraveMultipleStep {
             get {
@@ -3400,7 +3400,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {ElimStr}.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string TechniqueFormat_BivalueUniversalGraveType1Step {
             get {
@@ -3409,7 +3409,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {ExtraDigitStr} with cells {CellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} with cells {1}.
         /// </summary>
         public static string TechniqueFormat_BivalueUniversalGraveType2Step {
             get {
@@ -3418,7 +3418,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: True candidates {TrueCandidatesStr} with {SubsetTypeStr} {SizeStr} {ExtraDigitsStr} in cells {CellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to True candidates {0} with {1} {2} {3} in cells {4}.
         /// </summary>
         public static string TechniqueFormat_BivalueUniversalGraveType3Step {
             get {
@@ -3427,7 +3427,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in cells {1} with conjugate pair {2}.
         /// </summary>
         public static string TechniqueFormat_BivalueUniversalGraveType4Step {
             get {
@@ -3436,7 +3436,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} with cells {1}, with extra cell {2}.
         /// </summary>
         public static string TechniqueFormat_BivalueUniversalGraveXzStep {
             get {
@@ -3445,7 +3445,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Try {ContradictionSeriesStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Try {0}.
         /// </summary>
         public static string TechniqueFormat_BowmanBingoStep {
             get {
@@ -3454,7 +3454,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {AssignmentStr}.
+        ///   Looks up a localized string similar to {0}.
         /// </summary>
         public static string TechniqueFormat_BruteForceStep {
             get {
@@ -3517,7 +3517,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: It is proved that the candidate {StartCandStr} is {StartCandOnOffStr}, both true and false states of candidate {EndCandStr} can be found, leading to a contradiction =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to It is proved that the candidate {0} is {1}, both true and false states of candidate {2} can be found, leading to a contradiction.
         /// </summary>
         public static string TechniqueFormat_ContradictionForcingChainsStep {
             get {
@@ -3544,7 +3544,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: It is proved that a same conclusion - {StartCandStr} being {StartCandOnOffStr} can be found no matter what state the candidate {EndCandStr} now is =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to It is proved that a same conclusion - {0} being {1} can be found no matter what state the candidate {2} now is.
         /// </summary>
         public static string TechniqueFormat_DoubleForcingChainsStep {
             get {
@@ -3607,7 +3607,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Only the digit {EspDigitStr} can be duplicate in cells {CellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Only the digit {0} can be duplicate in cells {1}.
         /// </summary>
         public static string TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate {
             get {
@@ -3616,7 +3616,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: All digits can&apos;t be duplicate in cells {CellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to All digits can&apos;t be duplicate in cells {0}.
         /// </summary>
         public static string TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate {
             get {

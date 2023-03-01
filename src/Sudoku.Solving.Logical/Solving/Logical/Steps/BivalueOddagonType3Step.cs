@@ -34,19 +34,21 @@ internal sealed record BivalueOddagonType3Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, (ExtraCells.Count >> 1) * .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { LoopStr, Digit1Str, Digit2Str, DigitsStr, ExtraCellsStr } },
+			{ "zh", new[] { Digit1Str, Digit2Str, LoopStr, ExtraCellsStr, DigitsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string LoopStr() => Loop.ToString();
+	private string LoopStr => Loop.ToString();
 
-	[ResourceTextFormatter]
-	internal string Digit1Str() => (Digit1 + 1).ToString();
+	private string Digit1Str => (Digit1 + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string Digit2Str() => (Digit2 + 1).ToString();
+	private string Digit2Str => (Digit2 + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string ExtraCellsStr() => ExtraCells.ToString();
+	private string ExtraCellsStr => ExtraCells.ToString();
 }

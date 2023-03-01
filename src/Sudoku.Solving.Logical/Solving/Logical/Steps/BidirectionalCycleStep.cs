@@ -10,8 +10,12 @@
 internal sealed record BidirectionalCycleStep(ConclusionList Conclusions, ChainNode DestinationOn, bool IsX, bool IsY) :
 	ChainingStep(Conclusions, IsX, IsY)
 {
-	[ResourceTextFormatter]
-	internal string CandsStr() => RxCyNotation.ToCandidatesString(CandidateMap.Empty + from element in Conclusions select element.Candidate);
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { CandsStr } }, { "zh", new[] { CandsStr } } };
+
+	private string CandsStr => RxCyNotation.ToCandidatesString(CandidateMap.Empty + from element in Conclusions select element.Candidate);
+
 
 	/// <inheritdoc/>
 	protected override CandidateMap GetGreenPotentials(int viewNum) => GetColorCandidates(DestinationOn, true, false);

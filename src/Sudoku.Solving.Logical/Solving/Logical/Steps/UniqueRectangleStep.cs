@@ -58,15 +58,11 @@ internal abstract record UniqueRectangleStep(
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectangle;
 
+	private protected string D1Str => (Digit1 + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string D1Str() => (Digit1 + 1).ToString();
+	private protected string D2Str => (Digit2 + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string D2Str() => (Digit2 + 1).ToString();
-
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private protected string CellsStr => Cells.ToString();
 
 
 	/// <inheritdoc/>

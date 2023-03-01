@@ -20,10 +20,11 @@ internal sealed record BivalueUniversalGraveType2Step(ConclusionList Conclusions
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, A002024(Cells.Count) * .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { ExtraDigitStr, CellsStr } }, { "zh", new[] { CellsStr, ExtraDigitStr } } };
 
-	[ResourceTextFormatter]
-	internal string ExtraDigitStr() => (Digit + 1).ToString();
+	private string ExtraDigitStr => (Digit + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private string CellsStr => Cells.ToString();
 }

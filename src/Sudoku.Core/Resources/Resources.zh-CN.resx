@@ -280,58 +280,58 @@
     <value>七数组</value>
   </data>
   <data name="TechniqueFormat_AlmostLockedCandidatesStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 从 {BaseCellsStr} 往 {TargetCellsStr} 推理 =&gt; {ElimStr}</value>
+    <value>数字 {0} 从 {1} 往 {2} 推理 =&gt; {3}</value>
   </data>
   <data name="TechniqueFormat_AlmostLockedSetsWWingStep" xml:space="preserve">
-    <value>{Name}：ALS {Als1Str} 和 {Als2Str} 以共轭对 {ConjStr} 关联起来；其中 W = {WStr}、X = {XStr} =&gt; {ElimStr}</value>
+    <value>ALS {0} 和 {1} 以共轭对 {2} 关联起来；其中 W = {3}、X = {4}</value>
   </data>
   <data name="TechniqueFormat_AlmostLockedSetsXyWingStep" xml:space="preserve">
-    <value>{Name}：{Als1Str} -&gt; {BridgeStr} -&gt; {Als2Str}；其中 X = {XStr}、Y = {YStr}、Z = {ZStr} =&gt; {ElimStr}</value>
+    <value>{0} -&gt; {1} -&gt; {2}；其中 X = {3}、Y = {4}、Z = {5}</value>
   </data>
   <data name="TechniqueFormat_AlmostLockedSetsXzRule" xml:space="preserve">
-    <value>{Name}：ALS #1：{Als1Str}、ALS #2：{Als2Str}、X = {XStr}{ZResultStr} =&gt; {ElimStr}</value>
+    <value>ALS #1：{0}、ALS #2：{1}、X = {2}{3}</value>
   </data>
   <data name="TechniqueFormat_AlternatingInferenceChainStep" xml:space="preserve">
     <value>{Name}：链 {ChainStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_AvoidableRectangleWithHiddenSingleStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于单元格 {CellsStr} 构成结构，并带排除法：如果单元格 {BaseCellStr} 填上了数字 {Digit1Str}，{HouseStr} 区域仅能让 {TargetCellStr} 填入该数字，便出现致命形式 =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2} 构成结构，并带排除法：如果单元格 {3} 填上了数字 {0}，{5} 区域仅能让 {6} 填入该数字，便出现致命形式</value>
   </data>
   <data name="TechniqueFormat_BinaryChainingStep" xml:space="preserve">
     <value>{Name}：可以证明如果 {AnchorCandidateStr} 为{AnchorIsTrueOrFalseStr}时会产生矛盾 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_BivalueOddagonType1Step" xml:space="preserve">
-    <value>{Name}：如果单元格 {CellStr} 只有数字 {Digit1Str} 和 {Digit2Str} 的话，整个环 {LoopStr} 会直接导致违背规则的矛盾现象 =&gt; {ElimStr}</value>
+    <value>如果单元格 {0} 只有数字 {1} 和 {2} 的话，整个环 {3} 会直接导致违背规则的矛盾现象</value>
   </data>
   <data name="TechniqueFormat_BivalueOddagonType2Step" xml:space="preserve">
-    <value>{Name}：如果所有在单元格 {LoopStr} 里的数字 {ExtraDigitStr} 全部删掉，则整个环会直接导致违背规则的矛盾现象 =&gt; {ElimStr}</value>
+    <value>如果所有在单元格 {0} 里的数字 {1} 全部删掉，则整个环会直接导致违背规则的矛盾现象</value>
   </data>
   <data name="TechniqueFormat_BivalueOddagonType3Step" xml:space="preserve">
-    <value>{Name}：为规避数字 {Digit1Str} 和 {Digit2Str} 在单元格 {LoopStr} 里出错，唯一的办法就是和 {ExtraCellsStr} 单元格组成关于数字 {DigitsStr} 的数组 =&gt; {ElimStr}</value>
+    <value>为规避数字 {0} 和 {1} 在单元格 {2} 里出错，唯一的办法就是和 {3} 单元格组成关于数字 {4} 的数组</value>
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveMultipleStep" xml:space="preserve">
-    <value>{Name}：真数为 {CandidatesStr} =&gt; {ElimStr}</value>
+    <value>真数为 {0}</value>
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveType1Step" xml:space="preserve">
-    <value>{Name}：{ElimStr}</value>
+    <value />
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveType2Step" xml:space="preserve">
-    <value>{Name}：单元格 {CellsStr} 里包含额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>单元格 {0} 里包含额外数字 {1}</value>
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveType3Step" xml:space="preserve">
-    <value>{Name}：真数 {TrueCandidatesStr}，伴有{SubsetTypeStr}{SizeStr}于单元格 {CellsStr} 里，涉及数字 {ExtraDigitsStr} =&gt; {ElimStr}</value>
+    <value>真数 {0}，伴有{1}{2}于单元格 {3} 里，涉及数字 {4}</value>
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveType4Step" xml:space="preserve">
-    <value>{Name}：位于单元格 {CellsStr} 里的数字 {DigitsStr}，带有一个共轭对 {ConjStr} =&gt; {ElimStr}</value>
+    <value>位于单元格 {0} 里的数字 {1}，带有一个共轭对 {2}</value>
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveXzStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitStr} 位于单元格 {CellsStr} 里，并带有额外单元格 {ExtraCellStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于单元格 {1} 里，并带有额外单元格 {2}</value>
   </data>
   <data name="TechniqueFormat_BowmanBingoStep" xml:space="preserve">
-    <value>{Name}：设 {ContradictionSeriesStr} =&gt; {ElimStr}</value>
+    <value>设 {0}</value>
   </data>
   <data name="TechniqueFormat_BruteForceStep" xml:space="preserve">
-    <value>{Name}：{AssignmentStr}</value>
+    <value>{0}</value>
   </data>
   <data name="TechniqueFormat_CellChainingStep" xml:space="preserve">
     <value>{Name}：可以通过强制链来证明得到 {SourceCellStr} 里的所有候选数全部为假 =&gt; {ElimStr}</value>
@@ -364,10 +364,10 @@
     <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构，带有共轭对 {ConjStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate" xml:space="preserve">
-    <value>{Name}：只有数字 {EspDigitStr} 在 {CellsStr} 里可以重复出现 =&gt; {ElimStr}</value>
+    <value>只有数字 {0} 在 {1} 里可以重复出现</value>
   </data>
   <data name="TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate" xml:space="preserve">
-    <value>{Name}：所有在 {CellsStr} 里面的数字都不相同 =&gt; {ElimStr}</value>
+    <value>所有在 {0} 里面的数字都不相同</value>
   </data>
   <data name="TechniqueFormat_FullHouseStep" xml:space="preserve">
     <value>{Name}：{CellStr} = {DigitStr}</value>
@@ -1690,7 +1690,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep" xml:space="preserve">
-    <value>{Name}：如果 {FalseCandidateStr} 为真，则盘面会变为 BUG 致命形式 =&gt; {ElimStr}</value>
+    <value>如果 {0} 为真，则盘面会变为 BUG 致命形式</value>
   </data>
   <data name="ChineseComma" xml:space="preserve">
     <value>、</value>
@@ -1867,16 +1867,16 @@
     <value>普通链</value>
   </data>
   <data name="TechniqueFormat_BidirectionalCycleStep" xml:space="preserve">
-    <value>{Name}：如果该环形成后，所有的候选数 {CandsStr} 均为假 =&gt; {ElimStr}</value>
+    <value>如果该环形成后，所有的候选数 {0} 均为假</value>
   </data>
   <data name="TechniqueFormat_CellForcingChainsStep" xml:space="preserve">
     <value>{Name}：单元格 {CellStr} 里的所有候选数都会得到同样的结论 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ContradictionForcingChainsStep" xml:space="preserve">
-    <value>{Name}：如果 {StartCandStr} 为{StartCandOnOffStrZhCn}，那么候选数 {EndCandStr} 的真假两种状态都成立，这是不可能的 =&gt; {ElimStr}</value>
+    <value>如果 {0} 为{1}，那么候选数 {2} 的真假两种状态都成立，这是不可能的</value>
   </data>
   <data name="TechniqueFormat_DoubleForcingChainsStep" xml:space="preserve">
-    <value>{Name}：不论 {EndCandStr} 是真是假，都可以得到 {StartCandStr} 为 {StartCandOnOffStrZhCn} 的结论 =&gt; {ElimStr}</value>
+    <value>不论 {0} 是真是假，都可以得到 {1} 为 {2} 的结论</value>
   </data>
   <data name="TechniqueFormat_ForcingChainStep" xml:space="preserve">
     <value>{Name}：如果 {CandStr} 为{OnOffStrZhCn}，跟着结构绕一圈后发现该候选数刚好与原假设相反，产生矛盾 =&gt; {ElimStr}</value>

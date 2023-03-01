@@ -23,16 +23,19 @@ internal sealed record BivalueUniversalGraveXzStep(
 	public override Rarity Rarity => Rarity.HardlyEver;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .2M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .2M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitStr, CellsStr, ExtraCellStr } },
+			{ "zh", new[] { DigitStr, CellsStr, ExtraCellStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string DigitStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private string CellsStr => Cells.ToString();
 
-	[ResourceTextFormatter]
-	internal string ExtraCellStr() => RxCyNotation.ToCellString(ExtraCell);
+	private string ExtraCellStr => RxCyNotation.ToCellString(ExtraCell);
 }

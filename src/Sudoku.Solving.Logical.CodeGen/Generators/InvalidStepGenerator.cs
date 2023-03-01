@@ -64,6 +64,9 @@ public sealed class InvalidStepGenerator : IIncrementalGenerator
 					/// <inheritdoc/>
 					ViewList global::Sudoku.Presentation.IVisual.Views => throw new global::System.NotSupportedException();
 
+					/// <inheritdoc/>
+					global::System.Collections.Generic.IReadOnlyDictionary<string, string[]?>? global::Sudoku.Solving.Logical.IStep.FormatInterpolatedParts => throw new global::System.NotSupportedException();
+
 
 					/// <inheritdoc/>
 					void global::Sudoku.Solving.Logical.IStep.ApplyTo(scoped ref global::Sudoku.Concepts.Grid grid) => throw new global::System.NotSupportedException();

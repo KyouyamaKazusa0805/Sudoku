@@ -26,7 +26,9 @@ internal sealed record BivalueUniversalGraveMultipleStep(ConclusionList Conclusi
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, A002024(Candidates.Count) * .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { CandidatesStr } }, { "zh", new[] { CandidatesStr } } };
 
-	[ResourceTextFormatter]
-	internal string CandidatesStr() => (CandidateMap.Empty + Candidates).ToString();
+	private string CandidatesStr => (CandidateMap.Empty + Candidates).ToString();
 }

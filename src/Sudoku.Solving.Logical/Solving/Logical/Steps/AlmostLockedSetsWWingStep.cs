@@ -38,19 +38,21 @@ internal sealed record AlmostLockedSetsWWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { Als1Str, Als2Str, ConjStr, WStr, XStr } },
+			{ "zh", new[] { Als1Str, Als2Str, ConjStr, WStr, XStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string Als1Str() => Als1.ToString();
+	private string Als1Str => Als1.ToString();
 
-	[ResourceTextFormatter]
-	internal string Als2Str() => Als2.ToString();
+	private string Als2Str => Als2.ToString();
 
-	[ResourceTextFormatter]
-	internal string ConjStr() => ConjugatePair.ToString();
+	private string ConjStr => ConjugatePair.ToString();
 
-	[ResourceTextFormatter]
-	internal string WStr() => DigitMaskFormatter.Format(WDigitsMask, FormattingMode.Normal);
+	private string WStr => DigitMaskFormatter.Format(WDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string XStr() => (X + 1).ToString();
+	private string XStr => (X + 1).ToString();
 }

@@ -22,7 +22,9 @@ internal sealed record BruteForceStep(ConclusionList Conclusions, ViewList Views
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Always;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { AssignmentStr } }, { "zh", new[] { AssignmentStr } } };
 
-	[ResourceTextFormatter]
-	internal string AssignmentStr() => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
+	private string AssignmentStr => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
 }

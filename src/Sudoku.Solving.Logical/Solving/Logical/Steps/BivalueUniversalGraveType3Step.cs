@@ -33,24 +33,26 @@ internal sealed record BivalueUniversalGraveType3Step(
 			new(ExtraDifficultyCaseNames.Hidden, IsNaked ? 0 : .1M)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { TrueCandidatesStr, SubsetTypeStr, SizeStr, ExtraDigitsStr, CellsStr } },
+			{ "zh", new[] { TrueCandidatesStr, SubsetTypeStr, SizeStr, CellsStr, ExtraDigitsStr } }
+		};
+
 	/// <summary>
 	/// Indicates the size of the subset.
 	/// </summary>
 	private int Size => PopCount((uint)DigitsMask);
 
+	private string TrueCandidatesStr => (CandidateMap.Empty + TrueCandidates).ToString();
 
-	[ResourceTextFormatter]
-	internal string TrueCandidatesStr() => (CandidateMap.Empty + TrueCandidates).ToString();
+	private string SubsetTypeStr => R[IsNaked ? "NakedKeyword" : "HiddenKeyword"]!;
 
-	[ResourceTextFormatter]
-	internal string SubsetTypeStr() => R[IsNaked ? "NakedKeyword" : "HiddenKeyword"]!;
+	private string SizeStr => R[$"SubsetNamesSize{Size}"]!;
 
-	[ResourceTextFormatter]
-	internal string SizeStr() => R[$"SubsetNamesSize{Size}"]!;
+	private string ExtraDigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string ExtraDigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private string CellsStr => Cells.ToString();
 }

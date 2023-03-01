@@ -20,7 +20,9 @@ internal sealed record BivalueUniversalGraveFalseCandidateTypeStep(ConclusionLis
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { FalseCandidateStr } }, { "zh", new[] { FalseCandidateStr } } };
 
-	[ResourceTextFormatter]
-	internal string FalseCandidateStr() => RxCyNotation.ToCandidateString(FalseCandidate);
+	private string FalseCandidateStr => RxCyNotation.ToCandidateString(FalseCandidate);
 }

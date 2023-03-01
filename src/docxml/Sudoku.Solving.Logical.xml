@@ -6459,6 +6459,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.AlmostLockedSetsStep">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets</b> technique.
@@ -6539,6 +6542,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsWWingStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsWWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXyWingStep">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
@@ -6601,6 +6607,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXyWingStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXyWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXzStep">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XZ</b> technique.
@@ -6658,6 +6667,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXzStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXzStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.AvoidableRectangleWithHiddenSingleStep">
             <summary>
             Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
@@ -6707,6 +6719,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.AvoidableRectangleWithHiddenSingleStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.AvoidableRectangleWithHiddenSingleStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep">
             <summary>
             Provides with a step that is a <b>Bidirectional Cycle</b> technique that is compatible with program <b>Sudoku Explainer</b>.
@@ -6727,6 +6742,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.DestinationOn">
             <summary>Indicates the destination node that is "on" status.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.FormatInterpolatedParts">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.GetGreenPotentials(System.Int32)">
             <inheritdoc/>
@@ -6784,6 +6802,9 @@ if (student is (name: var name, age: >= 18))
             <summary>Indicates whether the forcing chains kind is contradiction.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.GetGreenPotentials(System.Int32)">
@@ -6878,6 +6899,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType1Step.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon Type 2</b> technique.
@@ -6913,6 +6937,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step">
@@ -6957,6 +6984,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
@@ -6991,6 +7021,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveFalseCandidateTypeStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveFalseCandidateTypeStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave + n</b> technique.
@@ -7023,6 +7056,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveStep">
@@ -7107,6 +7143,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
@@ -7148,6 +7187,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.Size">
@@ -7193,6 +7235,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
@@ -7229,6 +7274,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BowmanBingoStep">
@@ -7271,6 +7319,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BowmanBingoStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BowmanBingoStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BruteForceStep">
             <summary>
             Provides with a step that is a <b>Brute Force</b> technique.
@@ -7298,6 +7349,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.BruteForceStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BruteForceStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.CellForcingChainsStep">
@@ -10236,6 +10290,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.Step.ApplyTo(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
@@ -12318,6 +12375,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Presentation#IVisual#Views">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.InvalidStep.Sudoku#Solving#Logical#IStep#ApplyTo(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
@@ -12475,6 +12535,19 @@ if (student is (name: var name, age: >= 18))
             Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
             this property will keep <see langword="null"/> value.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.IStep.FormatInterpolatedParts">
+            <summary>
+            Indicates the interpolated parts that is used for the format.
+            The formats will be interpolated into the property <see cref="P:Sudoku.Solving.Logical.IStep.Format"/> result.
+            </summary>
+            <remarks>
+            This property use a dictionary to merge globalizational format data.
+            The key type is <see cref="T:System.String"/>, which can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c>.
+            </remarks>
+            <seealso cref="P:Sudoku.Solving.Logical.IStep.Format"/>
+            <seealso cref="T:System.Globalization.CultureInfo"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.IStep.ApplyTo(Sudoku.Concepts.Grid@)">
             <summary>

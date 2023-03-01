@@ -29,18 +29,28 @@ internal sealed record BinaryForcingChainsStep(
 	public override string? Format
 		=> IsAbsurd ? R["TechniqueFormat_ContradictionForcingChainsStep"] : R["TechniqueFormat_DoubleForcingChainsStep"];
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{
+				"en",
+				IsAbsurd ? new[] { StartCandStr, StartCandOnOffStr, EndCandStr } : new[] { StartCandStr, StartCandOnOffStr, EndCandStr }
+			},
+			{
+				"zh",
+				IsAbsurd ? new[] { StartCandStr, StartCandOnOffStrZhCn, EndCandStr } : new[] { EndCandStr, StartCandStr, StartCandOnOffStrZhCn }
+			}
+		};
 
-	[ResourceTextFormatter]
-	internal string StartCandStr() => RxCyNotation.ToCandidateString(SourcePotential.Candidate);
+	private string StartCandStr => RxCyNotation.ToCandidateString(SourcePotential.Candidate);
 
-	[ResourceTextFormatter]
-	internal string StartCandOnOffStr() => SourcePotential.IsOn.ToString().ToLower();
+	private string StartCandOnOffStr => SourcePotential.IsOn.ToString().ToLower();
 
-	[ResourceTextFormatter]
-	internal string StartCandOnOffStrZhCn() => (SourcePotential.IsOn ? R["TrueKeyword"] : R["FalseKeyword"])!;
+	private string StartCandOnOffStrZhCn => (SourcePotential.IsOn ? R["TrueKeyword"] : R["FalseKeyword"])!;
 
-	[ResourceTextFormatter]
-	internal string EndCandStr() => RxCyNotation.ToCandidateString(FromOnPotential.Candidate);
+	private string EndCandStr => RxCyNotation.ToCandidateString(FromOnPotential.Candidate);
+
 
 	/// <inheritdoc/>
 	protected override CandidateMap GetGreenPotentials(int viewIndex)

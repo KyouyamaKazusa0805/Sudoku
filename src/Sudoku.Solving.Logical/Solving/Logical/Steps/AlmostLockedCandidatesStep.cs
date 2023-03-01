@@ -46,13 +46,17 @@ internal sealed record AlmostLockedCandidatesStep(
 			new(ExtraDifficultyCaseNames.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, BaseCellsStr, TargetCellsStr } },
+			{ "zh", new[] { DigitsStr, BaseCellsStr, TargetCellsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string BaseCellsStr() => BaseCells.ToString();
+	private string BaseCellsStr => BaseCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string TargetCellsStr() => TargetCells.ToString();
+	private string TargetCellsStr => TargetCells.ToString();
 }

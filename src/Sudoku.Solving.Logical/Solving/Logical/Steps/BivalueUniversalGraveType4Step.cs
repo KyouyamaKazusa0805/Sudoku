@@ -26,13 +26,17 @@ internal sealed record BivalueUniversalGraveType4Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ConjugatePair, .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr, ConjStr } },
+			{ "zh", new[] { CellsStr, DigitsStr, ConjStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private string CellsStr => Cells.ToString();
 
-	[ResourceTextFormatter]
-	internal string ConjStr() => ConjugatePair.ToString();
+	private string ConjStr => ConjugatePair.ToString();
 }

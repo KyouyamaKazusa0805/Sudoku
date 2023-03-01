@@ -35,6 +35,9 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 	/// <inheritdoc/>
 	public virtual ExtraDifficultyCase[]? ExtraDifficultyCases => null;
 
+	/// <inheritdoc/>
+	public virtual IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
+
 
 	/// <inheritdoc/>
 	public void ApplyTo(scoped ref Grid grid)

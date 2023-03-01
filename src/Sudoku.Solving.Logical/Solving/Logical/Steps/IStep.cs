@@ -151,6 +151,19 @@ public interface IStep : IVisual
 	/// </summary>
 	ExtraDifficultyCase[]? ExtraDifficultyCases { get; }
 
+	/// <summary>
+	/// Indicates the interpolated parts that is used for the format.
+	/// The formats will be interpolated into the property <see cref="Format"/> result.
+	/// </summary>
+	/// <remarks>
+	/// This property use a dictionary to merge globalizational format data.
+	/// The key type is <see cref="string"/>, which can be used for the comparison of the current culture via type <see cref="CultureInfo"/>,
+	/// for example, <c>"zh"</c>.
+	/// </remarks>
+	/// <seealso cref="Format"/>
+	/// <seealso cref="CultureInfo"/>
+	IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts { get; }
+
 
 	/// <summary>
 	/// Put this instance into the specified grid.

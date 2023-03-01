@@ -32,10 +32,11 @@ internal sealed record BivalueOddagonType2Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { ExtraDigitStr, LoopStr } }, { "zh", new[] { LoopStr, ExtraDigitStr } } };
 
-	[ResourceTextFormatter]
-	internal string ExtraDigitStr() => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string LoopStr() => Loop.ToString();
+	private string LoopStr => Loop.ToString();
 }

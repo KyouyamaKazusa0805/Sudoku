@@ -45,16 +45,17 @@ internal sealed record AvoidableRectangleWithHiddenSingleStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, BaseCellStr, HouseStr, TargetCellStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, BaseCellStr, HouseStr, TargetCellStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string BaseCellStr() => RxCyNotation.ToCellString(BaseCell);
+	private string BaseCellStr => RxCyNotation.ToCellString(BaseCell);
 
-	[ResourceTextFormatter]
-	internal string TargetCellStr() => RxCyNotation.ToCellString(TargetCell);
+	private string TargetCellStr => RxCyNotation.ToCellString(TargetCell);
 
-	[ResourceTextFormatter]
-	internal string HouseStr() => HouseFormatter.Format(1 << House);
-
-	[ResourceTextFormatter]
-	internal string Digit1Str() => (Digit1 + 1).ToString();
+	private string HouseStr => HouseFormatter.Format(1 << House);
 }

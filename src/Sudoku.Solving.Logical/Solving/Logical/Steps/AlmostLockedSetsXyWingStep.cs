@@ -40,22 +40,23 @@ internal sealed record AlmostLockedSetsXyWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr } },
+			{ "zh", new[] { Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string Als1Str() => Als1.ToString();
+	private string Als1Str => Als1.ToString();
 
-	[ResourceTextFormatter]
-	internal string BridgeStr() => Bridge.ToString();
+	private string BridgeStr => Bridge.ToString();
 
-	[ResourceTextFormatter]
-	internal string Als2Str() => Als2.ToString();
+	private string Als2Str => Als2.ToString();
 
-	[ResourceTextFormatter]
-	internal string XStr() => DigitMaskFormatter.Format(XDigitsMask, FormattingMode.Normal);
+	private string XStr => DigitMaskFormatter.Format(XDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string YStr() => DigitMaskFormatter.Format(YDigitsMask, FormattingMode.Normal);
+	private string YStr => DigitMaskFormatter.Format(YDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string ZStr() => DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal);
+	private string ZStr => DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal);
 }

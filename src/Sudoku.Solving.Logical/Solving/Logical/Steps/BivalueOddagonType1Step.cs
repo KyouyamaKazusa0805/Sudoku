@@ -27,15 +27,19 @@ internal sealed record BivalueOddagonType1Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.ReplacedByOtherTechniques;
 
-	[ResourceTextFormatter]
-	internal string CellStr() => RxCyNotation.ToCellString(ExtraCell);
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { CellStr, Digit1Str, Digit2Str, LoopStr } },
+			{ "zh", new[] { CellStr, Digit1Str, Digit2Str, LoopStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string Digit1Str() => (Digit1 + 1).ToString();
+	private string CellStr => RxCyNotation.ToCellString(ExtraCell);
 
-	[ResourceTextFormatter]
-	internal string Digit2Str() => (Digit2 + 1).ToString();
+	private string Digit1Str => (Digit1 + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string LoopStr() => Loop.ToString();
+	private string Digit2Str => (Digit2 + 1).ToString();
+
+	private string LoopStr => Loop.ToString();
 }
