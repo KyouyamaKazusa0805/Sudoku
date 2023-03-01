@@ -31,7 +31,6 @@ internal sealed record UniqueLoopType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		// TODO: Fix ambiguity of 'ExtraDifficultyCaseNames.Size' here and base type's 'ExtraDifficultyCaseNames.Size'.
 		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M) };
 
 

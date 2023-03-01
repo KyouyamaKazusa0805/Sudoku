@@ -37,7 +37,7 @@ internal abstract record UniqueLoopStep(ConclusionList Conclusions, ViewList Vie
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, (A004526(Loop.Count) - 3) * .1M) };
+		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Length, (A004526(Loop.Count) - 3) * .1M) };
 
 
 	/// <summary>
