@@ -334,34 +334,34 @@
     <value>{0}</value>
   </data>
   <data name="TechniqueFormat_CellChainingStep" xml:space="preserve">
-    <value>{Name}：可以通过强制链来证明得到 {SourceCellStr} 里的所有候选数全部为假 =&gt; {ElimStr}</value>
+    <value>{Name}：可以通过强制链来证明得到 {0} 里的所有候选数全部为假 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ComplexFishStep" xml:space="preserve">
-    <value>{Name}：{BaseSetsStr}\\{CoverSetsStr}({DigitStr}) {ExofinsStr}{EndofinsStr}=&gt; {ElimStr}</value>
+    <value>{0}\{1}({2}) {3}{4}</value>
   </data>
   <data name="TechniqueFormat_ContinuousNiceLoopStep" xml:space="preserve">
     <value>{Name}：环 {ChainStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_DominoLoopStep" xml:space="preserve">
-    <value>{Name}：{CellsCountStr} 个单元格 {CellsStr} 构成多米诺环 =&gt; {ElimStr}</value>
+    <value>{0} 个单元格 {1} 构成多米诺环</value>
   </data>
   <data name="TechniqueFormat_EmptyRectangleIntersectionPairStep" xml:space="preserve">
-    <value>{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于双值格 {StartCellStr} 和 {EndCellStr} 里，并在区域 {HouseStr} 里带有此两数交织起来的空矩形 =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于双值格 {2} 和 {3} 里，并在区域 {4} 里带有此两数交织起来的空矩形</value>
   </data>
   <data name="TechniqueFormat_EmptyRectangleStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitStr} 位于区域 {HouseStr} 下拥有共轭对 {ConjStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于区域 {1} 下拥有共轭对 {2}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType1Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构 =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于单元格 {1} 里构成结构</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType2Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构，带有额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于单元格 {1} 里构成结构，带有额外数字 {2}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType3Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构，在区域 {HouseStr} 带有数组，涉及单元格 {ExtraCellsStr} 的数字 {ExtraDigitsStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于单元格 {1} 里构成结构，在区域 {2} 带有数组，涉及单元格 {3} 的数字 {4}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType4Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构，带有共轭对 {ConjStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于单元格 {1} 里构成结构，带有共轭对 {2}</value>
   </data>
   <data name="TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate" xml:space="preserve">
     <value>只有数字 {0} 在 {1} 里可以重复出现</value>
@@ -1617,14 +1617,14 @@
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_ChromaticPatternType1Step" xml:space="preserve">
-    <value>{Name}：位于第 {BlocksStr} 宫的单元格 {CellsStr} 如果只有数字 {DigitsStr}，结构将直接无解 =&gt; {ElimStr}</value>
+    <value>位于第 {0} 宫的单元格 {1} 如果只有数字 {2}，结构将直接无解</value>
   </data>
   <data name="ChromaticPatternXzRule" xml:space="preserve">
     <value>三值死环・双强链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_ChromaticPatternXzStep" xml:space="preserve">
-    <value>{Name}：位于 {BlocksStr} 的 {CellsStr} 单元格包含数字 {DigitsStr}，额外单元格为 {ExtraCellStr} =&gt; {ElimStr}</value>
+    <value>位于 {0} 的 {1} 单元格包含数字 {2}，额外单元格为 {3}</value>
   </data>
   <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
     <value>{Name}：基准单元格 {BaseCellsStr}，目标单元格 {TargetCellsStr}，涉及数字 {DigitsStr} =&gt; {ElimStr}</value>
@@ -1745,7 +1745,7 @@
     <value>{Name}：从 {StartCellStr} 到 {EndCellStr}，使用单元格 {BridgeStr} 关联起来 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_DeathBlossomCellTypeStep" xml:space="preserve">
-    <value>{Name}：不论单元格 {CellStr} 填什么数字，相关的 ALS {AlsesStr} 至少会保证有一个 {DigitStr} 填入 =&gt; {ElimStr}</value>
+    <value>不论单元格 {0} 填什么数字，相关的 ALS {1} 至少会保证有一个 {2} 填入</value>
   </data>
   <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
     <value>{Name}：该技巧必须保证对称性，否则题目会无解。对称规则：{SymmetryTypeStr}，对称映射关系：{MappingStr} =&gt; {ElimStr}</value>
@@ -1870,7 +1870,7 @@
     <value>如果该环形成后，所有的候选数 {0} 均为假</value>
   </data>
   <data name="TechniqueFormat_CellForcingChainsStep" xml:space="preserve">
-    <value>{Name}：单元格 {CellStr} 里的所有候选数都会得到同样的结论 =&gt; {ElimStr}</value>
+    <value>单元格 {0} 里的所有候选数都会得到同样的结论</value>
   </data>
   <data name="TechniqueFormat_ContradictionForcingChainsStep" xml:space="preserve">
     <value>如果 {0} 为{1}，那么候选数 {2} 的真假两种状态都成立，这是不可能的</value>

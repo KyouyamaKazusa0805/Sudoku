@@ -52,7 +52,7 @@ internal sealed record AlmostLockedSetsXzStep(
 	public override Rarity Rarity => Rarity.Often;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
 			{

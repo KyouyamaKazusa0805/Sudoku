@@ -27,10 +27,15 @@ internal sealed record ChromaticPatternXzStep(
 	public override Technique TechniqueCode => Technique.ChromaticPatternXzRule;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .2M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .2M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr, BlocksStr, ExtraCellStr } },
+			{ "zh", new[] { BlocksStr, CellsStr, DigitsStr, ExtraCellStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ExtraCellStr() => RxCyNotation.ToCellString(ExtraCell);
+	private string ExtraCellStr => RxCyNotation.ToCellString(ExtraCell);
 }

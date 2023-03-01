@@ -29,13 +29,17 @@ internal sealed record EmptyRectangleStep(ConclusionList Conclusions, ViewList V
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitStr, HouseStr, ConjStr } },
+			{ "zh", new[] { DigitStr, HouseStr, ConjStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string DigitStr() => (Digit + 1).ToString();
+	private string DigitStr => (Digit + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string HouseStr() => HouseFormatter.Format(1 << Block);
+	private string HouseStr => HouseFormatter.Format(1 << Block);
 
-	[ResourceTextFormatter]
-	internal string ConjStr() => ConjugatePair.ToString();
+	private string ConjStr => ConjugatePair.ToString();
 }

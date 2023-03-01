@@ -27,10 +27,11 @@ internal sealed record DominoLoopStep(ConclusionList Conclusions, ViewList Views
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { CellsCountStr, CellsStr } }, { "zh", new[] { CellsCountStr, CellsStr } } };
 
-	[ResourceTextFormatter]
-	internal string CellsCountStr() => Cells.Count.ToString();
+	private string CellsCountStr => Cells.Count.ToString();
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private string CellsStr => Cells.ToString();
 }

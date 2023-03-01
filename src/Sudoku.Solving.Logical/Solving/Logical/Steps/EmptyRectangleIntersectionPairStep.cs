@@ -35,19 +35,21 @@ internal sealed record EmptyRectangleIntersectionPairStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr } },
+			{ "zh", new[] { Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string Digit1Str() => (Digit1 + 1).ToString();
+	private string Digit1Str => (Digit1 + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string Digit2Str() => (Digit2 + 1).ToString();
+	private string Digit2Str => (Digit2 + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string StartCellStr() => RxCyNotation.ToCellString(StartCell);
+	private string StartCellStr => RxCyNotation.ToCellString(StartCell);
 
-	[ResourceTextFormatter]
-	internal string EndCellStr() => RxCyNotation.ToCellString(EndCell);
+	private string EndCellStr => RxCyNotation.ToCellString(EndCell);
 
-	[ResourceTextFormatter]
-	internal string HouseStr() => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseFormatter.Format(1 << House);
 }

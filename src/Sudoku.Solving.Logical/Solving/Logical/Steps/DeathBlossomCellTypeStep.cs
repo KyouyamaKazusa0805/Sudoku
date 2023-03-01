@@ -26,13 +26,16 @@ internal sealed record DeathBlossomCellTypeStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[]
 		{
-			new(
-				ExtraDifficultyCaseNames.Petals,
-				Petals.Length switch { >= 2 and < 5 => .1M, >= 5 and < 7 => .2M, _ => .3M }
-			)
+			new(ExtraDifficultyCaseNames.Petals, Petals.Length switch { >= 2 and < 5 => .1M, >= 5 and < 7 => .2M, _ => .3M })
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { CellStr, AlsesStr, DigitStr } },
+			{ "zh", new[] { CellStr, AlsesStr, DigitStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string CellStr() => RxCyNotation.ToCellString(HubCell);
+	private string CellStr => RxCyNotation.ToCellString(HubCell);
 }

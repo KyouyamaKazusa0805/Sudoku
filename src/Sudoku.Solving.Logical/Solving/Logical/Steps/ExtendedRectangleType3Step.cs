@@ -31,13 +31,17 @@ internal sealed record ExtendedRectangleType3Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.ExtraDigit, PopCount((uint)ExtraDigitsMask) * .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr, ExtraDigitsStr, ExtraCellsStr, HouseStr } },
+			{ "zh", new[] { DigitsStr, CellsStr, HouseStr, ExtraCellsStr, ExtraDigitsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ExtraDigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
+	private string ExtraDigitsStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string ExtraCellsStr() => ExtraCells.ToString();
+	private string ExtraCellsStr => ExtraCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string HouseStr() => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseFormatter.Format(1 << House);
 }

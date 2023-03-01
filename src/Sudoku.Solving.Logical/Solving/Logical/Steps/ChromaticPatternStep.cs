@@ -23,13 +23,9 @@ internal abstract record ChromaticPatternStep(ConclusionList Conclusions, ViewLi
 	/// <inheritdoc/>
 	public sealed override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 
+	private protected string BlocksStr => string.Join(", ", from block in Blocks select $"{block + 1}");
 
-	[ResourceTextFormatter]
-	internal string BlocksStr() => string.Join(", ", from block in Blocks select $"{block + 1}");
+	private protected string CellsStr => Pattern.ToString();
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => Pattern.ToString();
-
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 }

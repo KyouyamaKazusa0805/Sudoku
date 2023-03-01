@@ -37,16 +37,7 @@ internal abstract record ExtendedRectangleStep(ConclusionList Conclusions, ViewL
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, (A004526(Cells.Count) - 2) * .1M) };
 
+	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	/// <summary>
-	/// Indicates the digits string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-
-	/// <summary>
-	/// Indicates the cells string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private protected string CellsStr => Cells.ToString();
 }

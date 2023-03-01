@@ -26,7 +26,13 @@ internal sealed record ExtendedRectangleType4Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.ConjugatePair, .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr, ConjStr } },
+			{ "zh", new[] { DigitsStr, CellsStr, ConjStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ConjStr() => ConjugatePair.ToString();
+	private string ConjStr => ConjugatePair.ToString();
 }

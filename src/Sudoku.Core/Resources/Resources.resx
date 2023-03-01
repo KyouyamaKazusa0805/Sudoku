@@ -328,34 +328,34 @@
     <value>{0}</value>
   </data>
   <data name="TechniqueFormat_CellChainingStep" xml:space="preserve">
-    <value>{Name}: It can be proved using chains that all digits are false from {SourceCellStr} =&gt; {ElimStr}</value>
+    <value>{Name}: It can be proved using chains that all digits are false from {0} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ComplexFishStep" xml:space="preserve">
-    <value>{Name}: {DigitStr} in {BaseSetsStr}\\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=&gt; {ElimStr}</value>
+    <value>{0} in {1}\{2} {3}{4}</value>
   </data>
   <data name="TechniqueFormat_ContinuousNiceLoopStep" xml:space="preserve">
     <value>{Name}: Loop {ChainStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_DominoLoopStep" xml:space="preserve">
-    <value>{Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}</value>
+    <value>{0} cells {1}</value>
   </data>
   <data name="TechniqueFormat_EmptyRectangleIntersectionPairStep" xml:space="preserve">
-    <value>{Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {HouseStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in bivalue cells {2} and {3} with empty rectangle in {4}</value>
   </data>
   <data name="TechniqueFormat_EmptyRectangleStep" xml:space="preserve">
-    <value>{Name}: {DigitStr} in {HouseStr} with conjugate pair {ConjStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1} with conjugate pair {2}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType1Step" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in {CellsStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType2Step" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in {CellsStr} with extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1} with extra digit {2}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType3Step" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in {CellsStr} with {ExtraDigitsStr} in cells {ExtraCellsStr} in {HouseStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1} with {2} in cells {3} in {4}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType4Step" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in {CellsStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1} with the conjugate pair {2}</value>
   </data>
   <data name="TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate" xml:space="preserve">
     <value>Only the digit {0} can be duplicate in cells {1}</value>
@@ -1336,13 +1336,13 @@
     <value>Chromatic Pattern Type 4</value>
   </data>
   <data name="TechniqueFormat_ChromaticPatternType1Step" xml:space="preserve">
-    <value>{Name}: Cells {CellsStr} in blocks {BlocksStr} will form an invalid structure if these cells only contain the digits {DigitsStr} =&gt; {ElimStr}</value>
+    <value>Cells {0} in blocks {1} will form an invalid structure if these cells only contain the digits {2}</value>
   </data>
   <data name="ChromaticPatternXzRule" xml:space="preserve">
     <value>Chromatic Pattern XZ Rule</value>
   </data>
   <data name="TechniqueFormat_ChromaticPatternXzStep" xml:space="preserve">
-    <value>{Name}: Digits {DigitsStr} in cells {CellsStr} in blocks {BlocksStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} in cells {1} in blocks {2}, with extra cell {3}</value>
   </data>
   <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
     <value>{Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr}, digits {DigitsStr} =&gt; {ElimStr}</value>
@@ -1444,7 +1444,7 @@
     <value>{Name}: {StartCellStr} to {EndCellStr} with bridge cells {BridgeStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_DeathBlossomCellTypeStep" xml:space="preserve">
-    <value>{Name}: No matter what digit will be filled in cell {CellStr}, the related ALSes {AlsesStr} will keep at least one digit {DigitStr} being true =&gt; {ElimStr}</value>
+    <value>No matter what digit will be filled in cell {0}, the related ALSes {1} will keep at least one digit {2} being true</value>
   </data>
   <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
     <value>{Name}: The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {SymmetryTypeStr}, mapping relations: {MappingStr} =&gt;  {ElimStr}</value>
@@ -1555,7 +1555,7 @@
     <value>All candidates {0} can be eliminated because a loop is formed</value>
   </data>
   <data name="TechniqueFormat_CellForcingChainsStep" xml:space="preserve">
-    <value>{Name}: It is proved that all candidates in cell {CellStr} will lead to a same conclusion =&gt; {ElimStr}</value>
+    <value>It is proved that all candidates in cell {0} will lead to a same conclusion</value>
   </data>
   <data name="TechniqueFormat_ContradictionForcingChainsStep" xml:space="preserve">
     <value>It is proved that the candidate {0} is {1}, both true and false states of candidate {2} can be found, leading to a contradiction</value>

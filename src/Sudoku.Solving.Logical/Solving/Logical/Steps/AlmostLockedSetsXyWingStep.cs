@@ -41,7 +41,7 @@ internal sealed record AlmostLockedSetsXyWingStep(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
 			{ "en", new[] { Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr } },

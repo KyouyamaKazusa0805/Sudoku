@@ -3463,7 +3463,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: It can be proved using chains that all digits are false from {SourceCellStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: It can be proved using chains that all digits are false from {0} =&gt; {ElimStr}.
         /// </summary>
         public static string TechniqueFormat_CellChainingStep {
             get {
@@ -3472,7 +3472,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: It is proved that all candidates in cell {CellStr} will lead to a same conclusion =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to It is proved that all candidates in cell {0} will lead to a same conclusion.
         /// </summary>
         public static string TechniqueFormat_CellForcingChainsStep {
             get {
@@ -3481,7 +3481,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} in blocks {BlocksStr} will form an invalid structure if these cells only contain the digits {DigitsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} in blocks {1} will form an invalid structure if these cells only contain the digits {2}.
         /// </summary>
         public static string TechniqueFormat_ChromaticPatternType1Step {
             get {
@@ -3490,7 +3490,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} in blocks {BlocksStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} in cells {1} in blocks {2}, with extra cell {3}.
         /// </summary>
         public static string TechniqueFormat_ChromaticPatternXzStep {
             get {
@@ -3499,7 +3499,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetsStr}\\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1}\{2} {3}{4}.
         /// </summary>
         public static string TechniqueFormat_ComplexFishStep {
             get {
@@ -3526,7 +3526,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: No matter what digit will be filled in cell {CellStr}, the related ALSes {AlsesStr} will keep at least one digit {DigitStr} being true =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to No matter what digit will be filled in cell {0}, the related ALSes {1} will keep at least one digit {2} being true.
         /// </summary>
         public static string TechniqueFormat_DeathBlossomCellTypeStep {
             get {
@@ -3535,7 +3535,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} cells {1}.
         /// </summary>
         public static string TechniqueFormat_DominoLoopStep {
             get {
@@ -3553,7 +3553,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {HouseStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in bivalue cells {2} and {3} with empty rectangle in {4}.
         /// </summary>
         public static string TechniqueFormat_EmptyRectangleIntersectionPairStep {
             get {
@@ -3562,7 +3562,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitStr} in {HouseStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1} with conjugate pair {2}.
         /// </summary>
         public static string TechniqueFormat_EmptyRectangleStep {
             get {
@@ -3571,7 +3571,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1}.
         /// </summary>
         public static string TechniqueFormat_ExtendedRectangleType1Step {
             get {
@@ -3580,7 +3580,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} with extra digit {ExtraDigitStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1} with extra digit {2}.
         /// </summary>
         public static string TechniqueFormat_ExtendedRectangleType2Step {
             get {
@@ -3589,7 +3589,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} with {ExtraDigitsStr} in cells {ExtraCellsStr} in {HouseStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1} with {2} in cells {3} in {4}.
         /// </summary>
         public static string TechniqueFormat_ExtendedRectangleType3Step {
             get {
@@ -3598,7 +3598,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1} with the conjugate pair {2}.
         /// </summary>
         public static string TechniqueFormat_ExtendedRectangleType4Step {
             get {

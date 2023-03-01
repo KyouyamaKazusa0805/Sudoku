@@ -31,10 +31,15 @@ internal abstract record ExocetStep(ViewList Views, scoped in Exocet Exocet, sho
 	/// <inheritdoc/>
 	public sealed override Rarity Rarity => Rarity.HardlyEver;
 
+	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+
+	private protected string BaseCellsStr => BaseMap.ToString();
+
+	private protected string TargetCellsStr => TargetMap.ToString();
+
 	/// <summary>
 	/// Indicates the map of the base cells.
 	/// </summary>
-	[DebuggerHidden]
 	private CellMap BaseMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -44,31 +49,11 @@ internal abstract record ExocetStep(ViewList Views, scoped in Exocet Exocet, sho
 	/// <summary>
 	/// Indicates the map of the target cells.
 	/// </summary>
-	[DebuggerHidden]
 	private CellMap TargetMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Exocet.TargetCellsMap;
 	}
-
-
-	/// <summary>
-	/// Indicates the digits string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-
-	/// <summary>
-	/// Indicates the base map string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string BaseCellsStr() => BaseMap.ToString();
-
-	/// <summary>
-	/// Indicates the target map string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string TargetCellsStr() => TargetMap.ToString();
 
 
 	/// <summary>

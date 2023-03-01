@@ -16,8 +16,12 @@ internal sealed record CellForcingChainsStep(
 	int DynamicNestingLevel = 0
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
-	[ResourceTextFormatter]
-	internal string CellStr() => RxCyNotation.ToCellString(SourceCell);
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { SourceCellStr } }, { "zh", new[] { SourceCellStr } } };
+
+	private string SourceCellStr => RxCyNotation.ToCellString(SourceCell);
+
 
 	/// <inheritdoc/>
 	protected override CandidateMap GetGreenPotentials(int viewIndex)

@@ -15,4 +15,12 @@ internal sealed record ExtendedRectangleType1Step(ConclusionList Conclusions, Vi
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr } },
+			{ "zh", new[] { DigitsStr, CellsStr } }
+		};
 }

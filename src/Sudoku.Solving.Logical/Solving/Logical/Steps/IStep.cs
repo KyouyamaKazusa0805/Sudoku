@@ -154,7 +154,7 @@ public interface IStep : IVisual
 	/// <para>
 	/// This property use a dictionary to merge globalizational format data.
 	/// The key type is <see cref="string"/>, which can be used for the comparison of the current culture via type <see cref="CultureInfo"/>,
-	/// for example, <c>"zh"</c>.
+	/// for example, <c>"zh"</c> and <c>"en-US"</c>.
 	/// </para>
 	/// <para>
 	/// For more backing implementation details, please visit method <c>ToString</c> in derived class type called <c>Step</c>.

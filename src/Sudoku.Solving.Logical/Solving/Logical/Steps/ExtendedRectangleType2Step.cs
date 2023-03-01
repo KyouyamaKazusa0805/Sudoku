@@ -26,7 +26,13 @@ internal sealed record ExtendedRectangleType2Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.ExtraDigit, .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr, ExtraDigitStr } },
+			{ "zh", new[] { DigitsStr, CellsStr, ExtraDigitStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ExtraDigitStr() => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

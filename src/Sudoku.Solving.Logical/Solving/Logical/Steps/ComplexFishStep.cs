@@ -56,10 +56,7 @@ internal sealed record ComplexFishStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[]
 		{
-			new(
-				ExtraDifficultyCaseNames.Size,
-				Size switch { 2 => 0, 3 => .6M, 4 => 2.0M, 5 => 3.3M, 6 => 4.5M, 7 => 5.6M, _ => 6.6M }
-			),
+			new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M, 5 => 3.3M, 6 => 4.5M, 7 => 5.6M, _ => 6.6M }),
 			new(
 				ExtraDifficultyCaseNames.Sashimi,
 				IsSashimi switch
@@ -77,10 +74,17 @@ internal sealed record ComplexFishStep(
 			)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitStr, BaseSetsStr, CoverSetsStr, ExofinsStr, EndofinsStr } },
+			{ "zh", new[] { BaseSetsStr, CoverSetsStr, DigitStr, ExofinsStr, EndofinsStr } }
+		};
+
 	/// <summary>
 	/// Indicates the base houses.
 	/// </summary>
-	[DebuggerHidden]
 	private int[] BaseHouses
 	{
 		get
@@ -99,7 +103,6 @@ internal sealed record ComplexFishStep(
 	/// <summary>
 	/// Indicates the cover houses.
 	/// </summary>
-	[DebuggerHidden]
 	private int[] CoverHouses
 	{
 		get
@@ -114,6 +117,16 @@ internal sealed record ComplexFishStep(
 			return result;
 		}
 	}
+
+	private string DigitStr => (Digit + 1).ToString();
+
+	private string BaseSetsStr => HouseFormatter.Format(BaseHouses);
+
+	private string CoverSetsStr => HouseFormatter.Format(CoverHouses);
+
+	private string ExofinsStr => Exofins ? $"f{Exofins} " : string.Empty;
+
+	private string EndofinsStr => Endofins ? $"ef{Endofins} " : string.Empty;
 
 	/// <summary>
 	/// The internal name.
@@ -141,33 +154,15 @@ internal sealed record ComplexFishStep(
 	/// <summary>
 	/// Indicates the fin modifier.
 	/// </summary>
-	[DebuggerHidden]
 	private ComplexFishFinKind FinModifier
 		=> IsSashimi switch { true => ComplexFishFinKind.Sashimi, false => ComplexFishFinKind.Finned, _ => ComplexFishFinKind.Normal };
 
 	/// <summary>
 	/// The shape modifier.
 	/// </summary>
-	[DebuggerHidden]
 	private ComplexFishShapeKind ShapeModifier => IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant;
 
-
-	[ResourceTextFormatter]
-	internal string DigitStr() => (Digit + 1).ToString();
-
-	[ResourceTextFormatter]
-	internal string BaseSetsStr() => HouseFormatter.Format(BaseHouses);
-
-	[ResourceTextFormatter]
-	internal string CoverSetsStr() => HouseFormatter.Format(CoverHouses);
-
-	[ResourceTextFormatter]
-	internal string ExofinsStr() => Exofins ? $"f{Exofins} " : string.Empty;
-
-	[ResourceTextFormatter]
-	internal string EndofinsStr() => Endofins ? $"ef{Endofins} " : string.Empty;
-
-
+	
 	/// <inheritdoc/>
 	public static bool Equals(ComplexFishStep left, ComplexFishStep right)
 		=> left.Digit == right.Digit

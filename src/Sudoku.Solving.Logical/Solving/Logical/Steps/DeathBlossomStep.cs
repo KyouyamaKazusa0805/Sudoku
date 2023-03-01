@@ -16,10 +16,7 @@ internal abstract record DeathBlossomStep(ConclusionList Conclusions, ViewList V
 	/// <inheritdoc/>
 	public sealed override Rarity Rarity => Rarity.Seldom;
 
+	private protected string AlsesStr => string.Join(R.EmitPunctuation(Punctuation.Comma), from als in Petals select als.ToString());
 
-	[ResourceTextFormatter]
-	internal string AlsesStr() => string.Join(R.EmitPunctuation(Punctuation.Comma), from als in Petals select als.ToString());
-
-	[ResourceTextFormatter]
-	internal string DigitStr() => DigitMaskFormatter.Format(DigitsMask);
+	private protected string DigitStr => DigitMaskFormatter.Format(DigitsMask);
 }
