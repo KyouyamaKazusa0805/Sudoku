@@ -61,7 +61,7 @@ public interface IStep : IVisual
 	/// <para>
 	/// And then fill the blank via property <see cref="FormatInterpolatedParts"/>:
 	/// <code><![CDATA[
-	/// public override IDictionary<string, string[]?>> FormatInterpolatedParts
+	/// public override IDictionary<string, string[]?> FormatInterpolatedParts
 	///     => [["en-US": [CellsStr, DigitsStr]], ["zh-CN": [CellsStr, DigitsStr]]];
 	/// ]]></code>
 	/// via the feature provided by C# 12: Collection Literals. If you cannot decide the real name of the culture name,
