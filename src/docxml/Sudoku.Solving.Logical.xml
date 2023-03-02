@@ -12611,11 +12611,12 @@ if (student is (name: var name, age: >= 18))
             for example, <c>"zh"</c> and <c>"en-US"</c>.
             </para>
             <para>
-            For more backing implementation details, please visit method <c>ToString</c> in derived class type called <c>Step</c>.
+            For more backing implementation details, please visit method <see cref="M:Sudoku.Solving.Logical.IStep.ToString"/> in derived <see langword="class"/>es.
             </para>
             </remarks>
             <seealso cref="P:Sudoku.Solving.Logical.IStep.Format"/>
             <seealso cref="T:System.Globalization.CultureInfo"/>
+            <seealso cref="M:Sudoku.Solving.Logical.IStep.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Logical.IStep.ApplyTo(Sudoku.Concepts.Grid@)">
             <summary>

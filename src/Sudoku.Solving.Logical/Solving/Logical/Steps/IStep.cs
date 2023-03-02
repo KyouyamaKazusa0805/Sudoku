@@ -157,11 +157,12 @@ public interface IStep : IVisual
 	/// for example, <c>"zh"</c> and <c>"en-US"</c>.
 	/// </para>
 	/// <para>
-	/// For more backing implementation details, please visit method <c>ToString</c> in derived class type called <c>Step</c>.
+	/// For more backing implementation details, please visit method <see cref="ToString"/> in derived <see langword="class"/>es.
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="Format"/>
 	/// <seealso cref="CultureInfo"/>
+	/// <seealso cref="ToString"/>
 	IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts { get; }
 
 
