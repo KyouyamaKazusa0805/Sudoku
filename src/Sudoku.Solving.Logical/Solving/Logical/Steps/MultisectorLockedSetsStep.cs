@@ -31,10 +31,11 @@ internal sealed record MultisectorLockedSetsStep(ConclusionList Conclusions, Vie
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, A002024(Cells.Count) * .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { CellsCountStr, CellsStr } }, { "zh", new[] { CellsCountStr, CellsStr } } };
 
-	[ResourceTextFormatter]
-	internal string CellsCountStr() => Cells.Count.ToString();
+	private string CellsCountStr => Cells.Count.ToString();
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private string CellsStr => Cells.ToString();
 }

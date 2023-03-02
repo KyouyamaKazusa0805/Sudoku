@@ -376,31 +376,31 @@
     <value>单元格 {0} 并带有{1} {2}</value>
   </data>
   <data name="TechniqueFormat_HiddenSingle" xml:space="preserve">
-    <value>{Name}：在区域 {HouseStr} 里有 {CellStr} = {DigitStr}</value>
+    <value>在区域 {0} 里有结论</value>
   </data>
   <data name="TechniqueFormat_HiddenSubsetStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitStr} 位于区域 {HouseStr} 里有隐性数组结构 =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于区域 {1} 里有隐性数组结构</value>
   </data>
   <data name="TechniqueFormat_LastDigit" xml:space="preserve">
-    <value>{Name}：{CellStr} = {DigitStr}</value>
+    <value>这是数字 {0} 的最后一个未填项</value>
   </data>
   <data name="TechniqueFormat_LockedCandidatesStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有区块结构 =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于区域 {1}\{2} 里有区块结构</value>
   </data>
   <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
-    <value>{Name}：网一共 {CellsCountStr} 个单元格 {CellsStr} =&gt; {ElimStr}</value>
+    <value>共 {0} 个单元格 {1}</value>
   </data>
   <data name="TechniqueFormat_NakedSingleStep" xml:space="preserve">
-    <value>{Name}：{CellStr} = {DigitStr}</value>
+    <value />
   </data>
   <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
-    <value>{Name}：{DigitsStr} 位于区域 {HouseStr} 里有显性{SubsetName}结构 =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于区域 {1} 里有显性{2}结构</value>
   </data>
   <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有鱼结构{FinsStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于区域 {1}\{2} 里有鱼结构{3}</value>
   </data>
   <data name="TechniqueFormat_PatternOverlayStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitStr} 有 POM 结构 =&gt; {ElimStr}</value>
+    <value>枚举数字 {DigitStr} 的所有排列情况</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternLockedTypeStep" xml:space="preserve">
     <value>{Name}：如果所有这 {Number} 个候选数都为假的话，单元格 {PatternStr} 将产生致命形式 =&gt; {ElimStr}</value>
@@ -1739,7 +1739,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_MultiBranchWWingStep" xml:space="preserve">
-    <value>{Name}：根 {RootStr} 位于 {HouseStr}，分支走向终端 {LeavesStr} =&gt; {ElimStr}</value>
+    <value>根 {0} 位于 {1}，分支走向终端 {2}</value>
   </data>
   <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
     <value>从 {0} 到 {1}，使用单元格 {2} 关联起来</value>

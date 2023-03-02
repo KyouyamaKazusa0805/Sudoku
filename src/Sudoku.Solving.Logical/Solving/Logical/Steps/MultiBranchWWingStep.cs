@@ -37,13 +37,17 @@ internal sealed record MultiBranchWWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Size switch { 2 => Rarity.Often, 3 => Rarity.Seldom, _ => Rarity.HardlyEver };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { LeavesStr, RootStr, HouseStr } },
+			{ "zh", new[] { RootStr, HouseStr, LeavesStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string LeavesStr() => RxCyNotation.ToCellsString(Leaves);
+	private string LeavesStr => RxCyNotation.ToCellsString(Leaves);
 
-	[ResourceTextFormatter]
-	internal string RootStr() => RxCyNotation.ToCellsString(Root);
+	private string RootStr => RxCyNotation.ToCellsString(Root);
 
-	[ResourceTextFormatter]
-	internal string HouseStr() => HouseFormatter.Format(House);
+	private string HouseStr => HouseFormatter.Format(House);
 }

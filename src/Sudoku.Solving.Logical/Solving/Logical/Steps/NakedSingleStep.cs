@@ -7,7 +7,8 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cell"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-internal sealed record NakedSingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) : SingleStep(Conclusions, Views, Cell, Digit)
+internal sealed record NakedSingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
+	SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 2.3M;
@@ -18,10 +19,6 @@ internal sealed record NakedSingleStep(ConclusionList Conclusions, ViewList View
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.NakedSingle;
 
-
-	[ResourceTextFormatter]
-	internal string CellStr() => RxCyNotation.ToCellString(Cell);
-
-	[ResourceTextFormatter]
-	internal string DigitStr() => (Digit + 1).ToString();
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
 }

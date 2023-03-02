@@ -3715,7 +3715,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr} in {HouseStr}.
+        ///   Looks up a localized string similar to In {0}.
         /// </summary>
         public static string TechniqueFormat_HiddenSingle {
             get {
@@ -3724,7 +3724,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitStr} in {HouseStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1}.
         /// </summary>
         public static string TechniqueFormat_HiddenSubsetStep {
             get {
@@ -3751,7 +3751,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
+        ///   Looks up a localized string similar to This is final digit {0}.
         /// </summary>
         public static string TechniqueFormat_LastDigit {
             get {
@@ -3760,7 +3760,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1}\{2}.
         /// </summary>
         public static string TechniqueFormat_LockedCandidatesStep {
             get {
@@ -3769,7 +3769,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Leaves {LeavesStr}, root cells {RootStr} in house {HouseStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Leaves {0}, root cells {1} in house {2}.
         /// </summary>
         public static string TechniqueFormat_MultiBranchWWingStep {
             get {
@@ -3778,7 +3778,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} cells {1}.
         /// </summary>
         public static string TechniqueFormat_MultisectorLockedSetsStep {
             get {
@@ -3787,7 +3787,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string TechniqueFormat_NakedSingleStep {
             get {
@@ -3796,7 +3796,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in {HouseStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1}.
         /// </summary>
         public static string TechniqueFormat_NakedSubsetStep {
             get {
@@ -3805,7 +3805,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1}\{2}{3}.
         /// </summary>
         public static string TechniqueFormat_NormalFishStep {
             get {
@@ -3814,7 +3814,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digit {DigitStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Enumeration on digit {DigitStr}.
         /// </summary>
         public static string TechniqueFormat_PatternOverlayStep {
             get {

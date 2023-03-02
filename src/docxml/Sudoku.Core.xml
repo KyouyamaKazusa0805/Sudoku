@@ -5542,12 +5542,12 @@ fixed (short* ptr = instance)
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_HiddenSingle">
             <summary>
-              Looks up a localized string similar to {Name}: {CellStr} = {DigitStr} in {HouseStr}.
+              Looks up a localized string similar to In {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_HiddenSubsetStep">
             <summary>
-              Looks up a localized string similar to {Name}: {DigitStr} in {HouseStr} =&gt; {ElimStr}.
+              Looks up a localized string similar to {0} in {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_HouseChainingStep">
@@ -5562,42 +5562,42 @@ fixed (short* ptr = instance)
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_LastDigit">
             <summary>
-              Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
+              Looks up a localized string similar to This is final digit {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_LockedCandidatesStep">
             <summary>
-              Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} =&gt; {ElimStr}.
+              Looks up a localized string similar to {0} in {1}\{2}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_MultiBranchWWingStep">
             <summary>
-              Looks up a localized string similar to {Name}: Leaves {LeavesStr}, root cells {RootStr} in house {HouseStr} =&gt; {ElimStr}.
+              Looks up a localized string similar to Leaves {0}, root cells {1} in house {2}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_MultisectorLockedSetsStep">
             <summary>
-              Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
+              Looks up a localized string similar to {0} cells {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_NakedSingleStep">
             <summary>
-              Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
+              Looks up a localized string similar to .
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_NakedSubsetStep">
             <summary>
-              Looks up a localized string similar to {Name}: {DigitsStr} in {HouseStr} =&gt; {ElimStr}.
+              Looks up a localized string similar to {0} in {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_NormalFishStep">
             <summary>
-              Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} =&gt; {ElimStr}.
+              Looks up a localized string similar to {0} in {1}\{2}{3}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_PatternOverlayStep">
             <summary>
-              Looks up a localized string similar to {Name}: Digit {DigitStr} =&gt; {ElimStr}.
+              Looks up a localized string similar to Enumeration on digit {DigitStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_QiuDeadlyPatternLockedTypeStep">

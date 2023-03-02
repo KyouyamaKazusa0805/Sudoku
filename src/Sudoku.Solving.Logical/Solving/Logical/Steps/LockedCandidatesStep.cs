@@ -26,13 +26,17 @@ internal sealed record LockedCandidatesStep(ConclusionList Conclusions, ViewList
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitStr, BaseSetStr, CoverSetStr } },
+			{ "zh", new[] { DigitStr, BaseSetStr, CoverSetStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string DigitStr() => (Digit + 1).ToString();
+	private string DigitStr => (Digit + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string BaseSetStr() => HouseFormatter.Format(1 << BaseSet);
+	private string BaseSetStr => HouseFormatter.Format(1 << BaseSet);
 
-	[ResourceTextFormatter]
-	internal string CoverSetStr() => HouseFormatter.Format(1 << CoverSet);
+	private string CoverSetStr => HouseFormatter.Format(1 << CoverSet);
 }

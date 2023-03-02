@@ -48,11 +48,12 @@ internal sealed record JuniorExocetStep(
 			)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
 
 	/// <summary>
 	/// Indicates the locked member Q string.
 	/// </summary>
-	[ResourceTextFormatter]
 	internal string LockedMemberQStr()
 	{
 #if false
@@ -66,7 +67,6 @@ internal sealed record JuniorExocetStep(
 	/// <summary>
 	/// Indicates the locked member R string.
 	/// </summary>
-	[ResourceTextFormatter]
 	internal string LockedMemberRStr()
 	{
 #if false

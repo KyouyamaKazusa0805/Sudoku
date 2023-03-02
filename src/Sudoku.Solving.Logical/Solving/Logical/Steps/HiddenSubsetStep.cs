@@ -27,10 +27,11 @@ internal sealed record HiddenSubsetStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M }) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { DigitStr, HouseStr } }, { "zh", new[] { DigitStr, HouseStr } } };
 
-	[ResourceTextFormatter]
-	internal string DigitStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string HouseStr() => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseFormatter.Format(1 << House);
 }

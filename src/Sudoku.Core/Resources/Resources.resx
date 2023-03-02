@@ -370,31 +370,31 @@
     <value>Cells {0} with {1} {2}</value>
   </data>
   <data name="TechniqueFormat_HiddenSingle" xml:space="preserve">
-    <value>{Name}: {CellStr} = {DigitStr} in {HouseStr}</value>
+    <value>In {0}</value>
   </data>
   <data name="TechniqueFormat_HiddenSubsetStep" xml:space="preserve">
-    <value>{Name}: {DigitStr} in {HouseStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1}</value>
   </data>
   <data name="TechniqueFormat_LastDigit" xml:space="preserve">
-    <value>{Name}: {CellStr} = {DigitStr}</value>
+    <value>This is final digit {0}</value>
   </data>
   <data name="TechniqueFormat_LockedCandidatesStep" xml:space="preserve">
-    <value>{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1}\{2}</value>
   </data>
   <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
-    <value>{Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}</value>
+    <value>{0} cells {1}</value>
   </data>
   <data name="TechniqueFormat_NakedSingleStep" xml:space="preserve">
-    <value>{Name}: {CellStr} = {DigitStr}</value>
+    <value />
   </data>
   <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in {HouseStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1}</value>
   </data>
   <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
-    <value>{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1}\{2}{3}</value>
   </data>
   <data name="TechniqueFormat_PatternOverlayStep" xml:space="preserve">
-    <value>{Name}: Digit {DigitStr} =&gt; {ElimStr}</value>
+    <value>Enumeration on digit {DigitStr}</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternLockedTypeStep" xml:space="preserve">
     <value>{Name}: Cells {PatternStr} will be a deadly pattern if{Quantifier}{Number} {SingularOrPlural} {CandidateStr} {BeVerb} false =&gt; {ElimStr}</value>
@@ -1438,7 +1438,7 @@
     <value>W-Wing Multiple Branches</value>
   </data>
   <data name="TechniqueFormat_MultiBranchWWingStep" xml:space="preserve">
-    <value>{Name}: Leaves {LeavesStr}, root cells {RootStr} in house {HouseStr} =&gt; {ElimStr}</value>
+    <value>Leaves {0}, root cells {1} in house {2}</value>
   </data>
   <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
     <value>{0} to {1} with bridge cells {2}</value>

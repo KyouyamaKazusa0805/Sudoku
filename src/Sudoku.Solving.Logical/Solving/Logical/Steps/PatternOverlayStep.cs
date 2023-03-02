@@ -29,7 +29,9 @@ internal sealed record PatternOverlayStep(ConclusionList Conclusions) : LastReso
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { DigitStr } }, { "zh", new[] { DigitStr } } };
 
-	[ResourceTextFormatter]
-	internal string DigitStr() => (Digit + 1).ToString();
+	private string DigitStr => (Digit + 1).ToString();
 }

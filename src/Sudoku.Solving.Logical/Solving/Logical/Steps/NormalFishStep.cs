@@ -79,6 +79,13 @@ internal sealed record NormalFishStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Size switch { 2 => Rarity.Sometimes, 3 or 4 => Rarity.Seldom };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitStr, BaseSetStr, CoverSetStr, FinsStr } },
+			{ "zh", new[] { DigitStr, BaseSetStr, CoverSetStr, FinsStr } }
+		};
 
 	/// <summary>
 	/// Indicates the internal name.
@@ -94,19 +101,11 @@ internal sealed record NormalFishStep(
 		}
 	}
 
+	private string DigitStr => (Digit + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string DigitStr() => (Digit + 1).ToString();
+	private string BaseSetStr => HouseFormatter.Format(BaseSetsMask);
 
-	[ResourceTextFormatter]
-	internal string BaseSetStr() => HouseFormatter.Format(BaseSetsMask);
+	private string CoverSetStr => HouseFormatter.Format(CoverSetsMask);
 
-	[ResourceTextFormatter]
-	internal string CoverSetStr() => HouseFormatter.Format(CoverSetsMask);
-
-	[ResourceTextFormatter]
-	internal string FinSnippet() => R["Fin"]!;
-
-	[ResourceTextFormatter]
-	internal string FinsStr() => Fins ? $"{FinSnippet()}{Fins}" : string.Empty;
+	private string FinsStr => Fins ? $"{R["Fin"]!}{Fins}" : string.Empty;
 }

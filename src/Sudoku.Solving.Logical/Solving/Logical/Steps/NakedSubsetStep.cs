@@ -53,19 +53,16 @@ internal sealed record NakedSubsetStep(
 		=> new ExtraDifficultyCase[]
 		{
 			new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M }),
-			new(
-				ExtraDifficultyCaseNames.Locked,
-				IsLocked switch { true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M, _ => 0 }
-			)
+			new(ExtraDifficultyCaseNames.Locked, IsLocked switch { true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M, _ => 0 })
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { DigitsStr, HouseStr } }, { "zh", new[] { DigitsStr, HouseStr, SubsetName } } };
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string HouseStr() => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseFormatter.Format(1 << House);
 
-	[ResourceTextFormatter]
-	internal string SubsetName() => R[$"SubsetNamesSize{Size}"]!;
+	private string SubsetName => R[$"SubsetNamesSize{Size}"]!;
 }

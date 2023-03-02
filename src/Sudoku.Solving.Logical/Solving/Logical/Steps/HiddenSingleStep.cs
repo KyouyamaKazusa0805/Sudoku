@@ -25,13 +25,15 @@ internal sealed record HiddenSingleStep(ConclusionList Conclusions, ViewList Vie
 	/// <inheritdoc/>
 	public override string? Format => R[EnableAndIsLastDigit ? "TechniqueFormat_LastDigit" : "TechniqueFormat_HiddenSingle"];
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", EnableAndIsLastDigit ? new[] { DigitStr } : new[] { HouseStr } },
+			{ "zh", EnableAndIsLastDigit ? new[] { DigitStr } : new[] { HouseStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string CellStr() => RxCyNotation.ToCellString(Cell);
+	private string DigitStr => (Digit + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string DigitStr() => (Digit + 1).ToString();
-
-	[ResourceTextFormatter]
-	internal string HouseStr() => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseFormatter.Format(1 << House);
 }
