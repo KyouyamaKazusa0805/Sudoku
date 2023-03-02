@@ -94,10 +94,7 @@ public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 		=> formattingMode switch
 		{
 			FormattingMode.Simple
-				=> EliminationNotation.ToCandidatesString(
-					CandidateMap.Empty
-						+ from conclusion in conclusions select conclusion.Cell * 9 + conclusion.Digit
-				),
+				=> EliminationNotation.ToCandidatesString(CandidateMap.Empty + from c in conclusions select c.Cell * 9 + c.Digit),
 			FormattingMode.Normal => Format(conclusions, R.EmitPunctuation(Punctuation.Comma), true),
 			FormattingMode.Full => throw new NotSupportedException("The full-formatting mode is not supported on conclusion collections."),
 			_ => throw new ArgumentOutOfRangeException(nameof(formattingMode))
