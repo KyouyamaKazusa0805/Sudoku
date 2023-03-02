@@ -34,12 +34,7 @@ internal abstract record QiuDeadlyPatternStep(ConclusionList Conclusions, ViewLi
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.DeadlyPattern;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
+	public sealed override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 
-
-	/// <summary>
-	/// Indicates the pattern string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string PatternStr() => Pattern.Map.ToString();
+	private protected string PatternStr => Pattern.Map.ToString();
 }

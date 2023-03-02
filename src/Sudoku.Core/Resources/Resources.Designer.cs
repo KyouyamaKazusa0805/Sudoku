@@ -3823,7 +3823,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if{Quantifier}{Number} {SingularOrPlural} {CandidateStr} {BeVerb} false =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} will be a deadly pattern if{1}{2} {3} {4} {5} false.
         /// </summary>
         public static string TechniqueFormat_QiuDeadlyPatternLockedTypeStep {
             get {
@@ -3832,7 +3832,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if {CandidateStr} is false =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} will be a deadly pattern if {1} is false.
         /// </summary>
         public static string TechniqueFormat_QiuDeadlyPatternType1Step {
             get {
@@ -3841,7 +3841,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if all the extra digits {ExtraDigitStr} in pair cells is false =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} will be a deadly pattern if all the extra digits {1} in pair cells is false.
         /// </summary>
         public static string TechniqueFormat_QiuDeadlyPatternType2Step {
             get {
@@ -3850,7 +3850,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {PatternStr} won&apos;t be a deadly pattern if and only if digits {DigitsStr} in cells {CellsStr} is a naked {SubsetName} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} won&apos;t be a deadly pattern if and only if digits {1} in cells {2} is a naked {3}.
         /// </summary>
         public static string TechniqueFormat_QiuDeadlyPatternType3Step {
             get {
@@ -3859,7 +3859,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if another digit in either cells lying on the conjugate pair {ConjStr} is true =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} will be a deadly pattern if another digit in either cells lying on the conjugate pair {1} is true.
         /// </summary>
         public static string TechniqueFormat_QiuDeadlyPatternType4Step {
             get {

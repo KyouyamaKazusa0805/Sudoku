@@ -403,19 +403,19 @@
     <value>枚举数字 {DigitStr} 的所有排列情况</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternLockedTypeStep" xml:space="preserve">
-    <value>{Name}：如果所有这 {Number} 个候选数都为假的话，单元格 {PatternStr} 将产生致命形式 =&gt; {ElimStr}</value>
+    <value>如果所有这 {0} 个候选数都为假的话，单元格 {1} 将产生致命形式</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType1Step" xml:space="preserve">
-    <value>{Name}：如果 {CandidateStr} 全为假的话，单元格 {PatternStr} 将产生致命形式 =&gt; {ElimStr}</value>
+    <value>如果 {0} 全为假的话，单元格 {1} 将产生致命形式</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType2Step" xml:space="preserve">
-    <value>{Name}：如果所有位于单元格 {PatternStr} 里的数字 {ExtraDigitStr} 全部为假的话，则结构将产生致命形式 =&gt; {ElimStr}</value>
+    <value>如果所有位于单元格 {0} 里的数字 {1} 全部为假的话，则结构将产生致命形式</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType3Step" xml:space="preserve">
-    <value>{Name}：单元格 {PatternStr} 不会产生致命形式当且仅当数字 {DigitsStr} 在单元格 {CellsStr} 里会构成显性{SubsetName} =&gt; {ElimStr}</value>
+    <value>单元格 {0} 不会产生致命形式当且仅当数字 {1} 在单元格 {2} 里会构成显性{3}</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType4Step" xml:space="preserve">
-    <value>{Name}：如果涉及结构的、和共轭对 {ConjStr} 涉及外的数字被放在了共轭对上，单元格 {PatternStr} 将产生致命形式 =&gt; {ElimStr}</value>
+    <value>如果涉及结构的、和共轭对 {0} 涉及外的数字被放在了共轭对上，单元格 {1} 将产生致命形式</value>
   </data>
   <data name="TechniqueFormat_HouseChainingStep" xml:space="preserve">
     <value>{Name}：可以使用强制链证得位于区域 {HouseStr} 的数字 {DigitStr} 全为假的矛盾 =&gt; {ElimStr}</value>

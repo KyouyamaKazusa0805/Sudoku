@@ -19,22 +19,23 @@ internal sealed record QiuDeadlyPatternLockedTypeStep(
 	public override int Type => 5;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.LockedDigit, .2M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.LockedDigit, .2M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { PatternStr, Quantifier, Number, SingularOrPlural, CandidateStr, BeVerb } },
+			{ "zh", new[] { Number, PatternStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string CandidateStr() => (CandidateMap.Empty + Candidates).ToString();
+	private string CandidateStr => (CandidateMap.Empty + Candidates).ToString();
 
-	[ResourceTextFormatter]
-	internal string Quantifier() => Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
+	private string Quantifier => Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
 
-	[ResourceTextFormatter]
-	internal string Number() => Candidates.Count == 1 ? " the" : $" {Candidates.Count}";
+	private string Number => Candidates.Count == 1 ? " the" : $" {Candidates.Count}";
 
-	[ResourceTextFormatter]
-	internal string SingularOrPlural() => Candidates.Count == 1 ? "candidate" : "candidates";
+	private string SingularOrPlural => Candidates.Count == 1 ? "candidate" : "candidates";
 
-	[ResourceTextFormatter]
-	internal string BeVerb() => Candidates.Count == 1 ? "is" : "are";
+	private string BeVerb => Candidates.Count == 1 ? "is" : "are";
 }

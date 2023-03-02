@@ -8,21 +8,18 @@
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 [StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
-internal sealed record QiuDeadlyPatternType2Step(
-	ConclusionList Conclusions,
-	ViewList Views,
-	scoped in QiuDeadlyPattern Pattern,
-	int ExtraDigit
-) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)
+internal sealed record QiuDeadlyPatternType2Step(ConclusionList Conclusions, ViewList Views, scoped in QiuDeadlyPattern Pattern, int ExtraDigit) :
+	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { PatternStr, ExtraDigitStr } }, { "zh", new[] { PatternStr, ExtraDigitStr } } };
 
-	[ResourceTextFormatter]
-	internal string ExtraDigitStr() => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

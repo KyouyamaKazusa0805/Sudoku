@@ -8,17 +8,15 @@
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the extra candidate used.</param>
 [StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
-internal sealed record QiuDeadlyPatternType1Step(
-	ConclusionList Conclusions,
-	ViewList Views,
-	scoped in QiuDeadlyPattern Pattern,
-	int Candidate
-) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)
+internal sealed record QiuDeadlyPatternType1Step(ConclusionList Conclusions, ViewList Views, scoped in QiuDeadlyPattern Pattern, int Candidate) :
+	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { PatternStr, CandidateStr } }, { "zh", new[] { CandidateStr, PatternStr } } };
 
-	[ResourceTextFormatter]
-	internal string CandidateStr() => (CandidateMap.Empty + Candidate).ToString();
+	private string CandidateStr => (CandidateMap.Empty + Candidate).ToString();
 }

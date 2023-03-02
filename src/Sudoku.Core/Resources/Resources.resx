@@ -397,19 +397,19 @@
     <value>Enumeration on digit {DigitStr}</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternLockedTypeStep" xml:space="preserve">
-    <value>{Name}: Cells {PatternStr} will be a deadly pattern if{Quantifier}{Number} {SingularOrPlural} {CandidateStr} {BeVerb} false =&gt; {ElimStr}</value>
+    <value>Cells {0} will be a deadly pattern if{1}{2} {3} {4} {5} false</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType1Step" xml:space="preserve">
-    <value>{Name}: Cells {PatternStr} will be a deadly pattern if {CandidateStr} is false =&gt; {ElimStr}</value>
+    <value>Cells {0} will be a deadly pattern if {1} is false</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType2Step" xml:space="preserve">
-    <value>{Name}: Cells {PatternStr} will be a deadly pattern if all the extra digits {ExtraDigitStr} in pair cells is false =&gt; {ElimStr}</value>
+    <value>Cells {0} will be a deadly pattern if all the extra digits {1} in pair cells is false</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType3Step" xml:space="preserve">
-    <value>{Name}: Cells {PatternStr} won't be a deadly pattern if and only if digits {DigitsStr} in cells {CellsStr} is a naked {SubsetName} =&gt; {ElimStr}</value>
+    <value>Cells {0} won't be a deadly pattern if and only if digits {1} in cells {2} is a naked {3}</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType4Step" xml:space="preserve">
-    <value>{Name}: Cells {PatternStr} will be a deadly pattern if another digit in either cells lying on the conjugate pair {ConjStr} is true =&gt; {ElimStr}</value>
+    <value>Cells {0} will be a deadly pattern if another digit in either cells lying on the conjugate pair {1} is true</value>
   </data>
   <data name="TechniqueFormat_HouseChainingStep" xml:space="preserve">
     <value>{Name}: It can be proved using chains that digit {DigitStr} from {HouseStr} are false =&gt; {ElimStr}</value>

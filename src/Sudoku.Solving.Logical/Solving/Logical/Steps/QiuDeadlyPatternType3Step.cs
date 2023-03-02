@@ -26,13 +26,17 @@ internal sealed record QiuDeadlyPatternType3Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, PopCount((uint)ExtraDigitsMask) * .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { PatternStr, DigitsStr, CellsStr, SubsetName } },
+			{ "zh", new[] { PatternStr, DigitsStr, CellsStr, SubsetName } }
+		};
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => ExtraCells.ToString();
+	private string CellsStr => ExtraCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string SubsetName() => R[$"SubsetNamesSize{ExtraCells.Count + 1}"]!;
+	private string SubsetName => R[$"SubsetNamesSize{ExtraCells.Count + 1}"]!;
 }

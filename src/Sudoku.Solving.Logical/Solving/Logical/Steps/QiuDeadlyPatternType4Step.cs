@@ -19,10 +19,11 @@ internal sealed record QiuDeadlyPatternType4Step(
 	public override int Type => 4;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ConjugatePair, .2M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ConjugatePair, .2M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { PatternStr, ConjStr } }, { "zh", new[] { ConjStr, PatternStr } } };
 
-	[ResourceTextFormatter]
-	internal string ConjStr() => ConjugatePair.ToString();
+	private string ConjStr => ConjugatePair.ToString();
 }

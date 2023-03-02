@@ -9681,6 +9681,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternLockedTypeStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternLockedTypeStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
@@ -9726,11 +9729,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.PatternStr">
-            <summary>
-            Indicates the pattern string.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType1Step">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
@@ -9753,6 +9751,9 @@ if (student is (name: var name, age: >= 18))
             <summary>Indicates the extra candidate used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType1Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step">
@@ -9780,6 +9781,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step">
@@ -9819,6 +9823,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
@@ -9844,6 +9851,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.RankTheoryStep">
