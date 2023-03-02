@@ -30,13 +30,17 @@ internal sealed record GroupedWWingStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { StartCellStr, EndCellStr, BridgeStr } },
+			{ "zh", new[] { StartCellStr, EndCellStr, BridgeStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string StartCellStr() => RxCyNotation.ToCellString(StartCell);
+	private string StartCellStr => RxCyNotation.ToCellString(StartCell);
 
-	[ResourceTextFormatter]
-	internal string EndCellStr() => RxCyNotation.ToCellString(EndCell);
+	private string EndCellStr => RxCyNotation.ToCellString(EndCell);
 
-	[ResourceTextFormatter]
-	internal string BridgeStr() => RxCyNotation.ToCellsString(Bridge);
+	private string BridgeStr => RxCyNotation.ToCellsString(Bridge);
 }

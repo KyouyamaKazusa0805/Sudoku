@@ -19,10 +19,11 @@ internal sealed record FireworkTripleStep(ConclusionList Conclusions, ViewList V
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { CellsStr, DigitsStr } }, { "zh", new[] { CellsStr, DigitsStr } } };
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private string CellsStr => Cells.ToString();
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 }

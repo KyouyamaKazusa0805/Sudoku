@@ -17,11 +17,4 @@ internal sealed record FullHouseStep(ConclusionList Conclusions, ViewList Views,
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Always;
-
-
-	[ResourceTextFormatter]
-	internal string CellStr() => RxCyNotation.ToCellString(Cell);
-
-	[ResourceTextFormatter]
-	internal string DigitStr() => (Digit + 1).ToString();
 }

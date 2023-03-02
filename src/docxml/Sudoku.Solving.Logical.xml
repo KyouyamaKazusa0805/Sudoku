@@ -8455,6 +8455,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType1Step.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.FireworkPairType2Step">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 2</b> technique.
@@ -8498,6 +8501,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType2Step.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.FireworkPairType3Step">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 3</b> technique.
@@ -8536,6 +8542,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType3Step.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.FireworkPairType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.FireworkQuadrupleStep">
             <summary>
             Provides with a step that is a <b>Firework Quadruple</b> technique.
@@ -8567,6 +8576,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkQuadrupleStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.FireworkQuadrupleStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.FireworkStep">
@@ -8626,6 +8638,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.FireworkTripleStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.FireworkTripleStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.FishStep">
@@ -8710,6 +8725,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.Target">
             <summary>Indicates the target of the chain. This value can be used for constructing a whole chain.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ForcingChainStep.FormatInterpolatedParts">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.ForcingChainStep.GetGreenPotentials(System.Int32)">
             <inheritdoc/>
@@ -8801,6 +8819,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.GroupedWWingStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.GroupedWWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.GuardianStep">
             <summary>
             Provides with a step that is a <b>Guardian</b> technique.
@@ -8849,6 +8870,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.GuardianStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Logical.Steps.GuardianStep.Equals(Sudoku.Solving.Logical.Steps.GuardianStep,Sudoku.Solving.Logical.Steps.GuardianStep)">
@@ -8912,6 +8936,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.GurthSymmetricalPlacementStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.GurthSymmetricalPlacementStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.HiddenSingleStep">

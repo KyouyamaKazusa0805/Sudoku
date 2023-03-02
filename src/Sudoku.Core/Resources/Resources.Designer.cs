@@ -3625,7 +3625,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Two of three cells {CellsStr} must form a hidden pair of digits {DigitsStr}, therefore one of cells {ExtraCell1Str} and {ExtraCell2Str} should be a naked pair with that firework =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Two of three cells {0} must form a hidden pair of digits {1}, therefore one of cells {2} and {3} should be a naked pair with that firework.
         /// </summary>
         public static string TechniqueFormat_FireworkPairType1Step {
             get {
@@ -3634,7 +3634,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Two fireworks {Firework1Str} and {Firework2Str} of digits {DigitsStr}, and an extra cell {ExtraCellStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Two fireworks {0} and {1} of digits {2}, and an extra cell {3}.
         /// </summary>
         public static string TechniqueFormat_FireworkPairType2Step {
             get {
@@ -3643,7 +3643,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} of digits {DigitsStr} is a firework, with empty rectangle in house {EmptyRectangleStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} of digits {1} is a firework, with empty rectangle in house {2}.
         /// </summary>
         public static string TechniqueFormat_FireworkPairType3Step {
             get {
@@ -3652,7 +3652,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} must form a hidden quadruple of digits {DigitsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} must form a hidden quadruple of digits {1}.
         /// </summary>
         public static string TechniqueFormat_FireworkQuadrupleStep {
             get {
@@ -3661,7 +3661,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} Must form a hidden triple of digits {DigitsStr} in multi- houses =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} Must form a hidden triple of digits {1} in multiple houses.
         /// </summary>
         public static string TechniqueFormat_FireworkTripleStep {
             get {
@@ -3670,7 +3670,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: It is proved that the candidate {CandStr} is {OnOffStr}, the state of the candidate will be flipped, forming a contradiction =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to It is proved that the candidate {0} is {1}, the state of the candidate will be flipped, forming a contradiction.
         /// </summary>
         public static string TechniqueFormat_ForcingChainStep {
             get {
@@ -3679,7 +3679,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string TechniqueFormat_FullHouseStep {
             get {
@@ -3688,7 +3688,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {StartCellStr} to {EndCellStr} with bridge cells {BridgeStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} to {1} with bridge cells {2}.
         /// </summary>
         public static string TechniqueFormat_GroupedWWingStep {
             get {
@@ -3697,7 +3697,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} with {1} {2}.
         /// </summary>
         public static string TechniqueFormat_GuardianStep {
             get {
@@ -3706,7 +3706,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {SymmetryTypeStr}, mapping relations: {MappingStr} =&gt;  {ElimStr}.
+        ///   Looks up a localized string similar to The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {0}, mapping relations: {1}.
         /// </summary>
         public static string TechniqueFormat_GurthSymmetricalPlacementStep {
             get {

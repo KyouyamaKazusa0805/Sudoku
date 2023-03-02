@@ -364,10 +364,10 @@
     <value>All digits can't be duplicate in cells {0}</value>
   </data>
   <data name="TechniqueFormat_FullHouseStep" xml:space="preserve">
-    <value>{Name}: {CellStr} = {DigitStr}</value>
+    <value />
   </data>
   <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
-    <value>{Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}</value>
+    <value>Cells {0} with {1} {2}</value>
   </data>
   <data name="TechniqueFormat_HiddenSingle" xml:space="preserve">
     <value>{Name}: {CellStr} = {DigitStr} in {HouseStr}</value>
@@ -1360,10 +1360,10 @@
     <value>Firework Triple</value>
   </data>
   <data name="TechniqueFormat_FireworkTripleStep" xml:space="preserve">
-    <value>{Name}: Cells {CellsStr} Must form a hidden triple of digits {DigitsStr} in multi- houses =&gt; {ElimStr}</value>
+    <value>Cells {0} Must form a hidden triple of digits {1} in multiple houses</value>
   </data>
   <data name="TechniqueFormat_FireworkQuadrupleStep" xml:space="preserve">
-    <value>{Name}: Cells {CellsStr} must form a hidden quadruple of digits {DigitsStr} =&gt; {ElimStr}</value>
+    <value>Cells {0} must form a hidden quadruple of digits {1}</value>
   </data>
   <data name="FireworkPairType1" xml:space="preserve">
     <value>Firework Pair Type 1</value>
@@ -1372,16 +1372,16 @@
     <value>Firework Pair Type 2</value>
   </data>
   <data name="TechniqueFormat_FireworkPairType1Step" xml:space="preserve">
-    <value>{Name}: Two of three cells {CellsStr} must form a hidden pair of digits {DigitsStr}, therefore one of cells {ExtraCell1Str} and {ExtraCell2Str} should be a naked pair with that firework =&gt; {ElimStr}</value>
+    <value>Two of three cells {0} must form a hidden pair of digits {1}, therefore one of cells {2} and {3} should be a naked pair with that firework</value>
   </data>
   <data name="TechniqueFormat_FireworkPairType2Step" xml:space="preserve">
-    <value>{Name}: Two fireworks {Firework1Str} and {Firework2Str} of digits {DigitsStr}, and an extra cell {ExtraCellStr} =&gt; {ElimStr}</value>
+    <value>Two fireworks {0} and {1} of digits {2}, and an extra cell {3}</value>
   </data>
   <data name="FireworkPairType3" xml:space="preserve">
     <value>Firework Pair Type 3</value>
   </data>
   <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
-    <value>{Name}: Cells {CellsStr} of digits {DigitsStr} is a firework, with empty rectangle in house {EmptyRectangleStr} =&gt; {ElimStr}</value>
+    <value>Cells {0} of digits {1} is a firework, with empty rectangle in house {2}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType4Step" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}</value>
@@ -1441,13 +1441,13 @@
     <value>{Name}: Leaves {LeavesStr}, root cells {RootStr} in house {HouseStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
-    <value>{Name}: {StartCellStr} to {EndCellStr} with bridge cells {BridgeStr} =&gt; {ElimStr}</value>
+    <value>{0} to {1} with bridge cells {2}</value>
   </data>
   <data name="TechniqueFormat_DeathBlossomCellTypeStep" xml:space="preserve">
     <value>No matter what digit will be filled in cell {0}, the related ALSes {1} will keep at least one digit {2} being true</value>
   </data>
   <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
-    <value>{Name}: The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {SymmetryTypeStr}, mapping relations: {MappingStr} =&gt;  {ElimStr}</value>
+    <value>The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {0}, mapping relations: {1}</value>
   </data>
   <data name="NoMappingRelation" xml:space="preserve">
     <value>No mapping</value>
@@ -1564,7 +1564,7 @@
     <value>It is proved that a same conclusion - {0} being {1} can be found no matter what state the candidate {2} now is</value>
   </data>
   <data name="TechniqueFormat_ForcingChainStep" xml:space="preserve">
-    <value>{Name}: It is proved that the candidate {CandStr} is {OnOffStr}, the state of the candidate will be flipped, forming a contradiction =&gt; {ElimStr}</value>
+    <value>It is proved that the candidate {0} is {1}, the state of the candidate will be flipped, forming a contradiction</value>
   </data>
   <data name="TechniqueFormat_RegionForcingChainsStep" xml:space="preserve">
     <value>{Name}: It is proved that all position of digit {DigitStr} in house {HouseStr} will lead to a same conclusion =&gt; {ElimStr}</value>

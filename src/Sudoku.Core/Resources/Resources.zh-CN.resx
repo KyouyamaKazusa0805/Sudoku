@@ -370,10 +370,10 @@
     <value>所有在 {0} 里面的数字都不相同</value>
   </data>
   <data name="TechniqueFormat_FullHouseStep" xml:space="preserve">
-    <value>{Name}：{CellStr} = {DigitStr}</value>
+    <value />
   </data>
   <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
-    <value>{Name}：单元格 {CellsStr} 并带有{GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}</value>
+    <value>单元格 {0} 并带有{1} {2}</value>
   </data>
   <data name="TechniqueFormat_HiddenSingle" xml:space="preserve">
     <value>{Name}：在区域 {HouseStr} 里有 {CellStr} = {DigitStr}</value>
@@ -1648,10 +1648,10 @@
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_FireworkTripleStep" xml:space="preserve">
-    <value>{Name}：单元格 {CellsStr} 里必须构成关于数字 {DigitsStr} 的跨区三数组结构 =&gt; {ElimStr}</value>
+    <value>单元格 {0} 里必须构成关于数字 {1} 的跨区三数组结构</value>
   </data>
   <data name="TechniqueFormat_FireworkQuadrupleStep" xml:space="preserve">
-    <value>{Name}：单元格 {CellsStr} 里必须构成关于数字 {DigitsStr} 的跨区四数组结构 =&gt; {ElimStr}</value>
+    <value>单元格 {0} 里必须构成关于数字 {1} 的跨区四数组结构</value>
   </data>
   <data name="FireworkPairType1" xml:space="preserve">
     <value>花火数对・双值格对</value>
@@ -1662,17 +1662,17 @@
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_FireworkPairType1Step" xml:space="preserve">
-    <value>{Name}：单元格 {CellsStr} 里的其中之二会构成关于数字 {DigitsStr} 的隐性数对，因此 {ExtraCell1Str} 和 {ExtraCell2Str} 的其一会和此结构构成显性数对 =&gt; {ElimStr}</value>
+    <value>单元格 {0} 里的其中之二会构成关于数字 {1} 的隐性数对，因此 {2} 和 {3} 的其一会和此结构构成显性数对</value>
   </data>
   <data name="TechniqueFormat_FireworkPairType2Step" xml:space="preserve">
-    <value>{Name}：花火结构 {Firework1Str} 和 {Firework2Str} 使用数字 {DigitsStr}，并带有额外单元格 {ExtraCellStr} =&gt; {ElimStr}</value>
+    <value>花火结构 {0} 和 {1} 使用数字 {2}，并带有额外单元格 {3}</value>
   </data>
   <data name="FireworkPairType3" xml:space="preserve">
     <value>花火数对・空矩形</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
-    <value>{Name}：单元格 {CellsStr} 里的数字 {DigitsStr} 构成花火数组结构，带有空矩形结构位于 {EmptyRectangleStr} =&gt; {ElimStr}</value>
+    <value>单元格 {0} 里的数字 {1} 构成花火数组结构，带有空矩形结构位于 {2}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType4Step" xml:space="preserve">
     <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并有外部共轭对 {ConjugatePairStr} =&gt; {ElimStr}</value>
@@ -1742,13 +1742,13 @@
     <value>{Name}：根 {RootStr} 位于 {HouseStr}，分支走向终端 {LeavesStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
-    <value>{Name}：从 {StartCellStr} 到 {EndCellStr}，使用单元格 {BridgeStr} 关联起来 =&gt; {ElimStr}</value>
+    <value>从 {0} 到 {1}，使用单元格 {2} 关联起来</value>
   </data>
   <data name="TechniqueFormat_DeathBlossomCellTypeStep" xml:space="preserve">
     <value>不论单元格 {0} 填什么数字，相关的 ALS {1} 至少会保证有一个 {2} 填入</value>
   </data>
   <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
-    <value>{Name}：该技巧必须保证对称性，否则题目会无解。对称规则：{SymmetryTypeStr}，对称映射关系：{MappingStr} =&gt; {ElimStr}</value>
+    <value>该技巧必须保证对称性，否则题目会无解。对称规则：{0}，对称映射关系：{1}</value>
   </data>
   <data name="NoMappingRelation" xml:space="preserve">
     <value>无对称映射关系</value>
@@ -1879,7 +1879,7 @@
     <value>不论 {0} 是真是假，都可以得到 {1} 为 {2} 的结论</value>
   </data>
   <data name="TechniqueFormat_ForcingChainStep" xml:space="preserve">
-    <value>{Name}：如果 {CandStr} 为{OnOffStrZhCn}，跟着结构绕一圈后发现该候选数刚好与原假设相反，产生矛盾 =&gt; {ElimStr}</value>
+    <value>如果 {0} 为{1}，跟着结构绕一圈后发现该候选数刚好与原假设相反，产生矛盾</value>
   </data>
   <data name="TechniqueFormat_RegionForcingChainsStep" xml:space="preserve">
     <value>{Name}：所有位于 {HouseStr} 里的数字 {DigitStr} 都会得到同样的结论 =&gt; {ElimStr}</value>

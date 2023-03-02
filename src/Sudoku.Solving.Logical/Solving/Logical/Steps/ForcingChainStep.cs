@@ -9,14 +9,16 @@
 /// <param name="IsY"><inheritdoc/></param>
 internal sealed record ForcingChainStep(ConclusionList Conclusions, ChainNode Target, bool IsX, bool IsY) : ChainingStep(Conclusions, IsX, IsY)
 {
-	[ResourceTextFormatter]
-	internal string CandStr() => RxCyNotation.ToCandidateString(Target.Candidate);
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { CandStr, OnOffStr } }, { "zh", new[] { CandStr, OnOffStrZhCn } } };
 
-	[ResourceTextFormatter]
-	internal string OnOffStr() => Target.IsOn.ToString().ToLower();
+	private string CandStr => RxCyNotation.ToCandidateString(Target.Candidate);
 
-	[ResourceTextFormatter]
-	internal string OnOffStrZhCn() => (Target.IsOn ? R["TrueKeyword"] : R["FalseKeyword"])!;
+	private string OnOffStr => Target.IsOn.ToString().ToLower();
+
+	private string OnOffStrZhCn => (Target.IsOn ? R["TrueKeyword"] : R["FalseKeyword"])!;
+
 
 	/// <inheritdoc/>
 	protected override CandidateMap GetGreenPotentials(int viewIndex)

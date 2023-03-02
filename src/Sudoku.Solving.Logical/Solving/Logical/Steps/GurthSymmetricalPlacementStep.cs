@@ -32,32 +32,36 @@ internal sealed record GurthSymmetricalPlacementStep(
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.GurthSymmetricalPlacement;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { SymmetryTypeStr, MappingStr } }, { "zh", new[] { SymmetryTypeStr, MappingStr } } };
 
-	[ResourceTextFormatter]
-	internal string SymmetryTypeStr() => R[$"{SymmetryType}Symmetry"]!;
+	private string SymmetryTypeStr => R[$"{SymmetryType}Symmetry"]!;
 
-	[ResourceTextFormatter]
-	internal string MappingStr()
+	private string MappingStr
 	{
-		var separator = R.EmitPunctuation(Punctuation.Comma);
-		if (MappingRelations is not null)
+		get
 		{
-			scoped var sb = new StringHandler(10);
-			for (var i = 0; i < 9; i++)
+			var separator = R.EmitPunctuation(Punctuation.Comma);
+			if (MappingRelations is not null)
 			{
-				var currentMappingRelationDigit = MappingRelations[i];
+				scoped var sb = new StringHandler(10);
+				for (var i = 0; i < 9; i++)
+				{
+					var currentMappingRelationDigit = MappingRelations[i];
 
-				sb.Append(i + 1);
-				sb.Append(currentMappingRelationDigit is { } c && c != i ? $" -> {c + 1}" : string.Empty);
-				sb.Append(separator);
+					sb.Append(i + 1);
+					sb.Append(currentMappingRelationDigit is { } c && c != i ? $" -> {c + 1}" : string.Empty);
+					sb.Append(separator);
+				}
+
+				sb.RemoveFromEnd(separator.Length);
+				return sb.ToStringAndClear();
 			}
-
-			sb.RemoveFromEnd(separator.Length);
-			return sb.ToStringAndClear();
-		}
-		else
-		{
-			return R["NoMappingRelation"]!;
+			else
+			{
+				return R["NoMappingRelation"]!;
+			}
 		}
 	}
 }

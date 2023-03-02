@@ -25,13 +25,17 @@ internal sealed record FireworkPairType3Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { CellsStr, DigitsStr, EmptyRectangleStr } },
+			{ "zh", new[] { CellsStr, DigitsStr, EmptyRectangleStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private string CellsStr => Cells.ToString();
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string EmptyRectangleStr() => HouseFormatter.Format(1 << EmptyRectangleBlock);
+	private string EmptyRectangleStr => HouseFormatter.Format(1 << EmptyRectangleBlock);
 }

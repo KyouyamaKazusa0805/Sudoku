@@ -35,15 +35,19 @@ internal sealed record GuardianStep(ConclusionList Conclusions, ViewList Views, 
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, A004526(Loop.Count + A004526(Guardians.Count)) * .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { CellsStr, GuardianSingularOrPlural, GuardianStr } },
+			{ "zh", new[] { CellsStr, GuardianSingularOrPlural, GuardianStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => Loop.ToString();
+	private string CellsStr => Loop.ToString();
 
-	[ResourceTextFormatter]
-	internal string GuardianSingularOrPlural() => R[Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural"]!;
+	private string GuardianSingularOrPlural => R[Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural"]!;
 
-	[ResourceTextFormatter]
-	internal string GuardianStr() => Guardians.ToString();
+	private string GuardianStr => Guardians.ToString();
 
 
 	/// <inheritdoc/>

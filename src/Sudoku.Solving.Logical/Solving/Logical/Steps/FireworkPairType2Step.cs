@@ -27,26 +27,35 @@ internal sealed record FireworkPairType2Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { Firework1Str, Firework2Str, DigitsStr, ExtraCellStr } },
+			{ "zh", new[] { Firework1Str, Firework2Str, DigitsStr, ExtraCellStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ExtraCellStr() => RxCyNotation.ToCellString(ExtraCell);
+	private string ExtraCellStr => RxCyNotation.ToCellString(ExtraCell);
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string Firework1Str()
+	private string Firework1Str
 	{
-		var cells = Pattern1.Map.ToString();
-		var digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-		return $"{cells}({digits})";
+		get
+		{
+			var cells = Pattern1.Map.ToString();
+			var digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+			return $"{cells}({digits})";
+		}
 	}
 
-	[ResourceTextFormatter]
-	internal string Firework2Str()
+	private string Firework2Str
 	{
-		var cells = Pattern2.Map.ToString();
-		var digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-		return $"{cells}({digits})";
+		get
+		{
+			var cells = Pattern2.Map.ToString();
+			var digits = DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+			return $"{cells}({digits})";
+		}
 	}
 }
