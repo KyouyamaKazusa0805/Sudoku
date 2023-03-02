@@ -56,22 +56,23 @@ internal sealed record SueDeCoqStep(
 			new(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .2M : 0)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { IntersectionCellsStr, IntersectionDigitsStr, BlockCellsStr, BlockDigitsStr, LineCellsStr, LineDigitsStr } },
+			{ "zh", new[] { IntersectionCellsStr, IntersectionDigitsStr, BlockCellsStr, BlockDigitsStr, LineCellsStr, LineDigitsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string IntersectionCellsStr() => IntersectionCells.ToString();
+	private string IntersectionCellsStr => IntersectionCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string IntersectionDigitsStr() => DigitMaskFormatter.Format(IntersectionMask);
+	private string IntersectionDigitsStr => DigitMaskFormatter.Format(IntersectionMask);
 
-	[ResourceTextFormatter]
-	internal string BlockCellsStr() => BlockCells.ToString();
+	private string BlockCellsStr => BlockCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string BlockDigitsStr() => DigitMaskFormatter.Format(BlockMask);
+	private string BlockDigitsStr => DigitMaskFormatter.Format(BlockMask);
 
-	[ResourceTextFormatter]
-	internal string LineCellsStr() => LineCells.ToString();
+	private string LineCellsStr => LineCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string LineDigitsStr() => DigitMaskFormatter.Format(LineMask);
+	private string LineDigitsStr => DigitMaskFormatter.Format(LineMask);
 }

@@ -23,4 +23,14 @@ internal sealed record ReverseUniqueRectangleType2Step(
 
 	/// <inheritdoc/>
 	public override int Type => 2;
+
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { CellsStr, DigitsStr, ExtraDigitStr } },
+			{ "zh", new[] { DigitsStr, CellsStr, ExtraDigitStr } }
+		};
+
+	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

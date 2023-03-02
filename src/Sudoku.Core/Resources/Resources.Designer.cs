@@ -3868,7 +3868,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: It is proved that all position of digit {DigitStr} in house {HouseStr} will lead to a same conclusion =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to It is proved that all position of digit {0} in house {1} will lead to a same conclusion.
         /// </summary>
         public static string TechniqueFormat_RegionForcingChainsStep {
             get {
@@ -3877,7 +3877,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in {PivotCellStr} with {CellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1} with {2}.
         /// </summary>
         public static string TechniqueFormat_RegularWingStep {
             get {
@@ -3886,7 +3886,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Only cells {CellsStr} gives the value of digits {DigitsStr}, meaning digits will be a deadly pattern if the target cell {TargetCellStr} is filled with {TargetDigitStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Only cells {0} gives the value of digits {1}, meaning digits will be a deadly pattern if the target cell {2} is filled with {3}.
         /// </summary>
         public static string TechniqueFormat_ReverseUniqueRectangleType1Step {
             get {
@@ -3895,7 +3895,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {CellsStr} of digits {DigitsStr}, with an extra digit {ExtraDigitStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0} of digits {1}, with an extra digit {2}.
         /// </summary>
         public static string TechniqueFormat_ReverseUniqueRectangleType2Step {
             get {
@@ -3904,7 +3904,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Cells {0}, digits {1}.
         /// </summary>
         public static string TechniqueFormat_RwDeadlyPatternStep {
             get {
@@ -3913,7 +3913,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0}({1}) + {2}({3}) + {4}({5}).
         /// </summary>
         public static string TechniqueFormat_SueDeCoq3DimensionStep {
             get {
@@ -3922,7 +3922,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) &amp; {LineCellsStr}({LineDigitsStr}) =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0}({1}) - {2}({3}) &amp; {4}({5}).
         /// </summary>
         public static string TechniqueFormat_SueDeCoqStep {
             get {

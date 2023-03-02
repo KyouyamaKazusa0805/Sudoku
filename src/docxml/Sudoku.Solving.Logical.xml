@@ -9910,6 +9910,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.Chains">
             <summary>Indicates all possible branches in this technique.</summary>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.GetGreenPotentials(System.Int32)">
             <inheritdoc/>
         </member>
@@ -10023,6 +10026,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RegularWingStep.InternalName">
             <summary>
             Indicates the internal name.
@@ -10071,16 +10077,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ReverseBivalueUniversalGraveStep.Rarity">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ReverseBivalueUniversalGraveStep.DigitsStr">
-            <summary>
-            Indicates the digits string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ReverseBivalueUniversalGraveStep.CellsStr">
-            <summary>
-            Indicates the cells string.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleStep">
             <summary>
@@ -10137,6 +10133,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType1Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType2Step">
             <summary>
             Provides with a step that is a <b>Reverse Unique Rectangle Type 2</b> technique.
@@ -10169,6 +10168,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep">
@@ -10213,6 +10215,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.SeniorExocetStep">
@@ -10518,6 +10523,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.SueDeCoqStep">
             <summary>
             Provides with a step that is a <b>Sue de Coq</b> technique.
@@ -10601,6 +10609,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SueDeCoqStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.SymmetryStep">

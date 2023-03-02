@@ -31,10 +31,11 @@ internal sealed record RwDeadlyPatternStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { CellsStr, DigitsStr } }, { "zh", new[] { CellsStr, DigitsStr } } };
 
-	[ResourceTextFormatter]
-	internal string CellsStr() => RxCyNotation.ToCellsString(Pattern);
+	private string CellsStr => RxCyNotation.ToCellsString(Pattern);
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask);
+	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask);
 }

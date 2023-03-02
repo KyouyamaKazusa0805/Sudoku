@@ -415,13 +415,13 @@
     <value>{Name}: It can be proved using chains that digit {DigitStr} from {HouseStr} are false =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_RegularWingStep" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in {PivotCellStr} with {CellsStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1} with {2}</value>
   </data>
   <data name="TechniqueFormat_SueDeCoq3DimensionStep" xml:space="preserve">
-    <value>{Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}</value>
+    <value>{0}({1}) + {2}({3}) + {4}({5})</value>
   </data>
   <data name="TechniqueFormat_SueDeCoqStep" xml:space="preserve">
-    <value>{Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) &amp; {LineCellsStr}({LineDigitsStr}) =&gt; {ElimStr}</value>
+    <value>{0}({1}) - {2}({3}) &amp; {4}({5})</value>
   </data>
   <data name="TechniqueFormat_TemplateStep" xml:space="preserve">
     <value>{Name}: Digit {DigitStr} =&gt; {ElimStr}</value>
@@ -1423,13 +1423,13 @@
     <value>Reverse Unique Rectangle Type 4</value>
   </data>
   <data name="TechniqueFormat_ReverseUniqueRectangleType1Step" xml:space="preserve">
-    <value>{Name}: Only cells {CellsStr} gives the value of digits {DigitsStr}, meaning digits will be a deadly pattern if the target cell {TargetCellStr} is filled with {TargetDigitStr} =&gt; {ElimStr}</value>
+    <value>Only cells {0} gives the value of digits {1}, meaning digits will be a deadly pattern if the target cell {2} is filled with {3}</value>
   </data>
   <data name="TechniqueFormat_ReverseUniqueRectangleType2Step" xml:space="preserve">
-    <value>{Name}: Cells {CellsStr} of digits {DigitsStr}, with an extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>Cells {0} of digits {1}, with an extra digit {2}</value>
   </data>
   <data name="TechniqueFormat_RwDeadlyPatternStep" xml:space="preserve">
-    <value>{Name}: Cells {CellsStr}, digits {DigitsStr} =&gt; {ElimStr}</value>
+    <value>Cells {0}, digits {1}</value>
   </data>
   <data name="RwDeadlyPattern" xml:space="preserve">
     <value>RW's Deadly Pattern</value>
@@ -1567,7 +1567,7 @@
     <value>It is proved that the candidate {0} is {1}, the state of the candidate will be flipped, forming a contradiction</value>
   </data>
   <data name="TechniqueFormat_RegionForcingChainsStep" xml:space="preserve">
-    <value>{Name}: It is proved that all position of digit {DigitStr} in house {HouseStr} will lead to a same conclusion =&gt; {ElimStr}</value>
+    <value>It is proved that all position of digit {0} in house {1} will lead to a same conclusion</value>
   </data>
   <data name="StepSearcherName_AdvancedMultipleChainingStepSearcher" xml:space="preserve">
     <value>Multiple Forcing Chains (Advanced)</value>

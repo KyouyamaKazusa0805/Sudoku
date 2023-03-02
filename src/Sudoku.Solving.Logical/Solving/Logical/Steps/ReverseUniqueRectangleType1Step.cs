@@ -21,10 +21,15 @@ internal sealed record ReverseUniqueRectangleType1Step(
 	/// <inheritdoc/>
 	public override int Type => 1;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { CellsStr, DigitsStr, TargetCellStr, TargetDigitStr } },
+			{ "zh", new[] { CellsStr, DigitsStr, TargetCellStr, TargetDigitStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string TargetCellStr() => RxCyNotation.ToCellString(TargetCell);
+	private string TargetCellStr => RxCyNotation.ToCellString(TargetCell);
 
-	[ResourceTextFormatter]
-	internal string TargetDigitStr() => (TargetDigit + 1).ToString();
+	private string TargetDigitStr => (TargetDigit + 1).ToString();
 }

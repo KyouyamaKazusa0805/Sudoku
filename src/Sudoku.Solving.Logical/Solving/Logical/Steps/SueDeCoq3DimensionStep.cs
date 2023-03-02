@@ -40,22 +40,23 @@ internal sealed record SueDeCoq3DimensionStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { Cells1Str, Digits1Str, Cells2Str, Digits2Str, Cells3Str, Digits3Str } },
+			{ "zh", new[] { Cells1Str, Digits1Str, Cells2Str, Digits2Str, Cells3Str, Digits3Str } }
+		};
 
-	[ResourceTextFormatter]
-	internal string Cells1Str() => RowCells.ToString();
+	private string Cells1Str => RowCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string Digits1Str() => DigitMaskFormatter.Format(RowDigitsMask, FormattingMode.Normal);
+	private string Digits1Str => DigitMaskFormatter.Format(RowDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string Cells2Str() => ColumnCells.ToString();
+	private string Cells2Str => ColumnCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string Digits2Str() => DigitMaskFormatter.Format(ColumnDigitsMask, FormattingMode.Normal);
+	private string Digits2Str => DigitMaskFormatter.Format(ColumnDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string Cells3Str() => BlockCells.ToString();
+	private string Cells3Str => BlockCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string Digits3Str() => DigitMaskFormatter.Format(BlockDigitsMask, FormattingMode.Normal);
+	private string Digits3Str => DigitMaskFormatter.Format(BlockDigitsMask, FormattingMode.Normal);
 }

@@ -34,43 +34,43 @@ internal sealed record SeniorExocetStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraHouse, ContainsExtraHouses ? 0 : .2M) };
 
-
-	[ResourceTextFormatter]
-	internal string AdditionalFormat()
+	private string AdditionalFormat
 	{
-		const string separator = ", ";
-		var endoTargetSnippet = R["EndoTarget"]!;
-		var endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr()}";
-		if (ExtraHousesMask is not null)
+		get
 		{
-			scoped var sb = new StringHandler(100);
-			var count = 0;
-			for (var digit = 0; digit < 9; digit++)
+			const string separator = ", ";
+			var endoTargetSnippet = R["EndoTarget"]!;
+			var endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
+			if (ExtraHousesMask is not null)
 			{
-				if (ExtraHousesMask[digit] is not (var mask and not 0))
+				scoped var sb = new StringHandler(100);
+				var count = 0;
+				for (var digit = 0; digit < 9; digit++)
 				{
-					continue;
+					if (ExtraHousesMask[digit] is not (var mask and not 0))
+					{
+						continue;
+					}
+
+					sb.Append(digit + 1);
+					sb.Append(HouseFormatter.Format(mask));
+					sb.Append(separator);
+
+					count++;
 				}
 
-				sb.Append(digit + 1);
-				sb.Append(HouseFormatter.Format(mask));
-				sb.Append(separator);
+				if (count != 0)
+				{
+					sb.RemoveFromEnd(separator.Length);
 
-				count++;
+					var extraHousesIncluded = R["IncludedExtraHouses"]!;
+					return $"{endoTargetStr}{extraHousesIncluded}{sb.ToStringAndClear()}";
+				}
 			}
 
-			if (count != 0)
-			{
-				sb.RemoveFromEnd(separator.Length);
-
-				var extraHousesIncluded = R["IncludedExtraHouses"]!;
-				return $"{endoTargetStr}{extraHousesIncluded}{sb.ToStringAndClear()}";
-			}
+			return endoTargetStr;
 		}
-
-		return endoTargetStr;
 	}
 
-	[ResourceTextFormatter]
-	internal string EndoTargetCellStr() => RxCyNotation.ToCellString(EndoTargetCell);
+	private string EndoTargetCellStr => RxCyNotation.ToCellString(EndoTargetCell);
 }

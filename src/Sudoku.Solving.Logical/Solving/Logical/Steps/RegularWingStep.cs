@@ -92,12 +92,7 @@ internal sealed record RegularWingStep(
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel
-		=> Size switch
-		{
-			3 or 4 => DifficultyLevel.Hard,
-			5 => DifficultyLevel.Fiendish,
-			> 5 => DifficultyLevel.Nightmare,
-		};
+		=> Size switch { 3 or 4 => DifficultyLevel.Hard, 5 => DifficultyLevel.Fiendish, > 5 => DifficultyLevel.Nightmare };
 
 	/// <inheritdoc/>
 	public override Rarity Rarity
@@ -120,6 +115,14 @@ internal sealed record RegularWingStep(
 			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? Size == 3 ? .2M : .1M : 0)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, PivotCellStr, CellsStr } },
+			{ "zh", new[] { DigitsStr, PivotCellStr, CellsStr } }
+		};
+
 	/// <summary>
 	/// Indicates the internal name.
 	/// </summary>
@@ -139,13 +142,9 @@ internal sealed record RegularWingStep(
 			} is var name => IsIncomplete ? $"Incomplete {name}" : name
 		};
 
+	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string PivotCellStr => RxCyNotation.ToCellString(Pivot);
 
-	[ResourceTextFormatter]
-	internal string PivotCellStr() => RxCyNotation.ToCellString(Pivot);
-
-	[ResourceTextFormatter]
-	internal string CellsStr() => Petals.ToString();
+	private string CellsStr => Petals.ToString();
 }

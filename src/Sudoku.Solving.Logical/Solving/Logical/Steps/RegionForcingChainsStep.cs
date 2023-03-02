@@ -18,11 +18,14 @@ internal sealed record RegionForcingChainsStep(
 	int DynamicNestingLevel = 0
 ) : ChainingStep(Conclusions, IsMultiple: true, IsDynamic: IsDynamic, DynamicNestingLevel: DynamicNestingLevel)
 {
-	[ResourceTextFormatter]
-	internal string DigitStr() => (Digit + 1).ToString();
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { DigitStr, HouseStr } }, { "zh", new[] { HouseStr, DigitStr } } };
 
-	[ResourceTextFormatter]
-	internal string HouseStr() => $"{char.ToLower(HouseIndex.ToHouseType().ToString()[0])}{HouseIndex % 9 + 1}";
+	private string DigitStr => (Digit + 1).ToString();
+
+	private string HouseStr => $"{char.ToLower(HouseIndex.ToHouseType().ToString()[0])}{HouseIndex % 9 + 1}";
+
 
 	/// <inheritdoc/>
 	protected override CandidateMap GetGreenPotentials(int viewIndex)

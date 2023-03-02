@@ -421,13 +421,13 @@
     <value>{Name}：可以使用强制链证得位于区域 {HouseStr} 的数字 {DigitStr} 全为假的矛盾 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_RegularWingStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于拐点 {PivotCellStr} 上，往单元格 {CellsStr} 上进行推理 =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于拐点 {1} 上，往单元格 {2} 上进行推理</value>
   </data>
   <data name="TechniqueFormat_SueDeCoq3DimensionStep" xml:space="preserve">
-    <value>{Name}：{Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}</value>
+    <value>{0}({1}) + {2}({3}) + {4}({5})</value>
   </data>
   <data name="TechniqueFormat_SueDeCoqStep" xml:space="preserve">
-    <value>{Name}：{IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) &amp; {LineCellsStr}({LineDigitsStr}) =&gt; {ElimStr}</value>
+    <value>{0}({1}) - {2}({3}) &amp; {4}({5})</value>
   </data>
   <data name="TechniqueFormat_TemplateStep" xml:space="preserve">
     <value>{Name}：关于数字 {DigitStr} =&gt; {ElimStr}</value>
@@ -1722,13 +1722,13 @@
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_ReverseUniqueRectangleType1Step" xml:space="preserve">
-    <value>{Name}：只有 {CellsStr} 包含数字 {DigitsStr}，那么如果 {TargetCellStr} 填入 {TargetDigitStr} 的话，就会构成致命结构 =&gt; {ElimStr}</value>
+    <value>只有 {0} 包含数字 {1}，那么如果 {2} 填入 {3} 的话，就会构成致命结构</value>
   </data>
   <data name="TechniqueFormat_ReverseUniqueRectangleType2Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr}，位于单元格 {CellsStr} 里，并带有额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>数字 {0}，位于单元格 {1} 里，并带有额外数字 {2}</value>
   </data>
   <data name="TechniqueFormat_RwDeadlyPatternStep" xml:space="preserve">
-    <value>{Name}：单元格 {CellsStr}，数字 {DigitsStr} =&gt; {ElimStr}</value>
+    <value>单元格 {0}，数字 {1}</value>
   </data>
   <data name="RwDeadlyPattern" xml:space="preserve">
     <value>RW 致命结构</value>
@@ -1882,7 +1882,7 @@
     <value>如果 {0} 为{1}，跟着结构绕一圈后发现该候选数刚好与原假设相反，产生矛盾</value>
   </data>
   <data name="TechniqueFormat_RegionForcingChainsStep" xml:space="preserve">
-    <value>{Name}：所有位于 {HouseStr} 里的数字 {DigitStr} 都会得到同样的结论 =&gt; {ElimStr}</value>
+    <value>所有位于 {0} 里的数字 {1} 都会得到同样的结论</value>
   </data>
   <data name="StepSearcherName_AdvancedMultipleChainingStepSearcher" xml:space="preserve">
     <value>强制链（进阶）</value>
