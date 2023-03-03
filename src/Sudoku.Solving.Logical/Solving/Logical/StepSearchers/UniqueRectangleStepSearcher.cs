@@ -356,12 +356,8 @@ unsafe partial class UniqueRectangleStepSearcher
 
 		accumulator.Add(
 			new UniqueRectangleType1Step(
-				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(
-					View.Empty
-						| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
-						| (arMode ? null : candidateOffsets)
-				),
+				conclusions.ToArray(),
+				new[] { View.Empty | (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null) | (arMode ? null : candidateOffsets) },
 				d1,
 				d2,
 				(CellMap)urCells,
@@ -456,11 +452,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-				ImmutableArray.Create(
-					View.Empty
-						| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
-						| candidateOffsets
-				),
+				new[] { View.Empty | (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null) | candidateOffsets },
 				d1,
 				d2,
 				(arMode, isType5) switch
@@ -608,13 +600,14 @@ unsafe partial class UniqueRectangleStepSearcher
 
 					accumulator.Add(
 						new UniqueRectangleType3Step(
-							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(
+							conclusions.ToArray(),
+							new[]
+							{
 								View.Empty
 									| (arMode ? cellOffsets : null)
 									| candidateOffsets
 									| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
-							),
+							},
 							d1,
 							d2,
 							(CellMap)urCells,
@@ -737,12 +730,13 @@ unsafe partial class UniqueRectangleStepSearcher
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						conclusions,
-						ImmutableArray.Create(
+						new[]
+						{
 							View.Empty
 								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
-						),
+						},
 						Technique.UniqueRectangleType4,
 						d1,
 						d2,
@@ -846,11 +840,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-				ImmutableArray.Create(
-					View.Empty
-						| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
-						| candidateOffsets
-				),
+				new[] { View.Empty | (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null) | candidateOffsets },
 				d1,
 				d2,
 				arMode ? Technique.AvoidableRectangleType5 : Technique.UniqueRectangleType5,
@@ -975,7 +965,8 @@ unsafe partial class UniqueRectangleStepSearcher
 			accumulator.Add(
 				new UniqueRectangleWithConjugatePairStep(
 					conclusions,
-					ImmutableArray.Create(
+					new[]
+					{
 						View.Empty
 							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 							| candidateOffsets
@@ -984,7 +975,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								new(DisplayColorKind.Normal, house1),
 								new(DisplayColorKind.Normal, house2)
 							}
-					),
+					},
 					Technique.UniqueRectangleType6,
 					d1,
 					d2,
@@ -1110,13 +1101,14 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			accumulator.Add(
 				new HiddenUniqueRectangleStep(
-					ImmutableArray.Create(new Conclusion(Elimination, abzCell, elimDigit)),
-					ImmutableArray.Create(
+					new[] { new Conclusion(Elimination, abzCell, elimDigit) },
+					new[]
+					{
 						View.Empty
 							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 							| candidateOffsets
 							| new HouseViewNode[] { new(DisplayColorKind.Normal, r), new(DisplayColorKind.Normal, c) }
-					),
+					},
 					d1,
 					d2,
 					(CellMap)urCells,
@@ -1244,12 +1236,13 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			accumulator.Add(
 				new UniqueRectangle2DOr3XStep(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(
+					conclusions.ToArray(),
+					new[]
+					{
 						View.Empty
 							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 							| candidateOffsets
-					),
+					},
 					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
 					d1,
 					d2,
@@ -1422,13 +1415,14 @@ unsafe partial class UniqueRectangleStepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleWithConjugatePairStep(
-								ImmutableArray.CreateRange(conclusions),
-								ImmutableArray.Create(
+								conclusions.ToArray(),
+								new[]
+								{
 									View.Empty
 										| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 										| candidateOffsets
 										| new HouseViewNode(DisplayColorKind.Normal, house)
-								),
+								},
 								Technique.UniqueRectangle2B1,
 								d1,
 								d2,
@@ -1601,13 +1595,14 @@ unsafe partial class UniqueRectangleStepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleWithConjugatePairStep(
-								ImmutableArray.CreateRange(conclusions),
-								ImmutableArray.Create(
+								conclusions.ToArray(),
+								new[]
+								{
 									View.Empty
 										| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 										| candidateOffsets
 										| new HouseViewNode(DisplayColorKind.Normal, house)
-								),
+								},
 								Technique.UniqueRectangle2D1,
 								d1,
 								d2,
@@ -1738,12 +1733,13 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			accumulator.Add(
 				new UniqueRectangle2DOr3XStep(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(
+					conclusions.ToArray(),
+					new[]
+					{
 						View.Empty
 							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 							| candidateOffsets
-					),
+					},
 					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
 					d1,
 					d2,
@@ -1866,8 +1862,9 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			accumulator.Add(
 				new UniqueRectangleWithConjugatePairStep(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(
+					conclusions.ToArray(),
+					new[]
+					{
 						View.Empty
 							| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 							| candidateOffsets
@@ -1876,7 +1873,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								new(DisplayColorKind.Normal, map1.CoveredLine),
 								new(DisplayColorKind.Auxiliary1, map2.CoveredLine)
 							}
-					),
+					},
 					Technique.UniqueRectangle3X2,
 					d1,
 					d2,
@@ -2005,8 +2002,9 @@ unsafe partial class UniqueRectangleStepSearcher
 				var conjugatePairs = new Conjugate[] { new(cornerCell, begin, a), new(begin, abzCell, b) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						ImmutableArray.Create(new Conclusion(Elimination, end, a)),
-						ImmutableArray.Create(
+						new[] { new Conclusion(Elimination, end, a) },
+						new[]
+						{
 							View.Empty
 								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
@@ -2015,7 +2013,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									new(DisplayColorKind.Normal, conjugatePairs[0].Line),
 									new(DisplayColorKind.Auxiliary1, conjugatePairs[1].Line)
 								}
-						),
+						},
 						Technique.UniqueRectangle3N2,
 						d1,
 						d2,
@@ -2139,8 +2137,9 @@ unsafe partial class UniqueRectangleStepSearcher
 				var conjugatePairs = new Conjugate[] { new(cornerCell, end, a), new(begin, abzCell, b) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						ImmutableArray.Create(new Conclusion(Elimination, begin, a)),
-						ImmutableArray.Create(
+						new[] { new Conclusion(Elimination, begin, a) },
+						new[]
+						{
 							View.Empty
 								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
@@ -2149,7 +2148,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									new(DisplayColorKind.Normal, conjugatePairs[0].Line),
 									new(DisplayColorKind.Auxiliary1, conjugatePairs[1].Line)
 								}
-						),
+						},
 						Technique.UniqueRectangle3U2,
 						d1,
 						d2,
@@ -2275,8 +2274,9 @@ unsafe partial class UniqueRectangleStepSearcher
 				var conjugatePairs = new Conjugate[] { new(cornerCell, end, a), new(begin, abzCell, a) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						ImmutableArray.Create(new Conclusion(Elimination, abzCell, b)),
-						ImmutableArray.Create(
+						new[] { new Conclusion(Elimination, abzCell, b) },
+						new[]
+						{
 							View.Empty
 								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
@@ -2285,7 +2285,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									new(DisplayColorKind.Normal, conjugatePairs[0].Line),
 									new(DisplayColorKind.Auxiliary1, conjugatePairs[1].Line)
 								}
-						),
+						},
 						Technique.UniqueRectangle3E2,
 						d1,
 						d2,
@@ -2422,8 +2422,9 @@ unsafe partial class UniqueRectangleStepSearcher
 				var conjugatePairs = new Conjugate[] { new(head, begin, a), new(begin, end, b), new(end, extra, a) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(
+						conclusions.ToArray(),
+						new[]
+						{
 							View.Empty
 								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
@@ -2433,7 +2434,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									new(DisplayColorKind.Auxiliary1, conjugatePairs[1].Line),
 									new(DisplayColorKind.Normal, conjugatePairs[2].Line)
 								}
-						),
+						},
 						Technique.UniqueRectangle4X3,
 						d1,
 						d2,
@@ -2594,8 +2595,9 @@ unsafe partial class UniqueRectangleStepSearcher
 					};
 					accumulator.Add(
 						new UniqueRectangleWithConjugatePairStep(
-							ImmutableArray.Create(new Conclusion(Elimination, aby, b)),
-							ImmutableArray.Create(
+							new[] { new Conclusion(Elimination, aby, b) },
+							new[]
+							{
 								View.Empty
 									| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 									| candidateOffsets
@@ -2605,7 +2607,7 @@ unsafe partial class UniqueRectangleStepSearcher
 										new(DisplayColorKind.Normal, conjugatePairs[1].Line),
 										new(DisplayColorKind.Auxiliary1, conjugatePairs[2].Line)
 									}
-							),
+							},
 							Technique.UniqueRectangle4C3,
 							d1,
 							d2,
@@ -2803,14 +2805,13 @@ unsafe partial class UniqueRectangleStepSearcher
 						accumulator.Add(
 							new UniqueRectangleWithWingStep(
 								from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-								ImmutableArray.Create(
+								new[]
+								{
 									View.Empty
 										| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 										| candidateOffsets
-								),
-								arMode
-									? Technique.AvoidableRectangleXyWing
-									: Technique.UniqueRectangleXyWing,
+								},
+								arMode ? Technique.AvoidableRectangleXyWing : Technique.UniqueRectangleXyWing,
 								d1,
 								d2,
 								(CellMap)urCells,
@@ -2824,11 +2825,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					}
 					else // size > 2
 					{
-						for (
-							int i3 = i2 + 1, lengthMinusSizePlus3 = length - size + 3;
-							i3 < lengthMinusSizePlus3;
-							i3++
-						)
+						for (int i3 = i2 + 1, lengthMinusSizePlus3 = length - size + 3; i3 < lengthMinusSizePlus3; i3++)
 						{
 							var c3 = cells[i3];
 							var m3 = grid.GetCandidates(c3);
@@ -2932,14 +2929,13 @@ unsafe partial class UniqueRectangleStepSearcher
 								accumulator.Add(
 									new UniqueRectangleWithWingStep(
 										from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-										ImmutableArray.Create(
+										new[]
+										{
 											View.Empty
 												| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 												| candidateOffsets
-										),
-										arMode
-											? Technique.AvoidableRectangleXyzWing
-											: Technique.UniqueRectangleXyzWing,
+										},
+										arMode ? Technique.AvoidableRectangleXyzWing : Technique.UniqueRectangleXyzWing,
 										d1,
 										d2,
 										(CellMap)urCells,
@@ -3065,16 +3061,14 @@ unsafe partial class UniqueRectangleStepSearcher
 
 									accumulator.Add(
 										new UniqueRectangleWithWingStep(
-											from cell in elimMap
-											select new Conclusion(Elimination, cell, elimDigit),
-											ImmutableArray.Create(
+											from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
+											new[]
+											{
 												View.Empty
 													| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 													| candidateOffsets
-											),
-											arMode
-												? Technique.AvoidableRectangleWxyzWing
-												: Technique.UniqueRectangleWxyzWing,
+											},
+											arMode ? Technique.AvoidableRectangleWxyzWing : Technique.UniqueRectangleWxyzWing,
 											d1,
 											d2,
 											(CellMap)urCells,
@@ -3401,8 +3395,9 @@ unsafe partial class UniqueRectangleStepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleWithSueDeCoqStep(
-						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(
+						conclusions.ToArray(),
+						new[]
+						{
 							View.Empty
 								| (arMode ? IUniqueRectangleStepSearcher.GetHighlightCells(urCells) : null)
 								| candidateOffsets
@@ -3411,7 +3406,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									new(DisplayColorKind.Normal, block),
 									new(DisplayColorKind.Auxiliary2, line)
 								}
-						),
+						},
 						digit1,
 						digit2,
 						(CellMap)urCells,
@@ -3613,8 +3608,9 @@ unsafe partial class UniqueRectangleStepSearcher
 						var extraDigitMask = (short)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithBabaGroupingStep(
-								ImmutableArray.CreateRange(conclusions),
-								ImmutableArray.Create(
+								conclusions.ToArray(),
+								new[]
+								{
 									View.Empty
 										| new CellViewNode(DisplayColorKind.Normal, targetCell)
 										| candidateOffsets
@@ -3637,7 +3633,7 @@ unsafe partial class UniqueRectangleStepSearcher
 											new(DisplayColorKind.Normal, anotherCell, (byte)'x', _xOr_yMask),
 											new(DisplayColorKind.Normal, resultCell, extraDigitId, extraDigitMask)
 										}
-								),
+								},
 								d1,
 								d2,
 								(CellMap)urCells,
@@ -3745,8 +3741,9 @@ unsafe partial class UniqueRectangleStepSearcher
 						var extraDigitMask2 = (short)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithBabaGroupingStep(
-								ImmutableArray.CreateRange(conclusionsAnotherSubType),
-								ImmutableArray.Create(
+								conclusionsAnotherSubType.ToArray(),
+								new[]
+								{
 									View.Empty
 										| new CellViewNode(DisplayColorKind.Normal, targetCell)
 										| candidateOffsetsAnotherSubtype
@@ -3766,7 +3763,7 @@ unsafe partial class UniqueRectangleStepSearcher
 											new(DisplayColorKind.Normal, anotherCell, (byte)'x', _xOr_yMask2),
 											new(DisplayColorKind.Normal, resultCell, extraDigitId2, extraDigitMask2)
 										}
-								),
+								},
 								d1,
 								d2,
 								(CellMap)urCells,
@@ -3884,7 +3881,8 @@ unsafe partial class UniqueRectangleStepSearcher
 				accumulator.Add(
 					new UniqueRectangleExternalType1Or2Step(
 						from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
-						ImmutableArray.Create(
+						new[]
+						{
 							View.Empty
 								| cellOffsets
 								| candidateOffsets
@@ -3893,7 +3891,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									new(DisplayColorKind.Normal, houseCombination[0]),
 									new(DisplayColorKind.Normal, houseCombination[1])
 								}
-						),
+						},
 						d1,
 						d2,
 						(CellMap)urCells,
@@ -4054,8 +4052,9 @@ unsafe partial class UniqueRectangleStepSearcher
 
 							accumulator.Add(
 								new UniqueRectangleExternalType3Step(
-									conclusions.ToImmutableArray(),
-									ImmutableArray.Create(
+									conclusions.ToArray(),
+									new[]
+									{
 										View.Empty
 											| cellOffsets
 											| candidateOffsets
@@ -4065,7 +4064,7 @@ unsafe partial class UniqueRectangleStepSearcher
 												new(DisplayColorKind.Auxiliary2, houseCombination[0]),
 												new(DisplayColorKind.Auxiliary2, houseCombination[1])
 											}
-									),
+									},
 									d1,
 									d2,
 									cells,
@@ -4225,8 +4224,9 @@ unsafe partial class UniqueRectangleStepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleExternalType4Step(
-								conclusions.ToImmutableArray(),
-								ImmutableArray.Create(
+								conclusions.ToArray(),
+								new[]
+								{
 									View.Empty
 										| cellOffsets
 										| candidateOffsets
@@ -4236,7 +4236,7 @@ unsafe partial class UniqueRectangleStepSearcher
 											new(DisplayColorKind.Auxiliary2, houseCombination[0]),
 											new(DisplayColorKind.Auxiliary2, houseCombination[1])
 										}
-								),
+								},
 								d1,
 								d2,
 								cells,
@@ -4400,7 +4400,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					accumulator.Add(
 						new UniqueRectangleExternalTurbotFishStep(
 							from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
-							ImmutableArray.Create(View.Empty | cellOffsets | candidateOffsets),
+							new[] { View.Empty | cellOffsets | candidateOffsets },
 							d1,
 							d2,
 							cells,
@@ -4574,7 +4574,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				accumulator.Add(
 					new UniqueRectangleExternalXyWingStep(
 						from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-						ImmutableArray.Create(View.Empty | cellOffsets | candidateOffsets),
+						new[] { View.Empty | cellOffsets | candidateOffsets },
 						d1,
 						d2,
 						cells,
@@ -4731,9 +4731,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							{
 								candidateOffsets.Add(
 									new(
-										digit == d1 || digit == d2
-											? DisplayColorKind.Auxiliary1
-											: DisplayColorKind.AlmostLockedSet1,
+										digit == d1 || digit == d2 ? DisplayColorKind.Auxiliary1 : DisplayColorKind.AlmostLockedSet1,
 										alsCell * 9 + digit
 									)
 								);
@@ -4743,12 +4741,13 @@ unsafe partial class UniqueRectangleStepSearcher
 						accumulator.Add(
 							new UniqueRectangleExternalAlmostLockedSetsXzStep(
 								from cell in elimMap select new Conclusion(Elimination, cell, zDigit),
-								ImmutableArray.Create(
+								new[]
+								{
 									View.Empty
 										| candidateOffsets
 										| cellOffsets
 										| new HouseViewNode(DisplayColorKind.AlmostLockedSet1, alsHouse)
-								),
+								},
 								d1,
 								d2,
 								cells,
@@ -4868,13 +4867,8 @@ unsafe partial class UniqueRectangleStepSearcher
 
 					accumulator.Add(
 						new AvoidableRectangleWithHiddenSingleStep(
-							ImmutableArray.Create(new Conclusion(Elimination, baseCell, otherDigit)),
-							ImmutableArray.Create(
-								View.Empty
-									| cellOffsets
-									| candidateOffsets
-									| new HouseViewNode(DisplayColorKind.Normal, sameHouse)
-							),
+							new[] { new Conclusion(Elimination, baseCell, otherDigit) },
+							new[] { View.Empty | cellOffsets | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, sameHouse) },
 							d1,
 							d2,
 							(CellMap)urCells,

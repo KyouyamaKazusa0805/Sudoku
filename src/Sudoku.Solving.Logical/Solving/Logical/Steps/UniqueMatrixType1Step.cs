@@ -9,8 +9,8 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the true candidate.</param>
 internal sealed record UniqueMatrixType1Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Cells,
 	short DigitsMask,
 	int Candidate

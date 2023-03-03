@@ -6424,7 +6424,7 @@ if (student is (name: var name, age: >= 18))
             <param name="TargetCells">Indicates the target cells.</param>
             <param name="HasValueCell">Indicates whether the step contains value cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Almost Locked Candidates</b> technique.
             </summary>
@@ -6480,7 +6480,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.AlmostLockedSetsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.AlmostLockedSetsStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets</b> technique.
             </summary>
@@ -6508,7 +6508,7 @@ if (student is (name: var name, age: >= 18))
             <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
             <param name="X">Indicates the X digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.AlmostLockedSet,Sudoku.Solving.Logical.Patterns.AlmostLockedSet,Sudoku.Concepts.Conjugate,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.AlmostLockedSetsWWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.AlmostLockedSet,Sudoku.Solving.Logical.Patterns.AlmostLockedSet,Sudoku.Concepts.Conjugate,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
@@ -6569,7 +6569,7 @@ if (student is (name: var name, age: >= 18))
             <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
             <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.AlmostLockedSet,Sudoku.Solving.Logical.Patterns.AlmostLockedSet,Sudoku.Solving.Logical.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXyWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.AlmostLockedSet,Sudoku.Solving.Logical.Patterns.AlmostLockedSet,Sudoku.Solving.Logical.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
@@ -6633,7 +6633,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ZDigitsMask">Indicates the Z digit used in this ALS-XZ pattern.</param>
             <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.AlmostLockedSet,Sudoku.Solving.Logical.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Logical.Steps.AlmostLockedSetsXzStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.AlmostLockedSet,Sudoku.Solving.Logical.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XZ</b> technique.
             </summary>
@@ -6695,7 +6695,7 @@ if (student is (name: var name, age: >= 18))
             <param name="House"></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
             </summary>
@@ -6742,7 +6742,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsX"><inheritdoc/></param>
             <param name="IsY"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},Sudoku.Solving.Logical.Patterns.ChainNode,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BidirectionalCycleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Solving.Logical.Patterns.ChainNode,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Bidirectional Cycle</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -6783,7 +6783,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsNishio"><inheritdoc/></param>
             <param name="DynamicNestingLevel"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},Sudoku.Solving.Logical.Patterns.ChainNode,Sudoku.Solving.Logical.Patterns.ChainNode,Sudoku.Solving.Logical.Patterns.ChainNode,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BinaryForcingChainsStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Solving.Logical.Patterns.ChainNode,Sudoku.Solving.Logical.Patterns.ChainNode,Sudoku.Solving.Logical.Patterns.ChainNode,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             The technique contains two kinds of forcing chains:
@@ -6845,7 +6845,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Digit1">Indicates the first digit.</param>
             <param name="Digit2">Indicates the second digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueOddagonStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon</b> technique.
             </summary>
@@ -6887,7 +6887,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Digit2"><inheritdoc/></param>
             <param name="ExtraCell">Indicates the extra cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueOddagonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueOddagonType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon Type 1</b> technique.
             </summary>
@@ -6924,7 +6924,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Digit2"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueOddagonType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon Type 2</b> technique.
             </summary>
@@ -6965,7 +6965,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueOddagonType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon Type 3</b> technique.
             </summary>
@@ -7008,7 +7008,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the false candidate that will cause a BUG deadly pattern if it is true.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveFalseCandidateTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveFalseCandidateTypeStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
             </summary>
@@ -7043,7 +7043,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Views"><inheritdoc/></param>
             <param name="Candidates">Indicates the true candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveMultipleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave + n</b> technique.
             </summary>
@@ -7079,7 +7079,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave</b> technique.
             </summary>
@@ -7108,7 +7108,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 1</b> technique.
             </summary>
@@ -7133,7 +7133,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Digit">Indicates the digit used.</param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
             </summary>
@@ -7171,7 +7171,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells">Indicates the cells used.</param>
             <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
             </summary>
@@ -7221,7 +7221,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells">Indicates the cells used.</param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
             </summary>
@@ -7262,7 +7262,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells">Indicates the cells used.</param>
             <param name="ExtraCell">Indicates the XZ cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveXzStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
             </summary>
@@ -7301,7 +7301,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Views"><inheritdoc/></param>
             <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BowmanBingoStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Logical.Steps.BowmanBingoStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Conclusion[])">
             <summary>
             Provides with a step that is a <b>Bowman's Bingo</b> technique.
             </summary>
@@ -7343,7 +7343,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.BruteForceStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.BruteForceStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Brute Force</b> technique.
             </summary>
@@ -7378,7 +7378,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsDynamic"><inheritdoc/></param>
             <param name="DynamicNestingLevel"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Byte,Sudoku.Solving.Logical.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.CellForcingChainsStep.#ctor(Sudoku.Solving.Conclusion[],System.Byte,Sudoku.Solving.Logical.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -7436,7 +7436,7 @@ if (student is (name: var name, age: >= 18))
             <para><inheritdoc cref="P:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ChainingStep.#ctor(Sudoku.Solving.Conclusion[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -7743,7 +7743,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Pattern">The cells used.</param>
             <param name="DigitsMask">The digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ChromaticPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern</b> technique.
             </summary>
@@ -7785,7 +7785,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraCell">Indicates the extra cell used.</param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChromaticPatternType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ChromaticPatternType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32[],Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern Type 1</b> technique.
             </summary>
@@ -7818,7 +7818,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigitsMask">The extra digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ChromaticPatternXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ChromaticPatternXzStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern XZ</b> technique.
             </summary>
@@ -7863,7 +7863,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
             <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ComplexFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Logical.Steps.ComplexFishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
@@ -7945,7 +7945,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.DeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.DeadlyPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Deadly Pattern</b> technique.
             </summary>
@@ -7974,7 +7974,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask">The digits used.</param>
             <param name="Petals">Indicates the petals used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.DeathBlossomCellTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int16,Sudoku.Solving.Logical.Patterns.AlmostLockedSet[])">
+        <member name="M:Sudoku.Solving.Logical.Steps.DeathBlossomCellTypeStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int16,Sudoku.Solving.Logical.Patterns.AlmostLockedSet[])">
             <summary>
             Provides with a step that is a <b>Death Blossom Cell Type</b> technique.
             </summary>
@@ -8008,7 +8008,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask">Indicates the digits used.</param>
             <param name="Petals">Indicates the petals used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.DeathBlossomStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Solving.Logical.Patterns.AlmostLockedSet[])">
+        <member name="M:Sudoku.Solving.Logical.Steps.DeathBlossomStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Solving.Logical.Patterns.AlmostLockedSet[])">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
             </summary>
@@ -8037,7 +8037,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Views"><inheritdoc/></param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.DominoLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.DominoLoopStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Domino Loop</b> technique.
             </summary>
@@ -8081,7 +8081,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
             <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.EmptyRectangleIntersectionPairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.EmptyRectangleIntersectionPairStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
             </summary>
@@ -8136,7 +8136,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Block">Indicates the block that the empty rectangle structure formed.</param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.EmptyRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.EmptyRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle</b> technique.
             </summary>
@@ -8182,7 +8182,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
             <param name="Eliminations">Indicates all possible eliminations.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.Exocet@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Logical.Meta.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Logical.Steps.ExocetStep.#ctor(Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.Exocet@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Logical.Meta.ExocetElimination})">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
@@ -8246,7 +8246,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells">Indicates the cells used.</param>
             <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
@@ -8296,7 +8296,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
             </summary>
@@ -8324,7 +8324,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
             </summary>
@@ -8361,7 +8361,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
             <param name="House">Indicates the house that extra subset formed.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
@@ -8404,7 +8404,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ExtendedRectangleType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
@@ -8440,7 +8440,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraCell1">The extra cell 1.</param>
             <param name="ExtraCell2">The extra cell 2.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.FireworkPairType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.FireworkPairType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 1</b> technique.
             </summary>
@@ -8483,7 +8483,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Pattern2">The second pattern used.</param>
             <param name="ExtraCell">The extra cell used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.FireworkPairType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Solving.Logical.Patterns.Firework@,Sudoku.Solving.Logical.Patterns.Firework@,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.FireworkPairType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Solving.Logical.Patterns.Firework@,Sudoku.Solving.Logical.Patterns.Firework@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 2</b> technique.
             </summary>
@@ -8528,7 +8528,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask">The digits used.</param>
             <param name="EmptyRectangleBlock">The empty rectangle block used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.FireworkPairType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.FireworkPairType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 3</b> technique.
             </summary>
@@ -8568,7 +8568,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells">The cells used.</param>
             <param name="DigitsMask">The digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.FireworkQuadrupleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.FireworkQuadrupleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Firework Quadruple</b> technique.
             </summary>
@@ -8602,7 +8602,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.FireworkStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.FireworkStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Firework</b> technique.
             </summary>
@@ -8630,7 +8630,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells">The cells used.</param>
             <param name="DigitsMask">The digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.FireworkTripleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.FireworkTripleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Firework Triple</b> technique.
             </summary>
@@ -8667,7 +8667,7 @@ if (student is (name: var name, age: >= 18))
             <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
             <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.FishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.FishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
             </summary>
@@ -8728,7 +8728,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsX"><inheritdoc/></param>
             <param name="IsY"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ForcingChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},Sudoku.Solving.Logical.Patterns.ChainNode,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ForcingChainStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Solving.Logical.Patterns.ChainNode,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Alternating Inference Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -8768,7 +8768,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.FullHouseStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.FullHouseStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
@@ -8801,7 +8801,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Solving.Logical.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Logical.Steps.GroupedWWingStep.EndCell"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.GroupedWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.GroupedWWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Grouped W-Wing</b> technique.
             </summary>
@@ -8849,7 +8849,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Loop">Indicates the loop cells used.</param>
             <param name="Guardians">Indicates the guardian cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.GuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.GuardianStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Guardian</b> technique.
             </summary>
@@ -8914,7 +8914,7 @@ if (student is (name: var name, age: >= 18))
             to what digits.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.GurthSymmetricalPlacementStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.SymmetryType,System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Solving.Logical.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.SymmetryType,System.Nullable{System.Int32}[])">
             <summary>
             Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
             </summary>
@@ -8969,7 +8969,7 @@ if (student is (name: var name, age: >= 18))
             <param name="House">Indicates the house used.</param>
             <param name="EnableAndIsLastDigit">Indicates whether the current step is a <b>Last Digit</b> technique usage.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.HiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.Steps.HiddenSingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
             </summary>
@@ -9011,7 +9011,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.HiddenSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.HiddenSubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -9046,7 +9046,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ConjugatePairs"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.HiddenUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.HiddenUniqueRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
             </summary>
@@ -9160,7 +9160,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.IntersectionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.IntersectionStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is an <b>Intersection</b> technique.
             </summary>
@@ -9183,7 +9183,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.IrregularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.IrregularWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Irregular Wing</b> technique.
             </summary>
@@ -9199,7 +9199,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.JuniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.Exocet@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Logical.Meta.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Logical.Steps.JuniorExocetStep.#ctor(Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.Exocet@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Logical.Meta.ExocetElimination})">
             <summary>
             Provides with a step that is a <b>Junior Exocet</b> technique.
             </summary>
@@ -9234,7 +9234,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.LastResortStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.LastResortStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Last Resort</b> technique.
             </summary>
@@ -9254,7 +9254,7 @@ if (student is (name: var name, age: >= 18))
             <param name="BaseSet">Indicates the house that the current locked candidates forms.</param>
             <param name="CoverSet">Indicates the house that the current locked candidates influences.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.LockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.LockedCandidatesStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Locked Candidates</b> technique.
             </summary>
@@ -9301,7 +9301,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Root">The root cells that corresponds to each leaf.</param>
             <param name="House">The house used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.MultiBranchWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.MultiBranchWWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
             </summary>
@@ -9351,7 +9351,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Views"><inheritdoc/></param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
             </summary>
@@ -9395,7 +9395,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cell"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.NakedSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.NakedSingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
@@ -9443,7 +9443,7 @@ if (student is (name: var name, age: >= 18))
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.NakedSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Logical.Steps.NakedSubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -9505,7 +9505,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.NegativeRankStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.NegativeRankStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Negative Rank</b> technique.
             </summary>
@@ -9519,7 +9519,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.NonnegativeRankStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.NonnegativeRankStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Non-negative Rank</b> technique.
             </summary>
@@ -9554,7 +9554,7 @@ if (student is (name: var name, age: >= 18))
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.NormalFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Logical.Steps.NormalFishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
@@ -9636,7 +9636,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.PatternOverlayStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
+        <member name="M:Sudoku.Solving.Logical.Steps.PatternOverlayStep.#ctor(Sudoku.Solving.Conclusion[])">
             <summary>
             Provides with a step that is a <b>Pattern Overlay</b> technique.
             </summary>
@@ -9677,7 +9677,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Pattern"><inheritdoc/></param>
             <param name="Candidates">Indicates the candidates used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
             </summary>
@@ -9706,7 +9706,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Views"><inheritdoc/></param>
             <param name="Pattern">Indicates the pattern used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
             </summary>
@@ -9752,7 +9752,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Pattern"><inheritdoc/></param>
             <param name="Candidate">Indicates the extra candidate used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
             </summary>
@@ -9779,7 +9779,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Pattern"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
             </summary>
@@ -9811,7 +9811,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
@@ -9849,7 +9849,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Pattern"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.QiuDeadlyPatternType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.QiuDeadlyPattern@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
             </summary>
@@ -9877,7 +9877,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.RankTheoryStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.RankTheoryStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Rank Theory</b> technique.
             </summary>
@@ -9904,7 +9904,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsDynamic"><inheritdoc/></param>
             <param name="DynamicNestingLevel"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Int32,System.Byte,Sudoku.Solving.Logical.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.RegionForcingChainsStep.#ctor(Sudoku.Solving.Conclusion[],System.Int32,System.Byte,Sudoku.Solving.Logical.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -9954,7 +9954,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask">Indicates a mask that contains all digits used.</param>
             <param name="Petals">Indicates the petals used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.RegularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.RegularWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
@@ -10057,7 +10057,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells">Indicates the cells used.</param>
             <param name="DigitsMask">Indicates the digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ReverseBivalueUniversalGraveStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ReverseBivalueUniversalGraveStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave</b> technique.
             </summary>
@@ -10101,7 +10101,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Reverse Unique Rectangle</b> technique.
             </summary>
@@ -10127,7 +10127,7 @@ if (student is (name: var name, age: >= 18))
             <param name="TargetCell">The target cell used.</param>
             <param name="TargetDigit">The target digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Reverse Unique Rectangle Type 1</b> technique.
             </summary>
@@ -10161,7 +10161,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraDigit">The extra digit used.</param>
             <param name="CellsHavingExtraDigit">Indicates the cells that contains the extra digit in the pattern.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.ReverseUniqueRectangleType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Reverse Unique Rectangle Type 2</b> technique.
             </summary>
@@ -10197,7 +10197,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask">Indicates the digits used.</param>
             <param name="ChuteIndex">Indicates the global chute index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.RwDeadlyPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>RW's Deadly Pattern</b> technique.
             </summary>
@@ -10245,7 +10245,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraHousesMask">Indicates the mask that holds the extra houses used.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.SeniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Patterns.Exocet@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Logical.Meta.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Logical.Steps.SeniorExocetStep.#ctor(Sudoku.Presentation.View[],Sudoku.Solving.Logical.Patterns.Exocet@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Logical.Meta.ExocetElimination})">
             <summary>
             Provides with a step that is a <b>Senior Exocet</b> technique.
             </summary>
@@ -10287,7 +10287,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Views"><inheritdoc/></param>
             <param name="Digit">Indicates the digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.SingleDigitPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.SingleDigitPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
@@ -10319,7 +10319,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cell">Indicates the cell used.</param>
             <param name="Digit">Indicates the digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.SingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.SingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Single</b> technique.
             </summary>
@@ -10353,7 +10353,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
             <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a logical solving step that is a technique usage, and contains the conclusions.
             </summary>
@@ -10432,7 +10432,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells">All cells used.</param>
             <param name="DigitsMask">The mask that contains all digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.SubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.SubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Subset</b> technique.
             </summary>
@@ -10491,7 +10491,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ColumnCells">The column cells map.</param>
             <param name="BlockCells">The block cells map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.SueDeCoq3DimensionStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
             </summary>
@@ -10560,7 +10560,7 @@ if (student is (name: var name, age: >= 18))
             <param name="LineCells">The map of line cells.</param>
             <param name="IntersectionCells">The map of intersection cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.SueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.SueDeCoqStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Sue de Coq</b> technique.
             </summary>
@@ -10638,7 +10638,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.SymmetryStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.SymmetryStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Symmetrical</b> technique.
             </summary>
@@ -10665,7 +10665,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Views"><inheritdoc/></param>
             <param name="IsTemplateDeletion">Indicates whether the step is a deletion.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.TemplateStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.Steps.TemplateStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Boolean)">
             <summary>
             Provides with a step that is a <b>Template</b> technique.
             </summary>
@@ -10709,7 +10709,7 @@ if (student is (name: var name, age: >= 18))
             <param name="BaseHouse">Indicates the base house used.</param>
             <param name="TargetHouse">Indicates the target house used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
@@ -10753,7 +10753,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Digit2">Indicates the second digit.</param>
             <param name="Loop">Indicates the loop that the instance used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop</b> technique.
             </summary>
@@ -10811,7 +10811,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Digit2"><inheritdoc/></param>
             <param name="Loop"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 1</b> technique.
             </summary>
@@ -10841,7 +10841,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Loop"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
@@ -10881,7 +10881,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="SubsetCells">Indicates the subset cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 3</b> technique.
             </summary>
@@ -10926,7 +10926,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Loop"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
@@ -10961,7 +10961,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cells">Indicates the cells used.</param>
             <param name="DigitsMask">Indicates the digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Matrix</b> technique.
             </summary>
@@ -11012,7 +11012,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="Candidate">Indicates the true candidate.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
             </summary>
@@ -11041,7 +11041,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 2</b> technique.
             </summary>
@@ -11076,7 +11076,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
@@ -11118,7 +11118,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Digit2">Indicates the digit 2 used.</param>
             <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
             </summary>
@@ -11153,7 +11153,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Views"><inheritdoc/></param>
             <param name="ExtraCells">Indicates the extra cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Clue Cover</b> technique.
             </summary>
@@ -11202,7 +11202,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Cell2">Indicates the second cell used.</param>
             <param name="ChuteIndex">Indicates the global chute index.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniquenessClueCoverType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniquenessClueCoverType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Clue Cover Type 2</b> technique.
             </summary>
@@ -11247,7 +11247,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Map">The map that contains the cells used for this technique.</param>
             <param name="DigitsMask">The mask that contains all digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon</b> technique.
             </summary>
@@ -11294,7 +11294,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Map"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 1</b> technique.
             </summary>
@@ -11319,7 +11319,7 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 2</b> technique.
             </summary>
@@ -11352,7 +11352,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraCells">Indicates the extra cells used for forming the subset.</param>
             <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 3</b> technique.
             </summary>
@@ -11389,7 +11389,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ConjugateHouse">Indicates the cells that forms the conjugate house.</param>
             <param name="ExtraMask">Indicates the extra digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 4</b> technique.
             </summary>
@@ -11431,7 +11431,7 @@ if (student is (name: var name, age: >= 18))
             <param name="XyCell">Indicates the cell XY.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangle2DOr3XStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Techniques.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangle2DOr3XStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Techniques.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
             </summary>
@@ -11486,7 +11486,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Solving.Logical.Patterns.AlmostLockedSet,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Solving.Logical.Patterns.AlmostLockedSet,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
             </summary>
@@ -11543,7 +11543,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
             </summary>
@@ -11613,7 +11613,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType1Or2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType1Or2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 1/2</b>
             or <b>Avoidable Rectangle External Type 1/2</b> technique.
@@ -11669,7 +11669,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 3</b> technique.
             </summary>
@@ -11730,7 +11730,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
             </summary>
@@ -11787,7 +11787,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleExternalXyWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
             </summary>
@@ -11863,7 +11863,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="P:Sudoku.Solving.Logical.Steps.Step.TechniqueCode"/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Techniques.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Techniques.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle</b> technique.
             </summary>
@@ -11968,7 +11968,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsAvoidable"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
             </summary>
@@ -12003,7 +12003,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraDigit">Indicates the extra digit used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Solving.Logical.Techniques.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Solving.Logical.Techniques.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
             </summary>
@@ -12066,7 +12066,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
             </summary>
@@ -12155,7 +12155,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraDigit">Indicates the extra digit used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
             </summary>
@@ -12203,7 +12203,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Techniques.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Techniques.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
@@ -12272,7 +12272,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
             </summary>
@@ -12376,7 +12376,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Logical.Techniques.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Solving.Logical.Techniques.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
             </summary>
@@ -12423,7 +12423,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.WingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+        <member name="M:Sudoku.Solving.Logical.Steps.WingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Wing</b> technique.
             </summary>
@@ -12454,7 +12454,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Solving.Logical.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Logical.Steps.WWingStep.EndCell"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.WWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Solving.Logical.Steps.WWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>W-Wing</b> technique.
             </summary>

@@ -227,8 +227,9 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 				}
 
 				var step = new AlmostLockedSetsXzStep(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(
+					conclusions.ToArray(),
+					new[]
+					{
 						View.Empty
 							| candidateOffsets
 							| isEsp switch
@@ -240,7 +241,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 									new(DisplayColorKind.Auxiliary1, house2)
 								}
 							}
-					),
+					},
 					als1,
 					als2,
 					rccMask,

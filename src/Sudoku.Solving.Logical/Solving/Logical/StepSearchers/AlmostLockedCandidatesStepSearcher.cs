@@ -180,17 +180,14 @@ internal sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmos
 
 			var hasValueCell = valueCells.Count != 0;
 			var step = new AlmostLockedCandidatesStep(
-				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(
+				conclusions.ToArray(),
+				new[]
+				{
 					View.Empty
 						| (hasValueCell ? valueCells : null)
 						| candidateOffsets
-						| new HouseViewNode[]
-						{
-							new(DisplayColorKind.Normal, baseSet),
-							new(DisplayColorKind.Auxiliary2, coverSet)
-						}
-				),
+						| new HouseViewNode[] { new(DisplayColorKind.Normal, baseSet), new(DisplayColorKind.Auxiliary2, coverSet) }
+				},
 				mask,
 				cells,
 				ahsCells,

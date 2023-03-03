@@ -8,7 +8,7 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="Loop">Indicates the loop cells used.</param>
 /// <param name="Guardians">Indicates the guardian cells used.</param>
-internal sealed record GuardianStep(ConclusionList Conclusions, ViewList Views, int Digit, scoped in CellMap Loop, scoped in CellMap Guardians) :
+internal sealed record GuardianStep(Conclusion[] Conclusions, View[]? Views, int Digit, scoped in CellMap Loop, scoped in CellMap Guardians) :
 	NegativeRankStep(Conclusions, Views),
 	IDistinctableStep<GuardianStep>
 {

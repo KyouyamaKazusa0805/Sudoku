@@ -15,8 +15,8 @@
 /// <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 internal sealed record UniqueRectangleExternalType3Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Digit1,
 	int Digit2,
 	scoped in CellMap Cells,

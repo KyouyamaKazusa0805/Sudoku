@@ -8,7 +8,7 @@
 /// <param name="FalseCandidate">
 /// Indicates the false candidate that will cause a BUG deadly pattern if it is true.
 /// </param>
-internal sealed record BivalueUniversalGraveFalseCandidateTypeStep(ConclusionList Conclusions, ViewList Views, int FalseCandidate) :
+internal sealed record BivalueUniversalGraveFalseCandidateTypeStep(Conclusion[] Conclusions, View[]? Views, int FalseCandidate) :
 	BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

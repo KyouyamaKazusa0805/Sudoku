@@ -9,8 +9,8 @@
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="ChuteIndex">Indicates the global chute index.</param>
 internal sealed record RwDeadlyPatternStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Pattern,
 	short DigitsMask,
 	int ChuteIndex

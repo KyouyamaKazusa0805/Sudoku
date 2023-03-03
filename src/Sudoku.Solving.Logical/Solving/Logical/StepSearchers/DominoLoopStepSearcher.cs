@@ -173,11 +173,7 @@ internal sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSea
 				}
 
 				// Gather the result.
-				var step = new DominoLoopStep(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(View.Empty | candidateOffsets),
-					(CellMap)cells
-				);
+				var step = new DominoLoopStep(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, (CellMap)cells);
 				if (context.OnlyFindOne)
 				{
 					return step;

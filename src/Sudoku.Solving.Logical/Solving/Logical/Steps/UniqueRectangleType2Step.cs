@@ -13,8 +13,8 @@
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 internal sealed record UniqueRectangleType2Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Digit1,
 	int Digit2,
 	Technique TechniqueCode2,

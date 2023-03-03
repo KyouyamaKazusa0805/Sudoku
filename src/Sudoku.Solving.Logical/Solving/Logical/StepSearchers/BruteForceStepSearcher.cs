@@ -23,8 +23,8 @@ internal sealed partial class BruteForceStepSearcher : IBruteForceStepSearcher
 			{
 				var cand = offset * 9 + Solution[offset];
 				var step = new BruteForceStep(
-					ImmutableArray.Create(new Conclusion(Assignment, cand)),
-					ImmutableArray.Create(View.Empty | new CandidateViewNode(DisplayColorKind.Normal, cand))
+					new[] { new Conclusion(Assignment, cand) },
+					new[] { View.Empty | new CandidateViewNode(DisplayColorKind.Normal, cand) }
 				);
 				if (context.OnlyFindOne)
 				{

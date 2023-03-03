@@ -124,7 +124,8 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 							{
 								step = new WWingStep(
 									from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit),
-									ImmutableArray.Create(
+									new[]
+									{
 										View.Empty
 											| new CandidateViewNode[]
 											{
@@ -135,7 +136,8 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 												new(DisplayColorKind.Auxiliary1, a * 9 + digit),
 												new(DisplayColorKind.Auxiliary1, b * 9 + digit)
 											}
-											| new HouseViewNode(DisplayColorKind.Auxiliary1, house)),
+											| new HouseViewNode(DisplayColorKind.Auxiliary1, house)
+									},
 									c1,
 									c2,
 									new(a, b, digit)
@@ -160,10 +162,7 @@ internal sealed unsafe partial class WWingStepSearcher : IWWingStepSearcher
 
 								step = new GroupedWWingStep(
 									from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit),
-									ImmutableArray.Create(
-										View.Empty
-											| candidateOffsets
-											| new HouseViewNode(DisplayColorKind.Auxiliary1, house)),
+									new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Auxiliary1, house) },
 									c1,
 									c2,
 									bridge

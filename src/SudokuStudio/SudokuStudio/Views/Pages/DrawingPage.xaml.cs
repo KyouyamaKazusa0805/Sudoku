@@ -18,7 +18,7 @@ public sealed partial class DrawingPage : Page
 	/// <summary>
 	/// Defines a local view.
 	/// </summary>
-	private readonly ViewUnit _localView = new() { Conclusions = ImmutableArray<Conclusion>.Empty, View = View.Empty };
+	private readonly ViewUnit _localView = new() { Conclusions = Array.Empty<Conclusion>(), View = View.Empty };
 
 	/// <summary>
 	/// Indicates the previously selected candidate.

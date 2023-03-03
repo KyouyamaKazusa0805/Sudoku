@@ -8,8 +8,8 @@
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the candidates used.</param>
 internal sealed record QiuDeadlyPatternLockedTypeStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in QiuDeadlyPattern Pattern,
 	IReadOnlyList<int> Candidates
 ) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)

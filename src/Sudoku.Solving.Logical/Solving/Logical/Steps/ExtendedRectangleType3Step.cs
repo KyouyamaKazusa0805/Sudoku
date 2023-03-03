@@ -11,8 +11,8 @@
 /// <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
 /// <param name="House">Indicates the house that extra subset formed.</param>
 internal sealed record ExtendedRectangleType3Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Cells,
 	short DigitsMask,
 	scoped in CellMap ExtraCells,

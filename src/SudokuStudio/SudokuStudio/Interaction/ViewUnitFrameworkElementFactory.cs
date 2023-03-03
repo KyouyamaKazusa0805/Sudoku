@@ -183,7 +183,7 @@ internal static class ViewUnitFrameworkElementFactory
 	private static void ForCandidateNode(
 		SudokuPane sudokuPane,
 		CandidateViewNode candidateNode,
-		ImmutableArray<Conclusion> conclusions,
+		Conclusion[] conclusions,
 		out Conclusion? overlapped
 	)
 	{
@@ -208,12 +208,12 @@ internal static class ViewUnitFrameworkElementFactory
 	}
 
 	/// <summary>
-	/// The core method called by <see cref="ForCandidateNode(SudokuPane, CandidateViewNode, ImmutableArray{Conclusion}, out Conclusion?)"/>.
+	/// The core method called by <see cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?)"/>.
 	/// </summary>
 	/// <param name="color">The color to be used on rendering.</param>
 	/// <param name="candidate">The candidate to be rendered.</param>
 	/// <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
-	/// <seealso cref="ForCandidateNode(SudokuPane, CandidateViewNode, ImmutableArray{Conclusion}, out Conclusion?)"/>
+	/// <seealso cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?)"/>
 	private static void ForCandidateNodeCore(Color color, int candidate, SudokuPaneCell paneCellControl)
 	{
 		var (width, height) = paneCellControl.ActualSize / 3F * (float)paneCellControl.BasePane.HighlightCandidateCircleScale;
@@ -394,7 +394,7 @@ internal static class ViewUnitFrameworkElementFactory
 	/// <remarks>
 	/// This method is special: We should handle all <see cref="LinkViewNode"/>s together.
 	/// </remarks>
-	private static void ForLinkNodes(SudokuPane sudokuPane, LinkViewNode[] linkNodes, ImmutableArray<Conclusion> conclusions)
+	private static void ForLinkNodes(SudokuPane sudokuPane, LinkViewNode[] linkNodes, Conclusion[] conclusions)
 	{
 		var gridControl = sudokuPane.MainGrid;
 		if (gridControl is null)
@@ -423,7 +423,7 @@ internal static class ViewUnitFrameworkElementFactory
 /// <param name="Converter">Indicates the position converter.</param>
 /// <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
 /// <seealso cref="Path"/>
-file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Converter, ImmutableArray<Conclusion> Conclusions)
+file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Converter, Conclusion[] Conclusions)
 {
 	/// <summary>
 	/// Indicates the rotate angle (45 degrees).
@@ -791,7 +791,7 @@ file static class Extensions
 	/// <param name="candidate">The candidate to be determined.</param>
 	/// <param name="conclusion">The overlapped result.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool ConflictWith(this ImmutableArray<Conclusion> conclusions, int candidate, [NotNullWhen(true)] out Conclusion? conclusion)
+	public static bool ConflictWith(this Conclusion[] conclusions, int candidate, [NotNullWhen(true)] out Conclusion? conclusion)
 	{
 		foreach (var current in conclusions)
 		{

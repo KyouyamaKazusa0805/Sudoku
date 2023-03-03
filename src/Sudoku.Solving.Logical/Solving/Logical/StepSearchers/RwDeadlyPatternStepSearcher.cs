@@ -94,8 +94,8 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 			}
 
 			var step = new RwDeadlyPatternStep(
-				conclusions.ToImmutableArray(),
-				ImmutableArray.Create(View.Empty | new ChuteViewNode(DisplayColorKind.Normal, chuteIndex)),
+				conclusions.ToArray(),
+				new[] { View.Empty | new ChuteViewNode(DisplayColorKind.Normal, chuteIndex) },
 				chute - EmptyCells,
 				valueDigitsMask,
 				chuteIndex

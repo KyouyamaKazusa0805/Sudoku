@@ -9,8 +9,8 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 internal sealed record HiddenSubsetStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int House,
 	scoped in CellMap Cells,
 	short DigitsMask

@@ -9,8 +9,8 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">The extra digit.</param>
 internal sealed record UniquePolygonType2Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Map,
 	short DigitsMask,
 	int ExtraDigit

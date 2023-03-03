@@ -419,8 +419,8 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 
 								// Add into the 'accumulator'.
 								var step = new ComplexFishStep(
-									ImmutableArray.CreateRange(conclusions),
-									ImmutableArray.Create(View.Empty | candidateOffsets | houseOffsets),
+									conclusions.ToArray(),
+									new[] { View.Empty | candidateOffsets | houseOffsets },
 									digit,
 									baseSetsMask,
 									coverSetsMask,

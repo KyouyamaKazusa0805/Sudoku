@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the extra candidate used.</param>
-internal sealed record QiuDeadlyPatternType1Step(ConclusionList Conclusions, ViewList Views, scoped in QiuDeadlyPattern Pattern, int Candidate) :
+internal sealed record QiuDeadlyPatternType1Step(Conclusion[] Conclusions, View[]? Views, scoped in QiuDeadlyPattern Pattern, int Candidate) :
 	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>

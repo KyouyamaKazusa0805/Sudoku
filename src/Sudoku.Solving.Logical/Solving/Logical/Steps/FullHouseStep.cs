@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-internal sealed record FullHouseStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit) :
+internal sealed record FullHouseStep(Conclusion[] Conclusions, View[]? Views, int Cell, int Digit) :
 	SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>

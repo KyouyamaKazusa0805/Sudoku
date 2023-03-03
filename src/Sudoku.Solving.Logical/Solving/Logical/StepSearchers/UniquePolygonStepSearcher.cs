@@ -109,8 +109,8 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 			}
 
 			var step = new UniquePolygonType1Step(
-				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(View.Empty | candidateOffsets),
+				conclusions.ToArray(),
+				new[] { View.Empty | candidateOffsets },
 				map,
 				tempMask
 			);
@@ -174,8 +174,8 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 			}
 
 			var step = new UniquePolygonType2Step(
-				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(View.Empty | candidateOffsets),
+				conclusions.ToArray(),
+				new[] { View.Empty | candidateOffsets },
 				map,
 				tempMask,
 				otherDigit
@@ -280,12 +280,8 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 						}
 
 						var step = new UniquePolygonType3Step(
-							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(
-								View.Empty
-									| candidateOffsets
-									| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
-							),
+							conclusions.ToArray(),
+							new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, houseIndex) },
 							map,
 							tempMask,
 							combination,
@@ -406,12 +402,8 @@ internal sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonS
 					}
 
 					var step = new UniquePolygonType4Step(
-						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(
-							View.Empty
-								| candidateOffsets
-								| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
-						),
+						conclusions.ToArray(),
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, houseIndex) },
 						map,
 						otherMask,
 						currentMap,

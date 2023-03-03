@@ -91,14 +91,14 @@ file sealed class BackdoorVisualUnit : VisualUnit
 	/// Initializes a <see cref="BackdoorVisualUnit"/> instance via the specified view.
 	/// </summary>
 	/// <param name="view">The view.</param>
-	public BackdoorVisualUnit(View view) => Views = ImmutableArray.Create(view);
+	public BackdoorVisualUnit(View view) => Views = new[] { view };
 
 
 	/// <inheritdoc/>
-	public ImmutableArray<View> Views { get; }
+	public View[]? Views { get; }
 
 	/// <inheritdoc/>
-	ImmutableArray<Conclusion> VisualUnit.Conclusions { get; } = ImmutableArray.Create<Conclusion>();
+	Conclusion[] VisualUnit.Conclusions { get; } = Array.Empty<Conclusion>();
 }
 
 /// <summary>
@@ -110,12 +110,12 @@ file sealed class TrueCandidateVisualUnit : VisualUnit
 	/// Initializes a <see cref="TrueCandidateVisualUnit"/> instance via the specified view.
 	/// </summary>
 	/// <param name="view">The view.</param>
-	public TrueCandidateVisualUnit(View view) => Views = ImmutableArray.Create(view);
+	public TrueCandidateVisualUnit(View view) => Views = new[] { view };
 
 
 	/// <inheritdoc/>
-	public ImmutableArray<View> Views { get; }
+	public View[]? Views { get; }
 
 	/// <inheritdoc/>
-	ImmutableArray<Conclusion> VisualUnit.Conclusions { get; } = ImmutableArray.Create<Conclusion>();
+	Conclusion[] VisualUnit.Conclusions { get; } = Array.Empty<Conclusion>();
 }

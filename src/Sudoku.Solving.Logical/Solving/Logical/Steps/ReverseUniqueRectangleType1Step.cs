@@ -10,8 +10,8 @@
 /// <param name="TargetCell">The target cell used.</param>
 /// <param name="TargetDigit">The target digit used.</param>
 internal sealed record ReverseUniqueRectangleType1Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Cells,
 	short DigitsMask,
 	int TargetCell,

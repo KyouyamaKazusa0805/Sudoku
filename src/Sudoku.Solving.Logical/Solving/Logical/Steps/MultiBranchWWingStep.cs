@@ -9,8 +9,8 @@
 /// <param name="Root">The root cells that corresponds to each leaf.</param>
 /// <param name="House">The house used.</param>
 internal sealed record MultiBranchWWingStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Leaves,
 	scoped in CellMap Root,
 	int House

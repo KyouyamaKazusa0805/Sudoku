@@ -339,7 +339,7 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 			return null;
 		}
 
-		var result = new BidirectionalCycleStep(ImmutableArray.CreateRange(conclusions), dstOn, isX, isY);
+		var result = new BidirectionalCycleStep(conclusions.ToArray(), dstOn, isX, isY);
 		return result with { Views = result.CreateViews(grid) };
 	}
 
@@ -349,7 +349,7 @@ internal sealed partial class NonMultipleChainingStepSearcher : ChainingStepSear
 	private ForcingChainStep CreateAicStep(scoped in Grid grid, ChainNode target, bool isX, bool isY)
 	{
 		var (candidate, isOn) = target;
-		var conclusion = ImmutableArray.Create(new Conclusion(isOn ? Assignment : Elimination, candidate));
+		var conclusion = new[] { new Conclusion(isOn ? Assignment : Elimination, candidate) };
 		var result = new ForcingChainStep(conclusion, target, isX, isY);
 		return result with { Views = result.CreateViews(grid) };
 	}

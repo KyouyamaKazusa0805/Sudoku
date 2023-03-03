@@ -151,12 +151,13 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			}
 
 			var step = new ChromaticPatternType1Step(
-				conclusions.ToImmutableArray(),
-				ImmutableArray.Create(
+				conclusions.ToArray(),
+				new[]
+				{
 					View.Empty
 						| candidateOffsets
 						| from house in blocks select new HouseViewNode(DisplayColorKind.Normal, house)
-				),
+				},
 				blocks,
 				pattern,
 				extraCell,
@@ -249,13 +250,14 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 				}
 
 				var step = new ChromaticPatternXzStep(
-					conclusions.ToImmutableArray(),
-					ImmutableArray.Create(
+					conclusions.ToArray(),
+					new[]
+					{
 						View.Empty
 							| candidateOffsets
 							| new CellViewNode(DisplayColorKind.Normal, extraCell)
 							| from block in blocks select new HouseViewNode(DisplayColorKind.Normal, block)
-					),
+					},
 					blocks,
 					pattern,
 					otherDigitsCells,

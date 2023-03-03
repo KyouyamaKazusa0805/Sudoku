@@ -9,7 +9,7 @@
 /// <param name="IsDynamic"><inheritdoc/></param>
 /// <param name="DynamicNestingLevel"><inheritdoc/></param>
 internal sealed record CellForcingChainsStep(
-	ConclusionList Conclusions,
+	Conclusion[] Conclusions,
 	byte SourceCell,
 	MultipleForcingChains Chains,
 	bool IsDynamic,

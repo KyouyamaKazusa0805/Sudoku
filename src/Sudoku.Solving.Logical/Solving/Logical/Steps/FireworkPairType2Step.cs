@@ -10,8 +10,8 @@
 /// <param name="Pattern2">The second pattern used.</param>
 /// <param name="ExtraCell">The extra cell used.</param>
 internal sealed record FireworkPairType2Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	short DigitsMask,
 	scoped in Firework Pattern1,
 	scoped in Firework Pattern2,

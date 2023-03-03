@@ -649,7 +649,7 @@ public sealed partial class AnalyzePage : Page
 
 		page.SudokuPane.ViewUnit = visualUnit switch
 		{
-			{ Conclusions: var conclusions, Views: [] } => new() { Conclusions = conclusions, View = View.Empty },
+			{ Conclusions: var conclusions, Views: null or [] } => new() { Conclusions = conclusions, View = View.Empty },
 			{ Conclusions: var conclusions, Views: var views } => new() { Conclusions = conclusions, View = views[value] },
 			_ => null
 		};

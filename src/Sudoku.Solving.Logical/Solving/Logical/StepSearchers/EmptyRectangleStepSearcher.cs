@@ -64,12 +64,8 @@ internal sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangl
 					}
 
 					var step = new EmptyRectangleStep(
-						ImmutableArray.Create(new Conclusion(Elimination, elimCell, digit)),
-						ImmutableArray.Create(
-							View.Empty
-								| candidateOffsets
-								| new HouseViewNode(DisplayColorKind.Normal, block)
-						),
+						new[] { new Conclusion(Elimination, elimCell, digit) },
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, block) },
 						digit,
 						block,
 						new(cpCells[0], cpCells[1], digit)

@@ -10,8 +10,8 @@
 /// <param name="ExtraCell">Indicates the extra cell used.</param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 internal sealed record ChromaticPatternType1Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int[] Blocks,
 	scoped in CellMap Pattern,
 	int ExtraCell,

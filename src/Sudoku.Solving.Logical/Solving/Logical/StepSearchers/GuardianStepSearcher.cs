@@ -70,7 +70,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 				resultAccumulator.Add(
 					new GuardianStep(
 						from c in elimMap select new Conclusion(Elimination, c, digit),
-						ImmutableArray.Create(View.Empty | candidateOffsets),
+						new[] { View.Empty | candidateOffsets },
 						digit,
 						loop,
 						guardians

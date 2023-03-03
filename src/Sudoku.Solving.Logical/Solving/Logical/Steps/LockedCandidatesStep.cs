@@ -8,7 +8,7 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="BaseSet">Indicates the house that the current locked candidates forms.</param>
 /// <param name="CoverSet">Indicates the house that the current locked candidates influences.</param>
-internal sealed record LockedCandidatesStep(ConclusionList Conclusions, ViewList Views, int Digit, int BaseSet, int CoverSet) :
+internal sealed record LockedCandidatesStep(Conclusion[] Conclusions, View[]? Views, int Digit, int BaseSet, int CoverSet) :
 	IntersectionStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

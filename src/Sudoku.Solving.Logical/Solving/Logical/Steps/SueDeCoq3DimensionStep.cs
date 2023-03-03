@@ -12,8 +12,8 @@
 /// <param name="ColumnCells">The column cells map.</param>
 /// <param name="BlockCells">The block cells map.</param>
 internal sealed record SueDeCoq3DimensionStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	short RowDigitsMask,
 	short ColumnDigitsMask,
 	short BlockDigitsMask,

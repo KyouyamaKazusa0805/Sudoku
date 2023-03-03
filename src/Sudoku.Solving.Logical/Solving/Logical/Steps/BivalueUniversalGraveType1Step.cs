@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal sealed record BivalueUniversalGraveType1Step(ConclusionList Conclusions, ViewList Views) : BivalueUniversalGraveStep(Conclusions, Views)
+internal sealed record BivalueUniversalGraveType1Step(Conclusion[] Conclusions, View[]? Views) : BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType1;

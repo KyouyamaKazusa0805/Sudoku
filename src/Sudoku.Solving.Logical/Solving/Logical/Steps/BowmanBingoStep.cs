@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
-internal sealed record BowmanBingoStep(ConclusionList Conclusions, ViewList Views, ConclusionList ContradictionLinks) :
+internal sealed record BowmanBingoStep(Conclusion[] Conclusions, View[]? Views, Conclusion[] ContradictionLinks) :
 	LastResortStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

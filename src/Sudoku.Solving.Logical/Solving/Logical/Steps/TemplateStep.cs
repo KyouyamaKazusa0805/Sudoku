@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="IsTemplateDeletion">Indicates whether the step is a deletion.</param>
-internal sealed record TemplateStep(ConclusionList Conclusions, ViewList Views, bool IsTemplateDeletion) : LastResortStep(Conclusions, Views)
+internal sealed record TemplateStep(Conclusion[] Conclusions, View[]? Views, bool IsTemplateDeletion) : LastResortStep(Conclusions, Views)
 {
 	/// <summary>
 	/// Indicates the digit.

@@ -26,8 +26,8 @@
 /// </list>
 /// </param>
 internal sealed record NakedSubsetStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int House,
 	scoped in CellMap Cells,
 	short DigitsMask,

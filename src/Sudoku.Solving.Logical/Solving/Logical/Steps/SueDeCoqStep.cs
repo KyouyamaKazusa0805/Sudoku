@@ -16,8 +16,8 @@
 /// <param name="LineCells">The map of line cells.</param>
 /// <param name="IntersectionCells">The map of intersection cells.</param>
 internal sealed record SueDeCoqStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Block,
 	int Line,
 	short BlockMask,

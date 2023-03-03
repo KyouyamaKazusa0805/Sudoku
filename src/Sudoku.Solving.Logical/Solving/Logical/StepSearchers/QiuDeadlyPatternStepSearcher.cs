@@ -206,13 +206,14 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternType1Step(
-			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(
+			conclusions.ToArray(),
+			new[]
+			{
 				View.Empty
 					| cellOffsets
 					| candidateOffsets
 					| from pos in lineMask.GetAllSets() select new HouseViewNode(DisplayColorKind.Normal, pos + offset)
-			),
+			},
 			pattern,
 			elimCell * 9 + extraDigit
 		);
@@ -277,13 +278,14 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternType2Step(
-			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(
+			conclusions.ToArray(),
+			new[]
+			{
 				View.Empty
 					| cellOffsets
 					| candidateOffsets
 					| from pos in lineMask.GetAllSets() select new HouseViewNode(DisplayColorKind.Normal, pos + offset)
-			),
+			},
 			pattern,
 			extraDigit
 		);
@@ -372,13 +374,14 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 					var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 					var offset = isRow ? 9 : 18;
 					var step = new QiuDeadlyPatternType3Step(
-						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(
+						conclusions.ToArray(),
+						new[]
+						{
 							View.Empty
 								| cellOffsets
 								| candidateOffsets
 								| from pos in lineMask.GetAllSets() select new HouseViewNode(DisplayColorKind.Normal, pos + offset)
-						),
+						},
 						pattern,
 						mask,
 						cells,
@@ -462,13 +465,14 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 				var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 				var offset = isRow ? 9 : 18;
 				var step = new QiuDeadlyPatternType4Step(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(
+					conclusions.ToArray(),
+					new[]
+					{
 						View.Empty
 							| cellOffsets
 							| candidateOffsets
 							| from pos in lineMask.GetAllSets() select new HouseViewNode(DisplayColorKind.Normal, pos + offset)
-					),
+					},
 					pattern,
 					new(pair, digit)
 				);
@@ -578,13 +582,14 @@ internal sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPa
 		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternLockedTypeStep(
-			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(
+			conclusions.ToArray(),
+			new[]
+			{
 				View.Empty
 					| cellOffsets
 					| candidateOffsets
 					| from pos in lineMask.GetAllSets() select new HouseViewNode(DisplayColorKind.Normal, pos + offset)
-			),
+			},
 			pattern,
 			candidates
 		);

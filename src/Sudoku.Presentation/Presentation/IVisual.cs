@@ -8,10 +8,10 @@ public interface IVisual
 	/// <summary>
 	/// Indicates the conclusions that the step can be eliminated or assigned to.
 	/// </summary>
-	ImmutableArray<Conclusion> Conclusions { get; }
+	Conclusion[] Conclusions { get; }
 
 	/// <summary>
 	/// Indicates the views of the step that may be displayed onto the screen using pictures.
 	/// </summary>
-	ImmutableArray<View> Views { get; }
+	View[]? Views { get; }
 }

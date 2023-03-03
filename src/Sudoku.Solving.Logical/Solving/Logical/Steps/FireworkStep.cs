@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal abstract record FireworkStep(ConclusionList Conclusions, ViewList Views) : IntersectionStep(Conclusions, Views)
+internal abstract record FireworkStep(Conclusion[] Conclusions, View[]? Views) : IntersectionStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.9M;

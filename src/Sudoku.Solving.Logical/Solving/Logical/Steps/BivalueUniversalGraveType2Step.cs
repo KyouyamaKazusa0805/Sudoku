@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
-internal sealed record BivalueUniversalGraveType2Step(ConclusionList Conclusions, ViewList Views, int Digit, scoped in CellMap Cells) :
+internal sealed record BivalueUniversalGraveType2Step(Conclusion[] Conclusions, View[]? Views, int Digit, scoped in CellMap Cells) :
 	BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal abstract record BivalueUniversalGraveStep(ConclusionList Conclusions, ViewList Views) : DeadlyPatternStep(Conclusions, Views)
+internal abstract record BivalueUniversalGraveStep(Conclusion[] Conclusions, View[]? Views) : DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.6M;

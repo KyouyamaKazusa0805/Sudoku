@@ -8,8 +8,8 @@
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 internal sealed record QiuDeadlyPatternType4Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in QiuDeadlyPattern Pattern,
 	scoped in Conjugate ConjugatePair
 ) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)

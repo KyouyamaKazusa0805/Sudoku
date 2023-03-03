@@ -15,8 +15,8 @@
 /// <param name="XyCell">Indicates the cell XY.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 internal sealed record UniqueRectangle2DOr3XStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	Technique TechniqueCode2,
 	int Digit1,
 	int Digit2,

@@ -4,7 +4,7 @@
 /// Provides with a step that is a <b>Pattern Overlay</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
-internal sealed record PatternOverlayStep(ConclusionList Conclusions) : LastResortStep(Conclusions, ImmutableArray.Create(View.Empty))
+internal sealed record PatternOverlayStep(Conclusion[] Conclusions) : LastResortStep(Conclusions, null)
 {
 	/// <summary>
 	/// Indicates the digit.

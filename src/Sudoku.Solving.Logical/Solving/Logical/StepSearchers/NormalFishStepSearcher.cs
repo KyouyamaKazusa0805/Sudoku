@@ -220,7 +220,7 @@ internal sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSea
 					// Gather the result.
 					var step = new NormalFishStep(
 						from cell in elimMap select new Conclusion(Elimination, cell, digit),
-						ImmutableArray.Create(View.Empty | candidateOffsets | houseOffsets, GetDirectView(digit, bs, cs, fins, searchRow)),
+						new[] { View.Empty | candidateOffsets | houseOffsets, GetDirectView(digit, bs, cs, fins, searchRow) },
 						digit,
 						baseSetsMask,
 						coverSetsMask,

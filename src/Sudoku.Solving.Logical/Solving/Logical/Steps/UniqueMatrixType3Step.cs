@@ -12,8 +12,8 @@
 /// Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
 /// </param>
 internal sealed record UniqueMatrixType3Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Cells,
 	short DigitsMask,
 	short ExtraDigitsMask,

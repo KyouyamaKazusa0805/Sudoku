@@ -187,8 +187,9 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 												}
 
 												var step = new SueDeCoq3DimensionStep(
-													ImmutableArray.CreateRange(conclusions),
-													ImmutableArray.Create(
+													conclusions.ToArray(),
+													new[]
+													{
 														View.Empty
 															| candidateOffsets
 															| new HouseViewNode[]
@@ -197,7 +198,7 @@ internal sealed unsafe partial class SueDeCoq3DimensionStepSearcher : ISueDeCoq3
 																new(DisplayColorKind.Auxiliary2, c),
 																new(DisplayColorKind.Auxiliary3, b)
 															}
-													),
+													},
 													rowMask,
 													columnMask,
 													blockMask,

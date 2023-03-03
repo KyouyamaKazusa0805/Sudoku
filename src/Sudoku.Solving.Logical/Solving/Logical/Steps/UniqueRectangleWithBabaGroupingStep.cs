@@ -12,8 +12,8 @@
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 internal sealed record UniqueRectangleWithBabaGroupingStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Digit1,
 	int Digit2,
 	scoped in CellMap Cells,

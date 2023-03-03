@@ -89,7 +89,7 @@ internal sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetSte
 			}
 
 			var step = new JuniorExocetStep(
-				ImmutableArray.Create(View.Empty | cellOffsets | candidateOffsets),
+				new[] { View.Empty | cellOffsets | candidateOffsets },
 				currentJe,
 				baseCellsDigitsMask,
 				eliminations.ToImmutableArray()

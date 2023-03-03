@@ -112,12 +112,8 @@ internal sealed partial class MultiBranchWWingStepSearcher : IMultiBranchWWingSt
 								}
 
 								var step = new MultiBranchWWingStep(
-									conclusions.ToImmutableArray(),
-									ImmutableArray.Create(
-										View.Empty
-											| candidateOffsets
-											| new HouseViewNode(DisplayColorKind.Auxiliary1, house)
-									),
+									conclusions.ToArray(),
+									new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Auxiliary1, house) },
 									cells,
 									emptyCellsInThisHouse,
 									emptyCellsInThisHouse.CoveredLine

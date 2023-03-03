@@ -10,7 +10,7 @@
 /// <param name="ExtraHousesMask">Indicates the mask that holds the extra houses used.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
 internal sealed record SeniorExocetStep(
-	ViewList Views,
+	View[]? Views,
 	scoped in Exocet Exocet,
 	short DigitsMask,
 	int EndoTargetCell,

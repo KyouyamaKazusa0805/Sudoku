@@ -35,11 +35,7 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 					candidateOffsets[z++] = new(DisplayColorKind.Normal, candidate);
 				}
 
-				var templateSetStep = new TemplateStep(
-					templateSetConclusions,
-					ImmutableArray.Create(View.Empty | candidateOffsets),
-					false
-				);
+				var templateSetStep = new TemplateStep(templateSetConclusions, new[] { View.Empty | candidateOffsets }, false);
 				if (context.OnlyFindOne)
 				{
 					return templateSetStep;
@@ -49,16 +45,12 @@ internal sealed partial class TemplateStepSearcher : ITemplateStepSearcher
 			}
 
 			// Then check template deletes.
-			if (CandidatesMap[digit] - distributedMapsByDigit[digit] is not (var templateDeleteMap and not []))
+			if (CandidatesMap[digit] - distributedMapsByDigit[digit] is not (var templateDelete and not []))
 			{
 				continue;
 			}
 
-			var templateDeleteStep = new TemplateStep(
-				from cell in templateDeleteMap select new Conclusion(Elimination, cell, digit),
-				ViewList.Empty,
-				true
-			);
+			var templateDeleteStep = new TemplateStep(from cell in templateDelete select new Conclusion(Elimination, cell, digit), null, true);
 			if (context.OnlyFindOne)
 			{
 				return templateDeleteStep;

@@ -10,8 +10,8 @@
 /// <param name="TargetCells">Indicates the target cells.</param>
 /// <param name="HasValueCell">Indicates whether the step contains value cells.</param>
 internal sealed record AlmostLockedCandidatesStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	short DigitsMask,
 	scoped in CellMap BaseCells,
 	scoped in CellMap TargetCells,

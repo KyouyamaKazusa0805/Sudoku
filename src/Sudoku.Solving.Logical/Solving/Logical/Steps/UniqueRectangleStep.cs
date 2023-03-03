@@ -36,8 +36,8 @@
 /// </param>
 /// <seealso cref="Step.TechniqueCode"/>
 internal abstract record UniqueRectangleStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	Technique TechniqueCode2,
 	int Digit1,
 	int Digit2,

@@ -9,8 +9,8 @@
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 internal sealed record BivalueUniversalGraveType4Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	short DigitsMask,
 	scoped in CellMap Cells,
 	scoped in Conjugate ConjugatePair

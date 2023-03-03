@@ -62,12 +62,8 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 
 					bool? isLocked = flagMask == mask ? true : flagMask != 0 ? false : null;
 					var step = new NakedSubsetStep(
-						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(
-							View.Empty
-								| candidateOffsets
-								| new HouseViewNode(DisplayColorKind.Normal, house)
-						),
+						conclusions.ToArray(),
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, house) },
 						house,
 						cells,
 						mask,
@@ -139,12 +135,8 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					}
 
 					var step = new HiddenSubsetStep(
-						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(
-							View.Empty
-								| candidateOffsets
-								| new HouseViewNode(DisplayColorKind.Normal, house)
-						),
+						conclusions.ToArray(),
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, house) },
 						house,
 						map,
 						digitsMask

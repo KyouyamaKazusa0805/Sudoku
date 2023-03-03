@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Map">The map that contains the cells used for this technique.</param>
 /// <param name="DigitsMask">The mask that contains all digits used.</param>
-internal abstract record UniquePolygonStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Map, short DigitsMask) :
+internal abstract record UniquePolygonStep(Conclusion[] Conclusions, View[]? Views, scoped in CellMap Map, short DigitsMask) :
 	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

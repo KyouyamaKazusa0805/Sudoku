@@ -149,8 +149,9 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 							}
 
 							var step = new AlmostLockedSetsWWingStep(
-								ImmutableArray.CreateRange(conclusions),
-								ImmutableArray.Create(
+								conclusions.ToArray(),
+								new[]
+								{
 									View.Empty
 										| candidateOffsets
 										| new HouseViewNode[]
@@ -159,7 +160,7 @@ internal sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmost
 											new(DisplayColorKind.AlmostLockedSet2, house2),
 											new(DisplayColorKind.Normal, TrailingZeroCount(conjugatePair.Houses))
 										}
-								),
+								},
 								als1,
 								als2,
 								conjugatePair,

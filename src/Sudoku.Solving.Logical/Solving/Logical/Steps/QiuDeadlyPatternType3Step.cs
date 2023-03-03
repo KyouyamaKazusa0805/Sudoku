@@ -10,8 +10,8 @@
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
 internal sealed record QiuDeadlyPatternType3Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in QiuDeadlyPattern Pattern,
 	short ExtraDigitsMask,
 	scoped in CellMap ExtraCells,

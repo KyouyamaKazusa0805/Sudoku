@@ -94,22 +94,16 @@ internal sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher 
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							if (digit != d1 && digit != d2)
+							if (digit == d1 || digit == d2)
 							{
-								continue;
+								candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 							}
-
-							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
 					var step = new EmptyRectangleIntersectionPairStep(
-						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(
-							View.Empty
-								| candidateOffsets
-								| new HouseViewNode(DisplayColorKind.Normal, block)
-						),
+						conclusions.ToArray(),
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, block) },
 						c1,
 						c2,
 						block,

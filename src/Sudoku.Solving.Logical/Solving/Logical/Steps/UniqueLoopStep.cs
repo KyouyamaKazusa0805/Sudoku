@@ -8,7 +8,7 @@
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
 /// <param name="Loop">Indicates the loop that the instance used.</param>
-internal abstract record UniqueLoopStep(ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, scoped in CellMap Loop) :
+internal abstract record UniqueLoopStep(Conclusion[] Conclusions, View[]? Views, int Digit1, int Digit2, scoped in CellMap Loop) :
 	DeadlyPatternStep(Conclusions, Views),
 	IDistinctableStep<UniqueLoopStep>
 {

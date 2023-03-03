@@ -10,8 +10,8 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraCell">Indicates the extra cell.</param>
 internal sealed record BivalueOddagonType1Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Loop,
 	int Digit1,
 	int Digit2,

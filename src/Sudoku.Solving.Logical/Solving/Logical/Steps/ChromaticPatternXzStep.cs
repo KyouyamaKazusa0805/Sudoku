@@ -12,8 +12,8 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigitsMask">The extra digits mask.</param>
 internal sealed record ChromaticPatternXzStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int[] Blocks,
 	scoped in CellMap Pattern,
 	scoped in CellMap Cells,

@@ -86,11 +86,12 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 				var cs = housesMask & 127;
 				var step = new LockedCandidatesStep(
 					from cell in elimMap select new Conclusion(Elimination, cell, digit),
-					ImmutableArray.Create(
+					new[]
+					{
 						View.Empty
 							| candidateOffsets
 							| new HouseViewNode[] { new(DisplayColorKind.Normal, bs), new(DisplayColorKind.Auxiliary1, cs) }
-					),
+					},
 					digit,
 					bs,
 					cs

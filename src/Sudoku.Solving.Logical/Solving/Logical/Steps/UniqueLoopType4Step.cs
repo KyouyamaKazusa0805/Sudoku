@@ -10,8 +10,8 @@
 /// <param name="Loop"><inheritdoc/></param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 internal sealed record UniqueLoopType4Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Digit1,
 	int Digit2,
 	scoped in CellMap Loop,

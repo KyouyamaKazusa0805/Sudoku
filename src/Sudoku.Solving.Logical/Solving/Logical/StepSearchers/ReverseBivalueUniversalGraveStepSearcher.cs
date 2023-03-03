@@ -85,8 +85,8 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 		}
 
 		var step = new ReverseUniqueRectangleType1Step(
-			conclusions.ToImmutableArray(),
-			ImmutableArray.Create(View.Empty | cellOffsets),
+			conclusions.ToArray(),
+			new[] { View.Empty | cellOffsets },
 			pattern,
 			comparer,
 			emptyCell,
@@ -142,7 +142,7 @@ internal sealed partial class ReverseBivalueUniversalGraveStepSearcher : IRevers
 
 		var step = new ReverseUniqueRectangleType2Step(
 			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-			ImmutableArray.Create(View.Empty | cellOffsets | candidateOffsets),
+			new[] { View.Empty | cellOffsets | candidateOffsets },
 			pattern,
 			comparer,
 			extraDigit,

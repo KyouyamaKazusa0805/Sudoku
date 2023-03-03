@@ -10,8 +10,8 @@
 /// <param name="ExtraCell1">The extra cell 1.</param>
 /// <param name="ExtraCell2">The extra cell 2.</param>
 internal sealed record FireworkPairType1Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Cells,
 	short DigitsMask,
 	int ExtraCell1,

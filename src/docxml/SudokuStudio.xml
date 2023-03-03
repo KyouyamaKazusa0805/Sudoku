@@ -2304,7 +2304,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cellNode">The node to be displayed.</param>
             <seealso cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)">
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,Sudoku.Solving.Conclusion[],System.Nullable{Sudoku.Solving.Conclusion}@)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
             </summary>
@@ -2323,12 +2323,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNodeCore(Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell)">
             <summary>
-            The core method called by <see cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)"/>.
+            The core method called by <see cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,Sudoku.Solving.Conclusion[],System.Nullable{Sudoku.Solving.Conclusion}@)"/>.
             </summary>
             <param name="color">The color to be used on rendering.</param>
             <param name="candidate">The candidate to be rendered.</param>
             <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
-            <seealso cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Nullable{Sudoku.Solving.Conclusion}@)"/>
+            <seealso cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,Sudoku.Solving.Conclusion[],System.Nullable{Sudoku.Solving.Conclusion}@)"/>
         </member>
         <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForHouseNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.HouseViewNode)">
             <summary>
@@ -2372,7 +2372,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.LinkViewNode[],System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.LinkViewNode[],Sudoku.Solving.Conclusion[])">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>s.
             </summary>
@@ -2396,7 +2396,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.PathCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion})">
+        <member name="M:SudokuStudio.Interaction.PathCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter,Sudoku.Solving.Conclusion[])">
             <summary>
             Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
             </summary>
@@ -2453,7 +2453,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The collection.</param>
         </member>
-        <member name="M:SudokuStudio.Interaction.Extensions.ConflictWith(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Int32,System.Nullable{Sudoku.Solving.Conclusion}@)">
+        <member name="M:SudokuStudio.Interaction.Extensions.ConflictWith(Sudoku.Solving.Conclusion[],System.Int32,System.Nullable{Sudoku.Solving.Conclusion}@)">
             <summary>
             <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
             <para>This method is used for checking cannibalisms.</para>

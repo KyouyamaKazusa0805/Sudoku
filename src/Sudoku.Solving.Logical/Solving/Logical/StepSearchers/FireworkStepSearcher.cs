@@ -161,11 +161,8 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 					}
 
 					var step = new FireworkPairType1Step(
-						conclusions.ToImmutableArray(),
-						ImmutableArray.Create(
-							View.Empty | candidateOffsets,
-							View.Empty | candidateOffsets | cellOffsets
-						),
+						conclusions.ToArray(),
+						new[] { View.Empty | candidateOffsets, View.Empty | candidateOffsets | cellOffsets },
 						map,
 						currentDigitsMask,
 						extraCell1,
@@ -285,8 +282,9 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 			}
 
 			var step = new FireworkTripleStep(
-				conclusions.ToImmutableArray(),
-				ImmutableArray.Create(
+				conclusions.ToArray(),
+				new[]
+				{
 					View.Empty | candidateOffsets,
 					View.Empty
 						| cellOffsets
@@ -312,7 +310,7 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 								(short)(grid.GetCandidates(cell2) & currentDigitsMask)
 							)
 						}
-				),
+				},
 				pattern.Map,
 				currentDigitsMask
 			);
@@ -490,16 +488,13 @@ internal sealed partial class FireworkStepSearcher : IFireworkStepSearcher
 					}
 
 					var step = new FireworkQuadrupleStep(
-						conclusions.ToImmutableArray(),
-						ImmutableArray.Create(
+						conclusions.ToArray(),
+						new[]
+						{
 							View.Empty | candidateOffsets,
-							View.Empty
-								| cellOffsets1
-								| candidateOffsetsView2,
-							View.Empty
-								| cellOffsets2
-								| candidateOffsetsView3
-						),
+							View.Empty | cellOffsets1 | candidateOffsetsView2,
+							View.Empty | cellOffsets2 | candidateOffsetsView3
+						},
 						map,
 						fourDigitsMask
 					);

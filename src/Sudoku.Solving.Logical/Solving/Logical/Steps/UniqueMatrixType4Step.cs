@@ -11,8 +11,8 @@
 /// <param name="Digit2">Indicates the digit 2 used.</param>
 /// <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
 internal sealed record UniqueMatrixType4Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Cells,
 	short DigitsMask,
 	int Digit1,

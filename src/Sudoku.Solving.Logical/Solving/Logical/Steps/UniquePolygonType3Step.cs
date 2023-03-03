@@ -10,8 +10,8 @@
 /// <param name="ExtraCells">Indicates the extra cells used for forming the subset.</param>
 /// <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
 internal sealed record UniquePolygonType3Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Map,
 	short DigitsMask,
 	scoped in CellMap ExtraCells,

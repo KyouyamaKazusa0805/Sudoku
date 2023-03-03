@@ -6,7 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Digit">Indicates the digit used.</param>
-internal abstract record SingleDigitPatternStep(ConclusionList Conclusions, ViewList Views, int Digit) : Step(Conclusions, Views)
+internal abstract record SingleDigitPatternStep(Conclusion[] Conclusions, View[]? Views, int Digit) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;

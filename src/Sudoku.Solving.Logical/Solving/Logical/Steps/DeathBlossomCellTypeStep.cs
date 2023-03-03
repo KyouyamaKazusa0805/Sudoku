@@ -9,8 +9,8 @@
 /// <param name="DigitsMask">The digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
 internal sealed record DeathBlossomCellTypeStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int HubCell,
 	short DigitsMask,
 	AlmostLockedSet[] Petals

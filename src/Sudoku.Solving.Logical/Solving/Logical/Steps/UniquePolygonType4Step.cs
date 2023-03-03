@@ -10,8 +10,8 @@
 /// <param name="ConjugateHouse">Indicates the cells that forms the conjugate house.</param>
 /// <param name="ExtraMask">Indicates the extra digits mask.</param>
 internal sealed record UniquePolygonType4Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Map,
 	short DigitsMask,
 	scoped in CellMap ConjugateHouse,

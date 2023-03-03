@@ -195,8 +195,8 @@ partial class GurthSymmetricalPlacementStepSearcher
 		return conclusions.Count == 0
 			? null
 			: new GurthSymmetricalPlacementStep(
-				conclusions.ToImmutableArray(),
-				ImmutableArray.Create(View.Empty | cellOffsets | candidateOffsets),
+				conclusions.ToArray(),
+				new[] { View.Empty | cellOffsets | candidateOffsets },
 				SymmetryType.Diagonal,
 				mapping
 			);
@@ -319,8 +319,8 @@ partial class GurthSymmetricalPlacementStepSearcher
 		return conclusions.Count == 0
 			? null
 			: new(
-				conclusions.ToImmutableArray(),
-				ImmutableArray.Create(View.Empty | cellOffsets | candidateOffsets),
+				conclusions.ToArray(),
+				new[] { View.Empty | cellOffsets | candidateOffsets },
 				SymmetryType.AntiDiagonal,
 				mapping
 			);
@@ -404,12 +404,8 @@ partial class GurthSymmetricalPlacementStepSearcher
 			RecordHighlightCells(grid, cellOffsets, mapping);
 
 			return new(
-				ImmutableArray.Create(new Conclusion(Assignment, 40, digit)),
-				ImmutableArray.Create(
-					View.Empty
-						| cellOffsets
-						| new CandidateViewNode(DisplayColorKind.Normal, 360 + digit)
-				),
+				new[] { new Conclusion(Assignment, 40, digit) },
+				new[] { View.Empty | cellOffsets | new CandidateViewNode(DisplayColorKind.Normal, 360 + digit) },
 				SymmetryType.Central,
 				mapping
 			);

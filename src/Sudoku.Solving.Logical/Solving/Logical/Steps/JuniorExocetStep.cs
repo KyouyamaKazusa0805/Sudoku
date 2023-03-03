@@ -12,7 +12,7 @@
 /// <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
 #endif
 internal sealed record JuniorExocetStep(
-	ViewList Views,
+	View[]? Views,
 	scoped in Exocet Exocet,
 	short DigitsMask,
 #if false

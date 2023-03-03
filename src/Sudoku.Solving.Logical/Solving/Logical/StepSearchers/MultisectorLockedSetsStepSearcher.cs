@@ -134,8 +134,8 @@ internal sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultis
 				}
 
 				var step = new MultisectorLockedSetsStep(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(View.Empty | candidateOffsets),
+					conclusions.ToArray(),
+					new[] { View.Empty | candidateOffsets },
 					map
 				);
 				if (context.OnlyFindOne)

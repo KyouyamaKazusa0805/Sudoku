@@ -62,10 +62,10 @@ public sealed class InvalidStepGenerator : IIncrementalGenerator
 					global::Sudoku.Rating.ExtraDifficultyCase[]? global::Sudoku.Solving.Logical.IStep.ExtraDifficultyCases => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
-					ConclusionList global::Sudoku.Presentation.IVisual.Conclusions => throw new global::System.NotSupportedException();
+					global::Sudoku.Solving.Conclusion[] global::Sudoku.Presentation.IVisual.Conclusions => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
-					ViewList global::Sudoku.Presentation.IVisual.Views => throw new global::System.NotSupportedException();
+					global::Sudoku.Presentation.View[]? global::Sudoku.Presentation.IVisual.Views => throw new global::System.NotSupportedException();
 
 					/// <inheritdoc/>
 					global::System.Collections.Generic.IReadOnlyDictionary<string, string[]?>? global::Sudoku.Solving.Logical.IStep.FormatInterpolatedParts => throw new global::System.NotSupportedException();

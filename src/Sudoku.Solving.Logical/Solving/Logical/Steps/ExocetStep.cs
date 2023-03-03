@@ -7,7 +7,7 @@
 /// <param name="Exocet">INdicates the exocet pattern.</param>
 /// <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
 /// <param name="Eliminations">Indicates all possible eliminations.</param>
-internal abstract record ExocetStep(ViewList Views, scoped in Exocet Exocet, short DigitsMask, ImmutableArray<ExocetElimination> Eliminations) :
+internal abstract record ExocetStep(View[]? Views, scoped in Exocet Exocet, short DigitsMask, ImmutableArray<ExocetElimination> Eliminations) :
 	Step(GatherConclusions(Eliminations), Views)
 {
 	/// <inheritdoc/>
@@ -60,7 +60,7 @@ internal abstract record ExocetStep(ViewList Views, scoped in Exocet Exocet, sho
 	/// Gather conclusions.
 	/// </summary>
 	/// <returns>The gathered result.</returns>
-	private static ConclusionList GatherConclusions(ImmutableArray<ExocetElimination> eliminations)
+	private static Conclusion[] GatherConclusions(ImmutableArray<ExocetElimination> eliminations)
 	{
 		var result = new List<Conclusion>();
 		foreach (var eliminationInstance in eliminations)
@@ -68,6 +68,6 @@ internal abstract record ExocetStep(ViewList Views, scoped in Exocet Exocet, sho
 			result.AddRange(eliminationInstance.Conclusions);
 		}
 
-		return ImmutableArray.CreateRange(result);
+		return result.ToArray();
 	}
 }

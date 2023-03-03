@@ -133,8 +133,8 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 		}
 
 		var step = new UniqueLoopType1Step(
-			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(View.Empty | candidateOffsets),
+			conclusions.ToArray(),
+			new[] { View.Empty | candidateOffsets },
 			d1,
 			d2,
 			loop
@@ -196,7 +196,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 
 		var step = new UniqueLoopType2Step(
 			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-			ImmutableArray.Create(View.Empty | candidateOffsets),
+			new[] { View.Empty | candidateOffsets },
 			d1,
 			d2,
 			loop,
@@ -312,12 +312,8 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 					}
 
 					var step = new UniqueLoopType3Step(
-						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(
-							View.Empty
-								| candidateOffsets
-								| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
-						),
+						conclusions.ToArray(),
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, houseIndex) },
 						d1,
 						d2,
 						loop,
@@ -401,12 +397,8 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 				}
 
 				var step = new UniqueLoopType4Step(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(
-						View.Empty
-							| candidateOffsets
-							| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
-					),
+					conclusions.ToArray(),
+					new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, houseIndex) },
 					d1,
 					d2,
 					loop,

@@ -112,7 +112,7 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 
 		var step = new BivalueOddagonType2Step(
 			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-			ImmutableArray.Create(View.Empty | candidateOffsets),
+			new[] { View.Empty | candidateOffsets },
 			loop,
 			d1,
 			d2,
@@ -217,12 +217,8 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 					}
 
 					var step = new BivalueOddagonType3Step(
-						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(
-							View.Empty
-								| candidateOffsets
-								| new HouseViewNode(DisplayColorKind.Normal, house)
-						),
+						conclusions.ToArray(),
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, house) },
 						loop,
 						d1,
 						d2,

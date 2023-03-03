@@ -11,8 +11,8 @@
 /// <param name="Cell2">Indicates the second cell used.</param>
 /// <param name="ChuteIndex">Indicates the global chute index.</param>
 internal sealed record UniquenessClueCoverType2Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Digit1,
 	int Digit2,
 	int Cell1,

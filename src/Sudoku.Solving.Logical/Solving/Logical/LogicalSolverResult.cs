@@ -513,7 +513,7 @@ public sealed partial record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// The selector to project the <see cref="IStep"/> instance into type <typeparamref name="TResult"/>.
 	/// </param>
 	/// <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
-	public ImmutableArray<TResult> Select<TResult>(Func<IStep, TResult> selector)
+	public TResult[] Select<TResult>(Func<IStep, TResult> selector)
 	{
 		var arr = new TResult[SolvingStepsCount];
 		var i = 0;
@@ -522,7 +522,7 @@ public sealed partial record LogicalSolverResult(scoped in Grid Puzzle) :
 			arr[i++] = selector(step);
 		}
 
-		return ImmutableArray.Create(arr);
+		return arr;
 	}
 
 	/// <inheritdoc/>

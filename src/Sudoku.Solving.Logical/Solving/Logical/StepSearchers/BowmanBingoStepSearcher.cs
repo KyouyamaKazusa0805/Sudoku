@@ -53,9 +53,9 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 
 					tempAccumulator.Add(
 						new BowmanBingoStep(
-							ImmutableArray.Create(new Conclusion(Elimination, startCandidate)),
-							ImmutableArray.Create(View.Empty | candidateOffsets | GetLinks()),
-							ImmutableArray.CreateRange(_tempConclusions)
+							new[] { new Conclusion(Elimination, startCandidate) },
+							new[] { View.Empty | candidateOffsets | GetLinks() },
+							_tempConclusions.ToArray()
 						)
 					);
 				}
@@ -111,9 +111,9 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 			}
 
 			var step = new BowmanBingoStep(
-				ImmutableArray.Create(new Conclusion(Elimination, startCand)),
-				ImmutableArray.Create(View.Empty | candidateOffsets | GetLinks()),
-				ImmutableArray.CreateRange(_tempConclusions)
+				new[] { new Conclusion(Elimination, startCand) },
+				new[] { View.Empty | candidateOffsets | GetLinks() },
+				_tempConclusions.ToArray()
 			);
 			if (onlyFindOne)
 			{

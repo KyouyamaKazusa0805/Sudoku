@@ -10,7 +10,7 @@
 /// <param name="ConjugatePair">
 /// Indicates the conjugate pair connecting with cells <see cref="StartCell"/> and <see cref="EndCell"/>.
 /// </param>
-internal sealed record WWingStep(ConclusionList Conclusions, ViewList Views, int StartCell, int EndCell, scoped in Conjugate ConjugatePair) :
+internal sealed record WWingStep(Conclusion[] Conclusions, View[]? Views, int StartCell, int EndCell, scoped in Conjugate ConjugatePair) :
 	IrregularWingStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

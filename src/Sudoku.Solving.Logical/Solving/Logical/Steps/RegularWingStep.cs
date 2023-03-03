@@ -10,8 +10,8 @@
 /// <param name="DigitsMask">Indicates a mask that contains all digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
 internal sealed record RegularWingStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Pivot,
 	int PivotCandidatesCount,
 	short DigitsMask,

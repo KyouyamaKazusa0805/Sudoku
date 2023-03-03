@@ -18,8 +18,8 @@
 /// to what digits.
 /// </param>
 internal sealed record GurthSymmetricalPlacementStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	SymmetryType SymmetryType,
 	int?[]? MappingRelations
 ) : SymmetryStep(Conclusions, Views)

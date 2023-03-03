@@ -22,14 +22,14 @@
 /// <para><inheritdoc cref="AdvancedMultipleChainingStepSearcher.DynamicNestingLevel" path="/remarks"/></para>
 /// </param>
 internal abstract record ChainingStep(
-	ConclusionList Conclusions,
+	Conclusion[] Conclusions,
 	bool IsX = true,
 	bool IsY = true,
 	bool IsMultiple = false,
 	bool IsDynamic = false,
 	bool IsNishio = false,
 	int DynamicNestingLevel = 0
-) : Step(Conclusions, ViewList.Empty)
+) : Step(Conclusions, null)
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty
@@ -326,7 +326,7 @@ internal abstract record ChainingStep(
 	/// </summary>
 	/// <param name="grid">The grid used.</param>
 	/// <returns>The values.</returns>
-	protected internal ViewList CreateViews(scoped in Grid grid)
+	protected internal View[]? CreateViews(scoped in Grid grid)
 	{
 		var result = new View[ViewsCount];
 
@@ -353,7 +353,7 @@ internal abstract record ChainingStep(
 			result[i] = view;
 		}
 
-		return ImmutableArray.Create(result);
+		return result;
 	}
 
 	/// <summary><b><i>

@@ -8,7 +8,7 @@
 /// <param name="Blocks">The blocks used.</param>
 /// <param name="Pattern">The cells used.</param>
 /// <param name="DigitsMask">The digits mask.</param>
-internal abstract record ChromaticPatternStep(ConclusionList Conclusions, ViewList Views, int[] Blocks, scoped in CellMap Pattern, short DigitsMask) :
+internal abstract record ChromaticPatternStep(Conclusion[] Conclusions, View[]? Views, int[] Blocks, scoped in CellMap Pattern, short DigitsMask) :
 	NegativeRankStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

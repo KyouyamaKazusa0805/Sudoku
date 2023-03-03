@@ -11,8 +11,8 @@
 /// Indicates the bridge cells connecting with cells <see cref="StartCell"/> and <see cref="EndCell"/>.
 /// </param>
 internal sealed record GroupedWWingStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int StartCell,
 	int EndCell,
 	scoped in CellMap Bridge

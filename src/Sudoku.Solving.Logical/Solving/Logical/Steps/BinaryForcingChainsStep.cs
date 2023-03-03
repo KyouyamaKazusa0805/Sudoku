@@ -16,7 +16,7 @@
 /// <param name="IsNishio"><inheritdoc/></param>
 /// <param name="DynamicNestingLevel"><inheritdoc/></param>
 internal sealed record BinaryForcingChainsStep(
-	ConclusionList Conclusions,
+	Conclusion[] Conclusions,
 	ChainNode SourcePotential,
 	ChainNode FromOnPotential,
 	ChainNode FromOffPotential,

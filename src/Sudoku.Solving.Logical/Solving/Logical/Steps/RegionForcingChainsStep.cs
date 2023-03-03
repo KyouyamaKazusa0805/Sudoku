@@ -10,7 +10,7 @@
 /// <param name="IsDynamic"><inheritdoc/></param>
 /// <param name="DynamicNestingLevel"><inheritdoc/></param>
 internal sealed record RegionForcingChainsStep(
-	ConclusionList Conclusions,
+	Conclusion[] Conclusions,
 	int HouseIndex,
 	byte Digit,
 	MultipleForcingChains Chains,

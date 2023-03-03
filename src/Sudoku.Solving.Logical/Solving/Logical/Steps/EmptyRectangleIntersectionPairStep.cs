@@ -11,8 +11,8 @@
 /// <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
 /// <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
 internal sealed record EmptyRectangleIntersectionPairStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int StartCell,
 	int EndCell,
 	int House,

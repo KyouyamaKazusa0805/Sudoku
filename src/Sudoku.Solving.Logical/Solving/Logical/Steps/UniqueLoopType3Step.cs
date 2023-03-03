@@ -13,8 +13,8 @@
 /// </param>
 /// <param name="SubsetCells">Indicates the subset cells.</param>
 internal sealed record UniqueLoopType3Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Digit1,
 	int Digit2,
 	scoped in CellMap Loop,

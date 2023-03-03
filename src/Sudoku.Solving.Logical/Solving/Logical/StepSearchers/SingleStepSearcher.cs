@@ -69,8 +69,8 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 				}
 
 				var step = new FullHouseStep(
-					ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
-					ImmutableArray.Create(View.Empty | new HouseViewNode(DisplayColorKind.Normal, house)),
+					new[] { new Conclusion(Assignment, resultCell, digit) },
+					new[] { View.Empty | new HouseViewNode(DisplayColorKind.Normal, house) },
 					resultCell,
 					digit
 				);
@@ -123,8 +123,8 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 				}
 
 				var step = new NakedSingleStep(
-					ImmutableArray.Create(new Conclusion(Assignment, cell, digit)),
-					ImmutableArray.Create(View.Empty),
+					new[] { new Conclusion(Assignment, cell, digit) },
+					null,
 					cell,
 					digit
 				);
@@ -181,8 +181,8 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 
 			var digit = TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
-				ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
-				ImmutableArray.Create(View.Empty | new HouseViewNode(DisplayColorKind.Normal, house)),
+				new[] { new Conclusion(Assignment, resultCell, digit) },
+				new[] { View.Empty | new HouseViewNode(DisplayColorKind.Normal, house) },
 				resultCell,
 				digit
 			);
@@ -276,8 +276,8 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 			var digit = TrailingZeroCount(mask);
 
 			var step = new NakedSingleStep(
-				ImmutableArray.Create(new Conclusion(Assignment, cell, digit)),
-				ImmutableArray.Create(View.Empty),
+				new[] { new Conclusion(Assignment, cell, digit) },
+				null,
 				cell,
 				digit
 			);
@@ -352,12 +352,13 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 		}
 
 		return new HiddenSingleStep(
-			ImmutableArray.Create(new Conclusion(Assignment, resultCell, digit)),
-			ImmutableArray.Create(
+			new[] { new Conclusion(Assignment, resultCell, digit) },
+			new[]
+			{
 				View.Empty
 					| (enableAndIsLastDigit ? cellOffsets : null)
 					| (enableAndIsLastDigit ? null : new HouseViewNode(DisplayColorKind.Normal, house))
-			),
+			},
 			resultCell,
 			digit,
 			house,

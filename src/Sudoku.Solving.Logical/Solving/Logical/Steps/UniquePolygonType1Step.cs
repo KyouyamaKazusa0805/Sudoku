@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Map"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-internal sealed record UniquePolygonType1Step(ConclusionList Conclusions, ViewList Views, scoped in CellMap Map, short DigitsMask) :
+internal sealed record UniquePolygonType1Step(Conclusion[] Conclusions, View[]? Views, scoped in CellMap Map, short DigitsMask) :
 	UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>

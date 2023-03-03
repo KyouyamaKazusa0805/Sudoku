@@ -27,8 +27,8 @@
 /// </list>
 /// </param>
 internal sealed record NormalFishStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Digit,
 	int BaseSetsMask,
 	int CoverSetsMask,

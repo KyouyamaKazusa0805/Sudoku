@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-internal abstract record ReverseUniqueRectangleStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells, short DigitsMask) :
+internal abstract record ReverseUniqueRectangleStep(Conclusion[] Conclusions, View[]? Views, scoped in CellMap Cells, short DigitsMask) :
 	ReverseBivalueUniversalGraveStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>

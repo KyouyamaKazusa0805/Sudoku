@@ -20,7 +20,7 @@ public static class GridEnumerable
 	/// A <see cref="ImmutableArray{T}"/> of <typeparamref name="TResult"/> whose elements are the result
 	/// of invoking the transform function on each element of <paramref name="source"/>.
 	/// </returns>
-	public static ImmutableArray<TResult> Select<TResult>(this scoped in Grid source, Func<int, TResult> selector)
+	public static TResult[] Select<TResult>(this scoped in Grid source, Func<int, TResult> selector)
 	{
 		var result = new TResult[81];
 		var i = 0;
@@ -29,6 +29,6 @@ public static class GridEnumerable
 			result[i++] = selector(candidate);
 		}
 
-		return ImmutableArray.Create(result);
+		return result;
 	}
 }

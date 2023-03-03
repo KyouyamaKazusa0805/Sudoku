@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">The cells used.</param>
 /// <param name="DigitsMask">The digits used.</param>
-internal sealed record FireworkTripleStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells, short DigitsMask) :
+internal sealed record FireworkTripleStep(Conclusion[] Conclusions, View[]? Views, scoped in CellMap Cells, short DigitsMask) :
 	FireworkStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

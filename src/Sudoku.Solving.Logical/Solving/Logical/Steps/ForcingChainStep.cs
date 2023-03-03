@@ -7,7 +7,7 @@
 /// <param name="Target">Indicates the target of the chain. This value can be used for constructing a whole chain.</param>
 /// <param name="IsX"><inheritdoc/></param>
 /// <param name="IsY"><inheritdoc/></param>
-internal sealed record ForcingChainStep(ConclusionList Conclusions, ChainNode Target, bool IsX, bool IsY) : ChainingStep(Conclusions, IsX, IsY)
+internal sealed record ForcingChainStep(Conclusion[] Conclusions, ChainNode Target, bool IsX, bool IsY) : ChainingStep(Conclusions, IsX, IsY)
 {
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

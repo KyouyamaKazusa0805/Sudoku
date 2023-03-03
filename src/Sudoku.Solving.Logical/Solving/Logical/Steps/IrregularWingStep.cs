@@ -5,4 +5,4 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-internal abstract record IrregularWingStep(ConclusionList Conclusions, ViewList Views) : WingStep(Conclusions, Views);
+internal abstract record IrregularWingStep(Conclusion[] Conclusions, View[]? Views) : WingStep(Conclusions, Views);

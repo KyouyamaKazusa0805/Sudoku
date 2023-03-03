@@ -103,7 +103,7 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
-		var conclusion = ImmutableArray.Create(new Conclusion(Assignment, target.Candidate));
+		var conclusion = new[] { new Conclusion(Assignment, target.Candidate) };
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return result with { Views = result.CreateViews(grid) };
 	}
@@ -114,7 +114,7 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
-		var conclusion = ImmutableArray.Create(new Conclusion(Elimination, target.Candidate));
+		var conclusion = new[] { new Conclusion(Elimination, target.Candidate) };
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return result with { Views = result.CreateViews(grid) };
 	}
@@ -126,7 +126,7 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
-		var conclusion = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
+		var conclusion = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };
 
 		// Build chains.
 		var chains = new MultipleForcingChains();
@@ -150,7 +150,7 @@ internal sealed partial class AdvancedMultipleChainingStepSearcher : MultipleCha
 	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, int houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
-		var conclusions = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
+		var conclusions = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };
 
 		// Build chains.
 		var chains = new MultipleForcingChains();

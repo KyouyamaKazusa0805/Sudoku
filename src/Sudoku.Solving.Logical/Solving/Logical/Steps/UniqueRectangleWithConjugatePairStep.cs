@@ -13,8 +13,8 @@
 /// <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 internal record UniqueRectangleWithConjugatePairStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	Technique TechniqueCode2,
 	int Digit1,
 	int Digit2,

@@ -33,8 +33,8 @@
 /// </para>
 /// </param>
 internal sealed record UniqueRectangleType3Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Digit1,
 	int Digit2,
 	scoped in CellMap Cells,

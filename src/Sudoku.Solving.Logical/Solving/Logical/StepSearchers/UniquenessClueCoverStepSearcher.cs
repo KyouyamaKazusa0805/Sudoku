@@ -101,12 +101,13 @@ internal sealed partial class UniquenessClueCoverStepSearcher : IUniquenessClueC
 			}
 
 			var step = new UniquenessClueCoverType2Step(
-				conclusions.ToImmutableArray(),
-				ImmutableArray.Create(
+				conclusions.ToArray(),
+				new[]
+				{
 					View.Empty
 						| new ChuteViewNode(DisplayColorKind.Normal, chuteIndex)
 						| new CellViewNode[] { new(DisplayColorKind.Normal, c1), new(DisplayColorKind.Normal, c2) }
-				),
+				},
 				c1Digit,
 				c2Digit,
 				c1,

@@ -11,8 +11,8 @@
 /// <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
 /// <param name="X">Indicates the X digit.</param>
 internal sealed record AlmostLockedSetsWWingStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	AlmostLockedSet Als1,
 	AlmostLockedSet Als2,
 	Conjugate ConjugatePair,

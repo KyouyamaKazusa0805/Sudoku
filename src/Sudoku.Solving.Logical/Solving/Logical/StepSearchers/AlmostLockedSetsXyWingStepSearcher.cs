@@ -185,8 +185,9 @@ internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmos
 						}
 
 						var step = new AlmostLockedSetsXyWingStep(
-							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(
+							conclusions.ToArray(),
+							new[]
+							{
 								View.Empty
 									| candidateOffsets
 									| new HouseViewNode[]
@@ -195,7 +196,7 @@ internal sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmos
 										new(DisplayColorKind.AlmostLockedSet2, bHouse),
 										new(DisplayColorKind.AlmostLockedSet3, cHouse)
 									}
-							),
+							},
 							a,
 							b,
 							c,

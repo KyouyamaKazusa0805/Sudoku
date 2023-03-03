@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc cref="IVisual.Conclusions" path="/summary"/></param>
 /// <param name="Views"><inheritdoc cref="IVisual.Views" path="/summary"/></param>
-internal abstract record Step(ConclusionList Conclusions, ViewList Views) : IStep
+internal abstract record Step(Conclusion[] Conclusions, View[]? Views) : IStep
 {
 	/// <inheritdoc/>
 	public virtual string Name => R[TechniqueCode.ToString()]!;

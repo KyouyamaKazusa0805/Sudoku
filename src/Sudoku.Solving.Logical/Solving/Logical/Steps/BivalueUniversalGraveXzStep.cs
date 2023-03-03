@@ -9,8 +9,8 @@
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="ExtraCell">Indicates the XZ cell.</param>
 internal sealed record BivalueUniversalGraveXzStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	short DigitsMask,
 	scoped in CellMap Cells,
 	int ExtraCell

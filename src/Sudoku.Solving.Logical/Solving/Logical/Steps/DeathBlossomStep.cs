@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
-internal abstract record DeathBlossomStep(ConclusionList Conclusions, ViewList Views, short DigitsMask, AlmostLockedSet[] Petals) :
+internal abstract record DeathBlossomStep(Conclusion[] Conclusions, View[]? Views, short DigitsMask, AlmostLockedSet[] Petals) :
 	AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

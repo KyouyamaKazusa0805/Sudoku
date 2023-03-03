@@ -132,8 +132,8 @@ internal sealed partial class DeathBlossomStepSearcher : IDeathBlossomStepSearch
 				}
 
 				var step = new DeathBlossomCellTypeStep(
-					conclusions.ToImmutableArray(),
-					ImmutableArray.Create(View.Empty | candidateOffsets | new CellViewNode(DisplayColorKind.Normal, hubCell)),
+					conclusions.ToArray(),
+					new[] { View.Empty | candidateOffsets | new CellViewNode(DisplayColorKind.Normal, hubCell) },
 					hubCell,
 					elimDigitsMask,
 					combination

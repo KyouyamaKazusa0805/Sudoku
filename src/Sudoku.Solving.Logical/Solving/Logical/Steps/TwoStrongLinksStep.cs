@@ -8,7 +8,7 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="BaseHouse">Indicates the base house used.</param>
 /// <param name="TargetHouse">Indicates the target house used.</param>
-internal sealed record TwoStrongLinksStep(ConclusionList Conclusions, ViewList Views, int Digit, int BaseHouse, int TargetHouse) :
+internal sealed record TwoStrongLinksStep(Conclusion[] Conclusions, View[]? Views, int Digit, int BaseHouse, int TargetHouse) :
 	SingleDigitPatternStep(Conclusions, Views, Digit)
 {
 	/// <inheritdoc/>

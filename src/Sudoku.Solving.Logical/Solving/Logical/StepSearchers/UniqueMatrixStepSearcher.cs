@@ -85,8 +85,8 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 			}
 
 			var step = new UniqueMatrixType1Step(
-				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(View.Empty | candidateOffsets),
+				conclusions.ToArray(),
+				new[] { View.Empty | candidateOffsets },
 				pattern,
 				digitsMask,
 				elimCell * 9 + extraDigit
@@ -144,8 +144,8 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 			}
 
 			var step = new UniqueMatrixType2Step(
-				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(View.Empty | candidateOffsets),
+				conclusions.ToArray(),
+				new[] { View.Empty | candidateOffsets },
 				pattern,
 				digitsMask,
 				extraDigit
@@ -235,12 +235,8 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 						}
 
 						var step = new UniqueMatrixType3Step(
-							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(
-								View.Empty
-									| candidateOffsets
-									| new HouseViewNode(DisplayColorKind.Normal, house)
-							),
+							conclusions.ToArray(),
+							new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, house) },
 							pattern,
 							digitsMask,
 							extraDigitsMask,
@@ -341,12 +337,8 @@ internal sealed unsafe partial class UniqueMatrixStepSearcher : IUniqueMatrixSte
 				}
 
 				var step = new UniqueMatrixType4Step(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(
-						View.Empty
-							| candidateOffsets
-							| new HouseViewNode(DisplayColorKind.Normal, house)
-					),
+					conclusions.ToArray(),
+					new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, house) },
 					pattern,
 					digitsMask,
 					d1,

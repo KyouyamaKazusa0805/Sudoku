@@ -13,8 +13,8 @@
 /// <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
 /// <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
 internal sealed record ComplexFishStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	int Digit,
 	int BaseSetsMask,
 	int CoverSetsMask,

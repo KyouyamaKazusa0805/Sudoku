@@ -9,7 +9,7 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="House">Indicates the house used.</param>
 /// <param name="EnableAndIsLastDigit">Indicates whether the current step is a <b>Last Digit</b> technique usage.</param>
-internal sealed record HiddenSingleStep(ConclusionList Conclusions, ViewList Views, int Cell, int Digit, int House, bool EnableAndIsLastDigit) :
+internal sealed record HiddenSingleStep(Conclusion[] Conclusions, View[]? Views, int Cell, int Digit, int House, bool EnableAndIsLastDigit) :
 	SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>

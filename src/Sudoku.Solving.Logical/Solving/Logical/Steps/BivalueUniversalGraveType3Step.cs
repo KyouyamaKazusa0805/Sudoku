@@ -10,8 +10,8 @@
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
 internal sealed record BivalueUniversalGraveType3Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	IReadOnlyList<int> TrueCandidates,
 	short DigitsMask,
 	scoped in CellMap Cells,

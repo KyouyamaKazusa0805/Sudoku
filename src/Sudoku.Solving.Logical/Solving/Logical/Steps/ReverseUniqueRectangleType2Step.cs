@@ -10,8 +10,8 @@
 /// <param name="ExtraDigit">The extra digit used.</param>
 /// <param name="CellsHavingExtraDigit">Indicates the cells that contains the extra digit in the pattern.</param>
 internal sealed record ReverseUniqueRectangleType2Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Cells,
 	short DigitsMask,
 	int ExtraDigit,

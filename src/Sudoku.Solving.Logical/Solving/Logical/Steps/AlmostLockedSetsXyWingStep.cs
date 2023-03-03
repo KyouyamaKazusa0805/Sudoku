@@ -12,8 +12,8 @@
 /// <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
 /// <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
 internal sealed record AlmostLockedSetsXyWingStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	AlmostLockedSet Als1,
 	AlmostLockedSet Als2,
 	AlmostLockedSet Bridge,

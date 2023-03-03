@@ -11,8 +11,8 @@
 /// <param name="ZDigitsMask">Indicates the Z digit used in this ALS-XZ pattern.</param>
 /// <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
 internal sealed record AlmostLockedSetsXzStep(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	AlmostLockedSet Als1,
 	AlmostLockedSet Als2,
 	short XDigitsMask,

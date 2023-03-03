@@ -359,7 +359,7 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	/// </summary>
 	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
-		var conclusion = ImmutableArray.Create(new Conclusion(Assignment, target.Candidate));
+		var conclusion = new[] { new Conclusion(Assignment, target.Candidate) };
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio);
 		return result with { Views = result.CreateViews(grid) };
 	}
@@ -369,7 +369,7 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	/// </summary>
 	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
-		var conclusion = ImmutableArray.Create(new Conclusion(Elimination, target.Candidate));
+		var conclusion = new[] { new Conclusion(Elimination, target.Candidate) };
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio);
 		return result with { Views = result.CreateViews(grid) };
 	}
@@ -380,7 +380,7 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
-		var conclusion = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
+		var conclusion = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };
 
 		// Build chains.
 		var chains = new MultipleForcingChains();
@@ -403,7 +403,7 @@ internal partial class MultipleChainingStepSearcher : ChainingStepSearcher, ICha
 	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, int houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
-		var conclusions = ImmutableArray.Create(new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit));
+		var conclusions = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };
 
 		// Build chains.
 		var chains = new MultipleForcingChains();

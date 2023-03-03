@@ -208,8 +208,9 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 										}
 
 										var step = new SueDeCoqStep(
-											ImmutableArray.CreateRange(conclusions),
-											ImmutableArray.Create(
+											conclusions.ToArray(),
+											new[]
+											{
 												View.Empty
 													| candidateOffsets
 													| new HouseViewNode[]
@@ -217,7 +218,7 @@ internal sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearche
 														new(DisplayColorKind.Normal, coverSet),
 														new(DisplayColorKind.Auxiliary2, baseSet)
 													}
-											),
+											},
 											coverSet,
 											baseSet,
 											blockMask,

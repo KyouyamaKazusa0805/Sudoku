@@ -169,8 +169,8 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 		}
 
 		var step = new ExtendedRectangleType1Step(
-			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(View.Empty | candidateOffsets),
+			conclusions.ToArray(),
+			new[] { View.Empty | candidateOffsets },
 			allCellsMap,
 			normalDigits
 		);
@@ -219,7 +219,7 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 
 		var step = new ExtendedRectangleType2Step(
 			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-			ImmutableArray.Create(View.Empty | candidateOffsets),
+			new[] { View.Empty | candidateOffsets },
 			allCellsMap,
 			normalDigits,
 			extraDigit
@@ -311,8 +311,8 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 					}
 
 					var step = new ExtendedRectangleType3Step(
-						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(View.Empty | candidateOffsets | new HouseViewNode(0, houseIndex)),
+						conclusions.ToArray(),
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(0, houseIndex) },
 						allCellsMap,
 						normalDigits,
 						cells,
@@ -385,8 +385,8 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 				}
 
 				var step = new ExtendedRectangleType1Step(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(View.Empty | candidateOffsets),
+					conclusions.ToArray(),
+					new[] { View.Empty | candidateOffsets },
 					allCellsMap,
 					normalDigits
 				);
@@ -448,8 +448,8 @@ internal sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRe
 						}
 
 						var step = new ExtendedRectangleType4Step(
-							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(View.Empty | candidateOffsets | new HouseViewNode(0, houseIndex)),
+							conclusions.ToArray(),
+							new[] { View.Empty | candidateOffsets | new HouseViewNode(0, houseIndex) },
 							allCellsMap,
 							normalDigits,
 							new(extraCellsMap, conjugateDigit)

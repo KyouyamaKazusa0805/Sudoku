@@ -7,7 +7,7 @@
 /// <param name="DestinationOn">Indicates the destination node that is "on" status.</param>
 /// <param name="IsX"><inheritdoc/></param>
 /// <param name="IsY"><inheritdoc/></param>
-internal sealed record BidirectionalCycleStep(ConclusionList Conclusions, ChainNode DestinationOn, bool IsX, bool IsY) :
+internal sealed record BidirectionalCycleStep(Conclusion[] Conclusions, ChainNode DestinationOn, bool IsX, bool IsY) :
 	ChainingStep(Conclusions, IsX, IsY)
 {
 	/// <inheritdoc/>

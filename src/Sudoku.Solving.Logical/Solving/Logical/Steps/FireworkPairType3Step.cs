@@ -9,8 +9,8 @@
 /// <param name="DigitsMask">The digits used.</param>
 /// <param name="EmptyRectangleBlock">The empty rectangle block used.</param>
 internal sealed record FireworkPairType3Step(
-	ConclusionList Conclusions,
-	ViewList Views,
+	Conclusion[] Conclusions,
+	View[]? Views,
 	scoped in CellMap Cells,
 	short DigitsMask,
 	int EmptyRectangleBlock

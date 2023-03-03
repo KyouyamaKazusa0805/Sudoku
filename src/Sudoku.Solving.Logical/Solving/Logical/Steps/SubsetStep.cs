@@ -8,7 +8,7 @@
 /// <param name="House">The house that structure lies in.</param>
 /// <param name="Cells">All cells used.</param>
 /// <param name="DigitsMask">The mask that contains all digits used.</param>
-internal abstract record SubsetStep(ConclusionList Conclusions, ViewList Views, int House, scoped in CellMap Cells, short DigitsMask) :
+internal abstract record SubsetStep(Conclusion[] Conclusions, View[]? Views, int House, scoped in CellMap Cells, short DigitsMask) :
 	Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
