@@ -144,7 +144,7 @@ internal static class TechniqueGalleryData
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleXyzWing },
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleWxyzWing },
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleSueDeCoq },
-				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleUnknownCovering },
+				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleBabaGrouping },
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleExternalType1 },
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleExternalType2 },
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleExternalType3 },

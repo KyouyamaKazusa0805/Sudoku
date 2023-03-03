@@ -11,7 +11,7 @@
 /// <param name="TargetCell">Indicates the target cell.</param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-internal sealed record UniqueRectangleWithUnknownCoveringStep(
+internal sealed record UniqueRectangleWithBabaGroupingStep(
 	ConclusionList Conclusions,
 	ViewList Views,
 	int Digit1,
@@ -23,7 +23,7 @@ internal sealed record UniqueRectangleWithUnknownCoveringStep(
 ) : UniqueRectangleStep(
 	Conclusions,
 	Views,
-	Technique.UniqueRectangleUnknownCovering,
+	Technique.UniqueRectangleBabaGrouping,
 	Digit1,
 	Digit2,
 	Cells,

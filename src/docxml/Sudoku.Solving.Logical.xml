@@ -6138,7 +6138,7 @@ if (student is (name: var name, age: >= 18))
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.UniqueRectangleStepSearcher.CheckUnknownCoveringUnique(System.Collections.Generic.ICollection{Sudoku.Solving.Logical.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.UniqueRectangleStepSearcher.CheckBabaGroupingUnique(System.Collections.Generic.ICollection{Sudoku.Solving.Logical.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
              <summary>
              Check UR + Unknown covering.
              </summary>
@@ -12131,6 +12131,53 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="TargetCell">Indicates the target cell.</param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="TargetCell">Indicates the target cell.</param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep.TargetCell">
+            <summary>Indicates the target cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep.ExtraDigit">
+            <summary>Indicates the extra digit used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithBabaGroupingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
@@ -12300,53 +12347,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.FormatInterpolatedParts">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Digit1"><inheritdoc/></param>
-            <param name="Digit2"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="TargetCell">Indicates the target cell.</param>
-            <param name="ExtraDigit">Indicates the extra digit used.</param>
-            <param name="AbsoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-            <param name="Digit1"><inheritdoc/></param>
-            <param name="Digit2"><inheritdoc/></param>
-            <param name="Cells"><inheritdoc/></param>
-            <param name="TargetCell">Indicates the target cell.</param>
-            <param name="ExtraDigit">Indicates the extra digit used.</param>
-            <param name="AbsoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.TargetCell">
-            <summary>Indicates the target cell.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.ExtraDigit">
-            <summary>Indicates the extra digit used.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.Rarity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep">
@@ -13604,9 +13604,9 @@ if (student is (name: var name, age: >= 18))
             Indicates unique rectangle sue de coq.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Logical.Techniques.Technique.UniqueRectangleUnknownCovering">
+        <member name="F:Sudoku.Solving.Logical.Techniques.Technique.UniqueRectangleBabaGrouping">
             <summary>
-            Indicates unique rectangle unknown covering.
+            Indicates unique rectangle baba grouping.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Logical.Techniques.Technique.UniqueRectangleExternalType1">

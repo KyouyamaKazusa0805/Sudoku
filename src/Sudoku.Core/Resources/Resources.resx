@@ -474,7 +474,7 @@
   <data name="TechniqueFormat_UniqueRectangleWithSueDeCoqStep" xml:space="preserve">
     <value>Digits {0} and {1} in {2}, with a generalized Sue de Coq in cells {3} of digits {4}</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleWithUnknownCoveringStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleWithBabaGroupingStep" xml:space="preserve">
     <value>Digits {0} and {1} in {2}, with unknown covering: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithWingStep" xml:space="preserve">
@@ -990,8 +990,8 @@
   <data name="UniqueRectangleSueDeCoq" xml:space="preserve">
     <value>Unique Rectangle Sue de Coq</value>
   </data>
-  <data name="UniqueRectangleUnknownCovering" xml:space="preserve">
-    <value>Unique Rectangle Unknown Covering</value>
+  <data name="UniqueRectangleBabaGrouping" xml:space="preserve">
+    <value>Unique Rectangle Baba Grouping</value>
   </data>
   <data name="UniqueRectangleExternalType2" xml:space="preserve">
     <value>Unique Rectangle External Type 2</value>

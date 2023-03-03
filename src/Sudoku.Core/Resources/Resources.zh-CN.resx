@@ -477,7 +477,7 @@
   <data name="TechniqueFormat_UniqueRectangleWithSueDeCoqStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带一个简化版的融合待定数组存在于单元格 {3} 里，涉及数字 {4}</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleWithUnknownCoveringStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleWithBabaGroupingStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带代数结构：设单元格 {3} 填入 X（X 是 {4} 其一），则四个单元格将构成关于 X 和数字 {5} 的唯一矩形致命形式</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithWingStep" xml:space="preserve">
@@ -1157,7 +1157,7 @@
     <value>唯一矩形・融合待定数组</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="UniqueRectangleUnknownCovering" xml:space="preserve">
+  <data name="UniqueRectangleBabaGrouping" xml:space="preserve">
     <value>唯一矩形・代数</value>
     <comment>Technique Name</comment>
   </data>

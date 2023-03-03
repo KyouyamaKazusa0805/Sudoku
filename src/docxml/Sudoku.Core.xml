@@ -5785,6 +5785,11 @@ fixed (short* ptr = instance)
               Looks up a localized string similar to Digits {0} and {1} in {2}, with the digit {3} in {4}cells {5} in {6}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithBabaGroupingStep">
+            <summary>
+              Looks up a localized string similar to Digits {0} and {1} in {2}, with unknown covering: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithConjugatePairStep">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} in {2} with {3}conjugate pair{4} {5}.
@@ -5793,11 +5798,6 @@ fixed (short* ptr = instance)
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithSueDeCoqStep">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} in {2}, with a generalized Sue de Coq in cells {3} of digits {4}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithUnknownCoveringStep">
-            <summary>
-              Looks up a localized string similar to Digits {0} and {1} in {2}, with unknown covering: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_UniqueRectangleWithWingStep">
@@ -5985,6 +5985,11 @@ fixed (short* ptr = instance)
               Looks up a localized string similar to Unique Rectangle + 4X/3SL.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.UniqueRectangleBabaGrouping">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle Baba Grouping.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangleExternalAlmostLockedSetsXz">
             <summary>
               Looks up a localized string similar to Unique Rectangle External Almost Locked Sets XZ Rule.
@@ -6063,11 +6068,6 @@ fixed (short* ptr = instance)
         <member name="P:Sudoku.Resources.Resources.UniqueRectangleType6">
             <summary>
               Looks up a localized string similar to Unique Rectangle Type 6.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.UniqueRectangleUnknownCovering">
-            <summary>
-              Looks up a localized string similar to Unique Rectangle Unknown Covering.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangleWxyzWing">

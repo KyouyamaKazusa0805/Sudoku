@@ -222,7 +222,7 @@
           "UniqueRectangle2DOr3XStep.cs": [ "UniqueRectangleStep.cs" ],
           "UniqueRectangleWithConjugatePairStep.cs": [ "UniqueRectangleStep.cs" ],
           "UniqueRectangleWithSueDeCoqStep.cs": [ "UniqueRectangleStep.cs" ],
-          "UniqueRectangleWithUnknownCoveringStep.cs": [ "UniqueRectangleStep.cs" ],
+          "UniqueRectangleWithBabaGroupingStep.cs": [ "UniqueRectangleStep.cs" ],
           "UniqueRectangleWithWingStep.cs": [ "UniqueRectangleStep.cs" ],
           "HiddenUniqueRectangleStep.cs": [ "UniqueRectangleWithConjugatePairStep.cs" ],
           "ReverseUniqueRectangleStep.cs": [ "ReverseBivalueUniversalGraveStep.cs" ],

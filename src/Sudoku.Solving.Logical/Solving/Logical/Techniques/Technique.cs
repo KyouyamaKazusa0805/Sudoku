@@ -1069,9 +1069,9 @@ public enum Technique : short
 	UniqueRectangleSueDeCoq,
 
 	/// <summary>
-	/// Indicates unique rectangle unknown covering.
+	/// Indicates unique rectangle baba grouping.
 	/// </summary>
-	UniqueRectangleUnknownCovering,
+	UniqueRectangleBabaGrouping,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 1.

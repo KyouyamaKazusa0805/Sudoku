@@ -4156,6 +4156,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with unknown covering: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
+        /// </summary>
+        public static string TechniqueFormat_UniqueRectangleWithBabaGroupingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithBabaGroupingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Digits {0} and {1} in {2} with {3}conjugate pair{4} {5}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleWithConjugatePairStep {
@@ -4170,15 +4179,6 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_UniqueRectangleWithSueDeCoqStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithSueDeCoqStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with unknown covering: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
-        /// </summary>
-        public static string TechniqueFormat_UniqueRectangleWithUnknownCoveringStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithUnknownCoveringStep", resourceCulture);
             }
         }
         
@@ -4516,6 +4516,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Baba Grouping.
+        /// </summary>
+        public static string UniqueRectangleBabaGrouping {
+            get {
+                return ResourceManager.GetString("UniqueRectangleBabaGrouping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Almost Locked Sets XZ Rule.
         /// </summary>
         public static string UniqueRectangleExternalAlmostLockedSetsXz {
@@ -4656,15 +4665,6 @@ namespace Sudoku.Resources {
         public static string UniqueRectangleType6 {
             get {
                 return ResourceManager.GetString("UniqueRectangleType6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Unknown Covering.
-        /// </summary>
-        public static string UniqueRectangleUnknownCovering {
-            get {
-                return ResourceManager.GetString("UniqueRectangleUnknownCovering", resourceCulture);
             }
         }
         

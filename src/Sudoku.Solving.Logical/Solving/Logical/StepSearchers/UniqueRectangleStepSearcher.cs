@@ -112,7 +112,7 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 
 					if (SearchForExtendedUniqueRectangles)
 					{
-						CheckUnknownCoveringUnique(gathered, grid, urCells, comparer, d1, d2, index);
+						CheckBabaGroupingUnique(gathered, grid, urCells, comparer, d1, d2, index);
 						CheckExternalType1Or2(gathered, grid, urCells, d1, d2, index, arMode);
 						CheckExternalType3(gathered, grid, urCells, comparer, d1, d2, index, arMode);
 						CheckExternalType4(gathered, grid, urCells, comparer, d1, d2, index, arMode);
@@ -265,7 +265,7 @@ internal sealed partial class UniqueRectangleStepSearcher : IUniqueRectangleStep
 	partial void Check4C3SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
 	partial void CheckRegularWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int size, int index);
 	partial void CheckSueDeCoq(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void CheckUnknownCoveringUnique(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
+	partial void CheckBabaGroupingUnique(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index);
 	partial void CheckExternalType1Or2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int index, bool arMode);
 	partial void CheckExternalType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index, bool arMode);
 	partial void CheckExternalType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, short comparer, int d1, int d2, int index, bool arMode);
@@ -3468,7 +3468,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	partial void CheckUnknownCoveringUnique(
+	partial void CheckBabaGroupingUnique(
 		ICollection<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		int[] urCells,
@@ -3612,7 +3612,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						var extraDigitId = (byte)(char)(extraDigit + '1');
 						var extraDigitMask = (short)(1 << extraDigit);
 						accumulator.Add(
-							new UniqueRectangleWithUnknownCoveringStep(
+							new UniqueRectangleWithBabaGroupingStep(
 								ImmutableArray.CreateRange(conclusions),
 								ImmutableArray.Create(
 									View.Empty
@@ -3744,7 +3744,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						var extraDigitId2 = (byte)(char)(extraDigit + '1');
 						var extraDigitMask2 = (short)(1 << extraDigit);
 						accumulator.Add(
-							new UniqueRectangleWithUnknownCoveringStep(
+							new UniqueRectangleWithBabaGroupingStep(
 								ImmutableArray.CreateRange(conclusionsAnotherSubType),
 								ImmutableArray.Create(
 									View.Empty
