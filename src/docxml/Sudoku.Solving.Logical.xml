@@ -15474,56 +15474,6 @@ if (student is (name: var name, age: >= 18))
             when they hold a same priority value.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes">
-            <summary>
-            Defines a node type that provides with the choices for the chain node types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.None">
-            <summary>
-            Indicates the searcher doesn't search for any extended-typed nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.SoleDigit">
-            <summary>
-            Indicates the searcher can search on sole digit in the same house.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.SoleCell">
-            <summary>
-            Indicates the searcher can search on candidates in a same cell.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.LockedCandidates">
-            <summary>
-            Indicates the searcher can search for locked candidate nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.LockedSet">
-            <summary>
-            Indicates the searcher can search for locked set nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.HiddenSet">
-            <summary>
-            Indicates the searcher can search for hidden set nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.UniqueRectangle">
-            <summary>
-            Indicates the searcher can search for almost rectangle nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.XyzWing">
-            <summary>
-            Indicates the searcher can search for almost XYZ-Wing nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.Kraken">
-            <summary>
-            Indicates the searcher can search for kraken fish nodes.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.WrongStepException">
             <summary>
             Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
