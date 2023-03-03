@@ -13,57 +13,46 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	public bool IsSolved { get; init; }
 
 	/// <summary>
-	/// <para>Indicates the maximum difficulty of the puzzle.</para>
-	/// <para>
-	/// When the puzzle is solved by <see cref="LogicalSolver"/>,
-	/// the value will be the maximum value among all difficulty
-	/// ratings in solving steps. If the puzzle has not been solved,
-	/// or else the puzzle is solved by other solvers, this value will
-	/// be always <c>20.0M</c>.
-	/// </para>
+	/// Indicates the maximum difficulty of the puzzle.
 	/// </summary>
+	/// <remarks>
+	/// When the puzzle is solved by <see cref="LogicalSolver"/>,
+	/// the value will be the maximum value among all difficulty ratings in solving steps. If the puzzle has not been solved,
+	/// or else the puzzle is solved by other solvers, this value will be always <c>20.0M</c>.
+	/// </remarks>
 	/// <seealso cref="LogicalSolver"/>
 	public unsafe decimal MaxDifficulty => Evaluator(&EnumerableExtensions.Max<IStep>, 20.0M);
 
 	/// <summary>
-	/// <para>Indicates the total difficulty rating of the puzzle.</para>
-	/// <para>
-	/// When the puzzle is solved by <see cref="LogicalSolver"/>,
-	/// the value will be the sum of all difficulty ratings of steps. If
-	/// the puzzle has not been solved, the value will be the sum of all
-	/// difficulty ratings of steps recorded in <see cref="Steps"/>.
-	/// However, if the puzzle is solved by other solvers, this value will
-	/// be <c>0</c>.
-	/// </para>
+	/// Indicates the total difficulty rating of the puzzle.
 	/// </summary>
+	/// <remarks>
+	/// When the puzzle is solved by <see cref="LogicalSolver"/>, the value will be the sum of all difficulty ratings of steps.
+	/// If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="Steps"/>.
+	/// However, if the puzzle is solved by other solvers, this value will be <c>0</c>.
+	/// </remarks>
 	/// <seealso cref="LogicalSolver"/>
 	/// <seealso cref="Steps"/>
 	public unsafe decimal TotalDifficulty => Evaluator(&EnumerableExtensions.Sum<IStep>, 0);
 
 	/// <summary>
-	/// <para>
-	/// Indicates the pearl difficulty rating of the puzzle, calculated
-	/// during only by <see cref="LogicalSolver"/>.
-	/// </para>
-	/// <para>
-	/// When the puzzle is solved, the value will be the difficulty rating
-	/// of the first solving step. If the puzzle has not solved or
-	/// the puzzle is solved by other solvers, this value will be always <c>0</c>.
-	/// </para>
+	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="LogicalSolver"/>.
 	/// </summary>
+	/// <remarks>
+	/// When the puzzle is solved, the value will be the difficulty rating of the first solving step.
+	/// If the puzzle has not solved or the puzzle is solved by other solvers, this value will be always <c>0</c>.
+	/// </remarks>
 	/// <seealso cref="LogicalSolver"/>
-	public decimal PearlDifficulty => Steps[0].Difficulty;
+	public decimal PearlDifficulty => this switch { { IsSolved: true, Steps: [{ Difficulty: var d }, ..] } => d, _ => 0 };
 
 	/// <summary>
 	/// <para>
-	/// Indicates the pearl difficulty rating of the puzzle, calculated
-	/// during only by <see cref="LogicalSolver"/>.
+	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="LogicalSolver"/>.
 	/// </para>
 	/// <para>
-	/// When the puzzle is solved, the value will be the difficulty rating
-	/// of the first step before the first one whose conclusion is
-	/// <see cref="Assignment"/>. If the puzzle has not solved
-	/// or solved by other solvers, this value will be <c>20.0M</c>.
+	/// When the puzzle is solved, the value will be the difficulty rating of the first step before the first one
+	/// whose conclusion is <see cref="Assignment"/>.
+	/// If the puzzle has not solved or solved by other solvers, this value will be <c>20.0M</c>.
 	/// </para>
 	/// </summary>
 	/// <seealso cref="LogicalSolver"/>
@@ -111,16 +100,15 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	public int SolvingStepsCount => Steps.IsDefault ? 1 : Steps.Length;
 
 	/// <summary>
-	/// Indicates why the solving operation is failed. This property is useless when <see cref="IsSolved"/>
-	/// keeps the <see langword="true"/> value.
+	/// Indicates why the solving operation is failed.
+	/// This property is meaningless when <see cref="IsSolved"/> keeps the <see langword="true"/> value.
 	/// </summary>
 	/// <seealso cref="IsSolved"/>
 	public SearcherFailedReason FailedReason { get; init; }
 
 	/// <summary>
 	/// Indicates the difficulty level of the puzzle.
-	/// If the puzzle has not solved or solved by other solvers,
-	/// this value will be <see cref="DifficultyLevel.Unknown"/>.
+	/// If the puzzle has not solved or solved by other solvers, this value will be <see cref="DifficultyLevel.Unknown"/>.
 	/// </summary>
 	public DifficultyLevel DifficultyLevel
 	{
@@ -169,7 +157,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// of types <see cref="Grid"/> and <see cref="IStep"/>.
 	/// </para>
 	/// </summary>
-	public ImmutableArray<(Grid SteppingGrid, IStep Step)> SolvingPath => IsSolved ? StepGrids.Zip(Steps) : default(ImmutableArray<(Grid, IStep)>);
+	public ImmutableArray<(Grid SteppingGrid, IStep Step)> SolvingPath => IsSolved ? StepGrids.Zip(Steps) : default;
 
 	/// <summary>
 	/// <para>
@@ -215,36 +203,36 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	{
 		get
 		{
-			if (Steps.IsDefault)
+			switch (Steps)
 			{
-				return null;
-			}
-
-			if (Steps is not [var firstStep, ..])
-			{
-				return null;
-			}
-
-			for (var i = Steps.Length - 1; i >= 0; i--)
-			{
-				var step = Steps[i];
-				if (!step.HasTag(TechniqueTags.Singles))
+				default:
 				{
-					return step;
+					return null;
+				}
+				case [var firstStep, ..] and { Length: var length }:
+				{
+					for (var i = length - 1; i >= 0; i--)
+					{
+						var step = Steps[i];
+						if (!step.HasTag(TechniqueTags.Singles))
+						{
+							return step;
+						}
+					}
+
+					// If code goes to here, all steps are more difficult than single techniques. Get the first one.
+					return firstStep;
 				}
 			}
-
-			// If code goes to here, all steps are more difficult than single techniques.
-			// Get the first one is okay.
-			return firstStep;
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// <inheritdoc cref="IComplexSolverResult{TSolver, TSolverResult}.UnhandledException" path="/summary"/>
+	/// </summary>
 	/// <remarks>
-	/// You can visit the property value
-	/// if the property <see cref="FailedReason"/> is <see cref="SearcherFailedReason.ExceptionThrown"/>
-	/// or <see cref="SearcherFailedReason.WrongStep"/>.
+	/// You can visit the property value if the property <see cref="FailedReason"/>
+	/// is <see cref="SearcherFailedReason.ExceptionThrown"/> or <see cref="SearcherFailedReason.WrongStep"/>.
 	/// </remarks>
 	/// <seealso cref="FailedReason"/>
 	/// <seealso cref="SearcherFailedReason.ExceptionThrown"/>
@@ -304,7 +292,6 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// <returns>A string that represents the current object.</returns>
 	public string ToString(SolverResultFormattingOptions options)
 	{
-		// Get all information.
 		if (this is not
 			{
 				IsSolved: var isSolved,
@@ -499,7 +486,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 
 			for (var i = stepsCount - 1; i >= 0; i--)
 			{
-				if (steps[i] is var step and not SingleStep)
+				if (steps[i] is var step && !step.HasTag(TechniqueTags.Singles))
 				{
 					return (i, step);
 				}

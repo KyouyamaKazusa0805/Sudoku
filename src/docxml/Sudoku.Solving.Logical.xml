@@ -1189,57 +1189,46 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolverResult.MaxDifficulty">
             <summary>
-            <para>Indicates the maximum difficulty of the puzzle.</para>
-            <para>
-            When the puzzle is solved by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>,
-            the value will be the maximum value among all difficulty
-            ratings in solving steps. If the puzzle has not been solved,
-            or else the puzzle is solved by other solvers, this value will
-            be always <c>20.0M</c>.
-            </para>
+            Indicates the maximum difficulty of the puzzle.
             </summary>
+            <remarks>
+            When the puzzle is solved by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>,
+            the value will be the maximum value among all difficulty ratings in solving steps. If the puzzle has not been solved,
+            or else the puzzle is solved by other solvers, this value will be always <c>20.0M</c>.
+            </remarks>
             <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolverResult.TotalDifficulty">
             <summary>
-            <para>Indicates the total difficulty rating of the puzzle.</para>
-            <para>
-            When the puzzle is solved by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>,
-            the value will be the sum of all difficulty ratings of steps. If
-            the puzzle has not been solved, the value will be the sum of all
-            difficulty ratings of steps recorded in <see cref="P:Sudoku.Solving.Logical.LogicalSolverResult.Steps"/>.
-            However, if the puzzle is solved by other solvers, this value will
-            be <c>0</c>.
-            </para>
+            Indicates the total difficulty rating of the puzzle.
             </summary>
+            <remarks>
+            When the puzzle is solved by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>, the value will be the sum of all difficulty ratings of steps.
+            If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="P:Sudoku.Solving.Logical.LogicalSolverResult.Steps"/>.
+            However, if the puzzle is solved by other solvers, this value will be <c>0</c>.
+            </remarks>
             <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
             <seealso cref="P:Sudoku.Solving.Logical.LogicalSolverResult.Steps"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolverResult.PearlDifficulty">
             <summary>
-            <para>
-            Indicates the pearl difficulty rating of the puzzle, calculated
-            during only by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>.
-            </para>
-            <para>
-            When the puzzle is solved, the value will be the difficulty rating
-            of the first solving step. If the puzzle has not solved or
-            the puzzle is solved by other solvers, this value will be always <c>0</c>.
-            </para>
+            Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>.
             </summary>
+            <remarks>
+            When the puzzle is solved, the value will be the difficulty rating of the first solving step.
+            If the puzzle has not solved or the puzzle is solved by other solvers, this value will be always <c>0</c>.
+            </remarks>
             <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolverResult.DiamondDifficulty">
             <summary>
             <para>
-            Indicates the pearl difficulty rating of the puzzle, calculated
-            during only by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>.
+            Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>.
             </para>
             <para>
-            When the puzzle is solved, the value will be the difficulty rating
-            of the first step before the first one whose conclusion is
-            <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>. If the puzzle has not solved
-            or solved by other solvers, this value will be <c>20.0M</c>.
+            When the puzzle is solved, the value will be the difficulty rating of the first step before the first one
+            whose conclusion is <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>.
+            If the puzzle has not solved or solved by other solvers, this value will be <c>20.0M</c>.
             </para>
             </summary>
             <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
@@ -1252,16 +1241,15 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolverResult.FailedReason">
             <summary>
-            Indicates why the solving operation is failed. This property is useless when <see cref="P:Sudoku.Solving.Logical.LogicalSolverResult.IsSolved"/>
-            keeps the <see langword="true"/> value.
+            Indicates why the solving operation is failed.
+            This property is meaningless when <see cref="P:Sudoku.Solving.Logical.LogicalSolverResult.IsSolved"/> keeps the <see langword="true"/> value.
             </summary>
             <seealso cref="P:Sudoku.Solving.Logical.LogicalSolverResult.IsSolved"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolverResult.DifficultyLevel">
             <summary>
             Indicates the difficulty level of the puzzle.
-            If the puzzle has not solved or solved by other solvers,
-            this value will be <see cref="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Unknown"/>.
+            If the puzzle has not solved or solved by other solvers, this value will be <see cref="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Unknown"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolverResult.Solution">
@@ -1336,11 +1324,12 @@ result ^= expression;
             <seealso cref="P:Sudoku.Solving.Logical.LogicalSolverResult.Steps"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.LogicalSolverResult.UnhandledException">
-            <inheritdoc/>
+            <summary>
+            <inheritdoc cref="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.UnhandledException" path="/summary"/>
+            </summary>
             <remarks>
-            You can visit the property value
-            if the property <see cref="P:Sudoku.Solving.Logical.LogicalSolverResult.FailedReason"/> is <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.ExceptionThrown"/>
-            or <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.WrongStep"/>.
+            You can visit the property value if the property <see cref="P:Sudoku.Solving.Logical.LogicalSolverResult.FailedReason"/>
+            is <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.ExceptionThrown"/> or <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.WrongStep"/>.
             </remarks>
             <seealso cref="P:Sudoku.Solving.Logical.LogicalSolverResult.FailedReason"/>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.SearcherFailedReason.ExceptionThrown"/>
