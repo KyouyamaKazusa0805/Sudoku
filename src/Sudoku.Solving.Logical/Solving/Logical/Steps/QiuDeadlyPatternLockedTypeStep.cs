@@ -7,7 +7,6 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the candidates used.</param>
-[StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
 internal sealed record QiuDeadlyPatternLockedTypeStep(
 	ConclusionList Conclusions,
 	ViewList Views,

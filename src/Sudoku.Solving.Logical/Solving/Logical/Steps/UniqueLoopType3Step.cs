@@ -12,7 +12,6 @@
 /// Indicates the mask that contains the subset digits used in this instance.
 /// </param>
 /// <param name="SubsetCells">Indicates the subset cells.</param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record UniqueLoopType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,

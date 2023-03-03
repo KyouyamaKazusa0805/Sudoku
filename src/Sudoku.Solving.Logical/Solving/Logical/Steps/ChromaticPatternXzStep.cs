@@ -11,7 +11,6 @@
 /// <param name="ExtraCell">Indicates the extra cell used.</param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigitsMask">The extra digits mask.</param>
-[StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
 internal sealed record ChromaticPatternXzStep(
 	ConclusionList Conclusions,
 	ViewList Views,

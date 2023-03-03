@@ -686,7 +686,7 @@ internal abstract record ChainingStep(
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int Compare(ChainingStep left, ChainingStep right)
-		=> Sign(left.BaseDifficulty - right.BaseDifficulty) is var d and not 0
+		=> Sign(((IStep)left).Difficulty - ((IStep)right).Difficulty) is var d and not 0
 			? d
 			: Sign(left.Complexity - right.Complexity) is var c and not 0
 				? c

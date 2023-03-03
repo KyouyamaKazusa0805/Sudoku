@@ -9,7 +9,6 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used for forming the subset.</param>
 /// <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record UniquePolygonType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,

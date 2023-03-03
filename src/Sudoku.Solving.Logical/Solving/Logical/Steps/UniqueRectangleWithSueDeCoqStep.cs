@@ -29,7 +29,6 @@
 /// Indicates the cells in the intersection from houses <see cref="Block"/> and <see cref="Line"/>.
 /// </param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique)]
 internal sealed record UniqueRectangleWithSueDeCoqStep(
 	ConclusionList Conclusions,
 	ViewList Views,

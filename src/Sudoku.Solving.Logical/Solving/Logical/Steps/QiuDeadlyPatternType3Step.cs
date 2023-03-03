@@ -9,7 +9,6 @@
 /// <param name="ExtraDigitsMask">Indicates the extra digits used to form the subset.</param>
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
-[StepDisplayingFeature(StepDisplayingFeature.VeryRare | StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record QiuDeadlyPatternType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,

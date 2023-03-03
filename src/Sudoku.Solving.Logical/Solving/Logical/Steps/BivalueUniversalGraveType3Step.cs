@@ -9,7 +9,6 @@
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record BivalueUniversalGraveType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,

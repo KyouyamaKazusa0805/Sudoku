@@ -8,7 +8,6 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="Loop">Indicates the loop cells used.</param>
 /// <param name="Guardians">Indicates the guardian cells used.</param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record GuardianStep(ConclusionList Conclusions, ViewList Views, int Digit, scoped in CellMap Loop, scoped in CellMap Guardians) :
 	NegativeRankStep(Conclusions, Views),
 	IDistinctableStep<GuardianStep>

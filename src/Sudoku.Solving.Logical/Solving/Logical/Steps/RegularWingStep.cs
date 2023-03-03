@@ -9,7 +9,6 @@
 /// <param name="PivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
 /// <param name="DigitsMask">Indicates a mask that contains all digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
-[StepDisplayingFeature(StepDisplayingFeature.VeryRare, VerifyMemberName = nameof(Rarity), VerifyMemberValue = Rarity.OnlyForSpecialPuzzles)]
 internal sealed record RegularWingStep(
 	ConclusionList Conclusions,
 	ViewList Views,

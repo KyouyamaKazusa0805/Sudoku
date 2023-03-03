@@ -17,7 +17,6 @@
 /// Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation
 /// to what digits.
 /// </param>
-[StepDisplayingFeature(StepDisplayingFeature.HideDifficultyRating)]
 internal sealed record GurthSymmetricalPlacementStep(
 	ConclusionList Conclusions,
 	ViewList Views,

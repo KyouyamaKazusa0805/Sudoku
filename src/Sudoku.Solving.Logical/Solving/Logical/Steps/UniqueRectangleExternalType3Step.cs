@@ -14,7 +14,6 @@
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="IsAvoidable">Indicates whether the structure is based on avoidable rectangle.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable | StepDisplayingFeature.ConstructedTechnique)]
 internal sealed record UniqueRectangleExternalType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,

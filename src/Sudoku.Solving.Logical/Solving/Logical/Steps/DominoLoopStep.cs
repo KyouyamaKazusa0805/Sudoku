@@ -6,7 +6,6 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
-[StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
 internal sealed record DominoLoopStep(ConclusionList Conclusions, ViewList Views, scoped in CellMap Cells) : NonnegativeRankStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

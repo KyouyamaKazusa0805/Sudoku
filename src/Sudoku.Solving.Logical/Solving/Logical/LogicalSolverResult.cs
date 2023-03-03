@@ -52,7 +52,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="LogicalSolver"/>
-	public decimal PearlDifficulty => Steps.IsDefaultOrEmpty ? 0 : Steps.FirstOrDefault(static info => info.ShowDifficulty)?.BaseDifficulty ?? 0;
+	public decimal PearlDifficulty => Steps[0].Difficulty;
 
 	/// <summary>
 	/// <para>
@@ -81,14 +81,14 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 					{
 						if (i == 0)
 						{
-							return step.BaseDifficulty;
+							return step.Difficulty;
 						}
 						else
 						{
 							var max = 0.0M;
 							for (var j = 0; j < i; j++)
 							{
-								var difficulty = Steps[j].BaseDifficulty;
+								var difficulty = Steps[j].Difficulty;
 								if (difficulty >= max)
 								{
 									max = difficulty;
@@ -353,7 +353,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 					var infoStr = options.Flags(SolverResultFormattingOptions.ShowSimple) ? info.ToSimpleString() : info.ToString();
 					var showDiff = options.Flags(SolverResultFormattingOptions.ShowDifficulty) && info.ShowDifficulty;
 
-					var d = $"({info.BaseDifficulty,5:0.0}";
+					var d = $"({info.Difficulty,5:0.0}";
 					var s = $"{i + 1,4}";
 					var labelInfo = (options.Flags(SolverResultFormattingOptions.ShowStepLabel), showDiff) switch
 					{
@@ -405,14 +405,14 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 				sb.Append(R["AnalysisResultTechniqueUsing"]!);
 			}
 
-			foreach (var solvingStepsGroup in from s in steps orderby s.BaseDifficulty group s by s.Name)
+			foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
 			{
 				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
 				{
 					decimal currentTotal = 0, currentMinimum = decimal.MaxValue;
 					foreach (var solvingStep in solvingStepsGroup)
 					{
-						var difficulty = solvingStep.BaseDifficulty;
+						var difficulty = solvingStep.Difficulty;
 						currentTotal += difficulty;
 						currentMinimum = Min(currentMinimum, difficulty);
 					}
@@ -565,6 +565,6 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 		return Steps.IsDefaultOrEmpty ? d : executor(Steps, &f);
 
 
-		static decimal f(IStep step) => step.ShowDifficulty ? step.BaseDifficulty : 0;
+		static decimal f(IStep step) => step.Difficulty;
 	}
 }

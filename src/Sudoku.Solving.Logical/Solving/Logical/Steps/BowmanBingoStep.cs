@@ -6,7 +6,6 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record BowmanBingoStep(ConclusionList Conclusions, ViewList Views, ConclusionList ContradictionLinks) :
 	LastResortStep(Conclusions, Views)
 {

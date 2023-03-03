@@ -11,7 +11,6 @@
 /// <param name="ExtraDigitsMask">
 /// Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
 /// </param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record UniqueMatrixType3Step(
 	ConclusionList Conclusions,
 	ViewList Views,

@@ -9,7 +9,6 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit.</param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record BivalueOddagonType2Step(
 	ConclusionList Conclusions,
 	ViewList Views,

@@ -12,7 +12,6 @@
 /// <param name="Endofins">The endo-fins.</param>
 /// <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
 /// <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record ComplexFishStep(
 	ConclusionList Conclusions,
 	ViewList Views,
@@ -23,9 +22,7 @@ internal sealed record ComplexFishStep(
 	scoped in CellMap Endofins,
 	bool IsFranken,
 	bool? IsSashimi
-) :
-	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask),
-	IDistinctableStep<ComplexFishStep>
+) : FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask), IDistinctableStep<ComplexFishStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.2M;

@@ -7,7 +7,6 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-[StepDisplayingFeature(StepDisplayingFeature.VeryRare)]
 internal sealed record QiuDeadlyPatternType4Step(
 	ConclusionList Conclusions,
 	ViewList Views,

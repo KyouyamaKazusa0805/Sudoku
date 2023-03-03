@@ -9,7 +9,6 @@
 /// <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
 /// <param name="ExtraHousesMask">Indicates the mask that holds the extra houses used.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
-[StepDisplayingFeature(StepDisplayingFeature.DifficultyRatingNotStable)]
 internal sealed record SeniorExocetStep(
 	ViewList Views,
 	scoped in Exocet Exocet,
