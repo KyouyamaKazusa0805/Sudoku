@@ -54,10 +54,15 @@ internal sealed record UniqueRectangleExternalAlmostLockedSetsXzStep(
 			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string GuardianCellsStr() => GuardianCells.ToString();
+	private string GuardianCellsStr => GuardianCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string AnotherAlsStr() => AlmostLockedSet.ToString();
+	private string AnotherAlsStr => AlmostLockedSet.ToString();
 }

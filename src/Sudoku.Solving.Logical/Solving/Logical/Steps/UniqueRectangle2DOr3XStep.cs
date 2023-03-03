@@ -26,16 +26,7 @@ internal sealed record UniqueRectangle2DOr3XStep(
 	int YDigit,
 	int XyCell,
 	int AbsoluteOffset
-) : UniqueRectangleStep(
-	Conclusions,
-	Views,
-	TechniqueCode2,
-	Digit1,
-	Digit2,
-	Cells,
-	IsAvoidable,
-	AbsoluteOffset
-)
+) : UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
@@ -49,13 +40,17 @@ internal sealed record UniqueRectangle2DOr3XStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string XDigitStr() => (XDigit + 1).ToString();
+	private string XDigitStr => (XDigit + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string YDigitStr() => (YDigit + 1).ToString();
+	private string YDigitStr => (YDigit + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string XYCellsStr() => RxCyNotation.ToCellString(XyCell);
+	private string XYCellsStr => RxCyNotation.ToCellString(XyCell);
 }

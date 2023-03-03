@@ -4066,7 +4066,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with X = {XDigitStr}, Y = {YDigitStr} and a bi-value cell {XYCellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with X = {3}, Y = {4} and a bi-value cell {5}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangle2DOr3XStep {
             get {
@@ -4075,7 +4075,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external ALS {AnotherAlsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with a guardian in cells {3}, with external ALS {4}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep {
             get {
@@ -4084,7 +4084,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian cells {GuardianCellsStr}, forming a turbot fish with cells {CellPairStr} of digit {TurbotFishDigitStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with guardian cells {3}, forming a turbot fish with cells {4} of digit {5}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleExternalTurbotFishStep {
             get {
@@ -4093,7 +4093,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with guardian: digit {3} in cells {4}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleExternalType1Or2Step {
             get {
@@ -4102,7 +4102,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with cells {3} for digits {4} as subset.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleExternalType3Step {
             get {
@@ -4111,7 +4111,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with conjugate pair {3}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleExternalType4Step {
             get {
@@ -4120,7 +4120,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external XY-Wing, with cell pair {CellPairStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with a guardian in cells {3}, with external XY-Wing, with cell pair {4}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleExternalXyWingStep {
             get {

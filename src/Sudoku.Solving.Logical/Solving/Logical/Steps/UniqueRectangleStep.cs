@@ -7,13 +7,13 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="TechniqueCode2">
 /// <para>Indicates the technique code.</para>
-/// <para>
+/// <para><i>
 /// Limited by the C# language, here we creates a new property <see cref="TechniqueCode2"/>
 /// to pass the value and assign it to the property <see cref="Step.TechniqueCode"/>. If write code
 /// to place the property <see cref="Step.TechniqueCode"/> into the primary constructor as a parameter,
 /// the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
 /// which isn't allowed in <see langword="record"/> types in the language design.
-/// </para>
+/// </i></para>
 /// </param>
 /// <param name="Digit1">Indicates the first digit used in this unique rectangle pattern.</param>
 /// <param name="Digit2">Indicates the second digit used in this unique rectangle pattern.</param>

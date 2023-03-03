@@ -454,7 +454,7 @@
     <value>{0} in cells {1} with the conjugate house {2} of the extra digits {3}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangle2DOr3XStep" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with X = {XDigitStr}, Y = {YDigitStr} and a bi-value cell {XYCellsStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2}, with X = {3}, Y = {4} and a bi-value cell {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleType1Step" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} =&gt; {ElimStr}</value>
@@ -469,7 +469,7 @@
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with {Prefix}conjugate pair{Suffix} {ConjPairsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType1Or2Step" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2} with guardian: digit {3} in cells {4}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithSueDeCoqStep" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a generalized Sue de Coq in cells {MergedCellsStr} of digits {DigitsStr} =&gt; {ElimStr}</value>
@@ -1348,7 +1348,7 @@
     <value>{Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr}, digits {DigitsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType3Step" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with cells {SubsetCellsStr} for digits {DigitsStr} as subset =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2} with cells {3} for digits {4} as subset</value>
   </data>
   <data name="UniqueRectangleExternalType3" xml:space="preserve">
     <value>Unique Rectangle External Type 3</value>
@@ -1384,7 +1384,7 @@
     <value>Cells {0} of digits {1} is a firework, with empty rectangle in house {2}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType4Step" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with conjugate pair {ConjugatePairStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2} with conjugate pair {3}</value>
   </data>
   <data name="UniqueRectangleExternalType1" xml:space="preserve">
     <value>Unique Rectangle External Type 1</value>
@@ -1462,13 +1462,13 @@
     <value>Diagonal</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external ALS {AnotherAlsStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2} with a guardian in cells {3}, with external ALS {4}</value>
   </data>
   <data name="UniqueRectangleExternalAlmostLockedSetsXz" xml:space="preserve">
     <value>Unique Rectangle External Almost Locked Sets XZ Rule</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalXyWingStep" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with a guardian in cells {GuardianCellsStr}, with external XY-Wing, with cell pair {CellPairStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2} with a guardian in cells {3}, with external XY-Wing, with cell pair {4}</value>
   </data>
   <data name="UniqueRectangleExternalXyWing" xml:space="preserve">
     <value>Unique Rectangle External XY-Wing</value>
@@ -1501,7 +1501,7 @@
     <value>Avoidable Rectangle External Two-String Kite</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalTurbotFishStep" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with guardian cells {GuardianCellsStr}, forming a turbot fish with cells {CellPairStr} of digit {TurbotFishDigitStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2} with guardian cells {3}, forming a turbot fish with cells {4} of digit {5}</value>
   </data>
   <data name="UniqueRectangleExternalSkyscraper" xml:space="preserve">
     <value>Unique Rectangle External Skyscraper</value>

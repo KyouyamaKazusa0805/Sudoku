@@ -59,10 +59,15 @@ internal sealed record UniqueRectangleExternalType3Step(
 			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, SubsetCellsStr, DigitsStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, DigitsStr, SubsetCellsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string SubsetCellsStr() => SubsetCells.ToString();
+	private string SubsetCellsStr => SubsetCells.ToString();
 }

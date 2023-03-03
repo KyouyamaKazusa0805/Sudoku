@@ -53,10 +53,15 @@ internal sealed record UniqueRectangleExternalXyWingStep(
 			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string GuardianCellsStr() => GuardianCells.ToString();
+	private string GuardianCellsStr => GuardianCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string CellPairStr() => CellPair.ToString();
+	private string CellPairStr => CellPair.ToString();
 }

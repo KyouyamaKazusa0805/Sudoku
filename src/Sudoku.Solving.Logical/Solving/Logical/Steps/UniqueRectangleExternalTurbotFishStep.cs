@@ -70,13 +70,17 @@ internal sealed record UniqueRectangleExternalTurbotFishStep(
 			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr, TurbotFishDigitStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr, TurbotFishDigitStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string TurbotFishDigitStr() => (TurbotFishDigit + 1).ToString();
+	private string TurbotFishDigitStr => (TurbotFishDigit + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string GuardianCellsStr() => GuardianCells.ToString();
+	private string GuardianCellsStr => GuardianCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string CellPairStr() => CellPair.ToString();
+	private string CellPairStr => CellPair.ToString();
 }

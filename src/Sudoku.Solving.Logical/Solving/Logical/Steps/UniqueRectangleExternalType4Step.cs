@@ -56,7 +56,13 @@ internal sealed record UniqueRectangleExternalType4Step(
 			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, ConjugatePairStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, ConjugatePairStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ConjugatePairStr() => ConjugatePair.ToString();
+	private string ConjugatePairStr => ConjugatePair.ToString();
 }

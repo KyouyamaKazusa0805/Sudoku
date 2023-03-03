@@ -460,7 +460,7 @@
     <value>数字 {0} 位于单元格 {1} 里，带有一个关于数字 {2} 的共轭区域，位于单元格 {3} 里</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangle2DOr3XStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，X 为 {XDigitStr}、Y 为 {YDigitStr}、双值格为 {XYCellsStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 在结构 {2} 里，X 为 {3}、Y 为 {4}、双值格为 {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleType1Step" xml:space="preserve">
     <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里 =&gt; {ElimStr}</value>
@@ -1630,10 +1630,10 @@
     <value>{Name}：基准单元格 {BaseCellsStr}，目标单元格 {TargetCellsStr}，涉及数字 {DigitsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType1Or2Step" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并带有守护者 {GuardianDigitStr} 位于单元格 {GuardianCellsStr} 之中 =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者 {3} 位于单元格 {4} 之中</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType3Step" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并有外部数组结构，数字为 {DigitsStr}，单元格为 {SubsetCellsStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于 {2} 之中，并有外部数组结构，数字为 {3}，单元格为 {4}</value>
   </data>
   <data name="UniqueRectangleExternalType3" xml:space="preserve">
     <value>唯一矩形・外部类型 3</value>
@@ -1675,7 +1675,7 @@
     <value>单元格 {0} 里的数字 {1} 构成花火数组结构，带有空矩形结构位于 {2}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType4Step" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并有外部共轭对 {ConjugatePairStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于 {2} 之中，并有外部共轭对 {3}</value>
   </data>
   <data name="UniqueRectangleExternalType1" xml:space="preserve">
     <value>唯一矩形・外部类型 1</value>
@@ -1763,14 +1763,14 @@
     <value>捺对角线对称（正对角线）</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并带有守护者位于单元格 {GuardianCellsStr} 之中，ALS 结构 {AnotherAlsStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者位于单元格 {3} 之中，ALS 结构 {4}</value>
   </data>
   <data name="UniqueRectangleExternalAlmostLockedSetsXz" xml:space="preserve">
     <value>唯一矩形・外部待定数组・双强链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalXyWingStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并带有守护者位于单元格 {GuardianCellsStr} 之中，XY-Wing 结构，外侧单元格对为 {CellPairStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者位于单元格 {3} 之中，XY-Wing 结构，外侧单元格对为 {4}</value>
   </data>
   <data name="UniqueRectangleExternalXyWing" xml:space="preserve">
     <value>唯一矩形・外部 XY-Wing</value>
@@ -1821,7 +1821,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalTurbotFishStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于 {CellsStr} 之中，并带有守护者位于单元格 {GuardianCellsStr} 之中，并和外侧单元格 {CellPairStr} 构成双强链结构，数字是 {TurbotFishDigitStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者位于单元格 {3} 之中，并和外侧单元格 {4} 构成双强链结构，数字是 {5}</value>
   </data>
   <data name="UniqueRectangleExternalTwoStringKite" xml:space="preserve">
     <value>唯一矩形・外部双线风筝</value>
