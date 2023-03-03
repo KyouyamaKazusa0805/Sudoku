@@ -1401,6 +1401,28 @@ result ^= expression;
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Solving.Logical.LogicalSolverResult.Steps"/>
         </member>
+        <member name="T:Sudoku.Solving.Logical.LogicalSolverResult.StepsEnumerator">
+            <summary>
+            Defines an enumerator type that allows iterating on steps of the containing type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Logical.LogicalSolverResult.StepsEnumerator._enumerator">
+            <summary>
+            The internal enumerator instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.LogicalSolverResult.StepsEnumerator.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Logical.IStep}.Enumerator)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult.StepsEnumerator"/> instance via the enumerator.
+            </summary>
+            <param name="enumerator">The internal enumerator instance.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.LogicalSolverResult.StepsEnumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.LogicalSolverResult.StepsEnumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Meta.ExocetEliminatedReason">
             <summary>
             Encapsulates a type that represents the reason why the exocet eliminations can be removed.

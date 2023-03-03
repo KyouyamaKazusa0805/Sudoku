@@ -4,7 +4,7 @@
 /// Provides the solver result after <see cref="LogicalSolver"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc/></param>
-public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
+public sealed partial record LogicalSolverResult(scoped in Grid Puzzle) :
 	IComplexSolverResult<LogicalSolver, LogicalSolverResult>,
 	IEnumerable<IStep>,
 	ISelectClauseProvider<IStep>
@@ -503,7 +503,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ImmutableArray<IStep>.Enumerator GetEnumerator() => Steps.GetEnumerator();
+	public StepsEnumerator GetEnumerator() => IsSolved ? new(Steps.GetEnumerator()) : default;
 
 	/// <summary>
 	/// Projects the collection, to an immutable result of target type.
