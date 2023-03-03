@@ -43,10 +43,9 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		return new(
 			from step in collection
 			group step by step.Name into stepGroupGroupedByName
-			let showDifficultySteps = from step in stepGroupGroupedByName where step.ShowDifficulty select step
 			let stepsDifficultyLevelIntegerGroup = from step in stepGroupGroupedByName select (decimal)step.DifficultyLevel
 			orderby
-				showDifficultySteps.Average(difficultySelector),
+				stepGroupGroupedByName.Average(difficultySelector),
 				stepsDifficultyLevelIntegerGroup.Average(),
 				stepGroupGroupedByName.Key
 			select new TechniqueGroupModel(stepGroupGroupedByName) { Key = stepGroupGroupedByName.Key }

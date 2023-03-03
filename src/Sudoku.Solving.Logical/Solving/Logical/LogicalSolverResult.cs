@@ -131,7 +131,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 			{
 				foreach (var step in Steps)
 				{
-					if (step.ShowDifficulty && step.DifficultyLevel > maxLevel)
+					if (step.DifficultyLevel > maxLevel)
 					{
 						maxLevel = step.DifficultyLevel;
 					}
@@ -228,7 +228,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 			for (var i = Steps.Length - 1; i >= 0; i--)
 			{
 				var step = Steps[i];
-				if (step.ShowDifficulty && !step.HasTag(TechniqueTags.Singles))
+				if (!step.HasTag(TechniqueTags.Singles))
 				{
 					return step;
 				}
@@ -351,7 +351,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 
 					var info = steps[i];
 					var infoStr = options.Flags(SolverResultFormattingOptions.ShowSimple) ? info.ToSimpleString() : info.ToString();
-					var showDiff = options.Flags(SolverResultFormattingOptions.ShowDifficulty) && info.ShowDifficulty;
+					var showDiff = options.Flags(SolverResultFormattingOptions.ShowDifficulty);
 
 					var d = $"({info.Difficulty,5:0.0}";
 					var s = $"{i + 1,4}";
@@ -499,7 +499,7 @@ public sealed record LogicalSolverResult(scoped in Grid Puzzle) :
 
 			for (var i = stepsCount - 1; i >= 0; i--)
 			{
-				if (steps[i] is { ShowDifficulty: true } step and not SingleStep)
+				if (steps[i] is var step and not SingleStep)
 				{
 					return (i, step);
 				}

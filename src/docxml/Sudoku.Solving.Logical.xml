@@ -12543,21 +12543,6 @@ if (student is (name: var name, age: >= 18))
             Provides a basic logical solving step.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.IStep.ShowDifficulty">
-            <summary>
-            <para>
-            Indicates whether the difficulty rating of this technique should be
-            shown in the output screen. Some techniques such as <b>Gurth's symmetrical placement</b>
-            doesn't need to show the difficulty (because the difficulty of this technique
-            is unstable).
-            </para>
-            <para>
-            If the value is <see langword="true"/>, the analysis result won't show the difficulty
-            of this instance.
-            </para>
-            <para>The default value is <see langword="true"/>.</para>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Logical.IStep.Name">
             <summary>
             Indicates the technique name. The technique name are all stored in the resource dictionary,

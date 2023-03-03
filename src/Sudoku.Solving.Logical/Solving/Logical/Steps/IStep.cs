@@ -6,29 +6,6 @@
 public interface IStep : IVisual
 {
 	/// <summary>
-	/// <para>
-	/// Indicates whether the difficulty rating of this technique should be
-	/// shown in the output screen. Some techniques such as <b>Gurth's symmetrical placement</b>
-	/// doesn't need to show the difficulty (because the difficulty of this technique
-	/// is unstable).
-	/// </para>
-	/// <para>
-	/// If the value is <see langword="true"/>, the analysis result won't show the difficulty
-	/// of this instance.
-	/// </para>
-	/// <para>The default value is <see langword="true"/>.</para>
-	/// </summary>
-	sealed bool ShowDifficulty
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => GetType().GetCustomAttribute<StepDisplayingFeatureAttribute>() switch
-		{
-			{ Features: var f } => !f.Flags(StepDisplayingFeature.HideDifficultyRating),
-			null => true
-		};
-	}
-
-	/// <summary>
 	/// Indicates the technique name. The technique name are all stored in the resource dictionary,
 	/// you can find them in the <c>Resources</c> folder (Type <see cref="MergedResources"/>).
 	/// </summary>

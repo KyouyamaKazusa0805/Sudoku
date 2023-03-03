@@ -40,12 +40,7 @@ internal static class AnalyzeConversion
 
 	public static IEnumerable<Inline> GetInlinesOfTooltip(SolvingPathStep s)
 	{
-		if (s is not
-			{
-				Index: var index,
-				DisplayKinds: var displayKind,
-				Step: { Name: var name, ShowDifficulty: var showDifficulty, Difficulty: var difficulty } step
-			})
+		if (s is not { Index: var index, DisplayKinds: var displayKind, Step: { Name: var name, Difficulty: var difficulty } step })
 		{
 			throw new ArgumentException($"The argument '{nameof(s)}' is invalid.", nameof(s));
 		}
@@ -74,7 +69,7 @@ internal static class AnalyzeConversion
 
 			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueDifficultyRating") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
-			result.Add(new Run { Text = showDifficulty ? difficulty.ToString("0.0") : "?" });
+			result.Add(new Run { Text = difficulty.ToString("0.0") });
 		}
 
 		if (displayKind.Flags(StepTooltipDisplayKind.SimpleDescription))
