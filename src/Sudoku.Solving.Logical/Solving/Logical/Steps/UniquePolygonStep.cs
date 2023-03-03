@@ -33,16 +33,7 @@ internal abstract record UniquePolygonStep(ConclusionList Conclusions, ViewList 
 	/// <inheritdoc/>
 	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UniquePolygonType{Type}");
 
+	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	/// <summary>
-	/// Indicates the digits string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-
-	/// <summary>
-	/// Indicates the cells string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string CellsStr() => Map.ToString();
+	private protected string CellsStr => Map.ToString();
 }

@@ -12,4 +12,8 @@ internal sealed record UniquePolygonType1Step(ConclusionList Conclusions, ViewLi
 {
 	/// <inheritdoc/>
 	public override int Type => 1;
+
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { DigitsStr, CellsStr } }, { "zh", new[] { DigitsStr, CellsStr } } };
 }

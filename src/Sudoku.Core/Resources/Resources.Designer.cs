@@ -4030,7 +4030,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in cells {1}.
         /// </summary>
         public static string TechniqueFormat_UniquePolygonType1Step {
             get {
@@ -4039,7 +4039,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} with the extra digit {ExtraDigitStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in cells {1} with the extra digit {2}.
         /// </summary>
         public static string TechniqueFormat_UniquePolygonType2Step {
             get {
@@ -4048,7 +4048,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} with the digits {ExtraDigitsStr} in cells {ExtraCellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in cells {1} with the digits {2} in cells {3}.
         /// </summary>
         public static string TechniqueFormat_UniquePolygonType3Step {
             get {
@@ -4057,7 +4057,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} with the conjugate house {ConjHouseStr} of the extra digits {ExtraCombStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in cells {1} with the conjugate house {2} of the extra digits {3}.
         /// </summary>
         public static string TechniqueFormat_UniquePolygonType4Step {
             get {

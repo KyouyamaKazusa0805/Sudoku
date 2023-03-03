@@ -26,10 +26,15 @@ internal sealed record UniquePolygonType3Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, ExtraCells.Count * .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr, ExtraDigitsStr, ExtraCellsStr } },
+			{ "zh", new[] { DigitsStr, CellsStr, ExtraCellsStr, ExtraDigitsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ExtraDigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
+	private string ExtraDigitsStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string ExtraCellsStr() => ExtraCells.ToString();
+	private string ExtraCellsStr => ExtraCells.ToString();
 }

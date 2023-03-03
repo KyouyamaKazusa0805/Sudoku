@@ -24,10 +24,15 @@ internal sealed record UniquePolygonType4Step(
 	/// <inheritdoc/>
 	public override int Type => 4;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr, ConjHouseStr, ExtraCombStr } },
+			{ "zh", new[] { DigitsStr, CellsStr, ExtraCombStr, ConjHouseStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ExtraCombStr() => DigitMaskFormatter.Format(ExtraMask, FormattingMode.Normal);
+	private string ExtraCombStr => DigitMaskFormatter.Format(ExtraMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string ConjHouseStr() => ConjugateHouse.ToString();
+	private string ConjHouseStr => ConjugateHouse.ToString();
 }

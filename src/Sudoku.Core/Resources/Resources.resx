@@ -442,16 +442,16 @@
     <value>Digits {0} and {1} in cells {2} with the conjugate pair {3}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType1Step" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in cells {CellsStr} =&gt; {ElimStr}</value>
+    <value>{0} in cells {1}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType2Step" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in cells {CellsStr} with the extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>{0} in cells {1} with the extra digit {2}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType3Step" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in cells {CellsStr} with the digits {ExtraDigitsStr} in cells {ExtraCellsStr} =&gt; {ElimStr}</value>
+    <value>{0} in cells {1} with the digits {2} in cells {3}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType4Step" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in cells {CellsStr} with the conjugate house {ConjHouseStr} of the extra digits {ExtraCombStr} =&gt; {ElimStr}</value>
+    <value>{0} in cells {1} with the conjugate house {2} of the extra digits {3}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangle2DOr3XStep" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with X = {XDigitStr}, Y = {YDigitStr} and a bi-value cell {XYCellsStr} =&gt; {ElimStr}</value>

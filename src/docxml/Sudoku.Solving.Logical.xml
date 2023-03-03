@@ -11268,16 +11268,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonStep.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonStep.DigitsStr">
-            <summary>
-            Indicates the digits string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniquePolygonStep.CellsStr">
-            <summary>
-            Indicates the cells string.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniquePolygonType1Step">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 1</b> technique.
@@ -11297,6 +11287,9 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType1Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniquePolygonType2Step">
@@ -11326,6 +11319,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniquePolygonType3Step">
@@ -11362,6 +11358,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniquePolygonType4Step">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 4</b> technique.
@@ -11394,6 +11393,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquePolygonType4Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangle2DOr3XStep">

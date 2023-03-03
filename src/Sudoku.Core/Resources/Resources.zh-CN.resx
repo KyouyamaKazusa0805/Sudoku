@@ -448,16 +448,16 @@
     <value>数字 {0} 和 {1} 位于单元格 {2} 里构成结构，带有共轭对 {3}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType1Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里 =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于单元格 {1} 里</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType2Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于单元格 {1} 里，带有一个额外数字 {2}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType3Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，在单元格 {ExtraCellsStr} 里带有额外数字 {ExtraDigitsStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于单元格 {1} 里，在单元格 {2} 里带有额外数字 {3}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType4Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个关于数字 {ExtraCombStr} 的共轭组，位于单元格 {ConjHouseStr} 里 =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于单元格 {1} 里，带有一个关于数字 {2} 的共轭区域，位于单元格 {3} 里</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangle2DOr3XStep" xml:space="preserve">
     <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，X 为 {XDigitStr}、Y 为 {YDigitStr}、双值格为 {XYCellsStr} =&gt; {ElimStr}</value>
