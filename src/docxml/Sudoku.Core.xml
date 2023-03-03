@@ -9041,16 +9041,6 @@ if (student is (name: var name, age: >= 18))
             </para>
             </summary>
         </member>
-        <member name="T:Sudoku.Text.ResourceTextFormatterAttribute">
-            <summary>
-            Marks on a method to tell the user the method is only used for the formatting.
-            This attribute implies two things:
-            <list type="number">
-            <item>The name of the method is appeared in resource dictionary.</item>
-            <item>The method can only be invoked by reflection.</item>
-            </list>
-            </summary>
-        </member>
         <member name="T:System.Text.RegularExpressions.Generated.EliminationPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the EliminationPattern method.</summary>
         </member>
