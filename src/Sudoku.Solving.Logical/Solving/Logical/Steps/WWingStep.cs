@@ -25,13 +25,17 @@ internal sealed record WWingStep(ConclusionList Conclusions, ViewList Views, int
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { StartCellStr, EndCellStr, ConjStr } },
+			{ "zh", new[] { StartCellStr, EndCellStr, ConjStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string StartCellStr() => RxCyNotation.ToCellString(StartCell);
+	private string StartCellStr => RxCyNotation.ToCellString(StartCell);
 
-	[ResourceTextFormatter]
-	internal string EndCellStr() => RxCyNotation.ToCellString(EndCell);
+	private string EndCellStr => RxCyNotation.ToCellString(EndCell);
 
-	[ResourceTextFormatter]
-	internal string ConjStr() => ConjugatePair.ToString();
+	private string ConjStr => ConjugatePair.ToString();
 }

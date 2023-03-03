@@ -463,25 +463,25 @@
     <value>数字 {0} 和 {1} 在结构 {2} 里，X 为 {3}、Y 为 {4}、双值格为 {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleType1Step" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里 =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 在结构 {2} 里</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleType2Step" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 在结构 {2} 里，带额外数字 {3}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleType3Step" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带额外数字 {DigitsStr} {OnlyKeywordZhCn}在区域 {HouseStr} 的 {CellsStr} 这几格里{AppearLimitKeyword} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 在结构 {2} 里，带额外数字 {3} {4}在区域 {5} 的 {6} 这几格里{7}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithConjugatePairStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，并带共轭对 {ConjPairsStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 在结构 {2} 里，并带共轭对 {3}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithSueDeCoqStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带一个简化版的融合待定数组存在于单元格 {MergedCellsStr} 里，涉及数字 {DigitsStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 在结构 {2} 里，带一个简化版的融合待定数组存在于单元格 {3} 里，涉及数字 {4}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithUnknownCoveringStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带代数结构：设单元格 {TargetCellStr} 填入 X（X 是 {DigitsStr} 其一），则四个单元格将构成关于 X 和数字 {ExtraDigitStr} 的唯一矩形致命形式 =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 在结构 {2} 里，带代数结构：设单元格 {3} 填入 X（X 是 {4} 其一），则四个单元格将构成关于 X 和数字 {5} 的唯一矩形致命形式</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithWingStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带有 Wing 结构，使用 UR 的单元格为拐点，分支分别为 {BranchesStr}，涉及数字 {DigitsStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 在结构 {2} 里，带有 Wing 结构，使用 UR 的单元格为拐点，分支分别为 {3}，涉及数字 {4}</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType1Step" xml:space="preserve">
     <value>如果候选数 {0} 为假，则位于单元格 {1} 的数字 {2} 将构成致命形式</value>
@@ -496,7 +496,7 @@
     <value>如果共轭区域 {0} 无法填入数字 {1} 或者 {2} 的话，数字 {3} 在单元格 {4} 里将形成致命形式</value>
   </data>
   <data name="TechniqueFormat_WWingStep" xml:space="preserve">
-    <value>{Name}：从 {StartCellStr} 到 {EndCellStr}，共轭对为 {ConjStr} =&gt; {ElimStr}</value>
+    <value>从 {0} 到 {1}，共轭对为 {2}</value>
   </data>
   <data name="TrueKeyword" xml:space="preserve">
     <value>真</value>

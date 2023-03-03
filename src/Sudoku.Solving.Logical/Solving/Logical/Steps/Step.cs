@@ -35,13 +35,8 @@ internal abstract record Step(ConclusionList Conclusions, ViewList Views) : ISte
 	/// <inheritdoc/>
 	public virtual ExtraDifficultyCase[]? ExtraDifficultyCases => null;
 
-#if true
-	/// <inheritdoc/>
-	public virtual IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
-#else
 	/// <inheritdoc/>
 	public abstract IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts { get; }
-#endif
 
 	/// <inheritdoc cref="IStep.ConclusionText"/>
 	protected string ConclusionText => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);

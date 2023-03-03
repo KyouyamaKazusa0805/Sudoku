@@ -43,13 +43,17 @@ internal sealed record UniqueRectangleWithUnknownCoveringStep(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string TargetCellStr() => RxCyNotation.ToCellString(TargetCell);
+	private string TargetCellStr => RxCyNotation.ToCellString(TargetCell);
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format((short)(1 << Digit1 | 1 << Digit2), R["OrKeywordWithSpaces"]!);
+	private string DigitsStr => DigitMaskFormatter.Format((short)(1 << Digit1 | 1 << Digit2), R["OrKeywordWithSpaces"]!);
 
-	[ResourceTextFormatter]
-	internal string ExtraDigitStr() => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

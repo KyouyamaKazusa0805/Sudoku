@@ -58,16 +58,20 @@ internal sealed record UniqueRectangleWithWingStep(
 				{
 					Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => .2M,
 					Technique.UniqueRectangleXyzWing or Technique.AvoidableRectangleXyzWing => .3M,
-					Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M,
-					_ => throw new NotSupportedException("The specified technique code is not supported.")
+					Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M
 				}
 			)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, BranchesStr, DigitsStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, BranchesStr, DigitsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string BranchesStr() => Branches.ToString();
+	private string BranchesStr => Branches.ToString();
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 }

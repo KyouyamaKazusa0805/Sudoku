@@ -34,6 +34,9 @@ internal sealed record SeniorExocetStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraHouse, ContainsExtraHouses ? 0 : .2M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
+
 	private string AdditionalFormat
 	{
 		get

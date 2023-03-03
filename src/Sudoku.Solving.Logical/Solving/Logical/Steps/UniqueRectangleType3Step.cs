@@ -70,19 +70,21 @@ internal sealed record UniqueRectangleType3Step(
 			new(ExtraDifficultyCaseNames.Size, PopCount((uint)ExtraDigitsMask) * .1M)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, DigitsStr, OnlyKeyword, CellsStr, HouseStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, DigitsStr, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeyword } }
+		};
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string OnlyKeyword() => IsNaked ? string.Empty : "only ";
+	private string OnlyKeyword => IsNaked ? string.Empty : "only ";
 
-	[ResourceTextFormatter]
-	internal string OnlyKeywordZhCn() => R["Only"]!;
+	private string OnlyKeywordZhCn => R["Only"]!;
 
-	[ResourceTextFormatter]
-	internal string HouseStr() => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseFormatter.Format(1 << House);
 
-	[ResourceTextFormatter]
-	internal string AppearLimitKeyword() => R["Appear"]!;
+	private string AppearLimitKeyword => R["Appear"]!;
 }

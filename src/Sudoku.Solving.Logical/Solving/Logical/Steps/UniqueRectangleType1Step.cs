@@ -34,4 +34,8 @@ internal sealed record UniqueRectangleType1Step(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
+
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { D1Str, D2Str, CellsStr } }, { "zh", new[] { D1Str, D2Str, CellsStr } } };
 }

@@ -12,4 +12,7 @@ internal sealed record BivalueUniversalGraveType1Step(ConclusionList Conclusions
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
 }

@@ -53,24 +53,28 @@ internal record UniqueRectangleWithConjugatePairStep(
 	public sealed override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ConjugatePair, ConjugatePairs.Length * .2M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, Prefix, Suffix, ConjPairsStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, ConjPairsStr } }
+		};
 
-	/// <summary>
-	/// Indicates the conjugate pair string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string ConjPairsStr()
+	private string ConjPairsStr
 	{
-		const string separator = ", ";
+		get
+		{
+			const string separator = ", ";
 
-		scoped var sb = new StringHandler(100);
-		sb.AppendRangeWithSeparator(ConjugatePairs, separator);
+			scoped var sb = new StringHandler(100);
+			sb.AppendRangeWithSeparator(ConjugatePairs, separator);
 
-		return sb.ToStringAndClear();
+			return sb.ToStringAndClear();
+		}	
 	}
 
-	[ResourceTextFormatter]
-	internal string Prefix() => ConjugatePairs.Length == 1 ? "a " : string.Empty;
+	private string Prefix => ConjugatePairs.Length == 1 ? "a " : string.Empty;
 
-	[ResourceTextFormatter]
-	internal string Suffix() => ConjugatePairs.Length == 1 ? string.Empty : "s";
+	private string Suffix => ConjugatePairs.Length == 1 ? string.Empty : "s";
 }

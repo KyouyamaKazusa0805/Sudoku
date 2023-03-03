@@ -4129,7 +4129,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleType1Step {
             get {
@@ -4138,7 +4138,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the extra digit {ExtraDigitStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with the extra digit {3}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleType2Step {
             get {
@@ -4147,7 +4147,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the digit {DigitsStr} in {OnlyKeyword}cells {CellsStr} in {HouseStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with the digit {3} in {4}cells {5} in {6}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleType3Step {
             get {
@@ -4156,7 +4156,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with {Prefix}conjugate pair{Suffix} {ConjPairsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with {3}conjugate pair{4} {5}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleWithConjugatePairStep {
             get {
@@ -4165,7 +4165,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a generalized Sue de Coq in cells {MergedCellsStr} of digits {DigitsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with a generalized Sue de Coq in cells {3} of digits {4}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleWithSueDeCoqStep {
             get {
@@ -4174,7 +4174,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with unknown covering: Suppose {TargetCellStr} is filled with the unknown digit X (X is {DigitsStr}), then 4 cells form a UR deadly pattern of digit X and {ExtraDigitStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with unknown covering: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleWithUnknownCoveringStep {
             get {
@@ -4183,7 +4183,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a wing (pivots: {PivotsStr}, with digits: {DigitsStr} in cells {CellsStr}) =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with a wing (pivots: {3}, with digits: {4} in cells {2}).
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleWithWingStep {
             get {
@@ -4192,7 +4192,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} to {1} with conjugate pair {2}.
         /// </summary>
         public static string TechniqueFormat_WWingStep {
             get {

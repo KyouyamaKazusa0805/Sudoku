@@ -9,6 +9,7 @@
 /// </list>
 /// </summary>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+[Obsolete("This type is being deprecated.", false)]
 public sealed class ResourceTextFormatterAttribute : Attribute
 {
 }

@@ -457,28 +457,28 @@
     <value>Digits {0} and {1} in {2}, with X = {3}, Y = {4} and a bi-value cell {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleType1Step" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleType2Step" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2}, with the extra digit {3}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleType3Step" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the digit {DigitsStr} in {OnlyKeyword}cells {CellsStr} in {HouseStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2}, with the digit {3} in {4}cells {5} in {6}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithConjugatePairStep" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with {Prefix}conjugate pair{Suffix} {ConjPairsStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2} with {3}conjugate pair{4} {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType1Or2Step" xml:space="preserve">
     <value>Digits {0} and {1} in {2} with guardian: digit {3} in cells {4}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithSueDeCoqStep" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a generalized Sue de Coq in cells {MergedCellsStr} of digits {DigitsStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2}, with a generalized Sue de Coq in cells {3} of digits {4}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithUnknownCoveringStep" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with unknown covering: Suppose {TargetCellStr} is filled with the unknown digit X (X is {DigitsStr}), then 4 cells form a UR deadly pattern of digit X and {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2}, with unknown covering: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithWingStep" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a wing (pivots: {PivotsStr}, with digits: {DigitsStr} in cells {CellsStr}) =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in {2}, with a wing (pivots: {3}, with digits: {4} in cells {2})</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType1Step" xml:space="preserve">
     <value>Digits {0} in cells {1} will form a deadly pattern if the candidate {2} is false</value>
@@ -493,7 +493,7 @@
     <value>Digits {0} in cells {1} can avoid to form a deadly pattern if and only if the conjugate house {2} can't set the digit neither {3} nor {4}</value>
   </data>
   <data name="TechniqueFormat_WWingStep" xml:space="preserve">
-    <value>{Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}</value>
+    <value>{0} to {1} with conjugate pair {2}</value>
   </data>
   <data name="TrueKeyword" xml:space="preserve">
     <value>true</value>

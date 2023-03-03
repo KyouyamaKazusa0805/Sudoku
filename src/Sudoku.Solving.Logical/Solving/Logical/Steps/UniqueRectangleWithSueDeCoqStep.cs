@@ -81,10 +81,15 @@ internal sealed record UniqueRectangleWithSueDeCoqStep(
 			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0)
 		};
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string MergedCellsStr() => (LineCells | BlockCells).ToString();
+	private string MergedCellsStr => (LineCells | BlockCells).ToString();
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format((short)(LineMask | BlockMask), FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format((short)(LineMask | BlockMask), FormattingMode.Normal);
 }

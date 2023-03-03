@@ -7110,6 +7110,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType1Step.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.BivalueUniversalGraveType2Step">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
@@ -10262,6 +10265,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.SeniorExocetStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.SeniorExocetStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.SingleDigitPatternStep">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
@@ -11969,6 +11975,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType1Step.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleType2Step">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
@@ -12007,6 +12016,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step">
@@ -12116,6 +12128,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
@@ -12165,10 +12180,8 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.ConjPairsStr">
-            <summary>
-            Indicates the conjugate pair string.
-            </summary>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithConjugatePairStep.FormatInterpolatedParts">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep">
             <summary>
@@ -12286,6 +12299,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithSueDeCoqStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
@@ -12328,6 +12344,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithUnknownCoveringStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep">
@@ -12381,6 +12400,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueRectangleWithWingStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.WingStep">
@@ -12454,6 +12476,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.WWingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.WWingStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.InvalidStep">

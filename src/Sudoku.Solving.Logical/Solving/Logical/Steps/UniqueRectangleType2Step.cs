@@ -42,7 +42,13 @@ internal sealed record UniqueRectangleType2Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { D1Str, D2Str, CellsStr, ExtraDigitStr } },
+			{ "zh", new[] { D1Str, D2Str, CellsStr, ExtraDigitStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ExtraDigitStr() => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }
