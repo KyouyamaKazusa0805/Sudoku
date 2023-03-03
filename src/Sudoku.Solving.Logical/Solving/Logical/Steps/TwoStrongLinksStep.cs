@@ -33,13 +33,17 @@ internal sealed record TwoStrongLinksStep(ConclusionList Conclusions, ViewList V
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitStr, BaseHouseStr, TargetHouseStr } },
+			{ "zh", new[] { DigitStr, BaseHouseStr, TargetHouseStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string DigitStr() => (Digit + 1).ToString();
+	private string DigitStr => (Digit + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string BaseHouseStr() => HouseFormatter.Format(1 << BaseHouse);
+	private string BaseHouseStr => HouseFormatter.Format(1 << BaseHouse);
 
-	[ResourceTextFormatter]
-	internal string TargetHouseStr() => HouseFormatter.Format(1 << TargetHouse);
+	private string TargetHouseStr => HouseFormatter.Format(1 << TargetHouse);
 }

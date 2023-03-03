@@ -3931,7 +3931,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digit {DigitStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digit {DigitStr}.
         /// </summary>
         public static string TechniqueFormat_TemplateStep {
             get {
@@ -3940,7 +3940,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseHouseStr}\\{TargetHouseStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {0} in {1}\{2}.
         /// </summary>
         public static string TechniqueFormat_TwoStrongLinksStep {
             get {
@@ -3949,7 +3949,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in cells {2}.
         /// </summary>
         public static string TechniqueFormat_UniqueLoopType1Step {
             get {
@@ -3958,7 +3958,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the extra digit {ExtraDigitStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in cells {2} with the extra digit {3}.
         /// </summary>
         public static string TechniqueFormat_UniqueLoopType2Step {
             get {
@@ -3967,7 +3967,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the naked {SubsetName} with extra digits {DigitsStr} in cells {SubsetCellsStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in cells {2} with the naked {3} with extra digits {4} in cells {5}.
         /// </summary>
         public static string TechniqueFormat_UniqueLoopType3Step {
             get {
@@ -3976,7 +3976,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in cells {2} with the conjugate pair {3}.
         /// </summary>
         public static string TechniqueFormat_UniqueLoopType4Step {
             get {
@@ -3985,7 +3985,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} in cells {1} will form a deadly pattern if the candidate {2} is false.
         /// </summary>
         public static string TechniqueFormat_UniqueMatrixType1Step {
             get {
@@ -3994,7 +3994,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the extra digit {ExtraDigitStr} is all false in the pattern =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} in cells {1} will form a deadly pattern if the extra digit {2} is all false in the pattern.
         /// </summary>
         public static string TechniqueFormat_UniqueMatrixType2Step {
             get {
@@ -4003,7 +4003,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} in cells {1} can be avoid to form a deadly pattern if and only if the digits {2} in cells {3} form a naked {4}.
         /// </summary>
         public static string TechniqueFormat_UniqueMatrixType3Step {
             get {
@@ -4012,7 +4012,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate house {ConjStr} can&apos;t set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Digits {0} in cells {1} can avoid to form a deadly pattern if and only if the conjugate house {2} can&apos;t set the digit neither {3} nor {4}.
         /// </summary>
         public static string TechniqueFormat_UniqueMatrixType4Step {
             get {
@@ -4021,7 +4021,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Enumerates all possible cases filling the chute {ChuteIndexStr} (i.e. houses {HousesStr}), we can find two digits that cannot cover =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to Enumerates all possible cases filling the chute {0} (i.e. houses {1}), we can find two digits that cannot cover.
         /// </summary>
         public static string TechniqueFormat_UniquenessClueCoverType2Step {
             get {

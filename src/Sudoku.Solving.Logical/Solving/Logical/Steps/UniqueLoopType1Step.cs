@@ -16,4 +16,12 @@ internal sealed record UniqueLoopType1Step(ConclusionList Conclusions, ViewList 
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
+
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { Digit1Str, Digit2Str, LoopStr } },
+			{ "zh", new[] { Digit1Str, Digit2Str, LoopStr } }
+		};
 }

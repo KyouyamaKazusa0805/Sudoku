@@ -27,7 +27,13 @@ internal sealed record UniqueLoopType4Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { Digit1Str, Digit2Str, LoopStr, ConjStr } },
+			{ "zh", new[] { Digit1Str, Digit2Str, LoopStr, ConjStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ConjStr() => ConjugatePair.ToString();
+	private string ConjStr => ConjugatePair.ToString();
 }

@@ -23,13 +23,17 @@ internal sealed record UniqueMatrixType4Step(
 	/// <inheritdoc/>
 	public override int Type => 4;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr, ConjStr, Digit1Str, Digit2Str } },
+			{ "zh", new[] { ConjStr, Digit1Str, Digit2Str, DigitsStr, CellsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ConjStr() => ConjugateHouse.ToString();
+	private string ConjStr => ConjugateHouse.ToString();
 
-	[ResourceTextFormatter]
-	internal string Digit1Str() => (Digit1 + 1).ToString();
+	private string Digit1Str => (Digit1 + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string Digit2Str() => (Digit2 + 1).ToString();
+	private string Digit2Str => (Digit2 + 1).ToString();
 }

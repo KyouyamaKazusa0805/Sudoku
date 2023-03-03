@@ -19,7 +19,13 @@ internal sealed record UniqueMatrixType1Step(
 	/// <inheritdoc/>
 	public override int Type => 1;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr, CandidateStr } },
+			{ "zh", new[] { CandidateStr, CellsStr, DigitsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string CandidateStr() => (CandidateMap.Empty + Candidate).ToString();
+	private string CandidateStr => (CandidateMap.Empty + Candidate).ToString();
 }

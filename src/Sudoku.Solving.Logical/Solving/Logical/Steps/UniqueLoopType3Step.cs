@@ -33,13 +33,17 @@ internal sealed record UniqueLoopType3Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr } },
+			{ "zh", new[] { Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string SubsetCellsStr() => SubsetCells.ToString();
+	private string SubsetCellsStr => SubsetCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string SubsetName() => R[$"SubsetNamesSize{SubsetCells.Count + 1}"]!;
+	private string SubsetName => R[$"SubsetNamesSize{SubsetCells.Count + 1}"]!;
 }

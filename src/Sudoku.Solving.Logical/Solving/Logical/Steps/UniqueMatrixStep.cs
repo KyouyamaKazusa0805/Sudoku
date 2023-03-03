@@ -36,16 +36,7 @@ internal abstract record UniqueMatrixStep(ConclusionList Conclusions, ViewList V
 	/// <inheritdoc/>
 	public sealed override Rarity Rarity => Rarity.HardlyEver;
 
+	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	/// <summary>
-	/// Indicates the digits string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string DigitsStr() => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
-
-	/// <summary>
-	/// Indicates the cells string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string CellsStr() => Cells.ToString();
+	private protected string CellsStr => Cells.ToString();
 }

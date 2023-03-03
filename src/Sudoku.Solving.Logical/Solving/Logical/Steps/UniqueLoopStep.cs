@@ -39,24 +39,11 @@ internal abstract record UniqueLoopStep(ConclusionList Conclusions, ViewList Vie
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Length, (A004526(Loop.Count) - 3) * .1M) };
 
+	private protected string LoopStr => Loop.ToString();
 
-	/// <summary>
-	/// Indicates the loop string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string LoopStr() => Loop.ToString();
+	private protected string Digit1Str => (Digit1 + 1).ToString();
 
-	/// <summary>
-	/// Indicates the digit 1 string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string Digit1Str() => (Digit1 + 1).ToString();
-
-	/// <summary>
-	/// Indicates the digit 2 string.
-	/// </summary>
-	[ResourceTextFormatter]
-	internal string Digit2Str() => (Digit2 + 1).ToString();
+	private protected string Digit2Str => (Digit2 + 1).ToString();
 
 
 	/// <inheritdoc/>

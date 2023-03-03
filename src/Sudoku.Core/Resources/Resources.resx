@@ -424,22 +424,22 @@
     <value>{0}({1}) - {2}({3}) &amp; {4}({5})</value>
   </data>
   <data name="TechniqueFormat_TemplateStep" xml:space="preserve">
-    <value>{Name}: Digit {DigitStr} =&gt; {ElimStr}</value>
+    <value>Digit {DigitStr}</value>
   </data>
   <data name="TechniqueFormat_TwoStrongLinksStep" xml:space="preserve">
-    <value>{Name}: {DigitStr} in {BaseHouseStr}\\{TargetHouseStr} =&gt; {ElimStr}</value>
+    <value>{0} in {1}\{2}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType1Step" xml:space="preserve">
-    <value>{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in cells {2}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType2Step" xml:space="preserve">
-    <value>{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in cells {2} with the extra digit {3}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType3Step" xml:space="preserve">
-    <value>{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the naked {SubsetName} with extra digits {DigitsStr} in cells {SubsetCellsStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in cells {2} with the naked {3} with extra digits {4} in cells {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType4Step" xml:space="preserve">
-    <value>{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}</value>
+    <value>Digits {0} and {1} in cells {2} with the conjugate pair {3}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType1Step" xml:space="preserve">
     <value>{Name}: {DigitsStr} in cells {CellsStr} =&gt; {ElimStr}</value>
@@ -481,16 +481,16 @@
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with a wing (pivots: {PivotsStr}, with digits: {DigitsStr} in cells {CellsStr}) =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType1Step" xml:space="preserve">
-    <value>{Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false =&gt; {ElimStr}</value>
+    <value>Digits {0} in cells {1} will form a deadly pattern if the candidate {2} is false</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType2Step" xml:space="preserve">
-    <value>{Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the extra digit {ExtraDigitStr} is all false in the pattern =&gt; {ElimStr}</value>
+    <value>Digits {0} in cells {1} will form a deadly pattern if the extra digit {2} is all false in the pattern</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType3Step" xml:space="preserve">
-    <value>{Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} =&gt; {ElimStr}</value>
+    <value>Digits {0} in cells {1} can be avoid to form a deadly pattern if and only if the digits {2} in cells {3} form a naked {4}</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType4Step" xml:space="preserve">
-    <value>{Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate house {ConjStr} can't set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}</value>
+    <value>Digits {0} in cells {1} can avoid to form a deadly pattern if and only if the conjugate house {2} can't set the digit neither {3} nor {4}</value>
   </data>
   <data name="TechniqueFormat_WWingStep" xml:space="preserve">
     <value>{Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}</value>
@@ -1405,7 +1405,7 @@
     <value>, </value>
   </data>
   <data name="TechniqueFormat_UniquenessClueCoverType2Step" xml:space="preserve">
-    <value>{Name}: Enumerates all possible cases filling the chute {ChuteIndexStr} (i.e. houses {HousesStr}), we can find two digits that cannot cover =&gt; {ElimStr}</value>
+    <value>Enumerates all possible cases filling the chute {0} (i.e. houses {1}), we can find two digits that cannot cover</value>
   </data>
   <data name="UniquenessClueCoverType2" xml:space="preserve">
     <value>Uniqueness Clue Cover Type 2</value>

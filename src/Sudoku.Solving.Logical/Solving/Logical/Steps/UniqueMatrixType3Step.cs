@@ -28,13 +28,17 @@ internal sealed record UniqueMatrixType3Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, PopCount((uint)ExtraDigitsMask) * .1M) };
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?>
+		{
+			{ "en", new[] { DigitsStr, CellsStr, ExtraDigitStr, ExtraCellsStr, SubsetName } },
+			{ "zh", new[] { ExtraDigitStr, ExtraCellsStr, SubsetName, DigitsStr, CellsStr } }
+		};
 
-	[ResourceTextFormatter]
-	internal string ExtraCellsStr() => ExtraCells.ToString();
+	private string ExtraCellsStr => ExtraCells.ToString();
 
-	[ResourceTextFormatter]
-	internal string ExtraDigitStr() => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
+	private string ExtraDigitStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
-	[ResourceTextFormatter]
-	internal string SubsetName() => R[$"SubsetNamesSize{ExtraCells.Count + 1}"]!;
+	private string SubsetName => R[$"SubsetNamesSize{ExtraCells.Count + 1}"]!;
 }

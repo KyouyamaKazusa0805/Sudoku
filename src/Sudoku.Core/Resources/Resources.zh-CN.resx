@@ -430,22 +430,22 @@
     <value>{0}({1}) - {2}({3}) &amp; {4}({5})</value>
   </data>
   <data name="TechniqueFormat_TemplateStep" xml:space="preserve">
-    <value>{Name}：关于数字 {DigitStr} =&gt; {ElimStr}</value>
+    <value>关于数字 {DigitStr}</value>
   </data>
   <data name="TechniqueFormat_TwoStrongLinksStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitStr} 位于区域 {BaseHouseStr}\\{TargetHouseStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 位于区域 {1}\{2}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType1Step" xml:space="preserve">
-    <value>{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构 =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2} 里</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType2Step" xml:space="preserve">
-    <value>{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构，带有额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2} 里构成结构，带额外数字 {3}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType3Step" xml:space="preserve">
-    <value>{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构，带有显性{SubsetName}、额外数字 {DigitsStr}，单元格为 {SubsetCellsStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2} 里构成结构，带有显性{3}、额外数字 {4}，单元格为 {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType4Step" xml:space="preserve">
-    <value>{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构，带有共轭对 {ConjStr} =&gt; {ElimStr}</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2} 里构成结构，带有共轭对 {3}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType1Step" xml:space="preserve">
     <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里 =&gt; {ElimStr}</value>
@@ -484,16 +484,16 @@
     <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带有 Wing 结构，使用 UR 的单元格为拐点，分支分别为 {BranchesStr}，涉及数字 {DigitsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType1Step" xml:space="preserve">
-    <value>{Name}：如果候选数 {CandidateStr} 为假，则位于单元格 {CellsStr} 的数字 {DigitsStr} 将构成致命形式 =&gt; {ElimStr}</value>
+    <value>如果候选数 {0} 为假，则位于单元格 {1} 的数字 {2} 将构成致命形式</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType2Step" xml:space="preserve">
-    <value>{Name}：如果数字 {ExtraDigitStr} 在单元格 {CellsStr} 里全部为假，则剩余数字 {DigitsStr} 在这些格子里将构成致命形式 =&gt; {ElimStr}</value>
+    <value>如果数字 {0} 在单元格 {1} 里全部为假，则剩余数字 {2} 在这些格子里将构成致命形式</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType3Step" xml:space="preserve">
-    <value>{Name}：如果数字 {ExtraDigitStr} 在单元格 {ExtraCellsStr} 里不构成显性{SubsetName}的话，则数字 {DigitsStr} 在单元格 {CellsStr} 里将构成致命形式 =&gt; {ElimStr}</value>
+    <value>如果数字 {0} 在单元格 {1} 里不构成显性{2}的话，则数字 {3} 在单元格 {4} 里将构成致命形式</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType4Step" xml:space="preserve">
-    <value>{Name}：如果共轭区域 {ConjStr} 无法填入数字 {Digit1Str} 或者 {Digit2Str} 的话，数字 {DigitsStr} 在单元格 {CellsStr} 里将形成致命形式 =&gt; {ElimStr}</value>
+    <value>如果共轭区域 {0} 无法填入数字 {1} 或者 {2} 的话，数字 {3} 在单元格 {4} 里将形成致命形式</value>
   </data>
   <data name="TechniqueFormat_WWingStep" xml:space="preserve">
     <value>{Name}：从 {StartCellStr} 到 {EndCellStr}，共轭对为 {ConjStr} =&gt; {ElimStr}</value>
@@ -1699,7 +1699,7 @@
     <value>，</value>
   </data>
   <data name="TechniqueFormat_UniquenessClueCoverType2Step" xml:space="preserve">
-    <value>{Name}：列举第 {ChuteIndexStr} 并排三宫（即 {HousesStr} 这些区域）的全部填数情况，可以发现仍有两个数字无法覆盖 =&gt; {ElimStr}</value>
+    <value>列举第 {0} 并排三宫（即 {1} 这些区域的单元格）的全部填数情况，可以发现仍有两个数字无法覆盖</value>
   </data>
   <data name="UniquenessClueCoverType2" xml:space="preserve">
     <value>唯一性确定值覆盖类型 2</value>

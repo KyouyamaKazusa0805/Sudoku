@@ -27,14 +27,18 @@ internal sealed record UniquenessClueCoverType2Step(
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { ChuteIndexStr, HousesStr } }, { "zh", new[] { ChuteIndexStr, HousesStr } } };
 
-	[ResourceTextFormatter]
-	internal string ChuteIndexStr() => (ChuteIndex + 1).ToString();
+	private string ChuteIndexStr => (ChuteIndex + 1).ToString();
 
-	[ResourceTextFormatter]
-	internal string HousesStr()
+	private string HousesStr
 	{
-		var (h1, h2, h3) = ChuteHouses[ChuteIndex];
-		return HouseFormatter.Format(1 << h1 | 1 << h2 | 1 << h3);
+		get
+		{
+			var (h1, h2, h3) = ChuteHouses[ChuteIndex];
+			return HouseFormatter.Format(1 << h1 | 1 << h2 | 1 << h3);
+		}
 	}
 }

@@ -10679,6 +10679,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.TemplateStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.TemplateStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
@@ -10718,6 +10721,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.TwoStrongLinksStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueLoopStep">
@@ -10775,21 +10781,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopStep.LoopStr">
-            <summary>
-            Indicates the loop string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopStep.Digit1Str">
-            <summary>
-            Indicates the digit 1 string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopStep.Digit2Str">
-            <summary>
-            Indicates the digit 2 string.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Logical.Steps.UniqueLoopStep.Equals(Sudoku.Solving.Logical.Steps.UniqueLoopStep,Sudoku.Solving.Logical.Steps.UniqueLoopStep)">
             <inheritdoc/>
         </member>
@@ -10817,6 +10808,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType1Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType1Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueLoopType2Step">
@@ -10851,6 +10845,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step">
@@ -10898,6 +10895,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueLoopType4Step">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
@@ -10930,6 +10930,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType4Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueLoopType4Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueMatrixStep">
@@ -10982,16 +10985,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.DigitsStr">
-            <summary>
-            Indicates the digits string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Steps.UniqueMatrixStep.CellsStr">
-            <summary>
-            Indicates the cells string.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueMatrixType1Step">
             <summary>
             Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
@@ -11016,6 +11009,9 @@ if (student is (name: var name, age: >= 18))
             <summary>Indicates the true candidate.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType1Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step">
@@ -11045,6 +11041,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step">
@@ -11087,6 +11086,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniqueMatrixType4Step">
             <summary>
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
@@ -11121,6 +11123,9 @@ if (student is (name: var name, age: >= 18))
             <summary>Indicates the cells used as the conjugate house.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniqueMatrixType4Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniquenessClueCoverStep">
@@ -11211,6 +11216,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.Steps.UniquenessClueCoverType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Logical.Steps.UniquePolygonStep">
