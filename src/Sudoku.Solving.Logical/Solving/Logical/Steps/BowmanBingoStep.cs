@@ -38,5 +38,5 @@ internal sealed record BowmanBingoStep(Conclusion[] Conclusions, View[]? Views, 
 	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { "en", new[] { ContradictionSeriesStr } }, { "zh", new[] { ContradictionSeriesStr } } };
 
-	private string ContradictionSeriesStr => ConclusionFormatter.Format(ContradictionLinks.ToArray(), " -> ", false);
+	private string ContradictionSeriesStr => ConclusionFormatter.Format(ContradictionLinks, " -> ", false);
 }

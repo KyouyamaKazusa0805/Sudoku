@@ -39,7 +39,7 @@ internal abstract record Step(Conclusion[] Conclusions, View[]? Views) : IStep
 	public abstract IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts { get; }
 
 	/// <inheritdoc cref="IStep.ConclusionText"/>
-	protected string ConclusionText => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
+	protected string ConclusionText => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
 
 	/// <inheritdoc/>
 	string IStep.ConclusionText => ConclusionText;

@@ -26,5 +26,5 @@ internal sealed record BruteForceStep(Conclusion[] Conclusions, View[]? Views) :
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { "en", new[] { AssignmentStr } }, { "zh", new[] { AssignmentStr } } };
 
-	private string AssignmentStr => ConclusionFormatter.Format(Conclusions.ToArray(), FormattingMode.Normal);
+	private string AssignmentStr => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
 }
