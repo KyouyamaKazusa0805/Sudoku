@@ -4085,6 +4085,116 @@ fixed (short* ptr = instance)
               Looks up a localized string similar to Extended Subset Principle.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Avoidable">
+            <summary>
+              Looks up a localized string similar to Avoidable logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_BiBiPattern">
+            <summary>
+              Looks up a localized string similar to Bi-Bi pattern eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Cannibalism">
+            <summary>
+              Looks up a localized string similar to Cannibalism.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_ConjugatePair">
+            <summary>
+              Looks up a localized string similar to Conjugate Pair logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_ExtraDigit">
+            <summary>
+              Looks up a localized string similar to Extra digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_ExtraHouse">
+            <summary>
+              Looks up a localized string similar to Extra house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_FishShape">
+            <summary>
+              Looks up a localized string similar to Fish shape.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_GeneralizedSwordfish">
+            <summary>
+              Looks up a localized string similar to Generalized swordfish logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Guardian">
+            <summary>
+              Looks up a localized string similar to Guardian logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Hidden">
+            <summary>
+              Looks up a localized string similar to Hidden logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Incompleteness">
+            <summary>
+              Looks up a localized string similar to Incompleteness logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Isolated">
+            <summary>
+              Looks up a localized string similar to Isolated logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Length">
+            <summary>
+              Looks up a localized string similar to Length.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Locked">
+            <summary>
+              Looks up a localized string similar to Locked logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_LockedDigit">
+            <summary>
+              Looks up a localized string similar to Locked digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Mirror">
+            <summary>
+              Looks up a localized string similar to Mirror eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Petals">
+            <summary>
+              Looks up a localized string similar to Petal.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Sashimi">
+            <summary>
+              Looks up a localized string similar to Sashimi logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_Size">
+            <summary>
+              Looks up a localized string similar to Size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_TargetPair">
+            <summary>
+              Looks up a localized string similar to Target pair logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_ValueCell">
+            <summary>
+              Looks up a localized string similar to Value logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.ExtraDifficultyCaseNames_WingSize">
+            <summary>
+              Looks up a localized string similar to Wing branches.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.FalseKeyword">
             <summary>
               Looks up a localized string similar to false.

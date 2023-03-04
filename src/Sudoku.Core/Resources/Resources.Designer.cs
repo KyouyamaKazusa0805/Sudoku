@@ -1096,6 +1096,204 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avoidable logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Avoidable {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Avoidable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-Bi pattern eliminations.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_BiBiPattern {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_BiBiPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannibalism.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Cannibalism {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Cannibalism", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conjugate Pair logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_ConjugatePair {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_ConjugatePair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extra digit.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_ExtraDigit {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_ExtraDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extra house.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_ExtraHouse {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_ExtraHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fish shape.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_FishShape {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_FishShape", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generalized swordfish logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_GeneralizedSwordfish {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_GeneralizedSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardian logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Guardian {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Guardian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Hidden {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Hidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incompleteness logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Incompleteness {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Incompleteness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Isolated logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Isolated {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Isolated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Length {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Length", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Locked {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked digit.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_LockedDigit {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_LockedDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mirror eliminations.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Mirror {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Mirror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Petal.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Petals {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Petals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Sashimi {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Sashimi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_Size {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target pair logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_TargetPair {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_TargetPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_ValueCell {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_ValueCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wing branches.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_WingSize {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_WingSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to false.
         /// </summary>
         public static string FalseKeyword {

@@ -47,11 +47,6 @@ public static class ExtraDifficultyCaseNames
 	public const string Length = nameof(Length);
 
 	/// <summary>
-	/// Indicates the kind is the grouped chains. This field is used for grouped AIC and loops.
-	/// </summary>
-	public const string GroupedChains = nameof(GroupedChains);
-
-	/// <summary>
 	/// Indicates the kind is the conjugate pair. This field is used for deadly patterns of type 4,
 	/// or advanced Unique Rectangle techniques.
 	/// </summary>

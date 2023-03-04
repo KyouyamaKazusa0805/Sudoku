@@ -53,7 +53,7 @@ internal sealed record UniqueRectangleExternalType3Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new ExtraDifficultyCase[]
 		{
-			new(ExtraDifficultyCaseNames.ExtraDigit, PopCount((uint)SubsetDigitsMask) * .1M),
+			new(ExtraDifficultyCaseNames.Size, PopCount((uint)SubsetDigitsMask) * .1M),
 			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
 			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		};
