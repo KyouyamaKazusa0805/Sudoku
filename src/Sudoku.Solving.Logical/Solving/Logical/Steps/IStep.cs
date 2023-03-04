@@ -185,5 +185,5 @@ public interface IStep : IVisual
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
-	protected abstract string ConclusionText { get; }
+	protected string ConclusionText { get; }
 }
