@@ -29,5 +29,10 @@ public enum StepTooltipDisplayKind : int
 	/// <summary>
 	/// Indicates the simple description.
 	/// </summary>
-	SimpleDescription = 1 << 3
+	SimpleDescription = 1 << 3,
+
+	/// <summary>
+	/// Indicates the extra difficulty cases.
+	/// </summary>
+	ExtraDifficultyCases = 1 << 4
 }

@@ -40,7 +40,12 @@ internal static class AnalyzeConversion
 
 	public static IEnumerable<Inline> GetInlinesOfTooltip(SolvingPathStep s)
 	{
-		if (s is not { Index: var index, DisplayKinds: var displayKind, Step: { Name: var name, Difficulty: var difficulty } step })
+		if (s is not
+			{
+				Index: var index,
+				DisplayKinds: var displayKind,
+				Step: { Name: var name, BaseDifficulty: var baseDifficulty, Difficulty: var difficulty, ExtraDifficultyCases: var cases } step
+			})
 		{
 			throw new ArgumentException($"The argument '{nameof(s)}' is invalid.", nameof(s));
 		}
@@ -72,6 +77,32 @@ internal static class AnalyzeConversion
 			result.Add(new Run { Text = difficulty.ToString("0.0") });
 		}
 
+		if (displayKind.Flags(StepTooltipDisplayKind.ExtraDifficultyCases))
+		{
+			f();
+
+			result.Add(new Run { Text = GetString("AnalyzePage_ExtraDifficultyCase") }.SingletonSpan<Bold>());
+			result.Add(new LineBreak());
+
+			switch (cases)
+			{
+				case { Length: not 0 }:
+				{
+					result.Add(new Run { Text = $"{GetString("AnalyzePage_BaseDifficulty")}{baseDifficulty:0.0}" });
+					result.Add(new LineBreak());
+					result.AddRange(g(cases));
+
+					break;
+				}
+				default:
+				{
+					result.Add(new Run { Text = GetString("AnalyzePage_None") });
+
+					break;
+				}
+			}
+		}
+
 		if (displayKind.Flags(StepTooltipDisplayKind.SimpleDescription))
 		{
 			f();
@@ -83,6 +114,22 @@ internal static class AnalyzeConversion
 
 		return result;
 
+
+		static IEnumerable<Inline> g(ExtraDifficultyCase[] cases)
+		{
+			for (var i = 0; i < cases.Length; i++)
+			{
+				var (name, value) = cases[i];
+
+				var nameResourceKey = $"{nameof(ExtraDifficultyCaseNames)}_{name}";
+				yield return new Run { Text = $"{MergedResources.R[nameResourceKey]}{Token("Colon")}+{value:0.0}" };
+
+				if (i != cases.Length - 1)
+				{
+					yield return new LineBreak();
+				}
+			}
+		}
 
 		void f()
 		{

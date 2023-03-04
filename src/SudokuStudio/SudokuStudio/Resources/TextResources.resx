@@ -210,6 +210,9 @@
   <data name="AnalyzePage_BackdoorButton" xml:space="preserve">
     <value>Backdoors</value>
   </data>
+  <data name="AnalyzePage_BaseDifficulty" xml:space="preserve">
+    <value>Base difficulty: </value>
+  </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -300,6 +303,9 @@
   <data name="AnalyzePage_ExceptionThrownTitle" xml:space="preserve">
     <value>Info</value>
   </data>
+  <data name="AnalyzePage_ExtraDifficultyCase" xml:space="preserve">
+    <value>Extra difficulty cases:</value>
+  </data>
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>Failed</value>
   </data>
@@ -368,6 +374,9 @@
   </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>New puzzle</value>
+  </data>
+  <data name="AnalyzePage_None" xml:space="preserve">
+    <value>None</value>
   </data>
   <data name="AnalyzePage_Okay" xml:space="preserve">
     <value>OK</value>

@@ -511,6 +511,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Base difficulty: .
+        /// </summary>
+        internal static string AnalyzePage_BaseDifficulty {
+            get {
+                return ResourceManager.GetString("AnalyzePage_BaseDifficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string AnalyzePage_Cancel {
@@ -781,6 +790,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extra difficulty cases:.
+        /// </summary>
+        internal static string AnalyzePage_ExtraDifficultyCase {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ExtraDifficultyCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed.
         /// </summary>
         internal static string AnalyzePage_FailedToOpenFilePicker {
@@ -984,6 +1002,15 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_NewPuzzle {
             get {
                 return ResourceManager.GetString("AnalyzePage_NewPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string AnalyzePage_None {
+            get {
+                return ResourceManager.GetString("AnalyzePage_None", resourceCulture);
             }
         }
         

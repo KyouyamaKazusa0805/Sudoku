@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines the solving path page.
 /// </summary>
-[DependencyProperty<StepTooltipDisplayKind>("StepTooltipDisplayKind", DefaultValue = StepTooltipDisplayKind.TechniqueName | StepTooltipDisplayKind.DifficultyRating | StepTooltipDisplayKind.SimpleDescription, DocSummary = "Indicates the tooltip display kind.")]
+[DependencyProperty<StepTooltipDisplayKind>("StepTooltipDisplayKind", DefaultValue = StepTooltipDisplayKind.TechniqueName | StepTooltipDisplayKind.DifficultyRating | StepTooltipDisplayKind.SimpleDescription | StepTooltipDisplayKind.ExtraDifficultyCases, DocSummary = "Indicates the tooltip display kind.")]
 [DependencyProperty<LogicalSolverResult>("AnalysisResult", IsNullable = true, DocSummary = "Indicates the analysis result.")]
 public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 {

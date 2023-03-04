@@ -2137,6 +2137,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the simple description.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.ExtraDifficultyCases">
+            <summary>
+            Indicates the extra difficulty cases.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventHandler"/>.
@@ -3180,6 +3185,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Backdoors.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_BaseDifficulty">
+            <summary>
+              Looks up a localized string similar to Base difficulty: .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Cancel">
             <summary>
               Looks up a localized string similar to Cancel.
@@ -3330,6 +3340,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Info.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ExtraDifficultyCase">
+            <summary>
+              Looks up a localized string similar to Extra difficulty cases:.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_FailedToOpenFilePicker">
             <summary>
               Looks up a localized string similar to Failed.
@@ -3443,6 +3458,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_NewPuzzle">
             <summary>
               Looks up a localized string similar to New puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_None">
+            <summary>
+              Looks up a localized string similar to None.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Okay">

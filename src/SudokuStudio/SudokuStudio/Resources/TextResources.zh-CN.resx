@@ -210,6 +210,9 @@
   <data name="AnalyzePage_BackdoorButton" xml:space="preserve">
     <value>查看后门</value>
   </data>
+  <data name="AnalyzePage_BaseDifficulty" xml:space="preserve">
+    <value>基础难度系数：</value>
+  </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -303,6 +306,9 @@
   <data name="AnalyzePage_ExceptionThrownTitle" xml:space="preserve">
     <value>信息</value>
   </data>
+  <data name="AnalyzePage_ExtraDifficultyCase" xml:space="preserve">
+    <value>难度系数追加因素：</value>
+  </data>
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>失败</value>
   </data>
@@ -371,6 +377,9 @@
   </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>新题目</value>
+  </data>
+  <data name="AnalyzePage_None" xml:space="preserve">
+    <value>无</value>
   </data>
   <data name="AnalyzePage_Okay" xml:space="preserve">
     <value>好嘞！</value>
