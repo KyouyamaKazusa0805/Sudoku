@@ -17,22 +17,14 @@
 		<!--Compilation Features-->
 		<Features>strict</Features>
 		<WarningsAsErrors>nullable</WarningsAsErrors>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 	</PropertyGroup>
 
 	<!--Enables the preview features if the project is not the source generators.-->
 	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false' And '$(MSBuildProjectFile.StartsWith(`Sudoku.Diagnostics.CodeAnalysis`))'=='false' And '$(LangVersion)'=='preview'">
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
 		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
-		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 	</PropertyGroup>
-
-	<!--Enables extended analyzers.-->
-	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4-beta1.22518.1">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
 
 	<!--Select the default configuration as 'DEBUG', and set the compilation symbols.-->
 	<Choose>

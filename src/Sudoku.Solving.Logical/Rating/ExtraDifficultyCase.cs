@@ -9,4 +9,4 @@
 /// </param>
 /// <param name="Value">Indicates the value of the target rating.</param>
 /// <seealso cref="ExtraDifficultyCaseNames"/>
-public readonly record struct ExtraDifficultyCase(string Name, decimal Value);
+public readonly record struct ExtraDifficultyCase([ConstantExpected] string Name, decimal Value);
