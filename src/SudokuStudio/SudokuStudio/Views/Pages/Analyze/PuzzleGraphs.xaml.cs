@@ -184,12 +184,12 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage
 	/// <seealso cref="DifficultyDistribution"/>
 	private void UpdateForDifficultyDistribution(LogicalSolverResult? value)
 	{
-		var coll = (ObservableCollection<double>)DifficultyDistribution[0].Values!;
-		coll.Clear();
+		var collection = (ObservableCollection<double>)DifficultyDistribution[0].Values!;
+		collection.Clear();
 
 		if (value is not null)
 		{
-			coll.AddRange(from step in value select (double)(step.Difficulty - 1.0M));
+			collection.AddRange(from step in value select (double)(step.Difficulty - 1.0M));
 		}
 	}
 
@@ -247,16 +247,16 @@ public sealed partial class PuzzleGraphs : Page, IAnalyzeTabPage
 	/// <seealso cref="PuzzleArgumentsPolar"/>
 	private void UpdatePuzzleArgumentsPolar(LogicalSolverResult? value)
 	{
-		var coll = (ObservableCollection<double>)PuzzleArgumentsPolar[0].Values!;
-		coll[0] = coll[1] = coll[2] = 0;
+		var collection = (ObservableCollection<double>)PuzzleArgumentsPolar[0].Values!;
+		collection[0] = collection[1] = collection[2] = 0;
 
 		if (value is not null)
 		{
 			var rater = new Rater(value);
 
-			coll[0] = rater.Exerciziability;
-			coll[1] = rater.Rarity;
-			coll[2] = rater.Directability;
+			collection[0] = rater.Exerciziability;
+			collection[1] = rater.Rarity;
+			collection[2] = rater.Directability;
 		}
 	}
 

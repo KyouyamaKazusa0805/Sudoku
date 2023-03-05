@@ -1,3 +1,5 @@
+using SudokuStudio.Views.Pages.Analyze;
+
 namespace SudokuStudio.Views.Pages;
 
 /// <summary>
@@ -16,6 +18,11 @@ public sealed partial class AnalyzePage : Page
 	[DefaultValue]
 	private static readonly ColorPalette UserDefinedPaletteDefaultValue = ((App)Application.Current).Preference.UIPreferences.UserDefinedColorPalette;
 
+
+	/// <summary>
+	/// Indicates the tab routing data.
+	/// </summary>
+	private List<AnalyzeTabPageData> _tabsRoutingData;
 
 	/// <summary>
 	/// Defines a key-value pair of functions that is used for routing hotkeys.
@@ -55,9 +62,9 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	internal void ClearAnalyzeTabsData()
 	{
-		foreach (var tabPage in AnalyzeTabs.TabItems.OfType<TabViewItem>())
+		foreach (var pageData in (IEnumerable<AnalyzeTabPageData>)AnalyzeTabs.TabItemsSource)
 		{
-			if (tabPage is { Content: IAnalyzeTabPage subTabPage })
+			if (pageData is { TabPage: IAnalyzeTabPage subTabPage })
 			{
 				subTabPage.AnalysisResult = null;
 			}
@@ -71,9 +78,9 @@ public sealed partial class AnalyzePage : Page
 	/// <seealso cref="LogicalSolverResult"/>
 	internal void UpdateAnalysisResult(LogicalSolverResult analysisResult)
 	{
-		foreach (var tabPage in AnalyzeTabs.TabItems.OfType<TabViewItem>())
+		foreach (var pageData in (IEnumerable<AnalyzeTabPageData>)AnalyzeTabs.TabItemsSource)
 		{
-			if (tabPage is { Content: IAnalyzeTabPage subTabPage })
+			if (pageData is { TabPage: IAnalyzeTabPage subTabPage })
 			{
 				subTabPage.AnalysisResult = analysisResult;
 			}
@@ -447,9 +454,38 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	/// <seealso cref="_hotkeyFunctions"/>
 	/// <seealso cref="_navigatingData"/>
-	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData))]
+	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData), nameof(_tabsRoutingData))]
 	private void InitializeFields()
 	{
+		_tabsRoutingData = new()
+		{
+			new()
+			{
+				Header = GetString("AnalyzePage_TechniquesTable"),
+				IconSource = createIconSource(Symbol.Flag),
+				TabPage = createPage<Summary>()
+			},
+			new()
+			{
+				Header = GetString("AnalyzePage_StepDetail"),
+				IconSource = createIconSource(Symbol.ShowResults),
+				TabPage = createPage<SolvingPath>()
+			},
+#if UI_FEATURE_ANALYSIS_GRAPHS
+			new()
+			{
+				Header = GetString("AnalyzePage_LiveCharts"),
+				IconSource = createIconSource(Symbol.ZeroBars),
+				Page = createPage<PuzzleGraphs>()
+			},
+#endif
+			new()
+			{
+				Header = GetString("AnalyzePage_AllStepsInCurrentGrid"),
+				IconSource = createIconSource(Symbol.Shuffle),
+				TabPage = createPage<GridGathering>()
+			}
+		};
 		_hotkeyFunctions = new()
 		{
 			{ new(VirtualKeyModifiers.Control, VirtualKey.Z), SudokuPane.UndoStep },
@@ -476,9 +512,10 @@ public sealed partial class AnalyzePage : Page
 			{ container => container == ShuffleOperationBar, typeof(ShuffleOperation) }
 		};
 
-#if !UI_FEATURE_ANALYSIS_GRAPHS
-		LiveChartsTabItem.Visibility = Visibility.Collapsed;
-#endif
+
+		static IconSource createIconSource(Symbol symbol) => new SymbolIconSource { Symbol = symbol };
+
+		T createPage<T>() where T : Page, IAnalyzeTabPage, new() => new() { Margin = new(10), BasePage = this };
 	}
 
 	/// <summary>
@@ -669,7 +706,7 @@ public sealed partial class AnalyzePage : Page
 
 		page.CurrentViewIndex = value is VisualUnit ? 0 : -1;
 
-		// A rescue. The code snippet is used for manually updating the pipspager and text block.
+		// A rescue. The code snippet is used for manually updating the pips pager and text block.
 		page.ViewsSwitcher.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 		page.ViewsCountDisplayer.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 	}

@@ -8,6 +8,7 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:models="using:SudokuStudio.Models"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -201,36 +202,16 @@
 							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}" />
 					</StackPanel>
 					<TabView
-						x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Stretch" Height="600"
+						x:Name="AnalyzeTabs" HorizontalAlignment="Stretch" Height="600"
+						TabItemsSource="{x:Bind _tabsRoutingData}" IsAddTabButtonVisible="False" TabWidthMode="Equal"
 						Visibility="{x:Bind cvt:AnalyzeConversion.GetAnalyzeTabsVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}">
-						<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
-							<TabViewItem.IconSource>
-								<SymbolIconSource Symbol="Flag" />
-							</TabViewItem.IconSource>
-
-							<pa:Summary Margin="10" BasePage="{x:Bind}" />
-						</TabViewItem>
-						<TabViewItem Header="{m:R Key=AnalyzePage_StepDetail}" IsClosable="False">
-							<TabViewItem.IconSource>
-								<SymbolIconSource Symbol="ShowResults" />
-							</TabViewItem.IconSource>
-
-							<pa:SolvingPath Margin="10" BasePage="{x:Bind}" />
-						</TabViewItem>
-						<TabViewItem x:Name="LiveChartsTabItem" Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
-							<TabViewItem.IconSource>
-								<SymbolIconSource Symbol="ZeroBars" />
-							</TabViewItem.IconSource>
-
-							<pa:PuzzleGraphs Margin="10" BasePage="{x:Bind}" />
-						</TabViewItem>
-						<TabViewItem Header="{m:R Key=AnalyzePage_AllStepsInCurrentGrid}" IsClosable="False">
-							<TabViewItem.IconSource>
-								<SymbolIconSource Symbol="Shuffle" />
-							</TabViewItem.IconSource>
-
-							<pa:GridGathering Margin="10" BasePage="{x:Bind}" />
-						</TabViewItem>
+						<TabView.TabItemTemplate>
+							<DataTemplate x:DataType="models:AnalyzeTabPageData">
+								<TabViewItem
+									Header="{x:Bind Header}" IsClosable="False"
+									IconSource="{x:Bind IconSource}" Content="{x:Bind TabPage}" />
+							</DataTemplate>
+						</TabView.TabItemTemplate>
 					</TabView>
 				</Grid>
 			</Grid>

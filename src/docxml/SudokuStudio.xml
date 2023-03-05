@@ -2571,6 +2571,26 @@ if (student is (name: var name, age: >= 18))
             </param>
             <returns>The result list of <see cref="T:SudokuStudio.Models.AnalysisResultTableRow"/>-typed elements.</returns>
         </member>
+        <member name="T:SudokuStudio.Models.AnalyzeTabPageData">
+            <summary>
+            Defines a data used for routing in analyzer tabs.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.AnalyzeTabPageData.Header">
+            <summary>
+            Indicates the header.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.AnalyzeTabPageData.IconSource">
+            <summary>
+            Indicates the icon source.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Models.AnalyzeTabPageData.TabPage">
+            <summary>
+            Indicates the page instance.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Models.FontSerializationData">
             <summary>
             Defines the font serialization data.
@@ -6269,6 +6289,11 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
             <summary>
             Defines a new page that stores a set of controls to analyze a sudoku grid.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._tabsRoutingData">
+            <summary>
+            Indicates the tab routing data.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions">
