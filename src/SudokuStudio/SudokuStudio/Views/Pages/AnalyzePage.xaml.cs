@@ -475,6 +475,10 @@ public sealed partial class AnalyzePage : Page
 			{ container => container == PrintingOperationBar, typeof(PrintingOperation) },
 			{ container => container == ShuffleOperationBar, typeof(ShuffleOperation) }
 		};
+
+#if !UI_FEATURE_ANALYSIS_GRAPHS
+		LiveChartsTabItem.Visibility = Visibility.Collapsed;
+#endif
 	}
 
 	/// <summary>

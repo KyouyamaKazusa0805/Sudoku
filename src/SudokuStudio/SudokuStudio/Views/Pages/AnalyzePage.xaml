@@ -217,7 +217,7 @@
 
 							<pa:SolvingPath Margin="10" BasePage="{x:Bind}" />
 						</TabViewItem>
-						<TabViewItem Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
+						<TabViewItem x:Name="LiveChartsTabItem" Header="{m:R Key=AnalyzePage_LiveCharts}" IsClosable="False">
 							<TabViewItem.IconSource>
 								<SymbolIconSource Symbol="ZeroBars" />
 							</TabViewItem.IconSource>
