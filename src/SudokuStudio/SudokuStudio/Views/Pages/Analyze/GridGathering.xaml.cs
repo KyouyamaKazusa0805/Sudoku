@@ -89,18 +89,18 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 			return;
 		}
 
-		BasePage.GatherTabPage.GatherButton.IsEnabled = false;
+		GatherButton.IsEnabled = false;
 		BasePage.IsGathererLaunched = true;
-		BasePage.GatherTabPage.TechniqueGroupView.ClearViewSource();
+		TechniqueGroupView.ClearViewSource();
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 
 		var gatherer = ((App)Application.Current).ProgramGatherer;
 		var result = await Task.Run(gather);
 
-		BasePage.GatherTabPage._currentFountSteps = result;
-		BasePage.GatherTabPage.TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result);
-		BasePage.GatherTabPage.GatherButton.IsEnabled = true;
+		_currentFountSteps = result;
+		TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result);
+		GatherButton.IsEnabled = true;
 		BasePage.IsGathererLaunched = false;
 
 
