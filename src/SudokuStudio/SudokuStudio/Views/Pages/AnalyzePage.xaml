@@ -201,7 +201,7 @@
 							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}" />
 					</StackPanel>
 					<TabView
-						x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Left" Height="600"
+						x:Name="AnalyzeTabs" IsAddTabButtonVisible="False" TabWidthMode="Equal" HorizontalAlignment="Stretch" Height="600"
 						Visibility="{x:Bind cvt:AnalyzeConversion.GetAnalyzeTabsVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}">
 						<TabViewItem Header="{m:R Key=AnalyzePage_TechniquesTable}" IsClosable="False">
 							<TabViewItem.IconSource>
