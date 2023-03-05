@@ -6,7 +6,7 @@ namespace SudokuStudio.Views.Windows;
 /// <seealso cref="Window"/>
 public sealed partial class MainWindow : Window
 {
-#if CUSTOMIZED_TITLE_BAR
+#if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Defines an <see cref="AppWindow"/> instance that is used by interaction with core application behaviors,
 	/// such as icon, title bars and so on.
@@ -68,7 +68,7 @@ public sealed partial class MainWindow : Window
 		TrySetAcrylicBackdrop();
 #endif
 
-#if CUSTOMIZED_TITLE_BAR
+#if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 		InitializeAppWindow();
 		SetAppTitleBarStatus();
 		SetAppIcon();
@@ -178,7 +178,7 @@ public sealed partial class MainWindow : Window
 #endif
 	}
 
-#if CUSTOMIZED_TITLE_BAR
+#if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Initializes for field <see cref="_appWindow"/>.
 	/// </summary>
@@ -367,7 +367,7 @@ public sealed partial class MainWindow : Window
 	private void SetFrameDisplayTitle(Type pageType)
 		=> MainNavigationView.Header = GetStringNullable($"{nameof(MainWindow)}_{pageType.Name}Title") ?? string.Empty;
 
-#if CUSTOMIZED_TITLE_BAR
+#if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Try to set icon of the program.
 	/// </summary>
@@ -493,7 +493,7 @@ public sealed partial class MainWindow : Window
 	}
 #endif
 
-#if CUSTOMIZED_TITLE_BAR
+#if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Try to adjust the scaling.
 	/// </summary>
