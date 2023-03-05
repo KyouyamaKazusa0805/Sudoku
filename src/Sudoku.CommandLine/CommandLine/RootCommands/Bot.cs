@@ -3,7 +3,6 @@
 #undef ALLOW_INVITATION
 #define BASIC_LOG_INFO_OUTPUT
 #define ALLOW_PERIODIC_OPERATION
-
 namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
