@@ -184,25 +184,11 @@ public sealed partial class AnalyzePage : Page
 		var dataPackageView = Clipboard.GetContent();
 		if (dataPackageView.Contains(StandardDataFormats.Text))
 		{
-			var gridStr = await dataPackageView.GetTextAsync();
-			if (!Grid.TryParse(gridStr, out var grid))
+			if (Grid.TryParse(await dataPackageView.GetTextAsync(), out var grid))
 			{
-				return;
+				SudokuPane.Puzzle = grid;
 			}
-
-			SudokuPane.Puzzle = grid;
 		}
-#if false
-		else if (await dataPackageView.GetDataAsync("AnsiText") is string gridStr)
-		{
-			if (!Grid.TryParse(gridStr, out var grid))
-			{
-				return;
-			}
-
-			SudokuPane.Puzzle = grid;
-		}
-#endif
 	}
 
 	/// <summary>
