@@ -52,7 +52,7 @@ public abstract partial class GroupModule : IModule
 	/// <seealso cref="CommonCommandPrefixes"/>
 	/// <completionlist cref="CommonCommandPrefixes"/>
 	[Reserved]
-	public virtual string[]? RaisingPrefix { get; } = CommonCommandPrefixes.Bang;
+	public virtual string[] RaisingPrefix { get; } = CommonCommandPrefixes.Bang;
 
 	/// <summary>
 	/// Indicates the supported roles.
@@ -106,12 +106,21 @@ public abstract partial class GroupModule : IModule
 			return;
 		}
 
+		var text = (messageChain, TriggeringKind) switch
+		{
+			([SourceMessage, AtMessage { Target: BotNumber }, PlainMessage { Text: var t }], ModuleTriggeringKind.Mentioning) => t,
+			([SourceMessage, PlainMessage { Text: var t }], ModuleTriggeringKind.Default) => t,
+			_ => null
+		};
+		if (text is null || !Array.Exists(RaisingPrefix, prefix => text.StartsWith($"{prefix}{RaisingCommand}")))
+		{
+			return;
+		}
+
 		if (RunningContexts.TryGetValue(groupId, out var context) && context.ExecutingCommand is { } occupiedCommand
 			&& occupiedCommand != RequiredEnvironmentCommand)
 		{
-#if false
 			await gmr.SendMessageAsync("本群当前正在执行另外的命令操作。为确保读写数据完全性，机器人暂不允许同时执行别的操作。请等待指令结束后继续操作。");
-#endif
 			return;
 		}
 
@@ -119,71 +128,53 @@ public abstract partial class GroupModule : IModule
 		var supportedRoles = SupportedRoles.GetAllFlags() ?? Array.Empty<GroupRoleKind>();
 		if (!Array.Exists(supportedRoles, match))
 		{
-#if false
 			await gmr.SendMessageAsync("操作失败。该操作需要用户具有更高的权限。");
-#endif
 			return;
 		}
 
 		if (RequiredBotRole != GroupRoleKind.None && RequiredBotRole < permission.ToGroupRoleKind())
 		{
-#if false
 			await gmr.SendMessageAsync("机器人需要更高权限才可进行该操作。");
-#endif
 			return;
 		}
 
-		_ = (messageChain, TriggeringKind) switch
+		if (!text.ParseMessageTo(this, out var failedReason))
 		{
-			([SourceMessage, AtMessage { Target: BotNumber }, PlainMessage { Text: var text }], ModuleTriggeringKind.Mentioning)
-				=> await handleMessageTextAsync(text),
-			([SourceMessage, PlainMessage { Text: var text }], ModuleTriggeringKind.Default)
-				=> await handleMessageTextAsync(text),
-			_
-				=> false
-		};
+			switch (failedReason)
+			{
+				case ParsingFailedReason.InvalidInput:
+				{
+					await gmr.SendMessageAsync("请检查指令输入是否正确。尤其是缺少空格。空格作为指令识别期间较为重要的分隔符号，请勿缺少。");
+					return;
+				}
+				case ParsingFailedReason.TargetPropertyIsReserved:
+				{
+					return;
+				}
+				case ParsingFailedReason.NotCurrentModule:
+				case ParsingFailedReason.None:
+				{
+					return;
+				}
+				case ParsingFailedReason.TargetPropertyHasNoGetterOrSetter:
+				case ParsingFailedReason.TargetPropertyIsIndexer:
+				case ParsingFailedReason.TargetPropertyHasNoValueConverterIfNotReturningString:
+				{
+					throw new InvalidOperationException($"Attribute marking is invalid. Internal failed reason: {failedReason}");
+				}
+				default:
+				{
+					throw new InvalidOperationException("The specified failed reason is not defined.");
+				}
+			}
+		}
+
+		await ExecuteCoreAsync(gmr);
 
 
 		bool match(GroupRoleKind roleKind)
 			=> roleKind != GroupRoleKind.GodAccount && senderRole == roleKind
 			|| roleKind == GroupRoleKind.GodAccount && sender.Id == GodNumber;
-
-		async Task<bool> handleMessageTextAsync(string messageText)
-		{
-			if (!messageText.ParseMessageTo(this, out var failedReason))
-			{
-				switch (failedReason)
-				{
-					case ParsingFailedReason.InvalidInput:
-					{
-						await gmr.SendMessageAsync("请检查指令输入是否正确。尤其是缺少空格。空格作为指令识别期间较为重要的分隔符号，请勿缺少。");
-						return false;
-					}
-					case ParsingFailedReason.TargetPropertyIsReserved:
-					{
-						return false;
-					}
-					case ParsingFailedReason.NotCurrentModule:
-					case ParsingFailedReason.None:
-					{
-						return true;
-					}
-					case ParsingFailedReason.TargetPropertyHasNoGetterOrSetter:
-					case ParsingFailedReason.TargetPropertyIsIndexer:
-					case ParsingFailedReason.TargetPropertyHasNoValueConverterIfNotReturningString:
-					{
-						throw new InvalidOperationException($"Attribute marking is invalid. Internal failed reason: {failedReason}");
-					}
-					default:
-					{
-						throw new InvalidOperationException("The specified failed reason is not defined.");
-					}
-				}
-			}
-
-			await ExecuteCoreAsync(gmr);
-			return true;
-		}
 	}
 
 	/// <summary>
