@@ -508,7 +508,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates all possible conjugate pairs appeared in this grid.
 	/// </summary>
-	public readonly ImmutableArray<Conjugate> ConjugatePairs
+	public readonly Conjugate[] ConjugatePairs
 	{
 		get
 		{
@@ -527,7 +527,7 @@ public unsafe partial struct Grid :
 				}
 			}
 
-			return ImmutableArray.CreateRange(conjugatePairs);
+			return conjugatePairs.ToArray();
 		}
 	}
 

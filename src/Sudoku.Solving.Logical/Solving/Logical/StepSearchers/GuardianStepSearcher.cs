@@ -38,7 +38,7 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 				continue;
 			}
 
-			var foundData = ICellLinkingLoopStepSearcher.GatherGuardianLoops(digit);
+			var foundData = Cached.GatherGuardianLoops(digit);
 			if (foundData.Length == 0)
 			{
 				continue;
@@ -98,4 +98,106 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 
 		return null;
 	}
+}
+
+/// <summary>
+/// Represents a cached gathering operation set.
+/// </summary>
+file static unsafe class Cached
+{
+	/// <summary>
+	/// Try to gather all possible loops which should satisfy the specified condition.
+	/// </summary>
+	/// <param name="digit">The digit used.</param>
+	/// <returns>
+	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
+	/// </returns>
+	public static Guardian[] GatherGuardianLoops(int digit)
+	{
+		delegate*<in CellMap, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
+
+		var result = new List<Guardian>();
+		foreach (var cell in CandidatesMap[digit])
+		{
+			DepthFirstSearching_Guardian(cell, cell, 0, CellsMap[cell], CellMap.Empty, digit, condition, result);
+		}
+
+		return result.Distinct().ToArray();
+	}
+
+	/// <summary>
+	/// Checks for guardian loops using recursion.
+	/// </summary>
+	private static void DepthFirstSearching_Guardian(
+		int startCell,
+		int lastCell,
+		int lastHouse,
+		scoped in CellMap currentLoop,
+		scoped in CellMap currentGuardians,
+		int digit,
+		delegate*<in CellMap, bool> condition,
+		List<Guardian> result
+	)
+	{
+		foreach (var houseType in HouseTypes)
+		{
+			var house = lastCell.ToHouseIndex(houseType);
+			if ((lastHouse >> house & 1) != 0)
+			{
+				continue;
+			}
+
+			var cellsToBeChecked = CandidatesMap[digit] & HousesMap[house];
+			if (cellsToBeChecked.Count < 2 || (currentLoop & HousesMap[house]).Count > 2)
+			{
+				continue;
+			}
+
+			foreach (var tempCell in cellsToBeChecked)
+			{
+				if (tempCell == lastCell)
+				{
+					continue;
+				}
+
+				var housesUsed = 0;
+				foreach (var tempHouseType in HouseTypes)
+				{
+					if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
+					{
+						housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
+					}
+				}
+
+				var tempGuardians = (CandidatesMap[digit] & HousesMap[house]) - tempCell - lastCell;
+				if (tempCell == startCell && condition(currentLoop)
+					&& ((currentGuardians | tempGuardians).PeerIntersection & CandidatesMap[digit]) is not [])
+				{
+					result.Add(new(currentLoop, currentGuardians | tempGuardians, digit));
+
+					// Exit the current of this recursion frame.
+					return;
+				}
+
+				if ((currentLoop | currentGuardians).Contains(tempCell)
+					|| ((currentGuardians | tempGuardians).PeerIntersection & CandidatesMap[digit]) is []
+					|| (HousesMap[house] & currentLoop).Count > 1)
+				{
+					continue;
+				}
+
+				DepthFirstSearching_Guardian(
+					startCell, tempCell, lastHouse | housesUsed, currentLoop + tempCell,
+					currentGuardians | tempGuardians, digit, condition, result
+				);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Defines a templating method that can determine whether a loop is a valid guardian.
+	/// </summary>
+	/// <param name="loop">The loop to be checked.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private static bool GuardianOrBivalueOddagonSatisfyingPredicate(scoped in CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
 }

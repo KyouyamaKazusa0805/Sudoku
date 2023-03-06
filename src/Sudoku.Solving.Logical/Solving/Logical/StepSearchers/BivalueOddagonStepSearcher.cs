@@ -18,13 +18,13 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 		// making it the start point to execute the recursion.
 		scoped ref readonly var grid = ref context.Grid;
 		var onlyFindOne = context.OnlyFindOne;
-		var resultList = (IOrderedEnumerable<BivalueOddagonStep>)null!;
+		var resultList = default(IOrderedEnumerable<BivalueOddagonStep>);
 		foreach (var cell in BivalueCells)
 		{
 			var mask = grid.GetCandidates(cell);
 			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
 			var comparer = (short)(1 << d1 | 1 << d2);
-			var foundData = ICellLinkingLoopStepSearcher.GatherBivalueOddagons(comparer);
+			var foundData = Cached.GatherBivalueOddagons(comparer);
 			if (foundData.Length == 0)
 			{
 				continue;
@@ -239,4 +239,107 @@ internal sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddago
 	ReturnNull:
 		return null;
 	}
+}
+
+/// <summary>
+/// Represents a cached gathering operation set.
+/// </summary>
+file static unsafe class Cached
+{
+	/// <summary>
+	/// Try to gather all possible loops being used in technique bi-value oddagons,
+	/// which should satisfy the specified condition.
+	/// </summary>
+	/// <param name="digitsMask">The digits used.</param>
+	/// <returns>
+	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
+	/// </returns>
+	public static BivalueOddagon[] GatherBivalueOddagons(short digitsMask)
+	{
+		delegate*<in CellMap, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
+
+		var result = new List<BivalueOddagon>();
+		var d1 = TrailingZeroCount(digitsMask);
+		var d2 = digitsMask.GetNextSet(d1);
+
+		// This limitation will miss the incomplete structures, I may modify it later.
+		foreach (var cell in CandidatesMap[d1] & CandidatesMap[d2])
+		{
+			DepthFirstSearching_BivalueOddagon(cell, cell, 0, CellsMap[cell], digitsMask, CandidatesMap[d1] & CandidatesMap[d2], condition, result);
+		}
+
+		return result.Distinct().ToArray();
+	}
+
+	/// <summary>
+	/// Checks for bi-value oddagon loops using recursion.
+	/// </summary>
+	private static void DepthFirstSearching_BivalueOddagon(
+		int startCell,
+		int lastCell,
+		int lastHouse,
+		scoped in CellMap currentLoop,
+		short digitsMask,
+		scoped in CellMap fullCells,
+		delegate*<in CellMap, bool> condition,
+		List<BivalueOddagon> result
+	)
+	{
+		foreach (var houseType in HouseTypes)
+		{
+			var house = lastCell.ToHouseIndex(houseType);
+			if ((lastHouse >> house & 1) != 0)
+			{
+				continue;
+			}
+
+			var cellsToBeChecked = fullCells & HousesMap[house];
+			if (cellsToBeChecked.Count < 2 || (currentLoop & HousesMap[house]).Count > 2)
+			{
+				continue;
+			}
+
+			foreach (var tempCell in cellsToBeChecked)
+			{
+				if (tempCell == lastCell)
+				{
+					continue;
+				}
+
+				var housesUsed = 0;
+				foreach (var tempHouseType in HouseTypes)
+				{
+					if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
+					{
+						housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
+					}
+				}
+
+				if (tempCell == startCell && condition(currentLoop))
+				{
+					result.Add(new(currentLoop, digitsMask));
+
+					// Exit the current of this recursion frame.
+					return;
+				}
+
+				if ((HousesMap[house] & currentLoop).Count > 1)
+				{
+					continue;
+				}
+
+				DepthFirstSearching_BivalueOddagon(
+					startCell, tempCell, lastHouse | housesUsed, currentLoop + tempCell,
+					digitsMask, fullCells, condition, result
+				);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
+	/// </summary>
+	/// <param name="loop">The loop to be checked.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private static bool GuardianOrBivalueOddagonSatisfyingPredicate(scoped in CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
 }

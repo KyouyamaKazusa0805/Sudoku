@@ -3065,6 +3065,22 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.StepSearchers.AlmostLockedSetsWWingStepSearcher.Options">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.Gather">
+            <summary>
+            Gathers possible conjugate pairs grouped by digit.
+            </summary>
+            <returns>The conjugate pairs found, grouped by digit.</returns>
+            <remarks><i>
+            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
+            by calling the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
+            </i></remarks>
+            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.AlmostLockedSetsXyWingStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IAlmostLockedSetsXyWingStepSearcher"/>
         </member>
@@ -3113,6 +3129,33 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.BivalueOddagonStepSearcher.Options">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.GatherBivalueOddagons(System.Int16)">
+            <summary>
+            Try to gather all possible loops being used in technique bi-value oddagons,
+            which should satisfy the specified condition.
+            </summary>
+            <param name="digitsMask">The digits used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Solving.Logical.Patterns.BivalueOddagon})">
+            <summary>
+            Checks for bi-value oddagon loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.BivalueUniversalGraveStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IBivalueUniversalGraveStepSearcher"/>
@@ -3450,6 +3493,32 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.GuardianStepSearcher.Options">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.GatherGuardianLoops(System.Int32)">
+            <summary>
+            Try to gather all possible loops which should satisfy the specified condition.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,,System.Collections.Generic.List{Sudoku.Solving.Logical.Patterns.Guardian})">
+            <summary>
+            Checks for guardian loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid guardian.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.GurthSymmetricalPlacementStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IGurthSymmetricalPlacementStepSearcher"/>
@@ -4398,6 +4467,16 @@ if (student is (name: var name, age: >= 18))
             <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">this link</see>.
             </remarks>
         </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.IStepSearcherRequiresSolution">
+            <summary>
+            Indicates a step searcher that requires a solution grid for the technique searching usages.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Logical.StepSearchers.IStepSearcherRequiresSolution.Solution">
+            <summary>
+            Indicates the reference of the solution sudoku grid.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.ISubsetStepSearcher">
             <summary>
             Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
@@ -5266,96 +5345,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Solving.Logical.StepSearchers.SingleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.StepSearchers.Specialized.IAlmostHiddenSetsStepSearcher">
-            <summary>
-            Provides with an <b>Almost Hidden Sets</b> step searcher.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Specialized.IAlmostHiddenSetsStepSearcher.Gather(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Solving.Logical.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)"/>
-            <remarks>
-            Different with the original method <see cref="M:Sudoku.Solving.Logical.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)"/>,
-            this method will only uses the buffer to determine the info, which is unsafe
-            when calling the method without having initialized those maps in the buffer type,
-            <see cref="T:Sudoku.Buffers.FastProperties"/>.
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Logical.Patterns.AlmostHiddenSet"/>
-            <seealso cref="M:Sudoku.Solving.Logical.Patterns.AlmostHiddenSet.Gather(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.StepSearchers.Specialized.ICellLinkingLoopStepSearcher">
-            <summary>
-            Defines a steps searcher that searches for cell-linking loop steps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Specialized.ICellLinkingLoopStepSearcher.GatherGuardianLoops(System.Int32)">
-            <summary>
-            Try to gather all possible loops which should satisfy the specified condition.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <returns>
-            Returns a list of array of candidates used in the loop, as the data of possible found loops.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Specialized.ICellLinkingLoopStepSearcher.GatherUniqueLoops(System.Int16)">
-            <summary>
-            Try to gather all possible loops being used in technique unique loops,
-            which should satisfy the specified condition.
-            </summary>
-            <param name="digitsMask">The digits used.</param>
-            <returns>
-            Returns a list of array of candidates used in the loop, as the data of possible found loops.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Specialized.ICellLinkingLoopStepSearcher.GatherBivalueOddagons(System.Int16)">
-            <summary>
-            Try to gather all possible loops being used in technique bi-value oddagons,
-            which should satisfy the specified condition.
-            </summary>
-            <param name="digitsMask">The digits used.</param>
-            <returns>
-            Returns a list of array of candidates used in the loop, as the data of possible found loops.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Specialized.ICellLinkingLoopStepSearcher.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines a templating method that can determine whether a loop is a valid unique loop.
-            </summary>
-            <param name="loop">The loop to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Specialized.ICellLinkingLoopStepSearcher.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
-            </summary>
-            <param name="loop">The loop to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,,System.Collections.Generic.List{Sudoku.Solving.Logical.Patterns.Guardian})">
-            <summary>
-            Checks for guardian loops using recursion.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Solving.Logical.Patterns.UniqueLoop})">
-            <summary>
-            Checks for unique loops using recursion.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Specialized.ICellLinkingLoopStepSearcher.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Solving.Logical.Patterns.BivalueOddagon})">
-            <summary>
-            Checks for bi-value oddagon loops using recursion.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.StepSearchers.Specialized.IStepSearcherRequiresSolution">
-            <summary>
-            Indicates a step searcher that requires a solution grid for the technique searching usages.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.Specialized.IStepSearcherRequiresSolution.Solution">
-            <summary>
-            Indicates the reference of the solution sudoku grid.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.StepSearcherCollection">
             <summary>
             Defines a collection that only stores for <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances.
@@ -5523,6 +5512,33 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.UniqueLoopStepSearcher.Options">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.GatherUniqueLoops(System.Int16)">
+            <summary>
+            Try to gather all possible loops being used in technique unique loops,
+            which should satisfy the specified condition.
+            </summary>
+            <param name="digitsMask">The digits used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Solving.Logical.Patterns.UniqueLoop})">
+            <summary>
+            Checks for unique loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid unique loop.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.UniqueMatrixStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IUniqueMatrixStepSearcher"/>
@@ -14678,36 +14694,6 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.ArgumentException">
             Throws when the grid is not unique, or the puzzle is too easy.
             </exception>
-        </member>
-        <member name="T:Sudoku.Preprocessing.Gathering.ConjugateGatherer">
-            <summary>
-            Represents a type that can gather <see cref="T:Sudoku.Concepts.Conjugate"/> instances that exists in a grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Preprocessing.Gathering.ConjugateGatherer.Gather(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Preprocessing.Gathering.ConjugateGatherer.Gather(System.Int32)">
-            <summary>
-            Gathers possible conjugate pairs of the specified digit.
-            </summary>
-            <returns>The conjugate pairs found.</returns>
-            <remarks><i>
-            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
-            by calling the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
-            </i></remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
-        </member>
-        <member name="M:Sudoku.Preprocessing.Gathering.ConjugateGatherer.Gather">
-            <summary>
-            Gathers possible conjugate pairs grouped by digit.
-            </summary>
-            <returns>The conjugate pairs found, grouped by digit.</returns>
-            <remarks><i>
-            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
-            by calling the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
-            </i></remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
         </member>
         <member name="T:Sudoku.Preprocessing.Gathering.IConceptGatherable`1">
             <summary>

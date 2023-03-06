@@ -108,8 +108,7 @@ public sealed partial class AlmostHiddenSet : IEquatable<AlmostHiddenSet>, IEqua
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] AlmostHiddenSet? other)
-		=> other is not null && DigitsMask == other.DigitsMask && Map == other.Map;
+	public bool Equals([NotNullWhen(true)] AlmostHiddenSet? other) => other is not null && DigitsMask == other.DigitsMask && Map == other.Map;
 
 	/// <inheritdoc/>
 	public override int GetHashCode()
