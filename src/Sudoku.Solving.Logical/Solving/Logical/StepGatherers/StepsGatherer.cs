@@ -3,22 +3,33 @@
 /// <summary>
 /// Defines a steps gatherer.
 /// </summary>
-public sealed class StepsGatherer : IStepGatherableSearcher, IStepGatherableSearcherOptions
+public sealed class StepsGatherer
 {
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates whether the solver only displays the techniques with the same displaying level.
+	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; } = true;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the maximum steps can be gathered.
+	/// </summary>
 	/// <remarks>
 	/// The default value is 1000.
 	/// </remarks>
 	public int MaxStepsGathered { get; set; } = 1000;
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Search for all possible steps in a grid.
+	/// </summary>
+	/// <param name="puzzle">The puzzle grid.</param>
+	/// <param name="progress">The progress instance that is used for reporting the status.</param>
+	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
+	/// <returns>The result.</returns>
+	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
 	public IEnumerable<IStep> Search(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var sukaku))

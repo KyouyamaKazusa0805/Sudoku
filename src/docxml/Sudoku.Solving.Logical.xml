@@ -2890,36 +2890,36 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The <see cref="T:Sudoku.Solving.Logical.IStep"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Logical.StepGatherers.IStepGatherableSearcherOptions">
-            <summary>
-            Defines an instance that stores the options that bound with an <see cref="T:Sudoku.Solving.Logical.StepSearchers.Specialized.IStepGatherableSearcher"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.StepSearchers.Specialized.IStepGatherableSearcher"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.StepGatherers.IStepGatherableSearcherOptions.OnlyShowSameLevelTechniquesInFindAllSteps">
-            <summary>
-            Indicates whether the solver only displays the techniques with the same displaying level.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Logical.StepGatherers.StepsGatherer">
             <summary>
             Defines a steps gatherer.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
-            <inheritdoc/>
+            <summary>
+            Indicates whether the solver only displays the techniques with the same displaying level.
+            </summary>
             <remarks>
             The default value is <see langword="true"/>.
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.MaxStepsGathered">
-            <inheritdoc/>
+            <summary>
+            Indicates the maximum steps can be gathered.
+            </summary>
             <remarks>
             The default value is 1000.
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.Search(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
-            <inheritdoc/>
+            <summary>
+            Search for all possible steps in a grid.
+            </summary>
+            <param name="puzzle">The puzzle grid.</param>
+            <param name="progress">The progress instance that is used for reporting the status.</param>
+            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IChainingStepSearcher"/>
@@ -5345,26 +5345,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Checks for bi-value oddagon loops using recursion.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Logical.StepSearchers.Specialized.IStepGatherableSearcher">
-            <summary>
-            Defines a special step searcher that can gather all possible steps of various techniques, in a step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.Specialized.IStepGatherableSearcher.MaxStepsGathered">
-            <summary>
-            Indicates the maximum steps can be gathered.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.Specialized.IStepGatherableSearcher.Search(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
-            <summary>
-            Search for all possible steps in a grid.
-            </summary>
-            <param name="puzzle">The puzzle grid.</param>
-            <param name="progress">The progress instance that is used for reporting the status.</param>
-            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.Specialized.IStepSearcherRequiresSolution">
             <summary>
