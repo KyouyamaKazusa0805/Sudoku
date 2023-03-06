@@ -298,7 +298,7 @@ file static class MessageParser
 				return false;
 			}
 
-			if (foundPropertyInfo.GetIndexParameters().Length == 0)
+			if (foundPropertyInfo.GetIndexParameters().Length != 0)
 			{
 				failedReason = ParsingFailedReason.TargetPropertyIsIndexer;
 				return false;
@@ -348,6 +348,8 @@ file static class MessageParser
 					break;
 				}
 			}
+
+			i++;
 		}
 
 		failedReason = ParsingFailedReason.None;
