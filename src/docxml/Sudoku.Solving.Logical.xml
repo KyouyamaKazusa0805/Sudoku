@@ -146,6 +146,11 @@
             <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
             <seealso cref="T:Sudoku.Solving.Logical.Annotations.SeparatedStepSearcherAttribute"/>
         </member>
+        <member name="T:Sudoku.Collections.Logical.ChainBranch">
+            <summary>
+            Represents a chain branch.
+            </summary>
+        </member>
         <member name="T:Sudoku.Collections.Logical.NodeList">
             <summary>
             Defines a list of <see cref="T:Sudoku.Solving.Logical.Patterns.ChainNode"/> using doubly linked list as the backing algorithm.
@@ -2987,12 +2992,12 @@ if (student is (name: var name, age: >= 18))
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.Patterns.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Collections.Logical.NodeSet})">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.Patterns.ChainNode,Sudoku.Collections.Logical.ChainBranch)">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.Patterns.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Collections.Logical.NodeSet})">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.Patterns.ChainNode,Sudoku.Collections.Logical.ChainBranch)">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
@@ -4953,12 +4958,12 @@ if (student is (name: var name, age: >= 18))
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.Patterns.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Collections.Logical.NodeSet})">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Solving.Logical.Patterns.ChainNode,Sudoku.Collections.Logical.ChainBranch)">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.Patterns.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Collections.Logical.NodeSet})">
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Solving.Logical.Patterns.ChainNode,Sudoku.Collections.Logical.ChainBranch)">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>

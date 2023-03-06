@@ -61,4 +61,3 @@ global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 global using static Sudoku.SolutionWideReadOnlyFields;
 global using static Sudoku.Solving.ConclusionType;
-global using ChainBranch = System.Collections.Generic.Dictionary<byte, Sudoku.Collections.Logical.NodeSet>;
