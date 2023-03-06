@@ -119,13 +119,17 @@ public abstract partial class GroupModule : IModule
 		var supportedRoles = SupportedRoles.GetAllFlags() ?? Array.Empty<GroupRoleKind>();
 		if (!Array.Exists(supportedRoles, match))
 		{
+#if false
 			await gmr.SendMessageAsync("操作失败。该操作需要用户具有更高的权限。");
+#endif
 			return;
 		}
 
 		if (RequiredBotRole != GroupRoleKind.None && RequiredBotRole < permission.ToGroupRoleKind())
 		{
+#if false
 			await gmr.SendMessageAsync("机器人需要更高权限才可进行该操作。");
+#endif
 			return;
 		}
 
