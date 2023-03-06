@@ -1,5 +1,4 @@
 ﻿#if NETSTANDARD
-
 namespace System;
 
 /// <summary>

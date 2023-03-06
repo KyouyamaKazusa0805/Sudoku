@@ -1,5 +1,4 @@
 ﻿#pragma warning disable CS1591
-
 namespace SudokuStudio.Views.Attached;
 
 /// <summary>

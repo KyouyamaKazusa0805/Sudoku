@@ -1,5 +1,4 @@
 ﻿#if NETSTANDARD
-
 namespace System;
 
 /// <summary>Represent a range has start and end indexes.</summary>

@@ -179,6 +179,21 @@
             </summary>
             <param name="e">The event handler.</param>
         </member>
+        <member name="T:Sudoku.CommandLine.RootCommands.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Iterates all elements in this enumerable collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="visitor">The visitor method to handle and operate with each element.</param>
+        </member>
         <member name="T:Sudoku.CommandLine.RootCommands.Check">
             <summary>
             Represents a check command.

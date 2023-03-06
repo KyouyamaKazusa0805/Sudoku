@@ -1,5 +1,4 @@
 ﻿#undef COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
-
 namespace Sudoku.Solving.Logical.Techniques;
 
 /// <summary>

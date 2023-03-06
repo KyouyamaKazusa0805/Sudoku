@@ -1,5 +1,4 @@
 ﻿#pragma warning disable IDE0032, IDE0044
-
 namespace System.Collections.Generic;
 
 /// <summary>

@@ -1,5 +1,4 @@
 ﻿#undef VISIT_SITE_DIRECTLY
-
 namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>

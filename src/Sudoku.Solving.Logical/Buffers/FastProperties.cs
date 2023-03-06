@@ -1,5 +1,4 @@
 ﻿#nullable disable warnings
-
 namespace Sudoku.Buffers;
 
 /// <summary>

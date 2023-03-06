@@ -1,5 +1,4 @@
 ﻿#pragma warning disable IDE0032
-
 namespace Sudoku.Solving.Algorithms.Bitwise;
 
 using static Constants;
