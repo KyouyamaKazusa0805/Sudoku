@@ -60,7 +60,7 @@ public sealed class TrueCandidatesSearcher
 		}
 
 		// Store all bi-value cells and construct the relations.
-		var peerHouses = stackalloc int[3];
+		scoped var peerHouses = (stackalloc int[3]);
 		var stack = new CellMap[multivaluedCellsCount + 1, 9];
 		foreach (var cell in Puzzle.BivalueCells)
 		{
@@ -69,7 +69,7 @@ public sealed class TrueCandidatesSearcher
 				scoped ref var map = ref stack[0, digit];
 				map.Add(cell);
 
-				cell.CopyHouseInfo(peerHouses);
+				cell.CopyHouseInfo(ref peerHouses[0]);
 				for (var i = 0; i < 3; i++)
 				{
 					if ((map & HousesMap[peerHouses[i]]).Count > 2)
@@ -126,10 +126,7 @@ public sealed class TrueCandidatesSearcher
 					var temp = stack[currentIndex - 1, digit];
 					temp.Add(currentCell);
 
-					fixed (int* p = playground)
-					{
-						currentCell.CopyHouseInfo(p);
-					}
+					currentCell.CopyHouseInfo(ref playground[0]);
 					foreach (var houseIndex in playground)
 					{
 						if ((temp & HousesMap[houseIndex]).Count > 2)

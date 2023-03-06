@@ -51,7 +51,10 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 	/// Throws when the puzzle contains multiple solutions or even no solution.
 	/// </exception>
 	protected internal static unsafe bool FindTrueCandidates(
-		scoped in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates, int maximumCellsToCheck = 20)
+		scoped in Grid grid,
+		[NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
+		int maximumCellsToCheck = 20
+	)
 	{
 		Argument.ThrowIfInvalid(grid.IsValid(), "The puzzle must be valid (containing a unique solution).");
 
@@ -83,10 +86,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 				scoped ref var map = ref stack[0, digit];
 				map.Add(cell);
 
-				fixed (int* p = span)
-				{
-					cell.CopyHouseInfo(p);
-				}
+				cell.CopyHouseInfo(ref span[0]);
 				foreach (var house in span)
 				{
 					if ((map & HousesMap[house]).Count > 2)
@@ -143,10 +143,7 @@ public interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearcher
 					var temp = stack[currentIndex - 1, digit];
 					temp.Add(currentCell);
 
-					fixed (int* p = playground)
-					{
-						currentCell.CopyHouseInfo(p);
-					}
+					currentCell.CopyHouseInfo(ref playground[0]);
 					foreach (var house in playground)
 					{
 						if ((temp & HousesMap[house]).Count > 2)

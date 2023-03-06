@@ -6,41 +6,12 @@
 /// <seealso cref="HouseType"/>
 public static class HouseTypeExtensions
 {
-	/// <inheritdoc cref="CopyHouseInfo(int, int*)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void CopyHouseInfo(this byte cell, byte* ptr)
-	{
-		ArgumentNullException.ThrowIfNull(ptr);
-
-		ptr[0] = (byte)BlockTable[cell];
-		ptr[1] = (byte)RowTable[cell];
-		ptr[2] = (byte)ColumnTable[cell];
-	}
-
 	/// <summary>
 	/// Gets the row, column and block value and copies to the specified array that represents by a pointer
 	/// of 3 elements, where the first element stores the block index, second element stores the row index
 	/// and the third element stores the column index.
 	/// </summary>
 	/// <param name="cell">The cell. The available values must be between 0 and 80.</param>
-	/// <param name="ptr">The specified array that represents by a pointer of 3 elements.</param>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void CopyHouseInfo(this int cell, int* ptr)
-	{
-		ArgumentNullException.ThrowIfNull(ptr);
-
-		ptr[0] = BlockTable[cell];
-		ptr[1] = RowTable[cell];
-		ptr[2] = ColumnTable[cell];
-	}
-
-	/// <summary>
-	/// <inheritdoc cref="CopyHouseInfo(int, int*)" path="/summary"/>
-	/// </summary>
-	/// <param name="cell"><inheritdoc cref="CopyHouseInfo(int, int*)" path="/param[@name='cell']"/></param>
 	/// <param name="reference">
 	/// The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="Span{T}"/>,
 	/// only if the sequence can store at least 3 values.

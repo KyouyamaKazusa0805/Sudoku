@@ -2566,26 +2566,13 @@ fixed (short* ptr = instance)
             </summary>
             <seealso cref="T:Sudoku.Concepts.HouseType"/>
         </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Byte,System.Byte*)">
-            <inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32*)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32*)">
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32@)">
             <summary>
             Gets the row, column and block value and copies to the specified array that represents by a pointer
             of 3 elements, where the first element stores the block index, second element stores the row index
             and the third element stores the column index.
             </summary>
             <param name="cell">The cell. The available values must be between 0 and 80.</param>
-            <param name="ptr">The specified array that represents by a pointer of 3 elements.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32@)">
-            <summary>
-            <inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32*)" path="/summary"/>
-            </summary>
-            <param name="cell"><inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32*)" path="/param[@name='cell']"/></param>
             <param name="reference">
             The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="T:System.Span`1"/>,
             only if the sequence can store at least 3 values.

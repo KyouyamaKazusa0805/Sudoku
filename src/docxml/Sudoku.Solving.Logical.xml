@@ -14699,20 +14699,6 @@ if (student is (name: var name, age: >= 18))
             Throws when the grid is not unique, or the puzzle is too easy.
             </exception>
         </member>
-        <member name="T:Sudoku.Preprocessing.Checking.IttouryuPuzzleChecker">
-            <summary>
-            Provides with a checker that determines whether the puzzle is an
-            <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">ittouryu puzzle</see>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Preprocessing.Checking.IttouryuPuzzleChecker.IsIttouryu(Sudoku.Concepts.Grid@,System.ValueTuple{System.Int32,System.Boolean}[]@)">
-            <summary>
-            Determines whether the puzzle is an ittouryu puzzle, which means we can fill the puzzle digit by digit.
-            </summary>
-            <param name="grid">The grid to be determined.</param>
-            <param name="solvingPath">The solving path.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="T:Sudoku.Preprocessing.Gathering.ConjugateGatherer">
             <summary>
             Represents a type that can gather <see cref="T:Sudoku.Concepts.Conjugate"/> instances that exists in a grid.
