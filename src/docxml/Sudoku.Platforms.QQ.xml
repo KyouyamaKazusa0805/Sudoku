@@ -497,7 +497,7 @@
             Indicates all roles are included.
             </summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.IsEnable">
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.IsEnabled">
             <summary>
             Indicates whether the module is currently enabled. If disabled (i.e. holding with <see langword="false"/> value),
             this option won't be executed even if a person with a supported role emits a command executing this module.

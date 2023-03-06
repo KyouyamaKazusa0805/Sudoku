@@ -17,7 +17,7 @@ public abstract partial class GroupModule : IModule
 	/// </summary>
 	/// <remarks><i>This property is set <see langword="true"/> by default.</i></remarks>
 	[Reserved]
-	public virtual bool IsEnable
+	public virtual bool IsEnabled
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ((IModule)this).IsEnable ?? false;
@@ -90,6 +90,11 @@ public abstract partial class GroupModule : IModule
 	/// <exception cref="InvalidOperationException">Throws when properties overridden by derived type is invalid.</exception>
 	public async void Execute(MessageReceiverBase @base)
 	{
+		if (!IsEnabled)
+		{
+			return;
+		}
+
 		if (!RequiredBotRole.IsFlag())
 		{
 			throw new InvalidOperationException("This module contains multiple highest allowed permission kinds.");
