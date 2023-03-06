@@ -1075,7 +1075,7 @@ if (student is (name: var name, age: >= 18))
             <param name="point">The mouse point.</param>
             <returns>The candidate offset.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.PointCalculator.GetMouseCenter(Sudoku.Concepts.Candidates@)">
+        <member name="M:Sudoku.Gdip.PointCalculator.GetMouseCenter(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Get the center mouse point of all candidates.
             </summary>
@@ -1091,7 +1091,7 @@ if (student is (name: var name, age: >= 18))
             <returns>The center mouse point.</returns>
             <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Gdip.PointCalculator.GetMouseRectangle(Sudoku.Concepts.Candidates@)">
+        <member name="M:Sudoku.Gdip.PointCalculator.GetMouseRectangle(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Get the rectangle from all candidates.
             </summary>

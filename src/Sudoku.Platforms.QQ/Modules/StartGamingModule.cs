@@ -1,37 +1,36 @@
-﻿namespace Sudoku.Platforms.QQ.Commands;
+﻿namespace Sudoku.Platforms.QQ.Modules;
 
-/// <summary>
-/// Define a start gaming command.
-/// </summary>
-[Command]
+[BuiltInModule]
 [SupportedOSPlatform("windows")]
-file sealed class StartGamingCommand : Command
+file sealed class StartGamingModule : GroupModule
 {
 	/// <inheritdoc/>
-	public override string CommandName => R.Command("MatchStart")!;
-
-	/// <inheritdoc/>
-	public override CommandComparison ComparisonMode => CommandComparison.Strict;
+	public override string RaisingCommand => "开始游戏";
 
 
 	/// <inheritdoc/>
-	protected override async Task<bool> ExecuteCoreAsync(string args, GroupMessageReceiver e)
+	protected override async Task ExecuteCoreAsync(GroupMessageReceiver groupMessageReceiver)
 	{
 		var separator = new string(' ', 4);
 
-		var context = RunningContexts[e.GroupId];
-		context.ExecutingCommand = CommandName;
+		var context = RunningContexts[groupMessageReceiver.GroupId];
+		context.ExecutingCommand = RaisingCommand;
 		context.AnsweringContext = new();
 
 		var (puzzle, chosenCells, finalCellIndex, timeLimit, baseExp) = generatePuzzle();
 
-		await e.SendMessageAsync(string.Format(R.MessageFormat("MatchReady")!, timeLimit.ToChineseTimeSpanString()));
-		await Task.Delay(5.Seconds());
+		await groupMessageReceiver.SendMessageAsync(
+			$"""
+			题目生成中，请稍候……
+			游戏规则：机器人将给出一道标准数独题，你需要在 {timeLimit.ToChineseTimeSpanString()}内完成它，并找出 9 个位置里唯一一个编号和填数一致的单元格。回答结果（该编号）时请艾特机器人，格式为“@机器人 数字”；若所有格子的编号都和当前格子的填数不同，请用数字“0”表示。回答正确将自动结束游戏并获得相应积分，错误则会扣除一定积分；题目可反复作答，但连续错误会导致连续扣分哦！若无人作答完成题目，将自动作废，游戏自动结束。
+			"""
+		);
+		await Task.Delay(2.Seconds());
 
 		var selectedNodes = chosenCells.Select(markerNodeSelector).ToArray();
 
 		// Create picture and send message.
-		await e.SendPictureThenDeleteAsync(
+		await groupMessageReceiver.SendPictureThenDeleteAsync(
 			() => ISudokuPainter.Create(1000)
 				.WithGrid(puzzle)
 				.WithRenderingCandidates(false)
@@ -53,7 +52,7 @@ file sealed class StartGamingCommand : Command
 				if (context.AnsweringContext.IsCancelled is true)
 				{
 					// User cancelled.
-					await e.SendMessageAsync(R.MessageFormat("GamingIsCancelled")!);
+					await groupMessageReceiver.SendMessageAsync("游戏已中断。");
 
 					goto ReturnTrueAndInitializeContext;
 				}
@@ -70,7 +69,7 @@ file sealed class StartGamingCommand : Command
 						case (false, false):
 						{
 							// Wrong answer and no records.
-							await e.SendMessageAsync(R.MessageFormat("WrongAnswer")!);
+							await groupMessageReceiver.SendMessageAsync("回答错误~");
 							answeringContext.AnsweredUsers.TryAdd(userId, 1);
 
 							break;
@@ -78,7 +77,7 @@ file sealed class StartGamingCommand : Command
 						case (false, true):
 						{
 							// Wrong answer but containing records.
-							await e.SendMessageAsync(R.MessageFormat("WrongAnswer")!);
+							await groupMessageReceiver.SendMessageAsync("回答错误~");
 							answeringContext.AnsweredUsers[userId]++;
 
 							break;
@@ -90,7 +89,7 @@ file sealed class StartGamingCommand : Command
 								let currentUserId = pair.Key
 								let times = pair.Value
 								let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
-								let currentUser = e.Sender.Group.GetMemberFromQQAsync(currentUserId).Result
+								let currentUser = groupMessageReceiver.Sender.Group.GetMemberFromQQAsync(currentUserId).Result
 								select (currentUser.Name, Id: currentUserId, Score: deduct + (currentUserId == userId ? baseExp : 0));
 
 							if (!scoringTableLines.Any(e => e.Id == userId))
@@ -99,21 +98,23 @@ file sealed class StartGamingCommand : Command
 							}
 
 							// Correct answer and first reply.
-							await e.SendMessageAsync(
-								string.Format(
-									R.MessageFormat("CorrectAnswer")!,
-									$"{userName} ({userId})",
-									baseExp,
-									TimeSpan.FromSeconds(elapsedTime).ToChineseTimeSpanString(),
+							var elapsedTimeString = TimeSpan.FromSeconds(elapsedTime).ToChineseTimeSpanString();
+							await groupMessageReceiver.SendMessageAsync(
+								$"""
+								回答正确~ 恭喜玩家 {userName}（{userId}） 获得 {baseExp} 积分！耗时 {elapsedTimeString}。游戏结束！
+								---
+								得分情况：
+								{(
 									scoringTableLines.Any()
 										? string.Join(
 											Environment.NewLine,
 											from triplet in scoringTableLines
 											let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(triplet.Score)
-											select $"{triplet.Name} ({triplet.Id}){separator}{finalScoreToDisplay}"
+											select $"{triplet.Name}（{triplet.Id}）{separator}{finalScoreToDisplay}"
 										)
-										: R["None"]!
-								)
+										: "无"
+								)}
+								"""
 							);
 
 							appendOrDeduceScore(scoringTableLines);
@@ -133,27 +134,31 @@ file sealed class StartGamingCommand : Command
 			let currentUserId = pair.Key
 			let times = pair.Value
 			let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
-			let currentUser = e.Sender.Group.GetMemberFromQQAsync(currentUserId).Result
+			let currentUser = groupMessageReceiver.Sender.Group.GetMemberFromQQAsync(currentUserId).Result
 			select (currentUser.Name, Id: currentUserId, Score: deduct);
 
 		appendOrDeduceScore(scoringTableLinesDeductOnly);
 
-		await e.SendMessageAsync(
-			string.Format(
-				R.MessageFormat("GameTimeUp")!,
+		await groupMessageReceiver.SendMessageAsync(
+			$"""
+			游戏时间到~ 游戏结束~
+			---
+			得分：
+			{(
 				scoringTableLinesDeductOnly.Any()
 					? string.Join(
 						Environment.NewLine,
 						from triplet in scoringTableLinesDeductOnly
 						let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(triplet.Score)
-						select $"{triplet.Name} ({triplet.Id}){separator}{finalScoreToDisplay}"
+						select $"{triplet.Name}（{triplet.Id}）{separator}{finalScoreToDisplay}"
 					)
-					: R["None"]!
-			)
+					: "无"
+			)}
+			"""
 		);
 
 		// Create picture and send message.
-		await e.SendPictureThenDeleteAsync(
+		await groupMessageReceiver.SendPictureThenDeleteAsync(
 			() => ISudokuPainter.Create(1000)
 				.WithGrid(puzzle.GetSolution())
 				.WithRenderingCandidates(false)
@@ -167,7 +172,6 @@ file sealed class StartGamingCommand : Command
 
 	ReturnTrueAndInitializeContext:
 		context.ExecutingCommand = null;
-		return true;
 
 
 		static void appendOrDeduceScore(IEnumerable<(string, string Id, int Score)> scoringTableLines)
@@ -282,8 +286,8 @@ file static class Extensions
 	public static string ToChineseTimeSpanString(this TimeSpan @this)
 		=> @this switch
 		{
-			{ Minutes: 0 } => $"{@this:s' \u79d2'}",
-			{ Seconds: 0 } => $"{@this:m' \u5206\u949f'}",
-			_ => $"{@this:m' \u5206 'ss' \u79d2'}",
+			{ Minutes: 0 } => $"{@this:s' 秒'}",
+			{ Seconds: 0 } => $"{@this:m' 分钟'}",
+			_ => $"{@this:m' 分 'ss' 秒'}",
 		};
 }

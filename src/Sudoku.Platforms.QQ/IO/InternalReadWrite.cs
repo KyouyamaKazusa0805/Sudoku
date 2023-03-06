@@ -31,13 +31,13 @@ internal static class InternalReadWrite
 			return @default;
 		}
 
-		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		var botDataFolder = $"""{folder}\BotData""";
 		if (!Directory.Exists(botDataFolder))
 		{
 			return @default;
 		}
 
-		var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
+		var botUsersDataFolder = $"""{botDataFolder}\Users""";
 		if (!Directory.Exists(botUsersDataFolder))
 		{
 			return @default;
@@ -62,13 +62,13 @@ internal static class InternalReadWrite
 			throw new InvalidOperationException("The key path is not found.");
 		}
 
-		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		var botDataFolder = $"""{folder}\BotData""";
 		if (!Directory.Exists(botDataFolder))
 		{
 			return null;
 		}
 
-		var libraryFolder = $"""{botDataFolder}\{R["LibraryFolderName"]}""";
+		var libraryFolder = $"""{botDataFolder}\Puzzles""";
 		if (!Directory.Exists(libraryFolder))
 		{
 			return null;
@@ -105,13 +105,13 @@ internal static class InternalReadWrite
 			throw new InvalidOperationException("The key path is not found.");
 		}
 
-		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		var botDataFolder = $"""{folder}\BotData""";
 		if (!Directory.Exists(botDataFolder))
 		{
 			return null;
 		}
 
-		var libraryFolder = $"""{botDataFolder}\{R["LibraryFolderName"]}""";
+		var libraryFolder = $"""{botDataFolder}\Puzzles""";
 		if (!Directory.Exists(libraryFolder))
 		{
 			return null;
@@ -152,13 +152,13 @@ internal static class InternalReadWrite
 			throw new InvalidOperationException("The key path is not found.");
 		}
 
-		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		var botDataFolder = $"""{folder}\BotData""";
 		if (!Directory.Exists(botDataFolder))
 		{
 			return null;
 		}
 
-		var libraryFolder = $"""{botDataFolder}\{R["LibraryFolderName"]}""";
+		var libraryFolder = $"""{botDataFolder}\Puzzles""";
 		if (!Directory.Exists(libraryFolder))
 		{
 			return null;
@@ -192,13 +192,13 @@ internal static class InternalReadWrite
 			throw new InvalidOperationException("The key path is not found.");
 		}
 
-		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		var botDataFolder = $"""{folder}\BotData""";
 		if (!Directory.Exists(botDataFolder))
 		{
 			Directory.CreateDirectory(botDataFolder);
 		}
 
-		var botUsersDataFolder = $"""{botDataFolder}\{R["UserSettingsFolderName"]}""";
+		var botUsersDataFolder = $"""{botDataFolder}\Users""";
 		if (!Directory.Exists(botUsersDataFolder))
 		{
 			Directory.CreateDirectory(botUsersDataFolder);
@@ -223,13 +223,13 @@ internal static class InternalReadWrite
 			throw new InvalidOperationException("The key path is not found.");
 		}
 
-		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		var botDataFolder = $"""{folder}\BotData""";
 		if (!Directory.Exists(botDataFolder))
 		{
 			Directory.CreateDirectory(botDataFolder);
 		}
 
-		var libraryFolder = $"""{botDataFolder}\{R["LibraryFolderName"]}""";
+		var libraryFolder = $"""{botDataFolder}\Puzzles""";
 		if (!Directory.Exists(libraryFolder))
 		{
 			Directory.CreateDirectory(libraryFolder);
@@ -286,13 +286,13 @@ internal static class InternalReadWrite
 			return null;
 		}
 
-		var botDataFolder = $"""{folder}\{R["BotSettingsFolderName"]}""";
+		var botDataFolder = $"""{folder}\BotData""";
 		if (!Directory.Exists(botDataFolder))
 		{
 			Directory.CreateDirectory(botDataFolder);
 		}
 
-		var cachedPictureFolder = $"""{botDataFolder}\{R["CachedPictureFolderName"]}""";
+		var cachedPictureFolder = $"""{botDataFolder}\TempPictures""";
 		if (!Directory.Exists(cachedPictureFolder))
 		{
 			Directory.CreateDirectory(cachedPictureFolder);

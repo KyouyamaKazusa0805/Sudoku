@@ -103,619 +103,20 @@
             The internal running context.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.CheckInCommand">
-            <summary>
-            Indicates the check-in command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.CheckInCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.CheckInCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.CheckInCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.ClearCommand">
-            <summary>
-            Indicates the clear command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ClearCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ClearCommand.EnvironmentCommand">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ClearCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ClearCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.Command">
-            <summary>
-            Defines a command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.Command.CommandName">
-            <summary>
-            Indicates the command name that will be used as comparison.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.Command.EnvironmentCommand">
-            <summary>
-            Indicates the environment command that the current command relies on.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.Command.Prefixes">
-            <summary>
-            Indicates the prefix.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.Command.ComparisonMode">
-            <summary>
-            Indicates the comparison mode that will be used as check commands.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.Command.ExecuteAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <summary>
-            Execute the command.
-            </summary>
-            <param name="args">The arguments.</param>
-            <param name="e">The event arguments.</param>
-            <returns>
-            Returns a task instance that returns a <see cref="T:System.Boolean"/> value indicating whether the operation executed successfully.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.Command.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <summary>
-            The internal method to handle with arguments <paramref name="args"/>, using <paramref name="e"/> to send messages.
-            </summary>
-            <param name="args">
-            The arguments that is passed from QQ client. This argument will be pre-handled by the core method
-            <see cref="M:Sudoku.Platforms.QQ.Commands.Command.ExecuteAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)"/>. The target value of this argument will be different
-            with different settings of property <see cref="P:Sudoku.Platforms.QQ.Commands.Command.ComparisonMode"/>, if the property is:
-            <list type="table">
-            <item>
-            <term><see cref="F:Sudoku.Platforms.QQ.Commands.CommandComparison.Strict"/></term>
-            <description>The argument <paramref name="args"/> will be strictly equal to command name <see cref="P:Sudoku.Platforms.QQ.Commands.Command.CommandName"/>.</description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Platforms.QQ.Commands.CommandComparison.Prefix"/></term>
-            <description>
-            <para>The message received from QQ client will start with the command name <see cref="P:Sudoku.Platforms.QQ.Commands.Command.CommandName"/>.</para>
-            <para>
-            For example, if the command name is <c>a</c>, the message can be "<c>!a arg1 arg2 arg3</c>".
-            Then the core method will cut the command name, keeping arguments <c>arg1</c>, <c>arg2</c> and <c>arg3</c>
-            in the target arguments, passing into <paramref name="args"/> like "<c>arg1 arg2 arg3</c>", then you can use method
-            <see cref="M:System.String.Split(System.Char[])"/> to get all values like:
-            <code><![CDATA[
-            var arguments = args.Split(' ');
-            ]]></code>
-            </para>
-            </description>
-            </item>
-            </list>
-            Other kinds of values are not supported.
-            </param>
-            <param name="e">
-            The group message receiver instance. This instance can send message to the target user (i.e. mention somebody <c>@sb</c>),
-            or just send a normal message to the target QQ group without mentioning anybody. You can send message using extension method
-            <see cref="M:Mirai.Net.Utils.Scaffolds.MiraiScaffold.SendMessageAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Mirai.Net.Data.Messages.MessageChain)"/>:
-            <code><![CDATA[
-            await e.SendMessageAsync(targetMessage);
-            ]]></code>
-            </param>
-            <returns>
-            <para>The task of the execution, and with the return value of <see cref="T:System.Boolean"/> type.</para>
-            <para>
-            By default, the <see cref="T:System.Boolean"/> result value indicates whether the command is correctly chosen.
-            If returning <see langword="false"/>, the bot will choose other commands to execute;
-            otherwise, <see langword="true"/> is okay as the returning value even if the operation is failed to execute.
-            </para>
-            </returns>
-            <seealso cref="M:Sudoku.Platforms.QQ.Commands.Command.ExecuteAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)"/>
-            <seealso cref="P:Sudoku.Platforms.QQ.Commands.Command.ComparisonMode"/>
-            <seealso cref="P:Sudoku.Platforms.QQ.Commands.Command.CommandName"/>
-            <seealso cref="M:System.String.Split(System.Char[])"/>
-            <seealso cref="M:Mirai.Net.Utils.Scaffolds.MiraiScaffold.SendMessageAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Mirai.Net.Data.Messages.MessageChain)"/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.CommandAttribute">
-            <summary>
-            Declares the command and its permission.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.CommandAttribute.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Platforms.QQ.Commands.CommandAttribute"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.CommandAttribute.#ctor(Mirai.Net.Data.Shared.Permissions[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Platforms.QQ.Commands.CommandAttribute"/> instance.
-            </summary>
-            <param name="permission">The permission.</param>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.CommandAttribute.IsDeprecated">
-            <summary>
-            Indicates whether the command is deprecated. If so, the command will not be used by users,
-            and runtime will automatically skip the command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.CommandAttribute.AllowedPermissions">
-            <summary>
-            Indicates the permission.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.CommandComparison">
-            <summary>
-            Represents a comparison type that compares for two commands, using key value (<see cref="T:System.String"/> values).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Commands.CommandComparison.Strict">
-            <summary>
-            Indicates the comparison type is struct. Two commands should compare their <see cref="T:System.String"/> value.
-            They are same if and only if they holds a same <see cref="T:System.String"/> value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Commands.CommandComparison.Prefix">
-            <summary>
-            Indicates the comparison type is comparing as prefixes. If the target <see cref="T:System.String"/> starts with the specified value,
-            the comparison will be determined as <see langword="true"/>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.CommonCommandPrefixes">
+        <member name="T:Sudoku.Platforms.QQ.CommonCommandPrefixes">
             <summary>
             Extracts the prefix array provided, used by commands.
             </summary>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.Commands.CommonCommandPrefixes.HashTag">
+        <member name="F:Sudoku.Platforms.QQ.CommonCommandPrefixes.HashTag">
             <summary>
             The hashtag symbol "<c>#</c>".
             </summary>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.Commands.CommonCommandPrefixes.Bang">
+        <member name="F:Sudoku.Platforms.QQ.CommonCommandPrefixes.Bang">
             <summary>
             The bang symbol "<c>!</c>".
             </summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.DeleteDigitCommand">
-            <summary>
-            Indicates the delete command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DeleteDigitCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DeleteDigitCommand.EnvironmentCommand">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DeleteDigitCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.DeleteDigitCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.DrawCommand">
-            <summary>
-            Indicates draw command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DrawCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DrawCommand.EnvironmentCommand">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DrawCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.DrawCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.DrawEndCommand">
-            <summary>
-            Indicates the draw end command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DrawEndCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DrawEndCommand.EnvironmentCommand">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DrawEndCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.DrawEndCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.DrawStartCommand">
-            <summary>
-            Indicates the draw start command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DrawStartCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.DrawStartCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.DrawStartCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.GamingCancellingCommand">
-            <summary>
-            Defines a gaming cancelling command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.GamingCancellingCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.GamingCancellingCommand.EnvironmentCommand">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.GamingCancellingCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.GamingCancellingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.HelpCommand">
-            <summary>
-            Indicates the help command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.HelpCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.HelpCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.HelpCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.ICommandDataProvider">
-            <summary>
-            Extracts a type that creates data used by commands.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetIdentifier(System.String)">
-            <summary>
-            Try to fetch the identifier name via the color name.
-            </summary>
-            <param name="name">The name of the color.</param>
-            <returns>The identifier instance.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetCoordinate(System.String)">
-            <summary>
-            Try to fetch the coordinate value.
-            </summary>
-            <param name="rawCoordinate">The coordinate string value.</param>
-            <returns>
-            Returns a value that can be <see cref="T:Sudoku.Concepts.CellMap"/>, <see cref="T:Sudoku.Concepts.Candidates"/> and <see cref="T:System.Int32"/> value, where:
-            <list type="table">
-            <item>
-            <term><see cref="T:Sudoku.Concepts.CellMap"/></term>
-            <description>The cells parsed if the string value can be parsed as <see cref="T:Sudoku.Concepts.CellMap"/>.</description>
-            </item>
-            <item>
-            <term><see cref="T:Sudoku.Concepts.Candidates"/></term>
-            <description>The candidates parsed if the string value can be parsed as <see cref="T:Sudoku.Concepts.Candidates"/>.</description>
-            </item>
-            <item>
-            <term><see cref="T:System.Int32"/></term>
-            <description>The house parsed if the string value can be parsed as house index.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetCell(System.String)">
-            <summary>
-            Try to fetch the coordinate value.
-            </summary>
-            <param name="rawCoordinate">The coordinate string value.</param>
-            <returns>The cell index parsed. If failed to be parsed, <see langword="null"/> will be returned.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetGamingTimeLimit(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
-            <summary>
-            Gets the time limit for a single gaming.
-            </summary>
-            <param name="difficultyLevel">The difficulty level of the puzzle.</param>
-            <returns>The time limit.</returns>
-            <exception cref="T:System.NotSupportedException">Throws when the specified argument value is not supported.</exception>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ICommandDataProvider.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
-            <summary>
-            Gets the ranking from the specified group.
-            </summary>
-            <param name="group">The group.</param>
-            <param name="rankingListIsEmptyCallback">Indicates the callback method that will be raised when the ranking list is empty.</param>
-            <returns>The list of ranking result.</returns>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.Constants">
-            <target name="class" when="constant">
-				<summary>
-					Provides with constants and read-only values used by code in the current file.
-				</summary>
-			</target>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Commands.Constants.KnownColors">
-            <summary>
-            The table of known colors.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Commands.Constants.KnownKinds">
-            <summary>
-            The table of known kinds.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.LookupScoreCommand">
-            <summary>
-            The lookup score command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.LookupScoreCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.LookupScoreCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.LookupScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.PingCommand">
-            <summary>
-            Defines a ping command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.PingCommand.Prefixes">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.PingCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.PingCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.PingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.PuzzleLibraryExtractCommand">
-            <summary>
-            Defines a puzzle library extract command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.PuzzleLibraryExtractCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.PuzzleLibraryExtractCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.PuzzleLibraryExtractCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.RankingCommand">
-            <summary>
-            Indicates the ranking command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.RankingCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.RankingCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.RankingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.SetDigitCommand">
-            <summary>
-            Indicates the set digit command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.SetDigitCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.SetDigitCommand.EnvironmentCommand">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.SetDigitCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.SetDigitCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.ShowLibraryCollectionCommand">
-            <summary>
-            Defines show library collection data command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ShowLibraryCollectionCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ShowLibraryCollectionCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ShowLibraryCollectionCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.StartGamingCommand">
-            <summary>
-            Define a start gaming command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.StartGamingCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.StartGamingCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.StartGamingCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.GeneratedGridData">
-            <summary>
-            The generated grid data.
-            </summary>
-            <param name="Puzzle">Indicates the puzzle.</param>
-            <param name="ChosenCells">Indicates the chosen 9 cells.</param>
-            <param name="FinalIndex">Indicates the final index.</param>
-            <param name="TimeLimit">The whole time limit of a single gaming.</param>
-            <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.TimeSpan,System.Int32)">
-            <summary>
-            The generated grid data.
-            </summary>
-            <param name="Puzzle">Indicates the puzzle.</param>
-            <param name="ChosenCells">Indicates the chosen 9 cells.</param>
-            <param name="FinalIndex">Indicates the final index.</param>
-            <param name="TimeLimit">The whole time limit of a single gaming.</param>
-            <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.Puzzle">
-            <summary>Indicates the puzzle.</summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.ChosenCells">
-            <summary>Indicates the chosen 9 cells.</summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.FinalIndex">
-            <summary>Indicates the final index.</summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.TimeLimit">
-            <summary>The whole time limit of a single gaming.</summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.GeneratedGridData.ExperiencePoint">
-            <summary>Indicates how many experience point you can earn in the current round if answered correctly.</summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.Extensions.ToChineseTimeSpanString(System.TimeSpan)">
-            <summary>
-            Converts the current <see cref="T:System.TimeSpan"/> instance into a Chinese text string that represents the current instance.
-            </summary>
-            <param name="this">The <see cref="T:System.TimeSpan"/> instance.</param>
-            <returns>The target string.</returns>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.SyncPuzzleLibraryGlobalCommand">
-            <summary>
-            Defines sync puzzle library global command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.SyncPuzzleLibraryGlobalCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.SyncPuzzleLibraryGlobalCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.SyncPuzzleLibraryGlobalCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand">
-            <summary>
-            Defines update puzzle library global command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand.Prefixes">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryGlobalCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryPropertyCommand">
-            <summary>
-            Defines update library property command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryPropertyCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryPropertyCommand.Prefixes">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryPropertyCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibraryPropertyCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibrarySpecifiedCommand">
-            <summary>
-            Defines a update puzzle library specified command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibrarySpecifiedCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibrarySpecifiedCommand.Prefixes">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibrarySpecifiedCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.UpdatePuzzleLibrarySpecifiedCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.UpdateScoreCommand">
-            <summary>
-            Indicates the update score command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdateScoreCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.UpdateScoreCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.UpdateScoreCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.ViewPuzzleLogicalStepCommand">
-            <summary>
-            Defines a view puzzle logical step command.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ViewPuzzleLogicalStepCommand.CommandName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Commands.ViewPuzzleLogicalStepCommand.ComparisonMode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.ViewPuzzleLogicalStepCommand.ExecuteCoreAsync(System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Commands.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Commands.Extensions.FirstOrDefaultConvert``2(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,System.Int32,System.Boolean},System.Func{``0,System.Int32,``1})">
-            <summary>
-            Try to find the first element that satisfies the specified condition <paramref name="predicate"/>,
-            and projects it into the target value of type <typeparamref name="TResult"/>, using the specified converter <paramref name="converter"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <typeparam name="TResult">The type of the projected result.</typeparam>
-            <param name="this">The collection to be iterated.</param>
-            <param name="predicate">The condition that the element should be satisfied.</param>
-            <param name="converter">The converting method that projects the found element to the target one.</param>
-            <returns>The projected value.</returns>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions">
             <summary>
@@ -832,6 +233,27 @@
             </remarks>
             <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
             <seealso cref="T:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions"/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.ICommandDataProvider">
+            <summary>
+            Extracts a type that creates data used by commands.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.ICommandDataProvider.GetGamingTimeLimit(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+            <summary>
+            Gets the time limit for a single gaming.
+            </summary>
+            <param name="difficultyLevel">The difficulty level of the puzzle.</param>
+            <returns>The time limit.</returns>
+            <exception cref="T:System.NotSupportedException">Throws when the specified argument value is not supported.</exception>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.ICommandDataProvider.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Gets the ranking from the specified group.
+            </summary>
+            <param name="group">The group.</param>
+            <param name="rankingListIsEmptyCallback">Indicates the callback method that will be raised when the ranking list is empty.</param>
+            <returns>The list of ranking result.</returns>
         </member>
         <member name="T:Sudoku.Platforms.QQ.IO.InternalReadWrite">
             <summary>
@@ -980,16 +402,16 @@
             Defines the internal enumerator of this type.
             </summary>
         </member>
+        <member name="F:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator.#ctor(Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection)">
             <summary>
             Initializes an <see cref="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator"/> instance via the specified <see cref="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection"/> instance.
             </summary>
             <param name="collection">The <see cref="T:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection"/> instance.</param>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator._enumerator">
-            <summary>
-            The internal enumerator.
-            </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Models.PuzzleLibraryCollection.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
@@ -1100,6 +522,387 @@
         </member>
         <member name="P:Sudoku.Platforms.QQ.Models.UserPuzzleAnswerData.Conclusion">
             <summary>The answer conclusion index.</summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.ModuleManager">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Platforms.QQ.Modules.GroupModule"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Platforms.QQ.Modules.GroupModule"/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.ModuleManager.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.ModuleManager"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.ModuleManager.Default">
+            <summary>
+            Indicates the default instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.ModuleManager.BuiltIn">
+            <summary>
+            Indicates an instance that contains all built-in commands included in this assembly.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.ArgumentValueConverterAttribute`1">
+            <summary>
+            Provides with an attribute type that describes this property value should receive a value not type <see cref="T:System.String"/> as message text,
+            the conversion is specified as type argument.
+            </summary>
+            <typeparam name="T">The type of the value converter instance.</typeparam>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.BuiltInModuleAttribute">
+            <summary>
+            Represents with a built-in module attribute.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.CancelGamingModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.CancelGamingModule.RequiredEnvironmentCommand">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.CancelGamingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.CheckInModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.CheckInModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.DoubleArgumentAttribute">
+            <summary>
+            Provides with an attribute type that describes this property is the target argument to be assigned when parsing.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.DoubleArgumentAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.DoubleArgumentAttribute"/> instance its name.
+            </summary>
+            <param name="name">The name of the double argument.</param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.DoubleArgumentAttribute.Name">
+            <summary>
+            Indicates the name of the double argument.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.GroupModule">
+            <summary>
+            Represents a base type that defines a module that can be called by <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.GroupModule.Creator">
+            <summary>
+            The internal creator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.GroupModule.Creator.SstsOnly">
+            <summary>
+            The solver that only uses SSTS techniques to solve a puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.GroupModule.Creator.CreateDefaultSudokuPainter(Sudoku.Concepts.Grid@,System.String,System.Int32)">
+            <summary>
+            Creates a new <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance via the specified library name and puzzle index.
+            </summary>
+            <param name="grid">The puzzle.</param>
+            <param name="libName">The library name.</param>
+            <param name="index">The index of the puzzle.</param>
+            <returns>An <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.GroupModule.AllRoles">
+            <summary>
+            Indicates all roles are included.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.IsEnable">
+            <summary>
+            Indicates whether the module is currently enabled. If disabled (i.e. holding with <see langword="false"/> value),
+            this option won't be executed even if a person with a supported role emits a command executing this module.
+            </summary>
+            <remarks><i>This property is set <see langword="true"/> by default.</i></remarks>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RaisingCommand">
+            <summary>
+            Indicates the raising command.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredEnvironmentCommand">
+            <summary>
+            Indicates the required environment command.
+            </summary>
+            <remarks>
+            <para>This property is used for controlling the case when it costs too much time to be executed.</para>
+            <para><i>This property is set <see langword="null"/> by default.</i></para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RaisingPrefix">
+            <summary>
+            Indicates the prefix of the command used for raising command exeuction. Assign <see langword="null"/> to tell the runtime
+            this module does not use any prefixes.
+            </summary>
+            <remarks>
+            You can assign this property with values provided by type <see cref="T:Sudoku.Platforms.QQ.CommonCommandPrefixes"/>.
+            </remarks>
+            <seealso cref="T:Sudoku.Platforms.QQ.CommonCommandPrefixes"/>
+            <completionlist cref="T:Sudoku.Platforms.QQ.CommonCommandPrefixes"/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.SupportedRoles">
+            <summary>
+            Indicates the supported roles.
+            The role is used for checking whether the module should be executed if a person emits a command to execute this module.
+            </summary>
+            <remarks>
+            <para>You can use <see cref="T:Sudoku.Platforms.QQ.Roles.GroupRoleKind"/>.<see langword="operator"/> | to merge multiple role kinds into one.</para>
+            <para><i>By default, the value is all possible roles included.</i></para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredBotRole">
+            <summary>
+            Indicates the required bot permission. The kind is only set with one flag, as the highest allowed permission.
+            </summary>
+            <remarks><i>
+            By default, the value is <see cref="F:Sudoku.Platforms.QQ.Roles.GroupRoleKind.None"/>, which means the operation does not require any higher permissions.
+            </i></remarks>
+            <seealso cref="F:Sudoku.Platforms.QQ.Roles.GroupRoleKind.None"/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.TriggeringKind">
+            <summary>
+            Indicates the triggering kind.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.Mirai#Net#Modules#IModule#IsEnable">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.GroupModule.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when properties overridden by derived type is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.GroupModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <summary>
+            The internal method that executes for the details of an module.
+            </summary>
+            <param name="groupMessageReceiver">The group message receiver.</param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task"/> instance that provides with asynchronous information of the operation currently being executed.
+            </returns>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.ParsingFailedReason">
+            <summary>
+            Indicates the failed reason while parse a message text.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.None">
+            <summary>
+            Indicates the operation is not failed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.NotCurrentModule">
+            <summary>
+            Indicates the operation is failed because the parser has detected that the message text is not used by this module.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyHasNoGetterOrSetter">
+            <summary>
+            Indicates the operation is failed because target property has no both getter and setter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyIsIndexer">
+            <summary>
+            Indicates the operation is failed because target property is an indexer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyIsReserved">
+            <summary>
+            Indicates the operation is failed because target property is reserved one, it will be skipped in the assignment.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyHasNoValueConverterIfNotReturningString">
+            <summary>
+            Indicates the operation is failed
+            and returns non-<see cref="T:System.String"/> type, but this property has not marked <see cref="T:Sudoku.Platforms.QQ.Modules.ArgumentValueConverterAttribute`1"/>,
+            which cause parser cannot convert the specified value into a <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Platforms.QQ.Modules.ArgumentValueConverterAttribute`1"/>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.InvalidInput">
+            <summary>
+            Indicates the operation is failed because user has some invalid input.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.ReservedAttribute">
+            <summary>
+            Represents an attribute type that describes the property is reserved one.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.MessageParser">
+            <summary>
+            Defines a message parser type. This type provides a way to parse plain text into separated values
+            used by <see cref="T:Mirai.Net.Modules.IModule"/> instances.
+            </summary>
+            <seealso cref="T:Mirai.Net.Modules.IModule"/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ParseMessageTo(System.String,Sudoku.Platforms.QQ.Modules.GroupModule,Sudoku.Platforms.QQ.Modules.ParsingFailedReason@)">
+            <summary>
+            Try to parse message, and assign converted message data into target <see cref="T:Sudoku.Platforms.QQ.Modules.GroupModule"/> instance.
+            </summary>
+            <param name="this">The plain message to be parsed.</param>
+            <param name="module">The module instance.</param>
+            <param name="failedReason">Indicates the failed reason that is encountered.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the specified plain message is compatible
+            with module specified as argument <paramref name="module"/>.
+            </returns>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.LocalConverter">
+            <summary>
+            Provides with a local converter type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.LocalConverter.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
+            <summary>
+            Gets the equivalent <see cref="T:Sudoku.Platforms.QQ.Roles.GroupRoleKind"/> instance from the specified <see cref="T:Mirai.Net.Data.Shared.Permissions"/> instance.
+            </summary>
+            <param name="permission">The permission.</param>
+            <returns>The target <see cref="T:Sudoku.Platforms.QQ.Roles.GroupRoleKind"/> instance.</returns>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.LookupModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.LookupModule.UserId">
+            <summary>
+            Indicates QQ number of the user.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.LookupModule.UserNickname">
+            <summary>
+            Indicates nick name of the user.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.LookupModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.MentioningModule.IsEnable">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.MentioningModule.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.ModuleTriggeringKind">
+            <summary>
+            Indicates a module triggering kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.ModuleTriggeringKind.Default">
+            <summary>
+            Indicates the default text mode to trigger.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.ModuleTriggeringKind.Mentioning">
+            <summary>
+            Indicates triggering the module via mentioning the bot.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.PingModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.PingModule.RaisingPrefix">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.PingModule.SupportedRoles">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.PingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.RankingModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.RankingModule.SupportedRoles">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.RankingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.StartGamingModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.StartGamingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.GeneratedGridData">
+            <summary>
+            The generated grid data.
+            </summary>
+            <param name="Puzzle">Indicates the puzzle.</param>
+            <param name="ChosenCells">Indicates the chosen 9 cells.</param>
+            <param name="FinalIndex">Indicates the final index.</param>
+            <param name="TimeLimit">The whole time limit of a single gaming.</param>
+            <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.TimeSpan,System.Int32)">
+            <summary>
+            The generated grid data.
+            </summary>
+            <param name="Puzzle">Indicates the puzzle.</param>
+            <param name="ChosenCells">Indicates the chosen 9 cells.</param>
+            <param name="FinalIndex">Indicates the final index.</param>
+            <param name="TimeLimit">The whole time limit of a single gaming.</param>
+            <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GeneratedGridData.Puzzle">
+            <summary>Indicates the puzzle.</summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GeneratedGridData.ChosenCells">
+            <summary>Indicates the chosen 9 cells.</summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GeneratedGridData.FinalIndex">
+            <summary>Indicates the final index.</summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GeneratedGridData.TimeLimit">
+            <summary>The whole time limit of a single gaming.</summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GeneratedGridData.ExperiencePoint">
+            <summary>Indicates how many experience point you can earn in the current round if answered correctly.</summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Extensions.ToChineseTimeSpanString(System.TimeSpan)">
+            <summary>
+            Converts the current <see cref="T:System.TimeSpan"/> instance into a Chinese text string that represents the current instance.
+            </summary>
+            <param name="this">The <see cref="T:System.TimeSpan"/> instance.</param>
+            <returns>The target string.</returns>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.UpdateSourceModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.UpdateSourceModule.SupportedRoles">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.UpdateSourceModule.UserName">
+            <summary>
+            Indicates the user name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.UpdateSourceModule.UserId">
+            <summary>
+            Indicates the user ID.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.UpdateSourceModule.Addition">
+            <summary>
+            Indicates the addition of the score.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.UpdateSourceModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Operation.DailyPuzzleOperation">
             <summary>
@@ -1271,42 +1074,56 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Patterns.SimpleTimeSpanPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ Optional (greedy).<br/>
-                ○ "h" capture group.<br/>
-                    ○ 1st capture group.<br/>
-                        ○ Match with 3 alternative expressions.<br/>
-                            ○ Match a Unicode digit.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match a character in the set [01].<br/>
-                                ○ Match a Unicode digit.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match '2'.<br/>
-                                ○ Match a character in the set [0-3].<br/>
-                    ○ Match a character in the set [Hh].<br/>
-            ○ Optional (greedy).<br/>
-                ○ "m" capture group.<br/>
-                    ○ 2nd capture group.<br/>
-                        ○ Match with 2 alternative expressions.<br/>
-                            ○ Match a Unicode digit.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match a character in the set [1-5].<br/>
-                                ○ Match a Unicode digit.<br/>
-                    ○ Match a character in the set [Mm].<br/>
-            ○ Optional (greedy).<br/>
-                ○ "s" capture group.<br/>
-                    ○ 3rd capture group.<br/>
-                        ○ Match with 2 alternative expressions.<br/>
-                            ○ Match a Unicode digit.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match a character in the set [1-5].<br/>
-                                ○ Match a Unicode digit.<br/>
-                    ○ Match a character in the set [Ss].<br/>
-            </code>
-            </remarks>
+        <member name="T:Sudoku.Platforms.QQ.ProjectWideConstants">
+            <summary>
+            Provides with project-wide constants or read-only fields.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.ProjectWideConstants.BotNumber">
+            <summary>
+            Indicates the bot number.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.ProjectWideConstants.GodNumber">
+            <summary>
+            Indicates the god number.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.ProjectWideConstants.SudokuGroupNumber">
+            <summary>
+            Indicates the sudoku group number.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Roles.GroupRoleKind">
+            <summary>
+            Defines a role kind in a group. The value provides with a kind of role who emits and raises a module.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Roles.GroupRoleKind.None">
+            <summary>
+            Indicates the default value. This value cannot be used in code, and it only offers a default value to be compared with.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Roles.GroupRoleKind.GodAccount">
+            <summary>
+            Indicates the role is the god account, which means a person who writes code and creates modules to be used.
+            This value is nearly equal to the author of this project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Roles.GroupRoleKind.Owner">
+            <summary>
+            Indicates the role is an owner who owns a group. In Chinese, "qún zhŭ".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Roles.GroupRoleKind.Manager">
+            <summary>
+            Indicates the role is a manager who can do some works to collaborate with group owner. In Chinese, "guǎn lǐ yuán".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Roles.GroupRoleKind.DefaultMember">
+            <summary>
+            Indicates the role is a default member.
+            </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Scoring.Distribution">
             <summary>
@@ -1386,51 +1203,13 @@
             <param name="base">The base score value to be displayed.</param>
             <returns>The score to be displayed.</returns>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Strings.Resources">
+        <member name="T:Sudoku.Platforms.QQ.ValueConverters.Int32Converter">
             <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
+            Defines a converter that converts a <see cref="T:System.String"/> value into <see cref="T:System.Int32"/> value.
             </summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Strings.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Strings.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Strings.Resources.AdminQQ">
-            <summary>
-              Looks up a localized string similar to 747507738.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Strings.Resources.BotSettingsFolderName">
-            <summary>
-              Looks up a localized string similar to BotData.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Strings.Resources.CachedPictureFolderName">
-            <summary>
-              Looks up a localized string similar to TempPictures.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Strings.Resources.LibraryFolderName">
-            <summary>
-              Looks up a localized string similar to Puzzles.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Strings.Resources.SudokuGroupQQ">
-            <summary>
-              Looks up a localized string similar to 924849321.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Strings.Resources.UserSettingsFolderName">
-            <summary>
-              Looks up a localized string similar to Users.
-            </summary>
+        <member name="M:Sudoku.Platforms.QQ.ValueConverters.Int32Converter.Convert(System.String)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Resources.MergedResourcesFetcher">
             <summary>
@@ -1495,36 +1274,6 @@
             <param name="difficultyLevel">The difficulty level.</param>
             <returns>The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when argument <paramref name="candidatePrinting"/> is not defined.</exception>
-        </member>
-        <member name="T:Sudoku.CommandLine.ModuleInitializer">
-            <target name="type">
-				<summary>
-					<para>
-						Provides with the type that contains a module initializer method, called automatically by the CLR
-						(Common Language Runtime) to initialize some values.
-					</para>
-					<para>
-						<i>
-							The type is called by the compiler and the CLR (Common Language Runtime),
-							which means you cannot use any members in this type manually.
-						</i>
-					</para>
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.CommandLine.ModuleInitializer.Initialize">
-            <target name="method">
-				<summary>
-					Called by the runtime automatically while booting on this solution to initialize the values,
-					data members or any other things that can or should be initialized here.
-				</summary>
-				<remarks>
-					The concept <b>module</b> is different with <b>assembly</b>.
-					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
-					However, due to the design of Visual Studio project file system, each assembly will only contain
-					one module by default.
-				</remarks>
-			</target>
         </member>
         <member name="T:Mirai.Net.Data.Shared.GroupExtensions">
             <summary>
@@ -1958,47 +1707,11 @@ if (student is (name: var name, age: >= 18))
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the SimpleTimeSpanPattern method.</summary>
-        </member>
-        <member name="F:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.Instance">
-            <summary>Cached, thread-safe singleton instance.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.#ctor">
-            <summary>Initializes the instance.</summary>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.RunnerFactory">
-            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.RunnerFactory.CreateInstance">
-            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.RunnerFactory.Runner">
-            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
-            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
-            <param name="inputSpan">The text being scanned by the regular expression.</param>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.SimpleTimeSpanPattern_4.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
-            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
-            <param name="inputSpan">The text being scanned by the regular expression.</param>
-            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
-        </member>
         <member name="T:System.Text.RegularExpressions.Generated.Utilities">
             <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
         </member>
         <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
             <summary>Pushes 2 values onto the backtracking stack.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32,System.Int32)">
-            <summary>Pushes 3 values onto the backtracking stack.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
-            <summary>Pops 2 values from the backtracking stack.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32)">
-            <summary>Pushes 1 value onto the backtracking stack.</summary>
         </member>
     </members>
 </doc>

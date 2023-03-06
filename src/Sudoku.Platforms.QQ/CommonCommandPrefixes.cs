@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Platforms.QQ.Commands;
+﻿namespace Sudoku.Platforms.QQ;
 
 /// <summary>
 /// Extracts the prefix array provided, used by commands.

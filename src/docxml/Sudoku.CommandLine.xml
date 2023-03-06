@@ -167,12 +167,6 @@
             </summary>
             <param name="e">The event handler.</param>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnGroupMessageReceivedAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <summary>
-            Triggers when the group has been received a new message.
-            </summary>
-            <param name="e">The event handler.</param>
-        </member>
         <member name="M:Sudoku.CommandLine.RootCommands.Bot.OnNewMemberRequestedAsync(Mirai.Net.Data.Events.Concretes.Request.NewMemberRequestedEvent)">
             <summary>
             Triggers when someone has requested that he wants to join in this group.

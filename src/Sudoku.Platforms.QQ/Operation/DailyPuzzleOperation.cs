@@ -17,7 +17,6 @@ file sealed record DailyPuzzleOperation() : PeriodicOperation(new TimeOnly(12, 0
 	{
 		var solver = Solver with { IgnoreSlowAlgorithms = true };
 
-		var groupId = R["SudokuGroupQQ"]!;
 		for (var trial = 0; trial < 100; trial++)
 		{
 			var grid = Generator.Generate();
@@ -56,25 +55,30 @@ file sealed record DailyPuzzleOperation() : PeriodicOperation(new TimeOnly(12, 0
 					};
 			}
 
-			await MessageManager.SendGroupMessageAsync(groupId, R.MessageFormat("DailyPuzzle")!);
+			await MessageManager.SendGroupMessageAsync(
+				SudokuGroupNumber,
+				"""
+				【每日一题】
+				这是给本数独群提供的一个特殊机制。每一天都会抽取一道题目给各位完成。
+				难度系数均不会大于 4.5（唯一矩形的难度），且可使用一般直观技巧和一些进阶的直观技巧完成此题目，无需标记候选数。
+				"""
+			);
 
 			// Create picture and send message.
 			await SendPictureAsync(
-				groupId,
+				SudokuGroupNumber,
 				grid.ToString(),
-				$"#{DateTime.Today:yyyyMMdd} {R["DifficultyLevelIs"]!}{diffLevel switch
+				$"#{DateTime.Today:yyyyMMdd} 难度级别：{diffLevel switch
 				{
-					DifficultyLevel.Easy => R["DiffLevelEasy"]!,
-					DifficultyLevel.Moderate => R["DiffLevelModerate"]!,
-					DifficultyLevel.Hard => R["DiffLevelHard"]!,
-				}}{R["_Token_Comma"]!}{R["DiffRatingIs"]!} {diff:0.0}"
+					DifficultyLevel.Easy => "容易",
+					DifficultyLevel.Moderate => "一般",
+					DifficultyLevel.Hard => "困难",
+				}}，难度系数：{diff:0.0}"
 			);
 
 			// Exit the command if any one time the command has been executed successfully.
 			return;
 		}
-
-		//await MessageManager.SendGroupMessageAsync(groupId, R.MessageFormat("DailyPuzzleGeneratingFailed")!);
 	}
 
 	/// <summary>

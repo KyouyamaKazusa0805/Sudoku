@@ -46,7 +46,8 @@ file sealed class Bot : IExecutable
 			bot.SubscribeJoined(OnBotJoined);
 			bot.SubscribeLeft(OnBotLeft);
 			bot.SubscribeKicked(OnBotKicked);
-			bot.SubscribeGroupMessageReceived(OnGroupMessageReceivedAsync);
+			bot.MessageReceived.SubscribeGroupMessage(ModuleManager.BuiltIn.Raise);
+
 #if AUTO_SEND_MESSAGE_AFTER_MEMBER_JOINED
 			bot.SubscribeMemberJoined(OnMemberJoinedAsync);
 #endif
@@ -113,53 +114,6 @@ file sealed class Bot : IExecutable
 	/// <param name="e">The event handler.</param>
 	private void OnBotJoined(JoinedEvent e) => RunningContexts.TryAdd(e.Group.Id, new());
 
-	/// <summary>
-	/// Triggers when the group has been received a new message.
-	/// </summary>
-	/// <param name="e">The event handler.</param>
-	private async void OnGroupMessageReceivedAsync(GroupMessageReceiver e)
-	{
-		switch (e)
-		{
-			case
-			{
-				GroupId: var groupId,
-				Sender: var sender,
-				MessageChain: [SourceMessage, AtMessage { Target: var qq }, PlainMessage { Text: var message }]
-			}
-			when qq == BotNumber
-				&& RunningContexts.TryGetValue(groupId, out var context)
-				&& context is { AnsweringContext.CurrentRoundAnsweredValues: { } answeredValues }:
-			{
-				// At message: special use. Gaming will rely on this case.
-				// I think this way to handle messages is too complex and ugly. I may change the design on commands later.
-				var trimmed = message.Trim();
-				if (int.TryParse(trimmed, out var validInteger))
-				{
-					answeredValues.Add(new(sender, validInteger));
-				}
-
-				break;
-			}
-			case { Sender.Permission: var permission, MessageChain: (_, { } messageTrimmed, _) }:
-			{
-				// Normal command message.
-				foreach (var type in typeof(CommandAttribute).Assembly.GetDerivedTypes<Command>())
-				{
-					if (type.GetConstructor(Array.Empty<Type>()) is not null
-						&& type.GetCustomAttribute<CommandAttribute>() is { AllowedPermissions: var allowPermissions, IsDeprecated: false }
-						&& Array.IndexOf(allowPermissions, permission) != -1
-						&& await ((Command)Activator.CreateInstance(type)!).ExecuteAsync(messageTrimmed, e))
-					{
-						return;
-					}
-				}
-
-				break;
-			}
-		}
-	}
-
 #if ALLOW_INVITATION
 	/// <summary>
 	/// Triggers when someone has been invited by another one to join in this group.
@@ -167,7 +121,7 @@ file sealed class Bot : IExecutable
 	/// <param name="e">The event handler.</param>
 	private async void OnNewInvitationRequestedAsync(NewInvitationRequestedEvent e)
 	{
-		if (e is { GroupId: var groupId } && groupId == R["SudokuGroupQQ"])
+		if (e is { GroupId: ProjectWideConstants.SudokuGroupNumber })
 		{
 			await e.ApproveAsync();
 		}
@@ -183,11 +137,10 @@ file sealed class Bot : IExecutable
 	{
 		const string answerLocatorStr = "\u7b54\u6848\uff1a";
 
-		if (e is { GroupId: var groupId, Message: var message }
+		if (e is { GroupId: ProjectWideConstants.SudokuGroupNumber, Message: var message }
 			&& message.IndexOf(answerLocatorStr) is var answerLocatorStrIndex and not -1
 			&& answerLocatorStrIndex + answerLocatorStr.Length is var finalIndex && finalIndex < message.Length
-			&& message[finalIndex..] is var finalMessage
-			&& groupId == R["SudokuGroupQQ"])
+			&& message[finalIndex..] is var finalMessage)
 		{
 			if (BilibiliPattern().IsMatch(finalMessage.Trim()))
 			{
@@ -208,7 +161,7 @@ file sealed class Bot : IExecutable
 	/// <param name="e">The event handler.</param>
 	private async void OnMemberJoinedAsync(MemberJoinedEvent e)
 	{
-		if (e.Member.Group is { Id: var groupId } group && groupId == R["SudokuGroupQQ"])
+		if (e.Member.Group is { Id: ProjectWideConstants.SudokuGroupNumber } group)
 		{
 			await group.SendGroupMessageAsync(R["_MessageFormat_SampleMemberJoined"]!);
 		}
