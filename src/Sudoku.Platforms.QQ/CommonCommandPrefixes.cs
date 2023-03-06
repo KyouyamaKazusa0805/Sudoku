@@ -8,10 +8,10 @@ internal static class CommonCommandPrefixes
 	/// <summary>
 	/// The hashtag symbol "<c>#</c>".
 	/// </summary>
-	public static readonly string[] HashTag = { "#", "\uff03" };
+	public static readonly string[] HashTag = { "#", "＃" };
 
 	/// <summary>
 	/// The bang symbol "<c>!</c>".
 	/// </summary>
-	public static readonly string[] Bang = { "!", "\uff01" };
+	public static readonly string[] Bang = { "!", "！" };
 }
