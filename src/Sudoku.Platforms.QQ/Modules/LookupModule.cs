@@ -34,7 +34,7 @@ file sealed class LookupModule : GroupModule
 			}
 			case { UserNickname: { } nickname }:
 			{
-				var matchedMembers = await getMatchedNicknameMembers(groupMessageReceiver.Sender.Group, nickname);
+				var matchedMembers = await groupMessageReceiver.Sender.Group.GetMatchedMembersViaNicknameAsync(nickname);
 				var targetString = matchedMembers switch
 				{
 					[] => $"本群不存在昵称为“{nickname}”的用户。请检查一下然后重新查询。",
@@ -47,7 +47,7 @@ file sealed class LookupModule : GroupModule
 			}
 			case { UserId: { } id }:
 			{
-				var matchedMembers = await getMatchedIdMembers(groupMessageReceiver.Sender.Group, id);
+				var matchedMembers = await groupMessageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(id);
 				if (matchedMembers is not { Id: var senderId, Name: var senderName })
 				{
 					await groupMessageReceiver.QuoteMessageAsync($"本群不存在 QQ 号码为“{id}”的用户。请检查一下后重新查询。");
@@ -66,14 +66,6 @@ file sealed class LookupModule : GroupModule
 			}
 		}
 
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static async Task<Member[]> getMatchedNicknameMembers(Group group, string nickname)
-			=> (from m in await @group.GetGroupMembersAsync() where m.Name == nickname select m).ToArray();
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static async Task<Member?> getMatchedIdMembers(Group group, string id)
-			=> (from m in await @group.GetGroupMembersAsync() where m.Id == id select m).FirstOrDefault();
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		async Task<string> showResult(string senderName, string senderId)

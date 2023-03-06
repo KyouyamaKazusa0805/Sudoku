@@ -89,7 +89,7 @@ file sealed class StartGamingModule : GroupModule
 								let currentUserId = pair.Key
 								let times = pair.Value
 								let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
-								let currentUser = groupMessageReceiver.Sender.Group.GetMemberFromQQAsync(currentUserId).Result
+								let currentUser = groupMessageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
 								select (currentUser.Name, Id: currentUserId, Score: deduct + (currentUserId == userId ? baseExp : 0));
 
 							if (!scoringTableLines.Any(e => e.Id == userId))
@@ -134,7 +134,7 @@ file sealed class StartGamingModule : GroupModule
 			let currentUserId = pair.Key
 			let times = pair.Value
 			let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
-			let currentUser = groupMessageReceiver.Sender.Group.GetMemberFromQQAsync(currentUserId).Result
+			let currentUser = groupMessageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
 			select (currentUser.Name, Id: currentUserId, Score: deduct);
 
 		appendOrDeduceScore(scoringTableLinesDeductOnly);

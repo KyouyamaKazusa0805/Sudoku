@@ -61,7 +61,7 @@ file sealed class UpdateSourceModule : GroupModule
 		{
 			case ({ } name, null, var addition):
 			{
-				switch (await getMatchedNicknameMembers(group, name))
+				switch (await group.GetMatchedMembersViaNicknameAsync(name))
 				{
 					case null or []:
 					{
@@ -93,7 +93,7 @@ file sealed class UpdateSourceModule : GroupModule
 			}
 			case (null, { } userId, var addition):
 			{
-				switch (await getMatchedIdMembers(group, userId))
+				switch (await group.GetMatchedMemberViaIdAsync(userId))
 				{
 					case { Name: var name }:
 					{
@@ -119,14 +119,5 @@ file sealed class UpdateSourceModule : GroupModule
 				break;
 			}
 		}
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static async Task<Member[]> getMatchedNicknameMembers(Group group, string nickname)
-			=> (from m in await @group.GetGroupMembersAsync() where m.Name == nickname select m).ToArray();
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static async Task<Member?> getMatchedIdMembers(Group group, string id)
-			=> (from m in await @group.GetGroupMembersAsync() where m.Id == id select m).FirstOrDefault();
 	}
 }

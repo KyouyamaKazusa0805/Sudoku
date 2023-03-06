@@ -45,9 +45,6 @@
         <member name="P:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.DrawingContext">
             <inheritdoc cref="T:Sudoku.Platforms.QQ.AppLifecycle.DrawingContext"/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.Configuration">
-            <inheritdoc cref="T:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations"/>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext.GetContext(System.String)">
             <summary>
             Try to fetch <see cref="T:Sudoku.Platforms.QQ.AppLifecycle.BotRunningContext"/> instance of the specified group.
@@ -117,122 +114,6 @@
             <summary>
             The bang symbol "<c>!</c>".
             </summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions">
-            <summary>
-            Defines an option that determines what kind of case that the candidate will be printed by <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions.Never">
-            <summary>
-            Indicates <see cref="T:Sudoku.Drawing.ISudokuPainter"/> never prints candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions.PrintIfPuzzleIndirect">
-            <summary>
-            <para>Indicates <see cref="T:Sudoku.Drawing.ISudokuPainter"/> prints candidates when the puzzle cannot be solved using SSTS only.</para>
-            <para>
-            All SSTS are:
-            <list type="bullet">
-            <item>Hidden Single</item>
-            <item>Naked Single</item>
-            <item>Locked Candidates</item>
-            <item>Hidden Subset</item>
-            <item>Naked Subset</item>
-            </list>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions.Always">
-            <summary>
-            Indicates <see cref="T:Sudoku.Drawing.ISudokuPainter"/> always prints candidates.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Configurations.FontScale">
-            <summary>
-            Indicates the font rendering scale values.
-            </summary>
-            <param name="ValueScale">Indicates the value scale.</param>
-            <param name="CandidateScale">Indicates the candidate scale.</param>
-            <remarks>
-            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[2]"/></para>
-            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[3]"/></para>
-            <para>
-            In addition, I don't use keyword <see langword="readonly"/> to modify the type on purpose,
-            because <see langword="record struct"/> types will automatically generate for <see langword="init"/> properties if so;
-            otherwise, we'll get a normal property will both normal <see langword="get"/> and <see langword="set"/> accessors.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Configurations.FontScale.#ctor(System.Decimal,System.Decimal)">
-            <summary>
-            Indicates the font rendering scale values.
-            </summary>
-            <param name="ValueScale">Indicates the value scale.</param>
-            <param name="CandidateScale">Indicates the candidate scale.</param>
-            <remarks>
-            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[2]"/></para>
-            <para><inheritdoc cref="M:Sudoku.Drawing.ISudokuPainterFactory.WithFontScale(System.Decimal)" path="//param[@name='fontScale']/para[3]"/></para>
-            <para>
-            In addition, I don't use keyword <see langword="readonly"/> to modify the type on purpose,
-            because <see langword="record struct"/> types will automatically generate for <see langword="init"/> properties if so;
-            otherwise, we'll get a normal property will both normal <see langword="get"/> and <see langword="set"/> accessors.
-            </para>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Configurations.FontScale.ValueScale">
-            <summary>Indicates the value scale.</summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Configurations.FontScale.CandidateScale">
-            <summary>Indicates the candidate scale.</summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations">
-            <summary>
-            Defines a type that stores a user-defined configurations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.RankingDisplayUsersCount">
-            <summary>
-            Indicates how many members will be displayed onto the ranking page. The more members to display, the longer the output text will be.
-            </summary>
-            <remarks>
-            The default value is <c>15</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.CanvasSize">
-            <summary>
-            Indicates the size of the rendering canvas used by <see cref="T:Sudoku.Drawing.ISudokuPainter"/> to create <see cref="T:System.Drawing.Bitmap"/> instances.
-            </summary>
-            <remarks>
-            The default value is <c>1000</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.CanvasPadding">
-            <summary>
-            Indicates the padding of rendering canvas used by <see cref="T:Sudoku.Drawing.ISudokuPainter"/> to create <see cref="T:System.Drawing.Bitmap"/> instances.
-            </summary>
-            <remarks>
-            The default value is <c>20</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.FontScale">
-            <summary>
-            Indicates the font scale used by <see cref="T:Sudoku.Drawing.ISudokuPainter"/> to render given, modifiable values and candidates.
-            </summary>
-            <remarks>
-            The default value is <c>new(1.0M, 0.4M)</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Configurations.UserDefinedConfigurations.CandidatePrinting">
-            <summary>
-            Indicates whether <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance prints candidates.
-            </summary>
-            <remarks>
-            The default value is <c><see cref="F:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions.PrintIfPuzzleIndirect"/></c>.
-            </remarks>
-            <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
-            <seealso cref="T:Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions"/>
         </member>
         <member name="T:Sudoku.Platforms.QQ.ICommandDataProvider">
             <summary>
@@ -1211,92 +1092,29 @@
         <member name="M:Sudoku.Platforms.QQ.ValueConverters.Int32Converter.Convert(System.String)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Resources.MergedResourcesFetcher">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Resources.MergedResources"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Resources.MergedResources"/>
-        </member>
-        <member name="M:Sudoku.Resources.MergedResourcesFetcher.Command(Sudoku.Resources.MergedResources,System.String)">
-            <summary>
-            Try to fetch the command name.
-            </summary>
-            <param name="this">The resource fetcher.</param>
-            <param name="command">The internal name of the command as the key, with the prefix "<c>_Command_</c>" removed.</param>
-            <returns>The target command in the resource dictionary.</returns>
-        </member>
-        <member name="M:Sudoku.Resources.MergedResourcesFetcher.CommandSegment(Sudoku.Resources.MergedResources,System.String)">
-            <summary>
-            Try to fetch the command segment.
-            </summary>
-            <param name="this">The resource fetcher.</param>
-            <param name="commandSegment">
-            The internal name of the command segment as he key, with the prefix "<c>_CommandSegment_</c>" removed.
-            </param>
-            <returns>The target command segment in the resource dictionary.</returns>
-        </member>
-        <member name="M:Sudoku.Resources.MergedResourcesFetcher.Token(Sudoku.Resources.MergedResources,System.String)">
-            <summary>
-            Try to fetch the token.
-            </summary>
-            <param name="this">The resource fetcher.</param>
-            <param name="token">The internal name of the token, with the prefix "<c>_Token_</c>" removed.</param>
-            <returns>The target token in the resource dictionary.</returns>
-        </member>
-        <member name="M:Sudoku.Resources.MergedResourcesFetcher.MessageFormat(Sudoku.Resources.MergedResources,System.String)">
-            <summary>
-            Try to fetch the message format.
-            </summary>
-            <param name="this">The resource fetcher.</param>
-            <param name="messageFormat">The message format, with the prefix "<c>_MessageFormat_</c>" removed.</param>
-            <returns>The target message format in the resource dictionary.</returns>
-        </member>
-        <member name="T:Sudoku.Drawing.SudokuPainterExtensions">
-            <summary>
-            Provides with extension methods <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
-        </member>
-        <member name="M:Sudoku.Drawing.SudokuPainterExtensions.WithRenderingStep(Sudoku.Drawing.ISudokuPainter,Sudoku.Solving.Logical.IStep)">
-            <summary>
-            Render the <see cref="T:Sudoku.Solving.Logical.IStep"/> instance onto the target painter.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</param>
-            <param name="step">The step.</param>
-            <returns>The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.SudokuPainterExtensions.WithRenderingCandidates(Sudoku.Drawing.ISudokuPainter,Sudoku.Platforms.QQ.Configurations.CandidatePrintingOptions,Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
-            <summary>
-            Render candidates with specified option.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</param>
-            <param name="candidatePrinting">The printing options.</param>
-            <param name="difficultyLevel">The difficulty level.</param>
-            <returns>The <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when argument <paramref name="candidatePrinting"/> is not defined.</exception>
-        </member>
         <member name="T:Mirai.Net.Data.Shared.GroupExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Mirai.Net.Data.Shared.Group"/>.
             </summary>
             <seealso cref="T:Mirai.Net.Data.Shared.Group"/>
         </member>
-        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMemberAsync(Mirai.Net.Data.Shared.Group,System.String)">
+        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMatchedMembersViaNicknameAsync(Mirai.Net.Data.Shared.Group,System.String)">
             <summary>
-            Gets the member whose QQ or name is specified one.
+            Get all matched <see cref="T:Mirai.Net.Data.Shared.Member"/>s whose nick names are equal to argument <paramref name="nickname"/>.
             </summary>
-            <param name="this">The group.</param>
-            <param name="nameOrId">The QQ number or target member's name.</param>
-            <returns>The target member returned. If none found, <see langword="null"/>.</returns>
-            <exception cref="T:System.InvalidOperationException"></exception>
+            <param name="this">The group instance.</param>
+            <param name="nickname">The nickname to be checked.</param>
+            <returns>A task that handles the operation, with a returning value of type <see cref="T:Mirai.Net.Data.Shared.Member"/>[]?.</returns>
         </member>
-        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMemberFromQQAsync(Mirai.Net.Data.Shared.Group,System.String)">
+        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMatchedMemberViaIdAsync(Mirai.Net.Data.Shared.Group,System.String)">
             <summary>
-            Gets the member whose QQ number is the specified one.
+            Get the only matched <see cref="T:Mirai.Net.Data.Shared.Member"/> whose QQ number is equal to argument <paramref name="id"/>.
             </summary>
-            <param name="this">The group.</param>
-            <param name="qq">The QQ number.</param>
-            <returns>The target member returned. If none found, <see langword="null"/>.</returns>
+            <param name="this">The group instance.</param>
+            <param name="id">The user QQ number to be checked.</param>
+            <returns>
+            A task that handles the operation, with a returning value of type <see cref="T:Mirai.Net.Data.Shared.Member"/>. If none found, <see langword="null"/>.
+            </returns>
         </member>
         <member name="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions">
             <summary>
@@ -1313,59 +1131,6 @@
             <inheritdoc cref="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})" path="/param[@name='painterCreator']"/>
             </param>
             <returns>A task that handles the operation.</returns>
-        </member>
-        <member name="T:Mirai.Net.Data.Messages.MessageChainExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Mirai.Net.Data.Messages.MessageChain"/>.
-            </summary>
-            <seealso cref="T:Mirai.Net.Data.Messages.MessageChain"/>
-        </member>
-        <member name="M:Mirai.Net.Data.Messages.MessageChainExtensions.Deconstruct(Mirai.Net.Data.Messages.MessageChain,System.String@,System.String@,System.String[]@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
         </member>
         <member name="T:Mirai.Net.Sessions.MiraiBotSubscribingExtensions">
             <summary>
@@ -1402,6 +1167,11 @@ if (student is (name: var name, age: >= 18))
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.KickedEvent"/>.
             </summary>
         </member>
+        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeGroupMessage(Mirai.Net.Sessions.MiraiBot,System.Collections.Generic.List{Mirai.Net.Modules.IModule})">
+            <summary>
+            Subscribes for modules.
+            </summary>
+        </member>
         <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeGroupMessageReceived(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>.
@@ -1431,153 +1201,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.UnmutedEvent"/>.
             </summary>
-        </member>
-        <member name="T:OneOf.OneOfExtensions">
-            <summary>
-            Provides extension methods on <see cref="N:OneOf"/> types.
-            </summary>
-            <seealso cref="N:OneOf"/>
-        </member>
-        <member name="M:OneOf.OneOfExtensions.Deconstruct``2(OneOf.OneOf{``0,``1},System.Boolean@,System.Boolean@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:OneOf.OneOfExtensions.Deconstruct``3(OneOf.OneOf{``0,``1,``2},System.Boolean@,System.Boolean@,System.Boolean@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:OneOf.OneOfExtensions.Deconstruct``4(OneOf.OneOf{``0,``1,``2,``3},System.Boolean@,System.Boolean@,System.Boolean@,System.Boolean@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the BilibiliPattern method.</summary>

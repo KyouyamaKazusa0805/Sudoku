@@ -46,7 +46,7 @@ file sealed class Bot : IExecutable
 			bot.SubscribeJoined(OnBotJoined);
 			bot.SubscribeLeft(OnBotLeft);
 			bot.SubscribeKicked(OnBotKicked);
-			bot.MessageReceived.SubscribeGroupMessage(ModuleManager.BuiltIn.Raise);
+			bot.SubscribeGroupMessage(ModuleManager.BuiltIn);
 
 #if AUTO_SEND_MESSAGE_AFTER_MEMBER_JOINED
 			bot.SubscribeMemberJoined(OnMemberJoinedAsync);
@@ -167,4 +167,40 @@ file sealed class Bot : IExecutable
 		}
 	}
 #endif
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Iterates all elements in this enumerable collection.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The collection.</param>
+	/// <param name="visitor">The visitor method to handle and operate with each element.</param>
+	public static void ForEach<T>(this IEnumerable<T> @this, Action<T> visitor)
+	{
+		switch (@this)
+		{
+			case T[] array:
+			{
+				Array.ForEach(array, visitor);
+				break;
+			}
+			case List<T> list:
+			{
+				list.ForEach(visitor);
+				break;
+			}
+			default:
+			{
+				foreach (var element in @this)
+				{
+					visitor(element);
+				}
+
+				break;
+			}
+		}
+	}
 }

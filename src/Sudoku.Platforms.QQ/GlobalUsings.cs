@@ -35,7 +35,6 @@ global using Sudoku.Concepts;
 global using Sudoku.Drawing;
 global using Sudoku.Generating;
 global using Sudoku.Platforms.QQ.AppLifecycle;
-global using Sudoku.Platforms.QQ.Configurations;
 global using Sudoku.Platforms.QQ.IO;
 global using Sudoku.Platforms.QQ.Models;
 global using Sudoku.Platforms.QQ.Modules;

@@ -63,48 +63,4 @@ public static class EnumerableExtensions
 
 		return true;
 	}
-
-	/// <summary>
-	/// Try to treat the current instance as an array and convert it. If it is not an array,
-	/// call <see cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/>
-	/// to convert it into the valid array instance. This method will not throw exceptions or return <see langword="null"/>.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The instance.</param>
-	/// <returns>The final array converted.</returns>
-	/// <seealso cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static T[] CastToArray<T>(this IEnumerable<T> @this) => @this is T[] array ? array : @this.ToArray();
-
-	/// <summary>
-	/// Iterates all elements in this enumerable collection.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The collection.</param>
-	/// <param name="visitor">The visitor method to handle and operate with each element.</param>
-	public static void ForEach<T>(this IEnumerable<T> @this, Action<T> visitor)
-	{
-		switch (@this)
-		{
-			case T[] array:
-			{
-				Array.ForEach(array, visitor);
-				break;
-			}
-			case List<T> list:
-			{
-				list.ForEach(visitor);
-				break;
-			}
-			default:
-			{
-				foreach (var element in @this)
-				{
-					visitor(element);
-				}
-
-				break;
-			}
-		}
-	}
 }

@@ -47,6 +47,13 @@ public static class MiraiBotSubscribingExtensions
 		=> @this.EventReceived.OfType<KickedEvent>().Subscribe(action);
 
 	/// <summary>
+	/// Subscribes for modules.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void SubscribeGroupMessage(this MiraiBot @this, List<IModule> modules)
+		=> @this.MessageReceived.SubscribeGroupMessage(modules.Raise);
+
+	/// <summary>
 	/// Subscribes for event <see cref="GroupMessageReceiver"/>.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

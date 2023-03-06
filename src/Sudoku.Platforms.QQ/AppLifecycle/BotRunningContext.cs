@@ -21,9 +21,6 @@ internal sealed class BotRunningContext
 	/// <inheritdoc cref="AppLifecycle.DrawingContext"/>
 	public DrawingContext DrawingContext { get; set; } = new();
 
-	/// <inheritdoc cref="UserDefinedConfigurations"/>
-	public UserDefinedConfigurations Configuration { get; set; } = new();
-
 
 	/// <summary>
 	/// Try to fetch <see cref="BotRunningContext"/> instance of the specified group.

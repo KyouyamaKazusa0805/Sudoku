@@ -55,7 +55,7 @@ internal interface ICommandDataProvider
 			let ud = Deserialize<UserData>(File.ReadAllText(file))
 			where ud is not null
 			let qq = ud.QQ
-			let nickname = @group.GetMemberFromQQAsync(qq).Result?.Name
+			let nickname = @group.GetMatchedMemberViaIdAsync(qq).Result?.Name
 			where nickname is not null
 			let numericQQ = int.TryParse(qq, out var result) ? result : 0
 			orderby ud.Score descending, numericQQ

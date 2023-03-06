@@ -7,49 +7,24 @@
 public static class GroupExtensions
 {
 	/// <summary>
-	/// Gets the member whose QQ or name is specified one.
+	/// Get all matched <see cref="Member"/>s whose nick names are equal to argument <paramref name="nickname"/>.
 	/// </summary>
-	/// <param name="this">The group.</param>
-	/// <param name="nameOrId">The QQ number or target member's name.</param>
-	/// <returns>The target member returned. If none found, <see langword="null"/>.</returns>
-	/// <exception cref="InvalidOperationException"></exception>
-	public static async Task<Member?> GetMemberAsync(this Group @this, string nameOrId)
-	{
-		var result = (Member?)null;
-		foreach (var member in await @this.GetGroupMembersAsync())
-		{
-			if (member.Name == nameOrId || member.Id == nameOrId)
-			{
-				if (result is null)
-				{
-					result = member;
-				}
-				else
-				{
-					return null;
-				}
-			}
-		}
-
-		return result;
-	}
+	/// <param name="this">The group instance.</param>
+	/// <param name="nickname">The nickname to be checked.</param>
+	/// <returns>A task that handles the operation, with a returning value of type <see cref="Member"/>[]?.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static async Task<Member[]?> GetMatchedMembersViaNicknameAsync(this Group @this, string nickname)
+		=> (from m in await @this.GetGroupMembersAsync() where m.Name == nickname select m).ToArray() is var r && r.Length != 0 ? r : null;
 
 	/// <summary>
-	/// Gets the member whose QQ number is the specified one.
+	/// Get the only matched <see cref="Member"/> whose QQ number is equal to argument <paramref name="id"/>.
 	/// </summary>
-	/// <param name="this">The group.</param>
-	/// <param name="qq">The QQ number.</param>
-	/// <returns>The target member returned. If none found, <see langword="null"/>.</returns>
-	public static async Task<Member?> GetMemberFromQQAsync(this Group @this, string qq)
-	{
-		foreach (var member in await @this.GetGroupMembersAsync())
-		{
-			if (member.Id == qq)
-			{
-				return member;
-			}
-		}
-
-		return null;
-	}
+	/// <param name="this">The group instance.</param>
+	/// <param name="id">The user QQ number to be checked.</param>
+	/// <returns>
+	/// A task that handles the operation, with a returning value of type <see cref="Member"/>. If none found, <see langword="null"/>.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static async Task<Member?> GetMatchedMemberViaIdAsync(this Group @this, string id)
+		=> (from m in await @this.GetGroupMembersAsync() where m.Id == id select m).FirstOrDefault();
 }
