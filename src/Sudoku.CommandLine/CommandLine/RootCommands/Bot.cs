@@ -82,7 +82,7 @@ file sealed class Bot : IExecutable
 		}
 
 #if ALLOW_PERIODIC_OPERATION
-		PeriodicOperationPool.Shared.EnqueueRange(
+		PeriodicOperationManager.BuiltIn.EnqueueRange(
 			from type in typeof(PeriodicOperation).Assembly.GetTypes()
 			where type.IsAssignableTo(typeof(PeriodicOperation))
 			let constructor = type.GetConstructor(Array.Empty<Type>())
