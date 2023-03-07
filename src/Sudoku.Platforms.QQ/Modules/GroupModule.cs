@@ -143,6 +143,8 @@ public abstract partial class GroupModule : IModule
 			return;
 		}
 
+		ResetProperties();
+
 		if (!text.ParseMessageTo(this, out var failedReason))
 		{
 			switch (failedReason)
@@ -190,6 +192,83 @@ public abstract partial class GroupModule : IModule
 	/// A <see cref="Task"/> instance that provides with asynchronous information of the operation currently being executed.
 	/// </returns>
 	protected abstract Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver);
+
+	/// <summary>
+	/// To reset properties.
+	/// </summary>
+	protected virtual void ResetProperties()
+	{
+		var containingType = GetType();
+		foreach (var propertyInfo in containingType.GetProperties())
+		{
+			if (propertyInfo is not { CanRead: true, CanWrite: true })
+			{
+				continue;
+			}
+
+			if (!propertyInfo.IsDefined(typeof(DoubleArgumentAttribute)))
+			{
+				continue;
+			}
+
+			var defaultOfType = DefaultValueCreator.CreateInstance(propertyInfo.PropertyType);
+			switch (propertyInfo.GetCustomAttribute<DefaultValueAttribute>())
+			{
+				case null:
+				{
+					propertyInfo.SetValue(this, defaultOfType);
+					break;
+				}
+				case { DefaultValueInvokerName: var name }:
+				{
+					var referencedMemberFound = false;
+					foreach (var memberInfo in containingType.GetMembers(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public))
+					{
+						switch (memberInfo)
+						{
+							case FieldInfo { Name: var fieldName } f when fieldName == name:
+							{
+								propertyInfo.SetValue(this, f.GetValue(null));
+								referencedMemberFound = true;
+								break;
+							}
+							case PropertyInfo { CanRead: true, Name: var propertyName } p when propertyName == name:
+							{
+								propertyInfo.SetValue(this, p.GetValue(null, null));
+								referencedMemberFound = true;
+								break;
+							}
+							case MethodInfo { ReturnType: var returnType, Name: var methodName } m
+							when methodName == name && returnType != typeof(void):
+							{
+								var parameters = m.GetParameters();
+								if (parameters.Length != 0)
+								{
+									continue;
+								}
+
+								propertyInfo.SetValue(this, m.Invoke(null, null));
+								referencedMemberFound = true;
+								break;
+							}
+						}
+
+						if (referencedMemberFound)
+						{
+							break;
+						}
+					}
+
+					if (!referencedMemberFound)
+					{
+						propertyInfo.SetValue(this, defaultOfType);
+					}
+
+					break;
+				}
+			}
+		}
+	}
 }
 
 /// <summary>

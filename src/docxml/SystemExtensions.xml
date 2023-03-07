@@ -2231,6 +2231,19 @@
             <param name="genericAttributeType">The generic attribute type.</param>
             <returns>The types of the generic type arguments.</returns>
         </member>
+        <member name="T:System.Reflection.DefaultValueCreator">
+            <summary>
+            Represents a defualt value generator.
+            </summary>
+        </member>
+        <member name="M:System.Reflection.DefaultValueCreator.CreateInstance(System.Type)">
+            <summary>
+            Creates an instance that is equivalent to <see langword="default"/>(<c>T</c>), where <c>T</c> is specified
+            as a <see cref="T:System.Type"/> instance.
+            </summary>
+            <param name="type">The type instance.</param>
+            <returns>The created result.</returns>
+        </member>
         <member name="T:System.Reflection.ReflectionCopying">
             <summary>
             Provides a way to simplify the copying using reflection on cloneable types having implemented <see cref="T:System.ICloneable`1"/>.

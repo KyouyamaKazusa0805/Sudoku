@@ -451,6 +451,30 @@
         <member name="M:Sudoku.Platforms.QQ.Modules.CheckInModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.DefaultValueAttribute">
+            <summary>
+            Represents a default value attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.DefaultValueAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.DefaultValueAttribute"/> instance via the specified default value invoker name.
+            </summary>
+            <param name="defaultValueInvokerName">
+            <para>The default value invoker name.</para>
+            <para><inheritdoc cref="P:Sudoku.Platforms.QQ.Modules.DefaultValueAttribute.DefaultValueInvokerName" path="/remarks"/></para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.DefaultValueAttribute.DefaultValueInvokerName">
+            <summary>
+            Indicates the default value invoker name.
+            </summary>
+            <remarks><b><i>
+            The referenced member can only be <see langword="static"/> fields, <see langword="static"/> properties
+            or <see langword="static"/> parameterless methods. Methods cannot be local functions or other methods
+            whose name cannot be known in compiler time.
+            </i></b></remarks>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.DoubleArgumentAttribute">
             <summary>
             Provides with an attribute type that describes this property is the target argument to be assigned when parsing.
@@ -577,6 +601,11 @@
             <returns>
             A <see cref="T:System.Threading.Tasks.Task"/> instance that provides with asynchronous information of the operation currently being executed.
             </returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.GroupModule.ResetProperties">
+            <summary>
+            To reset properties.
+            </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.ParsingFailedReason">
             <summary>

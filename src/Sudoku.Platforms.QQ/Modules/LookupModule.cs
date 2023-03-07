@@ -3,6 +3,9 @@
 [BuiltInModule]
 file sealed class LookupModule : GroupModule
 {
+	private static readonly string ViewContentKindDefaultValue = ViewContentKinds.Elementary;
+
+
 	/// <inheritdoc/>
 	public override string RaisingCommand => "查询";
 
@@ -22,7 +25,8 @@ file sealed class LookupModule : GroupModule
 	/// Indicates the view content kind.
 	/// </summary>
 	[DoubleArgument("内容")]
-	public string ViewContentKind { get; set; } = ViewContentKinds.Elementary;
+	[DefaultValue(nameof(ViewContentKindDefaultValue))]
+	public string ViewContentKind { get; set; } = null!;
 
 
 	/// <inheritdoc/>
