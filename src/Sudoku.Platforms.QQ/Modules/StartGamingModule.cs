@@ -90,11 +90,11 @@ file sealed class StartGamingModule : GroupModule
 								let times = pair.Value
 								let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
 								let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
-								select (currentUser.Name, Id: currentUserId, Score: deduct + (currentUserId == userId ? baseExp : 0));
+								select (currentUser.Name, Id: currentUserId, Score: deduct + (currentUserId == userId ? baseExp : 0), Times: times);
 
 							if (!scoringTableLines.Any(e => e.Id == userId))
 							{
-								scoringTableLines = scoringTableLines.Prepend((userName, userId, baseExp));
+								scoringTableLines = scoringTableLines.Prepend((userName, userId, baseExp, 1));
 							}
 
 							// Correct answer and first reply.
@@ -135,7 +135,7 @@ file sealed class StartGamingModule : GroupModule
 			let times = pair.Value
 			let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
 			let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
-			select (currentUser.Name, Id: currentUserId, Score: deduct);
+			select (currentUser.Name, Id: currentUserId, Score: deduct, Times: times);
 
 		appendOrDeduceScore(scoringTableLinesDeductOnly);
 
@@ -174,12 +174,26 @@ file sealed class StartGamingModule : GroupModule
 		context.ExecutingCommand = null;
 
 
-		static void appendOrDeduceScore(IEnumerable<(string, string Id, int Score)> scoringTableLines)
+		static void appendOrDeduceScore(IEnumerable<(string, string Id, int Score, int Times)> scoringTableLines)
 		{
-			foreach (var (_, id, score) in scoringTableLines)
+			foreach (var (_, id, score, times) in scoringTableLines)
 			{
 				var userData = InternalReadWrite.Read(id, new() { QQ = id, LastCheckIn = DateTime.MinValue });
-				userData.Score += score;
+				userData.ExperiencePoint += score;
+				if (!userData.CorrectedCount.TryAdd(GamingMode.FindDifference, 1))
+				{
+					userData.CorrectedCount[GamingMode.FindDifference] += 1;
+				}
+
+				if (!userData.TriedCount.TryAdd(GamingMode.FindDifference, times))
+				{
+					userData.TriedCount[GamingMode.FindDifference] += times;
+				}
+
+				if (!userData.TotalPlayingCount.TryAdd(GamingMode.FindDifference, 1))
+				{
+					userData.TotalPlayingCount[GamingMode.FindDifference]++;
+				}
 
 				InternalReadWrite.Write(userData);
 			}

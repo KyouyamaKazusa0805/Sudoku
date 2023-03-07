@@ -13,10 +13,16 @@ public sealed class UserData
 	public required string QQ { get; set; }
 
 	/// <summary>
-	/// Indicates the user's score.
+	/// Indicates the user's experience point.
 	/// </summary>
 	[JsonPropertyName("exp")]
-	public int Score { get; set; }
+	public int ExperiencePoint { get; set; }
+
+	/// <summary>
+	/// Indicates the user's coin.
+	/// </summary>
+	[JsonPropertyName("coin")]
+	public int Coin { get; set; }
 
 	/// <summary>
 	/// Indicates the number of continuous days that the user has checked in.
@@ -29,4 +35,28 @@ public sealed class UserData
 	/// </summary>
 	[JsonPropertyName("lastCheckInDate")]
 	public DateTime LastCheckIn { get; set; }
+
+	/// <summary>
+	/// Indicates the shopping items.
+	/// </summary>
+	[JsonPropertyName("items")]
+	public Dictionary<ShoppingItem, int> Items { get; set; } = new();
+
+	/// <summary>
+	/// Indicates the corrected playing data.
+	/// </summary>
+	[JsonPropertyName("correctedPlaying")]
+	public Dictionary<GamingMode, int> CorrectedCount { get; set; } = new();
+
+	/// <summary>
+	/// Indicates the tried playing data.
+	/// </summary>
+	[JsonPropertyName("triedPlaying")]
+	public Dictionary<GamingMode, int> TriedCount { get; set; } = new();
+
+	/// <summary>
+	/// Indicates the total playing data.
+	/// </summary>
+	[JsonPropertyName("totalPlaying")]
+	public Dictionary<GamingMode, int> TotalPlayingCount { get; set; } = new();
 }

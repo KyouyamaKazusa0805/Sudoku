@@ -6,12 +6,6 @@
 internal static class InternalReadWrite
 {
 	/// <summary>
-	/// Indicates the name of the puzzle library configuration file.
-	/// </summary>
-	private const string PuzzleLibraryFileName = "config.json";
-
-
-	/// <summary>
 	/// Reads the specified user's local file, and returns <see cref="UserData"/> instance.
 	/// </summary>
 	/// <param name="userId">The user QQ number.</param>
@@ -80,7 +74,7 @@ internal static class InternalReadWrite
 			return null;
 		}
 
-		var filePath = $"""{groupLibraryFolder}\{PuzzleLibraryFileName}""";
+		var filePath = $"""{groupLibraryFolder}\config.json""";
 		if (!File.Exists(filePath))
 		{
 			return null;
@@ -242,7 +236,7 @@ internal static class InternalReadWrite
 			Directory.CreateDirectory(groupLibraryFolder);
 		}
 
-		var fileName = $"""{groupLibraryFolder}\{PuzzleLibraryFileName}""";
+		var fileName = $"""{groupLibraryFolder}\config.json""";
 		File.WriteAllText(fileName, Serialize(libraryCollection));
 	}
 

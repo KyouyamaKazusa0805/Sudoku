@@ -31,12 +31,11 @@ file sealed class CheckInModule : GroupModule
 				userData.ComboCheckedIn++;
 
 				var expEarned = Scorer.GenerateValueEarned(userData.ComboCheckedIn);
-				userData.Score += expEarned;
+				userData.ExperiencePoint += expEarned;
 				userData.LastCheckIn = DateTime.Now;
 
 				var finalScore = Scorer.GetEarnedScoringDisplayingString(expEarned);
-				await messageReceiver.SendMessageAsync(
-					$"签到成功！已连续签到 {userData.ComboCheckedIn} 天~ 恭喜你获得 {finalScore} 积分。一天只能签到一次哦~");
+				await messageReceiver.SendMessageAsync($"签到成功！已连续签到 {userData.ComboCheckedIn} 天~ 恭喜你获得 {finalScore} 积分。一天只能签到一次哦~");
 
 				break;
 			}
@@ -46,7 +45,7 @@ file sealed class CheckInModule : GroupModule
 				userData.ComboCheckedIn = 1;
 
 				var expEarned = Scorer.GenerateOriginalValueEarned();
-				userData.Score += expEarned;
+				userData.ExperiencePoint += expEarned;
 				userData.LastCheckIn = DateTime.Now;
 
 				var finalScore = Scorer.GetEarnedScoringDisplayingString(expEarned);

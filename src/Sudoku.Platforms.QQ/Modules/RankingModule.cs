@@ -32,7 +32,7 @@ file sealed class RankingModule : GroupModule
 						usersData.Select(
 							static (pair, i) =>
 							{
-								var score = pair.Data.Score;
+								var score = pair.Data.ExperiencePoint;
 								var grade = Scorer.GetGrade(score);
 								return $"#{i + 1}：{pair.Name}（{pair.Data.QQ}），{score} 分，{grade} 级";
 							}

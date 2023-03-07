@@ -54,11 +54,7 @@ public static class Scorer
 	/// <returns>The value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GenerateValueEarned(int continuousDaysCount)
-	{
-		var earned = GenerateOriginalValueEarned();
-		var level = continuousDaysCount / 7;
-		return (int)Round(earned * (level * .2 + 1)) * GetWeekendFactor();
-	}
+		=> (int)Round(GenerateOriginalValueEarned() * GetScoringRate(continuousDaysCount)) * GetWeekendFactor();
 
 	/// <summary>
 	/// Generates a value that describes the experience point that the current user can be earned.
@@ -149,6 +145,14 @@ public static class Scorer
 		} * GetWeekendFactor();
 
 	/// <summary>
+	/// Get scoring rate.
+	/// </summary>
+	/// <param name="continuousDaysCount">Continuous days count.</param>
+	/// <returns>Scoring rate..</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static decimal GetScoringRate(int continuousDaysCount) => 1.0M + continuousDaysCount / 7 * .2M;
+
+	/// <summary>
 	/// Gets the ranking from the specified group.
 	/// </summary>
 	/// <param name="group">The group.</param>
@@ -186,7 +190,7 @@ public static class Scorer
 			let nickname = @group.GetMatchedMemberViaIdAsync(qq).Result?.Name
 			where nickname is not null
 			let numericQQ = int.TryParse(qq, out var result) ? result : 0
-			orderby ud.Score descending, numericQQ
+			orderby ud.ExperiencePoint descending, numericQQ
 			select (Name: nickname, Data: ud)
 		).ToArray();
 	}

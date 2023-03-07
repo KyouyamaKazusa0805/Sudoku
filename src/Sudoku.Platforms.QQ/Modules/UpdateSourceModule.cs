@@ -73,9 +73,9 @@ file sealed class UpdateSourceModule : GroupModule
 						var fileName = $"""{botUsersDataFolder}\{userId}.json""";
 						var userData = File.Exists(fileName)
 							? Deserialize<UserData>(await File.ReadAllTextAsync(fileName))!
-							: new() { QQ = userId, ComboCheckedIn = 0, LastCheckIn = DateTime.MinValue, Score = 0 };
+							: new() { QQ = userId, ComboCheckedIn = 0, LastCheckIn = DateTime.MinValue };
 
-						userData.Score += addition;
+						userData.ExperiencePoint += addition;
 
 						await File.WriteAllTextAsync(fileName, Serialize(userData));
 						await messageReceiver.SendMessageAsync($"恭喜用户“{name}”获得 {Scorer.GetEarnedScoringDisplayingString(addition)} 积分！");
@@ -100,9 +100,9 @@ file sealed class UpdateSourceModule : GroupModule
 						var fileName = $"""{botUsersDataFolder}\{userId}.json""";
 						var userData = File.Exists(fileName)
 							? Deserialize<UserData>(await File.ReadAllTextAsync(fileName))!
-							: new() { QQ = userId, ComboCheckedIn = 0, LastCheckIn = DateTime.MinValue, Score = 0 };
+							: new() { QQ = userId, ComboCheckedIn = 0, LastCheckIn = DateTime.MinValue };
 
-						userData.Score += addition;
+						userData.ExperiencePoint += addition;
 
 						await File.WriteAllTextAsync(fileName, Serialize(userData));
 						await messageReceiver.SendMessageAsync($"恭喜用户“{name}”获得 {Scorer.GetEarnedScoringDisplayingString(addition)} 积分！");

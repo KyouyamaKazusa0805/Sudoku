@@ -120,11 +120,6 @@
             Represents a type that interacts with local files. All methods in this type are synchronized methods.
             </summary>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.IO.InternalReadWrite.PuzzleLibraryFileName">
-            <summary>
-            Indicates the name of the puzzle library configuration file.
-            </summary>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.IO.InternalReadWrite.Read(System.String,Sudoku.Platforms.QQ.Models.UserData)">
             <summary>
             Reads the specified user's local file, and returns <see cref="T:Sudoku.Platforms.QQ.Models.UserData"/> instance.
@@ -348,9 +343,14 @@
             The user's QQ number.
             </summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Models.UserData.Score">
+        <member name="P:Sudoku.Platforms.QQ.Models.UserData.ExperiencePoint">
             <summary>
-            Indicates the user's score.
+            Indicates the user's experience point.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.UserData.Coin">
+            <summary>
+            Indicates the user's coin.
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Models.UserData.ComboCheckedIn">
@@ -361,6 +361,26 @@
         <member name="P:Sudoku.Platforms.QQ.Models.UserData.LastCheckIn">
             <summary>
             Indicates the last time checked in of the current user.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.UserData.Items">
+            <summary>
+            Indicates the shopping items.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.UserData.CorrectedCount">
+            <summary>
+            Indicates the corrected playing data.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.UserData.TriedCount">
+            <summary>
+            Indicates the tried playing data.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Models.UserData.TotalPlayingCount">
+            <summary>
+            Indicates the total playing data.
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Models.UserPuzzleAnswerData">
@@ -445,6 +465,16 @@
         <member name="P:Sudoku.Platforms.QQ.Modules.DoubleArgumentAttribute.Name">
             <summary>
             Indicates the name of the double argument.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.GamingMode">
+            <summary>
+            Represents a gaming mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.GamingMode.FindDifference">
+            <summary>
+            Indicates the mode is finding difference.
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.GroupModule">
@@ -640,6 +670,11 @@
             Indicates nick name of the user.
             </summary>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.LookupModule.ViewContentKind">
+            <summary>
+            Indicates the view content kind.
+            </summary>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.LookupModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -662,6 +697,22 @@
         <member name="F:Sudoku.Platforms.QQ.Modules.ModuleTriggeringKind.Mentioning">
             <summary>
             Indicates triggering the module via mentioning the bot.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.NameAttribute">
+            <summary>
+            Represents a name attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.NameAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.NameAttribute"/> instance via the name.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.NameAttribute.Name">
+            <summary>
+            Indicates the name.
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.PingModule.RaisingCommand">
@@ -1064,6 +1115,13 @@
             <returns>The deduct.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="times"/> is below 0.</exception>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetScoringRate(System.Int32)">
+            <summary>
+            Get scoring rate.
+            </summary>
+            <param name="continuousDaysCount">Continuous days count.</param>
+            <returns>Scoring rate..</returns>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
             <summary>
             Gets the ranking from the specified group.
@@ -1078,6 +1136,61 @@
             </summary>
             <param name="base">The base score value to be displayed.</param>
             <returns>The score to be displayed.</returns>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Shoppers.ShoppingItem">
+            <summary>
+            Represents a shopping item.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Shoppers.ShoppingItem.CloverLevel1">
+            <summary>
+            Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 1.1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Shoppers.ShoppingItem.CloverLevel2">
+            <summary>
+            Indicates the clover level 2, which will make your upgrading factor change (from 1.0) to 1.2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Shoppers.ShoppingItem.CloverLevel3">
+            <summary>
+            Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 1.4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Shoppers.ShoppingItem.CloverLevel4">
+            <summary>
+            Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 1.7.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Shoppers.ShoppingItem.CloverLevel5">
+            <summary>
+            Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 2.0.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Shoppers.ShoppingItem.CloverLevel6">
+            <summary>
+            Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 2.4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Shoppers.ShoppingItem.CloverLevel7">
+            <summary>
+            Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 3.0.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Shoppers.ShoppingItem.CloverLevel8">
+            <summary>
+            Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 3.3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Shoppers.ShoppingItem.CloverLevel9">
+            <summary>
+            Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 3.6.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Shoppers.ShoppingItem.CloverFinal">
+            <summary>
+            Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 4.0.
+            </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.ValueConverters.Int32Converter">
             <summary>
