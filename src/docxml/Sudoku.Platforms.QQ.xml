@@ -731,7 +731,7 @@
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RaisingPrefix">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.SupportedRoles">
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RequiredSenderRole">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.PingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
@@ -740,7 +740,10 @@
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RaisingCommand">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.SupportedRoles">
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RaisingPrefix">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RequiredSenderRole">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.RankingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
@@ -812,7 +815,10 @@
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RaisingCommand">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.SupportedRoles">
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RaisingPrefix">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RequiredSenderRole">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.UserName">
@@ -894,7 +900,7 @@
             <seealso cref="T:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes"/>
             <completionlist cref="T:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes"/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.SupportedRoles">
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredSenderRole">
             <summary>
             Indicates the supported roles.
             The role is used for checking whether the module should be executed if a person emits a command to execute this module.

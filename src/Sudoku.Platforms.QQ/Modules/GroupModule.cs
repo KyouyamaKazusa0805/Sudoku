@@ -63,7 +63,7 @@ public abstract partial class GroupModule : IModule
 	/// <para><i>By default, the value is all possible roles included.</i></para>
 	/// </remarks>
 	[Reserved]
-	public virtual GroupRoleKind SupportedRoles => AllRoles;
+	public virtual GroupRoleKind RequiredSenderRole => AllRoles;
 
 	/// <summary>
 	/// Indicates the required bot permission. The kind is only set with one flag, as the highest allowed permission.
@@ -130,7 +130,7 @@ public abstract partial class GroupModule : IModule
 		}
 
 		var senderRole = sender.Permission.ToGroupRoleKind();
-		var supportedRoles = SupportedRoles.GetAllFlags() ?? Array.Empty<GroupRoleKind>();
+		var supportedRoles = RequiredSenderRole.GetAllFlags() ?? Array.Empty<GroupRoleKind>();
 		if (!Array.Exists(supportedRoles, match))
 		{
 			await gmr.SendMessageAsync("操作失败。该操作需要用户具有更高的权限。");

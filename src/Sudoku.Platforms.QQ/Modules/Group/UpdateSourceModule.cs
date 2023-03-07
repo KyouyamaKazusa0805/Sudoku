@@ -7,7 +7,10 @@ file sealed class UpdateSourceModule : GroupModule
 	public override string RaisingCommand => "加分";
 
 	/// <inheritdoc/>
-	public override GroupRoleKind SupportedRoles => GroupRoleKind.GodAccount;
+	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
+
+	/// <inheritdoc/>
+	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.GodAccount;
 
 	/// <summary>
 	/// Indicates the user name.

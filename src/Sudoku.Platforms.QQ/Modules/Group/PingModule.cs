@@ -10,7 +10,7 @@ file sealed class PingModule : GroupModule
 	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
 
 	/// <inheritdoc/>
-	public override GroupRoleKind SupportedRoles => GroupRoleKind.GodAccount;
+	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.GodAccount;
 
 
 	/// <inheritdoc/>

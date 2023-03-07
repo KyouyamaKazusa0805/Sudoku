@@ -7,7 +7,10 @@ file sealed class RankingModule : GroupModule
 	public override string RaisingCommand => "排名";
 
 	/// <inheritdoc/>
-	public override GroupRoleKind SupportedRoles => GroupRoleKind.GodAccount;
+	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
+
+	/// <inheritdoc/>
+	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.GodAccount;
 
 
 	/// <inheritdoc/>
