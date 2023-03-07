@@ -82,12 +82,12 @@ file sealed class Bot : IExecutable
 		}
 
 #if ALLOW_PERIODIC_OPERATION
-		PeriodicOperationManager.BuiltIn.EnqueueRange(
-			from type in typeof(PeriodicOperation).Assembly.GetTypes()
-			where type.IsAssignableTo(typeof(PeriodicOperation))
+		PeriodicModuleManager.BuiltIn.EnqueueRange(
+			from type in typeof(PeriodicModule).Assembly.GetTypes()
+			where type.IsAssignableTo(typeof(PeriodicModule))
 			let constructor = type.GetConstructor(Array.Empty<Type>())
 			where constructor is not null
-			let operation = Activator.CreateInstance(type) as PeriodicOperation
+			let operation = Activator.CreateInstance(type) as PeriodicModule
 			where operation is not null
 			select operation
 		);

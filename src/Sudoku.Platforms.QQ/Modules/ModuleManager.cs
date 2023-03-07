@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Platforms.QQ;
+﻿namespace Sudoku.Platforms.QQ.Modules;
 
 /// <summary>
 /// Represents a list of <see cref="GroupModule"/> instances.

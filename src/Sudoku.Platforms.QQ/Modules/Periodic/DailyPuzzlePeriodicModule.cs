@@ -1,10 +1,10 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Periodic;
 
 /// <summary>
-/// Defines a daily puzzle generating operation.
+/// Defines a daily puzzle generating module.
 /// </summary>
 [SupportedOSPlatform("windows")]
-file sealed record DailyPuzzlePeriodicOperation() : PeriodicOperation(new TimeOnly(12, 0))
+file sealed record DailyPuzzlePeriodicModule() : PeriodicModule(new TimeOnly(12, 0))
 {
 	/// <summary>
 	/// Defines a default puzzle generator.
@@ -49,8 +49,8 @@ file sealed record DailyPuzzlePeriodicOperation() : PeriodicOperation(new TimeOn
 						DifficultyLevel: DifficultyLevel.Hard,
 						TechniqueGroup: not (
 							TechniqueGroup.Wing or TechniqueGroup.SingleDigitPattern
-							or TechniqueGroup.UniqueRectangle
-							or TechniqueGroup.AlmostLockedCandidates
+								or TechniqueGroup.UniqueRectangle
+								or TechniqueGroup.AlmostLockedCandidates
 						)
 					};
 			}

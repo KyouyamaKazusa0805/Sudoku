@@ -1027,52 +1027,118 @@
             <param name="permission">The permission.</param>
             <returns>The target <see cref="T:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind"/> instance.</returns>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Modules.PeriodicOperation">
+        <member name="T:Sudoku.Platforms.QQ.Modules.ModuleManager">
             <summary>
-            Defines a periodic operation.
+            Represents a list of <see cref="T:Sudoku.Platforms.QQ.Modules.GroupModule"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Platforms.QQ.Modules.GroupModule"/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.ModuleManager.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.ModuleManager"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.ModuleManager.Default">
+            <summary>
+            Indicates the default instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.ModuleManager.BuiltIn">
+            <summary>
+            Indicates an instance that contains all built-in commands included in this assembly.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.PeriodicModule">
+            <summary>
+            Defines a periodic module.
             </summary>
             <param name="TriggeringTime">
             Indicates the <see cref="T:System.TimeOnly"/> instance that describes the time that the operation will be triggered daily.
             </param>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.PeriodicOperation.#ctor(System.TimeOnly)">
+        <member name="M:Sudoku.Platforms.QQ.Modules.PeriodicModule.#ctor(System.TimeOnly)">
             <summary>
-            Defines a periodic operation.
+            Defines a periodic module.
             </summary>
             <param name="TriggeringTime">
             Indicates the <see cref="T:System.TimeOnly"/> instance that describes the time that the operation will be triggered daily.
             </param>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.PeriodicOperation.TriggeringTime">
+        <member name="P:Sudoku.Platforms.QQ.Modules.PeriodicModule.TriggeringTime">
             <summary>
             Indicates the <see cref="T:System.TimeOnly"/> instance that describes the time that the operation will be triggered daily.
             </summary>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.PeriodicOperation.ExecuteAsync">
+        <member name="M:Sudoku.Platforms.QQ.Modules.PeriodicModule.ExecuteAsync">
             <summary>
             Try to execute the task.
             </summary>
             <returns>The task.</returns>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Modules.Periodic.DailyPuzzlePeriodicOperation">
+        <member name="T:Sudoku.Platforms.QQ.Modules.PeriodicModuleManager">
             <summary>
-            Defines a daily puzzle generating operation.
+            Defines a scheduled service that can stores a list of <see cref="T:Sudoku.Platforms.QQ.Modules.PeriodicModule"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Platforms.QQ.Modules.PeriodicModule"/>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.PeriodicModuleManager._sharedInstance">
+            <summary>
+            The internal singleton field.
             </summary>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Periodic.DailyPuzzlePeriodicOperation.#ctor">
+        <member name="F:Sudoku.Platforms.QQ.Modules.PeriodicModuleManager._timers">
             <summary>
-            Defines a daily puzzle generating operation.
+            The task timers.
             </summary>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.Modules.Periodic.DailyPuzzlePeriodicOperation.Generator">
+        <member name="M:Sudoku.Platforms.QQ.Modules.PeriodicModuleManager.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.PeriodicModuleManager"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.PeriodicModuleManager.BuiltIn">
+            <summary>
+            Indicates the built-in operation included instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.PeriodicModuleManager.Enqueue(System.TimeOnly,System.Action)">
+            <summary>
+            Try to enqueue a new scheduled task.
+            </summary>
+            <param name="time">The time that the operation will be executed at.</param>
+            <param name="action">The task.</param>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.PeriodicModuleManager.Enqueue(Sudoku.Platforms.QQ.Modules.PeriodicModule)">
+            <summary>
+            Try to enqueue a new scheduled task.
+            </summary>
+            <param name="operation">The periodic operation instance.</param>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.PeriodicModuleManager.EnqueueRange(System.Collections.Generic.IEnumerable{Sudoku.Platforms.QQ.Modules.PeriodicModule})">
+            <summary>
+            Try to enqueue a list of new scheduled tasks.
+            </summary>
+            <param name="operations">The periodic operation instances.</param>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.Periodic.DailyPuzzlePeriodicModule">
+            <summary>
+            Defines a daily puzzle generating module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Periodic.DailyPuzzlePeriodicModule.#ctor">
+            <summary>
+            Defines a daily puzzle generating module.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.Periodic.DailyPuzzlePeriodicModule.Generator">
             <summary>
             Defines a default puzzle generator.
             </summary>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Periodic.DailyPuzzlePeriodicOperation.ExecuteAsync">
+        <member name="M:Sudoku.Platforms.QQ.Modules.Periodic.DailyPuzzlePeriodicModule.ExecuteAsync">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Periodic.DailyPuzzlePeriodicOperation.SendPictureAsync(System.String,System.String,System.String)">
+        <member name="M:Sudoku.Platforms.QQ.Modules.Periodic.DailyPuzzlePeriodicModule.SendPictureAsync(System.String,System.String,System.String)">
             <summary>
             Sends a picture using the specified text and grid code.
             </summary>
@@ -1080,27 +1146,6 @@
             <param name="grid">The grid code.</param>
             <param name="footerText">The footer text.</param>
             <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.ModuleManager">
-            <summary>
-            Represents a list of <see cref="T:Sudoku.Platforms.QQ.Modules.GroupModule"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Platforms.QQ.Modules.GroupModule"/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.ModuleManager.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Platforms.QQ.ModuleManager"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.ModuleManager.Default">
-            <summary>
-            Indicates the default instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.ModuleManager.BuiltIn">
-            <summary>
-            Indicates an instance that contains all built-in commands included in this assembly.
-            </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Patterns">
             <summary>
@@ -1167,51 +1212,6 @@
             ○ Match a character in the set [1-9].<br/>
             </code>
             </remarks>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.PeriodicOperationManager">
-            <summary>
-            Defines a scheduled service that can stores a list of <see cref="T:Sudoku.Platforms.QQ.Modules.PeriodicOperation"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Platforms.QQ.Modules.PeriodicOperation"/>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.PeriodicOperationManager._sharedInstance">
-            <summary>
-            The internal singleton field.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.PeriodicOperationManager._timers">
-            <summary>
-            The task timers.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.PeriodicOperationManager.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Platforms.QQ.PeriodicOperationManager"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.PeriodicOperationManager.BuiltIn">
-            <summary>
-            Indicates the built-in operation included instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.PeriodicOperationManager.Enqueue(System.TimeOnly,System.Action)">
-            <summary>
-            Try to enqueue a new scheduled task.
-            </summary>
-            <param name="time">The time that the operation will be executed at.</param>
-            <param name="action">The task.</param>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.PeriodicOperationManager.Enqueue(Sudoku.Platforms.QQ.Modules.PeriodicOperation)">
-            <summary>
-            Try to enqueue a new scheduled task.
-            </summary>
-            <param name="operation">The periodic operation instance.</param>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.PeriodicOperationManager.EnqueueRange(System.Collections.Generic.IEnumerable{Sudoku.Platforms.QQ.Modules.PeriodicOperation})">
-            <summary>
-            Try to enqueue a list of new scheduled tasks.
-            </summary>
-            <param name="operations">The periodic operation instances.</param>
         </member>
         <member name="T:Sudoku.Platforms.QQ.ProjectWideConstants">
             <summary>

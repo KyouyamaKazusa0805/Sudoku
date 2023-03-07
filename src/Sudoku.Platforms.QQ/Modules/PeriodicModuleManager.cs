@@ -1,15 +1,15 @@
-﻿namespace Sudoku.Platforms.QQ;
+﻿namespace Sudoku.Platforms.QQ.Modules;
 
 /// <summary>
-/// Defines a scheduled service that can stores a list of <see cref="PeriodicOperation"/> instances.
+/// Defines a scheduled service that can stores a list of <see cref="PeriodicModule"/> instances.
 /// </summary>
-/// <seealso cref="PeriodicOperation"/>
-public sealed class PeriodicOperationManager
+/// <seealso cref="PeriodicModule"/>
+public sealed class PeriodicModuleManager
 {
 	/// <summary>
 	/// The internal singleton field.
 	/// </summary>
-	private static PeriodicOperationManager? _sharedInstance;
+	private static PeriodicModuleManager? _sharedInstance;
 
 
 	/// <summary>
@@ -19,9 +19,9 @@ public sealed class PeriodicOperationManager
 
 
 	/// <summary>
-	/// Initializes a <see cref="PeriodicOperationManager"/> instance.
+	/// Initializes a <see cref="PeriodicModuleManager"/> instance.
 	/// </summary>
-	private PeriodicOperationManager()
+	private PeriodicModuleManager()
 	{
 	}
 
@@ -29,7 +29,7 @@ public sealed class PeriodicOperationManager
 	/// <summary>
 	/// Indicates the built-in operation included instance.
 	/// </summary>
-	public static PeriodicOperationManager BuiltIn => _sharedInstance ??= new();
+	public static PeriodicModuleManager BuiltIn => _sharedInstance ??= new();
 
 
 	/// <summary>
@@ -59,13 +59,13 @@ public sealed class PeriodicOperationManager
 	/// Try to enqueue a new scheduled task.
 	/// </summary>
 	/// <param name="operation">The periodic operation instance.</param>
-	public void Enqueue(PeriodicOperation operation) => Enqueue(operation.TriggeringTime, async () => await operation.ExecuteAsync());
+	public void Enqueue(PeriodicModule operation) => Enqueue(operation.TriggeringTime, async () => await operation.ExecuteAsync());
 
 	/// <summary>
 	/// Try to enqueue a list of new scheduled tasks.
 	/// </summary>
 	/// <param name="operations">The periodic operation instances.</param>
-	public void EnqueueRange(IEnumerable<PeriodicOperation> operations)
+	public void EnqueueRange(IEnumerable<PeriodicModule> operations)
 	{
 		foreach (var operation in operations)
 		{
