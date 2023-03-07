@@ -96,7 +96,7 @@ file sealed class GamingModule : GroupModule
 									Id: currentUserId,
 									Score: deduct + (isCorrectedUser ? baseExp : 0),
 									Coin: isCorrectedUser ? LocalScorer.GetCoinOriginal() : 0,
-									EarnedItem: LocalScorer.GetEarnedItem(),
+									EarnedItem: isCorrectedUser ? LocalScorer.GetEarnedItem() : null,
 									Times: times
 								);
 
