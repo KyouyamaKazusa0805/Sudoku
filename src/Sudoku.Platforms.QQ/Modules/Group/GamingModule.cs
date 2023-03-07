@@ -207,7 +207,7 @@ file sealed class GamingModule : GroupModule
 
 		static void appendOrDeduceScore(IEnumerable<(string, string Id, int Score, int Coin, ShoppingItem? EarnedItem, int Times)> scoringTableLines)
 		{
-			foreach (var (_, id, score, coin, earnedItem, times) in scoringTableLines)
+			foreach (var (_, id, score, coin, earnedItemNullable, times) in scoringTableLines)
 			{
 				var userData = InternalReadWrite.Read(id, new() { QQ = id, LastCheckIn = DateTime.MinValue });
 				userData.ExperiencePoint += LocalScorer.GetExperiencePoint(score, userData.CardLevel);
@@ -226,6 +226,11 @@ file sealed class GamingModule : GroupModule
 				if (!userData.TotalPlayingCount.TryAdd(GamingMode.FindDifference, 1))
 				{
 					userData.TotalPlayingCount[GamingMode.FindDifference]++;
+				}
+
+				if (earnedItemNullable is { } earnedItem && !userData.Items.TryAdd(earnedItem, 1))
+				{
+					userData.Items[earnedItem]++;
 				}
 
 				InternalReadWrite.Write(userData);
