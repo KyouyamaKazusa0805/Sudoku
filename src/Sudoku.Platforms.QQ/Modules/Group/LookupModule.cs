@@ -118,7 +118,7 @@ file sealed class LookupModule : GroupModule
 						排名：第 {rankingIndex} 名
 						连续签到天数：{userData.ComboCheckedIn}
 						签到倍数：{Scorer.GetCheckInRate(userData.ComboCheckedIn)}
-						总倍数：{Scorer.GetGlobalRate(userData.CardLevel):0.0} 倍（卡片 {userData.CardLevel} 级）
+						总倍数：{Scorer.GetGlobalRate(userData.CardLevel):0.0}（卡片 {userData.CardLevel} 级）
 						""";
 				}
 				case ViewContentKinds.PkResult:
