@@ -11,9 +11,9 @@ file sealed class CancelGamingModule : GroupModule
 
 
 	/// <inheritdoc/>
-	protected override async Task ExecuteCoreAsync(GroupMessageReceiver groupMessageReceiver)
+	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
-		var context = RunningContexts[groupMessageReceiver.GroupId];
+		var context = RunningContexts[messageReceiver.GroupId];
 		if (context.AnsweringContext.IsCancelled)
 		{
 			return;

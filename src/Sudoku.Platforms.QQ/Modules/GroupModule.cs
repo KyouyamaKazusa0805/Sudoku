@@ -185,11 +185,11 @@ public abstract partial class GroupModule : IModule
 	/// <summary>
 	/// The internal method that executes for the details of an module.
 	/// </summary>
-	/// <param name="groupMessageReceiver">The group message receiver.</param>
+	/// <param name="messageReceiver">The group message receiver.</param>
 	/// <returns>
 	/// A <see cref="Task"/> instance that provides with asynchronous information of the operation currently being executed.
 	/// </returns>
-	protected abstract Task ExecuteCoreAsync(GroupMessageReceiver groupMessageReceiver);
+	protected abstract Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver);
 }
 
 /// <summary>

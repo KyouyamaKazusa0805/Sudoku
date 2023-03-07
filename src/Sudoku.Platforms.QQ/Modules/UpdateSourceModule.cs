@@ -30,9 +30,9 @@ file sealed class UpdateSourceModule : GroupModule
 
 
 	/// <inheritdoc/>
-	protected override async Task ExecuteCoreAsync(GroupMessageReceiver groupMessageReceiver)
+	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
-		if (groupMessageReceiver is not { Sender.Group: var group })
+		if (messageReceiver is not { Sender.Group: var group })
 		{
 			return;
 		}
@@ -65,7 +65,7 @@ file sealed class UpdateSourceModule : GroupModule
 				{
 					case null or []:
 					{
-						await groupMessageReceiver.SendMessageAsync($"本群不存在昵称为“{name}”的用户。");
+						await messageReceiver.SendMessageAsync($"本群不存在昵称为“{name}”的用户。");
 						break;
 					}
 					case [{ Id: var userId } target]:
@@ -78,13 +78,13 @@ file sealed class UpdateSourceModule : GroupModule
 						userData.Score += addition;
 
 						await File.WriteAllTextAsync(fileName, Serialize(userData));
-						await groupMessageReceiver.SendMessageAsync($"恭喜用户“{name}”获得 {Scorer.GetEarnedScoringDisplayingString(addition)} 积分！");
+						await messageReceiver.SendMessageAsync($"恭喜用户“{name}”获得 {Scorer.GetEarnedScoringDisplayingString(addition)} 积分！");
 
 						break;
 					}
 					default:
 					{
-						await groupMessageReceiver.SendMessageAsync($"本群至少存在两个用户昵称为“{name}”。请改用 QQ 号来确保用户的唯一性");
+						await messageReceiver.SendMessageAsync($"本群至少存在两个用户昵称为“{name}”。请改用 QQ 号来确保用户的唯一性");
 						break;
 					}
 				}
@@ -105,13 +105,13 @@ file sealed class UpdateSourceModule : GroupModule
 						userData.Score += addition;
 
 						await File.WriteAllTextAsync(fileName, Serialize(userData));
-						await groupMessageReceiver.SendMessageAsync($"恭喜用户“{name}”获得 {Scorer.GetEarnedScoringDisplayingString(addition)} 积分！");
+						await messageReceiver.SendMessageAsync($"恭喜用户“{name}”获得 {Scorer.GetEarnedScoringDisplayingString(addition)} 积分！");
 
 						break;
 					}
 					default:
 					{
-						await groupMessageReceiver.SendMessageAsync($"本群不存在 QQ 为“{userId}”的用户。");
+						await messageReceiver.SendMessageAsync($"本群不存在 QQ 为“{userId}”的用户。");
 						break;
 					}
 				}

@@ -20,47 +20,47 @@ file sealed class LookupModule : GroupModule
 
 
 	/// <inheritdoc/>
-	protected override async Task ExecuteCoreAsync(GroupMessageReceiver groupMessageReceiver)
+	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
 		switch (this)
 		{
 			case { UserId: null, UserNickname: null }:
 			{
-				var senderName = groupMessageReceiver.Sender.Name;
-				var senderId = groupMessageReceiver.Sender.Id;
-				await groupMessageReceiver.QuoteMessageAsync(await showResult(senderName, senderId));
+				var senderName = messageReceiver.Sender.Name;
+				var senderId = messageReceiver.Sender.Id;
+				await messageReceiver.QuoteMessageAsync(await showResult(senderName, senderId));
 
 				break;
 			}
 			case { UserNickname: { } nickname }:
 			{
-				var matchedMembers = await groupMessageReceiver.Sender.Group.GetMatchedMembersViaNicknameAsync(nickname);
+				var matchedMembers = await messageReceiver.Sender.Group.GetMatchedMembersViaNicknameAsync(nickname);
 				var targetString = matchedMembers switch
 				{
 					[] => $"本群不存在昵称为“{nickname}”的用户。请检查一下然后重新查询。",
 					[{ Id: var senderId, Name: var senderName }] => await showResult(senderName, senderId),
 					_ => "本群存在多个人的群名片一致的情况。请使用 QQ 严格确定唯一的查询用户。"
 				};
-				await groupMessageReceiver.QuoteMessageAsync(targetString);
+				await messageReceiver.QuoteMessageAsync(targetString);
 
 				break;
 			}
 			case { UserId: { } id }:
 			{
-				var matchedMembers = await groupMessageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(id);
+				var matchedMembers = await messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(id);
 				if (matchedMembers is not { Id: var senderId, Name: var senderName })
 				{
-					await groupMessageReceiver.QuoteMessageAsync($"本群不存在 QQ 号码为“{id}”的用户。请检查一下后重新查询。");
+					await messageReceiver.QuoteMessageAsync($"本群不存在 QQ 号码为“{id}”的用户。请检查一下后重新查询。");
 					break;
 				}
 
-				await groupMessageReceiver.QuoteMessageAsync(await showResult(senderName, senderId));
+				await messageReceiver.QuoteMessageAsync(await showResult(senderName, senderId));
 
 				break;
 			}
 			default:
 			{
-				await groupMessageReceiver.QuoteMessageAsync("查询数据不合法。");
+				await messageReceiver.QuoteMessageAsync("查询数据不合法。");
 
 				break;
 			}
@@ -77,7 +77,7 @@ file sealed class LookupModule : GroupModule
 			}
 
 			var grade = Scorer.GetGrade(score);
-			var ranking = (await ICommandDataProvider.GetUserRankingListAsync(groupMessageReceiver.Sender.Group, rankingEmptyCallback))!;
+			var ranking = (await Scorer.GetUserRankingListAsync(messageReceiver.Sender.Group, rankingEmptyCallback))!;
 			var rankingIndex = int.MaxValue;
 			for (var i = 0; i < ranking.Length; i++)
 			{
@@ -98,7 +98,7 @@ file sealed class LookupModule : GroupModule
 				""";
 
 
-			async Task rankingEmptyCallback() => await groupMessageReceiver.SendMessageAsync("排名列表为空。");
+			async Task rankingEmptyCallback() => await messageReceiver.SendMessageAsync("排名列表为空。");
 		}
 	}
 }

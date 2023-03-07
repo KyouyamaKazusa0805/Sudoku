@@ -115,27 +115,6 @@
             The bang symbol "<c>!</c>".
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.ICommandDataProvider">
-            <summary>
-            Extracts a type that creates data used by commands.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.ICommandDataProvider.GetGamingTimeLimit(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
-            <summary>
-            Gets the time limit for a single gaming.
-            </summary>
-            <param name="difficultyLevel">The difficulty level of the puzzle.</param>
-            <returns>The time limit.</returns>
-            <exception cref="T:System.NotSupportedException">Throws when the specified argument value is not supported.</exception>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.ICommandDataProvider.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
-            <summary>
-            Gets the ranking from the specified group.
-            </summary>
-            <param name="group">The group.</param>
-            <param name="rankingListIsEmptyCallback">Indicates the callback method that will be raised when the ranking list is empty.</param>
-            <returns>The list of ranking result.</returns>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.IO.InternalReadWrite">
             <summary>
             Represents a type that interacts with local files. All methods in this type are synchronized methods.
@@ -564,7 +543,7 @@
             <summary>
             The internal method that executes for the details of an module.
             </summary>
-            <param name="groupMessageReceiver">The group message receiver.</param>
+            <param name="messageReceiver">The group message receiver.</param>
             <returns>
             A <see cref="T:System.Threading.Tasks.Task"/> instance that provides with asynchronous information of the operation currently being executed.
             </returns>
@@ -711,6 +690,14 @@
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.StartGamingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.StartGamingModule.GetGamingTimeLimit(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+            <summary>
+            Gets the time limit for a single gaming.
+            </summary>
+            <param name="difficultyLevel">The difficulty level of the puzzle.</param>
+            <returns>The time limit.</returns>
+            <exception cref="T:System.NotSupportedException">Throws when the specified argument value is not supported.</exception>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.GeneratedGridData">
             <summary>
@@ -1076,6 +1063,14 @@
             <param name="times">The times the user has answered with wrong result.</param>
             <returns>The deduct.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="times"/> is below 0.</exception>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Gets the ranking from the specified group.
+            </summary>
+            <param name="group">The group.</param>
+            <param name="rankingListIsEmptyCallback">Indicates the callback method that will be raised when the ranking list is empty.</param>
+            <returns>The list of ranking result.</returns>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Scoring.Scorer.GetEarnedScoringDisplayingString(System.Int32)">
             <summary>

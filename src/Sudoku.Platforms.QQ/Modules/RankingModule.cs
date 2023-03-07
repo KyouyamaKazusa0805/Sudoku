@@ -11,27 +11,20 @@ file sealed class RankingModule : GroupModule
 
 
 	/// <inheritdoc/>
-	protected override async Task ExecuteCoreAsync(GroupMessageReceiver groupMessageReceiver)
+	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
-		if (groupMessageReceiver is not { Sender.Group: var group })
+		if (messageReceiver is not { Sender.Group: var group })
 		{
 			return;
 		}
 
 		// If the number of members are too large, we should only iterate the specified number of elements from top.
 		var context = BotRunningContext.GetContext(group);
-		var usersData = (
-			await ICommandDataProvider.GetUserRankingListAsync(
-				group,
-				async () => await groupMessageReceiver.SendMessageAsync("群用户列表为空。")
-			)
-		)!.Take(10);
+		var usersData = (await Scorer.GetUserRankingListAsync(group, async () => await messageReceiver.SendMessageAsync("群用户列表为空。")))!.Take(10);
 
-		await groupMessageReceiver.SendMessageAsync(
+		await messageReceiver.SendMessageAsync(
 			new MessageChainBuilder()
 				.Plain("用户排名：")
-				.Plain(Environment.NewLine)
-				.Plain("---")
 				.Plain(Environment.NewLine)
 				.Plain(
 					string.Join(
@@ -46,6 +39,10 @@ file sealed class RankingModule : GroupModule
 						)
 					)
 				)
+				.Plain(Environment.NewLine)
+				.Plain("---")
+				.Plain(Environment.NewLine)
+				.Plain("排名最多仅列举本群前十名的成绩；想要精确查看用户名次请使用“查询”指令。")
 				.Build()
 		);
 	}

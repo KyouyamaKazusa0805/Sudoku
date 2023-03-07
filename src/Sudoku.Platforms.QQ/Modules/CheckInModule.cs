@@ -8,9 +8,9 @@ file sealed class CheckInModule : GroupModule
 
 
 	/// <inheritdoc/>
-	protected override async Task ExecuteCoreAsync(GroupMessageReceiver groupMessageReceiver)
+	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
-		if (groupMessageReceiver is not { Sender.Id: var senderId })
+		if (messageReceiver is not { Sender.Id: var senderId })
 		{
 			return;
 		}
@@ -21,7 +21,7 @@ file sealed class CheckInModule : GroupModule
 			case { LastCheckIn: { Date: var date, TimeOfDay: var time } } when date == DateTime.Today:
 			{
 				// Disallow user checking in multiple times in a same day.
-				await groupMessageReceiver.SendMessageAsync($"签到失败~ 你今天 {time:hh' 点 'mm' 分'}的时候已经签过到了，明天再来试试吧~");
+				await messageReceiver.SendMessageAsync($"签到失败~ 你今天 {time:hh' 点 'mm' 分'}的时候已经签过到了，明天再来试试吧~");
 
 				return;
 			}
@@ -35,7 +35,7 @@ file sealed class CheckInModule : GroupModule
 				userData.LastCheckIn = DateTime.Now;
 
 				var finalScore = Scorer.GetEarnedScoringDisplayingString(expEarned);
-				await groupMessageReceiver.SendMessageAsync(
+				await messageReceiver.SendMessageAsync(
 					$"签到成功！已连续签到 {userData.ComboCheckedIn} 天~ 恭喜你获得 {finalScore} 积分。一天只能签到一次哦~");
 
 				break;
@@ -50,7 +50,7 @@ file sealed class CheckInModule : GroupModule
 				userData.LastCheckIn = DateTime.Now;
 
 				var finalScore = Scorer.GetEarnedScoringDisplayingString(expEarned);
-				await groupMessageReceiver.SendMessageAsync($"签到成功！恭喜你获得 {finalScore} 积分。一天只能签到一次哦~");
+				await messageReceiver.SendMessageAsync($"签到成功！恭喜你获得 {finalScore} 积分。一天只能签到一次哦~");
 
 				break;
 			}

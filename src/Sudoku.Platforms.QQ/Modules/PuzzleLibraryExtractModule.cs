@@ -35,14 +35,14 @@ file sealed class PuzzleLibraryExtractModule : GroupModule
 
 
 	/// <inheritdoc/>
-	protected override async Task ExecuteCoreAsync(GroupMessageReceiver groupMessageReceiver)
+	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
-		if (groupMessageReceiver is not { GroupId: var groupId })
+		if (messageReceiver is not { GroupId: var groupId })
 		{
 			return;
 		}
 
-		await groupMessageReceiver.SendMessageAsync("正在解析题库，请稍候……");
+		await messageReceiver.SendMessageAsync("正在解析题库，请稍候……");
 
 		switch (PuzzleLibraryContainingGroupId, PuzzleLibraryContainingGroupName, PuzzleLibraryName, PuzzleId)
 		{
@@ -52,7 +52,7 @@ file sealed class PuzzleLibraryExtractModule : GroupModule
 				{
 					case null or []:
 					{
-						await groupMessageReceiver.SendMessageAsync("本群不包含任何的题库。请联系群主、管理员和机器人设计人员存储题库后重试。");
+						await messageReceiver.SendMessageAsync("本群不包含任何的题库。请联系群主、管理员和机器人设计人员存储题库后重试。");
 						break;
 					}
 					case [{ Name: var libName, PuzzleFilePath: var path }]:
@@ -62,7 +62,7 @@ file sealed class PuzzleLibraryExtractModule : GroupModule
 					}
 					default:
 					{
-						await groupMessageReceiver.SendMessageAsync("本群存在至少两个题库，因此无法使用简便查询语法搜索题库。请至少带出题库名称。");
+						await messageReceiver.SendMessageAsync("本群存在至少两个题库，因此无法使用简便查询语法搜索题库。请至少带出题库名称。");
 						break;
 					}
 				}
@@ -75,7 +75,7 @@ file sealed class PuzzleLibraryExtractModule : GroupModule
 				{
 					case null or []:
 					{
-						await groupMessageReceiver.SendMessageAsync("本群不包含任何的题库。请联系群主、管理员和机器人设计人员存储题库后重试。");
+						await messageReceiver.SendMessageAsync("本群不包含任何的题库。请联系群主、管理员和机器人设计人员存储题库后重试。");
 						break;
 					}
 					case var libs:
@@ -136,11 +136,11 @@ file sealed class PuzzleLibraryExtractModule : GroupModule
 				GridAutoFiller.Fill(ref grid);
 
 				var picturePath = InternalReadWrite.GenerateCachedPicturePath(() => Creator.CreateDefaultSudokuPainter(grid, name, index))!;
-				await groupMessageReceiver.SendMessageAsync(new ImageMessage { Path = picturePath });
+				await messageReceiver.SendMessageAsync(new ImageMessage { Path = picturePath });
 
 				File.Delete(picturePath);
 
-				await groupMessageReceiver.SendMessageAsync($"题目代码：{grid}");
+				await messageReceiver.SendMessageAsync($"题目代码：{grid}");
 
 				if (specifiedNumber is null)
 				{
@@ -152,11 +152,11 @@ file sealed class PuzzleLibraryExtractModule : GroupModule
 				return true;
 
 			PuzzleIsBroken:
-				await groupMessageReceiver.SendMessageAsync("题库解析失败，可能存在损坏。请联系管理员、群主和机器人开发人员。");
+				await messageReceiver.SendMessageAsync("题库解析失败，可能存在损坏。请联系管理员、群主和机器人开发人员。");
 				return true;
 
 			PuzzleLibraryIsAllFinished:
-				await groupMessageReceiver.SendMessageAsync(
+				await messageReceiver.SendMessageAsync(
 					"""
 					恭喜，该题库的题目已经全部完成！
 					如果你还想重新做这个题库的题，请联系管理员重新初始化题库配置文件后方可。
@@ -165,7 +165,7 @@ file sealed class PuzzleLibraryExtractModule : GroupModule
 				return true;
 
 			SpecifiedPuzzleLibraryIndexIsOutOfRange:
-				await groupMessageReceiver.SendMessageAsync("当前指定的题库的抽题索引不合适：它不能小于或等于 0，也不能超过该题库的题目数量。");
+				await messageReceiver.SendMessageAsync("当前指定的题库的抽题索引不合适：它不能小于或等于 0，也不能超过该题库的题目数量。");
 				return true;
 			}
 		}

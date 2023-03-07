@@ -14,10 +14,10 @@ file sealed class PingModule : GroupModule
 
 
 	/// <inheritdoc/>
-	protected override async Task ExecuteCoreAsync(GroupMessageReceiver groupMessageReceiver)
+	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
 		using var ping = new Ping();
-		await groupMessageReceiver.SendMessageAsync(
+		await messageReceiver.SendMessageAsync(
 			ping.Send("www.baidu.com") switch
 			{
 				{ Status: IPStatus.Success, RoundtripTime: var time } => $"测试连接成功。耗时 {time} 毫秒。",

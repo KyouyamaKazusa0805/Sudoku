@@ -9,17 +9,17 @@ file sealed class StartGamingModule : GroupModule
 
 
 	/// <inheritdoc/>
-	protected override async Task ExecuteCoreAsync(GroupMessageReceiver groupMessageReceiver)
+	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
 		var separator = new string(' ', 4);
 
-		var context = RunningContexts[groupMessageReceiver.GroupId];
+		var context = RunningContexts[messageReceiver.GroupId];
 		context.ExecutingCommand = RaisingCommand;
 		context.AnsweringContext = new();
 
 		var (puzzle, chosenCells, finalCellIndex, timeLimit, baseExp) = generatePuzzle();
 
-		await groupMessageReceiver.SendMessageAsync(
+		await messageReceiver.SendMessageAsync(
 			$"""
 			题目生成中，请稍候……
 			游戏规则：机器人将给出一道标准数独题，你需要在 {timeLimit.ToChineseTimeSpanString()}内完成它，并找出 9 个位置里唯一一个编号和填数一致的单元格。回答结果（该编号）时请艾特机器人，格式为“@机器人 数字”；若所有格子的编号都和当前格子的填数不同，请用数字“0”表示。回答正确将自动结束游戏并获得相应积分，错误则会扣除一定积分；题目可反复作答，但连续错误会导致连续扣分哦！若无人作答完成题目，将自动作废，游戏自动结束。
@@ -30,7 +30,7 @@ file sealed class StartGamingModule : GroupModule
 		var selectedNodes = chosenCells.Select(markerNodeSelector).ToArray();
 
 		// Create picture and send message.
-		await groupMessageReceiver.SendPictureThenDeleteAsync(
+		await messageReceiver.SendPictureThenDeleteAsync(
 			() => ISudokuPainter.Create(1000)
 				.WithGrid(puzzle)
 				.WithRenderingCandidates(false)
@@ -52,7 +52,7 @@ file sealed class StartGamingModule : GroupModule
 				if (context.AnsweringContext.IsCancelled is true)
 				{
 					// User cancelled.
-					await groupMessageReceiver.SendMessageAsync("游戏已中断。");
+					await messageReceiver.SendMessageAsync("游戏已中断。");
 
 					goto ReturnTrueAndInitializeContext;
 				}
@@ -69,7 +69,7 @@ file sealed class StartGamingModule : GroupModule
 						case (false, false):
 						{
 							// Wrong answer and no records.
-							await groupMessageReceiver.SendMessageAsync("回答错误~");
+							await messageReceiver.SendMessageAsync("回答错误~");
 							answeringContext.AnsweredUsers.TryAdd(userId, 1);
 
 							break;
@@ -77,7 +77,7 @@ file sealed class StartGamingModule : GroupModule
 						case (false, true):
 						{
 							// Wrong answer but containing records.
-							await groupMessageReceiver.SendMessageAsync("回答错误~");
+							await messageReceiver.SendMessageAsync("回答错误~");
 							answeringContext.AnsweredUsers[userId]++;
 
 							break;
@@ -89,7 +89,7 @@ file sealed class StartGamingModule : GroupModule
 								let currentUserId = pair.Key
 								let times = pair.Value
 								let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
-								let currentUser = groupMessageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
+								let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
 								select (currentUser.Name, Id: currentUserId, Score: deduct + (currentUserId == userId ? baseExp : 0));
 
 							if (!scoringTableLines.Any(e => e.Id == userId))
@@ -99,7 +99,7 @@ file sealed class StartGamingModule : GroupModule
 
 							// Correct answer and first reply.
 							var elapsedTimeString = TimeSpan.FromSeconds(elapsedTime).ToChineseTimeSpanString();
-							await groupMessageReceiver.SendMessageAsync(
+							await messageReceiver.SendMessageAsync(
 								$"""
 								回答正确~ 恭喜玩家 {userName}（{userId}） 获得 {baseExp} 积分！耗时 {elapsedTimeString}。游戏结束！
 								---
@@ -134,12 +134,12 @@ file sealed class StartGamingModule : GroupModule
 			let currentUserId = pair.Key
 			let times = pair.Value
 			let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
-			let currentUser = groupMessageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
+			let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
 			select (currentUser.Name, Id: currentUserId, Score: deduct);
 
 		appendOrDeduceScore(scoringTableLinesDeductOnly);
 
-		await groupMessageReceiver.SendMessageAsync(
+		await messageReceiver.SendMessageAsync(
 			$"""
 			游戏时间到~ 游戏结束~
 			---
@@ -158,7 +158,7 @@ file sealed class StartGamingModule : GroupModule
 		);
 
 		// Create picture and send message.
-		await groupMessageReceiver.SendPictureThenDeleteAsync(
+		await messageReceiver.SendPictureThenDeleteAsync(
 			() => ISudokuPainter.Create(1000)
 				.WithGrid(puzzle.GetSolution())
 				.WithRenderingCandidates(false)
@@ -196,7 +196,7 @@ file sealed class StartGamingModule : GroupModule
 					case { IsSolved: true, Solution: var solution, DifficultyLevel: var l and <= DifficultyLevel.Hard }:
 					{
 						var expEarned = Scorer.GetScoreEarnedInEachGaming(l);
-						var timeLimit = ICommandDataProvider.GetGamingTimeLimit(l);
+						var timeLimit = GetGamingTimeLimit(l);
 
 						finalCellsChosen.Clear();
 						var chosenCells = CellMap.Empty;
@@ -262,6 +262,22 @@ file sealed class StartGamingModule : GroupModule
 		static ViewNode markerNodeSelector(int element, int i)
 			=> new BabaGroupViewNode(DisplayColorKind.Normal, element, (Utf8Char)(char)(i + '1'), 511);
 	}
+
+
+	/// <summary>
+	/// Gets the time limit for a single gaming.
+	/// </summary>
+	/// <param name="difficultyLevel">The difficulty level of the puzzle.</param>
+	/// <returns>The time limit.</returns>
+	/// <exception cref="NotSupportedException">Throws when the specified argument value is not supported.</exception>
+	private static TimeSpan GetGamingTimeLimit(DifficultyLevel difficultyLevel)
+		=> difficultyLevel switch
+		{
+			DifficultyLevel.Easy => 5.Minutes(),
+			DifficultyLevel.Moderate => new TimeSpan(0, 5, 30),
+			DifficultyLevel.Hard => 6.Minutes(),
+			_ => throw new NotSupportedException("The specified difficulty is not supported.")
+		};
 }
 
 /// <summary>
