@@ -10,11 +10,13 @@ internal sealed partial class PuzzleLibraryCollection
 	/// Indicates the group ID.
 	/// </summary>
 	[JsonPropertyOrder(0)]
+	[JsonPropertyName("groupId")]
 	public required string GroupId { get; set; }
 
 	/// <summary>
 	/// Defines a list of puzzle libraries.
 	/// </summary>
+	[JsonPropertyName("puzzleLibraries")]
 	public List<PuzzleLibraryData> PuzzleLibraries { get; set; } = new();
 
 	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>

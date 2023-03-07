@@ -44,7 +44,7 @@ internal static class InternalReadWrite
 		}
 
 		var fileName = $"""{botUsersDataFolder}\{userId}.json""";
-		return File.Exists(fileName) ? Deserialize<UserData>(File.ReadAllText(fileName), CommonSerializerOptions.CamelCasing) : @default;
+		return File.Exists(fileName) ? Deserialize<UserData>(File.ReadAllText(fileName)) : @default;
 	}
 
 	/// <summary>
@@ -87,7 +87,7 @@ internal static class InternalReadWrite
 		}
 
 		var json = File.ReadAllText(filePath);
-		return Deserialize<PuzzleLibraryCollection>(json, CommonSerializerOptions.CamelCasing);
+		return Deserialize<PuzzleLibraryCollection>(json);
 	}
 
 	/// <summary>
@@ -206,7 +206,7 @@ internal static class InternalReadWrite
 
 		var userId = userData.QQ;
 		var fileName = $"""{botUsersDataFolder}\{userId}.json""";
-		File.WriteAllText(fileName, Serialize(userData, CommonSerializerOptions.CamelCasing));
+		File.WriteAllText(fileName, Serialize(userData));
 	}
 
 	/// <summary>
@@ -243,7 +243,7 @@ internal static class InternalReadWrite
 		}
 
 		var fileName = $"""{groupLibraryFolder}\{PuzzleLibraryFileName}""";
-		File.WriteAllText(fileName, Serialize(libraryCollection, CommonSerializerOptions.CamelCasing));
+		File.WriteAllText(fileName, Serialize(libraryCollection));
 	}
 
 	/// <summary>
