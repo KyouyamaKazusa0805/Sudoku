@@ -177,7 +177,7 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 
 		scoped var stopwatch = ValueStopwatch.StartNew();
 
-	TryAgain:
+	Again:
 		InitializeMaps(playground);
 		foreach (var searcher in stepSearchers)
 		{
@@ -279,7 +279,7 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 
 	ReportStatusAndSkipToTryAgain:
 		progress?.Report((double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount);
-		goto TryAgain;
+		goto Again;
 
 
 		static bool recordStep(

@@ -6,15 +6,6 @@
 public interface IAlmostLockedSetsStepSearcher : IStepSearcher
 {
 	/// <inheritdoc cref="AlmostLockedSet.Gather(in Grid)"/>
-	/// <remarks>
-	/// Different with the original method <see cref="AlmostLockedSet.Gather(in Grid)"/>,
-	/// this method will only uses the buffer to determine the info, which is unsafe
-	/// when calling the method without having initialized those maps in the buffer type,
-	/// <see cref="FastProperties"/>.
-	/// </remarks>
-	/// <seealso cref="AlmostLockedSet"/>
-	/// <seealso cref="AlmostLockedSet.Gather(in Grid)"/>
-	/// <seealso cref="FastProperties"/>
 	protected internal static AlmostLockedSet[] Gather(scoped in Grid grid)
 	{
 		// Get all bi-value-cell ALSes.

@@ -726,11 +726,9 @@ file static class Cached
 
 	/// <summary>
 	/// Checks whether the specified grid forms a BUG deadly pattern.
-	/// This method does not use the cached buffers in type <see cref="FastProperties"/>.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	/// <seealso cref="FastProperties"/>
 	public static bool FormsPattern(scoped in Grid grid)
 	{
 		_ = grid is { BivalueCells: var bivalueCells, EmptyCells: var emptyCells, CandidatesMap: var candidatesMap };
