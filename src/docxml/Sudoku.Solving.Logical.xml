@@ -3075,11 +3075,6 @@ if (student is (name: var name, age: >= 18))
             Gathers possible conjugate pairs grouped by digit.
             </summary>
             <returns>The conjugate pairs found, grouped by digit.</returns>
-            <remarks><i>
-            This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
-            by calling the method <see cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>.
-            </i></remarks>
-            <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.AlmostLockedSetsXyWingStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IAlmostLockedSetsXyWingStepSearcher"/>
@@ -3175,6 +3170,40 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Solving.Logical.StepSearchers.BivalueUniversalGraveStepSearcher.Options">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Logical.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.FindTrueCandidates(Sudoku.Concepts.Grid@,System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Int32)">
+            <summary>
+            Finds all possible true candidates in this current grid.
+            </summary>
+            <param name="grid">The grid to find all possible true candidates.</param>
+            <param name="trueCandidates">All possible true candidates returned.</param>
+            <param name="maximumCellsToCheck">Indicates the maximum number of possible cells to check.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the grid contains any possible true candidates.
+            If so, the argument <paramref name="trueCandidates"/> won't be <see langword="null"/>.
+            </returns>
+            <remarks>
+            A <b>true candidate</b> is a candidate that makes the puzzle containing no valid solution
+            if it is eliminated from the current puzzle. It is a strict concept, which means sometimes the puzzle
+            doesn't contain any satisfied candidate to make the puzzle containing no solution if being eliminated.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the puzzle contains multiple solutions or even no solution.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.StepSearchers.Cached.FormsPattern(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the specified grid forms a BUG deadly pattern.
+            This method does not use the cached buffers in type <see cref="T:Sudoku.Buffers.FastProperties"/>.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.BowmanBingoStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.IBowmanBingoStepSearcher"/>
@@ -3690,35 +3719,6 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the searcher should call the extended BUG checker
             to search for all true candidates no matter how difficult searching.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.IBivalueUniversalGraveStepSearcher.FindTrueCandidates(Sudoku.Concepts.Grid@,System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Int32)">
-            <summary>
-            Finds all possible true candidates in this current grid.
-            </summary>
-            <param name="grid">The grid to find all possible true candidates.</param>
-            <param name="trueCandidates">All possible true candidates returned.</param>
-            <param name="maximumCellsToCheck">Indicates the maximum number of possible cells to check.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> value indicating whether the grid contains any possible true candidates.
-            If so, the argument <paramref name="trueCandidates"/> won't be <see langword="null"/>.
-            </returns>
-            <remarks>
-            A <b>true candidate</b> is a candidate that makes the puzzle containing no valid solution
-            if it is eliminated from the current puzzle. It is a strict concept, which means sometimes the puzzle
-            doesn't contain any satisfied candidate to make the puzzle containing no solution if being eliminated.
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the puzzle contains multiple solutions or even no solution.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.StepSearchers.IBivalueUniversalGraveStepSearcher.FormsPattern(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks whether the specified grid forms a BUG deadly pattern.
-            This method does not use the cached buffers in type <see cref="T:Sudoku.Buffers.FastProperties"/>.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <seealso cref="T:Sudoku.Buffers.FastProperties"/>
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.IBowmanBingoStepSearcher">
             <summary>

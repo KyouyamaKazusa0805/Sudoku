@@ -192,11 +192,6 @@ file static class Cached
 	/// Gathers possible conjugate pairs grouped by digit.
 	/// </summary>
 	/// <returns>The conjugate pairs found, grouped by digit.</returns>
-	/// <remarks><i>
-	/// This method uses buffers, so you cannot use it everywhere. You should initialize the buffer first,
-	/// by calling the method <see cref="InitializeMaps(in Grid)"/>.
-	/// </i></remarks>
-	/// <seealso cref="InitializeMaps(in Grid)"/>
 	internal static ICollection<Conjugate>?[] Gather()
 	{
 		var conjugatePairs = new ICollection<Conjugate>?[9];
