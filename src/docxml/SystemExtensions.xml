@@ -1399,14 +1399,6 @@
             <param name="commandLine">The command line.</param>
             <returns>Parsed arguments, represented as an array of <see cref="T:System.String"/> values.</returns>
         </member>
-        <member name="M:System.CommandLine.MetaParser.Parse(System.String,System.String)">
-            <summary>
-            Parses a line of command, separating the command line into multiple <see cref="T:System.String"/> arguments using spaces and quotes.
-            </summary>
-            <param name="commandLine">The command line.</param>
-            <param name="argumentMatcherRegex">Indicates the custom argument matcher regular expression.</param>
-            <returns>Parsed arguments, represented as an array of <see cref="T:System.String"/> values.</returns>
-        </member>
         <member name="M:System.CommandLine.MetaParser.CommandArgumentsPattern">
             <remarks>
             Pattern explanation:<br/>

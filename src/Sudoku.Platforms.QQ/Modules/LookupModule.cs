@@ -3,7 +3,9 @@
 [BuiltInModule]
 file sealed class LookupModule : GroupModule
 {
+#pragma warning disable CS0414
 	private static readonly string ViewContentKindDefaultValue = ViewContentKinds.Elementary;
+#pragma warning restore CS0414
 
 
 	/// <inheritdoc/>

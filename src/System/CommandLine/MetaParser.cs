@@ -15,18 +15,7 @@ public static partial class MetaParser
 	/// <param name="commandLine">The command line.</param>
 	/// <returns>Parsed arguments, represented as an array of <see cref="string"/> values.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] Parse(string commandLine)
-		=> from match in CommandArgumentsPattern().Matches(commandLine) select match.Value.Trim('"');
-
-	/// <summary>
-	/// Parses a line of command, separating the command line into multiple <see cref="string"/> arguments using spaces and quotes.
-	/// </summary>
-	/// <param name="commandLine">The command line.</param>
-	/// <param name="argumentMatcherRegex">Indicates the custom argument matcher regular expression.</param>
-	/// <returns>Parsed arguments, represented as an array of <see cref="string"/> values.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] Parse(string commandLine, [StringSyntax(StringSyntaxAttribute.Regex)] string argumentMatcherRegex)
-		=> from match in new Regex(argumentMatcherRegex, RegexOptions.Singleline).Matches(commandLine) select match.Value.Trim('"');
+	public static string[] Parse(string commandLine) => from match in CommandArgumentsPattern().Matches(commandLine) select match.Value.Trim('"');
 
 	[GeneratedRegex("""[\""].+?[\""]|[^ ]+""", RegexOptions.Singleline | RegexOptions.Compiled, 5000)]
 	private static partial Regex CommandArgumentsPattern();

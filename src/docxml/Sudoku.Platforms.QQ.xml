@@ -674,6 +674,15 @@
             with module specified as argument <paramref name="module"/>.
             </returns>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ParseCommmandLine(System.String,System.String,System.Char[])">
+            <summary>
+            Parses a line of command, separating the command line into multiple <see cref="T:System.String"/> arguments using spaces and quotes.
+            </summary>
+            <param name="this">The command line.</param>
+            <param name="argumentMatcherRegex">Indicates the custom argument matcher regular expression.</param>
+            <param name="trimmedCharacters">Indicates the trimmed characters.</param>
+            <returns>Parsed arguments, represented as an array of <see cref="T:System.String"/> values.</returns>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.LocalConverter">
             <summary>
             Provides with a local converter type.

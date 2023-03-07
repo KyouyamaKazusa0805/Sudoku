@@ -345,7 +345,7 @@ file static class MessageParser
 		var moduleType = module.GetType();
 
 		var isFirstArg = true;
-		var args = MetaParser.Parse(@this, """[\""“”].+?[\""“”]|[^ ]+""");
+		var args = @this.ParseCommmandLine("""[\""“”].+?[\""“”]|[^ ]+""", '"', '“', '”');
 		for (var i = 0; i < args.Length; i++)
 		{
 			var arg = args[i];
@@ -403,7 +403,7 @@ file static class MessageParser
 			var nextArg = args[i + 1];
 			switch (foundPropertyInfo.GetGenericAttributeTypeArguments(typeof(ArgumentValueConverterAttribute<>)))
 			{
-				case { Length: 0 }:
+				case []:
 				{
 					if (foundPropertyInfo.PropertyType != typeof(string))
 					{
@@ -439,6 +439,20 @@ file static class MessageParser
 		failedReason = ParsingFailedReason.None;
 		return true;
 	}
+
+	/// <summary>
+	/// Parses a line of command, separating the command line into multiple <see cref="string"/> arguments using spaces and quotes.
+	/// </summary>
+	/// <param name="this">The command line.</param>
+	/// <param name="argumentMatcherRegex">Indicates the custom argument matcher regular expression.</param>
+	/// <param name="trimmedCharacters">Indicates the trimmed characters.</param>
+	/// <returns>Parsed arguments, represented as an array of <see cref="string"/> values.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string[] ParseCommmandLine(
+		this string @this,
+		[StringSyntax(StringSyntaxAttribute.Regex)] string argumentMatcherRegex,
+		params char[]? trimmedCharacters
+	) => from match in new Regex(argumentMatcherRegex, RegexOptions.Singleline).Matches(@this) select match.Value.Trim(trimmedCharacters);
 }
 
 /// <summary>
