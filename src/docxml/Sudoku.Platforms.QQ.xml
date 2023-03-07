@@ -398,6 +398,11 @@
             Represents a shopping item.
             </summary>
         </member>
+        <member name="F:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem.Card">
+            <summary>
+            Indicates the card.
+            </summary>
+        </member>
         <member name="F:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem.CloverLevel1">
             <summary>
             Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 1.1.
@@ -447,6 +452,19 @@
             <summary>
             Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 4.0.
             </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem"/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemExtensions.GetName(Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem)">
+            <summary>
+            Gets the name of the item.
+            </summary>
+            <param name="this">The shopping item.</param>
+            <returns>The name of the item.</returns>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Storage.InternalReadWrite">
             <summary>
@@ -631,64 +649,13 @@
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.CheckInModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.RaisingCommand">
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.GamingModule.RaisingCommand">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.UserId">
-            <summary>
-            Indicates QQ number of the user.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.UserNickname">
-            <summary>
-            Indicates nick name of the user.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.ViewContentKind">
-            <summary>
-            Indicates the view content kind.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.LookupModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.GamingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.MentioningModule.IsEnable">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.MentioningModule.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RaisingCommand">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RaisingPrefix">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RequiredSenderRole">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.PingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RaisingCommand">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RaisingPrefix">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RequiredSenderRole">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.RankingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.StartGamingModule.RaisingCommand">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.StartGamingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.StartGamingModule.GetGamingTimeLimit(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.GamingModule.GetGamingTimeLimit(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
             <summary>
             Gets the time limit for a single gaming.
             </summary>
@@ -744,6 +711,57 @@
             </summary>
             <param name="this">The <see cref="T:System.TimeSpan"/> instance.</param>
             <returns>The target string.</returns>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.UserId">
+            <summary>
+            Indicates QQ number of the user.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.UserNickname">
+            <summary>
+            Indicates nick name of the user.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.ViewContentKind">
+            <summary>
+            Indicates the view content kind.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.LookupModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.MentioningModule.IsEnable">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.MentioningModule.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RaisingPrefix">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RequiredSenderRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.PingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RaisingPrefix">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RequiredSenderRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.RankingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RaisingCommand">
             <inheritdoc/>

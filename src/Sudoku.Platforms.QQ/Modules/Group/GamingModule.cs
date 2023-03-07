@@ -2,7 +2,7 @@
 
 [BuiltInModule]
 [SupportedOSPlatform("windows")]
-file sealed class StartGamingModule : GroupModule
+file sealed class GamingModule : GroupModule
 {
 	/// <inheritdoc/>
 	public override string RaisingCommand => "开始游戏";
@@ -90,17 +90,28 @@ file sealed class StartGamingModule : GroupModule
 								let times = pair.Value
 								let deduct = -Enumerable.Range(1, times).Sum(LocalScorer.GetExperiencePointDeduct)
 								let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
+								let isCorrectedUser = currentUserId == userId
 								select (
 									currentUser.Name,
 									Id: currentUserId,
-									Score: deduct + (currentUserId == userId ? baseExp : 0),
-									Coin: currentUserId == userId ? LocalScorer.GetCoinOriginal() : 0,
+									Score: deduct + (isCorrectedUser ? baseExp : 0),
+									Coin: isCorrectedUser ? LocalScorer.GetCoinOriginal() : 0,
+									EarnedItem: LocalScorer.GetEarnedItem(),
 									Times: times
 								);
 
 							if (!scoringTableLines.Any(e => e.Id == userId))
 							{
-								scoringTableLines = scoringTableLines.Prepend((userName, userId, baseExp, LocalScorer.GetCoinOriginal(), 1));
+								scoringTableLines = scoringTableLines.Prepend(
+									(
+										userName,
+										userId,
+										baseExp,
+										LocalScorer.GetCoinOriginal(),
+										LocalScorer.GetEarnedItem(),
+										1
+									)
+								);
 							}
 
 							// Correct answer and first reply.
@@ -109,7 +120,6 @@ file sealed class StartGamingModule : GroupModule
 								$"""
 								恭喜玩家“{userName}”（{userId}）回答正确！耗时 {elapsedTimeString}。游戏结束！
 								---
-								得分情况：
 								{(
 									scoringTableLines.Any()
 										? string.Join(
@@ -120,7 +130,8 @@ file sealed class StartGamingModule : GroupModule
 											let coinEarned = LocalScorer.GetCoin(tuple.Coin, userData.CardLevel)
 											let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(scoreEarned)
 											let finalCoinToDisplay = Scorer.GetEarnedCoinDisplayingString(coinEarned)
-											select $"{tuple.Name}（{tuple.Id}）{separator}{finalScoreToDisplay} 经验，{finalCoinToDisplay} 金币"
+											let earnedItemName = tuple.EarnedItem is { } earnedItem ? $"，{earnedItem.GetName()} * 1" : string.Empty
+											select $"{tuple.Name}（{tuple.Id}）{separator}{finalScoreToDisplay} 经验，{finalCoinToDisplay} 金币{earnedItemName}"
 										)
 										: "无"
 								)}
@@ -150,6 +161,7 @@ file sealed class StartGamingModule : GroupModule
 				Id: currentUserId,
 				Score: deduct,
 				Coin: 0,
+				EarnedItem: default(ShoppingItem?),
 				Times: times
 			);
 
@@ -159,7 +171,6 @@ file sealed class StartGamingModule : GroupModule
 			$"""
 			游戏时间到~ 游戏结束~
 			---
-			得分：
 			{(
 				scoringTableLinesDeductOnly.Any()
 					? string.Join(
@@ -194,9 +205,9 @@ file sealed class StartGamingModule : GroupModule
 		context.ExecutingCommand = null;
 
 
-		static void appendOrDeduceScore(IEnumerable<(string, string Id, int Score, int Coin, int Times)> scoringTableLines)
+		static void appendOrDeduceScore(IEnumerable<(string, string Id, int Score, int Coin, ShoppingItem? EarnedItem, int Times)> scoringTableLines)
 		{
-			foreach (var (_, id, score, coin, times) in scoringTableLines)
+			foreach (var (_, id, score, coin, earnedItem, times) in scoringTableLines)
 			{
 				var userData = InternalReadWrite.Read(id, new() { QQ = id, LastCheckIn = DateTime.MinValue });
 				userData.ExperiencePoint += LocalScorer.GetExperiencePoint(score, userData.CardLevel);
@@ -358,7 +369,7 @@ file static class LocalScorer
 		} * Scorer.GetWeekendFactor();
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoinOriginal() => 48 + Random.Shared.Next(-6, 7);
+	public static int GetCoinOriginal() => 48 + Rng.Next(-6, 7);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExperiencePointPerPuzzle(DifficultyLevel difficultyLevel)
@@ -380,6 +391,17 @@ file static class LocalScorer
 		=> (int)Round(@base * Scorer.GetGlobalRate(cardLevel)) * Scorer.GetWeekendFactor();
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoin(int @base, int cardLevel)
-		=> (int)Round(@base * Scorer.GetGlobalRate(cardLevel)) * Scorer.GetWeekendFactor();
+	public static int GetCoin(int @base, int cardLevel) => (int)Round(@base * Scorer.GetGlobalRate(cardLevel)) * Scorer.GetWeekendFactor();
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ShoppingItem? GetEarnedItem()
+		=> Rng.Next(0, 10000) switch
+		{
+			< 400 => ShoppingItem.CloverLevel4,
+			< 1000 => ShoppingItem.CloverLevel3,
+			< 2500 => ShoppingItem.CloverLevel2,
+			< 4000 => ShoppingItem.CloverLevel1,
+			< 8000 => ShoppingItem.Card,
+			_ => null
+		};
 }

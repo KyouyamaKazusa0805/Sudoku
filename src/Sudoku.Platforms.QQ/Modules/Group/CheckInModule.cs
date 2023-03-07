@@ -38,15 +38,36 @@ file sealed class CheckInModule : GroupModule
 
 				var finalScore = Scorer.GetEarnedScoringDisplayingString(expEarned);
 				var finalCoin = Scorer.GetEarnedCoinDisplayingString(coinEarned);
-				await messageReceiver.QuoteMessageAsync(
-					$"""
-					签到成功！已连续签到 {userData.ComboCheckedIn} 天~ 恭喜获得：
-					* {finalScore} 经验值
-					* {finalCoin} 金币
-					---
-					一天只能签到一次哦~
-					"""
-				);
+				if (LocalScorer.GetEarnedItem() is { } earnedItem)
+				{
+					if (!userData.Items.TryAdd(earnedItem, 1))
+					{
+						userData.Items[earnedItem]++;
+					}
+
+					await messageReceiver.QuoteMessageAsync(
+						$"""
+						签到成功！已连续签到 {userData.ComboCheckedIn} 天~ 恭喜获得：
+						* {finalScore} 经验值
+						* {finalCoin} 金币
+						* {earnedItem.GetName()} * 1
+						---
+						一天只能签到一次哦~
+						"""
+					);
+				}
+				else
+				{
+					await messageReceiver.QuoteMessageAsync(
+						$"""
+						签到成功！已连续签到 {userData.ComboCheckedIn} 天~ 恭喜获得：
+						* {finalScore} 经验值
+						* {finalCoin} 金币
+						---
+						一天只能签到一次哦~
+						"""
+					);
+				}
 
 				break;
 			}
@@ -63,15 +84,36 @@ file sealed class CheckInModule : GroupModule
 
 				var finalScore = Scorer.GetEarnedScoringDisplayingString(expEarned);
 				var finalCoin = Scorer.GetEarnedCoinDisplayingString(coinEarned);
-				await messageReceiver.QuoteMessageAsync(
-					$"""
-					签到成功！恭喜获得：
-					* {finalScore} 经验值
-					* {finalCoin} 金币
-					---
-					一天只能签到一次哦~
-					"""
-				);
+				if (LocalScorer.GetEarnedItem() is { } earnedItem)
+				{
+					if (!userData.Items.TryAdd(earnedItem, 1))
+					{
+						userData.Items[earnedItem]++;
+					}
+
+					await messageReceiver.QuoteMessageAsync(
+						$"""
+						签到成功！恭喜获得：
+						* {finalScore} 经验值
+						* {finalCoin} 金币
+						* {earnedItem.GetName()} * 1
+						---
+						一天只能签到一次哦~
+						"""
+					);
+				}
+				else
+				{
+					await messageReceiver.QuoteMessageAsync(
+						$"""
+						签到成功！恭喜获得：
+						* {finalScore} 经验值
+						* {finalCoin} 金币
+						---
+						一天只能签到一次哦~
+						"""
+					);
+				}
 
 				break;
 			}
@@ -95,19 +137,20 @@ file static class LocalScorer
 		};
 
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static int e()
-		{
-			var table = new[] { 2, 3, 4, 6, 12 };
-			return getNext(table);
+			=> new[] { 2, 3, 4, 6, 12 }[
+				Rng.Next(0, 10000) switch
+				{
+					< 5000 => 0,
+					>= 5000 and < 7500 => 1,
+					>= 7500 and < 8750 => 2,
+					>= 8750 and < 9375 => 3,
+					_ => 4
+				}
+			];
 
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static int getNext(int[] table)
-				=> table[
-					Rng.Next(0, 10000) switch { < 5000 => 0, >= 5000 and < 7500 => 1, >= 7500 and < 8750 => 2, >= 8750 and < 9375 => 3, _ => 4 }
-				];
-		}
-
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static int n()
 		{
 			var sigma = 2.5;
@@ -128,7 +171,7 @@ file static class LocalScorer
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoinOriginal() => 24 + Random.Shared.Next(-6, 7);
+	public static int GetCoinOriginal() => 24 + Rng.Next(-6, 7);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExperiencePoint(int continuousDaysCount, int cardLevel)
@@ -136,4 +179,16 @@ file static class LocalScorer
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetCoin(decimal rate) => (int)Round(GetCoinOriginal() * Scorer.GetWeekendFactor() * rate);
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ShoppingItem? GetEarnedItem()
+		=> Rng.Next(0, 10000) switch
+		{
+			< 400 => ShoppingItem.CloverLevel4,
+			< 1000 => ShoppingItem.CloverLevel3,
+			< 2500 => ShoppingItem.CloverLevel2,
+			< 4000 => ShoppingItem.CloverLevel1,
+			< 8000 => ShoppingItem.Card,
+			_ => null
+		};
 }

@@ -6,6 +6,12 @@
 public enum ShoppingItem
 {
 	/// <summary>
+	/// Indicates the card.
+	/// </summary>
+	[Name("强化卡")]
+	Card,
+
+	/// <summary>
 	/// Indicates the clover level 1, which will make your upgrading factor change (from 1.0) to 1.1.
 	/// </summary>
 	[Name("三叶草 1 级（倍率 1.1）")]
