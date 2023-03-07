@@ -88,29 +88,39 @@ file sealed class StartGamingModule : GroupModule
 								from pair in answeringContext.AnsweredUsers
 								let currentUserId = pair.Key
 								let times = pair.Value
-								let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
+								let deduct = -Enumerable.Range(1, times).Sum(LocalScorer.GetExperiencePointDeduct)
 								let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
-								select (currentUser.Name, Id: currentUserId, Score: deduct + (currentUserId == userId ? baseExp : 0), Times: times);
+								select (
+									currentUser.Name,
+									Id: currentUserId,
+									Score: deduct + (currentUserId == userId ? baseExp : 0),
+									Coin: LocalScorer.GetCoinOriginal(),
+									Times: times
+								);
 
 							if (!scoringTableLines.Any(e => e.Id == userId))
 							{
-								scoringTableLines = scoringTableLines.Prepend((userName, userId, baseExp, 1));
+								scoringTableLines = scoringTableLines.Prepend((userName, userId, baseExp, LocalScorer.GetCoinOriginal(), 1));
 							}
 
 							// Correct answer and first reply.
 							var elapsedTimeString = TimeSpan.FromSeconds(elapsedTime).ToChineseTimeSpanString();
 							await messageReceiver.SendMessageAsync(
 								$"""
-								回答正确~ 恭喜玩家 {userName}（{userId}） 获得 {baseExp} 积分！耗时 {elapsedTimeString}。游戏结束！
+								恭喜玩家“{userName}”（{userId}）回答正确！耗时 {elapsedTimeString}。游戏结束！
 								---
 								得分情况：
 								{(
 									scoringTableLines.Any()
 										? string.Join(
 											Environment.NewLine,
-											from triplet in scoringTableLines
-											let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(triplet.Score)
-											select $"{triplet.Name}（{triplet.Id}）{separator}{finalScoreToDisplay}"
+											from tuple in scoringTableLines
+											let userData = InternalReadWrite.Read(tuple.Id, new() { QQ = tuple.Id })
+											let scoreEarned = LocalScorer.GetExperiencePoint(tuple.Score, userData.CardLevel)
+											let coinEarned = LocalScorer.GetCoin(tuple.Coin, userData.CardLevel)
+											let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(scoreEarned)
+											let finalCoinToDisplay = Scorer.GetEarnedCoinDisplayingString(coinEarned)
+											select $"{tuple.Name}（{tuple.Id}）{separator}{finalScoreToDisplay} 经验，{finalCoinToDisplay} 金币"
 										)
 										: "无"
 								)}
@@ -133,9 +143,15 @@ file sealed class StartGamingModule : GroupModule
 			from pair in answeringContext.AnsweredUsers
 			let currentUserId = pair.Key
 			let times = pair.Value
-			let deduct = -Enumerable.Range(1, times).Sum(Scorer.GetDeduct)
+			let deduct = -Enumerable.Range(1, times).Sum(LocalScorer.GetExperiencePointDeduct)
 			let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
-			select (currentUser.Name, Id: currentUserId, Score: deduct, Times: times);
+			select (
+				currentUser.Name,
+				Id: currentUserId,
+				Score: deduct,
+				Coin: LocalScorer.GetCoinOriginal(),
+				Times: times
+			);
 
 		appendOrDeduceScore(scoringTableLinesDeductOnly);
 
@@ -148,9 +164,13 @@ file sealed class StartGamingModule : GroupModule
 				scoringTableLinesDeductOnly.Any()
 					? string.Join(
 						Environment.NewLine,
-						from triplet in scoringTableLinesDeductOnly
-						let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(triplet.Score)
-						select $"{triplet.Name}（{triplet.Id}）{separator}{finalScoreToDisplay}"
+						from tuple in scoringTableLinesDeductOnly
+						let userData = InternalReadWrite.Read(tuple.Id, new() { QQ = tuple.Id })
+						let scoreEarned = LocalScorer.GetExperiencePoint(tuple.Score, userData.CardLevel)
+						let coinEarned = LocalScorer.GetCoin(tuple.Coin, userData.CardLevel)
+						let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(scoreEarned)
+						let finalCoinToDisplay = Scorer.GetEarnedCoinDisplayingString(coinEarned)
+						select $"{tuple.Name}（{tuple.Id}）{separator}{finalScoreToDisplay} 经验，{finalCoinToDisplay} 金币"
 					)
 					: "无"
 			)}
@@ -174,12 +194,14 @@ file sealed class StartGamingModule : GroupModule
 		context.ExecutingCommand = null;
 
 
-		static void appendOrDeduceScore(IEnumerable<(string, string Id, int Score, int Times)> scoringTableLines)
+		static void appendOrDeduceScore(IEnumerable<(string, string Id, int Score, int Coin, int Times)> scoringTableLines)
 		{
-			foreach (var (_, id, score, times) in scoringTableLines)
+			foreach (var (_, id, score, coin, times) in scoringTableLines)
 			{
 				var userData = InternalReadWrite.Read(id, new() { QQ = id, LastCheckIn = DateTime.MinValue });
-				userData.ExperiencePoint += score;
+				userData.ExperiencePoint += LocalScorer.GetExperiencePoint(score, userData.CardLevel);
+				userData.Coin += LocalScorer.GetCoin(coin, userData.CardLevel);
+
 				if (!userData.CorrectedCount.TryAdd(GamingMode.FindDifference, 1))
 				{
 					userData.CorrectedCount[GamingMode.FindDifference] += 1;
@@ -209,7 +231,7 @@ file sealed class StartGamingModule : GroupModule
 				{
 					case { IsSolved: true, Solution: var solution, DifficultyLevel: var l and <= DifficultyLevel.Hard }:
 					{
-						var expEarned = Scorer.GetScoreEarnedInEachGaming(l);
+						var expEarned = LocalScorer.GetExperiencePointPerPuzzle(l);
 						var timeLimit = GetGamingTimeLimit(l);
 
 						finalCellsChosen.Clear();
@@ -320,4 +342,44 @@ file static class Extensions
 			{ Seconds: 0 } => $"{@this:m' 分钟'}",
 			_ => $"{@this:m' 分 'ss' 秒'}",
 		};
+}
+
+file static class LocalScorer
+{
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetExperiencePointDeduct(int times)
+		=> times switch
+		{
+			0 => 0,
+			1 => 6,
+			2 => 12,
+			>= 3 => 18,
+			_ => throw new ArgumentOutOfRangeException(nameof(times))
+		} * Scorer.GetWeekendFactor();
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetCoinOriginal() => 48;
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetExperiencePointPerPuzzle(DifficultyLevel difficultyLevel)
+	{
+		var @base = difficultyLevel switch
+		{
+			DifficultyLevel.Easy => 16,
+			DifficultyLevel.Moderate => 20,
+			DifficultyLevel.Hard => 28,
+			_ when Enum.IsDefined(difficultyLevel) => throw new NotSupportedException("Other kinds of difficulty levels are not supported."),
+			_ => throw new ArgumentOutOfRangeException(nameof(difficultyLevel))
+		};
+
+		return @base * Scorer.GetWeekendFactor();
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetExperiencePoint(int @base, int cardLevel)
+		=> (int)Round(@base * Scorer.GetGlobalRate(cardLevel)) * Scorer.GetWeekendFactor();
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetCoin(int @base, int cardLevel)
+		=> (int)Round(@base * Scorer.GetGlobalRate(cardLevel)) * Scorer.GetWeekendFactor();
 }

@@ -117,22 +117,25 @@ file sealed class LookupModule : GroupModule
 						级别：{grade}
 						排名：第 {rankingIndex} 名
 						连续签到天数：{userData.ComboCheckedIn}
-						倍数：{Scorer.GetScoringRate(userData.ComboCheckedIn)}
+						签到倍数：{Scorer.GetCheckInRate(userData.ComboCheckedIn)}
+						总倍数：{Scorer.GetGlobalRate(userData.CardLevel):0.0} 倍（卡片 {userData.CardLevel} 级）
 						""";
 				}
 				case ViewContentKinds.PkResult:
 				{
-					var pkResult = string.Join(
-						Environment.NewLine,
-						from kvp in userData.TotalPlayingCount
-						let mode = kvp.Key
-						let tried = userData.TriedCount.TryGetValue(mode, out var r) ? r : 0
-						where tried != 0
-						let total = kvp.Value
-						let corrected = userData.CorrectedCount.TryGetValue(mode, out var r) ? r : 0
-						let modeName = mode.GetType().GetField(mode.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
-						select $"  * {modeName}：回答数 {tried}，正确数 {corrected}，总答题数 {total}（正确率：{corrected / total:P2}）"
-					);
+					var pkResult = userData.TotalPlayingCount.Count != 0
+						? string.Join(
+							Environment.NewLine,
+							from kvp in userData.TotalPlayingCount
+							let mode = kvp.Key
+							let tried = userData.TriedCount.TryGetValue(mode, out var r) ? r : 0
+							where tried != 0
+							let total = kvp.Value
+							let corrected = userData.CorrectedCount.TryGetValue(mode, out var r) ? r : 0
+							let modeName = mode.GetType().GetField(mode.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
+							select $"  * {modeName}：回答数 {tried}，正确数 {corrected}，总答题数 {total}（正确率：{corrected / total:P2}）"
+						)
+						: "无";
 
 					return
 						$"""
@@ -143,15 +146,17 @@ file sealed class LookupModule : GroupModule
 				}
 				case ViewContentKinds.Items:
 				{
-					var itemsResult = string.Join(
-						Environment.NewLine,
-						from kvp in userData.Items
-						let item = kvp.Key
-						let itemName = item.GetType().GetField(item.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
-						let count = kvp.Value
-						where count != 0
-						select $"  * {itemName}：{count} 个"
-					);
+					var itemsResult = userData.Items.Count != 0
+						? string.Join(
+							Environment.NewLine,
+							from kvp in userData.Items
+							let item = kvp.Key
+							let itemName = item.GetType().GetField(item.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
+							let count = kvp.Value
+							where count != 0
+							select $"  * {itemName}：{count} 个"
+						)
+						: "无";
 
 					return
 						$"""

@@ -13,6 +13,12 @@ public sealed class User
 	public required string QQ { get; set; }
 
 	/// <summary>
+	/// Indicates the card level.
+	/// </summary>
+	[JsonPropertyName("cardLevel")]
+	public int CardLevel { get; set; }
+
+	/// <summary>
 	/// Indicates the user's experience point.
 	/// </summary>
 	[JsonPropertyName("exp")]

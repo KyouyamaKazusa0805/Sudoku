@@ -30,12 +30,23 @@ file sealed class CheckInModule : GroupModule
 				// Continuous.
 				userData.ComboCheckedIn++;
 
-				var expEarned = Scorer.GenerateValueEarned(userData.ComboCheckedIn);
+				var expEarned = LocalScorer.GetExperiencePoint(userData.ComboCheckedIn, userData.CardLevel);
+				var coinEarned = LocalScorer.GetCoin(Scorer.GetGlobalRate(userData.CardLevel));
 				userData.ExperiencePoint += expEarned;
+				userData.Coin += coinEarned;
 				userData.LastCheckIn = DateTime.Now;
 
 				var finalScore = Scorer.GetEarnedScoringDisplayingString(expEarned);
-				await messageReceiver.SendMessageAsync($"签到成功！已连续签到 {userData.ComboCheckedIn} 天~ 恭喜你获得 {finalScore} 积分。一天只能签到一次哦~");
+				var finalCoin = Scorer.GetEarnedCoinDisplayingString(coinEarned);
+				await messageReceiver.QuoteMessageAsync(
+					$"""
+					签到成功！已连续签到 {userData.ComboCheckedIn} 天~ 恭喜获得：
+					* {finalScore} 经验值
+					* {finalCoin} 金币
+					---
+					一天只能签到一次哦~
+					"""
+				);
 
 				break;
 			}
@@ -44,12 +55,23 @@ file sealed class CheckInModule : GroupModule
 				// Normal case.
 				userData.ComboCheckedIn = 1;
 
-				var expEarned = Scorer.GenerateOriginalValueEarned();
+				var expEarned = LocalScorer.GetExperienceOriginal();
+				var coinEarned = LocalScorer.GetCoinOriginal();
 				userData.ExperiencePoint += expEarned;
+				userData.Coin += coinEarned;
 				userData.LastCheckIn = DateTime.Now;
 
 				var finalScore = Scorer.GetEarnedScoringDisplayingString(expEarned);
-				await messageReceiver.SendMessageAsync($"签到成功！恭喜你获得 {finalScore} 积分。一天只能签到一次哦~");
+				var finalCoin = Scorer.GetEarnedCoinDisplayingString(coinEarned);
+				await messageReceiver.QuoteMessageAsync(
+					$"""
+					签到成功！恭喜获得：
+					* {finalScore} 经验值
+					* {finalCoin} 金币
+					---
+					一天只能签到一次哦~
+					"""
+				);
 
 				break;
 			}
@@ -57,4 +79,61 @@ file sealed class CheckInModule : GroupModule
 
 		InternalReadWrite.Write(userData);
 	}
+}
+
+file static class LocalScorer
+{
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetExperienceOriginal(Distribution distribution = Distribution.Normal)
+	{
+		return distribution switch
+		{
+			Distribution.Constant => 4,
+			Distribution.Exponent => e(),
+			Distribution.Normal => n(),
+			_ => throw new ArgumentOutOfRangeException(nameof(distribution))
+		};
+
+
+		static int e()
+		{
+			var table = new[] { 2, 3, 4, 6, 12 };
+			return getNext(table);
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static int getNext(int[] table)
+				=> table[
+					Rng.Next(0, 10000) switch { < 5000 => 0, >= 5000 and < 7500 => 1, >= 7500 and < 8750 => 2, >= 8750 and < 9375 => 3, _ => 4 }
+				];
+		}
+
+		static int n()
+		{
+			var sigma = 2.5;
+			var mu = 0;
+			var table = new[] { -1, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16 };
+			return getNextRandomGaussian(sigma, mu, table);
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static int getNextRandomGaussian(double sigma, double mu, int[] table)
+			{
+				var u1 = 1.0 - Rng.NextDouble();
+				var u2 = 1.0 - Rng.NextDouble();
+				var target = (int)(sigma * Sqrt(-2.0 * Log(u1)) * Sin(2.0 * PI * u2) + mu + (table.Length - 1) / 2.0);
+				return table[Clamp(target, 0, table.Length - 1)];
+			}
+		}
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetCoinOriginal() => 24;
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetExperiencePoint(int continuousDaysCount, int cardLevel)
+		=> (int)Round(GetExperienceOriginal() * (Scorer.GetCheckInRate(continuousDaysCount) + Scorer.GetGlobalRate(cardLevel))) * Scorer.GetWeekendFactor();
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetCoin(decimal rate) => (int)Round(GetCoinOriginal() * Scorer.GetWeekendFactor() * rate);
 }

@@ -25,11 +25,18 @@ file sealed class UpdateSourceModule : GroupModule
 	public string? UserId { get; set; }
 
 	/// <summary>
-	/// Indicates the addition of the score.
+	/// Indicates the addition of experience point.
 	/// </summary>
-	[DoubleArgument("分数")]
+	[DoubleArgument("经验")]
 	[ArgumentValueConverter<Int32Converter>]
-	public int Addition { get; set; }
+	public int ExperiencePointAddition { get; set; }
+
+	/// <summary>
+	/// Indicates the addition of coin.
+	/// </summary>
+	[DoubleArgument("金币")]
+	[ArgumentValueConverter<Int32Converter>]
+	public int CoinAddition { get; set; }
 
 
 	/// <inheritdoc/>
@@ -60,9 +67,14 @@ file sealed class UpdateSourceModule : GroupModule
 			Directory.CreateDirectory(botUsersDataFolder);
 		}
 
-		switch (UserName, UserId, Addition)
+		switch (UserName, UserId, ExperiencePointAddition, CoinAddition)
 		{
-			case ({ } name, null, var addition):
+			case (_, _, 0, _) or (_, _, _, 0):
+			{
+				await messageReceiver.SendMessageAsync("经验或金币数至少有一个数必须非 0。");
+				break;
+			}
+			case ({ } name, null, var expAdd, var coinAdd):
 			{
 				switch (await group.GetMatchedMembersViaNicknameAsync(name))
 				{
@@ -78,10 +90,19 @@ file sealed class UpdateSourceModule : GroupModule
 							? Deserialize<User>(await File.ReadAllTextAsync(fileName))!
 							: new() { QQ = userId, ComboCheckedIn = 0, LastCheckIn = DateTime.MinValue };
 
-						userData.ExperiencePoint += addition;
+						userData.ExperiencePoint += expAdd;
+						userData.Coin += coinAdd;
 
 						await File.WriteAllTextAsync(fileName, Serialize(userData));
-						await messageReceiver.SendMessageAsync($"恭喜用户“{name}”获得 {Scorer.GetEarnedScoringDisplayingString(addition)} 积分！");
+
+						await messageReceiver.SendMessageAsync(
+							$"恭喜用户“{name}”获得{(expAdd, coinAdd) switch
+							{
+								(not 0, 0) => $" {Scorer.GetEarnedScoringDisplayingString(expAdd)} 经验",
+								(0, not 0) => $" {Scorer.GetEarnedCoinDisplayingString(coinAdd)} 金币",
+								_ => $" {Scorer.GetEarnedScoringDisplayingString(expAdd)} 经验，{Scorer.GetEarnedCoinDisplayingString(coinAdd)} 金币"
+							}}！"
+						);
 
 						break;
 					}
@@ -94,7 +115,7 @@ file sealed class UpdateSourceModule : GroupModule
 
 				break;
 			}
-			case (null, { } userId, var addition):
+			case (null, { } userId, var expAdd, var coinAdd):
 			{
 				switch (await group.GetMatchedMemberViaIdAsync(userId))
 				{
@@ -105,10 +126,17 @@ file sealed class UpdateSourceModule : GroupModule
 							? Deserialize<User>(await File.ReadAllTextAsync(fileName))!
 							: new() { QQ = userId, ComboCheckedIn = 0, LastCheckIn = DateTime.MinValue };
 
-						userData.ExperiencePoint += addition;
+						userData.ExperiencePoint += expAdd;
 
 						await File.WriteAllTextAsync(fileName, Serialize(userData));
-						await messageReceiver.SendMessageAsync($"恭喜用户“{name}”获得 {Scorer.GetEarnedScoringDisplayingString(addition)} 积分！");
+						await messageReceiver.SendMessageAsync(
+							$"恭喜用户“{name}”获得{(expAdd, coinAdd) switch
+							{
+								(not 0, 0) => $" {Scorer.GetEarnedScoringDisplayingString(expAdd)} 经验",
+								(0, not 0) => $" {Scorer.GetEarnedCoinDisplayingString(coinAdd)} 金币",
+								_ => $" {Scorer.GetEarnedScoringDisplayingString(expAdd)} 经验，{Scorer.GetEarnedCoinDisplayingString(coinAdd)} 金币"
+							}}！"
+						);
 
 						break;
 					}

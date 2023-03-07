@@ -393,78 +393,6 @@
             which contains more middle numbers and less border numbers.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Data.Scoring.Scorer">
-            <summary>
-            Represents a type that handles and creates the data that are used for grading and scoring.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Scoring.Scorer.GetGrade(System.Int32)">
-            <summary>
-            Gets the grade via the specified score value.
-            </summary>
-            <param name="score">The score.</param>
-            <returns>The grade.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the grade value is too large.</exception>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Scoring.Scorer.GetWeekendFactor">
-            <summary>
-            Gets the factor that describes whether today is weekend.
-            </summary>
-            <returns>The factor value. If today is weekend, 2; otherwise 1.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Scoring.Scorer.GenerateValueEarned(System.Int32)">
-            <summary>
-            Generates a value that describes the experience point that the current user can be earned.
-            </summary>
-            <param name="continuousDaysCount">The number of continuous days that the user has already been checking-in.</param>
-            <returns>The value.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Scoring.Scorer.GenerateOriginalValueEarned(Sudoku.Platforms.QQ.Data.Scoring.Distribution)">
-            <summary>
-            Generates a value that describes the experience point that the current user can be earned.
-            </summary>
-            <param name="distribution">The distribution.</param>
-            <returns>The value.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Scoring.Scorer.GetScoreEarnedInEachGaming(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
-            <summary>
-            Gets the experience point that can be earned by a player in a single gaming.
-            </summary>
-            <param name="difficultyLevel">The difficulty level of the puzzle.</param>
-            <returns>The experience point.</returns>
-            <exception cref="T:System.NotSupportedException">Throws when the specified difficulty level or target cells count is not supported.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified difficulty level is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Scoring.Scorer.GetDeduct(System.Int32)">
-            <summary>
-            Get deduct via the specified times per gaming.
-            </summary>
-            <param name="times">The times the user has answered with wrong result.</param>
-            <returns>The deduct.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="times"/> is below 0.</exception>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Scoring.Scorer.GetScoringRate(System.Int32)">
-            <summary>
-            Get scoring rate.
-            </summary>
-            <param name="continuousDaysCount">Continuous days count.</param>
-            <returns>Scoring rate..</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Scoring.Scorer.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
-            <summary>
-            Gets the ranking from the specified group.
-            </summary>
-            <param name="group">The group.</param>
-            <param name="rankingListIsEmptyCallback">Indicates the callback method that will be raised when the ranking list is empty.</param>
-            <returns>The list of ranking result.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Scoring.Scorer.GetEarnedScoringDisplayingString(System.Int32)">
-            <summary>
-            Get display string for scores.
-            </summary>
-            <param name="base">The base score value to be displayed.</param>
-            <returns>The score to be displayed.</returns>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem">
             <summary>
             Represents a shopping item.
@@ -601,6 +529,11 @@
         <member name="P:Sudoku.Platforms.QQ.Data.User.QQ">
             <summary>
             The user's QQ number.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.User.CardLevel">
+            <summary>
+            Indicates the card level.
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Data.User.ExperiencePoint">
@@ -831,9 +764,14 @@
             Indicates the user ID.
             </summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.Addition">
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.ExperiencePointAddition">
             <summary>
-            Indicates the addition of the score.
+            Indicates the addition of experience point.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.CoinAddition">
+            <summary>
+            Indicates the addition of coin.
             </summary>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
