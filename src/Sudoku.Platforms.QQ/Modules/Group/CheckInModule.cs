@@ -128,7 +128,7 @@ file static class LocalScorer
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoinOriginal() => 24;
+	public static int GetCoinOriginal() => 24 + Random.Shared.Next(-6, 7);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExperiencePoint(int continuousDaysCount, int cardLevel)

@@ -94,7 +94,7 @@ file sealed class StartGamingModule : GroupModule
 									currentUser.Name,
 									Id: currentUserId,
 									Score: deduct + (currentUserId == userId ? baseExp : 0),
-									Coin: LocalScorer.GetCoinOriginal(),
+									Coin: currentUserId == userId ? LocalScorer.GetCoinOriginal() : 0,
 									Times: times
 								);
 
@@ -149,7 +149,7 @@ file sealed class StartGamingModule : GroupModule
 				currentUser.Name,
 				Id: currentUserId,
 				Score: deduct,
-				Coin: LocalScorer.GetCoinOriginal(),
+				Coin: 0,
 				Times: times
 			);
 
@@ -358,7 +358,7 @@ file static class LocalScorer
 		} * Scorer.GetWeekendFactor();
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoinOriginal() => 48;
+	public static int GetCoinOriginal() => 48 + Random.Shared.Next(-6, 7);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExperiencePointPerPuzzle(DifficultyLevel difficultyLevel)
