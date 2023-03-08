@@ -5,6 +5,7 @@ file sealed class BuyingModule : GroupModule
 {
 #pragma warning disable CS0414
 	private static readonly int LevelDefaultValue = -1;
+	private static readonly int BatchedCountDefaultValue = 1;
 #pragma warning restore CS0414
 
 
@@ -24,6 +25,14 @@ file sealed class BuyingModule : GroupModule
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue(nameof(LevelDefaultValue))]
 	public int Level { get; set; }
+
+	/// <summary>
+	/// Indicates the batched count.
+	/// </summary>
+	[DoubleArgumentCommand("批量")]
+	[ValueConverter<NumericConverter<int>>]
+	[DefaultValue(nameof(BatchedCountDefaultValue))]
+	public int BatchedCount { get; set; }
 
 
 	/// <inheritdoc/>
@@ -48,26 +57,26 @@ file sealed class BuyingModule : GroupModule
 
 		switch (this)
 		{
-			case { ItemName: ItemNames.Card }:
+			case { ItemName: ItemNames.Card, BatchedCount: var count }:
 			{
 				var price = ShoppingItem.Card.GetPrice();
-				if (coin < price)
+				if (coin < price * count)
 				{
 					goto Failed_CoinNotEnough;
 				}
 
-				user.Coin -= price;
+				user.Coin -= price * count;
 
 				if (!user.Items.TryAdd(ShoppingItem.Card, 1))
 				{
-					user.Items[ShoppingItem.Card]++;
+					user.Items[ShoppingItem.Card] += count;
 				}
 
 				InternalReadWrite.Write(user);
 
 				goto Successful;
 			}
-			case { ItemName: null or ItemNames.Clover, Level: var level }:
+			case { ItemName: null or ItemNames.Clover, Level: var level, BatchedCount: var count }:
 			{
 				if (level is not >= 1 and <= 9)
 				{
@@ -77,16 +86,16 @@ file sealed class BuyingModule : GroupModule
 
 				var targetItem = ShoppingItem.CloverLevel1 + (level - 1);
 				var price = targetItem.GetPrice();
-				if (coin < price)
+				if (coin < price * count)
 				{
 					goto Failed_CoinNotEnough;
 				}
 
-				user.Coin -= price;
+				user.Coin -= price * count;
 
 				if (!user.Items.TryAdd(targetItem, 1))
 				{
-					user.Items[targetItem]++;
+					user.Items[targetItem] += count;
 				}
 
 				InternalReadWrite.Write(user);

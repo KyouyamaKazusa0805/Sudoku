@@ -780,6 +780,11 @@
             Indicates the level of the clover to buy.
             </summary>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.BatchedCount">
+            <summary>
+            Indicates the batched count.
+            </summary>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
