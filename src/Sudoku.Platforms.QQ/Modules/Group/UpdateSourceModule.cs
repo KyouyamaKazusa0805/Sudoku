@@ -10,7 +10,7 @@ file sealed class UpdateSourceModule : GroupModule
 	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
 
 	/// <inheritdoc/>
-	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.GodAccount;
+	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.God;
 
 	/// <summary>
 	/// Indicates the user name.

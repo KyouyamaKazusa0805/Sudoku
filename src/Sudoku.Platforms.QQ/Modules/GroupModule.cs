@@ -8,7 +8,7 @@ public abstract partial class GroupModule : IModule
 	/// <summary>
 	/// Indicates all roles are included.
 	/// </summary>
-	protected const GroupRoleKind AllRoles = GroupRoleKind.GodAccount | GroupRoleKind.Owner | GroupRoleKind.Manager | GroupRoleKind.DefaultMember;
+	protected const GroupRoleKind AllRoles = GroupRoleKind.God | GroupRoleKind.Owner | GroupRoleKind.Manager | GroupRoleKind.DefaultMember;
 
 
 	/// <summary>
@@ -180,8 +180,8 @@ public abstract partial class GroupModule : IModule
 
 
 		bool match(GroupRoleKind roleKind)
-			=> roleKind != GroupRoleKind.GodAccount && senderRole == roleKind
-			|| roleKind == GroupRoleKind.GodAccount && sender.Id == GodNumber;
+			=> roleKind != GroupRoleKind.God && senderRole == roleKind
+			|| roleKind == GroupRoleKind.God && sender.Id == GodNumber;
 	}
 
 	/// <summary>

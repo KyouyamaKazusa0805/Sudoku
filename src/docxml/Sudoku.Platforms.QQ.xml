@@ -378,7 +378,7 @@
             Indicates the default value. This value cannot be used in code, and it only offers a default value to be compared with.
             </summary>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind.GodAccount">
+        <member name="F:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind.God">
             <summary>
             Indicates the role is the god account, which means a person who writes code and creates modules to be used.
             This value is nearly equal to the author of this project.

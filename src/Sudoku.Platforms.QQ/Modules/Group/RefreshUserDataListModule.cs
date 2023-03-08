@@ -25,7 +25,7 @@ file sealed class RefreshUserDataListModule : GroupModule
 	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
 
 	/// <inheritdoc/>
-	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.GodAccount;
+	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.God;
 
 
 	/// <inheritdoc/>

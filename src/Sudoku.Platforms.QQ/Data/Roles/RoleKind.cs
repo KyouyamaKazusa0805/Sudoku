@@ -15,7 +15,7 @@ public enum GroupRoleKind : int
 	/// Indicates the role is the god account, which means a person who writes code and creates modules to be used.
 	/// This value is nearly equal to the author of this project.
 	/// </summary>
-	GodAccount = 1,
+	God = 1,
 
 	/// <summary>
 	/// Indicates the role is an owner who owns a group. In Chinese, "qún zhŭ".
