@@ -123,7 +123,7 @@ public abstract class GroupModule : IModule
 
 		var senderRole = sender.Permission.ToGroupRoleKind();
 		var supportedRoles = RequiredSenderRole.GetAllFlags() ?? Array.Empty<GroupRoleKind>();
-		if (!Array.Exists(supportedRoles, match))
+		if (!Array.Exists(supportedRoles, r => r switch { GroupRoleKind.God => sender.Id == GodNumber, _ => senderRole == r }))
 		{
 			await gmr.SendMessageAsync("操作失败。该操作需要用户具有更高的权限。");
 			return;
@@ -165,11 +165,6 @@ public abstract class GroupModule : IModule
 		}
 
 		await ExecuteCoreAsync(gmr);
-
-
-		bool match(GroupRoleKind roleKind)
-			=> roleKind != GroupRoleKind.God && senderRole == roleKind
-			|| roleKind == GroupRoleKind.God && sender.Id == GodNumber;
 	}
 
 	/// <summary>
