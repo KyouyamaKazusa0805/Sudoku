@@ -1057,6 +1057,9 @@
             </summary>
             <returns>The task.</returns>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.PeriodicModule.Mirai#Net#Modules#IPeriodicModule#Execute">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.PeriodicModuleManager">
             <summary>
             Defines a scheduled service that can stores a list of <see cref="T:Sudoku.Platforms.QQ.Modules.PeriodicModule"/> instances.
@@ -1254,6 +1257,21 @@
             <inheritdoc cref="M:Sudoku.Platforms.QQ.Data.Storage.InternalReadWrite.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})" path="/param[@name='painterCreator']"/>
             </param>
             <returns>A task that handles the operation.</returns>
+        </member>
+        <member name="T:Mirai.Net.Modules.IPeriodicModule">
+            <summary>
+            Represents a periodic module.
+            </summary>
+        </member>
+        <member name="P:Mirai.Net.Modules.IPeriodicModule.TriggeringTime">
+            <summary>
+            Indicates the time value when the module is running every day.
+            </summary>
+        </member>
+        <member name="M:Mirai.Net.Modules.IPeriodicModule.Execute">
+            <summary>
+            Try to execute the periodic module.
+            </summary>
         </member>
         <member name="T:Mirai.Net.Sessions.MiraiBotSubscribingExtensions">
             <summary>
