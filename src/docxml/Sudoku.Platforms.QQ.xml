@@ -820,25 +820,6 @@
             Represents a base type that defines a module that can be called by <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Modules.GroupModule.Creator">
-            <summary>
-            The internal creator.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Modules.GroupModule.Creator.SstsOnly">
-            <summary>
-            The solver that only uses SSTS techniques to solve a puzzle.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.GroupModule.Creator.CreateDefaultSudokuPainter(Sudoku.Concepts.Grid@,System.String,System.Int32)">
-            <summary>
-            Creates a new <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance via the specified library name and puzzle index.
-            </summary>
-            <param name="grid">The puzzle.</param>
-            <param name="libName">The library name.</param>
-            <param name="index">The index of the puzzle.</param>
-            <returns>An <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</returns>
-        </member>
         <member name="F:Sudoku.Platforms.QQ.Modules.GroupModule.AllRoles">
             <summary>
             Indicates all roles are included.
@@ -946,11 +927,6 @@
             Indicates the operation is failed because target property is an indexer.
             </summary>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyIsReserved">
-            <summary>
-            Indicates the operation is failed because target property is reserved one, it will be skipped in the assignment.
-            </summary>
-        </member>
         <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyHasNoValueConverterIfNotReturningString">
             <summary>
             Indicates the operation is failed
@@ -962,11 +938,6 @@
         <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.InvalidInput">
             <summary>
             Indicates the operation is failed because user has some invalid input.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Modules.ReservedAttribute">
-            <summary>
-            Represents an attribute type that describes the property is reserved one.
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.MessageParser">
@@ -997,12 +968,7 @@
             <param name="trimmedCharacters">Indicates the trimmed characters.</param>
             <returns>Parsed arguments, represented as an array of <see cref="T:System.String"/> values.</returns>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Modules.LocalConverter">
-            <summary>
-            Provides with a local converter type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.LocalConverter.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
+        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
             <summary>
             Gets the equivalent <see cref="T:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind"/> instance from the specified <see cref="T:Mirai.Net.Data.Shared.Permissions"/> instance.
             </summary>

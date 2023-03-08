@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a base type that defines a module that can be called by <see cref="MiraiBot"/> instance.
 /// </summary>
-public abstract partial class GroupModule : IModule
+public abstract class GroupModule : IModule
 {
 	/// <summary>
 	/// Indicates all roles are included.
@@ -16,7 +16,6 @@ public abstract partial class GroupModule : IModule
 	/// this option won't be executed even if a person with a supported role emits a command executing this module.
 	/// </summary>
 	/// <remarks><i>This property is set <see langword="true"/> by default.</i></remarks>
-	[Reserved]
 	public virtual bool IsEnabled
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -29,7 +28,6 @@ public abstract partial class GroupModule : IModule
 	/// <summary>
 	/// Indicates the raising command.
 	/// </summary>
-	[Reserved]
 	public abstract string RaisingCommand { get; }
 
 	/// <summary>
@@ -39,7 +37,6 @@ public abstract partial class GroupModule : IModule
 	/// <para>This property is used for controlling the case when it costs too much time to be executed.</para>
 	/// <para><i>This property is set <see langword="null"/> by default.</i></para>
 	/// </remarks>
-	[Reserved]
 	public virtual string? RequiredEnvironmentCommand { get; }
 
 	/// <summary>
@@ -51,7 +48,6 @@ public abstract partial class GroupModule : IModule
 	/// </remarks>
 	/// <seealso cref="CommonCommandPrefixes"/>
 	/// <completionlist cref="CommonCommandPrefixes"/>
-	[Reserved]
 	public virtual string[] RaisingPrefix { get; } = CommonCommandPrefixes.Bang;
 
 	/// <summary>
@@ -62,7 +58,6 @@ public abstract partial class GroupModule : IModule
 	/// <para>You can use <see cref="GroupRoleKind"/>.<see langword="operator"/> | to merge multiple role kinds into one.</para>
 	/// <para><i>By default, the value is all possible roles included.</i></para>
 	/// </remarks>
-	[Reserved]
 	public virtual GroupRoleKind RequiredSenderRole => AllRoles;
 
 	/// <summary>
@@ -72,17 +67,14 @@ public abstract partial class GroupModule : IModule
 	/// By default, the value is <see cref="GroupRoleKind.None"/>, which means the operation does not require any higher permissions.
 	/// </i></remarks>
 	/// <seealso cref="GroupRoleKind.None"/>
-	[Reserved]
 	public virtual GroupRoleKind RequiredBotRole => GroupRoleKind.None;
 
 	/// <summary>
 	/// Indicates the triggering kind.
 	/// </summary>
-	[Reserved]
 	public virtual ModuleTriggeringKind TriggeringKind => ModuleTriggeringKind.Default;
 
 	/// <inheritdoc/>
-	[Reserved]
 	bool? IModule.IsEnable { get; set; } = true;
 
 
@@ -152,10 +144,6 @@ public abstract partial class GroupModule : IModule
 				case ParsingFailedReason.InvalidInput:
 				{
 					await gmr.SendMessageAsync("请检查指令输入是否正确。尤其是缺少空格。空格作为指令识别期间较为重要的分隔符号，请勿缺少。");
-					return;
-				}
-				case ParsingFailedReason.TargetPropertyIsReserved:
-				{
 					return;
 				}
 				case ParsingFailedReason.NotCurrentModule:
@@ -297,11 +285,6 @@ file enum ParsingFailedReason : int
 	TargetPropertyIsIndexer,
 
 	/// <summary>
-	/// Indicates the operation is failed because target property is reserved one, it will be skipped in the assignment.
-	/// </summary>
-	TargetPropertyIsReserved,
-
-	/// <summary>
 	/// Indicates the operation is failed
 	/// and returns non-<see cref="string"/> type, but this property has not marked <see cref="ValueConverterAttribute{T}"/>,
 	/// which cause parser cannot convert the specified value into a <see cref="string"/>.
@@ -313,14 +296,6 @@ file enum ParsingFailedReason : int
 	/// Indicates the operation is failed because user has some invalid input.
 	/// </summary>
 	InvalidInput
-}
-
-/// <summary>
-/// Represents an attribute type that describes the property is reserved one.
-/// </summary>
-[AttributeUsage(AttributeTargets.Property)]
-file sealed class ReservedAttribute : Attribute
-{
 }
 
 /// <summary>
@@ -388,12 +363,6 @@ file static class MessageParser
 				return false;
 			}
 
-			if (foundPropertyInfo.IsDefined(typeof(ReservedAttribute)))
-			{
-				failedReason = ParsingFailedReason.TargetPropertyIsReserved;
-				return false;
-			}
-
 			if (i + 1 >= args.Length)
 			{
 				failedReason = ParsingFailedReason.InvalidInput;
@@ -453,13 +422,7 @@ file static class MessageParser
 		[StringSyntax(StringSyntaxAttribute.Regex)] string argumentMatcherRegex,
 		params char[]? trimmedCharacters
 	) => from match in new Regex(argumentMatcherRegex, RegexOptions.Singleline).Matches(@this) select match.Value.Trim(trimmedCharacters);
-}
 
-/// <summary>
-/// Provides with a local converter type.
-/// </summary>
-file static class LocalConverter
-{
 	/// <summary>
 	/// Gets the equivalent <see cref="GroupRoleKind"/> instance from the specified <see cref="Permissions"/> instance.
 	/// </summary>
