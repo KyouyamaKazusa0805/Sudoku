@@ -67,7 +67,7 @@ file sealed class BuyingModule : GroupModule
 
 				user.Coin -= price * count;
 
-				if (!user.Items.TryAdd(ShoppingItem.Card, 1))
+				if (!user.Items.TryAdd(ShoppingItem.Card, count))
 				{
 					user.Items[ShoppingItem.Card] += count;
 				}
@@ -78,7 +78,13 @@ file sealed class BuyingModule : GroupModule
 			}
 			case { ItemName: null or ItemNames.Clover, Level: var level, BatchedCount: var count }:
 			{
-				if (level is not >= 1 and <= 9)
+				if (level == 10)
+				{
+					await messageReceiver.SendMessageAsync("很抱歉。终极三叶草无法通过购买的方式获得。");
+					return;
+				}
+
+				if (level is < 1 or > 9)
 				{
 					await messageReceiver.SendMessageAsync("可购买的三叶草卡片等级为 1 到 9。请检查你的输入，如“！购买 物品 三叶草 等级 3”。");
 					break;
@@ -93,7 +99,7 @@ file sealed class BuyingModule : GroupModule
 
 				user.Coin -= price * count;
 
-				if (!user.Items.TryAdd(targetItem, 1))
+				if (!user.Items.TryAdd(targetItem, count))
 				{
 					user.Items[targetItem] += count;
 				}
@@ -118,7 +124,7 @@ file sealed class BuyingModule : GroupModule
 			}
 		Successful:
 			{
-				await messageReceiver.SendMessageAsync("恭喜，购买成功！");
+				await messageReceiver.SendMessageAsync("恭喜，购买成功！请使用“！查询 内容 物品”指令确认。");
 				break;
 			}
 		}

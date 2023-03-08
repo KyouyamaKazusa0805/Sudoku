@@ -246,6 +246,15 @@
             </summary>
             <typeparam name="T">The type of the value converter instance.</typeparam>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverters.NumericArrayConverter`1">
+            <summary>
+            Defines a converter that converts a <see cref="T:System.String"/> value into <typeparamref name="T"/> value.
+            </summary>
+            <typeparam name="T">The type of the parsable target value.</typeparam>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.ValueConverters.NumericArrayConverter`1.Convert(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverters.NumericConverter`1">
             <summary>
             Defines a converter that converts a <see cref="T:System.String"/> value into <typeparamref name="T"/> value.
@@ -450,6 +459,21 @@
             <summary>
             Indicates the distribution type is normal distribution. Via this distribution type you can get a list of numbers
             which contains more middle numbers and less border numbers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Data.Scoring.Scorer.Possibilities">
+            <summary>
+            The total possibilities.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Data.Scoring.Scorer.CloverLevels">
+            <summary>
+            All clover levels.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Data.Scoring.Scorer.GlobalRates">
+            <summary>
+            Global rate.
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem">
@@ -707,6 +731,11 @@
             Indicates the last time checked in of the current user.
             </summary>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.User.UplevelingCards">
+            <summary>
+            Indicates the up-leveling cards.
+            </summary>
+        </member>
         <member name="P:Sudoku.Platforms.QQ.Data.User.Items">
             <summary>
             Indicates the shopping items.
@@ -797,6 +826,22 @@
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.CancelGamingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.CloverLevel">
+            <summary>
+            Indicates the clover level.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.AuxiliaryCards">
+            <summary>
+            Indicates the auxiliary cards.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.CheckInModule.RaisingCommand">
             <inheritdoc/>
         </member>
@@ -847,6 +892,16 @@
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.ViewContentKind">
             <summary>
             Indicates the view content kind.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.CloverLevel">
+            <summary>
+            Indicates the clover level.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.AuxiliaryCards">
+            <summary>
+            Indicates the auxiliary cards.
             </summary>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.LookupModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">

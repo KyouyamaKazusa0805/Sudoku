@@ -43,6 +43,12 @@ public sealed class User
 	public DateTime LastCheckIn { get; set; }
 
 	/// <summary>
+	/// Indicates the up-leveling cards.
+	/// </summary>
+	[JsonPropertyName("uplevelingCards")]
+	public Dictionary<int, int> UplevelingCards { get; set; } = new();
+
+	/// <summary>
 	/// Indicates the shopping items.
 	/// </summary>
 	[JsonPropertyName("items")]

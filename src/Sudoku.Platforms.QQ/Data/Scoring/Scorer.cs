@@ -2,6 +2,41 @@
 
 internal static class Scorer
 {
+	/// <summary>
+	/// The total possibilities.
+	/// </summary>
+	private static readonly decimal[][] Possibilities =
+	{
+		new[] { 1M, 1M, 1M }, // 0
+		new[] { 1M, .88M, 1M }, // 1
+		new[] { .968M, .792M, .608M }, // 2
+		new[] { .686M, .55M, .429M }, // 3
+		new[] { .495M, .403M, .242M }, // 4
+		new[] { .396M, .33M, .201M }, // 5
+		new[] { .319M, .264M, .132M }, // 6
+		new[] { .264M, .212M, .106M }, // 7
+		new[] { .22M, .132M, .06M }, // 8
+		new[] { .135M, .045M, .022M }, // 9
+		new[] { .125M, .046M, .018M }, // 10
+		new[] { .116M, .046M, .017M }, // 11
+		new[] { .107M, .0398M, .0157M }, // 12
+		new[] { .104M, .035M, .013M }, // 13
+		new[] { .099M, .031M, .0108M }, // 14
+		new[] { .09M, .022M, .0045M }, // 15
+		new[] { .08M, .02M, .002M }, // 16
+	};
+
+	/// <summary>
+	/// All clover levels.
+	/// </summary>
+	private static readonly decimal[] CloverLevels = { 1.1M, 1.2M, 1.4M, 1.7M, 2.0M, 2.4M, 3.0M, 3.3M, 3.6M, 4.0M };
+
+	/// <summary>
+	/// Global rate.
+	/// </summary>
+	private static readonly decimal[] GlobalRates = { 1.0M, 1.1M, 1.2M, 1.3M, 1.4M, 1.5M, 1.7M, 1.9M, 2.1M, 2.4M, 3.0M, 3.5M, 4.0M, 5.0M, 5.5M, 6.0M, 7.0M, 8.0M };
+
+
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetGrade(int score)
 	{
@@ -32,27 +67,24 @@ internal static class Scorer
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static decimal GetGlobalRate(int cardLevel)
-		=> cardLevel switch
-		{
-			>= 0 and <= 5 => 1.0M + cardLevel * .1M,
-			6 => 1.7M,
-			7 => 1.9M,
-			8 => 2.1M,
-			9 => 2.4M,
-			10 => 3.0M,
-			11 => 3.5M,
-			12 => 4.0M,
-			13 => 5.0M,
-			14 => 5.5M,
-			15 => 6.0M,
-			16 => 7.0M,
-			17 => 8.0M,
-			_ => throw new ArgumentOutOfRangeException(nameof(cardLevel))
-		};
+	public static decimal GetGlobalRate(int cardLevel) => GlobalRates[cardLevel];
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static decimal GetCheckInRate(int continuousDaysCount) => 1.0M + continuousDaysCount / 7 * .2M;
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static decimal GetUpLevelingSuccessPossibility(int main, int[] auxiliary, int cloverLevel)
+	{
+		var z = Possibilities[main];
+		var p = auxiliary switch
+		{
+			[var c] => z[main - c],
+			[var c1, var c2] => z[main - c1] + z[main - c2] / 3,
+			[var c1, var c2, var c3] => z[main - c1] + z[main - c2] / 3 + z[main - c3] / 3
+		};
+
+		return Clamp(cloverLevel switch { -1 => p, _ => p * CloverLevels[cloverLevel] }, 0, 1);
+	}
 
 	public static async Task<(string Name, User Data)[]?> GetUserRankingListAsync(Group @group, Func<Task> rankingListIsEmptyCallback)
 	{

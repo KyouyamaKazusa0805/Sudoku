@@ -5,6 +5,7 @@ file sealed class LookupModule : GroupModule
 {
 #pragma warning disable CS0414
 	private static readonly string ViewContentKindDefaultValue = ViewContentKinds.Elementary;
+	private static readonly int CloverLevelDefaultValue = -1;
 #pragma warning restore CS0414
 
 
@@ -29,6 +30,20 @@ file sealed class LookupModule : GroupModule
 	[DoubleArgumentCommand("内容")]
 	[DefaultValue(nameof(ViewContentKindDefaultValue))]
 	public string ViewContentKind { get; set; } = null!;
+
+	/// <summary>
+	/// Indicates the clover level.
+	/// </summary>
+	[DoubleArgumentCommand("三叶草")]
+	[DefaultValue(nameof(CloverLevelDefaultValue))]
+	public int CloverLevel { get; set; }
+
+	/// <summary>
+	/// Indicates the auxiliary cards.
+	/// </summary>
+	[DoubleArgumentCommand("辅助")]
+	[ValueConverter<NumericArrayConverter<int>>]
+	public int[]? AuxiliaryCards { get; set; }
 
 
 	/// <inheritdoc/>
@@ -158,16 +173,59 @@ file sealed class LookupModule : GroupModule
 						)
 						: "无";
 
+					var auxiliaryCardResult = userData.UplevelingCards.Count != 0
+						? string.Join(
+							Environment.NewLine,
+							from kvp in userData.UplevelingCards
+							let level = kvp.Key
+							let count = kvp.Value
+							select $"  * {level} 级辅助卡：{count} 张"
+						)
+						: "无";
+
 					return
 						$"""
 						用户 {senderName}（{senderId}）商品数据📦
 						---
 						{itemsResult}
+						---
+						辅助卡片情况：
+						{auxiliaryCardResult}
 						""";
+				}
+				case ViewContentKinds.Upleveling:
+				{
+					if (AuxiliaryCards is null or [] or { Length: > 3 })
+					{
+						return "查询失败。辅助卡至少需要一张，最多三张，输入的时候使用逗号分开，中间没有空格。";
+					}
+
+					if (CloverLevel is < -1 or > 10)
+					{
+						return "查询失败。三叶草等级只能为 1 到 10，或者不填，表示不带三叶草强化。";
+					}
+
+					var main = userData.CardLevel;
+					if (Array.Exists(AuxiliaryCards, card => main - card < 0))
+					{
+						return $"查询失败。主卡级别为 {main}，但填入的辅助卡级别比主卡级别还要高。不支持这种强化。";
+					}
+
+					if (Array.Exists(AuxiliaryCards, card => main - card >= 3))
+					{
+						return $"查询失败。主卡级别为 {main}，但填入的辅助卡级别存在至少一张卡的等级和主卡级别差了 3 级甚至以上。不支持这种强化。";
+					}
+
+					var possibility = Scorer.GetUpLevelingSuccessPossibility(main, AuxiliaryCards, CloverLevel);
+					return CloverLevel switch
+					{
+						-1 => $"主卡级别：{main}，辅助卡级别：{AuxiliaryCards[0]}、{AuxiliaryCards[1]} 和 {AuxiliaryCards[2]}，成功率：{possibility:P2}。",
+						_ => $"主卡级别：{main}，辅助卡级别：{AuxiliaryCards[0]}、{AuxiliaryCards[1]} 和 {AuxiliaryCards[2]}，三叶草等级：{CloverLevel}，成功率：{possibility:P2}。"
+					};
 				}
 				default:
 				{
-					return "参数“内容”的数值有误——它只能是“对抗”、“基本”或“物品”，请检查。";
+					return "参数“内容”的数值有误——它只能是“对抗”、“基本”、“物品”或“强化”，请检查。";
 				}
 			}
 
@@ -182,4 +240,5 @@ file static class ViewContentKinds
 	public const string PkResult = "对抗";
 	public const string Elementary = "基本";
 	public const string Items = "物品";
+	public const string Upleveling = "强化";
 }
