@@ -669,41 +669,6 @@
             <returns>The time limit.</returns>
             <exception cref="T:System.NotSupportedException">Throws when the specified argument value is not supported.</exception>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Modules.Group.GeneratedGridData">
-            <summary>
-            The generated grid data.
-            </summary>
-            <param name="Puzzle">Indicates the puzzle.</param>
-            <param name="ChosenCells">Indicates the chosen 9 cells.</param>
-            <param name="FinalIndex">Indicates the final index.</param>
-            <param name="TimeLimit">The whole time limit of a single gaming.</param>
-            <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.TimeSpan,System.Int32)">
-            <summary>
-            The generated grid data.
-            </summary>
-            <param name="Puzzle">Indicates the puzzle.</param>
-            <param name="ChosenCells">Indicates the chosen 9 cells.</param>
-            <param name="FinalIndex">Indicates the final index.</param>
-            <param name="TimeLimit">The whole time limit of a single gaming.</param>
-            <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.GeneratedGridData.Puzzle">
-            <summary>Indicates the puzzle.</summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.GeneratedGridData.ChosenCells">
-            <summary>Indicates the chosen 9 cells.</summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.GeneratedGridData.FinalIndex">
-            <summary>Indicates the final index.</summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.GeneratedGridData.TimeLimit">
-            <summary>The whole time limit of a single gaming.</summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.GeneratedGridData.ExperiencePoint">
-            <summary>Indicates how many experience point you can earn in the current round if answered correctly.</summary>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.Group.Extensions">
             <target name="class" when="extension">
 				<summary>

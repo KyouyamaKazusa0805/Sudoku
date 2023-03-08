@@ -91,25 +91,27 @@ file sealed class GamingModule : GroupModule
 								let deduct = -Enumerable.Range(1, times).Sum(LocalScorer.GetExperiencePointDeduct)
 								let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
 								let isCorrectedUser = currentUserId == userId
-								select (
+								select new ResultInfo(
 									currentUser.Name,
-									Id: currentUserId,
-									Score: deduct + (isCorrectedUser ? baseExp : 0),
-									Coin: isCorrectedUser ? LocalScorer.GetCoinOriginal() : 0,
-									EarnedItem: isCorrectedUser ? LocalScorer.GetEarnedItem() : null,
-									Times: times
+									currentUserId,
+									deduct + (isCorrectedUser ? baseExp : 0),
+									isCorrectedUser ? LocalScorer.GetCoinOriginal() : 0,
+									isCorrectedUser ? LocalScorer.GetEarnedItem() : null,
+									times,
+									isCorrectedUser
 								);
 
 							if (!scoringTableLines.Any(e => e.Id == userId))
 							{
 								scoringTableLines = scoringTableLines.Prepend(
-									(
+									new(
 										userName,
 										userId,
 										baseExp,
 										LocalScorer.GetCoinOriginal(),
 										LocalScorer.GetEarnedItem(),
-										1
+										1,
+										true
 									)
 								);
 							}
@@ -131,7 +133,7 @@ file sealed class GamingModule : GroupModule
 											let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(scoreEarned)
 											let finalCoinToDisplay = Scorer.GetEarnedCoinDisplayingString(coinEarned)
 											let earnedItemName = tuple.EarnedItem is { } earnedItem ? $"，{earnedItem.GetName()} * 1" : string.Empty
-											select $"{tuple.Name}（{tuple.Id}）{separator}{finalScoreToDisplay} 经验，{finalCoinToDisplay} 金币{earnedItemName}"
+											select $"{tuple.UserName}（{tuple.Id}）{separator}{finalScoreToDisplay} 经验，{finalCoinToDisplay} 金币{earnedItemName}"
 										)
 										: "无"
 								)}
@@ -156,14 +158,7 @@ file sealed class GamingModule : GroupModule
 			let times = pair.Value
 			let deduct = -Enumerable.Range(1, times).Sum(LocalScorer.GetExperiencePointDeduct)
 			let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
-			select (
-				currentUser.Name,
-				Id: currentUserId,
-				Score: deduct,
-				Coin: 0,
-				EarnedItem: default(ShoppingItem?),
-				Times: times
-			);
+			select new ResultInfo(currentUser.Name, currentUserId, deduct, 0, default, times, false);
 
 		appendOrDeduceScore(scoringTableLinesDeductOnly);
 
@@ -181,7 +176,7 @@ file sealed class GamingModule : GroupModule
 						let coinEarned = LocalScorer.GetCoin(tuple.Coin, userData.CardLevel)
 						let finalScoreToDisplay = Scorer.GetEarnedScoringDisplayingString(scoreEarned)
 						let finalCoinToDisplay = Scorer.GetEarnedCoinDisplayingString(coinEarned)
-						select $"{tuple.Name}（{tuple.Id}）{separator}{finalScoreToDisplay} 经验，{finalCoinToDisplay} 金币"
+						select $"{tuple.UserName}（{tuple.Id}）{separator}{finalScoreToDisplay} 经验，{finalCoinToDisplay} 金币"
 					)
 					: "无"
 			)}
@@ -205,15 +200,15 @@ file sealed class GamingModule : GroupModule
 		context.ExecutingCommand = null;
 
 
-		static void appendOrDeduceScore(IEnumerable<(string, string Id, int Score, int Coin, ShoppingItem? EarnedItem, int Times)> scoringTableLines)
+		static void appendOrDeduceScore(IEnumerable<ResultInfo> scoringTableLines)
 		{
-			foreach (var (_, id, score, coin, earnedItemNullable, times) in scoringTableLines)
+			foreach (var (_, id, score, coin, earnedItemNullable, times, isCorrectedUser) in scoringTableLines)
 			{
 				var userData = InternalReadWrite.Read(id, new() { QQ = id, LastCheckIn = DateTime.MinValue });
 				userData.ExperiencePoint += LocalScorer.GetExperiencePoint(score, userData.CardLevel);
 				userData.Coin += LocalScorer.GetCoin(coin, userData.CardLevel);
 
-				if (!userData.CorrectedCount.TryAdd(GamingMode.FindDifference, 1))
+				if (isCorrectedUser && !userData.CorrectedCount.TryAdd(GamingMode.FindDifference, 1))
 				{
 					userData.CorrectedCount[GamingMode.FindDifference] += 1;
 				}
@@ -332,15 +327,9 @@ file sealed class GamingModule : GroupModule
 		};
 }
 
-/// <summary>
-/// The generated grid data.
-/// </summary>
-/// <param name="Puzzle">Indicates the puzzle.</param>
-/// <param name="ChosenCells">Indicates the chosen 9 cells.</param>
-/// <param name="FinalIndex">Indicates the final index.</param>
-/// <param name="TimeLimit">The whole time limit of a single gaming.</param>
-/// <param name="ExperiencePoint">Indicates how many experience point you can earn in the current round if answered correctly.</param>
-file readonly record struct GeneratedGridData(scoped in Grid Puzzle, int[] ChosenCells, int FinalIndex, TimeSpan TimeLimit, int ExperiencePoint);
+file sealed record GeneratedGridData(scoped in Grid Puzzle, int[] ChosenCells, int FinalIndex, TimeSpan TimeLimit, int ExperiencePoint);
+
+file sealed record ResultInfo(string UserName, string Id, int Score, int Coin, ShoppingItem? EarnedItem, int Times, bool IsCorrectedUser);
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
