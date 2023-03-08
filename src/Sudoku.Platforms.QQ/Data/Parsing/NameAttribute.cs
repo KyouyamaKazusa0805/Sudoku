@@ -4,7 +4,7 @@
 /// Represents a name attribute.
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed class NameAttribute : Attribute
+public sealed class NameAttribute : DataParsingAttribute
 {
 	/// <summary>
 	/// Initializes a <see cref="NameAttribute"/> instance via the name.

@@ -165,12 +165,31 @@
             Indicates triggering the module via mentioning the bot.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ArgumentValueConverterAttribute`1">
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.CommandLineParsingAttribute">
             <summary>
-            Provides with an attribute type that describes this property value should receive a value not type <see cref="T:System.String"/> as message text,
-            the conversion is specified as type argument.
+            Represents a type that is the base type of all attributes used by command-line parsing operation.
             </summary>
-            <typeparam name="T">The type of the value converter instance.</typeparam>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.DataParsingAttribute">
+            <summary>
+            Represents a type that is the base type of all attributes used by data parsing.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.DescriptionAttribute">
+            <summary>
+            Represents a description attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.DescriptionAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.DescriptionAttribute"/> instance via the name.
+            </summary>
+            <param name="description">The description.</param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.DescriptionAttribute.Description">
+            <summary>
+            Indicates the description.
+            </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.NameAttribute">
             <summary>
@@ -188,12 +207,20 @@
             Indicates the name.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverters.Int32Converter">
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverterAttribute`1">
             <summary>
-            Defines a converter that converts a <see cref="T:System.String"/> value into <see cref="T:System.Int32"/> value.
+            Provides with an attribute type that describes this property value should receive a value not type <see cref="T:System.String"/> as message text,
+            the conversion is specified as type argument.
             </summary>
+            <typeparam name="T">The type of the value converter instance.</typeparam>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.ValueConverters.Int32Converter.Convert(System.String)">
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverters.NumericConverter`1">
+            <summary>
+            Defines a converter that converts a <see cref="T:System.String"/> value into <typeparamref name="T"/> value.
+            </summary>
+            <typeparam name="T">The type of the parsable target value.</typeparam>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.ValueConverters.NumericConverter`1.Convert(System.String)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryCollection">
@@ -624,18 +651,18 @@
             whose name cannot be known in compiler time.
             </i></b></remarks>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentAttribute">
+        <member name="T:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentCommandAttribute">
             <summary>
             Provides with an attribute type that describes this property is the target argument to be assigned when parsing.
             </summary>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentAttribute.#ctor(System.String)">
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentCommandAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentAttribute"/> instance its name.
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentCommandAttribute"/> instance its name.
             </summary>
             <param name="name">The name of the double argument.</param>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentAttribute.Name">
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentCommandAttribute.Name">
             <summary>
             Indicates the name of the double argument.
             </summary>
@@ -927,10 +954,10 @@
         <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyHasNoValueConverterIfNotReturningString">
             <summary>
             Indicates the operation is failed
-            and returns non-<see cref="T:System.String"/> type, but this property has not marked <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.ArgumentValueConverterAttribute`1"/>,
+            and returns non-<see cref="T:System.String"/> type, but this property has not marked <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverterAttribute`1"/>,
             which cause parser cannot convert the specified value into a <see cref="T:System.String"/>.
             </summary>
-            <seealso cref="T:Sudoku.Platforms.QQ.Data.Parsing.ArgumentValueConverterAttribute`1"/>
+            <seealso cref="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverterAttribute`1"/>
         </member>
         <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.InvalidInput">
             <summary>

@@ -11,14 +11,14 @@ file sealed class RefreshUserDataListModule : GroupModule
 	/// <summary>
 	/// Indicates the range.
 	/// </summary>
-	[DoubleArgument("范围")]
+	[DoubleArgumentCommand("范围")]
 	public string? Range { get; set; }
 
 	/// <summary>
 	/// Indicates the expression.
 	/// </summary>
-	[DoubleArgument("金币")]
-	[ArgumentValueConverter<Int32Converter>]
+	[DoubleArgumentCommand("金币")]
+	[ValueConverter<NumericConverter<int>>]
 	public int Coin { get; set; }
 
 	/// <inheritdoc/>

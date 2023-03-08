@@ -206,7 +206,7 @@ public abstract partial class GroupModule : IModule
 				continue;
 			}
 
-			if (!propertyInfo.IsDefined(typeof(DoubleArgumentAttribute)))
+			if (!propertyInfo.IsDefined(typeof(DoubleArgumentCommandAttribute)))
 			{
 				continue;
 			}
@@ -303,10 +303,10 @@ file enum ParsingFailedReason : int
 
 	/// <summary>
 	/// Indicates the operation is failed
-	/// and returns non-<see cref="string"/> type, but this property has not marked <see cref="ArgumentValueConverterAttribute{T}"/>,
+	/// and returns non-<see cref="string"/> type, but this property has not marked <see cref="ValueConverterAttribute{T}"/>,
 	/// which cause parser cannot convert the specified value into a <see cref="string"/>.
 	/// </summary>
-	/// <seealso cref="ArgumentValueConverterAttribute{T}"/>
+	/// <seealso cref="ValueConverterAttribute{T}"/>
 	TargetPropertyHasNoValueConverterIfNotReturningString,
 
 	/// <summary>
@@ -369,7 +369,7 @@ file static class MessageParser
 			var foundPropertyInfo = default(PropertyInfo?);
 			foreach (var tempPropertyInfo in moduleType.GetProperties())
 			{
-				if (tempPropertyInfo.GetCustomAttribute<DoubleArgumentAttribute>() is { Name: var name } && name == arg)
+				if (tempPropertyInfo.GetCustomAttribute<DoubleArgumentCommandAttribute>() is { Name: var name } && name == arg)
 				{
 					foundPropertyInfo = tempPropertyInfo;
 					break;
@@ -401,7 +401,7 @@ file static class MessageParser
 			}
 
 			var nextArg = args[i + 1];
-			switch (foundPropertyInfo.GetGenericAttributeTypeArguments(typeof(ArgumentValueConverterAttribute<>)))
+			switch (foundPropertyInfo.GetGenericAttributeTypeArguments(typeof(ValueConverterAttribute<>)))
 			{
 				case []:
 				{

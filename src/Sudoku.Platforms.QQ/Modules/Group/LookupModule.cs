@@ -14,19 +14,19 @@ file sealed class LookupModule : GroupModule
 	/// <summary>
 	/// Indicates QQ number of the user.
 	/// </summary>
-	[DoubleArgument("QQ")]
+	[DoubleArgumentCommand("QQ")]
 	public string? UserId { get; set; }
 
 	/// <summary>
 	/// Indicates nick name of the user.
 	/// </summary>
-	[DoubleArgument("昵称")]
+	[DoubleArgumentCommand("昵称")]
 	public string? UserNickname { get; set; }
 
 	/// <summary>
 	/// Indicates the view content kind.
 	/// </summary>
-	[DoubleArgument("内容")]
+	[DoubleArgumentCommand("内容")]
 	[DefaultValue(nameof(ViewContentKindDefaultValue))]
 	public string ViewContentKind { get; set; } = null!;
 

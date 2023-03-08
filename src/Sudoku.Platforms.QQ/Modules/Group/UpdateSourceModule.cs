@@ -15,27 +15,27 @@ file sealed class UpdateSourceModule : GroupModule
 	/// <summary>
 	/// Indicates the user name.
 	/// </summary>
-	[DoubleArgument("用户名")]
+	[DoubleArgumentCommand("用户名")]
 	public string? UserName { get; set; }
 
 	/// <summary>
 	/// Indicates the user ID.
 	/// </summary>
-	[DoubleArgument("QQ")]
+	[DoubleArgumentCommand("QQ")]
 	public string? UserId { get; set; }
 
 	/// <summary>
 	/// Indicates the addition of experience point.
 	/// </summary>
-	[DoubleArgument("经验")]
-	[ArgumentValueConverter<Int32Converter>]
+	[DoubleArgumentCommand("经验")]
+	[ValueConverter<NumericConverter<int>>]
 	public int ExperiencePointAddition { get; set; }
 
 	/// <summary>
 	/// Indicates the addition of coin.
 	/// </summary>
-	[DoubleArgument("金币")]
-	[ArgumentValueConverter<Int32Converter>]
+	[DoubleArgumentCommand("金币")]
+	[ValueConverter<NumericConverter<int>>]
 	public int CoinAddition { get; set; }
 
 

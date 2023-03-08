@@ -6,6 +6,6 @@
 /// </summary>
 /// <typeparam name="T">The type of the value converter instance.</typeparam>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class ArgumentValueConverterAttribute<T> : Attribute where T : class, IValueConverter, new()
+public sealed class ValueConverterAttribute<T> : CommandLineParsingAttribute where T : class, IValueConverter, new()
 {
 }
