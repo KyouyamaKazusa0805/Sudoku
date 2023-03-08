@@ -767,6 +767,22 @@
             Indicates the name of the double argument.
             </summary>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.ItemName">
+            <summary>
+            Indicates the item you want to buy.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.Level">
+            <summary>
+            Indicates the level of the clover to buy.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.CancelGamingModule.RaisingCommand">
             <inheritdoc/>
         </member>
