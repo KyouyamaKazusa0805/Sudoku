@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltInModule]
+[BuiltIn]
 [SupportedOSPlatform("windows")]
 file sealed class GamingModule : GroupModule
 {

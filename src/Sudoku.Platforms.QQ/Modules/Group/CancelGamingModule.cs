@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltInModule]
+[BuiltIn]
 file sealed class CancelGamingModule : GroupModule
 {
 	/// <inheritdoc/>

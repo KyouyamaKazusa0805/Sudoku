@@ -100,7 +100,7 @@
             The internal running context.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Data.BuiltInModuleAttribute">
+        <member name="T:Sudoku.Platforms.QQ.Data.BuiltInAttribute">
             <summary>
             Represents with a built-in module attribute.
             </summary>
@@ -471,6 +471,12 @@
             Represents a type that interacts with local files. All methods in this type are synchronized methods.
             </summary>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Storage.InternalReadWrite.ReadAll(System.Predicate{System.String})">
+            <summary>
+            Reads all users' local file, and return <see cref="T:Sudoku.Platforms.QQ.Data.User"/> array.
+            </summary>
+            <returns>An array of <see cref="T:Sudoku.Platforms.QQ.Data.User"/>s.</returns>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.Data.Storage.InternalReadWrite.Read(System.String,Sudoku.Platforms.QQ.Data.User)">
             <summary>
             Reads the specified user's local file, and returns <see cref="T:Sudoku.Platforms.QQ.Data.User"/> instance.
@@ -761,6 +767,28 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.RankingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.Range">
+            <summary>
+            Indicates the range.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.Coin">
+            <summary>
+            Indicates the expression.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.RaisingPrefix">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.RequiredSenderRole">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RaisingCommand">

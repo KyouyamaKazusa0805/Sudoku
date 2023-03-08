@@ -6,6 +6,45 @@
 internal static class InternalReadWrite
 {
 	/// <summary>
+	/// Reads all users' local file, and return <see cref="User"/> array.
+	/// </summary>
+	/// <returns>An array of <see cref="User"/>s.</returns>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public static User[]? ReadAll(Predicate<string> predicate)
+	{
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			return null;
+		}
+
+		var botDataFolder = $"""{folder}\BotData""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			return null;
+		}
+
+		var botUsersDataFolder = $"""{botDataFolder}\Users""";
+		if (!Directory.Exists(botUsersDataFolder))
+		{
+			return null;
+		}
+
+		var result = new List<User>();
+		var di = new DirectoryInfo(botUsersDataFolder);
+		foreach (var file in di.EnumerateFiles("*.json"))
+		{
+			var id = Path.GetFileNameWithoutExtension(file.FullName);
+			if (predicate(id))
+			{
+				result.Add(Deserialize<User>(File.ReadAllText(file.FullName))!);
+			}
+		}
+
+		return result.ToArray();
+	}
+
+	/// <summary>
 	/// Reads the specified user's local file, and returns <see cref="User"/> instance.
 	/// </summary>
 	/// <param name="userId">The user QQ number.</param>

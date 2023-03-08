@@ -30,7 +30,7 @@ public sealed class ModuleManager : List<IModule>
 			var result = Default;
 			result.AddRange(
 				from type in typeof(ModuleManager).Assembly.GetDerivedTypes<IModule>()
-				where type.GetConstructor(Array.Empty<Type>()) is not null && type.IsDefined(typeof(BuiltInModuleAttribute))
+				where type.GetConstructor(Array.Empty<Type>()) is not null && type.IsDefined(typeof(BuiltInAttribute))
 				select (IModule)Activator.CreateInstance(type)!
 			);
 

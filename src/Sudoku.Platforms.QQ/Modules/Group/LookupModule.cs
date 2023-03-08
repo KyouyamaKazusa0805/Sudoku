@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltInModule]
+[BuiltIn]
 file sealed class LookupModule : GroupModule
 {
 #pragma warning disable CS0414
