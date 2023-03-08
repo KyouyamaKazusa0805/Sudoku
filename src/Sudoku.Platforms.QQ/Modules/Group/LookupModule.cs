@@ -217,10 +217,12 @@ file sealed class LookupModule : GroupModule
 					}
 
 					var possibility = Scorer.GetUpLevelingSuccessPossibility(main, AuxiliaryCards, CloverLevel);
-					return CloverLevel switch
+					var cloverString = CloverLevel == -1 ? string.Empty : $"，三叶草等级：{CloverLevel}";
+					return AuxiliaryCards switch
 					{
-						-1 => $"主卡级别：{main}，辅助卡级别：{AuxiliaryCards[0]}、{AuxiliaryCards[1]} 和 {AuxiliaryCards[2]}，成功率：{possibility:P2}。",
-						_ => $"主卡级别：{main}，辅助卡级别：{AuxiliaryCards[0]}、{AuxiliaryCards[1]} 和 {AuxiliaryCards[2]}，三叶草等级：{CloverLevel}，成功率：{possibility:P2}。"
+						[var c] => $"主卡级别：{main}，辅助卡级别：{c}{cloverString}，成功率：{possibility:P2}。",
+						[var c1, var c2] => $"主卡级别：{main}，辅助卡级别：{c1} 和 {c2}{cloverString}，成功率：{possibility:P2}。",
+						[var c1, var c2, var c3] => $"主卡级别：{main}，辅助卡级别：{c1}、{c2} 和 {c3}{cloverString}，成功率：{possibility:P2}。"
 					};
 				}
 				default:

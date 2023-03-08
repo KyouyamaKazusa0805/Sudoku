@@ -67,9 +67,9 @@ file sealed class BuyingModule : GroupModule
 
 				user.Coin -= price * count;
 
-				if (!user.Items.TryAdd(ShoppingItem.Card, count))
+				if (!user.UplevelingCards.TryAdd(0, count))
 				{
-					user.Items[ShoppingItem.Card] += count;
+					user.UplevelingCards[0] += count;
 				}
 
 				InternalReadWrite.Write(user);
