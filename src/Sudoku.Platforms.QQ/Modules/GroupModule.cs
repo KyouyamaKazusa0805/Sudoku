@@ -146,6 +146,14 @@ public abstract class GroupModule : IModule
 					await gmr.SendMessageAsync("请检查指令输入是否正确。尤其是缺少空格。空格作为指令识别期间较为重要的分隔符号，请勿缺少。");
 					return;
 				}
+				case ParsingFailedReason.TargetPropertyNotFound:
+				{
+					await gmr.SendMessageAsync(
+						"你输入的指令有误，导致你要具体指定的参数信息不能成功匹配。请使用完整的指令，不要省略一些固定词语，如“！购买 物品 强化卡”的“物品”。"
+					);
+
+					return;
+				}
 				case ParsingFailedReason.NotCurrentModule:
 				case ParsingFailedReason.None:
 				{
@@ -270,6 +278,11 @@ file enum ParsingFailedReason : int
 	NotCurrentModule,
 
 	/// <summary>
+	/// Indicates the operation is failed because target property is not found.
+	/// </summary>
+	TargetPropertyNotFound,
+
+	/// <summary>
 	/// Indicates the operation is failed because target property has no both getter and setter.
 	/// </summary>
 	TargetPropertyHasNoGetterOrSetter,
@@ -344,6 +357,12 @@ file static class MessageParser
 					foundPropertyInfo = tempPropertyInfo;
 					break;
 				}
+			}
+
+			if (foundPropertyInfo is null)
+			{
+				failedReason = ParsingFailedReason.TargetPropertyNotFound;
+				return false;
 			}
 
 			if (foundPropertyInfo is not { CanRead: true, CanWrite: true })

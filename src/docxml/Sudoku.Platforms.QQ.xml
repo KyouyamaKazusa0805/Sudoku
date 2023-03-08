@@ -1044,6 +1044,11 @@
             Indicates the operation is failed because the parser has detected that the message text is not used by this module.
             </summary>
         </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyNotFound">
+            <summary>
+            Indicates the operation is failed because target property is not found.
+            </summary>
+        </member>
         <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyHasNoGetterOrSetter">
             <summary>
             Indicates the operation is failed because target property has no both getter and setter.
