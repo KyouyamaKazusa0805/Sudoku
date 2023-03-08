@@ -191,6 +191,22 @@
             Indicates the description.
             </summary>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.GroupAttribute">
+            <summary>
+            Defines a shopping item group attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.GroupAttribute.#ctor(Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemGroup)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.GroupAttribute"/> instance.
+            </summary>
+            <param name="group">The group.</param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.GroupAttribute.Group">
+            <summary>
+            Indicates the group of the shopping item.
+            </summary>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.NameAttribute">
             <summary>
             Represents a name attribute.
@@ -205,6 +221,22 @@
         <member name="P:Sudoku.Platforms.QQ.Data.Parsing.NameAttribute.Name">
             <summary>
             Indicates the name.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.PriceAttribute">
+            <summary>
+            Represents a price attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.PriceAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.PriceAttribute"/> instance via the price.
+            </summary>
+            <param name="price">The price.</param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.PriceAttribute.Price">
+            <summary>
+            Indicates the price.
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverterAttribute`1">
@@ -486,12 +518,80 @@
             </summary>
             <seealso cref="T:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem"/>
         </member>
+        <member name="F:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemExtensions.ShoppingItemTypeInfo">
+            <summary>
+            The cached field.
+            </summary>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemExtensions.GetName(Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem)">
             <summary>
             Gets the name of the item.
             </summary>
             <param name="this">The shopping item.</param>
             <returns>The name of the item.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the field is not marked <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.NameAttribute"/>.</exception>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemExtensions.GetName(Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem,System.String)">
+            <summary>
+            Gets the name of the item.
+            </summary>
+            <param name="this">The shopping item.</param>
+            <param name="defaultValue">The default name to be displayed if the field is not marked <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.NameAttribute"/>.</param>
+            <returns>The name of the item.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemExtensions.GetDescription(Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem)">
+            <summary>
+            Gets the description of the item.
+            </summary>
+            <param name="this">The shopping item.</param>
+            <returns>The description of the item.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemExtensions.GetDescription(Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem,System.String)">
+            <summary>
+            Gets the description of the item.
+            </summary>
+            <param name="this">The shopping item.</param>
+            <param name="defaultValue">The default name to be displayed if the field is not marked <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.DescriptionAttribute"/>.</param>
+            <returns>The description of the item.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemExtensions.IsBuyable(Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem,System.Int32@)">
+            <summary>
+            Indicates whether the item is buyable. If <see langword="true"/>, the price will be returned via argument <paramref name="price"/>.
+            </summary>
+            <param name="this">The shopping item.</param>
+            <param name="price">The price if available.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemExtensions.GetPrice(Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem)">
+            <summary>
+            Gets the price of the item.
+            </summary>
+            <param name="this">The shopping item.</param>
+            <returns>The price of the item.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the item is not buyable.</exception>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemExtensions.GetGroup(Sudoku.Platforms.QQ.Data.Shopping.ShoppingItem)">
+            <summary>
+            Gets the group of the item.
+            </summary>
+            <param name="this">The shopping item.</param>
+            <returns>The group of the item.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the field is not marked <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.GroupAttribute"/>.</exception>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemGroup">
+            <summary>
+            Defines a group of shopping items.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemGroup.Card">
+            <summary>
+            Indicates the card.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Data.Shopping.ShoppingItemGroup.Clover">
+            <summary>
+            Indicates the clover.
+            </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Storage.InternalReadWrite">
             <summary>
@@ -781,6 +881,17 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.ShopModule.RaisingCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.ShopModule.ItemKind">
+            <summary>
+            Indicates the item kind.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.ShopModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RaisingCommand">
