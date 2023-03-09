@@ -87,7 +87,7 @@ file sealed class CardUplevelingModule : GroupModule
 					break;
 				}
 
-				await (main == -1 ? uplevelForDefaultAsync(messageReceiver) : uplevelForAuxiliaryAsync(messageReceiver, main));
+				await uplevelAsync(messageReceiver, main == -1 ? userCardLevel : main);
 
 				break;
 			}
@@ -95,9 +95,9 @@ file sealed class CardUplevelingModule : GroupModule
 
 			static bool lackingOfCardsChecker(KeyValuePair<int, int> kvp) => kvp.Value < 0;
 
-			async Task uplevelForAuxiliaryAsync(GroupMessageReceiver messageReceiver, int main)
+			async Task uplevelAsync(GroupMessageReceiver messageReceiver, int main)
 			{
-				var copied = await precheckWhetherCardsAreEnough2Async(user, cards, main);
+				var copied = await precheckWhetherCardsAreEnoughAsync(user, cards, main);
 				if (copied is null)
 				{
 					return;
@@ -156,102 +156,7 @@ file sealed class CardUplevelingModule : GroupModule
 				}
 			}
 
-			async Task uplevelForDefaultAsync(GroupMessageReceiver messageReceiver)
-			{
-				if (Array.Exists(cards, card => userCardLevel - card >= 3))
-				{
-					await messageReceiver.SendMessageAsync($"你的卡片等级为 {userCardLevel} 级，但你强化使用的卡片等级和当前等级相差超过 3 级及以上。不支持这种强化。");
-					return;
-				}
-
-				if (Array.Exists(cards, card => userCardLevel - card < 0))
-				{
-					await messageReceiver.SendMessageAsync($"你的卡片等级为 {userCardLevel} 级，但你选取的辅助卡比你的主卡等级还高。不支持这种强化。");
-					return;
-				}
-
-				var copied = await precheckWhetherCardsAreEnoughAsync(user, cards);
-				if (copied is null)
-				{
-					return;
-				}
-
-				var possibility = Scorer.GetUpLevelingSuccessPossibility(userCardLevel, cards, level);
-
-				user.Coin -= 30;
-
-				var final = Rng.Next(0, 10000);
-				var boundary = possibility * 10000;
-				if (final < boundary)
-				{
-					// Success.
-					user.CardLevel++;
-
-					user.Items.Remove(ShoppingItem.Card);
-					user.UplevelingCards = copied;
-
-					InternalReadWrite.Write(user);
-
-					await messageReceiver.SendMessageAsync(
-						$"恭喜你，强化成功！卡片等级变动：{user.CardLevel - 1} -> {user.CardLevel}，倍率：{Scorer.GetGlobalRate(user.CardLevel)}！"
-					);
-				}
-				else
-				{
-					// Failed.
-					var originalLevel = user.CardLevel;
-					if (user.CardLevel > 5)
-					{
-						user.CardLevel--;
-					}
-
-					user.Items.Remove(ShoppingItem.Card);
-					user.UplevelingCards = copied;
-
-					InternalReadWrite.Write(user);
-
-					await messageReceiver.SendMessageAsync(
-						originalLevel switch
-						{
-							> 5 => $"不够好运，强化失败。卡片等级降级：{originalLevel} -> {originalLevel - 1}。",
-							_ => "不够好运，强化失败。卡片小于 5 级不掉级。"
-						}
-					);
-				}
-			}
-
-			async Task<Dictionary<int, int>?> precheckWhetherCardsAreEnoughAsync(User user, int[] cards)
-			{
-				var copied = new Dictionary<int, int>(user.UplevelingCards);
-				if (user.Items.TryGetValue(ShoppingItem.Card, out var basicCardsCount) && !copied.TryAdd(0, basicCardsCount))
-				{
-					copied[0] += basicCardsCount;
-				}
-
-				for (var trial = 0; trial < Min(3, cards.Length); trial++)
-				{
-					var currentCard = cards[trial];
-
-					if (!copied.ContainsKey(currentCard))
-					{
-						await messageReceiver.SendMessageAsync($"你的强化辅助卡不包含 {currentCard} 级别的卡片。请检查输入。");
-						return null;
-					}
-
-					copied[currentCard]--;
-				}
-
-				if (copied.Any(lackingOfCardsChecker))
-				{
-					var (key, _) = copied.First(lackingOfCardsChecker);
-					await messageReceiver.SendMessageAsync($"强化辅助卡级别为 {key} 不够使用。请重新调整卡片等级。");
-					return null;
-				}
-
-				return copied;
-			}
-
-			async Task<Dictionary<int, int>?> precheckWhetherCardsAreEnough2Async(User user, int[] cards, int main)
+			async Task<Dictionary<int, int>?> precheckWhetherCardsAreEnoughAsync(User user, int[] cards, int main)
 			{
 				var copied = new Dictionary<int, int>(user.UplevelingCards);
 				if (user.Items.TryGetValue(ShoppingItem.Card, out var basicCardsCount) && !copied.TryAdd(0, basicCardsCount))

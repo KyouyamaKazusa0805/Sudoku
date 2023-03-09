@@ -950,11 +950,6 @@
             Indicates the range.
             </summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.Coin">
-            <summary>
-            Indicates the expression.
-            </summary>
-        </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.RaisingPrefix">
             <inheritdoc/>
         </member>

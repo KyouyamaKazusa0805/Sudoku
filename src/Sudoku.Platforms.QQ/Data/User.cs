@@ -15,8 +15,8 @@ public sealed class User
 	/// <summary>
 	/// Indicates the card level.
 	/// </summary>
-	[JsonPropertyName("cardLevel")]
-	public int CardLevel { get; set; }
+	[JsonIgnore]
+	public int CardLevel => UplevelingCards.Keys.Max();
 
 	/// <summary>
 	/// Indicates the user's experience point.

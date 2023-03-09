@@ -14,13 +14,6 @@ file sealed class RefreshUserDataListModule : GroupModule
 	[DoubleArgumentCommand("范围")]
 	public string? Range { get; set; }
 
-	/// <summary>
-	/// Indicates the expression.
-	/// </summary>
-	[DoubleArgumentCommand("金币")]
-	[ValueConverter<NumericConverter<int>>]
-	public int Coin { get; set; }
-
 	/// <inheritdoc/>
 	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
 
@@ -50,12 +43,15 @@ file sealed class RefreshUserDataListModule : GroupModule
 
 		foreach (var user in users)
 		{
-			user.Coin += Coin;
+			if (!user.UplevelingCards.TryAdd(user.CardLevel, 1))
+			{
+				user.UplevelingCards[user.CardLevel]++;
+			}
 
 			InternalReadWrite.Write(user);
 		}
 
-		await messageReceiver.SendMessageAsync($"刷新完成，已更新{Range}共 {users.Length} 个成员的数据。金币 {Coin:+#;-#;0}。");
+		await messageReceiver.SendMessageAsync($"刷新完成，已更新{Range}共 {users.Length} 个成员的数据。");
 	}
 }
 
