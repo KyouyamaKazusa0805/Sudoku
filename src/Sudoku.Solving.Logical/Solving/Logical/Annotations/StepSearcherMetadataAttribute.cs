@@ -15,8 +15,7 @@ public sealed class StepSearcherMetadataAttribute : Attribute
 	/// <summary>
 	/// <para>
 	/// Indicates the technique searcher can or can't be used in some scenarios
-	/// where they aren't in traversing mode to call
-	/// <see cref="IStepSearcher.GetAll(ref LogicalAnalysisContext)"/>
+	/// where they aren't in traversing mode to call <see cref="IStepSearcher.GetAll(ref LogicalAnalysisContext)"/>
 	/// in <see cref="IStepSearcher"/>s one by one.
 	/// </para>
 	/// <para>
@@ -48,7 +47,7 @@ public sealed class StepSearcherMetadataAttribute : Attribute
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="IStepSearcher"/>
-	/// <seealso cref="FastProperties"/>
+	/// <seealso cref="CachedGridData"/>
 	public bool IsDirect { get; init; }
 
 	/// <summary>

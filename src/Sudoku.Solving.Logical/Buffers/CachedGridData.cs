@@ -2,22 +2,22 @@
 
 /// <summary>
 /// <para>
-/// Represents fast properties used by solving and analyzation for a sudoku puzzle,
-/// as cached properties that can prevent with redundant and repeated calculations and initialization.
+/// Represents cached fields used by solving and analyzation for a sudoku puzzle,
+/// as cached fields that can prevent with redundant and repeated calculations and initialization.
 /// </para>
 /// <para>
-/// All names of properties given in this type can also be found in <see cref="Grid"/>, but they will be calculated if you use them.
-/// If you use such properties in a same grid, it will produce redundant calculations.
+/// All names of fields given in this type can also be found in <see cref="Grid"/>, but they will be calculated if you use them.
+/// If you use such fields in a same grid, it will produce redundant calculations.
 /// </para>
 /// <para>
 /// Some step searchers may rely on this type.
-/// <b>If you want to use them, you should ensure the method <see cref="InitializeMaps"/> must be called before using such properties</b>.
+/// <b>If you want to use them, you should ensure the method <see cref="InitializeMaps"/> must be called before using such fields</b>.
 /// </para>
 /// </summary>
 /// <seealso cref="InitializeMaps"/>
 /// <seealso cref="LogicalSolver"/>
 /// <seealso cref="Grid"/>
-internal static class FastProperties
+internal static class CachedGridData
 {
 	/// <summary>
 	/// <inheritdoc cref="Grid.EmptyCells"/>
@@ -39,6 +39,7 @@ internal static class FastProperties
 	/// </remarks>
 	internal static CellMap BivalueCells;
 
+#nullable disable warnings
 	/// <summary>
 	/// <inheritdoc cref="Grid.CandidatesMap"/>
 	/// </summary>
@@ -46,7 +47,7 @@ internal static class FastProperties
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	internal static CellMap[] CandidatesMap = null!;
+	internal static CellMap[] CandidatesMap;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.DigitsMap"/>
@@ -55,7 +56,7 @@ internal static class FastProperties
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	internal static CellMap[] DigitsMap = null!;
+	internal static CellMap[] DigitsMap;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.ValuesMap"/>
@@ -64,7 +65,8 @@ internal static class FastProperties
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	internal static CellMap[] ValuesMap = null!;
+	internal static CellMap[] ValuesMap;
+#nullable restore warnings
 
 
 	/// <summary>
