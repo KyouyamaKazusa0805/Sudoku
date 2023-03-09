@@ -142,10 +142,7 @@ public static class StepSearcherPool
 								).SetValue(instance, propertyValue);
 							}
 
-							instance.Options = instance.Options with
-							{
-								SeparatedStepSearcherPriority = attributeInstance.Priority
-							};
+							instance.Options = instance.Options with { SeparatedStepSearcherPriority = attributeInstance.Priority };
 
 							break;
 						}
