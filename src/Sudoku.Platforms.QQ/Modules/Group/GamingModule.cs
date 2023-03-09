@@ -210,7 +210,7 @@ file sealed class GamingModule : GroupModule
 
 				if (isCorrectedUser && !userData.CorrectedCount.TryAdd(GamingMode.FindDifference, 1))
 				{
-					userData.CorrectedCount[GamingMode.FindDifference] += 1;
+					userData.CorrectedCount[GamingMode.FindDifference]++;
 				}
 
 				if (!userData.TriedCount.TryAdd(GamingMode.FindDifference, times))

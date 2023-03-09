@@ -834,6 +834,11 @@
             Indicates the clover level.
             </summary>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.MainCardLevel">
+            <summary>
+            Indicates the main card level.
+            </summary>
+        </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.AuxiliaryCards">
             <summary>
             Indicates the auxiliary cards.

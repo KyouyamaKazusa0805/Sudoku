@@ -154,7 +154,7 @@ file sealed class LookupModule : GroupModule
 
 					return
 						$"""
-						用户 {senderName}（{senderId}）PK 成绩数据📦
+						用户 {senderName}（{senderId}）PK 数据📦
 						---
 						{pkResult}
 						""";
@@ -179,14 +179,14 @@ file sealed class LookupModule : GroupModule
 							from kvp in userData.UplevelingCards
 							let level = kvp.Key
 							let count = kvp.Value
+							where count != 0
 							select $"  * {level} 级辅助卡：{count} 张"
 						)
 						: "无";
 
 					return
 						$"""
-						用户 {senderName}（{senderId}）商品数据📦
-						---
+						用户 {senderName}（{senderId}）物品数据📦
 						{itemsResult}
 						---
 						辅助卡片情况：
