@@ -24,9 +24,9 @@ public static class HouseTypeExtensions
 	{
 		ArgumentNullRefException.ThrowIfNullRef(ref reference);
 
-		AddByteOffset(ref reference, 0) = BlockTable[cell];
-		AddByteOffset(ref reference, 1) = RowTable[cell];
-		AddByteOffset(ref reference, 2) = ColumnTable[cell];
+		reference = BlockTable[cell];
+		AddByteOffset(ref reference, sizeof(int)) = RowTable[cell];
+		AddByteOffset(ref reference, 2 * sizeof(int)) = ColumnTable[cell];
 	}
 
 	/// <summary>

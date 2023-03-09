@@ -29,7 +29,7 @@ internal static class FastProperties
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
 	/// <seealso cref="StepSearcherMetadataAttribute.IsDirect"/>
-	public static CellMap EmptyCells { get; private set; }
+	internal static CellMap EmptyCells;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.BivalueCells"/>
@@ -37,7 +37,7 @@ internal static class FastProperties
 	/// <remarks>
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
-	public static CellMap BivalueCells { get; private set; }
+	internal static CellMap BivalueCells;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.CandidatesMap"/>
@@ -46,7 +46,7 @@ internal static class FastProperties
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	public static CellMap[] CandidatesMap { get; private set; } = null!;
+	internal static CellMap[] CandidatesMap = null!;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.DigitsMap"/>
@@ -55,7 +55,7 @@ internal static class FastProperties
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	public static CellMap[] DigitsMap { get; private set; } = null!;
+	internal static CellMap[] DigitsMap = null!;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.ValuesMap"/>
@@ -64,7 +64,7 @@ internal static class FastProperties
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	public static CellMap[] ValuesMap { get; private set; } = null!;
+	internal static CellMap[] ValuesMap = null!;
 
 
 	/// <summary>

@@ -23,7 +23,7 @@
             <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="P:Sudoku.Buffers.FastProperties.EmptyCells">
+        <member name="F:Sudoku.Buffers.FastProperties.EmptyCells">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
             </summary>
@@ -35,38 +35,38 @@
             <seealso cref="M:Sudoku.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>
         </member>
-        <member name="P:Sudoku.Buffers.FastProperties.BivalueCells">
+        <member name="F:Sudoku.Buffers.FastProperties.BivalueCells">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
             </summary>
             <remarks>
-            <inheritdoc cref="P:Sudoku.Buffers.FastProperties.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Buffers.FastProperties.EmptyCells" path="/remarks"/>
             </remarks>
         </member>
-        <member name="P:Sudoku.Buffers.FastProperties.CandidatesMap">
+        <member name="F:Sudoku.Buffers.FastProperties.CandidatesMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="P:Sudoku.Buffers.FastProperties.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Buffers.FastProperties.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="P:Sudoku.Buffers.FastProperties.DigitsMap">
+        <member name="F:Sudoku.Buffers.FastProperties.DigitsMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="P:Sudoku.Buffers.FastProperties.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Buffers.FastProperties.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="P:Sudoku.Buffers.FastProperties.ValuesMap">
+        <member name="F:Sudoku.Buffers.FastProperties.ValuesMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="P:Sudoku.Buffers.FastProperties.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Buffers.FastProperties.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
@@ -841,7 +841,7 @@ result ^= expression;
             </para>
             <para>
             If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/> in its method
+            properties such as <see cref="F:Sudoku.Buffers.FastProperties.CandidatesMap"/> in its method
             <see cref="M:Sudoku.Solving.Logical.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>.
             </para>
             <para><i>The default value is <see langword="false"/>.</i></para>
@@ -850,11 +850,11 @@ result ^= expression;
             <para>
             All disallowed properties are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Buffers.FastProperties.DigitsMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.ValuesMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.CandidatesMap"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.BivalueCells"/></item>
-            <item><see cref="P:Sudoku.Buffers.FastProperties.EmptyCells"/></item>
+            <item><see cref="F:Sudoku.Buffers.FastProperties.DigitsMap"/></item>
+            <item><see cref="F:Sudoku.Buffers.FastProperties.ValuesMap"/></item>
+            <item><see cref="F:Sudoku.Buffers.FastProperties.CandidatesMap"/></item>
+            <item><see cref="F:Sudoku.Buffers.FastProperties.BivalueCells"/></item>
+            <item><see cref="F:Sudoku.Buffers.FastProperties.EmptyCells"/></item>
             </list>
             The disallowed method is:
             <list type="bullet">
