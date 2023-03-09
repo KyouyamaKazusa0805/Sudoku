@@ -103,6 +103,18 @@ file sealed class CardUplevelingModule : GroupModule
 					return;
 				}
 
+				if (Array.Exists(cards, card => main - card >= 3))
+				{
+					await messageReceiver.SendMessageAsync("抱歉，你的主卡级别比辅助卡级别差距超过 3 级，不允许这种强化。");
+					return;
+				}
+
+				if (Array.Exists(cards, card => main - card < 0))
+				{
+					await messageReceiver.SendMessageAsync("抱歉，你的辅助卡级别比主卡级别还要高，不允许这种强化。");
+					return;
+				}
+
 				var possibility = Scorer.GetUpLevelingSuccessPossibility(main, cards, level);
 
 				user.Coin -= 30;
