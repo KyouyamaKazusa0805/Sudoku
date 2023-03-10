@@ -38,7 +38,7 @@ public ref partial struct LogicalAnalysisContext
 	/// Indicates the previously set digit. This field is only used for <see cref="ISingleStepSearcher"/>.
 	/// </summary>
 	/// <seealso cref="ISingleStepSearcher"/>
-	public int PreviousSetDigit { get; set; }
+	public int PreviousSetDigit { get; internal set; }
 
 	/// <summary>
 	/// <para>

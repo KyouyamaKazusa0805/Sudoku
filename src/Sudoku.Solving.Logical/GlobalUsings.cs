@@ -54,7 +54,7 @@ global using static System.Algorithm.Sequences;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static System.Runtime.CompilerServices.Unsafe;
-global using static Sudoku.Buffers.CachedGridData;
+global using static Sudoku.Buffers.CachedCellMaps;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 global using static Sudoku.SolutionWideReadOnlyFields;

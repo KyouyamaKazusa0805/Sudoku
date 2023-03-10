@@ -4,77 +4,87 @@
         <name>Sudoku.Solving.Logical</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Buffers.CachedGridData">
+        <member name="T:Sudoku.Buffers.CachedCellMaps">
             <summary>
+            <para>Represents cached fields used by solving and analyzation for a sudoku puzzle, reducing repeated and redundant calculations.</para>
             <para>
-            Represents cached fields used by solving and analyzation for a sudoku puzzle,
-            as cached fields that can prevent with redundant and repeated calculations and initialization.
+            All names of fields given in this type can also be found in type <see cref="T:Sudoku.Concepts.Grid"/>, but those values are defined as instant properties,
+            which means the value will be calculated after you invoke them.
+            For example, if we use a property of them for 5 times, the result value will be calculated for 5 times.
             </para>
             <para>
-            All names of fields given in this type can also be found in <see cref="T:Sudoku.Concepts.Grid"/>, but they will be calculated if you use them.
-            If you use such fields in a same grid, it will produce redundant calculations.
+            Sometimes, such values may only be calculated only once, and we just use those return values after the value had been calculated.
+            For the consideration of the calculation result caching, those results will be stored here as <see langword="static"/> fields,
+            we can use them if we can ensure that such fields have already been initialized.
+            For calling the method <see cref="M:Sudoku.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>, we can ensure those fields are initialized, in order to be used later.
+            In other words,
+            <b>you must ensure the method <see cref="M:Sudoku.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/> having been called before using such fields if you want to use them</b>;
+            otherwise, <see cref="T:System.NullReferenceException"/> will be thrown for cached fields whose types are reference ones.
             </para>
             <para>
-            Some step searchers may rely on this type.
-            <b>If you want to use them, you should ensure the method <see cref="M:Sudoku.Buffers.CachedGridData.InitializeMaps(Sudoku.Concepts.Grid@)"/> must be called before using such fields</b>.
+            The reason why I defined them as <see langword="static"/> fields is that they are cached values.
+            "<see langword="static"/>" means caching, and "field" means the value to be fetched without encapsulation,
+            for a better performace.
             </para>
+            <para>Some <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s may rely on this type.</para>
             </summary>
-            <seealso cref="M:Sudoku.Buffers.CachedGridData.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="M:Sudoku.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>
             <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
+            <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="F:Sudoku.Buffers.CachedGridData.EmptyCells">
+        <member name="F:Sudoku.Buffers.CachedCellMaps.EmptyCells">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
             </summary>
             <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.CachedGridData.InitializeMaps(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
             <see cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Buffers.CachedGridData.InitializeMaps(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="M:Sudoku.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.IsDirect"/>
         </member>
-        <member name="F:Sudoku.Buffers.CachedGridData.BivalueCells">
+        <member name="F:Sudoku.Buffers.CachedCellMaps.BivalueCells">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Buffers.CachedGridData.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
             </remarks>
         </member>
-        <member name="F:Sudoku.Buffers.CachedGridData.CandidatesMap">
+        <member name="F:Sudoku.Buffers.CachedCellMaps.CandidatesMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Buffers.CachedGridData.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="F:Sudoku.Buffers.CachedGridData.DigitsMap">
+        <member name="F:Sudoku.Buffers.CachedCellMaps.DigitsMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Buffers.CachedGridData.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="F:Sudoku.Buffers.CachedGridData.ValuesMap">
+        <member name="F:Sudoku.Buffers.CachedCellMaps.ValuesMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Buffers.CachedGridData.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="M:Sudoku.Buffers.CachedGridData.InitializeMaps(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)">
             <summary>
             Initialize the maps that used later.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="g">The grid.</param>
         </member>
         <member name="T:Sudoku.Buffers.StepSearcherPool">
             <summary>
@@ -840,7 +850,7 @@ result ^= expression;
             </para>
             <para>
             If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="F:Sudoku.Buffers.CachedGridData.CandidatesMap"/> in its method
+            properties such as <see cref="F:Sudoku.Buffers.CachedCellMaps.CandidatesMap"/> in its method
             <see cref="M:Sudoku.Solving.Logical.IStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)"/>.
             </para>
             <para><i>The default value is <see langword="false"/>.</i></para>
@@ -849,15 +859,15 @@ result ^= expression;
             <para>
             All disallowed properties are:
             <list type="bullet">
-            <item><see cref="F:Sudoku.Buffers.CachedGridData.DigitsMap"/></item>
-            <item><see cref="F:Sudoku.Buffers.CachedGridData.ValuesMap"/></item>
-            <item><see cref="F:Sudoku.Buffers.CachedGridData.CandidatesMap"/></item>
-            <item><see cref="F:Sudoku.Buffers.CachedGridData.BivalueCells"/></item>
-            <item><see cref="F:Sudoku.Buffers.CachedGridData.EmptyCells"/></item>
+            <item><see cref="F:Sudoku.Buffers.CachedCellMaps.DigitsMap"/></item>
+            <item><see cref="F:Sudoku.Buffers.CachedCellMaps.ValuesMap"/></item>
+            <item><see cref="F:Sudoku.Buffers.CachedCellMaps.CandidatesMap"/></item>
+            <item><see cref="F:Sudoku.Buffers.CachedCellMaps.BivalueCells"/></item>
+            <item><see cref="F:Sudoku.Buffers.CachedCellMaps.EmptyCells"/></item>
             </list>
             The disallowed method is:
             <list type="bullet">
-            <item><see cref="M:Sudoku.Buffers.CachedGridData.InitializeMaps(Sudoku.Concepts.Grid@)"/></item>
+            <item><see cref="M:Sudoku.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/></item>
             </list>
             </para>
             <para>
@@ -867,7 +877,7 @@ result ^= expression;
             </para>
             </remarks>
             <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
-            <seealso cref="T:Sudoku.Buffers.CachedGridData"/>
+            <seealso cref="T:Sudoku.Buffers.CachedCellMaps"/>
         </member>
         <member name="P:Sudoku.Solving.Logical.Annotations.StepSearcherMetadataAttribute.PuzzleNotRelying">
             <summary>

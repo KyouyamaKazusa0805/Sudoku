@@ -178,7 +178,7 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 		scoped var stopwatch = ValueStopwatch.StartNew();
 
 	Again:
-		InitializeMaps(playground);
+		Initialize(playground);
 		foreach (var searcher in stepSearchers)
 		{
 			switch (isSukaku, searcher, this)

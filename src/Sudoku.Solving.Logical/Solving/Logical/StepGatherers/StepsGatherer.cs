@@ -41,7 +41,7 @@ public sealed class StepsGatherer
 
 		var totalSearchersCount = StepSearcherPool.Collection.Count;
 
-		InitializeMaps(puzzle);
+		Initialize(puzzle);
 
 		var (i, bag, currentSearcherIndex) = (defaultLevelValue, new List<IStep>(), 0);
 		foreach (var searcher in StepSearcherPool.Collection)

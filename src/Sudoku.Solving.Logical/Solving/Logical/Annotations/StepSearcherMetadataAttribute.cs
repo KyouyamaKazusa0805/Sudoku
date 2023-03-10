@@ -37,7 +37,7 @@ public sealed class StepSearcherMetadataAttribute : Attribute
 	/// </list>
 	/// The disallowed method is:
 	/// <list type="bullet">
-	/// <item><see cref="InitializeMaps"/></item>
+	/// <item><see cref="Initialize"/></item>
 	/// </list>
 	/// </para>
 	/// <para>
@@ -47,7 +47,7 @@ public sealed class StepSearcherMetadataAttribute : Attribute
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="IStepSearcher"/>
-	/// <seealso cref="CachedGridData"/>
+	/// <seealso cref="CachedCellMaps"/>
 	public bool IsDirect { get; init; }
 
 	/// <summary>
