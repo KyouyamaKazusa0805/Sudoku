@@ -85,5 +85,11 @@ internal static class CachedCellMaps
 	/// <param name="g">The grid.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Initialize(scoped in Grid g)
-		=> (EmptyCells, BivalueCells, CandidatesMap, DigitsMap, ValuesMap) = (g.EmptyCells, g.BivalueCells, g.CandidatesMap, g.DigitsMap, g.ValuesMap);
+	{
+		EmptyCells = g.EmptyCells;
+		BivalueCells = g.BivalueCells;
+		CandidatesMap = g.CandidatesMap;
+		DigitsMap = g.DigitsMap;
+		ValuesMap = g.ValuesMap;
+	}
 }
