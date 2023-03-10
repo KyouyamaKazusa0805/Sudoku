@@ -7,8 +7,6 @@ internal static class ModuleInitializer
 	[ModuleInitializer]
 	[RequiresUnreferencedCode(ModuleInitializerMessage.ModuleInitializerCannotBeCalledManually)]
 	public static void Initialize()
-	{
 		// Registers the assembly.
-		R.RegisterAssembly(typeof(ModuleInitializer).Assembly);
-	}
+		=> R.RegisterAssembly(typeof(ModuleInitializer).Assembly);
 }
