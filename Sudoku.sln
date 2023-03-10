@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.filenesting.json = .filenesting.json
 		Directory.Build.props = Directory.Build.props
 		global-doc-comments.xml = global-doc-comments.xml
-		misspelling-exclusion.dic = misspelling-exclusion.dic
 		NuGet.config = NuGet.config
 	EndProjectSection
 EndProject
@@ -689,8 +688,8 @@ Global
 		{18A31D32-6FC6-4380-891E-F783C04BF2CD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal
