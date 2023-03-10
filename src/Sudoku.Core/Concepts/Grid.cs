@@ -391,7 +391,7 @@ public unsafe partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return GetCells(&p);
+			return GetMap(&p);
 
 
 			static bool p(in Grid g, int cell) => g.GetStatus(cell) == CellStatus.Given;
@@ -406,7 +406,7 @@ public unsafe partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return GetCells(&p);
+			return GetMap(&p);
 
 
 			static bool p(in Grid g, int cell) => g.GetStatus(cell) == CellStatus.Modifiable;
@@ -421,7 +421,7 @@ public unsafe partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return GetCells(&p);
+			return GetMap(&p);
 
 
 			static bool p(in Grid g, int cell) => g.GetStatus(cell) == CellStatus.Empty;
@@ -436,7 +436,7 @@ public unsafe partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return GetCells(&p);
+			return GetMap(&p);
 
 
 			static bool p(in Grid g, int cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
@@ -452,7 +452,7 @@ public unsafe partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return GetMap(&p);
+			return GetMaps(&p);
 
 
 			static bool p(in Grid g, int cell, int digit) => g.Exists(cell, digit) is true;
@@ -475,7 +475,7 @@ public unsafe partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return GetMap(&p);
+			return GetMaps(&p);
 
 
 			static bool p(in Grid g, int cell, int digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
@@ -498,7 +498,7 @@ public unsafe partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return GetMap(&p);
+			return GetMaps(&p);
 
 
 			static bool p(in Grid g, int cell, int digit) => g[cell] == digit;
@@ -666,7 +666,258 @@ public unsafe partial struct Grid :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped in Grid other)
-		=> Helper.SequenceEqual(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(short) * 81);
+	{
+		return e(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(short) * 81);
+
+
+		/**
+			<summary>
+			Determines whether two sequences are considered equal on respective bits.
+			</summary>
+			<param name="first">The first sequence.</param>
+			<param name="second">The second sequence.</param>
+			<param name="length">
+			The total bits of the sequence to be compared. Please note that two sequences
+			<paramref name="first"/> and <paramref name="second"/> must hold a same length.
+			</param>
+			<returns>A <see cref="bool"/> result indicating whether they are considered equal.</returns>
+			<remarks>
+			Optimized byte-based <c>SequenceEquals</c>.
+			The <paramref name="length"/> parameter for this one is declared a <see langword="nuint"/> rather than <see cref="int"/>
+			as we also use it for types other than <see cref="byte"/> where the length can exceed 2Gb once scaled by <see langword="sizeof"/>(T).
+			</remarks>
+			<!--
+			Licensed to the .NET Foundation under one or more agreements.
+			The .NET Foundation licenses this file to you under the MIT license.
+			https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
+			-->
+		*/
+		static bool e(scoped ref byte first, scoped ref byte second, nuint length)
+		{
+			bool result;
+
+			// Use nint for arithmetic to avoid unnecessary 64->32->64 truncations.
+			if (length >= (nuint)sizeof(nuint))
+			{
+				// Conditional jmp forward to favor shorter lengths. (See comment at "Equal:" label)
+				// The longer lengths can make back the time due to branch misprediction better than shorter lengths.
+				goto Longer;
+			}
+
+#if TARGET_64BIT
+			// On 32-bit, this will always be true since sizeof(nuint) == 4.
+			if (length < sizeof(uint))
+#endif
+			{
+				var differentBits = 0U;
+				var offset = length & 2;
+				if (offset != 0)
+				{
+					differentBits = load_ushort(ref first);
+					differentBits -= load_ushort(ref second);
+				}
+				if ((length & 1) != 0)
+				{
+					differentBits |= (uint)AddByteOffset(ref first, offset) - AddByteOffset(ref second, offset);
+				}
+
+				result = differentBits == 0;
+
+				goto Result;
+			}
+#if TARGET_64BIT
+			else
+			{
+				var offset = length - sizeof(uint);
+				var differentBits = load_uint(ref first) - load_uint(ref second);
+				differentBits |= load_uint2(ref first, offset) - load_uint2(ref second, offset);
+				result = differentBits == 0;
+
+				goto Result;
+			}
+#endif
+		Longer:
+			// Only check that the ref is the same if buffers are large, and hence its worth avoiding doing unnecessary comparisons.
+			if (!AreSame(ref first, ref second))
+			{
+				// C# compiler inverts this test, making the outer goto the conditional jmp.
+				goto Vector;
+			}
+
+			// This becomes a conditional jmp forward to not favor it.
+			goto Equal;
+
+		Result:
+			return result;
+
+		Equal:
+			// When the sequence is equal; which is the longest execution, we want it to determine that
+			// as fast as possible so we do not want the early outs to be "predicted not taken" branches.
+			return true;
+
+		Vector:
+			if (Vector128.IsHardwareAccelerated)
+			{
+				if (Vector256.IsHardwareAccelerated && length >= (nuint)Vector256<byte>.Count)
+				{
+					var offset = (nuint)0;
+					var lengthToExamine = length - (nuint)Vector256<byte>.Count;
+
+					// Unsigned, so it shouldn't have overflowed larger than length (rather than negative).
+					Debug.Assert(lengthToExamine < length);
+					if (lengthToExamine != 0)
+					{
+						do
+						{
+							if (Vector256.LoadUnsafe(ref first, offset) != Vector256.LoadUnsafe(ref second, offset))
+							{
+								goto NotEqual;
+							}
+
+							offset += (nuint)Vector256<byte>.Count;
+						} while (lengthToExamine > offset);
+					}
+
+					// Do final compare as Vector256<byte>.Count from end rather than start.
+					if (Vector256.LoadUnsafe(ref first, lengthToExamine) == Vector256.LoadUnsafe(ref second, lengthToExamine))
+					{
+						// C# compiler inverts this test, making the outer goto the conditional jmp.
+						goto Equal;
+					}
+
+					// This becomes a conditional jmp forward to not favor it.
+					goto NotEqual;
+				}
+				else if (length >= (nuint)Vector128<byte>.Count)
+				{
+					var offset = (nuint)0;
+					var lengthToExamine = length - (nuint)Vector128<byte>.Count;
+
+					// Unsigned, so it shouldn't have overflowed larger than length (rather than negative).
+					Debug.Assert(lengthToExamine < length);
+					if (lengthToExamine != 0)
+					{
+						do
+						{
+							if (Vector128.LoadUnsafe(ref first, offset) != Vector128.LoadUnsafe(ref second, offset))
+							{
+								goto NotEqual;
+							}
+
+							offset += (nuint)Vector128<byte>.Count;
+						} while (lengthToExamine > offset);
+					}
+
+					// Do final compare as Vector128<byte>.Count from end rather than start.
+					if (Vector128.LoadUnsafe(ref first, lengthToExamine) == Vector128.LoadUnsafe(ref second, lengthToExamine))
+					{
+						// C# compiler inverts this test, making the outer goto the conditional jmp.
+						goto Equal;
+					}
+
+					// This becomes a conditional jmp forward to not favor it.
+					goto NotEqual;
+				}
+			}
+			else if (Vector.IsHardwareAccelerated && length >= (nuint)Vector<byte>.Count)
+			{
+				var offset = (nuint)0;
+				var lengthToExamine = length - (nuint)Vector<byte>.Count;
+
+				// Unsigned, so it shouldn't have overflowed larger than length (rather than negative).
+				Debug.Assert(lengthToExamine < length);
+				if (lengthToExamine > 0)
+				{
+					do
+					{
+						if (load_Vector(ref first, offset) != load_Vector(ref second, offset))
+						{
+							goto NotEqual;
+						}
+
+						offset += (nuint)Vector<byte>.Count;
+					} while (lengthToExamine > offset);
+				}
+
+				// Do final compare as Vector<byte>.Count from end rather than start.
+				if (load_Vector(ref first, lengthToExamine) == load_Vector(ref second, lengthToExamine))
+				{
+					// C# compiler inverts this test, making the outer goto the conditional jmp.
+					goto Equal;
+				}
+
+				// This becomes a conditional jmp forward to not favor it.
+				goto NotEqual;
+			}
+
+#if TARGET_64BIT
+			if (Vector128.IsHardwareAccelerated)
+			{
+				Debug.Assert(length <= (nuint)sizeof(nuint) * 2);
+
+				var offset = length - (nuint)sizeof(nuint);
+				var differentBits = load_nuint(ref first) - load_nuint(ref second);
+				differentBits |= load_uint2(ref first, offset) - load_uint2(ref second, offset);
+				result = differentBits == 0;
+				goto Result;
+			}
+			else
+#endif
+			{
+				Debug.Assert(length >= (nuint)sizeof(nuint));
+
+				var offset = (nuint)0;
+				var lengthToExamine = length - (nuint)sizeof(nuint);
+				// Unsigned, so it shouldn't have overflowed larger than length (rather than negative).
+				Debug.Assert(lengthToExamine < length);
+				if (lengthToExamine > 0)
+				{
+					do
+					{
+						// Compare unsigned so not do a sign extend mov on 64 bit.
+						if (load_nuint2(ref first, offset) != load_nuint2(ref second, offset))
+						{
+							goto NotEqual;
+						}
+						offset += (nuint)sizeof(nuint);
+					} while (lengthToExamine > offset);
+				}
+
+				// Do final compare as sizeof(nuint) from end rather than start.
+				result = load_nuint2(ref first, lengthToExamine) == load_nuint2(ref second, lengthToExamine);
+				goto Result;
+			}
+
+		NotEqual:
+			// As there are so many true/false exit points the JIT will coalesce them to one location.
+			// We want them at the end so the conditional early exit jmps are all jmp forwards
+			// so the branch predictor in a uninitialized state will not take them e.g.
+			// - loops are conditional jmps backwards and predicted.
+			// - exceptions are conditional forwards jmps and not predicted.
+			return false;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static ushort load_ushort(scoped ref byte start) => ReadUnaligned<ushort>(ref start);
+
+#if TARGET_64BIT
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static uint load_uint(scoped ref byte start) => ReadUnaligned<uint>(ref start);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static uint load_uint2(scoped ref byte start, nuint offset) => ReadUnaligned<uint>(ref AddByteOffset(ref start, offset));
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static nuint load_nuint(scoped ref byte start) => ReadUnaligned<nuint>(ref start);
+#endif
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static nuint load_nuint2(scoped ref byte start, nuint offset) => ReadUnaligned<nuint>(ref AddByteOffset(ref start, offset));
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static Vector<byte> load_Vector(scoped ref byte start, nuint offset)
+			=> ReadUnaligned<Vector<byte>>(ref AddByteOffset(ref start, offset));
+	}
 
 	/// <summary>
 	/// Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
@@ -1163,14 +1414,35 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
+	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
+	/// </summary>
+	/// <param name="predicate">The predicate.</param>
+	/// <returns>The map.</returns>
+	/// <seealso cref="EmptyCells"/>
+	/// <seealso cref="BivalueCells"/>
+	private readonly CellMap GetMap(delegate*<in Grid, int, bool> predicate)
+	{
+		var result = CellMap.Empty;
+		for (var cell = 0; cell < 81; cell++)
+		{
+			if (predicate(this, cell))
+			{
+				result.Add(cell);
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.
 	/// </summary>
 	/// <param name="predicate">The predicate.</param>
-	/// <returns>The map of digits.</returns>
+	/// <returns>The map indexed by each digit.</returns>
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	private readonly CellMap[] GetMap(delegate*<in Grid, int, int, bool> predicate)
+	private readonly CellMap[] GetMaps(delegate*<in Grid, int, int, bool> predicate)
 	{
 		var result = new CellMap[9];
 		for (var digit = 0; digit < 9; digit++)
@@ -1182,27 +1454,6 @@ public unsafe partial struct Grid :
 				{
 					map.Add(cell);
 				}
-			}
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
-	/// </summary>
-	/// <param name="predicate">The predicate.</param>
-	/// <returns>The cells.</returns>
-	/// <seealso cref="EmptyCells"/>
-	/// <seealso cref="BivalueCells"/>
-	private readonly CellMap GetCells(delegate*<in Grid, int, bool> predicate)
-	{
-		var result = CellMap.Empty;
-		for (var cell = 0; cell < 81; cell++)
-		{
-			if (predicate(this, cell))
-			{
-				result.Add(cell);
 			}
 		}
 
@@ -1448,256 +1699,4 @@ file sealed class Converter : JsonConverter<Grid>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
 		=> writer.WriteStringValue(value.ToString(SusserFormat.Full));
-}
-
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-// https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
-
-/// <summary>
-/// Represents a helper method used by <see cref="Grid"/> instances, especially for equality checking method <see cref="Grid.Equals(in Grid)"/>.
-/// </summary>
-/// <seealso cref="Grid"/>
-/// <seealso cref="Grid.Equals(in Grid)"/>
-file static unsafe class Helper
-{
-	/// <summary>
-	/// Determines whether two sequences are considered equal on respective bits.
-	/// </summary>
-	/// <param name="first">The first sequence.</param>
-	/// <param name="second">The second sequence.</param>
-	/// <param name="length">
-	/// The total bits of the sequence to be compared. Please note that two sequences
-	/// <paramref name="first"/> and <paramref name="second"/> must hold a same length.
-	/// </param>
-	/// <returns>A <see cref="bool"/> result indicating whether they are considered equal.</returns>
-	/// <remarks>
-	/// Optimized byte-based <c>SequenceEquals</c>.
-	/// The <paramref name="length"/> parameter for this one is declared a <see langword="nuint"/> rather than <see cref="int"/>
-	/// as we also use it for types other than <see cref="byte"/> where the length can exceed 2Gb once scaled by <see langword="sizeof"/>(T).
-	/// </remarks>
-	public static bool SequenceEqual(ref byte first, ref byte second, nuint length)
-	{
-		bool result;
-
-		// Use nint for arithmetic to avoid unnecessary 64->32->64 truncations.
-		if (length >= (nuint)sizeof(nuint))
-		{
-			// Conditional jmp forward to favor shorter lengths. (See comment at "Equal:" label)
-			// The longer lengths can make back the time due to branch misprediction better than shorter lengths.
-			goto Longer;
-		}
-
-#if TARGET_64BIT
-		// On 32-bit, this will always be true since sizeof(nuint) == 4.
-		if (length < sizeof(uint))
-#endif
-		{
-			uint differentBits = 0;
-			var offset = length & 2;
-			if (offset != 0)
-			{
-				differentBits = LoadUShort(ref first);
-				differentBits -= LoadUShort(ref second);
-			}
-			if ((length & 1) != 0)
-			{
-				differentBits |= (uint)AddByteOffset(ref first, offset) - AddByteOffset(ref second, offset);
-			}
-
-			result = differentBits == 0;
-
-			goto Result;
-		}
-#if TARGET_64BIT
-		else
-		{
-			var offset = length - sizeof(uint);
-			var differentBits = LoadUInt(ref first) - LoadUInt(ref second);
-			differentBits |= LoadUInt(ref first, offset) - LoadUInt(ref second, offset);
-			result = differentBits == 0;
-
-			goto Result;
-		}
-#endif
-	Longer:
-		// Only check that the ref is the same if buffers are large, and hence its worth avoiding doing unnecessary comparisons.
-		if (!AreSame(ref first, ref second))
-		{
-			// C# compiler inverts this test, making the outer goto the conditional jmp.
-			goto Vector;
-		}
-
-		// This becomes a conditional jmp forward to not favor it.
-		goto Equal;
-
-	Result:
-		return result;
-
-	Equal:
-		// When the sequence is equal; which is the longest execution, we want it to determine that
-		// as fast as possible so we do not want the early outs to be "predicted not taken" branches.
-		return true;
-
-	Vector:
-		if (Vector128.IsHardwareAccelerated)
-		{
-			if (Vector256.IsHardwareAccelerated && length >= (nuint)Vector256<byte>.Count)
-			{
-				var offset = (nuint)0;
-				var lengthToExamine = length - (nuint)Vector256<byte>.Count;
-
-				// Unsigned, so it shouldn't have overflowed larger than length (rather than negative).
-				Debug.Assert(lengthToExamine < length);
-				if (lengthToExamine != 0)
-				{
-					do
-					{
-						if (Vector256.LoadUnsafe(ref first, offset) != Vector256.LoadUnsafe(ref second, offset))
-						{
-							goto NotEqual;
-						}
-
-						offset += (nuint)Vector256<byte>.Count;
-					} while (lengthToExamine > offset);
-				}
-
-				// Do final compare as Vector256<byte>.Count from end rather than start.
-				if (Vector256.LoadUnsafe(ref first, lengthToExamine) == Vector256.LoadUnsafe(ref second, lengthToExamine))
-				{
-					// C# compiler inverts this test, making the outer goto the conditional jmp.
-					goto Equal;
-				}
-
-				// This becomes a conditional jmp forward to not favor it.
-				goto NotEqual;
-			}
-			else if (length >= (nuint)Vector128<byte>.Count)
-			{
-				var offset = (nuint)0;
-				var lengthToExamine = length - (nuint)Vector128<byte>.Count;
-
-				// Unsigned, so it shouldn't have overflowed larger than length (rather than negative).
-				Debug.Assert(lengthToExamine < length);
-				if (lengthToExamine != 0)
-				{
-					do
-					{
-						if (Vector128.LoadUnsafe(ref first, offset) != Vector128.LoadUnsafe(ref second, offset))
-						{
-							goto NotEqual;
-						}
-
-						offset += (nuint)Vector128<byte>.Count;
-					} while (lengthToExamine > offset);
-				}
-
-				// Do final compare as Vector128<byte>.Count from end rather than start.
-				if (Vector128.LoadUnsafe(ref first, lengthToExamine) == Vector128.LoadUnsafe(ref second, lengthToExamine))
-				{
-					// C# compiler inverts this test, making the outer goto the conditional jmp.
-					goto Equal;
-				}
-
-				// This becomes a conditional jmp forward to not favor it.
-				goto NotEqual;
-			}
-		}
-		else if (Vector.IsHardwareAccelerated && length >= (nuint)Vector<byte>.Count)
-		{
-			var offset = (nuint)0;
-			var lengthToExamine = length - (nuint)Vector<byte>.Count;
-
-			// Unsigned, so it shouldn't have overflowed larger than length (rather than negative).
-			Debug.Assert(lengthToExamine < length);
-			if (lengthToExamine > 0)
-			{
-				do
-				{
-					if (LoadVector(ref first, offset) != LoadVector(ref second, offset))
-					{
-						goto NotEqual;
-					}
-
-					offset += (nuint)Vector<byte>.Count;
-				} while (lengthToExamine > offset);
-			}
-
-			// Do final compare as Vector<byte>.Count from end rather than start.
-			if (LoadVector(ref first, lengthToExamine) == LoadVector(ref second, lengthToExamine))
-			{
-				// C# compiler inverts this test, making the outer goto the conditional jmp.
-				goto Equal;
-			}
-
-			// This becomes a conditional jmp forward to not favor it.
-			goto NotEqual;
-		}
-
-#if TARGET_64BIT
-		if (Vector128.IsHardwareAccelerated)
-		{
-			Debug.Assert(length <= (nuint)sizeof(nuint) * 2);
-
-			var offset = length - (nuint)sizeof(nuint);
-			var differentBits = LoadNUInt(ref first) - LoadNUInt(ref second);
-			differentBits |= LoadNUInt(ref first, offset) - LoadNUInt(ref second, offset);
-			result = differentBits == 0;
-			goto Result;
-		}
-		else
-#endif
-		{
-			Debug.Assert(length >= (nuint)sizeof(nuint));
-
-			var offset = (nuint)0;
-			var lengthToExamine = length - (nuint)sizeof(nuint);
-			// Unsigned, so it shouldn't have overflowed larger than length (rather than negative).
-			Debug.Assert(lengthToExamine < length);
-			if (lengthToExamine > 0)
-			{
-				do
-				{
-					// Compare unsigned so not do a sign extend mov on 64 bit.
-					if (LoadNUInt(ref first, offset) != LoadNUInt(ref second, offset))
-					{
-						goto NotEqual;
-					}
-					offset += (nuint)sizeof(nuint);
-				} while (lengthToExamine > offset);
-			}
-
-			// Do final compare as sizeof(nuint) from end rather than start.
-			result = LoadNUInt(ref first, lengthToExamine) == LoadNUInt(ref second, lengthToExamine);
-			goto Result;
-		}
-
-	NotEqual:
-		// As there are so many true/false exit points the Jit will coalesce them to one location.
-		// We want them at the end so the conditional early exit jmps are all jmp forwards so the
-		// branch predictor in a uninitialized state will not take them e.g.
-		// - loops are conditional jmps backwards and predicted.
-		// - exceptions are conditional forwards jmps and not predicted.
-		return false;
-	}
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static ushort LoadUShort(ref byte start) => ReadUnaligned<ushort>(ref start);
-
-#if TARGET_64BIT
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static uint LoadUInt(ref byte start) => ReadUnaligned<uint>(ref start);
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static uint LoadUInt(ref byte start, nuint offset) => ReadUnaligned<uint>(ref AddByteOffset(ref start, offset));
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static nuint LoadNUInt(ref byte start) => ReadUnaligned<nuint>(ref start);
-#endif
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static nuint LoadNUInt(ref byte start, nuint offset) => ReadUnaligned<nuint>(ref AddByteOffset(ref start, offset));
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Vector<byte> LoadVector(ref byte start, nuint offset) => ReadUnaligned<Vector<byte>>(ref AddByteOffset(ref start, offset));
 }

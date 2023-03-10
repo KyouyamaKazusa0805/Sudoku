@@ -14,7 +14,7 @@ public static class Unsafe2
 	/// <param name="ref">The reference.</param>
 	/// <seealso cref="AddByteOffset{T}(ref T, nint)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void RefMoveNext<T>(ref T @ref) => AddByteOffset(ref @ref, 1);
+	public static void RefMoveNext<T>(scoped ref T @ref) => AddByteOffset(ref @ref, 1);
 
 	/// <summary>
 	/// Moves the reference to the previous position. Simply calls <see cref="SubtractByteOffset{T}(ref T, nint)"/> with arguments
@@ -24,7 +24,7 @@ public static class Unsafe2
 	/// <param name="ref">The reference.</param>
 	/// <seealso cref="SubtractByteOffset{T}(ref T, nint)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void RefMovePrevious<T>(ref T @ref) => SubtractByteOffset(ref @ref, 1);
+	public static void RefMovePrevious<T>(scoped ref T @ref) => SubtractByteOffset(ref @ref, 1);
 
 	/// <summary>
 	/// Simply invokes the method <see cref="As{TFrom, TTo}(ref TFrom)"/>, but with target generic type being fixed type <see cref="byte"/>.
