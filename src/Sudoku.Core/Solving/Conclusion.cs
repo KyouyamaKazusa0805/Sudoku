@@ -9,7 +9,6 @@
 /// will be greater; if those two hold same conclusion type, but one of those two holds
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators | GeneratedOperator.ComparisonOperators)]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion, bool>,
@@ -146,4 +145,29 @@ public readonly partial struct Conclusion :
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.SimpleMember, nameof(OutputString))]
 	public override partial string ToString();
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Conclusion left, Conclusion right) => !left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >(Conclusion left, Conclusion right) => left.CompareTo(right) > 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >=(Conclusion left, Conclusion right) => left.CompareTo(right) >= 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <(Conclusion left, Conclusion right) => left.CompareTo(right) < 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <=(Conclusion left, Conclusion right) => left.CompareTo(right) <= 0;
 }

@@ -3,11 +3,7 @@
 /// <summary>
 /// Defines a range of cells.
 /// </summary>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
-public readonly partial struct CellRange :
-	IEquatable<CellRange>,
-	IEqualityOperators<CellRange, CellRange, bool>,
-	ISimpleParsable<CellRange>
+public readonly partial struct CellRange : IEquatable<CellRange>, IEqualityOperators<CellRange, CellRange, bool>, ISimpleParsable<CellRange>
 {
 	/// <summary>
 	/// Indicates the inner mask.
@@ -128,6 +124,15 @@ public readonly partial struct CellRange :
 			return false;
 		}
 	}
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(CellRange left, CellRange right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(CellRange left, CellRange right) => !left.Equals(right);
 
 
 	/// <summary>

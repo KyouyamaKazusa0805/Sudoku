@@ -4,7 +4,6 @@
 /// Defines an identifier that can differ colors.
 /// </summary>
 [JsonConverter(typeof(Converter))]
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier, bool>
 {
 	/// <summary>
@@ -159,6 +158,15 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	public static Identifier FromNamedKind(DisplayColorKind namedKind) => new(namedKind);
 
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Identifier left, Identifier right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Identifier left, Identifier right) => !left.Equals(right);
+
+
 	/// <summary>
 	/// Explicit cast from <see cref="Identifier"/> to <see cref="int"/> indicating the ID value.
 	/// </summary>
@@ -239,7 +247,6 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Identifier(DisplayColorKind namedKind) => new(namedKind);
 }
-
 
 /// <summary>
 /// Defines a JSON converter that is used for the serialization and deserialization on type <see cref="Identifier"/>.

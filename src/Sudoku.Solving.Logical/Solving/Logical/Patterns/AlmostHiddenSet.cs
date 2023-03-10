@@ -7,7 +7,6 @@
 /// An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
 /// only <c>n</c> digits can be filled into <c>n + 1</c> cells in a house.
 /// </remarks>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public sealed partial class AlmostHiddenSet : IEquatable<AlmostHiddenSet>, IEqualityOperators<AlmostHiddenSet, AlmostHiddenSet, bool>
 {
 	/// <summary>
@@ -18,7 +17,7 @@ public sealed partial class AlmostHiddenSet : IEquatable<AlmostHiddenSet>, IEqua
 	/// <param name="allDigitsMask">All digits appearing in the AHS structure..</param>
 	/// <param name="map">The map.</param>
 	/// <param name="digitsMap">The digits' distribution maps.</param>
-	internal AlmostHiddenSet(short digitMask, short allDigitsMask, scoped in CellMap map, CellMap?[] digitsMap)
+	private AlmostHiddenSet(short digitMask, short allDigitsMask, scoped in CellMap map, CellMap?[] digitsMap)
 	{
 		(DigitsMask, Map, AllDigitsMask) = (digitMask, map, allDigitsMask);
 
@@ -194,4 +193,14 @@ public sealed partial class AlmostHiddenSet : IEquatable<AlmostHiddenSet>, IEqua
 
 		return result.ToArray();
 	}
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(AlmostHiddenSet? left, AlmostHiddenSet? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(AlmostHiddenSet? left, AlmostHiddenSet? right) => !(left == right);
 }

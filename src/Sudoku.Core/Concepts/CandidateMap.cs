@@ -19,7 +19,6 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [IsLargeStruct]
 [JsonConverter(typeof(Converter))]
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public unsafe partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, int, CandidateMap>,
 	IAdditionOperators<CandidateMap, IEnumerable<int>, CandidateMap>,
@@ -536,6 +535,14 @@ public unsafe partial struct CandidateMap :
 
 		return result;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(scoped in CandidateMap left, scoped in CandidateMap right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(scoped in CandidateMap left, scoped in CandidateMap right) => !left.Equals(right);
 
 	/// <inheritdoc/>
 	public static CandidateMap operator +(scoped in CandidateMap collection, int offset)

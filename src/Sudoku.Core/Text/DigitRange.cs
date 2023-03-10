@@ -3,7 +3,6 @@
 /// <summary>
 /// Defines a digit range.
 /// </summary>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public readonly partial struct DigitRange : IEquatable<DigitRange>, IEqualityOperators<DigitRange, DigitRange, bool>, ISimpleParsable<DigitRange>
 {
 	/// <summary>
@@ -36,6 +35,12 @@ public readonly partial struct DigitRange : IEquatable<DigitRange>, IEqualityOpe
 
 
 	/// <summary>
+	/// Indicates the number of digits stored in the mask <see cref="DigitsMask"/>.
+	/// </summary>
+	/// <seealso cref="DigitsMask"/>
+	public int NumbersCount => PopCount((uint)DigitsMask);
+
+	/// <summary>
 	/// Indicates the digits used to be removed.
 	/// </summary>
 	public short DigitsMask { get; }
@@ -44,12 +49,6 @@ public readonly partial struct DigitRange : IEquatable<DigitRange>, IEqualityOpe
 	/// Indicates the conclusion type.
 	/// </summary>
 	public ConclusionType ConclusionType { get; }
-
-	/// <summary>
-	/// Indicates the number of digits stored in the mask <see cref="DigitsMask"/>.
-	/// </summary>
-	/// <seealso cref="DigitsMask"/>
-	private int NumbersCount => PopCount((uint)DigitsMask);
 
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
@@ -163,10 +162,19 @@ public readonly partial struct DigitRange : IEquatable<DigitRange>, IEqualityOpe
 	}
 
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(DigitRange left, DigitRange right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(DigitRange left, DigitRange right) => !left.Equals(right);
+
+
 	/// <summary>
 	/// Explicit cast from <see cref="string"/> to <see cref="DigitRange"/>.
 	/// </summary>
 	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator DigitRange(string s) => Parse(s);
+	public static explicit operator DigitRange([ConstantExpected] string s) => Parse(s);
 }

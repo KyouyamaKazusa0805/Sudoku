@@ -3,11 +3,8 @@
 /// <summary>
 /// Defines a multiple forcing chains.
 /// </summary>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 internal sealed partial class MultipleForcingChains :
 	IEnumerable<(byte CellOrDigit, ChainNode Potential)>,
-	IEquatable<MultipleForcingChains>,
-	IEqualityOperators<MultipleForcingChains, MultipleForcingChains, bool>,
 	IReadOnlyCollection<(byte CellOrDigit, ChainNode Potential)>,
 	IReadOnlyList<(byte CellOrDigit, ChainNode Potential)>
 {
@@ -80,45 +77,6 @@ internal sealed partial class MultipleForcingChains :
 		_internalDictionary.Add(cellOrDigit, potential);
 		_keys.Add(cellOrDigit);
 		_values.Add(potential);
-	}
-
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
-
-	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] MultipleForcingChains? other)
-	{
-		if (other is null)
-		{
-			return false;
-		}
-
-		if (Count != other.Count)
-		{
-			return false;
-		}
-
-		for (var i = 0; i < Count; i++)
-		{
-			if (this[i] != other[i])
-			{
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	/// <inheritdoc cref="object.GetHashCode"/>
-	public override int GetHashCode()
-	{
-		var result = 0;
-		foreach (var (key, value) in this)
-		{
-			result ^= key * (729 << 1) + value.GetHashCode();
-		}
-
-		return result;
 	}
 
 	/// <inheritdoc/>

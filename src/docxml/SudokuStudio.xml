@@ -234,6 +234,12 @@
         <member name="M:SudokuStudio.Collection.DashArray.System#Collections#Generic#IEnumerable{System#Double}#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:SudokuStudio.Collection.DashArray.op_Equality(SudokuStudio.Collection.DashArray,SudokuStudio.Collection.DashArray)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.op_Inequality(SudokuStudio.Collection.DashArray,SudokuStudio.Collection.DashArray)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Collection.DashArray.Enumerator">
             <summary>
             Defines an enumerator of this type.
@@ -260,12 +266,6 @@
         </member>
         <member name="M:SudokuStudio.Collection.DashArray.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.op_Equality(SudokuStudio.Collection.DashArray,SudokuStudio.Collection.DashArray)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.op_Inequality(SudokuStudio.Collection.DashArray,SudokuStudio.Collection.DashArray)">
-            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Collection.Converter">
             <summary>

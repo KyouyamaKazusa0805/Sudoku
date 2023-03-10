@@ -5,7 +5,6 @@
 /// (or some cells), and eliminates candidates in some cells. The concept is commonly used
 /// by logical technique "Hidden Single".
 /// </summary>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<Crosshatch, Crosshatch, bool>
 {
 	/// <summary>
@@ -232,7 +231,7 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 		var houseCells = HousesMap[house];
 		var valueCellsOfDigit = (house, grid) switch
 		{
-			(>= 0 and < 27, { CandidatesMap: var cMap, ValuesMap: var vMap }) => (cMap[digit] & houseCells) switch
+			( >= 0 and < 27, { CandidatesMap: var cMap, ValuesMap: var vMap }) => (cMap[digit] & houseCells) switch
 			{
 				[var c] when (targetCell = c) is var _ => house switch
 				{
@@ -303,4 +302,13 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 			return result;
 		}
 	}
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Crosshatch left, Crosshatch right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Crosshatch left, Crosshatch right) => !left.Equals(right);
 }

@@ -21,7 +21,6 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [IsLargeStruct]
 [JsonConverter(typeof(Converter))]
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators | GeneratedOperator.ComparisonOperators)]
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<int>, CellMap>,
@@ -898,6 +897,30 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(scoped in CellMap left, scoped in CellMap right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(scoped in CellMap left, scoped in CellMap right) => !left.Equals(right);
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) > 0;
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) >= 0;
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) < 0;
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) <= 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator +(scoped in CellMap collection, int offset)
 	{
 		var result = collection;
@@ -1170,19 +1193,19 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >(CellMap left, CellMap right) => left.CompareTo(right) > 0;
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >(CellMap left, CellMap right) => left > right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <(CellMap left, CellMap right) => left.CompareTo(right) < 0;
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <(CellMap left, CellMap right) => left < right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >=(CellMap left, CellMap right) => left.CompareTo(right) >= 0;
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >=(CellMap left, CellMap right) => left >= right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <=(CellMap left, CellMap right) => left.CompareTo(right) <= 0;
+	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <=(CellMap left, CellMap right) => left <= right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -5,7 +5,6 @@
 /// about the locked candidate node.
 /// </summary>
 [IsLargeStruct]
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
 	/// <summary>
@@ -71,6 +70,14 @@ public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualit
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	bool IEquatable<LockedTarget>.Equals(LockedTarget other) => Equals(other);
 
+
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(scoped in LockedTarget left, scoped in LockedTarget right) => left.Equals(right);
+
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(scoped in LockedTarget left, scoped in LockedTarget right) => !left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -2204,6 +2204,12 @@ if (student is (name: var name, age: >= 18))
             <param name="namedKind">The named kind.</param>
             <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Equality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Inequality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.Int32">
             <summary>
             Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to <see cref="T:System.Int32"/> indicating the ID value.
@@ -2261,12 +2267,6 @@ if (student is (name: var name, age: >= 18))
             as the ID value to <see cref="T:Sudoku.Presentation.Identifier"/>.
             </summary>
             <param name="namedKind">The displaying color kind.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.Identifier.op_Equality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Identifier.op_Inequality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.Converter">
             <summary>
@@ -2446,17 +2446,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Presentation.LockedTarget.System#IEquatable{Sudoku#Presentation#LockedTarget}#Equals(Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Equality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.LockedTarget.op_Equality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.op_Inequality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Equality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.View">
             <summary>

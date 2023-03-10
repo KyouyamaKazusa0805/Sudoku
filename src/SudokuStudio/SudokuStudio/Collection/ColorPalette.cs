@@ -3,7 +3,6 @@
 /// <summary>
 /// Represents a color palette that contains a list of <see cref="Color"/> instances that can be used in UI binding.
 /// </summary>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 public sealed partial class ColorPalette :
 	ObservableCollection<Color>,
 	IEquatable<ColorPalette>,
@@ -70,4 +69,14 @@ public sealed partial class ColorPalette :
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.SimpleMember, nameof(ElementsString))]
 	public override partial string ToString();
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(ColorPalette? left, ColorPalette? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(ColorPalette? left, ColorPalette? right) => !(left == right);
 }

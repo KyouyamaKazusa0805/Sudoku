@@ -5,7 +5,6 @@
 /// for example, <see cref="Shape.StrokeDashArray"/>.
 /// </summary>
 /// <seealso cref="Shape.StrokeDashArray"/>
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 [JsonConverter(typeof(Converter))]
 public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>
 {
@@ -100,6 +99,15 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 
 	/// <inheritdoc/>
 	IEnumerator<double> IEnumerable<double>.GetEnumerator() => ((IEnumerable<double>)_doubles).GetEnumerator();
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(DashArray left, DashArray right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(DashArray left, DashArray right) => !(left == right);
 }
 
 /// <summary>

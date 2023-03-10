@@ -8,7 +8,6 @@
 /// "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
 /// </remarks>
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
-[GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 internal readonly partial struct ChainNode : IEquatable<ChainNode>, IEqualityOperators<ChainNode, ChainNode, bool>
 {
 	/// <summary>
@@ -174,4 +173,13 @@ internal readonly partial struct ChainNode : IEquatable<ChainNode>, IEqualityOpe
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(CandidateString), nameof(IsOn))]
 	public override partial string ToString();
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(ChainNode left, ChainNode right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(ChainNode left, ChainNode right) => !(left == right);
 }
