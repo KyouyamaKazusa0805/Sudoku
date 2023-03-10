@@ -7,9 +7,7 @@
 /// This type corresponds to the concept of Sudoku Explainer's logic
 /// "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
 /// </remarks>
-#if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
-#endif
 [GeneratedOverloadingOperator(GeneratedOperator.EqualityOperators)]
 internal readonly partial struct ChainNode : IEquatable<ChainNode>, IEqualityOperators<ChainNode, ChainNode, bool>
 {
@@ -151,21 +149,11 @@ internal readonly partial struct ChainNode : IEquatable<ChainNode>, IEqualityOpe
 	[GeneratedDisplayName(nameof(Candidate))]
 	private string CandidateString => $"{CellsMap[Cell]}({Digit + 1})";
 
-#if DEBUG
 	/// <summary>
 	/// Indicates the string that is used for display on debugger.
 	/// </summary>
 	[DebuggerHidden]
-	private string DebuggerDisplayString
-	{
-		get
-		{
-			const string trueStr = "true", falseStr = "false";
-
-			return $"{CandidateString} is {(IsOn ? trueStr : falseStr)}";
-		}
-	}
-#endif
+	private string DebuggerDisplayString => $"{CandidateString} is {(IsOn ? bool.TrueString : bool.FalseString).ToLower()}";
 
 
 	[DeconstructionMethod]
