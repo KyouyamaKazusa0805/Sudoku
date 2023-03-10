@@ -3486,6 +3486,31 @@ fixed (short* ptr = instance)
             Defines the ellipsis (<c>...</c>).
             </summary>
         </member>
+        <member name="T:Sudoku.Resources.ResourceNotFoundException">
+            <summary>
+            Represents an exception that will be thrown when a certain resource key cannot be found in the resource dictionary.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceNotFoundException.#ctor(System.String,System.Reflection.Assembly)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Resources.ResourceNotFoundException"/> instance via the specified resource key.
+            </summary>
+            <param name="resourceKey">The resource key that causes this error.</param>
+            <param name="assembly">Indicates the assembly where this error is thrown.</param>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceNotFoundException.ResourceKey">
+            <summary>
+            Indicates the resource key that causes this error.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceNotFoundException.Assembly">
+            <summary>
+            Indicates which assembly causes this error.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceNotFoundException.Message">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Resources.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.

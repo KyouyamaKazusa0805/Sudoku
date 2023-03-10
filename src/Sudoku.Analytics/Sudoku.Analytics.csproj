@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Description>Provides analytical APIs for solving and analyzing a sudoku puzzle.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Analytics.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Compatibility\Sudoku.Compatibility.csproj" />
+		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\Sudoku.Presentation\Sudoku.Presentation.csproj" />
+		<ProjectReference Include="..\Sudoku.Solving.Algorithms\Sudoku.Solving.Algorithms.csproj" />
+	</ItemGroup>
+
+</Project>

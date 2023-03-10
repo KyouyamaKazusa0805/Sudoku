@@ -1,0 +1,2646 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Analytics</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Analytics.AreaAttribute">
+            <summary>
+            Represents an attribute type that is applied to a <see cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/>,
+            indicating the enabled area that the step searcher can be invoked.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AreaAttribute.AllowDefault">
+            <summary>
+            Indicates whether the specified step searcher is allowed in default searching environment.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AreaAttribute.AllowGathering">
+            <summary>
+            Indicates whether the specified step searcher is allowed in gathering environment.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AreaAttribute.IsRequired">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Buffers.CachedCellMaps">
+            <summary>
+            <para>Represents cached fields used by solving and analyzation for a sudoku puzzle, reducing repeated and redundant calculations.</para>
+            <para>
+            All names of fields given in this type can also be found in type <see cref="T:Sudoku.Concepts.Grid"/>, but those values are defined as instant properties,
+            which means the value will be calculated after you invoke them.
+            For example, if we use a property of them for 5 times, the result value will be calculated for 5 times.
+            </para>
+            <para>
+            Sometimes, such values may only be calculated only once, and we just use those return values after the value had been calculated.
+            For the consideration of the calculation result caching, those results will be stored here as <see langword="static"/> fields,
+            we can use them if we can ensure that such fields have already been initialized.
+            For calling the method <see cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>, we can ensure those fields are initialized, in order to be used later.
+            In other words,
+            <b>you must ensure the method <see cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/> having been called before using such fields if you want to use them</b>;
+            otherwise, <see cref="T:System.NullReferenceException"/> will be thrown for cached fields whose types are reference ones.
+            </para>
+            <para>
+            The reason why I defined them as <see langword="static"/> fields is that they are cached values.
+            "<see langword="static"/>" means caching, and "field" means the value to be fetched without encapsulation,
+            for a better performace.
+            </para>
+            <para>Some <see cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/>s may rely on this type.</para>
+            </summary>
+            <seealso cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="!:LogicalSolver"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="!:StepSearcherMetadataAttribute.IsDirect"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="!:StepSearcherMetadataAttribute.IsDirect"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.BivalueCells">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.CandidatesMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
+            </remarks>
+            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
+        </member>
+        <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.DigitsMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
+            </remarks>
+            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
+        </member>
+        <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.ValuesMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
+            </remarks>
+            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)">
+            <summary>
+            Initialize the maps that used later.
+            </summary>
+            <param name="g">The grid.</param>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.DifficultyLevel">
+            <summary>
+            Provides a difficulty kind for a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown">
+            <summary>
+            Indicates the difficulty level is unknown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Easy">
+            <summary>
+            Indicates the difficulty is easy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Moderate">
+            <summary>
+            Indicates the difficulty is moderate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Hard">
+            <summary>
+            Indicates the difficulty is hard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Fiendish">
+            <summary>
+            Indicates the difficulty is fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Nightmare">
+            <summary>
+            Indicates the difficulty is nightmare.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.LastResort">
+            <summary>
+            Indicates the puzzle can't be solved unless using last resort methods.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.Rarity">
+            <summary>
+            Indicates the rarity of the technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Rarity.Unknown">
+            <summary>
+            Indicates the technique can't be confirmed for its rarity.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Rarity.Always">
+            <summary>
+            Indicates the technique always appears, such as <b>Hidden Single</b>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Rarity.Often">
+            <summary>
+            Indicates the rarity is often appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Rarity.Sometimes">
+            <summary>
+            Indicates the rarity is sometimes appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Rarity.Seldom">
+            <summary>
+            Indicates the rarity is seldom appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Rarity.HardlyEver">
+            <summary>
+            Indicates the rarity is hardly ever appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Rarity.OnlyForSpecialPuzzles">
+            <summary>
+            Indicates the technique only appears in the special puzzles designed on purpose.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Rarity.ReplacedByOtherTechniques">
+            <summary>
+            Indicates the technique can't appear because the technique will be replaced with another technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.Technique">
+            <summary>
+            Represents a technique instance, which is used for comparison.
+            </summary>
+            <remarks><b><i>
+            Please note that some fields declared in this type may not be used by neither direct reference nor reflection,
+            but they are reserved ones. In the future I'll implement the searching logic on those fields (maybe?)
+            </i></b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.None">
+            <summary>
+            The placeholder of this enumeration type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FullHouse">
+            <summary>
+            Indicates full house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.LastDigit">
+            <summary>
+            Indicates last digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock">
+            <summary>
+            Indicates hidden single (in block).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleRow">
+            <summary>
+            Indicates hidden single (in row).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleColumn">
+            <summary>
+            Indicates hidden single (in column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NakedSingle">
+            <summary>
+            Indicates naked single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Pointing">
+            <summary>
+            Indicates pointing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Claiming">
+            <summary>
+            Indicates claiming.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedPair">
+            <summary>
+            Indicates almost locked pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedTriple">
+            <summary>
+            Indicates almost locked triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedQuadruple">
+            <summary>
+            Indicates almost locked quadruple.
+            The technique may not be useful because it'll be replaced with Sue de Coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FireworkPairType1">
+            <summary>
+            Indicates firework pair type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FireworkPairType2">
+            <summary>
+            Indicates firework pair type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FireworkPairType3">
+            <summary>
+            Indicates firework pair type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FireworkTriple">
+            <summary>
+            Indicates firework triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FireworkQuadruple">
+            <summary>
+            Indicates firework quadruple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NakedPair">
+            <summary>
+            Indicates naked pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NakedPairPlus">
+            <summary>
+            Indicates naked pair plus (naked pair (+)).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.LockedPair">
+            <summary>
+            Indicates locked pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HiddenPair">
+            <summary>
+            Indicates hidden pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NakedTriple">
+            <summary>
+            Indicates naked triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NakedTriplePlus">
+            <summary>
+            Indicates naked triple plus (naked triple (+)).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.LockedTriple">
+            <summary>
+            Indicates locked triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HiddenTriple">
+            <summary>
+            Indicates hidden triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NakedQuadruple">
+            <summary>
+            Indicates naked quadruple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NakedQuadruplePlus">
+            <summary>
+            Indicates naked quadruple plus (naked quadruple (+)).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HiddenQuadruple">
+            <summary>
+            Indicates hidden quadruple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XWing">
+            <summary>
+            Indicates X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedXWing">
+            <summary>
+            Indicates finned X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiXWing">
+            <summary>
+            Indicates sashimi X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedXWing">
+            <summary>
+            Indicates siamese finned X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiXWing">
+            <summary>
+            Indicates siamese sashimi X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenXWing">
+            <summary>
+            Indicates franken X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedFrankenXWing">
+            <summary>
+            Indicates finned franken X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiFrankenXWing">
+            <summary>
+            Indicates sashimi franken X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenXWing">
+            <summary>
+            Indicates siamese finned franken X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenXWing">
+            <summary>
+            Indicates siamese sashimi franken X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantXWing">
+            <summary>
+            Indicates mutant X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedMutantXWing">
+            <summary>
+            Indicates finned mutant X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiMutantXWing">
+            <summary>
+            Indicates sashimi mutant X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantXWing">
+            <summary>
+            Indicates siamese finned mutant X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantXWing">
+            <summary>
+            Indicates siamese sashimi mutant X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Swordfish">
+            <summary>
+            Indicates swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedSwordfish">
+            <summary>
+            Indicates finned swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiSwordfish">
+            <summary>
+            Indicates sashimi swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedSwordfish">
+            <summary>
+            Indicates siamese finned swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiSwordfish">
+            <summary>
+            Indicates siamese sashimi swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSwordfish">
+            <summary>
+            Indicates swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedFrankenSwordfish">
+            <summary>
+            Indicates finned franken swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiFrankenSwordfish">
+            <summary>
+            Indicates sashimi franken swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenSwordfish">
+            <summary>
+            Indicates siamese finned franken swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenSwordfish">
+            <summary>
+            Indicates siamese sashimi franken swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSwordfish">
+            <summary>
+            Indicates mutant swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedMutantSwordfish">
+            <summary>
+            Indicates finned mutant swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiMutantSwordfish">
+            <summary>
+            Indicates sashimi mutant swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantSwordfish">
+            <summary>
+            Indicates siamese finned mutant swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantSwordfish">
+            <summary>
+            Indicates siamese sashimi mutant swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Jellyfish">
+            <summary>
+            Indicates jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedJellyfish">
+            <summary>
+            Indicates finned jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiJellyfish">
+            <summary>
+            Indicates sashimi jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedJellyfish">
+            <summary>
+            Indicates siamese finned jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiJellyfish">
+            <summary>
+            Indicates siamese sashimi jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJellyfish">
+            <summary>
+            Indicates franken jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedFrankenJellyfish">
+            <summary>
+            Indicates finned franken jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiFrankenJellyfish">
+            <summary>
+            Indicates sashimi franken jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenJellyfish">
+            <summary>
+            Indicates siamese finned franken jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenJellyfish">
+            <summary>
+            Indicates siamese sashimi franken jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJellyfish">
+            <summary>
+            Indicates mutant jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedMutantJellyfish">
+            <summary>
+            Indicates finned mutant jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiMutantJellyfish">
+            <summary>
+            Indicates sashimi mutant jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantJellyfish">
+            <summary>
+            Indicates siamese finned mutant jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantJellyfish">
+            <summary>
+            Indicates siamese sashimi mutant jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Squirmbag">
+            <summary>
+            Indicates squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedSquirmbag">
+            <summary>
+            Indicates finned squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiSquirmbag">
+            <summary>
+            Indicates sashimi squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedSquirmbag">
+            <summary>
+            Indicates siamese finned squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiSquirmbag">
+            <summary>
+            Indicates siamese sashimi squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSquirmbag">
+            <summary>
+            Indicates franken squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedFrankenSquirmbag">
+            <summary>
+            Indicates finned franken squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiFrankenSquirmbag">
+            <summary>
+            Indicates sashimi franken squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenSquirmbag">
+            <summary>
+            Indicates siamese finned franken squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenSquirmbag">
+            <summary>
+            Indicates siamese sashimi franken squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSquirmbag">
+            <summary>
+            Indicates mutant squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedMutantSquirmbag">
+            <summary>
+            Indicates finned mutant squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiMutantSquirmbag">
+            <summary>
+            Indicates sashimi mutant squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantSquirmbag">
+            <summary>
+            Indicates siamese finned mutant squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantSquirmbag">
+            <summary>
+            Indicates siamese sashimi mutant squirmbag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Whale">
+            <summary>
+            Indicates whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedWhale">
+            <summary>
+            Indicates finned whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiWhale">
+            <summary>
+            Indicates sashimi whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedWhale">
+            <summary>
+            Indicates siamese finned whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiWhale">
+            <summary>
+            Indicates siamese sashimi whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenWhale">
+            <summary>
+            Indicates franken whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedFrankenWhale">
+            <summary>
+            Indicates finned franken whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiFrankenWhale">
+            <summary>
+            Indicates sashimi franken whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenWhale">
+            <summary>
+            Indicates siamese finned franken whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenWhale">
+            <summary>
+            Indicates siamese sashimi franken whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantWhale">
+            <summary>
+            Indicates mutant whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedMutantWhale">
+            <summary>
+            Indicates finned mutant whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiMutantWhale">
+            <summary>
+            Indicates sashimi mutant whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantWhale">
+            <summary>
+            Indicates siamese finned mutant whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantWhale">
+            <summary>
+            Indicates siamese sashimi mutant whale.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Leviathan">
+            <summary>
+            Indicates leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedLeviathan">
+            <summary>
+            Indicates finned leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiLeviathan">
+            <summary>
+            Indicates sashimi leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedLeviathan">
+            <summary>
+            Indicates siamese finned leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiLeviathan">
+            <summary>
+            Indicates siamese sashimi leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenLeviathan">
+            <summary>
+            Indicates franken leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedFrankenLeviathan">
+            <summary>
+            Indicates finned franken leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiFrankenLeviathan">
+            <summary>
+            Indicates sashimi franken leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenLeviathan">
+            <summary>
+            Indicates siamese finned franken leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenLeviathan">
+            <summary>
+            Indicates siamese sashimi franken leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantLeviathan">
+            <summary>
+            Indicates mutant leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedMutantLeviathan">
+            <summary>
+            Indicates finned mutant leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiMutantLeviathan">
+            <summary>
+            Indicates sashimi mutant leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantLeviathan">
+            <summary>
+            Indicates siamese finned mutant leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantLeviathan">
+            <summary>
+            Indicates siamese sashimi mutant leviathan.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyWing">
+            <summary>
+            Indicates XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzWing">
+            <summary>
+            Indicates XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.WxyzWing">
+            <summary>
+            Indicates WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.VwxyzWing">
+            <summary>
+            Indicates VWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UvwxyzWing">
+            <summary>
+            Indicates UVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.TuvwxyzWing">
+            <summary>
+            Indicates TUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.StuvwxyzWing">
+            <summary>
+            Indicates STUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.RstuvwxyzWing">
+            <summary>
+            Indicates RSTUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.IncompleteWxyzWing">
+            <summary>
+            Indicates incomplete WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.IncompleteVwxyzWing">
+            <summary>
+            Indicates incomplete VWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.IncompleteUvwxyzWing">
+            <summary>
+            Indicates incomplete UVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.IncompleteTuvwxyzWing">
+            <summary>
+            Indicates incomplete TUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.IncompleteStuvwxyzWing">
+            <summary>
+            Indicates incomplete STUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.IncompleteRstuvwxyzWing">
+            <summary>
+            Indicates incomplete RSTUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.WWing">
+            <summary>
+            Indicates W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MultiBranchWWing">
+            <summary>
+            Indicates Multi-Branch W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MWing">
+            <summary>
+            Indicates M-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.LocalWing">
+            <summary>
+            Indicates local wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SplitWing">
+            <summary>
+            Indicates split wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HybridWing">
+            <summary>
+            Indicates hybrid wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyWing">
+            <summary>
+            Indicates grouped XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedWWing">
+            <summary>
+            Indicates grouped W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedMWing">
+            <summary>
+            Indicates grouped M-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedLocalWing">
+            <summary>
+            Indicates grouped local wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedSplitWing">
+            <summary>
+            Indicates grouped split wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedHybridWing">
+            <summary>
+            Indicates grouped hybrid wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleType1">
+            <summary>
+            Indicates unique rectangle type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleType2">
+            <summary>
+            Indicates unique rectangle type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleType3">
+            <summary>
+            Indicates unique rectangle type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleType4">
+            <summary>
+            Indicates unique rectangle type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleType5">
+            <summary>
+            Indicates unique rectangle type 5.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleType6">
+            <summary>
+            Indicates unique rectangle type 6.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HiddenUniqueRectangle">
+            <summary>
+            Indicates hidden unique rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle2D">
+            <summary>
+            Indicates unique rectangle + 2D.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle2B1">
+            <summary>
+            Indicates unique rectangle + 2B / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle2D1">
+            <summary>
+            Indicates unique rectangle + 2D / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle3X">
+            <summary>
+            Indicates unique rectangle + 3X.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle3X1L">
+            <summary>
+            Indicates unique rectangle + 3x / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle3X1U">
+            <summary>
+            Indicates unique rectangle + 3X / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle3X2">
+            <summary>
+            Indicates unique rectangle + 3X / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle3N2">
+            <summary>
+            Indicates unique rectangle + 3N / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle3U2">
+            <summary>
+            Indicates unique rectangle + 3U / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle3E2">
+            <summary>
+            Indicates unique rectangle + 3E / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle4X1L">
+            <summary>
+            Indicates unique rectangle + 4x / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle4X1U">
+            <summary>
+            Indicates unique rectangle + 4X / 1SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle4X2L">
+            <summary>
+            Indicates unique rectangle + 4x / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle4X2U">
+            <summary>
+            Indicates unique rectangle + 4X / 2SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle4X3">
+            <summary>
+            Indicates unique rectangle + 4X / 3SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle4C3">
+            <summary>
+            Indicates unique rectangle + 4C / 3SL.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleXyWing">
+            <summary>
+            Indicates unique rectangle-XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleXyzWing">
+            <summary>
+            Indicates unique rectangle-XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleWxyzWing">
+            <summary>
+            Indicates unique rectangle-WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleSueDeCoq">
+            <summary>
+            Indicates unique rectangle sue de coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleBabaGrouping">
+            <summary>
+            Indicates unique rectangle baba grouping.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalType1">
+            <summary>
+            Indicates unique rectangle external type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalType2">
+            <summary>
+            Indicates unique rectangle external type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalType3">
+            <summary>
+            Indicates unique rectangle external type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalType4">
+            <summary>
+            Indicates unique rectangle external type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalSkyscraper">
+            <summary>
+            Indicates unique rectangle external skyscraper.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalTwoStringKite">
+            <summary>
+            Indicates unique rectangle external two-string kite.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalTurbotFish">
+            <summary>
+            Indicates unique rectangle external turbot fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalXyWing">
+            <summary>
+            Indicates unique rectangle external XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalAlmostLockedSetsXz">
+            <summary>
+            Indicates unique rectangle external almost locked sets XZ rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleType1">
+            <summary>
+            Indicates avoidable rectangle type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleType2">
+            <summary>
+            Indicates avoidable rectangle type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleType3">
+            <summary>
+            Indicates avoidable rectangle type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleType5">
+            <summary>
+            Indicates avoidable rectangle type 5.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HiddenAvoidableRectangle">
+            <summary>
+            Indicates hidden avoidable rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangle2D">
+            <summary>
+            Indicates avoidable rectangle + 2D.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangle3X">
+            <summary>
+            Indicates avoidable rectangle + 3X.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleXyWing">
+            <summary>
+            Indicates avoidable rectangle XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleXyzWing">
+            <summary>
+            Indicates avoidable rectangle XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleWxyzWing">
+            <summary>
+            Indicates avoidable rectangle WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleSueDeCoq">
+            <summary>
+            Indicates avoidable rectangle sue de coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleBrokenWing">
+            <summary>
+            Indicates avoidable rectangle guardian.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleHiddenSingleBlock">
+            <summary>
+            Indicates avoidable rectangle hidden single in block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleHiddenSingleRow">
+            <summary>
+            Indicates avoidable rectangle hidden single in row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleHiddenSingleColumn">
+            <summary>
+            Indicates avoidable rectangle hidden single in column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalType1">
+            <summary>
+            Indicates avoidable rectangle external type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalType2">
+            <summary>
+            Indicates avoidable rectangle external type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalType3">
+            <summary>
+            Indicates avoidable rectangle external type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalType4">
+            <summary>
+            Indicates avoidable rectangle external type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalSkyscraper">
+            <summary>
+            Indicates avoidable rectangle external skyscraper.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalTwoStringKite">
+            <summary>
+            Indicates avoidable rectangle external two-string kite.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalTurbotFish">
+            <summary>
+            Indicates avoidable rectangle external turbot fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalXyWing">
+            <summary>
+            Indicates avoidable rectangle external XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalAlmostLockedSetsXz">
+            <summary>
+            Indicates avoidable rectangle external almost locked sets XZ rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueLoopType1">
+            <summary>
+            Indicates unique loop type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueLoopType2">
+            <summary>
+            Indicates unique loop type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueLoopType3">
+            <summary>
+            Indicates unique loop type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueLoopType4">
+            <summary>
+            Indicates unique loop type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedRectangleType1">
+            <summary>
+            Indicates extended rectangle type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedRectangleType2">
+            <summary>
+            Indicates extended rectangle type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedRectangleType3">
+            <summary>
+            Indicates extended rectangle type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedRectangleType4">
+            <summary>
+            Indicates extended rectangle type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueUniversalGraveType1">
+            <summary>
+            Indicates bi-value universal grave type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueUniversalGraveType2">
+            <summary>
+            Indicates bi-value universal grave type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueUniversalGraveType3">
+            <summary>
+            Indicates bi-value universal grave type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueUniversalGraveType4">
+            <summary>
+            Indicates bi-value universal grave type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueUniversalGravePlusN">
+            <summary>
+            Indicates bi-value universal grave + n.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueUniversalGraveFalseCandidateType">
+            <summary>
+            Indicates bi-value universal grave false candidate type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueUniversalGravePlusNForcingChains">
+            <summary>
+            Indicates bi-value universal grave + n with forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueUniversalGraveXzRule">
+            <summary>
+            Indicates bi-value universal grave XZ rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueUniversalGraveXyWing">
+            <summary>
+            Indicates bi-value universal grave XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueRectangleType1">
+            <summary>
+            Indicates reverse unique rectangle type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueRectangleType2">
+            <summary>
+            Indicates reverse unique rectangle type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueRectangleType3">
+            <summary>
+            Indicates reverse unique rectangle type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueRectangleType4">
+            <summary>
+            Indicates reverse unique rectangle type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueLoopType1">
+            <summary>
+            Indicates reverse unique loop type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueLoopType2">
+            <summary>
+            Indicates reverse unique loop type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueLoopType3">
+            <summary>
+            Indicates reverse unique loop type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueLoopType4">
+            <summary>
+            Indicates reverse unique loop type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquenessClueCoverType2">
+            <summary>
+            Indicates uniqueness clue cover type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.RwDeadlyPattern">
+            <summary>
+            Indicates RW's deadly pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquePolygonType1">
+            <summary>
+            Indicates unique polygon type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquePolygonType2">
+            <summary>
+            Indicates unique polygon type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquePolygonType3">
+            <summary>
+            Indicates unique polygon type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquePolygonType4">
+            <summary>
+            Indicates unique polygon type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.QiuDeadlyPatternType1">
+            <summary>
+            Indicates Qiu's deadly pattern type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.QiuDeadlyPatternType2">
+            <summary>
+            Indicates Qiu's deadly pattern type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.QiuDeadlyPatternType3">
+            <summary>
+            Indicates Qiu's deadly pattern type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.QiuDeadlyPatternType4">
+            <summary>
+            Indicates Qiu's deadly pattern type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.LockedQiuDeadlyPattern">
+            <summary>
+            Indicates locked Qiu's deadly pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueMatrixType1">
+            <summary>
+            Indicates unique matrix type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueMatrixType2">
+            <summary>
+            Indicates unique matrix type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueMatrixType3">
+            <summary>
+            Indicates unique matrix type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueMatrixType4">
+            <summary>
+            Indicates unique matrix type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SueDeCoq">
+            <summary>
+            Indicates sue de coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SueDeCoqIsolated">
+            <summary>
+            Indicates sue de coq with isolated digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SueDeCoq3Dimension">
+            <summary>
+            Indicates 3-dimensional sue de coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SueDeCoqCannibalism">
+            <summary>
+            Indicates sue de coq cannibalism.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Skyscraper">
+            <summary>
+            Indicates skyscraper.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.TwoStringKite">
+            <summary>
+            Indicates two-string kite.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.TurbotFish">
+            <summary>
+            Indicates turbot fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.EmptyRectangle">
+            <summary>
+            Indicates empty rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BrokenWing">
+            <summary>
+            Indicates broken wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueOddagonType1">
+            <summary>
+            Indicates bi-value oddagon type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueOddagonType2">
+            <summary>
+            Indicates bi-value oddagon type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueOddagonType3">
+            <summary>
+            Indicates bi-value oddagon type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedBivalueOddagon">
+            <summary>
+            Indicates grouped bi-value oddagon.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ChromaticPatternType1">
+            <summary>
+            Indicates chromatic pattern (tri-value oddagon) type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ChromaticPatternType2">
+            <summary>
+            Indicates chromatic pattern (tri-value oddagon) type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ChromaticPatternType3">
+            <summary>
+            Indicates chromatic pattern (tri-value oddagon) type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ChromaticPatternType4">
+            <summary>
+            Indicates chromatic pattern (tri-value oddagon) type 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ChromaticPatternXzRule">
+            <summary>
+            Indicates chromatic pattern (tri-value oddagon) XZ rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XChain">
+            <summary>
+            Indicates X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.YChain">
+            <summary>
+            Indicates Y-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FishyCycle">
+            <summary>
+            Indicates fishy cycle (X-Cycle).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyChain">
+            <summary>
+            Indicates XY-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyCycle">
+            <summary>
+            Indicates XY-Cycle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyXChain">
+            <summary>
+            Indicates XY-X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.RemotePair">
+            <summary>
+            Indicates remote pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.PurpleCow">
+            <summary>
+            Indicates purple cow.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DiscontinuousNiceLoop">
+            <summary>
+            Indicates discontinuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ContinuousNiceLoop">
+            <summary>
+            Indicates continuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlternatingInferenceChain">
+            <summary>
+            Indicates alternating inference chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXChain">
+            <summary>
+            Indicates grouped X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedFishyCycle">
+            <summary>
+            Indicates grouped fishy cycle (grouped X-Cycle).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyChain">
+            <summary>
+            Indicates grouped XY-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyCycle">
+            <summary>
+            Indicates grouped XY-Cycle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyXChain">
+            <summary>
+            Indicates grouped XY-X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedPurpleCow">
+            <summary>
+            Indicates grouped purple cow.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedDiscontinuousNiceLoop">
+            <summary>
+            Indicates grouped discontinuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedContinuousNiceLoop">
+            <summary>
+            Indicates grouped continuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedAlternatingInferenceChain">
+            <summary>
+            Indicates grouped alternating inference chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NodeCollision">
+            <summary>
+            Indicates special case that a grouped alternating inference chain has a collision
+            between start and end node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NishioForcingChains">
+            <summary>
+            Indicates nishio forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.RegionForcingChains">
+            <summary>
+            Indicates region forcing chains (i.e. house forcing chains).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.CellForcingChains">
+            <summary>
+            Indicates cell forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DynamicRegionForcingChains">
+            <summary>
+            Indicates dynamic region forcing chains (i.e. dynamic house forcing chains).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DynamicCellForcingChains">
+            <summary>
+            Indicates dynamic cell forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DynamicContradictionForcingChains">
+            <summary>
+            Indicates dynamic contradiction forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DynamicDoubleForcingChains">
+            <summary>
+            Indicates dynamic double forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DynamicForcingChains">
+            <summary>
+            Indicates dynamic forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.EmptyRectangleIntersectionPair">
+            <summary>
+            Indicates empty rectangle intersection pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedSubsetPrinciple">
+            <summary>
+            Indicates extended subset principle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SinglyLinkedAlmostLockedSetsXzRule">
+            <summary>
+            Indicates singly linked ALS-XZ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DoublyLinkedAlmostLockedSetsXzRule">
+            <summary>
+            Indicates doubly linked ALS-XZ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedSetsXyWing">
+            <summary>
+            Indicates ALS-XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedSetsWWing">
+            <summary>
+            Indicates ALS-W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedSetsChain">
+            <summary>
+            Indicates ALS chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostHiddenSetsChain">
+            <summary>
+            Indicates AHS chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DeathBlossomCellType">
+            <summary>
+            Indicates death blossom cell type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DeathBlossomHouseType">
+            <summary>
+            Indicates death blossom house type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GurthSymmetricalPlacement">
+            <summary>
+            Indicates Gurth's symmetrical placement.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedGurthSymmetricalPlacement">
+            <summary>
+            Indicates extended Gurth's symmetrical placement.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocet">
+            <summary>
+            Indicates junior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocet">
+            <summary>
+            Indicates senior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ComplexSeniorExocet">
+            <summary>
+            Indicates complex senior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseJuniorExocet">
+            <summary>
+            Indicates siamese junior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSeniorExocet">
+            <summary>
+            Indicates siamese senior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
+            <summary>
+            Indicates domino loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MultisectorLockedSets">
+            <summary>
+            Indicates multi-sector locked sets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.PatternOverlay">
+            <summary>
+            Indicates pattern overlay method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.TemplateSet">
+            <summary>
+            Indicates template set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.TemplateDelete">
+            <summary>
+            Indicates template delete.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BowmanBingo">
+            <summary>
+            Indicates bowman's bingo.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BruteForce">
+            <summary>
+            Indicates brute force.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueGroup">
+            <summary>
+            Represents a technique group.
+            </summary>
+            <remarks>
+            Different with <see cref="!:TechniqueTags"/>, this enumeration type contains the real technique group that the technique belongs to.
+            In addition, the value of this type may effect the displaying of the analysis result.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.None">
+            <summary>
+            Indicates the technique doesn't belong to any group.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.Single">
+            <summary>
+            Indicates the singles technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.LockedCandidates">
+            <summary>
+            Indicates the locked candidates (LC) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.Subset">
+            <summary>
+            Indicates the subset technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.NormalFish">
+            <summary>
+            Indicates the normal fish technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ComplexFish">
+            <summary>
+            Indicates the complex fish technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.Wing">
+            <summary>
+            Indicates the wing technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.EmptyRectangle">
+            <summary>
+            Indicates the empty rectangle technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.SingleDigitPattern">
+            <summary>
+            Indicates the single digit pattern (SDP) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.EmptyRectangleIntersectionPair">
+            <summary>
+            Indicates the empty rectangle intersection pair (ERIP) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.AlmostLockedCandidates">
+            <summary>
+            Indicates the almost locked candidates (ALC) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.Firework">
+            <summary>
+            Indicates the firework technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.AlternatingInferenceChain">
+            <summary>
+            Indicates the alternating inference chain (AIC) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ForcingChains">
+            <summary>
+            Indicates the forcing chains (FC) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.UniqueRectangle">
+            <summary>
+            Indicates the unique rectangle (UR) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.UniqueRectanglePlus">
+            <summary>
+            Indicates the unique rectangle plus (UR+) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.UniqueLoop">
+            <summary>
+            Indicates the unique loop (UL) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ExtendedRectangle">
+            <summary>
+            Indicates the extended rectangle (XR) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BivalueUniversalGrave">
+            <summary>
+            Indicates the bi-value universal grave (BUG) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ReverseBivalueUniversalGrave">
+            <summary>
+            Indicates the reverse bi-value universal grave (Reverse BUG) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.UniquenessClueCover">
+            <summary>
+            Indicates the uniqueness clue cover.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.DeadlyPattern">
+            <summary>
+            Indicates the deadly pattern technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BivalueOddagon">
+            <summary>
+            Indicates the bi-value oddagon technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.TrivalueOddagon">
+            <summary>
+            Indicates the tri-value oddagon technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.SueDeCoq">
+            <summary>
+            Indicates the sue de coq (SdC) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BrokenWing">
+            <summary>
+            Indicates the broken wing technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.AlmostLockedSetsChainingLike">
+            <summary>
+            Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.DominoLoop">
+            <summary>
+            Indicates the SK-Loop technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.MultisectorLockedSets">
+            <summary>
+            Indicates the multi-sector locked sets (MSLS) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.Exocet">
+            <summary>
+            Indicates the exocet technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.Symmetry">
+            <summary>
+            Indicates the symmetry technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.RankTheory">
+            <summary>
+            Indicates the technique checked and searched relies on the rank theory.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BowmanBingo">
+            <summary>
+            Indicates the bowman bingo technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.PatternOverlay">
+            <summary>
+            Indicates the pattern overlay method (POM) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.Templating">
+            <summary>
+            Indicates the templating technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BruteForce">
+            <summary>
+            Indicates the brute force (BF) technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Compatibility.HodokuLibraryCompatiblity">
+            <summary>
+            Represents some methods that are used for get the details supported and defined
+            by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Compatibility.HodokuLibraryCompatiblity.ProgramName">
+            <inheritdoc cref="P:Sudoku.Analytics.Compatibility.ICompatibilityProvider.ProgramName"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Compatibility.HodokuLibraryCompatiblity.GetAliases(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets all possible aliased names that are defined by Hodoku.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            The array of aliased names, or <see langword="null"/> if it is not defined by Hodoku.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Compatibility.HodokuLibraryCompatiblity.GetHodokuPrefix(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the prefix of the specified technique. The return value will be a four-digit value
+            represented as a <see cref="T:System.String"/> value. For more information please visit
+            <see href="https://sourceforge.net/p/hodoku/code/HEAD/tree/HoDoKu/trunk/reglib-1.4.txt">this link</see>.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            <para>
+            A <see cref="T:System.String"/> value using a four-digit value to describe a technique used
+            in a sudoku grid, which is defined by the project Hodoku.
+            </para>
+            <para>
+            If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
+            </para>
+            </returns>
+            <remarks>
+            <para>
+            Please note that some technique fields are separated into multiple sub-types, but they all
+            belong to a same type of a technique supported by Hodoku. For example,
+            <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoq"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoqIsolated"/> are supported by
+            Hodoku as one technique "Sue de Coq", so if you get the prefix from the two fields, the return value
+            are same (i.e. the <see cref="T:System.String"/> value <c>"1101"</c>).
+            </para>
+            <para>
+            However, if a sub-type is not supported by Hodoku (e.g. the field
+            <see cref="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle2B1"/>), this method will still return <see langword="null"/>
+            indicating the "Not supported" state.
+            </para>
+            </remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Compatibility.HodokuLibraryCompatiblity.GetDifficultyRating(Sudoku.Analytics.Categorization.Technique,System.Nullable{Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel}@)">
+            <summary>
+            Try to get difficulty rating of the specified technique.
+            </summary>
+            <param name="this">The technique.</param>
+            <param name="difficultyLevel">The difficulty level that is defined by Hodoku.</param>
+            <returns>
+            <para>
+            An <see cref="T:System.Int32"/> value defined by the project Hodoku.
+            </para>
+            <para>
+            If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
+            </para>
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Compatibility.ICompatibilityProvider">
+            <summary>
+            Provides a way to provide compatibility items (concepts, solving ways, etc.) to a program that also analyzes sudoku puzzles.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Compatibility.ICompatibilityProvider.ProgramName">
+            <summary>
+            Indicates the program name of the current provider to be compatible.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Compatibility.SudokuExplainerLibraryCompatiblity">
+            <summary>
+            Represents some methods that are used for get the details supported and defined
+            by another program called
+            <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Compatibility.SudokuExplainerLibraryCompatiblity.ProgramName">
+            <inheritdoc cref="P:Sudoku.Analytics.Compatibility.ICompatibilityProvider.ProgramName"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Compatibility.SudokuExplainerLibraryCompatiblity.GetAliases(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets all possible aliased names that are defined by Sudoku Explainer.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            The array of aliased names, or <see langword="null"/> if it is not defined by Sudoku Explainer.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Compatibility.SudokuExplainerLibraryCompatiblity.GetDifficultyRatingRange(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get difficulty rating of the specified technique.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            <para>
+            An <see cref="T:System.Int32"/> value defined by the project Sudoku Explainer.
+            </para>
+            <para>
+            If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.
+            </para>
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="T:Sudoku.Analytics.LogicalAnalysisContext">
+            <summary>
+            Defines a context that is used by step searchers to check the details of the solving and analysis information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.LogicalAnalysisContext.Grid">
+            <summary>
+            Indicates the puzzle to be solved and analyzed.
+            </summary>
+            <remarks>
+            <target name="field">
+				<b>
+					<i>
+						This field is not encapsulated into a property because C# doesn't support auto read-only properties
+						returning <see langword="ref" /> or <see langword="ref readonly" />.
+					</i>
+				</b>
+			</target>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.LogicalAnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Steps.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.LogicalAnalysisContext"/> instance via the specified.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The reference to the puzzle.</param>
+            <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.LogicalAnalysisContext.OnlyFindOne">
+            <summary>
+            Indicates whether the solver only find one possible step and exit the searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.LogicalAnalysisContext.PreviousSetDigit">
+            <summary>
+            Indicates the previously set digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.LogicalAnalysisContext.Accumulator">
+            <summary>
+            <para>
+            <para>The accumulator to store each step.</para>
+            </para>
+            <para>
+            If <see cref="P:Sudoku.Analytics.LogicalAnalysisContext.OnlyFindOne"/> is set to <see langword="true"/>,
+            this argument will become useless because we only finding one step is okay,
+            so we may not use the accumulator to store all possible steps, in order to optimize the performance.
+            Therefore, this argument can be <see langword="null"/> in this case.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.LogicalAnalysisContext.OnlyFindOne"/>
+        </member>
+        <member name="T:Sudoku.Analytics.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Analytics.Rating.ChainDifficultyRating">
+            <summary>
+            Represents a type that calculates for chain difficulty.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.ChainDifficultyRating.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating for a chain node sequence.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The difficulty.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyCase">
+            <summary>
+            Represents an extra rating case to be recorded into a technique step.
+            </summary>
+            <param name="Name">
+            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>,
+            you can use constants in that type to assign to this property.
+            </param>
+            <param name="Value">Indicates the value of the target rating.</param>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyCase.#ctor(System.String,System.Decimal)">
+            <summary>
+            Represents an extra rating case to be recorded into a technique step.
+            </summary>
+            <param name="Name">
+            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>,
+            you can use constants in that type to assign to this property.
+            </param>
+            <param name="Value">Indicates the value of the target rating.</param>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Name">
+            <summary>
+            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>,
+            you can use constants in that type to assign to this property.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Value">
+            <summary>Indicates the value of the target rating.</summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames">
+            <summary>
+            Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Size">
+            <summary>
+            Indicates the kind is the size. This field is used for sized techniques,
+            such as deadly patterns of type 3, naked or hidden subsets, fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ExtraDigit">
+            <summary>
+            Indicates the kind is the extra digit. This field is used for deadly patterns of type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Sashimi">
+            <summary>
+            Indicates the kind is the sashimi. This field is only used for fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.FishShape">
+            <summary>
+            Indicates the kind is the fish shape. This field is only used for complex fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Hidden">
+            <summary>
+            Indicates the kind is the hidden. This field is used for some techniques that has hidden views.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Locked">
+            <summary>
+            Indicates the kind is the locked. This field is only used for naked subsets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.LockedDigit">
+            <summary>
+            Indicates the kind is the locked digit. This field is only used for Locked Qiu's Deadly Pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Length">
+            <summary>
+            Indicates the kind is the length. This field is used for variable-length chaining techniques.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ConjugatePair">
+            <summary>
+            Indicates the kind is the conjugate pair. This field is used for deadly patterns of type 4,
+            or advanced Unique Rectangle techniques.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Guardian">
+            <summary>
+            Indicates the kind is the guardian. This field is used for some guardian-related techniques,
+            such as guardian itself, Unique Rectangle + Guardian (i.e. Unique Rectangle External Types).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Petals">
+            <summary>
+            Indicates the number of petals used in death blossom.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ValueCell">
+            <summary>
+            Indicates the kind is the value cell used in the pattern. This field is used for Almost Locked Candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Incompleteness">
+            <summary>
+            Indicates the kind is the incompleteness. This field is used for Unique Rectangle incomplete types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Avoidable">
+            <summary>
+            Indicates the kind is the avoidable. This field is used for avoidable rectangles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.WingSize">
+            <summary>
+            Indicates the kind is the wing size. This field is used for Unique Rectangle + Wings,
+            or Regular Wing technique itself.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Isolated">
+            <summary>
+            Indicates the kind is the isolated digits. This field is used for Sue de Coq variant types,
+            or Unique Rectangle + Sue de Coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Cannibalism">
+            <summary>
+            Indicates the kind is the cannibalism. This field is used for Sue de Coq variant types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Mirror">
+            <summary>
+            Indicates the kind is the mirror eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.BiBiPattern">
+            <summary>
+            Indicates the kind is the Bi-Bi pattern eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.TargetPair">
+            <summary>
+            Indicates the kind is the target pair eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.GeneralizedSwordfish">
+            <summary>
+            Indicates the kind is the generalized swordfish eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ExtraHouse">
+            <summary>
+            Indicates the kind is the extra house. This field is only used for complex senior exocets.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.SearchingLevelAttribute">
+            <summary>
+            Represents an attribute type that is applied to a <see cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/>,
+            indicating the searching level of the step searcher to be invoked.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.SearchingLevelAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.SearchingLevelAttribute"/> instane via the level.
+            </summary>
+            <param name="level">The level.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.SearchingLevelAttribute.Level">
+            <summary>
+            Indicates the level. The greater the value will be, the lower level the step searcher will be invoked.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SearchingLevelAttribute.IsRequired">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherAttribute">
+            <summary>
+            To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherAttribute.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.StepSearcherAttribute"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.StepSearcherAttribute"/> instance via the resource entry.
+            </summary>
+            <param name="nameResourceEntry">The resource entry.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcherAttribute.NameResourceEntry">
+            <summary>
+            Indicates the name stored in resource dictionary, specified as its entry (i.e. resource key).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherMetadataItemAttribute">
+            <summary>
+            Represents an attribute type that is applied to a <see cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcherMetadataItemAttribute.IsRequired">
+            <summary>
+            Indicates whether the metadata item is required.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.StepSearcher">
+            <summary>
+            Represents a searcher that can creates <see cref="T:Sudoku.Analytics.Steps.Step"/> instances for the specified technique.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Steps.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.ToTypeNameString">
+            <summary>
+            Returns the qualified type name of this instance.
+            </summary>
+            <returns>Qualified type name of this instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.ToString">
+            <summary>
+            Returns the real name of this instance.
+            </summary>
+            <returns>Real name of this instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.GetAllUnsafe(Sudoku.Analytics.LogicalAnalysisContext@)">
+            <summary>
+            Try to search for <see cref="T:Sudoku.Analytics.Steps.Step"/> results for the current technique rule.
+            </summary>
+            <param name="context">
+            <para>
+            The analysis context. This argument offers you some elementary data configured or assigned, for the current loop of step searching.
+            </para>
+            <para>
+            All available <see cref="T:Sudoku.Analytics.Steps.Step"/> results will be stored in property <see cref="P:Sudoku.Analytics.LogicalAnalysisContext.Accumulator"/>
+            of this argument, if property <see cref="P:Sudoku.Analytics.LogicalAnalysisContext.OnlyFindOne"/> returns <see langword="false"/>;
+            otherwise, the property won't be used, and this method will return the first found step.
+            </para>
+            </param>
+            <returns>
+            Returns the first found step. The nullability of the return value are as belows:
+            <list type="bullet">
+            <item>
+            <see langword="null"/>:
+            <list type="bullet">
+            <item><c><paramref name="context"/>.OnlyFindOne == <see langword="false"/></c>.</item>
+            <item><c><paramref name="context"/>.OnlyFindOne == <see langword="true"/></c>, but nothing found.</item>
+            </list>
+            </item>
+            <item>
+            Not <see langword="null"/>:
+            <list type="bullet">
+            <item>
+            <c><paramref name="context"/>.OnlyFindOne == <see langword="true"/></c>,
+            and found <b>at least one step</b>. In this case the return value is the first found step.
+            </item>
+            </list>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="T:Sudoku.Analytics.Steps.Step"/>
+            <seealso cref="T:Sudoku.Analytics.LogicalAnalysisContext"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.GetAll(Sudoku.Analytics.LogicalAnalysisContext@)">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.StepSearcher.GetAllUnsafe(Sudoku.Analytics.LogicalAnalysisContext@)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.Step">
+            <summary>
+            Provides with a logical solving step that is a technique usage, and contains the conclusions.
+            </summary>
+            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
+            <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a logical solving step that is a technique usage, and contains the conclusions.
+            </summary>
+            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
+            <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.Conclusions">
+            <summary><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.Views">
+            <summary><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.Name">
+            <summary>
+            Indicates the technique name. The technique name are all stored in the resource dictionary,
+            you can find them in the <c>Resources</c> folder (Type <see cref="T:Sudoku.Resources.MergedResources"/>).
+            </summary>
+            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.Format">
+            <summary>
+            Gets the format of the current instance.
+            </summary>
+            <returns>
+            Returns a <see cref="T:System.String"/> result. If the resource dictionary doesn't contain
+            any valid formats here, the result value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            <para>
+            A <b>format</b> is the better way to format the result text of this technique information instance.
+            It'll be represented by the normal characters and the placeholders, e.g.
+            <code><![CDATA["Cells {0}, with digits {1}"]]></code>
+            </para>
+            <para>
+            Here the placeholder <c>{0}</c>, and <c>{1}</c> must be provided by property <see cref="P:Sudoku.Analytics.Steps.Step.FormatInterpolatedParts"/>.
+            You should create 2 values that can be replaced with the placeholder <c>{0}</c> and <c>{1}</c>.
+            </para>
+            <para>
+            The recommended implementation pattern is:
+            <code><![CDATA[
+            private string CellsStr => Cells.ToString();
+            private string DigitsStr => Digits.ToString(separator: R.EmitPunctuation(Punctuation.Comma));
+            ]]></code>
+            </para>
+            <para>
+            And then fill the blank via property <see cref="P:Sudoku.Analytics.Steps.Step.FormatInterpolatedParts"/>:
+            <code><![CDATA[
+            public override IDictionary<string, string[]?> FormatInterpolatedParts
+                => [["en-US": [CellsStr, DigitsStr]], ["zh-CN": [CellsStr, DigitsStr]]];
+            ]]></code>
+            via the feature "<see href="https://github.com/dotnet/csharplang/issues/5354">Collection Literals</see>" introduced in C# 12.
+            If you cannot decide the real name of the culture name, just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
+            </para>
+            <para>
+            If you want to use the values in the resource dictionary, you can just use a <see langword="static readonly"/> field
+            called <see cref="F:Sudoku.Resources.MergedResources.R"/>, for example:
+            <code><![CDATA[
+            using static Sudoku.Resources.MergedResources;
+            
+            public override string Format => R["TheKeyYouWantToSearch"];
+            ]]></code>
+            </para>
+            </remarks>
+            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
+            <seealso cref="P:Sudoku.Analytics.Steps.Step.FormatInterpolatedParts"/>
+            <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.BaseDifficulty">
+            <summary>
+            Indicates the difficulty of this technique step.
+            </summary>
+            <remarks>
+            Generally this property holds the default and basic difficulty of the step.
+            If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
+            as elementary and default rating value; other factors will be given in the other property <see cref="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.Difficulty">
+            <summary>
+            Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
+            <see cref="P:Sudoku.Analytics.Steps.Step.BaseDifficulty"/> and <see cref="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases"/>. For property <see cref="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases"/>,
+            the result is to sum all values up of inner property <see cref="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Value"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Steps.Step.BaseDifficulty"/>
+            <seealso cref="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCase"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.Code">
+            <summary>
+            The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.Group">
+            <summary>
+            The technique group that this technique instance belongs to.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.DifficultyLevel">
+            <summary>
+            The difficulty level of this step.
+            </summary>
+            <remarks>
+            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
+            we still can't set multiple flag values into the result. The flags are filtered
+            during generating puzzles.
+            </remarks>
+            <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.Rarity">
+            <summary>
+            Indicates the rarity of this technique appears.
+            </summary>
+            <remarks>
+            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
+            we still can't set multiple flag values into the result. The flags are filtered
+            during generating puzzles.
+            </remarks>
+            <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases">
+            <summary>
+            Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
+            this property will keep <see langword="null"/> value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.FormatInterpolatedParts">
+            <summary>
+            Indicates the interpolated parts that is used for the format.
+            The formats will be interpolated into the property <see cref="P:Sudoku.Analytics.Steps.Step.Format"/> result.
+            </summary>
+            <remarks>
+            <para>
+            This property use a dictionary to merge globalizational format data.
+            The key type is <see cref="T:System.String"/>, which can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>.
+            </para>
+            <para>
+            For more backing implementation details, please visit method <see cref="M:Sudoku.Analytics.Steps.Step.ToString"/> in derived <see langword="class"/>es.
+            </para>
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Steps.Step.Format"/>
+            <seealso cref="T:System.Globalization.CultureInfo"/>
+            <seealso cref="M:Sudoku.Analytics.Steps.Step.ToString"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.Step.ConclusionText">
+            <summary>
+            Indicates the string representation of the conclusions of the step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.Step.ApplyTo(Sudoku.Concepts.Grid@)">
+            <summary>
+            Put this instance into the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.Step.ToString">
+            <summary>
+            Returns a string that only contains the name and the basic description.
+            </summary>
+            <returns>The string instance.</returns>
+            <remarks>
+            <para><i>
+            This method uses modifiers <see langword="sealed"/> and <see langword="override"/> to prevent with compiler overriding this method.
+            </i></para>
+            <para><b><i>
+            In addition, <c>ToString</c> is a special method that has already been declared in type <see cref="T:System.Object"/>
+            as <see langword="virtual"/> one, so this interface member lacks of binding behavior on implementing,
+            which means even if you don't implement a parameterless method called <c>ToString</c> that returns <see cref="T:System.String"/>,
+            the code will also be compiled successfully if nullability analysis is disabled.
+            This member declared here is only used as a role of XML documentation comment provider.
+            </i></b></para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.Step.ToSimpleString">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>
