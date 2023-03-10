@@ -126,7 +126,9 @@ public sealed class DeconstructionMethodGenerator : IIncrementalGenerator
 						from parameter in parameters
 						let parameterType = parameter.Type
 						let name = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
-						let annotation = parameterType.NullableAnnotation == NullableAnnotation.Annotated ? "?" : string.Empty
+						let annotation = parameterType is { NullableAnnotation: NullableAnnotation.Annotated, IsReferenceType: true }
+							? "?"
+							: string.Empty
 						select $"out {name}{annotation} {parameter.Name}"
 					);
 

@@ -4,7 +4,7 @@
 /// Defines an attribute that is applied to a field in technique, indicating difficulty rating value defined by Sudoku Explainer.
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
-public sealed class SudokuExplainerDifficultyRatingAttribute : Attribute
+public sealed partial class SudokuExplainerDifficultyRatingAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="SudokuExplainerDifficultyRatingAttribute"/> via the specified difficulty rating value.
@@ -61,4 +61,12 @@ public sealed class SudokuExplainerDifficultyRatingAttribute : Attribute
 	/// </para>
 	/// </summary>
 	public Half? DifficultyRatingMaximumThreshold { get; }
+
+
+	[DeconstructionMethod]
+	public partial void Deconstruct(
+		[DeconstructionMethodArgument(nameof(DifficultyRating))] out Half min,
+		[DeconstructionMethodArgument(nameof(DifficultyRatingMaximumThreshold))] out Half? max,
+		[DeconstructionMethodArgument(nameof(IsAdvancedDefined))] out bool isAdvanced
+	);
 }

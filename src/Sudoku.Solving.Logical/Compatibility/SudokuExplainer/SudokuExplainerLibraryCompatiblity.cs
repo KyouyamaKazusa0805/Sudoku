@@ -26,19 +26,11 @@ public static class SudokuExplainerLibraryCompatiblity// : ICompatibilityProvide
 	/// </exception>
 	/// <seealso cref="Technique"/>
 	public static string[]? GetAliases(this Technique @this)
-		=> (@this != Technique.None && Enum.IsDefined(@this)) switch
-		{
-			true => typeof(Technique).GetField(@this.ToString()) switch
-			{
-				{ } fieldInfo => fieldInfo.GetCustomAttribute<SudokuExplainerAliasedNamesAttribute>() switch
-				{
-					{ Aliases: var aliases } => aliases,
-					_ => null
-				},
-				_ => null
-			},
-			_ => throw new ArgumentOutOfRangeException(nameof(@this))
-		};
+		=> (@this != Technique.None && Enum.IsDefined(@this))
+			? typeof(Technique).GetField(@this.ToString()) is { } fieldInfo
+				? fieldInfo.GetCustomAttribute<SudokuExplainerAliasedNamesAttribute>() is { Aliases: var aliases } ? aliases : null
+				: null
+			: throw new ArgumentOutOfRangeException(nameof(@this));
 
 	/// <summary>
 	/// Try to get difficulty rating of the specified technique.
@@ -59,28 +51,14 @@ public static class SudokuExplainerLibraryCompatiblity// : ICompatibilityProvide
 	/// <seealso cref="Technique"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DifficultyRange? GetDifficultyRatingRange(this Technique @this)
-		=> @this switch
-		{
-			Technique.None => throw new ArgumentOutOfRangeException(nameof(@this)),
-			_ when !Enum.IsDefined(@this) => throw new ArgumentOutOfRangeException(nameof(@this)),
-#pragma warning disable foramt
-			_ => typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>().ToArray() switch
+		=> @this == Technique.None || !Enum.IsDefined(@this)
+			? throw new ArgumentOutOfRangeException(nameof(@this))
+			: typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>().ToArray() switch
 			{
 				[] => null,
-				[{ DifficultyRating: var min, DifficultyRatingMaximumThreshold: var max, IsAdvancedDefined: false }]
-					=> (new(min, max ?? min), null),
-				[
-					{ DifficultyRating: var min1, DifficultyRatingMaximumThreshold: var max1, IsAdvancedDefined: false },
-					{ DifficultyRating: var min2, DifficultyRatingMaximumThreshold: var max2, IsAdvancedDefined: true }
-				]
-					=> (new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
-				[
-					{ DifficultyRating: var min1, DifficultyRatingMaximumThreshold: var max1, IsAdvancedDefined: true },
-					{ DifficultyRating: var min2, DifficultyRatingMaximumThreshold: var max2, IsAdvancedDefined: false }
-				]
-					=> (new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
+				[(var min, var max, false)] => (new(min, max ?? min), null),
+				[(var min1, var max1, false), (var min2, var max2, true)] => (new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
+				[(var min1, var max1, true), (var min2, var max2, false)] => (new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
 				_ => throw new InvalidOperationException("The field has marked too much attributes.")
-			}
-#pragma warning restore format
-		};
+			};
 }

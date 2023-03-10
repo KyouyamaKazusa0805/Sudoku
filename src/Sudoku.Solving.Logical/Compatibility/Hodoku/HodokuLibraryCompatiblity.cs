@@ -23,19 +23,11 @@ public static class HodokuLibraryCompatiblity// : ICompatibilityProvider
 	/// </exception>
 	/// <seealso cref="Technique"/>
 	public static string[]? GetAliases(this Technique @this)
-		=> (@this != Technique.None && Enum.IsDefined(@this)) switch
-		{
-			true => typeof(Technique).GetField(@this.ToString()) switch
-			{
-				{ } fieldInfo => fieldInfo.GetCustomAttribute<HodokuAliasedNamesAttribute>() switch
-				{
-					{ Aliases: var aliases } => aliases,
-					_ => null
-				},
-				_ => null
-			},
-			_ => throw new ArgumentOutOfRangeException(nameof(@this))
-		};
+		=> (@this != Technique.None && Enum.IsDefined(@this))
+			? typeof(Technique).GetField(@this.ToString()) is { } fieldInfo
+				? fieldInfo.GetCustomAttribute<HodokuAliasedNamesAttribute>() is { Aliases: var aliases } ? aliases : null
+				: null
+			: throw new ArgumentOutOfRangeException(nameof(@this));
 
 	/// <summary>
 	/// Try to get the prefix of the specified technique. The return value will be a four-digit value
@@ -73,19 +65,11 @@ public static class HodokuLibraryCompatiblity// : ICompatibilityProvider
 	/// <seealso cref="Technique"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetHodokuPrefix(this Technique @this)
-		=> (@this != Technique.None && Enum.IsDefined(@this)) switch
-		{
-			true => typeof(Technique).GetField(@this.ToString()) switch
-			{
-				{ } fieldInfo => fieldInfo.GetCustomAttribute<HodokuTechniquePrefixAttribute>() switch
-				{
-					{ Prefix: var prefix } => prefix,
-					_ => null
-				},
-				_ => null
-			},
-			_ => throw new ArgumentOutOfRangeException(nameof(@this))
-		};
+		=> (@this != Technique.None && Enum.IsDefined(@this))
+			? typeof(Technique).GetField(@this.ToString()) is { } fieldInfo
+				? fieldInfo.GetCustomAttribute<HodokuTechniquePrefixAttribute>() is { Prefix: var prefix } ? prefix : null
+				: null
+			: throw new ArgumentOutOfRangeException(nameof(@this));
 
 	/// <summary>
 	/// Try to get difficulty rating of the specified technique.
@@ -109,18 +93,19 @@ public static class HodokuLibraryCompatiblity// : ICompatibilityProvider
 	[return: NotNullIfNotNull(nameof(difficultyLevel))]
 	public static int? GetDifficultyRating(this Technique @this, out HodokuDifficultyLevel? difficultyLevel)
 	{
-		(var @return, difficultyLevel) = (@this != Technique.None && Enum.IsDefined(@this)) switch
+		if (@this == Technique.None || !Enum.IsDefined(@this))
 		{
-			true => typeof(Technique).GetField(@this.ToString()) switch
+			throw new ArgumentOutOfRangeException(nameof(@this));
+		}
+
+		(var @return, difficultyLevel) = typeof(Technique).GetField(@this.ToString()) switch
+		{
+			{ } fieldInfo => fieldInfo.GetCustomAttribute<HodokuDifficultyRatingAttribute>() switch
 			{
-				{ } fieldInfo => fieldInfo.GetCustomAttribute<HodokuDifficultyRatingAttribute>() switch
-				{
-					{ DifficultyRating: var rating, DifficultyLevel: var level } => (rating, level),
-					_ => (null, null)
-				},
-				_ => default((int?, HodokuDifficultyLevel?))
+				{ DifficultyRating: var rating, DifficultyLevel: var level } => (rating, level),
+				_ => (null, null)
 			},
-			_ => throw new ArgumentOutOfRangeException(nameof(@this))
+			_ => default((int?, HodokuDifficultyLevel?))
 		};
 
 		return @return;
