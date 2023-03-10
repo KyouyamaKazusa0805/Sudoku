@@ -1618,11 +1618,6 @@
             Represents diagnostic results.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.IsLargeStructAttribute">
-            <summary>
-            Indicates the type is a large structure.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.Justification">
             <summary>
             Represents justification.

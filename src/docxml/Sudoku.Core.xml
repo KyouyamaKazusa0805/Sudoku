@@ -9,10 +9,11 @@
             Encapsulates a binary series of candidate status table.
             </summary>
             <remarks>
-            This type holds a <see langword="static readonly"/> field called <see cref="F:Sudoku.Concepts.CandidateMap.Empty"/>,
+            <para>
+            This type holds a <see langword="static readonly" /> field called <see cref="F:Sudoku.Concepts.CandidateMap.Empty" />,
             it is the only field provided to be used as the entry to create or update collection.
-            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)"/>, <see cref="M:Sudoku.Concepts.CandidateMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>
-            or just <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Int32)"/> or <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})"/>:
+            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)" />, <see cref="M:Sudoku.Concepts.CandidateMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})" />
+            or just <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Int32)" /> or <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})" />:
             <code><![CDATA[
             var candidateMap = CandidateMap.Empty;
             candidateMap += 0; // Adds 'r1c1(1)' into the collection.
@@ -20,6 +21,18 @@
             candidateMap.AddRange(stackalloc[] { 2, 3, 4 }); // Adds 'r1c1(345)' into the collection.
             candidateMap |= anotherMap; // Adds a list of another instance of type 'CandidateMap' into the current collection.
             ]]></code>
+            </para>
+            <para>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </para>
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.Empty">
@@ -403,10 +416,11 @@
             Encapsulates a binary series of cell status table.
             </summary>
             <remarks>
-            This type holds a <see langword="static readonly"/> field called <see cref="F:Sudoku.Concepts.CellMap.Empty"/>,
+            <para>
+            This type holds a <see langword="static readonly" /> field called <see cref="F:Sudoku.Concepts.CellMap.Empty" />,
             it is the only field provided to be used as the entry to create or update collection.
-            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CellMap.Add(System.Int32)"/>, <see cref="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})"/>
-            or just <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Int32)"/> or <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})"/>:
+            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CellMap.Add(System.Int32)" />, <see cref="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})" />
+            or just <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Int32)" /> or <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})" />:
             <code><![CDATA[
             var cellMap = CellMap.Empty;
             cellMap += 0; // Adds 'r1c1' into the collection.
@@ -416,6 +430,18 @@
             ]]></code>
             If you want to learn more information about this type, please visit
             <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
+            </para>
+            <para>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </para>
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Shifting">
@@ -1327,6 +1353,17 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
             </summary>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.Grid.CandidateEnumerator">
             <summary>

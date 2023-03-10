@@ -4,7 +4,9 @@
 /// Defines the data structure that stores a set of cells and a digit, indicating the information
 /// about the locked candidate node.
 /// </summary>
-[IsLargeStruct]
+/// <remarks>
+/// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
+/// </remarks>
 public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
 	/// <summary>

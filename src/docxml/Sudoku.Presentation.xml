@@ -2349,6 +2349,17 @@ if (student is (name: var name, age: >= 18))
             Defines the data structure that stores a set of cells and a digit, indicating the information
             about the locked candidate node.
             </summary>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,System.Int32)">
             <summary>

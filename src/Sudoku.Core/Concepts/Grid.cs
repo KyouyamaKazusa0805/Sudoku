@@ -4,7 +4,9 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
-[IsLargeStruct]
+/// <remarks>
+/// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
+/// </remarks>
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 public unsafe partial struct Grid :

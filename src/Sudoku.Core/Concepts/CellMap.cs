@@ -5,6 +5,7 @@ namespace Sudoku.Concepts;
 /// Encapsulates a binary series of cell status table.
 /// </summary>
 /// <remarks>
+/// <para>
 /// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
 /// it is the only field provided to be used as the entry to create or update collection.
 /// If you want to add elements into it, you can use <see cref="Add(int)"/>, <see cref="AddRange(IEnumerable{int})"/>
@@ -18,8 +19,11 @@ namespace Sudoku.Concepts;
 /// ]]></code>
 /// If you want to learn more information about this type, please visit
 /// <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
+/// </para>
+/// <para>
+/// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
+/// </para>
 /// </remarks>
-[IsLargeStruct]
 [JsonConverter(typeof(Converter))]
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, int, CellMap>,

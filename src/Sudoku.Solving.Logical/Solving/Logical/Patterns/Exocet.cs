@@ -44,7 +44,9 @@
 /// <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
 /// <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
 /// <param name="CrossLine">Indicates the cross-line cells.</param>
-[IsLargeStruct]
+/// <remarks>
+/// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
+/// </remarks>
 public readonly partial record struct Exocet(
 	int Base1,
 	int Base2,

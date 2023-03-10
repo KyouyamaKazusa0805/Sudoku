@@ -5,6 +5,7 @@ namespace Sudoku.Concepts;
 /// Encapsulates a binary series of candidate status table.
 /// </summary>
 /// <remarks>
+/// <para>
 /// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
 /// it is the only field provided to be used as the entry to create or update collection.
 /// If you want to add elements into it, you can use <see cref="Add(int)"/>, <see cref="AddRange(IEnumerable{int})"/>
@@ -16,8 +17,11 @@ namespace Sudoku.Concepts;
 /// candidateMap.AddRange(stackalloc[] { 2, 3, 4 }); // Adds 'r1c1(345)' into the collection.
 /// candidateMap |= anotherMap; // Adds a list of another instance of type 'CandidateMap' into the current collection.
 /// ]]></code>
+/// </para>
+/// <para>
+/// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
+/// </para>
 /// </remarks>
-[IsLargeStruct]
 [JsonConverter(typeof(Converter))]
 public unsafe partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, int, CandidateMap>,

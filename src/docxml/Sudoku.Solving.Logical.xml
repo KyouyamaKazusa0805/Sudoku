@@ -2084,6 +2084,17 @@ if (student is (name: var name, age: >= 18))
             <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
             <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
             <param name="CrossLine">Indicates the cross-line cells.</param>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Logical.Patterns.Exocet.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -2130,6 +2141,17 @@ if (student is (name: var name, age: >= 18))
             <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
             <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
             <param name="CrossLine">Indicates the cross-line cells.</param>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Logical.Patterns.Exocet.Base1">
             <summary>Indicates the first base cell.</summary>
