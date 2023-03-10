@@ -4464,11 +4464,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.ISubsetStepSearcher.MaxSize">
-            <summary>
-            Indicates the maximum size of the searcher can search for.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.ISueDeCoq3DimensionStepSearcher">
             <summary>
             Provides with a <b>3-dimensional Sue de Coq</b> step searcher.
@@ -5344,12 +5339,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Solving.Logical.StepSearchers.SubsetStepSearcher">
             <inheritdoc cref="T:Sudoku.Solving.Logical.StepSearchers.ISubsetStepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Solving.Logical.StepSearchers.SubsetStepSearcher.Sudoku#Solving#Logical#StepSearchers#ISubsetStepSearcher#MaxSize">
-            <inheritdoc/>
-            <remarks>
-            I hide this member on purpose because 4 is the maximum size of subsets found in practice.
-            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Logical.StepSearchers.SubsetStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
             <inheritdoc/>

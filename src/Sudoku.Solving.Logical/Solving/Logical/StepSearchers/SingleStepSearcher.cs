@@ -22,7 +22,7 @@ internal sealed partial class SingleStepSearcher : ISingleStepSearcher
 
 
 	/// <inheritdoc/>
-	public unsafe IStep? GetAll(scoped ref LogicalAnalysisContext context)
+	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 		=> UseIttoryuMode ? GetAll_IttoryuMode(ref context) : GetAll_NonIttoryuMode(ref context);
 
 	/// <summary>

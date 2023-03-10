@@ -21,7 +21,7 @@ public ref partial struct LogicalAnalysisContext
 	/// <param name="grid">The reference to the puzzle.</param>
 	/// <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LogicalAnalysisContext(ICollection<IStep>? accumulator, in Grid grid, bool onlyFindOne)
+	internal LogicalAnalysisContext(ICollection<IStep>? accumulator, in Grid grid, bool onlyFindOne)
 	{
 		(Accumulator, OnlyFindOne) = (accumulator, onlyFindOne);
 		Grid = ref grid;
@@ -38,7 +38,7 @@ public ref partial struct LogicalAnalysisContext
 	/// Indicates the previously set digit. This field is only used for <see cref="ISingleStepSearcher"/>.
 	/// </summary>
 	/// <seealso cref="ISingleStepSearcher"/>
-	public int PreviousSetDigit { get; internal set; }
+	public int PreviousSetDigit { get; set; }
 
 	/// <summary>
 	/// <para>

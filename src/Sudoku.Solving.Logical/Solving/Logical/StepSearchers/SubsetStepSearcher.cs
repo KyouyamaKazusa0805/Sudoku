@@ -4,17 +4,10 @@
 internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 {
 	/// <inheritdoc/>
-	/// <remarks>
-	/// I hide this member on purpose because 4 is the maximum size of subsets found in practice.
-	/// </remarks>
-	int ISubsetStepSearcher.MaxSize { get; set; } = 4;
-
-
-	/// <inheritdoc/>
 	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		for (var size = 2; size <= ((ISubsetStepSearcher)this).MaxSize; size++)
+		for (var size = 2; size <= 4; size++)
 		{
 			// Naked subsets.
 			for (var house = 0; house < 27; house++)
@@ -60,7 +53,7 @@ internal sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 						}
 					}
 
-					bool? isLocked = flagMask == mask ? true : flagMask != 0 ? false : null;
+					var isLocked = flagMask == mask ? true : flagMask != 0 ? false : default(bool?);
 					var step = new NakedSubsetStep(
 						conclusions.ToArray(),
 						new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, house) },
