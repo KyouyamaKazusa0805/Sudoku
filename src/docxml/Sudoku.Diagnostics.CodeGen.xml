@@ -126,27 +126,6 @@
             </param>
             <returns>The reference same as <paramref name="this"/>.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator">
-            <summary>
-            Defines a source generator that generates the method and the corresponding values, forming a <see langword="switch"/> expression.
-            </summary>
-            <remarks>This source generator does not support generic types.</remarks>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer">
-            <summary>
-            Represents a comparer instance that compares two <see cref="T:Microsoft.CodeAnalysis.AttributeData"/> instances
-            via their own first arguments.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer.Equals(Microsoft.CodeAnalysis.AttributeData,Microsoft.CodeAnalysis.AttributeData)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AttributeDataComparer.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GeneratedExtensionDeconstructionGenerator">
             <summary>
             Defines a source generator that generates the source code for extension deconstruction methods.

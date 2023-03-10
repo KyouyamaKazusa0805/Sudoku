@@ -99,7 +99,7 @@ public readonly partial struct Conclusion :
 	}
 
 	[DebuggerHidden]
-	private string OutputString => $"{CellsMap[Cell]}{ConclusionType.GetNotation()}{Digit + 1}";
+	private string OutputString => $"{CellsMap[Cell]}{ConclusionType.Notation()}{Digit + 1}";
 
 
 	[DeconstructionMethod]

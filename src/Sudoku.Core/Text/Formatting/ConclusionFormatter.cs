@@ -46,7 +46,7 @@ public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 				var hasOnlyOneType = selection.HasOnlyOneElement();
 				foreach (var typeGroup in selection)
 				{
-					var op = typeGroup.Key.GetNotation();
+					var op = typeGroup.Key.Notation();
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
 						sb.Append(CellMap.Empty + from conclusion in digitGroup select conclusion.Cell);

@@ -1492,18 +1492,6 @@ result ^= expression;
         <member name="M:Sudoku.Solving.Logical.Meta.IPhasedConclusionProvider`2.System#IEquatable{TSelf}#Equals(`0)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Logical.Meta.ExocetEliminatedReason_EnumSwitchExpressionExtensions">
-            <summary>
-            Provides with extension methods for switching on the current type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Logical.Meta.ExocetEliminatedReason_EnumSwitchExpressionExtensions.GetName(Sudoku.Solving.Logical.Meta.ExocetEliminatedReason)">
-            <summary>
-            Gets the name of the current eliminated reason field.
-            </summary>
-            <param name="this">The field.</param>
-            <returns>The name of the field.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Logical.Patterns.AlmostHiddenSet">
             <summary>
             Defines a data structure that describes an AHS.

@@ -3263,6 +3263,22 @@ fixed (short* ptr = instance)
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Inference,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.InferenceExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Inference"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Inference"/>
+        </member>
+        <member name="M:Sudoku.Concepts.InferenceExtensions.ConnectingNotation(Sudoku.Concepts.Inference)">
+            <summary>
+            Gets connecting notation of the inference.
+            </summary>
+            <param name="this">The inference instance.</param>
+            <returns>The connecting notation of the inference.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="this"/> is not defined in the enumeration type.
+            </exception>
+        </member>
         <member name="T:Sudoku.Concepts.SymmetryType">
             <summary>
             Define a symmetry type.
@@ -3312,30 +3328,6 @@ fixed (short* ptr = instance)
             <summary>
             Indicates all symmetry types should be satisfied.
             </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Inference_EnumSwitchExpressionExtensions">
-            <summary>
-            Provides with extension methods for switching on the current type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Inference_EnumSwitchExpressionExtensions.GetIdentifier(Sudoku.Concepts.Inference)">
-            <summary>
-            Gets the identifier of the inference.
-            </summary>
-            <param name="this">The inference.</param>
-            <returns>The identifier value.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.SymmetryType_EnumSwitchExpressionExtensions">
-            <summary>
-            Provides with extension methods for switching on the current type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.SymmetryType_EnumSwitchExpressionExtensions.GetName(Sudoku.Concepts.SymmetryType)">
-            <summary>
-            Get the name of the current symmetry type.
-            </summary>
-            <param name="this">The type.</param>
-            <returns>The name.</returns>
         </member>
         <member name="T:Sudoku.Linq.GridEnumerable">
             <summary>
@@ -6647,6 +6639,22 @@ if (student is (name: var name, age: >= 18))
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.ConclusionTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Solving.ConclusionType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.ConclusionType"/>
+        </member>
+        <member name="M:Sudoku.Solving.ConclusionTypeExtensions.Notation(Sudoku.Solving.ConclusionType)">
+            <summary>
+            Gets the notation of the conclusion type.
+            </summary>
+            <param name="this">The conclusion type kind.</param>
+            <returns>The string representation of the conclusion kind.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="this"/> is not defined in enumeration type.
+            </exception>
+        </member>
         <member name="T:Sudoku.Solving.Mechanism.IComplexSolver`2">
             <summary>
             Defines a complex solver, that uses complex algorithm to solve a puzzle, returning
@@ -6748,18 +6756,6 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </returns>
-        </member>
-        <member name="T:Sudoku.Solving.ConclusionType_EnumSwitchExpressionExtensions">
-            <summary>
-            Provides with extension methods for switching on the current type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.ConclusionType_EnumSwitchExpressionExtensions.GetNotation(Sudoku.Solving.ConclusionType)">
-            <summary>
-            Gets the notation of the conclusion type.
-            </summary>
-            <param name="this">The conclusion type.</param>
-            <returns>The notation of the conclusion type.</returns>
         </member>
         <member name="T:Sudoku.Text.DigitRange">
             <summary>
