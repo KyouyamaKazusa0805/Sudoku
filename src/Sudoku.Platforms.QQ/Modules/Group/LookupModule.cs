@@ -6,6 +6,7 @@ file sealed class LookupModule : GroupModule
 #pragma warning disable CS0414
 	private static readonly string ViewContentKindDefaultValue = ViewContentKinds.Elementary;
 	private static readonly int CloverLevelDefaultValue = -1;
+	private static readonly int MainLevelDefaultValue = -1;
 #pragma warning restore CS0414
 
 
@@ -32,9 +33,18 @@ file sealed class LookupModule : GroupModule
 	public string ViewContentKind { get; set; } = null!;
 
 	/// <summary>
+	/// Indicates the main card level.
+	/// </summary>
+	[DoubleArgumentCommand("主卡")]
+	[ValueConverter<NumericConverter<int>>]
+	[DefaultValue(nameof(MainLevelDefaultValue))]
+	public int MainLevel { get; set; }
+
+	/// <summary>
 	/// Indicates the clover level.
 	/// </summary>
 	[DoubleArgumentCommand("三叶草")]
+	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue(nameof(CloverLevelDefaultValue))]
 	public int CloverLevel { get; set; }
 
@@ -205,7 +215,7 @@ file sealed class LookupModule : GroupModule
 						return "查询失败。三叶草等级只能为 1 到 10，或者不填，表示不带三叶草强化。";
 					}
 
-					var main = userData.CardLevel;
+					var main = MainLevel == -1 ? userData.CardLevel : MainLevel;
 					if (Array.Exists(AuxiliaryCards, card => main - card < 0))
 					{
 						return $"查询失败。主卡级别为 {main}，但填入的辅助卡级别比主卡级别还要高。不支持这种强化。";

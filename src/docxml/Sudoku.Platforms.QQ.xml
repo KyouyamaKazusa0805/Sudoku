@@ -875,6 +875,11 @@
             Indicates the view content kind.
             </summary>
         </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.MainLevel">
+            <summary>
+            Indicates the main card level.
+            </summary>
+        </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.CloverLevel">
             <summary>
             Indicates the clover level.
