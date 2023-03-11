@@ -2074,12 +2074,12 @@ fixed (short* ptr = instance)
             Please note that the iterator will iterate all masks by reference, which means
             you can apply <see langword="ref" /> and <see langword="ref readonly" /> modifier
             onto the iteration variable:
-            <code>
+            <code><![CDATA[
             foreach (ref readonly short mask in grid)
             {
                 // Do something.
             }
-            </code>
+            ]]></code>
             </para>
             <para>
             <target name="foreach-variables">

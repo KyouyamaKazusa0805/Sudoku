@@ -1252,12 +1252,12 @@ public unsafe partial struct Grid :
 	/// Please note that the iterator will iterate all masks by reference, which means
 	/// you can apply <see langword="ref"/> and <see langword="ref readonly"/> modifier
 	/// onto the iteration variable:
-	/// <code>
+	/// <code><![CDATA[
 	/// foreach (ref readonly short mask in grid)
 	/// {
 	///     // Do something.
 	/// }
-	/// </code>
+	/// ]]></code>
 	/// </para>
 	/// <para>
 	/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="scoped-ref"]/target[@name="foreach-variables"]'/>
