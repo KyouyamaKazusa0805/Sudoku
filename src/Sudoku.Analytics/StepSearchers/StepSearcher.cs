@@ -7,31 +7,36 @@
 public abstract class StepSearcher
 {
 	/// <summary>
-	/// Returns the qualified type name of this instance.
+	/// The qualified type name of this instance.
 	/// </summary>
-	/// <returns>Qualified type name of this instance.</returns>
-	public string ToTypeNameString() => GetType().Name;
+	protected string TypeName => EqualityContract.Name;
+
+	/// <summary>
+	/// Indicates the user-defined base name of the step searcher.
+	/// This property can return <see langword="null"/> if this step searcher isn't marked <see cref="StepSearcherNameAttribute"/>.
+	/// </summary>
+	/// <seealso cref="StepSearcherNameAttribute"/>
+	protected string? BaseName
+		=> EqualityContract.GetCustomAttribute<StepSearcherNameAttribute>() switch
+		{
+			{ IsNamedValue: true, Name: var name } => name,
+			{ IsResourceValue: true, ResourceEntry: var key } => R[key],
+			_ => null
+		};
+
+	/// <summary>
+	/// Indicates the <see cref="Type"/> instance that represents the reflection data for the current instance.
+	/// This property is used as type checking to distinct with multiple <see cref="StepSearcher"/>s.
+	/// </summary>
+	protected Type EqualityContract => GetType();
+
 
 	/// <summary>
 	/// Returns the real name of this instance.
 	/// </summary>
 	/// <returns>Real name of this instance.</returns>
-	public sealed override string ToString()
-	{
-		const string commonPrefix = "StepSearcherName_";
-		return GetType() switch
-		{
-			{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherAttribute>() switch
-			{
-				{ NameResourceEntry: { } key } => R[key] ?? f(typeName),
-				_ => f(typeName)
-			}
-		};
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string f(string typeName) => R[$"{commonPrefix}{typeName}"] ?? typeName;
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public sealed override string ToString() => BaseName ?? R[$"StepSearcherName_{TypeName}"] ?? TypeName;
 
 	/// <summary>
 	/// Try to search for <see cref="Step"/> results for the current technique rule.
@@ -41,8 +46,8 @@ public abstract class StepSearcher
 	/// The analysis context. This argument offers you some elementary data configured or assigned, for the current loop of step searching.
 	/// </para>
 	/// <para>
-	/// All available <see cref="Step"/> results will be stored in property <see cref="LogicalAnalysisContext.Accumulator"/>
-	/// of this argument, if property <see cref="LogicalAnalysisContext.OnlyFindOne"/> returns <see langword="false"/>;
+	/// All available <see cref="Step"/> results will be stored in property <see cref="AnalysisContext.Accumulator"/>
+	/// of this argument, if property <see cref="AnalysisContext.OnlyFindOne"/> returns <see langword="false"/>;
 	/// otherwise, the property won't be used, and this method will return the first found step.
 	/// </para>
 	/// </param>
@@ -68,9 +73,6 @@ public abstract class StepSearcher
 	/// </list>
 	/// </returns>
 	/// <seealso cref="Step"/>
-	/// <seealso cref="LogicalAnalysisContext"/>
-	public virtual Step? GetAllUnsafe(scoped ref LogicalAnalysisContext context) => GetAll(ref context);
-
-	/// <inheritdoc cref="GetAllUnsafe(ref LogicalAnalysisContext)"/>
-	protected internal abstract Step? GetAll(scoped ref LogicalAnalysisContext context);
+	/// <seealso cref="AnalysisContext"/>
+	protected internal abstract Step? GetAll(scoped ref AnalysisContext context);
 }

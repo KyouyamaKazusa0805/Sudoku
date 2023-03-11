@@ -1,9 +1,9 @@
-﻿namespace Sudoku.Analytics;
+﻿namespace Sudoku.Analytics.Processing;
 
 /// <summary>
 /// Defines a context that is used by step searchers to check the details of the solving and analysis information.
 /// </summary>
-public ref partial struct LogicalAnalysisContext
+public ref struct AnalysisContext
 {
 	/// <summary>
 	/// Indicates the puzzle to be solved and analyzed.
@@ -15,13 +15,13 @@ public ref partial struct LogicalAnalysisContext
 
 
 	/// <summary>
-	/// Initializes a <see cref="LogicalAnalysisContext"/> instance via the specified.
+	/// Initializes a <see cref="AnalysisContext"/> instance via the specified.
 	/// </summary>
 	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="grid">The reference to the puzzle.</param>
 	/// <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal LogicalAnalysisContext(List<Step>? accumulator, in Grid grid, bool onlyFindOne)
+	internal AnalysisContext(List<Step>? accumulator, in Grid grid, bool onlyFindOne)
 	{
 		(Accumulator, OnlyFindOne) = (accumulator, onlyFindOne);
 		Grid = ref grid;

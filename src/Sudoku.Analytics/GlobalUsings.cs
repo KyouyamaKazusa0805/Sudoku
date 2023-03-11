@@ -7,6 +7,7 @@ global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.Messages;
 global using Sudoku.Analytics.Categorization;
+global using Sudoku.Analytics.Processing;
 global using Sudoku.Analytics.Rating;
 global using Sudoku.Analytics.Steps;
 global using Sudoku.Analytics.StepSearchers;

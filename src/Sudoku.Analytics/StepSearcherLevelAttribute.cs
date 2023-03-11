@@ -5,13 +5,13 @@
 /// indicating the searching level of the step searcher to be invoked.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class SearchingLevelAttribute : StepSearcherMetadataItemAttribute
+public sealed class StepSearcherLevelAttribute : StepSearcherMetadataItemAttribute
 {
 	/// <summary>
-	/// Initializes a <see cref="SearchingLevelAttribute"/> instane via the level.
+	/// Initializes a <see cref="StepSearcherLevelAttribute"/> instane via the level.
 	/// </summary>
 	/// <param name="level">The level.</param>
-	public SearchingLevelAttribute(int level) => Level = level;
+	public StepSearcherLevelAttribute(int level) => Level = level;
 
 
 	/// <summary>
