@@ -3,10 +3,6 @@
 /// <summary>
 /// Represents a technique group.
 /// </summary>
-/// <remarks>
-/// Different with <see cref="TechniqueTags"/>, this enumeration type contains the real technique group that the technique belongs to.
-/// In addition, the value of this type may effect the displaying of the analysis result.
-/// </remarks>
 public enum TechniqueGroup : byte
 {
 	/// <summary>
