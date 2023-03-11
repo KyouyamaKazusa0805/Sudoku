@@ -60,7 +60,8 @@ public abstract record Step(Conclusion[] Conclusions, View[]? Views) : IVisual
 	/// <exception cref="ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
 	/// <seealso cref="FormatInterpolatedParts"/>
 	/// <seealso cref="R"/>
-	[AllowNull, MaybeNull]
+	[AllowNull]
+	[MaybeNull]
 	public virtual string Format
 		=> R[$"TechniqueFormat_{EqualityContract.Name}"] ?? throw new ResourceNotFoundException(Code.ToString(), EqualityContract.Assembly);
 
@@ -93,8 +94,7 @@ public abstract record Step(Conclusion[] Conclusions, View[]? Views) : IVisual
 	/// <summary>
 	/// The technique group that this technique instance belongs to.
 	/// </summary>
-	public virtual TechniqueGroup Group
-		=> Enum.TryParse<TechniqueGroup>(Code.ToString(), out var inst) ? inst : TechniqueGroup.None;
+	public virtual TechniqueGroup Group => Enum.TryParse<TechniqueGroup>(Code.ToString(), out var inst) ? inst : TechniqueGroup.None;
 
 	/// <summary>
 	/// The difficulty level of this step.
@@ -106,17 +106,6 @@ public abstract record Step(Conclusion[] Conclusions, View[]? Views) : IVisual
 	/// </remarks>
 	/// <seealso cref="FlagsAttribute"/>
 	public abstract DifficultyLevel DifficultyLevel { get; }
-
-	/// <summary>
-	/// Indicates the rarity of this technique appears.
-	/// </summary>
-	/// <remarks>
-	/// Although the type of this property is marked <see cref="FlagsAttribute"/>,
-	/// we still can't set multiple flag values into the result. The flags are filtered
-	/// during generating puzzles.
-	/// </remarks>
-	/// <seealso cref="FlagsAttribute"/>
-	public abstract Rarity Rarity { get; }
 
 	/// <summary>
 	/// Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
@@ -165,18 +154,9 @@ public abstract record Step(Conclusion[] Conclusions, View[]? Views) : IVisual
 	/// Returns a string that only contains the name and the basic description.
 	/// </summary>
 	/// <returns>The string instance.</returns>
-	/// <remarks>
-	/// <para><i>
+	/// <remarks><i>
 	/// This method uses modifiers <see langword="sealed"/> and <see langword="override"/> to prevent with compiler overriding this method.
-	/// </i></para>
-	/// <para><b><i>
-	/// In addition, <c>ToString</c> is a special method that has already been declared in type <see cref="object"/>
-	/// as <see langword="virtual"/> one, so this interface member lacks of binding behavior on implementing,
-	/// which means even if you don't implement a parameterless method called <c>ToString</c> that returns <see cref="string"/>,
-	/// the code will also be compiled successfully if nullability analysis is disabled.
-	/// This member declared here is only used as a role of XML documentation comment provider.
-	/// </i></b></para>
-	/// </remarks>
+	/// </i></remarks>
 	public sealed override string ToString()
 	{
 		var currentCultureName = CultureInfo.CurrentCulture.Name;

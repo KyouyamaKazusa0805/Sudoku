@@ -145,51 +145,6 @@
             Indicates the puzzle can't be solved unless using last resort methods.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.Rarity">
-            <summary>
-            Indicates the rarity of the technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Rarity.Unknown">
-            <summary>
-            Indicates the technique can't be confirmed for its rarity.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Rarity.Always">
-            <summary>
-            Indicates the technique always appears, such as <b>Hidden Single</b>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Rarity.Often">
-            <summary>
-            Indicates the rarity is often appears.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Rarity.Sometimes">
-            <summary>
-            Indicates the rarity is sometimes appears.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Rarity.Seldom">
-            <summary>
-            Indicates the rarity is seldom appears.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Rarity.HardlyEver">
-            <summary>
-            Indicates the rarity is hardly ever appears.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Rarity.OnlyForSpecialPuzzles">
-            <summary>
-            Indicates the technique only appears in the special puzzles designed on purpose.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Rarity.ReplacedByOtherTechniques">
-            <summary>
-            Indicates the technique can't appear because the technique will be replaced with another technique.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
             <summary>
             Represents a technique instance, which is used for comparison.
@@ -2574,17 +2529,6 @@
             </remarks>
             <seealso cref="T:System.FlagsAttribute"/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.Rarity">
-            <summary>
-            Indicates the rarity of this technique appears.
-            </summary>
-            <remarks>
-            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
-            we still can't set multiple flag values into the result. The flags are filtered
-            during generating puzzles.
-            </remarks>
-            <seealso cref="T:System.FlagsAttribute"/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases">
             <summary>
             Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
@@ -2626,18 +2570,9 @@
             Returns a string that only contains the name and the basic description.
             </summary>
             <returns>The string instance.</returns>
-            <remarks>
-            <para><i>
+            <remarks><i>
             This method uses modifiers <see langword="sealed"/> and <see langword="override"/> to prevent with compiler overriding this method.
-            </i></para>
-            <para><b><i>
-            In addition, <c>ToString</c> is a special method that has already been declared in type <see cref="T:System.Object"/>
-            as <see langword="virtual"/> one, so this interface member lacks of binding behavior on implementing,
-            which means even if you don't implement a parameterless method called <c>ToString</c> that returns <see cref="T:System.String"/>,
-            the code will also be compiled successfully if nullability analysis is disabled.
-            This member declared here is only used as a role of XML documentation comment provider.
-            </i></b></para>
-            </remarks>
+            </i></remarks>
         </member>
         <member name="M:Sudoku.Analytics.Steps.Step.ToSimpleString">
             <inheritdoc/>
