@@ -385,30 +385,6 @@
             Indicates how many puzzles the library has been finished.
             </summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData.IsAutoPencilmarking">
-            <summary>
-            Indicates whether the puzzle should render candidates after the puzzle extracted.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData.Equals(Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData)">
-            <inheritdoc/>
-            <remarks>
-            Please note that the equality of two <see cref="T:Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData"/> instances only checks for their properties
-            <see cref="P:Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData.Name"/> and <see cref="P:Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData.GroupId"/>. Other properties will not be checked even if they may be different.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData.op_Equality(Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData,Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData.op_Inequality(Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData,Sudoku.Platforms.QQ.Data.Puzzles.PuzzleLibraryData)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind">
             <summary>
             Defines a role kind in a group. The value provides with a kind of role who emits and raises a module.

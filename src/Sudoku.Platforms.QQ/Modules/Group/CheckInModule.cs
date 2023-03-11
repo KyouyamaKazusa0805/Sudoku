@@ -171,7 +171,7 @@ file static class LocalScorer
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoinOriginal() => 24 + Rng.Next(-6, 7);
+	public static int GetCoinOriginal() => 240 + Rng.Next(-6, 7);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExperiencePoint(int continuousDaysCount, int cardLevel)

@@ -363,7 +363,7 @@ file static class LocalScorer
 		} * Scorer.GetWeekendFactor();
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoinOriginal() => 48 + Rng.Next(-6, 7);
+	public static int GetCoinOriginal() => 480 + Rng.Next(-6, 7);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExperiencePointPerPuzzle(DifficultyLevel difficultyLevel)
