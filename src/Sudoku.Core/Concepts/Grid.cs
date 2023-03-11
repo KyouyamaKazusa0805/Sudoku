@@ -1196,19 +1196,22 @@ public unsafe partial struct Grid :
 	/// <seealso cref="ToString(string?)"/>
 	/// <seealso cref="ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(IGridFormatter gridFormatter) => gridFormatter.ToString(this);
+	public readonly string ToString(IGridFormatter gridFormatter)
+		=> this switch { { IsUndefined: true } => $"<{nameof(Undefined)}>", { IsEmpty: true } => $"<{nameof(Empty)}>", _ => gridFormatter.ToString(this) };
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-		=> (format, formatProvider) switch
+		=> (this, format, formatProvider) switch
 		{
-			(null, null) => ToString(SusserFormat.Default),
-			(not null, _) => ToString(format),
-			(_, IGridFormatter formatter) => formatter.ToString(this),
-			(_, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
-			(_, CultureInfo { Name: "zh-CN" }) => ToString(SusserFormat.Full),
-			(_, CultureInfo { Name: ['e', 'n', '-', >= 'A' and <= 'Z', >= 'A' and <= 'Z'] }) => ToString(MultipleLineFormat.Default),
+			({ IsUndefined: true }, _, _) => $"<{nameof(Undefined)}>",
+			({ IsEmpty: true }, _, _) => $"<{nameof(Empty)}>",
+			(_, null, null) => ToString(SusserFormat.Default),
+			(_, not null, _) => ToString(format),
+			(_, _, IGridFormatter formatter) => formatter.ToString(this),
+			(_, _, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
+			(_, _, CultureInfo { Name: "zh-CN" }) => ToString(SusserFormat.Full),
+			(_, _, CultureInfo { Name: ['e', 'n', '-', >= 'A' and <= 'Z', >= 'A' and <= 'Z'] }) => ToString(MultipleLineFormat.Default),
 			_ => ToString(SusserFormat.Default)
 		};
 
