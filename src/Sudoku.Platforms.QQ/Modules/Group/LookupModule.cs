@@ -16,26 +16,30 @@ file sealed class LookupModule : GroupModule
 	/// <summary>
 	/// Indicates QQ number of the user.
 	/// </summary>
-	[DoubleArgumentCommand("QQ")]
+	[DoubleArgument("QQ")]
+	[Hint("表示你需要查询的用户的 QQ 号码。")]
 	public string? UserId { get; set; }
 
 	/// <summary>
 	/// Indicates nick name of the user.
 	/// </summary>
-	[DoubleArgumentCommand("昵称")]
+	[DoubleArgument("昵称")]
+	[Hint("表示你需要查询的用户的群名片。")]
 	public string? UserNickname { get; set; }
 
 	/// <summary>
 	/// Indicates the view content kind.
 	/// </summary>
-	[DoubleArgumentCommand("内容")]
+	[DoubleArgument("内容")]
+	[Hint("表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。")]
 	[DefaultValue(nameof(ViewContentKindDefaultValue))]
 	public string ViewContentKind { get; set; } = null!;
 
 	/// <summary>
 	/// Indicates the main card level.
 	/// </summary>
-	[DoubleArgumentCommand("主卡")]
+	[DoubleArgument("主卡")]
+	[Hint("表示你需要查询的强化期间，主卡的级别。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue(nameof(MainLevelDefaultValue))]
 	public int MainLevel { get; set; }
@@ -43,7 +47,8 @@ file sealed class LookupModule : GroupModule
 	/// <summary>
 	/// Indicates the clover level.
 	/// </summary>
-	[DoubleArgumentCommand("三叶草")]
+	[DoubleArgument("三叶草")]
+	[Hint("表示你需要查询的强化期间，三叶草的级别。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue(nameof(CloverLevelDefaultValue))]
 	public int CloverLevel { get; set; }
@@ -51,7 +56,8 @@ file sealed class LookupModule : GroupModule
 	/// <summary>
 	/// Indicates the auxiliary cards.
 	/// </summary>
-	[DoubleArgumentCommand("辅助")]
+	[DoubleArgument("辅助")]
+	[Hint("表示你需要查询的强化期间，辅助卡的级别，书写格式和“强化”指令里的“辅助”用法一致。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericArrayConverter<int>>]
 	public int[]? AuxiliaryCards { get; set; }
 

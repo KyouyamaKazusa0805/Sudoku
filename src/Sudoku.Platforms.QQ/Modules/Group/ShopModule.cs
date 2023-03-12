@@ -9,7 +9,8 @@ file sealed class ShopModule : GroupModule
 	/// <summary>
 	/// Indicates the item kind.
 	/// </summary>
-	[DoubleArgumentCommand("物品")]
+	[DoubleArgument("物品")]
+	[Hint("表示你要查看的商店的物品类型。可以填入的值有“强化卡”和“三叶草”。")]
 	public string? ItemKind { get; set; }
 
 

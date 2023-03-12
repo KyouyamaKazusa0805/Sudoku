@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents a base type that defines a module that can be called by <see cref="MiraiBot"/> instance.
 /// </summary>
+/// <seealso cref="MiraiBot"/>
 public abstract class GroupModule : IModule
 {
 	/// <summary>
@@ -10,20 +11,6 @@ public abstract class GroupModule : IModule
 	/// </summary>
 	protected const GroupRoleKind AllRoles = GroupRoleKind.God | GroupRoleKind.Owner | GroupRoleKind.Manager | GroupRoleKind.DefaultMember;
 
-
-	/// <summary>
-	/// Indicates whether the module is currently enabled. If disabled (i.e. holding with <see langword="false"/> value),
-	/// this option won't be executed even if a person with a supported role emits a command executing this module.
-	/// </summary>
-	/// <remarks><i>This property is set <see langword="true"/> by default.</i></remarks>
-	public virtual bool IsEnabled
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ((IModule)this).IsEnable ?? false;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => ((IModule)this).IsEnable = value;
-	}
 
 	/// <summary>
 	/// Indicates the raising command.
@@ -82,11 +69,6 @@ public abstract class GroupModule : IModule
 	/// <exception cref="InvalidOperationException">Throws when properties overridden by derived type is invalid.</exception>
 	public async void Execute(MessageReceiverBase @base)
 	{
-		if (!IsEnabled)
-		{
-			return;
-		}
-
 		if (!RequiredBotRole.IsFlag())
 		{
 			throw new InvalidOperationException("This module contains multiple highest allowed permission kinds.");
@@ -137,7 +119,7 @@ public abstract class GroupModule : IModule
 
 		ResetProperties();
 
-		if (!text.ParseMessageTo(this, out var failedReason))
+		if (!text.ParseMessageTo(this, out var failedReason, out var requestedHintArgumentName))
 		{
 			switch (failedReason)
 			{
@@ -155,7 +137,6 @@ public abstract class GroupModule : IModule
 					return;
 				}
 				case ParsingFailedReason.NotCurrentModule:
-				case ParsingFailedReason.None:
 				{
 					return;
 				}
@@ -172,7 +153,32 @@ public abstract class GroupModule : IModule
 			}
 		}
 
-		await ExecuteCoreAsync(gmr);
+		if (requestedHintArgumentName is null)
+		{
+			await ExecuteCoreAsync(gmr);
+		}
+		else
+		{
+			var cachedPropertiesInfo = GetType().GetProperties();
+			await gmr.SendMessageAsync(
+				string.Join(
+					$"{Environment.NewLine}{Environment.NewLine}",
+					from argumentName in requestedHintArgumentName
+					let chosenPropertyInfo = (
+						from pi in cachedPropertiesInfo
+						where pi.GetCustomAttribute<DoubleArgumentAttribute>()?.Name == argumentName
+						select pi
+					).FirstOrDefault()
+					where chosenPropertyInfo is not null
+					let hintText = chosenPropertyInfo.GetCustomAttribute<HintAttribute>()?.Hint ?? "<暂无介绍信息>"
+					select
+						$"""
+						参数 “{argumentName}” 的提示：
+						  * {hintText}
+						"""
+				)
+			);
+		}
 	}
 
 	/// <summary>
@@ -197,7 +203,7 @@ public abstract class GroupModule : IModule
 				continue;
 			}
 
-			if (!propertyInfo.IsDefined(typeof(DoubleArgumentCommandAttribute)))
+			if (!propertyInfo.IsDefined(typeof(DoubleArgumentAttribute)))
 			{
 				continue;
 			}
@@ -314,21 +320,35 @@ file enum ParsingFailedReason : int
 file static class MessageParser
 {
 	/// <summary>
+	/// Indicates the hint-requested tokens.
+	/// </summary>
+	private static readonly string[] HintRequestedTokens = new[] { "？", "?" };
+
+
+	/// <summary>
 	/// Try to parse message, and assign converted message data into target <see cref="GroupModule"/> instance.
 	/// </summary>
 	/// <param name="this">The plain message to be parsed.</param>
 	/// <param name="module">The module instance.</param>
 	/// <param name="failedReason">Indicates the failed reason that is encountered.</param>
+	/// <param name="requestedHintArgumentName">Indicates the requested hint argument name.</param>
 	/// <returns>
 	/// A <see cref="bool"/> result indicating whether the specified plain message is compatible
 	/// with module specified as argument <paramref name="module"/>.
 	/// </returns>
-	public static bool ParseMessageTo(this string @this, GroupModule module, out ParsingFailedReason failedReason)
+	public static bool ParseMessageTo(
+		this string @this,
+		GroupModule module,
+		out ParsingFailedReason failedReason,
+		[MaybeNullWhen(false)] out List<string>? requestedHintArgumentName
+	)
 	{
+		requestedHintArgumentName = null;
+
 		var moduleType = module.GetType();
 
 		var isFirstArg = true;
-		var args = @this.ParseCommmandLine("""[\""“”].+?[\""“”]|[^ ]+""", '"', '“', '”');
+		var args = @this.ParseCommandLine("""[\""“”].+?[\""“”]|[^ ]+""", '"', '“', '”');
 		for (var i = 0; i < args.Length; i++)
 		{
 			var arg = args[i];
@@ -352,7 +372,7 @@ file static class MessageParser
 			var foundPropertyInfo = default(PropertyInfo?);
 			foreach (var tempPropertyInfo in moduleType.GetProperties())
 			{
-				if (tempPropertyInfo.GetCustomAttribute<DoubleArgumentCommandAttribute>() is { Name: var name } && name == arg)
+				if (tempPropertyInfo.GetCustomAttribute<DoubleArgumentAttribute>() is { Name: var name } && name == arg)
 				{
 					foundPropertyInfo = tempPropertyInfo;
 					break;
@@ -384,9 +404,12 @@ file static class MessageParser
 			}
 
 			var nextArg = args[i + 1];
-			switch (foundPropertyInfo.GetGenericAttributeTypeArguments(typeof(ValueConverterAttribute<>)))
+			switch (
+				foundPropertyInfo.GetGenericAttributeTypeArguments(typeof(ValueConverterAttribute<>)),
+				Array.Exists(HintRequestedTokens, e => nextArg == e)
+			)
 			{
-				case []:
+				case ([], false):
 				{
 					if (foundPropertyInfo.PropertyType != typeof(string))
 					{
@@ -398,7 +421,7 @@ file static class MessageParser
 
 					break;
 				}
-				case [var valueConverterType]:
+				case ([var valueConverterType], false):
 				{
 					try
 					{
@@ -411,6 +434,12 @@ file static class MessageParser
 						failedReason = ParsingFailedReason.InvalidInput;
 						return false;
 					}
+
+					break;
+				}
+				case (_, true):
+				{
+					(requestedHintArgumentName ??= new()).Add(args[i]);
 
 					break;
 				}
@@ -431,7 +460,7 @@ file static class MessageParser
 	/// <param name="trimmedCharacters">Indicates the trimmed characters.</param>
 	/// <returns>Parsed arguments, represented as an array of <see cref="string"/> values.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string[] ParseCommmandLine(
+	private static string[] ParseCommandLine(
 		this string @this,
 		[StringSyntax(StringSyntaxAttribute.Regex)] string argumentMatcherRegex,
 		params char[]? trimmedCharacters

@@ -4,7 +4,7 @@
 /// Represents a default value attribute.
 /// </summary>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class DefaultValueAttribute : CommandLineParsingAttribute
+public sealed class DefaultValueAttribute : CommandLineParsingItemAttribute
 {
 	/// <summary>
 	/// Initializes a <see cref="DefaultValueAttribute"/> instance via the specified default value invoker name.

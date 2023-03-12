@@ -11,7 +11,8 @@ file sealed class RefreshUserDataListModule : GroupModule
 	/// <summary>
 	/// Indicates the range.
 	/// </summary>
-	[DoubleArgumentCommand("范围")]
+	[DoubleArgument("范围")]
+	[Hint("")]
 	public string? Range { get; set; }
 
 	/// <inheritdoc/>

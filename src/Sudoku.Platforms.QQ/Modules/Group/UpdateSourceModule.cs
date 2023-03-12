@@ -15,26 +15,30 @@ file sealed class UpdateSourceModule : GroupModule
 	/// <summary>
 	/// Indicates the user name.
 	/// </summary>
-	[DoubleArgumentCommand("用户名")]
+	[DoubleArgument("用户名")]
+	[Hint("表示你要为谁进行加分操作。该参数指定的是用户的群名片。")]
 	public string? UserName { get; set; }
 
 	/// <summary>
 	/// Indicates the user ID.
 	/// </summary>
-	[DoubleArgumentCommand("QQ")]
+	[DoubleArgument("QQ")]
+	[Hint("表示你要为谁进行加分操作。该参数指定的是用户的 QQ 号。")]
 	public string? UserId { get; set; }
 
 	/// <summary>
 	/// Indicates the addition of experience point.
 	/// </summary>
-	[DoubleArgumentCommand("经验")]
+	[DoubleArgument("经验")]
+	[Hint("表示你要为该用户加多少经验值。")]
 	[ValueConverter<NumericConverter<int>>]
 	public int ExperiencePointAddition { get; set; }
 
 	/// <summary>
 	/// Indicates the addition of coin.
 	/// </summary>
-	[DoubleArgumentCommand("金币")]
+	[DoubleArgument("金币")]
+	[Hint("表示你要为该用户加多少金币。")]
 	[ValueConverter<NumericConverter<int>>]
 	public int CoinAddition { get; set; }
 

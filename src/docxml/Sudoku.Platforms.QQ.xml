@@ -165,7 +165,17 @@
             Indicates triggering the module via mentioning the bot.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.CommandLineParsingAttribute">
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ArgumentAttribute">
+            <summary>
+            Provides with an attribute type that describes this property is the target argument to be assigned while parsing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.ArgumentAttribute.RequiredValuesCount">
+            <summary>
+            Indicates the number of required values.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.CommandLineParsingItemAttribute">
             <summary>
             Represents a type that is the base type of all attributes used by command-line parsing operation.
             </summary>
@@ -191,6 +201,25 @@
             Indicates the description.
             </summary>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.DoubleArgumentAttribute">
+            <summary>
+            Provides with an attribute type that describes this property is the target argument to be assigned when parsing.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.DoubleArgumentAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.DoubleArgumentAttribute"/> instance its name.
+            </summary>
+            <param name="name">The name of the double argument.</param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.DoubleArgumentAttribute.RequiredValuesCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.DoubleArgumentAttribute.Name">
+            <summary>
+            Indicates the name of the double argument.
+            </summary>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.GroupAttribute">
             <summary>
             Defines a shopping item group attribute.
@@ -205,6 +234,22 @@
         <member name="P:Sudoku.Platforms.QQ.Data.Parsing.GroupAttribute.Group">
             <summary>
             Indicates the group of the shopping item.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.HintAttribute">
+            <summary>
+            Represents a module argument or module hint attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.HintAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.HintAttribute"/> instance via the specified hint text.
+            </summary>
+            <param name="hint">The hint.</param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.HintAttribute.Hint">
+            <summary>
+            Indicates the hint text.
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.NameAttribute">
@@ -756,22 +801,6 @@
             whose name cannot be known in compiler time.
             </i></b></remarks>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentCommandAttribute">
-            <summary>
-            Provides with an attribute type that describes this property is the target argument to be assigned when parsing.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentCommandAttribute.#ctor(System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentCommandAttribute"/> instance its name.
-            </summary>
-            <param name="name">The name of the double argument.</param>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.DoubleArgumentCommandAttribute.Name">
-            <summary>
-            Indicates the name of the double argument.
-            </summary>
-        </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.RaisingCommand">
             <inheritdoc/>
         </member>
@@ -987,18 +1016,12 @@
             <summary>
             Represents a base type that defines a module that can be called by <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.
             </summary>
+            <seealso cref="T:Mirai.Net.Sessions.MiraiBot"/>
         </member>
         <member name="F:Sudoku.Platforms.QQ.Modules.GroupModule.AllRoles">
             <summary>
             Indicates all roles are included.
             </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.IsEnabled">
-            <summary>
-            Indicates whether the module is currently enabled. If disabled (i.e. holding with <see langword="false"/> value),
-            this option won't be executed even if a person with a supported role emits a command executing this module.
-            </summary>
-            <remarks><i>This property is set <see langword="true"/> by default.</i></remarks>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RaisingCommand">
             <summary>
@@ -1120,19 +1143,25 @@
             </summary>
             <seealso cref="T:Mirai.Net.Modules.IModule"/>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ParseMessageTo(System.String,Sudoku.Platforms.QQ.Modules.GroupModule,Sudoku.Platforms.QQ.Modules.ParsingFailedReason@)">
+        <member name="F:Sudoku.Platforms.QQ.Modules.MessageParser.HintRequestedTokens">
+            <summary>
+            Indicates the hint-requested tokens.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ParseMessageTo(System.String,Sudoku.Platforms.QQ.Modules.GroupModule,Sudoku.Platforms.QQ.Modules.ParsingFailedReason@,System.Collections.Generic.List{System.String}@)">
             <summary>
             Try to parse message, and assign converted message data into target <see cref="T:Sudoku.Platforms.QQ.Modules.GroupModule"/> instance.
             </summary>
             <param name="this">The plain message to be parsed.</param>
             <param name="module">The module instance.</param>
             <param name="failedReason">Indicates the failed reason that is encountered.</param>
+            <param name="requestedHintArgumentName">Indicates the requested hint argument name.</param>
             <returns>
             A <see cref="T:System.Boolean"/> result indicating whether the specified plain message is compatible
             with module specified as argument <paramref name="module"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ParseCommmandLine(System.String,System.String,System.Char[])">
+        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ParseCommandLine(System.String,System.String,System.Char[])">
             <summary>
             Parses a line of command, separating the command line into multiple <see cref="T:System.String"/> arguments using spaces and quotes.
             </summary>
