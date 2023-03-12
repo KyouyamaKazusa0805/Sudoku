@@ -112,7 +112,7 @@ public abstract class GroupModule : IModule
 			return;
 		}
 
-		ResetProperties();
+		resetProperties();
 
 		if (!text.ParseMessageTo(this, out var failedReason, out var requestedHintArgumentName))
 		{
@@ -168,11 +168,41 @@ public abstract class GroupModule : IModule
 					let hintText = chosenPropertyInfo.GetCustomAttribute<HintAttribute>()?.Hint ?? "<暂无介绍信息>"
 					select
 						$"""
-						参数 “{argumentName}” 的提示：
+						参数 “{argumentName}”：
 						  * {hintText}
 						"""
 				)
 			);
+		}
+
+
+		void resetProperties()
+		{
+			foreach (var propertyInfo in EqualityContract.GetProperties())
+			{
+				if (propertyInfo is not { CanRead: true, CanWrite: true, PropertyType: var propType })
+				{
+					continue;
+				}
+
+				if (!propertyInfo.IsDefined(typeof(DoubleArgumentAttribute)))
+				{
+					continue;
+				}
+
+				if (propertyInfo.TryGetDefaultValueViaMemberName(out var defaultValue))
+				{
+					propertyInfo.SetValue(this, defaultValue);
+				}
+				else if (propertyInfo.TryGetDefaultValue(out defaultValue))
+				{
+					propertyInfo.SetValue(this, defaultValue);
+				}
+				else
+				{
+					propertyInfo.SetValue(this, DefaultValueCreator.CreateInstance(propType));
+				}
+			}
 		}
 	}
 
@@ -184,38 +214,6 @@ public abstract class GroupModule : IModule
 	/// A <see cref="Task"/> instance that provides with asynchronous information of the operation currently being executed.
 	/// </returns>
 	protected abstract Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver);
-
-	/// <summary>
-	/// To reset properties.
-	/// </summary>
-	protected virtual void ResetProperties()
-	{
-		foreach (var propertyInfo in EqualityContract.GetProperties())
-		{
-			if (propertyInfo is not { CanRead: true, CanWrite: true, PropertyType: var propType })
-			{
-				continue;
-			}
-
-			if (!propertyInfo.IsDefined(typeof(DoubleArgumentAttribute)))
-			{
-				continue;
-			}
-
-			if (propertyInfo.TryGetDefaultValueViaMemberName(out var defaultValue))
-			{
-				propertyInfo.SetValue(this, defaultValue);
-			}
-			else if (propertyInfo.TryGetDefaultValue(out defaultValue))
-			{
-				propertyInfo.SetValue(this, defaultValue);
-			}
-			else
-			{
-				propertyInfo.SetValue(this, DefaultValueCreator.CreateInstance(propType));
-			}
-		}
-	}
 }
 
 /// <summary>

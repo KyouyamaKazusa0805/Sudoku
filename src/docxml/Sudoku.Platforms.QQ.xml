@@ -1021,11 +1021,6 @@
             A <see cref="T:System.Threading.Tasks.Task"/> instance that provides with asynchronous information of the operation currently being executed.
             </returns>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.GroupModule.ResetProperties">
-            <summary>
-            To reset properties.
-            </summary>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.ParsingFailedReason">
             <summary>
             Indicates the failed reason while parse a message text.
