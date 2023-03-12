@@ -1,16 +1,12 @@
-﻿namespace Sudoku.Platforms.QQ.Modules.Group;
+﻿#if false
+namespace Sudoku.Platforms.QQ.Modules.Group;
 
-#if false
 [BuiltIn]
-#endif
 file sealed class RefreshUserDataListModule : GroupModule
 {
 	/// <inheritdoc/>
 	public override string RaisingCommand => "用户数据刷新";
 
-	/// <summary>
-	/// Indicates the range.
-	/// </summary>
 	[DoubleArgument("范围")]
 	[Hint("")]
 	public string? Range { get; set; }
@@ -61,3 +57,4 @@ file static class Ranges
 	public const string CurrentGroup = "本群";
 	public const string AllGroups = "所有";
 }
+#endif

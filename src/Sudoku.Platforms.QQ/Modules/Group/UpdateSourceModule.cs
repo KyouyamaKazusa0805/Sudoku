@@ -12,31 +12,19 @@ file sealed class UpdateSourceModule : GroupModule
 	/// <inheritdoc/>
 	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.God;
 
-	/// <summary>
-	/// Indicates the user name.
-	/// </summary>
-	[DoubleArgument("用户名")]
+	[DoubleArgument("昵称")]
 	[Hint("表示你要为谁进行加分操作。该参数指定的是用户的群名片。")]
-	public string? UserName { get; set; }
+	public string? UserNickname { get; set; }
 
-	/// <summary>
-	/// Indicates the user ID.
-	/// </summary>
 	[DoubleArgument("QQ")]
 	[Hint("表示你要为谁进行加分操作。该参数指定的是用户的 QQ 号。")]
 	public string? UserId { get; set; }
 
-	/// <summary>
-	/// Indicates the addition of experience point.
-	/// </summary>
 	[DoubleArgument("经验")]
 	[Hint("表示你要为该用户加多少经验值。")]
 	[ValueConverter<NumericConverter<int>>]
 	public int ExperiencePointAddition { get; set; }
 
-	/// <summary>
-	/// Indicates the addition of coin.
-	/// </summary>
 	[DoubleArgument("金币")]
 	[Hint("表示你要为该用户加多少金币。")]
 	[ValueConverter<NumericConverter<int>>]
@@ -71,7 +59,7 @@ file sealed class UpdateSourceModule : GroupModule
 			Directory.CreateDirectory(botUsersDataFolder);
 		}
 
-		switch (UserName, UserId, ExperiencePointAddition, CoinAddition)
+		switch (UserNickname, UserId, ExperiencePointAddition, CoinAddition)
 		{
 			case (_, _, 0, _) or (_, _, _, 0):
 			{

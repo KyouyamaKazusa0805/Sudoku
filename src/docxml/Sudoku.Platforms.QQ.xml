@@ -804,21 +804,6 @@
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.RaisingCommand">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.ItemName">
-            <summary>
-            Indicates the item you want to buy.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.Level">
-            <summary>
-            Indicates the level of the clover to buy.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.BatchedCount">
-            <summary>
-            Indicates the batched count.
-            </summary>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -833,21 +818,6 @@
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.RaisingCommand">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.CloverLevel">
-            <summary>
-            Indicates the clover level.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.MainCardLevel">
-            <summary>
-            Indicates the main card level.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.AuxiliaryCards">
-            <summary>
-            Indicates the auxiliary cards.
-            </summary>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
@@ -889,36 +859,6 @@
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.RaisingCommand">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.UserId">
-            <summary>
-            Indicates QQ number of the user.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.UserNickname">
-            <summary>
-            Indicates nick name of the user.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.ViewContentKind">
-            <summary>
-            Indicates the view content kind.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.MainLevel">
-            <summary>
-            Indicates the main card level.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.CloverLevel">
-            <summary>
-            Indicates the clover level.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.AuxiliaryCards">
-            <summary>
-            Indicates the auxiliary cards.
-            </summary>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.LookupModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -952,30 +892,8 @@
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.RankingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.RaisingCommand">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.Range">
-            <summary>
-            Indicates the range.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.RaisingPrefix">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.RequiredSenderRole">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.RefreshUserDataListModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.ShopModule.RaisingCommand">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.ShopModule.ItemKind">
-            <summary>
-            Indicates the item kind.
-            </summary>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.ShopModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
@@ -988,26 +906,6 @@
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RequiredSenderRole">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.UserName">
-            <summary>
-            Indicates the user name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.UserId">
-            <summary>
-            Indicates the user ID.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.ExperiencePointAddition">
-            <summary>
-            Indicates the addition of experience point.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.CoinAddition">
-            <summary>
-            Indicates the addition of coin.
-            </summary>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
