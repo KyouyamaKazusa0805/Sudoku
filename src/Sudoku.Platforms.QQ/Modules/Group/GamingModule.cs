@@ -2,7 +2,7 @@
 
 [GroupModule("开始游戏")]
 [SupportedOSPlatform("windows")]
-file sealed class GamingModule : GroupModule
+internal sealed class GamingModule : GroupModule
 {
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)

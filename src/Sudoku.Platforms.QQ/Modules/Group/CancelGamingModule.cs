@@ -1,12 +1,9 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
 [GroupModule("结束游戏")]
+[RequiredDependencyModule<GamingModule>]
 file sealed class CancelGamingModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string RequiredEnvironmentCommand => "开始游戏";
-
-
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{

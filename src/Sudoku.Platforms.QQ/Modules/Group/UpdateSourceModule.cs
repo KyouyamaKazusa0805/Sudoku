@@ -4,9 +4,6 @@
 [RequiredRole(SenderRole = GroupRoleKind.God)]
 file sealed class UpdateSourceModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
-
 	[DoubleArgument("昵称")]
 	[Hint("表示你要为谁进行加分操作。该参数指定的是用户的群名片。")]
 	public string? UserNickname { get; set; }

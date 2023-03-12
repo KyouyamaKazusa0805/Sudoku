@@ -100,21 +100,6 @@
             The internal running context.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes">
-            <summary>
-            Extracts the prefix array provided, used by commands.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes.HashTag">
-            <summary>
-            The hashtag symbol "<c>#</c>".
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes.Bang">
-            <summary>
-            The bang symbol "<c>!</c>".
-            </summary>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Gaming.GamingMode">
             <summary>
             Represents a gaming mode.
@@ -300,6 +285,12 @@
             <summary>
             Indicates the price.
             </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.RequiredDependencyModuleAttribute`1">
+            <summary>
+            Defines a required dependency module attribute.
+            </summary>
+            <typeparam name="T">The type of the dependency module.</typeparam>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.RequiredRoleAttribute">
             <summary>
@@ -883,9 +874,6 @@
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CancelGamingModule.RequiredEnvironmentCommand">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.CancelGamingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -929,13 +917,7 @@
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.MentioningModule.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RaisingPrefix">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.PingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RaisingPrefix">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.RankingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
@@ -947,9 +929,6 @@
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.ShopModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RaisingPrefix">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -959,9 +938,24 @@
             </summary>
             <seealso cref="T:Mirai.Net.Sessions.MiraiBot"/>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.Modules.GroupModule.AllRoles">
+        <member name="F:Sudoku.Platforms.QQ.Modules.GroupModule.StaticMembers">
             <summary>
-            Indicates all roles are included.
+            Indicates <see cref="T:System.Reflection.BindingFlags"/> instance that binds with <see langword="static"/> members.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.GroupModule.ModuleRaisingPrefix">
+            <summary>
+            The module raising prefix.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.GroupModule.HintRequestedTokens">
+            <summary>
+            Indicates the hint-requested tokens.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RaisingCommand">
+            <summary>
+            Indicates the raising command.
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredEnvironmentCommand">
@@ -973,20 +967,9 @@
             <para><i>This property is set <see langword="null"/> by default.</i></para>
             </remarks>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RaisingPrefix">
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.TriggeringKind">
             <summary>
-            Indicates the prefix of the command used for raising command exeuction. Assign <see langword="null"/> to tell the runtime
-            this module does not use any prefixes.
-            </summary>
-            <remarks>
-            You can assign this property with values provided by type <see cref="T:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes"/>.
-            </remarks>
-            <seealso cref="T:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes"/>
-            <completionlist cref="T:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes"/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RaisingCommand">
-            <summary>
-            Indicates the raising command.
+            Indicates the triggering kind.
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredSenderRole">
@@ -994,11 +977,6 @@
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredBotRole">
             <inheritdoc cref="P:Sudoku.Platforms.QQ.Data.Parsing.RequiredRoleAttribute.BotRole"/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.TriggeringKind">
-            <summary>
-            Indicates the triggering kind.
-            </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.EqualityContract">
             <summary>
@@ -1021,6 +999,29 @@
             A <see cref="T:System.Threading.Tasks.Task"/> instance that provides with asynchronous information of the operation currently being executed.
             </returns>
         </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.GroupModule.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)">
+            <summary>
+            Try to get the default value of the target property specified as <see cref="T:System.Reflection.PropertyInfo"/> reflection data.
+            </summary>
+            <param name="pi">The <see cref="T:System.Reflection.PropertyInfo"/> instance.</param>
+            <param name="defaultValue">The default value of the property.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the specified property has marked the current attribute type.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.GroupModule.TryGetDefaultValue(System.Reflection.PropertyInfo,System.Object@)">
+            <summary>
+            Try to get the default value of the target property specified as <see cref="T:System.Reflection.PropertyInfo"/> reflection data.
+            </summary>
+            <param name="pi">The <see cref="T:System.Reflection.PropertyInfo"/> instance.</param>
+            <param name="defaultValue">The default value of the property.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the specified property has marked the current attribute type.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.GroupModule.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
+            <summary>
+            Gets the equivalent <see cref="T:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind"/> instance from the specified <see cref="T:Mirai.Net.Data.Shared.Permissions"/> instance.
+            </summary>
+            <param name="permission">The permission.</param>
+            <returns>The target <see cref="T:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.ParsingFailedReason">
             <summary>
             Indicates the failed reason while parse a message text.
@@ -1041,9 +1042,9 @@
             Indicates the operation is failed because target property is not found.
             </summary>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyHasNoGetterOrSetter">
+        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyMissingAccessor">
             <summary>
-            Indicates the operation is failed because target property has no both getter and setter.
+            Indicates the operation is failed because target property does not contain both getter and setter.
             </summary>
         </member>
         <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyIsIndexer">
@@ -1051,11 +1052,11 @@
             Indicates the operation is failed because target property is an indexer.
             </summary>
         </member>
-        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyHasNoValueConverterIfNotReturningString">
+        <member name="F:Sudoku.Platforms.QQ.Modules.ParsingFailedReason.TargetPropertyMissingConverter">
             <summary>
-            Indicates the operation is failed
-            and returns non-<see cref="T:System.String"/> type, but this property has not marked <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverterAttribute`1"/>,
-            which cause parser cannot convert the specified value into a <see cref="T:System.String"/>.
+            Indicates the operation is failed because the target property returns non-<see cref="T:System.String"/> type,
+            but this property has not marked <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverterAttribute`1"/>,
+            causing parser cannot convert the specified value into a <see cref="T:System.String"/>.
             </summary>
             <seealso cref="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverterAttribute`1"/>
         </member>
@@ -1063,68 +1064,6 @@
             <summary>
             Indicates the operation is failed because user has some invalid input.
             </summary>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Modules.MessageParser">
-            <summary>
-            Defines a message parser type. This type provides a way to parse plain text into separated values
-            used by <see cref="T:Mirai.Net.Modules.IModule"/> instances.
-            </summary>
-            <seealso cref="T:Mirai.Net.Modules.IModule"/>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Modules.MessageParser.StaticMembers">
-            <summary>
-            Indicates <see cref="T:System.Reflection.BindingFlags"/> instance that binds with <see langword="static"/> members.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Modules.MessageParser.HintRequestedTokens">
-            <summary>
-            Indicates the hint-requested tokens.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ParseMessageTo(System.String,Sudoku.Platforms.QQ.Modules.GroupModule,Sudoku.Platforms.QQ.Modules.ParsingFailedReason@,System.Collections.Generic.List{System.String}@)">
-            <summary>
-            Try to parse message, and assign converted message data into target <see cref="T:Sudoku.Platforms.QQ.Modules.GroupModule"/> instance.
-            </summary>
-            <param name="this">The plain message to be parsed.</param>
-            <param name="module">The module instance.</param>
-            <param name="failedReason">Indicates the failed reason that is encountered.</param>
-            <param name="requestedHintArgumentName">Indicates the requested hint argument name.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the specified plain message is compatible
-            with module specified as argument <paramref name="module"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)">
-            <summary>
-            Try to get the default value of the target property specified as <see cref="T:System.Reflection.PropertyInfo"/> reflection data.
-            </summary>
-            <param name="this">The <see cref="T:System.Reflection.PropertyInfo"/> instance.</param>
-            <param name="defaultValue">The default value of the property.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the specified property has marked the current attribute type.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.TryGetDefaultValue(System.Reflection.PropertyInfo,System.Object@)">
-            <summary>
-            Try to get the default value of the target property specified as <see cref="T:System.Reflection.PropertyInfo"/> reflection data.
-            </summary>
-            <param name="this">The <see cref="T:System.Reflection.PropertyInfo"/> instance.</param>
-            <param name="defaultValue">The default value of the property.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the specified property has marked the current attribute type.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ParseCommandLine(System.String,System.String,System.Char[])">
-            <summary>
-            Parses a line of command, separating the command line into multiple <see cref="T:System.String"/> arguments using spaces and quotes.
-            </summary>
-            <param name="this">The command line.</param>
-            <param name="argumentMatcherRegex">Indicates the custom argument matcher regular expression.</param>
-            <param name="trimmedCharacters">Indicates the trimmed characters.</param>
-            <returns>Parsed arguments, represented as an array of <see cref="T:System.String"/> values.</returns>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
-            <summary>
-            Gets the equivalent <see cref="T:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind"/> instance from the specified <see cref="T:Mirai.Net.Data.Shared.Permissions"/> instance.
-            </summary>
-            <param name="permission">The permission.</param>
-            <returns>The target <see cref="T:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Modules.ModuleManager">
             <summary>

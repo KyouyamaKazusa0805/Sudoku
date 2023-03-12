@@ -5,10 +5,6 @@
 file sealed class PingModule : GroupModule
 {
 	/// <inheritdoc/>
-	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
-
-
-	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
 		using var ping = new Ping();

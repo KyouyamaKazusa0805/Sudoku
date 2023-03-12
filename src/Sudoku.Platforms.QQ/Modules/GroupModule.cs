@@ -7,10 +7,26 @@
 public abstract class GroupModule : IModule
 {
 	/// <summary>
-	/// Indicates all roles are included.
+	/// Indicates <see cref="BindingFlags"/> instance that binds with <see langword="static"/> members.
 	/// </summary>
-	protected const GroupRoleKind AllRoles = GroupRoleKind.God | GroupRoleKind.Owner | GroupRoleKind.Manager | GroupRoleKind.DefaultMember;
+	private const BindingFlags StaticMembers = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
 
+
+	/// <summary>
+	/// The module raising prefix.
+	/// </summary>
+	private static readonly string[] ModuleRaisingPrefix = { "!", "！" };
+
+	/// <summary>
+	/// Indicates the hint-requested tokens.
+	/// </summary>
+	private static readonly string[] HintRequestedTokens = { "?", "？" };
+
+
+	/// <summary>
+	/// Indicates the raising command.
+	/// </summary>
+	protected string RaisingCommand => EqualityContract.GetCustomAttribute<GroupModuleAttribute>()!.Name;
 
 	/// <summary>
 	/// Indicates the required environment command.
@@ -19,42 +35,31 @@ public abstract class GroupModule : IModule
 	/// <para>This property is used for controlling the case when it costs too much time to be executed.</para>
 	/// <para><i>This property is set <see langword="null"/> by default.</i></para>
 	/// </remarks>
-	public virtual string? RequiredEnvironmentCommand { get; }
-
-	/// <summary>
-	/// Indicates the prefix of the command used for raising command exeuction. Assign <see langword="null"/> to tell the runtime
-	/// this module does not use any prefixes.
-	/// </summary>
-	/// <remarks>
-	/// You can assign this property with values provided by type <see cref="CommonCommandPrefixes"/>.
-	/// </remarks>
-	/// <seealso cref="CommonCommandPrefixes"/>
-	/// <completionlist cref="CommonCommandPrefixes"/>
-	public virtual string[] RaisingPrefix { get; } = CommonCommandPrefixes.Bang;
-
-	/// <summary>
-	/// Indicates the raising command.
-	/// </summary>
-	protected internal string RaisingCommand => EqualityContract.GetCustomAttribute<GroupModuleAttribute>()!.Name;
-
-	/// <inheritdoc cref="RequiredRoleAttribute.SenderRole"/>
-	protected internal GroupRoleKind RequiredSenderRole
-		=> EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.SenderRole ?? AllRoles;
-
-	/// <inheritdoc cref="RequiredRoleAttribute.BotRole"/>
-	protected internal GroupRoleKind RequiredBotRole
-		=> EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.BotRole ?? GroupRoleKind.None;
+	protected string? RequiredEnvironmentCommand
+		=> EqualityContract.GetGenericAttributeTypeArguments(typeof(RequiredDependencyModuleAttribute<>)) switch
+		{
+			[var typeArgument] => typeArgument.GetCustomAttribute<GroupModuleAttribute>()!.Name,
+			_ => null
+		};
 
 	/// <summary>
 	/// Indicates the triggering kind.
 	/// </summary>
-	protected internal ModuleTriggeringKind TriggeringKind
+	protected ModuleTriggeringKind TriggeringKind
 		=> EqualityContract.GetCustomAttribute<TriggeringKindAttribute>()?.Kind ?? ModuleTriggeringKind.Default;
+
+	/// <inheritdoc cref="RequiredRoleAttribute.SenderRole"/>
+	protected GroupRoleKind RequiredSenderRole
+		=> EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.SenderRole
+		?? GroupRoleKind.God | GroupRoleKind.Owner | GroupRoleKind.Manager | GroupRoleKind.DefaultMember;
+
+	/// <inheritdoc cref="RequiredRoleAttribute.BotRole"/>
+	protected GroupRoleKind RequiredBotRole => EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.BotRole ?? GroupRoleKind.None;
 
 	/// <summary>
 	/// Indicates the equality contract.
 	/// </summary>
-	protected internal Type EqualityContract => GetType();
+	protected Type EqualityContract => GetType();
 
 	/// <inheritdoc/>
 	bool? IModule.IsEnable { get; set; } = true;
@@ -86,7 +91,7 @@ public abstract class GroupModule : IModule
 			([SourceMessage, PlainMessage { Text: var t }], ModuleTriggeringKind.Default) => t,
 			_ => null
 		};
-		if (text is null || !Array.Exists(RaisingPrefix, prefix => text.StartsWith($"{prefix}{RaisingCommand}")))
+		if (text is null || !Array.Exists(ModuleRaisingPrefix, prefix => text.StartsWith($"{prefix}{RaisingCommand}")))
 		{
 			return;
 		}
@@ -98,7 +103,7 @@ public abstract class GroupModule : IModule
 			return;
 		}
 
-		var senderRole = sender.Permission.ToGroupRoleKind();
+		var senderRole = ToGroupRoleKind(sender.Permission);
 		var supportedRoles = RequiredSenderRole.GetAllFlags() ?? Array.Empty<GroupRoleKind>();
 		if (!Array.Exists(supportedRoles, r => r switch { GroupRoleKind.God => sender.Id == GodNumber, _ => senderRole == r }))
 		{
@@ -106,7 +111,7 @@ public abstract class GroupModule : IModule
 			return;
 		}
 
-		if (RequiredBotRole != GroupRoleKind.None && RequiredBotRole < permission.ToGroupRoleKind())
+		if (RequiredBotRole != GroupRoleKind.None && RequiredBotRole < ToGroupRoleKind(permission))
 		{
 			await gmr.SendMessageAsync("机器人需要更高权限才可进行该操作。");
 			return;
@@ -114,7 +119,7 @@ public abstract class GroupModule : IModule
 
 		resetProperties();
 
-		if (!text.ParseMessageTo(this, out var failedReason, out var requestedHintArgumentName))
+		if (!parseMessageCore(text, this, out var failedReason, out var requestedHintArgumentName))
 		{
 			switch (failedReason)
 			{
@@ -135,9 +140,9 @@ public abstract class GroupModule : IModule
 				{
 					return;
 				}
-				case ParsingFailedReason.TargetPropertyHasNoGetterOrSetter:
+				case ParsingFailedReason.TargetPropertyMissingAccessor:
 				case ParsingFailedReason.TargetPropertyIsIndexer:
-				case ParsingFailedReason.TargetPropertyHasNoValueConverterIfNotReturningString:
+				case ParsingFailedReason.TargetPropertyMissingConverter:
 				{
 					throw new InvalidOperationException($"Attribute marking is invalid. Internal failed reason: {failedReason}");
 				}
@@ -176,6 +181,122 @@ public abstract class GroupModule : IModule
 		}
 
 
+		static bool parseMessageCore(
+			string @this,
+			GroupModule module,
+			out ParsingFailedReason failedReason,
+			[MaybeNullWhen(false)] out List<string>? requestedHintArgumentName
+		)
+		{
+			requestedHintArgumentName = null;
+
+			var moduleType = module.EqualityContract;
+
+			var isFirstArg = true;
+			var args = ParseCommandLine(@this, """[\""“”].+?[\""“”]|[^ ]+""", '"', '“', '”');
+			for (var i = 0; i < args.Length; i++)
+			{
+				var arg = args[i];
+				if (isFirstArg)
+				{
+					if (!Array.Exists(ModuleRaisingPrefix, prefix => arg == $"{prefix}{module.RaisingCommand}"))
+					{
+						failedReason = ParsingFailedReason.NotCurrentModule;
+						return false;
+					}
+
+					isFirstArg = false;
+					continue;
+				}
+
+				var foundPropertyInfo = default(PropertyInfo?);
+				foreach (var tempPropertyInfo in moduleType.GetProperties())
+				{
+					if (tempPropertyInfo.GetCustomAttribute<DoubleArgumentAttribute>() is { Name: var name } && name == arg)
+					{
+						foundPropertyInfo = tempPropertyInfo;
+						break;
+					}
+				}
+
+				if (foundPropertyInfo is null)
+				{
+					failedReason = ParsingFailedReason.TargetPropertyNotFound;
+					return false;
+				}
+
+				if (foundPropertyInfo is not { CanRead: true, CanWrite: true })
+				{
+					failedReason = ParsingFailedReason.TargetPropertyMissingAccessor;
+					return false;
+				}
+
+				if (foundPropertyInfo.GetIndexParameters().Length != 0)
+				{
+					failedReason = ParsingFailedReason.TargetPropertyIsIndexer;
+					return false;
+				}
+
+				if (i + 1 >= args.Length)
+				{
+					failedReason = ParsingFailedReason.InvalidInput;
+					return false;
+				}
+
+				var nextArg = args[i + 1];
+				switch (
+					foundPropertyInfo.GetGenericAttributeTypeArguments(typeof(ValueConverterAttribute<>)),
+					Array.Exists(HintRequestedTokens, e => nextArg == e)
+				)
+				{
+					case ([], false):
+					{
+						if (foundPropertyInfo.PropertyType != typeof(string))
+						{
+							failedReason = ParsingFailedReason.TargetPropertyMissingConverter;
+							return false;
+						}
+
+						foundPropertyInfo.SetValue(module, nextArg);
+
+						break;
+					}
+					case ([var valueConverterType], false):
+					{
+						try
+						{
+							var instance = (IValueConverter)Activator.CreateInstance(valueConverterType)!;
+							var targetConvertedValue = instance.Convert(nextArg);
+							foundPropertyInfo.SetValue(module, targetConvertedValue);
+						}
+						catch (CommandConverterException)
+						{
+							failedReason = ParsingFailedReason.InvalidInput;
+							return false;
+						}
+
+						break;
+					}
+					case (_, true):
+					{
+						(requestedHintArgumentName ??= new()).Add(args[i]);
+
+						break;
+					}
+				}
+
+				i++;
+			}
+
+			failedReason = ParsingFailedReason.None;
+			return true;
+		}
+
+		static string[] ParseCommandLine(string s, [StringSyntax(StringSyntaxAttribute.Regex)] string argumentMatcherRegex, params char[]? trimmedCharacters)
+			=>
+			from match in new Regex(argumentMatcherRegex, RegexOptions.Singleline).Matches(s)
+			select match.Value.Trim(trimmedCharacters);
+
 		void resetProperties()
 		{
 			foreach (var propertyInfo in EqualityContract.GetProperties())
@@ -190,11 +311,11 @@ public abstract class GroupModule : IModule
 					continue;
 				}
 
-				if (propertyInfo.TryGetDefaultValueViaMemberName(out var defaultValue))
+				if (TryGetDefaultValueViaMemberName(propertyInfo, out var defaultValue))
 				{
 					propertyInfo.SetValue(this, defaultValue);
 				}
-				else if (propertyInfo.TryGetDefaultValue(out defaultValue))
+				else if (TryGetDefaultValue(propertyInfo, out defaultValue))
 				{
 					propertyInfo.SetValue(this, defaultValue);
 				}
@@ -214,211 +335,21 @@ public abstract class GroupModule : IModule
 	/// A <see cref="Task"/> instance that provides with asynchronous information of the operation currently being executed.
 	/// </returns>
 	protected abstract Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver);
-}
 
-/// <summary>
-/// Indicates the failed reason while parse a message text.
-/// </summary>
-file enum ParsingFailedReason : int
-{
-	/// <summary>
-	/// Indicates the operation is not failed.
-	/// </summary>
-	None,
-
-	/// <summary>
-	/// Indicates the operation is failed because the parser has detected that the message text is not used by this module.
-	/// </summary>
-	NotCurrentModule,
-
-	/// <summary>
-	/// Indicates the operation is failed because target property is not found.
-	/// </summary>
-	TargetPropertyNotFound,
-
-	/// <summary>
-	/// Indicates the operation is failed because target property has no both getter and setter.
-	/// </summary>
-	TargetPropertyHasNoGetterOrSetter,
-
-	/// <summary>
-	/// Indicates the operation is failed because target property is an indexer.
-	/// </summary>
-	TargetPropertyIsIndexer,
-
-	/// <summary>
-	/// Indicates the operation is failed
-	/// and returns non-<see cref="string"/> type, but this property has not marked <see cref="ValueConverterAttribute{T}"/>,
-	/// which cause parser cannot convert the specified value into a <see cref="string"/>.
-	/// </summary>
-	/// <seealso cref="ValueConverterAttribute{T}"/>
-	TargetPropertyHasNoValueConverterIfNotReturningString,
-
-	/// <summary>
-	/// Indicates the operation is failed because user has some invalid input.
-	/// </summary>
-	InvalidInput
-}
-
-/// <summary>
-/// Defines a message parser type. This type provides a way to parse plain text into separated values
-/// used by <see cref="IModule"/> instances.
-/// </summary>
-/// <seealso cref="IModule"/>
-file static class MessageParser
-{
-	/// <summary>
-	/// Indicates <see cref="BindingFlags"/> instance that binds with <see langword="static"/> members.
-	/// </summary>
-	private const BindingFlags StaticMembers = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
-
-
-	/// <summary>
-	/// Indicates the hint-requested tokens.
-	/// </summary>
-	private static readonly string[] HintRequestedTokens = new[] { "？", "?" };
-
-
-	/// <summary>
-	/// Try to parse message, and assign converted message data into target <see cref="GroupModule"/> instance.
-	/// </summary>
-	/// <param name="this">The plain message to be parsed.</param>
-	/// <param name="module">The module instance.</param>
-	/// <param name="failedReason">Indicates the failed reason that is encountered.</param>
-	/// <param name="requestedHintArgumentName">Indicates the requested hint argument name.</param>
-	/// <returns>
-	/// A <see cref="bool"/> result indicating whether the specified plain message is compatible
-	/// with module specified as argument <paramref name="module"/>.
-	/// </returns>
-	public static bool ParseMessageTo(
-		this string @this,
-		GroupModule module,
-		out ParsingFailedReason failedReason,
-		[MaybeNullWhen(false)] out List<string>? requestedHintArgumentName
-	)
-	{
-		requestedHintArgumentName = null;
-
-		var moduleType = module.EqualityContract;
-
-		var isFirstArg = true;
-		var args = @this.ParseCommandLine("""[\""“”].+?[\""“”]|[^ ]+""", '"', '“', '”');
-		for (var i = 0; i < args.Length; i++)
-		{
-			var arg = args[i];
-			if (isFirstArg)
-			{
-				var commandFound = module switch
-				{
-					{ RaisingPrefix: { } prefixes, RaisingCommand: var cmd } => Array.Exists(prefixes, prefix => arg == $"{prefix}{cmd}"),
-					{ RaisingCommand: var cmd } => arg == cmd
-				};
-				if (!commandFound)
-				{
-					failedReason = ParsingFailedReason.NotCurrentModule;
-					return false;
-				}
-
-				isFirstArg = false;
-				continue;
-			}
-
-			var foundPropertyInfo = default(PropertyInfo?);
-			foreach (var tempPropertyInfo in moduleType.GetProperties())
-			{
-				if (tempPropertyInfo.GetCustomAttribute<DoubleArgumentAttribute>() is { Name: var name } && name == arg)
-				{
-					foundPropertyInfo = tempPropertyInfo;
-					break;
-				}
-			}
-
-			if (foundPropertyInfo is null)
-			{
-				failedReason = ParsingFailedReason.TargetPropertyNotFound;
-				return false;
-			}
-
-			if (foundPropertyInfo is not { CanRead: true, CanWrite: true })
-			{
-				failedReason = ParsingFailedReason.TargetPropertyHasNoGetterOrSetter;
-				return false;
-			}
-
-			if (foundPropertyInfo.GetIndexParameters().Length != 0)
-			{
-				failedReason = ParsingFailedReason.TargetPropertyIsIndexer;
-				return false;
-			}
-
-			if (i + 1 >= args.Length)
-			{
-				failedReason = ParsingFailedReason.InvalidInput;
-				return false;
-			}
-
-			var nextArg = args[i + 1];
-			switch (
-				foundPropertyInfo.GetGenericAttributeTypeArguments(typeof(ValueConverterAttribute<>)),
-				Array.Exists(HintRequestedTokens, e => nextArg == e)
-			)
-			{
-				case ([], false):
-				{
-					if (foundPropertyInfo.PropertyType != typeof(string))
-					{
-						failedReason = ParsingFailedReason.TargetPropertyHasNoValueConverterIfNotReturningString;
-						return false;
-					}
-
-					foundPropertyInfo.SetValue(module, nextArg);
-
-					break;
-				}
-				case ([var valueConverterType], false):
-				{
-					try
-					{
-						var instance = (IValueConverter)Activator.CreateInstance(valueConverterType)!;
-						var targetConvertedValue = instance.Convert(nextArg);
-						foundPropertyInfo.SetValue(module, targetConvertedValue);
-					}
-					catch (CommandConverterException)
-					{
-						failedReason = ParsingFailedReason.InvalidInput;
-						return false;
-					}
-
-					break;
-				}
-				case (_, true):
-				{
-					(requestedHintArgumentName ??= new()).Add(args[i]);
-
-					break;
-				}
-			}
-
-			i++;
-		}
-
-		failedReason = ParsingFailedReason.None;
-		return true;
-	}
 
 	/// <summary>
 	/// Try to get the default value of the target property specified as <see cref="PropertyInfo"/> reflection data.
 	/// </summary>
-	/// <param name="this">The <see cref="PropertyInfo"/> instance.</param>
+	/// <param name="pi">The <see cref="PropertyInfo"/> instance.</param>
 	/// <param name="defaultValue">The default value of the property.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the specified property has marked the current attribute type.</returns>
-	public static bool TryGetDefaultValueViaMemberName(this PropertyInfo @this, [MaybeNullWhen(false)] out object? defaultValue)
+	private static bool TryGetDefaultValueViaMemberName(PropertyInfo pi, [MaybeNullWhen(false)] out object? defaultValue)
 	{
-		switch (@this.GetCustomAttribute<DefaultValueReferencingMemberAttribute>())
+		switch (pi.GetCustomAttribute<DefaultValueReferencingMemberAttribute>())
 		{
 			case { DefaultValueInvokerName: var name }:
 			{
-				foreach (var memberInfo in @this.DeclaringType!.GetMembers(StaticMembers))
+				foreach (var memberInfo in pi.DeclaringType!.GetMembers(StaticMembers))
 				{
 					switch (memberInfo)
 					{
@@ -460,20 +391,16 @@ file static class MessageParser
 	/// <summary>
 	/// Try to get the default value of the target property specified as <see cref="PropertyInfo"/> reflection data.
 	/// </summary>
-	/// <param name="this">The <see cref="PropertyInfo"/> instance.</param>
+	/// <param name="pi">The <see cref="PropertyInfo"/> instance.</param>
 	/// <param name="defaultValue">The default value of the property.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the specified property has marked the current attribute type.</returns>
-	public static bool TryGetDefaultValue(this PropertyInfo @this, [MaybeNullWhen(false)] out object? defaultValue)
+	private static bool TryGetDefaultValue(PropertyInfo pi, [MaybeNullWhen(false)] out object? defaultValue)
 	{
-		(var @return, defaultValue) = @this.GetCustomGenericAttribute(typeof(DefaultValueAttribute<>)) switch
+		var attributeType = typeof(DefaultValueAttribute<>);
+
+		(var @return, defaultValue) = pi.GetCustomGenericAttribute(attributeType) switch
 		{
-			{ } attribute
-				=> (
-					true,
-					typeof(DefaultValueAttribute<>).MakeGenericType(@this.PropertyType)
-						.GetProperty(nameof(DefaultValueAttribute<object>.DefaultValue))!
-						.GetValue(attribute)!
-				),
+			{ } a => (true, attributeType.MakeGenericType(pi.PropertyType).GetProperty(nameof(DefaultValueAttribute<object>.DefaultValue))!.GetValue(a)!),
 			_ => (false, null)
 		};
 
@@ -481,30 +408,60 @@ file static class MessageParser
 	}
 
 	/// <summary>
-	/// Parses a line of command, separating the command line into multiple <see cref="string"/> arguments using spaces and quotes.
-	/// </summary>
-	/// <param name="this">The command line.</param>
-	/// <param name="argumentMatcherRegex">Indicates the custom argument matcher regular expression.</param>
-	/// <param name="trimmedCharacters">Indicates the trimmed characters.</param>
-	/// <returns>Parsed arguments, represented as an array of <see cref="string"/> values.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string[] ParseCommandLine(
-		this string @this,
-		[StringSyntax(StringSyntaxAttribute.Regex)] string argumentMatcherRegex,
-		params char[]? trimmedCharacters
-	) => from match in new Regex(argumentMatcherRegex, RegexOptions.Singleline).Matches(@this) select match.Value.Trim(trimmedCharacters);
-
-	/// <summary>
 	/// Gets the equivalent <see cref="GroupRoleKind"/> instance from the specified <see cref="Permissions"/> instance.
 	/// </summary>
 	/// <param name="permission">The permission.</param>
 	/// <returns>The target <see cref="GroupRoleKind"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static GroupRoleKind ToGroupRoleKind(this Permissions permission)
+	private static GroupRoleKind ToGroupRoleKind(Permissions permission)
 		=> permission switch
 		{
 			Permissions.Owner => GroupRoleKind.Owner,
 			Permissions.Administrator => GroupRoleKind.Manager,
 			Permissions.Member => GroupRoleKind.DefaultMember
 		};
+}
+
+/// <summary>
+/// Indicates the failed reason while parse a message text.
+/// </summary>
+file enum ParsingFailedReason : int
+{
+	/// <summary>
+	/// Indicates the operation is not failed.
+	/// </summary>
+	None,
+
+	/// <summary>
+	/// Indicates the operation is failed because the parser has detected that the message text is not used by this module.
+	/// </summary>
+	NotCurrentModule,
+
+	/// <summary>
+	/// Indicates the operation is failed because target property is not found.
+	/// </summary>
+	TargetPropertyNotFound,
+
+	/// <summary>
+	/// Indicates the operation is failed because target property does not contain both getter and setter.
+	/// </summary>
+	TargetPropertyMissingAccessor,
+
+	/// <summary>
+	/// Indicates the operation is failed because target property is an indexer.
+	/// </summary>
+	TargetPropertyIsIndexer,
+
+	/// <summary>
+	/// Indicates the operation is failed because the target property returns non-<see cref="string"/> type,
+	/// but this property has not marked <see cref="ValueConverterAttribute{T}"/>,
+	/// causing parser cannot convert the specified value into a <see cref="string"/>.
+	/// </summary>
+	/// <seealso cref="ValueConverterAttribute{T}"/>
+	TargetPropertyMissingConverter,
+
+	/// <summary>
+	/// Indicates the operation is failed because user has some invalid input.
+	/// </summary>
+	InvalidInput
 }
