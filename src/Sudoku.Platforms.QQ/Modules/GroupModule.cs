@@ -33,33 +33,28 @@ public abstract class GroupModule : IModule
 	public virtual string[] RaisingPrefix { get; } = CommonCommandPrefixes.Bang;
 
 	/// <summary>
-	/// Indicates the supported roles.
-	/// The role is used for checking whether the module should be executed if a person emits a command to execute this module.
+	/// Indicates the raising command.
 	/// </summary>
-	/// <remarks>
-	/// <para>You can use <see cref="GroupRoleKind"/>.<see langword="operator"/> | to merge multiple role kinds into one.</para>
-	/// <para><i>By default, the value is all possible roles included.</i></para>
-	/// </remarks>
-	public virtual GroupRoleKind RequiredSenderRole => AllRoles;
+	protected internal string RaisingCommand => EqualityContract.GetCustomAttribute<GroupModuleAttribute>()!.Name;
 
-	/// <summary>
-	/// Indicates the required bot permission. The kind is only set with one flag, as the highest allowed permission.
-	/// </summary>
-	/// <remarks><i>
-	/// By default, the value is <see cref="GroupRoleKind.None"/>, which means the operation does not require any higher permissions.
-	/// </i></remarks>
-	/// <seealso cref="GroupRoleKind.None"/>
-	public virtual GroupRoleKind RequiredBotRole => GroupRoleKind.None;
+	/// <inheritdoc cref="RequiredRoleAttribute.SenderRole"/>
+	protected internal GroupRoleKind RequiredSenderRole
+		=> EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.SenderRole ?? AllRoles;
+
+	/// <inheritdoc cref="RequiredRoleAttribute.BotRole"/>
+	protected internal GroupRoleKind RequiredBotRole
+		=> EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.BotRole ?? GroupRoleKind.None;
 
 	/// <summary>
 	/// Indicates the triggering kind.
 	/// </summary>
-	public virtual ModuleTriggeringKind TriggeringKind => ModuleTriggeringKind.Default;
+	protected internal ModuleTriggeringKind TriggeringKind
+		=> EqualityContract.GetCustomAttribute<TriggeringKindAttribute>()?.Kind ?? ModuleTriggeringKind.Default;
 
 	/// <summary>
-	/// Indicates the raising command.
+	/// Indicates the equality contract.
 	/// </summary>
-	protected internal string RaisingCommand => GetType().GetCustomAttribute<GroupModuleAttribute>()!.Name;
+	protected internal Type EqualityContract => GetType();
 
 	/// <inheritdoc/>
 	bool? IModule.IsEnable { get; set; } = true;
@@ -159,7 +154,7 @@ public abstract class GroupModule : IModule
 		}
 		else
 		{
-			var cachedPropertiesInfo = GetType().GetProperties();
+			var cachedPropertiesInfo = EqualityContract.GetProperties();
 			await gmr.SendMessageAsync(
 				string.Join(
 					$"{Environment.NewLine}{Environment.NewLine}",
@@ -195,8 +190,7 @@ public abstract class GroupModule : IModule
 	/// </summary>
 	protected virtual void ResetProperties()
 	{
-		var containingType = GetType();
-		foreach (var propertyInfo in containingType.GetProperties())
+		foreach (var propertyInfo in EqualityContract.GetProperties())
 		{
 			if (propertyInfo is not { CanRead: true, CanWrite: true, PropertyType: var propType })
 			{
@@ -307,7 +301,7 @@ file static class MessageParser
 	{
 		requestedHintArgumentName = null;
 
-		var moduleType = module.GetType();
+		var moduleType = module.EqualityContract;
 
 		var isFirstArg = true;
 		var args = @this.ParseCommandLine("""[\""“”].+?[\""“”]|[^ ]+""", '"', '“', '”');

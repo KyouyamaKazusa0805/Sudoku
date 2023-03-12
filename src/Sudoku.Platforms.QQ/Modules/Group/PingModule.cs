@@ -1,13 +1,11 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
 [GroupModule("ping")]
+[RequiredRole(SenderRole = GroupRoleKind.God)]
 file sealed class PingModule : GroupModule
 {
 	/// <inheritdoc/>
 	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
-
-	/// <inheritdoc/>
-	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.God;
 
 
 	/// <inheritdoc/>

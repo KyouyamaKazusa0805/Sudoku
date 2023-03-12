@@ -1,13 +1,11 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
 [GroupModule("排名")]
+[RequiredRole(SenderRole = GroupRoleKind.God)]
 file sealed class RankingModule : GroupModule
 {
 	/// <inheritdoc/>
 	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
-
-	/// <inheritdoc/>
-	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.God;
 
 
 	/// <inheritdoc/>

@@ -301,6 +301,51 @@
             Indicates the price.
             </summary>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.RequiredRoleAttribute">
+            <summary>
+            Indicates the required role attribute.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Platforms.QQ.Data.Parsing.RequiredRoleAttribute.AllRoles">
+            <summary>
+            Indicates all roles are included.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.RequiredRoleAttribute.SenderRole">
+            <summary>
+            Indicates the supported sender roles.
+            The role is used for checking whether the module should be executed if a person emits a command to execute this module.
+            </summary>
+            <remarks>
+            <para>You can use <see cref="T:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind"/>.<see langword="operator"/> | to merge multiple role kinds into one.</para>
+            <para><i>By default, the value is all possible roles included.</i></para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.RequiredRoleAttribute.BotRole">
+            <summary>
+            Indicates the required bot permission. The kind is only set with one flag, as the highest allowed permission.
+            </summary>
+            <remarks><i>
+            By default, the value is <see cref="F:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind.None"/>, which means the operation does not require any higher permissions.
+            </i></remarks>
+            <seealso cref="F:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind.None"/>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.TriggeringKindAttribute">
+            <summary>
+            Defines a triggering kind attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.TriggeringKindAttribute.#ctor(Sudoku.Platforms.QQ.Data.ModuleTriggeringKind)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.TriggeringKindAttribute"/> instance via the specified kind.
+            </summary>
+            <param name="kind">The kind.</param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.TriggeringKindAttribute.Kind">
+            <summary>
+            Indicates the triggering kind.
+            </summary>
+        </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverterAttribute`1">
             <summary>
             Provides with an attribute type that describes this property value should receive a value not type <see cref="T:System.String"/> as message text,
@@ -887,16 +932,10 @@
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RaisingPrefix">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RequiredSenderRole">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.PingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RaisingPrefix">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RequiredSenderRole">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.RankingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
@@ -909,9 +948,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RaisingPrefix">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RequiredSenderRole">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
@@ -948,33 +984,25 @@
             <seealso cref="T:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes"/>
             <completionlist cref="T:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes"/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredSenderRole">
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RaisingCommand">
             <summary>
-            Indicates the supported roles.
-            The role is used for checking whether the module should be executed if a person emits a command to execute this module.
+            Indicates the raising command.
             </summary>
-            <remarks>
-            <para>You can use <see cref="T:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind"/>.<see langword="operator"/> | to merge multiple role kinds into one.</para>
-            <para><i>By default, the value is all possible roles included.</i></para>
-            </remarks>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredSenderRole">
+            <inheritdoc cref="P:Sudoku.Platforms.QQ.Data.Parsing.RequiredRoleAttribute.SenderRole"/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredBotRole">
-            <summary>
-            Indicates the required bot permission. The kind is only set with one flag, as the highest allowed permission.
-            </summary>
-            <remarks><i>
-            By default, the value is <see cref="F:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind.None"/>, which means the operation does not require any higher permissions.
-            </i></remarks>
-            <seealso cref="F:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind.None"/>
+            <inheritdoc cref="P:Sudoku.Platforms.QQ.Data.Parsing.RequiredRoleAttribute.BotRole"/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.TriggeringKind">
             <summary>
             Indicates the triggering kind.
             </summary>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RaisingCommand">
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.EqualityContract">
             <summary>
-            Indicates the raising command.
+            Indicates the equality contract.
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.Mirai#Net#Modules#IModule#IsEnable">

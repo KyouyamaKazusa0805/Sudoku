@@ -1,13 +1,11 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
 [GroupModule("加分")]
+[RequiredRole(SenderRole = GroupRoleKind.God)]
 file sealed class UpdateSourceModule : GroupModule
 {
 	/// <inheritdoc/>
 	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
-
-	/// <inheritdoc/>
-	public override GroupRoleKind RequiredSenderRole => GroupRoleKind.God;
 
 	[DoubleArgument("昵称")]
 	[Hint("表示你要为谁进行加分操作。该参数指定的是用户的群名片。")]
