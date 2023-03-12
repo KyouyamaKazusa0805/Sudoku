@@ -1,11 +1,8 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("加分")]
 file sealed class UpdateSourceModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string RaisingCommand => "加分";
-
 	/// <inheritdoc/>
 	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
 

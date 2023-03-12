@@ -1,13 +1,10 @@
 ﻿#if false
 namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("抽题")]
 [SupportedOSPlatform("windows")]
 file sealed class PuzzleLibraryExtractModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string RaisingCommand => "抽题";
-
 	[DoubleArgument("群号")]
 	public string? PuzzleLibraryContainingGroupId { get; set; }
 

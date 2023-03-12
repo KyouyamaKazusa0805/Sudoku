@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("查询")]
 file sealed class LookupModule : GroupModule
 {
 	[DoubleArgument("主卡")]
@@ -19,9 +19,6 @@ file sealed class LookupModule : GroupModule
 	[Hint("表示你需要查询的强化期间，辅助卡的级别，书写格式和“强化”指令里的“辅助”用法一致。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericArrayConverter<int>>]
 	public int[]? AuxiliaryCards { get; set; }
-
-	/// <inheritdoc/>
-	public override string RaisingCommand => "查询";
 
 	[DoubleArgument("内容")]
 	[Hint("表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。")]

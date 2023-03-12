@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("购买")]
 file sealed class BuyingModule : GroupModule
 {
 	[DoubleArgument("级别")]
@@ -14,9 +14,6 @@ file sealed class BuyingModule : GroupModule
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue<int>(1)]
 	public int BatchedCount { get; set; }
-
-	/// <inheritdoc/>
-	public override string RaisingCommand => "购买";
 
 	[DoubleArgument("物品")]
 	[Hint("表示购买的物品。可以是“三叶草”或“强化卡”。")]

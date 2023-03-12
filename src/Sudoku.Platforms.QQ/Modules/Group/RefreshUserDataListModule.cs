@@ -1,12 +1,9 @@
 ﻿#if false
 namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("用户数据刷新")]
 file sealed class RefreshUserDataListModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string RaisingCommand => "用户数据刷新";
-
 	[DoubleArgument("范围")]
 	[Hint("")]
 	public string? Range { get; set; }

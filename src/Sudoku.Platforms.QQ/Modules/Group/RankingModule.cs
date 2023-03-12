@@ -1,11 +1,8 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("排名")]
 file sealed class RankingModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string RaisingCommand => "排名";
-
 	/// <inheritdoc/>
 	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
 

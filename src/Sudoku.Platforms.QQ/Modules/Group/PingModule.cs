@@ -1,11 +1,8 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("ping")]
 file sealed class PingModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string RaisingCommand => "ping";
-
 	/// <inheritdoc/>
 	public override string[] RaisingPrefix => CommonCommandPrefixes.HashTag;
 

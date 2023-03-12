@@ -1,11 +1,8 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("强化")]
 file sealed class CardUplevelingModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string RaisingCommand => "强化";
-
 	[DoubleArgument("三叶草")]
 	[Hint("表示强化期间，需要的三叶草的级别，支持 1 到 10 级。该参数可以没有，默认情况下表示不带三叶草进行强化。")]
 	[ValueConverter<NumericConverter<int>>]

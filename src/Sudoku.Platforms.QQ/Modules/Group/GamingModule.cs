@@ -1,13 +1,9 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("开始游戏")]
 [SupportedOSPlatform("windows")]
 file sealed class GamingModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string RaisingCommand => "开始游戏";
-
-
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{

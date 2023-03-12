@@ -100,11 +100,6 @@
             The internal running context.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Data.BuiltInAttribute">
-            <summary>
-            Represents with a built-in module attribute.
-            </summary>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Data.CommonCommandPrefixes">
             <summary>
             Extracts the prefix array provided, used by commands.
@@ -234,6 +229,28 @@
         <member name="P:Sudoku.Platforms.QQ.Data.Parsing.GroupAttribute.Group">
             <summary>
             Indicates the group of the shopping item.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.GroupModuleAttribute">
+            <summary>
+            Provides with an attribute type that describes this type is a <see cref="T:Sudoku.Platforms.QQ.Modules.GroupModule"/> implementation type.
+            This attribute is necessary to be detected and invoked by <see cref="T:Mirai.Net.Sessions.MiraiBot"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.GroupModuleAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.GroupModuleAttribute"/> instance via the specified name.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.GroupModuleAttribute.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.GroupModuleAttribute"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.GroupModuleAttribute.Name">
+            <summary>
+            Indicates the name of the module.
             </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.HintAttribute">
@@ -818,13 +835,7 @@
             whose name cannot be known in compiler time.
             </i></b></remarks>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.RaisingCommand">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.BuyingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CancelGamingModule.RaisingCommand">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.CancelGamingModule.RequiredEnvironmentCommand">
@@ -833,19 +844,10 @@
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.CancelGamingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.RaisingCommand">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.CardUplevelingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.CheckInModule.RaisingCommand">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.CheckInModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.GamingModule.RaisingCommand">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.GamingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
@@ -873,9 +875,6 @@
             <param name="this">The <see cref="T:System.TimeSpan"/> instance.</param>
             <returns>The target string.</returns>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.LookupModule.RaisingCommand">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.LookupModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -883,9 +882,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.MentioningModule.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RaisingCommand">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.PingModule.RaisingPrefix">
@@ -897,9 +893,6 @@
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.PingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RaisingCommand">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.RankingModule.RaisingPrefix">
             <inheritdoc/>
         </member>
@@ -909,13 +902,10 @@
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.RankingModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.ShopModule.RaisingCommand">
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.ShopModule.ItemKind">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.ShopModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RaisingCommand">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.UpdateSourceModule.RaisingPrefix">
@@ -936,11 +926,6 @@
         <member name="F:Sudoku.Platforms.QQ.Modules.GroupModule.AllRoles">
             <summary>
             Indicates all roles are included.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RaisingCommand">
-            <summary>
-            Indicates the raising command.
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredEnvironmentCommand">
@@ -985,6 +970,11 @@
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.TriggeringKind">
             <summary>
             Indicates the triggering kind.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RaisingCommand">
+            <summary>
+            Indicates the raising command.
             </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.Mirai#Net#Modules#IModule#IsEnable">

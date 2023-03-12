@@ -1,12 +1,8 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("签到")]
 file sealed class CheckInModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string RaisingCommand => "签到";
-
-
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{

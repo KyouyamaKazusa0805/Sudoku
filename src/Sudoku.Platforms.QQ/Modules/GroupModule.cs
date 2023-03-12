@@ -13,11 +13,6 @@ public abstract class GroupModule : IModule
 
 
 	/// <summary>
-	/// Indicates the raising command.
-	/// </summary>
-	public abstract string RaisingCommand { get; }
-
-	/// <summary>
 	/// Indicates the required environment command.
 	/// </summary>
 	/// <remarks>
@@ -60,6 +55,11 @@ public abstract class GroupModule : IModule
 	/// Indicates the triggering kind.
 	/// </summary>
 	public virtual ModuleTriggeringKind TriggeringKind => ModuleTriggeringKind.Default;
+
+	/// <summary>
+	/// Indicates the raising command.
+	/// </summary>
+	protected internal string RaisingCommand => GetType().GetCustomAttribute<GroupModuleAttribute>()!.Name;
 
 	/// <inheritdoc/>
 	bool? IModule.IsEnable { get; set; } = true;

@@ -1,11 +1,8 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule("结束游戏")]
 file sealed class CancelGamingModule : GroupModule
 {
-	/// <inheritdoc/>
-	public override string RaisingCommand => "结束游戏";
-
 	/// <inheritdoc/>
 	public override string RequiredEnvironmentCommand => "开始游戏";
 

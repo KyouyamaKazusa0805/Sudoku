@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Platforms.QQ.Modules.Group;
 
-[BuiltIn]
+[GroupModule]
 file sealed class MentioningModule : IModule
 {
 	/// <inheritdoc/>
