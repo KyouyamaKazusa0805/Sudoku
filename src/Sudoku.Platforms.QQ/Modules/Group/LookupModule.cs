@@ -3,23 +3,16 @@
 [BuiltIn]
 file sealed class LookupModule : GroupModule
 {
-#pragma warning disable CS0414
-	private static readonly string ViewContentKindDefaultValue = ViewContentKinds.Elementary;
-	private static readonly int CloverLevelDefaultValue = -1;
-	private static readonly int MainLevelDefaultValue = -1;
-#pragma warning restore CS0414
-
-
 	[DoubleArgument("主卡")]
 	[Hint("表示你需要查询的强化期间，主卡的级别。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericConverter<int>>]
-	[DefaultValue(nameof(MainLevelDefaultValue))]
+	[DefaultValue<int>(-1)]
 	public int MainLevel { get; set; }
 
 	[DoubleArgument("三叶草")]
 	[Hint("表示你需要查询的强化期间，三叶草的级别。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericConverter<int>>]
-	[DefaultValue(nameof(CloverLevelDefaultValue))]
+	[DefaultValue<int>(-1)]
 	public int CloverLevel { get; set; }
 
 	[DoubleArgument("辅助")]
@@ -30,6 +23,11 @@ file sealed class LookupModule : GroupModule
 	/// <inheritdoc/>
 	public override string RaisingCommand => "查询";
 
+	[DoubleArgument("内容")]
+	[Hint("表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。")]
+	[DefaultValue<string>(ViewContentKinds.Elementary)]
+	public string ViewContentKind { get; set; } = null!;
+
 	[DoubleArgument("QQ")]
 	[Hint("表示你需要查询的用户的 QQ 号码。")]
 	public string? UserId { get; set; }
@@ -37,11 +35,6 @@ file sealed class LookupModule : GroupModule
 	[DoubleArgument("昵称")]
 	[Hint("表示你需要查询的用户的群名片。")]
 	public string? UserNickname { get; set; }
-
-	[DoubleArgument("内容")]
-	[Hint("表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。")]
-	[DefaultValue(nameof(ViewContentKindDefaultValue))]
-	public string ViewContentKind { get; set; } = null!;
 
 
 	/// <inheritdoc/>

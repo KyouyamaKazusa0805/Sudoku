@@ -3,26 +3,19 @@
 /// <summary>
 /// Represents a default value attribute.
 /// </summary>
+/// <typeparam name="T">The type of the default value. This type argument specified should be same as property type.</typeparam>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class DefaultValueAttribute : CommandLineParsingItemAttribute
+public sealed class DefaultValueAttribute<T> : CommandLineParsingItemAttribute
 {
 	/// <summary>
-	/// Initializes a <see cref="DefaultValueAttribute"/> instance via the specified default value invoker name.
+	/// Initializes a <see cref="DefaultValueAttribute{T}"/> instance via the specified default value.
 	/// </summary>
-	/// <param name="defaultValueInvokerName">
-	/// <para>The default value invoker name.</para>
-	/// <para><inheritdoc cref="DefaultValueInvokerName" path="/remarks"/></para>
-	/// </param>
-	public DefaultValueAttribute(string defaultValueInvokerName) => DefaultValueInvokerName = defaultValueInvokerName;
+	/// <param name="defaultValue">The default value.</param>
+	public DefaultValueAttribute(T? defaultValue) => DefaultValue = defaultValue;
 
 
 	/// <summary>
-	/// Indicates the default value invoker name.
+	/// Indicates the default value.
 	/// </summary>
-	/// <remarks><b><i>
-	/// The referenced member can only be <see langword="static"/> fields, <see langword="static"/> properties
-	/// or <see langword="static"/> parameterless methods. Methods cannot be local functions or other methods
-	/// whose name cannot be known in compiler time.
-	/// </i></b></remarks>
-	public string DefaultValueInvokerName { get; }
+	public T? DefaultValue { get; }
 }

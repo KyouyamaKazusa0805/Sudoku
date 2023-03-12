@@ -3,25 +3,19 @@
 [BuiltIn]
 file sealed class CardUplevelingModule : GroupModule
 {
-#pragma warning disable CS0414
-	private static readonly int CloverLevelDefaultValue = -1;
-	private static readonly int MainCardLevelDefaultValue = -1;
-#pragma warning restore CS0414
-
-
 	/// <inheritdoc/>
 	public override string RaisingCommand => "强化";
 
 	[DoubleArgument("三叶草")]
 	[Hint("表示强化期间，需要的三叶草的级别，支持 1 到 10 级。该参数可以没有，默认情况下表示不带三叶草进行强化。")]
 	[ValueConverter<NumericConverter<int>>]
-	[DefaultValue(nameof(CloverLevelDefaultValue))]
+	[DefaultValue<int>(-1)]
 	public int CloverLevel { get; set; }
 
 	[DoubleArgument("主卡")]
 	[Hint("表示你需要强化的主卡级别，支持 1 到 16 级。该参数可以没有，默认情况下表示你拥有的强化卡里最高级别的那一张作为主卡。")]
 	[ValueConverter<NumericConverter<int>>]
-	[DefaultValue(nameof(MainCardLevelDefaultValue))]
+	[DefaultValue<int>(-1)]
 	public int MainCardLevel { get; set; }
 
 	[DoubleArgument("辅助")]

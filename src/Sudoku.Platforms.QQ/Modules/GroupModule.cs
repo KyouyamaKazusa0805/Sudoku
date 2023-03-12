@@ -198,7 +198,7 @@ public abstract class GroupModule : IModule
 		var containingType = GetType();
 		foreach (var propertyInfo in containingType.GetProperties())
 		{
-			if (propertyInfo is not { CanRead: true, CanWrite: true })
+			if (propertyInfo is not { CanRead: true, CanWrite: true, PropertyType: var propType })
 			{
 				continue;
 			}
@@ -208,61 +208,17 @@ public abstract class GroupModule : IModule
 				continue;
 			}
 
-			var defaultOfType = DefaultValueCreator.CreateInstance(propertyInfo.PropertyType);
-			switch (propertyInfo.GetCustomAttribute<DefaultValueAttribute>())
+			if (propertyInfo.TryGetDefaultValueViaMemberName(out var defaultValue))
 			{
-				case null:
-				{
-					propertyInfo.SetValue(this, defaultOfType);
-					break;
-				}
-				case { DefaultValueInvokerName: var name }:
-				{
-					var referencedMemberFound = false;
-					foreach (var memberInfo in containingType.GetMembers(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public))
-					{
-						switch (memberInfo)
-						{
-							case FieldInfo { Name: var fieldName } f when fieldName == name:
-							{
-								propertyInfo.SetValue(this, f.GetValue(null));
-								referencedMemberFound = true;
-								break;
-							}
-							case PropertyInfo { CanRead: true, Name: var propertyName } p when propertyName == name:
-							{
-								propertyInfo.SetValue(this, p.GetValue(null, null));
-								referencedMemberFound = true;
-								break;
-							}
-							case MethodInfo { ReturnType: var returnType, Name: var methodName } m
-							when methodName == name && returnType != typeof(void):
-							{
-								var parameters = m.GetParameters();
-								if (parameters.Length != 0)
-								{
-									continue;
-								}
-
-								propertyInfo.SetValue(this, m.Invoke(null, null));
-								referencedMemberFound = true;
-								break;
-							}
-						}
-
-						if (referencedMemberFound)
-						{
-							break;
-						}
-					}
-
-					if (!referencedMemberFound)
-					{
-						propertyInfo.SetValue(this, defaultOfType);
-					}
-
-					break;
-				}
+				propertyInfo.SetValue(this, defaultValue);
+			}
+			else if (propertyInfo.TryGetDefaultValue(out defaultValue))
+			{
+				propertyInfo.SetValue(this, defaultValue);
+			}
+			else
+			{
+				propertyInfo.SetValue(this, DefaultValueCreator.CreateInstance(propType));
 			}
 		}
 	}
@@ -319,6 +275,12 @@ file enum ParsingFailedReason : int
 /// <seealso cref="IModule"/>
 file static class MessageParser
 {
+	/// <summary>
+	/// Indicates <see cref="BindingFlags"/> instance that binds with <see langword="static"/> members.
+	/// </summary>
+	private const BindingFlags StaticMembers = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
+
+
 	/// <summary>
 	/// Indicates the hint-requested tokens.
 	/// </summary>
@@ -450,6 +412,80 @@ file static class MessageParser
 
 		failedReason = ParsingFailedReason.None;
 		return true;
+	}
+
+	/// <summary>
+	/// Try to get the default value of the target property specified as <see cref="PropertyInfo"/> reflection data.
+	/// </summary>
+	/// <param name="this">The <see cref="PropertyInfo"/> instance.</param>
+	/// <param name="defaultValue">The default value of the property.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the specified property has marked the current attribute type.</returns>
+	public static bool TryGetDefaultValueViaMemberName(this PropertyInfo @this, [MaybeNullWhen(false)] out object? defaultValue)
+	{
+		switch (@this.GetCustomAttribute<DefaultValueReferencingMemberAttribute>())
+		{
+			case { DefaultValueInvokerName: var name }:
+			{
+				foreach (var memberInfo in @this.DeclaringType!.GetMembers(StaticMembers))
+				{
+					switch (memberInfo)
+					{
+						case FieldInfo { Name: var fieldName } f when fieldName == name:
+						{
+							defaultValue = f.GetValue(null);
+							return true;
+						}
+						case PropertyInfo { CanRead: true, Name: var propertyName } p when propertyName == name:
+						{
+							defaultValue = p.GetValue(null, null);
+							return true;
+						}
+						case MethodInfo { ReturnType: var returnType, Name: var methodName } m
+						when methodName == name && returnType != typeof(void):
+						{
+							var parameters = m.GetParameters();
+							if (parameters.Length != 0)
+							{
+								continue;
+							}
+
+							defaultValue = m.Invoke(null, null);
+							return true;
+						}
+					}
+				}
+
+				goto default;
+			}
+			default:
+			{
+				defaultValue = null;
+				return false;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Try to get the default value of the target property specified as <see cref="PropertyInfo"/> reflection data.
+	/// </summary>
+	/// <param name="this">The <see cref="PropertyInfo"/> instance.</param>
+	/// <param name="defaultValue">The default value of the property.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the specified property has marked the current attribute type.</returns>
+	public static bool TryGetDefaultValue(this PropertyInfo @this, [MaybeNullWhen(false)] out object? defaultValue)
+	{
+		(var @return, defaultValue) = @this.GetCustomGenericAttribute(typeof(DefaultValueAttribute<>)) switch
+		{
+			{ } attribute
+				=> (
+					true,
+					typeof(DefaultValueAttribute<>).MakeGenericType(@this.PropertyType)
+						.GetProperty(nameof(DefaultValueAttribute<object>.DefaultValue))!
+						.GetValue(attribute)!
+				),
+			_ => (false, null)
+		};
+
+		return @return;
 	}
 
 	/// <summary>

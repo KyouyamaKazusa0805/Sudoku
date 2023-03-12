@@ -18,7 +18,7 @@ file sealed class PuzzleLibraryExtractModule : GroupModule
 	public string? PuzzleLibraryName { get; set; }
 
 	[DoubleArgument("编号")]
-	[ArgumentValueConverter<Int32Converter>]
+	[ValueConverter<NumericConverter<int>>]
 	public int PuzzleId { get; set; }
 
 

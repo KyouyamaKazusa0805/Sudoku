@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Platforms.QQ.Data.Parsing.ValueConverters;
 
 /// <summary>
-/// Defines a converter that converts a <see cref="string"/> value into <typeparamref name="T"/> value.
+/// Defines a converter that converts a <see cref="string"/> value into <typeparamref name="T"/>[] value.
 /// </summary>
 /// <typeparam name="T">The type of the parsable target value.</typeparam>
 public sealed class NumericArrayConverter<T> : IValueConverter where T : unmanaged, INumber<T>

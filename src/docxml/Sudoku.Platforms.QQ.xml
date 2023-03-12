@@ -293,7 +293,7 @@
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverters.NumericArrayConverter`1">
             <summary>
-            Defines a converter that converts a <see cref="T:System.String"/> value into <typeparamref name="T"/> value.
+            Defines a converter that converts a <see cref="T:System.String"/> value into <typeparamref name="T"/>[] value.
             </summary>
             <typeparam name="T">The type of the parsable target value.</typeparam>
         </member>
@@ -777,21 +777,38 @@
             Indicates the total playing data.
             </summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Modules.Group.DefaultValueAttribute">
+        <member name="T:Sudoku.Platforms.QQ.Modules.Group.DefaultValueAttribute`1">
             <summary>
             Represents a default value attribute.
             </summary>
+            <typeparam name="T">The type of the default value. This type argument specified should be same as property type.</typeparam>
         </member>
-        <member name="M:Sudoku.Platforms.QQ.Modules.Group.DefaultValueAttribute.#ctor(System.String)">
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.DefaultValueAttribute`1.#ctor(`0)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.Group.DefaultValueAttribute"/> instance via the specified default value invoker name.
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.Group.DefaultValueAttribute`1"/> instance via the specified default value.
+            </summary>
+            <param name="defaultValue">The default value.</param>
+        </member>
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.DefaultValueAttribute`1.DefaultValue">
+            <summary>
+            Indicates the default value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.Group.DefaultValueReferencingMemberAttribute">
+            <summary>
+            Represents a default value referencing member attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.DefaultValueReferencingMemberAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Platforms.QQ.Modules.Group.DefaultValueReferencingMemberAttribute"/> instance via the specified default value invoker name.
             </summary>
             <param name="defaultValueInvokerName">
             <para>The default value invoker name.</para>
-            <para><inheritdoc cref="P:Sudoku.Platforms.QQ.Modules.Group.DefaultValueAttribute.DefaultValueInvokerName" path="/remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Platforms.QQ.Modules.Group.DefaultValueReferencingMemberAttribute.DefaultValueInvokerName" path="/remarks"/></para>
             </param>
         </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.Group.DefaultValueAttribute.DefaultValueInvokerName">
+        <member name="P:Sudoku.Platforms.QQ.Modules.Group.DefaultValueReferencingMemberAttribute.DefaultValueInvokerName">
             <summary>
             Indicates the default value invoker name.
             </summary>
@@ -1041,6 +1058,11 @@
             </summary>
             <seealso cref="T:Mirai.Net.Modules.IModule"/>
         </member>
+        <member name="F:Sudoku.Platforms.QQ.Modules.MessageParser.StaticMembers">
+            <summary>
+            Indicates <see cref="T:System.Reflection.BindingFlags"/> instance that binds with <see langword="static"/> members.
+            </summary>
+        </member>
         <member name="F:Sudoku.Platforms.QQ.Modules.MessageParser.HintRequestedTokens">
             <summary>
             Indicates the hint-requested tokens.
@@ -1058,6 +1080,22 @@
             A <see cref="T:System.Boolean"/> result indicating whether the specified plain message is compatible
             with module specified as argument <paramref name="module"/>.
             </returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)">
+            <summary>
+            Try to get the default value of the target property specified as <see cref="T:System.Reflection.PropertyInfo"/> reflection data.
+            </summary>
+            <param name="this">The <see cref="T:System.Reflection.PropertyInfo"/> instance.</param>
+            <param name="defaultValue">The default value of the property.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the specified property has marked the current attribute type.</returns>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.TryGetDefaultValue(System.Reflection.PropertyInfo,System.Object@)">
+            <summary>
+            Try to get the default value of the target property specified as <see cref="T:System.Reflection.PropertyInfo"/> reflection data.
+            </summary>
+            <param name="this">The <see cref="T:System.Reflection.PropertyInfo"/> instance.</param>
+            <param name="defaultValue">The default value of the property.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the specified property has marked the current attribute type.</returns>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.MessageParser.ParseCommandLine(System.String,System.String,System.Char[])">
             <summary>
