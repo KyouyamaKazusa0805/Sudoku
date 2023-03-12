@@ -908,6 +908,22 @@
             <param name="this">The <see cref="T:System.TimeSpan"/> instance.</param>
             <returns>The target string.</returns>
         </member>
+        <member name="T:Sudoku.Platforms.QQ.Modules.Group.GroupMessageReceiverExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>.
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>
+        </member>
+        <member name="M:Sudoku.Platforms.QQ.Modules.Group.GroupMessageReceiverExtensions.SendPictureThenDeleteAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,System.Func{Sudoku.Drawing.ISudokuPainter})">
+            <summary>
+            Sends the picture message, and then delete the local file.
+            </summary>
+            <param name="this">The group message receiver.</param>
+            <param name="painterCreator">
+            <inheritdoc cref="M:Sudoku.Platforms.QQ.Data.Storage.InternalReadWrite.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})" path="/param[@name='painterCreator']"/>
+            </param>
+            <returns>A task that handles the operation.</returns>
+        </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.LookupModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -1298,22 +1314,6 @@
             A task that handles the operation, with a returning value of type <see cref="T:Mirai.Net.Data.Shared.Member"/>. If none found, <see langword="null"/>.
             </returns>
         </member>
-        <member name="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>.
-            </summary>
-            <seealso cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>
-        </member>
-        <member name="M:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions.SendPictureThenDeleteAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,System.Func{Sudoku.Drawing.ISudokuPainter})">
-            <summary>
-            Sends the picture message, and then delete the local file.
-            </summary>
-            <param name="this">The group message receiver.</param>
-            <param name="painterCreator">
-            <inheritdoc cref="M:Sudoku.Platforms.QQ.Data.Storage.InternalReadWrite.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})" path="/param[@name='painterCreator']"/>
-            </param>
-            <returns>A task that handles the operation.</returns>
-        </member>
         <member name="T:Mirai.Net.Modules.IPeriodicModule">
             <summary>
             Represents a periodic module.
@@ -1327,76 +1327,6 @@
         <member name="M:Mirai.Net.Modules.IPeriodicModule.Execute">
             <summary>
             Try to execute the periodic module.
-            </summary>
-        </member>
-        <member name="T:Mirai.Net.Sessions.MiraiBotSubscribingExtensions">
-            <summary>
-            Provides with extenions methods on subscribing events for a <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.
-            </summary>
-        </member>
-        <member name="F:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.MuteSyncRoot">
-            <summary>
-            The object provided with methods to control <see cref="P:Sudoku.Platforms.QQ.Data.AppLifecycle.BotRunningContext.IsMuted"/> to be synchronized.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeBotOnlined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Bot.OnlineEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Bot.OnlineEvent"/>.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeBotOfflined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Bot.OfflineEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Bot.OfflineEvent"/>.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeJoined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.JoinedEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.JoinedEvent"/>.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeLeft(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.LeftEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.LeftEvent"/>.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeKicked(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.KickedEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.KickedEvent"/>.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeGroupMessage(Mirai.Net.Sessions.MiraiBot,System.Collections.Generic.List{Mirai.Net.Modules.IModule})">
-            <summary>
-            Subscribes for modules.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeGroupMessageReceived(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeMemberJoined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.MemberJoinedEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.MemberJoinedEvent"/>.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeNewMemberRequested(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Request.NewMemberRequestedEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Request.NewMemberRequestedEvent"/>.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeNewInvitationRequested(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Request.NewInvitationRequestedEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Request.NewInvitationRequestedEvent"/>.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeMuted(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.MutedEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.MutedEvent"/>.
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Sessions.MiraiBotSubscribingExtensions.SubscribeUnmuted(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.UnmutedEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.UnmutedEvent"/>.
             </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0">
