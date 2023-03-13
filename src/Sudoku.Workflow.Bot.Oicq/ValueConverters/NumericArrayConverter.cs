@@ -6,10 +6,16 @@
 /// <typeparam name="T">目标结果（数组）的元素的类型。</typeparam>
 public sealed class NumericArrayConverter<T> : IValueConverter where T : unmanaged, INumber<T>
 {
+	/// <summary>
+	/// 表示用于分割字符串的记号。
+	/// </summary>
+	private static readonly char[] SplitCharacters = { ',', '，', '、' };
+
+
 	/// <inheritdoc/>
 	public object Convert(string value)
 	{
-		var split = value.Split(new[] { ',', '，', '、' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+		var split = value.Split(SplitCharacters, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 		var result = new T[split.Length];
 		for (var i = 0; i < split.Length; i++)
 		{

@@ -7,13 +7,5 @@
 public sealed class NumericConverter<T> : IValueConverter where T : unmanaged, INumber<T>
 {
 	/// <inheritdoc/>
-	public object Convert(string value)
-	{
-		if (!T.TryParse(value, null, out var result))
-		{
-			throw new CommandConverterException();
-		}
-
-		return result;
-	}
+	public object Convert(string value) => T.TryParse(value, null, out var result) ? result : throw new CommandConverterException();
 }
