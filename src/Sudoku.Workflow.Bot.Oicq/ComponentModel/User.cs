@@ -6,7 +6,7 @@
 public sealed class User
 {
 	/// <summary>
-	/// 用户的账号。
+	/// 用户的账号（QQ 号）。
 	/// </summary>
 	[JsonPropertyName("qq")]
 	[JsonPropertyOrder(0)]

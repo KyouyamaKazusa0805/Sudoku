@@ -119,23 +119,23 @@
             虽然里面没有什么玩意儿，但它可能会被用于例如模式匹配之类的地方上。
             </summary>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.GroupModuleAttribute">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute">
             <summary>
             提供一个特性，用于标记到指令模块的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.GroupModuleAttribute.#ctor(System.String)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute.#ctor(System.String)">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.GroupModuleAttribute"/> 类型的实例，并给出其模块触发的名称。
+            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute"/> 类型的实例，并给出其模块触发的名称。
             </summary>
             <param name="name">触发名称。</param>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.GroupModuleAttribute.#ctor">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute.#ctor">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.GroupModuleAttribute"/> 类型的实例，无需名称。
+            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute"/> 类型的实例，无需名称。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.GroupModuleAttribute.Name">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute.Name">
             <summary>
             表示触发该指令的名称。
             </summary>
@@ -239,6 +239,17 @@
             类型，但需要转换为目标类型的时候。
             </summary>
             <typeparam name="T">表示转换器的类型。转换器必须实现 <see cref="T:System.CommandLine.IValueConverter"/> 接口，并包含一个无参构造器。</typeparam>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Collections.GroupCommandModuleCollection">
+            <summary>
+            表示一个列表，存储的就是一系列的 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule"/> 的实例。
+            </summary>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule"/>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Collections.GroupCommandModuleCollection.BuiltIn">
+            <summary>
+            表示内置的所有 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule"/> 序列。
+            </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.Distribution">
             <summary>
@@ -434,7 +445,7 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.User.Number">
             <summary>
-            用户的账号。
+            用户的账号（QQ 号）。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.User.CardLevel">
@@ -595,9 +606,41 @@
             </code>
             </remarks>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler">
+            <summary>
+            提供一个文件或文件夹存储（读、写）操作的处理器类型。
+            </summary>
+            <remarks>
+            由于文件读写操作较慢，又考虑到项目使用异步操作较多，因此本类型里所有的方法均为带锁的同步方法，基本等价于包裹了一层
+            <see langword="lock"/>(<see langword="typeof"/>(<see cref="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler"/>))
+            的代码片段。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.ReadAll(System.Predicate{System.String})">
+            <summary>
+            从配置文件路径读取所有用户信息，并返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 数组。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.Read(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
+            <summary>
+            读取指定 QQ 号码的用户数据，并返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 实例。如果用户不存在本地数据，则默认将参数 <paramref name="default"/> 的结果返回。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.Write(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
+            <summary>
+            将 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 数据写出到本地文件。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})">
+            <summary>
+            产生一个图片缓存路径，它会将指定参数的回调函数，所产生的 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 的对象给绘制出来，并保存到此缓存路径下。
+            </summary>
+            <param name="painterCreator">回调函数，用来生成一个 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 的绘图实例。</param>
+            <returns>图片在本地存储的缓存路径。</returns>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler">
             <summary>
-            提供一个分数（经验值和金币）的处理器对象。
+            提供一个分数（经验值和金币）的处理器类型。
             </summary>
         </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.Possibilities">

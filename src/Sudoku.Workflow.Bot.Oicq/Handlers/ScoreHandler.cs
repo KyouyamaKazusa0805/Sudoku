@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Workflow.Bot.Oicq.Handlers;
 
 /// <summary>
-/// 提供一个分数（经验值和金币）的处理器对象。
+/// 提供一个分数（经验值和金币）的处理器类型。
 /// </summary>
 public static class ScoreHandler
 {

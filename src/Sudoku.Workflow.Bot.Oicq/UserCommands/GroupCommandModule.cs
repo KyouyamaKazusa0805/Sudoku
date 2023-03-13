@@ -26,7 +26,7 @@ public abstract class GroupCommandModule : IModule
 	/// <summary>
 	/// 表示引发指令的名称，不带前缀符号。比如“！签到”的“签到”。
 	/// </summary>
-	protected string RaisingCommand => EqualityContract.GetCustomAttribute<GroupModuleAttribute>()!.Name;
+	protected string RaisingCommand => EqualityContract.GetCustomAttribute<GroupCommandModuleAttribute>()!.Name;
 
 	/// <summary>
 	/// 表示该指令需要依赖的指令名称。比如说游戏结束必须至少要求游戏开始。那么“！结束游戏”指令必须依赖于“！开始游戏”指令触发之后。
@@ -35,7 +35,7 @@ public abstract class GroupCommandModule : IModule
 	protected string? RequiredEnvironmentCommand
 		=> EqualityContract.GetGenericAttributeTypeArguments(typeof(DependencyModuleAttribute<>)) switch
 		{
-			[var typeArgument] => typeArgument.GetCustomAttribute<GroupModuleAttribute>()!.Name,
+			[var typeArgument] => typeArgument.GetCustomAttribute<GroupCommandModuleAttribute>()!.Name,
 			_ => null
 		};
 

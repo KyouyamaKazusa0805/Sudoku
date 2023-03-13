@@ -8,6 +8,7 @@ global using System.Linq;
 global using System.Numerics;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
+global using System.Runtime.Versioning;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading.Tasks;
