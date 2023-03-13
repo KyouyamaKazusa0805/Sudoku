@@ -8,25 +8,25 @@ public static class ScoreHandler
 	/// <summary>
 	/// 强化系统的成功率表。
 	/// </summary>
-	private static readonly decimal[][] Possibilities =
+	private static readonly decimal[,] Possibilities =
 	{
-		new[] { 1M, 1M, 1M }, // 0
-		new[] { 1M, .88M, 1M }, // 1
-		new[] { .968M, .792M, .608M }, // 2
-		new[] { .686M, .55M, .429M }, // 3
-		new[] { .495M, .403M, .242M }, // 4
-		new[] { .396M, .33M, .201M }, // 5
-		new[] { .319M, .264M, .132M }, // 6
-		new[] { .264M, .212M, .106M }, // 7
-		new[] { .22M, .132M, .06M }, // 8
-		new[] { .135M, .045M, .022M }, // 9
-		new[] { .125M, .046M, .018M }, // 10
-		new[] { .116M, .046M, .017M }, // 11
-		new[] { .107M, .0398M, .0157M }, // 12
-		new[] { .104M, .035M, .013M }, // 13
-		new[] { .099M, .031M, .0108M }, // 14
-		new[] { .09M, .022M, .0045M }, // 15
-		new[] { .08M, .02M, .002M }, // 16
+		{ 1M, 1M, 1M }, // 0
+		{ 1M, .88M, 1M }, // 1
+		{ .968M, .792M, .608M }, // 2
+		{ .686M, .55M, .429M }, // 3
+		{ .495M, .403M, .242M }, // 4
+		{ .396M, .33M, .201M }, // 5
+		{ .319M, .264M, .132M }, // 6
+		{ .264M, .212M, .106M }, // 7
+		{ .22M, .132M, .06M }, // 8
+		{ .135M, .045M, .022M }, // 9
+		{ .125M, .046M, .018M }, // 10
+		{ .116M, .046M, .017M }, // 11
+		{ .107M, .0398M, .0157M }, // 12
+		{ .104M, .035M, .013M }, // 13
+		{ .099M, .031M, .0108M }, // 14
+		{ .09M, .022M, .0045M }, // 15
+		{ .08M, .02M, .002M }, // 16
 	};
 
 	/// <summary>
@@ -107,14 +107,18 @@ public static class ScoreHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static decimal GetUpLevelingSuccessPossibility(int main, int[] auxiliary, int cloverLevel)
 	{
-		var z = Possibilities[main];
 		var p = auxiliary switch
 		{
-			[] => throw new ArgumentException("辅助卡至少一张。", nameof(auxiliary)),
-			[var c] => z[main - c],
-			[var c1, var c2] => z[main - c1] + z[main - c2] / 3,
-			[var c1, var c2, var c3] => z[main - c1] + z[main - c2] / 3 + z[main - c3] / 3,
-			_ => throw new ArgumentException("辅助卡最多三张。", nameof(auxiliary))
+			[]
+				=> throw new ArgumentException("辅助卡至少一张。", nameof(auxiliary)),
+			[var c]
+				=> Possibilities[main, main - c],
+			[var c1, var c2]
+				=> Possibilities[main, main - c1] + Possibilities[main, main - c2] / 3,
+			[var c1, var c2, var c3]
+				=> Possibilities[main, main - c1] + Possibilities[main, main - c2] / 3 + Possibilities[main, main - c3] / 3,
+			_
+				=> throw new ArgumentException("辅助卡最多三张。", nameof(auxiliary))
 		};
 
 		return Clamp(cloverLevel switch { -1 => p, _ => p * CloverLevels[cloverLevel] }, 0, 1);
