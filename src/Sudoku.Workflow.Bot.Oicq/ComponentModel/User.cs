@@ -16,7 +16,7 @@ public sealed class User
 	/// 用户的强化卡最高级别。
 	/// </summary>
 	[JsonIgnore]
-	public int CardLevel => UplevelingCards.Keys.Max();
+	public int CardLevel => UplevelingCards.Keys is var keys && keys.Any() ? keys.Max() : 0;
 
 	/// <summary>
 	/// 用户在使用机器人期间积攒的经验值。
