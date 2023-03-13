@@ -240,6 +240,26 @@
             </summary>
             <typeparam name="T">表示转换器的类型。转换器必须实现 <see cref="T:System.CommandLine.IValueConverter"/> 接口，并包含一个无参构造器。</typeparam>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.Distribution">
+            <summary>
+            表示一种分数构成的分布规则。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.ComponentModel.Distribution.Constant">
+            <summary>
+            表示分布使用常量分布规则。在计算一些结果的时候，不论抽取次数和抽取人的数据，都只能得到同样的结果。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.ComponentModel.Distribution.Exponent">
+            <summary>
+            表示分布使用指数分布规则。意味着越极端的结果对应的数值越极端（越难取到）。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.ComponentModel.Distribution.Normal">
+            <summary>
+            表示分布使用高斯分布（正态分布）。意味着中间数据能取到的概率最高，最低是两端的数据。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GameMode">
             <summary>
             表示一种 PK 答题模式。
@@ -575,6 +595,82 @@
             </code>
             </remarks>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler">
+            <summary>
+            提供一个分数（经验值和金币）的处理器对象。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.Possibilities">
+            <summary>
+            强化系统的成功率表。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.CloverLevels">
+            <summary>
+            三叶草的成功率翻倍表。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GlobalRates">
+            <summary>
+            强化系统里，强化卡的对应级别，以及全局的加成倍数表。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetGrade(System.Int32)">
+            <summary>
+            根据经验值判断用户的级别。
+            </summary>
+            <param name="score">经验值。</param>
+            <returns>用户的级别。</returns>
+            <exception cref="T:System.InvalidOperationException">如果分数过大，就会产生此异常。</exception>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetGlobalRate(System.Int32)">
+            <summary>
+            根据用户提供的卡片级别，求得用户的卡片加成倍数。
+            </summary>
+            <param name="cardLevel">卡片级别。</param>
+            <returns>用户卡片加成倍数。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetCheckInRate(System.Int32)">
+            <summary>
+            根据用户的连续签到天数，求得用户的连续签到的倍数。
+            </summary>
+            <param name="continuousDaysCount">连续签到的天数。</param>
+            <returns>用户的签到倍数。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetUpLevelingSuccessPossibility(System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            根据用户提供的主卡级别、辅助卡级别和三叶草级别，求得卡片强化的成功率。
+            </summary>
+            <param name="main">主卡级别。</param>
+            <param name="auxiliary">辅助卡级别。辅助卡最少一张，最多三张。</param>
+            <param name="cloverLevel">三叶草的级别。如果不需要三叶草，则传 -1。</param>
+            <returns>强化的成功率。</returns>
+            <exception cref="T:System.ArgumentException">如果辅助卡为空数组，或超过 3 个元素，则产生此异常。</exception>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            求得群的排名信息。
+            </summary>
+            <param name="group">所在群。</param>
+            <param name="rankingListIsEmptyCallback">一个回调函数。如果本群没有人使用过机器人，该回调函数会触发。</param>
+            <returns>一个 <see cref="T:System.Threading.Tasks.Task`1"/> 实例，表示该异步执行的逻辑数据，并带出计算结果。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetEarnedScoringDisplayingString(System.Int32)">
+            <summary>
+            获取一个字符串，表示的是数值的字符串写法；如果是愚人节当天，则故意显示为 <see cref="F:System.Int32.MinValue"/> 的字符串写法，作为一个玩笑。
+            </summary>
+            <param name="base">基础数值。</param>
+            <returns>字符串写法。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetEarnedCoinDisplayingString(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetEarnedScoringDisplayingString(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetWeekendFactor">
+            <summary>
+            获取周末的翻倍情况。如果当天不是周末，则返回 1；否则返回 2。
+            </summary>
+            <returns>周末翻倍情况。</returns>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Lifecycle.AnsweringContext">
             <summary>
             一个上下文类型，记录了用户回答题目的结果信息。
@@ -820,6 +916,37 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.ValueConverters.NumericConverter`1.Convert(System.String)">
             <inheritdoc/>
+        </member>
+        <member name="T:Mirai.Net.Data.Shared.GroupExtensions">
+            <summary>
+            为 <see cref="T:Mirai.Net.Data.Shared.Group"/> 类型的实例提供扩展方法。
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Shared.Group"/>
+        </member>
+        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMatchedMembersViaNicknameAsync(Mirai.Net.Data.Shared.Group,System.String)">
+            <summary>
+            获取指定群，群成员的昵称等于参数 <paramref name="nickname"/> 的成员。注意，群可能存在多个人名片一样的情况，所以该方法返回的是一个数组，而不是一个元素。
+            </summary>
+        </member>
+        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMatchedMemberViaIdAsync(Mirai.Net.Data.Shared.Group,System.String)">
+            <summary>
+            获取指定群，群成员的 QQ 等于参数 <paramref name="id"/> 的成员。
+            </summary>
+        </member>
+        <member name="T:Mirai.Net.Modules.IPeriodicModule">
+            <summary>
+            提供一个周期性自动执行的模块。这个模块不同于群指令的模块，它在每一天的固定时候自动执行。
+            </summary>
+        </member>
+        <member name="P:Mirai.Net.Modules.IPeriodicModule.TriggeringTime">
+            <summary>
+            表示该模块自动执行的时间。由于它每天都执行，因此无关日期数据，所以返回值类型为 <see cref="T:System.TimeOnly"/> 而不是 <see cref="T:System.DateTime"/>。
+            </summary>
+        </member>
+        <member name="M:Mirai.Net.Modules.IPeriodicModule.Execute">
+            <summary>
+            执行的具体实现逻辑。
+            </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the BilibiliPattern method.</summary>
