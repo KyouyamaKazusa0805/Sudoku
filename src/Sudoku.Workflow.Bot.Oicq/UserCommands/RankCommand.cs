@@ -1,8 +1,10 @@
-﻿namespace Sudoku.Platforms.QQ.Modules.Group;
+﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands;
 
-[GroupModule("排名")]
-[RequiredRole(SenderRole = GroupRoleKind.God)]
-file sealed class RankingModule : GroupModule
+/// <summary>
+/// 排名指令。
+/// </summary>
+[GroupCommandModule("排名")]
+internal sealed class RankCommand : GroupCommandModule
 {
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
@@ -12,9 +14,8 @@ file sealed class RankingModule : GroupModule
 			return;
 		}
 
-		// If the number of members are too large, we should only iterate the specified number of elements from top.
 		var context = BotRunningContext.GetContext(group);
-		var usersData = (await Scorer.GetUserRankingListAsync(group, async () => await messageReceiver.SendMessageAsync("群用户列表为空。")))!.Take(10);
+		var usersData = (await ScoreHandler.GetUserRankingListAsync(group, async () => await messageReceiver.SendMessageAsync("群用户列表为空。")))!.Take(10);
 
 		await messageReceiver.SendMessageAsync(
 			$"""
@@ -25,10 +26,10 @@ file sealed class RankingModule : GroupModule
 					static (pair, i) =>
 					{
 						var name = pair.Name;
-						var qq = pair.Data.QQ;
+						var qq = pair.Data.Number;
 						var score = pair.Data.ExperiencePoint;
 						var coin = pair.Data.Coin;
-						var grade = Scorer.GetGrade(score);
+						var grade = ScoreHandler.GetGrade(score);
 						return $"#{i + 1,2} {name}（{qq}） 🚩{score} 💴{coin} 🏅{grade}";
 					}
 				)
