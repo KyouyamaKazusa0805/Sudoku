@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands;
 
-[GroupCommandModule("签到")]
-internal sealed class CheckInCommand : GroupCommandModule
+[Command("签到")]
+internal sealed class CheckInCommand : Command
 {
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)

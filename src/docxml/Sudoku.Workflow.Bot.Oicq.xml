@@ -14,6 +14,27 @@
             表示该指令模块的参数需要多少个子参数信息。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute">
+            <summary>
+            提供一个特性，用于标记到指令模块的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute.#ctor(System.String)">
+            <summary>
+            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute"/> 类型的实例，并给出其模块触发的名称。
+            </summary>
+            <param name="name">触发名称。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute.#ctor">
+            <summary>
+            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute"/> 类型的实例，无需名称。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute.Name">
+            <summary>
+            表示触发该指令的名称。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.CommandLineAnnotationAttribute">
             <summary>
             表示所有用于解析命令行（用户提供的命令）的部件的特性。
@@ -117,27 +138,6 @@
             <summary>
             表示一个抽象基类型，为所有用于标记给枚举字段的特性类型提供基类型抽象。
             虽然里面没有什么玩意儿，但它可能会被用于例如模式匹配之类的地方上。
-            </summary>
-        </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute">
-            <summary>
-            提供一个特性，用于标记到指令模块的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute.#ctor(System.String)">
-            <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute"/> 类型的实例，并给出其模块触发的名称。
-            </summary>
-            <param name="name">触发名称。</param>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute.#ctor">
-            <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute"/> 类型的实例，无需名称。
-            </summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.GroupCommandModuleAttribute.Name">
-            <summary>
-            表示触发该指令的名称。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.HintAttribute">
@@ -272,15 +272,15 @@
             </summary>
             <typeparam name="T">表示转换器的类型。转换器必须实现 <see cref="T:System.CommandLine.IValueConverter"/> 接口，并包含一个无参构造器。</typeparam>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.Collections.GroupCommandModuleCollection">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Collections.CommandCollection">
             <summary>
-            表示一个列表，存储的就是一系列的 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule"/> 的实例。
+            表示一个列表，存储的就是一系列的 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Command"/> 的实例。
             </summary>
-            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule"/>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Command"/>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.Collections.GroupCommandModuleCollection.BuiltIn">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Collections.CommandCollection.BuiltIn">
             <summary>
-            表示内置的所有 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule"/> 序列。
+            表示内置的所有 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Command"/> 序列。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.Distribution">
@@ -893,6 +893,135 @@
             </summary>
             <returns>获得的物品。可能为 <see langword="null"/>。</returns>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Command">
+            <summary>
+            提供一个基本的指令模块。这个类型为抽象类型，需要派生出实例类型进行实现，并提供给 <see cref="T:Mirai.Net.Sessions.MiraiBot"/> 实例调用。
+            </summary>
+            <seealso cref="T:Mirai.Net.Sessions.MiraiBot"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.StaticMembers">
+            <summary>
+            用于反射期间绑定的 <see cref="T:System.Reflection.BindingFlags"/> 类型的实例。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.ModuleTriggeringPrefix">
+            <summary>
+            表示模块触发的前缀符号。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.HintRequestedTokens">
+            <summary>
+            表示模块查询参数或模块自身提示信息的占位符。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.RaisingCommand">
+            <summary>
+            表示引发指令的名称，不带前缀符号。比如“！签到”的“签到”。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.RequiredEnvironmentCommand">
+            <summary>
+            表示该指令需要依赖的指令名称。比如说游戏结束必须至少要求游戏开始。那么“！结束游戏”指令必须依赖于“！开始游戏”指令触发之后。
+            这个属性对于“结束游戏”指令的实现类型来说，它的依赖指令名就是“开始游戏”。如果类型不依赖于任何其他的指令，这个属性则会保持 <see langword="null"/> 值。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.RequiredSenderRole">
+            <inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.RequiredRoleAttribute.SenderRole"/>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.RequiredBotRole">
+            <inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.RequiredRoleAttribute.BotRole"/>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.EqualityContract">
+            <summary>
+            为 <see cref="M:System.Object.GetType"/> 的快捷调用。由于体系架构使用反射，因此该属性使用频率会非常高。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.Mirai#Net#Modules#IModule#IsEnable">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">如果实现类型存在一些问题，就会产生此异常。</exception>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <summary>
+            用于专门处理机器人对该指令的理解。
+            </summary>
+            <param name="messageReceiver">机器人在群组里进行回复操作期间，会使用到的对象。</param>
+            <returns>
+            返回一个 <see cref="T:System.Threading.Tasks.Task"/> 实例，记录了异步执行期间的一些数据信息。
+            </returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)">
+            <summary>
+            通过 <see cref="T:System.Reflection.PropertyInfo"/> 反射到的属性信息，进行该属性常量的求得。
+            如果属性标记了 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute"/> 特性，并且指向的成员合法，那么就会返回合理的结果到
+            参数 <paramref name="defaultValue"/> 上，并返回 <see langword="true"/>；否则 <see langword="false"/>。
+            </summary>
+            <param name="pi"><see cref="T:System.Reflection.PropertyInfo"/> 类型的实例。</param>
+            <param name="defaultValue">从外部接收使用的默认数值结果。该参数只用于返回值是 <see langword="true"/> 的时候。</param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果，表示是否 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute"/> 特性标记合理。</returns>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.TryGetDefaultValue(System.Reflection.PropertyInfo,System.Object@)">
+            <summary>
+            通过 <see cref="T:System.Reflection.PropertyInfo"/> 反射到的属性信息，进行该属性常量的求得。
+            如果属性标记了 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 特性，那么就会返回合理的结果到
+            参数 <paramref name="defaultValue"/> 上，并返回 <see langword="true"/>；否则 <see langword="false"/>。
+            </summary>
+            <param name="pi"><inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)" path="/param[@name='pi']"/></param>
+            <param name="defaultValue">
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)" path="/param[@name='defaultValue']"/>
+            </param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果，表示是否 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 特性标记合理。</returns>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
+            <summary>
+            一个转换类型，将 <see cref="T:Mirai.Net.Data.Shared.Permissions"/> 实例转换为等同的 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GroupRoleKind"/> 实例。
+            </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason">
+            <summary>
+            一个本地枚举类型，表示一个在解析期间产生的错误信息。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.None">
+            <summary>
+            表示没有错误。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.NotCurrentModule">
+            <summary>
+            表示解析失败，因为解析的指令不属于当前指令（不匹配）。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyNotFound">
+            <summary>
+            表示解析失败，因为目标属性没有找到。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyMissingAccessor">
+            <summary>
+            表示解析失败，因为目标属性缺少 <see langword="get"/> 或 <see langword="set"/> 方法的至少一个。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyIsIndexer">
+            <summary>
+            表示解析失败，因为目标属性是索引器（有参属性）。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyMissingConverter">
+            <summary>
+            表示解析失败，因为目标属性不是 <see cref="T:System.String"/> 类型，却缺少 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/> 的转换指示情况。
+            </summary>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.InvalidInput">
+            <summary>
+            表示解析失败，因为用户输入的结果在转换期间失败。比如某处要求输入整数，结果输入了别的无法转为整数数据的结果，例如字母。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GameCancelCommand">
             <summary>
             取消游戏指令。
@@ -1082,135 +1211,6 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Generalized.MentioningCommand.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule">
-            <summary>
-            提供一个基本的指令模块。这个类型为抽象类型，需要派生出实例类型进行实现，并提供给 <see cref="T:Mirai.Net.Sessions.MiraiBot"/> 实例调用。
-            </summary>
-            <seealso cref="T:Mirai.Net.Sessions.MiraiBot"/>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.StaticMembers">
-            <summary>
-            用于反射期间绑定的 <see cref="T:System.Reflection.BindingFlags"/> 类型的实例。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.ModuleTriggeringPrefix">
-            <summary>
-            表示模块触发的前缀符号。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.HintRequestedTokens">
-            <summary>
-            表示模块查询参数或模块自身提示信息的占位符。
-            </summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.RaisingCommand">
-            <summary>
-            表示引发指令的名称，不带前缀符号。比如“！签到”的“签到”。
-            </summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.RequiredEnvironmentCommand">
-            <summary>
-            表示该指令需要依赖的指令名称。比如说游戏结束必须至少要求游戏开始。那么“！结束游戏”指令必须依赖于“！开始游戏”指令触发之后。
-            这个属性对于“结束游戏”指令的实现类型来说，它的依赖指令名就是“开始游戏”。如果类型不依赖于任何其他的指令，这个属性则会保持 <see langword="null"/> 值。
-            </summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.RequiredSenderRole">
-            <inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.RequiredRoleAttribute.SenderRole"/>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.RequiredBotRole">
-            <inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.RequiredRoleAttribute.BotRole"/>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.EqualityContract">
-            <summary>
-            为 <see cref="M:System.Object.GetType"/> 的快捷调用。由于体系架构使用反射，因此该属性使用频率会非常高。
-            </summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.Mirai#Net#Modules#IModule#IsEnable">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
-            <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">如果实现类型存在一些问题，就会产生此异常。</exception>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <summary>
-            用于专门处理机器人对该指令的理解。
-            </summary>
-            <param name="messageReceiver">机器人在群组里进行回复操作期间，会使用到的对象。</param>
-            <returns>
-            返回一个 <see cref="T:System.Threading.Tasks.Task"/> 实例，记录了异步执行期间的一些数据信息。
-            </returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)">
-            <summary>
-            通过 <see cref="T:System.Reflection.PropertyInfo"/> 反射到的属性信息，进行该属性常量的求得。
-            如果属性标记了 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute"/> 特性，并且指向的成员合法，那么就会返回合理的结果到
-            参数 <paramref name="defaultValue"/> 上，并返回 <see langword="true"/>；否则 <see langword="false"/>。
-            </summary>
-            <param name="pi"><see cref="T:System.Reflection.PropertyInfo"/> 类型的实例。</param>
-            <param name="defaultValue">从外部接收使用的默认数值结果。该参数只用于返回值是 <see langword="true"/> 的时候。</param>
-            <returns>一个 <see cref="T:System.Boolean"/> 结果，表示是否 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute"/> 特性标记合理。</returns>
-            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute"/>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.TryGetDefaultValue(System.Reflection.PropertyInfo,System.Object@)">
-            <summary>
-            通过 <see cref="T:System.Reflection.PropertyInfo"/> 反射到的属性信息，进行该属性常量的求得。
-            如果属性标记了 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 特性，那么就会返回合理的结果到
-            参数 <paramref name="defaultValue"/> 上，并返回 <see langword="true"/>；否则 <see langword="false"/>。
-            </summary>
-            <param name="pi"><inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)" path="/param[@name='pi']"/></param>
-            <param name="defaultValue">
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)" path="/param[@name='defaultValue']"/>
-            </param>
-            <returns>一个 <see cref="T:System.Boolean"/> 结果，表示是否 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 特性标记合理。</returns>
-            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GroupCommandModule.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
-            <summary>
-            一个转换类型，将 <see cref="T:Mirai.Net.Data.Shared.Permissions"/> 实例转换为等同的 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GroupRoleKind"/> 实例。
-            </summary>
-        </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason">
-            <summary>
-            一个本地枚举类型，表示一个在解析期间产生的错误信息。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.None">
-            <summary>
-            表示没有错误。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.NotCurrentModule">
-            <summary>
-            表示解析失败，因为解析的指令不属于当前指令（不匹配）。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyNotFound">
-            <summary>
-            表示解析失败，因为目标属性没有找到。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyMissingAccessor">
-            <summary>
-            表示解析失败，因为目标属性缺少 <see langword="get"/> 或 <see langword="set"/> 方法的至少一个。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyIsIndexer">
-            <summary>
-            表示解析失败，因为目标属性是索引器（有参属性）。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyMissingConverter">
-            <summary>
-            表示解析失败，因为目标属性不是 <see cref="T:System.String"/> 类型，却缺少 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/> 的转换指示情况。
-            </summary>
-            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.InvalidInput">
-            <summary>
-            表示解析失败，因为用户输入的结果在转换期间失败。比如某处要求输入整数，结果输入了别的无法转为整数数据的结果，例如字母。
-            </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ManualUpdateUserDataCommand.UserNickname">
             <summary>

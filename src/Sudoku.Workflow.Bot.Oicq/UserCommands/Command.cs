@@ -4,7 +4,7 @@
 /// 提供一个基本的指令模块。这个类型为抽象类型，需要派生出实例类型进行实现，并提供给 <see cref="MiraiBot"/> 实例调用。
 /// </summary>
 /// <seealso cref="MiraiBot"/>
-public abstract class GroupCommandModule : IModule
+public abstract class Command : IModule
 {
 	/// <summary>
 	/// 用于反射期间绑定的 <see cref="BindingFlags"/> 类型的实例。
@@ -26,7 +26,7 @@ public abstract class GroupCommandModule : IModule
 	/// <summary>
 	/// 表示引发指令的名称，不带前缀符号。比如“！签到”的“签到”。
 	/// </summary>
-	protected string RaisingCommand => EqualityContract.GetCustomAttribute<GroupCommandModuleAttribute>()!.Name;
+	protected string RaisingCommand => EqualityContract.GetCustomAttribute<CommandAttribute>()!.Name;
 
 	/// <summary>
 	/// 表示该指令需要依赖的指令名称。比如说游戏结束必须至少要求游戏开始。那么“！结束游戏”指令必须依赖于“！开始游戏”指令触发之后。
@@ -35,7 +35,7 @@ public abstract class GroupCommandModule : IModule
 	protected string? RequiredEnvironmentCommand
 		=> EqualityContract.GetGenericAttributeTypeArguments(typeof(DependencyModuleAttribute<>)) switch
 		{
-			[var typeArgument] => typeArgument.GetCustomAttribute<GroupCommandModuleAttribute>()!.Name,
+			[var typeArgument] => typeArgument.GetCustomAttribute<CommandAttribute>()!.Name,
 			_ => null
 		};
 
@@ -169,7 +169,7 @@ public abstract class GroupCommandModule : IModule
 
 		static bool parseMessageCore(
 			string @this,
-			GroupCommandModule module,
+			Command module,
 			out ParsingFailedReason failedReason,
 			[MaybeNullWhen(false)] out List<string>? requestedHintArgumentName
 		)

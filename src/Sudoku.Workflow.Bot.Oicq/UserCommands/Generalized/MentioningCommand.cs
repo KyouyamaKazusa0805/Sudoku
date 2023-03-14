@@ -4,7 +4,7 @@
 /// 艾特指令。该指令较为特殊，它不带有前缀，也不是人触发的条件。
 /// 它主要是为了去处理一些其他指令里的回复情况，如开始游戏后，回答问题需要艾特的时候，就会用到这个指令来处理。
 /// </summary>
-[GroupCommandModule]
+[Command]
 file sealed class MentioningCommand : IModule
 {
 	/// <inheritdoc/>

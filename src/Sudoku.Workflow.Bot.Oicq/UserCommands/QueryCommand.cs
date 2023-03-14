@@ -3,8 +3,8 @@
 /// <summary>
 /// 查询指令。
 /// </summary>
-[GroupCommandModule("查询")]
-internal sealed class QueryCommand : GroupCommandModule
+[Command("查询")]
+internal sealed class QueryCommand : Command
 {
 	/// <summary>
 	/// 表示你需要查询的强化期间，主卡的级别。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。

@@ -3,8 +3,8 @@
 /// <summary>
 /// 购买指令。
 /// </summary>
-[GroupCommandModule("购买")]
-internal sealed class PurchaseCommand : GroupCommandModule
+[Command("购买")]
+internal sealed class PurchaseCommand : Command
 {
 	/// <summary>
 	/// 表示购买的三叶草的等级。该参数配合“三叶草”使用。对于“物品”参数填入强化卡的时候无效。

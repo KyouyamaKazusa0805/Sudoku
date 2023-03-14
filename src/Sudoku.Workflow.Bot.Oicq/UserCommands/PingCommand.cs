@@ -3,9 +3,9 @@
 /// <summary>
 /// Ping 指令。
 /// </summary>
-[GroupCommandModule("ping")]
+[Command("ping")]
 [RequiredRole(SenderRole = GroupRoleKind.God)]
-internal sealed class PingCommand : GroupCommandModule
+internal sealed class PingCommand : Command
 {
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)

@@ -3,8 +3,8 @@
 /// <summary>
 /// 排名指令。
 /// </summary>
-[GroupCommandModule("排名")]
-internal sealed class RankCommand : GroupCommandModule
+[Command("排名")]
+internal sealed class RankCommand : Command
 {
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)

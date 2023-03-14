@@ -1,8 +1,8 @@
 ﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands;
 
-[GroupCommandModule("加分")]
+[Command("加分")]
 [RequiredRole(SenderRole = GroupRoleKind.God)]
-internal sealed class ManualUpdateUserDataCommand : GroupCommandModule
+internal sealed class ManualUpdateUserDataCommand : Command
 {
 	/// <summary>
 	/// 表示你要为谁进行加分操作。该参数指定的是用户的群名片。

@@ -3,9 +3,9 @@
 /// <summary>
 /// 取消游戏指令。
 /// </summary>
-[GroupCommandModule("结束游戏")]
+[Command("结束游戏")]
 [DependencyModule<GameCommand>]
-internal sealed class GameCancelCommand : GroupCommandModule
+internal sealed class GameCancelCommand : Command
 {
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)

@@ -3,9 +3,9 @@
 /// <summary>
 /// 游戏指令。
 /// </summary>
-[GroupCommandModule("开始游戏")]
+[Command("开始游戏")]
 [SupportedOSPlatform(OperatingSystemNames.Windows)]
-internal sealed class GameCommand : GroupCommandModule
+internal sealed class GameCommand : Command
 {
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)

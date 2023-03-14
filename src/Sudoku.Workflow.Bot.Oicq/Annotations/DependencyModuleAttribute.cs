@@ -5,6 +5,6 @@
 /// </summary>
 /// <typeparam name="T">具体依赖的命令类型。</typeparam>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class DependencyModuleAttribute<T> : CommandLineAnnotationAttribute where T : GroupCommandModule, new()
+public sealed class DependencyModuleAttribute<T> : CommandLineAnnotationAttribute where T : Command, new()
 {
 }

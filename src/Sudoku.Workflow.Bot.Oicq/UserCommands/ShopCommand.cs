@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands;
 
-[GroupCommandModule("商店")]
-internal sealed class ShopCommand : GroupCommandModule
+[Command("商店")]
+internal sealed class ShopCommand : Command
 {
 	/// <summary>
 	/// 表示你要查看的商店的物品类型。可以填入的值有“强化卡”和“三叶草”。

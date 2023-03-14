@@ -3,8 +3,8 @@
 /// <summary>
 /// 强化指令。
 /// </summary>
-[GroupCommandModule("强化")]
-internal sealed class UplevelCommand : GroupCommandModule
+[Command("强化")]
+internal sealed class UplevelCommand : Command
 {
 	/// <summary>
 	/// 表示强化期间，需要的三叶草的级别，支持 1 到 10 级。该参数可以没有，默认情况下表示不带三叶草进行强化。
