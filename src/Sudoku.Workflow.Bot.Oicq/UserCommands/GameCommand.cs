@@ -4,7 +4,7 @@
 /// 游戏指令。
 /// </summary>
 [GroupCommandModule("开始游戏")]
-[SupportedOSPlatform("windows")]
+[SupportedOSPlatform(OperatingSystemNames.Windows)]
 internal sealed class GameCommand : GroupCommandModule
 {
 	/// <inheritdoc/>
@@ -380,7 +380,7 @@ file static class Extensions
 	/// <inheritdoc cref="StorageHandler.GenerateCachedPicturePath(Func{ISudokuPainter}?)" path="/param[@name='painterCreator']"/>
 	/// </param>
 	/// <returns>一个 <see cref="Task"/> 对象，包裹了异步执行的基本信息。</returns>
-	[SupportedOSPlatform("windows")]
+	[SupportedOSPlatform(OperatingSystemNames.Windows)]
 	public static async Task SendPictureThenDeleteAsync(this GroupMessageReceiver @this, Func<ISudokuPainter>? painterCreator = null)
 	{
 		painterCreator ??= () => RunningContexts[@this.GroupId].DrawingContext.Painter!;

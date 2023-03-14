@@ -302,7 +302,7 @@ public static class StorageHandler
 	/// </summary>
 	/// <param name="painterCreator">回调函数，用来生成一个 <see cref="ISudokuPainter"/> 的绘图实例。</param>
 	/// <returns>图片在本地存储的缓存路径。</returns>
-	[SupportedOSPlatform("windows")]
+	[SupportedOSPlatform(OperatingSystemNames.Windows)]
 	[MethodImpl(MethodImplOptions.Synchronized)]
 	public static string? GenerateCachedPicturePath(Func<ISudokuPainter> painterCreator)
 	{

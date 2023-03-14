@@ -188,6 +188,38 @@
             表示该字段的名称。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute">
+            <summary>
+            提供一个特性，用于标记到周期性执行的模块（<see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/> 的派生类型）的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.#ctor(System.Int32)">
+            <summary>
+            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute"/> 类型的实例，并给出周期执行的小时数据。
+            </summary>
+            <param name="hour">小时。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.#ctor(System.Int32,System.Int32)">
+            <summary>
+            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute"/> 类型的实例，并给出周期执行的时分两个数据。
+            </summary>
+            <param name="hour">小时。</param>
+            <param name="minute">分。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute"/> 类型的实例，并给出周期执行的时分秒三个数据。
+            </summary>
+            <param name="hour">小时。</param>
+            <param name="minute">分。</param>
+            <param name="second">秒。</param>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.TriggeringTime">
+            <summary>
+            表示触发该指令的时间。注意返回值类型为 <see cref="T:System.TimeOnly"/> 是因为，
+            由于模块的底层设计，所有的周期性指令每天都执行一次，所以这个属性指示的是每天的什么时候执行。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.PriceAttribute">
             <summary>
             表示价格的注解。用于一个枚举字段，表示该字段对应的物品的价格。
@@ -538,6 +570,16 @@
         <member name="F:Sudoku.Workflow.Bot.Oicq.Constants.SudokuGroupNumber">
             <summary>
             这个是单独为数独群设立的一个特殊群账号。很多特殊限制都跟这个特殊群有关系。
+            </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Constants.OperatingSystemNames">
+            <summary>
+            表示一个操作系统的名称。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Constants.OperatingSystemNames.Windows">
+            <summary>
+            表示是 Windows 操作系统。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Constants.Patterns">
@@ -1192,6 +1234,30 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.ManualUpdateUserDataCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.DailyPuzzleCommand">
+            <summary>
+            每日一题模块。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.DailyPuzzleCommand.ExecuteAsync">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand">
+            <summary>
+            表示一个周期性执行的指令。这个指令不同于 <see cref="T:Mirai.Net.Modules.IModule"/> 的模块化处理接口，它属于是单独被 <see cref="T:Mirai.Net.Sessions.MiraiBot"/> 进行调用。
+            </summary>
+            <seealso cref="T:Mirai.Net.Modules.IModule"/>
+            <seealso cref="T:Mirai.Net.Sessions.MiraiBot"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand.ExecuteAsync">
+            <summary>
+            执行此指令。注意，该方法为无参数方法，如果你需要发送消息，请使用静态方法 <see cref="M:Mirai.Net.Sessions.Http.Managers.MessageManager.SendGroupMessageAsync(System.String,Mirai.Net.Data.Messages.MessageChain)"/>
+            或 <see cref="M:Mirai.Net.Sessions.Http.Managers.MessageManager.SendGroupMessageAsync(Mirai.Net.Data.Shared.Group,Mirai.Net.Data.Messages.MessageChain)"/> 发送消息流。
+            </summary>
+            <returns>一个 <see cref="T:System.Threading.Tasks.Task"/> 包裹了异步执行的逻辑。</returns>
+            <seealso cref="M:Mirai.Net.Sessions.Http.Managers.MessageManager.SendGroupMessageAsync(System.String,Mirai.Net.Data.Messages.MessageChain)"/>
+            <seealso cref="M:Mirai.Net.Sessions.Http.Managers.MessageManager.SendGroupMessageAsync(Mirai.Net.Data.Shared.Group,Mirai.Net.Data.Messages.MessageChain)"/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.PingCommand">
             <summary>
