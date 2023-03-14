@@ -283,6 +283,28 @@
             表示内置的所有 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Command"/> 序列。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection">
+            <summary>
+            表示一个列表，存储的是一系列的 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/> 的实例。
+            </summary>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection._timers">
+            <summary>
+            表示一系列的 <see cref="T:System.Threading.Timer"/> 实例，专门用于触发。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection.BuiltIn">
+            <summary>
+            表示内置的所有 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/> 实例。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection.Add(Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.Add(`0)"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand})">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.AddRange(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.Distribution">
             <summary>
             表示一种分数构成的分布规则。
@@ -1249,6 +1271,9 @@
             </summary>
             <seealso cref="T:Mirai.Net.Modules.IModule"/>
             <seealso cref="T:Mirai.Net.Sessions.MiraiBot"/>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand.TriggeringTime">
+            <inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.TriggeringTime"/>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand.ExecuteAsync">
             <summary>

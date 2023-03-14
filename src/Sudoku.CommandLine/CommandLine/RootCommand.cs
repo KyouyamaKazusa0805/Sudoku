@@ -31,7 +31,7 @@ internal static class RootCommand
 		var type = (
 			from t in typeof(Program).Assembly.GetTypes()
 			where t.IsAssignableTo(typeof(IExecutable)) && t is { IsClass: true, IsAbstract: false }
-			let parameterlessConstructorInfo = t.GetConstructor(Array.Empty<Type>())
+			let parameterlessConstructorInfo = t.GetConstructor(Type.EmptyTypes)
 			where parameterlessConstructorInfo is not null
 			let attribute = t.GetCustomAttribute<SupportedArgumentsAttribute>()
 			where attribute is not null

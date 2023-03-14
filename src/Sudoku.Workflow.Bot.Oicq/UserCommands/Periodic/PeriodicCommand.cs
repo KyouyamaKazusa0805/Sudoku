@@ -7,6 +7,10 @@
 /// <seealso cref="MiraiBot"/>
 public abstract class PeriodicCommand
 {
+	/// <inheritdoc cref="PeriodicCommandAttribute.TriggeringTime"/>
+	public TimeOnly TriggeringTime => GetType().GetCustomAttribute<PeriodicCommandAttribute>()?.TriggeringTime ?? TimeOnly.MinValue;
+
+
 	/// <summary>
 	/// 执行此指令。注意，该方法为无参数方法，如果你需要发送消息，请使用静态方法 <see cref="MessageManager.SendGroupMessageAsync(string, MessageChain)"/>
 	/// 或 <see cref="MessageManager.SendGroupMessageAsync(Group, MessageChain)"/> 发送消息流。

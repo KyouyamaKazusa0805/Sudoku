@@ -46,7 +46,7 @@ file sealed class Bot : IExecutable
 			bot.SubscribeJoined(OnBotJoined);
 			bot.SubscribeLeft(OnBotLeft);
 			bot.SubscribeKicked(OnBotKicked);
-			bot.SubscribeGroupMessage(ModuleManager.BuiltIn);
+			bot.SubscribeGroupMessage(CommandCollection.BuiltIn);
 
 #if AUTO_SEND_MESSAGE_AFTER_MEMBER_JOINED
 			bot.SubscribeMemberJoined(OnMemberJoinedAsync);
@@ -82,15 +82,7 @@ file sealed class Bot : IExecutable
 		}
 
 #if ALLOW_PERIODIC_OPERATION
-		PeriodicModuleManager.BuiltIn.EnqueueRange(
-			from type in typeof(PeriodicModule).Assembly.GetTypes()
-			where type.IsAssignableTo(typeof(PeriodicModule))
-			let constructor = type.GetConstructor(Array.Empty<Type>())
-			where constructor is not null
-			let operation = Activator.CreateInstance(type) as PeriodicModule
-			where operation is not null
-			select operation
-		);
+		_ = PeriodicCommandCollection.BuiltIn;
 #endif
 
 		Terminal.Pause();
@@ -121,7 +113,7 @@ file sealed class Bot : IExecutable
 	/// <param name="e">The event handler.</param>
 	private async void OnNewInvitationRequestedAsync(NewInvitationRequestedEvent e)
 	{
-		if (e is { GroupId: ProjectWideConstants.SudokuGroupNumber })
+		if (e is { GroupId: SudokuGroupNumber })
 		{
 			await e.ApproveAsync();
 		}
@@ -137,12 +129,12 @@ file sealed class Bot : IExecutable
 	{
 		const string answerLocatorStr = "\u7b54\u6848\uff1a";
 
-		if (e is { GroupId: ProjectWideConstants.SudokuGroupNumber, Message: var message }
+		if (e is { GroupId: SudokuGroupNumber, Message: var message }
 			&& message.IndexOf(answerLocatorStr) is var answerLocatorStrIndex and not -1
 			&& answerLocatorStrIndex + answerLocatorStr.Length is var finalIndex && finalIndex < message.Length
 			&& message[finalIndex..] is var finalMessage)
 		{
-			if (BilibiliPattern().IsMatch(finalMessage.Trim()))
+			if (Patterns.BilibiliPattern().IsMatch(finalMessage.Trim()))
 			{
 				await e.ApproveAsync();
 			}
@@ -161,7 +153,7 @@ file sealed class Bot : IExecutable
 	/// <param name="e">The event handler.</param>
 	private async void OnMemberJoinedAsync(MemberJoinedEvent e)
 	{
-		if (e.Member.Group is { Id: ProjectWideConstants.SudokuGroupNumber } group)
+		if (e.Member.Group is { Id: SudokuGroupNumber } group)
 		{
 			await group.SendGroupMessageAsync(R["_MessageFormat_SampleMemberJoined"]!);
 		}
@@ -249,8 +241,8 @@ file static class Extensions
 	/// Subscribes for modules.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void SubscribeGroupMessage(this MiraiBot @this, List<IModule> modules)
-		=> @this.MessageReceived.SubscribeGroupMessage(modules.Raise);
+	public static void SubscribeGroupMessage(this MiraiBot @this, CommandCollection modules)
+		=> @this.MessageReceived.SubscribeGroupMessage(modules.ConvertAll(static command => (IModule)command).Raise);
 
 	/// <summary>
 	/// Subscribes for event <see cref="GroupMessageReceiver"/>.

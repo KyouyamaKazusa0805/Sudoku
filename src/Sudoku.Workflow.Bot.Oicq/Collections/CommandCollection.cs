@@ -16,7 +16,7 @@ public sealed class CommandCollection : List<Command>
 			var result = new CommandCollection();
 			result.AddRange(
 				from type in typeof(CommandCollection).Assembly.GetDerivedTypes<Command>()
-				where type.GetConstructor(Array.Empty<Type>()) is not null && type.IsDefined(typeof(CommandAttribute))
+				where type.GetConstructor(Type.EmptyTypes) is not null && type.IsDefined(typeof(CommandAttribute))
 				select (Command)Activator.CreateInstance(type)!
 			);
 

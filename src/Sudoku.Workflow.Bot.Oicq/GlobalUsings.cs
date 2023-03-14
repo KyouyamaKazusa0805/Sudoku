@@ -13,6 +13,7 @@ global using System.Runtime.CompilerServices;
 global using System.Runtime.Versioning;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
+global using System.Threading;
 global using System.Threading.Tasks;
 global using Mirai.Net.Data.Messages;
 global using Mirai.Net.Data.Messages.Concretes;

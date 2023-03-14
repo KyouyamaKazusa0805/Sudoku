@@ -188,7 +188,7 @@
         </member>
         <member name="F:Sudoku.CommandLine.RootCommands.Extensions.MuteSyncRoot">
             <summary>
-            The object provided with methods to control <see cref="P:Sudoku.Platforms.QQ.Data.AppLifecycle.BotRunningContext.IsMuted"/> to be synchronized.
+            The object provided with methods to control <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.BotRunningContext.IsMuted"/> to be synchronized.
             </summary>
         </member>
         <member name="M:Sudoku.CommandLine.RootCommands.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
@@ -224,7 +224,7 @@
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.KickedEvent"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeGroupMessage(Mirai.Net.Sessions.MiraiBot,System.Collections.Generic.List{Mirai.Net.Modules.IModule})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeGroupMessage(Mirai.Net.Sessions.MiraiBot,Sudoku.Workflow.Bot.Oicq.Collections.CommandCollection)">
             <summary>
             Subscribes for modules.
             </summary>

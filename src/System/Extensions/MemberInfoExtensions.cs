@@ -14,7 +14,7 @@ public static class MemberInfoExtensions
 	/// <param name="genericAttributeType">The generic attribute type.</param>
 	/// <returns>The types of the generic type arguments.</returns>
 	public static Type[] GetGenericAttributeTypeArguments<T>(this T @this, Type genericAttributeType) where T : MemberInfo
-		=> @this.GetCustomGenericAttribute(genericAttributeType)?.GetType().GenericTypeArguments ?? Array.Empty<Type>();
+		=> @this.GetCustomGenericAttribute(genericAttributeType)?.GetType().GenericTypeArguments ?? Type.EmptyTypes;
 
 	/// <summary>
 	/// <inheritdoc cref="Attribute.GetCustomAttribute(MemberInfo, Type)" path="/summary"/>

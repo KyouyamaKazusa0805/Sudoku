@@ -36,7 +36,7 @@ public sealed class Solve : IExecutable
 			from assembly in new[] { typeof(BacktrackingSolver).Assembly, typeof(LogicalSolver).Assembly }
 			from type in assembly.GetTypes()
 			where type.IsClass && (type.IsAssignableTo(typeof(ISimpleSolver)) || type.IsGenericAssignableTo(typeof(IComplexSolver<,>)))
-			let parameterlessConstructor = type.GetConstructor(Array.Empty<Type>())
+			let parameterlessConstructor = type.GetConstructor(Type.EmptyTypes)
 			where parameterlessConstructor is not null
 			select type)
 		{
