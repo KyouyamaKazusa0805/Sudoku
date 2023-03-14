@@ -4,7 +4,7 @@
 /// 提供一个特性，用于标记到指令模块的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class CommandAttribute : CommandLineAnnotationAttribute
+public sealed class CommandAttribute : CommandAnnotationAttribute
 {
 	/// <summary>
 	/// 实例化一个 <see cref="CommandAttribute"/> 类型的实例，并给出其模块触发的名称。

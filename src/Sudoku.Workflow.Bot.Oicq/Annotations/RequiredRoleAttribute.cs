@@ -4,7 +4,7 @@
 /// 提供一个特性，用于一个命令模块上，表示该命令模块可被触发的用户的角色。
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class RequiredRoleAttribute : CommandLineAnnotationAttribute
+public sealed class RequiredRoleAttribute : CommandAnnotationAttribute
 {
 	/// <summary>
 	/// 表示全部用户均可的枚举结果常量。

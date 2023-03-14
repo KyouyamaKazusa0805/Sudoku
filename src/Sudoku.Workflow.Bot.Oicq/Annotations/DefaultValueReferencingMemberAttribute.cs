@@ -10,7 +10,7 @@
 /// </remarks>
 /// <seealso cref="DefaultValueAttribute{T}"/>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class DefaultValueReferencingMemberAttribute : CommandLineAnnotationAttribute
+public sealed class DefaultValueReferencingMemberAttribute : CommandAnnotationAttribute
 {
 	/// <summary>
 	/// 实例化一个 <see cref="DefaultValueReferencingMemberAttribute"/> 的实例，并给出该成员名称。

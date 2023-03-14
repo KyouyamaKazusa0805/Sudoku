@@ -9,7 +9,7 @@
 /// </remarks>
 /// <typeparam name="T">属性本身的类型。</typeparam>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class DefaultValueAttribute<T> : CommandLineAnnotationAttribute
+public sealed class DefaultValueAttribute<T> : CommandAnnotationAttribute
 {
 	/// <summary>
 	/// 实例化一个 <see cref="DefaultValueAttribute{T}"/> 类型的实例，并带有一个参数表示其默认数值。

@@ -14,6 +14,11 @@
             表示该指令模块的参数需要多少个子参数信息。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAnnotationAttribute">
+            <summary>
+            表示所有用于解析命令行（用户提供的命令）的部件的特性。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute">
             <summary>
             提供一个特性，用于标记到指令模块的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
@@ -33,11 +38,6 @@
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute.Name">
             <summary>
             表示触发该指令的名称。
-            </summary>
-        </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.CommandLineAnnotationAttribute">
-            <summary>
-            表示所有用于解析命令行（用户提供的命令）的部件的特性。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1">
