@@ -186,6 +186,11 @@
 				</summary>
 			</target>
         </member>
+        <member name="F:Sudoku.CommandLine.RootCommands.Extensions.MuteSyncRoot">
+            <summary>
+            The object provided with methods to control <see cref="P:Sudoku.Platforms.QQ.Data.AppLifecycle.BotRunningContext.IsMuted"/> to be synchronized.
+            </summary>
+        </member>
         <member name="M:Sudoku.CommandLine.RootCommands.Extensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>
             Iterates all elements in this enumerable collection.
@@ -194,72 +199,62 @@
             <param name="this">The collection.</param>
             <param name="visitor">The visitor method to handle and operate with each element.</param>
         </member>
-        <member name="T:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions">
-            <summary>
-            Provides with extenions methods on subscribing events for a <see cref="T:Mirai.Net.Sessions.MiraiBot"/> instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.MuteSyncRoot">
-            <summary>
-            The object provided with methods to control <see cref="P:Sudoku.Platforms.QQ.Data.AppLifecycle.BotRunningContext.IsMuted"/> to be synchronized.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeBotOnlined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Bot.OnlineEvent})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeBotOnlined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Bot.OnlineEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Bot.OnlineEvent"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeBotOfflined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Bot.OfflineEvent})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeBotOfflined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Bot.OfflineEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Bot.OfflineEvent"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeJoined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.JoinedEvent})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeJoined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.JoinedEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.JoinedEvent"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeLeft(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.LeftEvent})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeLeft(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.LeftEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.LeftEvent"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeKicked(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.KickedEvent})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeKicked(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.KickedEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.KickedEvent"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeGroupMessage(Mirai.Net.Sessions.MiraiBot,System.Collections.Generic.List{Mirai.Net.Modules.IModule})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeGroupMessage(Mirai.Net.Sessions.MiraiBot,System.Collections.Generic.List{Mirai.Net.Modules.IModule})">
             <summary>
             Subscribes for modules.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeGroupMessageReceived(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeGroupMessageReceived(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeMemberJoined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.MemberJoinedEvent})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeMemberJoined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.MemberJoinedEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.MemberJoinedEvent"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeNewMemberRequested(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Request.NewMemberRequestedEvent})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeNewMemberRequested(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Request.NewMemberRequestedEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Request.NewMemberRequestedEvent"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeNewInvitationRequested(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Request.NewInvitationRequestedEvent})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeNewInvitationRequested(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Request.NewInvitationRequestedEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Request.NewInvitationRequestedEvent"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeMuted(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.MutedEvent})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeMuted(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.MutedEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.MutedEvent"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.MiraiBotSubscribingExtensions.SubscribeUnmuted(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.UnmutedEvent})">
+        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeUnmuted(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.UnmutedEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.UnmutedEvent"/>.
             </summary>

@@ -173,6 +173,12 @@ file sealed class Bot : IExecutable
 file static class Extensions
 {
 	/// <summary>
+	/// The object provided with methods to control <see cref="BotRunningContext.IsMuted"/> to be synchronized.
+	/// </summary>
+	private static readonly object MuteSyncRoot = new();
+
+
+	/// <summary>
 	/// Iterates all elements in this enumerable collection.
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
@@ -203,18 +209,6 @@ file static class Extensions
 			}
 		}
 	}
-}
-
-/// <summary>
-/// Provides with extenions methods on subscribing events for a <see cref="MiraiBot"/> instance.
-/// </summary>
-file static class MiraiBotSubscribingExtensions
-{
-	/// <summary>
-	/// The object provided with methods to control <see cref="BotRunningContext.IsMuted"/> to be synchronized.
-	/// </summary>
-	private static readonly object MuteSyncRoot = new();
-
 
 	/// <summary>
 	/// Subscribes for event <see cref="OnlineEvent"/>.

@@ -130,21 +130,6 @@
         <member name="P:Sudoku.Platforms.QQ.Data.Gaming.UserPuzzleAnswerDetails.Conclusion">
             <summary>The answer conclusion index.</summary>
         </member>
-        <member name="T:Sudoku.Platforms.QQ.Data.ModuleTriggeringKind">
-            <summary>
-            Indicates a module triggering kind.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Data.ModuleTriggeringKind.Default">
-            <summary>
-            Indicates the default text mode to trigger.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Platforms.QQ.Data.ModuleTriggeringKind.Mentioning">
-            <summary>
-            Indicates triggering the module via mentioning the bot.
-            </summary>
-        </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ArgumentAttribute">
             <summary>
             Provides with an attribute type that describes this property is the target argument to be assigned while parsing.
@@ -320,22 +305,6 @@
             By default, the value is <see cref="F:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind.None"/>, which means the operation does not require any higher permissions.
             </i></remarks>
             <seealso cref="F:Sudoku.Platforms.QQ.Data.Roles.GroupRoleKind.None"/>
-        </member>
-        <member name="T:Sudoku.Platforms.QQ.Data.Parsing.TriggeringKindAttribute">
-            <summary>
-            Defines a triggering kind attribute.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Platforms.QQ.Data.Parsing.TriggeringKindAttribute.#ctor(Sudoku.Platforms.QQ.Data.ModuleTriggeringKind)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Platforms.QQ.Data.Parsing.TriggeringKindAttribute"/> instance via the specified kind.
-            </summary>
-            <param name="kind">The kind.</param>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Data.Parsing.TriggeringKindAttribute.Kind">
-            <summary>
-            Indicates the triggering kind.
-            </summary>
         </member>
         <member name="T:Sudoku.Platforms.QQ.Data.Parsing.ValueConverterAttribute`1">
             <summary>
@@ -940,7 +909,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.Group.ShopModule.ItemKind">
-            <inheritdoc/>
+            <summary>
+            Indicates the item kind.
+            </summary>
         </member>
         <member name="M:Sudoku.Platforms.QQ.Modules.Group.ShopModule.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
@@ -982,11 +953,6 @@
             <para>This property is used for controlling the case when it costs too much time to be executed.</para>
             <para><i>This property is set <see langword="null"/> by default.</i></para>
             </remarks>
-        </member>
-        <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.TriggeringKind">
-            <summary>
-            Indicates the triggering kind.
-            </summary>
         </member>
         <member name="P:Sudoku.Platforms.QQ.Modules.GroupModule.RequiredSenderRole">
             <inheritdoc cref="P:Sudoku.Platforms.QQ.Data.Parsing.RequiredRoleAttribute.SenderRole"/>
