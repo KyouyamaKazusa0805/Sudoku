@@ -3,30 +3,22 @@
 /// <summary>
 /// Defines a <see cref="Grid"/> library that stores in a file, using lines to describe puzzles.
 /// </summary>
+/// <param name="filePath">The file path.</param>
+/// <param name="ignoreOption">Ignoring option.</param>
+/// <exception cref="ArgumentException">Throws when the specified file path is invalid or the file does not exist.</exception>
+/// <exception cref="ArgumentOutOfRangeException">
+/// Throws when the argument <paramref name="ignoreOption"/> is not defined in enumeration type.
+/// </exception>
 /// <seealso cref="Grid"/>
-public sealed partial class GridLibrary : IAsyncEnumerable<Grid>, IEquatable<GridLibrary>, IEqualityOperators<GridLibrary, GridLibrary, bool>
+public sealed partial class GridLibrary(string filePath, GridLibraryIgnoringOption ignoreOption = GridLibraryIgnoringOption.Never) :
+	IAsyncEnumerable<Grid>,
+	IEquatable<GridLibrary>,
+	IEqualityOperators<GridLibrary, GridLibrary, bool>
 {
 	/// <summary>
 	/// Indicates the solver to verify the puzzle.
 	/// </summary>
 	private static readonly BitwiseSolver Solver = new();
-
-
-	/// <summary>
-	/// Initializes a <see cref="GridLibrary"/> instance via the specified puzzle library file.
-	/// </summary>
-	/// <param name="filePath">The file path.</param>
-	/// <param name="ignoreOption">Ignoring option.</param>
-	/// <exception cref="ArgumentException">Throws when the specified file path is invalid or the file does not exist.</exception>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="ignoreOption"/> is not defined in enumeration type.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridLibrary(string filePath, GridLibraryIgnoringOption ignoreOption = GridLibraryIgnoringOption.Never)
-		=> (FilePath, IgnoringOption) = (
-			File.Exists(filePath) ? filePath : throw new ArgumentException("Specified file does not exist.", nameof(filePath)),
-			Enum.IsDefined(ignoreOption) ? ignoreOption : throw new ArgumentOutOfRangeException(nameof(ignoreOption))
-		);
 
 
 	/// <summary>
@@ -38,11 +30,13 @@ public sealed partial class GridLibrary : IAsyncEnumerable<Grid>, IEquatable<Gri
 	/// Indicates the file path.
 	/// </summary>
 	public string FilePath { get; }
+		= File.Exists(filePath) ? filePath : throw new ArgumentException("Specified file does not exist.", nameof(filePath));
 
 	/// <summary>
 	/// Indicates the ignore option that will be used for ignoring on iteration of library file.
 	/// </summary>
 	public GridLibraryIgnoringOption IgnoringOption { get; }
+		= Enum.IsDefined(ignoreOption) ? ignoreOption : throw new ArgumentOutOfRangeException(nameof(ignoreOption));
 
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
