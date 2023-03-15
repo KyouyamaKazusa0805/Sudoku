@@ -7,14 +7,6 @@
 public sealed class GlobalConfigurationAttribute : Attribute
 {
 	/// <summary>
-	/// Initializes a <see cref="GlobalConfigurationAttribute"/> instance.
-	/// </summary>
-	public GlobalConfigurationAttribute() : base()
-	{
-	}
-
-
-	/// <summary>
 	/// <para>
 	/// Indicates the prefix of the full command name. For example, the characters <c>--</c>
 	/// in the command name <c>--say-hello</c>.

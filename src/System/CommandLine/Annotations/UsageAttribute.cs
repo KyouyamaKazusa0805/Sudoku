@@ -3,16 +3,10 @@
 /// <summary>
 /// Represents an attribute that is applied to a command type, indicating the usage of the current root command.
 /// </summary>
+/// <param name="example">The example command.</param>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-public sealed class UsageAttribute : Attribute
+public sealed class UsageAttribute(string example) : Attribute
 {
-	/// <summary>
-	/// Initializes a <see cref="UsageAttribute"/> instance via the specified example command and the description.
-	/// </summary>
-	/// <param name="example">The example command.</param>
-	public UsageAttribute(string example) => ExampleCommand = example;
-
-
 	/// <summary>
 	/// <para>
 	/// Indicates whether the example command is fact, which means whether the current example command
@@ -72,7 +66,7 @@ public sealed class UsageAttribute : Attribute
 	/// <summary>
 	/// Indicates the example command.
 	/// </summary>
-	public string ExampleCommand { get; }
+	public string ExampleCommand { get; } = example;
 
 	/// <summary>
 	/// Indicates the description of the example command.

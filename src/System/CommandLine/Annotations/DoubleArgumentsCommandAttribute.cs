@@ -4,23 +4,17 @@
 /// Represents a double-argument command. The command requires an argument name, following with a real value,
 /// such as "<c>-g grid</c>".
 /// </summary>
+/// <param name="shortName">The short name of the command.</param>
+/// <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
+/// <exception cref="ArgumentOutOfRangeException">
+/// Throws when the argument <paramref name="shortName"/> is not a letter.
+/// </exception>
+/// <exception cref="ArgumentException">
+/// Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
+/// </exception>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-public sealed class DoubleArgumentsCommandAttribute : Attribute
+public sealed class DoubleArgumentsCommandAttribute(char shortName, string fullName) : Attribute
 {
-	/// <summary>
-	/// Initializes a <see cref="DoubleArgumentsCommandAttribute"/> instance via the specified short name and the full name.
-	/// </summary>
-	/// <param name="shortName">The short name of the command.</param>
-	/// <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="shortName"/> is not a letter.
-	/// </exception>
-	/// <exception cref="ArgumentException">
-	/// Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
-	/// </exception>
-	public DoubleArgumentsCommandAttribute(char shortName, string fullName) => (ShortName, FullName) = (shortName, fullName);
-
-
 	/// <summary>
 	/// <para>Indicates whether the command is required.</para>
 	/// <para>The default value is <see langword="false"/>.</para>
@@ -30,12 +24,12 @@ public sealed class DoubleArgumentsCommandAttribute : Attribute
 	/// <summary>
 	/// Indicates the short name.
 	/// </summary>
-	public char ShortName { get; }
+	public char ShortName { get; } = shortName;
 
 	/// <summary>
 	/// Indicates the full name.
 	/// </summary>
-	public string FullName { get; }
+	public string FullName { get; } = fullName;
 
 	/// <summary>
 	/// Indicates the description of the argument.

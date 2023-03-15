@@ -874,10 +874,19 @@
             Represents a double-argument command. The command requires an argument name, following with a real value,
             such as "<c>-g grid</c>".
             </summary>
+            <param name="shortName">The short name of the command.</param>
+            <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="shortName"/> is not a letter.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
+            </exception>
         </member>
         <member name="M:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.#ctor(System.Char,System.String)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute"/> instance via the specified short name and the full name.
+            Represents a double-argument command. The command requires an argument name, following with a real value,
+            such as "<c>-g grid</c>".
             </summary>
             <param name="shortName">The short name of the command.</param>
             <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
@@ -930,11 +939,6 @@
             Defines an attribute type that provides with the global configuration.
             </summary>
         </member>
-        <member name="M:System.CommandLine.Annotations.GlobalConfigurationAttribute.#ctor">
-            <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.GlobalConfigurationAttribute"/> instance.
-            </summary>
-        </member>
         <member name="P:System.CommandLine.Annotations.GlobalConfigurationAttribute.FullCommandNamePrefix">
             <summary>
             <para>
@@ -963,10 +967,11 @@
             <summary>
             Defines an attribute that is applied to an enumeration field, indicating the name of the field.
             </summary>
+            <param name="name">The name of the field.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.NameAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.NameAttribute"/> instance via the name of the field.
+            Defines an attribute that is applied to an enumeration field, indicating the name of the field.
             </summary>
             <param name="name">The name of the field.</param>
         </member>
@@ -979,10 +984,11 @@
             <summary>
             Represents a root command description.
             </summary>
+            <param name="name">The name of the command.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.RootCommandAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.RootCommandAttribute"/> instance via the name and its description.
+            Represents a root command description.
             </summary>
             <param name="name">The name of the command.</param>
         </member>
@@ -1023,10 +1029,12 @@
             Represents an attribute type that is applied to an enumeration field,
             indicating the routed type.
             </summary>
+            <param name="typeToRoute">The type to route.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.RouteToTypeAttribute.#ctor(System.Type)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.RouteToTypeAttribute"/> instance via the type to route.
+            Represents an attribute type that is applied to an enumeration field,
+            indicating the routed type.
             </summary>
             <param name="typeToRoute">The type to route.</param>
         </member>
@@ -1039,10 +1047,11 @@
             <summary>
             Represents a single-argument command. The command don't require any argument name such as "<c>-f</c>".
             </summary>
+            <param name="notation">The notation of the command.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.SingleArgumentCommandAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.SingleArgumentCommandAttribute"/> instance via the specified description for the command.
+            Represents a single-argument command. The command don't require any argument name such as "<c>-f</c>".
             </summary>
             <param name="notation">The notation of the command.</param>
         </member>
@@ -1089,11 +1098,12 @@
             Represents an attribute that is applied to an enumeration typed field, indicating all specified commands
             are supported to be used as a part of the command line arguments when introducing the enumeration instance.
             </summary>
+            <param name="supportedNames">The supported names corresponding to the current enumeration field.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.SupportedArgumentsAttribute.#ctor(System.String[])">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.SupportedArgumentsAttribute"/> instance
-            via the specified array of supported names.
+            Represents an attribute that is applied to an enumeration typed field, indicating all specified commands
+            are supported to be used as a part of the command line arguments when introducing the enumeration instance.
             </summary>
             <param name="supportedNames">The supported names corresponding to the current enumeration field.</param>
         </member>
@@ -1114,10 +1124,11 @@
             <summary>
             Represents an attribute that is applied to a command type, indicating the usage of the current root command.
             </summary>
+            <param name="example">The example command.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.UsageAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.UsageAttribute"/> instance via the specified example command and the description.
+            Represents an attribute that is applied to a command type, indicating the usage of the current root command.
             </summary>
             <param name="example">The example command.</param>
         </member>
@@ -1207,12 +1218,15 @@
             <summary>
             Defines an attribute that is applied to an enumeration field, indicating the website of the field.
             </summary>
+            <param name="uriString">The website of the field.</param>
+            <exception cref="T:System.ArgumentException">Throws when specified string value cannot be parsed into a valid URI link.</exception>
         </member>
         <member name="M:System.CommandLine.Annotations.WebsiteAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.WebsiteAttribute"/> instance via the website of the field.
+            Defines an attribute that is applied to an enumeration field, indicating the website of the field.
             </summary>
             <param name="uriString">The website of the field.</param>
+            <exception cref="T:System.ArgumentException">Throws when specified string value cannot be parsed into a valid URI link.</exception>
         </member>
         <member name="P:System.CommandLine.Annotations.WebsiteAttribute.Site">
             <summary>
@@ -1350,10 +1364,11 @@
             <summary>
             Defines an exception type that will be thrown when an error has been encountered while command line handling.
             </summary>
+            <param name="errorCode">The error code.</param>
         </member>
         <member name="M:System.CommandLine.CommandLineRuntimeException.#ctor(System.Int32)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.CommandLineRuntimeException"/> instance via the specified error code.
+            Defines an exception type that will be thrown when an error has been encountered while command line handling.
             </summary>
             <param name="errorCode">The error code.</param>
         </member>
@@ -1627,10 +1642,11 @@
             <summary>
             Defines an attribute that specifies a parameter used by a deconstruction method.
             </summary>
+            <param name="referencedMemberName">The referenced member name.</param>
         </member>
         <member name="M:System.Diagnostics.CodeGen.DeconstructionMethodArgumentAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:System.Diagnostics.CodeGen.DeconstructionMethodArgumentAttribute"/> instance via the member name the parameter points to.
+            Defines an attribute that specifies a parameter used by a deconstruction method.
             </summary>
             <param name="referencedMemberName">The referenced member name.</param>
         </member>
@@ -1737,10 +1753,14 @@
             <summary>
             Defines an attribute that is used as a parameter mark that tells source generators to route to the specified target expression.
             </summary>
+            <param name="targetPropertyExpression">
+            Indicates the target property expression used. This property specifies and controls the target behavior
+            that output what final deconstruction assignment expression should be.
+            </param>
         </member>
         <member name="M:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute"/> instance via the specified target property.
+            Defines an attribute that is used as a parameter mark that tells source generators to route to the specified target expression.
             </summary>
             <param name="targetPropertyExpression">
             Indicates the target property expression used. This property specifies and controls the target behavior
@@ -1756,10 +1776,11 @@
             <summary>
             Indicates the display name on generated code of <c>ToString</c> method.
             </summary>
+            <param name="displayMemberName">The display member name.</param>
         </member>
         <member name="M:System.Diagnostics.CodeGen.GeneratedDisplayNameAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedDisplayNameAttribute"/> instance via the specified name to be displayed.
+            Indicates the display name on generated code of <c>ToString</c> method.
             </summary>
             <param name="displayMemberName">The display member name.</param>
         </member>

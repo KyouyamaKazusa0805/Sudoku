@@ -10,6 +10,4 @@
 /// </typeparam>
 /// <seealso cref="IValueConverter"/>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-public sealed class CommandConverterAttribute<T> : Attribute where T : class, IValueConverter, new()
-{
-}
+public sealed class CommandConverterAttribute<T> : Attribute where T : class, IValueConverter, new();

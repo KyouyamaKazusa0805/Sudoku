@@ -5,6 +5,4 @@
 /// </summary>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
 [Obsolete("This type is being deprecated because the future C# version will support the extension feature 'Roles & Extensions'. For more information, please visit Roslyn repo to learn more information.", false)]
-public sealed class GeneratedDeconstructionAttribute : Attribute
-{
-}
+public sealed class GeneratedDeconstructionAttribute : Attribute;

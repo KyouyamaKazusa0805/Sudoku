@@ -3,14 +3,10 @@
 /// <summary>
 /// Defines an attribute that specifies a parameter used by a deconstruction method.
 /// </summary>
+/// <param name="referencedMemberName">The referenced member name.</param>
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-public sealed class DeconstructionMethodArgumentAttribute : Attribute
-{
-	/// <summary>
-	/// Initializes a <see cref="DeconstructionMethodArgumentAttribute"/> instance via the member name the parameter points to.
-	/// </summary>
-	/// <param name="referencedMemberName">The referenced member name.</param>
-	public DeconstructionMethodArgumentAttribute([SuppressMessage("Style", IDE0060, Justification = Pending)] string referencedMemberName)
-	{
-	}
-}
+public sealed class DeconstructionMethodArgumentAttribute(
+#pragma warning disable IDE0060, CS9113
+	string referencedMemberName
+#pragma warning restore IDE0060, CS9113
+) : Attribute;

@@ -3,16 +3,10 @@
 /// <summary>
 /// Represents a single-argument command. The command don't require any argument name such as "<c>-f</c>".
 /// </summary>
+/// <param name="notation">The notation of the command.</param>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-public sealed class SingleArgumentCommandAttribute : Attribute
+public sealed class SingleArgumentCommandAttribute(string notation) : Attribute
 {
-	/// <summary>
-	/// Initializes a <see cref="SingleArgumentCommandAttribute"/> instance via the specified description for the command.
-	/// </summary>
-	/// <param name="notation">The notation of the command.</param>
-	public SingleArgumentCommandAttribute(string notation) => Notation = notation;
-
-
 	/// <summary>
 	/// <para>Indicates whether the command value can ignore the casing.</para>
 	/// <para>The default value is <see langword="true"/>.</para>
@@ -28,7 +22,7 @@ public sealed class SingleArgumentCommandAttribute : Attribute
 	/// <summary>
 	/// Indicates the fast notation to introduce the command, which is used for the displaying the help text.
 	/// </summary>
-	public string Notation { get; }
+	public string Notation { get; } = notation;
 
 	/// <summary>
 	/// Indicates the description of the argument.
