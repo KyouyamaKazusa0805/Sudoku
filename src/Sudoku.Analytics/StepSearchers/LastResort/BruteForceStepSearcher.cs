@@ -10,12 +10,8 @@
 [Direct]
 [Fixed]
 [StepSearcher]
-public sealed class BruteForceStepSearcher() : StepSearcher(43, StepSearcherLevel.Hidden), IStepSearcherRequiresSolution
+public sealed class BruteForceStepSearcher() : StepSearcher(43, StepSearcherLevel.Hidden)
 {
-	/// <inheritdoc/>
-	public Grid Solution { get; set; }
-
-
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{

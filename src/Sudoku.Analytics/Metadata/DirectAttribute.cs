@@ -8,14 +8,13 @@
 /// </para>
 /// <para>
 /// If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-/// properties such as <see cref="CandidatesMap"/> in its method
+/// fields such as <see cref="CandidatesMap"/> in its method
 /// <see cref="StepSearcher.GetAll(ref AnalysisContext)"/>.
 /// </para>
-/// <para><i>The default value is <see langword="false"/>.</i></para>
 /// </summary>
 /// <remarks>
 /// <para>
-/// All disallowed properties are:
+/// All disallowed fields are:
 /// <list type="bullet">
 /// <item><see cref="DigitsMap"/></item>
 /// <item><see cref="ValuesMap"/></item>
@@ -25,16 +24,16 @@
 /// </list>
 /// The disallowed method is:
 /// <list type="bullet">
-/// <item><see cref="Initialize"/></item>
+/// <item><see cref="Initialize(in Grid, in Grid)"/></item>
 /// </list>
 /// </para>
 /// <para>
-/// Those properties or methods can optimize the performance to analyze a sudoku grid, but
+/// Those fields or methods can optimize the performance to analyze a sudoku grid, but
 /// sometimes they may cause a potential bug that is hard to find and fix. The attribute
 /// is created and used for solving the problem.
 /// </para>
 /// </remarks>
 /// <seealso cref="StepSearcher"/>
-/// <seealso cref="CachedCellMaps"/>
+/// <seealso cref="CachedFields"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public sealed class DirectAttribute : StepSearcherMetadataAttribute;

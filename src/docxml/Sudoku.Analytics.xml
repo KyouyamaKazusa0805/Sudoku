@@ -399,7 +399,7 @@
         <member name="M:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="T:Sudoku.Analytics.Buffers.CachedCellMaps">
+        <member name="T:Sudoku.Analytics.Buffers.CachedFields">
             <summary>
             <para>Represents cached fields used by solving and analyzation for a sudoku puzzle, reducing repeated and redundant calculations.</para>
             <para>
@@ -411,9 +411,9 @@
             Sometimes, such values may only be calculated only once, and we just use those return values after the value had been calculated.
             For the consideration of the calculation result caching, those results will be stored here as <see langword="static"/> fields,
             we can use them if we can ensure that such fields have already been initialized.
-            For calling the method <see cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>, we can ensure those fields are initialized, in order to be used later.
+            For calling the method <see cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>, we can ensure those fields are initialized, in order to be used later.
             In other words,
-            <b>you must ensure the method <see cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/> having been called before using such fields if you want to use them</b>;
+            <b>you must ensure the method <see cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> having been called before using such fields if you want to use them</b>;
             otherwise, <see cref="T:System.NullReferenceException"/> will be thrown for cached fields whose types are reference ones.
             </para>
             <para>
@@ -423,63 +423,69 @@
             </para>
             <para>Some <see cref="T:Sudoku.Analytics.StepSearcher"/>s may rely on this type.</para>
             </summary>
-            <seealso cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells">
+        <member name="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
             </summary>
             <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
             <see cref="T:Sudoku.Analytics.Metadata.DirectAttribute"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
             <seealso cref="T:Sudoku.Analytics.Metadata.DirectAttribute"/>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.BivalueCells">
+        <member name="F:Sudoku.Analytics.Buffers.CachedFields.BivalueCells">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells" path="/remarks"/>
             </remarks>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.CandidatesMap">
+        <member name="F:Sudoku.Analytics.Buffers.CachedFields.CandidatesMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.DigitsMap">
+        <member name="F:Sudoku.Analytics.Buffers.CachedFields.DigitsMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.ValuesMap">
+        <member name="F:Sudoku.Analytics.Buffers.CachedFields.ValuesMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)">
+        <member name="F:Sudoku.Analytics.Buffers.CachedFields.Solution">
+            <summary>
+            Indicates the solution.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Initialize the maps that used later.
             </summary>
             <param name="g">The grid.</param>
+            <param name="s">The solution of <paramref name="g"/>.</param>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.DifficultyLevel">
             <summary>
@@ -2609,6 +2615,61 @@
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper">
+            <summary>
+            Used by fish step searchers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating that. All cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The fish is a sashimi finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The fish is a normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The fish doesn't contain any fin.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper.GetComplexFishTechniqueCodeFromName(System.String)">
+            <summary>
+            Try to get the <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance from the specified name, where the name belongs
+            to a complex fish name, such as "Finned Franken Swordfish".
+            </summary>
+            <param name="name">The name.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance.</returns>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Linq.CellMapEnumerable">
+            <summary>
+            Provides with LINQ-based extension methods on <see cref="T:Sudoku.Concepts.CellMap"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Linq.CellMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
+            <summary>
+            Projects each element in <see cref="T:Sudoku.Concepts.CellMap"/> instance into the target-typed <typeparamref name="TResult"/> array,
+            using the specified function to convert.
+            </summary>
+            <typeparam name="TResult">The type of target value.</typeparam>
+            <param name="this">The <see cref="T:Sudoku.Concepts.CellMap"/> instance.</param>
+            <param name="selector">The selector.</param>
+            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason">
             <summary>
             Defines a reason why the puzzle is failed to be analyzed.
@@ -2680,39 +2741,37 @@
             </para>
             <para>
             If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.CandidatesMap"/> in its method
+            fields such as <see cref="F:Sudoku.Analytics.Buffers.CachedFields.CandidatesMap"/> in its method
             <see cref="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)"/>.
             </para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
             </summary>
             <remarks>
             <para>
-            All disallowed properties are:
+            All disallowed fields are:
             <list type="bullet">
-            <item><see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.DigitsMap"/></item>
-            <item><see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.ValuesMap"/></item>
-            <item><see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.CandidatesMap"/></item>
-            <item><see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.BivalueCells"/></item>
-            <item><see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells"/></item>
+            <item><see cref="F:Sudoku.Analytics.Buffers.CachedFields.DigitsMap"/></item>
+            <item><see cref="F:Sudoku.Analytics.Buffers.CachedFields.ValuesMap"/></item>
+            <item><see cref="F:Sudoku.Analytics.Buffers.CachedFields.CandidatesMap"/></item>
+            <item><see cref="F:Sudoku.Analytics.Buffers.CachedFields.BivalueCells"/></item>
+            <item><see cref="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells"/></item>
             </list>
             The disallowed method is:
             <list type="bullet">
-            <item><see cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/></item>
+            <item><see cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/></item>
             </list>
             </para>
             <para>
-            Those properties or methods can optimize the performance to analyze a sudoku grid, but
+            Those fields or methods can optimize the performance to analyze a sudoku grid, but
             sometimes they may cause a potential bug that is hard to find and fix. The attribute
             is created and used for solving the problem.
             </para>
             </remarks>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-            <seealso cref="T:Sudoku.Analytics.Buffers.CachedCellMaps"/>
+            <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.FixedAttribute">
             <summary>
-            <para>Indicates whether the option is fixed that can't be modified in UI.</para>
-            <para><i>The default value is <see langword="false"/>.</i></para>
+            Indicates whether the option is fixed that can't be modified in UI.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute">
@@ -3447,6 +3506,167 @@
             Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher">
+            <summary>
+            Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Normal fishes:
+            <list type="bullet">
+            <item>X-Wing</item>
+            <item>Swordfish</item>
+            <item>Jellyfish</item>
+            </list>
+            </item>
+            <item>
+            Finned fishes:
+            <list type="bullet">
+            <item>
+            Finned normal fishes:
+            <list type="bullet">
+            <item>Finned X-Wing</item>
+            <item>Finned Swordfish</item>
+            <item>Finned Jellyfish</item>
+            </list>
+            </item>
+            <item>
+            Finned sashimi fishes:
+            <list type="bullet">
+            <item>Sashimi X-Wing</item>
+            <item>Sashimi Swordfish</item>
+            <item>Sashimi Jellyfish</item>
+            </list>
+            </item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.#ctor">
+            <summary>
+            Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Normal fishes:
+            <list type="bullet">
+            <item>X-Wing</item>
+            <item>Swordfish</item>
+            <item>Jellyfish</item>
+            </list>
+            </item>
+            <item>
+            Finned fishes:
+            <list type="bullet">
+            <item>
+            Finned normal fishes:
+            <list type="bullet">
+            <item>Finned X-Wing</item>
+            <item>Finned Swordfish</item>
+            <item>Finned Jellyfish</item>
+            </list>
+            </item>
+            <item>
+            Finned sashimi fishes:
+            <list type="bullet">
+            <item>Sashimi X-Wing</item>
+            <item>Sashimi Swordfish</item>
+            <item>Sashimi Jellyfish</item>
+            </list>
+            </item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Get all possible normal fishes.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <param name="r">The possible row table to iterate.</param>
+            <param name="c">The possible column table to iterate.</param>
+            <param name="withFin">Indicates whether the searcher will check for the existence of fins.</param>
+            <param name="searchRow">
+            Indicates whether the searcher searches for fishes in the direction of rows.
+            </param>
+            <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.GetDirectView(System.Int32,System.Int32[],System.Int32[],Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Get the direct fish view with the specified grid and the base sets.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="coverSets">The cover sets.</param>
+            <param name="fins">The cells of the fin in the current fish.</param>
+            <param name="searchRow">Indicates whether the current searcher searches row.</param>
+            <returns>The view.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher">
+            <summary>
+            Provides with a <b>Locked Candidates</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Pointing</item>
+            <item>Claiming</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher.#ctor">
+            <summary>
+            Provides with a <b>Locked Candidates</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Pointing</item>
+            <item>Claiming</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc />
+            <remarks>
+            <deverloper-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</deverloper-notes>
+            <para>The main idea of this searching operation:</para>
+            <para>
+            <code><![CDATA[
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            For example, if the cells C form a locked candidates, there'll be two cases:
+            <list type="number">
+            <item><b>Pointing (Type 1)</b>: Cells A contains the digit, but cells B doesn't.</item>
+            <item><b>Claiming (Type 2)</b>: Cells B contains the digit, but cells A doesn't.</item>
+            </list>
+            </para>
+            <para>
+            <para>Therefore, the algorithm is:</para>
+            Use bitwise-or <c>operator |</c> to gather all candidate masks from cells A, cells B and cells C,
+            and suppose the notation <c>a</c> is the mask result for cells A, <c>b</c> is the mask result for cells B,
+            and <c>c</c> is the mask result for cells C. If the equation <c><![CDATA[(c & (a ^ b)) != 0]]></c>
+            is correct, the locked candidates exists, and the result of the expression
+            <c><![CDATA[c & (a ^ b)]]></c> is a mask that holds the digits of the locked candidates.
+            </para>
+            <para>
+            Why this expression? <c>a ^ b</c> means the digit can only appear in either cells A or cells B.
+            If both or neither, the digit won't contain the locked candidates structure.
+            Because of the optimization of the performance, we use the predefined table to iterate on
+            all possible location where may form a locked candidate.
+            </para>
+            </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.IStepSearcherRequiresSolution">
             <summary>
             Indicates a step searcher that requires a solution grid for the technique searching usages.
@@ -3474,9 +3694,6 @@
             <item>Brute Force</item>
             </list>
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.Solution">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
@@ -3564,6 +3781,244 @@
             that only appears once indeed.
             </para>
             </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.SubsetStepSearcher">
+            <summary>
+            Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Locked Subsets:
+            <list type="bullet">
+            <item>Locked Pair</item>
+            <item>Locked Triple</item>
+            </list>
+            </item>
+            <item>
+            Semi-Locked Subsets:
+            <list type="bullet">
+            <item>Naked Pair (+)</item>
+            <item>Naked Triple (+)</item>
+            <item>Naked Quadruple (+)</item>
+            </list>
+            </item>
+            <item>
+            Normal Naked Subsets:
+            <list type="bullet">
+            <item>Naked Pair</item>
+            <item>Naked Triple</item>
+            <item>Naked Quadruple</item>
+            </list>
+            </item>
+            <item>
+            Hidden Subsets:
+            <list type="bullet">
+            <item>Hidden Pair</item>
+            <item>Hidden Triple</item>
+            <item>Hidden Quadruple</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.#ctor">
+            <summary>
+            Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Locked Subsets:
+            <list type="bullet">
+            <item>Locked Pair</item>
+            <item>Locked Triple</item>
+            </list>
+            </item>
+            <item>
+            Semi-Locked Subsets:
+            <list type="bullet">
+            <item>Naked Pair (+)</item>
+            <item>Naked Triple (+)</item>
+            <item>Naked Quadruple (+)</item>
+            </list>
+            </item>
+            <item>
+            Normal Naked Subsets:
+            <list type="bullet">
+            <item>Naked Pair</item>
+            <item>Naked Triple</item>
+            <item>Naked Quadruple</item>
+            </list>
+            </item>
+            <item>
+            Hidden Subsets:
+            <list type="bullet">
+            <item>Hidden Pair</item>
+            <item>Hidden Triple</item>
+            <item>Hidden Quadruple</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NormalFishStep">
+            <summary>
+            Provides with a step that is an <b>Normal Fish</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
+            <summary>
+            Provides with a step that is an <b>Normal Fish</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.IsSashimi">
+            <summary>
+            Indicates whether the fish instance is a sashimi fish. All possible values are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The fish is a sashimi fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The fish is a finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The fish is a normal fish without any fins.</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Fins">
+            <summary>
+            Indicates the fins.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.InternalName">
+            <summary>
+            Indicates the internal name.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.FishStep">
+            <summary>
+            Provides with a step that is a <b>Fish</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Fish</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.BaseSetsMask">
+            <summary>
+            Indicates the mask that contains the base sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.CoverSetsMask">
+            <summary>
+            Indicates the mask that contains the cover sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Size">
+            <inheritdoc/>
+            <remarks>
+            The name of the corresponding names are:
+            <list type="table">
+            <item><term>2</term><description>X-Wing</description></item>
+            <item><term>3</term><description>Swordfish</description></item>
+            <item><term>4</term><description>Jellyfish</description></item>
+            <item><term>5</term><description>Squirmbag (or Starfish)</description></item>
+            <item><term>6</term><description>Whale</description></item>
+            <item><term>7</term><description>Leviathan</description></item>
+            </list>
+            Other fishes of sizes not appearing in above don't have well-known names.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.IntersectionStep">
+            <summary>
+            Provides with a step that is an <b>Intersection</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.IntersectionStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is an <b>Intersection</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.IntersectionStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.IntersectionStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.LockedCandidatesStep">
+            <summary>
+            Provides with a step that is a <b>Locked Candidates</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Locked Candidates</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseSet">
+            <summary>
+            Indicates the house that the current locked candidates forms.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.CoverSet">
+            <summary>
+            Indicates the house that the current locked candidates influences.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.FormatInterpolatedParts">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.InvalidStep">
             <summary>
@@ -3733,6 +4188,112 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SubsetStep">
+            <summary>
+            Provides with a step that is a <b>Subset</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Subset</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.House">
+            <summary>
+            The house that structure lies in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Size">
+            <summary>
+            Indicates the number of cells used.
+            Due to the technique logic, you can also treat the result value of this property as the number of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask">
+            <summary>
+            Indicates the mask that contains all digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Cells">
+            <summary>
+            Indicates all cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.HiddenSubsetStep">
+            <summary>
+            Provides with a step that is a <b>Hidden Subset</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Hidden Subset</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NakedSubsetStep">
+            <summary>
+            Provides with a step that is a <b>Naked Subset</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
+            <summary>
+            Provides with a step that is a <b>Naked Subset</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.IsLocked">
+            <summary>
+            Indicates which locked type this subset is. The cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The subset is a locked subset.</description>
+            </item>
+            <item>
+            <term><see langword="true"/></term>
+            <description>The subset is a naked subset with at least one extra locked candidate.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The subset is a normal naked subset without any extra locked candidates.</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">

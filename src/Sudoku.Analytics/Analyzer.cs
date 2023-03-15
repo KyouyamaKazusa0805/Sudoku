@@ -142,16 +142,10 @@ public sealed class Analyzer : IComplexSolver<Analyzer, AnalyzerResult>
 		var stepGrids = new List<Grid>(100);
 		var stepSearchers = TargetSearcherCollection;
 
-		// Sets the solution grid to some step searchers. Some step searchers will use solution grids to find possible steps.
-		foreach (var stepSearcher in stepSearchers.OfType<IStepSearcherRequiresSolution>())
-		{
-			stepSearcher.Solution = solution;
-		}
-
 		scoped var stopwatch = ValueStopwatch.StartNew();
 
 	Again:
-		Initialize(playground);
+		Initialize(playground, solution);
 		foreach (var searcher in stepSearchers)
 		{
 			switch (isSukaku, searcher, this)
