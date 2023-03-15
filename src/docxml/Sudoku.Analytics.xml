@@ -2877,6 +2877,36 @@
             Indicates the type is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1">
+            <summary>
+            Defines an attribute that can be applied to the solving assembly,
+            to tell the source generator that the searcher option instance will be generated in the specified type.
+            </summary>
+            <typeparam name="T">The type of the step searcher.</typeparam>
+            <param name="level">Indicates the step searcher level. For more information please visit type <see cref="T:Sudoku.Analytics.Metadata.StepSearcherLevel"/>.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.#ctor(Sudoku.Analytics.Metadata.StepSearcherLevel)">
+            <summary>
+            Defines an attribute that can be applied to the solving assembly,
+            to tell the source generator that the searcher option instance will be generated in the specified type.
+            </summary>
+            <typeparam name="T">The type of the step searcher.</typeparam>
+            <param name="level">Indicates the step searcher level. For more information please visit type <see cref="T:Sudoku.Analytics.Metadata.StepSearcherLevel"/>.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.Level">
+            <summary>
+            Indicates the level of the step searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.Areas">
+            <summary>
+            Indicates the area that the step searcher can be used and available.
+            </summary>
+            <remarks>
+            The default value of this property is both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/>
+            and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherLevel">
             <summary>
             Represents a level that a step searcher belongs to. This type is used for the displaying of the step information list.
