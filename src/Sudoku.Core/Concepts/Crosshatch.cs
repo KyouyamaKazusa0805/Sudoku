@@ -5,12 +5,13 @@
 /// (or some cells), and eliminates candidates in some cells. The concept is commonly used
 /// by logical technique "Hidden Single".
 /// </summary>
-public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOperators<Crosshatch, Crosshatch, bool>
+/// <param name="mask">The mask value to be set.</param>
+public readonly partial struct Crosshatch(ulong mask) : IEquatable<Crosshatch>, IEqualityOperators<Crosshatch, Crosshatch, bool>
 {
 	/// <summary>
-	/// Indicates the mask that is used for getting and checking the cells in the mask <see cref="_value"/>.
+	/// Indicates the mask that is used for getting and checking the cells in the mask <see cref="_mask"/>.
 	/// </summary>
-	/// <seealso cref="_value"/>
+	/// <seealso cref="_mask"/>
 	private const ulong CellsGroupMask = (1UL << 21) - 1;
 
 	/// <summary>
@@ -43,7 +44,7 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 	/// (for cell indices from 0 to 80, i.e. <c>r1c1</c> to <c>r9c9</c>).
 	/// </para>
 	/// </summary>
-	private readonly ulong _value;
+	private readonly ulong _mask = mask;
 
 
 	/// <inheritdoc cref="Create(int, in CellMap, in CellMap)"/>
@@ -53,14 +54,9 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true, DiagnosticId = "SCA0103", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103")]
 	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, Url = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103")]
-	public Crosshatch(int digit, CellMap from, CellMap to) => this = Create(digit, from, to);
-
-	/// <summary>
-	/// Initializes a <see cref="Crosshatch"/> instance via the mask.
-	/// </summary>
-	/// <param name="value">The mask value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Crosshatch(ulong value) => _value = value;
+	public Crosshatch(int digit, CellMap from, CellMap to) : this(CreateMask(digit, from, to))
+	{
+	}
 
 
 	/// <summary>
@@ -70,7 +66,7 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 	public int Digit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (int)(_value >> 42);
+		get => (int)(_mask >> 42);
 	}
 
 	/// <summary>
@@ -82,7 +78,7 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			var mask = _value & CellsGroupMask;
+			var mask = _mask & CellsGroupMask;
 			var cell1 = mask & PerCellMaxMask;
 			var cell2 = mask >> 7 & PerCellMaxMask;
 			var cell3 = mask >> 14 & PerCellMaxMask;
@@ -114,7 +110,7 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			var mask = _value >> 21 & CellsGroupMask;
+			var mask = _mask >> 21 & CellsGroupMask;
 			var cell1 = mask & PerCellMaxMask;
 			var cell2 = mask >> 7 & PerCellMaxMask;
 			var cell3 = mask >> 14 & PerCellMaxMask;
@@ -143,7 +139,7 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Crosshatch other) => _value == other._value;
+	public bool Equals(Crosshatch other) => _mask == other._mask;
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Digit), nameof(From), nameof(To))]
 	public override partial int GetHashCode();
@@ -163,6 +159,7 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 	/// <param name="digit">The digit.</param>
 	/// <param name="from">The start cell.</param>
 	/// <param name="to">The end cell.</param>
+	/// <returns>A <see cref="Crosshatch"/> result instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Crosshatch Create(int digit, int from, int to) => Create(digit, CellsMap[from], CellsMap[to]);
 
@@ -172,6 +169,7 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 	/// <param name="digit">The digit.</param>
 	/// <param name="from">The start cell.</param>
 	/// <param name="to">The end cells.</param>
+	/// <returns>A <see cref="Crosshatch"/> result instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Crosshatch Create(int digit, int from, scoped in CellMap to) => Create(digit, CellsMap[from], to);
 
@@ -181,27 +179,9 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 	/// <param name="digit">The digit.</param>
 	/// <param name="from">The start cells.</param>
 	/// <param name="to">The end cells.</param>
-	/// <exception cref="ArgumentException">
-	/// Throws when the argument <paramref name="from"/> or <paramref name="to"/> does not contain at most 3 cells,
-	/// or it is empty, or it is not an intersection, or the specified digit value <paramref name="digit"/>
-	/// is less than 0 or greater than 9.
-	/// </exception>
+	/// <returns>A <see cref="Crosshatch"/> result instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Crosshatch Create(int digit, scoped in CellMap from, scoped in CellMap to)
-	{
-		Argument.ThrowIfFalse(from is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
-		Argument.ThrowIfFalse(to is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
-		Argument.ThrowIfFalse(digit is >= 0 and < 9);
-
-		return new(f2(from[0]) | f1(from[1], 7) | f1(from[2], 14) | f1(to[0], 21) | f1(to[1], 28) | f1(to[2], 35) | (ulong)digit << 42);
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static ulong f1(int cell, int shiftiing) => (cell != -1 ? (ulong)cell : PerCellMaxMask) << shiftiing;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static ulong f2(int cell) => cell != -1 ? (ulong)cell : PerCellMaxMask;
-	}
+	public static Crosshatch Create(int digit, scoped in CellMap from, scoped in CellMap to) => new(CreateMask(digit, from, to));
 
 	/// <summary>
 	/// Try to get all crosshatches for a single candidate.
@@ -231,7 +211,7 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 		var houseCells = HousesMap[house];
 		var valueCellsOfDigit = (house, grid) switch
 		{
-			( >= 0 and < 27, { CandidatesMap: var cMap, ValuesMap: var vMap }) => (cMap[digit] & houseCells) switch
+			(>= 0 and < 27, { CandidatesMap: var cMap, ValuesMap: var vMap }) => (cMap[digit] & houseCells) switch
 			{
 				[var c] when (targetCell = c) is var _ => house switch
 				{
@@ -301,6 +281,35 @@ public readonly partial struct Crosshatch : IEquatable<Crosshatch>, IEqualityOpe
 
 			return result;
 		}
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="Crosshatch"/> instance via the specified digit, start and end cells.
+	/// </summary>
+	/// <param name="digit"><inheritdoc cref="Create(int, in CellMap, in CellMap)" path="/param[@name='digit']"/></param>
+	/// <param name="from"><inheritdoc cref="Create(int, in CellMap, in CellMap)" path="/param[@name='from']"/></param>
+	/// <param name="to"><inheritdoc cref="Create(int, in CellMap, in CellMap)" path="/param[@name='to']"/></param>
+	/// <returns>A <see cref="ulong"/> result indicating the target mask.</returns>
+	/// <exception cref="ArgumentException">
+	/// Throws when the argument <paramref name="from"/> or <paramref name="to"/> does not contain at most 3 cells,
+	/// or it is empty, or it is not an intersection, or the specified digit value <paramref name="digit"/>
+	/// is less than 0 or greater than 9.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static ulong CreateMask(int digit, scoped in CellMap from, scoped in CellMap to)
+	{
+		Argument.ThrowIfFalse(from is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
+		Argument.ThrowIfFalse(to is { Count: 1 } or { Count: 2 or 3, IsInIntersection: true });
+		Argument.ThrowIfFalse(digit is >= 0 and < 9);
+
+		return f2(from[0]) | f1(from[1], 7) | f1(from[2], 14) | f1(to[0], 21) | f1(to[1], 28) | f1(to[2], 35) | (ulong)digit << 42;
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static ulong f1(int cell, int shiftiing) => (cell != -1 ? (ulong)cell : PerCellMaxMask) << shiftiing;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static ulong f2(int cell) => cell != -1 ? (ulong)cell : PerCellMaxMask;
 	}
 
 

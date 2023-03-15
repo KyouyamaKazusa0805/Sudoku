@@ -4,7 +4,13 @@
 /// Encapsulates a grid parser that can parse a string value and convert it
 /// into a valid <see cref="Grid"/> instance as the result.
 /// </summary>
-public unsafe ref partial struct GridParser
+/// <param name="parsingValue">The string to be parsed.</param>
+/// <param name="compatibleFirst">
+/// Indicates whether the parsing operation should use compatible mode to check
+/// PM grid. See <see cref="CompatibleFirst"/> to learn more.
+/// </param>
+/// <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
+public unsafe ref partial struct GridParser(string parsingValue, bool compatibleFirst, bool shortenSusser)
 {
 	/// <summary>
 	/// The list of all methods to parse.
@@ -38,21 +44,6 @@ public unsafe ref partial struct GridParser
 	public GridParser(string parsingValue, bool compatibleFirst) : this(parsingValue, compatibleFirst, false)
 	{
 	}
-
-	/// <summary>
-	/// Initializes an instance with parsing data and a bool value
-	/// indicating whether the parsing operation should use compatible mode.
-	/// </summary>
-	/// <param name="parsingValue">The string to parse.</param>
-	/// <param name="compatibleFirst">
-	/// Indicates whether the parsing operation should use compatible mode to check
-	/// PM grid. See <see cref="CompatibleFirst"/> to learn more.
-	/// </param>
-	/// <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
-	/// <seealso cref="CompatibleFirst"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridParser(string parsingValue, bool compatibleFirst, bool shortenSusser)
-		=> (ParsingValue, CompatibleFirst, ShortenSusserFormat) = (parsingValue, compatibleFirst, shortenSusser);
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -89,21 +80,21 @@ public unsafe ref partial struct GridParser
 	/// <summary>
 	/// The string value to parse.
 	/// </summary>
-	public string ParsingValue { get; private set; }
+	public string ParsingValue { get; private set; } = parsingValue;
 
 	/// <summary>
 	/// Indicates whether the parser will change the execution order of PM grid.
 	/// If the value is <see langword="true"/>, the parser will check compatible one
 	/// first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
 	/// </summary>
-	public bool CompatibleFirst { get; }
+	public bool CompatibleFirst { get; } = compatibleFirst;
 
 	/// <summary>
 	/// Indicates whether the parser will use shorten mode to parse a susser format grid.
 	/// If the value is <see langword="true"/>, the parser will omit the continuous empty notation
 	/// <c>.</c>s or <c>0</c>s to a <c>*</c>.
 	/// </summary>
-	public bool ShortenSusserFormat { get; private set; }
+	public bool ShortenSusserFormat { get; private set; } = shortenSusser;
 
 	/// <summary>
 	/// Indicates whether the property <see cref="ParsingValue"/> of this instance contains multiline limitators.

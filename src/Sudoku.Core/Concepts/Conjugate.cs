@@ -7,12 +7,13 @@
 /// A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
 /// two position can fill this candidate.
 /// </remarks>
-public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate, bool>
+/// <param name="mask">The mask to be set.</param>
+public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate, bool>
 {
 	/// <summary>
 	/// Indicates the mask.
 	/// </summary>
-	private readonly int _mask;
+	private readonly int _mask = mask;
 
 
 	/// <summary>
@@ -22,7 +23,9 @@ public readonly partial struct Conjugate : IEquatable<Conjugate>, IEqualityOpera
 	/// <param name="to">The to cell.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conjugate(int from, int to, int digit) => _mask = digit << 20 | from << 10 | to;
+	public Conjugate(int from, int to, int digit) : this(digit << 20 | from << 10 | to)
+	{
+	}
 
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with the map and the digit.

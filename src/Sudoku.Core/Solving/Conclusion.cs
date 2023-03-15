@@ -9,7 +9,8 @@
 /// will be greater; if those two hold same conclusion type, but one of those two holds
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
-public readonly partial struct Conclusion :
+/// <param name="mask"><inheritdoc cref="_mask" path="/summary"/></param>
+public readonly partial struct Conclusion(int mask) :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion, bool>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
@@ -26,7 +27,7 @@ public readonly partial struct Conclusion :
 	///        |   used  |
 	/// ]]></code>
 	/// </summary>
-	private readonly int _mask;
+	private readonly int _mask = mask;
 
 
 	/// <summary>
@@ -49,13 +50,6 @@ public readonly partial struct Conclusion :
 	public Conclusion(ConclusionType type, int cell, int digit) : this(((int)type << 10) + cell * 9 + digit)
 	{
 	}
-
-	/// <summary>
-	/// Initializes a <see cref="Conclusion"/> instance with the specified mask.
-	/// </summary>
-	/// <param name="mask">The mask value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Conclusion(int mask) => _mask = mask;
 
 
 	/// <summary>

@@ -1101,6 +1101,17 @@
             A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
             two position can fill this candidate.
             </remarks>
+            <param name="mask">The mask to be set.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Conjugate.#ctor(System.Int32)">
+            <summary>
+            Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/conjugate-pair">conjugate pair</see>.
+            </summary>
+            <remarks>
+            A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
+            two position can fill this candidate.
+            </remarks>
+            <param name="mask">The mask to be set.</param>
         </member>
         <member name="F:Sudoku.Concepts.Conjugate._mask">
             <summary>
@@ -1225,12 +1236,21 @@ if (student is (name: var name, age: >= 18))
             (or some cells), and eliminates candidates in some cells. The concept is commonly used
             by logical technique "Hidden Single".
             </summary>
+            <param name="mask">The mask value to be set.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.UInt64)">
+            <summary>
+            Represents a crosshatch factor. The type can describe an elimination that starts with a certain cell
+            (or some cells), and eliminates candidates in some cells. The concept is commonly used
+            by logical technique "Hidden Single".
+            </summary>
+            <param name="mask">The mask value to be set.</param>
         </member>
         <member name="F:Sudoku.Concepts.Crosshatch.CellsGroupMask">
             <summary>
-            Indicates the mask that is used for getting and checking the cells in the mask <see cref="F:Sudoku.Concepts.Crosshatch._value"/>.
+            Indicates the mask that is used for getting and checking the cells in the mask <see cref="F:Sudoku.Concepts.Crosshatch._mask"/>.
             </summary>
-            <seealso cref="F:Sudoku.Concepts.Crosshatch._value"/>
+            <seealso cref="F:Sudoku.Concepts.Crosshatch._mask"/>
         </member>
         <member name="F:Sudoku.Concepts.Crosshatch.PerCellMaxMask">
             <summary>
@@ -1242,7 +1262,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the houses list that represents the possible houses that a crosshatch will be used.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Crosshatch._value">
+        <member name="F:Sudoku.Concepts.Crosshatch._mask">
             <summary>
             <para>
             Indicates the inner mask.
@@ -1259,12 +1279,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc cref="M:Sudoku.Concepts.Crosshatch.Create(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.UInt64)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the mask.
-            </summary>
-            <param name="value">The mask value.</param>
         </member>
         <member name="P:Sudoku.Concepts.Crosshatch.Digit">
             <summary>
@@ -1300,6 +1314,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">The digit.</param>
             <param name="from">The start cell.</param>
             <param name="to">The end cell.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.Crosshatch"/> result instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.Create(System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -1308,6 +1323,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">The digit.</param>
             <param name="from">The start cell.</param>
             <param name="to">The end cells.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.Crosshatch"/> result instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.Create(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -1316,11 +1332,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">The digit.</param>
             <param name="from">The start cells.</param>
             <param name="to">The end cells.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="from"/> or <paramref name="to"/> does not contain at most 3 cells,
-            or it is empty, or it is not an intersection, or the specified digit value <paramref name="digit"/>
-            is less than 0 or greater than 9.
-            </exception>
+            <returns>A <see cref="T:Sudoku.Concepts.Crosshatch"/> result instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.GetCrosshatches(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32@)">
             <summary>
@@ -1341,6 +1353,20 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.InvalidOperationException">
             Throws when the target house <paramref name="house"/> does not contain any possible hidden single
             of the specified digit <paramref name="digit"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Crosshatch.CreateMask(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Crosshatch"/> instance via the specified digit, start and end cells.
+            </summary>
+            <param name="digit"><inheritdoc cref="M:Sudoku.Concepts.Crosshatch.Create(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/param[@name='digit']"/></param>
+            <param name="from"><inheritdoc cref="M:Sudoku.Concepts.Crosshatch.Create(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/param[@name='from']"/></param>
+            <param name="to"><inheritdoc cref="M:Sudoku.Concepts.Crosshatch.Create(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)" path="/param[@name='to']"/></param>
+            <returns>A <see cref="T:System.UInt64"/> result indicating the target mask.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="from"/> or <paramref name="to"/> does not contain at most 3 cells,
+            or it is empty, or it is not an intersection, or the specified digit value <paramref name="digit"/>
+            is less than 0 or greater than 9.
             </exception>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.op_Equality(Sudoku.Concepts.Crosshatch,Sudoku.Concepts.Crosshatch)">
@@ -6471,6 +6497,19 @@ fixed (short* ptr = instance)
             will be greater; if those two hold same conclusion type, but one of those two holds
             the global index of the candidate position is greater, it is greater.
             </remarks>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Solving.Conclusion._mask" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.#ctor(System.Int32)">
+            <summary>
+            Defines a type that can describe a candidate is the correct or wrong digit.
+            </summary>
+            <remarks>
+            Two <see cref="T:Sudoku.Solving.Conclusion"/>s can be compared with each other. If one of those two is an elimination
+            (i.e. holds the value <see cref="F:Sudoku.Solving.ConclusionType.Elimination"/> as the type), the instance
+            will be greater; if those two hold same conclusion type, but one of those two holds
+            the global index of the candidate position is greater, it is greater.
+            </remarks>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Solving.Conclusion._mask" path="/summary"/></param>
         </member>
         <member name="F:Sudoku.Solving.Conclusion._mask">
             <summary>
@@ -6499,12 +6538,6 @@ fixed (short* ptr = instance)
             <param name="type">The conclusion type.</param>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.#ctor(System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Conclusion"/> instance with the specified mask.
-            </summary>
-            <param name="mask">The mask value.</param>
         </member>
         <member name="P:Sudoku.Solving.Conclusion.Cell">
             <summary>
@@ -8606,6 +8639,13 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a range of cells.
             </summary>
+            <param name="mask">The mask to be set.</param>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.CellRange.#ctor(System.Int16)">
+            <summary>
+            Defines a range of cells.
+            </summary>
+            <param name="mask">The mask to be set.</param>
         </member>
         <member name="F:Sudoku.Text.Parsing.CellRange._mask">
             <summary>
@@ -8719,6 +8759,24 @@ if (student is (name: var name, age: >= 18))
             Encapsulates a grid parser that can parse a string value and convert it
             into a valid <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.
             </summary>
+            <param name="parsingValue">The string to be parsed.</param>
+            <param name="compatibleFirst">
+            Indicates whether the parsing operation should use compatible mode to check
+            PM grid. See <see cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/> to learn more.
+            </param>
+            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
+        </member>
+        <member name="M:Sudoku.Text.Parsing.GridParser.#ctor(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Encapsulates a grid parser that can parse a string value and convert it
+            into a valid <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.
+            </summary>
+            <param name="parsingValue">The string to be parsed.</param>
+            <param name="compatibleFirst">
+            Indicates whether the parsing operation should use compatible mode to check
+            PM grid. See <see cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/> to learn more.
+            </param>
+            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
         </member>
         <member name="F:Sudoku.Text.Parsing.GridParser.ParseFunctions">
             <summary>
@@ -8746,19 +8804,6 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the parsing operation should use compatible mode to check
             PM grid. See <see cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/> to learn more.
             </param>
-            <seealso cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/>
-        </member>
-        <member name="M:Sudoku.Text.Parsing.GridParser.#ctor(System.String,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes an instance with parsing data and a bool value
-            indicating whether the parsing operation should use compatible mode.
-            </summary>
-            <param name="parsingValue">The string to parse.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/> to learn more.
-            </param>
-            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
             <seealso cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/>
         </member>
         <member name="M:Sudoku.Text.Parsing.GridParser.#cctor">

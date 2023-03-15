@@ -3,12 +3,16 @@
 /// <summary>
 /// Defines a range of cells.
 /// </summary>
-public readonly partial struct CellRange : IEquatable<CellRange>, IEqualityOperators<CellRange, CellRange, bool>, ISimpleParsable<CellRange>
+/// <param name="mask">The mask to be set.</param>
+public readonly partial struct CellRange(short mask) :
+	IEquatable<CellRange>,
+	IEqualityOperators<CellRange, CellRange, bool>,
+	ISimpleParsable<CellRange>
 {
 	/// <summary>
 	/// Indicates the inner mask.
 	/// </summary>
-	private readonly short _mask;
+	private readonly short _mask = mask;
 
 
 	/// <summary>
@@ -25,14 +29,18 @@ public readonly partial struct CellRange : IEquatable<CellRange>, IEqualityOpera
 	/// </list>
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellRange(int min, int max)
-		=> _mask = min <= max
-			? min is >= 0 and < 81
-				? max is >= 0 and <= 81
-					? (short)(max << 7 | min)
-					: throw new ArgumentException($"The argument '{nameof(max)}' must be between 0 and 81.", nameof(max))
-				: throw new ArgumentException($"The argument '{nameof(min)}' must be between 0 and 80.", nameof(min))
-			: throw new ArgumentException($"The argument '{nameof(min)}' must be less than '{nameof(max)}'");
+	public CellRange(int min, int max) :
+		this(
+			min <= max
+				? min is >= 0 and < 81
+					? max is >= 0 and <= 81
+						? (short)(max << 7 | min)
+						: throw new ArgumentException($"The argument '{nameof(max)}' must be between 0 and 81.", nameof(max))
+					: throw new ArgumentException($"The argument '{nameof(min)}' must be between 0 and 80.", nameof(min))
+				: throw new ArgumentException($"The argument '{nameof(min)}' must be less than '{nameof(max)}'")
+		)
+	{
+	}
 
 
 	/// <summary>
