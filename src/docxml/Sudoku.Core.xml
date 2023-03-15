@@ -165,13 +165,7 @@
         <member name="M:Sudoku.Concepts.CandidateMap.Remove(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#AddChecked(System.Int32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#RemoveChecked(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
@@ -181,6 +175,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#AddChecked(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#RemoveChecked(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
@@ -769,6 +769,12 @@
         <member name="M:Sudoku.Concepts.CellMap.Clear">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
         </member>
@@ -778,13 +784,7 @@
         <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#AddChecked(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#AddRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#RemoveChecked(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#RemoveRangeChecked(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">

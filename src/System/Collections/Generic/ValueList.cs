@@ -163,7 +163,7 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 	/// <param name="instance">The instance to be determined.</param>
 	/// <param name="predicate">A method that defines whether two instances are considered equal.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public bool Contains(T instance, delegate*<T, T, bool> predicate)
+	public readonly bool Contains(T instance, delegate*<T, T, bool> predicate)
 	{
 		foreach (var element in this)
 		{

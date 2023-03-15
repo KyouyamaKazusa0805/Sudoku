@@ -154,7 +154,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public CandidateMap PeerIntersection
+	public readonly CandidateMap PeerIntersection
 	{
 		get
 		{
@@ -217,7 +217,7 @@ public unsafe partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
-	public int this[int index]
+	public readonly int this[int index]
 	{
 		get
 		{
@@ -411,12 +411,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap>.AddChecked(int offset)
-		=> Add(offset is >= 0 and < 729 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The candidate offset is invalid."));
-
-	/// <inheritdoc/>
-	void IBitStatusMap<CandidateMap>.AddRangeChecked(IEnumerable<int> offsets)
+	readonly void IBitStatusMap<CandidateMap>.AddRangeChecked(IEnumerable<int> offsets)
 	{
 		foreach (var cell in offsets)
 		{
@@ -425,12 +420,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap>.RemoveChecked(int offset)
-		=> Remove(offset is >= 0 and < 729 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The candidate offset is invalid."));
-
-	/// <inheritdoc/>
-	void IBitStatusMap<CandidateMap>.RemoveRangeChecked(IEnumerable<int> offsets)
+	readonly void IBitStatusMap<CandidateMap>.RemoveRangeChecked(IEnumerable<int> offsets)
 	{
 		foreach (var cell in offsets)
 		{
@@ -445,6 +435,16 @@ public unsafe partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void IBitStatusMap<CandidateMap>.AddChecked(int offset)
+		=> Add(offset is >= 0 and < 729 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The candidate offset is invalid."));
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void IBitStatusMap<CandidateMap>.RemoveChecked(int offset)
+		=> Remove(offset is >= 0 and < 729 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The candidate offset is invalid."));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

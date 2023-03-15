@@ -1358,6 +1358,7 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="GetPinnableReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
 	public ref short GetMaskRef(int index) => ref _values[index];
 
 	/// <summary>

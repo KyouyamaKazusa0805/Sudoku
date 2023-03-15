@@ -1117,15 +1117,13 @@ public unsafe ref partial struct StringHandler
 	/// Reverse the instance. For example, if the handler holds a string <c>"Hello"</c>,
 	/// after called this method, the string will be <c>"olleH"</c>.
 	/// </summary>
-	public void Reverse()
+	public readonly void Reverse()
 	{
 		fixed (char* p = _chars)
 		{
 			for (var i = 0; i < Length >> 1; i++)
 			{
-				var c = p[i];
-				p[i] = p[Length - 1 - i];
-				p[Length - 1 - i] = c;
+				PointerOperations.Swap(p + i, p + (Length - 1 - i));
 			}
 		}
 	}

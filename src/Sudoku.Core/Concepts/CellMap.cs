@@ -147,7 +147,7 @@ public unsafe partial struct CellMap :
 	/// Determines whether the current list of cells are all lie in an intersection area,
 	/// i.e. a locked candidates.
 	/// </summary>
-	public bool IsInIntersection
+	public readonly bool IsInIntersection
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _count <= 3 && PopCount((uint)CoveredHouses) == 2;
@@ -761,6 +761,24 @@ public unsafe partial struct CellMap :
 	public void Clear() => this = default;
 
 	/// <inheritdoc/>
+	readonly void IBitStatusMap<CellMap>.AddRangeChecked(IEnumerable<int> offsets)
+	{
+		foreach (var cell in offsets)
+		{
+			((IBitStatusMap<CellMap>)this).AddChecked(cell);
+		}
+	}
+
+	/// <inheritdoc/>
+	readonly void IBitStatusMap<CellMap>.RemoveRangeChecked(IEnumerable<int> offsets)
+	{
+		foreach (var cell in offsets)
+		{
+			((IBitStatusMap<CellMap>)this).RemoveChecked(cell);
+		}
+	}
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly int IComparable.CompareTo([NotNull] object? obj)
 	{
@@ -781,27 +799,9 @@ public unsafe partial struct CellMap :
 		=> Add(offset is >= 0 and < 81 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid."));
 
 	/// <inheritdoc/>
-	void IBitStatusMap<CellMap>.AddRangeChecked(IEnumerable<int> offsets)
-	{
-		foreach (var cell in offsets)
-		{
-			((IBitStatusMap<CellMap>)this).AddChecked(cell);
-		}
-	}
-
-	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void IBitStatusMap<CellMap>.RemoveChecked(int offset)
 		=> Remove(offset is >= 0 and < 81 ? offset : throw new ArgumentOutOfRangeException(nameof(offset), "The cell offset is invalid."));
-
-	/// <inheritdoc/>
-	void IBitStatusMap<CellMap>.RemoveRangeChecked(IEnumerable<int> offsets)
-	{
-		foreach (var cell in offsets)
-		{
-			((IBitStatusMap<CellMap>)this).RemoveChecked(cell);
-		}
-	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

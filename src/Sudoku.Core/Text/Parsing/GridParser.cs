@@ -109,13 +109,13 @@ public unsafe ref partial struct GridParser
 	/// Indicates whether the property <see cref="ParsingValue"/> of this instance contains multiline limitators.
 	/// </summary>
 	/// <seealso cref="ParsingValue"/>
-	private bool ContainsMultilineLimitator => ParsingValue.Contains("-+-");
+	private readonly bool ContainsMultilineLimitator => ParsingValue.Contains("-+-");
 
 	/// <summary>
 	/// Indicates whether the property <see cref="ParsingValue"/> of this instance contains tab character '<c>\t</c>'.
 	/// </summary>
 	/// <seealso cref="ParsingValue"/>
-	private bool ContainsTab => ParsingValue.Contains('\t');
+	private readonly bool ContainsTab => ParsingValue.Contains('\t');
 
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
