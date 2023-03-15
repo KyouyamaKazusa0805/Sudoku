@@ -3,11 +3,9 @@
 /// <summary>
 /// Defines a range of difficulty rating value that is applied to a technique implemented by Sudoku Explainer.
 /// </summary>
-/// <param name="Min">The minimum possible value.</param>
-/// <param name="Max">The maximum possible value.</param>
-public readonly record struct SudokuExplainerDifficultyRatingRange(Half Min, Half Max) :
-	IEquatable<SudokuExplainerDifficultyRatingRange>,
-	IEqualityOperators<SudokuExplainerDifficultyRatingRange, SudokuExplainerDifficultyRatingRange, bool>
+/// <param name="min">The minimum possible value.</param>
+/// <param name="max">The maximum possible value.</param>
+public readonly struct SudokuExplainerDifficultyRatingRange(Half min, Half max)
 {
 	/// <summary>
 	/// Initializes a <see cref="SudokuExplainerDifficultyRatingRange"/> instance
@@ -19,6 +17,16 @@ public readonly record struct SudokuExplainerDifficultyRatingRange(Half Min, Hal
 	{
 	}
 
+
+	/// <summary>
+	/// Indicates the minimum possible value.
+	/// </summary>
+	public Half Min { get; } = min;
+
+	/// <summary>
+	/// Indicates the maximum possible value.
+	/// </summary>
+	public Half Max { get; } = max;
 
 	/// <summary>
 	/// Indicates whether the current range is a real range, i.e. property <see cref="Max"/> holds different value
