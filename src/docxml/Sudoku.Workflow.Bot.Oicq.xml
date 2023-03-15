@@ -8,6 +8,20 @@
             <summary>
             提供一个特性，用来表示属性作为命令行解析的参数信息。
             </summary>
+            <param name="name">表示该参数的名称。</param>
+            <param name="requiredValuesCount">表示该指令模块的参数需要多少个子参数信息。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.ArgumentAttribute.#ctor(System.String,System.Int32)">
+            <summary>
+            提供一个特性，用来表示属性作为命令行解析的参数信息。
+            </summary>
+            <param name="name">表示该参数的名称。</param>
+            <param name="requiredValuesCount">表示该指令模块的参数需要多少个子参数信息。</param>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.ArgumentAttribute.Name">
+            <summary>
+            表示该参数的名称，即该参数序列最左边这个明确下来的数值。
+            </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.ArgumentAttribute.RequiredValuesCount">
             <summary>
@@ -23,10 +37,11 @@
             <summary>
             提供一个特性，用于标记到指令模块的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
             </summary>
+            <param name="name">触发名称。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute.#ctor(System.String)">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute"/> 类型的实例，并给出其模块触发的名称。
+            提供一个特性，用于标记到指令模块的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
             </summary>
             <param name="name">触发名称。</param>
         </member>
@@ -44,6 +59,7 @@
             <summary>
             表示一个特性，用于命令模块的某属性，表示该属性作为命令模块的参数使用的时候，它需要被覆盖的默认数值是多少。
             </summary>
+            <param name="defaultValue">默认数值。</param>
             <remarks>
             它不等同于属性的初始化器，由于项目的设计，所有的命令模块在运行期间都只保有一个实例，而不会产生新的实例。
             如果反复执行同一个指令，那么参数数值就会被保持为上一轮执行该指令期间产生的那个情况。为确保数值重新覆盖为默认数值，该特性专门用于这个处理规则。
@@ -52,9 +68,14 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1.#ctor(`0)">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 类型的实例，并带有一个参数表示其默认数值。
+            表示一个特性，用于命令模块的某属性，表示该属性作为命令模块的参数使用的时候，它需要被覆盖的默认数值是多少。
             </summary>
             <param name="defaultValue">默认数值。</param>
+            <remarks>
+            它不等同于属性的初始化器，由于项目的设计，所有的命令模块在运行期间都只保有一个实例，而不会产生新的实例。
+            如果反复执行同一个指令，那么参数数值就会被保持为上一轮执行该指令期间产生的那个情况。为确保数值重新覆盖为默认数值，该特性专门用于这个处理规则。
+            </remarks>
+            <typeparam name="T">属性本身的类型。</typeparam>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1.DefaultValue">
             <summary>
@@ -65,6 +86,10 @@
             <summary>
             提供一个特性，用于标记到一个命令模块的属性上，表示该属性的默认数值是由哪一个同类型里的成员产生而赋值得到。
             </summary>
+            <param name="defaultValueInvokerName">
+            <para>表示成员的名称。</para>
+            <para><inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute.DefaultValueInvokerName" path="/remarks"/></para>
+            </param>
             <remarks>
             这个特性区别于 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/>，这个特性专门用于 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 不支持的情况。
             比如特性里的传参必须为常量（编译期可计算的、无副作用的数据），那么如果不能以常量形式表达出来的情况，就必须通过创建新的成员，然后通过该特性引用到此成员，
@@ -74,12 +99,18 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute.#ctor(System.String)">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute"/> 的实例，并给出该成员名称。
+            提供一个特性，用于标记到一个命令模块的属性上，表示该属性的默认数值是由哪一个同类型里的成员产生而赋值得到。
             </summary>
             <param name="defaultValueInvokerName">
             <para>表示成员的名称。</para>
             <para><inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute.DefaultValueInvokerName" path="/remarks"/></para>
             </param>
+            <remarks>
+            这个特性区别于 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/>，这个特性专门用于 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 不支持的情况。
+            比如特性里的传参必须为常量（编译期可计算的、无副作用的数据），那么如果不能以常量形式表达出来的情况，就必须通过创建新的成员，然后通过该特性引用到此成员，
+            来达到初始化的目的。
+            </remarks>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute.DefaultValueInvokerName">
             <summary>
@@ -100,10 +131,11 @@
             <summary>
             表示描述信息的注解。用于一个枚举字段，表示该字段对应的描述信息。
             </summary>
+            <param name="description">字段的描述信息。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.DescriptionAttribute.#ctor(System.String)">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DescriptionAttribute"/> 类型的实例，并给出其描述信息。
+            表示描述信息的注解。用于一个枚举字段，表示该字段对应的描述信息。
             </summary>
             <param name="description">字段的描述信息。</param>
         </member>
@@ -116,38 +148,37 @@
             <summary>
             提供一个特性，用于标记到指令模块的某个参数上，表示该参数是一个双参数指令。
             </summary>
+            <param name="name"><inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Annotations.ArgumentAttribute.#ctor(System.String,System.Int32)" path="/param[@name='name']"/></param>
             <remarks>
             <b>双参数指令</b>表示一个参数，需要带一个额外参数，拼凑在一起，才是一个整体的参数信息。
             </remarks>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.DoubleArgumentAttribute.#ctor(System.String)">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DoubleArgumentAttribute"/> 的实例，并给出其双参数的名称。
+            提供一个特性，用于标记到指令模块的某个参数上，表示该参数是一个双参数指令。
             </summary>
-            <param name="name">表示参数的名称。</param>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.DoubleArgumentAttribute.RequiredValuesCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.DoubleArgumentAttribute.Name">
-            <summary>
-            表示该双参数的名称，即该参数左边的这个明确下来的数值。
-            </summary>
+            <param name="name"><inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Annotations.ArgumentAttribute.#ctor(System.String,System.Int32)" path="/param[@name='name']"/></param>
+            <remarks>
+            <b>双参数指令</b>表示一个参数，需要带一个额外参数，拼凑在一起，才是一个整体的参数信息。
+            </remarks>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.EnumFieldAttribute">
             <summary>
             表示一个抽象基类型，为所有用于标记给枚举字段的特性类型提供基类型抽象。
-            虽然里面没有什么玩意儿，但它可能会被用于例如模式匹配之类的地方上。
             </summary>
+            <remarks>
+            虽然里面没有什么玩意儿，但它可能会被用于例如模式匹配之类的地方上。
+            </remarks>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.HintAttribute">
             <summary>
             表示一个特性，用于一个命令模块的属性上，表示该属性对应的命令参数的提示信息。
             </summary>
+            <param name="hint">表示提示文字。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.HintAttribute.#ctor(System.String)">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.HintAttribute"/> 的实例，并给出其提示文字。
+            表示一个特性，用于一个命令模块的属性上，表示该属性对应的命令参数的提示信息。
             </summary>
             <param name="hint">表示提示文字。</param>
         </member>
@@ -160,10 +191,11 @@
             <summary>
             表示物品的详细分组的注解。用于一个枚举字段，表示该字段对应的物品的分组。
             </summary>
+            <param name="group">字段对应物品的组别。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.ItemGroupAttribute.#ctor(Sudoku.Workflow.Bot.Oicq.ComponentModel.ItemGroup)">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ItemGroupAttribute"/> 类型的实例，并给出其组别。
+            表示物品的详细分组的注解。用于一个枚举字段，表示该字段对应的物品的分组。
             </summary>
             <param name="group">字段对应物品的组别。</param>
         </member>
@@ -176,10 +208,11 @@
             <summary>
             表示名字的注解。用于一个枚举字段，表示该字段对应的名字（或其他用来显示的名称）的信息。
             </summary>
+            <param name="name">字段的名称。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.NameAttribute.#ctor(System.String)">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.NameAttribute"/> 类型的实例，并给出其名称。
+            表示名字的注解。用于一个枚举字段，表示该字段对应的名字（或其他用来显示的名称）的信息。
             </summary>
             <param name="name">字段的名称。</param>
         </member>
@@ -192,6 +225,13 @@
             <summary>
             提供一个特性，用于标记到周期性执行的模块（<see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/> 的派生类型）的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
             </summary>
+            <param name="triggeringTime"><inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.TriggeringTime" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.#ctor(System.TimeOnly)">
+            <summary>
+            提供一个特性，用于标记到周期性执行的模块（<see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/> 的派生类型）的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
+            </summary>
+            <param name="triggeringTime"><inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.TriggeringTime" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.#ctor(System.Int32)">
             <summary>
@@ -224,10 +264,11 @@
             <summary>
             表示价格的注解。用于一个枚举字段，表示该字段对应的物品的价格。
             </summary>
+            <param name="price">物品的价格。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.PriceAttribute.#ctor(System.Int32)">
             <summary>
-            实例化一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.PriceAttribute"/> 类型的实例，并给出价格。
+            表示价格的注解。用于一个枚举字段，表示该字段对应的物品的价格。
             </summary>
             <param name="price">物品的价格。</param>
         </member>

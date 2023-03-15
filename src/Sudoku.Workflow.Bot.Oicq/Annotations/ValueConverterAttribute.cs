@@ -6,6 +6,4 @@
 /// </summary>
 /// <typeparam name="T">表示转换器的类型。转换器必须实现 <see cref="IValueConverter"/> 接口，并包含一个无参构造器。</typeparam>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class ValueConverterAttribute<T> : CommandAnnotationAttribute where T : class, IValueConverter, new()
-{
-}
+public sealed class ValueConverterAttribute<T> : CommandAnnotationAttribute where T : class, IValueConverter, new();

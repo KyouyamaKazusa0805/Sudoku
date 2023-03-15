@@ -5,6 +5,4 @@
 /// </summary>
 /// <typeparam name="T">具体依赖的命令类型。</typeparam>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class DependencyModuleAttribute<T> : CommandAnnotationAttribute where T : Command, new()
-{
-}
+public sealed class DependencyModuleAttribute<T> : CommandAnnotationAttribute where T : Command, new();
