@@ -223,13 +223,13 @@
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute">
             <summary>
-            提供一个特性，用于标记到周期性执行的模块（<see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/> 的派生类型）的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
+            提供一个特性，用于标记到周期性执行的模块（<see cref="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand"/> 的派生类型）的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
             </summary>
             <param name="triggeringTime"><inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.TriggeringTime" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.#ctor(System.TimeOnly)">
             <summary>
-            提供一个特性，用于标记到周期性执行的模块（<see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/> 的派生类型）的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
+            提供一个特性，用于标记到周期性执行的模块（<see cref="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand"/> 的派生类型）的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
             </summary>
             <param name="triggeringTime"><inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.TriggeringTime" path="/summary"/></param>
         </member>
@@ -315,20 +315,20 @@
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Collections.CommandCollection">
             <summary>
-            表示一个列表，存储的就是一系列的 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Command"/> 的实例。
+            表示一个列表，存储的就是一系列的 <see cref="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Command"/> 的实例。
             </summary>
-            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Command"/>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Command"/>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Collections.CommandCollection.BuiltIn">
             <summary>
-            表示内置的所有 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Command"/> 序列。
+            表示内置的所有 <see cref="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Command"/> 序列。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection">
             <summary>
-            表示一个列表，存储的是一系列的 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/> 的实例。
+            表示一个列表，存储的是一系列的 <see cref="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand"/> 的实例。
             </summary>
-            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand"/>
         </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection._timers">
             <summary>
@@ -337,13 +337,13 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection.BuiltIn">
             <summary>
-            表示内置的所有 <see cref="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand"/> 实例。
+            表示内置的所有 <see cref="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand"/> 实例。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection.Add(Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection.Add(Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand)">
             <inheritdoc cref="M:System.Collections.Generic.List`1.Add(`0)"/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand})">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Collections.PeriodicCommandCollection.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand})">
             <inheritdoc cref="M:System.Collections.Generic.List`1.AddRange(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.Distribution">
@@ -913,15 +913,15 @@
             机器人的运行上下文。为一个并发字典，按群存储不同的上下文数据。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.CheckInCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.CheckInCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer">
             <summary>
             本地的计分规则的方法。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetExperienceOriginal(Sudoku.Workflow.Bot.Oicq.ComponentModel.Distribution)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperienceOriginal(Sudoku.Workflow.Bot.Oicq.ComponentModel.Distribution)">
             <summary>
             获取经验值获得。
             </summary>
@@ -929,13 +929,13 @@
             <returns>经验值获得。</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">如果 <paramref name="distribution"/> 没有定义在类型里，就会产生此异常。</exception>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetCoinOriginal">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetCoinOriginal">
             <summary>
             获得金币数。
             </summary>
             <returns>金币数。</returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetExperiencePoint(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperiencePoint(System.Int32,System.Int32)">
             <summary>
             获得经验值。
             </summary>
@@ -943,70 +943,70 @@
             <param name="cardLevel">用户的强化卡级别。</param>
             <returns>经验值。</returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetCoin(System.Decimal)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetCoin(System.Decimal)">
             <summary>
             获得金币。
             </summary>
             <param name="rate">加成倍率。</param>
             <returns>金币。</returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetEarnedItem">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetEarnedItem">
             <summary>
             获得的物品。
             </summary>
             <returns>获得的物品。可能为 <see langword="null"/>。</returns>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Command">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Command">
             <summary>
             提供一个基本的指令模块。这个类型为抽象类型，需要派生出实例类型进行实现，并提供给 <see cref="T:Mirai.Net.Sessions.MiraiBot"/> 实例调用。
             </summary>
             <seealso cref="T:Mirai.Net.Sessions.MiraiBot"/>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.StaticMembers">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.StaticMembers">
             <summary>
             用于反射期间绑定的 <see cref="T:System.Reflection.BindingFlags"/> 类型的实例。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.ModuleTriggeringPrefix">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.ModuleTriggeringPrefix">
             <summary>
             表示模块触发的前缀符号。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.HintRequestedTokens">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.HintRequestedTokens">
             <summary>
             表示模块查询参数或模块自身提示信息的占位符。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.RaisingCommand">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.RaisingCommand">
             <summary>
             表示引发指令的名称，不带前缀符号。比如“！签到”的“签到”。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.RequiredEnvironmentCommand">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.RequiredEnvironmentCommand">
             <summary>
             表示该指令需要依赖的指令名称。比如说游戏结束必须至少要求游戏开始。那么“！结束游戏”指令必须依赖于“！开始游戏”指令触发之后。
             这个属性对于“结束游戏”指令的实现类型来说，它的依赖指令名就是“开始游戏”。如果类型不依赖于任何其他的指令，这个属性则会保持 <see langword="null"/> 值。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.RequiredSenderRole">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.RequiredSenderRole">
             <inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.RequiredRoleAttribute.SenderRole"/>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.RequiredBotRole">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.RequiredBotRole">
             <inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.RequiredRoleAttribute.BotRole"/>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.EqualityContract">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.EqualityContract">
             <summary>
             为 <see cref="M:System.Object.GetType"/> 的快捷调用。由于体系架构使用反射，因此该属性使用频率会非常高。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.Mirai#Net#Modules#IModule#IsEnable">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.Mirai#Net#Modules#IModule#IsEnable">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">如果实现类型存在一些问题，就会产生此异常。</exception>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <summary>
             用于专门处理机器人对该指令的理解。
             </summary>
@@ -1015,7 +1015,7 @@
             返回一个 <see cref="T:System.Threading.Tasks.Task"/> 实例，记录了异步执行期间的一些数据信息。
             </returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)">
             <summary>
             通过 <see cref="T:System.Reflection.PropertyInfo"/> 反射到的属性信息，进行该属性常量的求得。
             如果属性标记了 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute"/> 特性，并且指向的成员合法，那么就会返回合理的结果到
@@ -1026,82 +1026,82 @@
             <returns>一个 <see cref="T:System.Boolean"/> 结果，表示是否 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute"/> 特性标记合理。</returns>
             <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute"/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.TryGetDefaultValue(System.Reflection.PropertyInfo,System.Object@)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.TryGetDefaultValue(System.Reflection.PropertyInfo,System.Object@)">
             <summary>
             通过 <see cref="T:System.Reflection.PropertyInfo"/> 反射到的属性信息，进行该属性常量的求得。
             如果属性标记了 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 特性，那么就会返回合理的结果到
             参数 <paramref name="defaultValue"/> 上，并返回 <see langword="true"/>；否则 <see langword="false"/>。
             </summary>
-            <param name="pi"><inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)" path="/param[@name='pi']"/></param>
+            <param name="pi"><inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)" path="/param[@name='pi']"/></param>
             <param name="defaultValue">
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)" path="/param[@name='defaultValue']"/>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.TryGetDefaultValueViaMemberName(System.Reflection.PropertyInfo,System.Object@)" path="/param[@name='defaultValue']"/>
             </param>
             <returns>一个 <see cref="T:System.Boolean"/> 结果，表示是否 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 特性标记合理。</returns>
             <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Command.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
             <summary>
             一个转换类型，将 <see cref="T:Mirai.Net.Data.Shared.Permissions"/> 实例转换为等同的 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GroupRoleKind"/> 实例。
             </summary>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason">
             <summary>
             一个本地枚举类型，表示一个在解析期间产生的错误信息。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.None">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.None">
             <summary>
             表示没有错误。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.NotCurrentModule">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.NotCurrentModule">
             <summary>
             表示解析失败，因为解析的指令不属于当前指令（不匹配）。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyNotFound">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.TargetPropertyNotFound">
             <summary>
             表示解析失败，因为目标属性没有找到。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyMissingAccessor">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.TargetPropertyMissingAccessor">
             <summary>
             表示解析失败，因为目标属性缺少 <see langword="get"/> 或 <see langword="set"/> 方法的至少一个。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyIsIndexer">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.TargetPropertyIsIndexer">
             <summary>
             表示解析失败，因为目标属性是索引器（有参属性）。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.TargetPropertyMissingConverter">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.TargetPropertyMissingConverter">
             <summary>
             表示解析失败，因为目标属性不是 <see cref="T:System.String"/> 类型，却缺少 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/> 的转换指示情况。
             </summary>
             <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ParsingFailedReason.InvalidInput">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.InvalidInput">
             <summary>
             表示解析失败，因为用户输入的结果在转换期间失败。比如某处要求输入整数，结果输入了别的无法转为整数数据的结果，例如字母。
             </summary>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GameCancelCommand">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCancelCommand">
             <summary>
             取消游戏指令。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GameCancelCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCancelCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GameCommand">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCommand">
             <summary>
             游戏指令。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GameCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GameCommand.GetGameTimeLimit(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCommand.GetGameTimeLimit(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
             <summary>
             根据题目难度，求得题目限时。
             </summary>
@@ -1109,7 +1109,7 @@
             <returns>该题目的限时。</returns>
             <exception cref="T:System.NotSupportedException">如果题目难度未知，或超过了 <see cref="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Hard"/>，就会产生此异常。</exception>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.GeneratedGridData">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData">
             <summary>
             表示生成的题目数据。
             </summary>
@@ -1119,7 +1119,7 @@
             <param name="TimeLimit">这个题目的限时。</param>
             <param name="ExperiencePoint">该题目可获得的经验值。</param>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.TimeSpan,System.Int32)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.TimeSpan,System.Int32)">
             <summary>
             表示生成的题目数据。
             </summary>
@@ -1129,22 +1129,22 @@
             <param name="TimeLimit">这个题目的限时。</param>
             <param name="ExperiencePoint">该题目可获得的经验值。</param>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GeneratedGridData.Puzzle">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.Puzzle">
             <summary>题目。</summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GeneratedGridData.ChosenCells">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.ChosenCells">
             <summary>选取出来的单元格。</summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GeneratedGridData.FinalIndex">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.FinalIndex">
             <summary>最终定下来的单元格（答案）。</summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GeneratedGridData.TimeLimit">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.TimeLimit">
             <summary>这个题目的限时。</summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.GeneratedGridData.ExperiencePoint">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.ExperiencePoint">
             <summary>该题目可获得的经验值。</summary>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.ResultInfo">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo">
             <summary>
             表示题目的结果信息。
             </summary>
@@ -1156,7 +1156,7 @@
             <param name="Times">本题该用户的用时。</param>
             <param name="IsCorrectedUser">表示这个人是否回答正确。</param>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.ResultInfo.#ctor(System.String,System.String,System.Int32,System.Int32,System.Nullable{Sudoku.Workflow.Bot.Oicq.ComponentModel.Item},System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.#ctor(System.String,System.String,System.Int32,System.Int32,System.Nullable{Sudoku.Workflow.Bot.Oicq.ComponentModel.Item},System.Int32,System.Boolean)">
             <summary>
             表示题目的结果信息。
             </summary>
@@ -1168,40 +1168,40 @@
             <param name="Times">本题该用户的用时。</param>
             <param name="IsCorrectedUser">表示这个人是否回答正确。</param>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ResultInfo.UserName">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.UserName">
             <summary>表示该结果是谁回答的。</summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ResultInfo.Id">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.Id">
             <summary>该用户的 QQ 号码。</summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ResultInfo.ExperiencePoint">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.ExperiencePoint">
             <summary>该题目可获得的经验值。</summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ResultInfo.Coin">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.Coin">
             <summary>该题目可获得的金币。</summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ResultInfo.EarnedItem">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.EarnedItem">
             <summary>获得的物品。可能为 <see langword="null"/>。</summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ResultInfo.Times">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.Times">
             <summary>本题该用户的用时。</summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ResultInfo.IsCorrectedUser">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.IsCorrectedUser">
             <summary>表示这个人是否回答正确。</summary>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Extensions">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Extensions">
             <target name="class" when="extension">
 				<summary>
 					Provides with file-local extension methods.
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Extensions.ToChineseTimeSpanString(System.TimeSpan)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Extensions.ToChineseTimeSpanString(System.TimeSpan)">
             <summary>
             将 <see cref="T:System.TimeSpan"/> 实例用中文汉字“时分秒”的形式表达为字符串写法。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Extensions.SendPictureThenDeleteAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,System.Func{Sudoku.Drawing.ISudokuPainter})">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Extensions.SendPictureThenDeleteAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,System.Func{Sudoku.Drawing.ISudokuPainter})">
             <summary>
             根据指定的回调函数生成 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 对象，将该对象产生的图片保存至本地，然后将其发送出去，然后自动删掉本地的图片缓存。
             </summary>
@@ -1211,12 +1211,12 @@
             </param>
             <returns>一个 <see cref="T:System.Threading.Tasks.Task"/> 对象，包裹了异步执行的基本信息。</returns>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer">
             <summary>
             本地的计分规则的方法。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetExperiencePointDeduct(System.Int32)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperiencePointDeduct(System.Int32)">
             <summary>
             根据连续答错的次数确定扣分。
             </summary>
@@ -1224,13 +1224,13 @@
             <returns></returns>
             <exception cref="T:System.ArgumentOutOfRangeException">如果 <paramref name="times"/> 为负数，就会产生此异常。</exception>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetCoinOriginal">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetCoinOriginal">
             <summary>
             获得金币获得的基础数值。
             </summary>
             <returns>金币数。</returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetExperiencePointPerPuzzle(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperiencePointPerPuzzle(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
             <summary>
             获得经验值的基础数值。
             </summary>
@@ -1241,7 +1241,7 @@
             如果 <paramref name="difficultyLevel"/> 超过了 <see cref="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Hard"/> 难度，就会产生此异常。
             </exception>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetExperiencePoint(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperiencePoint(System.Int32,System.Int32)">
             <summary>
             获得的经验值。
             </summary>
@@ -1249,7 +1249,7 @@
             <param name="cardLevel">用户的卡片级别。</param>
             <returns>经验值。</returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetCoin(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetCoin(System.Int32,System.Int32)">
             <summary>
             获得的金币。
             </summary>
@@ -1257,66 +1257,66 @@
             <param name="cardLevel">用户的卡片级别。</param>
             <returns>金币。</returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.LocalScorer.GetEarnedItem">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetEarnedItem">
             <summary>
             获得的物品。
             </summary>
             <returns>获得的物品。可能为 <see langword="null"/>。</returns>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Generalized.MentioningCommand">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand">
             <summary>
             艾特指令。该指令较为特殊，它不带有前缀，也不是人触发的条件。
             它主要是为了去处理一些其他指令里的回复情况，如开始游戏后，回答问题需要艾特的时候，就会用到这个指令来处理。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Generalized.MentioningCommand.IsEnable">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.IsEnable">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Generalized.MentioningCommand.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ManualUpdateUserDataCommand.UserNickname">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.UserNickname">
             <summary>
             表示你要为谁进行加分操作。该参数指定的是用户的群名片。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ManualUpdateUserDataCommand.UserId">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.UserId">
             <summary>
             表示你要为谁进行加分操作。该参数指定的是用户的 QQ 号。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ManualUpdateUserDataCommand.ExperiencePointAddition">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.ExperiencePointAddition">
             <summary>
             表示你要为该用户加多少经验值。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ManualUpdateUserDataCommand.CoinAddition">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.CoinAddition">
             <summary>
             表示你要为该用户加多少金币。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.ManualUpdateUserDataCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.DailyPuzzleCommand">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.DailyPuzzleCommand">
             <summary>
             每日一题模块。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.DailyPuzzleCommand.ExecuteAsync">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.DailyPuzzleCommand.ExecuteAsync">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand">
             <summary>
             表示一个周期性执行的指令。这个指令不同于 <see cref="T:Mirai.Net.Modules.IModule"/> 的模块化处理接口，它属于是单独被 <see cref="T:Mirai.Net.Sessions.MiraiBot"/> 进行调用。
             </summary>
             <seealso cref="T:Mirai.Net.Modules.IModule"/>
             <seealso cref="T:Mirai.Net.Sessions.MiraiBot"/>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand.TriggeringTime">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand.TriggeringTime">
             <inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.TriggeringTime"/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic.PeriodicCommand.ExecuteAsync">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand.ExecuteAsync">
             <summary>
             执行此指令。注意，该方法为无参数方法，如果你需要发送消息，请使用静态方法 <see cref="M:Mirai.Net.Sessions.Http.Managers.MessageManager.SendGroupMessageAsync(System.String,Mirai.Net.Data.Messages.MessageChain)"/>
             或 <see cref="M:Mirai.Net.Sessions.Http.Managers.MessageManager.SendGroupMessageAsync(Mirai.Net.Data.Shared.Group,Mirai.Net.Data.Messages.MessageChain)"/> 发送消息流。
@@ -1325,169 +1325,169 @@
             <seealso cref="M:Mirai.Net.Sessions.Http.Managers.MessageManager.SendGroupMessageAsync(System.String,Mirai.Net.Data.Messages.MessageChain)"/>
             <seealso cref="M:Mirai.Net.Sessions.Http.Managers.MessageManager.SendGroupMessageAsync(Mirai.Net.Data.Shared.Group,Mirai.Net.Data.Messages.MessageChain)"/>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.PingCommand">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.PingCommand">
             <summary>
             Ping 指令。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.PingCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.PingCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.PurchaseCommand">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.PurchaseCommand">
             <summary>
             购买指令。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.PurchaseCommand.Level">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PurchaseCommand.Level">
             <summary>
             表示购买的三叶草的等级。该参数配合“三叶草”使用。对于“物品”参数填入强化卡的时候无效。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.PurchaseCommand.BatchedCount">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PurchaseCommand.BatchedCount">
             <summary>
             表示批量购买的数量。该参数配合“物品”使用，表示当前购买的物品一次性买多少个。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.PurchaseCommand.ItemName">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PurchaseCommand.ItemName">
             <summary>
             表示购买的物品。可以是“三叶草”或“强化卡”。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.PurchaseCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.PurchaseCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.ItemNames">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.ItemNames">
             <summary>
-            为属性 <see cref="P:Sudoku.Workflow.Bot.Oicq.UserCommands.PurchaseCommand.ItemName"/> 提供枚举数值。
+            为属性 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PurchaseCommand.ItemName"/> 提供枚举数值。
             </summary>
-            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.UserCommands.PurchaseCommand.ItemName"/>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PurchaseCommand.ItemName"/>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ItemNames.Clover">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ItemNames.Clover">
             <summary>
             表示数值“三叶草”。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ItemNames.Card">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ItemNames.Card">
             <summary>
             表示数值“强化卡”。
             </summary>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryCommand">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand">
             <summary>
             查询指令。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryCommand.MainLevel">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.MainLevel">
             <summary>
             表示你需要查询的强化期间，主卡的级别。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryCommand.CloverLevel">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.CloverLevel">
             <summary>
             表示你需要查询的强化期间，三叶草的级别。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryCommand.AuxiliaryCards">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.AuxiliaryCards">
             <summary>
             表示你需要查询的强化期间，辅助卡的级别，书写格式和“强化”指令里的“辅助”用法一致。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryCommand.QueryContentKind">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.QueryContentKind">
             <summary>
             表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryCommand.UserId">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.UserId">
             <summary>
             表示你需要查询的用户的 QQ 号码。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryCommand.UserNickname">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.UserNickname">
             <summary>
             表示你需要查询的用户的群名片。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryContentKinds">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryContentKinds">
             <summary>
             表示查询的内容。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryContentKinds.PkResult">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryContentKinds.PkResult">
             <summary>
             表示查询 PK 成绩。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryContentKinds.Elementary">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryContentKinds.Elementary">
             <summary>
             表示查询用户基本数据。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryContentKinds.Items">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryContentKinds.Items">
             <summary>
             表示查询用户的物品数据。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.QueryContentKinds.Upleveling">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryContentKinds.Upleveling">
             <summary>
             表示查询强化的成功率情况。
             </summary>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.RankCommand">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand">
             <summary>
             排名指令。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.RankCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ShopCommand.ItemKind">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ShopCommand.ItemKind">
             <summary>
             表示你要查看的商店的物品类型。可以填入的值有“强化卡”和“三叶草”。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.ShopCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.ShopCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.ItemKinds">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.ItemKinds">
             <summary>
-            表示 <see cref="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ShopCommand.ItemKind"/> 属性的所有取值。
+            表示 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ShopCommand.ItemKind"/> 属性的所有取值。
             </summary>
-            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.UserCommands.ShopCommand.ItemKind"/>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ShopCommand.ItemKind"/>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ItemKinds.Card">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ItemKinds.Card">
             <summary>
             表示物品是强化卡。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.UserCommands.ItemKinds.Clover">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ItemKinds.Clover">
             <summary>
             表示物品是三叶草。
             </summary>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.UserCommands.UplevelCommand">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand">
             <summary>
             强化指令。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.UplevelCommand.CloverLevel">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.CloverLevel">
             <summary>
             表示强化期间，需要的三叶草的级别，支持 1 到 10 级。该参数可以没有，默认情况下表示不带三叶草进行强化。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.UplevelCommand.MainCardLevel">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.MainCardLevel">
             <summary>
             表示你需要强化的主卡级别，支持 1 到 16 级。该参数可以没有，默认情况下表示你拥有的强化卡里最高级别的那一张作为主卡。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.UserCommands.UplevelCommand.AuxiliaryCards">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.AuxiliaryCards">
             <summary>
             表示辅助卡片的级别。每一个卡片都使用逗号分隔，中间没有空格。辅助卡片至少一张，最多三张。每张辅助卡的级别都不能超过主卡级别，也不能低于主卡级别 3 级及以上。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.UserCommands.UplevelCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ValueConverters.NumericArrayConverter`1">
