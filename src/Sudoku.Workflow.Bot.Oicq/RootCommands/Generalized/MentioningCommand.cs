@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands.Generalized;
+﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized;
 
 /// <summary>
 /// 艾特指令。该指令较为特殊，它不带有前缀，也不是人触发的条件。

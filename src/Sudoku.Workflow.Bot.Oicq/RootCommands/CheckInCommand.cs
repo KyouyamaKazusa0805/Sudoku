@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands;
+﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 [Command("签到")]
 internal sealed class CheckInCommand : Command

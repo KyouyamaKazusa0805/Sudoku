@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands;
+﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 /// <summary>
 /// 购买指令。

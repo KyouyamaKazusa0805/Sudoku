@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic;
+﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic;
 
 /// <summary>
 /// 每日一题模块。

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands;
+﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 [Command("商店")]
 internal sealed class ShopCommand : Command

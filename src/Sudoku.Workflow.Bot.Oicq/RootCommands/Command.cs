@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands;
+﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 /// <summary>
 /// 提供一个基本的指令模块。这个类型为抽象类型，需要派生出实例类型进行实现，并提供给 <see cref="MiraiBot"/> 实例调用。

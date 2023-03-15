@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.UserCommands.Periodic;
+﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic;
 
 /// <summary>
 /// 表示一个周期性执行的指令。这个指令不同于 <see cref="IModule"/> 的模块化处理接口，它属于是单独被 <see cref="MiraiBot"/> 进行调用。
