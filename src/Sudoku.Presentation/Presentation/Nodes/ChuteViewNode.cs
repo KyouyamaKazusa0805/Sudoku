@@ -3,17 +3,10 @@
 /// <summary>
 /// Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
 /// </summary>
-public sealed partial class ChuteViewNode : BasicViewNode
+/// <param name="identifier"><inheritdoc cref="BasicViewNode(Identifier)" path="/param[@name='identifier']"/></param>
+/// <param name="chuteIndex">The chute index.</param>
+public sealed partial class ChuteViewNode(Identifier identifier, int chuteIndex) : BasicViewNode(identifier)
 {
-	/// <summary>
-	/// Initializes a <see cref="ChuteViewNode"/> instance via the identifier and the highlight chute.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="chuteIndex">The chute index.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ChuteViewNode(Identifier identifier, int chuteIndex) : base(identifier) => ChuteIndex = chuteIndex;
-
-
 	/// <summary>
 	/// Indicates whether the chute is in a row.
 	/// </summary>
@@ -22,7 +15,7 @@ public sealed partial class ChuteViewNode : BasicViewNode
 	/// <summary>
 	/// Indicates the chute index. The value can be between 0 and 5.
 	/// </summary>
-	public int ChuteIndex { get; }
+	public int ChuteIndex { get; } = chuteIndex;
 
 	/// <summary>
 	/// <para>

@@ -3,24 +3,14 @@
 /// <summary>
 /// Defines a neighbor sign view node.
 /// </summary>
-public sealed partial class NeighborSignViewNode : SingleCellMarkViewNode
+public sealed partial class NeighborSignViewNode(Identifier identifier, int cell, bool isFourDirections) :
+	SingleCellMarkViewNode(identifier, cell, Direction.None)
 {
-	/// <summary>
-	/// Initializes a <see cref="NeighborSignViewNode"/> instance via specified values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell">The cell.</param>
-	/// <param name="isFourDirections">Indicates whether the sign only records for 4 directions.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public NeighborSignViewNode(Identifier identifier, int cell, bool isFourDirections) : base(identifier, cell, Direction.None)
-		=> IsFourDirections = isFourDirections;
-
-
 	/// <summary>
 	/// Indicates whether the sign only records for 4 directions (top-left, top-right, bottom-left and bottom-right).
 	/// If <see langword="true"/>, 4 directions; otherwise, 8 directions.
 	/// </summary>
-	public bool IsFourDirections { get; }
+	public bool IsFourDirections { get; } = isFourDirections;
 
 	/// <summary>
 	/// Indicates the cell string.

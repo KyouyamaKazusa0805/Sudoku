@@ -3,22 +3,15 @@
 /// <summary>
 /// Defines a view node that highlights for a candidate.
 /// </summary>
-public sealed partial class CandidateViewNode : BasicViewNode
+/// <param name="identifier"><inheritdoc cref="BasicViewNode(Identifier)" path="/param[@name='identifier']"/></param>
+/// <param name="candidate">The candidate.</param>
+public sealed partial class CandidateViewNode(Identifier identifier, int candidate) : BasicViewNode(identifier)
 {
-	/// <summary>
-	/// Initializes a <see cref="CandidateViewNode"/> instance via the identifier and the highlight candidate.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="candidate">The candidate.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CandidateViewNode(Identifier identifier, int candidate) : base(identifier) => Candidate = candidate;
-
-
 	/// <summary>
 	/// Indicates the candidate highlighted.
 	/// </summary>
 	[JsonInclude]
-	public int Candidate { get; }
+	public int Candidate { get; } = candidate;
 
 	/// <summary>
 	/// Indicates the candidate string.

@@ -3,26 +3,9 @@
 /// <summary>
 /// Defines a triangle-sum view node.
 /// </summary>
-public sealed partial class TriangleSumViewNode : SingleCellMarkViewNode
+public sealed partial class TriangleSumViewNode(Identifier identifier, int cell, Direction directions) :
+	SingleCellMarkViewNode(identifier, cell, directions)
 {
-	/// <summary>
-	/// Initializes a <see cref="TriangleSumViewNode"/> instance via the specified values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell">The cell.</param>
-	/// <param name="directions">The directions.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public TriangleSumViewNode(Identifier identifier, int cell, Direction directions) : base(identifier, cell, directions)
-	{
-		Argument.ThrowIfFalse(directions.GetAllFlags()?.Any(directionValidator) ?? true, "The direction value is invalid.");
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool directionValidator(Direction e)
-			=> e is not (Direction.TopCenter or Direction.BottomCenter or Direction.MiddleLeft or Direction.MiddleRight);
-	}
-
-
 	/// <summary>
 	/// Determines whether the shape is full complement.
 	/// </summary>

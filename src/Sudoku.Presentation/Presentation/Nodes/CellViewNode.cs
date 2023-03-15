@@ -3,22 +3,15 @@
 /// <summary>
 /// Defines a view node that highlights for a cell.
 /// </summary>
-public sealed partial class CellViewNode : BasicViewNode
+/// <param name="identifier"><inheritdoc cref="BasicViewNode(Identifier)" path="/param[@name='identifier']"/></param>
+/// <param name="cell">The cell.</param>
+public sealed partial class CellViewNode(Identifier identifier, int cell) : BasicViewNode(identifier)
 {
-	/// <summary>
-	/// Initializes a <see cref="CellViewNode"/> instance via the identifier and the highlight cell.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell">The cell.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellViewNode(Identifier identifier, int cell) : base(identifier) => Cell = cell;
-
-
 	/// <summary>
 	/// Indicates the cell highlighted.
 	/// </summary>
 	[JsonInclude]
-	public int Cell { get; }
+	public int Cell { get; } = cell;
 
 	/// <summary>
 	/// Indicates the cell string.

@@ -7,6 +7,4 @@
 /// <seealso cref="ColorInternal"/>
 [JsonSerializable(typeof(ColorInternal))]
 [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase, WriteIndented = true)]
-internal sealed partial class ColorInternalSerializerContext : JsonSerializerContext
-{
-}
+internal sealed partial class ColorInternalSerializerContext : JsonSerializerContext;

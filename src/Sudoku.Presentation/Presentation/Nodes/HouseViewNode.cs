@@ -3,21 +3,14 @@
 /// <summary>
 /// Defines a view node that highlights for a house.
 /// </summary>
-public sealed partial class HouseViewNode : BasicViewNode
+/// <param name="identifier"><inheritdoc cref="BasicViewNode(Identifier)" path="/param[@name='identifier']"/></param>
+/// <param name="houseIndex">The house index.</param>
+public sealed partial class HouseViewNode(Identifier identifier, int houseIndex) : BasicViewNode(identifier)
 {
-	/// <summary>
-	/// Initializes a <see cref="HouseViewNode"/> instance via the identifier and the highlight house.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="houseIndex">The house index.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public HouseViewNode(Identifier identifier, int houseIndex) : base(identifier) => House = houseIndex;
-
-
 	/// <summary>
 	/// Indicates the house highlighted.
 	/// </summary>
-	public int House { get; }
+	public int House { get; } = houseIndex;
 
 
 	[DeconstructionMethod]

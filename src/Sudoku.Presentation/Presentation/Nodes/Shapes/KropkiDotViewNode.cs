@@ -3,23 +3,13 @@
 /// <summary>
 /// Represents with a Kropki dot view node.
 /// </summary>
-public sealed partial class KropkiDotViewNode : AdjacentCellMarkViewNode
+public sealed partial class KropkiDotViewNode(Identifier identifier, int cell1, int cell2, bool isSolid) :
+	AdjacentCellMarkViewNode(identifier, cell1, cell2)
 {
-	/// <summary>
-	/// Initializes a <see cref="KropkiDotViewNode"/> instance via the identifier and two adjacent cells.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell1">The cell 1.</param>
-	/// <param name="cell2">The cell 2.</param>
-	/// <param name="isSolid">Indicates whether the dot is solid.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public KropkiDotViewNode(Identifier identifier, int cell1, int cell2, bool isSolid) : base(identifier, cell1, cell2) => IsSolid = isSolid;
-
-
 	/// <summary>
 	/// Indicates whether the dot will be displayed as solid one.
 	/// </summary>
-	public bool IsSolid { get; }
+	public bool IsSolid { get; } = isSolid;
 
 	/// <summary>
 	/// Indicates the cell 1 string.

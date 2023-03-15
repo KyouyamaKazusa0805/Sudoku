@@ -3,15 +3,9 @@
 /// <summary>
 /// Defines a pyramid view node.
 /// </summary>
-public sealed partial class PyramidViewNode : GroupedViewNode
+/// <param name="identifier"><inheritdoc cref="GroupedViewNode(Identifier, int, ImmutableArray{int})" path="/param[@name='identifier']"/></param>
+public sealed partial class PyramidViewNode(Identifier identifier) : GroupedViewNode(identifier, -1, ImmutableArray<int>.Empty)
 {
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PyramidViewNode(Identifier identifier) : base(identifier, -1, ImmutableArray<int>.Empty)
-	{
-	}
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is PyramidViewNode comparer && Identifier == comparer.Identifier;

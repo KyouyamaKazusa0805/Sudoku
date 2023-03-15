@@ -3,19 +3,10 @@
 /// <summary>
 /// Defines a triangle view node.
 /// </summary>
-public sealed class TriangleViewNode : FigureViewNode
+/// <param name="identifier"><inheritdoc cref="FigureViewNode(Identifier, int)" path="/param[@name='identifier']"/></param>
+/// <param name="cell"><inheritdoc cref="FigureViewNode(Identifier, int)" path="/param[@name='cell']"/></param>
+public sealed class TriangleViewNode(Identifier identifier, int cell) : FigureViewNode(identifier, cell)
 {
-	/// <summary>
-	/// Initializes a <see cref="TriangleViewNode"/> instance via the specified identfier value.
-	/// </summary>
-	/// <param name="identifier">The identfier.</param>
-	/// <param name="cell">The cell.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public TriangleViewNode(Identifier identifier, int cell) : base(identifier, cell)
-	{
-	}
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override TriangleViewNode Clone() => new(Identifier, Cell);

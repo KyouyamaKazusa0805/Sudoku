@@ -3,19 +3,9 @@
 /// <summary>
 /// Defines a star view node used by star product.
 /// </summary>
-public sealed partial class StarProductStarViewNode : SingleCellMarkViewNode
+public sealed partial class StarProductStarViewNode(Identifier identifier, int cell, Direction directions) :
+	SingleCellMarkViewNode(identifier, cell, directions)
 {
-	/// <summary>
-	/// Initializes a <see cref="StarProductStarViewNode"/> instance via the specified values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell">The cell.</param>
-	/// <param name="directions">The directions.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public StarProductStarViewNode(Identifier identifier, int cell, Direction directions) : base(identifier, cell, directions)
-		=> Argument.ThrowIfFalse(IsPow2((byte)directions), $"Argument '{nameof(directions)}' must hold only one flag.");
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)

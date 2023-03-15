@@ -3,20 +3,8 @@
 /// <summary>
 /// Defines a view node that displays as a bar on shared border line of two adjacent cells.
 /// </summary>
-public sealed partial class BorderBarViewNode : AdjacentCellMarkViewNode
+public sealed partial class BorderBarViewNode(Identifier identifier, int cell1, int cell2) : AdjacentCellMarkViewNode(identifier, cell1, cell2)
 {
-	/// <summary>
-	/// Initializes a <see cref="BorderBarViewNode"/> instance via the identifier and two adjacent cells.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell1">The cell 1.</param>
-	/// <param name="cell2">The cell 2.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public BorderBarViewNode(Identifier identifier, int cell1, int cell2) : base(identifier, cell1, cell2)
-	{
-	}
-
-
 	/// <summary>
 	/// Indicates the cell 1 string.
 	/// </summary>

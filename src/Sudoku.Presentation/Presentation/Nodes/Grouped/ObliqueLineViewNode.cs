@@ -3,23 +3,19 @@
 /// <summary>
 /// Defines an oblique line view node.
 /// </summary>
-public sealed partial class ObliqueLineViewNode : GroupedViewNode
+/// <param name="identifier"><inheritdoc cref="GroupedViewNode(Identifier, int, ImmutableArray{int})" path="/param[@name='identifier']"/></param>
+/// <param name="firstCell">The first cell.</param>
+/// <param name="lastCell">The last cell.</param>
+public sealed partial class ObliqueLineViewNode(
+	Identifier identifier,
+	int firstCell,
+	int lastCell
+) : GroupedViewNode(identifier, firstCell, ImmutableArray<int>.Empty)
 {
-	/// <summary>
-	/// Initializes an <see cref="ObliqueLineViewNode"/> instance via the specified values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="firstCell">The first cell.</param>
-	/// <param name="lastCell">The last cell.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ObliqueLineViewNode(Identifier identifier, int firstCell, int lastCell) : base(identifier, firstCell, ImmutableArray<int>.Empty)
-		=> TailCell = lastCell;
-
-
 	/// <summary>
 	/// Indicates the last cell.
 	/// </summary>
-	public int TailCell { get; }
+	public int TailCell { get; } = lastCell;
 
 
 	/// <inheritdoc/>

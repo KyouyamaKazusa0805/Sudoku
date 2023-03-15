@@ -3,22 +3,16 @@
 /// <summary>
 /// Defines an average bar view node.
 /// </summary>
-public sealed partial class AverageBarViewNode : SingleCellMarkViewNode
+public sealed partial class AverageBarViewNode(
+	Identifier identifier,
+	int cell,
+	AdjacentCellType type
+) : SingleCellMarkViewNode(identifier, cell, Direction.None)
 {
-	/// <summary>
-	/// Initializes an <see cref="AverageBarViewNode"/> instance via the specified values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell">The cell.</param>
-	/// <param name="type">The adjacent cell type.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AverageBarViewNode(Identifier identifier, int cell, AdjacentCellType type) : base(identifier, cell, Direction.None) => Type = type;
-
-
 	/// <summary>
 	/// Indicates the adjacent cell type.
 	/// </summary>
-	public AdjacentCellType Type { get; }
+	public AdjacentCellType Type { get; } = type;
 
 
 	/// <inheritdoc/>

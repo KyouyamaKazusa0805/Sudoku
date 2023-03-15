@@ -3,21 +3,12 @@
 /// <summary>
 /// Defines a pencil-mark view node.
 /// </summary>
-public sealed partial class PencilMarkViewNode : SingleCellMarkViewNode
+public sealed partial class PencilMarkViewNode(int cell, string notation) : SingleCellMarkViewNode(DisplayColorKind.Normal, cell, Direction.None)
 {
-	/// <summary>
-	/// Initializes a <see cref="PencilMarkViewNode"/> instance via the specified values.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <param name="notation">The notation.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PencilMarkViewNode(int cell, string notation) : base(DisplayColorKind.Normal, cell, Direction.None) => Notation = notation;
-
-
 	/// <summary>
 	/// Indicates the notation.
 	/// </summary>
-	public string Notation { get; }
+	public string Notation { get; } = notation;
 
 
 	/// <inheritdoc/>

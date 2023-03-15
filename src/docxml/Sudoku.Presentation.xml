@@ -25,11 +25,8 @@
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32)">
             <summary>
-            Assigns <see cref="T:Sudoku.Presentation.Identifier"/> instance and two adjacent cells' indices into the type.
+            Represents a view node that describes a shape that is a mark, displayed between two adjacent cells.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell1">The cell 1.</param>
-            <param name="cell2">The cell 2.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.IsRow">
             <summary>
@@ -168,11 +165,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.AdjacentCellType)">
             <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode"/> instance via the specified values.
+            Defines an average bar view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
-            <param name="type">The adjacent cell type.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.Type">
             <summary>
@@ -196,19 +190,17 @@ if (student is (name: var name, age: >= 18))
             Defines a battenburg view node.
             </summary>
         </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a battenburg view node.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
             Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode"/> instance via the specified values.
             </summary>
             <param name="identifier">The identifier.</param>
             <param name="topLeftCell">The top-left cell used.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode"/> instance via the specified values.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cells">The cells used.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
@@ -229,11 +221,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode"/> instance via the identifier and two adjacent cells.
+            Defines a view node that displays as a bar on shared border line of two adjacent cells.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell1">The cell 1.</param>
-            <param name="cell2">The cell 2.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell1String">
             <summary>
@@ -264,10 +253,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.#ctor(System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode"/> instance via the specified values.
+            Defines a cell arrow view node.
             </summary>
-            <param name="cell">The cell.</param>
-            <param name="directions">The directions.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
@@ -288,11 +275,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode"/> instance via the specified values.
+            Defines a cell corner arrow view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
-            <param name="directions">The directions.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
@@ -313,16 +297,18 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode"/> instance via the specified values.
+            Defines a triangle view node that is used in a cell.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
-            <param name="directions">The directions.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode.Clone">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode">
+            <summary>
+            Defines a clockface dot view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Defines a clockface dot view node.
             </summary>
@@ -333,14 +319,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="identifier">The identifier.</param>
             <param name="topLeftCell">The top-left cell.</param>
-            <param name="isClockwise">Indicates whether the dot is marked as clockwise.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode"/> instance via the specified values.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cells">The cells used.</param>
             <param name="isClockwise">Indicates whether the dot is marked as clockwise.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.IsClockwise">
@@ -445,11 +423,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
             <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode"/> instance via the specified values.
+            Defines an embedded skyscraper arrow view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
-            <param name="directions">The directions.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode.Clone">
             <inheritdoc/>
@@ -461,12 +436,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Boolean)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode"/> instance via the identifier and two adjacent cells.
+            Represents with a greater-than sign view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell1">The cell 1.</param>
-            <param name="cell2">The cell 2.</param>
-            <param name="isGreaterThan">Indicates whether the current sign is a greater-than sign.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.IsGreaterThan">
             <summary>
@@ -502,12 +473,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Boolean)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode"/> instance via the identifier and two adjacent cells.
+            Represents with a Kropki dot view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell1">The cell 1.</param>
-            <param name="cell2">The cell 2.</param>
-            <param name="isSolid">Indicates whether the dot is solid.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.IsSolid">
             <summary>
@@ -543,11 +510,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Boolean)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode"/> instance via specified values.
+            Defines a neighbor sign view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
-            <param name="isFourDirections">Indicates whether the sign only records for 4 directions.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.IsFourDirections">
             <summary>
@@ -579,12 +543,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.String)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode"/> instance.
+            Defines a number label view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell1">The cell 1.</param>
-            <param name="cell2">The cell 2.</param>
-            <param name="label">Indicates the label you want to display.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Label">
             <summary>
@@ -624,10 +584,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.#ctor(System.Int32,System.String)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode"/> instance via the specified values.
+            Defines a pencil-mark view node.
             </summary>
-            <param name="cell">The cell.</param>
-            <param name="notation">The notation.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.Notation">
             <summary>
@@ -651,19 +609,17 @@ if (student is (name: var name, age: >= 18))
             Defines a quadruple cell mark view node that lies on a 2x2 squared cells.
             </summary>
         </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a quadruple cell mark view node that lies on a 2x2 squared cells.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
             Assigns properties with target values.
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
             <param name="topLeftCell">The top-left cell.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Assigns properties with target values.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cells">The cells.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.Cells">
             <summary>
@@ -675,20 +631,17 @@ if (student is (name: var name, age: >= 18))
             Defines a quadruple hint view node.
             </summary>
         </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,System.String)">
+            <summary>
+            Defines a quadruple hint view node.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.String)">
             <summary>
             Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode"/> instance via the specified values.
             </summary>
             <param name="identifier">The identifier.</param>
             <param name="topLeftCell">The top-left cell.</param>
-            <param name="s">The string.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode"/> instance via the specified values.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cells">The cells used.</param>
             <param name="s">The string.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.Hint">
@@ -713,20 +666,17 @@ if (student is (name: var name, age: >= 18))
             Defines a quadruple max arrow view node.
             </summary>
         </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Defines a quadruple max arrow view node.
+            </summary>
+        </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
             <summary>
             Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode"/> instance via the specified values.
             </summary>
             <param name="identifier">The identifier.</param>
             <param name="topLeftCell">The top-left cell.</param>
-            <param name="arrowDirection">The arrow direction.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,Sudoku.Presentation.Nodes.Shapes.Direction)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode"/> instance via the specified values.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cells">The cells used.</param>
             <param name="arrowDirection">The arrow direction.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.ArrowDirection">
@@ -752,10 +702,9 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode.#ctor(Sudoku.Presentation.Identifier)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode.TypeIdentifier">
-            <inheritdoc/>
+            <summary>
+            Defines a shape view node.
+            </summary>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode">
             <summary>
@@ -764,11 +713,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
             <summary>
-            Assigns the values.
+            Defines a single-cell mark view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell used.</param>
-            <param name="directions">The directions used.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.Cell">
             <summary>
@@ -851,11 +797,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode"/> instance via the specified values.
+            Defines a star view node used by star product.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
-            <param name="directions">The directions.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
@@ -876,11 +819,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode"/> instance via the specified values.
+            Defines a triangle-sum view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
-            <param name="directions">The directions.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.IsComplement">
             <summary>
@@ -906,11 +846,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.String)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.WheelViewNode"/> instance via specified values.
+            Defines a wheel view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
-            <param name="digits">The four-number digit, in clockwise order. The first one is displayed on the top cell.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.DigitString">
             <summary>
@@ -942,12 +879,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Boolean)">
             <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode"/> instance via identifier and cells.
+            Defines a XV sign view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell1">The cell 1.</param>
-            <param name="cell2">The cell 2.</param>
-            <param name="isX">Indicates whether the mark is <c>X</c>.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.IsX">
             <summary>
@@ -980,13 +913,16 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node that highlights for a Baba group.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
+            <param name="cell">The cell used.</param>
+            <param name="unknownValueChar">The character that represents the range of the unknown.</param>
+            <param name="digitsMask">The mask representing digits used.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Utf8Char,System.Int16)">
             <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/> instance via the specified identifier,
-            the cell used, the unknown value character and the mask representing the digits used.
+            Defines a view node that highlights for a Baba group.
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
             <param name="cell">The cell used.</param>
             <param name="unknownValueChar">The character that represents the range of the unknown.</param>
             <param name="digitsMask">The mask representing digits used.</param>
@@ -1126,26 +1062,26 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a basic view node type that provides with basic displaying elements from a grid.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)">
             <summary>
-            Assigns the property <see cref="P:Sudoku.Presentation.Nodes.ViewNode.Identifier"/> with the specified value.
+            Defines a basic view node type that provides with basic displaying elements from a grid.
             </summary>
-            <param name="identifier">The identifier.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.BasicViewNode.TypeIdentifier">
-            <inheritdoc/>
+            <param name="identifier"><inheritdoc/></param>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.CandidateViewNode">
             <summary>
             Defines a view node that highlights for a candidate.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
+            <param name="candidate">The candidate.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/> instance via the identifier and the highlight candidate.
+            Defines a view node that highlights for a candidate.
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
             <param name="candidate">The candidate.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.CandidateViewNode.Candidate">
@@ -1221,12 +1157,14 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node that highlights for a cell.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
+            <param name="cell">The cell.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/> instance via the identifier and the highlight cell.
+            Defines a view node that highlights for a cell.
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
             <param name="cell">The cell.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.CellViewNode.Cell">
@@ -1302,12 +1240,14 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
+            <param name="chuteIndex">The chute index.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/> instance via the identifier and the highlight chute.
+            Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
             <param name="chuteIndex">The chute index.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.IsRow">
@@ -1395,13 +1335,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a circle view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CircleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.CircleViewNode"/> instance via the specified values.
+            Defines a circle view node.
             </summary>
-            <param name="identifier">The identfier.</param>
-            <param name="cell">The cell.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CircleViewNode.Clone">
             <inheritdoc/>
@@ -1410,13 +1352,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a diamond view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.DiamondViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.DiamondViewNode"/> instance via the specified values.
+            Defines a diamond view node.
             </summary>
-            <param name="identifier">The identfier.</param>
-            <param name="cell">The cell.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.DiamondViewNode.Clone">
             <inheritdoc/>
@@ -1425,21 +1369,20 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a figure view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.ViewNode.#ctor(Sudoku.Presentation.Identifier)"/></param>
+            <param name="cell">The cell.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Assigns the values.
+            Defines a figure view node.
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.ViewNode.#ctor(Sudoku.Presentation.Identifier)"/></param>
             <param name="cell">The cell.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.FigureViewNode.Cell">
             <summary>
             Indicates the cell used.
             </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.FigureViewNode.TypeIdentifier">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.FigureViewNode.Deconstruct(System.Int32@)">
             <target name="method">
@@ -1501,13 +1444,16 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a capsule view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
+            <param name="headCell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='headCell']"/></param>
+            <param name="adjacentType">The adjacent cells type.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.AdjacentCellType)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode"/> instance via the specified values.
+            Defines a capsule view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="headCell">The head cells.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
+            <param name="headCell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='headCell']"/></param>
             <param name="adjacentType">The adjacent cells type.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.AdjacentType">
@@ -1531,12 +1477,13 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a diagonal line pair view node. The node can only contain one in a <see cref="T:Sudoku.Presentation.View"/> because it is special.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode.#ctor(Sudoku.Presentation.Identifier)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode"/> instance via the specified values.
+            Defines a diagonal line pair view node. The node can only contain one in a <see cref="T:Sudoku.Presentation.View"/> because it is special.
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode.Clone">
             <inheritdoc/>
@@ -1545,10 +1492,13 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a grouped view node.
             </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="headCell">The head cell.</param>
+            <param name="cells">The cells.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})">
             <summary>
-            Assigns the property <see cref="P:Sudoku.Presentation.Nodes.ViewNode.Identifier"/> with target value.
+            Defines a grouped view node.
             </summary>
             <param name="identifier">The identifier.</param>
             <param name="headCell">The head cell.</param>
@@ -1564,9 +1514,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the cells used. If the node does not use this property, assign <see cref="F:System.Collections.Immutable.ImmutableArray`1.Empty"/>.
             </summary>
             <seealso cref="F:System.Collections.Immutable.ImmutableArray`1.Empty"/>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.TypeIdentifier">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.Deconstruct(System.Int32@,System.Collections.Immutable.ImmutableArray{System.Int32}@)">
             <target name="method">
@@ -1628,13 +1575,17 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a lever view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
+            <param name="headCell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='headCell']"/></param>
+            <param name="tailCell">The tail cell.</param>
+            <param name="centerCell">The center cell.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Grouped.LeverViewNode"/> via the specified values.
+            Defines a lever view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="headCell">The head cell.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
+            <param name="headCell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='headCell']"/></param>
             <param name="tailCell">The tail cell.</param>
             <param name="centerCell">The center cell.</param>
         </member>
@@ -1664,12 +1615,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines an oblique line view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
+            <param name="firstCell">The first cell.</param>
+            <param name="lastCell">The last cell.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32)">
             <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode"/> instance via the specified values.
+            Defines an oblique line view node.
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
             <param name="firstCell">The first cell.</param>
             <param name="lastCell">The last cell.</param>
         </member>
@@ -1694,9 +1648,13 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a pyramid view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.#ctor(Sudoku.Presentation.Identifier)">
-            <inheritdoc/>
+            <summary>
+            Defines a pyramid view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
@@ -1714,12 +1672,13 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a windoku view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.#ctor(Sudoku.Presentation.Identifier)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode"/> instance via the specified values.
+            Defines a windoku view node.
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})" path="/param[@name='identifier']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
@@ -1737,13 +1696,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a heart view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.HeartViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.HeartViewNode"/> instance via the specified values.
+            Defines a heart view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.HeartViewNode.Clone">
             <inheritdoc/>
@@ -1752,12 +1713,14 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node that highlights for a house.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
+            <param name="houseIndex">The house index.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/> instance via the identifier and the highlight house.
+            Defines a view node that highlights for a house.
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
             <param name="houseIndex">The house index.</param>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.HouseViewNode.House">
@@ -1828,13 +1791,16 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node that highlights for a link.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
+            <param name="startPoint">The start point of the link.</param>
+            <param name="endPoint">The end point of the link.</param>
+            <param name="inference">The inference type.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.Concepts.Inference)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instance via the specified identifier,
-            the specified start and end point, and the inference type.
+            Defines a view node that highlights for a link.
             </summary>
-            <param name="identifier">The identifier.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
             <param name="startPoint">The start point of the link.</param>
             <param name="endPoint">The end point of the link.</param>
             <param name="inference">The inference type.</param>
@@ -1917,13 +1883,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a square view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.SquareViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.SquareViewNode"/> instance via the specified values.
+            Defines a square view node.
             </summary>
-            <param name="identifier">The identfier.</param>
-            <param name="cell">The cell.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.SquareViewNode.Clone">
             <inheritdoc/>
@@ -1932,13 +1900,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a star view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.StarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.StarViewNode"/> instance via the specified values.
+            Defines a star view node.
             </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.StarViewNode.Clone">
             <inheritdoc/>
@@ -1947,13 +1917,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a triangle view node.
             </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.TriangleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.TriangleViewNode"/> instance via the specified identfier value.
+            Defines a triangle view node.
             </summary>
-            <param name="identifier">The identfier.</param>
-            <param name="cell">The cell.</param>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.FigureViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.TriangleViewNode.Clone">
             <inheritdoc/>
@@ -1962,10 +1934,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node.
             </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ViewNode.#ctor(Sudoku.Presentation.Identifier)">
             <summary>
-            Assigns the <see cref="T:Sudoku.Presentation.Identifier"/> instance as the basic information.
+            Defines a view node.
             </summary>
             <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
         </member>
@@ -1981,7 +1954,7 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Presentation.Nodes.ViewNode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ViewNode.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
@@ -2349,6 +2322,27 @@ if (student is (name: var name, age: >= 18))
             Defines the data structure that stores a set of cells and a digit, indicating the information
             about the locked candidate node.
             </summary>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="cells">Indicates the cells used.</param>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines the data structure that stores a set of cells and a digit, indicating the information
+            about the locked candidate node.
+            </summary>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="cells">Indicates the cells used.</param>
             <remarks>
             <large-structure>
 		<b>
@@ -2367,13 +2361,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="digit">Indicates the digit used.</param>
             <param name="cell">Indicates the cell used.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.LockedTarget"/> instance via the specified cells and the specified digit used.
-            </summary>
-            <param name="digit">Indicates the digit used.</param>
-            <param name="cells">Indicates the cells used.</param>
         </member>
         <member name="P:Sudoku.Presentation.LockedTarget.IsSole">
             <summary>

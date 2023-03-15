@@ -3,27 +3,12 @@
 /// <summary>
 /// Defines a single-cell mark view node.
 /// </summary>
-public abstract partial class SingleCellMarkViewNode : ShapeViewNode
+public abstract partial class SingleCellMarkViewNode(Identifier identifier, int cell, Direction directions) : ShapeViewNode(identifier)
 {
-	/// <summary>
-	/// Assigns the values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell">The cell used.</param>
-	/// <param name="directions">The directions used.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected SingleCellMarkViewNode(Identifier identifier, int cell, Direction directions) : base(identifier)
-	{
-		Argument.ThrowIfFalse(cell is >= 0 and < 81, $"The argument must be between 0 and 80.");
-
-		(Cell, Directions) = (cell, directions);
-	}
-
-
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
-	public int Cell { get; }
+	public int Cell { get; } = cell is >= 0 and < 81 ? cell : throw new ArgumentOutOfRangeException(nameof(cell));
 
 	/// <summary>
 	/// Indicates the directions that the current mark points to. <see cref="Direction.None"/> is for default case.
@@ -31,7 +16,7 @@ public abstract partial class SingleCellMarkViewNode : ShapeViewNode
 	/// to combine multiple directions.
 	/// </summary>
 	/// <seealso cref="Direction.None"/>
-	public Direction Directions { get; }
+	public Direction Directions { get; } = directions;
 
 	/// <summary>
 	/// Indicates the cell string.

@@ -3,12 +3,12 @@
 /// <summary>
 /// Defines a quadruple cell mark view node that lies on a 2x2 squared cells.
 /// </summary>
-public abstract class QuadrupleCellMarkViewNode : ShapeViewNode
+public abstract class QuadrupleCellMarkViewNode(Identifier identifier, scoped in CellMap cells) : ShapeViewNode(identifier)
 {
 	/// <summary>
 	/// Assigns properties with target values.
 	/// </summary>
-	/// <param name="identifier">The identifier.</param>
+	/// <param name="identifier"><inheritdoc cref="ShapeViewNode(Identifier)" path="/param[@name='identifier']"/></param>
 	/// <param name="topLeftCell">The top-left cell.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	protected QuadrupleCellMarkViewNode(Identifier identifier, int topLeftCell) :
@@ -16,22 +16,10 @@ public abstract class QuadrupleCellMarkViewNode : ShapeViewNode
 	{
 	}
 
-	/// <summary>
-	/// Assigns properties with target values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cells">The cells.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected QuadrupleCellMarkViewNode(Identifier identifier, scoped in CellMap cells) : base(identifier)
-	{
-		Argument.ThrowIfFalse(cells.Count == 4, $"The argument '{nameof(cells)}' must hold 4 cells.");
-
-		Cells = cells;
-	}
-
 
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	public CellMap Cells { get; }
+	public CellMap Cells { get; } =
+		cells.Count == 4 ? cells : throw new ArgumentException($"The argument '{nameof(cells)}' must hold 4 cells.", nameof(cells));
 }

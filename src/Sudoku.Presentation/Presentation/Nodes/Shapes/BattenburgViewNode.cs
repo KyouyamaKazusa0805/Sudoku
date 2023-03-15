@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a battenburg view node.
 /// </summary>
-public sealed partial class BattenburgViewNode : QuadrupleCellMarkViewNode
+public sealed partial class BattenburgViewNode(Identifier identifier, scoped in CellMap cells) : QuadrupleCellMarkViewNode(identifier, cells)
 {
 	/// <summary>
 	/// Initializes a <see cref="BattenburgViewNode"/> instance via the specified values.
@@ -11,17 +11,8 @@ public sealed partial class BattenburgViewNode : QuadrupleCellMarkViewNode
 	/// <param name="identifier">The identifier.</param>
 	/// <param name="topLeftCell">The top-left cell used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public BattenburgViewNode(Identifier identifier, int topLeftCell) : base(identifier, topLeftCell)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="BattenburgViewNode"/> instance via the specified values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cells">The cells used.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public BattenburgViewNode(Identifier identifier, scoped in CellMap cells) : base(identifier, cells)
+	public BattenburgViewNode(Identifier identifier, int topLeftCell) :
+		this(identifier, CellsMap[topLeftCell] + (topLeftCell + 1) + (topLeftCell + 9) + (topLeftCell + 10))
 	{
 	}
 

@@ -3,23 +3,13 @@
 /// <summary>
 /// Defines a XV sign view node.
 /// </summary>
-public sealed partial class XvSignViewNode : AdjacentCellMarkViewNode
+public sealed partial class XvSignViewNode(Identifier identifier, int cell1, int cell2, bool isX) :
+	AdjacentCellMarkViewNode(identifier, cell1, cell2)
 {
-	/// <summary>
-	/// Initializes an <see cref="XvSignViewNode"/> instance via identifier and cells.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell1">The cell 1.</param>
-	/// <param name="cell2">The cell 2.</param>
-	/// <param name="isX">Indicates whether the mark is <c>X</c>.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public XvSignViewNode(Identifier identifier, int cell1, int cell2, bool isX) : base(identifier, cell1, cell2) => IsX = isX;
-
-
 	/// <summary>
 	/// Indicates whether the mark is <c>X</c>. If <see langword="true"/>, <c>X</c>; otherwise, <c>V</c>.
 	/// </summary>
-	public bool IsX { get; }
+	public bool IsX { get; } = isX;
 
 	/// <summary>
 	/// Indicates the cell 1 string.

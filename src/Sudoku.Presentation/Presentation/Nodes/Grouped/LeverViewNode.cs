@@ -3,29 +3,26 @@
 /// <summary>
 /// Defines a lever view node.
 /// </summary>
-public sealed partial class LeverViewNode : GroupedViewNode
+/// <param name="identifier"><inheritdoc cref="GroupedViewNode(Identifier, int, ImmutableArray{int})" path="/param[@name='identifier']"/></param>
+/// <param name="headCell"><inheritdoc cref="GroupedViewNode(Identifier, int, ImmutableArray{int})" path="/param[@name='headCell']"/></param>
+/// <param name="tailCell">The tail cell.</param>
+/// <param name="centerCell">The center cell.</param>
+public sealed partial class LeverViewNode(
+	Identifier identifier,
+	int headCell,
+	int tailCell,
+	int centerCell
+) : GroupedViewNode(identifier, headCell, ImmutableArray<int>.Empty)
 {
-	/// <summary>
-	/// Initializes a <see cref="LeverViewNode"/> via the specified values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="headCell">The head cell.</param>
-	/// <param name="tailCell">The tail cell.</param>
-	/// <param name="centerCell">The center cell.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LeverViewNode(Identifier identifier, int headCell, int tailCell, int centerCell) : base(identifier, headCell, ImmutableArray<int>.Empty)
-		=> (TailCell, CenterCell) = (tailCell, centerCell);
-
-
 	/// <summary>
 	/// Indicates the tail cell.
 	/// </summary>
-	public int TailCell { get; }
+	public int TailCell { get; } = tailCell;
 
 	/// <summary>
 	/// Indicates the center cell.
 	/// </summary>
-	public int CenterCell { get; }
+	public int CenterCell { get; } = centerCell;
 
 
 	/// <inheritdoc/>

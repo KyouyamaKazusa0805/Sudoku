@@ -3,18 +3,9 @@
 /// <summary>
 /// Defines a windoku view node.
 /// </summary>
-public sealed partial class WindokuViewNode : GroupedViewNode
+/// <param name="identifier"><inheritdoc cref="GroupedViewNode(Identifier, int, ImmutableArray{int})" path="/param[@name='identifier']"/></param>
+public sealed partial class WindokuViewNode(Identifier identifier) : GroupedViewNode(identifier, -1, ImmutableArray<int>.Empty)
 {
-	/// <summary>
-	/// Initializes a <see cref="WindokuViewNode"/> instance via the specified values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public WindokuViewNode(Identifier identifier) : base(identifier, -1, ImmutableArray<int>.Empty)
-	{
-	}
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is WindokuViewNode comparer && Identifier == comparer.Identifier;

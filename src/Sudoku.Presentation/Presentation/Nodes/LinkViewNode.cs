@@ -3,35 +3,31 @@
 /// <summary>
 /// Defines a view node that highlights for a link.
 /// </summary>
-public sealed partial class LinkViewNode : BasicViewNode
+/// <param name="identifier"><inheritdoc cref="BasicViewNode(Identifier)" path="/param[@name='identifier']"/></param>
+/// <param name="startPoint">The start point of the link.</param>
+/// <param name="endPoint">The end point of the link.</param>
+/// <param name="inference">The inference type.</param>
+public sealed partial class LinkViewNode(
+	Identifier identifier,
+	scoped in LockedTarget startPoint,
+	scoped in LockedTarget endPoint,
+	Inference inference
+) : BasicViewNode(identifier)
 {
-	/// <summary>
-	/// Initializes a <see cref="LinkViewNode"/> instance via the specified identifier,
-	/// the specified start and end point, and the inference type.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="startPoint">The start point of the link.</param>
-	/// <param name="endPoint">The end point of the link.</param>
-	/// <param name="inference">The inference type.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LinkViewNode(Identifier identifier, scoped in LockedTarget startPoint, scoped in LockedTarget endPoint, Inference inference) :
-		base(identifier) => (Start, End, Inference) = (startPoint, endPoint, inference);
-
-
 	/// <summary>
 	/// Indicates the start point.
 	/// </summary>
-	public LockedTarget Start { get; }
+	public LockedTarget Start { get; } = startPoint;
 
 	/// <summary>
 	/// Indicates the end point.
 	/// </summary>
-	public LockedTarget End { get; }
+	public LockedTarget End { get; } = endPoint;
 
 	/// <summary>
 	/// Indicates the inference type.
 	/// </summary>
-	public Inference Inference { get; }
+	public Inference Inference { get; } = inference;
 
 
 	[DeconstructionMethod]

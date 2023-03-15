@@ -3,18 +3,8 @@
 /// <summary>
 /// Defines a cell arrow view node.
 /// </summary>
-public sealed partial class CellArrowViewNode : SingleCellMarkViewNode
+public sealed partial class CellArrowViewNode(int cell, Direction directions) : SingleCellMarkViewNode(DisplayColorKind.Normal, cell, directions)
 {
-	/// <summary>
-	/// Initializes a <see cref="CellArrowViewNode"/> instance via the specified values.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <param name="directions">The directions.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellArrowViewNode(int cell, Direction directions) : base(DisplayColorKind.Normal, cell, directions)
-		=> Argument.ThrowIfFalse(IsPow2((byte)directions), $"Argument '{nameof(directions)}' must hold only one flag.");
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)

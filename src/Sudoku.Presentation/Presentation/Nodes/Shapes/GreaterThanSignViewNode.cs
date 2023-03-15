@@ -3,24 +3,13 @@
 /// <summary>
 /// Represents with a greater-than sign view node.
 /// </summary>
-public sealed partial class GreaterThanSignViewNode : AdjacentCellMarkViewNode
+public sealed partial class GreaterThanSignViewNode(Identifier identifier, int cell1, int cell2, bool isGreaterThan) :
+	AdjacentCellMarkViewNode(identifier, cell1, cell2)
 {
-	/// <summary>
-	/// Initializes a <see cref="GreaterThanSignViewNode"/> instance via the identifier and two adjacent cells.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell1">The cell 1.</param>
-	/// <param name="cell2">The cell 2.</param>
-	/// <param name="isGreaterThan">Indicates whether the current sign is a greater-than sign.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GreaterThanSignViewNode(Identifier identifier, int cell1, int cell2, bool isGreaterThan) : base(identifier, cell1, cell2)
-		=> IsGreaterThan = isGreaterThan;
-
-
 	/// <summary>
 	/// Indicates whether the current sign is a greater-than sign.
 	/// </summary>
-	public bool IsGreaterThan { get; }
+	public bool IsGreaterThan { get; } = isGreaterThan;
 
 	/// <summary>
 	/// Indicates the cell 1 string.

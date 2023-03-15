@@ -7,6 +7,4 @@
 /// <seealso cref="IdInternal"/>
 [JsonSerializable(typeof(IdInternal))]
 [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase, WriteIndented = true)]
-internal sealed partial class IdInternalSerializerContext : JsonSerializerContext
-{
-}
+internal sealed partial class IdInternalSerializerContext : JsonSerializerContext;

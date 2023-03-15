@@ -3,25 +3,14 @@
 /// <summary>
 /// Defines a figure view node.
 /// </summary>
-public abstract partial class FigureViewNode : ViewNode
+/// <param name="identifier"><inheritdoc cref="ViewNode(Identifier)"/></param>
+/// <param name="cell">The cell.</param>
+public abstract partial class FigureViewNode(Identifier identifier, int cell) : ViewNode(identifier)
 {
-	/// <summary>
-	/// Assigns the values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell">The cell.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected FigureViewNode(Identifier identifier, int cell) : base(identifier) => Cell = cell;
-
-
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
-	public int Cell { get; }
-
-
-	/// <inheritdoc/>
-	protected sealed override string TypeIdentifier => GetType().Name;
+	public int Cell { get; } = cell;
 
 
 	[DeconstructionMethod]

@@ -3,32 +3,24 @@
 /// <summary>
 /// Defines a view node.
 /// </summary>
-public abstract class ViewNode : ICloneable<ViewNode>, IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode, bool>
+/// <param name="identifier">The <see cref="Presentation.Identifier"/> instance.</param>
+public abstract partial class ViewNode(Identifier identifier) : ICloneable<ViewNode>, IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode, bool>
 {
-	/// <summary>
-	/// Assigns the <see cref="Presentation.Identifier"/> instance as the basic information.
-	/// </summary>
-	/// <param name="identifier">The <see cref="Presentation.Identifier"/> instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected ViewNode(Identifier identifier) => Identifier = identifier;
-
-
 	/// <summary>
 	/// Indicates the identifier used.
 	/// </summary>
 	[JsonInclude]
-	public Identifier Identifier { get; protected set; }
+	public Identifier Identifier { get; protected set; } = identifier;
 
 	/// <summary>
 	/// Indicates the inner identifier to distinct the different types that is derived from <see cref="ViewNode"/>.
 	/// </summary>
 	/// <seealso cref="ViewNode"/>
-	protected abstract string TypeIdentifier { get; }
+	protected string TypeIdentifier => GetType().Name;
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override bool Equals([NotNullWhen(true)] object? obj) => obj is ViewNode comparer && Equals(comparer);
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
+	public sealed override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] ViewNode? other);

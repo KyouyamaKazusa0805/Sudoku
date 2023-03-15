@@ -4,10 +4,14 @@
 /// Defines the data structure that stores a set of cells and a digit, indicating the information
 /// about the locked candidate node.
 /// </summary>
+/// <param name="digit">Indicates the digit used.</param>
+/// <param name="cells">Indicates the cells used.</param>
 /// <remarks>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
-public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
+public readonly partial struct LockedTarget(int digit, scoped in CellMap cells) :
+	IEquatable<LockedTarget>,
+	IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
 	/// <summary>
 	/// Initializes a <see cref="LockedTarget"/> instance via the specified cell and the specified digit used.
@@ -19,14 +23,6 @@ public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualit
 	{
 	}
 
-	/// <summary>
-	/// Initializes a <see cref="LockedTarget"/> instance via the specified cells and the specified digit used.
-	/// </summary>
-	/// <param name="digit">Indicates the digit used.</param>
-	/// <param name="cells">Indicates the cells used.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LockedTarget(int digit, scoped in CellMap cells) => (Digit, Cells) = (digit, cells);
-
 
 	/// <summary>
 	/// Indicates whether the number of cells is 1.
@@ -37,12 +33,12 @@ public readonly partial struct LockedTarget : IEquatable<LockedTarget>, IEqualit
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
-	public int Digit { get; init; }
+	public int Digit { get; init; } = digit;
 
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	public CellMap Cells { get; init; }
+	public CellMap Cells { get; init; } = cells;
 
 	/// <summary>
 	/// The digit string value.

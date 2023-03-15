@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a clockface dot view node.
 /// </summary>
-public sealed partial class ClockfaceDotViewNode : QuadrupleCellMarkViewNode
+public sealed partial class ClockfaceDotViewNode(Identifier identifier, scoped in CellMap cells, bool isClockwise) :
+	QuadrupleCellMarkViewNode(identifier, cells)
 {
 	/// <summary>
 	/// Initializes a <see cref="ClockfaceDotViewNode"/> instance via the specified values.
@@ -12,24 +13,16 @@ public sealed partial class ClockfaceDotViewNode : QuadrupleCellMarkViewNode
 	/// <param name="topLeftCell">The top-left cell.</param>
 	/// <param name="isClockwise">Indicates whether the dot is marked as clockwise.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ClockfaceDotViewNode(Identifier identifier, int topLeftCell, bool isClockwise) : base(identifier, topLeftCell)
-		=> IsClockwise = isClockwise;
-
-	/// <summary>
-	/// Initializes a <see cref="ClockfaceDotViewNode"/> instance via the specified values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cells">The cells used.</param>
-	/// <param name="isClockwise">Indicates whether the dot is marked as clockwise.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ClockfaceDotViewNode(Identifier identifier, scoped in CellMap cells, bool isClockwise) : base(identifier, cells)
-		=> IsClockwise = isClockwise;
+	public ClockfaceDotViewNode(Identifier identifier, int topLeftCell, bool isClockwise) :
+		this(identifier, CellsMap[topLeftCell] + (topLeftCell + 1) + (topLeftCell + 9) + (topLeftCell + 10), isClockwise)
+	{
+	}
 
 
 	/// <summary>
 	/// Indicates whether the dot is marked as clockwise. If <see langword="true"/>, clockwise; otherwise, counterclockwise.
 	/// </summary>
-	public bool IsClockwise { get; }
+	public bool IsClockwise { get; } = isClockwise;
 
 
 	/// <inheritdoc/>

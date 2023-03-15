@@ -3,20 +3,9 @@
 /// <summary>
 /// Defines a cell corner arrow view node.
 /// </summary>
-public sealed partial class CellCornerArrowViewNode : SingleCellMarkViewNode
+public sealed partial class CellCornerArrowViewNode(Identifier identifier, int cell, Direction directions) :
+	SingleCellMarkViewNode(identifier, cell, directions)
 {
-	/// <summary>
-	/// Initializes a <see cref="CellCornerArrowViewNode"/> instance via the specified values.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell">The cell.</param>
-	/// <param name="directions">The directions.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellCornerArrowViewNode(Identifier identifier, int cell, Direction directions) : base(identifier, cell, directions)
-	{
-	}
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)

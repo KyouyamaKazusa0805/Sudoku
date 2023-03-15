@@ -3,35 +3,31 @@
 /// <summary>
 /// Defines a view node that highlights for a Baba group.
 /// </summary>
-public sealed partial class BabaGroupViewNode : BasicViewNode
+/// <param name="identifier"><inheritdoc cref="BasicViewNode(Identifier)" path="/param[@name='identifier']"/></param>
+/// <param name="cell">The cell used.</param>
+/// <param name="unknownValueChar">The character that represents the range of the unknown.</param>
+/// <param name="digitsMask">The mask representing digits used.</param>
+public sealed partial class BabaGroupViewNode(
+	Identifier identifier,
+	int cell,
+	Utf8Char unknownValueChar,
+	short digitsMask
+) : BasicViewNode(identifier)
 {
-	/// <summary>
-	/// Initializes an <see cref="BabaGroupViewNode"/> instance via the specified identifier,
-	/// the cell used, the unknown value character and the mask representing the digits used.
-	/// </summary>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="cell">The cell used.</param>
-	/// <param name="unknownValueChar">The character that represents the range of the unknown.</param>
-	/// <param name="digitsMask">The mask representing digits used.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public BabaGroupViewNode(Identifier identifier, int cell, Utf8Char unknownValueChar, short digitsMask) : base(identifier)
-		=> (Cell, UnknownValueChar, DigitsMask) = (cell, unknownValueChar, digitsMask);
-
-
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
-	public int Cell { get; }
+	public int Cell { get; } = cell;
 
 	/// <summary>
 	/// Indicates the digits used.
 	/// </summary>
-	public short DigitsMask { get; }
+	public short DigitsMask { get; } = digitsMask;
 
 	/// <summary>
 	/// Indicates the character that represents the unknown range.
 	/// </summary>
-	public Utf8Char UnknownValueChar { get; }
+	public Utf8Char UnknownValueChar { get; } = unknownValueChar;
 
 	/// <summary>
 	/// Indicates the cell string.
