@@ -1167,26 +1167,79 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The inner text rendering data.
             </summary>
-            <param name="Font">The font used.</param>
-            <param name="ExtraHeight">The extra height.</param>
-            <param name="StringFormat">The string format.</param>
+            <param name="font">The font used.</param>
+            <param name="extraHeight">The extra height.</param>
+            <param name="stringFormat">The string format.</param>
         </member>
         <member name="M:Sudoku.Gdip.TextRenderingData.#ctor(System.Drawing.Font,System.Single,System.Drawing.StringFormat)">
             <summary>
             The inner text rendering data.
             </summary>
-            <param name="Font">The font used.</param>
-            <param name="ExtraHeight">The extra height.</param>
-            <param name="StringFormat">The string format.</param>
-        </member>
-        <member name="P:Sudoku.Gdip.TextRenderingData.Font">
-            <summary>The font used.</summary>
+            <param name="font">The font used.</param>
+            <param name="extraHeight">The extra height.</param>
+            <param name="stringFormat">The string format.</param>
         </member>
         <member name="P:Sudoku.Gdip.TextRenderingData.ExtraHeight">
-            <summary>The extra height.</summary>
+            <summary>
+            Indicates the extra height.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.TextRenderingData.Font">
+            <summary>
+            Indicates the font.
+            </summary>
         </member>
         <member name="P:Sudoku.Gdip.TextRenderingData.StringFormat">
-            <summary>The string format.</summary>
+            <summary>
+            Indicates the string format.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Gdip.TextRenderingData.Deconstruct(System.Drawing.Font@,System.Single@,System.Drawing.StringFormat@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
         </member>
         <member name="M:Sudoku.Gdip.TextRenderingData.Dispose">
             <inheritdoc/>
