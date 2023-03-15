@@ -24,10 +24,10 @@
 /// <para>Some <see cref="StepSearcher"/>s may rely on this type.</para>
 /// </summary>
 /// <seealso cref="Initialize"/>
-/// <seealso cref="LogicalSolver"/>
+/// <seealso cref="Analyzer"/>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="Grid"/>
-internal static class CachedCellMaps
+public static class CachedCellMaps
 {
 	/// <summary>
 	/// <inheritdoc cref="Grid.EmptyCells"/>
@@ -35,11 +35,11 @@ internal static class CachedCellMaps
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="Initialize"/> called, and you<b>'d better</b>
 	/// not use this field on instances which are marked the attribute
-	/// <see cref="StepSearcherMetadataAttribute.IsDirect"/>.
+	/// <see cref="DirectAttribute"/>.
 	/// </remarks>
 	/// <seealso cref="Initialize"/>
-	/// <seealso cref="StepSearcherMetadataAttribute.IsDirect"/>
-	public static CellMap EmptyCells;
+	/// <seealso cref="DirectAttribute"/>
+	internal static CellMap EmptyCells;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.BivalueCells"/>
@@ -47,7 +47,7 @@ internal static class CachedCellMaps
 	/// <remarks>
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
-	public static CellMap BivalueCells;
+	internal static CellMap BivalueCells;
 
 #nullable disable warnings
 	/// <summary>
@@ -57,7 +57,7 @@ internal static class CachedCellMaps
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	public static CellMap[] CandidatesMap;
+	internal static CellMap[] CandidatesMap;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.DigitsMap"/>
@@ -66,7 +66,7 @@ internal static class CachedCellMaps
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	public static CellMap[] DigitsMap;
+	internal static CellMap[] DigitsMap;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.ValuesMap"/>
@@ -75,7 +75,7 @@ internal static class CachedCellMaps
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	public static CellMap[] ValuesMap;
+	internal static CellMap[] ValuesMap;
 #nullable restore warnings
 
 
@@ -84,7 +84,7 @@ internal static class CachedCellMaps
 	/// </summary>
 	/// <param name="g">The grid.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Initialize(scoped in Grid g)
+	internal static void Initialize(scoped in Grid g)
 	{
 		EmptyCells = g.EmptyCells;
 		BivalueCells = g.BivalueCells;

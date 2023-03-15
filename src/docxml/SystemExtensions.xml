@@ -2061,6 +2061,15 @@
         <member name="M:System.ArrayExtensions.CollectionElementRefEquals``1(``0[],``0[],)">
             <inheritdoc cref="!:Collections.Immutable.ImmutableArrayExtensions.CollectionElementRefEquals&lt;T&gt;(ImmutableArray&lt;T&gt;, ImmutableArray&lt;T&gt;, delegate*&lt;T, T, bool&gt;)"/>
         </member>
+        <member name="M:System.ArrayExtensions.Zip``2(``0[],``1[])">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
+            <param name="this">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='first']"/>
+            </param>
+            <param name="other">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='second']"/>
+            </param>
+        </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Reflection.Assembly"/>.

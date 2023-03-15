@@ -4,6 +4,401 @@
         <name>Sudoku.Analytics</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Analytics.AnalysisContext">
+            <summary>
+            Defines a context that is used by step searchers to check the details of the solving and analysis information.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The reference to the puzzle.</param>
+            <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Defines a context that is used by step searchers to check the details of the solving and analysis information.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The reference to the puzzle.</param>
+            <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisContext.Grid">
+            <summary>
+            Indicates the puzzle to be solved and analyzed.
+            </summary>
+            <remarks>
+            <target name="field">
+				<b>
+					<i>
+						This field is not encapsulated into a property because C# doesn't support auto read-only properties
+						returning <see langword="ref" /> or <see langword="ref readonly" />.
+					</i>
+				</b>
+			</target>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne">
+            <summary>
+            Indicates whether the solver only find one possible step and exit the searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.PreviousSetDigit">
+            <summary>
+            Indicates the previously set digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.Accumulator">
+            <summary>
+            <para>
+            <para>The accumulator to store each step.</para>
+            </para>
+            <para>
+            If <see cref="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne"/> is set to <see langword="true"/>,
+            this argument will become useless because we only finding one step is okay,
+            so we may not use the accumulator to store all possible steps, in order to optimize the performance.
+            Therefore, this argument can be <see langword="null"/> in this case.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Analyzer">
+            <summary>
+            Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance
+            indicating the analytics data.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.IsFullApplying">
+            <summary>
+            Indicates whether the solver will apply all found steps in a step searcher,
+            in order to solve a puzzle faster. If the value is <see langword="true"/>,
+            the third argument of <see cref="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)"/>
+            will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
+            and all steps will be applied at the same time.
+            </summary>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms">
+            <summary>
+            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.TimeComplexity"/>.
+            </summary>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+            <seealso cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.TimeComplexity"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms">
+            <summary>
+            Indicates whether the solver will ignore slow step searchers being configured
+            <see cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.SpaceComplexity"/>.
+            </summary>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+            <seealso cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.SpaceComplexity"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.CustomSearcherCollection">
+            <summary>
+            <para>
+            Indicates the custom searcher collection you defined to solve a puzzle. By default,
+            the solver will use <see cref="P:Sudoku.Analytics.StepSearcherPool.BuiltIn"/> to solve a puzzle.
+            If you assign a new array of <see cref="T:Sudoku.Analytics.StepSearcher"/>s into this property
+            the step searchers will use this property instead of <see cref="P:Sudoku.Analytics.StepSearcherPool.BuiltIn"/> to solve a puzzle.
+            </para>
+            <para>
+            Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
+            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/>
+            array into it.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.StepSearcherPool.BuiltIn"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.TargetSearcherCollection">
+            <summary>
+            Indicates the target step searcher collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Analyzer.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Analyzer.InternalSolve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.AnalyzerResult,System.IProgress{System.Double},System.Threading.CancellationToken)">
+            <summary>
+            The inner solving operation method.
+            </summary>
+            <param name="puzzle">
+            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='puzzle']"/>
+            </param>
+            <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
+            <param name="isSukaku">A <see cref="T:System.Boolean"/> value indicating whether the puzzle is a sukaku.</param>
+            <param name="resultBase">The base solver result already included the base information.</param>
+            <param name="progress">
+            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='progress']"/>
+            </param>
+            <param name="cancellationToken">
+            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            </param>
+            <returns>The solver result.</returns>
+            <exception cref="T:Sudoku.Analytics.WrongStepException">Throws when found wrong steps to apply.</exception>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerResult">
+            <summary>
+            Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
+            </summary>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.Puzzle" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
+            </summary>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.Puzzle" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Puzzle">
+            <summary><inheritdoc cref="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.Puzzle" path="/summary"/></summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.IsSolved">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.MaxDifficulty">
+            <summary>
+            Indicates the maximum difficulty of the puzzle.
+            </summary>
+            <remarks>
+            When the puzzle is solved by <see cref="T:Sudoku.Analytics.Analyzer"/>,
+            the value will be the maximum value among all difficulty ratings in solving steps. If the puzzle has not been solved,
+            or else the puzzle is solved by other solvers, this value will be always <c>20.0M</c>.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty rating of the puzzle.
+            </summary>
+            <remarks>
+            When the puzzle is solved by <see cref="T:Sudoku.Analytics.Analyzer"/>, the value will be the sum of all difficulty ratings of steps.
+            If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>.
+            However, if the puzzle is solved by other solvers, this value will be <c>0</c>.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.PearlDifficulty">
+            <summary>
+            Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            </summary>
+            <remarks>
+            When the puzzle is solved, the value will be the difficulty rating of the first solving step.
+            If the puzzle has not solved or the puzzle is solved by other solvers, this value will be always <c>0</c>.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.DiamondDifficulty">
+            <summary>
+            <para>
+            Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            </para>
+            <para>
+            When the puzzle is solved, the value will be the difficulty rating of the first step before the first one
+            whose conclusion is <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>.
+            If the puzzle has not solved or solved by other solvers, this value will be <c>20.0M</c>.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="F:Sudoku.Solving.ConclusionType.Assignment"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.SolvingStepsCount">
+            <summary>
+            Indicates the number of all solving steps recorded.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.FailedReason">
+            <summary>
+            Indicates why the solving operation is failed.
+            This property is meaningless when <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> keeps the <see langword="true"/> value.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the puzzle.
+            If the puzzle has not solved or solved by other solvers, this value will be <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Solution">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.ElapsedTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.StepGrids">
+            <summary>
+            Indicates a list, whose element is the intermediate grid for each step.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.WrongStep">
+            <summary>
+            <para>
+            Indicates the wrong step found. In general cases, if the property <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> keeps
+            <see langword="false"/> value, it'll mean the puzzle is invalid to solve, or the solver has found
+            one error step to apply, that causes the original puzzle <see cref="P:Sudoku.Analytics.AnalyzerResult.Puzzle"/> become invalid.
+            In this case we can check this property to get the wrong information to debug the error,
+            or tell the author himself directly, with the inner value of this property held.
+            </para>
+            <para>
+            However, if the puzzle is successful to be solved, the property won't contain any value,
+            so it'll keep the <see langword="null"/> reference. Therefore, please check the nullability
+            of this property before using.
+            </para>
+            <para>
+            In general, this table will tell us the nullability of this property:
+            <list type="table">
+            <listheader>
+            <term>Nullability</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>Not <see langword="null"/></term>
+            <description>The puzzle is failed to solve, and the solver has found an invalid step to apply.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>Other cases.</description>
+            </item>
+            </list>
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Puzzle"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Bottleneck">
+            <summary>
+            Gets the bottleneck during the whole grid solving. Returns <see langword="null"/> if the property
+            <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/> is default case (not initialized or empty).
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Steps">
+            <summary>
+            Indicates all solving steps that the solver has recorded.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.StepGrids"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.UnhandledException">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.UnhandledException" path="/summary"/>
+            </summary>
+            <remarks>
+            You can visit the property value if the property <see cref="P:Sudoku.Analytics.AnalyzerResult.FailedReason"/>
+            is <see cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.ExceptionThrown"/> or <see cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.WrongStep"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.FailedReason"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.ExceptionThrown"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.WrongStep"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.SolvingPath">
+            <summary>
+            <para>Indicates a list of pairs of information about each step.</para>
+            <para>
+            If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
+            the return value of the property will be always <see langword="null"/>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Analytics.Step"/> instance at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The step information.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/> is <see langword="null"/> or empty.</exception>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets the first <see cref="T:Sudoku.Analytics.Step"/> instance that matches the specified technique.
+            </summary>
+            <param name="code">The technique code to check and fetch.</param>
+            <returns>The step information instance as the result.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the list doesn't contain any valid instance to get.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions)">
+            <summary>
+            Returns a string that represents the current object, with the specified formatting options.
+            </summary>
+            <param name="options">The formatting options.</param>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.Select``1(System.Func{Sudoku.Analytics.Step,``0})">
+            <summary>
+            Projects the collection, to an immutable result of target type.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="selector">
+            The selector to project the <see cref="T:Sudoku.Analytics.Step"/> instance into type <typeparamref name="TResult"/>.
+            </param>
+            <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Step}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.System#Linq#ISelectClauseProvider{Sudoku#Analytics#Step}#Select``1(System.Func{Sudoku.Analytics.Step,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.Evaluator(,System.Decimal)">
+            <summary>
+            The inner executor to get the difficulty value (total, average).
+            </summary>
+            <param name="executor">The execute method.</param>
+            <param name="d">
+            The default value as the return value when <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/> is <see langword="null"/> or empty.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerResult.StepsEnumerator">
+            <summary>
+            Defines an enumerator type that allows iterating on steps of the containing type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.StepsEnumerator._steps">
+            <summary>
+            The internal enumerator instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.StepsEnumerator._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.#ctor(Sudoku.Analytics.Step[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.AnalyzerResult.StepsEnumerator"/> instance via the steps.
+            </summary>
+            <param name="steps">The steps.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
         <member name="T:Sudoku.Analytics.Buffers.CachedCellMaps">
             <summary>
             <para>Represents cached fields used by solving and analyzation for a sudoku puzzle, reducing repeated and redundant calculations.</para>
@@ -26,11 +421,11 @@
             "<see langword="static"/>" means caching, and "field" means the value to be fetched without encapsulation,
             for a better performace.
             </para>
-            <para>Some <see cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/>s may rely on this type.</para>
+            <para>Some <see cref="T:Sudoku.Analytics.StepSearcher"/>s may rely on this type.</para>
             </summary>
             <seealso cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="!:LogicalSolver"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells">
@@ -40,10 +435,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="!:StepSearcherMetadataAttribute.IsDirect"/>.
+            <see cref="T:Sudoku.Analytics.Metadata.DirectAttribute"/>.
             </remarks>
             <seealso cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/>
-            <seealso cref="!:StepSearcherMetadataAttribute.IsDirect"/>
+            <seealso cref="T:Sudoku.Analytics.Metadata.DirectAttribute"/>
         </member>
         <member name="F:Sudoku.Analytics.Buffers.CachedCellMaps.BivalueCells">
             <summary>
@@ -1902,6 +2297,125 @@
             Indicates the brute force (BF) technique.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.CommonReadOnlies">
+            <summary>
+            Represents a type holding some common read-only fields used by runtime or compiling-time.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.UniqueSquareTemplatesCount">
+            <summary>
+            Indicates the total number of unique square patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.QiuDeadlyPatternTemplatesCount">
+            <summary>
+            Indicates the total number of Qiu's deadly patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.ExocetTemplatesCount">
+            <summary>
+            Indicates the total number of exocet patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.FireworkSubsetCount">
+            <summary>
+            Indicates the total number of firework subset patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.BdpTemplatesSize3Count">
+            <summary>
+            Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.BdpTemplatesSize4Count">
+            <summary>
+            Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.PairFireworksCount">
+            <summary>
+            Indicates the total number of pair fireworks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.MultisectorLockedSetsTemplatesCount">
+            <summary>
+            Indicates the total number of multi-sector locked sets possible templates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.UniqueRectanglePatterns">
+            <summary>
+            The table of all <b>Unique Rectangle</b> cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.EmptyRectangleLinkIds">
+            <summary>
+            Indicates all houses iterating on the specified block forming an empty rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.ChromaticPatternBlocksCombinations">
+            <summary>
+            All possible blocks combinations being reserved for chromatic pattern searcher's usages.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.BruteForceTryAndErrorOrder">
+            <summary>
+            The order of cell offsets to get values.
+            </summary>
+            <remarks>
+            For example, the first value is 40, which means the first cell to be tried to be filled
+            is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps">
+            <summary>
+            <para>
+            Indicates all maps that forms the each intersection. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            </para>
+            <para>
+            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlies.IntersectionBlockTable">
+            <summary>
+            <para>The table of all blocks to iterate for each blocks.</para>
+            <para>
+            This field is only used for providing the data for another field <see cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.Analytics.CommonReadOnlies.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Analytics.ValueTupleComparer">
+            <summary>
+            Represents a comparer instance that compares two tuples.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Compatibility.HodokuLibraryCompatiblity">
             <summary>
             Represents some methods that are used for get the details supported and defined
@@ -2034,6 +2548,276 @@
             </exception>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
+        <member name="T:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions">
+            <summary>
+            Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.None">
+            <summary>
+            Indicates the none of the formatting option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowSeparators">
+            <summary>
+            Indicates the analysis result will append separators.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowStepLabel">
+            <summary>
+            Indicates the analysis result will append the step label.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowSimple">
+            <summary>
+            Indicates the analysis result will use simple mode to show steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowBottleneck">
+            <summary>
+            Indicates the analysis result will show the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowDifficulty">
+            <summary>
+            Indicates the analysis result will show the difficulty.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowStepsAfterBottleneck">
+            <summary>
+            Indicates the analysis result will show all steps after the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowStepDetail">
+            <summary>
+            Indicates the analysis result will show the step detail.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowSteps">
+            <summary>
+            Indicates the analysis result will show the steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowGridAndSolutionCode">
+            <summary>
+            Indicates the analysis result will show grid code for the puzzle itself and its solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowElapsedTime">
+            <summary>
+            Indicates the analysis result will show elapsed time on solving the puzzle.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason">
+            <summary>
+            Defines a reason why the puzzle is failed to be analyzed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.Nothing">
+            <summary>
+            Indicates nothing goes wrong.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleIsInvalid">
+            <summary>
+            <para>Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.</para>
+            <para>
+            Different with <see cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasNoSolution"/>,
+            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
+            before solving, we should use this field.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasNoSolution"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasMultipleSolutions"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasNoSolution">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasMultipleSolutions">
+            <summary>
+            Indicates the failed reason is that the puzzle contains multiple valid solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.UserCancelled">
+            <summary>
+            Indicates the failed reason is that the user has canceled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.NotImplemented">
+            <summary>
+            Indicates the failed reason is that the solver or some searching module isn't implemented.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.ExceptionThrown">
+            <summary>
+            Indicates the failed reason is that the solver has encountered an error and couldn't solve
+            that will cause an exception thrown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.WrongStep">
+            <summary>
+            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleIsTooHard">
+            <summary>
+            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
+            </summary>
+            <remarks><i>
+            This option becomes deprecated at present because we has already implemented a step searcher
+            that always produces a valid step, guaranteeing that the solver will never give up at all time.
+            </i></remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.DirectAttribute">
+            <summary>
+            <para>
+            Indicates the technique searcher can or can't be used in some scenarios
+            where they aren't in traversing mode to call <see cref="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)"/>
+            in <see cref="T:Sudoku.Analytics.StepSearcher"/>s one by one.
+            </para>
+            <para>
+            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
+            properties such as <see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.CandidatesMap"/> in its method
+            <see cref="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)"/>.
+            </para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+            <remarks>
+            <para>
+            All disallowed properties are:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.DigitsMap"/></item>
+            <item><see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.ValuesMap"/></item>
+            <item><see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.CandidatesMap"/></item>
+            <item><see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.BivalueCells"/></item>
+            <item><see cref="F:Sudoku.Analytics.Buffers.CachedCellMaps.EmptyCells"/></item>
+            </list>
+            The disallowed method is:
+            <list type="bullet">
+            <item><see cref="M:Sudoku.Analytics.Buffers.CachedCellMaps.Initialize(Sudoku.Concepts.Grid@)"/></item>
+            </list>
+            </para>
+            <para>
+            Those properties or methods can optimize the performance to analyze a sudoku grid, but
+            sometimes they may cause a potential bug that is hard to find and fix. The attribute
+            is created and used for solving the problem.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.Buffers.CachedCellMaps"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.FixedAttribute">
+            <summary>
+            <para>Indicates whether the option is fixed that can't be modified in UI.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute">
+            <summary>
+            Provides an attribute type that can be marked onto a <see cref="T:Sudoku.Analytics.StepSearcher"/> type,
+            indicating the <see cref="T:Sudoku.Analytics.StepSearcher"/> instance is unavailable on partial cases.
+            For example, Deadly Patterns is unavailable for Sukaku puzzles because we cannot determine
+            whether a candidate is having been removed before.
+            </summary>
+            <param name="cases"><inheritdoc cref="P:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute.Cases" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute.#ctor(Sudoku.Analytics.Metadata.PartiallyUnavailableCase)">
+            <summary>
+            Provides an attribute type that can be marked onto a <see cref="T:Sudoku.Analytics.StepSearcher"/> type,
+            indicating the <see cref="T:Sudoku.Analytics.StepSearcher"/> instance is unavailable on partial cases.
+            For example, Deadly Patterns is unavailable for Sukaku puzzles because we cannot determine
+            whether a candidate is having been removed before.
+            </summary>
+            <param name="cases"><inheritdoc cref="P:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute.Cases" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute.Cases">
+            <summary>
+            Indicates the cases that the current <see cref="T:Sudoku.Analytics.StepSearcher"/> instance cannot be running on.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.PartiallyUnavailableCase">
+            <summary>
+            Represents a case that a <see cref="T:Sudoku.Analytics.StepSearcher"/> becomes unavailable.
+            </summary>
+            <remarks>
+            This type is marked <see cref="T:System.FlagsAttribute"/>, which means you can use
+            <see cref="T:Sudoku.Analytics.Metadata.PartiallyUnavailableCase"/>.<see langword="operator"/> | to combine multiple fields.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.None">
+            <summary>
+            Indicates the case is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.Sukaku">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> is becoming unavailable if it is called to search for technique steps in a Sukaku puzzle.
+            For example, uniqueness-related <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.TimeComplexity">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> produces high time complexity,
+            to be becoming unavailable if user disabled slow-speed step searchers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.SpaceComplexity">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> produces high space complexity,
+            to be becoming unavailable if user disabled high memory-allocation step searchers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.Advanced">
+            <summary>
+            Indicates the reserved field. This field may be used for future considerations.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.SeparatedAttribute">
+            <summary>
+            Defines an attribute that applies to a type derived from <see cref="T:Sudoku.Analytics.StepSearcher"/>,
+            to create multiple <see cref="T:Sudoku.Analytics.StepSearcher"/>s for the current type, ordering by separated priority value.
+            </summary>
+            <param name="priority">Indicates the priority that will be used for the ordering.</param>
+            <param name="propertyNamesAndValues">The array of property names and their values.</param>
+            <remarks>
+            Please note that this attribute is optional to be marked,
+            meaning it's unnecessary to be used to mark all built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.SeparatedAttribute.#ctor(System.Int32,System.Object[])">
+            <summary>
+            Defines an attribute that applies to a type derived from <see cref="T:Sudoku.Analytics.StepSearcher"/>,
+            to create multiple <see cref="T:Sudoku.Analytics.StepSearcher"/>s for the current type, ordering by separated priority value.
+            </summary>
+            <param name="priority">Indicates the priority that will be used for the ordering.</param>
+            <param name="propertyNamesAndValues">The array of property names and their values.</param>
+            <remarks>
+            Please note that this attribute is optional to be marked,
+            meaning it's unnecessary to be used to mark all built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.SeparatedAttribute.Priority">
+            <summary>
+            Indicates the priority value that will be used for the ordering.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.SeparatedAttribute.PropertyNamesAndValues">
+            <summary>
+            Indicates the property names and the values.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.StepSearcherAttribute">
+            <summary>
+            Indicates the type is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherLevel">
             <summary>
             Represents a level that a step searcher belongs to. This type is used for the displaying of the step information list.
@@ -2076,6 +2860,11 @@
             meaning the techniques found in the current step searcher should be hidden no matter how easy the technique is.
             </para>
             <para>The well-known technique searcher of this level is Brute Force.</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.StepSearcherMetadataAttribute">
+            <summary>
+            Represents a step searcher metadata attribute.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherRunningArea">
@@ -2127,58 +2916,6 @@
 					one module by default.
 				</remarks>
 			</target>
-        </member>
-        <member name="T:Sudoku.Analytics.Processing.AnalysisContext">
-            <summary>
-            Defines a context that is used by step searchers to check the details of the solving and analysis information.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Processing.AnalysisContext.Grid">
-            <summary>
-            Indicates the puzzle to be solved and analyzed.
-            </summary>
-            <remarks>
-            <target name="field">
-				<b>
-					<i>
-						This field is not encapsulated into a property because C# doesn't support auto read-only properties
-						returning <see langword="ref" /> or <see langword="ref readonly" />.
-					</i>
-				</b>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Processing.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Steps.Step},Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Processing.AnalysisContext"/> instance via the specified.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The reference to the puzzle.</param>
-            <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Processing.AnalysisContext.OnlyFindOne">
-            <summary>
-            Indicates whether the solver only find one possible step and exit the searcher.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Processing.AnalysisContext.PreviousSetDigit">
-            <summary>
-            Indicates the previously set digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Processing.AnalysisContext.Accumulator">
-            <summary>
-            <para>
-            <para>The accumulator to store each step.</para>
-            </para>
-            <para>
-            If <see cref="P:Sudoku.Analytics.Processing.AnalysisContext.OnlyFindOne"/> is set to <see langword="true"/>,
-            this argument will become useless because we only finding one step is okay,
-            so we may not use the accumulator to store all possible steps, in order to optimize the performance.
-            Therefore, this argument can be <see langword="null"/> in this case.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.Processing.AnalysisContext.OnlyFindOne"/>
         </member>
         <member name="T:Sudoku.Analytics.Rating.ChainDifficultyRating">
             <summary>
@@ -2343,28 +3080,255 @@
             Indicates the kind is the extra house. This field is only used for complex senior exocets.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.StepSearcher">
+        <member name="T:Sudoku.Analytics.Step">
             <summary>
-            Represents a searcher that can creates <see cref="T:Sudoku.Analytics.Steps.Step"/> instances for the specified technique.
+            Provides with a logical solving step that is a technique usage, and contains the conclusions.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.Step"/>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.StepSearcher.Priority">
+        <member name="M:Sudoku.Analytics.Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
-            Indicates the priority value of the current step searcher.
-            This property is used for sorting multiple <see cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/> instances.
+            Provides with a logical solving step that is a technique usage, and contains the conclusions.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Name">
+            <summary>
+            Indicates the technique name. The technique name are all stored in the resource dictionary,
+            you can find them in the <c>Resources</c> folder (Type <see cref="T:Sudoku.Resources.MergedResources"/>).
+            </summary>
+            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Format">
+            <summary>
+            Gets the format of the current instance.
+            </summary>
+            <returns>
+            Returns a <see cref="T:System.String"/> result. If the resource dictionary doesn't contain
+            any valid formats here, the result value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            <para>
+            A <b>format</b> is the better way to format the result text of this technique information instance.
+            It'll be represented by the normal characters and the placeholders, e.g.
+            <code><![CDATA["Cells {0}, with digits {1}"]]></code>
+            </para>
+            <para>
+            Here the placeholder <c>{0}</c>, and <c>{1}</c> must be provided by property <see cref="P:Sudoku.Analytics.Step.FormatInterpolatedParts"/>.
+            You should create 2 values that can be replaced with the placeholder <c>{0}</c> and <c>{1}</c>.
+            </para>
+            <para>
+            The recommended implementation pattern is:
+            <code><![CDATA[
+            private string CellsStr => Cells.ToString();
+            private string DigitsStr => Digits.ToString(separator: R.EmitPunctuation(Punctuation.Comma));
+            ]]></code>
+            </para>
+            <para>
+            And then fill the blank via property <see cref="P:Sudoku.Analytics.Step.FormatInterpolatedParts"/>:
+            <code><![CDATA[
+            public override IDictionary<string, string[]?> FormatInterpolatedParts
+                => [["en-US": [CellsStr, DigitsStr]], ["zh-CN": [CellsStr, DigitsStr]]];
+            ]]></code>
+            via the feature "<see href="https://github.com/dotnet/csharplang/issues/5354">Collection Literals</see>" introduced in C# 12.
+            If you cannot decide the real name of the culture name, just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
+            </para>
+            <para>
+            If you want to use the values in the resource dictionary, you can just use a <see langword="static readonly"/> field
+            called <see cref="F:Sudoku.Resources.MergedResources.R"/>, for example:
+            <code><![CDATA[
+            using static Sudoku.Resources.MergedResources;
+            
+            public override string Format => R["TheKeyYouWantToSearch"];
+            ]]></code>
+            </para>
+            </remarks>
+            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
+            <seealso cref="P:Sudoku.Analytics.Step.FormatInterpolatedParts"/>
+            <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.BaseDifficulty">
+            <summary>
+            Indicates the difficulty of this technique step.
+            </summary>
+            <remarks>
+            Generally this property holds the default and basic difficulty of the step.
+            If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
+            as elementary and default rating value; other factors will be given in the other property <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Difficulty">
+            <summary>
+            Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
+            <see cref="P:Sudoku.Analytics.Step.BaseDifficulty"/> and <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>. For property <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>,
+            the result is to sum all values up of inner property <see cref="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Value"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Step.BaseDifficulty"/>
+            <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCase"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Code">
+            <summary>
+            The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Group">
+            <summary>
+            The technique group that this technique instance belongs to.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.DifficultyLevel">
+            <summary>
+            The difficulty level of this step.
+            </summary>
+            <remarks>
+            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
+            we still can't set multiple flag values into the result. The flags are filtered
+            during generating puzzles.
+            </remarks>
+            <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.ExtraDifficultyCases">
+            <summary>
+            Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
+            this property will keep <see langword="null"/> value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Views">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.FormatInterpolatedParts">
+            <summary>
+            Indicates the interpolated parts that is used for the format.
+            The formats will be interpolated into the property <see cref="P:Sudoku.Analytics.Step.Format"/> result.
             </summary>
             <remarks>
             <para>
-            Please note that the set value cannot be same for different <see cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/> types;
-            otherwise, <see cref="T:System.InvalidOperationException"/> will be thrown while comparing with two <see cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/>s.
+            This property use a dictionary to merge globalizational format data.
+            The key type is <see cref="T:System.String"/>, which can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>.
+            </para>
+            <para>
+            For more backing implementation details, please visit method <see cref="M:Sudoku.Analytics.Step.ToString"/> in derived <see langword="class"/>es.
+            </para>
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Step.Format"/>
+            <seealso cref="T:System.Globalization.CultureInfo"/>
+            <seealso cref="M:Sudoku.Analytics.Step.ToString"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.ConclusionText">
+            <summary>
+            Indicates the string representation of the conclusions of the step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.EqualityContract">
+            <summary>
+            Returns a <see cref="T:System.Type"/> instance that specifies the type information of this current object.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.ApplyTo(Sudoku.Concepts.Grid@)">
+            <summary>
+            Put this instance into the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.ToString">
+            <summary>
+            Returns a string that only contains the name and the basic description.
+            </summary>
+            <returns>The string instance.</returns>
+            <remarks><i>
+            This method uses modifiers <see langword="sealed"/> and <see langword="override"/> to prevent with compiler overriding this method.
+            </i></remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.ToSimpleString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcher">
+            <summary>
+            Represents a searcher that can creates <see cref="T:Sudoku.Analytics.Step"/> instances for the specified technique.
+            </summary>
+            <param name="priority"><inheritdoc cref="P:Sudoku.Analytics.StepSearcher.Priority" path="/summary"/></param>
+            <param name="level"><inheritdoc cref="P:Sudoku.Analytics.StepSearcher.Level" path="/summary"/></param>
+            <param name="runningArea"><inheritdoc cref="P:Sudoku.Analytics.StepSearcher.RunningArea" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+            <summary>
+            Represents a searcher that can creates <see cref="T:Sudoku.Analytics.Step"/> instances for the specified technique.
+            </summary>
+            <param name="priority"><inheritdoc cref="P:Sudoku.Analytics.StepSearcher.Priority" path="/summary"/></param>
+            <param name="level"><inheritdoc cref="P:Sudoku.Analytics.StepSearcher.Level" path="/summary"/></param>
+            <param name="runningArea"><inheritdoc cref="P:Sudoku.Analytics.StepSearcher.RunningArea" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.IsSeparated">
+            <summary>
+            Determines whether the current step searcher is separated one, which mean it can be created
+            as many possible instances in a same step searchers pool.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.IsDirect">
+            <summary>
+            Determines whether the current step searcher is a direct one.
+            </summary>
+            <remarks>
+            If you don't know what is a direct step searcher, please visit the property
+            <see cref="T:Sudoku.Analytics.Metadata.DirectAttribute"/> to learn more information.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Metadata.DirectAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.IsOptionsFixed">
+            <summary>
+            Determines whether we can adjust the ordering of the current step searcher
+            as a customized configuration option before solving a puzzle.
+            </summary>
+            <remarks>
+            If you don't know what is a direct step searcher, please visit the property <see cref="T:Sudoku.Analytics.Metadata.FixedAttribute"/> to learn more information.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Metadata.FixedAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.IsNotSupportedForSukaku">
+            <summary>
+            Determines whether the current step searcher is not supported for sukaku solving mode.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.IsConfiguredSlow">
+            <summary>
+            Determines whether the current step searcher is disabled
+            by option <see cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.TimeComplexity"/> being configured.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.TimeComplexity"/>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.IsConfiguredHighAllocation">
+            <summary>
+            Determines whether the current step searcher is disabled
+            by option <see cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.SpaceComplexity"/> being configured.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.SpaceComplexity"/>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.Priority">
+            <summary>
+            Indicates the priority value of the current step searcher.
+            This property is used for sorting multiple <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
+            </summary>
+            <remarks>
+            <para>
+            Please note that the set value cannot be same for different <see cref="T:Sudoku.Analytics.StepSearcher"/> types;
+            otherwise, <see cref="T:System.InvalidOperationException"/> will be thrown while comparing with two <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </para>
             <para>
             This property may be automatically generated by source generator. Therefore, you may not care about implementation of this property.
             </para>
             </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.StepSearcher.Level">
+        <member name="P:Sudoku.Analytics.StepSearcher.Level">
             <summary>
             Indicates the level that the current step searcher belongs to.
             </summary>
@@ -2374,7 +3338,7 @@
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Metadata.StepSearcherLevel"/>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.StepSearcher.RunningArea">
+        <member name="P:Sudoku.Analytics.StepSearcher.RunningArea">
             <summary>
             Indicates the running area which describes a function where the current step searcher can be invoked.
             </summary>
@@ -2383,50 +3347,50 @@
             and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.StepSearcher.TypeName">
+        <member name="P:Sudoku.Analytics.StepSearcher.TypeName">
             <summary>
             The qualified type name of this instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.StepSearcher.EqualityContract">
+        <member name="P:Sudoku.Analytics.StepSearcher.EqualityContract">
             <summary>
             Indicates the <see cref="T:System.Type"/> instance that represents the reflection data for the current instance.
-            This property is used as type checking to distinct with multiple <see cref="T:Sudoku.Analytics.StepSearchers.StepSearcher"/>s.
+            This property is used as type checking to distinct with multiple <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.Equals(System.Object)">
+        <member name="M:Sudoku.Analytics.StepSearcher.Equals(System.Object)">
             <summary>
             Determines whether the specified object has same type as the current instance.
             </summary>
             <param name="obj">The object to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.Equals(Sudoku.Analytics.StepSearchers.StepSearcher)">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.StepSearcher.Equals(System.Object)"/>
+        <member name="M:Sudoku.Analytics.StepSearcher.Equals(Sudoku.Analytics.StepSearcher)">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.GetHashCode">
+        <member name="M:Sudoku.Analytics.StepSearcher.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.CompareTo(Sudoku.Analytics.StepSearchers.StepSearcher)">
+        <member name="M:Sudoku.Analytics.StepSearcher.CompareTo(Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.ToString">
+        <member name="M:Sudoku.Analytics.StepSearcher.ToString">
             <summary>
             Returns the real name of this instance.
             </summary>
             <returns>Real name of this instance.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.GetAll(Sudoku.Analytics.Processing.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <summary>
-            Try to search for <see cref="T:Sudoku.Analytics.Steps.Step"/> results for the current technique rule.
+            Try to search for <see cref="T:Sudoku.Analytics.Step"/> results for the current technique rule.
             </summary>
             <param name="context">
             <para>
             The analysis context. This argument offers you some elementary data configured or assigned, for the current loop of step searching.
             </para>
             <para>
-            All available <see cref="T:Sudoku.Analytics.Steps.Step"/> results will be stored in property <see cref="P:Sudoku.Analytics.Processing.AnalysisContext.Accumulator"/>
-            of this argument, if property <see cref="P:Sudoku.Analytics.Processing.AnalysisContext.OnlyFindOne"/> returns <see langword="false"/>;
+            All available <see cref="T:Sudoku.Analytics.Step"/> results will be stored in property <see cref="P:Sudoku.Analytics.AnalysisContext.Accumulator"/>
+            of this argument, if property <see cref="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne"/> returns <see langword="false"/>;
             otherwise, the property won't be used, and this method will return the first found step.
             </para>
             </param>
@@ -2451,191 +3415,352 @@
             </item>
             </list>
             </returns>
-            <seealso cref="T:Sudoku.Analytics.Steps.Step"/>
-            <seealso cref="T:Sudoku.Analytics.Processing.AnalysisContext"/>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+            <seealso cref="T:Sudoku.Analytics.AnalysisContext"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.op_Equality(Sudoku.Analytics.StepSearchers.StepSearcher,Sudoku.Analytics.StepSearchers.StepSearcher)">
+        <member name="M:Sudoku.Analytics.StepSearcher.op_Equality(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.op_Inequality(Sudoku.Analytics.StepSearchers.StepSearcher,Sudoku.Analytics.StepSearchers.StepSearcher)">
+        <member name="M:Sudoku.Analytics.StepSearcher.op_Inequality(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.op_GreaterThan(Sudoku.Analytics.StepSearchers.StepSearcher,Sudoku.Analytics.StepSearchers.StepSearcher)">
+        <member name="M:Sudoku.Analytics.StepSearcher.op_GreaterThan(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.op_GreaterThanOrEqual(Sudoku.Analytics.StepSearchers.StepSearcher,Sudoku.Analytics.StepSearchers.StepSearcher)">
+        <member name="M:Sudoku.Analytics.StepSearcher.op_GreaterThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.op_LessThan(Sudoku.Analytics.StepSearchers.StepSearcher,Sudoku.Analytics.StepSearchers.StepSearcher)">
+        <member name="M:Sudoku.Analytics.StepSearcher.op_LessThan(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcher.op_LessThanOrEqual(Sudoku.Analytics.StepSearchers.StepSearcher,Sudoku.Analytics.StepSearchers.StepSearcher)">
+        <member name="M:Sudoku.Analytics.StepSearcher.op_LessThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.Step">
+        <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>
-            Provides with a logical solving step that is a technique usage, and contains the conclusions.
+            Represents a provider type that can find built-in <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
             </summary>
-            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
-            <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="P:Sudoku.Analytics.StepSearcherPool.BuiltIn">
             <summary>
-            Provides with a logical solving step that is a technique usage, and contains the conclusions.
-            </summary>
-            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
-            <param name="Views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.Conclusions">
-            <summary><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.Views">
-            <summary><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.Name">
-            <summary>
-            Indicates the technique name. The technique name are all stored in the resource dictionary,
-            you can find them in the <c>Resources</c> folder (Type <see cref="T:Sudoku.Resources.MergedResources"/>).
-            </summary>
-            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.Format">
-            <summary>
-            Gets the format of the current instance.
-            </summary>
-            <returns>
-            Returns a <see cref="T:System.String"/> result. If the resource dictionary doesn't contain
-            any valid formats here, the result value will be <see langword="null"/>.
-            </returns>
-            <remarks>
-            <para>
-            A <b>format</b> is the better way to format the result text of this technique information instance.
-            It'll be represented by the normal characters and the placeholders, e.g.
-            <code><![CDATA["Cells {0}, with digits {1}"]]></code>
-            </para>
-            <para>
-            Here the placeholder <c>{0}</c>, and <c>{1}</c> must be provided by property <see cref="P:Sudoku.Analytics.Steps.Step.FormatInterpolatedParts"/>.
-            You should create 2 values that can be replaced with the placeholder <c>{0}</c> and <c>{1}</c>.
-            </para>
-            <para>
-            The recommended implementation pattern is:
-            <code><![CDATA[
-            private string CellsStr => Cells.ToString();
-            private string DigitsStr => Digits.ToString(separator: R.EmitPunctuation(Punctuation.Comma));
-            ]]></code>
-            </para>
-            <para>
-            And then fill the blank via property <see cref="P:Sudoku.Analytics.Steps.Step.FormatInterpolatedParts"/>:
-            <code><![CDATA[
-            public override IDictionary<string, string[]?> FormatInterpolatedParts
-                => [["en-US": [CellsStr, DigitsStr]], ["zh-CN": [CellsStr, DigitsStr]]];
-            ]]></code>
-            via the feature "<see href="https://github.com/dotnet/csharplang/issues/5354">Collection Literals</see>" introduced in C# 12.
-            If you cannot decide the real name of the culture name, just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
-            </para>
-            <para>
-            If you want to use the values in the resource dictionary, you can just use a <see langword="static readonly"/> field
-            called <see cref="F:Sudoku.Resources.MergedResources.R"/>, for example:
-            <code><![CDATA[
-            using static Sudoku.Resources.MergedResources;
-            
-            public override string Format => R["TheKeyYouWantToSearch"];
-            ]]></code>
-            </para>
-            </remarks>
-            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
-            <seealso cref="P:Sudoku.Analytics.Steps.Step.FormatInterpolatedParts"/>
-            <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.BaseDifficulty">
-            <summary>
-            Indicates the difficulty of this technique step.
-            </summary>
-            <remarks>
-            Generally this property holds the default and basic difficulty of the step.
-            If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
-            as elementary and default rating value; other factors will be given in the other property <see cref="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases"/>.
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.Difficulty">
-            <summary>
-            Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
-            <see cref="P:Sudoku.Analytics.Steps.Step.BaseDifficulty"/> and <see cref="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases"/>. For property <see cref="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases"/>,
-            the result is to sum all values up of inner property <see cref="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Value"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.Steps.Step.BaseDifficulty"/>
-            <seealso cref="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCase"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.Code">
-            <summary>
-            The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
+            Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.Group">
+        <member name="T:Sudoku.Analytics.StepSearchers.IStepSearcherRequiresSolution">
             <summary>
-            The technique group that this technique instance belongs to.
+            Indicates a step searcher that requires a solution grid for the technique searching usages.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.DifficultyLevel">
+        <member name="P:Sudoku.Analytics.StepSearchers.IStepSearcherRequiresSolution.Solution">
             <summary>
-            The difficulty level of this step.
+            Indicates the reference of the solution sudoku grid.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher">
+            <summary>
+            Provides with a <b>Brute Force</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Brute Force</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.#ctor">
+            <summary>
+            Provides with a <b>Brute Force</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Brute Force</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.Solution">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher">
+            <summary>
+            Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Full House (If the property <see cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/> is <see langword="true"/>)</item>
+            <item>Last Digit (If the property <see cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit"/> is <see langword="true"/>)</item>
+            <item>Hidden Single</item>
+            <item>Naked Single</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.#ctor">
+            <summary>
+            Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Full House (If the property <see cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/> is <see langword="true"/>)</item>
+            <item>Last Digit (If the property <see cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit"/> is <see langword="true"/>)</item>
+            <item>Hidden Single</item>
+            <item>Naked Single</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse">
+            <summary>
+            Indicates whether the solver enables the technique full house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit">
+            <summary>
+            Indicates whether the solver enables the technique last digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst">
+            <summary>
+            Indicates whether the solver checks for hidden single in block firstly.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode">
+            <summary>
+            Indicates whether the solver uses ittoryu mode to solve a puzzle.
             </summary>
             <remarks>
-            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
-            we still can't set multiple flag values into the result. The flags are filtered
-            during generating puzzles.
+            For more information about what is an ittoryu puzzle, please visit
+            <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">this link</see>.
             </remarks>
-            <seealso cref="T:System.FlagsAttribute"/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.ExtraDifficultyCases">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll_IttoryuMode(Sudoku.Analytics.AnalysisContext@)">
             <summary>
-            Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
-            this property will keep <see langword="null"/> value.
+            Checks for single steps using ittoryu mode.
             </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.FormatInterpolatedParts">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll_NonIttoryuMode(Sudoku.Analytics.AnalysisContext@)">
             <summary>
-            Indicates the interpolated parts that is used for the format.
-            The formats will be interpolated into the property <see cref="P:Sudoku.Analytics.Steps.Step.Format"/> result.
+            Checks for single steps using non-ittoryu mode.
             </summary>
-            <remarks>
-            <para>
-            This property use a dictionary to merge globalizational format data.
-            The key type is <see cref="T:System.String"/>, which can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>.
-            </para>
-            <para>
-            For more backing implementation details, please visit method <see cref="M:Sudoku.Analytics.Steps.Step.ToString"/> in derived <see langword="class"/>es.
-            </para>
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.Steps.Step.Format"/>
-            <seealso cref="T:System.Globalization.CultureInfo"/>
-            <seealso cref="M:Sudoku.Analytics.Steps.Step.ToString"/>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.Step.ConclusionText">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckForHiddenSingleAndLastDigit(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
-            Indicates the string representation of the conclusions of the step.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.Step.ApplyTo(Sudoku.Concepts.Grid@)">
-            <summary>
-            Put this instance into the specified grid.
+            Checks for existence of hidden single and last digit conclusion in the specified house.
             </summary>
             <param name="grid">The grid.</param>
+            <param name="digit">The digit used.</param>
+            <param name="house">The house used.</param>
+            <returns>Not <see langword="null" /> if conclusion can be found.</returns>
+            <remarks>
+            <para><deverloper-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</deverloper-notes></para>
+            <para>
+            The main idea of hidden single is to search for a digit can only appear once in a house,
+            so we should check all possibilities in a house to found whether the house exists a digit
+            that only appears once indeed.
+            </para>
+            </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.Step.ToString">
+        <member name="T:Sudoku.Analytics.Steps.InvalidStep">
             <summary>
-            Returns a string that only contains the name and the basic description.
+            The background type that has implemented the type <see cref="T:Sudoku.Analytics.Steps.InvalidStep"/>.
             </summary>
-            <returns>The string instance.</returns>
-            <remarks><i>
-            This method uses modifiers <see langword="sealed"/> and <see langword="override"/> to prevent with compiler overriding this method.
-            </i></remarks>
+            <seealso cref="T:Sudoku.Analytics.Steps.InvalidStep"/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.Step.ToSimpleString">
+        <member name="M:Sudoku.Analytics.Steps.InvalidStep.#ctor">
+            <summary>
+            The background type that has implemented the type <see cref="T:Sudoku.Analytics.Steps.InvalidStep"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Steps.InvalidStep"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.InvalidStep.BaseDifficulty">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.InvalidStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.InvalidStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.InvalidStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.InvalidStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.InvalidStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.InvalidStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.InvalidStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.LastResortStep">
+            <summary>
+            Provides with a step that is a <b>Last Resort</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Last Resort</b> technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BruteForceStep">
+            <summary>
+            Provides with a step that is a <b>Brute Force</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BruteForceStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Brute Force</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BruteForceStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BruteForceStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BruteForceStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BruteForceStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BruteForceStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SingleStep">
+            <summary>
+            Provides with a step that is a <b>Single</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Single</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.FullHouseStep">
+            <summary>
+            Provides with a step that is a <b>Full House</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Full House</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.HiddenSingleStep">
+            <summary>
+            Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit">
+            <summary>
+            Indicates whether currently options enable "Last Digit" technqiue, and the current instance is a real Last Digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.House">
+            <summary>
+            Indicates the house where the current Hidden Single technique forms.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NakedSingleStep">
+            <summary>
+            Provides with a step that is a <b>Naked Single</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Naked Single</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.WrongStepException">
+            <summary>
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.WrongStepException"/> with the specified invalid grid and the wrong step.
+            </summary>
+            <param name="grid">The invalid sudoku grid.</param>
+            <param name="wrongStep">The wrong step.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.WrongStepException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.WrongStepException.CurrentInvalidGrid">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
+        </member>
+        <member name="P:Sudoku.Analytics.WrongStepException.WrongStep">
+            <summary>
+            Indicates the wrong step.
+            </summary>
         </member>
     </members>
 </doc>

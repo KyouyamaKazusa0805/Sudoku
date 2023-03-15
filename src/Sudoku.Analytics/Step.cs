@@ -1,11 +1,11 @@
-﻿namespace Sudoku.Analytics.Steps;
+﻿namespace Sudoku.Analytics;
 
 /// <summary>
 /// Provides with a logical solving step that is a technique usage, and contains the conclusions.
 /// </summary>
-/// <param name="Conclusions"><inheritdoc cref="IVisual.Conclusions" path="/summary"/></param>
-/// <param name="Views"><inheritdoc cref="IVisual.Views" path="/summary"/></param>
-public abstract record Step(Conclusion[] Conclusions, View[]? Views) : IVisual
+/// <param name="conclusions"><inheritdoc cref="IVisual.Conclusions" path="/summary"/></param>
+/// <param name="views"><inheritdoc cref="IVisual.Views" path="/summary"/></param>
+public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 {
 	/// <summary>
 	/// Indicates the technique name. The technique name are all stored in the resource dictionary,
@@ -113,6 +113,12 @@ public abstract record Step(Conclusion[] Conclusions, View[]? Views) : IVisual
 	/// </summary>
 	public virtual ExtraDifficultyCase[]? ExtraDifficultyCases => null;
 
+	/// <inheritdoc/>
+	public Conclusion[] Conclusions { get; } = conclusions;
+
+	/// <inheritdoc/>
+	public View[]? Views { get; } = views;
+
 	/// <summary>
 	/// Indicates the interpolated parts that is used for the format.
 	/// The formats will be interpolated into the property <see cref="Format"/> result.
@@ -136,6 +142,11 @@ public abstract record Step(Conclusion[] Conclusions, View[]? Views) : IVisual
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
 	protected string ConclusionText => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
+
+	/// <summary>
+	/// Returns a <see cref="Type"/> instance that specifies the type information of this current object.
+	/// </summary>
+	protected Type EqualityContract => GetType();
 
 
 	/// <summary>

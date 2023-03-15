@@ -47,4 +47,27 @@ public static class ArrayExtensions
 
 		return true;
 	}
+
+	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})"/>
+	/// <param name="this">
+	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})" path="/param[@name='first']"/>
+	/// </param>
+	/// <param name="other">
+	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})" path="/param[@name='second']"/>
+	/// </param>
+	public static (TFirst, TSecond)[] Zip<TFirst, TSecond>(this TFirst[] @this, TSecond[] other)
+	{
+		if (@this.Length != other.Length)
+		{
+			throw new InvalidOperationException("Two arrays should be of same length.");
+		}
+
+		var result = new (TFirst, TSecond)[@this.Length];
+		for (var i = 0; i < @this.Length; i++)
+		{
+			result[i] = (@this[i], other[i]);
+		}
+
+		return result;
+	}
 }
