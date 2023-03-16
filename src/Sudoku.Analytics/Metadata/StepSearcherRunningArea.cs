@@ -4,7 +4,7 @@
 /// Represents a mode that describes an area where a step searcher can be invoked.
 /// </summary>
 [Flags]
-public enum StepSearcherRunningArea
+public enum StepSearcherRunningArea : byte
 {
 	/// <summary>
 	/// Indicates the step searcher is disabled.
