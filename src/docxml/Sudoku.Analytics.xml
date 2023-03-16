@@ -3533,7 +3533,7 @@
         </member>
         <member name="P:Sudoku.Analytics.StepSearcherPool.BuiltIn">
             <summary>
-            Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s
+            Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher">

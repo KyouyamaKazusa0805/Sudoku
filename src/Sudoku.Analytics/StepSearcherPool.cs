@@ -7,7 +7,7 @@
 public abstract class StepSearcherPool
 {
 	/// <summary>
-	/// Indicates an array of built-in <see cref="StepSearcher"/>s
+	/// Indicates an array of built-in <see cref="StepSearcher"/>s.
 	/// </summary>
 	public static StepSearcher[] BuiltIn
 	{
