@@ -372,6 +372,12 @@
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
         </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.Max``1(System.Collections.Generic.IEnumerable{``0},)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Decimal})"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
+        </member>
         <member name="T:Sudoku.Analytics.AnalyzerResult.StepsEnumerator">
             <summary>
             Defines an enumerator type that allows iterating on steps of the containing type.

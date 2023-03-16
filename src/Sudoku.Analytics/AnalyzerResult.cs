@@ -22,7 +22,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	/// or else the puzzle is solved by other solvers, this value will be always <c>20.0M</c>.
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
-	public unsafe decimal MaxDifficulty => Evaluator(&EnumerableExtensions.Max<Step>, 20.0M);
+	public unsafe decimal MaxDifficulty => Evaluator(&Max<Step>, 20.0M);
 
 	/// <summary>
 	/// Indicates the total difficulty rating of the puzzle.
@@ -34,7 +34,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso cref="Steps"/>
-	public unsafe decimal TotalDifficulty => Evaluator(&EnumerableExtensions.Sum<Step>, 0);
+	public unsafe decimal TotalDifficulty => Evaluator(&Sum<Step>, 0);
 
 	/// <summary>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="Analyzer"/>.
@@ -541,7 +541,6 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerable<TResult> ISelectClauseProvider<Step>.Select<TResult>(Func<Step, TResult> selector) => Select(selector);
 
-
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).
 	/// </summary>
@@ -557,5 +556,34 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 
 
 		static decimal f(Step step) => step.Difficulty;
+	}
+
+
+	/// <inheritdoc cref="Enumerable.Max(IEnumerable{decimal})"/>
+	private static unsafe decimal Max<T>(IEnumerable<T> collection, delegate*<T, decimal> selector)
+	{
+		var result = decimal.MinValue;
+		foreach (var element in collection)
+		{
+			var converted = selector(element);
+			if (converted >= result)
+			{
+				result = converted;
+			}
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, decimal})"/>
+	private static unsafe decimal Sum<T>(IEnumerable<T> collection, delegate*<T, decimal> selector)
+	{
+		var result = 0M;
+		foreach (var element in collection)
+		{
+			result += selector(element);
+		}
+
+		return result;
 	}
 }

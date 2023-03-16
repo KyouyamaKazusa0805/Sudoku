@@ -1381,6 +1381,12 @@ result ^= expression;
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Solving.Logical.LogicalSolverResult.Steps"/>
         </member>
+        <member name="M:Sudoku.Solving.Logical.LogicalSolverResult.Max``1(System.Collections.Generic.IEnumerable{``0},)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Decimal})"/>
+        </member>
+        <member name="M:Sudoku.Solving.Logical.LogicalSolverResult.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
+        </member>
         <member name="T:Sudoku.Solving.Logical.LogicalSolverResult.StepsEnumerator">
             <summary>
             Defines an enumerator type that allows iterating on steps of the containing type.
