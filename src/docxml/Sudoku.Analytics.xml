@@ -3790,6 +3790,30 @@
         <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher">
+            <summary>
+            Provides with a <b>Multiple-Branch W-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Multiple-Branch W-Wing (Multiple-Branch George Woods' Wing)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.WWingStepSearcher">
+            <summary>
+            Provides with a <b>W-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>W-Wing (George Woods' Wing)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.WWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher">
             <summary>
             Provides with a <b>Regular Wing</b> step searcher.
@@ -4303,6 +4327,135 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.GroupedWWingStep">
+            <summary>
+            Provides with a step that is a <b>Grouped W-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.GroupedWWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Grouped W-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.StartCell">
+            <summary>
+            Indicates the start cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.EndCell">
+            <summary>
+            Indicates the end cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.Bridge">
+            <summary>
+            Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.EndCell"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.IrregularWingStep">
+            <summary>
+            Provides with a step that is a <b>Irregular Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.IrregularWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Irregular Wing</b> technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.MultiBranchWWingStep">
+            <summary>
+            Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.MultiBranchWWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Size">
+            <summary>
+            Indicates the number of branches of the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.House">
+            <summary>
+            Indicates the house that all cells in <see cref="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Root"/> lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Leaves">
+            <summary>
+            The leaves of the pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Root">
+            <summary>
+            The root cells that corresponds to each leaf.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.WWingStep">
+            <summary>
+            Provides with a step that is a <b>W-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
+            <summary>
+            Provides with a step that is a <b>W-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.StartCell">
+            <summary>
+            Indicates the start cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.EndCell">
+            <summary>
+            Indicates the end cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.RegularWingStep">
