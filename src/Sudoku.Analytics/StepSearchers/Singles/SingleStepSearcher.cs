@@ -12,7 +12,7 @@
 [Fixed]
 [Direct]
 [StepSearcher]
-public sealed class SingleStepSearcher() : StepSearcher(0, StepSearcherLevel.Elementary)
+public sealed partial class SingleStepSearcher
 {
 	/// <summary>
 	/// Indicates whether the solver enables the technique full house.

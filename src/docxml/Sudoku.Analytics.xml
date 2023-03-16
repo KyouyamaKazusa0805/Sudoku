@@ -3581,42 +3581,6 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.#ctor">
-            <summary>
-            Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Normal fishes:
-            <list type="bullet">
-            <item>X-Wing</item>
-            <item>Swordfish</item>
-            <item>Jellyfish</item>
-            </list>
-            </item>
-            <item>
-            Finned fishes:
-            <list type="bullet">
-            <item>
-            Finned normal fishes:
-            <list type="bullet">
-            <item>Finned X-Wing</item>
-            <item>Finned Swordfish</item>
-            <item>Finned Jellyfish</item>
-            </list>
-            </item>
-            <item>
-            Finned sashimi fishes:
-            <list type="bullet">
-            <item>Sashimi X-Wing</item>
-            <item>Sashimi Swordfish</item>
-            <item>Sashimi Jellyfish</item>
-            </list>
-            </item>
-            </list>
-            </item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
@@ -3648,16 +3612,6 @@
             <returns>The view.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher">
-            <summary>
-            Provides with a <b>Locked Candidates</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Pointing</item>
-            <item>Claiming</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher.#ctor">
             <summary>
             Provides with a <b>Locked Candidates</b> step searcher.
             The step searcher will include the following techniques:
@@ -3706,26 +3660,7 @@
             </para>
             </remarks>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.IStepSearcherRequiresSolution">
-            <summary>
-            Indicates a step searcher that requires a solution grid for the technique searching usages.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.IStepSearcherRequiresSolution.Solution">
-            <summary>
-            Indicates the reference of the solution sudoku grid.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher">
-            <summary>
-            Provides with a <b>Brute Force</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Brute Force</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.#ctor">
             <summary>
             Provides with a <b>Brute Force</b> step searcher.
             The step searcher will include the following techniques:
@@ -3748,32 +3683,10 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.#ctor">
-            <summary>
-            Provides with a <b>Two-strong Links</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Skyscraper</item>
-            <item>Two-string Kite</item>
-            <item>Turbot Fish</item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher">
-            <summary>
-            Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Full House (If the property <see cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/> is <see langword="true"/>)</item>
-            <item>Last Digit (If the property <see cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit"/> is <see langword="true"/>)</item>
-            <item>Hidden Single</item>
-            <item>Naked Single</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.#ctor">
             <summary>
             Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
             <list type="bullet">
@@ -3847,44 +3760,6 @@
             </remarks>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SubsetStepSearcher">
-            <summary>
-            Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Locked Subsets:
-            <list type="bullet">
-            <item>Locked Pair</item>
-            <item>Locked Triple</item>
-            </list>
-            </item>
-            <item>
-            Semi-Locked Subsets:
-            <list type="bullet">
-            <item>Naked Pair (+)</item>
-            <item>Naked Triple (+)</item>
-            <item>Naked Quadruple (+)</item>
-            </list>
-            </item>
-            <item>
-            Normal Naked Subsets:
-            <list type="bullet">
-            <item>Naked Pair</item>
-            <item>Naked Triple</item>
-            <item>Naked Quadruple</item>
-            </list>
-            </item>
-            <item>
-            Hidden Subsets:
-            <list type="bullet">
-            <item>Hidden Pair</item>
-            <item>Hidden Triple</item>
-            <item>Hidden Quadruple</item>
-            </list>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.#ctor">
             <summary>
             Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
             <list type="bullet">

@@ -25,6 +25,7 @@
 * **`AttachedPropertyGenerator`**：为 UI 项目提供附着（附加）属性的代码。
 * **`VersionValueGenerator`**：只给源代码生成器提供服务。用于给源代码生成器的项目提供版本号。
 * **`StepSearcherOptionsGenerator`**：对实现了 `IStepSearcher` 接口的类型生成默认的 `Options` 属性信息的相关代码。
+* **`StepSearcherImportGenerator`**：对于走 `StepSearcher` 抽象类型派生的技巧分析器类型，自动实现主构造器的参数绑定代码。
 * **`BitOperationsGenerator`**：对 `BitOperations` 静态类型生成额外的方法，用于扩展比特位的相关处理操作。
 * **`LogicalSolverOperationsGenerator`**：对 `LogicalSolver` 生成一些在派生类型下使用的配置性属性（即标记了 `SearcherPropertyAttribute` 特性）的关联属性。
 

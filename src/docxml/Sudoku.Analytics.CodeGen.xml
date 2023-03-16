@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Analytics.CodeGen</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherImportGenerator">
+            <summary>
+            Represents a source generator that generates the step searcher importing code.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherImportGenerator.AreasPropertyName">
+            <summary>
+            Indicates the property name of <c>Areas</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherImportGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Data">
+            <summary>
+            Simply encapsulates a data tuple describing the information of a found attribute.
+            </summary>
+            <param name="Namespace">Indicates the namespace symbol of that step searcher.</param>
+            <param name="PriorityValue">The priority value of the step searcher.</param>
+            <param name="DifficultyLevel">The difficulty level of the step searcher.</param>
+            <param name="TypeName">The name of the step searcher type.</param>
+            <param name="NamedArguments">The named arguments of that attribute.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
+            <summary>
+            Simply encapsulates a data tuple describing the information of a found attribute.
+            </summary>
+            <param name="Namespace">Indicates the namespace symbol of that step searcher.</param>
+            <param name="PriorityValue">The priority value of the step searcher.</param>
+            <param name="DifficultyLevel">The difficulty level of the step searcher.</param>
+            <param name="TypeName">The name of the step searcher type.</param>
+            <param name="NamedArguments">The named arguments of that attribute.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Namespace">
+            <summary>Indicates the namespace symbol of that step searcher.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PriorityValue">
+            <summary>The priority value of the step searcher.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.DifficultyLevel">
+            <summary>The difficulty level of the step searcher.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.TypeName">
+            <summary>The name of the step searcher type.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.NamedArguments">
+            <summary>The named arguments of that attribute.</summary>
+        </member>
+        <member name="F:CodeGen.Constants.VersionValue">
+            <summary>
+            Indicates the version of this project.
+            </summary>
+        </member>
+    </members>
+</doc>

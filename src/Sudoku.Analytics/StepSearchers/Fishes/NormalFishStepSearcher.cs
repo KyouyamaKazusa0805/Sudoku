@@ -35,7 +35,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed class NormalFishStepSearcher() : StepSearcher(3, StepSearcherLevel.Moderate)
+public sealed partial class NormalFishStepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override unsafe Step? GetAll(scoped ref AnalysisContext context)

@@ -9,7 +9,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed class LockedCandidatesStepSearcher() : StepSearcher(1, StepSearcherLevel.Elementary)
+public sealed partial class LockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>

@@ -11,7 +11,7 @@
 /// </summary>
 [StepSearcher]
 [CachedOnly]
-public sealed class TwoStrongLinksStepSearcher() : StepSearcher(4, StepSearcherLevel.Moderate)
+public sealed partial class TwoStrongLinksStepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)

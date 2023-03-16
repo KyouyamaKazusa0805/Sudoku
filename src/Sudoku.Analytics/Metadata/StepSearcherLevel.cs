@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a level that a step searcher belongs to. This type is used for the displaying of the step information list.
 /// </summary>
-public enum StepSearcherLevel
+public enum StepSearcherLevel : byte
 {
 	/// <summary>
 	/// Indicates the level is none.

@@ -10,7 +10,7 @@
 [Direct]
 [Fixed]
 [StepSearcher]
-public sealed class BruteForceStepSearcher() : StepSearcher(43, StepSearcherLevel.Hidden)
+public sealed partial class BruteForceStepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)
