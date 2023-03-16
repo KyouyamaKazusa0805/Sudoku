@@ -2732,6 +2732,15 @@
             that always produces a valid step, guaranteeing that the solver will never give up at all time.
             </i></remarks>
         </member>
+        <member name="T:Sudoku.Analytics.Metadata.CachedOnlyAttribute">
+            <summary>
+            Defines an attribute type that is applied to a <see cref="T:Sudoku.Analytics.StepSearcher"/> derived type,
+            indicating the searching logic only uses cached fields in type <see cref="T:Sudoku.Analytics.Buffers.CachedFields"/>,
+            and it does not use field <see cref="F:Sudoku.Analytics.AnalysisContext.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
+            <seealso cref="F:Sudoku.Analytics.AnalysisContext.Grid"/>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.DirectAttribute">
             <summary>
             <para>
@@ -3728,6 +3737,31 @@
         <member name="M:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher">
+            <summary>
+            Provides with a <b>Two-strong Links</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Skyscraper</item>
+            <item>Two-string Kite</item>
+            <item>Turbot Fish</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.#ctor">
+            <summary>
+            Provides with a <b>Two-strong Links</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Skyscraper</item>
+            <item>Two-string Kite</item>
+            <item>Turbot Fish</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher">
             <summary>
             Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
@@ -4119,6 +4153,62 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BruteForceStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SingleDigitPatternStep">
+            <summary>
+            Provides with a step that is a <b>Single Digit Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SingleDigitPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Single Digit Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleDigitPatternStep.Digit">
+            <summary>
+            Indicates the digit used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleDigitPatternStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleDigitPatternStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleDigitPatternStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.TwoStrongLinksStep">
+            <summary>
+            Provides with a step that is a <b>Single Digit Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.TwoStrongLinksStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Single Digit Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.BaseHouse">
+            <summary>
+            Indicates the base house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.TargetHouse">
+            <summary>
+            Indicates the target house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleStep">
