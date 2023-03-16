@@ -5,49 +5,47 @@
 using static Sudoku.Analytics.Metadata.StepSearcherLevel;
 using static Sudoku.Analytics.Metadata.StepSearcherRunningArea;
 
-[assembly:
-	StepSearcherImport<                        SingleStepSearcher>(Elementary),
-	StepSearcherImport<              LockedCandidatesStepSearcher>(Elementary),
-	StepSearcherImport<                        SubsetStepSearcher>(  Moderate),
-	StepSearcherImport<                    NormalFishStepSearcher>(  Moderate),
-	StepSearcherImport<                TwoStrongLinksStepSearcher>(  Moderate),
-	StepSearcherImport<                   RegularWingStepSearcher>(  Moderate),
-	StepSearcherImport<                         WWingStepSearcher>(  Moderate),
-	StepSearcherImport<              MultiBranchWWingStepSearcher>(  Moderate),
-//	StepSearcherImport<               UniqueRectangleStepSearcher>(  Moderate),
-//	StepSearcherImport<        AlmostLockedCandidatesStepSearcher>(  Moderate),
-//	StepSearcherImport<                      SueDeCoqStepSearcher>(  Moderate),
-//	StepSearcherImport<            SueDeCoq3DimensionStepSearcher>(  Moderate),
-//	StepSearcherImport<                    UniqueLoopStepSearcher>(  Moderate),
-//	StepSearcherImport<             ExtendedRectangleStepSearcher>(  Moderate),
-//	StepSearcherImport<                EmptyRectangleStepSearcher>(  Moderate),
-//	StepSearcherImport<                  UniqueMatrixStepSearcher>(  Moderate),
-//	StepSearcherImport<                 UniquePolygonStepSearcher>(  Moderate),
-//	StepSearcherImport<              QiuDeadlyPatternStepSearcher>(  Moderate),
-//	StepSearcherImport<         BivalueUniversalGraveStepSearcher>(  Moderate),
-//	StepSearcherImport<  ReverseBivalueUniversalGraveStepSearcher>(  Moderate),
-//	StepSearcherImport<           UniquenessClueCoverStepSearcher>(  Moderate),
-//	StepSearcherImport<               RwDeadlyPatternStepSearcher>(  Moderate, Areas =      None),
-//	StepSearcherImport<EmptyRectangleIntersectionPairStepSearcher>(  Moderate),
-//	StepSearcherImport<                      FireworkStepSearcher>(  Moderate),
-//	StepSearcherImport<     GurthSymmetricalPlacementStepSearcher>(Elementary),
-//	StepSearcherImport<           NonMultipleChainingStepSearcher>(      Hard),
-//	StepSearcherImport<            AlmostLockedSetsXzStepSearcher>(  Moderate),
-//	StepSearcherImport<        AlmostLockedSetsXyWingStepSearcher>(  Moderate),
-//	StepSearcherImport<         AlmostLockedSetsWWingStepSearcher>(  Moderate),
-//	StepSearcherImport<                      GuardianStepSearcher>(      Hard),
-//	StepSearcherImport<                   ComplexFishStepSearcher>(      Hard),
-//	StepSearcherImport<                BivalueOddagonStepSearcher>(      Hard),
-//	StepSearcherImport<              ChromaticPatternStepSearcher>(      Hard),
-//	StepSearcherImport<                  DeathBlossomStepSearcher>(      Hard, Areas =      None),
-//	StepSearcherImport<              MultipleChainingStepSearcher>(      Hard),
-//	StepSearcherImport<                   BowmanBingoStepSearcher>(      Hard, Areas =      None),
-//	StepSearcherImport<                      TemplateStepSearcher>(      Hard, Areas =      None),
-//	StepSearcherImport<                PatternOverlayStepSearcher>(      Hard, Areas = Gathering),
-//	StepSearcherImport<                  JuniorExocetStepSearcher>(  Fiendish),
-//	StepSearcherImport<                  SeniorExocetStepSearcher>(  Fiendish, Areas =      None),
-//	StepSearcherImport<                    DominoLoopStepSearcher>(  Fiendish),
-//	StepSearcherImport<         MultisectorLockedSetsStepSearcher>(  Fiendish),
-//	StepSearcherImport<      AdvancedMultipleChainingStepSearcher>(  Fiendish, Areas =      None),
-	StepSearcherImport<                    BruteForceStepSearcher>(    Hidden, Areas = Searching)
-]
+[assembly: StepSearcherImport<                        SingleStepSearcher>(Elementary)]
+[assembly: StepSearcherImport<              LockedCandidatesStepSearcher>(Elementary)]
+[assembly: StepSearcherImport<                        SubsetStepSearcher>(  Moderate)]
+[assembly: StepSearcherImport<                    NormalFishStepSearcher>(  Moderate)]
+[assembly: StepSearcherImport<                TwoStrongLinksStepSearcher>(  Moderate)]
+[assembly: StepSearcherImport<                   RegularWingStepSearcher>(  Moderate)]
+[assembly: StepSearcherImport<                         WWingStepSearcher>(  Moderate)]
+[assembly: StepSearcherImport<              MultiBranchWWingStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<               UniqueRectangleStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<        AlmostLockedCandidatesStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<                      SueDeCoqStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<            SueDeCoq3DimensionStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<                    UniqueLoopStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<             ExtendedRectangleStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<                EmptyRectangleStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<                  UniqueMatrixStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<                 UniquePolygonStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<              QiuDeadlyPatternStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<         BivalueUniversalGraveStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<  ReverseBivalueUniversalGraveStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<           UniquenessClueCoverStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<               RwDeadlyPatternStepSearcher>(  Moderate, Areas =      None)]
+//[assembly: StepSearcherImport<EmptyRectangleIntersectionPairStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<                      FireworkStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<     GurthSymmetricalPlacementStepSearcher>(Elementary)]
+//[assembly: StepSearcherImport<           NonMultipleChainingStepSearcher>(      Hard)]
+//[assembly: StepSearcherImport<            AlmostLockedSetsXzStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<        AlmostLockedSetsXyWingStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<         AlmostLockedSetsWWingStepSearcher>(  Moderate)]
+//[assembly: StepSearcherImport<                      GuardianStepSearcher>(      Hard)]
+//[assembly: StepSearcherImport<                   ComplexFishStepSearcher>(      Hard)]
+//[assembly: StepSearcherImport<                BivalueOddagonStepSearcher>(      Hard)]
+//[assembly: StepSearcherImport<              ChromaticPatternStepSearcher>(      Hard)]
+//[assembly: StepSearcherImport<                  DeathBlossomStepSearcher>(      Hard, Areas =      None)]
+//[assembly: StepSearcherImport<              MultipleChainingStepSearcher>(      Hard)]
+//[assembly: StepSearcherImport<                   BowmanBingoStepSearcher>(      Hard, Areas =      None)]
+//[assembly: StepSearcherImport<                      TemplateStepSearcher>(      Hard, Areas =      None)]
+//[assembly: StepSearcherImport<                PatternOverlayStepSearcher>(      Hard, Areas = Gathering)]
+//[assembly: StepSearcherImport<                  JuniorExocetStepSearcher>(  Fiendish)]
+//[assembly: StepSearcherImport<                  SeniorExocetStepSearcher>(  Fiendish, Areas =      None)]
+//[assembly: StepSearcherImport<                    DominoLoopStepSearcher>(  Fiendish)]
+//[assembly: StepSearcherImport<         MultisectorLockedSetsStepSearcher>(  Fiendish)]
+//[assembly: StepSearcherImport<      AdvancedMultipleChainingStepSearcher>(  Fiendish, Areas =      None)]
+[assembly: StepSearcherImport<                    BruteForceStepSearcher>(    Hidden, Areas = Searching)]
