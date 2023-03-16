@@ -140,13 +140,7 @@ public sealed partial class SingleStepSearcher
 					continue;
 				}
 
-				var step = new NakedSingleStep(
-					new[] { new Conclusion(Assignment, cell, digit) },
-					null,
-					cell,
-					digit
-				);
-
+				var step = new NakedSingleStep(new[] { new Conclusion(Assignment, cell, digit) }, null, cell, digit);
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
@@ -292,14 +286,7 @@ public sealed partial class SingleStepSearcher
 			}
 
 			var digit = TrailingZeroCount(mask);
-
-			var step = new NakedSingleStep(
-				new[] { new Conclusion(Assignment, cell, digit) },
-				null,
-				cell,
-				digit
-			);
-
+			var step = new NakedSingleStep(new[] { new Conclusion(Assignment, cell, digit) }, null, cell, digit);
 			if (context.OnlyFindOne)
 			{
 				return step;
