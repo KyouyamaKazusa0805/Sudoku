@@ -315,7 +315,8 @@ public sealed partial class SingleStepSearcher
 	/// </remarks>
 	private Step? CheckForHiddenSingleAndLastDigit(scoped in Grid grid, int digit, int house)
 	{
-		int count = 0, resultCell = -1;
+		var count = 0;
+		var resultCell = -1;
 		var flag = true;
 		foreach (var cell in HousesMap[house])
 		{
