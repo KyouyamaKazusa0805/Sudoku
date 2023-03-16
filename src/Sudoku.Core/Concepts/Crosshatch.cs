@@ -224,7 +224,7 @@ public readonly partial struct Crosshatch(ulong mask) : IEquatable<Crosshatch>, 
 		};
 
 		var cellsShouldBeEliminated = houseCells - targetCell;
-		var tempTargetCombination = (CellMap?)null;
+		var tempTargetCombination = default(CellMap?);
 		foreach (var combination in valueCellsOfDigit | valueCellsOfDigit.Count)
 		{
 			if ((combination.ExpandedPeers & houseCells) == cellsShouldBeEliminated)

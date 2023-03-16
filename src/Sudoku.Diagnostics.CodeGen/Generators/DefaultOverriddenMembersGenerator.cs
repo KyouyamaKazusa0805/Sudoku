@@ -246,7 +246,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 						},
 						_ => null
 					},
-					_ => (bool?)null
+					_ => default(bool?)
 				};
 
 				var extraAttributeStr = mode switch
@@ -328,12 +328,12 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 						where method is { Name: nameof(object.ToString), Parameters: [{ Type.IsReferenceType: true }] }
 						select method
 					).Take(2).Count() == 2,
-					_ => (bool?)null
+					_ => default(bool?)
 				};
 
 				var targetExpression = (mode, rawMemberNames.ToArray(), needCast) switch
 				{
-					(0, [], true) => $"\t=> ToString((string?)null);",
+					(0, [], true) => $"\t=> ToString(default(string?));",
 					(0, [], _) => $"\t=> ToString(null);",
 					(1, [var memberName], _) => $"\t=> {memberName};",
 					(2, var memberNames, _) when argStr(memberNames) is var a => $$$""""{{{"\t"}}}=> $$"""{{nameof({{{typeName}}})}} { {{{a}}} }""";"""",

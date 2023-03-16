@@ -3835,8 +3835,8 @@ unsafe partial class UniqueRectangleStepSearcher
 			if (!guardian1 ^ !guardian2)
 			{
 				var guardianDigit = -1;
-				var targetElimMap = (CellMap?)null;
-				var targetGuardianMap = (CellMap?)null;
+				var targetElimMap = default(CellMap?);
+				var targetGuardianMap = default(CellMap?);
 				if (guardian1 is not [] && (guardian1.PeerIntersection & CandidatesMap[d1]) is var a and not [])
 				{
 					targetElimMap = a;

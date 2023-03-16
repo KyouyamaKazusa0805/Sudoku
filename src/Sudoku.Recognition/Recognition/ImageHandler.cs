@@ -81,7 +81,7 @@ public static class ImageHandler
 					6 => RotateFlipType.Rotate90FlipNone,
 					7 => RotateFlipType.Rotate270FlipX,
 					8 => RotateFlipType.Rotate270FlipNone,
-					_ => (RotateFlipType?)null
+					_ => default(RotateFlipType?)
 				} is { } flipType
 			)
 			{

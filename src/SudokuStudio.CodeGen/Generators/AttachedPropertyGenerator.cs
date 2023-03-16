@@ -51,13 +51,13 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 					continue;
 				}
 
-				var docCref = (string?)null;
-				var docPath = (string?)null;
-				var defaultValueGenerator = (string?)null;
-				var defaultValue = (object?)null;
-				var callbackMethodName = (string?)null;
-				var docSummary = (string?)null;
-				var docRemarks = (string?)null;
+				var docCref = default(string?);
+				var docPath = default(string?);
+				var defaultValueGenerator = default(string?);
+				var defaultValue = default(object?);
+				var callbackMethodName = default(string?);
+				var docSummary = default(string?);
+				var docRemarks = default(string?);
 				var isNullable = false;
 				foreach (var pair in namedArgs)
 				{
@@ -134,7 +134,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 					select fieldName
 				).FirstOrDefault();
 
-				var defaultValueGeneratorKind = (DefaultValueGeneratingMemberKind?)null;
+				var defaultValueGeneratorKind = default(DefaultValueGeneratingMemberKind?);
 				if (defaultValueGenerator is not null)
 				{
 					defaultValueGeneratorKind = typeSymbol.GetAllMembers().FirstOrDefault(m => m.Name == defaultValueGenerator) switch

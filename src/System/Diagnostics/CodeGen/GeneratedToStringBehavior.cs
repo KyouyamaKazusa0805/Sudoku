@@ -20,7 +20,7 @@ public enum GeneratedToStringBehavior
 	///     /// <inheritdoc cref="object.ToString"/>
 	///     [CompilerGenerated]
 	///     [GeneratedCode("SourceGeneratorName", "1.0.0.0")]
-	///     public override readonly partial string ToString() => ToString((string?)null);
+	///     public override readonly partial string ToString() => ToString(default(string?));
 	/// }
 	/// ]]></code>
 	/// </remarks>

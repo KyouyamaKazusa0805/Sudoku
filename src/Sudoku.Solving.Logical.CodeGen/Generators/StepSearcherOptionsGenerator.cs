@@ -131,8 +131,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		foreach (var (_, priority, level, name, docCommentTypeName, namedArguments, nameConflict) in foundAttributesData)
 		{
 			// Checks whether the attribute has configured any extra options.
-			var enabledArea = (byte?)null;
-			var disabledReason = (short?)null;
+			var enabledArea = default(byte?);
+			var disabledReason = default(short?);
 			if (namedArguments is not [])
 			{
 				foreach (var kvp in namedArguments)
@@ -154,7 +154,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 			}
 
 			// Gather the extra options on step searcher.
-			var sb = (StringBuilder?)null;
+			var sb = default(StringBuilder?);
 			if (enabledArea is not null || disabledReason is not null)
 			{
 				sb = new StringBuilder().Append(comma);

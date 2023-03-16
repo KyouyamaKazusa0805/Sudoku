@@ -33,7 +33,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 		}
 
 		using var cts = new CancellationTokenSource();
-		var firstPossibleStep = (IStep?)null;
+		var firstPossibleStep = default(IStep?);
 		var tempList = new List<ComplexFishStep>();
 		var searchingTasks = new Task[count];
 		var onlyFindOne = context.OnlyFindOne;

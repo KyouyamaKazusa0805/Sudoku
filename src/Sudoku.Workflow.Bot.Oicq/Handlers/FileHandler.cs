@@ -325,7 +325,7 @@ public static class StorageHandler
 			Directory.CreateDirectory(cachedPictureFolder);
 		}
 
-		var targetPath = (string?)null;
+		var targetPath = default(string?);
 		for (var index = 0; index < int.MaxValue; index++)
 		{
 			var picturePath = $"""{cachedPictureFolder}\temp{(index == 0 ? string.Empty : index.ToString())}.png""";
