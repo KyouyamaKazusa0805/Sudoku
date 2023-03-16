@@ -29,7 +29,9 @@ public abstract class SubsetStep(Conclusion[] conclusions, View[]? views, int ho
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
+	[AllowNull]
+	[MaybeNull]
+	public sealed override string Format => base.Format;
 
 	/// <summary>
 	/// Indicates all cells used.

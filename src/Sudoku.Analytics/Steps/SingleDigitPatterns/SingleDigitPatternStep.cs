@@ -14,7 +14,9 @@ public abstract class SingleDigitPatternStep(Conclusion[] conclusions, View[]? v
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
+	[AllowNull]
+	[MaybeNull]
+	public sealed override string Format => base.Format;
 
 	/// <inheritdoc/>
 	public override TechniqueGroup Group => TechniqueGroup.SingleDigitPattern;

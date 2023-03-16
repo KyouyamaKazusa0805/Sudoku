@@ -712,6 +712,25 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
+	/// <summary>
+	/// Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
+	/// using the specified function to convert.
+	/// </summary>
+	/// <typeparam name="TResult">The type of target value.</typeparam>
+	/// <param name="selector">The selector.</param>
+	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+	public readonly TResult[] Select<TResult>(Func<int, TResult> selector)
+	{
+		var result = new TResult[_count];
+		var i = 0;
+		foreach (var cell in Offsets)
+		{
+			result[i++] = selector(cell);
+		}
+
+		return result;
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(int item)

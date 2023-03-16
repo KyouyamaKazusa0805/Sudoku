@@ -2660,22 +2660,6 @@
             <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance.</returns>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
-        <member name="T:Sudoku.Analytics.Linq.CellMapEnumerable">
-            <summary>
-            Provides with LINQ-based extension methods on <see cref="T:Sudoku.Concepts.CellMap"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Linq.CellMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
-            <summary>
-            Projects each element in <see cref="T:Sudoku.Concepts.CellMap"/> instance into the target-typed <typeparamref name="TResult"/> array,
-            using the specified function to convert.
-            </summary>
-            <typeparam name="TResult">The type of target value.</typeparam>
-            <param name="this">The <see cref="T:Sudoku.Concepts.CellMap"/> instance.</param>
-            <param name="selector">The selector.</param>
-            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason">
             <summary>
             Defines a reason why the puzzle is failed to be analyzed.
@@ -3806,6 +3790,76 @@
         <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher">
+            <summary>
+            Provides with a <b>Regular Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>XY-Wing</item>
+            <item>XYZ-Wing</item>
+            <item>WXYZ-Wing</item>
+            <item>VWXYZ-Wing</item>
+            <item>UVWXYZ-Wing</item>
+            <item>TUVWXYZ-Wing</item>
+            <item>STUVWXYZ-Wing</item>
+            <item>RSTUVWXYZ-Wing</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount">
+            <summary>
+            Indicates the maximum number of pivots to be searched for.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.FishStep">
+            <summary>
+            Provides with a step that is a <b>Fish</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Fish</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.BaseSetsMask">
+            <summary>
+            Indicates the mask that contains the base sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.CoverSetsMask">
+            <summary>
+            Indicates the mask that contains the cover sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Size">
+            <inheritdoc/>
+            <remarks>
+            The name of the corresponding names are:
+            <list type="table">
+            <item><term>2</term><description>X-Wing</description></item>
+            <item><term>3</term><description>Swordfish</description></item>
+            <item><term>4</term><description>Jellyfish</description></item>
+            <item><term>5</term><description>Squirmbag (or Starfish)</description></item>
+            <item><term>6</term><description>Whale</description></item>
+            <item><term>7</term><description>Leviathan</description></item>
+            </list>
+            Other fishes of sizes not appearing in above don't have well-known names.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.NormalFishStep">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
@@ -3862,52 +3916,6 @@
             <summary>
             Indicates the internal name.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.FishStep">
-            <summary>
-            Provides with a step that is a <b>Fish</b> technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Fish</b> technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.BaseSetsMask">
-            <summary>
-            Indicates the mask that contains the base sets.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.CoverSetsMask">
-            <summary>
-            Indicates the mask that contains the cover sets.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.Size">
-            <inheritdoc/>
-            <remarks>
-            The name of the corresponding names are:
-            <list type="table">
-            <item><term>2</term><description>X-Wing</description></item>
-            <item><term>3</term><description>Swordfish</description></item>
-            <item><term>4</term><description>Jellyfish</description></item>
-            <item><term>5</term><description>Squirmbag (or Starfish)</description></item>
-            <item><term>6</term><description>Whale</description></item>
-            <item><term>7</term><description>Leviathan</description></item>
-            </list>
-            Other fishes of sizes not appearing in above don't have well-known names.
-            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.Steps.IntersectionStep">
             <summary>
@@ -4001,16 +4009,6 @@
         <member name="P:Sudoku.Analytics.Steps.InvalidStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.LastResortStep">
-            <summary>
-            Provides with a step that is a <b>Last Resort</b> technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
-            <summary>
-            Provides with a step that is a <b>Last Resort</b> technique.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.BruteForceStep">
             <summary>
             Provides with a step that is a <b>Brute Force</b> technique.
@@ -4035,6 +4033,16 @@
         </member>
         <member name="P:Sudoku.Analytics.Steps.BruteForceStep.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.LastResortStep">
+            <summary>
+            Provides with a step that is a <b>Last Resort</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Last Resort</b> technique.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleDigitPatternStep">
             <summary>
@@ -4090,35 +4098,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.FormatInterpolatedParts">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.SingleStep">
-            <summary>
-            Provides with a step that is a <b>Single</b> technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Single</b> technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleStep.Cell">
-            <summary>
-            Indicates the cell used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleStep.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleStep.Group">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FullHouseStep">
@@ -4191,50 +4170,33 @@
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.SubsetStep">
+        <member name="T:Sudoku.Analytics.Steps.SingleStep">
             <summary>
-            Provides with a step that is a <b>Subset</b> technique.
+            Provides with a step that is a <b>Single</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Subset</b> technique.
+            Provides with a step that is a <b>Single</b> technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.House">
-            <summary>
-            The house that structure lies in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Size">
-            <summary>
-            Indicates the number of cells used.
-            Due to the technique logic, you can also treat the result value of this property as the number of digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask">
-            <summary>
-            Indicates the mask that contains all digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Name">
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Cells">
-            <summary>
-            Indicates all cells used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Group">
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Group">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSubsetStep">
@@ -4295,6 +4257,166 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SubsetStep">
+            <summary>
+            Provides with a step that is a <b>Subset</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Subset</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.House">
+            <summary>
+            The house that structure lies in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Size">
+            <summary>
+            Indicates the number of cells used.
+            Due to the technique logic, you can also treat the result value of this property as the number of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask">
+            <summary>
+            Indicates the mask that contains all digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Cells">
+            <summary>
+            Indicates all cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.RegularWingStep">
+            <summary>
+            Provides with a step that is a <b>Regular Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RegularWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Regular Wing</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.IsIncomplete">
+            <summary>
+            Indicates whether the structure is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Size">
+            <inheritdoc/>
+            <remarks>
+            All names are:
+            <list type="table">
+            <item>
+            <term>2</term>
+            <description>XY-Wing</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>XYZ-Wing</description>
+            </item>
+            <item>
+            <term>4</term>
+            <description>WXYZ-Wing</description>
+            </item>
+            <item>
+            <term>5</term>
+            <description>VWXYZ-Wing</description>
+            </item>
+            <item>
+            <term>6</term>
+            <description>UVWXYZ-Wing</description>
+            </item>
+            <item>
+            <term>7</term>
+            <description>TUVWXYZ-Wing</description>
+            </item>
+            <item>
+            <term>8</term>
+            <description>STUVWXYZ-Wing</description>
+            </item>
+            <item>
+            <term>9</term>
+            <description>RSTUVWXYZ-Wing</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Pivot">
+            <summary>
+            Indicates the cell that blossomed its petals.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.PivotCandidatesCount">
+            <summary>
+            Indicates the number of digits in the pivot cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.DigitsMask">
+            <summary>
+            Indicates a mask that contains all digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Petals">
+            <summary>
+            Indicates the petals used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.InternalName">
+            <summary>
+            Indicates the internal name.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.WingStep">
+            <summary>
+            Provides with a step that is a <b>Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.WingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Wing</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingStep.Group">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">

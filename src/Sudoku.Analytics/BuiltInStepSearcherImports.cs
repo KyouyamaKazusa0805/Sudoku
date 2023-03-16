@@ -11,7 +11,7 @@ using static Sudoku.Analytics.Metadata.StepSearcherRunningArea;
 	StepSearcherImport<                        SubsetStepSearcher>(  Moderate),
 	StepSearcherImport<                    NormalFishStepSearcher>(  Moderate),
 	StepSearcherImport<                TwoStrongLinksStepSearcher>(  Moderate),
-//	StepSearcherImport<                   RegularWingStepSearcher>(  Moderate),
+	StepSearcherImport<                   RegularWingStepSearcher>(  Moderate),
 //	StepSearcherImport<                         WWingStepSearcher>(  Moderate),
 //	StepSearcherImport<              MultiBranchWWingStepSearcher>(  Moderate),
 //	StepSearcherImport<               UniqueRectangleStepSearcher>(  Moderate),

@@ -754,6 +754,15 @@
         <member name="M:Sudoku.Concepts.CellMap.Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.Select``1(System.Func{System.Int32,``0})">
+            <summary>
+            Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
+            using the specified function to convert.
+            </summary>
+            <typeparam name="TResult">The type of target value.</typeparam>
+            <param name="selector">The selector.</param>
+            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.Add(System.Int32)">
             <inheritdoc/>
         </member>
