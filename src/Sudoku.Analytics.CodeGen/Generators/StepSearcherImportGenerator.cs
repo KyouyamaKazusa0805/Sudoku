@@ -110,7 +110,7 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 			}
 
 			// Output the generated code.
-			generatedCodeSnippets.Add($"partial class {name}() : global::Sudoku.Analytics.StepSearcher({priority}, {sb});");
+			generatedCodeSnippets.Add($"partial class {name}() : StepSearcher({priority}, {sb});");
 		}
 
 		spc.AddSource(
@@ -120,6 +120,10 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 
 			#pragma warning disable CS1591
 			#nullable enable
+			
+			using StepSearcherLevel = global::Sudoku.Analytics.Metadata.StepSearcherLevel;
+			using StepSearcherRunningArea = global::Sudoku.Analytics.Metadata.StepSearcherRunningArea;
+
 			namespace {{namespaceUsed.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..]}};
 			
 			{{string.Join(Environment.NewLine, generatedCodeSnippets)}}
@@ -140,7 +144,7 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 			{
 				if ((temp & 1) != 0)
 				{
-					targetList.Add($"global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.{runningAreasFields[(byte)(1 << i)]}");
+					targetList.Add($"StepSearcherRunningArea.{runningAreasFields[(byte)(1 << i)]}");
 				}
 			}
 
@@ -158,7 +162,7 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 			{
 				if (v == field)
 				{
-					return $"global::Sudoku.Analytics.Metadata.StepSearcherLevel.{n}";
+					return $"StepSearcherLevel.{n}";
 				}
 			}
 
