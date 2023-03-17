@@ -6,13 +6,13 @@
 /// For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
 /// whether a candidate is having been removed before.
 /// </summary>
-/// <param name="kinds"><inheritdoc cref="Kinds" path="/summary"/></param>
+/// <param name="cases"><inheritdoc cref="Cases" path="/summary"/></param>
 /// <seealso cref="StepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class ConditionallyAllowedAttribute(ConditionalAllowedKind kinds) : StepSearcherMetadataAttribute
+public sealed class ConditionalCasesAttribute(ConditionalCase cases) : StepSearcherMetadataAttribute
 {
 	/// <summary>
 	/// Indicates the cases that the current <see cref="StepSearcher"/> instance cannot be running on.
 	/// </summary>
-	public ConditionalAllowedKind Kinds { get; } = kinds;
+	public ConditionalCase Cases { get; } = cases;
 }

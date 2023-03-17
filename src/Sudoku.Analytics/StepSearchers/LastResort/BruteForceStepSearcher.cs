@@ -7,9 +7,7 @@
 /// <item>Brute Force</item>
 /// </list>
 /// </summary>
-[Direct]
-[Fixed]
-[StepSearcher]
+[StepSearcher, Fixed, Direct]
 public sealed partial class BruteForceStepSearcher
 {
 	/// <inheritdoc/>

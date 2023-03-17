@@ -20,8 +20,7 @@
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher]
-[ConditionallyAllowed(ConditionalAllowedKind.UnlimitedTimeComplexity)]
+[StepSearcher, ConditionalCases(ConditionalCase.UnlimitedTimeComplexity)]
 public sealed partial class ComplexFishStepSearcher : StepSearcher
 {
 	/// <summary>

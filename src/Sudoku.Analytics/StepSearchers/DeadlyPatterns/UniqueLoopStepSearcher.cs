@@ -10,8 +10,7 @@
 /// <item>Unique Loop Type 4</item>
 /// </list>
 /// </summary>
-[StepSearcher]
-[ConditionallyAllowed(ConditionalAllowedKind.UnlimitedTimeComplexity | ConditionalAllowedKind.UnlimitedSpaceComplexity)]
+[StepSearcher, ConditionalCases(ConditionalCase.UnlimitedTimeComplexity | ConditionalCase.UnlimitedSpaceComplexity)]
 public sealed partial class UniqueLoopStepSearcher
 {
 	/// <inheritdoc/>

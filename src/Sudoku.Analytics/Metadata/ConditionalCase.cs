@@ -6,11 +6,11 @@
 /// </summary>
 /// <remarks><i>
 /// This type is marked <see cref="FlagsAttribute"/>, which means you can use
-/// <see cref="ConditionalAllowedKind"/>.<see langword="operator"/> | to combine multiple fields.
+/// <see cref="ConditionalCase"/>.<see langword="operator"/> | to combine multiple fields.
 /// </i></remarks>
 /// <seealso cref="StepSearcher"/>
 [Flags]
-public enum ConditionalAllowedKind
+public enum ConditionalCase
 {
 	/// <summary>
 	/// Indicates the step searcher can be called anywhere as long it is enabled. This is also the default value of this enumeration type.

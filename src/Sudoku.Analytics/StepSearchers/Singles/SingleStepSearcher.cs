@@ -9,9 +9,7 @@
 /// <item>Naked Single</item>
 /// </list>
 /// </summary>
-[Fixed]
-[Direct]
-[StepSearcher]
+[StepSearcher, Direct, Fixed]
 public sealed partial class SingleStepSearcher
 {
 	/// <summary>

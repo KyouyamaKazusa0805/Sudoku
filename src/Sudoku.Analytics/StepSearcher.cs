@@ -47,26 +47,25 @@ public abstract class StepSearcher(
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
 	public bool IsNotSupportedForSukaku
-		=> GetType().GetCustomAttribute<ConditionallyAllowedAttribute>() is { Kinds: var cases }
-		&& cases.Flags(ConditionalAllowedKind.Standard);
+		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases } && cases.Flags(ConditionalCase.Standard);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="ConditionalAllowedKind.UnlimitedTimeComplexity"/> being configured.
+	/// by option <see cref="ConditionalCase.UnlimitedTimeComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="ConditionalAllowedKind.UnlimitedTimeComplexity"/>
+	/// <seealso cref="ConditionalCase.UnlimitedTimeComplexity"/>
 	public bool IsConfiguredSlow
-		=> GetType().GetCustomAttribute<ConditionallyAllowedAttribute>() is { Kinds: var cases }
-		&& cases.Flags(ConditionalAllowedKind.UnlimitedTimeComplexity);
+		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
+		&& cases.Flags(ConditionalCase.UnlimitedTimeComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="ConditionalAllowedKind.UnlimitedSpaceComplexity"/> being configured.
+	/// by option <see cref="ConditionalCase.UnlimitedSpaceComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="ConditionalAllowedKind.UnlimitedSpaceComplexity"/>
+	/// <seealso cref="ConditionalCase.UnlimitedSpaceComplexity"/>
 	public bool IsConfiguredHighAllocation
-		=> GetType().GetCustomAttribute<ConditionallyAllowedAttribute>() is { Kinds: var cases }
-		&& cases.Flags(ConditionalAllowedKind.UnlimitedSpaceComplexity);
+		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
+		&& cases.Flags(ConditionalCase.UnlimitedSpaceComplexity);
 
 	/// <summary>
 	/// Indicates the priority value of the current step searcher.

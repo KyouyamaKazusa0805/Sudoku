@@ -41,7 +41,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-[ConditionallyAllowed(ConditionalAllowedKind.Standard)]
+[Metadata.ConditionalCases(ConditionalCase.Standard)]
 public sealed partial class UniqueRectangleStepSearcher
 {
 	/// <summary>

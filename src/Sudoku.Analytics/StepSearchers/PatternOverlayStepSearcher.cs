@@ -7,8 +7,7 @@
 /// <item>Pattern Overlay</item>
 /// </list>
 /// </summary>
-[StepSearcher]
-[Direct]
+[StepSearcher, Direct]
 public sealed partial class PatternOverlayStepSearcher
 {
 	/// <summary>
