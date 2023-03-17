@@ -16,7 +16,7 @@ internal sealed unsafe partial class UniqueLoopStepSearcher : IUniqueLoopStepSea
 
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
-		var resultList = (IOrderedEnumerable<UniqueLoopStep>)null!;
+		var resultList = default(IOrderedEnumerable<UniqueLoopStep>)!;
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
