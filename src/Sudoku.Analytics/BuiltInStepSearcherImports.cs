@@ -13,7 +13,7 @@ using static Sudoku.Analytics.Metadata.StepSearcherRunningArea;
 [assembly: StepSearcherImport<                   RegularWingStepSearcher>(  Moderate)]
 [assembly: StepSearcherImport<                         WWingStepSearcher>(  Moderate)]
 [assembly: StepSearcherImport<              MultiBranchWWingStepSearcher>(  Moderate)]
-//[assembly: StepSearcherImport<               UniqueRectangleStepSearcher>(  Moderate)]
+[assembly: StepSearcherImport<               UniqueRectangleStepSearcher>(  Moderate)]
 //[assembly: StepSearcherImport<        AlmostLockedCandidatesStepSearcher>(  Moderate)]
 //[assembly: StepSearcherImport<                      SueDeCoqStepSearcher>(  Moderate)]
 //[assembly: StepSearcherImport<            SueDeCoq3DimensionStepSearcher>(  Moderate)]

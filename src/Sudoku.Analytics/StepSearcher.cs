@@ -47,26 +47,26 @@ public abstract class StepSearcher(
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
 	public bool IsNotSupportedForSukaku
-		=> GetType().GetCustomAttribute<PartiallyNotSupportedAttribute>() is { Cases: var cases }
-		&& cases.Flags(PartiallyUnavailableCase.Sukaku);
+		=> GetType().GetCustomAttribute<ConditionallyAllowedAttribute>() is { Kinds: var cases }
+		&& cases.Flags(ConditionalAllowedKind.Standard);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="PartiallyUnavailableCase.TimeComplexity"/> being configured.
+	/// by option <see cref="ConditionalAllowedKind.UnlimitedTimeComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="PartiallyUnavailableCase.TimeComplexity"/>
+	/// <seealso cref="ConditionalAllowedKind.UnlimitedTimeComplexity"/>
 	public bool IsConfiguredSlow
-		=> GetType().GetCustomAttribute<PartiallyNotSupportedAttribute>() is { Cases: var cases }
-		&& cases.Flags(PartiallyUnavailableCase.TimeComplexity);
+		=> GetType().GetCustomAttribute<ConditionallyAllowedAttribute>() is { Kinds: var cases }
+		&& cases.Flags(ConditionalAllowedKind.UnlimitedTimeComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="PartiallyUnavailableCase.SpaceComplexity"/> being configured.
+	/// by option <see cref="ConditionalAllowedKind.UnlimitedSpaceComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="PartiallyUnavailableCase.SpaceComplexity"/>
+	/// <seealso cref="ConditionalAllowedKind.UnlimitedSpaceComplexity"/>
 	public bool IsConfiguredHighAllocation
-		=> GetType().GetCustomAttribute<PartiallyNotSupportedAttribute>() is { Cases: var cases }
-		&& cases.Flags(PartiallyUnavailableCase.SpaceComplexity);
+		=> GetType().GetCustomAttribute<ConditionallyAllowedAttribute>() is { Kinds: var cases }
+		&& cases.Flags(ConditionalAllowedKind.UnlimitedSpaceComplexity);
 
 	/// <summary>
 	/// Indicates the priority value of the current step searcher.

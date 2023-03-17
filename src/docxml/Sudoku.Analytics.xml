@@ -81,22 +81,22 @@
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms">
             <summary>
-            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.TimeComplexity"/>.
+            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.UnlimitedTimeComplexity"/>.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
-            <seealso cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.TimeComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.UnlimitedTimeComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms">
             <summary>
             Indicates whether the solver will ignore slow step searchers being configured
-            <see cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.SpaceComplexity"/>.
+            <see cref="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.UnlimitedSpaceComplexity"/>.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
-            <seealso cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.SpaceComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.UnlimitedSpaceComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.CustomSearcherCollection">
             <summary>
@@ -2621,10 +2621,22 @@
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.InternalHelpers.AlmostLockedSetHelper">
+            <summary>
+            Represents a helper type that operates with <see cref="T:Sudoku.Analytics.Patterns.AlmostLockedSet"/> instances.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.AlmostLockedSetHelper.GatherAlmostLockedSets(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Analytics.Patterns.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)"/>
+            <remarks><b>This method uses <see cref="T:Sudoku.Analytics.Buffers.CachedFields"/>.</b></remarks>
+            <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
+        </member>
         <member name="T:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper">
             <summary>
-            Used by fish step searchers.
+            Used by <see cref="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher"/> and <see cref="!:ComplexFishStepSearcher"/>.
             </summary>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher"/>
+            <seealso cref="!:ComplexFishStepSearcher"/>
         </member>
         <member name="M:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
@@ -2659,6 +2671,73 @@
             <param name="name">The name.</param>
             <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance.</returns>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="T:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper">
+            <summary>
+            Used by <see cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.CheckPreconditions(Sudoku.Concepts.Grid@,System.Int32[],System.Boolean)">
+            <summary>
+            Check preconditions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+            <returns>Indicates whether the UR is passed to check.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.CheckPreconditionsOnIncomplete(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="urCells">The UR cells.</param>
+            <param name="d1">The first digit used.</param>
+            <param name="d2">The second digit used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.IsConjugatePair(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            To determine whether the specified house forms a conjugate pair
+            of the specified digit, and the cells where they contain the digit
+            is same as the given map contains.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="map">The map.</param>
+            <param name="houseIndex">The house index.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.GetDiagonalCell(System.Int32[],System.Int32)">
+            <summary>
+            Get a cell that can't see each other.
+            </summary>
+            <param name="urCells">The UR cells.</param>
+            <param name="cell">The current cell.</param>
+            <returns>The diagonal cell.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified argument <paramref name="cell"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.IsSameHouseCell(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Get whether two cells are in a same house.
+            </summary>
+            <param name="cell1">The cell 1 to check.</param>
+            <param name="cell2">The cell 2 to check.</param>
+            <param name="houses">
+            The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
+            </param>
+            <returns>
+            The <see cref="T:System.Boolean"/> value indicating whether the another cell is same house as the current one.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.GetHighlightCells(System.Int32[])">
+            <summary>
+            Get all highlight cells.
+            </summary>
+            <param name="urCells">The all UR cells used.</param>
+            <returns>The list of highlight cells.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason">
             <summary>
@@ -2731,6 +2810,72 @@
             <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
             <seealso cref="F:Sudoku.Analytics.AnalysisContext.Grid"/>
         </member>
+        <member name="T:Sudoku.Analytics.Metadata.ConditionalAllowedKind">
+            <summary>
+            Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher"/> is partially allowed
+            in searching or gathering operation.
+            </summary>
+            <remarks><i>
+            This type is marked <see cref="T:System.FlagsAttribute"/>, which means you can use
+            <see cref="T:Sudoku.Analytics.Metadata.ConditionalAllowedKind"/>.<see langword="operator"/> | to combine multiple fields.
+            </i></remarks>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.Default">
+            <summary>
+            Indicates the step searcher can be called anywhere as long it is enabled. This is also the default value of this enumeration type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.Standard">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> is only enabled for standard sudoku puzzles, which means other variants are disallowed
+            using this <see cref="T:Sudoku.Analytics.StepSearcher"/> instance. For example, <see cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
+            can only be used for searching in a standard sudoku, sukakus are disabled.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.UnlimitedTimeComplexity">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Analytics.StepSearcher"/> will produce high time complexity,
+            meaning it will be disabled if a user want to disable high time-complexity algorithms.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.UnlimitedSpaceComplexity">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will produce high space complexity,
+            meaning it will be disabled if a user want to disable high space-complexity algorithms.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.Advanced">
+            <summary>
+            Indicates the reserved field. This field may be used for future considerations.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.ConditionallyAllowedAttribute">
+            <summary>
+            Provides an attribute type that can be marked onto a <see cref="T:Sudoku.Analytics.StepSearcher"/> type,
+            indicating the <see cref="T:Sudoku.Analytics.StepSearcher"/> instance is unavailable on partial cases.
+            For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
+            whether a candidate is having been removed before.
+            </summary>
+            <param name="kinds"><inheritdoc cref="P:Sudoku.Analytics.Metadata.ConditionallyAllowedAttribute.Kinds" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.ConditionallyAllowedAttribute.#ctor(Sudoku.Analytics.Metadata.ConditionalAllowedKind)">
+            <summary>
+            Provides an attribute type that can be marked onto a <see cref="T:Sudoku.Analytics.StepSearcher"/> type,
+            indicating the <see cref="T:Sudoku.Analytics.StepSearcher"/> instance is unavailable on partial cases.
+            For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
+            whether a candidate is having been removed before.
+            </summary>
+            <param name="kinds"><inheritdoc cref="P:Sudoku.Analytics.Metadata.ConditionallyAllowedAttribute.Kinds" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.ConditionallyAllowedAttribute.Kinds">
+            <summary>
+            Indicates the cases that the current <see cref="T:Sudoku.Analytics.StepSearcher"/> instance cannot be running on.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.DirectAttribute">
             <summary>
             <para>
@@ -2771,68 +2916,6 @@
         <member name="T:Sudoku.Analytics.Metadata.FixedAttribute">
             <summary>
             Indicates whether the option is fixed that can't be modified in UI.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute">
-            <summary>
-            Provides an attribute type that can be marked onto a <see cref="T:Sudoku.Analytics.StepSearcher"/> type,
-            indicating the <see cref="T:Sudoku.Analytics.StepSearcher"/> instance is unavailable on partial cases.
-            For example, Deadly Patterns is unavailable for Sukaku puzzles because we cannot determine
-            whether a candidate is having been removed before.
-            </summary>
-            <param name="cases"><inheritdoc cref="P:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute.Cases" path="/summary"/></param>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute.#ctor(Sudoku.Analytics.Metadata.PartiallyUnavailableCase)">
-            <summary>
-            Provides an attribute type that can be marked onto a <see cref="T:Sudoku.Analytics.StepSearcher"/> type,
-            indicating the <see cref="T:Sudoku.Analytics.StepSearcher"/> instance is unavailable on partial cases.
-            For example, Deadly Patterns is unavailable for Sukaku puzzles because we cannot determine
-            whether a candidate is having been removed before.
-            </summary>
-            <param name="cases"><inheritdoc cref="P:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute.Cases" path="/summary"/></param>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.PartiallyNotSupportedAttribute.Cases">
-            <summary>
-            Indicates the cases that the current <see cref="T:Sudoku.Analytics.StepSearcher"/> instance cannot be running on.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.PartiallyUnavailableCase">
-            <summary>
-            Represents a case that a <see cref="T:Sudoku.Analytics.StepSearcher"/> becomes unavailable.
-            </summary>
-            <remarks>
-            This type is marked <see cref="T:System.FlagsAttribute"/>, which means you can use
-            <see cref="T:Sudoku.Analytics.Metadata.PartiallyUnavailableCase"/>.<see langword="operator"/> | to combine multiple fields.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.None">
-            <summary>
-            Indicates the case is none.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.Sukaku">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> is becoming unavailable if it is called to search for technique steps in a Sukaku puzzle.
-            For example, uniqueness-related <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.TimeComplexity">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> produces high time complexity,
-            to be becoming unavailable if user disabled slow-speed step searchers.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.SpaceComplexity">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> produces high space complexity,
-            to be becoming unavailable if user disabled high memory-allocation step searchers.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.Advanced">
-            <summary>
-            Indicates the reserved field. This field may be used for future considerations.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.SeparatedAttribute">
@@ -3004,6 +3087,87 @@
 					one module by default.
 				</remarks>
 			</target>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.AlmostLockedSet">
+            <summary>
+            Defines a data structure that describes an ALS.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="map">The map.</param>
+            <param name="possibleEliminationMap">Indicates the possible cells that can be as the elimination.</param>
+            <remarks>
+            An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
+            The special case is a bi-value cell.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a data structure that describes an ALS.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="map">The map.</param>
+            <param name="possibleEliminationMap">Indicates the possible cells that can be as the elimination.</param>
+            <remarks>
+            An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
+            The special case is a bi-value cell.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.AlmostLockedSet.StrongRelationsCount">
+            <summary>
+            Indicates an array of the total number of the strong relations in an ALS of the different size.
+            The field is only unused in the property <see cref="P:Sudoku.Analytics.Patterns.AlmostLockedSet.StrongLinks"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Patterns.AlmostLockedSet.StrongLinks"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.AlmostLockedSet.House">
+            <summary>
+            Indicates the house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.AlmostLockedSet.IsBivalueCell">
+            <summary>
+            Indicates whether the ALS only uses a bi-value cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.AlmostLockedSet.DigitsMask">
+            <summary>
+            Indicates the mask of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.AlmostLockedSet.StrongLinks">
+            <summary>
+            Indicates all strong links in this ALS.
+            The result will be represented as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.AlmostLockedSet.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.AlmostLockedSet.PossibleEliminationMap">
+            <summary>
+            Gets the possible cells that can store eliminations for the ALS.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.AlmostLockedSet.ContainsDigit(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Indicates whether the specified grid contains the digit.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.AlmostLockedSet.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gathers all possible <see cref="T:Sudoku.Analytics.Patterns.AlmostLockedSet"/>s in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All possible found <see cref="T:Sudoku.Analytics.Patterns.AlmostLockedSet"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Rating.ChainDifficultyRating">
             <summary>
@@ -3390,16 +3554,16 @@
         <member name="P:Sudoku.Analytics.StepSearcher.IsConfiguredSlow">
             <summary>
             Determines whether the current step searcher is disabled
-            by option <see cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.TimeComplexity"/> being configured.
+            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.UnlimitedTimeComplexity"/> being configured.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.TimeComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.UnlimitedTimeComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.StepSearcher.IsConfiguredHighAllocation">
             <summary>
             Determines whether the current step searcher is disabled
-            by option <see cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.SpaceComplexity"/> being configured.
+            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.UnlimitedSpaceComplexity"/> being configured.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.PartiallyUnavailableCase.SpaceComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalAllowedKind.UnlimitedSpaceComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.StepSearcher.Priority">
             <summary>
@@ -3534,6 +3698,753 @@
             <summary>
             Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher">
+            <summary>
+            Provides with a <b>Unique Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Basic types:
+            <list type="bullet">
+            <item>Unique Rectangle Type 1-6</item>
+            <item>Avoidable Rectangle Type 1-3, 5</item>
+            <item>Hidden Unique Rectangle</item>
+            <item>Hidden Avoidable Rectangle</item>
+            </list>
+            </item>
+            <item>
+            Structured types:
+            <list type="bullet">
+            <item>Unique Rectangle + Conjugate Pair (also called "Unique Rectangle + Strong Link")</item>
+            <item>Avoidable Rectangle + Hidden Single</item>
+            <item>Unique Rectangle + Unknown Covering</item>
+            <item>Unique Rectangle + Sue de Coq</item>
+            <item>
+            Unique Rectangle + Guardian (This program call it "Unique Rectangle External Types"):
+            <list type="bullet">
+            <item>Unique Rectangle External Type 1-4</item>
+            <item>Unique Rectangle External Type with XY-Wing</item>
+            <item>Unique Rectangle External Type with ALS-XZ</item>
+            <item>Unique Rectangle External Type with Skyscraper</item>
+            </list>
+            </item>
+            <item>Avoidable Rectangle + Guardian (Sub-types are same like above)</item>
+            </list>
+            </item>
+            <item>
+            Miscellaneous types:
+            <list type="bullet">
+            <item>Unique Rectangle 2D, 3X</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles">
+            <summary>
+            Indicates whether the UR can be incomplete. In other words,
+            some of UR candidates can be removed before the pattern forms.
+            </summary>
+            <remarks>
+            For example, the complete pattern is:
+            <code><![CDATA[
+            ab  |  ab
+            ab  |  ab
+            ]]></code>
+            This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
+            The incomplete pattern may not contain all four <c>ab</c>s in the structure.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles">
+            <summary>
+            Indicates whether the searcher can search for extended URs.
+            </summary>
+            <remarks>
+            The basic types are type 1 to type 6, all other types are extended ones.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Get all possible hints from the grid.
+            </summary>
+            <param name="gathered"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.Accumulator" path="/summary"/></param>
+            <param name="grid"><inheritdoc cref="F:Sudoku.Analytics.AnalysisContext.Grid" path="/summary"/></param>
+            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsIncomplete(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.CandidateViewNode})">
+            <summary>
+            Check whether the highlight UR candidates is incomplete.
+            </summary>
+            <param name="list">The list to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            This method uses a trick to check a UR structure: to count up the number of "Normal colored"
+            candidates used in the current UR structure. If and only if the full structure uses 8 candidates
+            colored with normal one, the structure will be complete.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+              ↓ cornerCell
+            (abc) ab
+             ab   ab
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+              ↓ corner1, corner2
+            (abc) (abc)
+             ab    ab
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">
+            The map of other cells during the current UR searching.
+            </param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ corner1, corner2
+            (ab ) (ab )
+             abx   aby
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check type 4.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">
+            The map of other cells during the current UR searching.
+            </param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ corner1, corner2
+            (ab ) ab
+             abx  aby
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType5(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check type 5.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ cornerCell
+            (ab ) abc
+             abc  abc
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType6(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check type 6.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ corner1
+            (ab )  aby
+             abx  (ab)
+                   ↑corner2
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckHidden(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check hidden UR.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ cornerCell
+            (ab ) abx
+             aby  abz
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 2D.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+              ↓ corner1
+            (ab )  abx
+             aby  (ab )  xy  *
+                    ↑ corner2
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2B1SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 2B/1SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+              ↓ corner1, corner2
+            (ab )  (ab )
+             |
+             | a
+             |
+             abx    aby
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2D1SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 2D/1SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+              ↓ corner1
+            (ab )   aby
+             |
+             | a
+             |
+             abx   (ab )
+                     ↑ corner2
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 3X.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ cornerCell
+            (ab )  abx
+             aby   abz   xy  *
+            ]]></code>
+            Note: <c>z</c> is <c>x</c> or <c>y</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X2SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 3X/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ cornerCell
+            (ab )    abx
+                      |
+                      | b
+                  a   |
+             aby-----abz
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3N2SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 3N/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ cornerCell
+            (ab )-----abx
+                   a   |
+                       | b
+                       |
+             aby      abz
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3U2SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+             <summary>
+             Check UR + 3U/2SL.
+             </summary>
+             <param name="accumulator">The technique accumulator.</param>
+             <param name="grid">The grid.</param>
+             <param name="urCells">All UR cells.</param>
+             <param name="arMode">Indicates whether the current mode is AR mode.</param>
+             <param name="comparer">The mask comparer.</param>
+             <param name="d1">The digit 1 used in UR.</param>
+             <param name="d2">The digit 2 used in UR.</param>
+             <param name="cornerCell">The corner cell.</param>
+             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+             <param name="index">The index.</param>
+             <remarks>
+             The structure:
+             <code><![CDATA[
+              ↓ cornerCell
+             (ab )-----abx
+                    a
+            
+                    b
+              aby -----abz
+             ]]></code>
+             </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3E2SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+             <summary>
+             Check UR + 3E/2SL.
+             </summary>
+             <param name="accumulator">The technique accumulator.</param>
+             <param name="grid">The grid.</param>
+             <param name="urCells">All UR cells.</param>
+             <param name="arMode">Indicates whether the current mode is AR mode.</param>
+             <param name="comparer">The mask comparer.</param>
+             <param name="d1">The digit 1 used in UR.</param>
+             <param name="d2">The digit 2 used in UR.</param>
+             <param name="cornerCell">The corner cell.</param>
+             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+             <param name="index">The index.</param>
+             <remarks>
+             The structure:
+             <code><![CDATA[
+               ↓ cornerCell
+             (ab )-----abx
+                    a
+            
+                    a
+              aby -----abz
+             ]]></code>
+             </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check4X3SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 4X/3SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+              ↓ corner1, corner2
+            (abx)-----(aby)
+                   a    |
+                        | b
+                   a    |
+             abz ----- abw
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check4C3SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 4C/3SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            <para>The structures:</para>
+            <para>
+            Subtype 1:
+            <code><![CDATA[
+              ↓ corner1, corner2
+            (abx)-----(aby)
+                   a    |
+                        | a
+                   b    |
+             abz ----- abw
+            ]]></code>
+            </para>
+            <para>
+            Subtype 2:
+            <code><![CDATA[
+              ↓ corner1, corner2
+            (abx)-----(aby)
+              |    a    |
+              | b       | a
+              |         |
+             abz       abw
+            ]]></code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckRegularWing(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+            <summary>
+            Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="size">The size of the wing to search.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            <para>The structures:</para>
+            <para>
+            Subtype 1:
+            <code><![CDATA[
+              ↓ corner1
+            (ab )  abxy  yz  xz
+            (ab )  abxy  *
+              ↑ corner2
+            ]]></code>
+            Note that the pair of cells <c>abxy</c> should be in the same house.
+            </para>
+            <para>
+            Subtype 2:
+            <code><![CDATA[
+              ↓ corner1
+            (ab )  abx   xz
+             aby  (ab )  *   yz
+                    ↑ corner2
+            ]]></code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckSueDeCoq(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + SdC.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+                      |   xyz
+             ab+ ab+  | abxyz abxyz
+                      |   xyz
+            ----------+------------
+            (ab)(ab)  |
+             ↑ corner1, corner2
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckBabaGroupingUnique(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+             <summary>
+             Check UR + baba grouping.
+             </summary>
+             <param name="accumulator">The technique accumulator.</param>
+             <param name="grid">The grid.</param>
+             <param name="urCells">All UR cells.</param>
+             <param name="comparer">The comparer.</param>
+             <param name="d1">The digit 1.</param>
+             <param name="d2">The digit 2.</param>
+             <param name="index">The index.</param>
+             <remarks>
+             <para>The structures:</para>
+             <para>
+             Subtype 1:
+             <code><![CDATA[
+                  ↓urCellInSameBlock
+             ab  abc      abc  ←anotherCell
+            
+                 abcx-----abcy ←resultCell
+                       c
+                  ↑targetCell
+             ]]></code>
+             Where the digit <c>a</c> and <c>b</c> in the bottom-left cell <c>abcx</c> can be removed.
+             </para>
+             <para>
+             Subtype 2:
+             <code><![CDATA[
+             abcx   | ab  abc
+              |     |
+              | c   |
+              |     |
+             abcy   |     abc
+             ]]></code>
+             </para>
+             </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType1Or2(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            <para>Check UR/AR + Guardian (i.e. UR External Type 2) and UR External Type 1.</para>
+            <para>
+            A UR external type 1 is a special case for type 2, which means only one guardian cell will be used.
+            </para>
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The index.</param>
+            <param name="arMode"></param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType3(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Check UR/AR + Guardian, with external subset (i.e. UR External Type 3).
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The index.</param>
+            <param name="arMode"></param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType4(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Check UR/AR + Guardian, with external conjugate pair (i.e. UR External Type 4).
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The index.</param>
+            <param name="arMode"></param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalTurbotFish(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Check UR/AR + Guardian, with external turbot fish.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="comparer">The comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The mask index.</param>
+            <param name="arMode"></param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalXyWing(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Check UR/AR + Guardian, with external XY-Wing.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="comparer">The comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The mask index.</param>
+            <param name="arMode"></param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalAlmostLockedSetsXz(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],Sudoku.Analytics.Patterns.AlmostLockedSet[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Check UR/AR + Guardian, with external ALS-XZ rule.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="alses">The ALS structures.</param>
+            <param name="comparer">The comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The mask index.</param>
+            <param name="arMode"></param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check AR + Hidden single.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">
+            The map of other cells during the current UR searching.
+            </param>
+            <param name="index">The index.</param>
+            <remarks>
+            <para>The structure:</para>
+            <para>
+            <code><![CDATA[
+            ↓corner1
+            a   | aby  -  -
+            abx | a    -  b
+                | -    -  -
+                  ↑corner2(cell 'a')
+            ]]></code>
+            There's only one cell can be filled with the digit 'b' besides the cell 'aby'.
+            </para>
+            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher">
             <summary>
@@ -3838,6 +4749,680 @@
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep">
+            <summary>
+            Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.House">
+            <summary>
+            Indicates the house where the pattern lies.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.BaseCell">
+            <summary>
+            Indicates the base cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.TargetCell">
+            <summary>
+            Indicates the target cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Deadly Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Deadly Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep">
+            <summary>
+            Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.XDigit">
+            <summary>
+            Indicates the digit X defined in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.YDigit">
+            <summary>
+            Indicates the digit Y defined in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.XyCell">
+            <summary>
+            Indicates a bi-value cell that only contains digit X and Y.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.IsIncomplete">
+            <summary>
+            Indicates whether the rectangle is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.GuardianCells">
+            <summary>
+            Indicates the cells that the guardians lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.AlmostLockedSet">
+            <summary>
+            The almost locked sets used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.IsIncomplete">
+            <summary>
+            Indicates whether the rectangle is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.TurbotFishDigit">
+            <summary>
+            Indicates the digit that the turbot fish used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.BaseHouse">
+            <summary>
+            Indicates the base house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.TargetHouse">
+            <summary>
+            Indicates the target house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.GuardianCells">
+            <summary>
+            Indicates the cells that the guardians lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.CellPair">
+            <summary>
+            Indicates the cell pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 1/2</b>
+            or <b>Avoidable Rectangle External Type 1/2</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 1/2</b>
+            or <b>Avoidable Rectangle External Type 1/2</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.IsIncomplete">
+            <summary>
+            Indicates whether the rectangle is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.GuardianDigit">
+            <summary>
+            Indicates the digit that the guardians are used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.GuardianCells">
+            <summary>
+            Indicates the cells that the guardians lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.IsIncomplete">
+            <summary>
+            Indicates whether the rectangle is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.SubsetDigitsMask">
+            <summary>
+            Indicates the digits that the subset are used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.GuardianCells">
+            <summary>
+            Indicates the cells that the guardians lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.SubsetCells">
+            <summary>
+            The extra cells that forms the subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.IsIncomplete">
+            <summary>
+            Indicates whether the rectangle is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.GuardianCells">
+            <summary>
+            Indicates the cells that the guardians lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.IsIncomplete">
+            <summary>
+            Indicates whether the rectangle is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.GuardianCells">
+            <summary>
+            Indicates the cells that the guardians lie in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.CellPair">
+            <summary>
+            Indicates the cell pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.IsAvoidable">
+            <summary>
+            Indicates whether the current rectangle is an avoidable rectangle.
+            If <see langword="true"/>, an avoidable rectangle; otherwise, a unique rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Digit1">
+            <summary>
+            Indicates the first digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Digit2">
+            <summary>
+            Indicates the second digit used. This value is always greater than <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Digit1"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Digit1"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.AbsoluteOffset">
+            <summary>
+            Indicates the absolute offset.
+            </summary>
+            <remarks>
+            The value will be an <see cref="T:System.Int32"/> value to compare all possible cases
+            of unique rectangle structures to be iterated. The greater the value is,
+            the later the unique rectangle structure will be processed. The value must be between 0 and 485.
+            Other values are invalid and useless. The number of all possible unique rectangle structures is 486.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Cells">
+            <summary>
+            Indicates the cells used in this pattern.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.op_Equality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.op_Inequality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleType1Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType1Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleType2Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.ExtraDigit">
+            <summary>
+            Indicates the extra digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.IsNaked">
+            <summary>
+            Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.House">
+            <summary>
+            Indicates the house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraDigitsMask">
+            <summary>
+            Indicates the mask that contains all extra digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraCells">
+            <summary>
+            Indicates the extra cells used, forming the subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.TargetCell">
+            <summary>
+            Indicates the target cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.ExtraDigit">
+            <summary>
+            Indicates the extra digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.ConjugatePairs">
+            <summary>
+            Indicates the conjugate pairs used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.IsCannibalistic">
+            <summary>
+            Indicates whether the Sue de Coq structure is a cannibalism.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Block">
+            <summary>
+            Indicates the block index that the Sue de Coq structure used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Line">
+            <summary>
+            Indicates the line (row or column) index that the Sue de Coq structure used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.BlockMask">
+            <summary>
+            Indicates the mask that contains all digits from the block of the Sue de Coq structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.LineMask">
+            <summary>
+            Indicates the cells in the line of the Sue de Coq structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.IntersectionMask">
+            <summary>
+            Indicates the mask that contains all digits from the intersection of houses <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Block"/>
+            <seealso cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.IsolatedDigitsMask">
+            <summary>
+            Indicates the mask that contains all isolated digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.BlockCells">
+            <summary>
+            Indicates the cells in the block of the Sue de Coq structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.LineCells">
+            <summary>
+            Indicates the cells in the line (row or column) of the Sue de Coq structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.IntersectionCells">
+            <summary>
+            Indicates the cells in the intersection from houses <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Block"/>
+            <seealso cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.ExtraDigitsMask">
+            <summary>
+            Indicates the mask that contains all extra digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.Branches">
+            <summary>
+            Indicates the branches used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.Petals">
+            <summary>
+            Indicates the petals used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.FishStep">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
@@ -3940,6 +5525,64 @@
             <summary>
             Indicates the internal name.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.IEquatableStep`1">
+            <summary>
+            Represents a type that can be used for comparison on two <typeparamref name="TSelf"/> instances.
+            </summary>
+            <typeparam name="TSelf">The type of the comparsison object. The type must be derived from <see cref="T:Sudoku.Analytics.Step"/>.</typeparam>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.IEquatableStep`1.Distinct(System.Collections.Generic.List{`0})">
+            <summary>
+            Try to compare elements, removing all duplicated ones in this collection,
+            which uses the operator <see cref="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)"/> defined in this interface.
+            </summary>
+            <param name="list">The list of steps to be processed.</param>
+            <returns>The list of steps.</returns>
+            <remarks>
+            This method does not change the ordering of the original list.
+            In other words, if the original list is in order, the final list after invoking this method will be also in order.
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)">
+            <summary>
+            Determines whether two <typeparamref name="TSelf"/> instances are considered equal.
+            </summary>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether two <typeparamref name="TSelf"/> instances are considered equal.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Inequality(`0,`0)">
+            <summary>
+            Determines whether two <typeparamref name="TSelf"/> instances are not considered equal.
+            </summary>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether two <typeparamref name="TSelf"/> instances are not considered equal.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.LocalEqualityComparer`1">
+            <summary>
+            The internal comparer type for <typeparamref name="T"/> instances.
+            </summary>
+            <typeparam name="T">The type of the step.</typeparam>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.LocalEqualityComparer`1.Instance">
+            <summary>
+            The singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.#ctor">
+            <summary>
+            The parameterless constructor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.Equals(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.GetHashCode(`0)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.IntersectionStep">
             <summary>

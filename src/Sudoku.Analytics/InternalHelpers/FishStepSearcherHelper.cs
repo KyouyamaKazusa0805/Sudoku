@@ -1,8 +1,10 @@
 ﻿namespace Sudoku.Analytics.InternalHelpers;
 
 /// <summary>
-/// Used by fish step searchers.
+/// Used by <see cref="NormalFishStepSearcher"/> and <see cref="ComplexFishStepSearcher"/>.
 /// </summary>
+/// <seealso cref="NormalFishStepSearcher"/>
+/// <seealso cref="ComplexFishStepSearcher"/>
 internal static class FishStepSearcherHelper
 {
 	/// <summary>

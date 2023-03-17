@@ -21,22 +21,22 @@ public sealed class Analyzer : IComplexSolver<Analyzer, AnalyzerResult>
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="PartiallyUnavailableCase.TimeComplexity"/>.
+	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="ConditionalAllowedKind.UnlimitedTimeComplexity"/>.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	/// <seealso cref="PartiallyUnavailableCase.TimeComplexity"/>
+	/// <seealso cref="ConditionalAllowedKind.UnlimitedTimeComplexity"/>
 	public bool IgnoreSlowAlgorithms { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver will ignore slow step searchers being configured
-	/// <see cref="PartiallyUnavailableCase.SpaceComplexity"/>.
+	/// <see cref="ConditionalAllowedKind.UnlimitedSpaceComplexity"/>.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	/// <seealso cref="PartiallyUnavailableCase.SpaceComplexity"/>
+	/// <seealso cref="ConditionalAllowedKind.UnlimitedSpaceComplexity"/>
 	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <summary>
