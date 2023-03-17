@@ -11,6 +11,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
+[ConditionallyAllowed(ConditionalAllowedKind.UnlimitedTimeComplexity | ConditionalAllowedKind.UnlimitedSpaceComplexity)]
 public sealed partial class UniqueLoopStepSearcher
 {
 	/// <inheritdoc/>

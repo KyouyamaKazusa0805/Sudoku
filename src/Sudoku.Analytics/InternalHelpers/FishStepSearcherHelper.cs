@@ -14,21 +14,10 @@ internal static class FishStepSearcherHelper
 	/// <param name="fins">All fins.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>
-	/// A <see cref="bool"/> value indicating that. All cases are as belows:
-	/// <list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>The fish is a sashimi finned fish.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="false"/></term>
-	/// <description>The fish is a normal finned fish.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>The fish doesn't contain any fin.</description>
-	/// </item>
-	/// </list>
+	/// <para>A <see cref="bool"/> value indicating that.</para>
+	/// <para>
+	/// <inheritdoc cref="ComplexFishStep.IsSashimi" path="/remarks"/>
+	/// </para>
 	/// </returns>
 	public static bool? IsSashimi(int[] baseSets, scoped in CellMap fins, int digit)
 	{

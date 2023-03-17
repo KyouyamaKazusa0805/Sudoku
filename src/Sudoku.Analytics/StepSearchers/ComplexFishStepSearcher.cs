@@ -1,18 +1,43 @@
-﻿namespace Sudoku.Solving.Logical.StepSearchers;
+﻿namespace Sudoku.Analytics.StepSearchers;
 
+/// <summary>
+/// Provides with a <b>Complex Fish</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>
+/// Franken Fishes
+/// <list type="bullet">
+/// <item>Finned Franken Fish</item>
+/// <item>Sashimi Franken Fish</item>
+/// </list>
+/// </item>
+/// <item>
+/// Mutant Fishes
+/// <list type="bullet">
+/// <item>Finned Mutant Fish</item>
+/// <item>Sashimi Mutant Fish</item>
+/// </list>
+/// </item>
+/// </list>
+/// </summary>
 [StepSearcher]
-internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSearcher
+[ConditionallyAllowed(ConditionalAllowedKind.UnlimitedTimeComplexity)]
+public sealed partial class ComplexFishStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// The internal <see cref="StepSearcher"/> instance that is used for pre-checking the possible eliminations of the fishes.
+	/// </summary>
 	private static readonly PatternOverlayStepSearcher ElimsSearcher = new();
 
 
-	/// <inheritdoc/>
-	[StepSearcherProperty]
+	/// <summary>
+	/// Indicates the maximum size of the fish the step searcher instance can search for. The maximum possible value of this property is 7.
+	/// </summary>
 	public int MaxSize { get; set; }
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
+	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 
@@ -33,7 +58,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 		}
 
 		using var cts = new CancellationTokenSource();
-		var firstPossibleStep = default(IStep?);
+		var firstPossibleStep = default(Step?);
 		var tempList = new List<ComplexFishStep>();
 		var searchingTasks = new Task[count];
 		var onlyFindOne = context.OnlyFindOne;
@@ -75,7 +100,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 		}
 
 		// Remove duplicate items.
-		context.Accumulator!.AddRange(IDistinctableStep<ComplexFishStep>.Distinct(tempList));
+		context.Accumulator!.AddRange(IEquatableStep<ComplexFishStep>.Distinct(tempList));
 
 		return null;
 	}
@@ -88,9 +113,13 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 	/// <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
 	/// <param name="digit">The current digit used.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
-	private IStep? GetAll(
-		ICollection<ComplexFishStep> accumulator, scoped in Grid grid,
-		IList<Conclusion>?[] pomElims, int digit, bool onlyFindOne)
+	private unsafe Step? GetAll(
+		ICollection<ComplexFishStep> accumulator,
+		scoped in Grid grid,
+		List<Conclusion>?[] pomElims,
+		int digit,
+		bool onlyFindOne
+	)
 	{
 		const HouseType bothLines = (HouseType)3;
 
@@ -284,10 +313,8 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 								// Now check whether the current fish is normal ones,
 								// or neither base sets nor cover sets of the mutant fish
 								// contain both row and column houses.
-								if ((usedInBaseSets & AllRowsMask) == usedInBaseSets
-									&& (usedInCoverSets & AllColumnsMask) == usedInCoverSets
-									|| (usedInBaseSets & AllColumnsMask) == usedInBaseSets
-									&& (usedInCoverSets & AllRowsMask) == usedInCoverSets)
+								if ((usedInBaseSets & AllRowsMask) == usedInBaseSets && (usedInCoverSets & AllColumnsMask) == usedInCoverSets
+									|| (usedInBaseSets & AllColumnsMask) == usedInBaseSets && (usedInCoverSets & AllRowsMask) == usedInCoverSets)
 								{
 									// Normal fish.
 									goto BacktrackValue;
@@ -426,7 +453,7 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 									exofins,
 									endofins,
 									!searchForMutant,
-									IFishStepSearcher.IsSashimi(baseSets, fins, digit)
+									FishStepSearcherHelper.IsSashimi(baseSets, fins, digit)
 								);
 								if (onlyFindOne)
 								{
@@ -454,25 +481,18 @@ internal sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepS
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-	private static IList<Conclusion>?[] GetPomEliminationsFirstly(scoped in Grid grid)
+	private static List<Conclusion>?[] GetPomEliminationsFirstly(scoped in Grid grid)
 	{
-		var tempList = new List<IStep>();
-		scoped var context = new LogicalAnalysisContext(tempList, grid, false);
+		var tempList = new List<Step>();
+		scoped var context = new AnalysisContext(tempList, grid, false);
 		ElimsSearcher.GetAll(ref context);
 
-		var result = new IList<Conclusion>?[9];
+		var result = new List<Conclusion>?[9];
 		foreach (PatternOverlayStep step in tempList)
 		{
 			var digit = step.Digit;
 			scoped ref var currentList = ref result[digit];
-			if (currentList is null)
-			{
-				currentList = new List<Conclusion>(step.Conclusions);
-			}
-			else
-			{
-				currentList.AddRange(step.Conclusions);
-			}
+			(currentList ??= new List<Conclusion>()).AddRange(step.Conclusions);
 		}
 
 		return result;

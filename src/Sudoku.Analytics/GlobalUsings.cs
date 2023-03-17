@@ -12,6 +12,7 @@ global using System.Runtime.CompilerServices;
 global using System.Runtime.Messages;
 global using System.Text;
 global using System.Threading;
+global using System.Threading.Tasks;
 global using System.Timers;
 global using Sudoku.Analytics.Buffers;
 global using Sudoku.Analytics.Categorization;

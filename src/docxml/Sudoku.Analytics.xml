@@ -2633,10 +2633,10 @@
         </member>
         <member name="T:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper">
             <summary>
-            Used by <see cref="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher"/> and <see cref="!:ComplexFishStepSearcher"/>.
+            Used by <see cref="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher"/> and <see cref="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher"/>.
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher"/>
-            <seealso cref="!:ComplexFishStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher"/>
         </member>
         <member name="M:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
@@ -2646,21 +2646,10 @@
             <param name="fins">All fins.</param>
             <param name="digit">The digit.</param>
             <returns>
-            A <see cref="T:System.Boolean"/> value indicating that. All cases are as belows:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The fish is a sashimi finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The fish is a normal finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The fish doesn't contain any fin.</description>
-            </item>
-            </list>
+            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
+            <para>
+            <inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi" path="/remarks"/>
+            </para>
             </returns>
         </member>
         <member name="M:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper.GetComplexFishTechniqueCodeFromName(System.String)">
@@ -3168,6 +3157,53 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>All possible found <see cref="T:Sudoku.Analytics.Patterns.AlmostLockedSet"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.ComplexFishFinKind">
+            <summary>
+            Indicates a fin modifier that is used for a complex fish structure.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.ComplexFishFinKind.Normal">
+            <summary>
+            Indicates the normal fish (i.e. no fins).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.ComplexFishFinKind.Finned">
+            <summary>
+            Indicates the finned fish
+            (i.e. contains fins, but the fish may be regular when the fins are removed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.ComplexFishFinKind.Sashimi">
+            <summary>
+            Indicates the sashimi fish
+            (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.ComplexFishFinKind.Siamese">
+            <summary>
+            Indicates the siamese fish (i.e. two fish share same base sets, with different cover sets).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.ComplexFishShapeKind">
+            <summary>
+            Indicates a shape modifier that is used for a complex fish structure.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.ComplexFishShapeKind.Basic">
+            <summary>
+            Indicates the basic fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.ComplexFishShapeKind.Franken">
+            <summary>
+            Indicates the franken fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.ComplexFishShapeKind.Mutant">
+            <summary>
+            Indicates the mutant fish.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Patterns.UniqueLoop">
             <summary>
@@ -3718,6 +3754,154 @@
             <summary>
             Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">
+            <summary>
+            Provides with a <b>Complex Fish</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Franken Fishes
+            <list type="bullet">
+            <item>Finned Franken Fish</item>
+            <item>Sashimi Franken Fish</item>
+            </list>
+            </item>
+            <item>
+            Mutant Fishes
+            <list type="bullet">
+            <item>Finned Mutant Fish</item>
+            <item>Sashimi Mutant Fish</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.ElimsSearcher">
+            <summary>
+            The internal <see cref="T:Sudoku.Analytics.StepSearcher"/> instance that is used for pre-checking the possible eliminations of the fishes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize">
+            <summary>
+            Indicates the maximum size of the fish the step searcher instance can search for. The maximum possible value of this property is 7.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.ComplexFishStep},Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Solving.Conclusion}[],System.Int32,System.Boolean)">
+            <summary>
+            Get all possible fish steps.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
+            <param name="digit">The current digit used.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetPomEliminationsFirstly(Sudoku.Concepts.Grid@)">
+            <summary>
+            Get POM technique eliminations at first.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
+            <summary>
+            Provides with a <b>Unique Loop</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Unique Loop Type 1</item>
+            <item>Unique Loop Type 2</item>
+            <item>Unique Loop Type 3</item>
+            <item>Unique Loop Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+            <summary>
+            Check type 4.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GatherUniqueLoops(System.Int16)">
+            <summary>
+            Try to gather all possible loops being used in technique unique loops,
+            which should satisfy the specified condition.
+            </summary>
+            <param name="digitsMask">The digits used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Analytics.Patterns.UniqueLoop})">
+            <summary>
+            Checks for unique loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid unique loop.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher">
             <summary>
@@ -4655,6 +4839,36 @@
         <member name="M:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.PatternOverlayStepSearcher">
+            <summary>
+            Provides with a <b>Pattern Overlay</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Pattern Overlay</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.PatternOverlayStepSearcher.TemplateCellMaps">
+            <summary>
+            The pre-defined template cell maps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.PatternOverlayStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.PatternOverlayStepSearcher.GetInvalidPos(Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all invalid positions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The 9 maps for invalid positions of each digit.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.PatternOverlayStepSearcher.GetTemplates">
+            <summary>
+            Get all possible templates. The total number of all possible pattern overlay templates is 46656.
+            </summary>
+            <returns>The templates.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher">
             <summary>
             Provides with a <b>3-dimensional Sue de Coq</b> step searcher.
@@ -4808,102 +5022,6 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
-            <summary>
-            Provides with a <b>Unique Loop</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Unique Loop Type 1</item>
-            <item>Unique Loop Type 2</item>
-            <item>Unique Loop Type 3</item>
-            <item>Unique Loop Type 4</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
-            <summary>
-            Check type 1.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="d1">The digit 1.</param>
-            <param name="d2">The digit 2.</param>
-            <param name="loop">The loop.</param>
-            <param name="extraCellsMap">The extra cells map.</param>
-            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-            <returns>The step is worth.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
-            <summary>
-            Check type 2.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="d1">The digit 1.</param>
-            <param name="d2">The digit 2.</param>
-            <param name="loop">The loop.</param>
-            <param name="extraCellsMap">The extra cells map.</param>
-            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-            <returns>The step is worth.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
-            <summary>
-            Check type 3.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="d1">The digit 1.</param>
-            <param name="d2">The digit 2.</param>
-            <param name="loop">The loop.</param>
-            <param name="extraCellsMap">The extra cells map.</param>
-            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-            <returns>The step is worth.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
-            <summary>
-            Check type 4.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="d1">The digit 1.</param>
-            <param name="d2">The digit 2.</param>
-            <param name="loop">The loop.</param>
-            <param name="extraCellsMap">The extra cells map.</param>
-            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-            <returns>The step is worth.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
-            <summary>
-            Represents a cached gathering operation set.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GatherUniqueLoops(System.Int16)">
-            <summary>
-            Try to gather all possible loops being used in technique unique loops,
-            which should satisfy the specified condition.
-            </summary>
-            <param name="digitsMask">The digits used.</param>
-            <returns>
-            Returns a list of array of candidates used in the loop, as the data of possible found loops.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Analytics.Patterns.UniqueLoop})">
-            <summary>
-            Checks for unique loops using recursion.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines a templating method that can determine whether a loop is a valid unique loop.
-            </summary>
-            <param name="loop">The loop to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher">
             <summary>
@@ -5774,6 +5892,121 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.ComplexFishStep">
+            <summary>
+            Provides with a step that is a <b>Complex Fish</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="baseSetsMask"><inheritdoc/></param>
+            <param name="coverSetsMask"><inheritdoc/></param>
+            <param name="exofins">The exo-fins.</param>
+            <param name="endofins">The endo-fins.</param>
+            <param name="isFranken">Indicates whether the fish is a Franken fish.</param>
+            <param name="isSashimi">Indicates whether the fish is a Sashimi fish.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
+            <summary>
+            Provides with a step that is a <b>Complex Fish</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="baseSetsMask"><inheritdoc/></param>
+            <param name="coverSetsMask"><inheritdoc/></param>
+            <param name="exofins">The exo-fins.</param>
+            <param name="endofins">The endo-fins.</param>
+            <param name="isFranken">Indicates whether the fish is a Franken fish.</param>
+            <param name="isSashimi">Indicates whether the fish is a Sashimi fish.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsFranken">
+            <summary>
+            Indicates whether the fish is a Franken fish. If <see langword="true"/>, a Franken fish; otherwise, a Mutant fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi">
+            <summary>
+            Indicates whether the fish is a Sashimi fish.
+            </summary>
+            <remarks>
+            All cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The fish is a sashimi finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The fish is a normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The fish doesn't contain any fin.</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Exofins">
+            <summary>
+            Indicates the fins, positioned outside the fish.
+            They will be defined if cover sets cannot be fully covered, with the number of cover sets being equal to the number of base sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Endofins">
+            <summary>
+            Indicates the fins, positioned inside the fish. Generally speaking, they will be defined if they are in multiple base sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.BaseHouses">
+            <summary>
+            Indicates the base houses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.CoverHouses">
+            <summary>
+            Indicates the cover houses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.InternalName">
+            <summary>
+            The internal name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.FinModifier">
+            <summary>
+            Indicates the fin modifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.ShapeModifier">
+            <summary>
+            The shape modifier.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.op_Equality(Sudoku.Analytics.Steps.ComplexFishStep,Sudoku.Analytics.Steps.ComplexFishStep)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.op_Inequality(Sudoku.Analytics.Steps.ComplexFishStep,Sudoku.Analytics.Steps.ComplexFishStep)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.FishStep">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
@@ -6114,6 +6347,36 @@
             <summary>
             Provides with a step that is a <b>Last Resort</b> technique.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.PatternOverlayStep">
+            <summary>
+            Provides with a step that is a <b>Pattern Overlay</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.PatternOverlayStep.#ctor(Sudoku.Solving.Conclusion[])">
+            <summary>
+            Provides with a step that is a <b>Pattern Overlay</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.FormatInterpolatedParts">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NegativeRankStep">
             <summary>
