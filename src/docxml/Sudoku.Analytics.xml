@@ -3169,6 +3169,26 @@
             <param name="grid">The grid.</param>
             <returns>All possible found <see cref="T:Sudoku.Analytics.Patterns.AlmostLockedSet"/> instances.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Patterns.UniqueLoop">
+            <summary>
+            Represents for a data set that describes the complete information about a unique loop technique.
+            </summary>
+            <param name="Loop">Indicates the cells used in this whole unique loop.</param>
+            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.UniqueLoop.#ctor(Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Represents for a data set that describes the complete information about a unique loop technique.
+            </summary>
+            <param name="Loop">Indicates the cells used in this whole unique loop.</param>
+            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.UniqueLoop.Loop">
+            <summary>Indicates the cells used in this whole unique loop.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.UniqueLoop.DigitsMask">
+            <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
+        </member>
         <member name="T:Sudoku.Analytics.Rating.ChainDifficultyRating">
             <summary>
             Represents a type that calculates for chain difficulty.
@@ -4789,6 +4809,102 @@
         <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
+            <summary>
+            Provides with a <b>Unique Loop</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Unique Loop Type 1</item>
+            <item>Unique Loop Type 2</item>
+            <item>Unique Loop Type 3</item>
+            <item>Unique Loop Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+            <summary>
+            Check type 4.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GatherUniqueLoops(System.Int16)">
+            <summary>
+            Try to gather all possible loops being used in technique unique loops,
+            which should satisfy the specified condition.
+            </summary>
+            <param name="digitsMask">The digits used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Analytics.Patterns.UniqueLoop})">
+            <summary>
+            Checks for unique loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid unique loop.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher">
             <summary>
             Provides with a <b>Multiple-Branch W-Wing</b> step searcher.
@@ -4835,6 +4951,153 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueLoopStep">
+            <summary>
+            Provides with a step that is a <b>Unique Loop</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Unique Loop</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Digit1">
+            <summary>
+            Indicates the first digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Digit2">
+            <summary>
+            Indicates the second digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Type">
+            <summary>
+            Indicates the type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Loop">
+            <summary>
+            Indicates the whole loop of cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.op_Equality(Sudoku.Analytics.Steps.UniqueLoopStep,Sudoku.Analytics.Steps.UniqueLoopStep)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.op_Inequality(Sudoku.Analytics.Steps.UniqueLoopStep,Sudoku.Analytics.Steps.UniqueLoopStep)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueLoopType1Step">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueLoopType2Step">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.ExtraDigit">
+            <summary>
+            Indicates the extra digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueLoopType3Step">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.SubsetDigitsMask">
+            <summary>
+            Indicates the mask that contains the subset digits used in this instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.SubsetCells">
+            <summary>
+            Indicates the cells that are subset cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueLoopType4Step">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep">
