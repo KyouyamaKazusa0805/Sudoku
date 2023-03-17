@@ -231,11 +231,4 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 
 		return result;
 	}
-
-	/// <summary>
-	/// Converts the current instance into an immutable array of type <typeparamref name="T"/>.
-	/// </summary>
-	/// <returns>The array of elements of type <typeparamref name="T"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ImmutableArray<T> ToImmutableArray() => ImmutableArray.Create(ToArray());
 }
