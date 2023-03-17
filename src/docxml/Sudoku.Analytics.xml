@@ -4512,6 +4512,68 @@
             <param name="searchRow">Indicates whether the current searcher searches row.</param>
             <returns>The view.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher">
+            <summary>
+            Provides with an <b>Almost Locked Candidates</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Almost Locked Pair</item>
+            <item>Almost Locked Triple</item>
+            <item>Almost Locked Quadruple (Maybe unnecessary)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
+            <summary>
+            Indicates whether the user checks the almost locked quadruple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckForValues">
+            <summary>
+            Indicates whether the searcher checks for values (givens and modifiables)
+            to form an almost locked candidates. If the value is <see langword="true"/>,
+            some possible Sue de Coqs steps will be replaced with Almost Locked Candidates ones.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+             <summary>
+             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
+             </summary>
+             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+             <param name="size">The size.</param>
+             <param name="baseSet">The base set.</param>
+             <param name="coverSet">The cover set.</param>
+             <param name="a">The left grid map.</param>
+             <param name="b">The right grid map.</param>
+             <param name="c">The intersection.</param>
+             <remarks>
+             <para>
+             The diagrams:
+             <code><![CDATA[
+             ALP:
+             abx aby | ab
+             abz     |
+            
+             ALT:
+             abcw abcx | abc abc
+             abcy abcz |
+             ]]></code>
+             </para>
+             <para>Algorithm:</para>
+             <para>
+             If the cell <c>ab</c> (in ALP) or <c>abc</c> (in ALT) is filled with the digit <c>p</c>,
+             then the cells <c>abx</c> and <c>aby</c> (in ALP) and <c>abcw</c> and <c>abcx</c> (in ALT) can't
+             fill the digit <c>p</c>. Therefore the digit <c>p</c> can only be filled into the left-side block.
+             </para>
+             <para>
+             If the block only contains those cells that can contain the digit <c>p</c>, the ALP or ALT will be formed,
+             and the elimination is <c>z</c> (in ALP) and <c>y</c> and <c>z</c> (in ALT).
+             </para>
+             </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher">
             <summary>
             Provides with a <b>Locked Candidates</b> step searcher.
@@ -4571,6 +4633,32 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher">
+            <summary>
+            Provides with a <b>3-dimensional Sue de Coq</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>3-dimensional Sue de Coq</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher">
+            <summary>
+            Provides with a <b>Sue de Coq</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Sue de Coq</item>
+            <item>Sue de Coq with Isolated Digit</item>
+            <item>Cannibalistic Sue de Coq</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher">
@@ -5584,6 +5672,59 @@
         <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.GetHashCode(`0)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Candidates</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Candidates</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.HasValueCell">
+            <summary>
+            Indicates whether the step contains value cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Size">
+            <summary>
+            Indicates the number of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.DigitsMask">
+            <summary>
+            Indicates the mask that contains the digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.BaseCells">
+            <summary>
+            Indicates the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.TargetCells">
+            <summary>
+            Indicates the target cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.IntersectionStep">
             <summary>
             Provides with a step that is an <b>Intersection</b> technique.
@@ -5709,6 +5850,187 @@
         <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Last Resort</b> technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NegativeRankStep">
+            <summary>
+            Provides with a step that is a <b>Negative Rank</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NegativeRankStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Negative Rank</b> technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.PositiveRankStep">
+            <summary>
+            Provides with a step that is a <b>Positive Rank</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.PositiveRankStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Positive Rank</b> technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.RankTheoryStep">
+            <summary>
+            Provides with a step that is a <b>Rank Theory</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RankTheoryStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Rank Theory</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RankTheoryStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RankTheoryStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep">
+            <summary>
+            Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.RowDigitsMask">
+            <summary>
+            Indicates the digits mask that describes which digits are used in this pattern in a row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.ColumnDigitsMask">
+            <summary>
+            Indicates the digits mask that describes which digits are used in this pattern in a column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BlockDigitsMask">
+            <summary>
+            Indicates the digits mask that describes which digits are used in this pattern in a block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.RowCells">
+            <summary>
+            Indicates the cells used in this pattern in a row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.ColumnCells">
+            <summary>
+            Indicates the cells used in this pattern in a column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BlockCells">
+            <summary>
+            Indicates the cells used in this pattern in a block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SueDeCoqStep">
+            <summary>
+            Provides with a step that is a <b>Sue de Coq</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoqStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Sue de Coq</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IsCannibalistic">
+            <summary>
+            Indicates whether the SdC is cannibalistic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Block">
+            <summary>
+            Indicates the block index that the current pattern used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Line">
+            <summary>
+            Indicates the line (row or column) index that the current pattern used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockMask">
+            <summary>
+            Indicates the block mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineMask">
+            <summary>
+            Indicates the line mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IntersectionMask">
+            <summary>
+            Indicates the intersection mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IsolatedDigitsMask">
+            <summary>
+            The isolated digits mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells">
+            <summary>
+            Indicates the cells that the current pattern used in a block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineCells">
+            <summary>
+            Indicates the cells that the current pattern used in a line (row or column).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IntersectionCells">
+            <summary>
+            Indicates the cells that the current pattern used in an intersection of <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells"/> and <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineCells"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells"/>
+            <seealso cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineCells"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ZeroRankStep">
+            <summary>
+            Provides with a step that is a <b>Zero Rank</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ZeroRankStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Zero Rank</b> technique.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleDigitPatternStep">
