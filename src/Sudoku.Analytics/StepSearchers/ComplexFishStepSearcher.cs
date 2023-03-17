@@ -273,7 +273,8 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 							}
 
 							// Now check the current cover sets.
-							int usedInCoverSets = 0, i = 0;
+							var usedInCoverSets = 0;
+							var i = 0;
 							foreach (var coverSet in coverSets)
 							{
 								currentCoverSets[i++] = coverSet;
