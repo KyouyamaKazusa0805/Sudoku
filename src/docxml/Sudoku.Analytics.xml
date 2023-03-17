@@ -3790,13 +3790,13 @@
         <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.ComplexFishStep},Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Solving.Conclusion}[],System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.ComplexFishStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean)">
             <summary>
             Get all possible fish steps.
             </summary>
             <param name="accumulator">The accumulator.</param>
             <param name="grid">The grid.</param>
-            <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
+            <param name="pomElimsOfThisDigit">The possible eliminations to check.</param>
             <param name="digit">The current digit used.</param>
             <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
         </member>

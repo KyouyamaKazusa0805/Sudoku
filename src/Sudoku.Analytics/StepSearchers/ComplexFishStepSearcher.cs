@@ -50,7 +50,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		var count = 0;
 		for (var digit = 0; digit < 9; digit++)
 		{
-			if (pomElims[digit] is not null)
+			if (pomElims[digit] is not [])
 			{
 				count++;
 			}
@@ -61,35 +61,31 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		var tempList = new List<ComplexFishStep>();
 		var searchingTasks = new Task[count];
 		var onlyFindOne = context.OnlyFindOne;
+
 		count = 0;
 		for (var digit = 0; digit < 9; digit++)
 		{
-			if (pomElims[digit] is null)
+			if (pomElims[digit] is var pomElimsOfThisDigit and not [])
 			{
-				continue;
-			}
+				// Create a background thread to work on searching for fishes of this digit.
+				var digitCopied = digit;
+				searchingTasks[count++] = Task.Run(searchingAction, cts.Token);
 
-			// Note the iteration variable can't be used directly.
-			// We should add a copy in order to use it.
-			var currentDigit = digit;
 
-			// Create a background thread to work on searching for fishes of this digit.
-			searchingTasks[count++] = Task.Run(
-				() =>
+				void searchingAction()
 				{
-					if (GetAll(tempList, tempGrid, pomElims, currentDigit, onlyFindOne) is { } step)
+					if (GetAll(tempList, tempGrid, pomElimsOfThisDigit, digitCopied, onlyFindOne) is { } step)
 					{
 						firstPossibleStep = step;
 						cts.Cancel();
 					}
-				},
-				cts.Token
-			);
+				}
+			}
 		}
 
 		try
 		{
-			// Synchronize the tasks.
+			// Synchronize tasks.
 			Task.WaitAll(searchingTasks);
 		}
 		catch (AggregateException ex) when (ex.InnerException is OperationCanceledException)
@@ -109,13 +105,13 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="grid">The grid.</param>
-	/// <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
+	/// <param name="pomElimsOfThisDigit">The possible eliminations to check.</param>
 	/// <param name="digit">The current digit used.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
 	private unsafe Step? GetAll(
 		ICollection<ComplexFishStep> accumulator,
 		scoped in Grid grid,
-		List<Conclusion>?[] pomElims,
+		scoped in CellMap pomElimsOfThisDigit,
 		int digit,
 		bool onlyFindOne
 	)
@@ -132,27 +128,9 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 			// If false, search for franken fishes.
 			for (var caseIndex = 0; caseIndex < 2; caseIndex++)
 			{
-				var searchForMutant = searchForMutantCases[caseIndex];
-
-				// Try to check the POM eliminations.
-				// If the digit as a key doesn't contain any list in that dictionary,
-				// just skip this loop.
-				var pomElimsOfThisDigit = pomElims[digit];
-				if (pomElimsOfThisDigit is null)
-				{
-					continue;
-				}
-
-				// Get the eliminations of this digit.
-				var elims = new int[pomElimsOfThisDigit.Count];
-				var index = 0;
-				foreach (var conclusion in pomElimsOfThisDigit)
-				{
-					elims[index++] = conclusion.Cell;
-				}
-
 				// Then iterate on each elimination.
-				foreach (var cell in elims)
+				var searchForMutant = searchForMutantCases[caseIndex];
+				foreach (var cell in pomElimsOfThisDigit)
 				{
 					// Try to assume the digit is true in the current cell,
 					// and we can get a map of all possible cells that can be filled with the digit.
@@ -481,18 +459,16 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-	private static List<Conclusion>?[] GetPomEliminationsFirstly(scoped in Grid grid)
+	private static CellMap[] GetPomEliminationsFirstly(scoped in Grid grid)
 	{
 		var tempList = new List<Step>();
 		scoped var context = new AnalysisContext(tempList, grid, false);
 		ElimsSearcher.GetAll(ref context);
 
-		var result = new List<Conclusion>?[9];
+		var result = new CellMap[9];
 		foreach (PatternOverlayStep step in tempList)
 		{
-			var digit = step.Digit;
-			scoped ref var currentList = ref result[digit];
-			(currentList ??= new List<Conclusion>()).AddRange(step.Conclusions);
+			result[step.Digit].AddRange(from conclusion in step.Conclusions select conclusion.Cell);
 		}
 
 		return result;
