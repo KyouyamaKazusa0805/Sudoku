@@ -142,6 +142,26 @@
             <exception cref="T:Sudoku.Analytics.WrongStepException">Throws when found wrong steps to apply.</exception>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
         </member>
+        <member name="M:Sudoku.Analytics.Analyzer.RecordStep(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Analytics.Step,Sudoku.Concepts.Grid@,System.Timers.ValueStopwatch@,System.Collections.Generic.List{Sudoku.Concepts.Grid},Sudoku.Analytics.AnalyzerResult,System.Threading.CancellationToken,Sudoku.Analytics.AnalyzerResult@)">
+            <summary>
+            Try to record the current step, saving it into the arguemnt <paramref name="steps"/>.
+            </summary>
+            <param name="steps">The accumulator.</param>
+            <param name="step">The step to be saved.</param>
+            <param name="playground">The currently used grid.</param>
+            <param name="stopwatch">The stopwatch, in order to check elapsed time.</param>
+            <param name="stepGrids">The step grids.</param>
+            <param name="resultBase">The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance as a base value provider.</param>
+            <param name="cancellationToken">The cancellation token that allows user cancelling the operation.</param>
+            <param name="result">
+            The result returned.
+            If this step is the final step, the result <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance will be assigned into this argument.
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the current step is worth to be saved,
+            meaning it contains at least one conclusion that the current grid <paramref name="playground"/> contains.
+            </returns>
+        </member>
         <member name="T:Sudoku.Analytics.AnalyzerResult">
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.

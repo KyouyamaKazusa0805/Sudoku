@@ -126,7 +126,7 @@ public sealed class Analyzer : IComplexSolver<Analyzer, AnalyzerResult>
 	/// <returns>The solver result.</returns>
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
 	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
-	private unsafe AnalyzerResult InternalSolve(
+	private AnalyzerResult InternalSolve(
 		scoped in Grid puzzle,
 		scoped in Grid solution,
 		bool isSukaku,
@@ -177,7 +177,7 @@ public sealed class Analyzer : IComplexSolver<Analyzer, AnalyzerResult>
 						if (verifyConclusionValidity(solution, foundStep))
 						{
 							if (
-								recordStep(
+								RecordStep(
 									recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
 									resultBase, cancellationToken, out var result)
 							)
@@ -209,7 +209,7 @@ public sealed class Analyzer : IComplexSolver<Analyzer, AnalyzerResult>
 							if (verifyConclusionValidity(solution, foundStep))
 							{
 								if (
-									recordStep(
+									RecordStep(
 										recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
 										resultBase, cancellationToken, out var result)
 								)
@@ -247,66 +247,6 @@ public sealed class Analyzer : IComplexSolver<Analyzer, AnalyzerResult>
 		progress?.Report((double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount);
 		goto Again;
 
-
-		static bool recordStep(
-			List<Step> steps,
-			Step step,
-			scoped ref Grid playground,
-			scoped ref ValueStopwatch stopwatch,
-			List<Grid> stepGrids,
-			AnalyzerResult resultBase,
-			CancellationToken cancellationToken,
-			[NotNullWhen(true)] out AnalyzerResult? result
-		)
-		{
-			var atLeastOneConclusionIsWorth = false;
-			foreach (var (t, c, d) in step.Conclusions)
-			{
-				switch (t)
-				{
-					case Assignment when playground.GetStatus(c) == CellStatus.Empty:
-					case Elimination when playground.Exists(c, d) is true:
-					{
-						atLeastOneConclusionIsWorth = true;
-
-						goto FinalCheck;
-					}
-				}
-			}
-
-		FinalCheck:
-			if (atLeastOneConclusionIsWorth)
-			{
-				stepGrids.Add(playground);
-				step.ApplyTo(ref playground);
-				steps.Add(step);
-
-				if (playground.IsSolved)
-				{
-					result = resultBase with
-					{
-						IsSolved = true,
-						Solution = playground,
-						ElapsedTime = stopwatch.GetElapsedTime(),
-						Steps = steps.ToArray(),
-						StepGrids = stepGrids.ToArray()
-					};
-					return true;
-				}
-			}
-			else
-			{
-				// No steps are available.
-				goto ReturnFalse;
-			}
-
-			cancellationToken.ThrowIfCancellationRequested();
-
-		ReturnFalse:
-			result = null;
-			return false;
-		}
-
 		static bool verifyConclusionValidity(scoped in Grid solution, Step step)
 		{
 			foreach (var (t, c, d) in step.Conclusions)
@@ -320,5 +260,82 @@ public sealed class Analyzer : IComplexSolver<Analyzer, AnalyzerResult>
 
 			return true;
 		}
+	}
+
+	/// <summary>
+	/// Try to record the current step, saving it into the arguemnt <paramref name="steps"/>.
+	/// </summary>
+	/// <param name="steps">The accumulator.</param>
+	/// <param name="step">The step to be saved.</param>
+	/// <param name="playground">The currently used grid.</param>
+	/// <param name="stopwatch">The stopwatch, in order to check elapsed time.</param>
+	/// <param name="stepGrids">The step grids.</param>
+	/// <param name="resultBase">The <see cref="AnalyzerResult"/> instance as a base value provider.</param>
+	/// <param name="cancellationToken">The cancellation token that allows user cancelling the operation.</param>
+	/// <param name="result">
+	/// The result returned.
+	/// If this step is the final step, the result <see cref="AnalyzerResult"/> instance will be assigned into this argument.
+	/// </param>
+	/// <returns>
+	/// A <see cref="bool"/> result indicating whether the current step is worth to be saved,
+	/// meaning it contains at least one conclusion that the current grid <paramref name="playground"/> contains.
+	/// </returns>
+	private static bool RecordStep(
+		List<Step> steps,
+		Step step,
+		scoped ref Grid playground,
+		scoped ref ValueStopwatch stopwatch,
+		List<Grid> stepGrids,
+		AnalyzerResult resultBase,
+		CancellationToken cancellationToken,
+		[NotNullWhen(true)] out AnalyzerResult? result
+	)
+	{
+		var atLeastOneConclusionIsWorth = false;
+		foreach (var (t, c, d) in step.Conclusions)
+		{
+			switch (t)
+			{
+				case Assignment when playground.GetStatus(c) == CellStatus.Empty:
+				case Elimination when playground.Exists(c, d) is true:
+				{
+					atLeastOneConclusionIsWorth = true;
+
+					goto FinalCheck;
+				}
+			}
+		}
+
+	FinalCheck:
+		if (atLeastOneConclusionIsWorth)
+		{
+			stepGrids.Add(playground);
+			step.ApplyTo(ref playground);
+			steps.Add(step);
+
+			if (playground.IsSolved)
+			{
+				result = resultBase with
+				{
+					IsSolved = true,
+					Solution = playground,
+					ElapsedTime = stopwatch.GetElapsedTime(),
+					Steps = steps.ToArray(),
+					StepGrids = stepGrids.ToArray()
+				};
+				return true;
+			}
+		}
+		else
+		{
+			// No steps are available.
+			goto ReturnFalse;
+		}
+
+		cancellationToken.ThrowIfCancellationRequested();
+
+	ReturnFalse:
+		result = null;
+		return false;
 	}
 }
