@@ -31,7 +31,7 @@
 /// ]]></code>
 /// </remarks>
 /// <completionlist cref="CommonLogicalSolvers"/>
-public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, LogicalSolverResult>
+public sealed partial record LogicalSolver : IAnalyzer<LogicalSolver, LogicalSolverResult>
 {
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher,
@@ -94,7 +94,7 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 
 
 	/// <inheritdoc/>
-	public LogicalSolverResult Solve(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+	public LogicalSolverResult Analyze(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
 	{
 		var result = new LogicalSolverResult(puzzle);
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
@@ -138,16 +138,16 @@ public sealed partial record LogicalSolver : IComplexSolver<LogicalSolver, Logic
 	/// The inner solving operation method.
 	/// </summary>
 	/// <param name="puzzle">
-	/// <inheritdoc cref="Solve(in Grid, IProgress{double}?, CancellationToken)" path="/param[@name='puzzle']"/>
+	/// <inheritdoc cref="Analyze(in Grid, IProgress{double}?, CancellationToken)" path="/param[@name='puzzle']"/>
 	/// </param>
 	/// <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
 	/// <param name="isSukaku">A <see cref="bool"/> value indicating whether the puzzle is a sukaku.</param>
 	/// <param name="resultBase">The base solver result already included the base information.</param>
 	/// <param name="progress">
-	/// <inheritdoc cref="Solve(in Grid, IProgress{double}?, CancellationToken)" path="/param[@name='progress']"/>
+	/// <inheritdoc cref="Analyze(in Grid, IProgress{double}?, CancellationToken)" path="/param[@name='progress']"/>
 	/// </param>
 	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Solve(in Grid, IProgress{double}?, CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// <inheritdoc cref="Analyze(in Grid, IProgress{double}?, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
 	/// <returns>The solver result.</returns>
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>

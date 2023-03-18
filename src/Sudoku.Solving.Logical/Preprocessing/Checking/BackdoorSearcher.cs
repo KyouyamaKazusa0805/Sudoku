@@ -26,7 +26,7 @@ internal static class BackdoorSearcher
 			throw new ArgumentException("The grid must be unique.", nameof(grid));
 		}
 
-		if (CommonLogicalSolvers.SstsOnly.Solve(grid) is { IsSolved: true })
+		if (CommonLogicalSolvers.SstsOnly.Analyze(grid) is { IsSolved: true })
 		{
 			throw new ArgumentException(
 				"The puzzle cannot be solved by elementary techniques only (Singles, Locked Candidates and Subsets).",
@@ -43,7 +43,7 @@ internal static class BackdoorSearcher
 			var case1Playground = grid;
 			case1Playground[cell] = solution[cell];
 
-			if (!CommonLogicalSolvers.SstsOnly.Solve(case1Playground).IsSolved)
+			if (!CommonLogicalSolvers.SstsOnly.Analyze(case1Playground).IsSolved)
 			{
 				continue;
 			}
@@ -56,7 +56,7 @@ internal static class BackdoorSearcher
 				var case2Playground = grid;
 				case2Playground[cell, digit] = false;
 
-				if (!CommonLogicalSolvers.SstsOnly.Solve(case2Playground).IsSolved)
+				if (!CommonLogicalSolvers.SstsOnly.Analyze(case2Playground).IsSolved)
 				{
 					continue;
 				}

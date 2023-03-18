@@ -35,7 +35,7 @@ public sealed class Solve : IExecutable
 		foreach (var type in
 			from assembly in new[] { typeof(BacktrackingSolver).Assembly, typeof(LogicalSolver).Assembly }
 			from type in assembly.GetTypes()
-			where type.IsClass && (type.IsAssignableTo(typeof(ISimpleSolver)) || type.IsGenericAssignableTo(typeof(IComplexSolver<,>)))
+			where type.IsClass && (type.IsAssignableTo(typeof(ISolver)) || type.IsGenericAssignableTo(typeof(IAnalyzer<,>)))
 			let parameterlessConstructor = type.GetConstructor(Type.EmptyTypes)
 			where parameterlessConstructor is not null
 			select type)
@@ -50,7 +50,7 @@ public sealed class Solve : IExecutable
 			var name = fieldInfo.GetCustomAttribute<NameAttribute>()!.Name;
 			switch (Activator.CreateInstance(type))
 			{
-				case ISimpleSolver simpleSolver:
+				case ISolver simpleSolver:
 				{
 					if (simpleSolver.Solve(Grid, out _) is not true)
 					{
@@ -66,7 +66,7 @@ public sealed class Solve : IExecutable
 					// as expected will be replaced with 'grid.ToString()'.
 					// Same reason for the below output case.
 #endif
-					var uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))?.GetValue(null);
+					var uriLink = (string?)type.GetProperty(nameof(ISolver.UriLink))?.GetValue(null);
 					await Terminal.WriteLineAsync(
 						string.Format(
 							R["_MessageFormat_SolveResult"]!,
@@ -79,9 +79,9 @@ public sealed class Solve : IExecutable
 
 					break;
 				}
-				case IComplexSolver<LogicalSolver, LogicalSolverResult> puzzleSolver:
+				case IAnalyzer<LogicalSolver, LogicalSolverResult> puzzleSolver:
 				{
-					if (puzzleSolver.Solve(Grid, cancellationToken: cancellationToken) is not { IsSolved: true } solverResult)
+					if (puzzleSolver.Analyze(Grid, cancellationToken: cancellationToken) is not { IsSolved: true } solverResult)
 					{
 						throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
 					}

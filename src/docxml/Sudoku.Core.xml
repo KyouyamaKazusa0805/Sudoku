@@ -4,6 +4,348 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Solving.Conclusion">
+            <summary>
+            Defines a type that can describe a candidate is the correct or wrong digit.
+            </summary>
+            <remarks>
+            Two <see cref="T:Sudoku.Solving.Conclusion"/>s can be compared with each other. If one of those two is an elimination
+            (i.e. holds the value <see cref="F:Sudoku.Solving.ConclusionType.Elimination"/> as the type), the instance
+            will be greater; if those two hold same conclusion type, but one of those two holds
+            the global index of the candidate position is greater, it is greater.
+            </remarks>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Solving.Conclusion._mask" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.#ctor(System.Int32)">
+            <summary>
+            Defines a type that can describe a candidate is the correct or wrong digit.
+            </summary>
+            <remarks>
+            Two <see cref="T:Sudoku.Solving.Conclusion"/>s can be compared with each other. If one of those two is an elimination
+            (i.e. holds the value <see cref="F:Sudoku.Solving.ConclusionType.Elimination"/> as the type), the instance
+            will be greater; if those two hold same conclusion type, but one of those two holds
+            the global index of the candidate position is greater, it is greater.
+            </remarks>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Solving.Conclusion._mask" path="/summary"/></param>
+        </member>
+        <member name="F:Sudoku.Solving.Conclusion._mask">
+            <summary>
+            Indicates the mask that holds the information for the cell, digit and the conclusion type.
+            The bits distribution is like:
+            <code><![CDATA[
+            16       8       0
+             |-------|-------|
+             |     |---------|
+            16    10         0
+                   |   used  |
+            ]]></code>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.#ctor(Sudoku.Solving.ConclusionType,System.Int32)">
+            <summary>
+            Initializes an instance with a conclusion type and a candidate offset.
+            </summary>
+            <param name="type">The conclusion type.</param>
+            <param name="candidate">The candidate offset.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.#ctor(Sudoku.Solving.ConclusionType,System.Int32,System.Int32)">
+            <summary>
+            Initializes the <see cref="T:Sudoku.Solving.Conclusion"/> instance via the specified cell, digit and the conclusion type.
+            </summary>
+            <param name="type">The conclusion type.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Conclusion.Cell">
+            <summary>
+            Indicates the cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Conclusion.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Conclusion.Candidate">
+            <summary>
+            Indicates the candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Conclusion.ConclusionType">
+            <summary>
+            The conclusion type to control the action of applying.
+            If the type is <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>,
+            this conclusion will be set value (Set a digit into a cell);
+            otherwise, a candidate will be removed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.ApplyTo(Sudoku.Concepts.Grid@)">
+            <summary>
+            Put this instance into the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.Equals(Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.CompareTo(Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_Equality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_Inequality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_GreaterThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_GreaterThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_LessThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Conclusion.op_LessThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.ConclusionType">
+            <summary>
+            Provides a conclusion type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.ConclusionType.Assignment">
+            <summary>
+            Indicates the conclusion is a value filling into a cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.ConclusionType.Elimination">
+            <summary>
+            Indicates the conclusion is a candidate being remove from a cell.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.ConclusionTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Solving.ConclusionType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.ConclusionType"/>
+        </member>
+        <member name="M:Sudoku.Solving.ConclusionTypeExtensions.Notation(Sudoku.Solving.ConclusionType)">
+            <summary>
+            Gets the notation of the conclusion type.
+            </summary>
+            <param name="this">The conclusion type kind.</param>
+            <returns>The string representation of the conclusion kind.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="this"/> is not defined in enumeration type.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Solving.Mechanism.IAnalyzer`2">
+            <summary>
+            Represents with an analyzer, which can solve a puzzle, and return not only a <see cref="T:Sudoku.Concepts.Grid"/> as its solution,
+            but a <typeparamref name="TResult"/> instance encapsulating all possible status of the analysis.
+            </summary>
+            <typeparam name="T">The solver's type.</typeparam>
+            <typeparam name="TResult">The type of the target result.</typeparam>
+        </member>
+        <member name="M:Sudoku.Solving.Mechanism.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
+            <summary>
+            Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
+            </summary>
+            <param name="puzzle">The puzzle to be analyzed.</param>
+            <param name="progress">A <see cref="T:System.IProgress`1"/> instance that is used for reporting the status.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
+            <returns>The solver result that provides the information after analyzing.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Mechanism.IAnalyzerResult`2">
+            <summary>
+            Represents an instance that describes the result after executed the method
+            <see cref="M:Sudoku.Solving.Mechanism.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>.
+            </summary>
+            <typeparam name="TSolver">The solver's type.</typeparam>
+            <typeparam name="TSolverResult">The type of the target result.</typeparam>
+            <seealso cref="M:Sudoku.Solving.Mechanism.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.IsSolved">
+            <summary>
+            Indicates whether the solver has solved the puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.ElapsedTime">
+            <summary>
+            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
+            Some case if the puzzle doesn't contain a valid unique solution, the value may be
+            <see cref="F:System.TimeSpan.Zero"/>.
+            </summary>
+            <seealso cref="F:System.TimeSpan.Zero"/>
+        </member>
+        <member name="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.Puzzle">
+            <summary>
+            Indicates the original puzzle to be solved.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.Solution">
+            <summary>
+            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
+            <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.UnhandledException">
+            <summary>
+            Indicates the unhandled exception thrown.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Mechanism.ISolver">
+            <summary>
+            Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="T:Sudoku.Concepts.Grid"/> instance,
+            and returns its solution grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Mechanism.ISolver.UriLink">
+            <summary>
+            Indicates the URI link that links to the introduction of the algorithm.
+            </summary>
+            <remarks>
+            This property is reserved as information that is offered to the algorithm learners.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Mechanism.ISolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Solve the specified grid, and return the solution via argument <paramref name="result"/>
+            with returning a <see cref="T:System.Boolean"/>? value indicating the solved status.
+            </summary>
+            <param name="grid">The grid to be solved.</param>
+            <param name="result">
+            <para>The result of the grid.</para>
+            <para>
+            Please note that if the return value is not <see langword="true"/>,
+            the value should be a discard and should not be used, because the argument
+            keeps a memory-randomized value currently.
+            </para>
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
+            Please note that the method will return three possible values:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle has a unique solution.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle has multiple solutions.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle has no solution.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
             Encapsulates a binary series of candidate status table.
@@ -6495,347 +6837,6 @@ fixed (short* ptr = instance)
 			</para>
 		</summary>
 	</static-constructor>
-        </member>
-        <member name="T:Sudoku.Solving.Conclusion">
-            <summary>
-            Defines a type that can describe a candidate is the correct or wrong digit.
-            </summary>
-            <remarks>
-            Two <see cref="T:Sudoku.Solving.Conclusion"/>s can be compared with each other. If one of those two is an elimination
-            (i.e. holds the value <see cref="F:Sudoku.Solving.ConclusionType.Elimination"/> as the type), the instance
-            will be greater; if those two hold same conclusion type, but one of those two holds
-            the global index of the candidate position is greater, it is greater.
-            </remarks>
-            <param name="mask"><inheritdoc cref="F:Sudoku.Solving.Conclusion._mask" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.#ctor(System.Int32)">
-            <summary>
-            Defines a type that can describe a candidate is the correct or wrong digit.
-            </summary>
-            <remarks>
-            Two <see cref="T:Sudoku.Solving.Conclusion"/>s can be compared with each other. If one of those two is an elimination
-            (i.e. holds the value <see cref="F:Sudoku.Solving.ConclusionType.Elimination"/> as the type), the instance
-            will be greater; if those two hold same conclusion type, but one of those two holds
-            the global index of the candidate position is greater, it is greater.
-            </remarks>
-            <param name="mask"><inheritdoc cref="F:Sudoku.Solving.Conclusion._mask" path="/summary"/></param>
-        </member>
-        <member name="F:Sudoku.Solving.Conclusion._mask">
-            <summary>
-            Indicates the mask that holds the information for the cell, digit and the conclusion type.
-            The bits distribution is like:
-            <code><![CDATA[
-            16       8       0
-             |-------|-------|
-             |     |---------|
-            16    10         0
-                   |   used  |
-            ]]></code>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.#ctor(Sudoku.Solving.ConclusionType,System.Int32)">
-            <summary>
-            Initializes an instance with a conclusion type and a candidate offset.
-            </summary>
-            <param name="type">The conclusion type.</param>
-            <param name="candidate">The candidate offset.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.#ctor(Sudoku.Solving.ConclusionType,System.Int32,System.Int32)">
-            <summary>
-            Initializes the <see cref="T:Sudoku.Solving.Conclusion"/> instance via the specified cell, digit and the conclusion type.
-            </summary>
-            <param name="type">The conclusion type.</param>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Conclusion.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Conclusion.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Conclusion.Candidate">
-            <summary>
-            Indicates the candidate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Conclusion.ConclusionType">
-            <summary>
-            The conclusion type to control the action of applying.
-            If the type is <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>,
-            this conclusion will be set value (Set a digit into a cell);
-            otherwise, a candidate will be removed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.ApplyTo(Sudoku.Concepts.Grid@)">
-            <summary>
-            Put this instance into the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.Equals(Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.CompareTo(Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_Equality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_Inequality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_GreaterThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_GreaterThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_LessThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_LessThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.ConclusionType">
-            <summary>
-            Provides a conclusion type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.ConclusionType.Assignment">
-            <summary>
-            Indicates the conclusion is a value filling into a cell.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.ConclusionType.Elimination">
-            <summary>
-            Indicates the conclusion is a candidate being remove from a cell.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.ConclusionTypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Solving.ConclusionType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.ConclusionType"/>
-        </member>
-        <member name="M:Sudoku.Solving.ConclusionTypeExtensions.Notation(Sudoku.Solving.ConclusionType)">
-            <summary>
-            Gets the notation of the conclusion type.
-            </summary>
-            <param name="this">The conclusion type kind.</param>
-            <returns>The string representation of the conclusion kind.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined in enumeration type.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Solving.Mechanism.IComplexSolver`2">
-            <summary>
-            Defines a complex solver, that uses complex algorithm to solve a puzzle, returning
-            a complex result type instead of an only <see cref="T:System.Boolean"/> value
-            indicating whether the puzzle is successfully solved.
-            </summary>
-            <typeparam name="TSolver">The solver's type.</typeparam>
-            <typeparam name="TSolverResult">The type of the target result.</typeparam>
-        </member>
-        <member name="M:Sudoku.Solving.Mechanism.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
-            <summary>
-            To solve the specified puzzle.
-            </summary>
-            <param name="puzzle">The puzzle to be solved.</param>
-            <param name="progress">The progress instance that is used for reporting the status.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>The solver result that provides the information after solving.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Mechanism.IComplexSolverResult`2">
-            <summary>
-            Defines an instance that describes the result after executed the method
-            <see cref="M:Sudoku.Solving.Mechanism.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>.
-            </summary>
-            <typeparam name="TSolver">The solver's type.</typeparam>
-            <typeparam name="TSolverResult">The type of the target result.</typeparam>
-            <seealso cref="M:Sudoku.Solving.Mechanism.IComplexSolver`2.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>
-        </member>
-        <member name="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.IsSolved">
-            <summary>
-            Indicates whether the solver has solved the puzzle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.ElapsedTime">
-            <summary>
-            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
-            Some case if the puzzle doesn't contain a valid unique solution, the value may be
-            <see cref="F:System.TimeSpan.Zero"/>.
-            </summary>
-            <seealso cref="F:System.TimeSpan.Zero"/>
-        </member>
-        <member name="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.Puzzle">
-            <summary>
-            Indicates the original puzzle to be solved.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.Solution">
-            <summary>
-            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
-            <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
-        <member name="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.UnhandledException">
-            <summary>
-            Indicates the unhandled exception thrown.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Mechanism.ISimpleSolver">
-            <summary>
-            Defines a simple solver.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Mechanism.ISimpleSolver.UriLink">
-            <summary>
-            Indicates the URI link that links to the introduction of the algorithm.
-            </summary>
-            <remarks>
-            This property is reserved as information that is offered to the algorithm learners.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Mechanism.ISimpleSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <summary>
-            To solve the specified grid.
-            </summary>
-            <param name="grid">The grid to be solved.</param>
-            <param name="result">
-            <para>The result of the grid.</para>
-            <para>
-            Please note that if the return value is not <see langword="true"/>,
-            the value should be a discard and should not be used, because the argument
-            keeps a memory-randomized value currently.
-            </para>
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
-            Please note that the method will return three possible values:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The puzzle has a unique solution.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The puzzle has multiple solutions.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The puzzle has no solution.</description>
-            </item>
-            </list>
-            </returns>
         </member>
         <member name="T:Sudoku.Text.DigitRange">
             <summary>

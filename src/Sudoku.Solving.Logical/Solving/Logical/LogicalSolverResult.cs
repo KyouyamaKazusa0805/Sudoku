@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Puzzle"><inheritdoc/></param>
 public sealed partial record LogicalSolverResult(scoped in Grid Puzzle) :
-	IComplexSolverResult<LogicalSolver, LogicalSolverResult>,
+	IAnalyzerResult<LogicalSolver, LogicalSolverResult>,
 	IEnumerable<IStep>,
 	ISelectClauseProvider<IStep>
 {
@@ -228,7 +228,7 @@ public sealed partial record LogicalSolverResult(scoped in Grid Puzzle) :
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="IComplexSolverResult{TSolver, TSolverResult}.UnhandledException" path="/summary"/>
+	/// <inheritdoc cref="IAnalyzerResult{TSolver, TSolverResult}.UnhandledException" path="/summary"/>
 	/// </summary>
 	/// <remarks>
 	/// You can visit the property value if the property <see cref="FailedReason"/>

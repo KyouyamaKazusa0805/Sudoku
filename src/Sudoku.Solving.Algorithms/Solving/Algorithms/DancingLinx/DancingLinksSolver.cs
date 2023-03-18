@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.
 /// </summary>
-public sealed class DancingLinksSolver : ISimpleSolver
+public sealed class DancingLinksSolver : ISolver
 {
 	/// <summary>
 	/// Indicates the stack that stores the raw data for the solutions.

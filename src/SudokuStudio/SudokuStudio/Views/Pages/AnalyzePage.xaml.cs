@@ -822,7 +822,7 @@ public sealed partial class AnalyzePage : Page
 		{
 			lock (App.SyncRoot)
 			{
-				return solver.Solve(
+				return solver.Analyze(
 					puzzle,
 					new Progress<double>(
 						percent => DispatcherQueue.TryEnqueue(

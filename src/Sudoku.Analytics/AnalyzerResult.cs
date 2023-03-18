@@ -3,9 +3,9 @@
 /// <summary>
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
-/// <param name="Puzzle"><inheritdoc cref="IComplexSolverResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
+/// <param name="Puzzle"><inheritdoc cref="IAnalyzerResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
 public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
-	IComplexSolverResult<Analyzer, AnalyzerResult>,
+	IAnalyzerResult<Analyzer, AnalyzerResult>,
 	IEnumerable<Step>,
 	ISelectClauseProvider<Step>
 {
@@ -215,7 +215,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	public Step[]? Steps { get; init; }
 
 	/// <summary>
-	/// <inheritdoc cref="IComplexSolverResult{TSolver, TSolverResult}.UnhandledException" path="/summary"/>
+	/// <inheritdoc cref="IAnalyzerResult{TSolver, TSolverResult}.UnhandledException" path="/summary"/>
 	/// </summary>
 	/// <remarks>
 	/// You can visit the property value if the property <see cref="FailedReason"/>

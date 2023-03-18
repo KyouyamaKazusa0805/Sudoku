@@ -16,7 +16,7 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 		{
 			// 出题。
 			var grid = Generator.Generate();
-			if (Solver.Solve(grid) is not
+			if (Solver.Analyze(grid) is not
 				{
 					IsSolved: true,
 					DifficultyLevel: var diffLevel and (DifficultyLevel.Easy or DifficultyLevel.Moderate or DifficultyLevel.Hard),

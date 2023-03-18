@@ -246,7 +246,7 @@ internal sealed class GameCommand : Command
 			while (true)
 			{
 				var grid = Generator.Generate();
-				switch (Solver.Solve(grid))
+				switch (Solver.Analyze(grid))
 				{
 					case { IsSolved: true, Solution: var solution, DifficultyLevel: var l and <= DifficultyLevel.Hard }:
 					{

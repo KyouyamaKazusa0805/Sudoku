@@ -20,7 +20,7 @@
 /// </see>.
 /// </para>
 /// </remarks>
-public sealed class BacktrackingSolver : ISimpleSolver
+public sealed class BacktrackingSolver : ISolver
 {
 	/// <inheritdoc/>
 	public static string UriLink => "https://simple.wikipedia.org/wiki/Backtracking";
@@ -33,7 +33,7 @@ public sealed class BacktrackingSolver : ISimpleSolver
 	/// <param name="result">
 	/// <para>The result of the grid.</para>
 	/// <para>
-	/// Different with other methods whose containing type is <see cref="ISimpleSolver"/>,
+	/// Different with other methods whose containing type is <see cref="ISolver"/>,
 	/// this argument can be used no matter what the result value will be.
 	/// </para>
 	/// </param>

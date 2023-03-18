@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a solver that can solve a sudoku puzzle, using LINQ.
 /// </summary>
-public sealed class LinqSolver : ISimpleSolver
+public sealed class LinqSolver : ISolver
 {
 	/// <inheritdoc/>
 	public static string? UriLink => null;

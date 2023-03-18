@@ -1,9 +1,10 @@
 ﻿namespace Sudoku.Solving.Mechanism;
 
 /// <summary>
-/// Defines a simple solver.
+/// Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="Grid"/> instance,
+/// and returns its solution grid.
 /// </summary>
-public interface ISimpleSolver
+public interface ISolver
 {
 	/// <summary>
 	/// Indicates the URI link that links to the introduction of the algorithm.
@@ -15,7 +16,8 @@ public interface ISimpleSolver
 
 
 	/// <summary>
-	/// To solve the specified grid.
+	/// Solve the specified grid, and return the solution via argument <paramref name="result"/>
+	/// with returning a <see cref="bool"/>? value indicating the solved status.
 	/// </summary>
 	/// <param name="grid">The grid to be solved.</param>
 	/// <param name="result">

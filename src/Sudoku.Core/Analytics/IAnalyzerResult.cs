@@ -1,15 +1,15 @@
 ﻿namespace Sudoku.Solving.Mechanism;
 
 /// <summary>
-/// Defines an instance that describes the result after executed the method
-/// <see cref="IComplexSolver{TSolver, TSolverResult}.Solve(in Grid, IProgress{double}, CancellationToken)"/>.
+/// Represents an instance that describes the result after executed the method
+/// <see cref="IAnalyzer{TSolver, TSolverResult}.Analyze(in Grid, IProgress{double}, CancellationToken)"/>.
 /// </summary>
 /// <typeparam name="TSolver">The solver's type.</typeparam>
 /// <typeparam name="TSolverResult">The type of the target result.</typeparam>
-/// <seealso cref="IComplexSolver{TSolver, TSolverResult}.Solve(in Grid, IProgress{double}, CancellationToken)"/>
-public interface IComplexSolverResult<in TSolver, out TSolverResult>
-	where TSolver : IComplexSolver<TSolver, TSolverResult>
-	where TSolverResult : IComplexSolverResult<TSolver, TSolverResult>
+/// <seealso cref="IAnalyzer{TSolver, TSolverResult}.Analyze(in Grid, IProgress{double}, CancellationToken)"/>
+public interface IAnalyzerResult<in TSolver, out TSolverResult>
+	where TSolver : IAnalyzer<TSolver, TSolverResult>
+	where TSolverResult : IAnalyzerResult<TSolver, TSolverResult>
 {
 	/// <summary>
 	/// Indicates whether the solver has solved the puzzle.

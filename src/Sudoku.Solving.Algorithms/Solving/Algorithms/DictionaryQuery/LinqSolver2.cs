@@ -16,7 +16,7 @@
 /// </para>
 /// </remarks>
 /// <seealso cref="LinqSolver"/>
-public sealed class LinqSolver2 : ISimpleSolver
+public sealed class LinqSolver2 : ISolver
 {
 	/// <summary>
 	/// Indicates the characters of all rows.

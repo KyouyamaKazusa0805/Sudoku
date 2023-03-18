@@ -14,7 +14,7 @@ public sealed class DefaultAutoFiller : IAutoFiller
 	/// <inheritdoc/>
 	public void Fill(scoped ref Grid grid)
 	{
-		if (Solver.Solve(grid) is not { IsSolved: true, DifficultyLevel: var diffLevel, SolvingPath: var path })
+		if (Solver.Analyze(grid) is not { IsSolved: true, DifficultyLevel: var diffLevel, SolvingPath: var path })
 		{
 			throw new InvalidOperationException("The target grid is not unique.");
 		}
