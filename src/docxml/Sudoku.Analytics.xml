@@ -2631,6 +2631,25 @@
             <remarks><b>This method uses <see cref="T:Sudoku.Analytics.Buffers.CachedFields"/>.</b></remarks>
             <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
         </member>
+        <member name="T:Sudoku.Analytics.InternalHelpers.EmptyRectangleHelper">
+            <summary>
+            Represents a helper type that operates with empty rectangles.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.EmptyRectangleHelper.IsEmptyRectangle(Sudoku.Concepts.CellMap@,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Determine whether the specified cells in the specified block form an empty rectangle.
+            </summary>
+            <param name="cells">The cells to be checked.</param>
+            <param name="block">The block where the cells may form an empty rectangle structure.</param>
+            <param name="row">The row that the empty rectangle used.</param>
+            <param name="column">The column that the empty rectangle used.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating that. If <see langword="true"/>,
+            both arguments <paramref name="row"/> and <paramref name="column"/> can be used;
+            otherwise, both arguments should be discards.
+            </returns>
+        </member>
         <member name="T:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper">
             <summary>
             Used by <see cref="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher"/> and <see cref="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher"/>.
@@ -3755,58 +3774,6 @@
             Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">
-            <summary>
-            Provides with a <b>Complex Fish</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Franken Fishes
-            <list type="bullet">
-            <item>Finned Franken Fish</item>
-            <item>Sashimi Franken Fish</item>
-            </list>
-            </item>
-            <item>
-            Mutant Fishes
-            <list type="bullet">
-            <item>Finned Mutant Fish</item>
-            <item>Sashimi Mutant Fish</item>
-            </list>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.ElimsSearcher">
-            <summary>
-            The internal <see cref="T:Sudoku.Analytics.StepSearcher"/> instance that is used for pre-checking the possible eliminations of the fishes.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize">
-            <summary>
-            Indicates the maximum size of the fish the step searcher instance can search for. The maximum possible value of this property is 7.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.ComplexFishStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean)">
-            <summary>
-            Get all possible fish steps.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="pomElimsOfThisDigit">The possible eliminations to check.</param>
-            <param name="digit">The current digit used.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetPomEliminationsFirstly(Sudoku.Concepts.Grid@)">
-            <summary>
-            Get POM technique eliminations at first.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher">
             <summary>
             Provides with an <b>Extended Rectangle</b> step searcher.
@@ -4809,6 +4776,58 @@
             </para>
             </remarks>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">
+            <summary>
+            Provides with a <b>Complex Fish</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Franken Fishes
+            <list type="bullet">
+            <item>Finned Franken Fish</item>
+            <item>Sashimi Franken Fish</item>
+            </list>
+            </item>
+            <item>
+            Mutant Fishes
+            <list type="bullet">
+            <item>Finned Mutant Fish</item>
+            <item>Sashimi Mutant Fish</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.ElimsSearcher">
+            <summary>
+            The internal <see cref="T:Sudoku.Analytics.StepSearcher"/> instance that is used for pre-checking the possible eliminations of the fishes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize">
+            <summary>
+            Indicates the maximum size of the fish the step searcher instance can search for. The maximum possible value of this property is 7.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.ComplexFishStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean)">
+            <summary>
+            Get all possible fish steps.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="pomElimsOfThisDigit">The possible eliminations to check.</param>
+            <param name="digit">The current digit used.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetPomEliminationsFirstly(Sudoku.Concepts.Grid@)">
+            <summary>
+            Get POM technique eliminations at first.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher">
             <summary>
             Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
@@ -5052,6 +5071,18 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher">
+            <summary>
+            Provides with an <b>Empty Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Empty Rectangle</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher">
@@ -6858,6 +6889,41 @@
             <summary>
             Provides with a step that is a <b>Zero Rank</b> technique.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.EmptyRectangleStep">
+            <summary>
+            Provides with a step that is an <b>Empty Rectangle</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
+            <summary>
+            Provides with a step that is an <b>Empty Rectangle</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.Block">
+            <summary>
+            Indicates the block that the real empty rectangle structure lis in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.FormatInterpolatedParts">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleDigitPatternStep">
             <summary>
