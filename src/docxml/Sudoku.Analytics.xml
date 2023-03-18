@@ -98,10 +98,10 @@
             </remarks>
             <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedSpaceComplexity"/>
         </member>
-        <member name="P:Sudoku.Analytics.Analyzer.CustomSearcherCollection">
+        <member name="P:Sudoku.Analytics.Analyzer.CustomStepSearchers">
             <summary>
             <para>
-            Indicates the custom searcher collection you defined to solve a puzzle. By default,
+            Indicates the custom <see cref="T:Sudoku.Analytics.StepSearcher"/>s you defined to solve a puzzle. By default,
             the solver will use <see cref="P:Sudoku.Analytics.StepSearcherPool.BuiltIn"/> to solve a puzzle.
             If you assign a new array of <see cref="T:Sudoku.Analytics.StepSearcher"/>s into this property
             the step searchers will use this property instead of <see cref="P:Sudoku.Analytics.StepSearcherPool.BuiltIn"/> to solve a puzzle.
@@ -113,11 +113,6 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Analytics.StepSearcherPool.BuiltIn"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Analyzer.TargetSearcherCollection">
-            <summary>
-            Indicates the target step searcher collection.
-            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <inheritdoc/>

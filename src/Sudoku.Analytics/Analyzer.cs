@@ -41,7 +41,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 
 	/// <summary>
 	/// <para>
-	/// Indicates the custom searcher collection you defined to solve a puzzle. By default,
+	/// Indicates the custom <see cref="StepSearcher"/>s you defined to solve a puzzle. By default,
 	/// the solver will use <see cref="StepSearcherPool.BuiltIn"/> to solve a puzzle.
 	/// If you assign a new array of <see cref="StepSearcher"/>s into this property
 	/// the step searchers will use this property instead of <see cref="StepSearcherPool.BuiltIn"/> to solve a puzzle.
@@ -54,17 +54,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// </summary>
 	/// <seealso cref="StepSearcherPool.BuiltIn"/>
 	[DisallowNull]
-	public StepSearcher[]? CustomSearcherCollection { get; set; }
-
-	/// <summary>
-	/// Indicates the target step searcher collection.
-	/// </summary>
-	private StepSearcher[] TargetSearcherCollection
-		=> (
-			from searcher in CustomSearcherCollection ?? StepSearcherPool.BuiltIn
-			where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
-			select searcher
-		).ToArray();
+	public StepSearcher[]? CustomStepSearchers { get; set; }
 
 
 	/// <inheritdoc/>
@@ -136,11 +126,14 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	)
 	{
 		var playground = puzzle;
-
 		var totalCandidatesCount = playground.CandidatesCount;
 		var recordedSteps = new List<Step>(100);
 		var stepGrids = new List<Grid>(100);
-		var stepSearchers = TargetSearcherCollection;
+		var stepSearchers = (
+			from searcher in CustomStepSearchers ?? StepSearcherPool.BuiltIn
+			where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
+			select searcher
+		).ToArray();
 
 		scoped var stopwatch = ValueStopwatch.StartNew();
 
