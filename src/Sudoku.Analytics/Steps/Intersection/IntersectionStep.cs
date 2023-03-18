@@ -9,7 +9,5 @@ public abstract class IntersectionStep(Conclusion[] conclusions, View[]? views) 
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>
-	[AllowNull]
-	[MaybeNull]
-	public sealed override string Format => base.Format;
+	public sealed override string? Format => base.Format;
 }

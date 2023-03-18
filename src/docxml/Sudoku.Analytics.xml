@@ -5785,9 +5785,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Format">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Group">
             <inheritdoc/>
         </member>

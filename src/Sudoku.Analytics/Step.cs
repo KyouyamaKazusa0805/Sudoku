@@ -60,9 +60,7 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	/// <exception cref="ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
 	/// <seealso cref="FormatInterpolatedParts"/>
 	/// <seealso cref="R"/>
-	[AllowNull]
-	[MaybeNull]
-	public virtual string Format
+	public virtual string? Format
 		=> R[$"TechniqueFormat_{EqualityContract.Name}"] ?? throw new ResourceNotFoundException(Code.ToString(), EqualityContract.Assembly);
 
 	/// <summary>

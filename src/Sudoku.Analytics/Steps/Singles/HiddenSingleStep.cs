@@ -20,7 +20,7 @@ public sealed class HiddenSingleStep(Conclusion[] conclusions, View[]? views, in
 	public int House { get; } = house;
 
 	/// <inheritdoc/>
-	public override string? Format => R[EnableAndIsLastDigit ? "TechniqueFormat_LastDigit" : "TechniqueFormat_HiddenSingle"];
+	public override string Format => R[EnableAndIsLastDigit ? "TechniqueFormat_LastDigit" : "TechniqueFormat_HiddenSingle"]!;
 
 	/// <inheritdoc/>
 	public override Technique Code

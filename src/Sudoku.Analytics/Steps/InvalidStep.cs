@@ -13,7 +13,7 @@ public sealed class InvalidStep() : Step(default!, default)
 	public override string Name => throw new NotSupportedException();
 
 	/// <inheritdoc/>
-	public override string Format => throw new NotSupportedException();
+	public override string? Format => throw new NotSupportedException();
 
 	/// <inheritdoc/>
 	public override Technique Code => throw new NotSupportedException();

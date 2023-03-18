@@ -9,7 +9,5 @@ public abstract class RankTheoryStep(Conclusion[] conclusions, View[]? views) : 
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>
-	[MaybeNull]
-	[AllowNull]
-	public sealed override string Format => base.Format;
+	public sealed override string? Format => base.Format;
 }

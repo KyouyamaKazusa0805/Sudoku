@@ -20,9 +20,7 @@ public abstract class ExtendedRectangleStep(Conclusion[] conclusions, View[]? vi
 	public short DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
-	[AllowNull]
-	[MaybeNull]
-	public sealed override string Format => base.Format;
+	public sealed override string? Format => base.Format;
 
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");

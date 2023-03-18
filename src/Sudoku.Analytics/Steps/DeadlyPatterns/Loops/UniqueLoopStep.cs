@@ -26,9 +26,7 @@ public abstract class UniqueLoopStep(Conclusion[] conclusions, View[]? views, in
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	[AllowNull]
-	[MaybeNull]
-	public sealed override string Format => base.Format;
+	public sealed override string? Format => base.Format;
 
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"UniqueLoopType{Type}");

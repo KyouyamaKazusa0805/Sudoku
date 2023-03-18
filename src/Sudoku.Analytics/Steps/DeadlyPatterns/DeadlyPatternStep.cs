@@ -9,10 +9,5 @@ public abstract class DeadlyPatternStep(Conclusion[] conclusions, View[]? views)
 	public override string Name => base.Name;
 
 	/// <inheritdoc/>
-	[AllowNull]
-	[MaybeNull]
-	public override string Format => base.Format;
-
-	/// <inheritdoc/>
 	public override TechniqueGroup Group => TechniqueGroup.DeadlyPattern;
 }

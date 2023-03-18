@@ -25,9 +25,7 @@ public abstract class FishStep(Conclusion[] conclusions, View[]? views, int digi
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>
-	[AllowNull]
-	[MaybeNull]
-	public sealed override string Format => base.Format;
+	public sealed override string? Format => base.Format;
 
 	/// <inheritdoc/>
 	/// <remarks>
