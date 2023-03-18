@@ -5394,6 +5394,25 @@
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Deadly Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Deadly Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Group">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleStep">
             <summary>
             Provides with a step that is an <b>Extended Rectangle</b> technique.
@@ -5862,25 +5881,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.FormatInterpolatedParts">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">
-            <summary>
-            Provides with a step that is a <b>Deadly Pattern</b> technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
-            <summary>
-            Provides with a step that is a <b>Deadly Pattern</b> technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Group">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep">
