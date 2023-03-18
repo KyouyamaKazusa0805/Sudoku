@@ -5097,6 +5097,36 @@
             </summary>
             <returns>The templates.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher">
+            <summary>
+            Provides with a <b>Multi-sector Locked Sets</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Multi-sector Locked Sets</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.Patterns">
+            <summary>
+            Indicates the list initialized with the static constructor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher">
             <summary>
             Provides with a <b>3-dimensional Sue de Coq</b> step searcher.
@@ -6471,36 +6501,6 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.DominoLoopStep">
-            <summary>
-            Provides with a step that is a <b>Domino Loop</b> technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>Domino Loop</b> technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Group">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Cells">
-            <summary>
-            Indicates the cells used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.FormatInterpolatedParts">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexFishStep">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
@@ -7021,6 +7021,69 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RankTheoryStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.DominoLoopStep">
+            <summary>
+            Provides with a step that is a <b>Domino Loop</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Domino Loop</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.MultisectorLockedSetsStep">
+            <summary>
+            Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Cells">
+            <summary>
+            Indicates the cells used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep">

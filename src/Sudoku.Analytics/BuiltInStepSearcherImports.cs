@@ -43,6 +43,6 @@
 //[assembly: StepSearcherImport<                  JuniorExocetStepSearcher>(StepSearcherLevel.  Fiendish)]
 //[assembly: StepSearcherImport<                  SeniorExocetStepSearcher>(StepSearcherLevel.  Fiendish, Areas = StepSearcherRunningArea.     None)]
 [assembly: StepSearcherImport<                    DominoLoopStepSearcher>(StepSearcherLevel.  Fiendish)]
-//[assembly: StepSearcherImport<         MultisectorLockedSetsStepSearcher>(StepSearcherLevel.  Fiendish)]
+[assembly: StepSearcherImport<         MultisectorLockedSetsStepSearcher>(StepSearcherLevel.  Fiendish)]
 //[assembly: StepSearcherImport<      AdvancedMultipleChainingStepSearcher>(StepSearcherLevel.  Fiendish, Areas = StepSearcherRunningArea.     None)]
 [assembly: StepSearcherImport<                    BruteForceStepSearcher>(StepSearcherLevel.    Hidden, Areas = StepSearcherRunningArea.Searching)]
