@@ -27,7 +27,8 @@ insert_final_newline = false
 spelling_languages = en-us
 spelling_checkable_types = strings,identifiers,comments
 spelling_error_severity = suggestion
-spelling_use_default_exclusion_dictionary = .\SOLUTIONWIDE_IGNORED_MISSPELLING.dic
+spelling_use_default_exclusion_dictionary = true
+spelling_exclusion_path  = .\SOLUTIONWIDE_IGNORED_MISSPELLING.dic
 
 
 #

@@ -22,7 +22,7 @@ public static class InferenceExtensions
 			Inference.Weak => " -- ",
 			Inference.StrongGeneralized => " =~ ",
 			Inference.WeakGeneralized => " -~ ",
-			Inference.ConjuagtePair => " == ",
+			Inference.ConjugatePair => " == ",
 			Inference.Default => " -- ",
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
