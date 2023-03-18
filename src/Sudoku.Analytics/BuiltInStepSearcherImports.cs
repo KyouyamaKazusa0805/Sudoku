@@ -18,7 +18,7 @@ using static Sudoku.Analytics.Metadata.StepSearcherRunningArea;
 [assembly: StepSearcherImport<                      SueDeCoqStepSearcher>(  Moderate)]
 [assembly: StepSearcherImport<            SueDeCoq3DimensionStepSearcher>(  Moderate)]
 [assembly: StepSearcherImport<                    UniqueLoopStepSearcher>(  Moderate)]
-//[assembly: StepSearcherImport<             ExtendedRectangleStepSearcher>(  Moderate)]
+[assembly: StepSearcherImport<             ExtendedRectangleStepSearcher>(  Moderate)]
 //[assembly: StepSearcherImport<                EmptyRectangleStepSearcher>(  Moderate)]
 //[assembly: StepSearcherImport<                  UniqueMatrixStepSearcher>(  Moderate)]
 //[assembly: StepSearcherImport<                 UniquePolygonStepSearcher>(  Moderate)]

@@ -3807,6 +3807,165 @@
             <param name="grid">The grid.</param>
             <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher">
+            <summary>
+            Provides with an <b>Extended Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Extended Rectangle Type 1</item>
+            <item>Extended Rectangle Type 2</item>
+            <item>Extended Rectangle Type 3</item>
+            <item>Extended Rectangle Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.PatternInfos">
+            <summary>
+            Indicates all possible extended rectangle pattern combinations.
+            </summary>
+            <remarks>
+            <para>The list contains two types of <b>Extended Rectangle</b>s:</para>
+            <para>
+            Fit type (2 blocks spanned):
+            <code><![CDATA[
+            ab | ab
+            bc | bc
+            ac | ac
+            ]]></code>
+            </para>
+            <para>
+            Fat type (3 blocks spanned):
+            <code><![CDATA[
+            ab | ac | bc
+            ab | ac | bc
+            ]]></code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="extraCells">The extra cells map.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraDigit">The extra digit.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
+            <returns>The first found step if worth.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="extraCells">The extra cells map.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraDigit">The extra digit.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
+            <returns>The first found step if worth.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraDigits">The extra digits mask.</param>
+            <param name="extraCellsMap">The map of extra cells.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
+            <returns>The first found step if worth.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType14(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Check type 4 and a part of type 1 that the method
+            <see cref="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)"/>
+            cannot be found.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraCellsMap">The map of extra cells.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
+            <returns>The first found step if worth.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BitSubsetsGenerator">
+            <summary>
+            Represents a bit combination generator.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BitSubsetsGenerator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a bit combination generator.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.BitSubsetsGenerator._enumerator">
+            <summary>
+            The inner enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BitSubsetsGenerator.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.Enumerator">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Enumerator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.Enumerator._mask">
+            <summary>
+            The mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.Enumerator._isLast">
+            <summary>
+            Indicates whether that the value is the last one.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
             <summary>
             Provides with a <b>Unique Loop</b> step searcher.
@@ -5069,6 +5228,147 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleStep">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Type">
+            <summary>
+            Indicates the type of the step. The value must be between 1 and 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.DigitsMask">
+            <summary>
+            Indicates the mask of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Cells">
+            <summary>
+            Indicates the cells used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleType1Step">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleType2Step">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.ExtraDigit">
+            <summary>
+            Indicates the extra digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.House">
+            <summary>
+            Indicates the house that subset formed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.SubsetDigitsMask">
+            <summary>
+            Indicates the subset digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.SubsetCells">
+            <summary>
+            Indicates the extra cells used that can form the subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleType4Step">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueLoopStep">
