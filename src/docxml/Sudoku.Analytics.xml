@@ -6876,6 +6876,47 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.EquatableStep">
+            <summary>
+            Represents a type that operates with <see cref="T:Sudoku.Analytics.Steps.IEquatableStep`1"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Steps.IEquatableStep`1"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.EquatableStep.Distinct``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Try to compare elements, removing all duplicated ones in this collection,
+            which uses the operator <see cref="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)"/> defined in this interface.
+            </summary>
+            <param name="steps">The list of steps to be processed.</param>
+            <returns>The list of steps.</returns>
+            <remarks>
+            This method does not change the ordering of the original list.
+            In other words, if the original list is in order, the final list after invoking this method will be also in order.
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.LocalEqualityComparer`1">
+            <summary>
+            The internal comparer type for <typeparamref name="T"/> instances.
+            </summary>
+            <typeparam name="T">The type of the step.</typeparam>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.LocalEqualityComparer`1.Instance">
+            <summary>
+            The singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.#ctor">
+            <summary>
+            The parameterless constructor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.Equals(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.GetHashCode(`0)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexFishStep">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
@@ -7101,19 +7142,6 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TSelf">The type of the comparsison object. The type must be derived from <see cref="T:Sudoku.Analytics.Step"/>.</typeparam>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.IEquatableStep`1.Distinct(System.Collections.Generic.List{`0})">
-            <summary>
-            Try to compare elements, removing all duplicated ones in this collection,
-            which uses the operator <see cref="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)"/> defined in this interface.
-            </summary>
-            <param name="list">The list of steps to be processed.</param>
-            <returns>The list of steps.</returns>
-            <remarks>
-            This method does not change the ordering of the original list.
-            In other words, if the original list is in order, the final list after invoking this method will be also in order.
-            </remarks>
-            <seealso cref="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)"/>
-        </member>
         <member name="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)">
             <summary>
             Determines whether two <typeparamref name="TSelf"/> instances are considered equal.
@@ -7129,28 +7157,6 @@ if (student is (name: var name, age: >= 18))
             <param name="left">The first element to be compared.</param>
             <param name="right">The second element to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether two <typeparamref name="TSelf"/> instances are not considered equal.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.LocalEqualityComparer`1">
-            <summary>
-            The internal comparer type for <typeparamref name="T"/> instances.
-            </summary>
-            <typeparam name="T">The type of the step.</typeparam>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.LocalEqualityComparer`1.Instance">
-            <summary>
-            The singleton instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.#ctor">
-            <summary>
-            The parameterless constructor.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.Equals(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.GetHashCode(`0)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep">
             <summary>

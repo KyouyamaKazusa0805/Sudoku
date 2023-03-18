@@ -84,7 +84,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		// Sort and remove duplicate instances if worth.
-		var resultList = from step in IEquatableStep<UniqueRectangleStep>.Distinct(list) orderby step.Code, step.AbsoluteOffset select step;
+		var resultList = from step in EquatableStep.Distinct(list) orderby step.Code, step.AbsoluteOffset select step;
 		if (context.OnlyFindOne)
 		{
 			return resultList.FirstOrDefault();

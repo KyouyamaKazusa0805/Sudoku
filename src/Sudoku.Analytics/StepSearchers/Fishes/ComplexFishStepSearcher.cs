@@ -95,7 +95,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		}
 
 		// Remove duplicate items.
-		context.Accumulator!.AddRange(IEquatableStep<ComplexFishStep>.Distinct(tempList));
+		context.Accumulator!.AddRange(EquatableStep.Distinct(tempList));
 
 		return null;
 	}
