@@ -29,6 +29,7 @@ global using Sudoku.Concepts;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Resources;
+global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Mechanism;
 global using Sudoku.Text.Formatting;
