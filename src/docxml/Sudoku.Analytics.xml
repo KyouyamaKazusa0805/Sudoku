@@ -119,7 +119,7 @@
             Indicates the target step searcher collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.InternalSolve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.AnalyzerResult,System.IProgress{System.Double},System.Threading.CancellationToken)">
@@ -127,16 +127,16 @@
             The inner solving operation method.
             </summary>
             <param name="puzzle">
-            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='puzzle']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='puzzle']"/>
             </param>
             <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
             <param name="isSukaku">A <see cref="T:System.Boolean"/> value indicating whether the puzzle is a sukaku.</param>
             <param name="resultBase">The base solver result already included the base information.</param>
             <param name="progress">
-            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='progress']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='progress']"/>
             </param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Solve(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
             <returns>The solver result.</returns>
             <exception cref="T:Sudoku.Analytics.WrongStepException">Throws when found wrong steps to apply.</exception>
@@ -166,16 +166,16 @@
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
             </summary>
-            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.Puzzle" path="/summary"/></param>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.Puzzle" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
             </summary>
-            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.Puzzle" path="/summary"/></param>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.Puzzle" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.Puzzle">
-            <summary><inheritdoc cref="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.Puzzle" path="/summary"/></summary>
+            <summary><inheritdoc cref="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.Puzzle" path="/summary"/></summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.IsSolved">
             <inheritdoc/>
@@ -307,7 +307,7 @@
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.UnhandledException">
             <summary>
-            <inheritdoc cref="P:Sudoku.Solving.Mechanism.IComplexSolverResult`2.UnhandledException" path="/summary"/>
+            <inheritdoc cref="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.UnhandledException" path="/summary"/>
             </summary>
             <remarks>
             You can visit the property value if the property <see cref="P:Sudoku.Analytics.AnalyzerResult.FailedReason"/>
@@ -1723,24 +1723,24 @@
             Indicates RW's deadly pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquePolygonType1">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BorescoperDeadlyPatternType1">
             <summary>
-            Indicates unique polygon type 1.
+            Indicates Borescoper's deadly pattern type 1.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquePolygonType2">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BorescoperDeadlyPatternType2">
             <summary>
-            Indicates unique polygon type 2.
+            Indicates Borescoper's deadly pattern type 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquePolygonType3">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BorescoperDeadlyPatternType3">
             <summary>
-            Indicates unique polygon type 3.
+            Indicates Borescoper's deadly pattern type 3.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquePolygonType4">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BorescoperDeadlyPatternType4">
             <summary>
-            Indicates unique polygon type 4.
+            Indicates Borescoper's deadly pattern type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.QiuDeadlyPatternType1">
@@ -3197,6 +3197,190 @@
             <param name="grid">The grid.</param>
             <returns>All possible found <see cref="T:Sudoku.Analytics.Patterns.AlmostLockedSet"/> instances.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern">
+            <summary>
+            Defines a pattern that is a Borescoper's Deadly Pattern technique structure in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | P P . |
+            :-------+-------+-------:
+            | . . . | . . Q | S S . |
+            | . . . | . . Q | S(S). |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>The first group of cells.</description></item>
+            <item><term>Q</term><description>The second group of cells.</description></item>
+            <item>
+            <term>S</term>
+            <description>
+            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
+            is optional.
+            </description>
+            </item>
+            </list>
+            </summary>
+            <param name="mask">
+            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="/summary"/></para>
+            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="//remarks/para[1]"/></para>
+            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="//remarks/para[2]"/></para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.#ctor(System.Int64)">
+            <summary>
+            Defines a pattern that is a Borescoper's Deadly Pattern technique structure in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | P P . |
+            :-------+-------+-------:
+            | . . . | . . Q | S S . |
+            | . . . | . . Q | S(S). |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>The first group of cells.</description></item>
+            <item><term>Q</term><description>The second group of cells.</description></item>
+            <item>
+            <term>S</term>
+            <description>
+            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
+            is optional.
+            </description>
+            </item>
+            </list>
+            </summary>
+            <param name="mask">
+            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="/summary"/></para>
+            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="//remarks/para[1]"/></para>
+            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="//remarks/para[2]"/></para>
+            </param>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask">
+            <summary>
+            Indicates the internal mask.
+            </summary>
+            <remarks>
+            <para>
+            This mask is of type <see cref="T:System.Int64"/>, where the distribution of each bit is as follows:
+            <code><![CDATA[
+            0      7     14     21     28     35     42     49     56
+            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
+            |-------|-------|-------|-------|-------|-------|-------|-------|
+            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
+            0       8      16      24      32      40      48      56      64
+            ]]></code>
+            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
+            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
+            </para>
+            <para>
+            Due to the rendering engine, you have to check this file rather than the tip window.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.IsHeptagon">
+            <summary>
+            Indicates whether the specified pattern is a heptagon.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.Pair1Map">
+            <summary>
+            Indicates the map of pair 1 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.Pair2Map">
+            <summary>
+            Indicates the map of pair 2 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.CenterCellsMap">
+            <summary>
+            The map of other three (or four) cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.Pair1">
+            <summary>
+            Indicates the pair 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.Pair2">
+            <summary>
+            Indicates the pair 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.CenterCells">
+            <summary>
+            Indicates the other three (or four) cells.
+            </summary>
+            <remarks>
+            <b>If and only if</b> the fourth value in the returned quadruple is available.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="T:Sudoku.Analytics.Patterns.ComplexFishFinKind">
             <summary>
             Indicates a fin modifier that is used for a complex fish structure.
@@ -3792,6 +3976,62 @@
         <member name="P:Sudoku.Analytics.StepSearcherPool.BuiltIn">
             <summary>
             Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher">
+            <summary>
+            Provides with a <b>Borescoper's Deadly Pattern</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Borescoper's Deadly Pattern Type 1</item>
+            <item>Borescoper's Deadly Pattern Type 2</item>
+            <item>Borescoper's Deadly Pattern Type 3</item>
+            <item>Borescoper's Deadly Pattern Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Patterns">
+            <summary>
+            Indicates all possible patterns to iterate.
+            </summary>
+            <remarks>
+            Please note that all possible heptagons and octagons are in here.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.BorescoperDeadlyPattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Check for type 1.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.BorescoperDeadlyPattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Check type 2.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.BorescoperDeadlyPattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Check for type 3.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.BorescoperDeadlyPattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Check for type 4.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher">
@@ -5392,6 +5632,144 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Borescoper's Deadly Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Borescoper's Deadly Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Type">
+            <summary>
+            Indicates the type of the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.DigitsMask">
+            <summary>
+            Indicates the mask of used digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Map">
+            <summary>
+            The map that contains the cells used for this technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step">
+            <summary>
+            Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step">
+            <summary>
+            Provides with a step that is a <b>Borescoper's Deadly Pattern Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Borescoper's Deadly Pattern Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.ExtraDigit">
+            <summary>
+            Indicates the extra digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step">
+            <summary>
+            Provides with a step that is a <b>Borescoper's Deadly Pattern Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Borescoper's Deadly Pattern Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.SubsetDigitsMask">
+            <summary>
+            Indicates the mask of subset digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.SubsetCells">
+            <summary>
+            Indicates the cells that the subset used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step">
+            <summary>
+            Provides with a step that is a <b>Borescoper's Deadly Pattern Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Borescoper's Deadly Pattern Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.ExtraDigitsMask">
+            <summary>
+            Indicates the mask of extra digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.ConjugateHouse">
+            <summary>
+            Indicates the cells used as generialized conjugate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">

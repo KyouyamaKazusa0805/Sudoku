@@ -1405,24 +1405,24 @@ public enum Technique : short
 	RwDeadlyPattern,
 
 	/// <summary>
-	/// Indicates unique polygon type 1.
+	/// Indicates Borescoper's deadly pattern type 1.
 	/// </summary>
-	UniquePolygonType1,
+	BorescoperDeadlyPatternType1,
 
 	/// <summary>
-	/// Indicates unique polygon type 2.
+	/// Indicates Borescoper's deadly pattern type 2.
 	/// </summary>
-	UniquePolygonType2,
+	BorescoperDeadlyPatternType2,
 
 	/// <summary>
-	/// Indicates unique polygon type 3.
+	/// Indicates Borescoper's deadly pattern type 3.
 	/// </summary>
-	UniquePolygonType3,
+	BorescoperDeadlyPatternType3,
 
 	/// <summary>
-	/// Indicates unique polygon type 4.
+	/// Indicates Borescoper's deadly pattern type 4.
 	/// </summary>
-	UniquePolygonType4,
+	BorescoperDeadlyPatternType4,
 
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 1.
