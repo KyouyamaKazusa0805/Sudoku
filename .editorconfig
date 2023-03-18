@@ -25,9 +25,9 @@ insert_final_newline = false
 # Spell checking
 #
 spelling_languages = en-us
-spelling_checkable_types = identifiers,comments
-spelling_error_severity = warning
-spelling_exclusion_path = .\misspelling-exclusion.dic
+spelling_checkable_types = strings,identifiers,comments
+spelling_error_severity = suggestion
+spelling_use_default_exclusion_dictionary = .\SOLUTIONWIDE_IGNORED_MISSPELLING.dic
 
 
 #
@@ -158,6 +158,7 @@ csharp_using_directive_placement = outside_namespace:none
 
 # miscellaneous preferences
 csharp_style_prefer_utf8_string_literals = true:suggestion
+csharp_style_prefer_readonly_struct_member = true:warning
 
 
 #
@@ -521,7 +522,7 @@ dotnet_diagnostic.CA2208.severity = silent
 dotnet_diagnostic.CA2244.severity = error
 
 # CA2249: Consider using 'string.Contains' instead of 'string.IndexOf'
-dotnet_diagnostic.CA2249.severity = silent
+dotnet_diagnostic.CA2249.severity = suggestion
 
 # CA2255: The 'ModuleInitializer' attribute should not be used in libraries
 dotnet_diagnostic.CA2255.severity = none
