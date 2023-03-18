@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class MultiBranchWWingStepSearcher
+public sealed partial class MultiBranchWWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)

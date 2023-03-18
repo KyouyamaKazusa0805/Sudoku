@@ -37,7 +37,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class SubsetStepSearcher
+public sealed partial class SubsetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)

@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class SueDeCoq3DimensionStepSearcher
+public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override unsafe Step? GetAll(ref AnalysisContext context)

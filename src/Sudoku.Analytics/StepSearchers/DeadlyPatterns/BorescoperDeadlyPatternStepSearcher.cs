@@ -11,7 +11,7 @@
 /// </list>
 /// </summary>
 [StepSearcher, ConditionalCases(ConditionalCase.Standard)]
-public sealed partial class BorescoperDeadlyPatternStepSearcher
+public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates all possible patterns to iterate.

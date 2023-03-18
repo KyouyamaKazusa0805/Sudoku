@@ -10,7 +10,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class SueDeCoqStepSearcher
+public sealed partial class SueDeCoqStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override unsafe Step? GetAll(scoped ref AnalysisContext context)

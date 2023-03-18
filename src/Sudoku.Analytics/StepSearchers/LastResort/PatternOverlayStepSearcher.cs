@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher, Direct]
-public sealed partial class PatternOverlayStepSearcher
+public sealed partial class PatternOverlayStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// The pre-defined template cell maps.

@@ -9,7 +9,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class LockedCandidatesStepSearcher
+public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>

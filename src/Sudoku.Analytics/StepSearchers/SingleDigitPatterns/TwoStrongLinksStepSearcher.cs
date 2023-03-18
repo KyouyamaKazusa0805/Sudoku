@@ -9,9 +9,8 @@
 /// <item>Turbot Fish</item>
 /// </list>
 /// </summary>
-[StepSearcher]
-[CachedOnly]
-public sealed partial class TwoStrongLinksStepSearcher
+[StepSearcher, CachedOnly]
+public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)

@@ -10,7 +10,7 @@
 /// </list>
 /// </summary>
 [StepSearcher, Direct, Fixed]
-public sealed partial class SingleStepSearcher
+public sealed partial class SingleStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates whether the solver enables the technique full house.

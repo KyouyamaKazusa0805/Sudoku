@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class MultisectorLockedSetsStepSearcher
+public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates the list initialized with the static constructor.

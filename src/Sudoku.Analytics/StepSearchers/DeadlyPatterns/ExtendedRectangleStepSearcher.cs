@@ -11,7 +11,7 @@
 /// </list>
 /// </summary>
 [StepSearcher, ConditionalCases(ConditionalCase.Standard)]
-public sealed partial class ExtendedRectangleStepSearcher
+public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates all possible extended rectangle pattern combinations.

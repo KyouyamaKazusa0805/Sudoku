@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class EmptyRectangleStepSearcher
+public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)

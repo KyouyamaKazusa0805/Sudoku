@@ -11,7 +11,7 @@
 /// </list>
 /// </summary>
 [StepSearcher, ConditionalCases(ConditionalCase.Standard | ConditionalCase.UnlimitedTimeComplexity | ConditionalCase.UnlimitedSpaceComplexity)]
-public sealed partial class UniqueLoopStepSearcher
+public sealed partial class UniqueLoopStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)

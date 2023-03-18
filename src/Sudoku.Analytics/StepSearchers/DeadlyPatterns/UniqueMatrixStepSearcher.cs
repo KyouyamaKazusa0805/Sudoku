@@ -10,8 +10,8 @@
 /// <item>Unique Matrix Type 4</item>
 /// </list>
 /// </summary>
-[StepSearcher]
-public sealed partial class UniqueMatrixStepSearcher
+[StepSearcher, ConditionalCases(ConditionalCase.Standard)]
+public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates the patterns.

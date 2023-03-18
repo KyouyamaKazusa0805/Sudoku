@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher, Fixed, Direct]
-public sealed partial class BruteForceStepSearcher
+public sealed partial class BruteForceStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)

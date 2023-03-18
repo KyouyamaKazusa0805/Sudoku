@@ -15,7 +15,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class RegularWingStepSearcher
+public sealed partial class RegularWingStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates the maximum number of pivots to be searched for.
@@ -74,7 +74,8 @@ public sealed partial class RegularWingStepSearcher
 						continue;
 					}
 
-					short union = mask, inter = (short)(Grid.MaxCandidatesMask & mask);
+					var union = mask;
+					var inter = (short)(Grid.MaxCandidatesMask & mask);
 					foreach (var cell in cells)
 					{
 						var m = grid.GetCandidates(cell);
@@ -122,22 +123,12 @@ public sealed partial class RegularWingStepSearcher
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(
-								new(
-									digit == zDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
-									cell * 9 + digit
-								)
-							);
+							candidateOffsets.Add(new(digit == zDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit));
 						}
 					}
 					foreach (var digit in grid.GetCandidates(pivot))
 					{
-						candidateOffsets.Add(
-							new(
-								digit == zDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
-								pivot * 9 + digit
-							)
-						);
+						candidateOffsets.Add(new(digit == zDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, pivot * 9 + digit));
 					}
 
 					var step = new RegularWingStep(

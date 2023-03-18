@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed partial class DominoLoopStepSearcher
+public sealed partial class DominoLoopStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// The position table of all SK-loops.

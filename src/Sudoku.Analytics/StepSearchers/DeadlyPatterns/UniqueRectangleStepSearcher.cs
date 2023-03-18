@@ -40,9 +40,8 @@
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher]
-[Metadata.ConditionalCases(ConditionalCase.Standard)]
-public sealed partial class UniqueRectangleStepSearcher
+[StepSearcher, ConditionalCases(ConditionalCase.Standard)]
+public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates whether the UR can be incomplete. In other words,
