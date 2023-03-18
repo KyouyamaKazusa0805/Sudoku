@@ -5213,6 +5213,59 @@
         <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher">
+            <summary>
+            Provides with a <b>Unique Matrix</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Unique Matrix Type 1</item>
+            <item>Unique Matrix Type 2</item>
+            <item>Unique Matrix Type 3</item>
+            <item>Unique Matrix Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.Patterns">
+            <summary>
+            Indicates the patterns.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Searches for type 1.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Searches for type 2.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Searches for type 3.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Searches for type 4.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher">
             <summary>
             Provides with a <b>Multiple-Branch W-Wing</b> step searcher.
@@ -5547,6 +5600,151 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueMatrixStep">
+            <summary>
+            Provides with a step that is a <b>Unique Matrix</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Unique Matrix</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Type">
+            <summary>
+            Indicates the type of the current technique step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.DigitsMask">
+            <summary>
+            Indicates the mask that describes all digits used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Cells">
+            <summary>
+            Indicates the cells used in this pattern.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueMatrixType1Step">
+            <summary>
+            Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType1Step.Candidate">
+            <summary>
+            Indicates the true candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueMatrixType2Step">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.ExtraDigit">
+            <summary>
+            Indicates the extra digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueMatrixType3Step">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.SubsetDigitsMask">
+            <summary>
+            Indicates the mask that describes the extra digits used in the subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.SubsetCells">
+            <summary>
+            Indicates the cells that the subset used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueMatrixType4Step">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.Digit1">
+            <summary>
+            Indicates the first digit used in the conjugate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.Digit2">
+            <summary>
+            Indicates the second digit used in the conjugate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.ConjugateHouse">
+            <summary>
+            Indicates the cells that describes the generalized conjugate pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep">
