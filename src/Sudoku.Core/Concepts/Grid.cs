@@ -1,4 +1,4 @@
-﻿#define TARGET_64BIT
+#define TARGET_64BIT
 namespace Sudoku.Concepts;
 
 /// <summary>
@@ -671,28 +671,28 @@ public unsafe partial struct Grid :
 		return e(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(short) * 81);
 
 
-		/**
-			<summary>
-			Determines whether two sequences are considered equal on respective bits.
-			</summary>
-			<param name="first">The first sequence.</param>
-			<param name="second">The second sequence.</param>
-			<param name="length">
-			The total bits of the sequence to be compared. Please note that two sequences
-			<paramref name="first"/> and <paramref name="second"/> must hold a same length.
-			</param>
-			<returns>A <see cref="bool"/> result indicating whether they are considered equal.</returns>
-			<remarks>
-			Optimized byte-based <c>SequenceEquals</c>.
-			The <paramref name="length"/> parameter for this one is declared a <see langword="nuint"/> rather than <see cref="int"/>
-			as we also use it for types other than <see cref="byte"/> where the length can exceed 2Gb once scaled by <see langword="sizeof"/>(T).
-			</remarks>
-			<!--
-			Licensed to the .NET Foundation under one or more agreements.
-			The .NET Foundation licenses this file to you under the MIT license.
-			https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
-			-->
-		*/
+#pragma warning disable CS1587
+		/// <summary>
+		/// Determines whether two sequences are considered equal on respective bits.
+		/// </summary>
+		/// <param name="first">The first sequence.</param>
+		/// <param name="second">The second sequence.</param>
+		/// <param name="length">
+		/// The total bits of the sequence to be compared. Please note that two sequences
+		/// <paramref name="first"/> and <paramref name="second"/> must hold a same length.
+		/// </param>
+		/// <returns>A <see cref="bool"/> result indicating whether they are considered equal.</returns>
+		/// <remarks>
+		/// Optimized byte-based <c>SequenceEquals</c>.
+		/// The <paramref name="length"/> parameter for this one is declared a <see langword="nuint"/> rather than <see cref="int"/>
+		/// as we also use it for types other than <see cref="byte"/> where the length can exceed 2Gb once scaled by <see langword="sizeof"/>(T).
+		/// </remarks>
+		/// <!--
+		/// Licensed to the .NET Foundation under one or more agreements.
+		/// The .NET Foundation licenses this file to you under the MIT license.
+		/// https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
+		/// -->
+#pragma warning restore CS1587
 		static bool e(scoped ref byte first, scoped ref byte second, nuint length)
 		{
 			bool result;

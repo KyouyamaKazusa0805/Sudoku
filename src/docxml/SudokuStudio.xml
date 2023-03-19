@@ -6558,7 +6558,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache">
             <summary>
-            Indicates the anlaysis result cache.
+            Indicates the analysis result cache.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPalette">

@@ -31,7 +31,7 @@ spelling_languages = en-us
 spelling_checkable_types = strings,identifiers,comments
 spelling_error_severity = suggestion
 spelling_use_default_exclusion_dictionary = true
-spelling_exclusion_path  = .\misspelling-exclusion.dic
+spelling_exclusion_path = .\misspelling-exclusion.dic
 
 
 #
@@ -351,9 +351,6 @@ dotnet_diagnostic.CS0618.severity = silent
 
 # CS0809: Obsolete member overrides non-obsolete member
 dotnet_diagnostic.CS0809.severity = silent
-
-# CS1587: XML comment is not placed on a valid language element
-dotnet_diagnostic.CS1587.severity = none
 
 # CS8500: This takes the address of, gets the size of, or declares a pointer to a managed type
 dotnet_diagnostic.CS8500.severity = none

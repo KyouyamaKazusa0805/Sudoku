@@ -1,7 +1,5 @@
-/**
-	This file stores built-in <see cref="Sudoku.Analytics.StepSearcher"/> instances,
-	in order to create default collection for type <see cref="Sudoku.Analytics.StepSearcherPool.BuiltIn"/>.
-*/
+// This file stores built-in 'StepSearcher' instances,
+// in order to create default collection of member 'StepSearcherPool.BuiltIn'.
 
 [assembly: StepSearcherImport<SingleStepSearcher>(StepSearcherLevel.Elementary)]
 [assembly: StepSearcherImport<LockedCandidatesStepSearcher>(StepSearcherLevel.Elementary)]

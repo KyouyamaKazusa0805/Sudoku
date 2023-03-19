@@ -290,11 +290,9 @@ public sealed partial class MainWindow : Window
 	{
 		if (AppWindowTitleBar.IsCustomizationSupported() && appWindow.TitleBar.ExtendsContentIntoTitleBar
 #if DEBUG
-			/**
-				This is a bug fix. This bug can be reproduced by Windows Application SDK v1.2.
-				If you minimize and maximize the window via task bar icon, the expression value <c>appWindow.TitleBar.RightInset</c>
-				will be -24.
-			*/
+			// This is a bug fix. This bug can be reproduced by Windows Application SDK v1.2.
+			// If you minimize and maximize the window via task bar icon, the expression value 'appWindow.TitleBar.RightInset'
+			// will be -24.
 			&& appWindow.TitleBar.RightInset >= 0
 #endif
 			)

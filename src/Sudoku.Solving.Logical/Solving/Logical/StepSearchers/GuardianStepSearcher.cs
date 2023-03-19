@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.StepSearchers;
+namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
 [StepSearcherRunningOptions(StepSearcherRunningOptions.HighMemoryAllocation)]
@@ -61,12 +61,10 @@ internal sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearche
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, c * 9 + digit));
 				}
 
-				/**
-					Add found step into the collection.
-					To be honest I can return the step if <see cref="LogicalAnalysisContext.OnlyFindOne"/> is true,
-					but due to the limit of the algorithm, the method always gets the longer guardian loops instead of shorter ones.
-					If we just return the first found step, we will miss steps being more elegant.
-				*/
+				// Add found step into the collection.
+				// To be honest I can return the step if 'LogicalAnalysisContext.OnlyFindOne' is true,
+				// but due to the limit of the algorithm, the method always gets the longer guardian loops instead of shorter ones.
+				// If we just return the first found step, we will miss steps being more elegant.
 				resultAccumulator.Add(
 					new GuardianStep(
 						from c in elimMap select new Conclusion(Elimination, c, digit),

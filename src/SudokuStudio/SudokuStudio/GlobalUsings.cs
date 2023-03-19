@@ -1,4 +1,4 @@
-﻿global using System;
+global using System;
 global using System.Collections;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
@@ -87,6 +87,7 @@ global using SudokuStudio.Runtime.InteropServices;
 global using SudokuStudio.Storage;
 global using SudokuStudio.Views.Controls;
 global using SudokuStudio.Views.Pages;
+global using SudokuStudio.Views.Pages.Analyze;
 global using SudokuStudio.Views.Pages.ContentDialogs;
 global using SudokuStudio.Views.Pages.Operation;
 global using SudokuStudio.Views.Pages.Settings;

@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about value text.
@@ -22,9 +22,10 @@ internal static class ValueTextConversion
 	)
 	{
 		var digit = TrailingZeroCount(candidatesMask) is var d and not InvalidValidOfTrailingZeroCountMethodFallback ? d : -1;
+
+		// Implicit behavior: argument 'solution' can be 'Grid.Undefined'.
+		// Therefore, we must check validity first.
 		return new SolidColorBrush(
-			/// Implicit behavior: argument <param name="solution"/> can be <see cref="Grid.Undefined"/>.
-			/// Therefore, we must check validity first.
 			!solution.IsUndefined && solution[cell] != digit && useDifferentColorToDisplayDeltaDigits
 				? deltaColor
 				: grid.GetStatus(cell) == CellStatus.Modifiable ? modifiableColor : givenColor

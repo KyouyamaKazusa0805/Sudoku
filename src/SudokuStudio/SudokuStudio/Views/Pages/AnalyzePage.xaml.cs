@@ -1,5 +1,3 @@
-using SudokuStudio.Views.Pages.Analyze;
-
 namespace SudokuStudio.Views.Pages;
 
 /// <summary>
@@ -10,7 +8,7 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<bool>("GeneratorIsNotRunning", DefaultValue = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the generator is not running currently.")]
 [DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"VisualUnit.Views\"/> displayed.")]
 [DependencyProperty<double>("ProgressPercent", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the progress percent value.")]
-[DependencyProperty<LogicalSolverResult>("AnalysisResultCache", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the anlaysis result cache.")]
+[DependencyProperty<LogicalSolverResult>("AnalysisResultCache", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
 [DependencyProperty<ColorPalette>("UserDefinedPalette", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the user-defined colors.")]
 [DependencyProperty<VisualUnit>("VisualUnit", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the visual unit.")]
 public sealed partial class AnalyzePage : Page
@@ -114,10 +112,8 @@ public sealed partial class AnalyzePage : Page
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	internal bool EnsureUnsnapped(bool isFileSaving)
 	{
-		/**
-			<see cref="FileOpenPicker"/> APIs will not work if the application is in a snapped state.
-			If an app wants to show a <see cref="FileOpenPicker"/> while snapped, it must attempt to unsnap first.
-		*/
+		// 'FileOpenPicker' APIs will not work if the application is in a snapped state.
+		// If an app wants to show a 'FileOpenPicker' while snapped, it must attempt to unsnap first.
 		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
 		if (!unsnapped)
 		{

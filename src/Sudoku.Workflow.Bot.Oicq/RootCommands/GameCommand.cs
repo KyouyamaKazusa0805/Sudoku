@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
+namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 /// <summary>
 /// 游戏指令。
@@ -60,10 +60,8 @@ internal sealed class GameCommand : Command
 					goto ReturnTrueAndInitializeContext;
 				}
 
-				/**
-					判别用户的回答是否正确。
-					这里我们用到的是 <see cref="AnsweringContext.CurrentRoundAnsweredValues"/> 属性。
-				*/
+				// 判别用户的回答是否正确。
+				// 这里我们用到的是 'AnsweringContext.CurrentRoundAnsweredValues' 属性。
 				foreach (var data in answeringContext.CurrentRoundAnsweredValues)
 				{
 					if (data is not { Conclusion: var answeredCellIndex, User: { Id: var userId, Name: var userName } })

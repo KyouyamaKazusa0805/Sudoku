@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.Handlers;
+namespace Sudoku.Workflow.Bot.Oicq.Handlers;
 
 /// <summary>
 /// 提供一个分数（经验值和金币）的处理器类型。
@@ -72,7 +72,7 @@ public static class ScoreHandler
 
 		static IEnumerable<(int Level, int Threshold)> f()
 		{
-			/**<c>A000217(41449)</c> 是最大的、比 <see cref="int.MaxValue"/> 小的数字。*/
+			// A000217(41449) 是最大的、比 int.MaxValue（2147483647）小的数字。
 			for (var levelCurrent = 1; levelCurrent <= 41449; levelCurrent++)
 			{
 				yield return (levelCurrent, (int)(A000217(levelCurrent) * 2.5F));
