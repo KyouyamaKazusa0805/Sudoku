@@ -480,7 +480,7 @@
             <param name="result">
             <para>The result of the grid.</para>
             <para>
-            Different with other methods whose containing type is <see cref="T:Sudoku.Solving.Mechanism.ISolver"/>,
+            Different with other methods whose containing type is <see cref="T:Sudoku.Analytics.ISolver"/>,
             this argument can be used no matter what the result value will be.
             </para>
             </param>

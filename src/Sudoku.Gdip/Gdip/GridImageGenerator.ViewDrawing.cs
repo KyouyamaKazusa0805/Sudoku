@@ -44,10 +44,10 @@ partial class GridImageGenerator
 		using var elimBrush = new SolidBrush(eColor);
 		using var cannibalBrush = new SolidBrush(cColor);
 		using var elimBrushLighter = new SolidBrush(eColor.QuarterAlpha());
-		using var canniBrushLighter = new SolidBrush(cColor.QuarterAlpha());
+		using var cannibalismBrushLighter = new SolidBrush(cColor.QuarterAlpha());
 		foreach (var (t, c, d) in conclusions)
 		{
-			if (t != ConclusionType.Elimination)
+			if (t != Elimination)
 			{
 				continue;
 			}
@@ -72,7 +72,7 @@ partial class GridImageGenerator
 			g.FillEllipse(
 				(cannibalism, view.UnknownOverlaps(c)) switch
 				{
-					(true, true) => canniBrushLighter,
+					(true, true) => cannibalismBrushLighter,
 					(true, false) => cannibalBrush,
 					(false, true) => elimBrushLighter,
 					_ => elimBrush
@@ -236,7 +236,7 @@ partial class GridImageGenerator
 	[Conditional("ENHANCED_DRAWING_APIS")]
 	private void DrawGroupedNodes(Graphics g)
 	{
-		if (this is not { View.GroupedViewNodes: var nodes, Calculator: { CellSize: (var cw, var ch) cs, GridSize: (var gw, var gh) gs } calc })
+		if (this is not { View.GroupedViewNodes: var nodes, Calculator: { CellSize: (var cw, var ch) cs, GridSize: var gs } calc })
 		{
 			return;
 		}

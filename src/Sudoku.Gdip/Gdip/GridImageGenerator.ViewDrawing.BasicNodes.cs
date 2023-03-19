@@ -66,7 +66,7 @@ partial class GridImageGenerator
 
 			foreach (var (concType, concCandidate) in conclusions)
 			{
-				if (concType == ConclusionType.Elimination && concCandidate == candidate)
+				if (concType == Elimination && concCandidate == candidate)
 				{
 					isOverlapped = true;
 					break;
@@ -125,7 +125,7 @@ partial class GridImageGenerator
 			foreach (var (type, cell, digit) in conclusions)
 			{
 				var overlaps = view.UnknownOverlaps(cell);
-				if (type == ConclusionType.Elimination)
+				if (type == Elimination)
 				{
 					d(cell, digit, vOffsetCandidate, overlaps ? bCandidateLighter : bCandidate);
 				}

@@ -2288,7 +2288,7 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
             <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})">
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion})">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for conclusions.
             </summary>
@@ -2304,43 +2304,43 @@ if (student is (name: var name, age: >= 18))
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion})" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="cellNode">The node to be displayed.</param>
             <seealso cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,Sudoku.Solving.Conclusion[],System.Nullable{Sudoku.Solving.Conclusion}@)">
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,Sudoku.Analytics.Conclusion[],System.Nullable{Sudoku.Analytics.Conclusion}@)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion})" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="candidateNode">
             <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalisms.</param>
             <param name="overlapped">
-            Indicates the collection that returns a possible <see cref="T:Sudoku.Solving.Conclusion"/> value indicating
+            Indicates the collection that returns a possible <see cref="T:Sudoku.Analytics.Conclusion"/> value indicating
             what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
             </param>
             <seealso cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>
         </member>
         <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNodeCore(Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell)">
             <summary>
-            The core method called by <see cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,Sudoku.Solving.Conclusion[],System.Nullable{Sudoku.Solving.Conclusion}@)"/>.
+            The core method called by <see cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,Sudoku.Analytics.Conclusion[],System.Nullable{Sudoku.Analytics.Conclusion}@)"/>.
             </summary>
             <param name="color">The color to be used on rendering.</param>
             <param name="candidate">The candidate to be rendered.</param>
             <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
-            <seealso cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,Sudoku.Solving.Conclusion[],System.Nullable{Sudoku.Solving.Conclusion}@)"/>
+            <seealso cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CandidateViewNode,Sudoku.Analytics.Conclusion[],System.Nullable{Sudoku.Analytics.Conclusion}@)"/>
         </member>
         <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForHouseNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.HouseViewNode)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion})" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="houseNode">
             <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
@@ -2355,7 +2355,7 @@ if (student is (name: var name, age: >= 18))
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/>.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion})" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="chuteNode">
             <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
@@ -2370,19 +2370,19 @@ if (student is (name: var name, age: >= 18))
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion})" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="babaGroupNode">
             <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
             </param>
             <seealso cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.LinkViewNode[],Sudoku.Solving.Conclusion[])">
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.LinkViewNode[],Sudoku.Analytics.Conclusion[])">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>s.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Solving.Conclusion,System.Collections.Generic.List{Sudoku.Solving.Conclusion})" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion})" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="linkNodes">
             <inheritdoc cref="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.CellViewNode)" path="/param[@name='cellNode']"/>
@@ -2401,7 +2401,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.PathCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter,Sudoku.Solving.Conclusion[])">
+        <member name="M:SudokuStudio.Interaction.PathCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter,Sudoku.Analytics.Conclusion[])">
             <summary>
             Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
             </summary>
@@ -2458,7 +2458,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The collection.</param>
         </member>
-        <member name="M:SudokuStudio.Interaction.Extensions.ConflictWith(Sudoku.Solving.Conclusion[],System.Int32,System.Nullable{Sudoku.Solving.Conclusion}@)">
+        <member name="M:SudokuStudio.Interaction.Extensions.ConflictWith(Sudoku.Analytics.Conclusion[],System.Int32,System.Nullable{Sudoku.Analytics.Conclusion}@)">
             <summary>
             <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
             <para>This method is used for checking cannibalisms.</para>

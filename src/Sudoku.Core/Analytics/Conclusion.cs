@@ -1,13 +1,12 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Analytics;
 
 /// <summary>
 /// Defines a type that can describe a candidate is the correct or wrong digit.
 /// </summary>
 /// <remarks>
 /// Two <see cref="Conclusion"/>s can be compared with each other. If one of those two is an elimination
-/// (i.e. holds the value <see cref="Elimination"/> as the type), the instance
-/// will be greater; if those two hold same conclusion type, but one of those two holds
-/// the global index of the candidate position is greater, it is greater.
+/// (i.e. holds the value <see cref="Elimination"/> as the type), the instance will be greater;
+/// if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
 /// <param name="mask"><inheritdoc cref="_mask" path="/summary"/></param>
 public readonly partial struct Conclusion(int mask) :
@@ -81,8 +80,7 @@ public readonly partial struct Conclusion(int mask) :
 
 	/// <summary>
 	/// The conclusion type to control the action of applying.
-	/// If the type is <see cref="Assignment"/>,
-	/// this conclusion will be set value (Set a digit into a cell);
+	/// If the type is <see cref="Assignment"/>, this conclusion will be set value (Set a digit into a cell);
 	/// otherwise, a candidate will be removed.
 	/// </summary>
 	public ConclusionType ConclusionType

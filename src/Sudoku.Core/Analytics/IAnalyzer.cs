@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Mechanism;
+﻿namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents with an analyzer, which can solve a puzzle, and return not only a <see cref="Grid"/> as its solution,

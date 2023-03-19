@@ -139,7 +139,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.RecordStep(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Analytics.Step,Sudoku.Concepts.Grid@,System.Timers.ValueStopwatch@,System.Collections.Generic.List{Sudoku.Concepts.Grid},Sudoku.Analytics.AnalyzerResult,System.Threading.CancellationToken,Sudoku.Analytics.AnalyzerResult@)">
             <summary>
-            Try to record the current step, saving it into the arguemnt <paramref name="steps"/>.
+            Try to record the current step, saving it into the argument <paramref name="steps"/>.
             </summary>
             <param name="steps">The accumulator.</param>
             <param name="step">The step to be saved.</param>
@@ -161,16 +161,16 @@
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
             </summary>
-            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.Puzzle" path="/summary"/></param>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
             </summary>
-            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.Puzzle" path="/summary"/></param>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.Puzzle">
-            <summary><inheritdoc cref="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.Puzzle" path="/summary"/></summary>
+            <summary><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.IsSolved">
             <inheritdoc/>
@@ -215,12 +215,12 @@
             </para>
             <para>
             When the puzzle is solved, the value will be the difficulty rating of the first step before the first one
-            whose conclusion is <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>.
+            whose conclusion is <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>.
             If the puzzle has not solved or solved by other solvers, this value will be <c>20.0M</c>.
             </para>
             </summary>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="F:Sudoku.Solving.ConclusionType.Assignment"/>
+            <seealso cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.SolvingStepsCount">
             <summary>
@@ -302,7 +302,7 @@
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.UnhandledException">
             <summary>
-            <inheritdoc cref="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.UnhandledException" path="/summary"/>
+            <inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.UnhandledException" path="/summary"/>
             </summary>
             <remarks>
             You can visit the property value if the property <see cref="P:Sudoku.Analytics.AnalyzerResult.FailedReason"/>
@@ -3613,7 +3613,7 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
             <param name="views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a logical solving step that is a technique usage, and contains the conclusions.
             </summary>
@@ -3736,13 +3736,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <remarks>
             <para>
-            This property use a dictionary to merge globalizational format data.
+            This property use a dictionary to merge format data of globalization.
             The key type is <see cref="T:System.String"/>, which can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
             for example, <c>"zh"</c> and <c>"en-US"</c>.
             </para>
-            <para>
-            For more backing implementation details, please visit method <see cref="M:Sudoku.Analytics.Step.ToString"/> in derived <see langword="class"/>es.
-            </para>
+            <para>For more backing implementation details, please visit method <see cref="M:Sudoku.Analytics.Step.ToString"/> in derived <see langword="class"/>es.</para>
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.Format"/>
             <seealso cref="T:System.Globalization.CultureInfo"/>
@@ -3921,7 +3919,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </param>
             <returns>
-            Returns the first found step. The nullability of the return value are as belows:
+            Returns the first found step. The nullability of the return value are as below:
             <list type="bullet">
             <item>
             <see langword="null"/>:
@@ -5634,7 +5632,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Borescoper's Deadly Pattern</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern</b> technique.
             </summary>
@@ -5674,7 +5672,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
             </summary>
@@ -5690,7 +5688,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 2</b> technique.
             </summary>
@@ -5714,7 +5712,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 3</b> technique.
             </summary>
@@ -5743,7 +5741,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 4</b> technique.
             </summary>
@@ -5772,7 +5770,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Deadly Pattern</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Deadly Pattern</b> technique.
             </summary>
@@ -5788,7 +5786,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
@@ -5831,7 +5829,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
             </summary>
@@ -5847,7 +5845,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
             </summary>
@@ -5871,7 +5869,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
@@ -5905,7 +5903,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
@@ -5929,7 +5927,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Loop</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop</b> technique.
             </summary>
@@ -5983,7 +5981,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Loop Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 1</b> technique.
             </summary>
@@ -5999,7 +5997,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
@@ -6023,7 +6021,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Loop Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 3</b> technique.
             </summary>
@@ -6052,7 +6050,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
@@ -6076,7 +6074,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Matrix</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Matrix</b> technique.
             </summary>
@@ -6116,7 +6114,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
             </summary>
@@ -6137,7 +6135,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Square Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 2</b> technique.
             </summary>
@@ -6161,7 +6159,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
@@ -6190,7 +6188,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
             </summary>
@@ -6221,7 +6219,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
             </summary>
@@ -6258,7 +6256,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
             </summary>
@@ -6271,7 +6269,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
             </summary>
@@ -6308,7 +6306,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
             </summary>
@@ -6345,7 +6343,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
             </summary>
@@ -6401,7 +6399,7 @@ if (student is (name: var name, age: >= 18))
             or <b>Avoidable Rectangle External Type 1/2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 1/2</b>
             or <b>Avoidable Rectangle External Type 1/2</b> technique.
@@ -6439,7 +6437,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle External Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 3</b> technique.
             </summary>
@@ -6484,7 +6482,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
             </summary>
@@ -6524,7 +6522,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
             </summary>
@@ -6561,7 +6559,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle</b> technique.
             </summary>
@@ -6619,7 +6617,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType1Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
             </summary>
@@ -6635,7 +6633,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
             </summary>
@@ -6659,7 +6657,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType3Step.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
             </summary>
@@ -6698,7 +6696,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
             </summary>
@@ -6730,7 +6728,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
@@ -6760,7 +6758,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
             </summary>
@@ -6839,7 +6837,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
             </summary>
@@ -6926,7 +6924,7 @@ if (student is (name: var name, age: >= 18))
             <param name="isFranken">Indicates whether the fish is a Franken fish.</param>
             <param name="isSashimi">Indicates whether the fish is a Sashimi fish.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
@@ -7032,7 +7030,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Fish</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
             </summary>
@@ -7078,7 +7076,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
@@ -7158,7 +7156,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Almost Locked Candidates</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Almost Locked Candidates</b> technique.
             </summary>
@@ -7211,7 +7209,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Intersection</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.IntersectionStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.IntersectionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is an <b>Intersection</b> technique.
             </summary>
@@ -7227,7 +7225,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Locked Candidates</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Locked Candidates</b> technique.
             </summary>
@@ -7303,7 +7301,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Brute Force</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BruteForceStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.BruteForceStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Brute Force</b> technique.
             </summary>
@@ -7328,7 +7326,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Last Resort</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Last Resort</b> technique.
             </summary>
@@ -7338,7 +7336,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Pattern Overlay</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.PatternOverlayStep.#ctor(Sudoku.Solving.Conclusion[])">
+        <member name="M:Sudoku.Analytics.Steps.PatternOverlayStep.#ctor(Sudoku.Analytics.Conclusion[])">
             <summary>
             Provides with a step that is a <b>Pattern Overlay</b> technique.
             </summary>
@@ -7368,7 +7366,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Negative Rank</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NegativeRankStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.NegativeRankStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Negative Rank</b> technique.
             </summary>
@@ -7378,7 +7376,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Positive Rank</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.PositiveRankStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.PositiveRankStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Positive Rank</b> technique.
             </summary>
@@ -7388,7 +7386,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Rank Theory</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RankTheoryStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.RankTheoryStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Rank Theory</b> technique.
             </summary>
@@ -7404,7 +7402,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Domino Loop</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Domino Loop</b> technique.
             </summary>
@@ -7434,7 +7432,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
             </summary>
@@ -7467,7 +7465,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
             </summary>
@@ -7522,7 +7520,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Sue de Coq</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SueDeCoqStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoqStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Sue de Coq</b> technique.
             </summary>
@@ -7602,7 +7600,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Zero Rank</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ZeroRankStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.ZeroRankStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Zero Rank</b> technique.
             </summary>
@@ -7612,7 +7610,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Empty Rectangle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle</b> technique.
             </summary>
@@ -7647,7 +7645,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleDigitPatternStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.SingleDigitPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
@@ -7671,7 +7669,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.TwoStrongLinksStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.TwoStrongLinksStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
@@ -7703,7 +7701,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
@@ -7722,7 +7720,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
             </summary>
@@ -7754,7 +7752,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
@@ -7773,7 +7771,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Single</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Single</b> technique.
             </summary>
@@ -7802,7 +7800,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -7824,7 +7822,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Naked Subset</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Naked Subset</b> technique.
             </summary>
@@ -7862,7 +7860,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Subset</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Subset</b> technique.
             </summary>
@@ -7908,7 +7906,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Grouped W-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GroupedWWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.GroupedWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Grouped W-Wing</b> technique.
             </summary>
@@ -7945,7 +7943,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Irregular Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.IrregularWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.IrregularWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Irregular Wing</b> technique.
             </summary>
@@ -7955,7 +7953,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MultiBranchWWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.MultiBranchWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
             </summary>
@@ -8000,7 +7998,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>W-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>W-Wing</b> technique.
             </summary>
@@ -8037,7 +8035,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RegularWingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.RegularWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
@@ -8132,7 +8130,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is a <b>Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WingStep.#ctor(Sudoku.Solving.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.WingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
             <summary>
             Provides with a step that is a <b>Wing</b> technique.
             </summary>

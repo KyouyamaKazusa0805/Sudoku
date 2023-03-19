@@ -4,31 +4,29 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Solving.Conclusion">
+        <member name="T:Sudoku.Analytics.Conclusion">
             <summary>
             Defines a type that can describe a candidate is the correct or wrong digit.
             </summary>
             <remarks>
-            Two <see cref="T:Sudoku.Solving.Conclusion"/>s can be compared with each other. If one of those two is an elimination
-            (i.e. holds the value <see cref="F:Sudoku.Solving.ConclusionType.Elimination"/> as the type), the instance
-            will be greater; if those two hold same conclusion type, but one of those two holds
-            the global index of the candidate position is greater, it is greater.
+            Two <see cref="T:Sudoku.Analytics.Conclusion"/>s can be compared with each other. If one of those two is an elimination
+            (i.e. holds the value <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> as the type), the instance will be greater;
+            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
             </remarks>
-            <param name="mask"><inheritdoc cref="F:Sudoku.Solving.Conclusion._mask" path="/summary"/></param>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Analytics.Conclusion._mask" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.#ctor(System.Int32)">
+        <member name="M:Sudoku.Analytics.Conclusion.#ctor(System.Int32)">
             <summary>
             Defines a type that can describe a candidate is the correct or wrong digit.
             </summary>
             <remarks>
-            Two <see cref="T:Sudoku.Solving.Conclusion"/>s can be compared with each other. If one of those two is an elimination
-            (i.e. holds the value <see cref="F:Sudoku.Solving.ConclusionType.Elimination"/> as the type), the instance
-            will be greater; if those two hold same conclusion type, but one of those two holds
-            the global index of the candidate position is greater, it is greater.
+            Two <see cref="T:Sudoku.Analytics.Conclusion"/>s can be compared with each other. If one of those two is an elimination
+            (i.e. holds the value <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> as the type), the instance will be greater;
+            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
             </remarks>
-            <param name="mask"><inheritdoc cref="F:Sudoku.Solving.Conclusion._mask" path="/summary"/></param>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Analytics.Conclusion._mask" path="/summary"/></param>
         </member>
-        <member name="F:Sudoku.Solving.Conclusion._mask">
+        <member name="F:Sudoku.Analytics.Conclusion._mask">
             <summary>
             Indicates the mask that holds the information for the cell, digit and the conclusion type.
             The bits distribution is like:
@@ -41,45 +39,44 @@
             ]]></code>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.#ctor(Sudoku.Solving.ConclusionType,System.Int32)">
+        <member name="M:Sudoku.Analytics.Conclusion.#ctor(Sudoku.Analytics.ConclusionType,System.Int32)">
             <summary>
             Initializes an instance with a conclusion type and a candidate offset.
             </summary>
             <param name="type">The conclusion type.</param>
             <param name="candidate">The candidate offset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.#ctor(Sudoku.Solving.ConclusionType,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Conclusion.#ctor(Sudoku.Analytics.ConclusionType,System.Int32,System.Int32)">
             <summary>
-            Initializes the <see cref="T:Sudoku.Solving.Conclusion"/> instance via the specified cell, digit and the conclusion type.
+            Initializes the <see cref="T:Sudoku.Analytics.Conclusion"/> instance via the specified cell, digit and the conclusion type.
             </summary>
             <param name="type">The conclusion type.</param>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
         </member>
-        <member name="P:Sudoku.Solving.Conclusion.Cell">
+        <member name="P:Sudoku.Analytics.Conclusion.Cell">
             <summary>
             Indicates the cell.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Conclusion.Digit">
+        <member name="P:Sudoku.Analytics.Conclusion.Digit">
             <summary>
             Indicates the digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Conclusion.Candidate">
+        <member name="P:Sudoku.Analytics.Conclusion.Candidate">
             <summary>
             Indicates the candidate.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Conclusion.ConclusionType">
+        <member name="P:Sudoku.Analytics.Conclusion.ConclusionType">
             <summary>
             The conclusion type to control the action of applying.
-            If the type is <see cref="F:Sudoku.Solving.ConclusionType.Assignment"/>,
-            this conclusion will be set value (Set a digit into a cell);
+            If the type is <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>, this conclusion will be set value (Set a digit into a cell);
             otherwise, a candidate will be removed.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@)">
+        <member name="M:Sudoku.Analytics.Conclusion.Deconstruct(Sudoku.Analytics.ConclusionType@,System.Int32@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -126,7 +123,7 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.Deconstruct(Sudoku.Solving.ConclusionType@,System.Int32@,System.Int32@)">
+        <member name="M:Sudoku.Analytics.Conclusion.Deconstruct(Sudoku.Analytics.ConclusionType@,System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -173,67 +170,67 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.ApplyTo(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Conclusion.ApplyTo(Sudoku.Concepts.Grid@)">
             <summary>
             Put this instance into the specified grid.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.Equals(System.Object)">
+        <member name="M:Sudoku.Analytics.Conclusion.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.Equals(Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Analytics.Conclusion.Equals(Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.CompareTo(Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Analytics.Conclusion.CompareTo(Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.GetHashCode">
+        <member name="M:Sudoku.Analytics.Conclusion.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.ToString">
+        <member name="M:Sudoku.Analytics.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_Equality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Analytics.Conclusion.op_Equality(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_Inequality(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Analytics.Conclusion.op_Inequality(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_GreaterThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Analytics.Conclusion.op_GreaterThan(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_GreaterThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Analytics.Conclusion.op_GreaterThanOrEqual(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_LessThan(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Analytics.Conclusion.op_LessThan(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Conclusion.op_LessThanOrEqual(Sudoku.Solving.Conclusion,Sudoku.Solving.Conclusion)">
+        <member name="M:Sudoku.Analytics.Conclusion.op_LessThanOrEqual(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.ConclusionType">
+        <member name="T:Sudoku.Analytics.ConclusionType">
             <summary>
             Provides a conclusion type.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.ConclusionType.Assignment">
+        <member name="F:Sudoku.Analytics.ConclusionType.Assignment">
             <summary>
             Indicates the conclusion is a value filling into a cell.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.ConclusionType.Elimination">
+        <member name="F:Sudoku.Analytics.ConclusionType.Elimination">
             <summary>
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.ConclusionTypeExtensions">
+        <member name="T:Sudoku.Analytics.ConclusionTypeExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Solving.ConclusionType"/>.
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.ConclusionType"/>.
             </summary>
-            <seealso cref="T:Sudoku.Solving.ConclusionType"/>
+            <seealso cref="T:Sudoku.Analytics.ConclusionType"/>
         </member>
-        <member name="M:Sudoku.Solving.ConclusionTypeExtensions.Notation(Sudoku.Solving.ConclusionType)">
+        <member name="M:Sudoku.Analytics.ConclusionTypeExtensions.Notation(Sudoku.Analytics.ConclusionType)">
             <summary>
             Gets the notation of the conclusion type.
             </summary>
@@ -243,7 +240,7 @@ if (student is (name: var name, age: >= 18))
             Throws when the argument <paramref name="this"/> is not defined in enumeration type.
             </exception>
         </member>
-        <member name="T:Sudoku.Solving.Mechanism.IAnalyzer`2">
+        <member name="T:Sudoku.Analytics.IAnalyzer`2">
             <summary>
             Represents with an analyzer, which can solve a puzzle, and return not only a <see cref="T:Sudoku.Concepts.Grid"/> as its solution,
             but a <typeparamref name="TResult"/> instance encapsulating all possible status of the analysis.
@@ -251,7 +248,7 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="T">The solver's type.</typeparam>
             <typeparam name="TResult">The type of the target result.</typeparam>
         </member>
-        <member name="M:Sudoku.Solving.Mechanism.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <summary>
             Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
             </summary>
@@ -260,21 +257,21 @@ if (student is (name: var name, age: >= 18))
             <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
             <returns>The solver result that provides the information after analyzing.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Mechanism.IAnalyzerResult`2">
+        <member name="T:Sudoku.Analytics.IAnalyzerResult`2">
             <summary>
             Represents an instance that describes the result after executed the method
-            <see cref="M:Sudoku.Solving.Mechanism.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>.
+            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>.
             </summary>
             <typeparam name="TSolver">The solver's type.</typeparam>
             <typeparam name="TSolverResult">The type of the target result.</typeparam>
-            <seealso cref="M:Sudoku.Solving.Mechanism.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)"/>
         </member>
-        <member name="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.IsSolved">
+        <member name="P:Sudoku.Analytics.IAnalyzerResult`2.IsSolved">
             <summary>
             Indicates whether the solver has solved the puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.ElapsedTime">
+        <member name="P:Sudoku.Analytics.IAnalyzerResult`2.ElapsedTime">
             <summary>
             Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
             Some case if the puzzle doesn't contain a valid unique solution, the value may be
@@ -282,30 +279,30 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:System.TimeSpan.Zero"/>
         </member>
-        <member name="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.Puzzle">
+        <member name="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle">
             <summary>
             Indicates the original puzzle to be solved.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.Solution">
+        <member name="P:Sudoku.Analytics.IAnalyzerResult`2.Solution">
             <summary>
             Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
             <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
-        <member name="P:Sudoku.Solving.Mechanism.IAnalyzerResult`2.UnhandledException">
+        <member name="P:Sudoku.Analytics.IAnalyzerResult`2.UnhandledException">
             <summary>
             Indicates the unhandled exception thrown.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Mechanism.ISolver">
+        <member name="T:Sudoku.Analytics.ISolver">
             <summary>
             Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="T:Sudoku.Concepts.Grid"/> instance,
             and returns its solution grid.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Mechanism.ISolver.UriLink">
+        <member name="P:Sudoku.Analytics.ISolver.UriLink">
             <summary>
             Indicates the URI link that links to the introduction of the algorithm.
             </summary>
@@ -313,7 +310,7 @@ if (student is (name: var name, age: >= 18))
             This property is reserved as information that is offered to the algorithm learners.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Mechanism.ISolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.ISolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Solve the specified grid, and return the solution via argument <paramref name="result"/>
             with returning a <see cref="T:System.Boolean"/>? value indicating the solved status.
@@ -6859,7 +6856,7 @@ fixed (short* ptr = instance)
             </summary>
             <param name="digit">The digit to be assigned.</param>
         </member>
-        <member name="M:Sudoku.Text.DigitRange.#ctor(System.Int16,Sudoku.Solving.ConclusionType)">
+        <member name="M:Sudoku.Text.DigitRange.#ctor(System.Int16,Sudoku.Analytics.ConclusionType)">
             <summary>
             Initializes a <see cref="T:Sudoku.Text.DigitRange"/> instance via the mask and conclusion type.
             </summary>
@@ -6976,14 +6973,14 @@ fixed (short* ptr = instance)
         </member>
         <member name="T:Sudoku.Text.Formatting.ConclusionFormatter">
             <summary>
-            Provides with a formatter that can format a list of <see cref="T:Sudoku.Solving.Conclusion"/>s,
+            Provides with a formatter that can format a list of <see cref="T:Sudoku.Analytics.Conclusion"/>s,
             represented as a <see cref="T:System.String"/> value.
             </summary>
         </member>
         <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.#ctor">
             <exception cref="T:System.NotSupportedException"/>
         </member>
-        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Format(Sudoku.Solving.Conclusion[],System.String,System.Boolean)">
+        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Format(Sudoku.Analytics.Conclusion[],System.String,System.Boolean)">
             <summary>
             Formats a list of conclusions as the string representation.
             </summary>
@@ -6994,8 +6991,8 @@ fixed (short* ptr = instance)
             </param>
             <returns>The <see cref="T:System.String"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Format(Sudoku.Solving.Conclusion[],Sudoku.Text.Formatting.FormattingMode)">
-            <inheritdoc cref="M:Sudoku.Text.Formatting.ConclusionFormatter.Format(Sudoku.Solving.Conclusion[],System.String,System.Boolean)"/>
+        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Format(Sudoku.Analytics.Conclusion[],Sudoku.Text.Formatting.FormattingMode)">
+            <inheritdoc cref="M:Sudoku.Text.Formatting.ConclusionFormatter.Format(Sudoku.Analytics.Conclusion[],System.String,System.Boolean)"/>
             <param name="conclusions"><inheritdoc/></param>
             <param name="formattingMode">The formatting mode.</param>
             <returns><inheritdoc/></returns>
@@ -7006,10 +7003,10 @@ fixed (short* ptr = instance)
             Throws when the argument <paramref name="formattingMode"/> is not defined.
             </exception>
         </member>
-        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Sudoku#Text#Formatting#ICollectionFormatter{Sudoku#Solving#Conclusion}#Format(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion},System.String)">
+        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Sudoku#Text#Formatting#ICollectionFormatter{Sudoku#Analytics#Conclusion}#Format(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Conclusion},System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Sudoku#Text#Formatting#ICollectionFormatter{Sudoku#Solving#Conclusion}#Format(System.Collections.Generic.IEnumerable{Sudoku.Solving.Conclusion},Sudoku.Text.Formatting.FormattingMode)">
+        <member name="M:Sudoku.Text.Formatting.ConclusionFormatter.Sudoku#Text#Formatting#ICollectionFormatter{Sudoku#Analytics#Conclusion}#Format(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Conclusion},Sudoku.Text.Formatting.FormattingMode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Formatting.DigitMaskFormatter">

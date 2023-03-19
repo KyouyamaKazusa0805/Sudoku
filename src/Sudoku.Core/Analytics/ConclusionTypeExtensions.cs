@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Analytics;
 
 /// <summary>
 /// Provides with extension methods on <see cref="ConclusionType"/>.

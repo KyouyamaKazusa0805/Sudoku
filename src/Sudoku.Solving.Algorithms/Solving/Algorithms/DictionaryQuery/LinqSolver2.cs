@@ -276,16 +276,16 @@ public sealed class LinqSolver2 : ISolver
 		// Now check the places where d appears in the units of s.
 		foreach (var u in Houses[s])
 		{
-			var dplaces = from s2 in u where values[s2].Contains(d) select s2;
-			if (!dplaces.Any())
+			var dPlaces = from s2 in u where values[s2].Contains(d) select s2;
+			if (!dPlaces.Any())
 			{
 				return null;
 			}
 
-			if (dplaces.HasOnlyOneElement())
+			if (dPlaces.HasOnlyOneElement())
 			{
 				// d can only be in one place in unit; assign it there.
-				if (Assign(values, dplaces.First(), d) is null)
+				if (Assign(values, dPlaces.First(), d) is null)
 				{
 					return null;
 				}
