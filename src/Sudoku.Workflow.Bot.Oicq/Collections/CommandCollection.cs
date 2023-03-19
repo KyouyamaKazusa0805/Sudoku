@@ -17,12 +17,6 @@ public sealed class CommandCollection : List<IModule>
 
 			var result = new CommandCollection();
 			result.AddRange(
-				from type in currentAssembly.GetDerivedTypes<Command>()
-				where type.GetConstructor(Type.EmptyTypes) is not null && type.IsDefined(typeof(CommandAttribute))
-				select (Command)Activator.CreateInstance(type)!
-			);
-
-			result.AddRange(
 				from type in currentAssembly.GetDerivedTypes<IModule>()
 				where type.GetConstructor(Type.EmptyTypes) is not null && type.IsDefined(typeof(CommandAttribute))
 				select (IModule)Activator.CreateInstance(type)!

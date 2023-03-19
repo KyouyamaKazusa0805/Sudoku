@@ -8,7 +8,7 @@
 file sealed class MentioningCommand : IModule
 {
 	/// <inheritdoc/>
-	public bool? IsEnable { get; set; } = true;
+	bool? IModule.IsEnable { get; set; } = true;
 
 
 	/// <inheritdoc/>

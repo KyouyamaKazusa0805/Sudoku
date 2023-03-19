@@ -1269,7 +1269,7 @@
             它主要是为了去处理一些其他指令里的回复情况，如开始游戏后，回答问题需要艾特的时候，就会用到这个指令来处理。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.IsEnable">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.Mirai#Net#Modules#IModule#IsEnable">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
