@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="AnalyzerResult"/> instance

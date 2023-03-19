@@ -22,7 +22,7 @@
 [assembly: StepSearcherImport<                  UniqueMatrixStepSearcher>(StepSearcherLevel.  Moderate)]
 [assembly: StepSearcherImport<       BorescoperDeadlyPatternStepSearcher>(StepSearcherLevel.  Moderate)]
 [assembly: StepSearcherImport<              QiuDeadlyPatternStepSearcher>(StepSearcherLevel.  Moderate)]
-//[assembly: StepSearcherImport<         BivalueUniversalGraveStepSearcher>(StepSearcherLevel.  Moderate)]
+[assembly: StepSearcherImport<         BivalueUniversalGraveStepSearcher>(StepSearcherLevel.  Moderate)]
 //[assembly: StepSearcherImport<  ReverseBivalueUniversalGraveStepSearcher>(StepSearcherLevel.  Moderate)]
 //[assembly: StepSearcherImport<           UniquenessClueCoverStepSearcher>(StepSearcherLevel.  Moderate)]
 //[assembly: StepSearcherImport<               RwDeadlyPatternStepSearcher>(StepSearcherLevel.  Moderate, Areas = StepSearcherRunningArea.     None)]

@@ -1,16 +1,40 @@
-namespace Sudoku.Solving.Logical.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
+/// <summary>
+/// Provides with a <b>Bi-value Universal Grave</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>
+/// Basic types:
+/// <list type="bullet">
+/// <item>Bi-value Universal Grave Type 1</item>
+/// <item>Bi-value Universal Grave Type 2</item>
+/// <item>Bi-value Universal Grave Type 3</item>
+/// <item>Bi-value Universal Grave Type 4</item>
+/// </list>
+/// </item>
+/// <item>
+/// Extended types:
+/// <list type="bullet">
+/// <item>Bi-value Universal Grave + n</item>
+/// <item>Bi-value Universal Grave XZ</item>
+/// </list>
+/// </item>
+/// <item>Bi-value Universal Grave False Candidate Type</item>
+/// </list>
+/// </summary>
 [StepSearcher]
-[StepSearcherRunningOptions(StepSearcherRunningOptions.OnlyForStandardSudoku)]
-internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueUniversalGraveStepSearcher
+public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 {
-	/// <inheritdoc/>
-	[StepSearcherProperty]
+	/// <summary>
+	/// Indicates whether the searcher should call the extended BUG checker
+	/// to search for all true candidates no matter how difficult searching.
+	/// </summary>
 	public bool SearchExtendedTypes { get; set; }
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
+	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{
 		if (CheckForTrueCandidateTypes(ref context) is { } trueCandidateTypeFirstFoundStep)
 		{
@@ -24,7 +48,12 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckForTrueCandidateTypes(scoped ref LogicalAnalysisContext context)
+	/// <summary>
+	/// Check for types that uses true candidates.
+	/// </summary>
+	/// <param name="context"><inheritdoc cref="GetAll(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <returns><inheritdoc cref="GetAll(ref AnalysisContext)" path="/returns"/></returns>
+	private Step? CheckForTrueCandidateTypes(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		if (!Cached.FindTrueCandidates(grid, out var trueCandidates))
@@ -36,7 +65,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		{
 			case []:
 			{
-				return IInvalidStep.Instance;
+				return new InvalidStep();
 			}
 			case [var trueCandidate]:
 			{
@@ -97,7 +126,12 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckForFalseCandidateTypes(scoped ref LogicalAnalysisContext context)
+	/// <summary>
+	/// Check for types that uses false candidates.
+	/// </summary>
+	/// <param name="context"><inheritdoc cref="GetAll(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <returns><inheritdoc cref="GetAll(ref AnalysisContext)" path="/returns"/></returns>
+	private Step? CheckForFalseCandidateTypes(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var multivalueCells = EmptyCells - BivalueCells;
@@ -144,7 +178,10 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckType2(ICollection<IStep> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	/// <summary>
+	/// Check for type 2.
+	/// </summary>
+	private Step? CheckType2(List<Step> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		scoped var cells = (stackalloc int[trueCandidates.Count]);
 		var i = 0;
@@ -176,12 +213,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		}
 
 		// BUG type 2.
-		var step = new BivalueUniversalGraveType2Step(
-			conclusions.ToArray(),
-			new[] { View.Empty | candidateOffsets },
-			digit,
-			(CellMap)cells
-		);
+		var step = new BivalueUniversalGraveType2Step(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, digit, (CellMap)cells);
 		if (onlyFindOne)
 		{
 			return step;
@@ -192,9 +224,10 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckType3Naked(
-		ICollection<IStep> accumulator, scoped in Grid grid,
-		IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	/// <summary>
+	/// Check for type 3 with naked subsets.
+	/// </summary>
+	private Step? CheckType3Naked(List<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		// Check whether all true candidates lie in a same house.
 		var map = CellMap.Empty + from c in trueCandidates group c by c / 9 into z select z.Key;
@@ -204,7 +237,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		}
 
 		// Get the digit mask.
-		short digitsMask = 0;
+		var digitsMask = (short)0;
 		foreach (var candidate in trueCandidates)
 		{
 			digitsMask |= (short)(1 << candidate % 9);
@@ -285,7 +318,10 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckType4(ICollection<IStep> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	/// <summary>
+	/// Check for type 4.
+	/// </summary>
+	private Step? CheckType4(List<Step> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		// Conjugate pairs should lie in two cells.
 		var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
@@ -331,8 +367,10 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 				}
 
 				// Check whether the conjugate pair lies in current two cells.
-				int first = TrailingZeroCount(mask), second = mask.GetNextSet(first);
-				int c1 = HouseCells[house][first], c2 = HouseCells[house][second];
+				var first = TrailingZeroCount(mask);
+				var second = mask.GetNextSet(first);
+				var c1 = HouseCells[house][first];
+				var c2 = HouseCells[house][second];
 				if (c1 != cells[0] || c2 != cells[1])
 				{
 					continue;
@@ -350,7 +388,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 				foreach (var candGroupByCell in candsGroupByCell)
 				{
 					var cell = candGroupByCell.Key;
-					short digitMask = 0;
+					var digitMask = (short)0;
 					foreach (var cand in candGroupByCell)
 					{
 						digitMask |= (short)(1 << cand % 9);
@@ -384,7 +422,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 				candidateOffsets[^1] = new(DisplayColorKind.Auxiliary1, c2 * 9 + conjugatePairDigit);
 
 				// BUG type 4.
-				short digitsMask = 0;
+				var digitsMask = (short)0;
 				foreach (var digit in digits)
 				{
 					digitsMask |= (short)(1 << digit);
@@ -409,7 +447,10 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckMultiple(ICollection<IStep> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	/// <summary>
+	/// Check for BUG + n.
+	/// </summary>
+	private Step? CheckMultiple(List<Step> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates.Count > 18)
 		{
@@ -444,11 +485,7 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		}
 
 		// BUG + n.
-		var step = new BivalueUniversalGraveMultipleStep(
-			conclusions.ToArray(),
-			new[] { View.Empty | candidateOffsets },
-			trueCandidates
-		);
+		var step = new BivalueUniversalGraveMultipleStep(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, trueCandidates);
 		if (onlyFindOne)
 		{
 			return step;
@@ -459,15 +496,20 @@ internal sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalu
 		return null;
 	}
 
-	private IStep? CheckXz(
-		ICollection<IStep> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	/// <summary>
+	/// Check for BUG-XZ.
+	/// </summary>
+	private Step? CheckXz(List<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates is not [var cand1, var cand2])
 		{
 			return null;
 		}
 
-		int c1 = cand1 / 9, c2 = cand2 / 9, d1 = cand1 % 9, d2 = cand2 % 9;
+		var c1 = cand1 / 9;
+		var c2 = cand2 / 9;
+		var d1 = cand1 % 9;
+		var d2 = cand2 % 9;
 		var mask = (short)(1 << d1 | 1 << d2);
 		foreach (var cell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
 		{
@@ -568,7 +610,7 @@ file static class Cached
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the puzzle contains multiple solutions or even no solution.
 	/// </exception>
-	public static unsafe bool FindTrueCandidates(
+	public static bool FindTrueCandidates(
 		scoped in Grid grid,
 		[NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
 		int maximumCellsToCheck = 20
@@ -737,7 +779,7 @@ file static class Cached
 			return false;
 		}
 
-		var housesCount = (stackalloc int[3]);
+		scoped var housesCount = (stackalloc int[3]);
 		foreach (var cell in emptyCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))

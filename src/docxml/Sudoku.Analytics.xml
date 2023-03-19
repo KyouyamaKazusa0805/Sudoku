@@ -4045,6 +4045,118 @@ if (student is (name: var name, age: >= 18))
             Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
+            <summary>
+            Provides with a <b>Bi-value Universal Grave</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Basic types:
+            <list type="bullet">
+            <item>Bi-value Universal Grave Type 1</item>
+            <item>Bi-value Universal Grave Type 2</item>
+            <item>Bi-value Universal Grave Type 3</item>
+            <item>Bi-value Universal Grave Type 4</item>
+            </list>
+            </item>
+            <item>
+            Extended types:
+            <list type="bullet">
+            <item>Bi-value Universal Grave + n</item>
+            <item>Bi-value Universal Grave XZ</item>
+            </list>
+            </item>
+            <item>Bi-value Universal Grave False Candidate Type</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes">
+            <summary>
+            Indicates whether the searcher should call the extended BUG checker
+            to search for all true candidates no matter how difficult searching.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckForTrueCandidateTypes(Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            Check for types that uses true candidates.
+            </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckForFalseCandidateTypes(Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            Check for types that uses false candidates.
+            </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+            <summary>
+            Check for type 2.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType3Naked(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+            <summary>
+            Check for type 3 with naked subsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+            <summary>
+            Check for type 4.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckMultiple(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+            <summary>
+            Check for BUG + n.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckXz(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+            <summary>
+            Check for BUG-XZ.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckSingleDigit(System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check whether all candidates in the list has same digit value.
+            </summary>
+            <param name="list">The list of all true candidates.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.FindTrueCandidates(Sudoku.Concepts.Grid@,System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Int32)">
+            <summary>
+            Finds all possible true candidates in this current grid.
+            </summary>
+            <param name="grid">The grid to find all possible true candidates.</param>
+            <param name="trueCandidates">All possible true candidates returned.</param>
+            <param name="maximumCellsToCheck">Indicates the maximum number of possible cells to check.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the grid contains any possible true candidates.
+            If so, the argument <paramref name="trueCandidates"/> won't be <see langword="null"/>.
+            </returns>
+            <remarks>
+            A <b>true candidate</b> is a candidate that makes the puzzle containing no valid solution
+            if it is eliminated from the current puzzle. It is a strict concept, which means sometimes the puzzle
+            doesn't contain any satisfied candidate to make the puzzle containing no solution if being eliminated.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the puzzle contains multiple solutions or even no solution.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.FormsPattern(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the specified grid forms a BUG deadly pattern.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher">
             <summary>
             Provides with a <b>Borescoper's Deadly Pattern</b> step searcher.
@@ -4259,6 +4371,65 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.Enumerator.MoveNext">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher">
+            <summary>
+            Provides with a <b>Qiu's Deadly Pattern</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Qiu's Deadly Pattern Type 1</item>
+            <item>Qiu's Deadly Pattern Type 2</item>
+            <item>Qiu's Deadly Pattern Type 3</item>
+            <item>Qiu's Deadly Pattern Type 4</item>
+            <item>Qiu's Deadly Pattern Locked Type</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Patterns">
+            <summary>
+            All different patterns.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Int16,System.Boolean)">
+            <summary>
+            Check for type 1.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Int16,System.Boolean)">
+            <summary>
+            Check for type 2.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Int16,System.Boolean)">
+            <summary>
+            Check for type 3.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Boolean)">
+            <summary>
+            Check for type 4.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckLockedType(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Boolean)">
+            <summary>
+            Check for locked type.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
             <summary>
@@ -5427,65 +5598,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The templates.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher">
-            <summary>
-            Provides with a <b>Qiu's Deadly Pattern</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Qiu's Deadly Pattern Type 1</item>
-            <item>Qiu's Deadly Pattern Type 2</item>
-            <item>Qiu's Deadly Pattern Type 3</item>
-            <item>Qiu's Deadly Pattern Type 4</item>
-            <item>Qiu's Deadly Pattern Locked Type</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Patterns">
-            <summary>
-            All different patterns.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Int16,System.Boolean)">
-            <summary>
-            Check for type 1.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Int16,System.Boolean)">
-            <summary>
-            Check for type 2.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Int16,System.Boolean)">
-            <summary>
-            Check for type 3.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Boolean)">
-            <summary>
-            Check for type 4.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckLockedType(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Boolean)">
-            <summary>
-            Check for locked type.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher">
             <summary>
             Provides with a <b>Domino Loop</b> (i.e. SK Loop) step searcher.
@@ -5758,6 +5870,248 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.FalseCandidate">
+            <summary>
+            Indicates the false candidate that will cause a BUG deadly pattern if it is true.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave + n</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="trueCandidates">Indicates the true candidates.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave + n</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="trueCandidates">Indicates the true candidates.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.TrueCandidates">
+            <summary>
+            Indicates the true candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveStep">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.ExtraDigit">
+            <summary>
+            Indicates the extra digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.IsNaked">
+            <summary>
+            Indicates whether the subset is naked.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.SubsetDigitsMask">
+            <summary>
+            Indicates the mask of subset digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Cells">
+            <summary>
+            Indicates the subset cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.TrueCandidates">
+            <summary>
+            Indicates the true candidates used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Size">
+            <summary>
+            Indicates the size of the subset.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.DigitsMask">
+            <summary>
+            Indicates the mask of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.XzCell">
+            <summary>
+            Indicates the extra cell used. This cell is a bivalue cell that only contains digit X and Z.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.DigitsMask">
+            <summary>
+            Indicates the mask of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep">
