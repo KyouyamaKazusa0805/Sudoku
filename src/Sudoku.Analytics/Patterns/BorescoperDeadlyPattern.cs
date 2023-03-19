@@ -85,7 +85,9 @@ public readonly partial struct BorescoperDeadlyPattern(long mask)
 			{ CenterCells: var (a, b, c, d), IsHeptagon: false } => CellsMap[a] + b + c + d
 		};
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the full map of all cells used in this pattern.
+	/// </summary>
 	public CellMap Map => Pair1Map | Pair2Map | CenterCellsMap;
 
 	/// <summary>
