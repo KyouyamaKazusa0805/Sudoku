@@ -5598,6 +5598,24 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The templates.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.TemplateStepSearcher">
+            <summary>
+            Provides with a <b>Template</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Template Set</item>
+            <item>Template Delete</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.TemplateDeleteOnly">
+            <summary>
+            Indicates whether the technique searcher only checks template deletes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher">
             <summary>
             Provides with a <b>Domino Loop</b> (i.e. SK Loop) step searcher.
@@ -7993,6 +8011,41 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.TemplateStep">
+            <summary>
+            Provides with a step that is a <b>Template</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.TemplateStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Template</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TemplateStep.IsTemplateDeletion">
+            <summary>
+            Indicates the current template step is a template deletion.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TemplateStep.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TemplateStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TemplateStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TemplateStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TemplateStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TemplateStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NegativeRankStep">
