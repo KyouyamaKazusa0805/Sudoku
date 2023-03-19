@@ -199,16 +199,6 @@
             <param name="this">The collection.</param>
             <param name="visitor">The visitor method to handle and operate with each element.</param>
         </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeBotOnlined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Bot.OnlineEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Bot.OnlineEvent"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeBotOfflined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Bot.OfflineEvent})">
-            <summary>
-            Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Bot.OfflineEvent"/>.
-            </summary>
-        </member>
         <member name="M:Sudoku.CommandLine.RootCommands.Extensions.SubscribeJoined(Mirai.Net.Sessions.MiraiBot,System.Action{Mirai.Net.Data.Events.Concretes.Group.JoinedEvent})">
             <summary>
             Subscribes for event <see cref="T:Mirai.Net.Data.Events.Concretes.Group.JoinedEvent"/>.

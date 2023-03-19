@@ -202,6 +202,7 @@ file static class Extensions
 		}
 	}
 
+#if false
 	/// <summary>
 	/// Subscribes for event <see cref="OnlineEvent"/>.
 	/// </summary>
@@ -215,6 +216,7 @@ file static class Extensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void SubscribeBotOfflined(this MiraiBot @this, Action<OfflineEvent> action)
 		=> @this.EventReceived.OfType<OfflineEvent>().Subscribe(action);
+#endif
 
 	/// <summary>
 	/// Subscribes for event <see cref="JoinedEvent"/>.
@@ -242,7 +244,7 @@ file static class Extensions
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void SubscribeGroupMessage(this MiraiBot @this, CommandCollection modules)
-		=> @this.MessageReceived.SubscribeGroupMessage(modules.ConvertAll(static command => (IModule)command).Raise);
+		=> @this.MessageReceived.SubscribeGroupMessage(modules.Raise);
 
 	/// <summary>
 	/// Subscribes for event <see cref="GroupMessageReceiver"/>.
