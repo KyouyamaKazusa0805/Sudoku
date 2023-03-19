@@ -39,7 +39,7 @@ In addition, the framework and IDE version may update in the future; in other wo
 
 ### Repository Positioning
 
-This repositoty is created for the following kinds of users:
+This repository is created for the following kinds of users:
 
 * **who likes sudoku algorithms**: If you like to study for sudoku techniques and its backing implementation and running mechanism, you can find answer in this repository.
 * **who wants to learn about C#-related features**: This repository uses some C# newer features and .NET-related features such as Windows UI, which can help you learn more about it as practicing.
@@ -92,10 +92,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Unique Polygon (i.e. Borescoper's Deadly Pattern)
     * Qiu's Deadly Pattern
     * Unique Square
-    * Bi-value Universal Grave
-    * Reverse Unique Rectangle
-    * Uniqueness Clue Cover (Only for type 2[^3])
-    * RW's Deadly Pattern
+    * Bivalue Universal Grave
   * Chains
     * Forcing Chains / Bidirectional Cycles
     * Multiple Forcing Chains
