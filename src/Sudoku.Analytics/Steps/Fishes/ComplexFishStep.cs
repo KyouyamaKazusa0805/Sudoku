@@ -1,17 +1,8 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Complex Fish</b> technique.
 /// </summary>
-/// <param name="conclusions"><inheritdoc/></param>
-/// <param name="views"><inheritdoc/></param>
-/// <param name="digit"><inheritdoc/></param>
-/// <param name="baseSetsMask"><inheritdoc/></param>
-/// <param name="coverSetsMask"><inheritdoc/></param>
-/// <param name="exofins">The exo-fins.</param>
-/// <param name="endofins">The endo-fins.</param>
-/// <param name="isFranken">Indicates whether the fish is a Franken fish.</param>
-/// <param name="isSashimi">Indicates whether the fish is a Sashimi fish.</param>
 public sealed class ComplexFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -33,7 +24,7 @@ public sealed class ComplexFishStep(
 	/// Indicates whether the fish is a Sashimi fish.
 	/// </summary>
 	/// <remarks>
-	/// All cases are as belows:
+	/// All cases are as below:
 	/// <list type="table">
 	/// <item>
 	/// <term><see langword="true"/></term>

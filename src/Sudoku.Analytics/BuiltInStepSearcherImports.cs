@@ -1,4 +1,4 @@
-﻿/// This file stores built-in <see cref="Sudoku.Analytics.StepSearcher"/> instances,
+/// This file stores built-in <see cref="Sudoku.Analytics.StepSearcher"/> instances,
 /// in order to create default collection for type <see cref="Sudoku.Analytics.StepSearcherPool.BuiltIn"/>.
 
 #pragma warning disable format

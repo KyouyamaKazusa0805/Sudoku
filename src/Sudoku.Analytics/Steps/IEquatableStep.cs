@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a type that can be used for comparison on two <typeparamref name="TSelf"/> instances.
 /// </summary>
-/// <typeparam name="TSelf">The type of the comparsison object. The type must be derived from <see cref="Step"/>.</typeparam>
+/// <typeparam name="TSelf">The type of the comparison object. The type must be derived from <see cref="Step"/>.</typeparam>
 /// <seealso cref="Step"/>
 public interface IEquatableStep<TSelf> where TSelf : Step, IEquatableStep<TSelf>
 {

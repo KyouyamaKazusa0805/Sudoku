@@ -7212,29 +7212,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="baseSetsMask"><inheritdoc/></param>
-            <param name="coverSetsMask"><inheritdoc/></param>
-            <param name="exofins">The exo-fins.</param>
-            <param name="endofins">The endo-fins.</param>
-            <param name="isFranken">Indicates whether the fish is a Franken fish.</param>
-            <param name="isSashimi">Indicates whether the fish is a Sashimi fish.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="baseSetsMask"><inheritdoc/></param>
-            <param name="coverSetsMask"><inheritdoc/></param>
-            <param name="exofins">The exo-fins.</param>
-            <param name="endofins">The endo-fins.</param>
-            <param name="isFranken">Indicates whether the fish is a Franken fish.</param>
-            <param name="isSashimi">Indicates whether the fish is a Sashimi fish.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsFranken">
             <summary>
@@ -7246,7 +7228,7 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the fish is a Sashimi fish.
             </summary>
             <remarks>
-            All cases are as belows:
+            All cases are as below:
             <list type="table">
             <item>
             <term><see langword="true"/></term>
@@ -7430,7 +7412,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a type that can be used for comparison on two <typeparamref name="TSelf"/> instances.
             </summary>
-            <typeparam name="TSelf">The type of the comparsison object. The type must be derived from <see cref="T:Sudoku.Analytics.Step"/>.</typeparam>
+            <typeparam name="TSelf">The type of the comparison object. The type must be derived from <see cref="T:Sudoku.Analytics.Step"/>.</typeparam>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)">

@@ -1,10 +1,12 @@
-﻿#
+﻿# top-most EditorConfig file
+root = true
+
+#
 #
 # C# files
 #
 #
 
-# [*.{cs,vb}]
 [*.cs]
 
 #
@@ -19,6 +21,7 @@ tab_width = 4
 # New line preferences
 end_of_line = crlf
 insert_final_newline = false
+charset = utf-8
 
 
 #
