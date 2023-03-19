@@ -306,7 +306,7 @@ public readonly partial struct Crosshatch(ulong mask) : IEquatable<Crosshatch>, 
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static ulong f1(int cell, int shiftiing) => (cell != -1 ? (ulong)cell : PerCellMaxMask) << shiftiing;
+		static ulong f1(int cell, int shifting) => (cell != -1 ? (ulong)cell : PerCellMaxMask) << shifting;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static ulong f2(int cell) => cell != -1 ? (ulong)cell : PerCellMaxMask;

@@ -92,7 +92,7 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	/// <summary>
 	/// The technique group that this technique instance belongs to.
 	/// </summary>
-	public virtual TechniqueGroup Group => Enum.TryParse<TechniqueGroup>(Code.ToString(), out var inst) ? inst : TechniqueGroup.None;
+	public virtual TechniqueGroup Group => Enum.TryParse<TechniqueGroup>(Code.ToString(), out var instance) ? instance : TechniqueGroup.None;
 
 	/// <summary>
 	/// The difficulty level of this step.
@@ -123,13 +123,11 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	/// </summary>
 	/// <remarks>
 	/// <para>
-	/// This property use a dictionary to merge globalizational format data.
+	/// This property use a dictionary to merge format data of globalization.
 	/// The key type is <see cref="string"/>, which can be used for the comparison of the current culture via type <see cref="CultureInfo"/>,
 	/// for example, <c>"zh"</c> and <c>"en-US"</c>.
 	/// </para>
-	/// <para>
-	/// For more backing implementation details, please visit method <see cref="ToString"/> in derived <see langword="class"/>es.
-	/// </para>
+	/// <para>For more backing implementation details, please visit method <see cref="ToString"/> in derived <see langword="class"/>es.</para>
 	/// </remarks>
 	/// <seealso cref="Format"/>
 	/// <seealso cref="CultureInfo"/>

@@ -399,10 +399,8 @@ public unsafe partial struct CandidateMap :
 	{
 		fixed (long* pBits = _bits)
 		{
-			var v = &pBits[offset >> 6];
 			var older = Contains(offset);
-
-			*v &= ~(1L << (offset & 63));
+			pBits[offset >> 6] &= ~(1L << (offset & 63));
 			if (older)
 			{
 				_count--;

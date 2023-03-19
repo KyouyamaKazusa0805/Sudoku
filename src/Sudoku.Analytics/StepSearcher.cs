@@ -162,7 +162,7 @@ public abstract class StepSearcher(
 	/// </para>
 	/// </param>
 	/// <returns>
-	/// Returns the first found step. The nullability of the return value are as belows:
+	/// Returns the first found step. The nullability of the return value are as below:
 	/// <list type="bullet">
 	/// <item>
 	/// <see langword="null"/>:

@@ -3632,7 +3632,7 @@ fixed (short* ptr = instance)
             Indicates the inference is weak inference that is generalized.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Inference.ConjuagtePair">
+        <member name="F:Sudoku.Concepts.Inference.ConjugatePair">
             <summary>
             Indicates the inference is conjugate pair.
             </summary>

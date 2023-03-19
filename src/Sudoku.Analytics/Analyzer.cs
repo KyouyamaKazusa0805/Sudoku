@@ -256,7 +256,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	}
 
 	/// <summary>
-	/// Try to record the current step, saving it into the arguemnt <paramref name="steps"/>.
+	/// Try to record the current step, saving it into the argument <paramref name="steps"/>.
 	/// </summary>
 	/// <param name="steps">The accumulator.</param>
 	/// <param name="step">The step to be saved.</param>

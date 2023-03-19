@@ -79,7 +79,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution-wide Code Configur
 		.filenesting.json = .filenesting.json
 		Directory.Build.props = Directory.Build.props
 		global-doc-comments.xml = global-doc-comments.xml
-		SOLUTIONWIDE_IGNORED_MISSPELLING.dic = SOLUTIONWIDE_IGNORED_MISSPELLING.dic
+		mispelling-exclusion.dic = mispelling-exclusion.dic
 	EndProjectSection
 EndProject
 Global
@@ -758,8 +758,8 @@ Global
 		{B33F37B0-E19F-4CD2-993A-94C4571248AD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 EndGlobal
