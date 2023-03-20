@@ -33,11 +33,11 @@ Then you can reference the doc here.
 	</static-constructor>
 
 	<!-- Developer notes -->
-	<deverloper-notes>
+	<developer-notes>
 		<para>
 			<b>Developer Notes</b>
 		</para>
-	</deverloper-notes>
+	</developer-notes>
 
 	<!-- Requires compound invocation -->
 	<requires-compound-invocation>

@@ -5,7 +5,7 @@ internal sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandi
 {
 	/// <inheritdoc/>
 	/// <remarks>
-	/// <include file="../../global-doc-comments.xml" path="/g/deverloper-notes" />
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
 	/// <para>The main idea of this searching operation:</para>
 	/// <para>
 	/// <code><![CDATA[

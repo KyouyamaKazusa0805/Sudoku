@@ -1,14 +1,26 @@
-namespace Sudoku.Solving.Logical.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
+/// <summary>
+/// Provides with an <b>Almost Locked Sets XZ Rule</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Extended Subset Principle</item>
+/// <item>Singly-linked Almost Locked Sets XZ Rule</item>
+/// <item>Doubly-linked Almost Locked Sets XZ Rule</item>
+/// </list>
+/// </summary>
 [StepSearcher]
-internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzStepSearcher
+public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 {
-	/// <inheritdoc/>
-	[StepSearcherProperty]
+	/// <summary>
+	/// Indicates whether two ALSes make an collision, which means they share the some same cells. 
+	/// </summary>
 	public bool AllowCollision { get; set; }
 
-	/// <inheritdoc/>
-	[StepSearcherProperty]
+	/// <summary>
+	/// Indicates whether the searcher will enhance the searching to find all possible eliminations
+	/// for looped-ALS eliminations.
+	/// </summary>
 	public bool AllowLoopedPatterns { get; set; }
 
 
@@ -22,12 +34,11 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 	/// will tell you what is it.
 	/// </para>
 	/// </remarks>
-	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
+	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var house = stackalloc int[2];
-		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
-
+		var house = (stackalloc int[2]);
+		var alses = grid.GatherAlmostLockedSets();
 		for (int i = 0, length = alses.Length; i < length - 1; i++)
 		{
 			var als1 = alses[i];
@@ -64,7 +75,8 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					continue;
 				}
 
-				short rccMask = 0, z = 0;
+				var rccMask = (short)0;
+				var z = (short)0;
 				var nh = 0;
 				foreach (var digit in xzMask)
 				{
@@ -87,8 +99,8 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 				}
 
 				// Check basic eliminations.
-				bool? isDoublyLinked = false;
-				short finalZ = 0;
+				var isDoublyLinked = (bool?)false;
+				var finalZ = (short)0;
 				var conclusions = new List<Conclusion>();
 				foreach (var elimDigit in z)
 				{
@@ -232,15 +244,7 @@ internal sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLoc
 					{
 						View.Empty
 							| candidateOffsets
-							| isEsp switch
-							{
-								true => null,
-								_ => new HouseViewNode[]
-								{
-									new(DisplayColorKind.Normal, house1),
-									new(DisplayColorKind.Auxiliary1, house2)
-								}
-							}
+							| (isEsp ? null : new HouseViewNode[] { new(DisplayColorKind.Normal, house1), new(DisplayColorKind.Auxiliary1, house2) })
 					},
 					als1,
 					als2,

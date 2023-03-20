@@ -4120,6 +4120,44 @@ if (student is (name: var name, age: >= 18))
             Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher">
+            <summary>
+            Provides with an <b>Almost Locked Sets XZ Rule</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Extended Subset Principle</item>
+            <item>Singly-linked Almost Locked Sets XZ Rule</item>
+            <item>Doubly-linked Almost Locked Sets XZ Rule</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowCollision">
+            <summary>
+            Indicates whether two ALSes make an collision, which means they share the some same cells. 
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns">
+            <summary>
+            Indicates whether the searcher will enhance the searching to find all possible eliminations
+            for looped-ALS eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            <para>
+            This algorithm uses a concept called Restricted Common Candidate (abbr. RCC) to limit the implementation.
+            If you don't know that is an RCC,
+            <see href="https://sunnieshine.github.io/Sudoku/terms/restricted-common-candidate">this link</see>
+            will tell you what is it.
+            </para>
+            </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher">
             <summary>
             Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.
@@ -5680,11 +5718,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc />
             <remarks>
-            <deverloper-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</deverloper-notes>
+            <!-- No matching elements were found for the following include tag --><include file="../../global-doc-comments.xml" path="/g/deverloper-notes" />
             <para>The main idea of this searching operation:</para>
             <para>
             <code><![CDATA[
@@ -6064,11 +6098,7 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house used.</param>
             <returns>Not <see langword="null" /> if conclusion can be found.</returns>
             <remarks>
-            <para><deverloper-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</deverloper-notes></para>
+            <para><!-- No matching elements were found for the following include tag --><include file="../../global-doc-comments.xml" path="/g/deverloper-notes" /></para>
             <para>
             The main idea of hidden single is to search for a digit can only appear once in a house,
             so we should check all possibilities in a house to found whether the house exists a digit
@@ -6226,6 +6256,61 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Sets XZ</b> or <b>Extended Subset Principle</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Nullable{System.Boolean})">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Sets XZ</b> or <b>Extended Subset Principle</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.IsDoublyLinked">
+            <summary>
+            Indicates whether ALS-XZ is doubly-linked.
+            </summary>
+            <remarks>
+            All possible values are <see langword="true"/>, <see langword="false"/> and <see langword="null"/>.
+            If the value is <see langword="true"/> or <see langword="false"/>, the ALS-XZ is a Doubly- or Singly- Linked ALS-XZ;
+            otherwise, an Extended Subset Principle technique.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.XDigitsMask">
+            <summary>
+            Indicates the mask of X digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.ZDigitsMask">
+            <summary>
+            Indicates the mask of Z digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.FirstAls">
+            <summary>
+            Indicates the first ALS used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.SecondAls">
+            <summary>
+            Indicates the second ALS used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep">

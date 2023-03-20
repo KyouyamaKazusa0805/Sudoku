@@ -6,7 +6,7 @@ internal sealed partial class RwDeadlyPatternStepSearcher : IRwDeadlyPatternStep
 {
 	/// <inheritdoc/>
 	/// <remarks>
-	/// <include file="../../global-doc-comments.xml" path="/g/deverloper-notes" />
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
 	/// <para>
 	/// This implementation is based on the theory mentioned from RW:
 	/// </para>
