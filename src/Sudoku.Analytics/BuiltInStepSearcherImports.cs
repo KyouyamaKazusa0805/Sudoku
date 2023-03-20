@@ -23,7 +23,7 @@
 [assembly: StepSearcherImport<EmptyRectangleIntersectionPairStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<FireworkStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<GurthSymmetricalPlacementStepSearcher>(StepSearcherLevel.Elementary)]
-//[assembly: StepSearcherImport<NonMultipleChainingStepSearcher>(StepSearcherLevel.Hard)]
+[assembly: StepSearcherImport<NonMultipleChainingStepSearcher>(StepSearcherLevel.Hard)]
 [assembly: StepSearcherImport<AlmostLockedSetsXzStepSearcher>(StepSearcherLevel.Moderate)]
 //[assembly: StepSearcherImport<AlmostLockedSetsXyWingStepSearcher>(StepSearcherLevel.Moderate)]
 //[assembly: StepSearcherImport<AlmostLockedSetsWWingStepSearcher>(StepSearcherLevel.Moderate)]

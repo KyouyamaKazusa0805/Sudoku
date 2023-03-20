@@ -3378,6 +3378,234 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
+        <member name="T:Sudoku.Analytics.Patterns.ChainBranch">
+            <summary>
+            Represents a chain branch.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.ChainNode">
+            <summary>
+            Defines a node used in chaining.
+            </summary>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Analytics.Patterns.ChainNode._mask" path="/summary"/></param>
+            <remarks>
+            This type corresponds to the concept of Sudoku Explainer's logic
+            "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(System.Int16)">
+            <summary>
+            Defines a node used in chaining.
+            </summary>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Analytics.Patterns.ChainNode._mask" path="/summary"/></param>
+            <remarks>
+            This type corresponds to the concept of Sudoku Explainer's logic
+            "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.ChainNode._mask">
+            <summary>
+            The internal mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instance via the specified data.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(System.Byte,System.Byte,System.Boolean)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(System.Int32,System.Boolean)" path="/summary"/>
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="isOn"><inheritdoc cref="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(System.Int32,System.Boolean)" path="/param[@name='isOn']"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(Sudoku.Analytics.Patterns.ChainNode,System.Boolean)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(System.Int32,System.Boolean)" path="/summary"/>
+            </summary>
+            <param name="base">The base potential instance.</param>
+            <param name="isOn"><inheritdoc cref="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(System.Int32,System.Boolean)" path="/param[@name='isOn']"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.IsOn">
+            <summary>
+            Indicates whether the node is on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.Candidate">
+            <summary>
+            Indicates the candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.SingletonParent">
+            <summary>
+            Defines an accessor that allows user assigning a singleton parent node into the current data structure on instantiation phase.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.ChainPotentials">
+            <summary>
+            Indicates all <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/>s in a single chain. This property should only be used in normal AICs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.FullChainPotentials">
+            <summary>
+            Gets the chain of all <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/>s from the current <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> as the target node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.NestedChainDetails">
+            <summary>
+            Indicates the step detail of the nested chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.Parents">
+            <summary>
+            <para>Indicates the parents of the current instance.</para>
+            <para>
+            The result always returns a list of length 1 if the chain is not dynamic.
+            In addition, if a <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instance has no available parent (i.e. the return collection is empty),
+            it must the head of a chain.
+            </para>
+            <para>
+            If you want to append more parent nodes into the current <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instance,
+            just call <see cref="M:System.Collections.Generic.List`1.Add(`0)"/> to add it using this property: <c>p.Parents.Add(parent);</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.CandidateString">
+            <summary>
+            Indicates the candidate string representation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.ChainNode.DebuggerDisplayString">
+            <summary>
+            Indicates the string that is used for display on debugger.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.Deconstruct(System.Int32@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.Equals(Sudoku.Analytics.Patterns.ChainNode)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.op_Equality(Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.op_Inequality(Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Patterns.ComplexFishFinKind">
             <summary>
             Indicates a fin modifier that is used for a complex fish structure.
@@ -3499,6 +3727,287 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Patterns.Guardian.Digit">
             <summary>Indicates the digit used.</summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.MultipleForcingChains">
+            <summary>
+            Defines a multiple forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.MultipleForcingChains._internalDictionary">
+            <summary>
+            Indicates the internal dictionary.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.MultipleForcingChains._keys">
+            <summary>
+            Indicates the keys.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.MultipleForcingChains._values">
+            <summary>
+            Indicates the values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.MultipleForcingChains.Count">
+            <summary>
+            Indicates the number of elements stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.MultipleForcingChains.CellsOrDigits">
+            <summary>
+            Indicates the cells or digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.MultipleForcingChains.Potentials">
+            <summary>
+            Indicates the potentials.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.MultipleForcingChains.Item(System.Int32)">
+            <summary>
+            Gets the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The pair of data.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.MultipleForcingChains.Add(System.Byte,Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            Adds a pair of data into the collection.
+            </summary>
+            <param name="cellOrDigit">The cell or digit.</param>
+            <param name="potential">The potential.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.MultipleForcingChains.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.MultipleForcingChains.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.MultipleForcingChains.op_Implicit(System.Collections.Generic.Dictionary{System.Byte,Sudoku.Analytics.Patterns.ChainNode})~Sudoku.Analytics.Patterns.MultipleForcingChains">
+            <summary>
+            Implicit cast from <see cref="T:System.Collections.Generic.Dictionary`2"/> to <see cref="T:Sudoku.Analytics.Patterns.MultipleForcingChains"/>.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.MultipleForcingChains.Enumerator">
+            <summary>
+            Defines an enumerator that iterates the current collection.
+            </summary>
+            <param name="mfc">The <see cref="T:Sudoku.Analytics.Patterns.MultipleForcingChains"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.MultipleForcingChains.Enumerator.#ctor(Sudoku.Analytics.Patterns.MultipleForcingChains)">
+            <summary>
+            Defines an enumerator that iterates the current collection.
+            </summary>
+            <param name="mfc">The <see cref="T:Sudoku.Analytics.Patterns.MultipleForcingChains"/> instance.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.MultipleForcingChains.Enumerator._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.MultipleForcingChains.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.MultipleForcingChains.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.CellOrDigitComparer">
+            <summary>
+            Defines a comparer that compares with inner key.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.CellOrDigitComparer.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.CellOrDigitComparer.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.CellOrDigitComparer.Compare(System.Byte,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.NodeList">
+            <summary>
+            Defines a list of <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> using doubly linked list as the backing algorithm.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Patterns.ChainNode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.NodeList.#ctor">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Patterns.NodeList"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.NodeList.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Patterns.ChainNode})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Patterns.NodeList"/> instance via the specified <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instances.
+            </summary>
+            <param name="potentials">The base <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> values.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.NodeList.RemoveFirst">
+            <summary>
+            <inheritdoc cref="M:System.Collections.Generic.LinkedList`1.RemoveFirst" path="/summary"/>
+            </summary>
+            <returns>The value of the first node removed.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.NodeSet">
+            <summary>
+            Defines a <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> collection using <see cref="T:System.Collections.Generic.HashSet`1"/> as backing implementation.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Patterns.ChainNode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.NodeSet.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Patterns.NodeSet"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.NodeSet.#ctor(Sudoku.Analytics.Patterns.NodeSet)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Patterns.NodeSet"/> instance via the specified <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> collection to be added.
+            </summary>
+            <param name="base">The collection of <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instances.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.NodeSet.Contains(Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            Determines whether a <see cref="T:Sudoku.Analytics.Patterns.NodeSet"/> object contains the specified element,
+            comparing for properties <see cref="P:Sudoku.Analytics.Patterns.ChainNode.Candidate"/> and <see cref="P:Sudoku.Analytics.Patterns.ChainNode.IsOn"/>.
+            </summary>
+            <param name="base">The element to locate in the <see cref="T:Sudoku.Analytics.Patterns.NodeSet"/> object.</param>
+            <returns>
+            <see langword="true"/> if the <see cref="T:Sudoku.Analytics.Patterns.NodeSet"/> object contains the specified element; otherwise, <see langword="false"/>.
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.Patterns.ChainNode.Candidate"/>
+            <seealso cref="P:Sudoku.Analytics.Patterns.ChainNode.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.NodeSet.GetNullable(Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            <para>
+            Try to get the target <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instance whose internal value
+            (i.e. properties <see cref="P:Sudoku.Analytics.Patterns.ChainNode.Candidate"/> and <see cref="P:Sudoku.Analytics.Patterns.ChainNode.IsOn"/>) are same as
+            the specified one.
+            </para>
+            <para>
+            Please note that this method will return an instance inside the current collection
+            whose value equals to the specified one; however, property <see cref="P:Sudoku.Analytics.Patterns.ChainNode.Parents"/> may not be equal.
+            </para>
+            </summary>
+            <param name="base">The value to be checked.</param>
+            <returns>
+            <para>
+            The found value whose value is equal to <paramref name="base"/>; without checking for property <see cref="P:Sudoku.Analytics.Patterns.ChainNode.Parents"/>.
+            </para>
+            <para>If none found, <see langword="null"/> will be returned.</para>
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.Patterns.ChainNode.Candidate"/>
+            <seealso cref="P:Sudoku.Analytics.Patterns.ChainNode.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.NodeSet.op_BitwiseAnd(Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Analytics.Patterns.ChainNode" /> instances that both <paramref name="left" /> and <paramref name="right" /> contain,
+            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Analytics.Patterns.ChainNode" />s mentioned above,
+            then returns it.
+            </summary>
+            <param name="left">The first collection to be participated in merging operation.</param>
+            <param name="right">The second collection to be participated in merging operation.</param>
+            <returns>Modified collection <paramref name="left" />.</returns>
+            <remarks>
+            <requires-compound-invocation>
+		<para>
+			<b>
+				<i>
+					This operator can only be used as compound one. For example:
+				</i>
+			</b>
+			<code>
+<![CDATA[
+result &= expression;
+result |= expression;
+result ^= expression;
+]]>
+			</code>
+		</para>
+	</requires-compound-invocation>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.NodeSet.op_BitwiseOr(Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Analytics.Patterns.ChainNode" /> instances that comes from both collections <paramref name="left" /> and <paramref name="right" />,
+            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Analytics.Patterns.ChainNode" />s mentioned above,
+            then returns it.
+            </summary>
+            <param name="left">The first collection to be participated in merging operation.</param>
+            <param name="right">The second collection to be participated in merging operation.</param>
+            <returns>Modified collection <paramref name="left" />.</returns>
+            <remarks>
+            <requires-compound-invocation>
+		<para>
+			<b>
+				<i>
+					This operator can only be used as compound one. For example:
+				</i>
+			</b>
+			<code>
+<![CDATA[
+result &= expression;
+result |= expression;
+result ^= expression;
+]]>
+			</code>
+		</para>
+	</requires-compound-invocation>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.NodeSet.op_ExclusiveOr(Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Analytics.Patterns.ChainNode" /> instances that only one collection in <paramref name="left" /> and <paramref name="right" /> contains,
+            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Analytics.Patterns.ChainNode" />s mentioned above,
+            then returns it.
+            </summary>
+            <param name="left">The first collection to be participated in merging operation.</param>
+            <param name="right">The second collection to be participated in merging operation.</param>
+            <returns>Modified collection <paramref name="left" />.</returns>
+            <remarks>
+            <requires-compound-invocation>
+		<para>
+			<b>
+				<i>
+					This operator can only be used as compound one. For example:
+				</i>
+			</b>
+			<code>
+<![CDATA[
+result &= expression;
+result |= expression;
+result ^= expression;
+]]>
+			</code>
+		</para>
+	</requires-compound-invocation>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.EqualityComparer">
+            <summary>
+            Defines an equality comparer that compares to <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Patterns.ChainNode"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.EqualityComparer.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.EqualityComparer.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Patterns.EqualityComparer"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.EqualityComparer.Equals(Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.EqualityComparer.GetHashCode(Sudoku.Analytics.Patterns.ChainNode)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Patterns.QiuDeadlyPattern">
             <summary>
@@ -4169,6 +4678,257 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep">
+            <summary>
+            Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            The technique contains two kinds of forcing chains:
+            <list type="bullet">
+            <item>Dynamic Contradiction Forcing Chains</item>
+            <item>Dynamic Double Forcing Chains</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            The technique contains two kinds of forcing chains:
+            <list type="bullet">
+            <item>Dynamic Contradiction Forcing Chains</item>
+            <item>Dynamic Double Forcing Chains</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.IsAbsurd">
+            <summary>
+            Indicates whether the forcing chains kind is contradiction.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.SourcePotential">
+            <summary>
+            Indicates the source potential of the chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.FromOnPotential">
+            <summary>
+            Indicates the "on" branch.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.FromOffPotential">
+            <summary>
+            Indicates the "off" branch.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.GetGreenPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.GetRedPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.GetLinks(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.GetColorCandidates(System.Int32,System.Boolean)">
+            <summary>
+            Gets all colored candidates with the specified state.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <param name="state">The state of the candidate you want to color.</param>
+            <returns>All colored candidates with a same state.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1">
+            <summary>
+            Provides base methods for type <see cref="T:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher"/>.
+            </summary>
+            <typeparam name="TSelf">The type of the step searcher.</typeparam>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1.GetOnToOff(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Boolean)">
+            <summary>
+            Get the set of all <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
+            (i.e. if its value is the correct one for the cell).
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="p">The potential that is assumed to be "on"</param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <returns>The set of potentials that must be "off".</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Get the set of all <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
+            (i.e. if its value is the correct one for the cell).
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="p">The potential that is assumed to be "off"</param>
+            <param name="source">
+            <inheritdoc
+                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.ChainNode)"
+                path="/param[@name='source']"/>
+            </param>
+            <param name="offPotentials">Indicates the <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instances that are already set "off".</param>
+            <param name="isX"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="allowDynamic"><inheritdoc cref="!:MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
+            <returns>The set of potentials that must be "off".</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1.DoChaining(Sudoku.Concepts.Grid,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean)">
+            <summary>
+            Given the initial sets of potentials that are assumed to be "on" and "off",
+            complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="toOn">The potentials that are assumed to be "on".</param>
+            <param name="toOff">The potentials that are assumed to be "off".</param>
+            <param name="allowNishio"><inheritdoc cref="!:MultipleChainingStepSearcher.AllowNishio" path="/summary"/></param>
+            <param name="allowDynamic"><inheritdoc cref="!:MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
+            <returns>If success, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1.OnAdvanced(Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Handles on advanced chaining cases.
+            </summary>
+            <param name="pendingOn">The pending potentials that are assumed to be "on".</param>
+            <param name="pendingOff">The pending potentials that are assumed to be "off".</param>
+            <param name="toOff">The original potentials that are assumed to be "off".</param>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="original">Indicates the original grid.</param>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher">
+            <summary>
+            Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Alternating Inference Chains (Cycles)</item>
+            <!--
+            <item>
+            Forcing Chains:
+            <list type="bullet">
+            <item>
+            Multiple Forcing Chains:
+            <list type="bullet">
+            <item>Cell Forcing Chains</item>
+            <item>Region (House) Forcing Chains</item>
+            </list>
+            </item>
+            <item>
+            Dynamic Forcing Chains:
+            <list type="bullet">
+            <item>Dynamic Cell Forcing Chains</item>
+            <item>Dynamic Region (House) Forcing Chains</item>
+            <item>Dynamic Contradiction Forcing Chains</item>
+            <item>Dynamic Double Forcing Chains</item>
+            </list>
+            </item>
+            </list>
+            </item>
+            -->
+            </list>
+            </summary>
+            <remarks>
+            The type is special: it uses source code from another project called Sudoku Explainer.
+            However unfortunately, I cannot find any sites available of the project.
+            One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.IsParent(Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            Checks whether hte specified <paramref name="child"/> is the real child node of <paramref name="parent"/>.
+            </summary>
+            <param name="child">The child node to be checked.</param>
+            <param name="parent">The parent node to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+            <summary>
+            Try to search for all AICs and continuous nice loops.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
+            <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
+            <returns>All possible found <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/>s.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Boolean,System.Boolean)">
+            <summary>
+            Look for, and add single forcing chains, and bidirectional cycles.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="pOn">The start potential.</param>
+            <param name="result">The result steps found.</param>
+            <param name="isX"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            Construct cycles and return them, by recording them into argument <paramref name="cycles"/>.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="toOn">The potentials that are assumed to be "on".</param>
+            <param name="toOff">The potentials that are assumed to be "off".</param>
+            <param name="isX"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="cycles">
+            <para>All found cycles, represented as their final <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> node.</para>
+            <para>By using <see cref="P:Sudoku.Analytics.Patterns.ChainNode.ChainPotentials"/>, we can get the whole chain.</para>
+            </param>
+            <param name="source">The source node.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoForcingChains(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            Construct forcing chains (in Sudoku Explainer, AICs will be treated as forcing chains).
+            In other words, this method does find for AICs.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="toOn">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.ChainNode)" path="/param[@name='toOn']"/>
+            </param>
+            <param name="toOff">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.ChainNode)" path="/param[@name='toOff']"/>
+            </param>
+            <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="chains">
+            <para>All found chains, represented as their final <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> node.</para>
+            <para>
+            <inheritdoc
+                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.ChainNode)"
+                path="//param[@name='cycles']/para[2]"/>
+            </para>
+            </param>
+            <param name="source">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.ChainNode)" path="/param[@name='source']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.CreateCycleStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
+            <summary>
+            Try to create a cycle hint. If any conclusion (elimination, assignment) found and is available,
+            the method will return a <see cref="T:Sudoku.Analytics.Steps.BidirectionalCycleStep"/> instance with a non-<see langword="null"/> value.
+            </summary>
+            <param name="grid">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            </param>
+            <param name="dstOn">Indicates the destination node that is at the state "on".</param>
+            <param name="isX">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.ChainNode)" path="/param[@name='isX']"/>
+            </param>
+            <param name="isY">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.ChainNode)" path="/param[@name='isY']"/>
+            </param>
+            <returns>
+            A valid <see cref="T:Sudoku.Analytics.Steps.BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.CreateAicStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
+            <summary>
+            Try to create an AIC hint.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
             <summary>
@@ -6362,6 +7122,429 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BidirectionalCycleStep">
+            <summary>
+            Provides with a step that is a <b>Bidirectional Cycle</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Bidirectional Cycle</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BidirectionalCycleStep.DestinationOn">
+            <summary>
+            Indicates the destination node that is "on" status.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BidirectionalCycleStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.GetGreenPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.GetRedPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.GetLinks(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.CellForcingChainsStep">
+            <summary>
+            Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Byte,Sudoku.Analytics.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.CellForcingChainsStep.SourceCell">
+            <summary>
+            Indicates the source cell that all branches start.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.CellForcingChainsStep.Chains">
+            <summary>
+            Indicates all possible branches in this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.CellForcingChainsStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.GetGreenPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.GetRedPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.GetLinks(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.GetPotentialAt(System.Int32)">
+            <summary>
+            Gets the potential at the specified index.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <returns>The view index.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ChainingStep">
+            <summary>
+            Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsX">
+            <summary>
+            Indicates whether the chain supports for X chaining rule. "X chaining rule" aims to same-digit strong inferences.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsY">
+            <summary>
+            Indicates whether the chain supports for Y chaining rule. "Y chaining rule" aims to same-cell inferences.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsMultiple">
+            <summary>
+            Indicates whether the chain is a multiple forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsDynamic">
+            <summary>
+            Indicates whether the chain is a dynamic forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsNishio">
+            <summary>
+            Indicates whether the chain is a nishio forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.DynamicNestingLevel">
+            <summary>
+            Indicates the dynamic nesting level.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.Complexity">
+            <summary>
+            Indicates the complexity of the chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.SortKey">
+            <summary>
+            Indicates an <see cref="T:System.Int32"/> value indicating the ordering priority of the chain. Greater is heavier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.ChainsTargets">
+            <summary>
+            Indicates all possible targets that is used for checking the whole branches of the chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.FlatViewsCount">
+            <summary>
+            Returns how many views the current step will be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.Result">
+            <summary>
+            Indicates the result node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.LengthDifficulty">
+            <summary>
+            Indicates the difficulty rating of the current step, which binds with length factor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.ViewsCount">
+            <summary>
+            Indicates the total number of views the step will be displayed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.FlatComplexity">
+            <summary>
+            Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.NestedComplexity">
+            <summary>
+            Indicates the nested complexity of the chain. This property is useful on checking nesting chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.NestedViewsCount">
+            <summary>
+            Returns the number of nested views.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetRuleParents(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Gets parent rules. This method can only be used on advanced chain relations.
+            </summary>
+            <param name="initialGrid">The initial grid.</param>
+            <param name="currentGrid">The current grid.</param>
+            <returns>All found potentials.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.CreateViews(Sudoku.Concepts.Grid@)">
+            <summary>
+            To create views via the specified values.
+            </summary>
+            <param name="grid">The grid used.</param>
+            <returns>The values.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.CollectRuleParents(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Analytics.Patterns.ChainNode},Sudoku.Analytics.Patterns.ChainNode)">
+            <summary><b><i>
+            This method will be implemented later.
+            </i></b></summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.AncestorsCountOf(Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            Try to get all ancestors from the specified node.
+            </summary>
+            <param name="child">The specified node.</param>
+            <returns>The total number of all found ancestors.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.SourcePotentialOf(Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            Indicates the source potential from the specified target. This method can only be used for finding AICs.
+            </summary>
+            <param name="target">The target node.</param>
+            <returns>The source potential.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetColorCandidates(Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
+            <summary>
+            Try to fetch all colored candidates with specified state.
+            </summary>
+            <param name="target">The target node.</param>
+            <param name="state">The state of the node to be colored.</param>
+            <param name="skipTarget">Indicates whether we should skip the target node.</param>
+            <returns>All found candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetNestedGreenPotentials(System.Int32)">
+            <summary>
+            Try to fetch all candidates that will be colored in green in nested chains.
+            </summary>
+            <param name="nestedViewIndex">The specified index of the view.</param>
+            <returns>All found candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetNestedRedPotentials(System.Int32)">
+            <summary>
+            Try to fetch all candidates that will be colored in red in nested chains.
+            </summary>
+            <param name="nestedViewIndex">The specified index of the view.</param>
+            <returns>All found candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetGreenPotentials(System.Int32)">
+            <summary>
+            Try to fetch all candidates to be colored in green (state 1: the candidate is "on").
+            </summary>
+            <param name="viewIndex">The specified index of the view.</param>
+            <returns>All found candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetRedPotentials(System.Int32)">
+            <summary>
+            Try to fetch all candidates to be colored in red (state 2: the candidate is "off").
+            </summary>
+            <param name="viewIndex">The specified index of the view.</param>
+            <returns>All found candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetBluePotentials(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Try to fetch all candidates to be colored in blue
+            (state 3: the candidate is partially "off"; they will be "off" in this view, but "on" in other views if used).
+            </summary>
+            <param name="grid">The grid as a candidate reference.</param>
+            <param name="viewIndex">The specified index of the view.</param>
+            <returns>All found candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(System.Int32)">
+            <summary>
+            Try to fetch all <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instances of the specified view index.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <returns>All <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            Try to fetch all <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instances of the branch from the specified target,
+            specified as a <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instance.
+            </summary>
+            <param name="target">The target node.</param>
+            <returns>All <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> displayed in this branch.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetNestedLinks(System.Int32)">
+            <summary>
+            Try to fetch all nested <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instances of the specified view.
+            </summary>
+            <param name="nestedViewNum">The specified index of the view.</param>
+            <returns>All <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instance in this view.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetChainTargetAt(System.Int32)">
+            <summary>
+            Try to get the target node of a chain, displayed in the view at the specified index.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetContainerTarget(Sudoku.Analytics.Steps.ChainingStep)">
+            <summary>
+            Try to get container target potential via the specified step.
+            </summary>
+            <param name="step">The step instance.</param>
+            <returns>The container target.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetNestedChains">
+            <summary>
+            Try to get nested chains, represented as <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instances.
+            </summary>
+            <returns>A list of <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetNestedChain(System.Int32)">
+            <summary>
+            Try to get all nested chains, represented as a pair of values:
+            <list type="number">
+            <item>
+            <term>First</term>
+            <description>A <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instance.</description>
+            </item>
+            <item>
+            <term>Second</term>
+            <description>An index of the step to be displayed.</description>
+            </item>
+            </list>
+            </summary>
+            <param name="nestedViewIndex">The nested view index.</param>
+            <returns>A pair of values.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.Compare(Sudoku.Analytics.Steps.ChainingStep,Sudoku.Analytics.Steps.ChainingStep)">
+            <summary>
+            Compares two <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instance, and returns an <see cref="T:System.Int32"/>
+            indicating which value is greater.
+            </summary>
+            <param name="left">The left-side value to be compared.</param>
+            <param name="right">The right-side value to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.Comparer">
+            <summary>
+            Defines a equality comparer used for comparison with two <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Steps.ChainingStep"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.Comparer.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.Comparer.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Steps.Comparer"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.Comparer.Equals(Sudoku.Analytics.Steps.ChainingStep,Sudoku.Analytics.Steps.ChainingStep)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.Comparer.GetHashCode(Sudoku.Analytics.Steps.ChainingStep)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ForcingChainStep">
+            <summary>
+            Provides with a step that is an <b>Alternating Inference Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
+            <summary>
+            Provides with a step that is an <b>Alternating Inference Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.Target">
+            <summary>
+            Indicates the target of the chain. This value can be used for constructing a whole chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.GetGreenPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.GetRedPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.GetLinks(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.GetColorCandidates(System.Boolean)">
+            <summary>
+            Gets all colored candidates with the specified state.
+            </summary>
+            <param name="state">The state of the candidate you want to color.</param>
+            <returns>All colored candidates with a same state.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.RegionForcingChainsStep">
+            <summary>
+            Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Byte,Sudoku.Analytics.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.Digit">
+            <summary>
+            Indicates the digit of the chain bound with.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.HouseIndex">
+            <summary>
+            Indicates the index of the house represented.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.Chains">
+            <summary>
+            Indicates all possible branches in this technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.GetGreenPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.GetRedPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.GetLinks(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.GetPotentialAt(System.Int32)">
+            <summary>
+            Gets the potential at the specified index.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <returns>The view index.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>
