@@ -3475,6 +3475,31 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Patterns.Firework.Pivot">
             <summary>The pivot cell. This property can be <see langword="null"/> if four cells are used.</summary>
         </member>
+        <member name="T:Sudoku.Analytics.Patterns.Guardian">
+            <summary>
+            Represents for a data set that describes the complete information about a guardian technique.
+            </summary>
+            <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
+            <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.Guardian.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Represents for a data set that describes the complete information about a guardian technique.
+            </summary>
+            <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
+            <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Guardian.LoopCells">
+            <summary>Indicates the cells used in this whole guardian loop.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Guardian.Guardians">
+            <summary>Indicates the extra cells that is used as guardians.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Guardian.Digit">
+            <summary>Indicates the digit used.</summary>
+        </member>
         <member name="T:Sudoku.Analytics.Patterns.QiuDeadlyPattern">
             <summary>
             Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
@@ -5750,6 +5775,49 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.GuardianStepSearcher">
+            <summary>
+            Provides with a <b>Guardian</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Guardian</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.ElimsSearcher">
+            <summary>
+            Indicates the base searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GatherGuardianLoops(System.Int32)">
+            <summary>
+            Try to gather all possible loops which should satisfy the specified condition.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,,System.Collections.Generic.List{Sudoku.Analytics.Patterns.Guardian})">
+            <summary>
+            Checks for guardian loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid guardian.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher">
             <summary>
@@ -8492,6 +8560,55 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.TemplateStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.GuardianStep">
+            <summary>
+            Provides with a step that is a <b>Guardian</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.GuardianStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Guardian</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.LoopCells">
+            <summary>
+            Indicates the cells of the loop used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Guardians">
+            <summary>
+            Indicates the guardian cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.GuardianStep.op_Equality(Sudoku.Analytics.Steps.GuardianStep,Sudoku.Analytics.Steps.GuardianStep)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.GuardianStep.op_Inequality(Sudoku.Analytics.Steps.GuardianStep,Sudoku.Analytics.Steps.GuardianStep)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NegativeRankStep">

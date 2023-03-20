@@ -27,7 +27,7 @@
 //[assembly: StepSearcherImport<AlmostLockedSetsXzStepSearcher>(StepSearcherLevel.Moderate)]
 //[assembly: StepSearcherImport<AlmostLockedSetsXyWingStepSearcher>(StepSearcherLevel.Moderate)]
 //[assembly: StepSearcherImport<AlmostLockedSetsWWingStepSearcher>(StepSearcherLevel.Moderate)]
-//[assembly: StepSearcherImport<GuardianStepSearcher>(StepSearcherLevel.Hard)]
+[assembly: StepSearcherImport<GuardianStepSearcher>(StepSearcherLevel.Hard)]
 [assembly: StepSearcherImport<ComplexFishStepSearcher>(StepSearcherLevel.Hard)]
 //[assembly: StepSearcherImport<BivalueOddagonStepSearcher>(StepSearcherLevel.Hard)]
 //[assembly: StepSearcherImport<ChromaticPatternStepSearcher>(StepSearcherLevel.Hard)]
