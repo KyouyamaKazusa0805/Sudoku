@@ -5977,6 +5977,53 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher">
+            <summary>
+            Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Gurth's Symmetrical Placement</item>
+            <!--<item>Gurth's Symmetrical Placement (Shuffling Type)</item>-->
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.Methods">
+            <summary>
+            The methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.RecordHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Presentation.Nodes.CellViewNode},System.Nullable{System.Int32}[])">
+            <summary>
+            Records all possible highlight cells.
+            </summary>
+            <param name="grid">The grid as reference.</param>
+            <param name="cellOffsets">The target collection.</param>
+            <param name="mapping">The mapping relation.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckDiagonal(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks for diagonal symmetry steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckAntiDiagonal(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks for anti-diagonal symmetry steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckCentral(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks for central symmetry steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher">
             <summary>
             Provides with a <b>Multiple-Branch W-Wing</b> step searcher.
@@ -8985,6 +9032,56 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep">
+            <summary>
+            Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.SymmetryType,System.Nullable{System.Int32}[])">
+            <summary>
+            Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.Mapping">
+            <summary>
+            Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation to what digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.SymmetryType">
+            <summary>
+            Indicates the symmetry type used. The supported value can only be:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.AntiDiagonal"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SymmetryStep">
+            <summary>
+            Provides with a step that is a <b>Symmetrical</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SymmetryStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is a <b>Symmetrical</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SymmetryStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SymmetryStep.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.GroupedWWingStep">
