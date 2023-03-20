@@ -4045,6 +4045,18 @@ if (student is (name: var name, age: >= 18))
             Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher">
+            <summary>
+            Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Empty Rectangle Intersection Pair</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
             <summary>
             Provides with a <b>Bi-value Universal Grave</b> step searcher.
@@ -5888,6 +5900,72 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsStep">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Sets</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Sets</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep">
+            <summary>
+            Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.StartCell">
+            <summary>
+            Indicates the start cell to be calculated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.EndCell">
+            <summary>
+            Indicates the end cell to be calculated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.House">
+            <summary>
+            Indicates the house index that the empty rectangle forms.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit1">
+            <summary>
+            Indicates the first digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit2">
+            <summary>
+            Indicates the second digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
