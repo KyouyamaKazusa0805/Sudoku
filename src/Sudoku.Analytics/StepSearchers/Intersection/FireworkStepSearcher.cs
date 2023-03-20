@@ -1,0 +1,618 @@
+namespace Sudoku.Analytics.StepSearchers;
+
+/// <summary>
+/// Provides with a <b>Firework</b> step searcher. The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>
+/// Firework Pair:
+/// <list type="bullet">
+/// <item>Firework Pair Type 1 (Single Firework + 2 Bi-value cells)</item>
+/// <item>Firework Pair Type 2 (Double Fireworks)</item>
+/// <item>Firework Pair Type 3 (Single Fireworks + Empty Rectangle)</item>
+/// </list>
+/// </item>
+/// <item>Firework Triple</item>
+/// <item>Firework Quadruple</item>
+/// </list>
+/// </summary>
+[StepSearcher]
+public sealed partial class FireworkStepSearcher : StepSearcher
+{
+	/// <summary>
+	/// Indicates the patterns used.
+	/// </summary>
+	private static readonly Firework[] Patterns = new Firework[FireworkSubsetCount];
+
+
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
+	static FireworkStepSearcher()
+	{
+		var houses = new[]
+		{
+			new[] { 0, 1, 3, 4 }, new[] { 0, 2, 3, 5 }, new[] { 1, 2, 4, 5 },
+			new[] { 0, 1, 6, 7 }, new[] { 0, 2, 6, 8 }, new[] { 1, 2, 7, 8 },
+			new[] { 3, 4, 6, 7 }, new[] { 3, 5, 6, 8 }, new[] { 4, 5, 7, 8 }
+		};
+
+		var i = 0;
+		foreach (var houseQuad in houses)
+		{
+			// Gather triples.
+			foreach (var triple in houseQuad.GetSubsets(3))
+			{
+				foreach (var a in HousesMap[triple[0]])
+				{
+					foreach (var b in HousesMap[triple[1]])
+					{
+						foreach (var c in HousesMap[triple[2]])
+						{
+							if ((CellsMap[a] + b).InOneHouse && (CellsMap[a] + c).InOneHouse)
+							{
+								Patterns[i++] = new(CellsMap[a] + b + c, a);
+								continue;
+							}
+
+							if ((CellsMap[a] + b).InOneHouse && (CellsMap[b] + c).InOneHouse)
+							{
+								Patterns[i++] = new(CellsMap[a] + b + c, b);
+								continue;
+							}
+
+							if ((CellsMap[a] + c).InOneHouse && (CellsMap[b] + c).InOneHouse)
+							{
+								Patterns[i++] = new(CellsMap[a] + b + c, c);
+							}
+						}
+					}
+				}
+			}
+
+			// Gather quadruples.
+			foreach (var a in HousesMap[houseQuad[0]])
+			{
+				foreach (var b in HousesMap[houseQuad[1]])
+				{
+					foreach (var c in HousesMap[houseQuad[2]])
+					{
+						foreach (var d in HousesMap[houseQuad[3]])
+						{
+							if (!(CellsMap[a] + b).InOneHouse || !(CellsMap[a] + c).InOneHouse
+								|| !(CellsMap[b] + d).InOneHouse || !(CellsMap[c] + d).InOneHouse)
+							{
+								continue;
+							}
+
+							Patterns[i++] = new(CellsMap[a] + b + c + d, null);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/// <inheritdoc/>
+	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	{
+		scoped ref readonly var grid = ref context.Grid;
+		var accumulator = context.Accumulator!;
+		var onlyFindOne = context.OnlyFindOne;
+		foreach (var pattern in Patterns)
+		{
+			if ((EmptyCells & pattern.Map) != pattern.Map)
+			{
+				// At least one cell is not empty cell. Just skip this structure.
+				continue;
+			}
+
+			// Checks for the number of kinds of digits in three cells.
+			var digitsMask = grid.GetDigitsUnion(pattern.Map);
+			if (PopCount((uint)digitsMask) < 3)
+			{
+				continue;
+			}
+
+			switch (pattern.Pivot)
+			{
+				case { } pivot when PopCount((uint)digitsMask) >= 3:
+				{
+					if (CheckPairType1(accumulator, grid, onlyFindOne, pattern, pivot) is { } stepPairType1)
+					{
+						return stepPairType1;
+					}
+
+					if (CheckTriple(accumulator, grid, onlyFindOne, pattern, digitsMask, pivot) is { } stepTriple)
+					{
+						return stepTriple;
+					}
+
+					break;
+				}
+				case null when PopCount((uint)digitsMask) >= 4:
+				{
+					if (CheckQuadruple(accumulator, grid, onlyFindOne, pattern) is { } step)
+					{
+						return step;
+					}
+
+					break;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Checks for firework pair type 1 steps.
+	/// </summary>
+	private Step? CheckPairType1(
+		List<Step> accumulator,
+		scoped in Grid grid,
+		bool onlyFindOne,
+		scoped in Firework pattern,
+		int pivot
+	)
+	{
+		var map = pattern.Map;
+		var nonPivotCells = map - pivot;
+		var cell1 = nonPivotCells[0];
+		var cell2 = nonPivotCells[1];
+		var satisfiedDigitsMask = GetFireworkDigits(cell1, cell2, pivot, grid, out var house1CellsExcluded, out var house2CellsExcluded);
+		if (PopCount((uint)satisfiedDigitsMask) < 2)
+		{
+			// No possible digits found as a firework digit.
+			return null;
+		}
+
+		var elimCell = ((PeersMap[cell1] & PeersMap[cell2]) - pivot)[0];
+		foreach (var digits in satisfiedDigitsMask.GetAllSets().GetSubsets(2))
+		{
+			var currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
+			var cell1TheOtherLine = cell1.ToHouseIndex((CellsMap[cell1] + pivot).CoveredLine.ToHouseType() == HouseType.Row ? HouseType.Column : HouseType.Row);
+			var cell2TheOtherLine = cell2.ToHouseIndex((CellsMap[cell2] + pivot).CoveredLine.ToHouseType() == HouseType.Row ? HouseType.Column : HouseType.Row);
+
+			foreach (var extraCell1 in (HousesMap[cell1TheOtherLine] & EmptyCells) - cell1)
+			{
+				foreach (var extraCell2 in (HousesMap[cell2TheOtherLine] & EmptyCells) - cell2)
+				{
+					if (extraCell1 == extraCell2)
+					{
+						// Cannot be a same cell.
+						continue;
+					}
+
+					if (grid.GetCandidates(extraCell1) != currentDigitsMask || grid.GetCandidates(extraCell2) != currentDigitsMask)
+					{
+						continue;
+					}
+
+					// Firework pair type 1 found.
+					var elimMap = PeersMap[extraCell1] & PeersMap[extraCell2] & EmptyCells;
+					if (!elimMap)
+					{
+						// No elimination cells.
+						continue;
+					}
+
+					var conclusions = new List<Conclusion>(2);
+					if (CandidatesMap[digits[0]].Contains(elimCell))
+					{
+						conclusions.Add(new(Elimination, elimCell * 9 + digits[0]));
+					}
+					if (CandidatesMap[digits[1]].Contains(elimCell))
+					{
+						conclusions.Add(new(Elimination, elimCell * 9 + digits[1]));
+					}
+					if (conclusions.Count == 0)
+					{
+						// No eliminations found.
+						continue;
+					}
+
+					var candidateOffsets = new List<CandidateViewNode>(10);
+					foreach (var cell in map)
+					{
+						foreach (var digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
+						{
+							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+						}
+					}
+					foreach (var digit in grid.GetCandidates(extraCell1))
+					{
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, extraCell1 * 9 + digit));
+					}
+					foreach (var digit in grid.GetCandidates(extraCell2))
+					{
+						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, extraCell2 * 9 + digit));
+					}
+
+					var cellOffsets = new List<CellViewNode>();
+					foreach (var cell in house1CellsExcluded)
+					{
+						cellOffsets.Add(new(DisplayColorKind.Elimination, cell));
+					}
+					foreach (var cell in house2CellsExcluded)
+					{
+						cellOffsets.Add(new(DisplayColorKind.Elimination, cell));
+					}
+
+					var step = new FireworkPairType1Step(
+						conclusions.ToArray(),
+						new[] { View.Empty | candidateOffsets, View.Empty | candidateOffsets | cellOffsets },
+						map,
+						currentDigitsMask,
+						extraCell1,
+						extraCell2
+					);
+					if (onlyFindOne)
+					{
+						return step;
+					}
+
+					accumulator.Add(step);
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Checks for firework triple steps.
+	/// </summary>
+	private Step? CheckTriple(
+		List<Step> accumulator,
+		scoped in Grid grid,
+		bool onlyFindOne,
+		scoped in Firework pattern,
+		short digitsMask,
+		int pivot
+	)
+	{
+		var nonPivotCells = pattern.Map - pivot;
+		var cell1 = nonPivotCells[0];
+		var cell2 = nonPivotCells[1];
+		var satisfiedDigitsMask = GetFireworkDigits(cell1, cell2, pivot, grid, out var house1CellsExcluded, out var house2CellsExcluded);
+		if (satisfiedDigitsMask == 0)
+		{
+			// No possible digits found as a firework digit.
+			return null;
+		}
+
+		foreach (var digits in digitsMask.GetAllSets().GetSubsets(3))
+		{
+			var currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
+			if ((satisfiedDigitsMask & currentDigitsMask) != currentDigitsMask)
+			{
+				continue;
+			}
+
+			// Firework Triple is found.
+			var pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
+			var pivotRowCells = HousesMap[pivot.ToHouseIndex(HouseType.Row)];
+			var pivotColumnCells = HousesMap[pivot.ToHouseIndex(HouseType.Column)];
+
+			// Now check eliminations.
+			var conclusions = new List<Conclusion>(18);
+			foreach (var digit in (short)(grid.GetCandidates(pivot) & ~currentDigitsMask))
+			{
+				conclusions.Add(new(Elimination, pivot, digit));
+			}
+			foreach (var digit in (short)(grid.GetCandidates(cell1) & ~currentDigitsMask))
+			{
+				conclusions.Add(new(Elimination, cell1, digit));
+			}
+			foreach (var digit in (short)(grid.GetCandidates(cell2) & ~currentDigitsMask))
+			{
+				conclusions.Add(new(Elimination, cell2, digit));
+			}
+			foreach (var digit in currentDigitsMask)
+			{
+				var possibleBlockCells = HousesMap[pivotCellBlock] & EmptyCells & CandidatesMap[digit];
+				foreach (var cell in possibleBlockCells - pivotRowCells - pivotColumnCells)
+				{
+					conclusions.Add(new(Elimination, cell, digit));
+				}
+			}
+			if (conclusions.Count == 0)
+			{
+				// No eliminations found.
+				continue;
+			}
+
+			var candidateOffsets = new List<CandidateViewNode>();
+			foreach (var digit in (short)(grid.GetCandidates(pivot) & currentDigitsMask))
+			{
+				candidateOffsets.Add(new(DisplayColorKind.Normal, pivot * 9 + digit));
+			}
+			foreach (var digit in (short)(grid.GetCandidates(cell1) & currentDigitsMask))
+			{
+				candidateOffsets.Add(new(DisplayColorKind.Normal, cell1 * 9 + digit));
+			}
+			foreach (var digit in (short)(grid.GetCandidates(cell2) & currentDigitsMask))
+			{
+				candidateOffsets.Add(new(DisplayColorKind.Normal, cell2 * 9 + digit));
+			}
+
+			var cellOffsets = new List<CellViewNode>(12);
+			foreach (var house1CellExcluded in house1CellsExcluded)
+			{
+				cellOffsets.Add(new(DisplayColorKind.Elimination, house1CellExcluded));
+			}
+			foreach (var house2CellExcluded in house2CellsExcluded)
+			{
+				cellOffsets.Add(new(DisplayColorKind.Elimination, house2CellExcluded));
+			}
+
+			var unknowns = new List<BabaGroupViewNode>(4);
+			var house1 = (CellsMap[cell1] + pivot).CoveredLine;
+			var house2 = (CellsMap[cell2] + pivot).CoveredLine;
+			foreach (var cell in (HousesMap[house1] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
+			{
+				unknowns.Add(new(DisplayColorKind.Normal, cell, (Utf8Char)'y', currentDigitsMask));
+			}
+			foreach (var cell in (HousesMap[house2] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
+			{
+				unknowns.Add(new(DisplayColorKind.Normal, cell, (Utf8Char)'x', currentDigitsMask));
+			}
+
+			var step = new FireworkTripleStep(
+				conclusions.ToArray(),
+				new[]
+				{
+					View.Empty | candidateOffsets,
+					View.Empty
+						| cellOffsets
+						| unknowns
+						| new BabaGroupViewNode[]
+						{
+							new(DisplayColorKind.Normal, pivot, (Utf8Char)'z', (short)(grid.GetCandidates(pivot) & currentDigitsMask)),
+							new(DisplayColorKind.Normal, cell1, (Utf8Char)'x', (short)(grid.GetCandidates(cell1) & currentDigitsMask)),
+							new(DisplayColorKind.Normal, cell2, (Utf8Char)'y', (short)(grid.GetCandidates(cell2) & currentDigitsMask))
+						}
+				},
+				pattern.Map,
+				currentDigitsMask
+			);
+			if (onlyFindOne)
+			{
+				return step;
+			}
+
+			accumulator.Add(step);
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Checks for firework quadruple steps.
+	/// </summary>
+	private Step? CheckQuadruple(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in Firework pattern)
+	{
+		if (pattern is not { Map: [var c1, var c2, var c3, var c4] map })
+		{
+			return null;
+		}
+
+		var digitsMask = grid.GetDigitsUnion(map);
+		if (PopCount((uint)digitsMask) < 4)
+		{
+			return null;
+		}
+
+		foreach (var digits in digitsMask.GetAllSets().GetSubsets(4))
+		{
+			var cases = (stackalloc[]
+			{
+				((digits[0], digits[1]), (digits[2], digits[3])),
+				((digits[0], digits[2]), (digits[1], digits[3])),
+				((digits[0], digits[3]), (digits[1], digits[2])),
+				((digits[1], digits[2]), (digits[0], digits[3])),
+				((digits[1], digits[3]), (digits[0], digits[2])),
+				((digits[2], digits[3]), (digits[0], digits[1]))
+			});
+
+			foreach (var (pivot1, pivot2) in stackalloc[] { (c1, c4), (c2, c3) })
+			{
+				var nonPivot1Cells = (map - pivot1) & (HousesMap[pivot1.ToHouseIndex(HouseType.Row)] | HousesMap[pivot1.ToHouseIndex(HouseType.Column)]);
+				var nonPivot2Cells = (map - pivot2) & (HousesMap[pivot2.ToHouseIndex(HouseType.Row)] | HousesMap[pivot2.ToHouseIndex(HouseType.Column)]);
+				var cell1Pivot1 = nonPivot1Cells[0];
+				var cell2Pivot1 = nonPivot1Cells[1];
+				var cell1Pivot2 = nonPivot2Cells[0];
+				var cell2Pivot2 = nonPivot2Cells[1];
+				foreach (var ((d1, d2), (d3, d4)) in cases)
+				{
+					var pair1DigitsMask = (short)(1 << d1 | 1 << d2);
+					var pair2DigitsMask = (short)(1 << d3 | 1 << d4);
+					var satisfiedDigitsMaskPivot1 = GetFireworkDigits(
+						cell1Pivot1, cell2Pivot1, pivot1, grid, out var house1CellsExcludedPivot1, out var house2CellsExcludedPivot1
+					);
+					var satisfiedDigitsMaskPivot2 = GetFireworkDigits(
+						cell1Pivot2, cell2Pivot2, pivot2, grid, out var house1CellsExcludedPivot2, out var house2CellsExcludedPivot2
+					);
+					if ((satisfiedDigitsMaskPivot1 & pair1DigitsMask) != pair1DigitsMask
+						|| (satisfiedDigitsMaskPivot2 & pair2DigitsMask) != pair2DigitsMask)
+					{
+						continue;
+					}
+
+					// Firework quadruple found.
+					var fourDigitsMask = (short)(pair1DigitsMask | pair2DigitsMask);
+					var conclusions = new List<Conclusion>(20);
+					foreach (var digit in (short)(grid.GetCandidates(pivot1) & ~pair1DigitsMask))
+					{
+						conclusions.Add(new(Elimination, pivot1, digit));
+					}
+					foreach (var digit in (short)(grid.GetCandidates(pivot2) & ~pair2DigitsMask))
+					{
+						conclusions.Add(new(Elimination, pivot2, digit));
+					}
+					foreach (var cell in map - pivot1 - pivot2)
+					{
+						foreach (var digit in (short)(grid.GetCandidates(cell) & ~fourDigitsMask))
+						{
+							conclusions.Add(new(Elimination, cell, digit));
+						}
+					}
+					foreach (var cell in
+						(
+							HousesMap[pivot1.ToHouseIndex(HouseType.Block)]
+								- HousesMap[pivot1.ToHouseIndex(HouseType.Row)]
+								- HousesMap[pivot1.ToHouseIndex(HouseType.Column)]
+						) & EmptyCells)
+					{
+						foreach (var digit in (short)(grid.GetCandidates(cell) & pair1DigitsMask))
+						{
+							conclusions.Add(new(Elimination, cell, digit));
+						}
+					}
+					foreach (var cell in
+						(
+							HousesMap[pivot2.ToHouseIndex(HouseType.Block)]
+								- HousesMap[pivot2.ToHouseIndex(HouseType.Row)]
+								- HousesMap[pivot2.ToHouseIndex(HouseType.Column)]
+						) & EmptyCells)
+					{
+						foreach (var digit in (short)(grid.GetCandidates(cell) & pair2DigitsMask))
+						{
+							conclusions.Add(new(Elimination, cell, digit));
+						}
+					}
+					if (conclusions.Count == 0)
+					{
+						// No eliminations found.
+						continue;
+					}
+
+					var candidateOffsets = new List<CandidateViewNode>();
+					foreach (var digit in (short)(grid.GetCandidates(pivot1) & fourDigitsMask))
+					{
+						candidateOffsets.Add(new(DisplayColorKind.Normal, pivot1 * 9 + digit));
+					}
+					foreach (var digit in (short)(grid.GetCandidates(pivot2) & fourDigitsMask))
+					{
+						candidateOffsets.Add(new(DisplayColorKind.Normal, pivot2 * 9 + digit));
+					}
+					foreach (var cell in map - pivot1 - pivot2)
+					{
+						foreach (var digit in (short)(grid.GetCandidates(cell) & fourDigitsMask))
+						{
+							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+						}
+					}
+
+					var candidateOffsetsView2 = new List<CandidateViewNode>();
+					foreach (var cell in map - pivot2)
+					{
+						foreach (var digit in (short)(grid.GetCandidates(cell) & pair1DigitsMask))
+						{
+							candidateOffsetsView2.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+						}
+					}
+					var candidateOffsetsView3 = new List<CandidateViewNode>();
+					foreach (var cell in map - pivot1)
+					{
+						foreach (var digit in (short)(grid.GetCandidates(cell) & pair2DigitsMask))
+						{
+							candidateOffsetsView3.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+						}
+					}
+
+					var cellOffsets1 = new List<CellViewNode>();
+					foreach (var cell in house1CellsExcludedPivot1 | house2CellsExcludedPivot1)
+					{
+						cellOffsets1.Add(new(DisplayColorKind.Elimination, cell));
+					}
+					var cellOffsets2 = new List<CellViewNode>();
+					foreach (var cell in house1CellsExcludedPivot2 | house2CellsExcludedPivot2)
+					{
+						cellOffsets2.Add(new(DisplayColorKind.Elimination, cell));
+					}
+
+					var step = new FireworkQuadrupleStep(
+						conclusions.ToArray(),
+						new[]
+						{
+							View.Empty | candidateOffsets,
+							View.Empty | cellOffsets1 | candidateOffsetsView2,
+							View.Empty | cellOffsets2 | candidateOffsetsView3
+						},
+						map,
+						fourDigitsMask
+					);
+					if (onlyFindOne)
+					{
+						return step;
+					}
+
+					accumulator.Add(step);
+				}
+			}
+		}
+
+		return null;
+	}
+
+
+	/// <summary>
+	/// <para>Checks for all digits which the cells containing form a firework pattern.</para>
+	/// <para>
+	/// This method returns the digits that satisfied the condition. If none found,
+	/// this method will return 0.
+	/// </para>
+	/// </summary>
+	/// <param name="c1">The cell 1 used in this pattern.</param>
+	/// <param name="c2">The cell 2 used in this pattern.</param>
+	/// <param name="pivot">The pivot cell.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="house1CellsExcluded">
+	/// The excluded cells that is out of the firework structure in the <paramref name="c1"/>'s house.
+	/// </param>
+	/// <param name="house2CellsExcluded">
+	/// The excluded cells that is out of the firework structure in the <paramref name="c2"/>'s house.
+	/// </param>
+	/// <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
+	private static short GetFireworkDigits(
+		int c1,
+		int c2,
+		int pivot,
+		scoped in Grid grid,
+		scoped out CellMap house1CellsExcluded,
+		scoped out CellMap house2CellsExcluded
+	)
+	{
+		var pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
+		var excluded1 = HousesMap[(CellsMap[c1] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
+		var excluded2 = HousesMap[(CellsMap[c2] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
+		var finalMask = (short)0;
+		foreach (var digit in grid.GetDigitsUnion(CellsMap[c1] + c2 + pivot))
+		{
+			if (isFireworkFor(digit, excluded1, grid) && isFireworkFor(digit, excluded2, grid))
+			{
+				finalMask |= (short)(1 << digit);
+			}
+		}
+
+		(house1CellsExcluded, house2CellsExcluded) = (excluded1, excluded2);
+		return finalMask;
+
+
+		static bool isFireworkFor(int digit, scoped in CellMap houseCellsExcluded, scoped in Grid grid)
+		{
+			foreach (var cell in houseCellsExcluded)
+			{
+				switch (grid[cell])
+				{
+					case -1 when CandidatesMap[digit].Contains(cell):
+					case var cellValue when cellValue == digit:
+					{
+						return false;
+					}
+				}
+			}
+
+			return true;
+		}
+	}
+}

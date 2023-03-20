@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Steps;
+namespace Sudoku.Solving.Logical.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Firework</b> technique.
