@@ -5716,6 +5716,78 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher">
+            <summary>
+            Provides with a <b>Bowman's Bingo</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Bowman's Bingo</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.SinglesSearcher">
+            <summary>
+            The singles searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher._tempConclusions">
+            <summary>
+            All temporary conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.MaxLength">
+            <summary>
+            Indicates the maximum length of the bowman bingo you want to search for. The maximum possible value is 64,
+            because a valid sudoku grid must contain at least 17 given digits, and 64 = 9 * 9 - 17.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.BowmanBingoStep},Sudoku.Concepts.Grid@,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
+            </summary>
+            <param name="result">The accumulator instance to gather the result.</param>
+            <param name="grid">The sudoku grid to be checked.</param>
+            <param name="onlyFindOne"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne"/></param>
+            <param name="startCand">The start candidate to be assumed.</param>
+            <param name="length">The whole length to be searched.</param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetLinks">
+            <summary>
+            Get links.
+            </summary>
+            <returns>The links.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.RecordUndoInfo(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Record all information to be used in undo grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.UndoGrid(Sudoku.Concepts.Grid@,System.Collections.Generic.List{System.Int32},System.Int32,System.Int16)">
+            <summary>
+            Undo the grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="list">The list.</param>
+            <param name="cell">The cell.</param>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.IsValidGrid(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            To check the specified cell has a same digit filled in a cell
+            which is same house with the current one.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher">
             <summary>
             Provides with a <b>Brute Force</b> step searcher.
@@ -8460,6 +8532,39 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.InvalidStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BowmanBingoStep">
+            <summary>
+            Provides with a step that is a <b>Bowman's Bingo</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BowmanBingoStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Conclusion[])">
+            <summary>
+            Provides with a step that is a <b>Bowman's Bingo</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.ContradictionLinks">
+            <summary>
+            Indicates the list of contradiction links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BruteForceStep">

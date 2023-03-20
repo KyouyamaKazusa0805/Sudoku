@@ -1,12 +1,20 @@
-namespace Sudoku.Solving.Logical.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
+/// <summary>
+/// Provides with a <b>Bowman's Bingo</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Bowman's Bingo</item>
+/// </list>
+/// </summary>
 [StepSearcher]
-internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
+public sealed partial class BowmanBingoStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// The singles searcher.
 	/// </summary>
 	private static readonly SingleStepSearcher SinglesSearcher = new() { EnableFullHouse = true, EnableLastDigit = true };
+
 
 	/// <summary>
 	/// All temporary conclusions.
@@ -14,13 +22,15 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	private readonly List<Conclusion> _tempConclusions = new();
 
 
-	/// <inheritdoc/>
-	[StepSearcherProperty]
+	/// <summary>
+	/// Indicates the maximum length of the bowman bingo you want to search for. The maximum possible value is 64,
+	/// because a valid sudoku grid must contain at least 17 given digits, and 64 = 9 * 9 - 17.
+	/// </summary>
 	public int MaxLength { get; set; }
 
 
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
+	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{
 		var tempAccumulator = new List<BowmanBingoStep>();
 		scoped ref readonly var grid = ref context.Grid;
@@ -75,9 +85,18 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 		return null;
 	}
 
-	private IStep? GetAll(ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, int startCand, int length)
+	/// <summary>
+	/// <inheritdoc cref="GetAll(ref AnalysisContext)" path="/summary"/>
+	/// </summary>
+	/// <param name="result">The accumulator instance to gather the result.</param>
+	/// <param name="grid">The sudoku grid to be checked.</param>
+	/// <param name="onlyFindOne"><inheritdoc cref="AnalysisContext.OnlyFindOne"/></param>
+	/// <param name="startCand">The start candidate to be assumed.</param>
+	/// <param name="length">The whole length to be searched.</param>
+	/// <returns><inheritdoc cref="GetAll(ref AnalysisContext)" path="/returns"/></returns>
+	private Step? GetAll(ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, int startCand, int length)
 	{
-		scoped var context = new LogicalAnalysisContext(null, grid, true);
+		scoped var context = new AnalysisContext(null, grid, true);
 		if (length == 0 || SinglesSearcher.GetAll(ref context) is not SingleStep singleInfo)
 		{
 			// Two cases we don't need to go on.
@@ -156,7 +175,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
-	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(scoped in Grid grid, int cell, int digit)
+	private static (List<int> CandidateList, short Mask) RecordUndoInfo(scoped in Grid grid, int cell, int digit)
 	{
 		var list = new List<int>();
 		foreach (var c in PeersMap[cell] & CandidatesMap[digit])
@@ -174,7 +193,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 	/// <param name="list">The list.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask.</param>
-	private static void UndoGrid(scoped ref Grid grid, IReadOnlyList<int> list, int cell, short mask)
+	private static void UndoGrid(scoped ref Grid grid, List<int> list, int cell, short mask)
 	{
 		foreach (var cand in list)
 		{
@@ -197,8 +216,7 @@ internal sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepS
 		foreach (var peerCell in Peers[cell])
 		{
 			var status = grid.GetStatus(peerCell);
-			if (!(status != CellStatus.Empty && grid[peerCell] != grid[cell] || status == CellStatus.Empty)
-				|| grid.GetCandidates(peerCell) == 0)
+			if (!(status != CellStatus.Empty && grid[peerCell] != grid[cell] || status == CellStatus.Empty) || grid.GetCandidates(peerCell) == 0)
 			{
 				result = false;
 				break;
