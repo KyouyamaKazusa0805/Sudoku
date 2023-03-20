@@ -1,35 +1,12 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using This = IChainingStepSearcher<NonMultipleChainingStepSearcher>;
+using Self = IChainingStepSearcher<NonMultipleChainingStepSearcher>;
 
 /// <summary>
 /// Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>Alternating Inference Chains (Cycles)</item>
-/// <!--
-/// <item>
-/// Forcing Chains:
-/// <list type="bullet">
-/// <item>
-/// Multiple Forcing Chains:
-/// <list type="bullet">
-/// <item>Cell Forcing Chains</item>
-/// <item>Region (House) Forcing Chains</item>
-/// </list>
-/// </item>
-/// <item>
-/// Dynamic Forcing Chains:
-/// <list type="bullet">
-/// <item>Dynamic Cell Forcing Chains</item>
-/// <item>Dynamic Region (House) Forcing Chains</item>
-/// <item>Dynamic Contradiction Forcing Chains</item>
-/// <item>Dynamic Double Forcing Chains</item>
-/// </list>
-/// </item>
-/// </list>
-/// </item>
-/// -->
 /// </list>
 /// </summary>
 /// <remarks>
@@ -38,7 +15,7 @@ using This = IChainingStepSearcher<NonMultipleChainingStepSearcher>;
 /// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
 /// </remarks>
 [StepSearcher]
-public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, This
+public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, Self
 {
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)
@@ -201,7 +178,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, This
 			while (pendingOn.Count > 0)
 			{
 				var p = pendingOn.RemoveFirst();
-				var makeOff = This.GetOnToOff(grid, p, isY);
+				var makeOff = Self.GetOnToOff(grid, p, isY);
 				foreach (var pOff in makeOff)
 				{
 					if (!IsParent(p, pOff))
@@ -218,7 +195,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, This
 			while (pendingOff.Count > 0)
 			{
 				var p = pendingOff.RemoveFirst();
-				var makeOn = This.GetOffToOn(grid, p, null, toOff, isX, isY, false);
+				var makeOn = Self.GetOffToOn(grid, p, null, toOff, isX, isY, false);
 				foreach (var pOn in makeOn)
 				{
 					if (length >= 4 && pOn == source)
@@ -271,7 +248,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, This
 			while (pendingOn.Count > 0)
 			{
 				var p = pendingOn.RemoveFirst();
-				var makeOff = This.GetOnToOff(grid, p, isY);
+				var makeOff = Self.GetOnToOff(grid, p, isY);
 				foreach (var pOff in makeOff)
 				{
 					var pOn = new ChainNode(pOff, true); // Conjugate.
@@ -300,7 +277,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, This
 			while (pendingOff.Count > 0)
 			{
 				var p = pendingOff.RemoveFirst();
-				var makeOn = This.GetOffToOn(grid, p, null, toOff, true, isY, false);
+				var makeOn = Self.GetOffToOn(grid, p, null, toOff, true, isY, false);
 				foreach (var pOn in makeOn)
 				{
 					var pOff = new ChainNode(pOn, false); // Conjugate.

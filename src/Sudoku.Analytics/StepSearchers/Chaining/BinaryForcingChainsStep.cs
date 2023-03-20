@@ -19,6 +19,33 @@ public sealed class BinaryForcingChainsStep(
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: true, isNishio: isNishio, dynamicNestingLevel: dynamicNestingLevel)
 {
+	internal BinaryForcingChainsStep(
+		Conclusion[] conclusions,
+		ChainNode sourcePotential,
+		ChainNode fromOnPotential,
+		ChainNode fromOffPotential,
+		bool isAbsurd,
+		bool isNishio,
+		int dynamicNestingLevel = 0
+	) : this(conclusions, null!, sourcePotential, fromOnPotential, fromOffPotential, isAbsurd, isNishio, dynamicNestingLevel)
+	{
+	}
+
+	internal BinaryForcingChainsStep(BinaryForcingChainsStep @base, View[]? views) :
+		this(
+			@base.Conclusions,
+			views,
+			@base.SourcePotential,
+			@base.FromOnPotential,
+			@base.FromOffPotential,
+			@base.IsAbsurd,
+			@base.IsNishio,
+			@base.DynamicNestingLevel
+		)
+	{
+	}
+
+
 	/// <summary>
 	/// Indicates whether the forcing chains kind is contradiction.
 	/// </summary>

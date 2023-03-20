@@ -12,6 +12,22 @@ public sealed class CellForcingChainsStep(
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)
 {
+	internal CellForcingChainsStep(
+		Conclusion[] conclusions,
+		byte sourceCell,
+		MultipleForcingChains chains,
+		bool isDynamic,
+		int dynamicNestingLevel = 0
+	) : this(conclusions, null!, sourceCell, chains, isDynamic, dynamicNestingLevel)
+	{
+	}
+
+	internal CellForcingChainsStep(CellForcingChainsStep @base, View[]? views) :
+		this(@base.Conclusions, views, @base.SourceCell, @base.Chains, @base.IsDynamic, @base.DynamicNestingLevel)
+	{
+	}
+
+
 	/// <summary>
 	/// Indicates the source cell that all branches start.
 	/// </summary>

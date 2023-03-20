@@ -13,6 +13,23 @@ public sealed class RegionForcingChainsStep(
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)
 {
+	internal RegionForcingChainsStep(
+		Conclusion[] conclusions,
+		int houseIndex,
+		byte digit,
+		MultipleForcingChains chains,
+		bool isDynamic,
+		int dynamicNestingLevel = 0
+	) : this(conclusions, null!, houseIndex, digit, chains, isDynamic, dynamicNestingLevel)
+	{
+	}
+
+	internal RegionForcingChainsStep(RegionForcingChainsStep @base, View[]? views) :
+		this(@base.Conclusions, views, @base.HouseIndex, @base.Digit, @base.Chains, @base.IsDynamic, @base.DynamicNestingLevel)
+	{
+	}
+
+
 	/// <summary>
 	/// Indicates the digit of the chain bound with.
 	/// </summary>

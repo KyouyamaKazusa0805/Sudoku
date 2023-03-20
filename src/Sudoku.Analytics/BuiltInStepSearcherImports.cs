@@ -32,7 +32,7 @@
 //[assembly: StepSearcherImport<BivalueOddagonStepSearcher>(StepSearcherLevel.Hard)]
 //[assembly: StepSearcherImport<ChromaticPatternStepSearcher>(StepSearcherLevel.Hard)]
 //[assembly: StepSearcherImport<DeathBlossomStepSearcher>(StepSearcherLevel.Hard, Areas = StepSearcherRunningArea.None)]
-//[assembly: StepSearcherImport<MultipleChainingStepSearcher>(StepSearcherLevel.Hard)]
+[assembly: StepSearcherImport<MultipleChainingStepSearcher>(StepSearcherLevel.Hard)]
 [assembly: StepSearcherImport<BowmanBingoStepSearcher>(StepSearcherLevel.Hard, Areas = StepSearcherRunningArea.None)]
 [assembly: StepSearcherImport<TemplateStepSearcher>(StepSearcherLevel.Hard, Areas = StepSearcherRunningArea.None)]
 [assembly: StepSearcherImport<PatternOverlayStepSearcher>(StepSearcherLevel.Hard, Areas = StepSearcherRunningArea.Gathering)]
