@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
+namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Represents a source generator that generates the step searcher importing code.
@@ -26,8 +26,8 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 			return;
 		}
 
-		var stepSearcherType = compilation.GetTypeByMetadataName("Sudoku.Analytics.StepSearcher");
-		if (stepSearcherType is null)
+		var stepSearcherBaseType = compilation.GetTypeByMetadataName("Sudoku.Analytics.StepSearcher");
+		if (stepSearcherBaseType is null)
 		{
 			return;
 		}
@@ -59,16 +59,27 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 		foreach (var attributeData in attributesData)
 		{
 			// Check validity.
+#pragma warning disable format
 			if (attributeData is not
 				{
 					AttributeClass:
 					{
 						IsGenericType: true,
-						TypeArguments: [INamedTypeSymbol { IsRecord: false, ContainingNamespace: var containingNamespace, Name: var stepSearcherName }]
+						TypeArguments:
+						[
+							INamedTypeSymbol
+							{
+								IsRecord: false,
+								ContainingNamespace: var containingNamespace,
+								Name: var stepSearcherName,
+								BaseType: { } baseType
+							} stepSearcherType
+						]
 					} attributeClassSymbol,
 					ConstructorArguments: [{ Type.TypeKind: Kind.Enum, Value: byte dl }],
 					NamedArguments: var namedArguments
 				})
+#pragma warning restore format
 			{
 				continue;
 			}
@@ -80,14 +91,19 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 				continue;
 			}
 
+			// Check whether the step searcher can be used for deriving.
+			const string polymorphismAttributeName = "Sudoku.Analytics.Metadata.PolymorphismAttribute";
+			var polymorphismAttributeType = compilation.GetTypeByMetadataName(polymorphismAttributeName)!;
+			var isPolymorphism = stepSearcherType.GetAttributes().Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, polymorphismAttributeType));
+
 			// Adds the necessary info into the collection.
-			foundAttributesData.Add(new(containingNamespace, priorityValue++, dl, stepSearcherName, namedArguments));
+			foundAttributesData.Add(new(containingNamespace, baseType, priorityValue++, dl, stepSearcherName, namedArguments, isPolymorphism));
 		}
 
 		// Iterate on each valid attribute data, and checks the inner value to be used by the source generator to output.
 		var generatedCodeSnippets = new List<string>();
 		var namespaceUsed = foundAttributesData[0].Namespace;
-		foreach (var (_, priority, level, name, namedArguments) in foundAttributesData)
+		foreach (var (_, baseType, priority, level, name, namedArguments, isPolymorphism) in foundAttributesData)
 		{
 			// Checks whether the attribute has configured any extra options.
 			var nullableRunningArea = default(byte?);
@@ -103,14 +119,57 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 			}
 
 			// Gather the extra options on step searcher.
-			var sb = new StringBuilder().Append(createLevelExpression(level, levelFields));
-			if (nullableRunningArea is { } runningArea)
+			var levelStr = createLevelExpression(level, levelFields);
+			var runningAreaStr = nullableRunningArea switch
 			{
-				sb.Append(comma).Append(createRunningAreasExpression(runningArea, runningAreasFields));
-			}
+				{ } runningArea => createRunningAreasExpression(runningArea, runningAreasFields),
+				_ => null
+			};
+
+			var sb = new StringBuilder().Append(levelStr);
+			_ = runningAreaStr is not null ? sb.Append(comma).Append(runningAreaStr) : default;
 
 			// Output the generated code.
-			generatedCodeSnippets.Add($"partial class {name}() : StepSearcher({priority}, {sb});");
+			var baseTypeFullName = baseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+			generatedCodeSnippets.Add(
+				isPolymorphism
+					? $$"""
+					partial class {{name}} : {{baseTypeFullName}}
+					{
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().Name}}", "{{VersionValue}}")]
+						public {{name}}() : base({{priority}}, {{levelStr}}{{(runningAreaStr is not null ? $", {runningAreaStr}" : string.Empty)}})
+						{
+						}
+
+						/// <param name="priority">
+						/// <inheritdoc
+						///     cref="global::Sudoku.Analytics.StepSearcher(int, global::Sudoku.Analytics.Metadata.StepSearcherLevel, global::Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+						///     path="/param[@name='priority']"/>
+						/// </param>
+						/// <param name="level">
+						/// <inheritdoc
+						///     cref="global::Sudoku.Analytics.StepSearcher(int, global::Sudoku.Analytics.Metadata.StepSearcherLevel, global::Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+						///     path="/param[@name='level']"/>
+						/// </param>
+						/// <param name="runningArea">
+						/// <inheritdoc
+						///     cref="global::Sudoku.Analytics.StepSearcher(int, global::Sudoku.Analytics.Metadata.StepSearcherLevel, global::Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+						///     path="/param[@name='runningArea']"/>
+						/// </param>
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().Name}}", "{{VersionValue}}")]
+						public {{name}}(
+							int priority,
+							global::Sudoku.Analytics.Metadata.StepSearcherLevel level,
+							global::Sudoku.Analytics.Metadata.StepSearcherRunningArea runningArea = global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching | global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering
+						) : base(priority, level, runningArea)
+						{
+						}
+					}
+					"""
+					: $"partial class {name}() : {baseTypeFullName}({priority}, {sb});"
+			);
 		}
 
 		spc.AddSource(
@@ -120,13 +179,9 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 
 			#pragma warning disable CS1591
 			#nullable enable
-			
-			using StepSearcherLevel = global::Sudoku.Analytics.Metadata.StepSearcherLevel;
-			using StepSearcherRunningArea = global::Sudoku.Analytics.Metadata.StepSearcherRunningArea;
-
 			namespace {{namespaceUsed.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..]}};
 			
-			{{string.Join(Environment.NewLine, generatedCodeSnippets)}}
+			{{string.Join($"{Environment.NewLine}{Environment.NewLine}", generatedCodeSnippets)}}
 			"""
 		);
 
@@ -144,7 +199,7 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 			{
 				if ((temp & 1) != 0)
 				{
-					targetList.Add($"StepSearcherRunningArea.{runningAreasFields[(byte)(1 << i)]}");
+					targetList.Add($"global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.{runningAreasFields[(byte)(1 << i)]}");
 				}
 			}
 
@@ -162,7 +217,7 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 			{
 				if (v == field)
 				{
-					return $"StepSearcherLevel.{n}";
+					return $"global::Sudoku.Analytics.Metadata.StepSearcherLevel.{n}";
 				}
 			}
 
@@ -175,14 +230,18 @@ public sealed class StepSearcherImportGenerator : IIncrementalGenerator
 /// Simply encapsulates a data tuple describing the information of a found attribute.
 /// </summary>
 /// <param name="Namespace">Indicates the namespace symbol of that step searcher.</param>
+/// <param name="BaseType">Indicates the base type of the step searcher.</param>
 /// <param name="PriorityValue">The priority value of the step searcher.</param>
 /// <param name="DifficultyLevel">The difficulty level of the step searcher.</param>
 /// <param name="TypeName">The name of the step searcher type.</param>
 /// <param name="NamedArguments">The named arguments of that attribute.</param>
+/// <param name="IsPolymorphism">Indicates whether the step searcher can be also used for deriving.</param>
 file sealed record Data(
 	INamespaceSymbol Namespace,
+	INamedTypeSymbol BaseType,
 	int PriorityValue,
 	byte DifficultyLevel,
 	string TypeName,
-	ImmutableArray<KeyValuePair<string, TypedConstant>> NamedArguments
+	ImmutableArray<KeyValuePair<string, TypedConstant>> NamedArguments,
+	bool IsPolymorphism
 );

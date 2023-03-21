@@ -3035,6 +3035,13 @@
             Indicates whether the option is fixed that can't be modified in UI.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Metadata.PolymorphismAttribute">
+            <summary>
+            Indicates the type is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/> with polymorphism,
+            which means the step searcher type marked this attribute can be used for derived by children types.
+            This attribute is also a "signal" to tell source generators not to create primary constructor invocation clause.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.SeparatedAttribute">
             <summary>
             Defines an attribute that applies to a type derived from <see cref="T:Sudoku.Analytics.StepSearcher"/>,
@@ -5027,46 +5034,6 @@ result ^= expression;
             Indicates the advanced step searchers.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.AllowNishio">
-            <summary>
-            Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
-            that only uses a single digit. It is a brute-force view of a fish.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.AllowMultiple">
-            <summary>
-            Indicates whether the step searcher allows multiple forcing chains:
-            <list type="bullet">
-            <item>
-            For non-dynamic forcing chains:
-            <list type="bullet">
-            <item>Cell forcing chains</item>
-            <item>Region (House) forcing chains</item>
-            </list>
-            </item>
-            <item>
-            For dynamic forcing chains:
-            <list type="bullet">
-            <item>Dynamic cell forcing chains</item>
-            <item>Dynamic region (house) forcing chains</item>
-            </list>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.AllowDynamic">
-            <summary>
-            Indicates whether the step searcher allows dynamic forcing chains:
-            <list type="bullet">
-            <item>Dynamic contradiction forcing chains</item>
-            <item>Dynamic double forcing chains</item>
-            </list>
-            </summary>
-            <remarks>
-            If step searcher enables for dynamic forcing chains, forcing chains will contain branches,
-            or even branches over branches (recursively). It will be very useful on complex inferences.
-            </remarks>
-        </member>
         <member name="P:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel">
             <summary>
             Indicates the level of dynamic recursion. The value can be 1, 2, 3, 4 and 5.
@@ -5106,7 +5073,7 @@ result ^= expression;
             </remarks>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.OnAdvanced(Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.GetAdvancedPotentials(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet)">
@@ -5117,7 +5084,7 @@ result ^= expression;
             <param name="original">Indicates the original grid state.</param>
             <param name="offPotentials">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1.OnAdvanced(Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"
+                cref="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.OnAdvanced(Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"
                 path="/param[@name='toOff']"/>
             </param>
             <returns>Found <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instances.</returns>
@@ -5205,14 +5172,45 @@ result ^= expression;
             <param name="state">The state of the candidate you want to color.</param>
             <returns>All colored candidates with a same state.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1">
+        <member name="T:Sudoku.Analytics.StepSearchers.ChainingStepSearcher">
             <summary>
-            Provides base methods for type <see cref="T:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher"/>.
+            Represents a <see cref="T:Sudoku.Analytics.StepSearcher"/> as base type of the chaining step searcher types.
             </summary>
-            <typeparam name="TSelf">The type of the step searcher.</typeparam>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher"/>
+            <param name="priority">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            </param>
+            <param name="level">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            </param>
+            <param name="runningArea">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            </param>
+            <remarks>
+            The type is special: it uses source code from another project called Sudoku Explainer.
+            However unfortunately, I cannot find any sites available of the project.
+            One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
+            </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1.GetOnToOff(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+            <summary>
+            Represents a <see cref="T:Sudoku.Analytics.StepSearcher"/> as base type of the chaining step searcher types.
+            </summary>
+            <param name="priority">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            </param>
+            <param name="level">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            </param>
+            <param name="runningArea">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            </param>
+            <remarks>
+            The type is special: it uses source code from another project called Sudoku Explainer.
+            However unfortunately, I cannot find any sites available of the project.
+            One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.GetOnToOff(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Boolean)">
             <summary>
             Get the set of all <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
             (i.e. if its value is the correct one for the cell).
@@ -5222,7 +5220,7 @@ result ^= expression;
             <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Get the set of all <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
             (i.e. if its value is the correct one for the cell).
@@ -5240,7 +5238,7 @@ result ^= expression;
             <param name="allowDynamic"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1.DoChaining(Sudoku.Concepts.Grid,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.DoChaining(Sudoku.Concepts.Grid,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet,System.Boolean,System.Boolean)">
             <summary>
             Given the initial sets of potentials that are assumed to be "on" and "off",
             complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
@@ -5252,7 +5250,7 @@ result ^= expression;
             <param name="allowDynamic"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
             <returns>If success, <see langword="null"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1.OnAdvanced(Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.OnAdvanced(Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Handles on advanced chaining cases.
             </summary>
@@ -5434,6 +5432,23 @@ result ^= expression;
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+            <param name="priority">
+            <inheritdoc
+                cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+                path="/param[@name='priority']"/>
+            </param>
+            <param name="level">
+            <inheritdoc
+                cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+                path="/param[@name='level']"/>
+            </param>
+            <param name="runningArea">
+            <inheritdoc
+                cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+                path="/param[@name='runningArea']"/>
+            </param>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher">
             <summary>

@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using Self = IChainingStepSearcher<MultipleChainingStepSearcher>;
-
 /// <summary>
 /// Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
 /// The step searcher will include the following techniques:
@@ -29,11 +27,11 @@ using Self = IChainingStepSearcher<MultipleChainingStepSearcher>;
 /// However unfortunately, I cannot find any sites available of the project.
 /// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
 /// </remarks>
-[StepSearcher]
+[StepSearcher, Polymorphism]
 [Separated(0, nameof(AllowNishio), true, nameof(AllowDynamic), true)]
 [Separated(1, nameof(AllowMultiple), true)]
 [Separated(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true)]
-public sealed partial class MultipleChainingStepSearcher : StepSearcher, Self
+public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 {
 	/// <summary>
 	/// Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
@@ -77,7 +75,7 @@ public sealed partial class MultipleChainingStepSearcher : StepSearcher, Self
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal sealed override Step? GetAll(scoped ref AnalysisContext context)
 	{
 		// TODO: Implement an implications cache.
 
@@ -262,7 +260,7 @@ public sealed partial class MultipleChainingStepSearcher : StepSearcher, Self
 
 		// Test p = "on".
 		onToOn.Add(pOn);
-		var pair = Self.DoChaining(grid, onToOn, onToOff, AllowNishio, AllowDynamic);
+		var pair = DoChaining(grid, onToOn, onToOff, AllowNishio, AllowDynamic);
 		if (doContradiction && pair is var (absurdOn1, absurdOff1))
 		{
 			// p cannot hold its value, because else it would lead to a contradiction.
@@ -271,7 +269,7 @@ public sealed partial class MultipleChainingStepSearcher : StepSearcher, Self
 
 		// Test p = "off".
 		offToOff.Add(pOff);
-		pair = Self.DoChaining(grid, offToOn, offToOff, AllowNishio, AllowDynamic);
+		pair = DoChaining(grid, offToOn, offToOff, AllowNishio, AllowDynamic);
 		if (doContradiction && pair is var (absurdOn2, absurdOff2))
 		{
 			// p must hold its value, because else it would lead to a contradiction.
@@ -360,7 +358,7 @@ public sealed partial class MultipleChainingStepSearcher : StepSearcher, Self
 							var otherToOn = new NodeSet { other };
 							var otherToOff = new NodeSet();
 
-							Self.DoChaining(grid, otherToOn, otherToOff, AllowNishio, AllowDynamic);
+							DoChaining(grid, otherToOn, otherToOff, AllowNishio, AllowDynamic);
 
 							posToOn.Add(otherCell, otherToOn);
 							posToOff.Add(otherCell, otherToOff);

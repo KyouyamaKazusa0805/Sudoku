@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using Self = IChainingStepSearcher<NonMultipleChainingStepSearcher>;
-
 /// <summary>
 /// Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
 /// The step searcher will include the following techniques:
@@ -15,13 +13,12 @@ using Self = IChainingStepSearcher<NonMultipleChainingStepSearcher>;
 /// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
 /// </remarks>
 [StepSearcher]
-public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, Self
+public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-
 		var result = getNonMultipleChains(grid);
 		if (result.Count == 0)
 		{
@@ -178,7 +175,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, Self
 			while (pendingOn.Count > 0)
 			{
 				var p = pendingOn.RemoveFirst();
-				var makeOff = Self.GetOnToOff(grid, p, isY);
+				var makeOff = GetOnToOff(grid, p, isY);
 				foreach (var pOff in makeOff)
 				{
 					if (!IsParent(p, pOff))
@@ -195,7 +192,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, Self
 			while (pendingOff.Count > 0)
 			{
 				var p = pendingOff.RemoveFirst();
-				var makeOn = Self.GetOffToOn(grid, p, null, toOff, isX, isY, false);
+				var makeOn = GetOffToOn(grid, p, null, toOff, isX, isY, false);
 				foreach (var pOn in makeOn)
 				{
 					if (length >= 4 && pOn == source)
@@ -248,7 +245,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, Self
 			while (pendingOn.Count > 0)
 			{
 				var p = pendingOn.RemoveFirst();
-				var makeOff = Self.GetOnToOff(grid, p, isY);
+				var makeOff = GetOnToOff(grid, p, isY);
 				foreach (var pOff in makeOff)
 				{
 					var pOn = new ChainNode(pOff, true); // Conjugate.
@@ -277,7 +274,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher, Self
 			while (pendingOff.Count > 0)
 			{
 				var p = pendingOff.RemoveFirst();
-				var makeOn = Self.GetOffToOn(grid, p, null, toOff, true, isY, false);
+				var makeOn = GetOffToOn(grid, p, null, toOff, true, isY, false);
 				foreach (var pOn in makeOn)
 				{
 					var pOff = new ChainNode(pOn, false); // Conjugate.

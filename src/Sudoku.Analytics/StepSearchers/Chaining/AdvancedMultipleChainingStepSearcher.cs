@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using Self = IChainingStepSearcher<AdvancedMultipleChainingStepSearcher>;
-
 /// <summary>
 /// Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
 /// The step searcher will include the following techniques:
@@ -41,53 +39,13 @@ using Self = IChainingStepSearcher<AdvancedMultipleChainingStepSearcher>;
 [Separated(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 3)]
 [Separated(3, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 4)]
 [Separated(4, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 5)]
-public sealed partial class AdvancedMultipleChainingStepSearcher : StepSearcher, Self
+public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChainingStepSearcher
 {
 	/// <summary>
 	/// Indicates the advanced step searchers.
 	/// </summary>
 	private Dictionary<int, StepSearcher[]>? _otherStepSearchers;
 
-
-	/// <summary>
-	/// Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
-	/// that only uses a single digit. It is a brute-force view of a fish.
-	/// </summary>
-	public bool AllowNishio { get; init; }
-
-	/// <summary>
-	/// Indicates whether the step searcher allows multiple forcing chains:
-	/// <list type="bullet">
-	/// <item>
-	/// For non-dynamic forcing chains:
-	/// <list type="bullet">
-	/// <item>Cell forcing chains</item>
-	/// <item>Region (House) forcing chains</item>
-	/// </list>
-	/// </item>
-	/// <item>
-	/// For dynamic forcing chains:
-	/// <list type="bullet">
-	/// <item>Dynamic cell forcing chains</item>
-	/// <item>Dynamic region (house) forcing chains</item>
-	/// </list>
-	/// </item>
-	/// </list>
-	/// </summary>
-	public bool AllowMultiple { get; init; }
-
-	/// <summary>
-	/// Indicates whether the step searcher allows dynamic forcing chains:
-	/// <list type="bullet">
-	/// <item>Dynamic contradiction forcing chains</item>
-	/// <item>Dynamic double forcing chains</item>
-	/// </list>
-	/// </summary>
-	/// <remarks>
-	/// If step searcher enables for dynamic forcing chains, forcing chains will contain branches,
-	/// or even branches over branches (recursively). It will be very useful on complex inferences.
-	/// </remarks>
-	public bool AllowDynamic { get; init; }
 
 	/// <summary>
 	/// Indicates the level of dynamic recursion. The value can be 1, 2, 3, 4 and 5.
@@ -130,8 +88,21 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : StepSearcher,
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
-		=> throw new NotImplementedException("This method will be re-considered.");
+	protected override void OnAdvanced(NodeList pendingOn, NodeList pendingOff, NodeSet toOff, scoped in Grid grid, scoped in Grid original)
+	{
+		if (pendingOn.Count == 0 && pendingOff.Count == 0 && DynamicNestingLevel > 0)
+		{
+			foreach (var pOff in GetAdvancedPotentials(grid, original, toOff))
+			{
+				if (!toOff.Contains(pOff))
+				{
+					// Not processed yet.
+					toOff.Add(pOff);
+					pendingOff.AddLast(pOff);
+				}
+			}
+		}
+	}
 
 	/// <summary>
 	/// Get all non-trivial implications (involving fished, naked/hidden sets, etc).
@@ -140,7 +111,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : StepSearcher,
 	/// <param name="original">Indicates the original grid state.</param>
 	/// <param name="offPotentials">
 	/// <inheritdoc
-	///     cref="IChainingStepSearcher{TSelf}.OnAdvanced(NodeList, NodeList, NodeSet, in Grid, in Grid)"
+	///     cref="ChainingStepSearcher.OnAdvanced(NodeList, NodeList, NodeSet, in Grid, in Grid)"
 	///     path="/param[@name='toOff']"/>
 	/// </param>
 	/// <returns>Found <see cref="ChainNode"/> instances.</returns>
@@ -228,30 +199,4 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : StepSearcher,
 		var result = new RegionForcingChainsStep(conclusions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
 		return new(result, result.CreateViews(grid));
 	}
-
-
-#if false
-	/// <inheritdoc/>
-	static void Self.OnAdvanced(
-		NodeList pendingOn,
-		NodeList pendingOff,
-		NodeSet toOff,
-		scoped in Grid grid,
-		scoped in Grid original
-	)
-	{
-		if (pendingOn.Count == 0 && pendingOff.Count == 0 && DynamicNestingLevel > 0)
-		{
-			foreach (var pOff in GetAdvancedPotentials(grid, original, toOff))
-			{
-				if (!toOff.Contains(pOff))
-				{
-					// Not processed yet.
-					toOff.Add(pOff);
-					pendingOff.AddLast(pOff);
-				}
-			}
-		}
-	}
-#endif
 }

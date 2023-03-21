@@ -1,11 +1,27 @@
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
-/// Provides base methods for type <see cref="NonMultipleChainingStepSearcher"/>.
+/// Represents a <see cref="StepSearcher"/> as base type of the chaining step searcher types.
 /// </summary>
-/// <typeparam name="TSelf">The type of the step searcher.</typeparam>
-/// <seealso cref="NonMultipleChainingStepSearcher"/>
-public interface IChainingStepSearcher<TSelf> where TSelf : StepSearcher, IChainingStepSearcher<TSelf>
+/// <param name="priority">
+/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='priority']"/>
+/// </param>
+/// <param name="level">
+/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='level']"/>
+/// </param>
+/// <param name="runningArea">
+/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+/// </param>
+/// <remarks>
+/// The type is special: it uses source code from another project called Sudoku Explainer.
+/// However unfortunately, I cannot find any sites available of the project.
+/// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
+/// </remarks>
+public abstract class ChainingStepSearcher(
+	int priority,
+	StepSearcherLevel level,
+	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
+) : StepSearcher(priority, level, runningArea)
 {
 	/// <summary>
 	/// Get the set of all <see cref="ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
@@ -15,7 +31,7 @@ public interface IChainingStepSearcher<TSelf> where TSelf : StepSearcher, IChain
 	/// <param name="p">The potential that is assumed to be "on"</param>
 	/// <param name="isY"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <returns>The set of potentials that must be "off".</returns>
-	protected internal static NodeSet GetOnToOff(scoped in Grid grid, ChainNode p, bool isY)
+	protected NodeSet GetOnToOff(scoped in Grid grid, ChainNode p, bool isY)
 	{
 		var result = new NodeSet();
 		var cell = p.Cell;
@@ -67,7 +83,7 @@ public interface IChainingStepSearcher<TSelf> where TSelf : StepSearcher, IChain
 	/// <param name="isY"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <param name="allowDynamic"><inheritdoc cref="MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
 	/// <returns>The set of potentials that must be "off".</returns>
-	protected internal static NodeSet GetOffToOn(
+	protected NodeSet GetOffToOn(
 		scoped in Grid grid,
 		ChainNode p,
 		scoped in Grid? source,
@@ -189,7 +205,7 @@ public interface IChainingStepSearcher<TSelf> where TSelf : StepSearcher, IChain
 	/// <param name="allowNishio"><inheritdoc cref="MultipleChainingStepSearcher.AllowNishio" path="/summary"/></param>
 	/// <param name="allowDynamic"><inheritdoc cref="MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
 	/// <returns>If success, <see langword="null"/>.</returns>
-	protected static (ChainNode On, ChainNode Off)? DoChaining(Grid grid, NodeSet toOn, NodeSet toOff, bool allowNishio, bool allowDynamic)
+	protected (ChainNode On, ChainNode Off)? DoChaining(Grid grid, NodeSet toOn, NodeSet toOff, bool allowNishio, bool allowDynamic)
 	{
 		var originalGrid = grid;
 		var pendingOn = new NodeList(toOn);
@@ -243,7 +259,7 @@ public interface IChainingStepSearcher<TSelf> where TSelf : StepSearcher, IChain
 				}
 			}
 
-			TSelf.OnAdvanced(pendingOn, pendingOff, toOff, grid, originalGrid);
+			OnAdvanced(pendingOn, pendingOff, toOff, grid, originalGrid);
 		}
 
 		return null;
@@ -257,7 +273,7 @@ public interface IChainingStepSearcher<TSelf> where TSelf : StepSearcher, IChain
 	/// <param name="toOff">The original potentials that are assumed to be "off".</param>
 	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="original">Indicates the original grid.</param>
-	protected static virtual void OnAdvanced(
+	protected virtual void OnAdvanced(
 		NodeList pendingOn,
 		NodeList pendingOff,
 		NodeSet toOff,

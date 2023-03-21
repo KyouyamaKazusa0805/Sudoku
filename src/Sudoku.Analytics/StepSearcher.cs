@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents a searcher that can creates <see cref="Step"/> instances for the specified technique.

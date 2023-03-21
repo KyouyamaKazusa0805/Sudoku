@@ -22,23 +22,30 @@
             Simply encapsulates a data tuple describing the information of a found attribute.
             </summary>
             <param name="Namespace">Indicates the namespace symbol of that step searcher.</param>
+            <param name="BaseType">Indicates the base type of the step searcher.</param>
             <param name="PriorityValue">The priority value of the step searcher.</param>
             <param name="DifficultyLevel">The difficulty level of the step searcher.</param>
             <param name="TypeName">The name of the step searcher type.</param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
+            <param name="IsPolymorphism">Indicates whether the step searcher can be also used for deriving.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,System.Int32,System.Byte,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Int32,System.Byte,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.Boolean)">
             <summary>
             Simply encapsulates a data tuple describing the information of a found attribute.
             </summary>
             <param name="Namespace">Indicates the namespace symbol of that step searcher.</param>
+            <param name="BaseType">Indicates the base type of the step searcher.</param>
             <param name="PriorityValue">The priority value of the step searcher.</param>
             <param name="DifficultyLevel">The difficulty level of the step searcher.</param>
             <param name="TypeName">The name of the step searcher type.</param>
             <param name="NamedArguments">The named arguments of that attribute.</param>
+            <param name="IsPolymorphism">Indicates whether the step searcher can be also used for deriving.</param>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Namespace">
             <summary>Indicates the namespace symbol of that step searcher.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.BaseType">
+            <summary>Indicates the base type of the step searcher.</summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PriorityValue">
             <summary>The priority value of the step searcher.</summary>
@@ -51,6 +58,9 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.NamedArguments">
             <summary>The named arguments of that attribute.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.IsPolymorphism">
+            <summary>Indicates whether the step searcher can be also used for deriving.</summary>
         </member>
         <member name="F:CodeGen.Constants.VersionValue">
             <summary>
