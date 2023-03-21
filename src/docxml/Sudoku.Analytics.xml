@@ -4629,6 +4629,46 @@ result ^= expression;
             Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher">
+            <summary>
+            Provides with an <b>Almost Locked Sets W-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Almost Locked Sets W-Wing</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.Gather">
+            <summary>
+            Gathers possible conjugate pairs grouped by digit.
+            </summary>
+            <returns>The conjugate pairs found, grouped by digit.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher">
+            <summary>
+            Provides with an <b>Almost Locked Sets XY-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Almost Locked Sets XY-Wing</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision">
+            <summary>
+            Indicates whether two ALSes make an collision, which means they share the some same cells. 
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher">
             <summary>
             Provides with an <b>Almost Locked Sets XZ Rule</b> step searcher.
@@ -7166,6 +7206,111 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Concepts.Conjugate,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.XDigit">
+            <summary>
+            Indicates the digit X.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.WDigitsMask">
+            <summary>
+            Indicates the mask of W digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair used as a bridge.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.FirstAls">
+            <summary>
+            Indicates the first ALS used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.SecondAls">
+            <summary>
+            Indicates the second ALS used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.XDigitsMask">
+            <summary>
+            Indicates the mask that holds the digits for the X value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.YDigitsMask">
+            <summary>
+            Indicates the mask that holds the digits for the Y value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.ZDigitsMask">
+            <summary>
+            Indicates the mask that holds the digits for the Z value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.FirstAls">
+            <summary>
+            Indicates the first ALS used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.SecondAls">
+            <summary>
+            Indicates the second ALS used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.BridgeAls">
+            <summary>
+            Indicates the ALS that is as a bridge.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep">
