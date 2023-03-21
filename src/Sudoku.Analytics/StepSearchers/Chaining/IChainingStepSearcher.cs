@@ -257,7 +257,13 @@ public interface IChainingStepSearcher<TSelf> where TSelf : StepSearcher, IChain
 	/// <param name="toOff">The original potentials that are assumed to be "off".</param>
 	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="original">Indicates the original grid.</param>
-	protected static virtual void OnAdvanced(NodeList pendingOn, NodeList pendingOff, NodeSet toOff, scoped in Grid grid, scoped in Grid original)
+	protected static virtual void OnAdvanced(
+		NodeList pendingOn,
+		NodeList pendingOff,
+		NodeSet toOff,
+		scoped in Grid grid,
+		scoped in Grid original
+	)
 	{
 		return;
 	}

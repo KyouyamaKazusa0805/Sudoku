@@ -4734,6 +4734,161 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher">
+            <summary>
+            Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Alternating Inference Chains (Cycles)</item>
+            <item>
+            Forcing Chains:
+            <list type="bullet">
+            <item>
+            Multiple Forcing Chains:
+            <list type="bullet">
+            <item>Cell Forcing Chains</item>
+            <item>Region (House) Forcing Chains</item>
+            </list>
+            </item>
+            <item>
+            Dynamic Forcing Chains:
+            <list type="bullet">
+            <item>Dynamic Cell Forcing Chains</item>
+            <item>Dynamic Region (House) Forcing Chains</item>
+            <item>Dynamic Contradiction Forcing Chains</item>
+            <item>Dynamic Double Forcing Chains</item>
+            </list>
+            </item>
+            </list>
+            </item>
+            </list>
+            </summary>
+            <remarks>
+            The type is special: it uses source code from another project called Sudoku Explainer.
+            However unfortunately, I cannot find any sites available of the project.
+            One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher._otherStepSearchers">
+            <summary>
+            Indicates the advanced step searchers.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.AllowNishio">
+            <summary>
+            Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
+            that only uses a single digit. It is a brute-force view of a fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.AllowMultiple">
+            <summary>
+            Indicates whether the step searcher allows multiple forcing chains:
+            <list type="bullet">
+            <item>
+            For non-dynamic forcing chains:
+            <list type="bullet">
+            <item>Cell forcing chains</item>
+            <item>Region (House) forcing chains</item>
+            </list>
+            </item>
+            <item>
+            For dynamic forcing chains:
+            <list type="bullet">
+            <item>Dynamic cell forcing chains</item>
+            <item>Dynamic region (house) forcing chains</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.AllowDynamic">
+            <summary>
+            Indicates whether the step searcher allows dynamic forcing chains:
+            <list type="bullet">
+            <item>Dynamic contradiction forcing chains</item>
+            <item>Dynamic double forcing chains</item>
+            </list>
+            </summary>
+            <remarks>
+            If step searcher enables for dynamic forcing chains, forcing chains will contain branches,
+            or even branches over branches (recursively). It will be very useful on complex inferences.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.DynamicNestingLevel">
+            <summary>
+            Indicates the level of dynamic recursion. The value can be 1, 2, 3, 4 and 5.
+            </summary>
+            <remarks>
+            All possible values corresponds to their own cases respectively:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Supported nesting rule</description>
+            </listheader>
+            <item>
+            <term>0</term>
+            <description>Non-dynamic forcing chains</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>Dynamic forcing chains (+ Structural techniques, e.g. <see cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/>)</description>
+            </item>
+            <item>
+            <term>2</term>
+            <description>Dynamic forcing chains (+ AIC)</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>Dynamic forcing chains (+ Multiple forcing chains)</description>
+            </item>
+            <item>
+            <term>4</term>
+            <description>Dynamic forcing chains (+ Dynamic forcing chains)</description>
+            </item>
+            <item>
+            <term>5</term>
+            <description>Dynamic forcing chains (+ Dynamic forcing chains (+))</description>
+            </item>
+            </list>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.GetAdvancedPotentials(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.NodeSet)">
+            <summary>
+            Get all non-trivial implications (involving fished, naked/hidden sets, etc).
+            </summary>
+            <param name="grid">Indicates the current grid state.</param>
+            <param name="original">Indicates the original grid state.</param>
+            <param name="offPotentials">
+            <inheritdoc
+                cref="M:Sudoku.Analytics.StepSearchers.IChainingStepSearcher`1.OnAdvanced(Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeList,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"
+                path="/param[@name='toOff']"/>
+            </param>
+            <returns>Found <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateChainingOnStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,System.Boolean)">
+            <summary>
+            Try to create a binary forcing chain hint on "on" state.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateChainingOffStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,System.Boolean)">
+            <summary>
+            Try to create a binary forcing chain hint on "off" state.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainBranch)">
+            <summary>
+            Try to create a cell forcing chain hint.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainBranch)">
+            <summary>
+            Try to create a region (house) forcing chain hint.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep">
             <summary>
             Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.

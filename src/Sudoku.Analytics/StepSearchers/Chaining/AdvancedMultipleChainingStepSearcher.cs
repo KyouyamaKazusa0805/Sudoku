@@ -1,0 +1,257 @@
+namespace Sudoku.Analytics.StepSearchers;
+
+using Self = IChainingStepSearcher<AdvancedMultipleChainingStepSearcher>;
+
+/// <summary>
+/// Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Alternating Inference Chains (Cycles)</item>
+/// <item>
+/// Forcing Chains:
+/// <list type="bullet">
+/// <item>
+/// Multiple Forcing Chains:
+/// <list type="bullet">
+/// <item>Cell Forcing Chains</item>
+/// <item>Region (House) Forcing Chains</item>
+/// </list>
+/// </item>
+/// <item>
+/// Dynamic Forcing Chains:
+/// <list type="bullet">
+/// <item>Dynamic Cell Forcing Chains</item>
+/// <item>Dynamic Region (House) Forcing Chains</item>
+/// <item>Dynamic Contradiction Forcing Chains</item>
+/// <item>Dynamic Double Forcing Chains</item>
+/// </list>
+/// </item>
+/// </list>
+/// </item>
+/// </list>
+/// </summary>
+/// <remarks>
+/// The type is special: it uses source code from another project called Sudoku Explainer.
+/// However unfortunately, I cannot find any sites available of the project.
+/// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
+/// </remarks>
+[StepSearcher]
+[Separated(0, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 1)]
+[Separated(1, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 2)]
+[Separated(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 3)]
+[Separated(3, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 4)]
+[Separated(4, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 5)]
+public sealed partial class AdvancedMultipleChainingStepSearcher : StepSearcher, Self
+{
+	/// <summary>
+	/// Indicates the advanced step searchers.
+	/// </summary>
+	private Dictionary<int, StepSearcher[]>? _otherStepSearchers;
+
+
+	/// <summary>
+	/// Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
+	/// that only uses a single digit. It is a brute-force view of a fish.
+	/// </summary>
+	public bool AllowNishio { get; init; }
+
+	/// <summary>
+	/// Indicates whether the step searcher allows multiple forcing chains:
+	/// <list type="bullet">
+	/// <item>
+	/// For non-dynamic forcing chains:
+	/// <list type="bullet">
+	/// <item>Cell forcing chains</item>
+	/// <item>Region (House) forcing chains</item>
+	/// </list>
+	/// </item>
+	/// <item>
+	/// For dynamic forcing chains:
+	/// <list type="bullet">
+	/// <item>Dynamic cell forcing chains</item>
+	/// <item>Dynamic region (house) forcing chains</item>
+	/// </list>
+	/// </item>
+	/// </list>
+	/// </summary>
+	public bool AllowMultiple { get; init; }
+
+	/// <summary>
+	/// Indicates whether the step searcher allows dynamic forcing chains:
+	/// <list type="bullet">
+	/// <item>Dynamic contradiction forcing chains</item>
+	/// <item>Dynamic double forcing chains</item>
+	/// </list>
+	/// </summary>
+	/// <remarks>
+	/// If step searcher enables for dynamic forcing chains, forcing chains will contain branches,
+	/// or even branches over branches (recursively). It will be very useful on complex inferences.
+	/// </remarks>
+	public bool AllowDynamic { get; init; }
+
+	/// <summary>
+	/// Indicates the level of dynamic recursion. The value can be 1, 2, 3, 4 and 5.
+	/// </summary>
+	/// <remarks>
+	/// All possible values corresponds to their own cases respectively:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Supported nesting rule</description>
+	/// </listheader>
+	/// <item>
+	/// <term>0</term>
+	/// <description>Non-dynamic forcing chains</description>
+	/// </item>
+	/// <item>
+	/// <term>1</term>
+	/// <description>Dynamic forcing chains (+ Structural techniques, e.g. <see cref="LockedCandidatesStepSearcher"/>)</description>
+	/// </item>
+	/// <item>
+	/// <term>2</term>
+	/// <description>Dynamic forcing chains (+ AIC)</description>
+	/// </item>
+	/// <item>
+	/// <term>3</term>
+	/// <description>Dynamic forcing chains (+ Multiple forcing chains)</description>
+	/// </item>
+	/// <item>
+	/// <term>4</term>
+	/// <description>Dynamic forcing chains (+ Dynamic forcing chains)</description>
+	/// </item>
+	/// <item>
+	/// <term>5</term>
+	/// <description>Dynamic forcing chains (+ Dynamic forcing chains (+))</description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	/// <seealso cref="LockedCandidatesStepSearcher"/>
+	public int DynamicNestingLevel { get; init; }
+
+
+	/// <inheritdoc/>
+	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+		=> throw new NotImplementedException("This method will be re-considered.");
+
+	/// <summary>
+	/// Get all non-trivial implications (involving fished, naked/hidden sets, etc).
+	/// </summary>
+	/// <param name="grid">Indicates the current grid state.</param>
+	/// <param name="original">Indicates the original grid state.</param>
+	/// <param name="offPotentials">
+	/// <inheritdoc
+	///     cref="IChainingStepSearcher{TSelf}.OnAdvanced(NodeList, NodeList, NodeSet, in Grid, in Grid)"
+	///     path="/param[@name='toOff']"/>
+	/// </param>
+	/// <returns>Found <see cref="ChainNode"/> instances.</returns>
+	[MemberNotNull(nameof(_otherStepSearchers))]
+	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+	private NodeList GetAdvancedPotentials(scoped in Grid grid, scoped in Grid original, NodeSet offPotentials)
+	{
+		_otherStepSearchers ??= new()
+		{
+			{ 1, new StepSearcher[] { new LockedCandidatesStepSearcher(), new SubsetStepSearcher(), new NormalFishStepSearcher() } },
+			{ 2, new StepSearcher[] { new NonMultipleChainingStepSearcher() } },
+			{ 3, new StepSearcher[] { new MultipleChainingStepSearcher { AllowMultiple = true } } },
+			{ 4, new StepSearcher[] { new MultipleChainingStepSearcher { AllowDynamic = true, AllowMultiple = true } } },
+			{ 5, new StepSearcher[] { new AdvancedMultipleChainingStepSearcher { DynamicNestingLevel = DynamicNestingLevel - 3 } } }
+		};
+
+		var result = new NodeList();
+		return result;
+	}
+
+	/// <summary>
+	/// Try to create a binary forcing chain hint on "on" state.
+	/// </summary>
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
+	{
+		var conclusion = new[] { new Conclusion(Assignment, target.Candidate) };
+		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
+		return new(result, result.CreateViews(grid));
+	}
+
+	/// <summary>
+	/// Try to create a binary forcing chain hint on "off" state.
+	/// </summary>
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
+	{
+		var conclusion = new[] { new Conclusion(Elimination, target.Candidate) };
+		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
+		return new(result, result.CreateViews(grid));
+	}
+
+	/// <summary>
+	/// Try to create a cell forcing chain hint.
+	/// </summary>
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
+	{
+		var (targetCell, targetDigit, targetIsOn) = target;
+		var conclusion = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };
+
+		// Build chains.
+		var chains = new MultipleForcingChains();
+		for (byte tempDigit = 0; tempDigit < 9; tempDigit++)
+		{
+			if (CandidatesMap[tempDigit].Contains(srcCell))
+			{
+				// Get corresponding value with the matching parents.
+				chains.Add(tempDigit, outcomes[tempDigit].GetNullable(target) ?? default);
+			}
+		}
+
+		var result = new CellForcingChainsStep(conclusion, srcCell, chains, AllowDynamic, DynamicNestingLevel);
+		return new(result, result.CreateViews(grid));
+	}
+
+	/// <summary>
+	/// Try to create a region (house) forcing chain hint.
+	/// </summary>
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, int houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
+	{
+		var (targetCell, targetDigit, targetIsOn) = target;
+		var conclusions = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };
+
+		// Build chains.
+		var chains = new MultipleForcingChains();
+		foreach (byte tempCell in CandidatesMap[digit] & HousesMap[houseIndex])
+		{
+			// Get corresponding value with the matching parents.
+			chains.Add(tempCell, outcomes[tempCell].GetNullable(target) ?? default);
+		}
+
+		var result = new RegionForcingChainsStep(conclusions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
+		return new(result, result.CreateViews(grid));
+	}
+
+
+#if false
+	/// <inheritdoc/>
+	static void Self.OnAdvanced(
+		NodeList pendingOn,
+		NodeList pendingOff,
+		NodeSet toOff,
+		scoped in Grid grid,
+		scoped in Grid original
+	)
+	{
+		if (pendingOn.Count == 0 && pendingOff.Count == 0 && DynamicNestingLevel > 0)
+		{
+			foreach (var pOff in GetAdvancedPotentials(grid, original, toOff))
+			{
+				if (!toOff.Contains(pOff))
+				{
+					// Not processed yet.
+					toOff.Add(pOff);
+					pendingOff.AddLast(pOff);
+				}
+			}
+		}
+	}
+#endif
+}
