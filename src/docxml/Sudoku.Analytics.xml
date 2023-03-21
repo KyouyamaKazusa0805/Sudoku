@@ -2570,6 +2570,105 @@
             </exception>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
+        <member name="T:Sudoku.Analytics.Eliminations.ExocetEliminatedReason">
+            <summary>
+            Encapsulates a type that represents the reason why the exocet eliminations can be removed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Eliminations.ExocetEliminatedReason.Basic">
+            <summary>
+            Indicates the elimination is the basic elimination (Target eliminations).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Eliminations.ExocetEliminatedReason.TargetInference">
+            <summary>
+            Indicates the target inference eliminations (that is eliminated via mirror cells).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Eliminations.ExocetEliminatedReason.Mirror">
+            <summary>
+            Indicates the mirror eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Eliminations.ExocetEliminatedReason.BiBiPattern">
+            <summary>
+            Indicates the bi-bi pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Eliminations.ExocetEliminatedReason.TargetPair">
+            <summary>
+            Indicates the target pair eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Eliminations.ExocetEliminatedReason.GeneralizedSwordfish">
+            <summary>
+            Indicates the generalized swordfish eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Eliminations.ExocetEliminatedReason.TrueBase">
+            <summary>
+            Indicates the true base eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Eliminations.ExocetEliminatedReason.CompatibilityTest">
+            <summary>
+            Indicates the compatibility test eliminations.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Eliminations.ExocetElimination">
+            <summary>
+            Represents a data structure that describes the eliminations that are created and proved by the exocet technique.
+            </summary>
+            <param name="Conclusions">Indicates the conclusions.</param>
+            <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Eliminations.ExocetElimination.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Analytics.Eliminations.ExocetEliminatedReason)">
+            <summary>
+            Represents a data structure that describes the eliminations that are created and proved by the exocet technique.
+            </summary>
+            <param name="Conclusions">Indicates the conclusions.</param>
+            <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Eliminations.ExocetElimination.Conclusions">
+            <summary>Indicates the conclusions.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Eliminations.ExocetElimination.Reason">
+            <summary>Indicates the reason why these candidates can be eliminated.</summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Eliminations.ExocetElimination.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Eliminations.IPhasedConclusionProvider`2">
+            <summary>
+            Defines a data structure that describes for a phased conclusion list.
+            </summary>
+            <typeparam name="TSelf">The type of the implemented type itself.</typeparam>
+            <typeparam name="TReasonEnum">
+            The type of the enumeration that represents the details and reasons why the conclusions can be used.
+            </typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.Eliminations.IPhasedConclusionProvider`2.Conclusions">
+            <summary>
+            Indicates the conclusions that matches for the current reason.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Eliminations.IPhasedConclusionProvider`2.Reason">
+            <summary>
+            Indicates the reason why the conclusions can be available.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Eliminations.IPhasedConclusionProvider`2.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Eliminations.IPhasedConclusionProvider`2.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Eliminations.IPhasedConclusionProvider`2.System#IEquatable{TSelf}#Equals(`0)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions">
             <summary>
             Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
@@ -3667,6 +3766,160 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the mutant fish.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.Exocet">
+            <summary>
+            <para>
+            Indicates an exocet pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | B B E | E . . | E . . |
+            | . . E | Q . . | R . . |
+            | . . E | Q . . | R . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>B</term><description>Base Cells.</description></item>
+            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>E</term><description>Escape Cells.</description></item>
+            </list>
+            </para>
+            <para>
+            In the data structure, all letters will be used as the same one in this exemplar.
+            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
+            and the lines of two target cells lying on can't contain any base digits.
+            </para>
+            </summary>
+            <param name="Base1">Indicates the first base cell.</param>
+            <param name="Base2">Indicates the second base cell.</param>
+            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
+            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
+            <param name="TargetR1">Indicates the first target cell in the R part.</param>
+            <param name="TargetR2">Indicates the second target cell in the R part.</param>
+            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
+            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
+            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
+            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
+            <param name="CrossLine">Indicates the cross-line cells.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.Exocet.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            <para>
+            Indicates an exocet pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | B B E | E . . | E . . |
+            | . . E | Q . . | R . . |
+            | . . E | Q . . | R . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>B</term><description>Base Cells.</description></item>
+            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>E</term><description>Escape Cells.</description></item>
+            </list>
+            </para>
+            <para>
+            In the data structure, all letters will be used as the same one in this exemplar.
+            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
+            and the lines of two target cells lying on can't contain any base digits.
+            </para>
+            </summary>
+            <param name="Base1">Indicates the first base cell.</param>
+            <param name="Base2">Indicates the second base cell.</param>
+            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
+            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
+            <param name="TargetR1">Indicates the first target cell in the R part.</param>
+            <param name="TargetR2">Indicates the second target cell in the R part.</param>
+            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
+            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
+            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
+            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
+            <param name="CrossLine">Indicates the cross-line cells.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.Base1">
+            <summary>Indicates the first base cell.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.Base2">
+            <summary>Indicates the second base cell.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.TargetQ1">
+            <summary>Indicates the first target cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.TargetQ2">
+            <summary>Indicates the second target cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.TargetR1">
+            <summary>Indicates the first target cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.TargetR2">
+            <summary>Indicates the second target cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.CrossLine">
+            <summary>Indicates the cross-line cells.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.MirrorQ1">
+            <summary>Indicates the first mirror cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.MirrorQ2">
+            <summary>Indicates the second mirror cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.MirrorR1">
+            <summary>Indicates the first mirror cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.MirrorR2">
+            <summary>Indicates the second mirror cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.MirrorCellsMap">
+            <summary>
+            Indicates the mirror cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.MapWithMirrors">
+            <summary>
+            Indicates the full map, with mirror cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.BaseCellsMap">
+            <summary>
+            Indicates the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.Exocet.TargetCellsMap">
+            <summary>
+            Indicates the target cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.Exocet.Equals(Sudoku.Analytics.Patterns.Exocet@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.Exocet.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.Patterns.Firework">
             <summary>
@@ -6572,6 +6825,64 @@ result ^= expression;
             </para>
             </remarks>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher">
+            <summary>
+            Provides with a <b>Junior Exocet</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Junior Exocet</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.Patterns">
+            <summary>
+            Indicates all patterns.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.CheckAdvanced">
+            <summary>
+            Indicates whether the searcher will find advanced eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.CheckTargetCells(System.Int32,System.Int32,System.Int16,Sudoku.Concepts.Grid@,System.Int16@)">
+            <summary>
+            Checks for the validity of the target cells, guaranteeing the target cells is valid in the full exocet map.
+            </summary>
+            <param name="targetCell1">The first target cell to be checked.</param>
+            <param name="targetCell2">The second target cell to be checked.</param>
+            <param name="baseCellsDigitsMask">The mask that holds the digits appearing in the base cells.</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="resultOtherDigitsMask">
+            The other digits found in the exocet pattern, which means the digits that is not the valid digits
+            as the base digits.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.CheckCrossLineCells(Sudoku.Analytics.Patterns.Exocet@,System.Int16)">
+            <summary>
+            Checks for the validity of the cross-line cells, guaranteeing the target cells is valid
+            in the full exocet map.
+            </summary>
+            <param name="currentJe">The current JE pattern.</param>
+            <param name="digitsNeedChecking">The digits need checking.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">
             <summary>
             Provides with a <b>Complex Fish</b> step searcher.
@@ -7265,6 +7576,18 @@ result ^= expression;
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.SeniorExocetStepSearcher">
+            <summary>
+            (<b>Not implemented</b>) Provides with a <b>Senior Exocet</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Senior Exocet</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SeniorExocetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher">
@@ -9835,6 +10158,112 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.GetHashCode(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ExocetStep">
+            <summary>
+            Provides with a step that is an <b>Exocet</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
+            <summary>
+            Provides with a step that is an <b>Exocet</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.DigitsMask">
+            <summary>
+            Indicates the mask of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Exocet">
+            <summary>
+            Indicates the exocet pattern used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.BaseMap">
+            <summary>
+            Indicates the map of the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.TargetMap">
+            <summary>
+            Indicates the map of the target cells.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.JuniorExocetStep">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetStep.#ctor(Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetStep.Eliminations">
+            <summary>
+            Indicates the eliminations for raw usages.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SeniorExocetStep">
+            <summary>
+            Provides with a step that is a <b>Senior Exocet</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SeniorExocetStep.#ctor(Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,System.Int32,System.Int32[],Sudoku.Analytics.Eliminations.ExocetElimination[])">
+            <summary>
+            Provides with a step that is a <b>Senior Exocet</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.ContainsExtraHouses">
+            <summary>
+            Indicates whether the specified instance contains any extra houses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.EndoTargetCell">
+            <summary>
+            Indicates the target cell in the cross-line cells' houses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.ExtraHouses">
+            <summary>
+            Indicates the extra houses used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexFishStep">

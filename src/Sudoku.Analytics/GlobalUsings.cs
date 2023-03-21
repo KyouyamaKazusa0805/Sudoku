@@ -1,4 +1,4 @@
-﻿global using System;
+global using System;
 global using System.Algorithm;
 global using System.Collections;
 global using System.Collections.Generic;
@@ -17,6 +17,7 @@ global using System.Threading.Tasks;
 global using System.Timers;
 global using Sudoku.Analytics.Buffers;
 global using Sudoku.Analytics.Categorization;
+global using Sudoku.Analytics.Eliminations;
 global using Sudoku.Analytics.Formatting;
 global using Sudoku.Analytics.InternalHelpers;
 global using Sudoku.Analytics.Metadata;

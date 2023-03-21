@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Solving.Logical.Steps;
+namespace Sudoku.Solving.Logical.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Exocet</b> technique.
 /// </summary>
 /// <param name="Views"><inheritdoc/></param>
-/// <param name="Exocet">INdicates the exocet pattern.</param>
+/// <param name="Exocet">Indicates the exocet pattern.</param>
 /// <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
 /// <param name="Eliminations">Indicates all possible eliminations.</param>
 internal abstract record ExocetStep(View[]? Views, scoped in Exocet Exocet, short DigitsMask, ImmutableArray<ExocetElimination> Eliminations) :
