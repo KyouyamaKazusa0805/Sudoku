@@ -715,12 +715,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedXWing">
             <summary>
-            Indicates siamese finned X-Wing.
+            Indicates Siamese finned X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiXWing">
             <summary>
-            Indicates siamese sashimi X-Wing.
+            Indicates Siamese sashimi X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenXWing">
@@ -740,12 +740,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenXWing">
             <summary>
-            Indicates siamese finned franken X-Wing.
+            Indicates Siamese finned franken X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenXWing">
             <summary>
-            Indicates siamese sashimi franken X-Wing.
+            Indicates Siamese sashimi franken X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantXWing">
@@ -765,12 +765,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantXWing">
             <summary>
-            Indicates siamese finned mutant X-Wing.
+            Indicates Siamese finned mutant X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantXWing">
             <summary>
-            Indicates siamese sashimi mutant X-Wing.
+            Indicates Siamese sashimi mutant X-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Swordfish">
@@ -790,12 +790,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedSwordfish">
             <summary>
-            Indicates siamese finned swordfish.
+            Indicates Siamese finned swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiSwordfish">
             <summary>
-            Indicates siamese sashimi swordfish.
+            Indicates Siamese sashimi swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSwordfish">
@@ -815,12 +815,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenSwordfish">
             <summary>
-            Indicates siamese finned franken swordfish.
+            Indicates Siamese finned franken swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenSwordfish">
             <summary>
-            Indicates siamese sashimi franken swordfish.
+            Indicates Siamese sashimi franken swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSwordfish">
@@ -840,12 +840,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantSwordfish">
             <summary>
-            Indicates siamese finned mutant swordfish.
+            Indicates Siamese finned mutant swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantSwordfish">
             <summary>
-            Indicates siamese sashimi mutant swordfish.
+            Indicates Siamese sashimi mutant swordfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Jellyfish">
@@ -865,12 +865,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedJellyfish">
             <summary>
-            Indicates siamese finned jellyfish.
+            Indicates Siamese finned jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiJellyfish">
             <summary>
-            Indicates siamese sashimi jellyfish.
+            Indicates Siamese sashimi jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJellyfish">
@@ -890,12 +890,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenJellyfish">
             <summary>
-            Indicates siamese finned franken jellyfish.
+            Indicates Siamese finned franken jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenJellyfish">
             <summary>
-            Indicates siamese sashimi franken jellyfish.
+            Indicates Siamese sashimi franken jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJellyfish">
@@ -915,12 +915,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantJellyfish">
             <summary>
-            Indicates siamese finned mutant jellyfish.
+            Indicates Siamese finned mutant jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantJellyfish">
             <summary>
-            Indicates siamese sashimi mutant jellyfish.
+            Indicates Siamese sashimi mutant jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Squirmbag">
@@ -940,12 +940,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedSquirmbag">
             <summary>
-            Indicates siamese finned squirmbag.
+            Indicates Siamese finned squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiSquirmbag">
             <summary>
-            Indicates siamese sashimi squirmbag.
+            Indicates Siamese sashimi squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSquirmbag">
@@ -965,12 +965,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenSquirmbag">
             <summary>
-            Indicates siamese finned franken squirmbag.
+            Indicates Siamese finned franken squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenSquirmbag">
             <summary>
-            Indicates siamese sashimi franken squirmbag.
+            Indicates Siamese sashimi franken squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSquirmbag">
@@ -990,12 +990,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantSquirmbag">
             <summary>
-            Indicates siamese finned mutant squirmbag.
+            Indicates Siamese finned mutant squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantSquirmbag">
             <summary>
-            Indicates siamese sashimi mutant squirmbag.
+            Indicates Siamese sashimi mutant squirmbag.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Whale">
@@ -1015,12 +1015,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedWhale">
             <summary>
-            Indicates siamese finned whale.
+            Indicates Siamese finned whale.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiWhale">
             <summary>
-            Indicates siamese sashimi whale.
+            Indicates Siamese sashimi whale.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenWhale">
@@ -1040,12 +1040,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenWhale">
             <summary>
-            Indicates siamese finned franken whale.
+            Indicates Siamese finned franken whale.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenWhale">
             <summary>
-            Indicates siamese sashimi franken whale.
+            Indicates Siamese sashimi franken whale.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantWhale">
@@ -1065,12 +1065,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantWhale">
             <summary>
-            Indicates siamese finned mutant whale.
+            Indicates Siamese finned mutant whale.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantWhale">
             <summary>
-            Indicates siamese sashimi mutant whale.
+            Indicates Siamese sashimi mutant whale.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Leviathan">
@@ -1090,12 +1090,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedLeviathan">
             <summary>
-            Indicates siamese finned leviathan.
+            Indicates Siamese finned leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiLeviathan">
             <summary>
-            Indicates siamese sashimi leviathan.
+            Indicates Siamese sashimi leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenLeviathan">
@@ -1115,12 +1115,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedFrankenLeviathan">
             <summary>
-            Indicates siamese finned franken leviathan.
+            Indicates Siamese finned franken leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiFrankenLeviathan">
             <summary>
-            Indicates siamese sashimi franken leviathan.
+            Indicates Siamese sashimi franken leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantLeviathan">
@@ -1140,12 +1140,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedMutantLeviathan">
             <summary>
-            Indicates siamese finned mutant leviathan.
+            Indicates Siamese finned mutant leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantLeviathan">
             <summary>
-            Indicates siamese sashimi mutant leviathan.
+            Indicates Siamese sashimi mutant leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.XyWing">
@@ -1828,11 +1828,6 @@
             Indicates broken wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueOddagonType1">
-            <summary>
-            Indicates bi-value oddagon type 1.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueOddagonType2">
             <summary>
             Indicates bi-value oddagon type 2.
@@ -2096,12 +2091,12 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseJuniorExocet">
             <summary>
-            Indicates siamese junior exocet.
+            Indicates Siamese junior exocet.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSeniorExocet">
             <summary>
-            Indicates siamese senior exocet.
+            Indicates Siamese senior exocet.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
@@ -3191,6 +3186,26 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>All possible found <see cref="T:Sudoku.Analytics.Patterns.AlmostLockedSet"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Patterns.BivalueOddagon">
+            <summary>
+            Represents for a data set that describes the complete information about a bi-value oddagon technique.
+            </summary>
+            <param name="Loop">Indicates the cells used in this whole bi-value oddagon loop.</param>
+            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.BivalueOddagon.#ctor(Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Represents for a data set that describes the complete information about a bi-value oddagon technique.
+            </summary>
+            <param name="Loop">Indicates the cells used in this whole bi-value oddagon loop.</param>
+            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.BivalueOddagon.Loop">
+            <summary>Indicates the cells used in this whole bi-value oddagon loop.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.BivalueOddagon.DigitsMask">
+            <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
         </member>
         <member name="T:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern">
             <summary>
@@ -6832,6 +6847,142 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher">
+            <summary>
+            <para>
+            Provides with a <b>Bi-value Oddagon</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Bi-value Oddagon Type 2</item>
+            <item>Bi-value Oddagon Type 3</item>
+            </list>
+            </para>
+            <para>
+            <i>
+            In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
+            and a type 4 cannot be formed as a stable technique structure.
+            </i>
+            </para>
+            <para><i>A Remote Pair is a XY-Chain that only uses two digits.</i></para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Steps.BivalueOddagonStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+            <summary>
+            Check for type 2.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Steps.BivalueOddagonStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+            <summary>
+            Check for type 3.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
+            <summary>
+            Represents a cached gathering operation set.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GatherBivalueOddagons(System.Int16)">
+            <summary>
+            Try to gather all possible loops being used in technique bivalue oddagons,
+            which should satisfy the specified condition.
+            </summary>
+            <param name="digitsMask">The digits used.</param>
+            <returns>
+            Returns a list of array of candidates used in the loop, as the data of possible found loops.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Analytics.Patterns.BivalueOddagon})">
+            <summary>
+            Checks for bi-value oddagon loops using recursion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher">
+            <summary>
+            Provides with a <b>Chromatic Pattern</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Basic types:
+            <list type="bullet">
+            <item>Chromatic Pattern type 1</item>
+            <!--
+            <item>Chromatic Pattern type 2</item>
+            <item>Chromatic Pattern type 3</item>
+            <item>Chromatic Pattern type 4</item>
+            -->
+            </list>
+            </item>
+            <item>
+            Extended types:
+            <list type="bullet">
+            <item>Chromatic Pattern XZ</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+            <remarks>
+            For more information about a "chromatic pattern",
+            please visit <see href="http://forum.enjoysudoku.com/chromatic-patterns-t39885.html">this link</see>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.PatternOffsets">
+            <summary>
+            The possible pattern offsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.CheckType1(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.CellMap@,System.Int32[])">
+            <summary>
+            Checks for the type 1.
+            Here I give you 2 examples to test this method:
+            <list type="number">
+            <item>
+            <see href="http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html#p318380">the first one</see>
+            </item>
+            <item>
+            <see href="http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html#p318378">the second one</see>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.CheckXz(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.CellMap@,System.Int32[])">
+            <summary>
+            Checks for XZ rule.
+            Here I give you 1 example to test this method:
+            <list type="number">
+            <item>
+            <code>
+            0000000010000023400+45013602000+470036000089400004600000012500060403100520560000100:611 711 811 911 712 812 912 915 516 716 816 721 821 921 925 565 568 779 879 979 794 894 994 799 899 999
+            </code>
+            </item>
+            </list>
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.GuardianStepSearcher">
             <summary>
             Provides with a <b>Guardian</b> step searcher.
@@ -10228,6 +10379,202 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.TemplateStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueOddagonStep">
+            <summary>
+            Provides with a step that is a <b>Bi-value Oddagon</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Oddagon</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Digit1">
+            <summary>
+            Indicates the first digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Digit2">
+            <summary>
+            Indicates the second digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Type">
+            <summary>
+            Indicates the type of the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.LoopCells">
+            <summary>
+            Indicates the loop of cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.op_Equality(Sudoku.Analytics.Steps.BivalueOddagonStep,Sudoku.Analytics.Steps.BivalueOddagonStep)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.op_Inequality(Sudoku.Analytics.Steps.BivalueOddagonStep,Sudoku.Analytics.Steps.BivalueOddagonStep)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueOddagonType2Step">
+            <summary>
+            Provides with a step that is a <b>Bivalue Oddagon Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Bivalue Oddagon Type 2</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType2Step.ExtraDigit">
+            <summary>
+            Indicates the extra digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType2Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType2Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueOddagonType3Step">
+            <summary>
+            Provides with a step that is a <b>Bivalue Oddagon Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Bivalue Oddagon Type 3</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.ExtraDigitsMask">
+            <summary>
+            Indicates the mask that contains all extra digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.ExtraCells">
+            <summary>
+            Indicates the extra cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ChromaticPatternStep">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32[],Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternStep.Blocks">
+            <summary>
+            Indicates the blocks that the current pattern lies in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternStep.DigitsMask">
+            <summary>
+            Indicates the mask of digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternStep.Group">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternStep.Pattern">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ChromaticPatternType1Step">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32[],Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern Type 1</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternType1Step.ExtraCell">
+            <summary>
+            Indicates the extra cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternType1Step.Code">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ChromaticPatternXzStep">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern XZ</b> technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Chromatic Pattern XZ</b> technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternXzStep.ExtraDigitsMask">
+            <summary>
+            Indicates the mask of extra digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternXzStep.ExtraCell">
+            <summary>
+            Indicates the extra cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternXzStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternXzStep.Cells">
+            <summary>
+            Indicates the cells that contains extra digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternXzStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternXzStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.GuardianStep">

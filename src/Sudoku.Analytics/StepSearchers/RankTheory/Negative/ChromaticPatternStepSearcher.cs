@@ -1,10 +1,92 @@
-namespace Sudoku.Solving.Logical.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
+/// <summary>
+/// Provides with a <b>Chromatic Pattern</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>
+/// Basic types:
+/// <list type="bullet">
+/// <item>Chromatic Pattern type 1</item>
+/// <!--
+/// <item>Chromatic Pattern type 2</item>
+/// <item>Chromatic Pattern type 3</item>
+/// <item>Chromatic Pattern type 4</item>
+/// -->
+/// </list>
+/// </item>
+/// <item>
+/// Extended types:
+/// <list type="bullet">
+/// <item>Chromatic Pattern XZ</item>
+/// </list>
+/// </item>
+/// </list>
+/// </summary>
+/// <remarks>
+/// For more information about a "chromatic pattern",
+/// please visit <see href="http://forum.enjoysudoku.com/chromatic-patterns-t39885.html">this link</see>.
+/// </remarks>
 [StepSearcher]
-internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternStepSearcher
+public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// The possible pattern offsets.
+	/// </summary>
+	private static readonly (int[], int[], int[], int[])[] PatternOffsets;
+
+
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
+	static ChromaticPatternStepSearcher()
+	{
+		var diagonalCases = new[] { new[] { 0, 10, 20 }, new[] { 1, 11, 18 }, new[] { 2, 9, 19 } };
+		var antidiagonalCases = new[] { new[] { 0, 11, 19 }, new[] { 1, 9, 20 }, new[] { 2, 10, 18 } };
+		var patternOffsetsList = new List<(int[], int[], int[], int[])>();
+		foreach (var (aCase, bCase, cCase, dCase) in stackalloc[]
+		{
+			(true, false, false, false),
+			(false, true, false, false),
+			(false, false, true, false),
+			(false, false, false, true)
+		})
+		{
+			// Phase 1.
+			foreach (var a in aCase ? diagonalCases : antidiagonalCases)
+			{
+				foreach (var b in bCase ? diagonalCases : antidiagonalCases)
+				{
+					foreach (var c in cCase ? diagonalCases : antidiagonalCases)
+					{
+						foreach (var d in dCase ? diagonalCases : antidiagonalCases)
+						{
+							patternOffsetsList.Add((a, b, c, d));
+						}
+					}
+				}
+			}
+
+			// Phase 2.
+			foreach (var a in aCase ? antidiagonalCases : diagonalCases)
+			{
+				foreach (var b in bCase ? antidiagonalCases : diagonalCases)
+				{
+					foreach (var c in cCase ? antidiagonalCases : diagonalCases)
+					{
+						foreach (var d in dCase ? antidiagonalCases : diagonalCases)
+						{
+							patternOffsetsList.Add((a, b, c, d));
+						}
+					}
+				}
+			}
+		}
+
+		PatternOffsets = patternOffsetsList.ToArray();
+	}
+
+
 	/// <inheritdoc/>
-	public IStep? GetAll(scoped ref LogicalAnalysisContext context)
+	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{
 		if (EmptyCells.Count < 12)
 		{
@@ -12,7 +94,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			return null;
 		}
 
-		short satisfiedBlocksMask = 0;
+		var satisfiedBlocksMask = (short)0;
 		for (var block = 0; block < 9; block++)
 		{
 			if ((EmptyCells & HousesMap[block]).Count >= 3)
@@ -30,7 +112,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var blocks in satisfiedBlocksMask.GetAllSets().GetSubsets(4))
 		{
-			short blocksMask = 0;
+			var blocksMask = (short)0;
 			foreach (var block in blocks)
 			{
 				blocksMask |= (short)(1 << block);
@@ -54,8 +136,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 			var c2 = HouseCells[blocks[1]][0];
 			var c3 = HouseCells[blocks[2]][0];
 			var c4 = HouseCells[blocks[3]][0];
-
-			foreach (var (a, b, c, d) in IChromaticPatternStepSearcher.PatternOffsets)
+			foreach (var (a, b, c, d) in PatternOffsets)
 			{
 				var pattern = f(a, c1) | f(b, c2) | f(c, c3) | f(d, c4);
 				if ((EmptyCells & pattern) != pattern)
@@ -116,7 +197,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// </item>
 	/// </list>
 	/// </summary>
-	private IStep? CheckType1(scoped ref LogicalAnalysisContext context, scoped in CellMap pattern, int[] blocks)
+	private Step? CheckType1(scoped ref AnalysisContext context, scoped in CellMap pattern, int[] blocks)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var extraCell in pattern)
@@ -152,12 +233,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 
 			var step = new ChromaticPatternType1Step(
 				conclusions.ToArray(),
-				new[]
-				{
-					View.Empty
-						| candidateOffsets
-						| from house in blocks select new HouseViewNode(DisplayColorKind.Normal, house)
-				},
+				new[] { View.Empty | candidateOffsets | from house in blocks select new HouseViewNode(DisplayColorKind.Normal, house) },
 				blocks,
 				pattern,
 				extraCell,
@@ -185,7 +261,7 @@ internal sealed partial class ChromaticPatternStepSearcher : IChromaticPatternSt
 	/// </item>
 	/// </list>
 	/// </summary>
-	private IStep? CheckXz(scoped ref LogicalAnalysisContext context, scoped in CellMap pattern, int[] blocks)
+	private Step? CheckXz(scoped ref AnalysisContext context, scoped in CellMap pattern, int[] blocks)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var allDigitsMask = grid.GetDigitsUnion(pattern);

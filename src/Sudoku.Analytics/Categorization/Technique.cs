@@ -1,4 +1,4 @@
-﻿#undef COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
+#undef COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
@@ -237,12 +237,12 @@ public enum Technique : short
 	SashimiXWing,
 
 	/// <summary>
-	/// Indicates siamese finned X-Wing.
+	/// Indicates Siamese finned X-Wing.
 	/// </summary>
 	SiameseFinnedXWing,
 
 	/// <summary>
-	/// Indicates siamese sashimi X-Wing.
+	/// Indicates Siamese sashimi X-Wing.
 	/// </summary>
 	SiameseSashimiXWing,
 
@@ -266,12 +266,12 @@ public enum Technique : short
 	SashimiFrankenXWing,
 
 	/// <summary>
-	/// Indicates siamese finned franken X-Wing.
+	/// Indicates Siamese finned franken X-Wing.
 	/// </summary>
 	SiameseFinnedFrankenXWing,
 
 	/// <summary>
-	/// Indicates siamese sashimi franken X-Wing.
+	/// Indicates Siamese sashimi franken X-Wing.
 	/// </summary>
 	SiameseSashimiFrankenXWing,
 
@@ -295,12 +295,12 @@ public enum Technique : short
 	SashimiMutantXWing,
 
 	/// <summary>
-	/// Indicates siamese finned mutant X-Wing.
+	/// Indicates Siamese finned mutant X-Wing.
 	/// </summary>
 	SiameseFinnedMutantXWing,
 
 	/// <summary>
-	/// Indicates siamese sashimi mutant X-Wing.
+	/// Indicates Siamese sashimi mutant X-Wing.
 	/// </summary>
 	SiameseSashimiMutantXWing,
 
@@ -329,12 +329,12 @@ public enum Technique : short
 	SashimiSwordfish,
 
 	/// <summary>
-	/// Indicates siamese finned swordfish.
+	/// Indicates Siamese finned swordfish.
 	/// </summary>
 	SiameseFinnedSwordfish,
 
 	/// <summary>
-	/// Indicates siamese sashimi swordfish.
+	/// Indicates Siamese sashimi swordfish.
 	/// </summary>
 	SiameseSashimiSwordfish,
 
@@ -358,12 +358,12 @@ public enum Technique : short
 	SashimiFrankenSwordfish,
 
 	/// <summary>
-	/// Indicates siamese finned franken swordfish.
+	/// Indicates Siamese finned franken swordfish.
 	/// </summary>
 	SiameseFinnedFrankenSwordfish,
 
 	/// <summary>
-	/// Indicates siamese sashimi franken swordfish.
+	/// Indicates Siamese sashimi franken swordfish.
 	/// </summary>
 	SiameseSashimiFrankenSwordfish,
 
@@ -387,12 +387,12 @@ public enum Technique : short
 	SashimiMutantSwordfish,
 
 	/// <summary>
-	/// Indicates siamese finned mutant swordfish.
+	/// Indicates Siamese finned mutant swordfish.
 	/// </summary>
 	SiameseFinnedMutantSwordfish,
 
 	/// <summary>
-	/// Indicates siamese sashimi mutant swordfish.
+	/// Indicates Siamese sashimi mutant swordfish.
 	/// </summary>
 	SiameseSashimiMutantSwordfish,
 
@@ -421,12 +421,12 @@ public enum Technique : short
 	SashimiJellyfish,
 
 	/// <summary>
-	/// Indicates siamese finned jellyfish.
+	/// Indicates Siamese finned jellyfish.
 	/// </summary>
 	SiameseFinnedJellyfish,
 
 	/// <summary>
-	/// Indicates siamese sashimi jellyfish.
+	/// Indicates Siamese sashimi jellyfish.
 	/// </summary>
 	SiameseSashimiJellyfish,
 
@@ -450,12 +450,12 @@ public enum Technique : short
 	SashimiFrankenJellyfish,
 
 	/// <summary>
-	/// Indicates siamese finned franken jellyfish.
+	/// Indicates Siamese finned franken jellyfish.
 	/// </summary>
 	SiameseFinnedFrankenJellyfish,
 
 	/// <summary>
-	/// Indicates siamese sashimi franken jellyfish.
+	/// Indicates Siamese sashimi franken jellyfish.
 	/// </summary>
 	SiameseSashimiFrankenJellyfish,
 
@@ -479,12 +479,12 @@ public enum Technique : short
 	SashimiMutantJellyfish,
 
 	/// <summary>
-	/// Indicates siamese finned mutant jellyfish.
+	/// Indicates Siamese finned mutant jellyfish.
 	/// </summary>
 	SiameseFinnedMutantJellyfish,
 
 	/// <summary>
-	/// Indicates siamese sashimi mutant jellyfish.
+	/// Indicates Siamese sashimi mutant jellyfish.
 	/// </summary>
 	SiameseSashimiMutantJellyfish,
 
@@ -510,12 +510,12 @@ public enum Technique : short
 	SashimiSquirmbag,
 
 	/// <summary>
-	/// Indicates siamese finned squirmbag.
+	/// Indicates Siamese finned squirmbag.
 	/// </summary>
 	SiameseFinnedSquirmbag,
 
 	/// <summary>
-	/// Indicates siamese sashimi squirmbag.
+	/// Indicates Siamese sashimi squirmbag.
 	/// </summary>
 	SiameseSashimiSquirmbag,
 
@@ -539,12 +539,12 @@ public enum Technique : short
 	SashimiFrankenSquirmbag,
 
 	/// <summary>
-	/// Indicates siamese finned franken squirmbag.
+	/// Indicates Siamese finned franken squirmbag.
 	/// </summary>
 	SiameseFinnedFrankenSquirmbag,
 
 	/// <summary>
-	/// Indicates siamese sashimi franken squirmbag.
+	/// Indicates Siamese sashimi franken squirmbag.
 	/// </summary>
 	SiameseSashimiFrankenSquirmbag,
 
@@ -568,12 +568,12 @@ public enum Technique : short
 	SashimiMutantSquirmbag,
 
 	/// <summary>
-	/// Indicates siamese finned mutant squirmbag.
+	/// Indicates Siamese finned mutant squirmbag.
 	/// </summary>
 	SiameseFinnedMutantSquirmbag,
 
 	/// <summary>
-	/// Indicates siamese sashimi mutant squirmbag.
+	/// Indicates Siamese sashimi mutant squirmbag.
 	/// </summary>
 	SiameseSashimiMutantSquirmbag,
 
@@ -599,12 +599,12 @@ public enum Technique : short
 	SashimiWhale,
 
 	/// <summary>
-	/// Indicates siamese finned whale.
+	/// Indicates Siamese finned whale.
 	/// </summary>
 	SiameseFinnedWhale,
 
 	/// <summary>
-	/// Indicates siamese sashimi whale.
+	/// Indicates Siamese sashimi whale.
 	/// </summary>
 	SiameseSashimiWhale,
 
@@ -628,12 +628,12 @@ public enum Technique : short
 	SashimiFrankenWhale,
 
 	/// <summary>
-	/// Indicates siamese finned franken whale.
+	/// Indicates Siamese finned franken whale.
 	/// </summary>
 	SiameseFinnedFrankenWhale,
 
 	/// <summary>
-	/// Indicates siamese sashimi franken whale.
+	/// Indicates Siamese sashimi franken whale.
 	/// </summary>
 	SiameseSashimiFrankenWhale,
 
@@ -657,12 +657,12 @@ public enum Technique : short
 	SashimiMutantWhale,
 
 	/// <summary>
-	/// Indicates siamese finned mutant whale.
+	/// Indicates Siamese finned mutant whale.
 	/// </summary>
 	SiameseFinnedMutantWhale,
 
 	/// <summary>
-	/// Indicates siamese sashimi mutant whale.
+	/// Indicates Siamese sashimi mutant whale.
 	/// </summary>
 	SiameseSashimiMutantWhale,
 
@@ -688,12 +688,12 @@ public enum Technique : short
 	SashimiLeviathan,
 
 	/// <summary>
-	/// Indicates siamese finned leviathan.
+	/// Indicates Siamese finned leviathan.
 	/// </summary>
 	SiameseFinnedLeviathan,
 
 	/// <summary>
-	/// Indicates siamese sashimi leviathan.
+	/// Indicates Siamese sashimi leviathan.
 	/// </summary>
 	SiameseSashimiLeviathan,
 
@@ -717,12 +717,12 @@ public enum Technique : short
 	SashimiFrankenLeviathan,
 
 	/// <summary>
-	/// Indicates siamese finned franken leviathan.
+	/// Indicates Siamese finned franken leviathan.
 	/// </summary>
 	SiameseFinnedFrankenLeviathan,
 
 	/// <summary>
-	/// Indicates siamese sashimi franken leviathan.
+	/// Indicates Siamese sashimi franken leviathan.
 	/// </summary>
 	SiameseSashimiFrankenLeviathan,
 
@@ -746,12 +746,12 @@ public enum Technique : short
 	SashimiMutantLeviathan,
 
 	/// <summary>
-	/// Indicates siamese finned mutant leviathan.
+	/// Indicates Siamese finned mutant leviathan.
 	/// </summary>
 	SiameseFinnedMutantLeviathan,
 
 	/// <summary>
-	/// Indicates siamese sashimi mutant leviathan.
+	/// Indicates Siamese sashimi mutant leviathan.
 	/// </summary>
 	SiameseSashimiMutantLeviathan,
 
@@ -1539,11 +1539,6 @@ public enum Technique : short
 	BrokenWing,
 
 	/// <summary>
-	/// Indicates bi-value oddagon type 1.
-	/// </summary>
-	BivalueOddagonType1,
-
-	/// <summary>
 	/// Indicates bi-value oddagon type 2.
 	/// </summary>
 	BivalueOddagonType2,
@@ -1869,12 +1864,12 @@ public enum Technique : short
 	ComplexSeniorExocet,
 
 	/// <summary>
-	/// Indicates siamese junior exocet.
+	/// Indicates Siamese junior exocet.
 	/// </summary>
 	SiameseJuniorExocet,
 
 	/// <summary>
-	/// Indicates siamese senior exocet.
+	/// Indicates Siamese senior exocet.
 	/// </summary>
 	SiameseSeniorExocet,
 
