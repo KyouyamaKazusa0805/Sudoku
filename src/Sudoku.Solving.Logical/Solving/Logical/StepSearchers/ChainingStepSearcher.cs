@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.StepSearchers;
+namespace Sudoku.Solving.Logical.StepSearchers;
 
 /// <summary>
 /// Provides with a base type as a step searcher operating on chaining.
@@ -222,7 +222,7 @@ internal abstract class ChainingStepSearcher
 
 				if (allowDynamic)
 				{
-					// Memorize the shutted down potentials.
+					// Memorize the shut down potentials.
 					grid[p.Cell, p.Digit] = false;
 				}
 
