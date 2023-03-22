@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Recognition;
+namespace Sudoku.Recognition;
 
 /// <summary>
 /// Provides extension methods on <see cref="Bitmap"/>.
@@ -213,7 +213,7 @@ public static class ImageHandler
 				const int mask = 1 << 7;
 
 				var srcAddress = data.Scan0.ToInt64();
-				var imagedata = (image.Data as byte[,,])!;
+				var imageData = (image.Data as byte[,,])!;
 
 				var row = new byte[fullByteCount + (partialBitCount == 0 ? 0 : 1)];
 
@@ -230,7 +230,7 @@ public static class ImageHandler
 							v = row[j >> 3];
 						}
 
-						imagedata[i, j, 0] = (v & mask) == 0 ? byte.MinValue : byte.MaxValue;
+						imageData[i, j, 0] = (v & mask) == 0 ? byte.MinValue : byte.MaxValue;
 					}
 				}
 

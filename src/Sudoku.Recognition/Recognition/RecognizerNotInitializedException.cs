@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Recognition;
+namespace Sudoku.Recognition;
 
 /// <summary>
 /// Indicates the exception that throws when the recognition tools hasn't been initialized
@@ -7,8 +7,7 @@
 public sealed class RecognizerNotInitializedException : Exception
 {
 	/// <inheritdoc/>
-	public override string Message
-		=> "The recognition tools should have been initialized before using the current function.";
+	public override string Message => "The recognition tools should have been initialized before using the current function.";
 
 	/// <inheritdoc/>
 	public override string? HelpLink => null;

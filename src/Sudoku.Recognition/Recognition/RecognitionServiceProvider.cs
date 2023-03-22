@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Recognition;
+namespace Sudoku.Recognition;
 
 /// <summary>
 /// Define a sudoku recognition service provider.

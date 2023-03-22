@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Recognition;
+namespace Sudoku.Recognition;
 
 /// <summary>
 /// Define the project-wide constants.
@@ -58,5 +58,5 @@ internal static class ProjectWideConstants
 	/// <summary>
 	/// Indicates the behavior that specifies and executes the chain approximation algorithm.
 	/// </summary>
-	public const ChainApproxMethod ChainApprox = ChainApproxMethod.ChainApproxNone;
+	public const ChainApproxMethod ChainApproximation = ChainApproxMethod.ChainApproxNone;
 }

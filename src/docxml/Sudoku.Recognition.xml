@@ -8,11 +8,12 @@
             <summary>
             Indicates the exception that throws when the value is failed to fill into a cell.
             </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
         </member>
         <member name="M:Sudoku.Recognition.FailedToFillValueException.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Recognition.FailedToFillValueException"/> instance
-            with the specified cell and the digit.
+            Indicates the exception that throws when the value is failed to fill into a cell.
             </summary>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
@@ -177,7 +178,7 @@
             <param name="field">The field.</param>
             <returns>The grid.</returns>
             <exception cref="T:Sudoku.Recognition.FailedToFillValueException">
-            Throws when the processing is wrong or unhandleable.
+            Throws when the processing is wrong or un-handle-able.
             </exception>
         </member>
         <member name="M:Sudoku.Recognition.InternalServiceProvider.RecognizeCellNumber(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
@@ -256,7 +257,7 @@
             Indicates the font face.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.ChainApprox">
+        <member name="F:Sudoku.Recognition.ProjectWideConstants.ChainApproximation">
             <summary>
             Indicates the behavior that specifies and executes the chain approximation algorithm.
             </summary>
@@ -308,10 +309,11 @@
             <summary>
             Indicates the exception that throws when the tesseract has encountered an error.
             </summary>
+            <param name="detail">The detail.</param>
         </member>
         <member name="M:Sudoku.Recognition.TesseractException.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Recognition.TesseractException"/> with the specified detail.
+            Indicates the exception that throws when the tesseract has encountered an error.
             </summary>
             <param name="detail">The detail.</param>
         </member>

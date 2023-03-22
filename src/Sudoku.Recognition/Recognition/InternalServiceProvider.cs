@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Recognition;
+namespace Sudoku.Recognition;
 
 /// <summary>
 /// Define a recognizer.
@@ -29,7 +29,7 @@ internal sealed class InternalServiceProvider : IDisposable
 	/// <param name="field">The field.</param>
 	/// <returns>The grid.</returns>
 	/// <exception cref="FailedToFillValueException">
-	/// Throws when the processing is wrong or unhandleable.
+	/// Throws when the processing is wrong or un-handle-able.
 	/// </exception>
 	public Grid RecognizeDigits(Field field)
 	{
@@ -40,10 +40,10 @@ internal sealed class InternalServiceProvider : IDisposable
 			for (var y = 0; y < 9; y++)
 			{
 				// Recognize digit from cell.
-				var recogizedResult = RecognizeCellNumber(field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2)));
-				if (recogizedResult != -1)
+				var recognizedResult = RecognizeCellNumber(field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2)));
+				if (recognizedResult != -1)
 				{
-					int cell = x * 9 + y, digit = recogizedResult - 1;
+					int cell = x * 9 + y, digit = recognizedResult - 1;
 					if (!result[cell, digit])
 					{
 						throw new FailedToFillValueException(cell, digit);

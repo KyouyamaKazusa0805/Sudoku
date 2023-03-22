@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Recognition;
+namespace Sudoku.Recognition;
 
 /// <summary>
 /// Provides a grid field recognizer. If you want to know what is a <b>field</b>,
@@ -49,7 +49,7 @@ internal sealed class GridRecognizer : IDisposable
 		using var contours = new VectorOfVectorOfPoint();
 
 		// Finding contours and choosing needed.
-		Cv.FindContours(edges, contours, null, RetrType.List, ChainApprox);
+		Cv.FindContours(edges, contours, null, RetrType.List, ChainApproximation);
 
 		for (var i = 0; i < contours.Size; i++)
 		{
@@ -142,17 +142,17 @@ internal sealed class GridRecognizer : IDisposable
 		}
 
 		// Convert the image to gray-scale and filter out the noise.
-		using var uimage = new UMat();
-		Cv.CvtColor(_image, uimage, ColorConversion.Bgr2Gray);
+		using var uImage = new UMat();
+		Cv.CvtColor(_image, uImage, ColorConversion.Bgr2Gray);
 
 		// Use image pyramid to remove noise.
 		using var pyrDown = new UMat();
-		Cv.PyrDown(uimage, pyrDown);
-		Cv.PyrUp(pyrDown, uimage);
+		Cv.PyrDown(uImage, pyrDown);
+		Cv.PyrUp(pyrDown, uImage);
 
 		var cannyEdges = new UMat();
 
-		Cv.Canny(uimage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
+		Cv.Canny(uImage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
 
 		return cannyEdges;
 	}
