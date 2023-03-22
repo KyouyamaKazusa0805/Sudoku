@@ -1,4 +1,4 @@
-﻿namespace System.Reflection;
+namespace System.Reflection;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Assembly"/>.

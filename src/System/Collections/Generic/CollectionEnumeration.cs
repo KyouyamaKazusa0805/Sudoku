@@ -1,4 +1,4 @@
-﻿namespace System.Collections.Generic;
+namespace System.Collections.Generic;
 
 /// <summary>
 /// Provides the extension <c>GetEnumerator</c> methods on collection types.
@@ -34,6 +34,18 @@ public static class CollectionEnumeration
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static OneDimensionalArrayRefEnumerator<T> EnumerateRef<T>(this T[] @this) => new(@this);
+
+	/// <summary>
+	/// Creates a <see cref="ArrayPairEnumerator{T, TFirst, TSecond}"/> instance that iterates on each element of pair elements.
+	/// </summary>
+	/// <typeparam name="T">The type of the array elements.</typeparam>
+	/// <typeparam name="TFirst">The first element returned.</typeparam>
+	/// <typeparam name="TSecond">The second element returned.</typeparam>
+	/// <param name="this">The array.</param>
+	/// <returns>An enumerable collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ArrayPairEnumerator<T, TFirst, TSecond> EnumerateAsPair<T, TFirst, TSecond>(this T[] @this)
+		where T : notnull where TFirst : notnull, T where TSecond : notnull, T => new(@this);
 
 	/// <summary>
 	/// Get all possible flags that the current enumeration field set.

@@ -1,4 +1,4 @@
-﻿namespace System;
+namespace System;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Type"/>.
@@ -13,10 +13,11 @@ public static class TypeExtensions
 	/// <param name="this">The current type.</param>
 	/// <param name="targetType">The type to compare with the current type.</param>
 	/// <returns>Returns <see langword="true"/> if the target type is matched, without generic constraints.</returns>
+	/// <seealso href="https://stackoverflow.com/questions/74616/how-to-detect-if-type-is-another-generic-type/1075059#1075059">
+	/// Question: How to detect if type is another generic type
+	/// </seealso>
 	public static bool IsGenericAssignableTo(this Type @this, [NotNullWhen(true)] Type? targetType)
 	{
-		// See: https://stackoverflow.com/questions/74616/how-to-detect-if-type-is-another-generic-type/1075059#1075059
-
 		foreach (var it in @this.GetInterfaces())
 		{
 			if (it.IsGenericType && it.GetGenericTypeDefinition() == targetType)
@@ -37,4 +38,13 @@ public static class TypeExtensions
 
 		return baseType.IsGenericAssignableTo(targetType);
 	}
+
+	/// <summary>
+	/// Determines whether the type has a parameterless constructor.
+	/// </summary>
+	/// <param name="type">The type.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool HasParameterlessConstructor(this Type type)
+		=> type.GetConstructor(BindingFlags.Public | BindingFlags.Instance, Type.EmptyTypes) is not null;
 }

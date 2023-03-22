@@ -311,6 +311,53 @@
             </code>
             </remarks>
         </member>
+        <member name="T:System.Collections.Generic.ArrayPairEnumerator`3">
+            <summary>
+            Defines an enumerator that iterates on elements, combined with two adjacent elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TFirst">
+            The first element returned. This type argument must be derived from <typeparamref name="T"/>, or same type.
+            </typeparam>
+            <typeparam name="TSecond">
+            The second element returned. This type argument must be derived from <typeparamref name="T"/>, or same type.
+            </typeparam>
+            <param name="array">The array value.</param>
+            <exception cref="T:System.ArgumentException">Throws when <paramref name="array"/> has the odd number of elements.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayPairEnumerator`3.#ctor(`0[])">
+            <summary>
+            Defines an enumerator that iterates on elements, combined with two adjacent elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TFirst">
+            The first element returned. This type argument must be derived from <typeparamref name="T"/>, or same type.
+            </typeparam>
+            <typeparam name="TSecond">
+            The second element returned. This type argument must be derived from <typeparamref name="T"/>, or same type.
+            </typeparam>
+            <param name="array">The array value.</param>
+            <exception cref="T:System.ArgumentException">Throws when <paramref name="array"/> has the odd number of elements.</exception>
+        </member>
+        <member name="F:System.Collections.Generic.ArrayPairEnumerator`3._array">
+            <summary>
+            Indicates the internal array to be iterated.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ArrayPairEnumerator`3._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ArrayPairEnumerator`3.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayPairEnumerator`3.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayPairEnumerator`3.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
         <member name="T:System.Collections.Generic.CollectionEnumeration">
             <summary>
             Provides the extension <c>GetEnumerator</c> methods on collection types.
@@ -343,6 +390,16 @@
             <returns>
             The enumerable collection that allows the iteration by reference on an one-dimensional array.
             </returns>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionEnumeration.EnumerateAsPair``3(``0[])">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.ArrayPairEnumerator`3"/> instance that iterates on each element of pair elements.
+            </summary>
+            <typeparam name="T">The type of the array elements.</typeparam>
+            <typeparam name="TFirst">The first element returned.</typeparam>
+            <typeparam name="TSecond">The second element returned.</typeparam>
+            <param name="this">The array.</param>
+            <returns>An enumerable collection.</returns>
         </member>
         <member name="M:System.Collections.Generic.CollectionEnumeration.GetEnumerator``1(``0)">
             <summary>
@@ -4027,6 +4084,16 @@ fixed (short* ptr = instance)
             <param name="this">The current type.</param>
             <param name="targetType">The type to compare with the current type.</param>
             <returns>Returns <see langword="true"/> if the target type is matched, without generic constraints.</returns>
+            <seealso href="https://stackoverflow.com/questions/74616/how-to-detect-if-type-is-another-generic-type/1075059#1075059">
+            Question: How to detect if type is another generic type
+            </seealso>
+        </member>
+        <member name="M:System.TypeExtensions.HasParameterlessConstructor(System.Type)">
+            <summary>
+            Determines whether the type has a parameterless constructor.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:System.Utf8StringExtensions">
             <summary>
