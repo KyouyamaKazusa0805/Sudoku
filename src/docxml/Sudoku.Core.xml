@@ -1441,6 +1441,53 @@ if (student is (name: var name, age: >= 18))
             Indicates the current cell has been filled a value that cannot be modified because it exists in initial grid.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Chute">
+            <summary>
+            Represents a data structure whose equivalent concept to a <see href="https://sunnieshine.github.io/Sudoku/terms/chute">Chute</see>.
+            </summary>
+            <param name="Cells">Indicates the cells used in this chute.</param>
+            <param name="IsRow">Indicates whether the current chute is for a row.</param>
+            <param name="HousesMask">Indicates the houses used. The target value is a <see cref="T:System.Int16" /> value of 9 bits used.</param>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Chute.#ctor(Sudoku.Concepts.CellMap@,System.Boolean,System.Int16)">
+            <summary>
+            Represents a data structure whose equivalent concept to a <see href="https://sunnieshine.github.io/Sudoku/terms/chute">Chute</see>.
+            </summary>
+            <param name="Cells">Indicates the cells used in this chute.</param>
+            <param name="IsRow">Indicates whether the current chute is for a row.</param>
+            <param name="HousesMask">Indicates the houses used. The target value is a <see cref="T:System.Int16" /> value of 9 bits used.</param>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chute.Cells">
+            <summary>Indicates the cells used in this chute.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Chute.IsRow">
+            <summary>Indicates whether the current chute is for a row.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Chute.HousesMask">
+            <summary>Indicates the houses used. The target value is a <see cref="T:System.Int16"/> value of 9 bits used.</summary>
+        </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
             Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/conjugate-pair">conjugate pair</see>.

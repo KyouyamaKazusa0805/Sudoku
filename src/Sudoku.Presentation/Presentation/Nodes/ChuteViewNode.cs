@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes;
+namespace Sudoku.Presentation.Nodes;
 
 /// <summary>
 /// Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
@@ -27,7 +27,7 @@ public sealed partial class ChuteViewNode(Identifier identifier, int chuteIndex)
 	/// for block houses, but all chutes don't use them.
 	/// </para>
 	/// </summary>
-	public int HousesMask => Chutes[ChuteIndex] switch { (_, var isRow, var rawMask) => rawMask << (isRow ? 9 : 18) };
+	public int HousesMask => Chutes[ChuteIndex] switch { var (_, isRow, rawMask) => rawMask << (isRow ? 9 : 18) };
 
 
 	[DeconstructionMethod]

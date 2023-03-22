@@ -1,4 +1,4 @@
-﻿namespace Sudoku;
+namespace Sudoku;
 
 /// <summary>
 /// Provides with solution-wide read-only fields used.
@@ -227,7 +227,7 @@ public static class SolutionWideReadOnlyFields
 	/// <summary>
 	/// Indicates the chute maps.
 	/// </summary>
-	public static readonly (CellMap Cells, bool IsRow, short HousesMask)[] Chutes;
+	public static readonly Chute[] Chutes;
 
 	/// <summary>
 	/// Indicates the possible house types to iterate.
@@ -341,21 +341,13 @@ public static class SolutionWideReadOnlyFields
 			HousesMap[i] = (CellMap)HouseCells[i];
 		}
 
-		Chutes = new (CellMap, bool, short)[6];
+		Chutes = new Chute[6];
 		for (var i = 0; i < 3; i++)
 		{
 			var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[i], ChuteHouses[i + 3]);
 			(Chutes[i], Chutes[i + 3]) = (
-				(
-					HousesMap[r1] | HousesMap[r2] | HousesMap[r3],
-					true,
-					(short)(1 << r1 - 9 | 1 << r2 - 9 | i << r3 - 9)
-				),
-				(
-					HousesMap[c1] | HousesMap[c2] | HousesMap[c3],
-					false,
-					(short)(1 << c1 - 18 | 1 << c2 - 18 | i << c3 - 18)
-				)
+				new(HousesMap[r1] | HousesMap[r2] | HousesMap[r3], true, (short)(1 << r1 - 9 | 1 << r2 - 9 | i << r3 - 9)),
+				new(HousesMap[c1] | HousesMap[c2] | HousesMap[c3], false, (short)(1 << c1 - 18 | 1 << c2 - 18 | i << c3 - 18))
 			);
 		}
 	}

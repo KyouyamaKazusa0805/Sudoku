@@ -3032,11 +3032,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Solving.Logical.StepSearchers.AlmostLockedSetsXzStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
             <inheritdoc />
             <remarks>
-            <deverloper-notes>
+            <developer-notes>
 		<para>
 			<b>Developer Notes</b>
 		</para>
-	</deverloper-notes>
+	</developer-notes>
             <para>
             This algorithm uses a concept called Restricted Common Candidate (abbr. RCC) to limit the implementation.
             If you don't know that is an RCC,
@@ -4768,11 +4768,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Solving.Logical.StepSearchers.LockedCandidatesStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
             <inheritdoc />
             <remarks>
-            <deverloper-notes>
+            <developer-notes>
 		<para>
 			<b>Developer Notes</b>
 		</para>
-	</deverloper-notes>
+	</developer-notes>
             <para>The main idea of this searching operation:</para>
             <para>
             <code><![CDATA[
@@ -5172,11 +5172,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Solving.Logical.StepSearchers.RwDeadlyPatternStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
             <inheritdoc />
             <remarks>
-            <deverloper-notes>
+            <developer-notes>
 		<para>
 			<b>Developer Notes</b>
 		</para>
-	</deverloper-notes>
+	</developer-notes>
             <para>
             This implementation is based on the theory mentioned from RW:
             </para>
@@ -5246,11 +5246,7 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house used.</param>
             <returns>Not <see langword="null" /> if conclusion can be found.</returns>
             <remarks>
-            <para><deverloper-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</deverloper-notes></para>
+            <para><!-- No matching elements were found for the following include tag --><include file="../../global-doc-comments.xml" path="/g/deverloper-notes" /></para>
             <para>
             The main idea of hidden single is to search for a digit can only appear once in a house,
             so we should check all possibilities in a house to found whether the house exists a digit
@@ -5465,11 +5461,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Solving.Logical.StepSearchers.UniquenessClueCoverStepSearcher.GetAll(Sudoku.Runtime.AnalysisServices.LogicalAnalysisContext@)">
             <inheritdoc />
             <remarks>
-            <deverloper-notes>
+            <developer-notes>
 		<para>
 			<b>Developer Notes</b>
 		</para>
-	</deverloper-notes>
+	</developer-notes>
             <para>
             The technique is very complex that I cannot enumerate all possible cases.
             Here I only give you some cases that satisfy the pattern:
@@ -8089,7 +8085,7 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
             <param name="Views"><inheritdoc/></param>
-            <param name="Exocet">INdicates the exocet pattern.</param>
+            <param name="Exocet">Indicates the exocet pattern.</param>
             <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
             <param name="Eliminations">Indicates all possible eliminations.</param>
         </member>
@@ -8098,12 +8094,12 @@ if (student is (name: var name, age: >= 18))
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
             <param name="Views"><inheritdoc/></param>
-            <param name="Exocet">INdicates the exocet pattern.</param>
+            <param name="Exocet">Indicates the exocet pattern.</param>
             <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
             <param name="Eliminations">Indicates all possible eliminations.</param>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExocetStep.Exocet">
-            <summary>INdicates the exocet pattern.</summary>
+            <summary>Indicates the exocet pattern.</summary>
         </member>
         <member name="P:Sudoku.Solving.Logical.Steps.ExocetStep.DigitsMask">
             <summary>Indicates the mask that holds all possible digits used.</summary>

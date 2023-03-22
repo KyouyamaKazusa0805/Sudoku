@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.StepSearchers;
+namespace Sudoku.Solving.Logical.StepSearchers;
 
 [StepSearcher]
 [StepSearcherRunningOptions(StepSearcherRunningOptions.OnlyForStandardSudoku)]
