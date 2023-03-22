@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Gdip;
+namespace Sudoku.Gdip;
 
 partial class GridImageGenerator
 {
@@ -41,9 +41,9 @@ partial class GridImageGenerator
 		var ((x1, y1), (x2, y2)) = calc.GetSharedLinePosition(c1, c2);
 		var rect = new RectangleF((x1 + x2) / 2 - dotSize / 2, (y1 + y2) / 2 - dotSize / 2, dotSize, dotSize);
 
-		/// Draw Kropki dots.
-		/// Please note that method <see cref="Graphics.DrawEllipse"/> and <see cref="Graphics.FillEllipse"/>
-		/// starts with the point at top-left position, rather than the center.
+		// Draw Kropki dots.
+		// Please note that method 'Graphics.DrawEllipse' and 'Graphics.FillEllipse'
+		// starts with the point at top-left position, rather than the center.
 		g.DrawEllipse(pen, rect);
 		g.FillEllipse(isSolid ? solidBrush : hollowBrush, rect);
 
