@@ -240,6 +240,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 		progress?.Report((double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount);
 		goto Again;
 
+
 		static bool verifyConclusionValidity(scoped in Grid solution, Step step)
 		{
 			foreach (var (t, c, d) in step.Conclusions)
