@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // https://github.com/dotnet/aspnetcore/blob/a450cb69b5e4549f5515cdb057a68771f56cefd7/src/Shared/ValueStopwatch/ValueStopwatch.cs
 
@@ -60,10 +60,7 @@ public readonly ref partial struct ValueStopwatch
 			// It would have to be literally the first thing executed when the machine boots to be 0.
 			// So it being 0 is a clear indication of default(ValueStopwatch).
 			: throw new InvalidOperationException(
-				$"""
-				An uninitialized, or 'default({nameof(ValueStopwatch)})', 
-				{nameof(ValueStopwatch)} cannot be used to get elapsed time.
-				""".RemoveLineEndings()
+				$"An uninitialized, or 'default({nameof(ValueStopwatch)})', {nameof(ValueStopwatch)} cannot be used to get elapsed time."
 			);
 
 
