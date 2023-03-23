@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
@@ -11,7 +11,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 {
 	/// <inheritdoc/>
 	[MemberNotNullWhen(true, nameof(Steps), nameof(StepGrids), nameof(SolvingPath))]
-	public bool IsSolved { get; init; }
+	public required bool IsSolved { get; init; }
 
 	/// <summary>
 	/// Indicates the maximum difficulty of the puzzle.
