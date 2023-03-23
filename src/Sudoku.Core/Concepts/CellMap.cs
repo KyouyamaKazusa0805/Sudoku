@@ -1,4 +1,4 @@
-﻿#pragma warning disable IDE0032, IDE0064
+#pragma warning disable IDE0032, IDE0064
 namespace Sudoku.Concepts;
 
 /// <summary>
@@ -1182,7 +1182,8 @@ public unsafe partial struct CellMap :
 	/// <returns>The mask.</returns>
 	public static short operator /(scoped in CellMap map, int houseIndex)
 	{
-		short p = 0, i = 0;
+		var p = (short)0;
+		var i = 0;
 		foreach (var cell in HouseCells[houseIndex])
 		{
 			if (map.Contains(cell))
