@@ -60,7 +60,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// <inheritdoc/>
 	public AnalyzerResult Analyze(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
 	{
-		var result = new AnalyzerResult(puzzle);
+		var result = new AnalyzerResult(puzzle) { IsSolved = false };
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
 		{
 			try

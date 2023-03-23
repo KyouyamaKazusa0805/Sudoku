@@ -6,8 +6,10 @@ namespace Sudoku.Analytics;
 /// <param name="Puzzle"><inheritdoc cref="IAnalyzerResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
 public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	IAnalyzerResult<Analyzer, AnalyzerResult>,
+	IEnumerable,
 	IEnumerable<Step>,
-	ISelectClauseProvider<Step>
+	ISelectClauseProvider<Step>,
+	IWhereClauseProvider<Step>
 {
 	/// <inheritdoc/>
 	[MemberNotNullWhen(true, nameof(Steps), nameof(StepGrids), nameof(SolvingPath))]
@@ -505,6 +507,55 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	public StepsEnumerator GetEnumerator() => new(Steps);
 
 	/// <summary>
+	/// Filters the current collection, preserving <see cref="Step"/> instances that are satisfied the specified condition.
+	/// </summary>
+	/// <param name="condition">The condition to be satisfied.</param>
+	/// <returns>An array of <see cref="Step"/> instances.</returns>
+	public Step[]? Where(Func<Step, bool> condition)
+	{
+		if (Steps is null)
+		{
+			return null;
+		}
+
+		var result = new List<Step>(SolvingStepsCount);
+		foreach (var step in Steps)
+		{
+			if (condition(step))
+			{
+				result.Add(step);
+			}
+		}
+
+		return result.ToArray();
+	}
+
+	/// <summary>
+	/// Filters the current collection, preserving <see cref="Step"/> instances that are satisfied the specified condition, with index.
+	/// </summary>
+	/// <param name="condition">The condition to be satisfied.</param>
+	/// <returns>An array of <see cref="Step"/> instances.</returns>
+	public Step[]? Where(Func<Step, int, bool> condition)
+	{
+		if (Steps is null)
+		{
+			return null;
+		}
+
+		var result = new List<Step>(SolvingStepsCount);
+		for (var i = 0; i < SolvingStepsCount; i++)
+		{
+			var current = Steps[i];
+			if (condition(current, i))
+			{
+				result.Add(current);
+			}
+		}
+
+		return result.ToArray();
+	}
+
+	/// <summary>
 	/// Projects the collection, to an immutable result of target type.
 	/// </summary>
 	/// <typeparam name="TResult">The type of the result.</typeparam>
@@ -512,11 +563,11 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	/// The selector to project the <see cref="Step"/> instance into type <typeparamref name="TResult"/>.
 	/// </param>
 	/// <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
-	public TResult[] Select<TResult>(Func<Step, TResult> selector)
+	public TResult[]? Select<TResult>(Func<Step, TResult> selector)
 	{
 		if (Steps is null)
 		{
-			return Array.Empty<TResult>();
+			return null;
 		}
 
 		var arr = new TResult[SolvingStepsCount];
@@ -529,6 +580,56 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 		return arr;
 	}
 
+	/// <summary>
+	/// Projects the collection, to an immutable result of target type, with index.
+	/// </summary>
+	/// <typeparam name="TResult">The type of the result.</typeparam>
+	/// <param name="selector">
+	/// The selector to project the <see cref="Step"/> instance into type <typeparamref name="TResult"/>.
+	/// </param>
+	/// <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
+	public TResult[]? Select<TResult>(Func<Step, int, TResult> selector)
+	{
+		if (Steps is null)
+		{
+			return null;
+		}
+
+		var arr = new TResult[SolvingStepsCount];
+		var targetIndex = 0;
+		for (var i = 0; i < SolvingStepsCount; i++)
+		{
+			var step = Steps[i];
+			arr[targetIndex++] = selector(step, i);
+		}
+
+		return arr;
+	}
+
+	/// <summary>
+	/// Filters the current collection, preserving steps that are of type <typeparamref name="T"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of the step you want to get.</typeparam>
+	/// <returns>An array of <typeparamref name="T"/> instances.</returns>
+	public T[] OfType<T>() where T : Step
+	{
+		if (Steps is null)
+		{
+			return Array.Empty<T>();
+		}
+
+		var list = new List<T>(SolvingStepsCount);
+		foreach (var element in Steps)
+		{
+			if (element is T current)
+			{
+				list.Add(current);
+			}
+		}
+
+		return list.ToArray();
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => (Steps?.ToArray() ?? Array.Empty<Step>()).GetEnumerator();
@@ -539,7 +640,12 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerable<TResult> ISelectClauseProvider<Step>.Select<TResult>(Func<Step, TResult> selector) => Select(selector);
+	IEnumerable<TResult> ISelectClauseProvider<Step>.Select<TResult>(Func<Step, TResult> selector)
+		=> Select(selector) ?? Enumerable.Empty<TResult>();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	IEnumerable<Step> IWhereClauseProvider<Step>.Where(Func<Step, bool> condition) => Where(condition) ?? Enumerable.Empty<Step>();
 
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).
