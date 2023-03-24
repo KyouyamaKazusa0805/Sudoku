@@ -7076,10 +7076,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a backdoor visual unit.
             </summary>
+            <param name="view">The view.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.#ctor(Sudoku.Presentation.View)">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit"/> instance via the specified view.
+            Defines a backdoor visual unit.
             </summary>
             <param name="view">The view.</param>
         </member>
@@ -7093,10 +7094,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a true-candidate visual unit.
             </summary>
+            <param name="view">The view.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.#ctor(Sudoku.Presentation.View)">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit"/> instance via the specified view.
+            Defines a true-candidate visual unit.
             </summary>
             <param name="view">The view.</param>
         </member>

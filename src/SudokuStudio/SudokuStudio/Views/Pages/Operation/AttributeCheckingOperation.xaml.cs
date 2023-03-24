@@ -85,17 +85,11 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 /// <summary>
 /// Defines a backdoor visual unit.
 /// </summary>
-file sealed class BackdoorVisualUnit : VisualUnit
+/// <param name="view">The view.</param>
+file sealed class BackdoorVisualUnit(View view) : VisualUnit
 {
-	/// <summary>
-	/// Initializes a <see cref="BackdoorVisualUnit"/> instance via the specified view.
-	/// </summary>
-	/// <param name="view">The view.</param>
-	public BackdoorVisualUnit(View view) => Views = new[] { view };
-
-
 	/// <inheritdoc/>
-	public View[]? Views { get; }
+	public View[]? Views { get; } = new[] { view };
 
 	/// <inheritdoc/>
 	Conclusion[] VisualUnit.Conclusions { get; } = Array.Empty<Conclusion>();
@@ -104,17 +98,11 @@ file sealed class BackdoorVisualUnit : VisualUnit
 /// <summary>
 /// Defines a true-candidate visual unit.
 /// </summary>
-file sealed class TrueCandidateVisualUnit : VisualUnit
+/// <param name="view">The view.</param>
+file sealed class TrueCandidateVisualUnit(View view) : VisualUnit
 {
-	/// <summary>
-	/// Initializes a <see cref="TrueCandidateVisualUnit"/> instance via the specified view.
-	/// </summary>
-	/// <param name="view">The view.</param>
-	public TrueCandidateVisualUnit(View view) => Views = new[] { view };
-
-
 	/// <inheritdoc/>
-	public View[]? Views { get; }
+	public View[]? Views { get; } = new[] { view };
 
 	/// <inheritdoc/>
 	Conclusion[] VisualUnit.Conclusions { get; } = Array.Empty<Conclusion>();
