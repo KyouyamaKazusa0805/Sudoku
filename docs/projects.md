@@ -15,7 +15,6 @@
 * [`Sudoku.Presentation`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Presentation)：提供 API 用于专门呈现数独或数独有关的一些东西用在 UI 上，比如一个步骤（即 `IStep` 类型）的 UI 呈现视图的抽象数据结构；
 * [`Sudoku.Workflow.Bot.Oicq`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Workflow.Bot.Oicq)：提供 API 专门用于操作和建立 Mirai 连接，用于 QQ 平台，创建机器人模式的自动化处理的相关功能（比如数独的绘图、数独的 PK 竞技等）；
 * [`Sudoku.Recognition`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Recognition)：提供识别一个图片里的数独题目的基本 API（实现得非常简单）；
-* [`Sudoku.Solving.Algorithms`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Algorithms)：提供对于暴力破解的数独解题算法的 API，比如位运算、回溯递归算法等；
 * [`Sudoku.Solving.Logical`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Logical)：提供对于逻辑解题过程处理的 API；
 * [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System)：为整个解决方案的别的项目提供关于 .NET 基本库 API 拓展 API 或功能代码。
 

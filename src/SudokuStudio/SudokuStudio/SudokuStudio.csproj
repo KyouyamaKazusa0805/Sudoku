@@ -41,6 +41,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
 		<ProjectReference Include="..\..\Sudoku.Solving.Logical\Sudoku.Solving.Logical.csproj" />
 		<ProjectReference Include="..\..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\..\SudokuStudio.CodeGen\SudokuStudio.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />

@@ -3,7 +3,7 @@ namespace Sudoku.Preprocessing;
 /// <summary>
 /// Defines a searcher that searches for the true candidates of the current sudoku grid.
 /// </summary>
-public sealed class TrueCandidatesSearcher
+public static class TrueCandidatesSearcher
 {
 	/// <summary>
 	/// Get all true candidates when the number of empty cells
@@ -13,7 +13,7 @@ public sealed class TrueCandidatesSearcher
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>All true candidates.</returns>
 	/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
-	public unsafe CandidateMap GetAllTrueCandidates(scoped in Grid grid, CancellationToken cancellationToken = default)
+	public static unsafe CandidateMap GetAllTrueCandidates(scoped in Grid grid, CancellationToken cancellationToken = default)
 	{
 		if (!grid.IsValid())
 		{
@@ -23,16 +23,19 @@ public sealed class TrueCandidatesSearcher
 		// Get the number of multi-value cells.
 		// If the number of that is greater than the specified number, here will return the default list directly.
 		var multivalueCellsCount = 0;
-		foreach (var currentMask in grid.EnumerateMasks())
+		foreach (var cell in grid.EmptyCells)
 		{
-			if (IsPow2(currentMask))
+			switch (PopCount((uint)grid.GetCandidates(cell)))
 			{
-				return CandidateMap.Empty;
-			}
-
-			if (PopCount((uint)currentMask) >= 3)
-			{
-				multivalueCellsCount++;
+				case 1:
+				{
+					return CandidateMap.Empty;
+				}
+				case >= 3:
+				{
+					multivalueCellsCount++;
+					break;
+				}
 			}
 		}
 
@@ -63,12 +66,12 @@ public sealed class TrueCandidatesSearcher
 		// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
 		// The comments will help you to understand the processing.
 		SkipInit(out short mask);
-		var pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
-		var multivaluedCells = (grid.EmptyCells - grid.BivalueCells).ToArray();
-		for (var i = 0; i < multivaluedCells.Length; i++)
+		var pairs = new short[multivalueCellsCount, (1 + 8) * 8 / 2 + 1];
+		var multivalueCells = (grid.EmptyCells - grid.BivalueCells).ToArray();
+		for (var i = 0; i < multivalueCells.Length; i++)
 		{
 			// e.g. { 2, 4, 6 } (42)
-			mask = grid.GetCandidates(multivaluedCells[i]);
+			mask = grid.GetCandidates(multivalueCells[i]);
 
 			// e.g. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
 			var pairList = MaskOperations.GetMaskSubsets(mask, 2);
@@ -92,7 +95,7 @@ public sealed class TrueCandidatesSearcher
 		do
 		{
 			int i;
-			var currentCell = multivaluedCells[currentIndex - 1];
+			var currentCell = multivalueCells[currentIndex - 1];
 			var @continue = false;
 			for (i = chosen[currentIndex] + 1; i <= pairs[currentIndex - 1, 0]; i++)
 			{

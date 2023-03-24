@@ -1,4 +1,4 @@
-﻿global using System;
+global using System;
 global using System.Collections.Concurrent;
 global using System.Collections.Generic;
 global using System.CommandLine;
@@ -23,9 +23,9 @@ global using Mirai.Net.Modules;
 global using Mirai.Net.Sessions;
 global using Mirai.Net.Sessions.Http.Managers;
 global using Mirai.Net.Utils.Scaffolds;
+global using Sudoku.Algorithms.Generating;
 global using Sudoku.Concepts;
 global using Sudoku.Drawing;
-global using Sudoku.Generating;
 global using Sudoku.Preprocessing.AutoFiller;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;

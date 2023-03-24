@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Models;
+namespace SudokuStudio.Models;
 
 /// <summary>
 /// Defines a serialization data of a step searcher.
@@ -13,5 +13,5 @@ public sealed partial class StepSearcherSerializationData : DependencyObject
 	/// </summary>
 	/// <returns>A list of <see cref="IStepSearcher"/> instances.</returns>
 	public IStepSearcher[] CreateStepSearchers()
-		=> StepSearcherPool.GetStepSearchers(typeof(IStepSearcher).Assembly.GetType($"Sudoku.Solving.Logical.StepSearchers.{TypeName}")!, true);
+		=> Sudoku.Buffers.StepSearcherPool.GetStepSearchers(typeof(IStepSearcher).Assembly.GetType($"Sudoku.Solving.Logical.StepSearchers.{TypeName}")!, true);
 }

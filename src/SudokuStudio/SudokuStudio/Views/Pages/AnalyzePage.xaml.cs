@@ -778,7 +778,7 @@ public sealed partial class AnalyzePage : Page
 			{
 				WrongStep: { } wrongStep,
 				FailedReason: SearcherFailedReason.WrongStep,
-				UnhandledException: WrongStepException { CurrentInvalidGrid: var invalidGrid }
+				UnhandledException: Sudoku.Runtime.AnalysisServices.WrongStepException { CurrentInvalidGrid: var invalidGrid }
 			}:
 			{
 				await new ContentDialog

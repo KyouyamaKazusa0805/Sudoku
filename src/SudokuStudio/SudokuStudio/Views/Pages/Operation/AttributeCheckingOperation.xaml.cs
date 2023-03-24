@@ -76,7 +76,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		{
 			lock (App.SyncRoot)
 			{
-				return new TrueCandidatesSearcher(puzzle).GetAllTrueCandidates(64);
+				return TrueCandidatesSearcher.GetAllTrueCandidates(puzzle);
 			}
 		}
 	}

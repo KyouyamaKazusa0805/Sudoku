@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Configuration;
+namespace SudokuStudio.Configuration;
 
 /// <summary>
 /// Represents with preference items that is used by <see cref="LogicalSolver"/>, for the ordering of <see cref="IStepSearcher"/>s.
@@ -10,7 +10,7 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 {
 	[DefaultValue]
 	private static readonly ObservableCollection<StepSearcherSerializationData> StepSearchersOrderDefaultValue = new(
-		from searcher in StepSearcherPool.DefaultCollection(false)
+		from searcher in Sudoku.Buffers.StepSearcherPool.DefaultCollection(false)
 		select new StepSearcherSerializationData
 		{
 			IsEnabled = searcher.Options.EnabledArea.Flags(SearcherEnabledArea.Default) && !searcher.IsTemporarilyDisabled,
