@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Compatibility;
+namespace Sudoku.Analytics.Compatibility;
 
 using DifficultyRange = ValueTuple</*Original*/ SudokuExplainerDifficultyRatingRange?, /*Advanced*/ SudokuExplainerDifficultyRatingRange?>;
 
@@ -7,7 +7,7 @@ using DifficultyRange = ValueTuple</*Original*/ SudokuExplainerDifficultyRatingR
 /// by another program called
 /// <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
 /// </summary>
-public static class SudokuExplainerLibraryCompatiblity// : ICompatibilityProvider
+public static class SudokuExplainerLibraryCompatibility// : ICompatibilityProvider
 {
 	/// <inheritdoc cref="ICompatibilityProvider.ProgramName"/>
 	public static string ProgramName => "Sudoku Explainer";

@@ -1,5 +1,5 @@
 #pragma warning disable IDE0032
-namespace Sudoku.Solving.Algorithms.Bitwise;
+namespace Sudoku.Algorithms.Solving;
 
 using static Constants;
 
@@ -26,7 +26,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <summary>
 	/// Stack to store current and previous states.
 	/// </summary>
-	private readonly State[] _stack = new State[50];
+	private readonly BitwiseSolverState[] _stack = new BitwiseSolverState[50];
 
 	/// <summary>
 	/// Nasty global flag telling if <see cref="ApplySingleOrEmptyCells"/> found anything.
@@ -55,7 +55,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <summary>
 	/// Pointer to the currently active slot.
 	/// </summary>
-	private State* _g;
+	private BitwiseSolverState* _g;
 
 
 	/// <summary>
@@ -75,7 +75,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 
 		var puzzleStr = grid.ToString("0");
 		var solutionStr = stackalloc char[BufferLength];
-		long solutions = 0;
+		var solutions = 0L;
 		fixed (char* pPuzzleStr = puzzleStr)
 		{
 			solutions = InternalSolve(pPuzzleStr, solutionStr, 2);
@@ -293,7 +293,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <returns>The <see cref="bool"/> result.</returns>
 	private bool EliminateDigit(int cell, int digit)
 	{
-		int subBand = Cell2Floor[cell];
+		var subBand = Cell2Floor[cell];
 		var band = Digit2BaseBand[digit] + subBand;
 		var mask = Cell2Mask[cell];
 		if ((_g->Bands[band] & mask) == 0)
@@ -319,7 +319,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 			return false;
 		}
 
-		int subBand = Mod3[band];
+		var subBand = Mod3[band];
 		var cell = subBand * 27 + BitPos(mask);
 		_g->Bands[band] &= SelfMaskTable[cell];
 		return true;
@@ -332,7 +332,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <returns>The <see cref="bool"/> result.</returns>
 	private bool InitSudoku(char* puzzle)
 	{
-		fixed (State* g = _stack)
+		fixed (BitwiseSolverState* g = _stack)
 		{
 			_numSolutions = 0;
 			for (var band = 0; band < 27; band++)
@@ -374,7 +374,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 			{
 				for (var cell = 0; cell < 81; cell++)
 				{
-					short mask = 0;
+					var mask = (short)0;
 					for (var digit = 0; digit < 9; digit++, puzzle++)
 					{
 						if (*puzzle == '0')
@@ -657,6 +657,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 		}
 		return true;
 
+
 		// The core Update routine from Zhou Yundong.
 		// This copy has been optimized by champagne and JasonLion in minor ways.
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -857,7 +858,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 						if (--tries != 0)
 						{
 							// First of pair.
-							CopyBlock(_g + 1, _g, (uint)sizeof(State));
+							CopyBlock(_g + 1, _g, (uint)sizeof(BitwiseSolverState));
 							_g->Bands[band] ^= map;
 							_g++;
 							SetSolvedMask(band, map);
@@ -900,7 +901,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 				if ((_g->Bands[band] & cellMask) != 0)
 				{
 					// Eliminate option in the current stack entry.
-					CopyBlock(_g + 1, _g, (uint)sizeof(State));
+					CopyBlock(_g + 1, _g, (uint)sizeof(BitwiseSolverState));
 					_g->Bands[band] ^= cellMask;
 					_g++;
 					SetSolvedMask(band, cellMask); // And try it out in a nested stack entry.

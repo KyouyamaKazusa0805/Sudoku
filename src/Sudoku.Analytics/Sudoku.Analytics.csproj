@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
+		<RootNamespace>Sudoku</RootNamespace>
 		<Description>Provides analytical APIs for solving and analyzing a sudoku puzzle.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Analytics.xml</DocumentationFile>
 	</PropertyGroup>

@@ -1,4 +1,4 @@
-﻿#pragma warning disable IDE0032, IDE0064
+#pragma warning disable IDE0032, IDE0064
 namespace Sudoku.Concepts;
 
 /// <summary>
@@ -551,6 +551,18 @@ public unsafe partial struct CandidateMap :
 	{
 		var copied = collection;
 		copied.Add(offset);
+
+		return copied;
+	}
+
+	/// <inheritdoc cref="op_Addition(in CandidateMap, IEnumerable{int})"/>
+	public static CandidateMap operator +(scoped in CandidateMap collection, scoped ValueList<int> offsets)
+	{
+		var copied = collection;
+		foreach (var element in offsets)
+		{
+			copied.Add(element);
+		}
 
 		return copied;
 	}

@@ -1361,28 +1361,6 @@ public unsafe partial struct Grid :
 	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
 	public ref short GetMaskRef(int index) => ref _values[index];
 
-	/// <summary>
-	/// Gets a sudoku grid, replacing all digits with modifiable
-	/// if it doesn't appear in the specified <paramref name="pattern"/> from the solution of the current grid.
-	/// </summary>
-	/// <param name="pattern">The pattern.</param>
-	/// <returns>The result grid.</returns>
-	internal readonly Grid Unfix(scoped in CellMap pattern)
-	{
-		Argument.ThrowIfFalse(IsSolved, "The current grid must be solved.");
-
-		var result = this;
-		foreach (var cell in ~pattern)
-		{
-			if (result.GetStatus(cell) == CellStatus.Given)
-			{
-				result.SetStatus(cell, CellStatus.Modifiable);
-			}
-		}
-
-		return result;
-	}
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly IEnumerator IEnumerable.GetEnumerator() => ToArray().GetEnumerator();
