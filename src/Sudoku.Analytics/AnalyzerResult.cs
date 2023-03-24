@@ -397,7 +397,8 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 			{
 				if (options.Flags(AnalyzerResultFormattingOptions.ShowStepDetail))
 				{
-					decimal currentTotal = 0, currentMinimum = decimal.MaxValue;
+					var currentTotal = 0M;
+					var currentMinimum = decimal.MaxValue;
 					foreach (var solvingStep in solvingStepsGroup)
 					{
 						var difficulty = solvingStep.Difficulty;
