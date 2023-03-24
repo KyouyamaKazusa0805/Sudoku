@@ -229,7 +229,6 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 
 		return resultBase with
 		{
-			IsSolved = false,
 			FailedReason = AnalyzerFailedReason.PuzzleIsTooHard,
 			ElapsedTime = stopwatch.GetElapsedTime(),
 			Steps = recordedSteps.ToArray(),
