@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Generating;
+namespace Sudoku.Generating;
 
 /// <summary>
 /// Defines a puzzle generator that makes the given pattern as a hard one.
@@ -14,11 +14,7 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 	/// <summary>
 	/// Indicates the swapping factor.
 	/// </summary>
-	private static readonly int[,] SwappingFactor =
-	{
-		{ 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 },
-		{ 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 }
-	};
+	private static readonly int[,] SwappingFactor = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };
 
 	/// <summary>
 	/// Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
@@ -36,7 +32,8 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 	/// <inheritdoc/>
 	public Grid Generate(CancellationToken cancellationToken = default)
 	{
-		char* puzzle = stackalloc char[81], solution = stackalloc char[81];
+		var puzzle = stackalloc char[81];
+		var solution = stackalloc char[81];
 		var holeCells = stackalloc int[81];
 		while (true)
 		{
@@ -123,7 +120,8 @@ public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 	/// <param name="pattern">The base pattern.</param>
 	private void CreatePattern(int* pattern)
 	{
-		int a = 54, b = 0;
+		var a = 54;
+		var b = 0;
 		for (var i = 0; i < 9; i++)
 		{
 			var n = (int)(_random.NextDouble() * 6);
