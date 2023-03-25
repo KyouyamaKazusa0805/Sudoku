@@ -363,7 +363,8 @@ public abstract class Command : IModule
 	/// <param name="requestedCommandHint">如果用户查询指令信息（指令后直接跟问号的时候）。</param>
 	/// <returns>返回 <see cref="bool"/> 表示是否解析成功。</returns>
 	private static bool ParseMessageCore(
-		string commandLine, Command module,
+		string commandLine,
+		Command module,
 		out ParsingFailedReason failedReason,
 		[MaybeNullWhen(false)] out List<string>? requestedHintArgumentName,
 		out bool requestedCommandHint
