@@ -29,10 +29,17 @@ public abstract class Command : IModule
 	protected string RaisingCommand => EqualityContract.GetCustomAttribute<CommandAttribute>()!.Name;
 
 	/// <summary>
+	/// 为 <see cref="object.GetType"/> 的快捷调用。由于体系架构使用反射，因此该属性使用频率会非常高。
+	/// </summary>
+	protected Type EqualityContract => GetType();
+
+	/// <summary>
 	/// 表示该指令需要依赖的指令名称。比如说游戏结束必须至少要求游戏开始。那么“！结束游戏”指令必须依赖于“！开始游戏”指令触发之后。
 	/// 这个属性对于“结束游戏”指令的实现类型来说，它的依赖指令名就是“开始游戏”。如果类型不依赖于任何其他的指令，这个属性则会保持 <see langword="null"/> 值。
 	/// </summary>
-	protected string? RequiredEnvironmentCommand
+	[DebuggerHidden]
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	private string? RequiredEnvironmentCommand
 		=> EqualityContract.GetGenericAttributeTypeArguments(typeof(DependencyModuleAttribute<>)) switch
 		{
 			[var typeArgument] => typeArgument.GetCustomAttribute<CommandAttribute>()!.Name,
@@ -40,17 +47,16 @@ public abstract class Command : IModule
 		};
 
 	/// <inheritdoc cref="RequiredRoleAttribute.SenderRole"/>
-	protected GroupRoleKind RequiredSenderRole
+	[DebuggerHidden]
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	private GroupRoleKind RequiredSenderRole
 		=> EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.SenderRole
 		?? GroupRoleKind.God | GroupRoleKind.Owner | GroupRoleKind.Manager | GroupRoleKind.DefaultMember;
 
 	/// <inheritdoc cref="RequiredRoleAttribute.BotRole"/>
-	protected GroupRoleKind RequiredBotRole => EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.BotRole ?? GroupRoleKind.None;
-
-	/// <summary>
-	/// 为 <see cref="object.GetType"/> 的快捷调用。由于体系架构使用反射，因此该属性使用频率会非常高。
-	/// </summary>
-	protected Type EqualityContract => GetType();
+	[DebuggerHidden]
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	private GroupRoleKind RequiredBotRole => EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.BotRole ?? GroupRoleKind.None;
 
 	/// <inheritdoc/>
 	bool? IModule.IsEnable { get; set; } = true;
