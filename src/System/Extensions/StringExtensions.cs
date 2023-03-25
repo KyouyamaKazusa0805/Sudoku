@@ -1,4 +1,4 @@
-﻿namespace System;
+namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="string"/>.
@@ -154,6 +154,14 @@ public static unsafe partial class StringExtensions
 		=> pattern.IsRegexPattern()
 			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value } ? value : null
 			: throw InvalidOperation;
+
+	/// <summary>
+	/// Gets a new <see cref="string"/>[] result, with each element (a <see cref="string"/> with a single character)
+	/// from the specified <see cref="string"/>.
+	/// </summary>
+	/// <param name="this">The current <see cref="string"/> instance.</param>
+	/// <returns>An array of <see cref="string"/> elements.</returns>
+	public static string[] ExpandCharacters(this string @this) => from c in @this.ToCharArray() select c.ToString();
 
 	/// <summary>
 	/// Searches the specified input string for all occurrences of a

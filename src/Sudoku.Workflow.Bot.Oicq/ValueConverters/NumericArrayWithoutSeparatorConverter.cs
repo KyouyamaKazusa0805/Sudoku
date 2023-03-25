@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.ValueConverters;
+namespace Sudoku.Workflow.Bot.Oicq.ValueConverters;
 
 /// <summary>
 /// 一个转换器类型，可以提供将 <see cref="string"/> 类型的实例解析，并转换为一个数值的类型为元素类型的数组。输入字符串不需要任何分隔符。
@@ -9,7 +9,7 @@ public sealed class NumericArrayWithoutSeparatorConverter<T> : IValueConverter w
 	/// <inheritdoc/>
 	public object Convert(string value)
 	{
-		var split = value.ToCharArray().Select(c => c.ToString());
+		var split = value.ExpandCharacters();
 		var result = new T[split.Length];
 		for (var i = 0; i < split.Length; i++)
 		{

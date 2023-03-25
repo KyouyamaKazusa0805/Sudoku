@@ -3960,6 +3960,14 @@ fixed (short* ptr = instance)
             </exception>
             <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
         </member>
+        <member name="M:System.StringExtensions.ExpandCharacters(System.String)">
+            <summary>
+            Gets a new <see cref="T:System.String"/>[] result, with each element (a <see cref="T:System.String"/> with a single character)
+            from the specified <see cref="T:System.String"/>.
+            </summary>
+            <param name="this">The current <see cref="T:System.String"/> instance.</param>
+            <returns>An array of <see cref="T:System.String"/> elements.</returns>
+        </member>
         <member name="M:System.StringExtensions.MatchAll(System.String,System.String)">
             <summary>
             Searches the specified input string for all occurrences of a
