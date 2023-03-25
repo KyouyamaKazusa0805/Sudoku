@@ -569,6 +569,11 @@
             而之所以不是 <see cref="T:System.DateOnly"/> 是因为程序需要按签到的精确时间提示用户当天已经签过到了。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.User.LastAnswerDailyPuzzle">
+            <summary>
+            记录的是用户上一轮回答答案的时间。该属性禁止用户重复作答。
+            </summary>
+        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.User.UplevelingCards">
             <summary>
             用于预存的强化卡。强化卡用于强化操作。强化卡等级越高，那么在获得经验或金币的时候，可以越多获得它们。

@@ -52,6 +52,12 @@ internal sealed class AnswerCommand : Command
 				}
 
 				var user = StorageHandler.Read(senderId, new() { Number = senderId });
+				if (user.LastAnswerDailyPuzzle.Date == DateTime.Today)
+				{
+					await messageReceiver.SendMessageAsync("抱歉，你今日已完成正确作答。请勿重复作答。");
+					return;
+				}
+
 				if (!sequenceEquals(answer, Answer))
 				{
 					await messageReceiver.SendMessageAsync("抱歉，你回答的每日一题结果不对。");
@@ -93,6 +99,7 @@ internal sealed class AnswerCommand : Command
 					);
 				}
 
+				user.LastAnswerDailyPuzzle = DateTime.Today;
 				StorageHandler.Write(user);
 
 				return;

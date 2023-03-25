@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.ComponentModel;
+namespace Sudoku.Workflow.Bot.Oicq.ComponentModel;
 
 /// <summary>
 /// 表示一个可提供 JSON 序列化/反序列化的用户基本数据。
@@ -42,6 +42,12 @@ public sealed class User
 	/// </summary>
 	[JsonPropertyName("lastCheckInDate")]
 	public DateTime LastCheckIn { get; set; }
+
+	/// <summary>
+	/// 记录的是用户上一轮回答答案的时间。该属性禁止用户重复作答。
+	/// </summary>
+	[JsonPropertyName("lastAnswerDailyPuzzle")]
+	public DateTime LastAnswerDailyPuzzle { get; set; }
 
 	/// <summary>
 	/// 用于预存的强化卡。强化卡用于强化操作。强化卡等级越高，那么在获得经验或金币的时候，可以越多获得它们。
