@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
+namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 /// <summary>
 /// 强化指令。
@@ -13,6 +13,7 @@ internal sealed class UplevelCommand : Command
 	[Hint("表示强化期间，需要的三叶草的级别，支持 1 到 10 级。该参数可以没有，默认情况下表示不带三叶草进行强化。")]
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue<int>(-1)]
+	[DisplayingIndex(2)]
 	public int CloverLevel { get; set; }
 
 	/// <summary>
@@ -22,6 +23,7 @@ internal sealed class UplevelCommand : Command
 	[Hint("表示你需要强化的主卡级别，支持 1 到 16 级。该参数可以没有，默认情况下表示你拥有的强化卡里最高级别的那一张作为主卡。")]
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue<int>(-1)]
+	[DisplayingIndex(0)]
 	public int MainCardLevel { get; set; }
 
 	/// <summary>
@@ -30,6 +32,7 @@ internal sealed class UplevelCommand : Command
 	[DoubleArgument("辅助")]
 	[Hint("表示辅助卡片的级别。每一个卡片都使用逗号分隔，中间没有空格。辅助卡片至少一张，最多三张。每张辅助卡的级别都不能超过主卡级别，也不能低于主卡级别 3 级及以上。")]
 	[ValueConverter<NumericArrayConverter<int>>]
+	[DisplayingIndex(1)]
 	public int[]? AuxiliaryCards { get; set; }
 
 

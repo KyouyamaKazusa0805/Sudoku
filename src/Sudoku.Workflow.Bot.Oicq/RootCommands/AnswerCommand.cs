@@ -11,6 +11,7 @@ internal sealed class AnswerCommand : Command
 	/// </summary>
 	[DoubleArgument("内容")]
 	[Hint("表示你需要回答的全局可用的内容。支持的参数有“每日一题”。")]
+	[DisplayingIndex(0)]
 	public string? AnswerKind { get; set; }
 
 	/// <summary>
@@ -19,6 +20,7 @@ internal sealed class AnswerCommand : Command
 	[DoubleArgument("答案")]
 	[Hint("表示你需要回答的问题的答案。")]
 	[ValueConverter<NumericArrayWithoutSeparatorConverter<int>>]
+	[DisplayingIndex(1)]
 	public int[]? Answer { get; set; }
 
 

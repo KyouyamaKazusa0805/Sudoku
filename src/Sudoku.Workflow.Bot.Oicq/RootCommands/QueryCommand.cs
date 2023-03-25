@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
+namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 /// <summary>
 /// 查询指令。
@@ -13,6 +13,7 @@ internal sealed class QueryCommand : Command
 	[Hint("表示你需要查询的强化期间，主卡的级别。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue<int>(-1)]
+	[DisplayingIndex(3)]
 	public int MainLevel { get; set; }
 
 	/// <summary>
@@ -22,6 +23,7 @@ internal sealed class QueryCommand : Command
 	[Hint("表示你需要查询的强化期间，三叶草的级别。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue<int>(-1)]
+	[DisplayingIndex(5)]
 	public int CloverLevel { get; set; }
 
 	/// <summary>
@@ -30,6 +32,7 @@ internal sealed class QueryCommand : Command
 	[DoubleArgument("辅助")]
 	[Hint("表示你需要查询的强化期间，辅助卡的级别，书写格式和“强化”指令里的“辅助”用法一致。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericArrayConverter<int>>]
+	[DisplayingIndex(4)]
 	public int[]? AuxiliaryCards { get; set; }
 
 	/// <summary>
@@ -38,13 +41,15 @@ internal sealed class QueryCommand : Command
 	[DoubleArgument("内容")]
 	[Hint("表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。")]
 	[DefaultValue<string>(QueryContentKinds.Elementary)]
-	public string QueryContentKind { get; set; } = null!;
+	[DisplayingIndex(1)]
+	public string? QueryContentKind { get; set; }
 
 	/// <summary>
 	/// 表示你需要查询的用户的 QQ 号码。
 	/// </summary>
 	[DoubleArgument("QQ")]
 	[Hint("表示你需要查询的用户的 QQ 号码。")]
+	[DisplayingIndex(0)]
 	public string? UserId { get; set; }
 
 	/// <summary>
@@ -52,6 +57,7 @@ internal sealed class QueryCommand : Command
 	/// </summary>
 	[DoubleArgument("昵称")]
 	[Hint("表示你需要查询的用户的群名片。")]
+	[DisplayingIndex(0)]
 	public string? UserNickname { get; set; }
 
 
@@ -93,7 +99,7 @@ internal sealed class QueryCommand : Command
 		};
 
 
-		async Task<string> getResultMessage(string senderName, string senderId, string viewContentKind, Group group)
+		async Task<string> getResultMessage(string senderName, string senderId, string? viewContentKind, Group group)
 		{
 			return StorageHandler.Read(senderId) switch
 			{

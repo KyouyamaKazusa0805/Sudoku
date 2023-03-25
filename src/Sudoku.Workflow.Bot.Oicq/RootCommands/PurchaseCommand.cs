@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
+namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 /// <summary>
 /// 购买指令。
@@ -13,6 +13,7 @@ internal sealed class PurchaseCommand : Command
 	[Hint("表示购买的三叶草的等级。该参数配合“三叶草”使用。对于“物品”参数填入强化卡的时候无效。")]
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue<int>(-1)]
+	[DisplayingIndex(0)]
 	public int Level { get; set; }
 
 	/// <summary>
@@ -22,6 +23,7 @@ internal sealed class PurchaseCommand : Command
 	[Hint("表示批量购买的数量。该参数配合“物品”使用，表示当前购买的物品一次性买多少个。")]
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue<int>(1)]
+	[DisplayingIndex(2)]
 	public int BatchedCount { get; set; }
 
 	/// <summary>
@@ -29,6 +31,7 @@ internal sealed class PurchaseCommand : Command
 	/// </summary>
 	[DoubleArgument("物品")]
 	[Hint("表示购买的物品。可以是“三叶草”或“强化卡”。")]
+	[DisplayingIndex(1)]
 	public string? ItemName { get; set; }
 
 

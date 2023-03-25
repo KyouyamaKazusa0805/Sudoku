@@ -36,6 +36,7 @@ global using Sudoku.Workflow.Bot.Oicq.Annotations;
 global using Sudoku.Workflow.Bot.Oicq.ComponentModel;
 global using Sudoku.Workflow.Bot.Oicq.Handlers;
 global using Sudoku.Workflow.Bot.Oicq.Lifecycle;
+global using Sudoku.Workflow.Bot.Oicq.Parsing;
 global using Sudoku.Workflow.Bot.Oicq.RootCommands;
 global using Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic;
 global using Sudoku.Workflow.Bot.Oicq.ValueConverters;

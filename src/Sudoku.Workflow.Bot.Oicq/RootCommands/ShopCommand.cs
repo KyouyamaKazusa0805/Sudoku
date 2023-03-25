@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
+namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 [Command("商店")]
 internal sealed class ShopCommand : Command
@@ -8,6 +8,7 @@ internal sealed class ShopCommand : Command
 	/// </summary>
 	[DoubleArgument("物品")]
 	[Hint("表示你要查看的商店的物品类型。可以填入的值有“强化卡”和“三叶草”。")]
+	[DisplayingIndex(0)]
 	public string? ItemKind { get; set; }
 
 

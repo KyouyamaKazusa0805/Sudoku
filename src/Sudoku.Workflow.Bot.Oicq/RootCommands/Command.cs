@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
+namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 /// <summary>
 /// 提供一个基本的指令模块。这个类型为抽象类型，需要派生出实例类型进行实现，并提供给 <see cref="MiraiBot"/> 实例调用。
@@ -105,7 +105,7 @@ public abstract class Command : IModule
 
 		resetProperties();
 
-		if (!parseMessageCore(text, this, out var failedReason, out var requestedHintArgumentName))
+		if (!ParseMessageCore(text, this, out var failedReason, out var requestedHintArgumentName, out var requestedCommandHint))
 		{
 			switch (failedReason)
 			{
@@ -139,149 +139,95 @@ public abstract class Command : IModule
 			}
 		}
 
-		if (requestedHintArgumentName is null)
+		switch (requestedHintArgumentName, requestedCommandHint)
 		{
-			await ExecuteCoreAsync(gmr);
-		}
-		else
-		{
-			var cachedPropertiesInfo = EqualityContract.GetProperties();
-			await gmr.SendMessageAsync(
-				string.Join(
-					$"{Environment.NewLine}{Environment.NewLine}",
-					from argumentName in requestedHintArgumentName
-					let chosenPropertyInfo = (
-						from pi in cachedPropertiesInfo
-						where pi.GetCustomAttribute<DoubleArgumentAttribute>()?.Name == argumentName
-						select pi
-					).FirstOrDefault()
-					where chosenPropertyInfo is not null
-					let hintText = chosenPropertyInfo.GetCustomAttribute<HintAttribute>()?.Hint ?? "<暂无介绍信息>"
-					select
-						$"""
-						参数 “{argumentName}”：
-						  * {hintText}
-						"""
-				)
-			);
-		}
-
-
-		static bool parseMessageCore(
-			string @this,
-			Command module,
-			out ParsingFailedReason failedReason,
-			[MaybeNullWhen(false)] out List<string>? requestedHintArgumentName
-		)
-		{
-			requestedHintArgumentName = null;
-
-			var moduleType = module.EqualityContract;
-
-			var isFirstArg = true;
-			var args = ParseCommandLine(@this, """[\""“”].+?[\""“”]|[^ ]+""", '"', '“', '”');
-			for (var i = 0; i < args.Length; i++)
+			// ！指令 参数 ？
+			case (not null, _):
 			{
-				var arg = args[i];
-				if (isFirstArg)
-				{
-					if (!Array.Exists(ModuleTriggeringPrefix, prefix => arg == $"{prefix}{module.RaisingCommand}"))
-					{
-						failedReason = ParsingFailedReason.NotCurrentModule;
-						return false;
-					}
+				var cachedPropertiesInfo = EqualityContract.GetProperties();
+				await gmr.SendMessageAsync(
+					string.Join(
+						$"{Environment.NewLine}{Environment.NewLine}",
+						from argumentName in requestedHintArgumentName
+						let chosenPropertyInfo = (
+							from pi in cachedPropertiesInfo
+							where pi.GetCustomAttribute<DoubleArgumentAttribute>()?.Name == argumentName
+							select pi
+						).FirstOrDefault()
+						where chosenPropertyInfo is not null
+						let hintText = chosenPropertyInfo.GetCustomAttribute<HintAttribute>()?.Hint ?? "<暂无介绍信息>"
+						select
+							$"""
+							参数 “{argumentName}”：
+							  * {hintText}
+							"""
+					)
+				);
 
-					isFirstArg = false;
-					continue;
-				}
-
-				var foundPropertyInfo = default(PropertyInfo?);
-				foreach (var tempPropertyInfo in moduleType.GetProperties())
-				{
-					if (tempPropertyInfo.GetCustomAttribute<DoubleArgumentAttribute>() is { Name: var name } && name == arg)
-					{
-						foundPropertyInfo = tempPropertyInfo;
-						break;
-					}
-				}
-
-				if (foundPropertyInfo is null)
-				{
-					failedReason = ParsingFailedReason.TargetPropertyNotFound;
-					return false;
-				}
-
-				if (foundPropertyInfo is not { CanRead: true, CanWrite: true })
-				{
-					failedReason = ParsingFailedReason.TargetPropertyMissingAccessor;
-					return false;
-				}
-
-				if (foundPropertyInfo.GetIndexParameters().Length != 0)
-				{
-					failedReason = ParsingFailedReason.TargetPropertyIsIndexer;
-					return false;
-				}
-
-				if (i + 1 >= args.Length)
-				{
-					failedReason = ParsingFailedReason.InvalidInput;
-					return false;
-				}
-
-				var nextArg = args[i + 1];
-				switch (
-					foundPropertyInfo.GetGenericAttributeTypeArguments(typeof(ValueConverterAttribute<>)),
-					Array.Exists(HintRequestedTokens, e => nextArg == e)
-				)
-				{
-					case ([], false):
-					{
-						if (foundPropertyInfo.PropertyType != typeof(string))
-						{
-							failedReason = ParsingFailedReason.TargetPropertyMissingConverter;
-							return false;
-						}
-
-						foundPropertyInfo.SetValue(module, nextArg);
-
-						break;
-					}
-					case ([var valueConverterType], false):
-					{
-						try
-						{
-							var instance = (IValueConverter)Activator.CreateInstance(valueConverterType)!;
-							var targetConvertedValue = instance.Convert(nextArg);
-							foundPropertyInfo.SetValue(module, targetConvertedValue);
-						}
-						catch (CommandConverterException)
-						{
-							failedReason = ParsingFailedReason.InvalidInput;
-							return false;
-						}
-
-						break;
-					}
-					case (_, true):
-					{
-						(requestedHintArgumentName ??= new()).Add(args[i]);
-
-						break;
-					}
-				}
-
-				i++;
+				break;
 			}
 
-			failedReason = ParsingFailedReason.None;
-			return true;
+			// ！指令 ？
+			case (_, true):
+			{
+				var cachedPropertiesInfo = EqualityContract.GetProperties();
+				var indexedDictionary = new Dictionary<int, List<PropertyInfo>>();
+				foreach (var propertyInfo in cachedPropertiesInfo)
+				{
+					var index = propertyInfo.GetCustomAttribute<DisplayingIndexAttribute>()?.Index
+						?? throw new InvalidOperationException($"Attribute type '{nameof(DisplayingIndexAttribute)}' is required.");
+					if (!indexedDictionary.TryAdd(index, new() { propertyInfo }))
+					{
+						indexedDictionary[index].Add(propertyInfo);
+					}
+				}
+
+				var hint = string.Join(
+					' ',
+					from index in indexedDictionary.Keys
+					orderby index
+					let propertiesInfo = indexedDictionary[index]
+					select propertiesInfo switch
+					{
+						[var pi] when pi.GetCustomAttribute<ArgumentAttribute>()!.Name is var name => $"{name} <{name}>",
+						_
+							=>
+							$"""
+							({string.Join(
+								'|',
+								from pi in propertiesInfo
+								let name = pi.GetCustomAttribute<ArgumentAttribute>()!.Name
+								select $"{name} <{name}>"
+							)})
+							"""
+					}
+				);
+
+				hint = string.IsNullOrWhiteSpace(hint) ? $"  {RaisingCommand}" : $"  {RaisingCommand} {hint}";
+				await gmr.SendMessageAsync(
+					$$"""
+					指令“{{RaisingCommand}}”语法：
+					{{hint}}
+					---
+					解释：
+					  小括号“(a|b)”表示 a 或 b 只需要给出任何即可。
+					  尖括号“<a>”表示这里填入的是该参数配套的数值。
+					---
+					需要查询详细参数，请在参数名之后跟问号“？”以查询参数的详情信息，如“！查询 昵称 ？”。
+					"""
+				);
+
+				break;
+			}
+
+			// ！指令 参数 值
+			default:
+			{
+				await ExecuteCoreAsync(gmr);
+				break;
+			}
 		}
 
-		static string[] ParseCommandLine(string s, [StringSyntax(StringSyntaxAttribute.Regex)] string argumentMatcherRegex, params char[]? trimmedCharacters)
-			=>
-			from match in new Regex(argumentMatcherRegex, RegexOptions.Singleline).Matches(s)
-			select match.Value.Trim(trimmedCharacters);
 
 		void resetProperties()
 		{
@@ -402,6 +348,149 @@ public abstract class Command : IModule
 	}
 
 	/// <summary>
+	/// 核心处理解析命令行参数的方法。
+	/// </summary>
+	/// <param name="commandLine">命令行序列。</param>
+	/// <param name="module">当前的指令。</param>
+	/// <param name="failedReason">错误信息。如果解析失败的时候，该属性则不为 <see cref="ParsingFailedReason.None"/>。</param>
+	/// <param name="requestedHintArgumentName">如果用户查询参数信息（命令行参数里的参数带问号的时候）。</param>
+	/// <param name="requestedCommandHint">如果用户查询指令信息（指令后直接跟问号的时候）。</param>
+	/// <returns>返回 <see cref="bool"/> 表示是否解析成功。</returns>
+	private static bool ParseMessageCore(
+		string commandLine, Command module,
+		out ParsingFailedReason failedReason,
+		[MaybeNullWhen(false)] out List<string>? requestedHintArgumentName,
+		out bool requestedCommandHint
+	)
+	{
+		(requestedHintArgumentName, requestedCommandHint, var moduleType, var isFirstArg) = (null, false, module.EqualityContract, true);
+		switch (parseCommandLine(commandLine, """[\""“”].+?[\""“”]|[^ ]+""", '"', '“', '”'))
+		{
+			case []:
+			{
+				failedReason = ParsingFailedReason.InvalidInput;
+				return false;
+			}
+			case [var commandName, var questionMark]
+			when commandEqualityComparer(commandName, module) && Array.Exists(HintRequestedTokens, token => token == questionMark):
+			{
+				failedReason = ParsingFailedReason.None;
+				requestedCommandHint = true;
+				return true;
+			}
+			case var args:
+			{
+				for (var i = 0; i < args.Length; i++)
+				{
+					var arg = args[i];
+					if (isFirstArg)
+					{
+						if (!commandEqualityComparer(arg, module))
+						{
+							failedReason = ParsingFailedReason.NotCurrentModule;
+							return false;
+						}
+
+						isFirstArg = false;
+						continue;
+					}
+
+					var foundPropertyInfo = default(PropertyInfo?);
+					foreach (var tempPropertyInfo in moduleType.GetProperties())
+					{
+						if (tempPropertyInfo.GetCustomAttribute<DoubleArgumentAttribute>() is { Name: var name } && name == arg)
+						{
+							foundPropertyInfo = tempPropertyInfo;
+							break;
+						}
+					}
+
+					if (foundPropertyInfo is null)
+					{
+						failedReason = ParsingFailedReason.TargetPropertyNotFound;
+						return false;
+					}
+
+					if (foundPropertyInfo is not { CanRead: true, CanWrite: true })
+					{
+						failedReason = ParsingFailedReason.TargetPropertyMissingAccessor;
+						return false;
+					}
+
+					if (foundPropertyInfo.GetIndexParameters().Length != 0)
+					{
+						failedReason = ParsingFailedReason.TargetPropertyIsIndexer;
+						return false;
+					}
+
+					if (i + 1 >= args.Length)
+					{
+						failedReason = ParsingFailedReason.InvalidInput;
+						return false;
+					}
+
+					var nextArg = args[i + 1];
+					switch (
+						foundPropertyInfo.GetGenericAttributeTypeArguments(typeof(ValueConverterAttribute<>)),
+						Array.Exists(HintRequestedTokens, e => nextArg == e)
+					)
+					{
+						case ([], false):
+						{
+							if (foundPropertyInfo.PropertyType != typeof(string))
+							{
+								failedReason = ParsingFailedReason.TargetPropertyMissingConverter;
+								return false;
+							}
+
+							foundPropertyInfo.SetValue(module, nextArg);
+
+							break;
+						}
+						case ([var valueConverterType], false):
+						{
+							try
+							{
+								var instance = (IValueConverter)Activator.CreateInstance(valueConverterType)!;
+								var targetConvertedValue = instance.Convert(nextArg);
+								foundPropertyInfo.SetValue(module, targetConvertedValue);
+							}
+							catch (CommandConverterException)
+							{
+								failedReason = ParsingFailedReason.InvalidInput;
+								return false;
+							}
+
+							break;
+						}
+						case (_, true):
+						{
+							(requestedHintArgumentName ??= new()).Add(args[i]);
+
+							break;
+						}
+					}
+
+					i++;
+				}
+
+				failedReason = ParsingFailedReason.None;
+				return true;
+			}
+		}
+
+
+		static bool commandEqualityComparer(string name, Command module)
+			=> Array.Exists(ModuleTriggeringPrefix, prefix => name == $"{prefix}{module.RaisingCommand}");
+
+		static string[] parseCommandLine(
+			string s,
+			[StringSyntax(StringSyntaxAttribute.Regex)] string argumentMatcherRegex,
+			params char[]? trimmedCharacters
+		) => from match in new Regex(argumentMatcherRegex, RegexOptions.Singleline).Matches(s) select match.Value.Trim(trimmedCharacters);
+	}
+
+	/// <summary>
 	/// 一个转换类型，将 <see cref="Permissions"/> 实例转换为等同的 <see cref="GroupRoleKind"/> 实例。
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -412,46 +501,4 @@ public abstract class Command : IModule
 			Permissions.Administrator => GroupRoleKind.Manager,
 			Permissions.Member => GroupRoleKind.DefaultMember
 		};
-}
-
-/// <summary>
-/// 一个本地枚举类型，表示一个在解析期间产生的错误信息。
-/// </summary>
-file enum ParsingFailedReason : int
-{
-	/// <summary>
-	/// 表示没有错误。
-	/// </summary>
-	None,
-
-	/// <summary>
-	/// 表示解析失败，因为解析的指令不属于当前指令（不匹配）。
-	/// </summary>
-	NotCurrentModule,
-
-	/// <summary>
-	/// 表示解析失败，因为目标属性没有找到。
-	/// </summary>
-	TargetPropertyNotFound,
-
-	/// <summary>
-	/// 表示解析失败，因为目标属性缺少 <see langword="get"/> 或 <see langword="set"/> 方法的至少一个。
-	/// </summary>
-	TargetPropertyMissingAccessor,
-
-	/// <summary>
-	/// 表示解析失败，因为目标属性是索引器（有参属性）。
-	/// </summary>
-	TargetPropertyIsIndexer,
-
-	/// <summary>
-	/// 表示解析失败，因为目标属性不是 <see cref="string"/> 类型，却缺少 <see cref="ValueConverterAttribute{T}"/> 的转换指示情况。
-	/// </summary>
-	/// <seealso cref="ValueConverterAttribute{T}"/>
-	TargetPropertyMissingConverter,
-
-	/// <summary>
-	/// 表示解析失败，因为用户输入的结果在转换期间失败。比如某处要求输入整数，结果输入了别的无法转为整数数据的结果，例如字母。
-	/// </summary>
-	InvalidInput
 }

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
+namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 [Command("加分")]
 [RequiredRole(SenderRole = GroupRoleKind.God)]
@@ -9,6 +9,7 @@ internal sealed class ManualUpdateUserDataCommand : Command
 	/// </summary>
 	[DoubleArgument("昵称")]
 	[Hint("表示你要为谁进行加分操作。该参数指定的是用户的群名片。")]
+	[DisplayingIndex(0)]
 	public string? UserNickname { get; set; }
 
 	/// <summary>
@@ -16,6 +17,7 @@ internal sealed class ManualUpdateUserDataCommand : Command
 	/// </summary>
 	[DoubleArgument("QQ")]
 	[Hint("表示你要为谁进行加分操作。该参数指定的是用户的 QQ 号。")]
+	[DisplayingIndex(0)]
 	public string? UserId { get; set; }
 
 	/// <summary>
@@ -24,6 +26,7 @@ internal sealed class ManualUpdateUserDataCommand : Command
 	[DoubleArgument("经验")]
 	[Hint("表示你要为该用户加多少经验值。")]
 	[ValueConverter<NumericConverter<int>>]
+	[DisplayingIndex(1)]
 	public int ExperiencePointAddition { get; set; }
 
 	/// <summary>
@@ -32,6 +35,7 @@ internal sealed class ManualUpdateUserDataCommand : Command
 	[DoubleArgument("金币")]
 	[Hint("表示你要为该用户加多少金币。")]
 	[ValueConverter<NumericConverter<int>>]
+	[DisplayingIndex(1)]
 	public int CoinAddition { get; set; }
 
 

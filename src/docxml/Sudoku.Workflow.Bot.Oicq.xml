@@ -144,6 +144,23 @@
             表示该字段的描述信息。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DisplayingIndexAttribute">
+            <summary>
+            提供一个特性，表示某指令里的某个参数的显示顺序。
+            </summary>
+            <param name="index">表示该指令的显示位置。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.DisplayingIndexAttribute.#ctor(System.Int32)">
+            <summary>
+            提供一个特性，表示某指令里的某个参数的显示顺序。
+            </summary>
+            <param name="index">表示该指令的显示位置。</param>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.DisplayingIndexAttribute.Index">
+            <summary>
+            表示该指令的显示位置。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DoubleArgumentAttribute">
             <summary>
             提供一个特性，用于标记到指令模块的某个参数上，表示该参数是一个双参数指令。
@@ -930,6 +947,47 @@
             机器人的运行上下文。为一个并发字典，按群存储不同的上下文数据。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason">
+            <summary>
+            一个本地枚举类型，表示一个在解析期间产生的错误信息。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.None">
+            <summary>
+            表示没有错误。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.NotCurrentModule">
+            <summary>
+            表示解析失败，因为解析的指令不属于当前指令（不匹配）。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.TargetPropertyNotFound">
+            <summary>
+            表示解析失败，因为目标属性没有找到。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.TargetPropertyMissingAccessor">
+            <summary>
+            表示解析失败，因为目标属性缺少 <see langword="get"/> 或 <see langword="set"/> 方法的至少一个。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.TargetPropertyIsIndexer">
+            <summary>
+            表示解析失败，因为目标属性是索引器（有参属性）。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.TargetPropertyMissingConverter">
+            <summary>
+            表示解析失败，因为目标属性不是 <see cref="T:System.String"/> 类型，却缺少 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/> 的转换指示情况。
+            </summary>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.InvalidInput">
+            <summary>
+            表示解析失败，因为用户输入的结果在转换期间失败。比如某处要求输入整数，结果输入了别的无法转为整数数据的结果，例如字母。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand">
             <summary>
             表示回答指令。
@@ -1110,50 +1168,20 @@
             <returns>一个 <see cref="T:System.Boolean"/> 结果，表示是否 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 特性标记合理。</returns>
             <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.ParseMessageCore(System.String,Sudoku.Workflow.Bot.Oicq.RootCommands.Command,Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason@,System.Collections.Generic.List{System.String}@,System.Boolean@)">
+            <summary>
+            核心处理解析命令行参数的方法。
+            </summary>
+            <param name="commandLine">命令行序列。</param>
+            <param name="module">当前的指令。</param>
+            <param name="failedReason">错误信息。如果解析失败的时候，该属性则不为 <see cref="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.None"/>。</param>
+            <param name="requestedHintArgumentName">如果用户查询参数信息（命令行参数里的参数带问号的时候）。</param>
+            <param name="requestedCommandHint">如果用户查询指令信息（指令后直接跟问号的时候）。</param>
+            <returns>返回 <see cref="T:System.Boolean"/> 表示是否解析成功。</returns>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
             <summary>
             一个转换类型，将 <see cref="T:Mirai.Net.Data.Shared.Permissions"/> 实例转换为等同的 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GroupRoleKind"/> 实例。
-            </summary>
-        </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason">
-            <summary>
-            一个本地枚举类型，表示一个在解析期间产生的错误信息。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.None">
-            <summary>
-            表示没有错误。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.NotCurrentModule">
-            <summary>
-            表示解析失败，因为解析的指令不属于当前指令（不匹配）。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.TargetPropertyNotFound">
-            <summary>
-            表示解析失败，因为目标属性没有找到。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.TargetPropertyMissingAccessor">
-            <summary>
-            表示解析失败，因为目标属性缺少 <see langword="get"/> 或 <see langword="set"/> 方法的至少一个。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.TargetPropertyIsIndexer">
-            <summary>
-            表示解析失败，因为目标属性是索引器（有参属性）。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.TargetPropertyMissingConverter">
-            <summary>
-            表示解析失败，因为目标属性不是 <see cref="T:System.String"/> 类型，却缺少 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/> 的转换指示情况。
-            </summary>
-            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.ParsingFailedReason.InvalidInput">
-            <summary>
-            表示解析失败，因为用户输入的结果在转换期间失败。比如某处要求输入整数，结果输入了别的无法转为整数数据的结果，例如字母。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCancelCommand">
