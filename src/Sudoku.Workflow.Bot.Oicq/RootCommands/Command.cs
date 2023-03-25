@@ -144,13 +144,13 @@ public abstract class Command : IModule
 			// ！指令 参数 ？
 			case (not null, _):
 			{
-				var cachedPropertiesInfo = EqualityContract.GetProperties();
+				var propertiesInfo = EqualityContract.GetProperties();
 				await gmr.SendMessageAsync(
 					string.Join(
 						$"{Environment.NewLine}{Environment.NewLine}",
 						from argumentName in requestedHintArgumentName
 						let chosenPropertyInfo = (
-							from pi in cachedPropertiesInfo
+							from pi in propertiesInfo
 							where pi.GetCustomAttribute<DoubleArgumentAttribute>()?.Name == argumentName
 							select pi
 						).FirstOrDefault()
@@ -170,9 +170,9 @@ public abstract class Command : IModule
 			// ！指令 ？
 			case (_, true):
 			{
-				var cachedPropertiesInfo = EqualityContract.GetProperties();
+				var propertiesInfo = EqualityContract.GetProperties();
 				var indexedDictionary = new Dictionary<int, List<PropertyInfo>>();
-				foreach (var propertyInfo in cachedPropertiesInfo)
+				foreach (var propertyInfo in propertiesInfo)
 				{
 					var index = propertyInfo.GetCustomAttribute<DisplayingIndexAttribute>()?.Index
 						?? throw new InvalidOperationException($"Attribute type '{nameof(DisplayingIndexAttribute)}' is required.");
