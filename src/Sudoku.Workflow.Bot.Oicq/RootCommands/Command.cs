@@ -492,7 +492,7 @@ public abstract class Command : IModule
 
 		static string[] parseCommandLine(
 			string s,
-			[StringSyntax(StringSyntaxAttribute.Regex)] string argumentMatcherRegex,
+			[StringSyntax(StringSyntax.Regex)] string argumentMatcherRegex,
 			params char[]? trimmedCharacters
 		) => from match in new Regex(argumentMatcherRegex, RegexOptions.Singleline).Matches(s) select match.Value.Trim(trimmedCharacters);
 	}

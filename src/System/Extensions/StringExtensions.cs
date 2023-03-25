@@ -55,7 +55,7 @@ public static unsafe partial class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool SatisfyPattern(this string @this, [StringSyntax(StringSyntaxAttribute.Regex), NotNullWhen(true)] string? pattern)
+	public static bool SatisfyPattern(this string @this, [StringSyntax(StringSyntax.Regex), NotNullWhen(true)] string? pattern)
 		=> pattern?.IsRegexPattern() ?? false ? @this.Match(pattern) == @this : throw InvalidOperation;
 
 	/// <summary>
@@ -75,7 +75,7 @@ public static unsafe partial class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsMatch(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
+	public static bool IsMatch(this string @this, [StringSyntax(StringSyntax.Regex)] string pattern)
 		=> pattern.IsRegexPattern() ? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan) : throw InvalidOperation;
 
 	/// <summary>
@@ -126,7 +126,7 @@ public static unsafe partial class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? Match(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
+	public static string? Match(this string @this, [StringSyntax(StringSyntax.Regex)] string pattern)
 		=> pattern.IsRegexPattern() ? @this.Match(pattern, RegexOptions.None) : throw InvalidOperation;
 
 	/// <summary>
@@ -150,7 +150,7 @@ public static unsafe partial class StringExtensions
 	/// </exception>
 	/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? Match(this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
+	public static string? Match(this string @this, [StringSyntax(StringSyntax.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern()
 			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value } ? value : null
 			: throw InvalidOperation;
@@ -183,7 +183,7 @@ public static unsafe partial class StringExtensions
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
+	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntax.Regex)] string pattern)
 		=> pattern.IsRegexPattern() ? @this.MatchAll(pattern, RegexOptions.None) : throw InvalidOperation;
 
 	/// <summary>
@@ -208,7 +208,7 @@ public static unsafe partial class StringExtensions
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
+	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntax.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern() ? from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value : throw InvalidOperation;
 
 	/// <summary>
@@ -252,7 +252,7 @@ public static unsafe partial class StringExtensions
 	/// Throws when the <paramref name="reservePattern"/> is invalid.
 	/// All possible patterns are shown in the tip for the parameter <paramref name="reservePattern"/>.
 	/// </exception>
-	public static string Reserve(this string @this, [StringSyntax(StringSyntaxAttribute.Regex), ConstantExpected] string reservePattern)
+	public static string Reserve(this string @this, [StringSyntax(StringSyntax.Regex), ConstantExpected] string reservePattern)
 	{
 		/*lang = regex*/
 		delegate*<char, bool> predicate = reservePattern switch
@@ -292,7 +292,7 @@ public static unsafe partial class StringExtensions
 	/// </summary>
 	/// <param name="this">The value to check.</param>
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
-	public static bool IsRegexPattern([StringSyntax(StringSyntaxAttribute.Regex)] this string @this)
+	public static bool IsRegexPattern([StringSyntax(StringSyntax.Regex)] this string @this)
 	{
 		try
 		{
