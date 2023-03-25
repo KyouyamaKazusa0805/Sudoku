@@ -186,8 +186,8 @@ public abstract class Command : IModule
 					' ',
 					from index in indexedDictionary.Keys
 					orderby index
-					let propertiesInfo = indexedDictionary[index]
-					select propertiesInfo switch
+					let pi = indexedDictionary[index]
+					select pi switch
 					{
 						[var pi]
 						when pi.GetCustomAttribute<ArgumentAttribute>()!.Name is var name
