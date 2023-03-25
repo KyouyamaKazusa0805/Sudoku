@@ -4,6 +4,7 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// 表示回答指令。
 /// </summary>
 [Command("回答")]
+[RequiredRole(BotRole = GroupRoleKind.Owner)]
 internal sealed class AnswerCommand : Command
 {
 	/// <summary>
