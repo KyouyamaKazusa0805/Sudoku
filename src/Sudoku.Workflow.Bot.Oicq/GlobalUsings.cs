@@ -42,6 +42,7 @@ global using Sudoku.Workflow.Bot.Oicq.ValueConverters;
 global using static System.Algorithm.Sequences;
 global using static System.Math;
 global using static System.Text.Json.JsonSerializer;
+global using static Sudoku.SolutionWideReadOnlyFields;
 global using static Sudoku.Workflow.Bot.Oicq.Constants;
 global using static Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables;
 global using Group = Mirai.Net.Data.Shared.Group;

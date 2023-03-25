@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
+namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 [Command("签到")]
 internal sealed class CheckInCommand : Command
@@ -34,7 +34,7 @@ internal sealed class CheckInCommand : Command
 
 				var finalScore = ScoreHandler.GetEarnedScoringDisplayingString(expEarned);
 				var finalCoin = ScoreHandler.GetEarnedCoinDisplayingString(coinEarned);
-				if (LocalScorer.GetEarnedItem() is { } earnedItem)
+				if (LocalScorer.GetItem() is { } earnedItem)
 				{
 					if (!user.Items.TryAdd(earnedItem, 1))
 					{
@@ -80,7 +80,7 @@ internal sealed class CheckInCommand : Command
 
 				var finalScore = ScoreHandler.GetEarnedScoringDisplayingString(expEarned);
 				var finalCoin = ScoreHandler.GetEarnedCoinDisplayingString(coinEarned);
-				if (LocalScorer.GetEarnedItem() is { } earnedItem)
+				if (LocalScorer.GetItem() is { } earnedItem)
 				{
 					if (!user.Items.TryAdd(earnedItem, 1))
 					{
@@ -206,7 +206,7 @@ file static class LocalScorer
 	/// </summary>
 	/// <returns>获得的物品。可能为 <see langword="null"/>。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Item? GetEarnedItem()
+	public static Item? GetItem()
 		=> Rng.Next(0, 10000) switch
 		{
 			< 400 => Item.CloverLevel4,

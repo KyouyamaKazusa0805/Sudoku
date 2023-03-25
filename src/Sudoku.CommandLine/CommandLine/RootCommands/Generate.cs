@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CommandLine.RootCommands;
+namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Represents a generate command.
@@ -31,7 +31,7 @@ public sealed class Generate : IExecutable
 		{
 			case GenerateType.HardPatternLike:
 			{
-				var generator = new HardLikePuzzleGenerator();
+				var generator = new HardPatternPuzzleGenerator();
 				while (true)
 				{
 					var targetPuzzle = generator.Generate(cancellationToken);

@@ -711,38 +711,6 @@
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler">
-            <summary>
-            提供一个文件或文件夹存储（读、写）操作的处理器类型。
-            </summary>
-            <remarks>
-            由于文件读写操作较慢，又考虑到项目使用异步操作较多，因此本类型里所有的方法均为带锁的同步方法，基本等价于包裹了一层
-            <see langword="lock"/>(<see langword="typeof"/>(<see cref="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler"/>))
-            的代码片段。
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.ReadAll(System.Predicate{System.String})">
-            <summary>
-            从配置文件路径读取所有用户信息，并返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 数组。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.Read(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
-            <summary>
-            读取指定 QQ 号码的用户数据，并返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 实例。如果用户不存在本地数据，则默认将参数 <paramref name="default"/> 的结果返回。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.Write(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
-            <summary>
-            将 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 数据写出到本地文件。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})">
-            <summary>
-            产生一个图片缓存路径，它会将指定参数的回调函数，所产生的 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 的对象给绘制出来，并保存到此缓存路径下。
-            </summary>
-            <param name="painterCreator">回调函数，用来生成一个 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 的绘图实例。</param>
-            <returns>图片在本地存储的缓存路径。</returns>
-        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler">
             <summary>
             提供一个分数（经验值和金币）的处理器类型。
@@ -818,6 +786,50 @@
             获取周末的翻倍情况。如果当天不是周末，则返回 1；否则返回 2。
             </summary>
             <returns>周末翻倍情况。</returns>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler">
+            <summary>
+            提供一个文件或文件夹存储（读、写）操作的处理器类型。
+            </summary>
+            <remarks>
+            由于文件读写操作较慢，又考虑到项目使用异步操作较多，因此本类型里所有的方法均为带锁的同步方法，基本等价于包裹了一层
+            <see langword="lock"/>(<see langword="typeof"/>(<see cref="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler"/>))
+            的代码片段。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.ReadDailyPuzzleAnswer">
+            <summary>
+            从本地读取每日一题的答案。
+            </summary>
+            <returns>每日一题的答案。如果当天没有记录（比如机器人临时维护）导致题目尚未生成，本地没有数据的时候，会返回 <see langword="null"/>。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.ReadAll(System.Predicate{System.String})">
+            <summary>
+            从配置文件路径读取所有用户信息，并返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 数组。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.Read(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
+            <summary>
+            读取指定 QQ 号码的用户数据，并返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 实例。如果用户不存在本地数据，则默认将参数 <paramref name="default"/> 的结果返回。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.WriteDailyPuzzleAnswer(Sudoku.Concepts.Grid@)">
+            <summary>
+            将每日一题的答案抄写到本地。
+            </summary>
+            <param name="grid">题目答案。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.Write(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
+            <summary>
+            将 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 数据写出到本地文件。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})">
+            <summary>
+            产生一个图片缓存路径，它会将指定参数的回调函数，所产生的 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 的对象给绘制出来，并保存到此缓存路径下。
+            </summary>
+            <param name="painterCreator">回调函数，用来生成一个 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 的绘图实例。</param>
+            <returns>图片在本地存储的缓存路径。</returns>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Lifecycle.AnsweringContext">
             <summary>
@@ -913,6 +925,60 @@
             机器人的运行上下文。为一个并发字典，按群存储不同的上下文数据。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand">
+            <summary>
+            表示回答指令。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand.AnswerKind">
+            <summary>
+            表示你需要回答的全局可用的内容。支持的参数有“每日一题”。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand.Answer">
+            <summary>
+            表示你需要回答的问题的答案。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerKinds">
+            <summary>
+            为参数 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand.AnswerKind"/> 提供参数。
+            </summary>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand.AnswerKind"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerKinds.DailyPuzzle">
+            <summary>
+            表示每日一题。
+            </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer">
+            <summary>
+            本地的计分规则的方法。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperience(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
+            <summary>
+            获得经验值。
+            </summary>
+            <param name="user">用户的基本信息。</param>
+            <returns>经验值获得。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetCoin(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
+            <summary>
+            获得金币数。
+            </summary>
+            <param name="user">用户的基本信息。</param>
+            <returns>金币数。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetItem">
+            <summary>
+            获得的物品。
+            </summary>
+            <returns>获得的物品。可能为 <see langword="null"/>。</returns>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.CheckInCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -950,7 +1016,7 @@
             <param name="rate">加成倍率。</param>
             <returns>金币。</returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetEarnedItem">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetItem">
             <summary>
             获得的物品。
             </summary>
@@ -1257,7 +1323,7 @@
             <param name="cardLevel">用户的卡片级别。</param>
             <returns>金币。</returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetEarnedItem">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetItem">
             <summary>
             获得的物品。
             </summary>
@@ -1502,6 +1568,15 @@
             </summary>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.ValueConverters.NumericArrayConverter`1.Convert(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.ValueConverters.NumericArrayWithoutSeparatorConverter`1">
+            <summary>
+            一个转换器类型，可以提供将 <see cref="T:System.String"/> 类型的实例解析，并转换为一个数值的类型为元素类型的数组。输入字符串不需要任何分隔符。
+            </summary>
+            <typeparam name="T">目标结果（数组）的元素的类型。</typeparam>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.ValueConverters.NumericArrayWithoutSeparatorConverter`1.Convert(System.String)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ValueConverters.NumericConverter`1">

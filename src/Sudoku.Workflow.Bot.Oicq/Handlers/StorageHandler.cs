@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.Handlers;
+namespace Sudoku.Workflow.Bot.Oicq.Handlers;
 
 /// <summary>
 /// 提供一个文件或文件夹存储（读、写）操作的处理器类型。
@@ -10,6 +10,41 @@
 /// </remarks>
 public static class StorageHandler
 {
+	/// <summary>
+	/// 从本地读取每日一题的答案。
+	/// </summary>
+	/// <returns>每日一题的答案。如果当天没有记录（比如机器人临时维护）导致题目尚未生成，本地没有数据的时候，会返回 <see langword="null"/>。</returns>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public static int[]? ReadDailyPuzzleAnswer()
+	{
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			throw new InvalidOperationException("严重错误：无法找到“我的文档”文件夹。");
+		}
+
+		var botDataFolder = $"""{folder}\BotData""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			Directory.CreateDirectory(botDataFolder);
+		}
+
+		var dailyPuzzleFolder = $"""{botDataFolder}\DailyPuzzle""";
+		if (!Directory.Exists(dailyPuzzleFolder))
+		{
+			Directory.CreateDirectory(dailyPuzzleFolder);
+		}
+
+		var fileName = $"""{dailyPuzzleFolder}\Answer.json""";
+		if (!File.Exists(fileName))
+		{
+			return null;
+		}
+
+		var json = File.ReadAllText(fileName);
+		return Deserialize<int[]>(json);
+	}
+
 	/// <summary>
 	/// 从配置文件路径读取所有用户信息，并返回 <see cref="User"/> 数组。
 	/// </summary>
@@ -206,6 +241,41 @@ public static class StorageHandler
 		};
 	}
 #endif
+
+	/// <summary>
+	/// 将每日一题的答案抄写到本地。
+	/// </summary>
+	/// <param name="grid">题目答案。</param>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public static void WriteDailyPuzzleAnswer(scoped in Grid grid)
+	{
+		var answerList = new int[9];
+		for (var i = 0; i < 9; i++)
+		{
+			answerList[i] = grid[HouseCells[17][i]];
+		}
+
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			throw new InvalidOperationException("严重错误：无法找到“我的文档”文件夹。");
+		}
+
+		var botDataFolder = $"""{folder}\BotData""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			Directory.CreateDirectory(botDataFolder);
+		}
+
+		var dailyPuzzleFolder = $"""{botDataFolder}\DailyPuzzle""";
+		if (!Directory.Exists(dailyPuzzleFolder))
+		{
+			Directory.CreateDirectory(dailyPuzzleFolder);
+		}
+
+		var fileName = $"""{dailyPuzzleFolder}\Answer.json""";
+		File.WriteAllText(fileName, Serialize(answerList));
+	}
 
 	/// <summary>
 	/// 将 <see cref="User"/> 数据写出到本地文件。

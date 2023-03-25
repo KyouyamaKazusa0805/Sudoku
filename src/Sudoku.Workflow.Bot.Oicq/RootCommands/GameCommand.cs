@@ -101,7 +101,7 @@ internal sealed class GameCommand : Command
 									currentUserId,
 									deduct + (isCorrectedUser ? baseExp : 0),
 									isCorrectedUser ? LocalScorer.GetCoinOriginal() : 0,
-									isCorrectedUser ? LocalScorer.GetEarnedItem() : null,
+									isCorrectedUser ? LocalScorer.GetItem() : null,
 									times,
 									isCorrectedUser
 								);
@@ -114,7 +114,7 @@ internal sealed class GameCommand : Command
 										userId,
 										baseExp,
 										LocalScorer.GetCoinOriginal(),
-										LocalScorer.GetEarnedItem(),
+										LocalScorer.GetItem(),
 										1,
 										true
 									)
@@ -467,7 +467,7 @@ file static class LocalScorer
 	/// </summary>
 	/// <returns>获得的物品。可能为 <see langword="null"/>。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Item? GetEarnedItem()
+	public static Item? GetItem()
 		=> Rng.Next(0, 10000) switch
 		{
 			< 400 => Item.CloverLevel4,

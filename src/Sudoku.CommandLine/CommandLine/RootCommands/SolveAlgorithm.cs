@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CommandLine.RootCommands;
+namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Defines an algorithm that is used for solving a sudoku puzzle.
@@ -41,7 +41,7 @@ public enum SolveAlgorithm
 	/// Indicates the solver is the LINQ solver based on query.
 	/// </summary>
 	[SupportedArguments("linq-query", "linq", "l")]
-	[RouteToType(typeof(LinqSolver))]
+	[RouteToType(typeof(EnumerableQuerySolver))]
 	[Name("LINQ (Based on Query)")]
 	LinqBasedOnQuery,
 
@@ -49,7 +49,7 @@ public enum SolveAlgorithm
 	/// Indicates the solver is the LINQ solver based on type <see cref="Dictionary{TKey, TValue}"/>.
 	/// </summary>
 	[SupportedArguments("linq-dictionary", "linq-dic")]
-	[RouteToType(typeof(LinqSolver2))]
+	[RouteToType(typeof(DictionaryQuerySolver))]
 	[Name("LINQ (Based on Dictionary<string, string>)")]
 	LinqBasedOnDictionary
 }
