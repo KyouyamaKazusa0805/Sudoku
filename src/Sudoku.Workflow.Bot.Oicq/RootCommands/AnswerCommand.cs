@@ -106,16 +106,16 @@ internal sealed class AnswerCommand : Command
 			}
 
 
-			static bool sequenceEquals(int[] a, int[] b)
+			static bool sequenceEquals(int[] realAnswer, int[] userAnswered)
 			{
-				if ((a, b) is not ({ Length: 9 }, { Length: 9 }))
+				if ((realAnswer, userAnswered) is not ({ Length: 9 }, { Length: 9 }))
 				{
 					return false;
 				}
 
 				for (var i = 0; i < 9; i++)
 				{
-					if (a[i] != b[i])
+					if (realAnswer[i] != userAnswered[i] - 1)
 					{
 						return false;
 					}
