@@ -2200,7 +2200,7 @@
         </member>
         <member name="T:System.Reflection.DefaultValueCreator">
             <summary>
-            Represents a defualt value generator.
+            Represents a default value generator.
             </summary>
         </member>
         <member name="M:System.Reflection.DefaultValueCreator.CreateInstance(System.Type)">

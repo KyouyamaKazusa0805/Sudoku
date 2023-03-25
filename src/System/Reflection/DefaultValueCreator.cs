@@ -1,7 +1,7 @@
-﻿namespace System.Reflection;
+namespace System.Reflection;
 
 /// <summary>
-/// Represents a defualt value generator.
+/// Represents a default value generator.
 /// </summary>
 public static class DefaultValueCreator
 {
