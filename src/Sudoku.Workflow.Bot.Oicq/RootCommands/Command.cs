@@ -189,7 +189,10 @@ public abstract class Command : IModule
 					let propertiesInfo = indexedDictionary[index]
 					select propertiesInfo switch
 					{
-						[var pi] when pi.GetCustomAttribute<ArgumentAttribute>()!.Name is var name => $"{name} <{name}>",
+						[var pi]
+						when pi.GetCustomAttribute<ArgumentAttribute>()!.Name is var name
+						&& pi.GetCustomAttribute<ArgumentDisplayerAttribute>()?.ArgumentDisplayer is var argumentDisplayer
+							=> $"{name} <{argumentDisplayer ?? name}>",
 						_
 							=>
 							$"""
@@ -197,7 +200,8 @@ public abstract class Command : IModule
 								'|',
 								from pi in propertiesInfo
 								let name = pi.GetCustomAttribute<ArgumentAttribute>()!.Name
-								select $"{name} <{name}>"
+								let argumentDisplayer = pi.GetCustomAttribute<ArgumentDisplayerAttribute>()?.ArgumentDisplayer
+								select $"{name} <{argumentDisplayer ?? name}>"
 							)})
 							"""
 					}
@@ -212,6 +216,7 @@ public abstract class Command : IModule
 					解释：
 					  小括号“(a|b)”表示 a 或 b 只需要给出任何即可。
 					  尖括号“<a>”表示这里填入的是该参数配套的数值。
+					  问号“?”表示问号左侧的数值（或参数）可以没有。
 					---
 					需要查询详细参数，请在参数名之后跟问号“？”以查询参数的详情信息，如“！查询 昵称 ？”。
 					"""
