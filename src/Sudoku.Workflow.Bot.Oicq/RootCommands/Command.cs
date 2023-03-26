@@ -128,10 +128,7 @@ public abstract class Command : IModule
 				}
 				case ParsingFailedReason.TargetPropertyNotFound:
 				{
-					await gmr.SendMessageAsync(
-						"你输入的指令有误，导致你要具体指定的参数信息不能成功匹配。请使用完整的指令，不要省略一些固定词语，如“！购买 物品 强化卡”的“物品”。"
-					);
-
+					await gmr.SendMessageAsync("输入的指令有误，导致你要具体指定的参数信息不能成功匹配。请不要省略一些固定词语，如“！购买 物品 强化卡”的“物品”。");
 					return;
 				}
 				case ParsingFailedReason.NotCurrentModule:
