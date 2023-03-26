@@ -183,6 +183,11 @@ public abstract class Command : IModule
 				var indexedDictionary = new Dictionary<int, List<PropertyInfo>>();
 				foreach (var propertyInfo in propertiesInfo)
 				{
+					if (propertyInfo.Name == nameof(Name))
+					{
+						continue;
+					}
+
 					var index = propertyInfo.GetCustomAttribute<DisplayingIndexAttribute>()?.Index
 						?? throw new InvalidOperationException($"Attribute type '{nameof(DisplayingIndexAttribute)}' is required.");
 					if (!indexedDictionary.TryAdd(index, new() { propertyInfo }))
