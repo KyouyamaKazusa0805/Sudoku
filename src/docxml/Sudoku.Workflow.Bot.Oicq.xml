@@ -1198,6 +1198,23 @@
             <param name="requestedCommandHint">如果用户查询指令信息（指令后直接跟问号的时候）。</param>
             <returns>返回 <see cref="T:System.Boolean"/> 表示是否解析成功。</returns>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.CommandEqualityComparer(System.String,Sudoku.Workflow.Bot.Oicq.RootCommands.Command)">
+            <summary>
+            表示命令名称匹配的方法。
+            </summary>
+            <param name="name">名称。</param>
+            <param name="module">模块的名字。</param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.ParseCommandLine(System.String,System.String,System.Char[])">
+            <summary>
+            用来将一个字符串直接拆解成一个一个的参数序列。以空格分隔。如果带有引号，则引号是一个整体，里面可包含空格。
+            </summary>
+            <param name="s">字符串。</param>
+            <param name="argumentMatcherRegex">匹配字符串参数的正则表达式。</param>
+            <param name="trimmedCharacters">表示最终拆解字符串的时候，需要额外去除的字符。比如引号。</param>
+            <returns>解析后的参数序列，按次序排列。</returns>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Command.ToGroupRoleKind(Mirai.Net.Data.Shared.Permissions)">
             <summary>
             一个转换类型，将 <see cref="T:Mirai.Net.Data.Shared.Permissions"/> 实例转换为等同的 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GroupRoleKind"/> 实例。
