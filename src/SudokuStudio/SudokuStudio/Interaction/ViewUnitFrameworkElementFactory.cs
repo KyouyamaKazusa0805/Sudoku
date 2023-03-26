@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction;
+namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>
@@ -20,7 +20,7 @@ internal static class ViewUnitFrameworkElementFactory
 	/// </summary>
 	/// <param name="sudokuPane">The target pane.</param>
 	/// <returns>
-	/// A list of controls, whose <c>Chilren</c> property can be used for removing <see cref="ViewUnit"/>-displaying controls.
+	/// A list of controls, whose <c>Children</c> property can be used for removing <see cref="ViewUnit"/>-displaying controls.
 	/// </returns>
 	/// <seealso cref="FrameworkElement"/>
 	/// <seealso cref="ViewUnit"/>

@@ -105,9 +105,9 @@
             Register resource-fetching service.
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.ActivicateMainWindow">
+        <member name="M:SudokuStudio.App.ActivateMainWindow">
             <summary>
-            Creates a window, and activicate it.
+            Creates a window, and activate it.
             </summary>
         </member>
         <member name="M:SudokuStudio.App.HandleOnProgramOpeningEntryCase">
@@ -569,103 +569,103 @@
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouseProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouse"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouse"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouse"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableLastDigitProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableLastDigit"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableLastDigit"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableLastDigit"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirstProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuModeProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowIncompleteUniqueRectanglesProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowIncompleteUniqueRectangles"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowIncompleteUniqueRectangles"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowIncompleteUniqueRectangles"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForExtendedUniqueRectanglesProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForExtendedUniqueRectangles"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForExtendedUniqueRectangles"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForExtendedUniqueRectangles"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedBivalueUniversalGraveTypesProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedBivalueUniversalGraveTypes"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedBivalueUniversalGraveTypes"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedBivalueUniversalGraveTypes"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXzRuleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXzRule"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXzRule"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXzRule"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLoopedPatternsOnAlmostLockedSetXzRuleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLoopedPatternsOnAlmostLockedSetXzRule"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLoopedPatternsOnAlmostLockedSetXzRule"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLoopedPatternsOnAlmostLockedSetXzRule"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXyWingProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXyWing"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXyWing"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXyWing"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIsFullApplyingProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIsFullApplying"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIsFullApplying"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIsFullApplying"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresSlowAlgorithmsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresSlowAlgorithms"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresSlowAlgorithms"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresSlowAlgorithms"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresHighAllocationAlgorithmsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresHighAllocationAlgorithms"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresHighAllocationAlgorithms"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresHighAllocationAlgorithms"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWingProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfComplexFishProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfComplexFish"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfComplexFish"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfComplexFish"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGatheredProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered"/>
         </member>
@@ -771,7 +771,7 @@
         </member>
         <member name="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>
         </member>
@@ -789,235 +789,235 @@
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidatesProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCursorsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCursors"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCursors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCursors"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DistinctWithDeltaDigitsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DistinctWithDeltaDigits"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DistinctWithDeltaDigits"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DistinctWithDeltaDigits"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DisableSudokuPaneLayoutProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisableSudokuPaneLayout"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisableSudokuPaneLayout"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisableSudokuPaneLayout"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.PreventConflictingInputProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PreventConflictingInput"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PreventConflictingInput"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PreventConflictingInput"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.SavePuzzleGeneratingHistoryProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SavePuzzleGeneratingHistory"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SavePuzzleGeneratingHistory"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SavePuzzleGeneratingHistory"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPaneProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPane"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPane"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPane"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPaneProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedBackgroundOpacityProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedBackgroundOpacity"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedBackgroundOpacity"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedBackgroundOpacity"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ChainStrokeThicknessProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainStrokeThickness"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainStrokeThickness"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainStrokeThickness"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKindProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKind"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKind"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKind"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayModeProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ChainColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.NormalColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyle"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyle"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyle"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.WeakLinkDashStyleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.WeakLinkDashStyle"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.WeakLinkDashStyle"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.WeakLinkDashStyle"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CyclingCellLinkDashStyleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CyclingCellLinkDashStyle"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CyclingCellLinkDashStyle"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CyclingCellLinkDashStyle"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyle"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyle"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyle"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColorsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegroundsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgroundsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPaletteProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColorsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontDataProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontData"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontData"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontData"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontDataProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontData"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontData"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontData"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontDataProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontData"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontData"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontData"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontDataProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontData"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontData"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontData"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontDataProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontData"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontData"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontData"/>
         </member>
@@ -1547,7 +1547,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Interaction.Conversions.Extensions.SingletonSpan``1(Microsoft.UI.Xaml.Documents.Run)">
             <summary>
-            Creates a <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> ionstance with a singleton value of <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
+            Creates a <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance with a singleton value of <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
             </summary>
             <param name="this">The <see cref="T:Microsoft.UI.Xaml.Documents.Run"/> instance.</param>
             <returns>A <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance.</returns>
@@ -2267,7 +2267,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="sudokuPane">The target pane.</param>
             <returns>
-            A list of controls, whose <c>Chilren</c> property can be used for removing <see cref="T:SudokuStudio.Models.ViewUnit"/>-displaying controls.
+            A list of controls, whose <c>Children</c> property can be used for removing <see cref="T:SudokuStudio.Models.ViewUnit"/>-displaying controls.
             </returns>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
             <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
@@ -2598,19 +2598,19 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Models.FontSerializationData.FontNameProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.FontSerializationData.FontName"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.FontSerializationData.FontName"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Models.FontSerializationData.FontName"/>
         </member>
         <member name="F:SudokuStudio.Models.FontSerializationData.FontScaleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.FontSerializationData.FontScale"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.FontSerializationData.FontScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Models.FontSerializationData.FontScale"/>
         </member>
         <member name="F:SudokuStudio.Models.FontSerializationData.FontColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.FontSerializationData.FontColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.FontSerializationData.FontColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Models.FontSerializationData.FontColor"/>
         </member>
@@ -2730,19 +2730,19 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Models.StepSearcherSerializationData.IsEnabledProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.IsEnabled"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.IsEnabled"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Models.StepSearcherSerializationData.IsEnabled"/>
         </member>
         <member name="F:SudokuStudio.Models.StepSearcherSerializationData.NameProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.Name"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.Name"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Models.StepSearcherSerializationData.Name"/>
         </member>
         <member name="F:SudokuStudio.Models.StepSearcherSerializationData.TypeNameProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.TypeName"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.TypeName"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Models.StepSearcherSerializationData.TypeName"/>
         </member>
@@ -2839,13 +2839,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Models.ViewUnit.ConclusionsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.ViewUnit.Conclusions"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.ViewUnit.Conclusions"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Models.ViewUnit.Conclusions"/>
         </member>
         <member name="F:SudokuStudio.Models.ViewUnit.ViewProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Models.ViewUnit.View"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.ViewUnit.View"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Models.ViewUnit.View"/>
         </member>
@@ -5174,7 +5174,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Controls.ColorSelector.SelectedColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>
         </member>
@@ -5210,7 +5210,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>
         </member>
@@ -5257,19 +5257,19 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontNameProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>
         </member>
@@ -5378,7 +5378,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchersProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchers"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchers"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchers"/>
         </member>
@@ -5580,307 +5580,307 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidatesProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.DisplayCursorsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigitsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.DisableFlyoutProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInputProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStackingProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFillingProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFilling"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFilling"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFilling"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.EnableRightTapRemovingProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableRightTapRemoving"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableRightTapRemoving"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableRightTapRemoving"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenFontScaleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScaleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScale"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScale"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScaleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScaleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScale"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScale"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScaleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScaleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacityProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThicknessProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.SelectedCellProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKindProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayModeProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.ModifiableColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.BorderColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.LinkColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.NormalColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.AssignmentColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.EliminationColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CannibalismColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.ExofinColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.EndofinColorProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyleProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenFontProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFont"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFont"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFont"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFont"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFont"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFont"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.ViewUnitProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnit"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnit"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnit"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColorsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegroundsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgroundsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPaletteProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColorsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
         </member>
@@ -5906,7 +5906,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput">
             <summary>
-            Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is confilct with the digits in its containing houses, this pane will do nothing by this value being <see langword="true"/>. If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confilction.
+            Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is conflict with the digits in its containing houses, this pane will do nothing by this value being <see langword="true"/>. If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confliction.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking">
@@ -6197,13 +6197,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.StatusProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status"/>
         </member>
@@ -6485,49 +6485,49 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunchedProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunchedProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunched"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunched"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunched"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunningProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndexProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercentProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCacheProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPaletteProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPalette"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPalette"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPalette"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.VisualUnitProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit"/>
         </member>
@@ -6680,55 +6680,55 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResultProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResult"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResult"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.AnalysisResult"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistribution"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistribution"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistribution"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportionProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyLevelProportion"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolarProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolar"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolar"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PuzzleArgumentsPolar"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionSectionsProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionSections"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionSections"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionSections"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesXProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesX"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesX"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesX"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesYProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesY"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesY"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.DifficultyDistributionAxesY"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxesProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxes"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxes"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.RadiusAxes"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxesProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxes"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxes"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.PuzzleGraphs.PolarAxes"/>
         </member>
@@ -6807,13 +6807,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKindProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKind"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKind"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKind"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResultProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult"/>
         </member>
@@ -6857,7 +6857,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResultProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>
         </member>
@@ -6993,31 +6993,31 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndexProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInputProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInput"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInput"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInput"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.DrawingPage.SelectedModeProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.DrawingPage.LinkKindProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.LinkKind"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.LinkKind"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.LinkKind"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPaletteProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette"/>
         </member>
@@ -7153,7 +7153,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePathProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath"/>
         </member>
@@ -7490,19 +7490,19 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunningProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedModeProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCountProperty">
             <summary>
-            Defines a denpendency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount"/>
         </member>

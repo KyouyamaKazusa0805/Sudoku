@@ -9227,9 +9227,9 @@ if (student is (name: var name, age: >= 18))
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Parsing.GridParser.ContainsMultilineLimitator">
+        <member name="P:Sudoku.Text.Parsing.GridParser.ContainsMultilineLimits">
             <summary>
-            Indicates whether the property <see cref="P:Sudoku.Text.Parsing.GridParser.ParsingValue"/> of this instance contains multiline limitators.
+            Indicates whether the property <see cref="P:Sudoku.Text.Parsing.GridParser.ParsingValue"/> of this instance contains multiline limits.
             </summary>
             <seealso cref="P:Sudoku.Text.Parsing.GridParser.ParsingValue"/>
         </member>

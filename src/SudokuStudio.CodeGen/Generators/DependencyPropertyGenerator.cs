@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
+namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Defines a generator that generates the source code for dependency properties.
@@ -243,7 +243,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 						dependencyProperties.Add(
 							$"""
 							/// <summary>
-								/// Defines a denpendency property that binds with property <see cref="{propertyName}"/>.
+								/// Defines a dependency property that binds with property <see cref="{propertyName}"/>.
 								/// </summary>
 								/// <seealso cref="{propertyName}"/>
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
@@ -294,9 +294,9 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 
 
 						//
-						// Declaration of interative properties
+						// Declaration of interactive properties
 						//
-						#region Interative properties
+						#region Interactive properties
 						{{string.Join("\r\n\r\n\t", properties)}}
 						#endregion
 					}
@@ -312,7 +312,7 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 /// </summary>
 /// <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
 /// <param name="PropertiesData">
-/// Indicates the internal data. For more information please visit doc commnets for type <see cref="PropertyData"/>.
+/// Indicates the internal data. For more information please visit doc comments for type <see cref="PropertyData"/>.
 /// </param>
 /// <seealso cref="PropertyData"/>
 file sealed record Data(INamedTypeSymbol Type, List<PropertyData> PropertiesData);

@@ -106,9 +106,7 @@ public static class ImageHandler
 	/// </typeparam>
 	/// <seealso cref="Image{TColor, TDepth}"/>
 	/// <seealso cref="Bitmap"/>
-	public static Image<TColor, TDepth> ToImage<TColor, TDepth>(this Bitmap bitmap)
-		where TColor : struct, IColor
-		where TDepth : new()
+	public static Image<TColor, TDepth> ToImage<TColor, TDepth>(this Bitmap bitmap) where TColor : struct, IColor where TDepth : new()
 	{
 		var size = bitmap.Size;
 		var image = new Image<TColor, TDepth>(size);

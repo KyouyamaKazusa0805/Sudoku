@@ -131,7 +131,7 @@
             </summary>
             <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
             <param name="PropertiesData">
-            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
             </param>
             <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
         </member>
@@ -141,7 +141,7 @@
             </summary>
             <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
             <param name="PropertiesData">
-            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
             </param>
             <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
         </member>
@@ -150,7 +150,7 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PropertiesData">
             <summary>
-            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData">
@@ -229,7 +229,7 @@
             </summary>
             <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
             <param name="PropertiesData">
-            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
             </param>
             <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
         </member>
@@ -239,7 +239,7 @@
             </summary>
             <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
             <param name="PropertiesData">
-            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
             </param>
             <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
         </member>
@@ -248,7 +248,7 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PropertiesData">
             <summary>
-            Indicates the internal data. For more information please visit doc commnets for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData">

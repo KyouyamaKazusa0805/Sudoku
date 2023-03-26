@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about analyze tab pages.
@@ -154,7 +154,7 @@ file static class Extensions
 	public static bool None(this IEnumerable @this) => !@this.GetEnumerator().MoveNext();
 
 	/// <summary>
-	/// Creates a <see cref="Bold"/> ionstance with a singleton value of <see cref="Run"/>.
+	/// Creates a <see cref="Bold"/> instance with a singleton value of <see cref="Run"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Run"/> instance.</param>
 	/// <returns>A <see cref="Bold"/> instance.</returns>

@@ -31,26 +31,20 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 			// 根据题目难度确定是否满足题目发送的条件。
 			switch (diffLevel)
 			{
-				case DifficultyLevel.Easy when steps.Count(easyPredicate) <= 2:
+				case DifficultyLevel.Easy when steps.Count(static step => step.Difficulty == 2.3M) <= 2:
 				case DifficultyLevel.Moderate:
-				case DifficultyLevel.Hard when steps.Count(hardPredicate) > 2:
+				case DifficultyLevel.Hard when steps.Count(static step => step is
+				{
+					DifficultyLevel: DifficultyLevel.Hard,
+					TechniqueGroup: not (
+						TechniqueGroup.Wing or TechniqueGroup.SingleDigitPattern
+							or TechniqueGroup.UniqueRectangle
+							or TechniqueGroup.AlmostLockedCandidates
+					)
+				}) > 2:
 				{
 					continue;
 				}
-
-
-				static bool easyPredicate(IStep step) => step.Difficulty == 2.3M;
-
-				static bool hardPredicate(IStep step)
-					=> step is
-					{
-						DifficultyLevel: DifficultyLevel.Hard,
-						TechniqueGroup: not (
-							TechniqueGroup.Wing or TechniqueGroup.SingleDigitPattern
-								or TechniqueGroup.UniqueRectangle
-								or TechniqueGroup.AlmostLockedCandidates
-						)
-					};
 			}
 
 			await MessageManager.SendGroupMessageAsync(

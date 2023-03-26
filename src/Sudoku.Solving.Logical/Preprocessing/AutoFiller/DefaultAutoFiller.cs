@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Preprocessing.AutoFiller;
+namespace Sudoku.Preprocessing.AutoFiller;
 
 /// <summary>
 /// Defines a default auto filler instance.
@@ -23,7 +23,7 @@ public sealed class DefaultAutoFiller : IAutoFiller
 		{
 			case DifficultyLevel.Unknown:
 			{
-				throw new InvalidOperationException("The diffculty level of the target grid is unknown.");
+				throw new InvalidOperationException("The difficulty level of the target grid is unknown.");
 			}
 			case DifficultyLevel.Easy or DifficultyLevel.Moderate:
 			{

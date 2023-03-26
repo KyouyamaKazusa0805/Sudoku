@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
@@ -283,7 +283,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// <returns>The view.</returns>
 	private static View GetDirectView(int digit, int[] baseSets, int[] coverSets, scoped in CellMap fins, bool searchRow)
 	{
-		// Get the highlighteed cells (necessary).
+		// Get the highlighted cells (necessary).
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = fins ? new List<CandidateViewNode>() : null;
 		foreach (var baseSet in baseSets)

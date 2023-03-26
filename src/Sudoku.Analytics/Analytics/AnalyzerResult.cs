@@ -192,11 +192,10 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 				{
 					return null;
 				}
-				case [var firstStep, ..] and { Length: var length }:
+				case [var firstStep, ..]:
 				{
-					for (var i = length - 1; i >= 0; i--)
+					foreach (var step in Steps.EnumerateReversely())
 					{
-						var step = Steps[i];
 						if (step is not SingleStep)
 						{
 							return step;

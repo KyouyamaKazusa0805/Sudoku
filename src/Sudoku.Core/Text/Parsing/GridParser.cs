@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Parsing;
+namespace Sudoku.Text.Parsing;
 
 /// <summary>
 /// Encapsulates a grid parser that can parse a string value and convert it
@@ -97,10 +97,10 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 	public bool ShortenSusserFormat { get; private set; } = shortenSusser;
 
 	/// <summary>
-	/// Indicates whether the property <see cref="ParsingValue"/> of this instance contains multiline limitators.
+	/// Indicates whether the property <see cref="ParsingValue"/> of this instance contains multiline limits.
 	/// </summary>
 	/// <seealso cref="ParsingValue"/>
-	private readonly bool ContainsMultilineLimitator => ParsingValue.Contains("-+-");
+	private readonly bool ContainsMultilineLimits => ParsingValue.Contains("-+-");
 
 	/// <summary>
 	/// Indicates whether the property <see cref="ParsingValue"/> of this instance contains tab character '<c>\t</c>'.
@@ -127,7 +127,7 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 			{
 				return grid;
 			}
-			case { ContainsMultilineLimitator: true }:
+			case { ContainsMultilineLimits: true }:
 			{
 				foreach (var parseMethod in MultilineParseFunctions)
 				{
@@ -571,7 +571,7 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 			}
 
 			// Check per line, and expand it.
-			var placeholder = original.IndexOf('0') == -1 ? '.' : '0';
+			var placeholder = original.Contains('0') ? '0' : '.';
 			for (var i = 0; i < 9; i++)
 			{
 				var line = lines[i];
@@ -696,8 +696,7 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 					return Grid.Undefined;
 				}
 
-				// We don't need to set the value as a given because the current parsing
-				// if for sukakus, rather than normal sudokus.
+				// We don't need to set the value as a given because the current parsing if for Sukakus, rather than normal sudokus.
 				//if (IsPow2(mask))
 				//{
 				//	result[offset] = TrailingZeroCount(mask);

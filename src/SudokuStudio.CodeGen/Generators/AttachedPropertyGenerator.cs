@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
+namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Defines a generator that generates the source code for attached properties.
@@ -257,9 +257,9 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 
 
 						//
-						// Declaration of interative methods
+						// Declaration of interactive methods
 						//
-						#region Interative properties
+						#region Interactive properties
 						{{string.Join("\r\n\r\n\t", setterMethods)}}
 						#endregion
 					}
@@ -275,7 +275,7 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 /// </summary>
 /// <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
 /// <param name="PropertiesData">
-/// Indicates the internal data. For more information please visit doc commnets for type <see cref="PropertyData"/>.
+/// Indicates the internal data. For more information please visit doc comments for type <see cref="PropertyData"/>.
 /// </param>
 /// <seealso cref="PropertyData"/>
 file sealed record Data(INamedTypeSymbol Type, List<PropertyData> PropertiesData);

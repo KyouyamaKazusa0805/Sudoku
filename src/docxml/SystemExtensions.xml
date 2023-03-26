@@ -391,6 +391,9 @@
             The enumerable collection that allows the iteration by reference on an one-dimensional array.
             </returns>
         </member>
+        <member name="M:System.Collections.Generic.CollectionEnumeration.EnumerateReversely``1(``0[])">
+            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})"/>.
+        </member>
         <member name="M:System.Collections.Generic.CollectionEnumeration.EnumerateAsPair``3(``0[])">
             <summary>
             Creates a <see cref="T:System.Collections.Generic.ArrayPairEnumerator`3"/> instance that iterates on each element of pair elements.
@@ -569,6 +572,39 @@
             Returns <see langword="false"/> when the last iteration is for the last element,
             and now there's no elements to be iterated.
             </returns>
+        </member>
+        <member name="T:System.Collections.Generic.ReverseEnumerator`1">
+            <summary>
+            Represents a reverse enumerator.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="array">The array.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ReverseEnumerator`1.#ctor(`0[])">
+            <summary>
+            Represents a reverse enumerator.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="array">The array.</param>
+        </member>
+        <member name="F:System.Collections.Generic.ReverseEnumerator`1._array">
+            <summary>
+            The internal array.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ReverseEnumerator`1._index">
+            <summary>
+            Indicates the current index.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ReverseEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.Collections.Generic.ReverseEnumerator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Collections.Generic.ReverseEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="T:System.Collections.Generic.ValueList`1">
             <summary>

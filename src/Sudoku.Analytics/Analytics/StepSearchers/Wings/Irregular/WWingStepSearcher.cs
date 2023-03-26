@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>W-Wing</b> step searcher.
@@ -79,12 +79,12 @@ public sealed partial class WWingStepSearcher : StepSearcher
 								(_, _, { InOneHouse: true }, { InOneHouse: true }) => true,
 								_ => false
 							},
-							{ Count: > 2 and <= 6, BlockMask: var blox } => PopCount((uint)blox) switch
+							{ Count: > 2 and <= 6, BlockMask: var blocks } => PopCount((uint)blocks) switch
 							{
 								1 => ((PeersMap[c1] | PeersMap[c2]) & bridge) == bridge,
-								2 => TrailingZeroCount(blox) switch
+								2 => TrailingZeroCount(blocks) switch
 								{
-									var block1 => blox.GetNextSet(block1) switch
+									var block1 => blocks.GetNextSet(block1) switch
 									{
 										var block2 => (HousesMap[block1] & bridge, HousesMap[block2] & bridge) switch
 										{

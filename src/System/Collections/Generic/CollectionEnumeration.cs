@@ -35,6 +35,10 @@ public static class CollectionEnumeration
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static OneDimensionalArrayRefEnumerator<T> EnumerateRef<T>(this T[] @this) => new(@this);
 
+	/// <inheritdoc cref="Enumerable.Reverse{TSource}(IEnumerable{TSource})"/>.
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReverseEnumerator<T> EnumerateReversely<T>(this T[] @this) => new(@this);
+
 	/// <summary>
 	/// Creates a <see cref="ArrayPairEnumerator{T, TFirst, TSecond}"/> instance that iterates on each element of pair elements.
 	/// </summary>

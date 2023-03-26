@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis;
+namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides extension methods for <see cref="INamedTypeSymbol"/>.
@@ -60,7 +60,7 @@ internal static class INamedTypeSymbolExtensions
 	{
 		var result = @this.ToDisplayString(ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints)[8..];
 		scoped var buffer = (stackalloc char[result.Length]);
-		buffer.Fill('\0');
+		buffer.Clear();
 		var pointer = 0;
 		for (var i = 0; i < result.Length; i++)
 		{

@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio;
+namespace SudokuStudio;
 
 /// <summary>
 /// Provides application-specific behavior to supplement the default <see cref="Application"/> class.
@@ -112,7 +112,7 @@ public partial class App : Application
 	{
 		RegisterResourceFetching();
 		HandleOnProgramOpeningEntryCase();
-		ActivicateMainWindow();
+		ActivateMainWindow();
 		LoadConfigurationFileFromLocal();
 	}
 
@@ -122,9 +122,9 @@ public partial class App : Application
 	private void RegisterResourceFetching() => MergedResources.R.RegisterAssembly(typeof(App).Assembly);
 
 	/// <summary>
-	/// Creates a window, and activicate it.
+	/// Creates a window, and activate it.
 	/// </summary>
-	private void ActivicateMainWindow() => WindowManager.CreateWindow<MainWindow>().Activate();
+	private void ActivateMainWindow() => WindowManager.CreateWindow<MainWindow>().Activate();
 
 	/// <summary>
 	/// Handle the cases how user opens this program.
