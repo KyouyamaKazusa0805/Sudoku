@@ -1388,16 +1388,6 @@
             将 <see cref="T:System.TimeSpan"/> 实例用中文汉字“时分秒”的形式表达为字符串写法。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Extensions.SendPictureThenDeleteAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,System.Func{Sudoku.Drawing.ISudokuPainter})">
-            <summary>
-            根据指定的回调函数生成 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 对象，将该对象产生的图片保存至本地，然后将其发送出去，然后自动删掉本地的图片缓存。
-            </summary>
-            <param name="this">用来发送消息的对象。</param>
-            <param name="painterCreator">
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})" path="/param[@name='painterCreator']"/>
-            </param>
-            <returns>一个 <see cref="T:System.Threading.Tasks.Task"/> 对象，包裹了异步执行的基本信息。</returns>
-        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer">
             <summary>
             本地的计分规则的方法。
@@ -1559,9 +1549,48 @@
             表示数值“强化卡”。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand">
+            <summary>
+            表示题库指令。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.Operation">
+            <summary>
+            表示你需要操作题库的具体操作类型。默认情况下该数值是“初始化”。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.GroupName">
+            <summary>
+            表示你要操作的目标群的群名。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.GroupId">
+            <summary>
+            表示你要操作的目标群的群号。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations">
+            <summary>
+            提供一种操作名称，用于 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.Operation"/> 属性。
+            </summary>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.Operation"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Initialize">
+            <summary>
+            表示初始化题库。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand">
             <summary>
             表示从题库里抽取题目的指令。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand.Solver">
+            <summary>
+            表示一个临时的解题器对象。这个对象可以校验题目的难度。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand.GroupName">
@@ -1751,6 +1780,16 @@
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(System.String,System.String)" path="/returns"/>
             </returns>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzleFor(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
+            <summary>
+            通过指定的 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 数据实例，获得题库路径，以及完成题目的数量，以这两个数值来确定抽取的题目。
+            </summary>
+            <param name="puzzleLibrary">一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 类型的实例。</param>
+            <returns>返回一个 <see cref="T:Sudoku.Concepts.Grid"/> 实例，表示结果。</returns>
+            <exception cref="T:System.InvalidOperationException">
+            如果题库已经完成，就会产生此异常。这里属于是一个补救措施，因为调用此方法之前应本身就先得确保题库可以抽取题目。
+            </exception>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetLibrary(System.String,System.String)">
             <summary>
             根据群号（QQ）和题库名称去搜索该群的匹配题库。如果找不到，则返回 <see langword="null"/>。
@@ -1820,6 +1859,22 @@
             <summary>
             获取指定群，群成员的 QQ 等于参数 <paramref name="id"/> 的成员。
             </summary>
+        </member>
+        <member name="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions">
+            <summary>
+            为类型 <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/> 实例提供扩展方法。
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>
+        </member>
+        <member name="M:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions.SendPictureThenDeleteAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,System.Func{Sudoku.Drawing.ISudokuPainter})">
+            <summary>
+            根据指定的回调函数生成 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 对象，将该对象产生的图片保存至本地，然后将其发送出去，然后自动删掉本地的图片缓存。
+            </summary>
+            <param name="this">用来发送消息的对象。</param>
+            <param name="painterCreator">
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.GenerateCachedPicturePath(System.Func{Sudoku.Drawing.ISudokuPainter})" path="/param[@name='painterCreator']"/>
+            </param>
+            <returns>一个 <see cref="T:System.Threading.Tasks.Task"/> 对象，包裹了异步执行的基本信息。</returns>
         </member>
         <member name="T:Mirai.Net.Modules.IPeriodicModule">
             <summary>

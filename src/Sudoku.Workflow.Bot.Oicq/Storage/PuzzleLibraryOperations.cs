@@ -98,8 +98,9 @@ public static class PuzzleLibraryOperations
 				(
 					from fileInfo in new DirectoryInfo(groupLibraryFolder).EnumerateFiles("*.txt")
 					let name = fileInfo.Name
+					let finalName = name[..name.LastIndexOf(".txt")] // 忽略掉末尾的 .txt。
 					let fullName = fileInfo.FullName
-					select new PuzzleLibrary { GroupId = groupId, Name = name, Path = fullName }
+					select new PuzzleLibrary { GroupId = groupId, Name = finalName, Path = fullName }
 				).ToList()
 			)
 		);
@@ -130,6 +131,41 @@ public static class PuzzleLibraryOperations
 		=> File.ReadLines(puzzleLibrary.Path).Count(static line => !string.IsNullOrWhiteSpace(line) && Grid.TryParse(line, out _));
 
 	/// <summary>
+	/// 通过指定的 <see cref="PuzzleLibrary"/> 数据实例，获得题库路径，以及完成题目的数量，以这两个数值来确定抽取的题目。
+	/// </summary>
+	/// <param name="puzzleLibrary">一个 <see cref="PuzzleLibrary"/> 类型的实例。</param>
+	/// <returns>返回一个 <see cref="Grid"/> 实例，表示结果。</returns>
+	/// <exception cref="InvalidOperationException">
+	/// 如果题库已经完成，就会产生此异常。这里属于是一个补救措施，因为调用此方法之前应本身就先得确保题库可以抽取题目。
+	/// </exception>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public static Grid GetPuzzleFor(PuzzleLibrary puzzleLibrary)
+	{
+		var current = puzzleLibrary.FinishedPuzzlesCount;
+		var total = CheckValidPuzzlesCountInPuzzleLibrary(puzzleLibrary);
+		if (current == total)
+		{
+			throw new InvalidOperationException("This puzzle library has already been finished.");
+		}
+
+		var path = puzzleLibrary.Path;
+		var i = -1;
+		foreach (var line in File.ReadLines(path))
+		{
+			// 注意，这里 i 初始值必须是 -1。因为循环迭代的过程之中，题目如果合法，那么这里会优先给 i 进行自增运算，所以 -1 初始使用的时候也会变为 0。
+			// 如果你初始化的时候写的 0，那么第一次使用 i 就已经成 1 了。
+			// 以及，我不喜欢写 i++ 在内联的表达式里，因为 i 在执行完的时候才会触发此表达式的执行，这一点要不是故意的，我一般都不会这么用。
+			// 当然，for 循环最后一部分我还是写的 i++ 的，这个另说。
+			if (Grid.TryParse(line, out var grid) && ++i == current)
+			{
+				return grid;
+			}
+		}
+
+		throw new InvalidOperationException("Something goes wrong with this puzzle library.");
+	}
+
+	/// <summary>
 	/// 根据群号（QQ）和题库名称去搜索该群的匹配题库。如果找不到，则返回 <see langword="null"/>。
 	/// </summary>
 	/// <param name="groupId">群号。</param>
@@ -137,7 +173,9 @@ public static class PuzzleLibraryOperations
 	/// <returns>返回 <see cref="PuzzleLibrary"/> 实例，表示题库的基本信息。</returns>
 	[MethodImpl(MethodImplOptions.Synchronized)]
 	public static PuzzleLibrary? GetLibrary(string groupId, string libraryName)
-		=> GetLibraries(groupId) is { } libraries ? Array.Find(libraries, puzzleLibrary => puzzleLibrary.Name == libraryName) : null;
+		=> GetLibraries(groupId) is { } libraries
+			? Array.Find(libraries, puzzleLibrary => puzzleLibrary.Name.Equals(libraryName, StringComparison.OrdinalIgnoreCase))
+			: null;
 
 	/// <summary>
 	/// 根据群号（QQ）获取本群的所有题库信息，并返回一个 <see cref="PuzzleLibrary"/> 构成的数组。如果本群不存在本地数据，
