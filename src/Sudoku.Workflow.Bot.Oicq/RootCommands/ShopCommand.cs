@@ -1,6 +1,7 @@
 namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 [Command("商店")]
+[RequiredUserLevel(20)]
 internal sealed class ShopCommand : Command
 {
 	/// <summary>
@@ -15,23 +16,6 @@ internal sealed class ShopCommand : Command
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
-		if (messageReceiver is not { Sender.Id: var senderId })
-		{
-			return;
-		}
-
-		if (StorageHandler.Read(senderId) is not { ExperiencePoint: var exp } user)
-		{
-			await messageReceiver.QuoteMessageAsync("用户尚没有使用过机器人。商店功能至少需要用户达到 20 级才可使用。");
-			return;
-		}
-
-		if (ScoreHandler.GetGrade(exp) < 20)
-		{
-			await messageReceiver.QuoteMessageAsync("很抱歉，商店功能至少需要用户达到 20 级才可使用。");
-			return;
-		}
-
 		switch (ItemKind)
 		{
 			case null:

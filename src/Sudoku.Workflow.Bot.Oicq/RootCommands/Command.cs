@@ -26,7 +26,7 @@ public abstract class Command : IModule
 	/// <summary>
 	/// 表示引发指令的名称，不带前缀符号。比如“！签到”的“签到”。
 	/// </summary>
-	protected string RaisingCommand => EqualityContract.GetCustomAttribute<CommandAttribute>()!.Name;
+	public string Name => EqualityContract.GetCustomAttribute<CommandAttribute>()!.Name;
 
 	/// <summary>
 	/// 为 <see cref="object.GetType"/> 的快捷调用。由于体系架构使用反射，因此该属性使用频率会非常高。
@@ -34,11 +34,14 @@ public abstract class Command : IModule
 	protected Type EqualityContract => GetType();
 
 	/// <summary>
+	/// 表示用户需要至少满足多少级别的时候才可使用的指令。只要用户等级大于或等于该级别的时候，则可以使用该指令，否则将产生错误信息的提示。
+	/// </summary>
+	private int RequiredUserLevel => EqualityContract.GetCustomAttribute<RequiredUserLevelAttribute>()?.RequiredUserLevel ?? 0;
+
+	/// <summary>
 	/// 表示该指令需要依赖的指令名称。比如说游戏结束必须至少要求游戏开始。那么“！结束游戏”指令必须依赖于“！开始游戏”指令触发之后。
 	/// 这个属性对于“结束游戏”指令的实现类型来说，它的依赖指令名就是“开始游戏”。如果类型不依赖于任何其他的指令，这个属性则会保持 <see langword="null"/> 值。
 	/// </summary>
-	[DebuggerHidden]
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private string? RequiredEnvironmentCommand
 		=> EqualityContract.GetGenericAttributeTypeArguments(typeof(DependencyModuleAttribute<>)) switch
 		{
@@ -47,15 +50,11 @@ public abstract class Command : IModule
 		};
 
 	/// <inheritdoc cref="RequiredRoleAttribute.SenderRole"/>
-	[DebuggerHidden]
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private GroupRoleKind RequiredSenderRole
 		=> EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.SenderRole
 		?? GroupRoleKind.God | GroupRoleKind.Owner | GroupRoleKind.Manager | GroupRoleKind.DefaultMember;
 
 	/// <inheritdoc cref="RequiredRoleAttribute.BotRole"/>
-	[DebuggerHidden]
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private GroupRoleKind RequiredBotRole => EqualityContract.GetCustomAttribute<RequiredRoleAttribute>()?.BotRole ?? GroupRoleKind.None;
 
 	/// <inheritdoc/>
@@ -75,7 +74,7 @@ public abstract class Command : IModule
 			{
 				BotPermission: var permission,
 				MessageChain: var messageChain,
-				Sender: var sender,
+				Sender: { Id: var senderId } sender,
 				GroupId: var groupId
 			} gmr)
 		{
@@ -83,7 +82,7 @@ public abstract class Command : IModule
 		}
 
 		var text = messageChain switch { [SourceMessage, PlainMessage { Text: var t }] => t, _ => null };
-		if (text is null || !Array.Exists(ModuleTriggeringPrefix, prefix => text.StartsWith($"{prefix}{RaisingCommand}")))
+		if (text is null || !Array.Exists(ModuleTriggeringPrefix, prefix => text.StartsWith($"{prefix}{Name}")))
 		{
 			return;
 		}
@@ -106,6 +105,13 @@ public abstract class Command : IModule
 		if (RequiredBotRole != GroupRoleKind.None && RequiredBotRole < ToGroupRoleKind(permission))
 		{
 			await gmr.SendMessageAsync("机器人需要更高权限才可进行该操作。");
+			return;
+		}
+
+		if (RequiredUserLevel != 0
+			&& (StorageHandler.Read(senderId) is not { ExperiencePoint: var exp } || ScoreHandler.GetGrade(exp) < RequiredUserLevel))
+		{
+			await gmr.SendMessageAsync($"抱歉，该至少需要用户达到 {RequiredUserLevel} 级才可使用。");
 			return;
 		}
 
@@ -200,10 +206,10 @@ public abstract class Command : IModule
 					}
 				);
 
-				hint = string.IsNullOrWhiteSpace(hint) ? $"  {RaisingCommand}" : $"  {RaisingCommand} {hint}";
+				hint = string.IsNullOrWhiteSpace(hint) ? $"  {Name}" : $"  {Name} {hint}";
 				await gmr.SendMessageAsync(
 					$$"""
-					指令“{{RaisingCommand}}”语法：
+					指令“{{Name}}”语法：
 					{{hint}}
 					---
 					解释：
@@ -496,7 +502,7 @@ public abstract class Command : IModule
 	/// <returns>一个 <see cref="bool"/> 结果。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static bool CommandEqualityComparer(string name, Command module)
-		=> Array.Exists(ModuleTriggeringPrefix, prefix => name == $"{prefix}{module.RaisingCommand}");
+		=> Array.Exists(ModuleTriggeringPrefix, prefix => name == $"{prefix}{module.Name}");
 
 	/// <summary>
 	/// 用来将一个字符串直接拆解成一个一个的参数序列。以空格分隔。如果带有引号，则引号是一个整体，里面可包含空格。

@@ -13,7 +13,7 @@ internal sealed class GameCommand : Command
 		var separator = new string(' ', 4);
 
 		var context = RunningContexts[messageReceiver.GroupId];
-		context.ExecutingCommand = RaisingCommand;
+		context.ExecutingCommand = Name;
 		context.AnsweringContext = new();
 
 		// 确定题目。
